@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String       @id @default(cuid())
+  email         String       @unique
+  nome          String?
+  idade         Int?
+  emailVerified DateTime?
+  image         String?
+  criadoEm     DateTime     @default(now())
+  perfil        Perfil?
+  progresso     Progresso[]
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model Perfil {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id])
+  tipo      String
+  respostas Json
+  criadoEm DateTime @default(now())
+}
+
+model Modulo {
+  id         String          @id @default(cuid())
+  titulo     String
+  descricao  String
+  tipoPerfil String
+  ordem      Int
+  itens      ChecklistItem[]
+}
+
+model ChecklistItem {
+  id        String      @id @default(cuid())
+  moduloId  String
+  modulo    Modulo      @relation(fields: [moduloId], references: [id])
+  texto     String
+  contexto  String
+  progresso Progresso[]
+}
+
+model Progresso {
+  id       String        @id @default(cuid())
+  userId   String
+  user     User          @relation(fields: [userId], references: [id])
+  itemId   String
+  item     ChecklistItem @relation(fields: [itemId], references: [id])
+  feito    Boolean       @default(false)
+  feitoEm DateTime?
+
+  @@unique([userId, itemId])
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
