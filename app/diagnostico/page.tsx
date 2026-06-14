@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { DiagnosticoFlow } from "@/components/diagnostico-flow"
-import { perguntas } from "@/lib/perfis"
+import { perguntas, calcularPerfil } from "@/lib/perfis"
 
 export default function DiagnosticoPage() {
   const router = useRouter()
@@ -14,19 +14,17 @@ export default function DiagnosticoPage() {
     setEnviando(true)
     setErro(false)
     try {
-      const res = await fetch("/api/diagnostico", {
+      const tipo = calcularPerfil(respostas)
+      localStorage.setItem("finlow_perfil", tipo)
+
+      // salva no banco em segundo plano, sem bloquear o fluxo
+      fetch("/api/diagnostico", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ respostas }),
-      })
-      const data = await res.json()
-      if (res.ok && data.tipo) {
-        localStorage.setItem("finlow_perfil", data.tipo)
-        router.push("/perfil")
-      } else {
-        setErro(true)
-        setEnviando(false)
-      }
+      }).catch(() => {})
+
+      router.push("/perfil")
     } catch {
       setErro(true)
       setEnviando(false)
