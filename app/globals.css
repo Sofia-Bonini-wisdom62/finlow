@@ -60,6 +60,28 @@
   --radius: 0.625rem;
 }
 
+@layer utilities {
+  .card-enter {
+    animation: card-enter 0.35s ease both;
+  }
+
+  @keyframes card-enter {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  em {
+    font-style: normal;
+    color: #00C896;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

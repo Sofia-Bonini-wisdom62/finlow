@@ -8,15 +8,15 @@ datasource db {
 }
 
 model User {
-  id            String       @id @default(cuid())
-  email         String       @unique
+  id            String            @id @default(cuid())
+  email         String            @unique
   nome          String?
   idade         Int?
   emailVerified DateTime?
   image         String?
-  criadoEm     DateTime     @default(now())
+  criadoEm     DateTime          @default(now())
   perfil        Perfil?
-  progresso     Progresso[]
+  progresso     ProgressoModulo[]
   accounts      Account[]
   sessions      Session[]
 }
@@ -31,33 +31,43 @@ model Perfil {
 }
 
 model Modulo {
-  id         String          @id @default(cuid())
+  id         String            @id @default(cuid())
+  slug       String            @unique
   titulo     String
-  descricao  String
+  subtitulo  String
   tipoPerfil String
   ordem      Int
-  itens      ChecklistItem[]
+  xp         Int               @default(50)
+  telas      Tela[]
+  progresso  ProgressoModulo[]
+
+  @@index([tipoPerfil, ordem])
 }
 
-model ChecklistItem {
-  id        String      @id @default(cuid())
-  moduloId  String
-  modulo    Modulo      @relation(fields: [moduloId], references: [id])
-  texto     String
-  contexto  String
-  progresso Progresso[]
+model Tela {
+  id       String @id @default(cuid())
+  moduloId String
+  modulo   Modulo @relation(fields: [moduloId], references: [id], onDelete: Cascade)
+  ordem    Int
+  tipo     String
+  label    String
+  conteudo Json
+
+  @@unique([moduloId, ordem])
 }
 
-model Progresso {
-  id       String        @id @default(cuid())
-  userId   String
-  user     User          @relation(fields: [userId], references: [id])
-  itemId   String
-  item     ChecklistItem @relation(fields: [itemId], references: [id])
-  feito    Boolean       @default(false)
-  feitoEm DateTime?
+model ProgressoModulo {
+  id          String    @id @default(cuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  moduloId    String
+  modulo      Modulo    @relation(fields: [moduloId], references: [id], onDelete: Cascade)
+  concluido   Boolean   @default(false)
+  telaAtual   Int       @default(0)
+  concluidoEm DateTime?
+  criadoEm    DateTime  @default(now())
 
-  @@unique([userId, itemId])
+  @@unique([userId, moduloId])
 }
 
 model Account {
