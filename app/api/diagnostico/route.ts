@@ -3,6 +3,7 @@ export const dynamic = "force-dynamic"
 import { NextResponse } from "next/server"
 import { calcularPerfil } from "@/lib/perfis"
 import { db } from "@/lib/db"
+import { auth } from "@/lib/auth"
 
 export async function POST(req: Request) {
   try {
@@ -14,21 +15,19 @@ export async function POST(req: Request) {
 
     const tipo = calcularPerfil(respostas)
 
-    // Tenta salvar no banco — se falhar (ex: sem conexão), retorna o perfil mesmo assim
+    // Logado: salva/atualiza o perfil no usuário. Sem sessão: só devolve o tipo
+    // (o front guarda no localStorage e o cadastro vincula depois via perfilTipo).
     try {
-      await db.perfil.create({
-        data: {
-          tipo,
-          respostas: respostas,
-          user: {
-            create: {
-              email: `anonimo_${Date.now()}@finlow.temp`,
-            },
-          },
-        },
-      })
+      const session = await auth()
+      if (session?.user?.id) {
+        await db.perfil.upsert({
+          where: { userId: session.user.id },
+          create: { userId: session.user.id, tipo, respostas },
+          update: { tipo, respostas },
+        })
+      }
     } catch (dbError) {
-      console.warn("[diagnostico] banco indisponível, continuando sem salvar:", dbError)
+      console.warn("[diagnostico] falha ao salvar perfil, continuando:", dbError)
     }
 
     return NextResponse.json({ tipo })

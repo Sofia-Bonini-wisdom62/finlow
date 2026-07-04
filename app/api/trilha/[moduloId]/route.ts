@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
+import { auth } from "@/lib/auth"
 
 export const dynamic = "force-dynamic"
 
@@ -11,7 +12,9 @@ export async function GET(
   try {
     const { moduloId } = await params
     const { searchParams } = new URL(req.url)
-    const userId = searchParams.get("userId")
+    // sessão NextAuth tem prioridade; query param é o fallback anônimo
+    const session = await auth()
+    const userId = session?.user?.id ?? searchParams.get("userId")
 
     const modulo = await db.modulo.findUnique({
       where: { id: moduloId },

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
+import { auth } from "@/lib/auth"
 
 export const dynamic = "force-dynamic"
 
@@ -8,7 +9,9 @@ export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url)
     const tipoPerfil = searchParams.get("tipoPerfil")
-    const userId = searchParams.get("userId")
+    // sessão NextAuth tem prioridade; query param é o fallback anônimo
+    const session = await auth()
+    const userId = session?.user?.id ?? searchParams.get("userId")
 
     if (!tipoPerfil) return NextResponse.json({ error: "tipoPerfil obrigatório" }, { status: 400 })
 

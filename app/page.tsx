@@ -17,10 +17,16 @@ export default function Page() {
 
         {/* Coluna esquerda — hero */}
         <div className="flex flex-1 flex-col lg:py-24">
-          <div className="flex items-center">
+          <div className="flex items-center justify-between">
             <span className="text-2xl font-bold tracking-tight text-primary lg:text-3xl">
               Finlow
             </span>
+            <Link
+              href="/login"
+              className="rounded-full border border-border px-4 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Entrar
+            </Link>
           </div>
 
           <div className="mt-16 flex flex-col lg:mt-12">
@@ -47,6 +53,12 @@ export default function Page() {
               <p className="text-xs text-muted-foreground">
                 Leva menos de 2 minutos
               </p>
+              <Link
+                href="/cadastro"
+                className="mt-1 text-sm font-medium text-primary hover:underline"
+              >
+                Criar conta pra salvar meu progresso
+              </Link>
             </div>
           </div>
         </div>

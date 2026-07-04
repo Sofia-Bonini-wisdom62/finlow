@@ -1,13 +1,17 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
+import { auth } from "@/lib/auth"
 
 export const dynamic = "force-dynamic"
 
-function getUserId(req: NextRequest): string | null {
+// sessão NextAuth primeiro; header anônimo como fallback até todo mundo ter conta
+async function getUserId(req: NextRequest): Promise<string | null> {
+  const session = await auth()
+  if (session?.user?.id) return session.user.id
   return req.headers.get("x-user-id") || null
 }
 
-// garante que existe uma linha User pro id temporário (até NextAuth estar configurado)
+// garante que existe uma linha User pro id anônimo (fallback sem conta)
 async function ensureUser(userId: string) {
   await db.user.upsert({
     where: { id: userId },
@@ -19,7 +23,7 @@ async function ensureUser(userId: string) {
 // PATCH — atualiza telaAtual (fire-and-forget do CardFlow)
 export async function PATCH(req: NextRequest) {
   try {
-    const userId = getUserId(req)
+    const userId = await getUserId(req)
     if (!userId) return NextResponse.json({ error: "userId obrigatório" }, { status: 400 })
 
     const { moduloId, telaAtual } = await req.json()
@@ -45,7 +49,7 @@ export async function PATCH(req: NextRequest) {
 // POST — marca módulo como concluído
 export async function POST(req: NextRequest) {
   try {
-    const userId = getUserId(req)
+    const userId = await getUserId(req)
     if (!userId) return NextResponse.json({ error: "userId obrigatório" }, { status: 400 })
 
     const { moduloId } = await req.json()
