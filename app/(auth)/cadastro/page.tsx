@@ -5,6 +5,29 @@ import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { signIn } from "next-auth/react"
 
+// máscara DD/MM/AAAA — insere as barras enquanto digita
+function maskData(v: string): string {
+  const d = v.replace(/\D/g, "").slice(0, 8)
+  if (d.length <= 2) return d
+  if (d.length <= 4) return `${d.slice(0, 2)}/${d.slice(2)}`
+  return `${d.slice(0, 2)}/${d.slice(2, 4)}/${d.slice(4)}`
+}
+
+// "15/03/2008" -> "2008-03-15" (ISO pra API); null se inválida
+function parseData(v: string): string | null {
+  const m = v.match(/^(\d{2})\/(\d{2})\/(\d{4})$/)
+  if (!m) return null
+  const [, dd, mm, aaaa] = m
+  const dia = Number(dd)
+  const mes = Number(mm)
+  const ano = Number(aaaa)
+  const dt = new Date(ano, mes - 1, dia)
+  // rejeita datas que "rolam" (ex: 31/02 vira 02/03)
+  if (dt.getFullYear() !== ano || dt.getMonth() !== mes - 1 || dt.getDate() !== dia) return null
+  if (ano < 1900 || dt > new Date()) return null
+  return `${aaaa}-${mm}-${dd}`
+}
+
 export default function CadastroPage() {
   const router = useRouter()
   const [nome, setNome] = useState("")
@@ -17,6 +40,13 @@ export default function CadastroPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setErro(null)
+
+    const dataISO = parseData(dataNascimento)
+    if (!dataISO) {
+      setErro("Data de nascimento inválida — usa o formato DD/MM/AAAA")
+      return
+    }
+
     setEnviando(true)
 
     try {
@@ -26,7 +56,7 @@ export default function CadastroPage() {
       const res = await fetch("/api/cadastro", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, email, senha, dataNascimento, perfilTipo }),
+        body: JSON.stringify({ nome, email, senha, dataNascimento: dataISO, perfilTipo }),
       })
 
       const data = await res.json()
@@ -100,12 +130,15 @@ export default function CadastroPage() {
             </label>
             <input
               id="dataNascimento"
-              type="date"
+              type="text"
+              inputMode="numeric"
+              autoComplete="bday"
+              placeholder="DD/MM/AAAA"
               value={dataNascimento}
-              onChange={(e) => setDataNascimento(e.target.value)}
+              onChange={(e) => setDataNascimento(maskData(e.target.value))}
               required
-              max={new Date().toISOString().split("T")[0]}
-              className={`${inputClass} [color-scheme:dark]`}
+              maxLength={10}
+              className={inputClass}
             />
           </div>
 
