@@ -27,16 +27,31 @@ export default function TrilhaPage() {
   const [carregando, setCarregando] = useState(true)
 
   useEffect(() => {
-    const salvo = localStorage.getItem("finlow_perfil") as TipoPerfil | null
-    if (!salvo) { setCarregando(false); return }
-    setTipo(salvo)
+    async function init() {
+      let salvo = localStorage.getItem("finlow_perfil") as TipoPerfil | null
 
-    const userId = getOrCreateUserId()
-    fetch(`/api/trilha?tipoPerfil=${salvo}&userId=${userId}`)
-      .then((r) => r.json())
-      .then((data) => setModulos(data.modulos ?? []))
-      .catch(() => {})
-      .finally(() => setCarregando(false))
+      // sem localStorage (outro dispositivo?) — recupera do banco pela sessão
+      if (!salvo) {
+        try {
+          const d = await fetch("/api/perfil").then((r) => r.json())
+          if (d.tipo) {
+            salvo = d.tipo as TipoPerfil
+            localStorage.setItem("finlow_perfil", salvo)
+          }
+        } catch {}
+      }
+
+      if (!salvo) { setCarregando(false); return }
+      setTipo(salvo)
+
+      const userId = getOrCreateUserId()
+      try {
+        const data = await fetch(`/api/trilha?tipoPerfil=${salvo}&userId=${userId}`).then((r) => r.json())
+        setModulos(data.modulos ?? [])
+      } catch {}
+      setCarregando(false)
+    }
+    init()
   }, [])
 
   if (carregando) {

@@ -11,7 +11,20 @@ export default function PerfilPage() {
 
   useEffect(() => {
     const salvo = localStorage.getItem("finlow_perfil") as TipoPerfil | null
-    if (salvo) setTipo(salvo)
+    if (salvo) {
+      setTipo(salvo)
+      return
+    }
+    // sem localStorage (outro dispositivo?) — recupera do banco pela sessão
+    fetch("/api/perfil")
+      .then((r) => r.json())
+      .then((d) => {
+        if (d.tipo) {
+          localStorage.setItem("finlow_perfil", d.tipo)
+          setTipo(d.tipo)
+        }
+      })
+      .catch(() => {})
   }, [])
 
   if (!tipo) {

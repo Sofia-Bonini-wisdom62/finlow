@@ -5,7 +5,7 @@ import { useState } from "react"
 import { DiagnosticoFlow } from "@/components/diagnostico-flow"
 import { perguntas, calcularPerfil } from "@/lib/perfis"
 
-export default function DiagnosticoPage() {
+export function DiagnosticoClient() {
   const router = useRouter()
   const [enviando, setEnviando] = useState(false)
   const [erro, setErro] = useState(false)
