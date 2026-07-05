@@ -4,14 +4,9 @@ import { db } from "@/lib/db"
 
 export const dynamic = "force-dynamic"
 
-// ⚠️ Faixa etária 13–18 conforme CLAUDE.md. Decisão pendente da fundadora: posicionamento
-// aponta 15–18. Não alterar sem confirmação dela.
-const IDADE_MIN = 13
-const IDADE_MAX = 18
-
 export async function POST(req: NextRequest) {
   try {
-    const { nome, email, senha, idade, perfilTipo } = await req.json()
+    const { nome, email, senha, dataNascimento, perfilTipo } = await req.json()
 
     if (!nome || typeof nome !== "string" || nome.trim().length < 2) {
       return NextResponse.json({ error: "Me diz seu nome" }, { status: 400 })
@@ -22,12 +17,17 @@ export async function POST(req: NextRequest) {
     if (!senha || typeof senha !== "string" || senha.length < 6) {
       return NextResponse.json({ error: "Senha precisa de pelo menos 6 caracteres" }, { status: 400 })
     }
-    const idadeNum = Number(idade)
-    if (!Number.isInteger(idadeNum) || idadeNum < IDADE_MIN || idadeNum > IDADE_MAX) {
-      return NextResponse.json(
-        { error: `O Finlow é pra quem tem entre ${IDADE_MIN} e ${IDADE_MAX} anos` },
-        { status: 400 }
-      )
+
+    // data de nascimento é só informativa — sem validação de faixa etária
+    // (decisão da fundadora, 04/07/2026). Só checa se é uma data plausível.
+    let nascimento: Date | null = null
+    if (dataNascimento) {
+      const d = new Date(dataNascimento)
+      const ano = d.getFullYear()
+      if (isNaN(d.getTime()) || ano < 1900 || d > new Date()) {
+        return NextResponse.json({ error: "Data de nascimento inválida" }, { status: 400 })
+      }
+      nascimento = d
     }
 
     const emailNorm = email.toLowerCase().trim()
@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
         nome: nome.trim(),
         email: emailNorm,
         senha: hash,
-        idade: idadeNum,
+        dataNascimento: nascimento,
         // se o usuário já fez o diagnóstico antes de criar conta, vincula o perfil
         ...(perfilTipo && ["lancador", "guardador", "impulsivo", "sonhador"].includes(perfilTipo)
           ? { perfil: { create: { tipo: perfilTipo, respostas: [] } } }

@@ -10,7 +10,7 @@ export default function CadastroPage() {
   const [nome, setNome] = useState("")
   const [email, setEmail] = useState("")
   const [senha, setSenha] = useState("")
-  const [idade, setIdade] = useState("")
+  const [dataNascimento, setDataNascimento] = useState("")
   const [erro, setErro] = useState<string | null>(null)
   const [enviando, setEnviando] = useState(false)
 
@@ -26,7 +26,7 @@ export default function CadastroPage() {
       const res = await fetch("/api/cadastro", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, email, senha, idade, perfilTipo }),
+        body: JSON.stringify({ nome, email, senha, dataNascimento, perfilTipo }),
       })
 
       const data = await res.json()
@@ -94,17 +94,20 @@ export default function CadastroPage() {
             minLength={6}
             className={inputClass}
           />
-          <input
-            type="number"
-            inputMode="numeric"
-            placeholder="Sua idade"
-            value={idade}
-            onChange={(e) => setIdade(e.target.value)}
-            required
-            min={13}
-            max={18}
-            className={inputClass}
-          />
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="dataNascimento" className="text-sm font-medium" style={{ color: "#A0AEC0" }}>
+              Data de nascimento
+            </label>
+            <input
+              id="dataNascimento"
+              type="date"
+              value={dataNascimento}
+              onChange={(e) => setDataNascimento(e.target.value)}
+              required
+              max={new Date().toISOString().split("T")[0]}
+              className={`${inputClass} [color-scheme:dark]`}
+            />
+          </div>
 
           {erro && (
             <p className="rounded-xl border border-[#F87171]/30 bg-[#F87171]/10 px-4 py-3 text-sm text-[#F87171]">

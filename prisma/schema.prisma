@@ -11,7 +11,7 @@ model User {
   id                String            @id @default(cuid())
   email             String            @unique
   nome              String?
-  idade             Int?
+  dataNascimento    DateTime?         // só informativo — sem validação de idade (decisão da fundadora, 04/07/2026)
   senha             String?           // hash bcrypt — null para contas OAuth
   consentimentoLGPD DateTime?         // quando o consentimento do responsável foi registrado (menores de 18)
   emailVerified     DateTime?
