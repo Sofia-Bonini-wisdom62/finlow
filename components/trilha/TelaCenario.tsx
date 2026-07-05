@@ -12,7 +12,7 @@ export function TelaCenario({ conteudo }: { conteudo: ConteudoCenario }) {
     <div className="card-enter flex h-full flex-col justify-center gap-6 px-6 py-8">
       <div>
         <h2
-          className="text-2xl font-bold leading-snug text-white"
+          className="rich-text text-2xl font-bold leading-snug text-white"
           dangerouslySetInnerHTML={{ __html: conteudo.headline }}
         />
         {conteudo.personagem && (
@@ -63,7 +63,7 @@ export function TelaCenario({ conteudo }: { conteudo: ConteudoCenario }) {
 
       {conteudo.rodape && (
         <p
-          className="text-sm leading-relaxed text-[#A0AEC0]"
+          className="rich-text text-sm leading-relaxed text-[#A0AEC0]"
           dangerouslySetInnerHTML={{ __html: conteudo.rodape }}
         />
       )}

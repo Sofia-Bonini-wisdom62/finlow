@@ -17,7 +17,7 @@ export function TelaInput({ conteudo, sessao, onMudou }: Props) {
     <div className="card-enter flex h-full flex-col justify-center gap-6 px-6 py-8">
       <div>
         <h2
-          className="text-2xl font-bold leading-snug text-white"
+          className="rich-text text-2xl font-bold leading-snug text-white"
           dangerouslySetInnerHTML={{ __html: conteudo.headline }}
         />
         {conteudo.subtitulo && (
