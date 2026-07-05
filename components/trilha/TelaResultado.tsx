@@ -24,7 +24,7 @@ export function TelaResultado({ conteudo, sessao }: Props) {
   return (
     <div className="card-enter flex h-full flex-col justify-center gap-6 px-6 py-8">
       <h2
-        className="text-2xl font-bold leading-snug text-white"
+        className="rich-text text-2xl font-bold leading-snug text-white"
         dangerouslySetInnerHTML={{ __html: headline }}
       />
 

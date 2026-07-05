@@ -76,9 +76,14 @@
     }
   }
 
-  em {
+  /* conteúdo rico das telas do card flow (vem do seed, controlado) */
+  .rich-text em {
     font-style: normal;
-    color: #00C896;
+    color: #00c896;
+  }
+  .rich-text strong {
+    font-weight: 600;
+    color: #e2e8f0;
   }
 }
 
