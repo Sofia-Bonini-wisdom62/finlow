@@ -30,7 +30,7 @@ export function TelaResultado({ conteudo, sessao }: Props) {
 
       {faixa && (
         <div className={`rounded-2xl border ${cores.border} ${cores.bg} p-4`}>
-          <p className={`text-sm leading-relaxed ${cores.text}`}>{faixa.mensagem}</p>
+          <p className={`text-sm leading-relaxed ${cores.text}`}>{interpolar(faixa.mensagem, d, sessao)}</p>
         </div>
       )}
 

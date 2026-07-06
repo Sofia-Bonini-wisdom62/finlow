@@ -12,40 +12,86 @@ export interface Derivados {
   entrou: number
   saiu: number
   sobrou: number
-  pct: number            // % do que entrou que foi gasto
-  valor: number          // valor cru do campo "valor" da sessão (impulsivo)
-  pctGuardador: number   // % do dinheiro usado consigo (guardador)
-  porMesNum: number      // valor mensal p/ meta (sonhador), cru p/ faixas
+  pct: number
+  valor: number          // campo genérico (impulsivo M1/M4, sonhador M2)
+  pctGuardador: number
+  porMesNum: number
+  respiroNum: number     // lançador M2
+  semanasNum: number     // lançador M3
+  acimaLimite: number    // lançador M4 (0/1)
+  livreNum: number       // guardador M2
+  rendeNum: number       // guardador M3
+  mesesJuntar: number    // guardador M4
+  cobre: number          // impulsivo M2 (0/1)
+  pctMeta: number        // sonhador M3
+}
+
+const ZERO: Omit<Derivados, "entrou" | "saiu" | "sobrou" | "pct"> = {
+  valor: 0, pctGuardador: 0, porMesNum: 0, respiroNum: 0, semanasNum: 0,
+  acimaLimite: 0, livreNum: 0, rendeNum: 0, mesesJuntar: 0, cobre: 0, pctMeta: 0,
 }
 
 export function calcular(formula: string | undefined, sessao: SessaoFluxo): Derivados {
   const entrou = num(sessao.entrou)
   const saiu = num(sessao.saiu)
   const base: Derivados = {
-    entrou,
-    saiu,
+    entrou, saiu,
     sobrou: entrou - saiu,
     pct: entrou > 0 ? Math.round((saiu / entrou) * 100) : 0,
-    valor: 0,
-    pctGuardador: 0,
-    porMesNum: 0,
+    ...ZERO,
   }
 
   switch (formula) {
+    // ---- módulos 1 ----
     case "guardador_ratio": {
-      const guardou = num(sessao.guardou)
-      const gastou = num(sessao.gastou)
+      const guardou = num(sessao.guardou), gastou = num(sessao.gastou)
       const total = guardou + gastou
       return { ...base, pctGuardador: total > 0 ? Math.round((gastou / total) * 100) : 0 }
     }
-    case "impulsivo_gatilho": {
+    case "impulsivo_gatilho":
       return { ...base, valor: num(sessao.valor) }
-    }
     case "sonhador_por_mes": {
-      const custo = num(sessao.custo)
-      const meses = Math.max(1, num(sessao.meses))
+      const custo = num(sessao.custo), meses = Math.max(1, num(sessao.meses))
       return { ...base, porMesNum: Math.round(custo / meses) }
     }
+
+    // ---- módulos 2–4 ----
+    case "respiro_valor": {
+      const pctRespiro = num(sessao.pctRespiro)
+      return { ...base, respiroNum: Math.round(entrou * pctRespiro / 100), valor: pctRespiro }
+    }
+    case "semanas_meta": {
+      const custo = num(sessao.custo), respiro = Math.max(1, num(sessao.respiro))
+      return { ...base, semanasNum: Math.ceil(custo / respiro) }
+    }
+    case "freio_limite": {
+      const gastoRecente = num(sessao.gastoRecente), valorLimite = num(sessao.valorLimite)
+      return { ...base, acimaLimite: gastoRecente > valorLimite ? 1 : 0, valor: gastoRecente }
+    }
+    case "valor_livre": {
+      const pctLivre = num(sessao.pctLivre)
+      return { ...base, livreNum: Math.round(entrou * pctLivre / 100), valor: pctLivre }
+    }
+    case "render_simples": {
+      // estimativa ilustrativa: ~0,8% ao mês (renda fixa conservadora). NÃO é recomendação.
+      const guardado = num(sessao.guardado), meses = Math.max(1, num(sessao.meses))
+      return { ...base, rendeNum: Math.round(guardado * 0.008 * meses) }
+    }
+    case "prazer_planejado": {
+      const custoExp = num(sessao.custoExp), livre = Math.max(1, num(sessao.livre))
+      return { ...base, mesesJuntar: Math.ceil(custoExp / livre) }
+    }
+    case "pausa_limiar": {
+      const gastoTipico = num(sessao.gastoTipico), limiar = num(sessao.limiar)
+      return { ...base, cobre: gastoTipico > limiar ? 1 : 0 }
+    }
+    case "passo_minimo":
+      return { ...base, valor: num(sessao.quanto) }
+    case "realidade_meta": {
+      const valorMes = num(sessao.valorMes)
+      return { ...base, pctMeta: entrou > 0 ? Math.round((valorMes / entrou) * 100) : 100 }
+    }
+
     case "entrou_saiu_pct":
     default:
       return base
@@ -59,9 +105,20 @@ export function interpolar(texto: string, d: Derivados, sessao: SessaoFluxo): st
     switch (chave) {
       case "pct":
       case "pctGuardador":
-        return String(d[chave as "pct" | "pctGuardador"])
+      case "pctMeta":
+        return String(d[chave as "pct" | "pctGuardador" | "pctMeta"])
       case "porMes":
         return "R$ " + d.porMesNum // inteiro, sem centavos
+      case "respiro":
+        return "R$ " + d.respiroNum
+      case "livre":
+        return "R$ " + d.livreNum
+      case "rende":
+        return "R$ " + d.rendeNum
+      case "semanas":
+        return String(d.semanasNum)
+      case "mesesJuntar":
+        return String(d.mesesJuntar)
       case "entrou":
       case "saiu":
       case "sobrou":
