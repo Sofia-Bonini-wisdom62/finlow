@@ -114,7 +114,12 @@ export const modulosSeeds: SeedModulo[] = [
           aviso: "Isso fica só com você. Não salvamos nenhum valor.",
           campos: [
             { id: "entrou", emoji: "💸", label: "Entrou", placeholder: "R$ quanto veio essa semana?", tipo: "decimal" },
-            { id: "saiu", emoji: "🛒", label: "Saiu", placeholder: "R$ soma do que saiu no extrato", tipo: "decimal" },
+            { id: "saiu", emoji: "🛒", label: "Saiu", tipo: "faixa", opcoes: [
+              { label: "até R$ 30", valor: "20" },
+              { label: "R$ 30–70", valor: "50" },
+              { label: "R$ 70–120", valor: "95" },
+              { label: "mais de R$ 120", valor: "150" },
+            ] },
             { id: "gasto", emoji: "🤔", label: "1 gasto", placeholder: "que você não lembrava até ver", tipo: "texto" },
           ],
         },
@@ -124,7 +129,7 @@ export const modulosSeeds: SeedModulo[] = [
         tipo: "resultado",
         label: "Seu resultado",
         conteudo: {
-          headline: "Você gastou <em>{pct}%</em> do que entrou",
+          headline: "Você gastou <em>≈ {pct}%</em> do que entrou",
           formula: "entrou_saiu_pct",
           faixas: [
             { condicao: "sobrou > 30pct", mensagem: "Você ficou com mais de 30% do que entrou. Isso é raro — e é um bom começo.", cor: "green" },
@@ -241,7 +246,12 @@ export const modulosSeeds: SeedModulo[] = [
           aviso: "Isso fica só com você. Não salvamos nenhuma resposta.",
           campos: [
             { id: "guardou", emoji: "🔒", label: "Guardei", placeholder: "R$ quanto você guardou esse mês?", tipo: "decimal" },
-            { id: "gastou", emoji: "🎉", label: "Curti", placeholder: "R$ quanto gastou em algo que te fez bem?", tipo: "decimal" },
+            { id: "gastou", emoji: "🎉", label: "Curti", tipo: "faixa", opcoes: [
+              { label: "quase nada (até R$ 10)", valor: "5" },
+              { label: "R$ 10–40", valor: "25" },
+              { label: "R$ 40–80", valor: "60" },
+              { label: "mais de R$ 80", valor: "100" },
+            ] },
             { id: "recusa", emoji: "😕", label: "Recusei", placeholder: "algo que deixou de fazer só pra economizar", tipo: "texto" },
           ],
         },
@@ -251,7 +261,7 @@ export const modulosSeeds: SeedModulo[] = [
         tipo: "resultado",
         label: "Seu resultado",
         conteudo: {
-          headline: "Você usou <em>{pctGuardador}%</em> do seu dinheiro com você",
+          headline: "Você usou <em>≈ {pctGuardador}%</em> do seu dinheiro com você",
           formula: "guardador_ratio",
           faixas: [
             {
@@ -979,7 +989,12 @@ export const modulosSeeds: SeedModulo[] = [
         subtitulo: "2 campos. O limite certo é o que pega o SEU impulso.",
         aviso: "Isso fica só com você. Não salvamos nenhum valor.",
         campos: [
-          { id: "gastoTipico", emoji: "🛍️", label: "Meu impulso", placeholder: "R$ do seu gasto por impulso típico", tipo: "decimal" },
+          { id: "gastoTipico", emoji: "🛍️", label: "Meu impulso", tipo: "faixa", opcoes: [
+            { label: "até R$ 20", valor: "15" },
+            { label: "R$ 20–50", valor: "35" },
+            { label: "R$ 50–100", valor: "75" },
+            { label: "mais de R$ 100", valor: "130" },
+          ] },
           { id: "limiar", emoji: "⏸️", label: "Minha pausa", placeholder: "R$ a partir de quanto você espera 24h?", tipo: "decimal" },
         ],
       }},
