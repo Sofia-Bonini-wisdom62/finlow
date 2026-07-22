@@ -36,12 +36,18 @@ export interface ConteudoQuiz {
   opcoes: OpcaoQuiz[]
 }
 
+export interface OpcaoFaixa {
+  label: string // "R$ 30–70"
+  valor: string // "50" — valor representativo (ponto médio) usado nos cálculos
+}
+
 export interface CampoInput {
   id: string
   emoji: string
   label: string
-  placeholder: string
-  tipo: "decimal" | "texto"
+  placeholder?: string // faixa não usa
+  tipo: "decimal" | "texto" | "faixa"
+  opcoes?: OpcaoFaixa[] // obrigatório quando tipo === "faixa"
 }
 
 export interface ConteudoInput {

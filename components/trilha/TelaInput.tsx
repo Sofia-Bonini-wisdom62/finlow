@@ -32,14 +32,36 @@ export function TelaInput({ conteudo, sessao, onMudou }: Props) {
               <span>{campo.emoji}</span>
               <span>{campo.label}</span>
             </label>
-            <input
-              type={campo.tipo === "decimal" ? "text" : "text"}
-              inputMode={campo.tipo === "decimal" ? "decimal" : "text"}
-              placeholder={campo.placeholder}
-              value={sessao[campo.id] ?? ""}
-              onChange={(e) => handleChange(campo.id, e.target.value)}
-              className="w-full rounded-xl border border-[#1A2B3C] bg-[#1A2B3C] px-4 py-3 text-sm text-white placeholder-[#A0AEC0] outline-none focus:border-[#00C896] transition-colors"
-            />
+            {campo.tipo === "faixa" && campo.opcoes ? (
+              <div className="flex flex-wrap gap-2">
+                {campo.opcoes.map((opcao) => {
+                  const ativa = sessao[campo.id] === opcao.valor
+                  return (
+                    <button
+                      key={opcao.label}
+                      type="button"
+                      onClick={() => handleChange(campo.id, opcao.valor)}
+                      className={`rounded-full border px-4 py-3 text-sm transition-colors ${
+                        ativa
+                          ? "border-[#00C896] bg-[#00C896]/10 font-semibold text-[#00C896]"
+                          : "border-[#1A2B3C] bg-[#1A2B3C] text-[#A0AEC0]"
+                      }`}
+                    >
+                      {opcao.label}
+                    </button>
+                  )
+                })}
+              </div>
+            ) : (
+              <input
+                type="text"
+                inputMode={campo.tipo === "decimal" ? "decimal" : "text"}
+                placeholder={campo.placeholder}
+                value={sessao[campo.id] ?? ""}
+                onChange={(e) => handleChange(campo.id, e.target.value)}
+                className="w-full rounded-xl border border-[#1A2B3C] bg-[#1A2B3C] px-4 py-3 text-sm text-white placeholder-[#A0AEC0] outline-none focus:border-[#00C896] transition-colors"
+              />
+            )}
           </div>
         ))}
       </div>

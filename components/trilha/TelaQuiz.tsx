@@ -1,21 +1,19 @@
 "use client"
 
-import { useState } from "react"
 import { Check, X } from "lucide-react"
 import type { ConteudoQuiz, OpcaoQuiz } from "@/types/trilha"
 
 interface Props {
   conteudo: ConteudoQuiz
-  onRespondido: (acertou: boolean) => void
+  // letra escolhida (estado vive no CardFlow — sobrevive ao voltar/avançar)
+  selecionada: string | null
+  onSelecionar: (letra: string) => void
 }
 
-export function TelaQuiz({ conteudo, onRespondido }: Props) {
-  const [selecionada, setSelecionada] = useState<string | null>(null)
-
+export function TelaQuiz({ conteudo, selecionada, onSelecionar }: Props) {
   function selecionar(opcao: OpcaoQuiz) {
     if (selecionada !== null) return
-    setSelecionada(opcao.letra)
-    onRespondido(opcao.correta)
+    onSelecionar(opcao.letra)
   }
 
   const opcaoSelecionada = conteudo.opcoes.find((o) => o.letra === selecionada)
