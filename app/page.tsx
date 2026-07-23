@@ -38,7 +38,8 @@ export default function LandingPage() {
       {/* ===== NAV ===== */}
       <nav className="mx-auto flex max-w-[1180px] items-center justify-between px-5 py-6 sm:px-8">
         <div className="flex items-center gap-2.5">
-          <div className={`${grotesk.className} flex h-[34px] w-[34px] items-center justify-center rounded-[10px] bg-gradient-to-br from-finlow-green to-[#00a37c] text-[19px] font-bold text-finlow-bg`}>F</div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/icon.svg" alt="" className="h-[34px] w-[34px]" />
           <span className={`${grotesk.className} text-[22px] font-bold tracking-tight`}>finlow</span>
         </div>
         <div className="flex items-center gap-4 lg:gap-8">
@@ -407,7 +408,8 @@ export default function LandingPage() {
       <footer className="border-t border-white/5">
         <div className="mx-auto flex max-w-[1180px] flex-col items-center justify-between gap-3 px-5 py-8 sm:flex-row sm:px-8">
           <div className="flex items-center gap-2">
-            <div className={`${grotesk.className} flex h-6 w-6 items-center justify-center rounded-md bg-finlow-green text-sm font-bold text-finlow-bg`}>F</div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/icon.svg" alt="" className="h-6 w-6" />
             <span className={`${grotesk.className} text-base font-bold`}>finlow</span>
           </div>
           <div className="text-center text-[13px] text-finlow-muted">© 2026 Finlow · Conformidade LGPD · Educação financeira comportamental</div>
