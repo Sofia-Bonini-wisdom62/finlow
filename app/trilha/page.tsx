@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Lock, CheckCircle, PlayCircle } from "lucide-react"
+import { BottomNav } from "@/components/bottom-nav"
 import { descricoesPerfil, type TipoPerfil } from "@/lib/perfis"
 import { getOrCreateUserId } from "@/lib/usuario-id"
 
@@ -85,7 +86,7 @@ export default function TrilhaPage() {
 
   return (
     <main
-      className="relative min-h-dvh"
+      className="relative min-h-dvh pb-24"
       style={{ background: "radial-gradient(ellipse at top, rgba(0,200,150,0.08), transparent 55%), #0D1B2A" }}
     >
       <div className="mx-auto w-full max-w-md px-5 py-8 md:max-w-2xl md:py-12">
@@ -142,6 +143,7 @@ export default function TrilhaPage() {
           )}
         </section>
       </div>
+      <BottomNav />
     </main>
   )
 }

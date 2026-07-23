@@ -14,13 +14,52 @@ model User {
   dataNascimento    DateTime?         // só informativo — sem validação de idade (decisão da fundadora, 04/07/2026)
   senha             String?           // hash bcrypt — null para contas OAuth
   consentimentoLGPD DateTime?         // quando o consentimento do responsável foi registrado (menores de 18)
+  consentimentoPainelEm DateTime?     // opt-in específico do Painel (R8) — sem ele, nenhum write de Painel
   emailVerified     DateTime?
   image             String?
   criadoEm         DateTime          @default(now())
   perfil        Perfil?
   progresso     ProgressoModulo[]
+  contasFixas   ContaFixa[]
+  transacoes    Transacao[]
+  categorias    Categoria[]
   accounts      Account[]
   sessions      Session[]
+}
+
+model ContaFixa {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  nome          String
+  valor         Decimal
+  diaVencimento Int?
+  ativa         Boolean  @default(true)
+  criadoEm      DateTime @default(now())
+}
+
+model Categoria {
+  id         String      @id @default(cuid())
+  userId     String
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  nome       String
+  tipo       String      // "receita" | "despesa"
+  cor        String?
+  padrao     Boolean     @default(false) // veio pré-populada por perfil, ou criada pelo usuário
+  transacoes Transacao[]
+}
+
+model Transacao {
+  id          String     @id @default(cuid())
+  userId      String
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  descricao   String
+  valor       Decimal
+  tipo        String     // "receita" | "despesa"
+  categoriaId String?
+  categoria   Categoria? @relation(fields: [categoriaId], references: [id], onDelete: SetNull)
+  data        DateTime
+  criadoEm    DateTime   @default(now())
 }
 
 model Perfil {
