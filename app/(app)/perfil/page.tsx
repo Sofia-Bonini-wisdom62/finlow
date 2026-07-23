@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 import { PerfilCard, type TipoPerfil } from "@/components/perfil-card"
 import { descricoesPerfil } from "@/lib/perfis"
+import { BottomNav } from "@/components/bottom-nav"
 
 export default function PerfilPage() {
   const [tipo, setTipo] = useState<TipoPerfil | null>(null)
@@ -43,7 +44,7 @@ export default function PerfilPage() {
   const perfil = descricoesPerfil[tipo]
 
   return (
-    <main className="min-h-dvh bg-background px-5 py-8"
+    <main className="min-h-dvh bg-background px-5 py-8 pb-24"
       style={{ background: "linear-gradient(to bottom, #0D1B2A, #0a1622)" }}
     >
       <div className="mx-auto flex max-w-[390px] flex-col gap-8 lg:max-w-4xl">
@@ -111,6 +112,7 @@ export default function PerfilPage() {
           </div>
         </div>
       </div>
+      <BottomNav />
     </main>
   )
 }
