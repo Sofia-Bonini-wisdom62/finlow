@@ -39,7 +39,7 @@ export default function LandingPage() {
       <nav className="mx-auto flex max-w-[1180px] items-center justify-between px-5 py-6 sm:px-8">
         <div className="flex items-center gap-2.5">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/icon.svg" alt="" className="h-[34px] w-[34px]" />
+          <img src="/icon.png" alt="" className="h-[34px] w-[34px]" />
           <span className={`${grotesk.className} text-[22px] font-bold tracking-tight`}>finlow</span>
         </div>
         <div className="flex items-center gap-4 lg:gap-8">
@@ -409,7 +409,7 @@ export default function LandingPage() {
         <div className="mx-auto flex max-w-[1180px] flex-col items-center justify-between gap-3 px-5 py-8 sm:flex-row sm:px-8">
           <div className="flex items-center gap-2">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/icon.svg" alt="" className="h-6 w-6" />
+            <img src="/icon.png" alt="" className="h-6 w-6" />
             <span className={`${grotesk.className} text-base font-bold`}>finlow</span>
           </div>
           <div className="text-center text-[13px] text-finlow-muted">© 2026 Finlow · Conformidade LGPD · Educação financeira comportamental</div>
