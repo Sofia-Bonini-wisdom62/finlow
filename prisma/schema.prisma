@@ -27,6 +27,13 @@ model User {
   sessions      Session[]
 }
 
+// Lista de espera da landing (produto em desenvolvimento)
+model Waitlist {
+  id       String   @id @default(cuid())
+  email    String   @unique
+  criadoEm DateTime @default(now())
+}
+
 model ContaFixa {
   id            String   @id @default(cuid())
   userId        String

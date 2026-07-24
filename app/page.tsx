@@ -1,420 +1,477 @@
-import Link from "next/link"
-import { Space_Grotesk, Manrope } from "next/font/google"
-import { ContatoForm } from "@/components/landing/ContatoForm"
-import { EMAIL_CONTATO } from "@/lib/constantes"
+import { Inter } from "next/font/google"
+import { WaitlistForm } from "@/components/landing/WaitlistForm"
+import { Faq } from "@/components/landing/Faq"
+import { Reveal } from "@/components/landing/Reveal"
 
-const grotesk = Space_Grotesk({ subsets: ["latin"], weight: ["400", "700"] })
-const manrope = Manrope({ subsets: ["latin"], weight: ["400", "600", "700", "800"] })
+const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] })
 
-// Depoimentos desligados até existirem depoimentos REAIS de testers
-// (os do design original eram placeholders — não publicar review inventada).
-const MOSTRAR_DEPOIMENTOS = false
-
-const steps = [
-  { n: "01", badge: "bg-finlow-green", title: "Diagnóstico rápido", desc: "Cenários reais, não perguntas de prova. Em 2 minutos, o Finlow identifica seu padrão de comportamento com dinheiro." },
-  { n: "02", badge: "bg-finlow-yellow", title: "Seu perfil revelado", desc: "Lançador, Guardador, Impulsivo ou Sonhador — você descobre por que sabe o que fazer e mesmo assim não faz." },
-  { n: "03", badge: "bg-finlow-green", title: "Trilha personalizada", desc: "Módulos curtos feitos pro seu padrão específico. Nada de curso genérico: só o que muda o seu comportamento." },
-]
-
-const perfis = [
-  { nome: "Lançador", tag: "GASTO IMEDIATO", verde: true, desc: "Gasta o que recebe assim que recebe. O dinheiro entra e sai no mesmo ciclo, sem espaço para reserva ou planejamento.", frase: "Criar um intervalo consciente entre receber e gastar." },
-  { nome: "Guardador", tag: "RETENÇÃO EXCESSIVA", verde: false, desc: "Poupa além do necessário e sente desconforto mesmo em gastos essenciais. O dinheiro gera ansiedade em vez de segurança.", frase: "Gastar com critério e sem culpa." },
-  { nome: "Impulsivo", tag: "GATILHO EMOCIONAL", verde: false, desc: "Compra movido pela emoção do momento — ansiedade, tédio ou comparação social — e percebe o padrão só depois da compra.", frase: "Reconhecer o gatilho antes da decisão de compra." },
-  { nome: "Sonhador", tag: "PLANO SEM EXECUÇÃO", verde: true, desc: "Planeja, define metas e organiza tudo — mas raramente dá o primeiro passo. A busca pelo plano perfeito adia a ação.", frase: "Transformar planejamento em ação concreta." },
-]
-
-const tiposTela = [
-  { nome: "Conceito", desc: "Teoria curta, sem jargão", verde: true },
-  { nome: "Cenário", desc: "Situação real do seu dia", verde: false },
-  { nome: "Quiz", desc: "Fixação em uma pergunta", verde: true },
-  { nome: "Input", desc: "Reflexão pessoal", verde: false },
-  { nome: "Resultado", desc: "O que levar pra vida", verde: true },
-]
+function LogoMarca({ tamanho = 30 }: { tamanho?: number }) {
+  return (
+    <div
+      className="flex shrink-0 items-center justify-center rounded-[9px] bg-fl-500"
+      style={{ width: tamanho, height: tamanho }}
+    >
+      <div
+        className="rounded-full border-fl-sand"
+        style={{ width: tamanho * 0.4, height: tamanho * 0.4, borderWidth: tamanho * 0.083 }}
+      />
+    </div>
+  )
+}
 
 export default function LandingPage() {
   return (
-    <main className={`${manrope.className} min-h-dvh overflow-hidden bg-finlow-bg text-finlow-text`}>
+    <div className={`${inter.className} overflow-x-hidden bg-fl-page text-fl-ink [font-variant-numeric:tabular-nums]`}>
 
-      {/* ===== NAV ===== */}
-      <nav className="mx-auto flex max-w-[1180px] items-center justify-between px-5 py-6 sm:px-8">
-        <div className="flex items-center gap-2.5">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/icon.png" alt="" className="h-[34px] w-[34px]" />
-          <span className={`${grotesk.className} text-[22px] font-bold tracking-tight`}>finlow</span>
-        </div>
-        <div className="flex items-center gap-4 lg:gap-8">
-          <div className="hidden items-center gap-8 lg:flex">
-            <a href="#como" className="text-[15px] font-semibold text-finlow-muted hover:text-finlow-text">Como funciona</a>
-            <a href="#perfis" className="text-[15px] font-semibold text-finlow-muted hover:text-finlow-text">Perfis</a>
-            <a href="#planos" className="text-[15px] font-semibold text-finlow-muted hover:text-finlow-text">Planos</a>
-            <a href="#escolas" className="text-[15px] font-semibold text-finlow-muted hover:text-finlow-text">Para escolas</a>
-            <a href="#contato" className="text-[15px] font-semibold text-finlow-muted hover:text-finlow-text">Contato</a>
+      {/* ============ NAV ============ */}
+      <header className="sticky top-0 z-50 border-b border-fl-divider bg-fl-page/[0.82] backdrop-blur-[14px] backdrop-saturate-150">
+        <nav className="mx-auto flex max-w-[1200px] items-center justify-between gap-6 px-5 py-4 sm:px-6">
+          <div className="flex items-center gap-2.5">
+            <LogoMarca />
+            <span className="text-[19px] font-bold tracking-tight">Finlow</span>
           </div>
-          <Link href="/login" className="text-[15px] font-semibold text-finlow-muted hover:text-finlow-text">Entrar</Link>
-          <Link href="/cadastro" className="rounded-xl bg-finlow-green px-4 py-2.5 text-sm font-extrabold text-finlow-bg transition-colors hover:bg-[#33d6ab] sm:px-5 sm:py-3 sm:text-[15px]">
-            Fazer diagnóstico
-          </Link>
-        </div>
-      </nav>
-
-      {/* ===== HERO ===== */}
-      <header className="relative mx-auto grid max-w-[1180px] items-center gap-12 px-5 pb-16 pt-10 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:pb-24 lg:pt-16">
-        <div aria-hidden className="pointer-events-none absolute -top-32 right-0 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(0,200,150,0.14),transparent_65%)]" />
-        <div>
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-finlow-green/35 bg-finlow-card px-4 py-1.5 text-[13px] font-bold text-finlow-green">
-            Para quem já tem renda própria — e quer saber o que fazer com ela
-          </div>
-          <h1 className={`${grotesk.className} mb-6 text-balance text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-[58px] lg:leading-[1.05]`}>
-            Você já sabe o que fazer com seu dinheiro.{" "}
-            <span className="text-finlow-green">O Finlow ajuda você a fazer.</span>
-          </h1>
-          <p className="mb-9 max-w-[520px] text-pretty text-[17px] leading-relaxed text-finlow-muted lg:text-[19px]">
-            Conteúdo genérico não muda comportamento. Descubra seu perfil em 2 minutos e receba uma
-            trilha de aprendizado personalizada para a <em className="not-italic font-bold text-finlow-text">sua</em> relação com o dinheiro.
-          </p>
-          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-            <Link
-              href="/cadastro"
-              className="rounded-2xl bg-finlow-green px-8 py-4 text-[17px] font-extrabold text-finlow-bg shadow-[0_8px_32px_rgba(0,200,150,0.35)] transition-all hover:-translate-y-0.5 hover:bg-[#33d6ab]"
+          <div className="flex items-center gap-6 sm:gap-8">
+            <div className="hidden gap-7 text-[14.5px] font-medium text-fl-ink-2 lg:flex">
+              <a href="#problema" className="hover:text-fl-500">O problema</a>
+              <a href="#recursos" className="hover:text-fl-500">Recursos</a>
+              <a href="#como" className="hover:text-fl-500">Como funciona</a>
+              <a href="#faq" className="hover:text-fl-500">Dúvidas</a>
+            </div>
+            <a
+              href="#lista"
+              className="rounded-xl bg-fl-500 px-4 py-2.5 text-sm font-semibold text-white shadow-[0_1px_2px_rgba(24,28,30,.08)] transition-colors hover:bg-fl-600 sm:px-5 sm:text-[14.5px]"
             >
-              Descobrir meu perfil →
-            </Link>
-            <span className="text-sm font-semibold text-finlow-muted">Grátis · 2 min · sem cartão</span>
+              Entrar na lista
+            </a>
           </div>
-          <div className="mt-12 flex flex-wrap gap-8 lg:gap-9">
-            <div><div className={`${grotesk.className} text-[26px] font-bold text-finlow-yellow`}>2 min</div><div className="text-[13px] font-semibold text-finlow-muted">por módulo</div></div>
-            <div><div className={`${grotesk.className} text-[26px] font-bold text-finlow-yellow`}>4 perfis</div><div className="text-[13px] font-semibold text-finlow-muted">comportamentais</div></div>
-            <div><div className={`${grotesk.className} text-[26px] font-bold text-finlow-yellow`}>5 formatos</div><div className="text-[13px] font-semibold text-finlow-muted">de tela interativa</div></div>
-          </div>
-        </div>
-
-        {/* mockup do card flow */}
-        <div className="flex justify-center [animation:floaty_6s_ease-in-out_infinite]">
-          <div className="w-[300px] rounded-[36px] border border-white/10 bg-finlow-card p-4 shadow-[0_40px_80px_rgba(0,0,0,0.5)]">
-            <div className="mb-4 flex gap-1.5">
-              <div className="h-1 flex-1 rounded-full bg-finlow-green" />
-              <div className="h-1 flex-1 rounded-full bg-finlow-green" />
-              <div className="relative h-1 flex-1 overflow-hidden rounded-full bg-white/15"><div className="absolute inset-y-0 left-0 w-[64%] bg-finlow-green" /></div>
-              <div className="h-1 flex-1 rounded-full bg-white/15" />
-              <div className="h-1 flex-1 rounded-full bg-white/15" />
-            </div>
-            <div className="mb-2.5 text-xs font-extrabold tracking-widest text-finlow-yellow">CENÁRIO</div>
-            <div className={`${grotesk.className} mb-4 text-xl font-bold leading-snug`}>
-              Você recebeu R$ 150 de um trabalho. O que faz nos primeiros 10 minutos?
-            </div>
-            <div className="flex flex-col gap-2.5">
-              <div className="rounded-xl border border-finlow-green bg-finlow-green/10 px-4 py-3 text-sm font-bold text-finlow-green">Abro o app da loja</div>
-              <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-finlow-muted">Separo uma parte antes de gastar</div>
-              <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-finlow-muted">Deixo parado, sem plano definido</div>
-            </div>
-            <div className="mt-4 rounded-xl bg-finlow-green py-3.5 text-center text-[15px] font-extrabold text-finlow-bg">Continuar</div>
-          </div>
-        </div>
+        </nav>
       </header>
 
-      {/* ===== O PROBLEMA ===== */}
-      <section className="border-y border-white/5 bg-finlow-card">
-        <div className="mx-auto grid max-w-[1180px] items-center gap-12 px-5 py-16 sm:px-8 lg:grid-cols-2 lg:gap-16 lg:py-22">
-          <div>
-            <div className="mb-4 text-[13px] font-extrabold tracking-[2px] text-finlow-yellow">O PROBLEMA NÃO É O QUE VOCÊ SABE</div>
-            <h2 className={`${grotesk.className} mb-5 text-balance text-3xl font-bold leading-tight tracking-tight lg:text-[40px]`}>
-              Saber o que fazer nunca foi o suficiente.
-            </h2>
-            <p className="text-pretty text-[16px] leading-relaxed text-finlow-muted lg:text-[17px]">
-              A maioria dos apps de educação financeira oferece teoria para um problema que é comportamental.
-              O Finlow atua na distância entre <strong className="text-finlow-text">intenção</strong> e{" "}
-              <strong className="text-finlow-text">ação</strong> — começando por entender como{" "}
-              <em className="not-italic font-bold text-finlow-green">você</em> se relaciona com o dinheiro.
-            </p>
+      {/* ============ HERO ============ */}
+      <section className="relative mx-auto grid max-w-[1200px] items-center gap-12 px-5 pb-10 pt-14 sm:px-6 lg:grid-cols-[1.05fr_.95fr] lg:gap-14 lg:pt-20">
+        <div aria-hidden className="pointer-events-none absolute -left-40 -top-10 h-[420px] w-[420px] opacity-60 [background:radial-gradient(circle,#D1E4E4_0%,rgba(209,228,228,0)_70%)]" />
+        <Reveal className="relative">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-fl-accent-light px-3.5 py-[7px] text-[12.5px] font-semibold uppercase tracking-[.4px] text-fl-accent-dark">
+            <span className="h-[7px] w-[7px] rounded-full bg-fl-accent [animation:pulseDot_2s_infinite]" />
+            Em desenvolvimento · vagas de acesso antecipado
           </div>
-          <div className="flex flex-col gap-3.5">
-            {[
-              { ok: false, titulo: "Curso genérico de finanças", desc: "Conteúdo padronizado, igual para todos — independente do comportamento de cada um." },
-              { ok: false, titulo: "Conteúdo de banco", desc: "Linguagem técnica e distante da realidade de quem está começando." },
-              { ok: true, titulo: "Trilha pro seu comportamento", desc: "Módulos de 2 minutos, específicos para o seu perfil. Valor prático desde a primeira sessão." },
-            ].map((item) => (
-              <div
-                key={item.titulo}
-                className={`flex items-start gap-4 rounded-2xl bg-finlow-bg p-5 sm:p-6 ${
-                  item.ok ? "border border-finlow-green shadow-[0_8px_40px_rgba(0,200,150,0.12)]" : "border border-white/5"
-                }`}
-              >
-                <div className={`flex h-7 w-7 min-w-7 items-center justify-center rounded-lg text-[15px] font-extrabold ${item.ok ? "bg-finlow-green/15 text-finlow-green" : "bg-finlow-yellow/15 text-finlow-yellow"}`}>
-                  {item.ok ? "✓" : "✕"}
-                </div>
-                <div>
-                  <div className="mb-1 text-base font-extrabold">{item.titulo}</div>
-                  <div className="text-sm leading-relaxed text-finlow-muted">{item.desc}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== COMO FUNCIONA ===== */}
-      <section id="como" className="mx-auto max-w-[1180px] px-5 py-16 sm:px-8 lg:py-24">
-        <div className="mb-12 text-center">
-          <div className="mb-3.5 text-[13px] font-extrabold tracking-[2px] text-finlow-green">COMO FUNCIONA</div>
-          <h2 className={`${grotesk.className} text-balance text-3xl font-bold tracking-tight lg:text-[42px]`}>Três passos, direto ao ponto.</h2>
-        </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {steps.map((s) => (
-            <div key={s.n} className="rounded-[20px] border border-white/5 bg-finlow-card p-7 transition-all hover:-translate-y-1 hover:border-finlow-green/50">
-              <div className={`${grotesk.className} mb-5 flex h-10 w-10 items-center justify-center rounded-xl text-[15px] font-bold text-finlow-bg ${s.badge}`}>{s.n}</div>
-              <h3 className={`${grotesk.className} mb-3 text-[22px] font-bold tracking-tight`}>{s.title}</h3>
-              <p className="text-pretty text-[15px] leading-relaxed text-finlow-muted">{s.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ===== OS 4 PERFIS ===== */}
-      <section id="perfis" className="border-t border-white/5 bg-gradient-to-b from-finlow-bg to-[#0a1622]">
-        <div className="mx-auto max-w-[1180px] px-5 py-16 sm:px-8 lg:py-24">
-          <div className="mb-12 max-w-[640px]">
-            <div className="mb-3.5 text-[13px] font-extrabold tracking-[2px] text-finlow-yellow">OS 4 PERFIS</div>
-            <h2 className={`${grotesk.className} mb-4 text-balance text-3xl font-bold tracking-tight lg:text-[42px]`}>
-              Quatro formas de se relacionar com o dinheiro
-            </h2>
-            <p className="text-[16px] leading-relaxed text-finlow-muted lg:text-[17px]">
-              Cada pessoa tem um padrão de comportamento financeiro. O diagnóstico identifica o seu — e a trilha trabalha exatamente esse padrão.
-            </p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {perfis.map((p) => (
-              <div key={p.nome} className="relative overflow-hidden rounded-[22px] border border-white/5 bg-finlow-card p-7 transition-transform hover:-translate-y-1 sm:p-8">
-                <div
-                  aria-hidden
-                  className={`absolute right-0 top-0 h-40 w-40 rounded-full ${p.verde ? "bg-[radial-gradient(circle_at_top_right,rgba(0,200,150,0.12),transparent_70%)]" : "bg-[radial-gradient(circle_at_top_right,rgba(245,166,35,0.12),transparent_70%)]"}`}
-                />
-                <div className={`mb-4 inline-block rounded-full px-3.5 py-1.5 text-xs font-extrabold tracking-[1.5px] ${p.verde ? "bg-finlow-green/10 text-finlow-green" : "bg-finlow-yellow/10 text-finlow-yellow"}`}>
-                  {p.tag}
-                </div>
-                <h3 className={`${grotesk.className} mb-2.5 text-[26px] font-bold tracking-tight`}>{p.nome}</h3>
-                <p className="mb-5 text-pretty text-[15px] leading-relaxed text-finlow-muted">{p.desc}</p>
-                <div className="border-t border-white/10 pt-4">
-                  <div className="mb-1.5 text-[11px] font-extrabold tracking-[1.5px] text-finlow-muted">FOCO DA TRILHA</div>
-                  <div className={`text-[14.5px] font-bold ${p.verde ? "text-finlow-green" : "text-finlow-yellow"}`}>{p.frase}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== A EXPERIÊNCIA ===== */}
-      <section className="mx-auto grid max-w-[1180px] items-center gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:py-24">
-        <div className="order-2 flex flex-wrap gap-3 lg:order-1">
-          {tiposTela.map((t) => (
-            <div key={t.nome} className="flex items-center gap-3 rounded-[14px] border border-white/10 bg-finlow-card px-5 py-4">
-              <div className={`h-2.5 w-2.5 rounded-full ${t.verde ? "bg-finlow-green" : "bg-finlow-yellow"}`} />
-              <div>
-                <div className="text-[15px] font-extrabold">{t.nome}</div>
-                <div className="text-[13px] text-finlow-muted">{t.desc}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="order-1 lg:order-2">
-          <div className="mb-3.5 text-[13px] font-extrabold tracking-[2px] text-finlow-green">A EXPERIÊNCIA</div>
-          <h2 className={`${grotesk.className} mb-5 text-balance text-3xl font-bold leading-tight tracking-tight lg:text-[40px]`}>
-            Rápido de consumir. Feito para criar hábito.
-          </h2>
-          <p className="text-pretty text-[16px] leading-relaxed text-finlow-muted lg:text-[17px]">
-            Telas sequenciais em módulos de cerca de 2 minutos, com cinco formatos que se intercalam — conceito,
-            cenário prático, pergunta e reflexão. Linguagem clara, sem termos técnicos soltos. Você sai da{" "}
-            <strong className="text-finlow-text">primeira sessão</strong> com algo para aplicar no mesmo dia.
+          <h1 className="mb-5 text-balance text-[40px] font-extrabold leading-[1.04] tracking-[-.03em] sm:text-5xl lg:text-[56px]">
+            Seu dinheiro,<br />enfim <span className="text-fl-500">claro.</span>
+          </h1>
+          <p className="mb-8 max-w-[500px] text-pretty text-[17px] leading-[1.55] text-fl-ink-2 sm:text-[19.5px]">
+            O Finlow transforma a bagunça das suas finanças em clareza — com inteligência artificial
+            que lê seus gastos, revela padrões que você não vê e te devolve o controle.{" "}
+            <strong className="font-semibold text-fl-ink">Sem planilha, sem julgamento, sem esforço.</strong>
           </p>
-        </div>
-      </section>
-
-      {/* ===== DEPOIMENTOS (desligado até ter depoimento real) ===== */}
-      {MOSTRAR_DEPOIMENTOS && (
-        <section className="border-y border-white/5 bg-finlow-card">
-          <div className="mx-auto max-w-[1180px] px-5 py-16 sm:px-8">
-            <h2 className={`${grotesk.className} mb-10 text-center text-3xl font-bold tracking-tight`}>Quem testou, sentiu a diferença</h2>
-            {/* inserir depoimentos reais dos beta testers aqui antes de ligar */}
-          </div>
-        </section>
-      )}
-
-      {/* ===== PLANOS ===== */}
-      <section id="planos" className="mx-auto max-w-[1180px] px-5 py-16 sm:px-8 lg:py-24">
-        <div className="mb-12 text-center">
-          <div className="mb-3.5 text-[13px] font-extrabold tracking-[2px] text-finlow-green">PLANOS</div>
-          <h2 className={`${grotesk.className} mb-4 text-balance text-3xl font-bold tracking-tight lg:text-[42px]`}>
-            Comece de graça. Evolua quando fizer sentido.
-          </h2>
-          <p className="mx-auto max-w-[560px] text-[16px] leading-relaxed text-finlow-muted lg:text-[17px]">
-            Do diagnóstico gratuito à trilha completa, até a licença para escolas.
-          </p>
-        </div>
-        <div className="grid items-stretch gap-6 md:grid-cols-3">
-
-          {/* Gratuito */}
-          <div className="flex flex-col rounded-[22px] border border-white/10 bg-finlow-card p-7 sm:p-8">
-            <div className={`${grotesk.className} mb-1.5 text-xl font-bold`}>Gratuito</div>
-            <div className="mb-5 text-sm text-finlow-muted">Para dar o primeiro passo</div>
-            <div className="mb-6 flex items-baseline gap-1.5">
-              <span className={`${grotesk.className} text-[44px] font-bold`}>R$ 0</span>
-              <span className="text-[15px] font-semibold text-finlow-muted">/ sempre</span>
-            </div>
-            <div className="mb-8 flex flex-1 flex-col gap-3 text-[14.5px]">
-              <div className="flex gap-3"><span className="font-extrabold text-finlow-green">✓</span> Diagnóstico comportamental completo</div>
-              <div className="flex gap-3"><span className="font-extrabold text-finlow-green">✓</span> Seu perfil entre os 4 tipos</div>
-              <div className="flex gap-3"><span className="font-extrabold text-finlow-green">✓</span> Primeiros módulos da trilha</div>
-              <div className="flex gap-3"><span className="font-extrabold text-finlow-green">✓</span> Painel de controle financeiro</div>
-            </div>
-            <Link href="/cadastro" className="rounded-xl border-[1.5px] border-white/20 py-3.5 text-center text-[15px] font-extrabold transition-colors hover:border-finlow-green hover:text-finlow-green">
-              Fazer diagnóstico
-            </Link>
-          </div>
-
-          {/* Premium */}
-          <div className="relative flex flex-col rounded-[22px] border-[1.5px] border-finlow-green bg-gradient-to-b from-[#123a30] to-[#0f2b25] p-7 shadow-[0_16px_60px_rgba(0,200,150,0.18)] sm:p-8">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-finlow-green px-4 py-1.5 text-xs font-extrabold tracking-wide text-finlow-bg">
-              MAIS POPULAR
-            </div>
-            <div className={`${grotesk.className} mb-1.5 text-xl font-bold`}>Premium</div>
-            <div className="mb-5 text-sm text-finlow-muted">Para transformar o hábito</div>
-            <div className="mb-6 flex items-baseline gap-1.5">
-              <span className={`${grotesk.className} text-[44px] font-bold`}>R$ 14,90</span>
-              <span className="text-[15px] font-semibold text-finlow-muted">/ mês</span>
-            </div>
-            <div className="mb-8 flex flex-1 flex-col gap-3 text-[14.5px]">
-              <div className="flex gap-3"><span className="font-extrabold text-finlow-green">✓</span> Trilha personalizada completa</div>
-              <div className="flex gap-3"><span className="font-extrabold text-finlow-green">✓</span> Todos os módulos e novos conteúdos</div>
-              <div className="flex gap-3"><span className="font-extrabold text-finlow-green">✓</span> Acompanhamento de progresso</div>
-              <div className="flex gap-3"><span className="font-extrabold text-finlow-green">✓</span> Rediagnóstico para acompanhar a evolução</div>
-            </div>
-            <Link href="/beta" className="rounded-xl bg-finlow-green py-3.5 text-center text-[15px] font-extrabold text-finlow-bg transition-colors hover:bg-[#33d6ab]">
-              Assinar Premium
-            </Link>
-          </div>
-
-          {/* Escolas */}
-          <div className="flex flex-col rounded-[22px] border border-finlow-yellow/35 bg-finlow-card p-7 sm:p-8">
-            <div className={`${grotesk.className} mb-1.5 text-xl font-bold text-finlow-yellow`}>Para Escolas</div>
-            <div className="mb-5 text-sm text-finlow-muted">Licença institucional</div>
-            <div className="mb-6 flex items-baseline">
-              <span className={`${grotesk.className} text-[36px] font-bold`}>Sob consulta</span>
-            </div>
-            <div className="mb-6 flex flex-1 flex-col gap-3 text-[14.5px]">
-              <div className="flex gap-3"><span className="font-extrabold text-finlow-yellow">✓</span> Aulas e material de apoio para professores</div>
-              <div className="flex gap-3"><span className="font-extrabold text-finlow-yellow">✓</span> Conteúdo alinhado à BNCC</div>
-              <div className="flex gap-3"><span className="font-extrabold text-finlow-yellow">✓</span> Diagnóstico por turma e painel de progresso</div>
-              <div className="flex gap-3"><span className="font-extrabold text-finlow-yellow">✓</span> Trilhas individuais para cada aluno</div>
-              <div className="flex gap-3"><span className="font-extrabold text-finlow-yellow">✓</span> Consentimento dos responsáveis e LGPD</div>
-            </div>
-            <div className="mb-5 rounded-xl bg-finlow-yellow/10 px-4 py-3 text-[13px] leading-relaxed text-finlow-muted">
-              Ensinamos segundo as competências da <strong className="text-finlow-yellow">BNCC</strong>, com formação e aulas prontas para os professores aplicarem em sala.
-            </div>
-            <a href="#contato" className="rounded-xl border-[1.5px] border-finlow-yellow py-3.5 text-center text-[15px] font-extrabold text-finlow-yellow transition-colors hover:bg-finlow-yellow hover:text-finlow-bg">
-              Falar com a equipe
+          <div className="mb-6 flex flex-wrap items-center gap-3.5">
+            <a
+              href="#lista"
+              className="rounded-[14px] bg-fl-500 px-7 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(43,109,112,.28)] transition-colors hover:bg-fl-600"
+            >
+              Quero acesso antecipado →
+            </a>
+            <a
+              href="#como"
+              className="rounded-[14px] border-[1.5px] border-fl-500 px-6 py-[15px] text-base font-semibold text-fl-500 transition-colors hover:bg-fl-50"
+            >
+              Ver como funciona
             </a>
           </div>
+          <div className="flex flex-wrap items-center gap-4 text-[13.5px] text-fl-ink-2">
+            <div className="flex items-center gap-2"><span className="font-bold text-fl-success">✓</span> Grátis para entrar na lista</div>
+            <div className="hidden h-4 w-px bg-fl-border sm:block" />
+            <div className="flex items-center gap-2"><span className="font-bold text-fl-success">✓</span> Cancele quando quiser</div>
+          </div>
+        </Reveal>
+
+        {/* mockup — dashboard */}
+        <Reveal className="relative flex justify-center">
+          <div aria-hidden className="pointer-events-none absolute -inset-8 [background:radial-gradient(circle_at_60%_40%,#EAF3F3_0%,rgba(234,243,243,0)_65%)]" />
+          <div className="relative w-[280px] sm:w-[300px] [animation:floaty_6s_ease-in-out_infinite]">
+            <div className="rounded-[44px] bg-fl-800 p-[11px] shadow-[0_30px_60px_-20px_rgba(17,47,48,.5),0_12px_24px_rgba(24,28,30,.16)]">
+              <div className="flex h-[600px] flex-col overflow-hidden rounded-[34px] bg-fl-page">
+                <div className="flex items-center justify-between px-[22px] pb-1.5 pt-4 text-xs font-semibold">
+                  <span>9:41</span><span className="tracking-[2px]">● ● ●</span>
+                </div>
+                <div className="flex items-center justify-between px-[22px] pb-3.5 pt-2">
+                  <div>
+                    <div className="text-xs font-medium text-fl-ink-2">Bom dia, Marina</div>
+                    <div className="text-base font-bold tracking-tight">Visão geral</div>
+                  </div>
+                  <div className="h-[34px] w-[34px] rounded-full bg-fl-100" />
+                </div>
+                <div className="mx-[18px] rounded-2xl border border-fl-border border-t-[3px] border-t-fl-500 bg-white px-[18px] py-4 shadow-[0_1px_2px_rgba(24,28,30,.06)]">
+                  <div className="text-[11px] font-semibold uppercase tracking-[.6px] text-fl-ink-2">Saldo disponível</div>
+                  <div className="my-0.5 text-[30px] font-extrabold tracking-[-.02em]">R$ 8.240<span className="text-lg text-fl-ink-2">,50</span></div>
+                  <div className="text-[12.5px] font-semibold text-fl-success">▲ 12% vs. mês passado</div>
+                </div>
+                <div className="grid grid-cols-2 gap-2.5 px-[18px] pb-1 pt-3.5">
+                  <div className="rounded-xl border border-fl-border bg-white px-3 py-2.5">
+                    <div className="text-[10.5px] font-semibold text-fl-ink-2">Entradas</div>
+                    <div className="text-[15px] font-bold text-fl-success">R$ 12.400</div>
+                  </div>
+                  <div className="rounded-xl border border-fl-border bg-white px-3 py-2.5">
+                    <div className="text-[10.5px] font-semibold text-fl-ink-2">Saídas</div>
+                    <div className="text-[15px] font-bold text-fl-error">R$ 4.159</div>
+                  </div>
+                </div>
+                <div className="mx-[18px] mt-2.5 flex items-center gap-4 rounded-2xl border border-fl-border bg-white p-4">
+                  <div
+                    className="flex h-[88px] w-[88px] shrink-0 items-center justify-center rounded-full"
+                    style={{ background: "conic-gradient(#2B6D70 0 42%,#B8863C 42% 62%,#7BAEB0 62% 82%,#E7DCC9 82% 100%)" }}
+                  >
+                    <div className="flex h-[52px] w-[52px] flex-col items-center justify-center rounded-full bg-white">
+                      <div className="text-sm font-extrabold">62%</div>
+                      <div className="text-[8px] text-fl-ink-2">no plano</div>
+                    </div>
+                  </div>
+                  <div className="flex flex-1 flex-col gap-2 text-[11.5px]">
+                    {[
+                      { cor: "#2B6D70", nome: "Moradia", v: "R$ 1.7k" },
+                      { cor: "#B8863C", nome: "Alimentação", v: "R$ 980" },
+                      { cor: "#7BAEB0", nome: "Transporte", v: "R$ 620" },
+                    ].map((l) => (
+                      <div key={l.nome} className="flex items-center gap-2">
+                        <span className="h-[9px] w-[9px] rounded-[3px]" style={{ background: l.cor }} />
+                        <span className="flex-1 text-fl-ink-2">{l.nome}</span>
+                        <span className="font-bold">{l.v}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-auto flex items-center justify-between border-t border-fl-divider bg-white px-[30px] pb-5 pt-3.5">
+                  <div className="h-[22px] w-[22px] rounded-md bg-fl-500" />
+                  <div className="h-5 w-5 rounded-md bg-fl-100" />
+                  <div className="h-5 w-5 rounded-full bg-fl-100" />
+                  <div className="flex flex-col justify-center gap-[3px]">
+                    <span className="h-[2.5px] w-5 rounded-sm bg-fl-100" />
+                    <span className="h-[2.5px] w-5 rounded-sm bg-fl-100" />
+                    <span className="h-[2.5px] w-3.5 rounded-sm bg-fl-100" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ============ TRUST STRIP ============ */}
+      <section className="mx-auto max-w-[1200px] px-5 pb-14 pt-6 sm:px-6">
+        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3.5 text-[13.5px] font-medium text-fl-ink-3">
+          <span className="font-semibold text-fl-ink-2">Construído sobre 3 princípios:</span>
+          <span className="flex items-center gap-2"><span className="text-fl-500">◆</span> Clareza antes de estímulo</span>
+          <span className="flex items-center gap-2"><span className="text-fl-500">◆</span> Zero julgamento</span>
+          <span className="flex items-center gap-2"><span className="text-fl-500">◆</span> Seus dados, seu controle</span>
         </div>
       </section>
 
-      {/* ===== PARA ESCOLAS ===== */}
-      <section id="escolas" className="mx-auto max-w-[1180px] px-5 py-8 sm:px-8 lg:py-12">
-        <div className="grid items-center gap-10 rounded-[28px] border border-finlow-yellow/30 bg-gradient-to-br from-finlow-card to-[#14232f] p-7 sm:p-10 lg:grid-cols-[1.2fr_0.8fr] lg:p-14">
-          <div>
-            <div className="mb-3.5 text-[13px] font-extrabold tracking-[2px] text-finlow-yellow">PARA ESCOLAS</div>
-            <h2 className={`${grotesk.className} mb-4 text-balance text-3xl font-bold tracking-tight lg:text-4xl`}>
-              Educação financeira que os alunos realmente usam.
-            </h2>
-            <p className="mb-7 text-pretty text-[15px] leading-relaxed text-finlow-muted lg:text-[16px]">
-              Licencie o Finlow como parte do currículo. Diagnóstico por turma, trilhas individuais e acompanhamento
-              de progresso — com consentimento dos responsáveis e conformidade total com a LGPD.
-            </p>
-            <a href="#contato" className="inline-block rounded-xl border-2 border-finlow-yellow px-7 py-3.5 text-[15px] font-extrabold text-finlow-yellow transition-colors hover:bg-finlow-yellow hover:text-finlow-bg">
-              Falar com a equipe →
-            </a>
+      {/* ============ PROBLEMA ============ */}
+      <section id="problema" className="bg-fl-sand px-5 py-16 sm:px-6 lg:py-22">
+        <Reveal className="mx-auto max-w-[1000px] text-center">
+          <div className="mb-4 text-[13px] font-bold uppercase tracking-[1.4px] text-fl-accent-dark">
+            Você conhece essa sensação
           </div>
-          <div className="flex flex-col gap-3.5">
+          <h2 className="mx-auto mb-5 max-w-[760px] text-balance text-[32px] font-extrabold leading-[1.12] tracking-[-.025em] text-fl-sand-text lg:text-[40px]">
+            O problema nunca foi falta de dinheiro. Foi falta de <span className="text-fl-500">clareza.</span>
+          </h2>
+          <p className="mx-auto mb-12 max-w-[620px] text-[16px] leading-[1.55] text-[#6b5f4a] sm:text-lg">
+            Abrir o extrato dá um aperto. Você sabe que gasta demais em algum lugar — só não sabe onde.
+            E toda vez que tenta organizar numa planilha, desiste na segunda semana.
+          </p>
+          <div className="grid gap-5 text-left sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { t: "Diagnóstico por turma", d: "Mapa comportamental de cada sala" },
-              { t: "Trilhas individuais", d: "Cada aluno segue o próprio ritmo" },
-              { t: "LGPD by design", d: "Consentimento do responsável antes de qualquer dado" },
-            ].map((i) => (
-              <div key={i.t} className="rounded-[14px] bg-white/[0.04] px-5 py-4">
-                <div className="text-[15px] font-extrabold text-finlow-yellow">{i.t}</div>
-                <div className="text-[13.5px] text-finlow-muted">{i.d}</div>
+              { e: "😮‍💨", t: "Extrato confuso", d: "Dezenas de transações sem nome que faça sentido. Cadê o padrão?" },
+              { e: "🧾", t: "Planilha abandonada", d: "Muito trabalho manual. Você nunca mantém por mais que alguns dias." },
+              { e: "🌀", t: "Decisão no escuro", d: "Dá pra viajar esse mês? Cabe essa parcela? Você chuta — e torce." },
+            ].map((c) => (
+              <div key={c.t} className="rounded-2xl bg-fl-page p-6">
+                <div className="mb-3 text-[26px]">{c.e}</div>
+                <div className="mb-1.5 text-base font-bold">{c.t}</div>
+                <div className="text-sm leading-relaxed text-fl-ink-2">{c.d}</div>
               </div>
             ))}
           </div>
-        </div>
+        </Reveal>
       </section>
 
-      {/* ===== CTA FINAL ===== */}
-      <section className="relative overflow-hidden px-5 py-20 text-center sm:px-8 lg:py-28">
-        <div aria-hidden className="pointer-events-none absolute -bottom-52 left-1/2 h-[500px] w-[min(800px,100vw)] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,rgba(0,200,150,0.18),transparent_65%)]" />
-        <h2 className={`${grotesk.className} mb-4 text-balance text-4xl font-bold tracking-tight lg:text-[50px]`}>
-          Gaste com tranquilidade.<br />Construa seu futuro.
-        </h2>
-        <p className="mx-auto mb-10 max-w-[480px] text-pretty text-[16px] text-finlow-muted lg:text-lg">
-          Com total autonomia, em linguagem feita para a sua geração. Comece pelo diagnóstico — leva 2 minutos.
-        </p>
-        <Link
-          href="/cadastro"
-          className="inline-block rounded-2xl bg-finlow-green px-10 py-5 text-lg font-extrabold text-finlow-bg shadow-[0_12px_48px_rgba(0,200,150,0.4)] transition-all hover:-translate-y-1 hover:bg-[#33d6ab]"
-        >
-          Descobrir meu perfil grátis →
-        </Link>
-        <div className="mt-5 text-[13.5px] font-semibold text-finlow-muted">
-          Web app · funciona em qualquer dispositivo · sem cartão de crédito
-        </div>
+      {/* ============ RECURSOS ============ */}
+      <section id="recursos" className="mx-auto max-w-[1200px] px-5 pb-10 pt-16 sm:px-6 lg:pt-24">
+        <Reveal className="mx-auto mb-14 max-w-[720px] text-center">
+          <div className="mb-4 text-[13px] font-bold uppercase tracking-[1.4px] text-fl-500">A virada de chave</div>
+          <h2 className="mb-4 text-balance text-[32px] font-extrabold leading-[1.1] tracking-[-.03em] lg:text-[42px]">
+            A IA faz o trabalho pesado. Você fica só com a clareza.
+          </h2>
+          <p className="text-[16px] leading-[1.55] text-fl-ink-2 sm:text-lg">
+            O Finlow lê, categoriza e interpreta cada movimento — e traduz tudo em uma frase que você entende de primeira.
+          </p>
+        </Reveal>
+        <Reveal className="grid gap-5 md:grid-cols-3">
+          {[
+            { icone: <div className="h-5 w-5 rounded-md bg-fl-500" />, t: "Insights que fazem sentido", d: "Nada de gráfico solto. A IA aponta exatamente onde seu dinheiro vaza e o que muda se você ajustar — em linguagem humana." },
+            { icone: <div className="h-[18px] w-[22px] rounded-[8px_8px_8px_2px] bg-fl-500" />, t: "Converse com seu dinheiro", d: "\"Posso gastar R$ 300 esse fim de semana?\" Pergunte em português. O Finlow responde com base nos seus números reais." },
+            { icone: <div className="h-5 w-5 rounded-full border-[5px] border-fl-500" />, t: "Controle de verdade", d: "Metas, orçamentos e alertas calmos — que avisam antes, não depois. Você decide com dados, não com culpa." },
+          ].map((c) => (
+            <div key={c.t} className="rounded-[20px] border border-fl-border bg-white p-7 shadow-[0_1px_2px_rgba(24,28,30,.06)]">
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-[14px] bg-fl-50">{c.icone}</div>
+              <h3 className="mb-2.5 text-xl font-bold tracking-tight">{c.t}</h3>
+              <p className="text-[15px] leading-relaxed text-fl-ink-2">{c.d}</p>
+            </div>
+          ))}
+        </Reveal>
       </section>
 
-      {/* ===== CONTATO ===== */}
-      <section id="contato" className="border-t border-white/5 bg-finlow-card">
-        <div className="mx-auto grid max-w-[1180px] items-start gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:py-22">
-          <div>
-            <div className="mb-3.5 text-[13px] font-extrabold tracking-[2px] text-finlow-green">FALE CONOSCO</div>
-            <h2 className={`${grotesk.className} mb-4 text-balance text-3xl font-bold leading-tight tracking-tight lg:text-[38px]`}>
-              Vamos conversar sobre o Finlow.
-            </h2>
-            <p className="mb-8 text-pretty text-[15px] leading-relaxed text-finlow-muted lg:text-[16px]">
-              Dúvidas, parcerias com escolas ou imprensa — responderemos em até 1 dia útil.
-            </p>
-            <div className="flex flex-col gap-4">
-              <a href={`mailto:${EMAIL_CONTATO}`} className="flex items-center gap-3.5">
-                <div className="flex h-[42px] w-[42px] min-w-[42px] items-center justify-center rounded-xl bg-finlow-green/10">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00C896" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-10 5L2 7" /></svg>
+      {/* ============ SPLIT 1 — CHAT ============ */}
+      <section className="mx-auto grid max-w-[1200px] items-center gap-12 px-5 py-14 sm:px-6 lg:grid-cols-[.95fr_1.05fr] lg:gap-16 lg:py-[70px]">
+        <Reveal className="order-2 flex justify-center lg:order-1">
+          <div className="w-[270px] sm:w-[290px]">
+            <div className="rounded-[44px] bg-fl-800 p-[11px] shadow-[0_24px_50px_-20px_rgba(17,47,48,.45)]">
+              <div className="flex h-[580px] flex-col overflow-hidden rounded-[34px] bg-fl-page">
+                <div className="flex items-center gap-2.5 border-b border-fl-divider px-[22px] pb-3 pt-4">
+                  <LogoMarca />
+                  <div>
+                    <div className="text-sm font-bold">Finlow IA</div>
+                    <div className="text-[11px] font-medium text-fl-success">● online</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-[13px] font-semibold text-finlow-muted">E-mail</div>
-                  <div className="text-base font-bold text-finlow-text">{EMAIL_CONTATO}</div>
+                <div className="flex flex-1 flex-col gap-3 p-4">
+                  <div className="max-w-[80%] self-end rounded-[16px_16px_4px_16px] bg-fl-500 px-3.5 py-2.5 text-[13.5px] leading-[1.45] text-white">
+                    Posso gastar R$ 300 no rolê esse fim de semana?
+                  </div>
+                  <div className="max-w-[88%] self-start rounded-[16px_16px_16px_4px] border border-fl-border bg-white px-3.5 py-3 text-[13.5px] leading-[1.5]">
+                    Pode sim 🙂 Você tem R$ 640 livres no orçamento de lazer este mês. Gastando R$ 300, ainda fica dentro do plano.
+                  </div>
+                  <div className="max-w-[88%] self-start rounded-2xl border border-fl-border bg-white p-3 text-[13px]">
+                    <div className="mb-2 text-[11px] font-semibold text-fl-ink-2">Lazer · julho</div>
+                    <div className="mb-1.5 h-2 overflow-hidden rounded-full bg-fl-divider">
+                      <div className="h-full w-[53%] rounded-full bg-fl-500" />
+                    </div>
+                    <div className="flex justify-between text-[11px] text-fl-ink-2">
+                      <span>R$ 360 usados</span><span className="font-bold text-fl-ink">R$ 640 livres</span>
+                    </div>
+                  </div>
                 </div>
-              </a>
-              <a href={`mailto:${EMAIL_CONTATO}?subject=${encodeURIComponent("Parceria com escola")}`} className="flex items-center gap-3.5">
-                <div className="flex h-[42px] w-[42px] min-w-[42px] items-center justify-center rounded-xl bg-finlow-yellow/10">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5A623" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 9V5a3 3 0 0 0-6 0v4" /><rect x="2" y="9" width="20" height="12" rx="2" /></svg>
+                <div className="flex items-center gap-2.5 border-t border-fl-divider px-4 pb-[22px] pt-3.5">
+                  <div className="flex-1 rounded-full border border-fl-border bg-white px-4 py-2.5 text-[12.5px] text-[#A7ACAE]">
+                    Pergunte qualquer coisa…
+                  </div>
+                  <div className="h-[38px] w-[38px] shrink-0 rounded-full bg-fl-500" />
                 </div>
-                <div>
-                  <div className="text-[13px] font-semibold text-finlow-muted">Parcerias com escolas</div>
-                  <div className="text-base font-bold text-finlow-text">{EMAIL_CONTATO}</div>
-                </div>
-              </a>
+              </div>
             </div>
           </div>
-          <ContatoForm />
+        </Reveal>
+        <Reveal className="order-1 lg:order-2">
+          <div className="mb-4 text-[13px] font-bold uppercase tracking-[1.4px] text-fl-500">Assistente financeiro</div>
+          <h2 className="mb-4 text-balance text-[30px] font-extrabold leading-[1.12] tracking-[-.03em] lg:text-[38px]">
+            Tire dúvidas de dinheiro como quem manda mensagem
+          </h2>
+          <p className="mb-7 max-w-[520px] text-[16px] leading-relaxed text-fl-ink-2 sm:text-[17.5px]">
+            Chega de abrir cinco telas pra entender uma coisa. Pergunte em linguagem natural e receba uma
+            resposta direta — baseada nos seus dados, não em conselho genérico da internet.
+          </p>
+          <div className="flex flex-col gap-4">
+            {[
+              ["Respostas com contexto real", " — cruza saldo, metas e histórico antes de responder."],
+              ["Sem jargão", " — se usar um termo técnico, ele explica na hora."],
+              ["Sempre calmo", " — nunca te faz sentir mal por uma pergunta."],
+            ].map(([forte, resto]) => (
+              <div key={forte} className="flex items-start gap-3">
+                <span className="text-lg font-extrabold text-fl-500">✓</span>
+                <span className="text-base leading-relaxed"><strong>{forte}</strong>{resto}</span>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ============ SPLIT 2 — INSIGHTS ============ */}
+      <section className="mx-auto grid max-w-[1200px] items-center gap-12 px-5 py-14 sm:px-6 lg:grid-cols-[1.05fr_.95fr] lg:gap-16 lg:py-[70px]">
+        <Reveal>
+          <div className="mb-4 text-[13px] font-bold uppercase tracking-[1.4px] text-fl-500">Insights automáticos</div>
+          <h2 className="mb-4 text-balance text-[30px] font-extrabold leading-[1.12] tracking-[-.03em] lg:text-[38px]">
+            Ele percebe o que você não teria tempo de notar
+          </h2>
+          <p className="mb-7 max-w-[520px] text-[16px] leading-relaxed text-fl-ink-2 sm:text-[17.5px]">
+            Enquanto você vive sua vida, a IA cruza cada transação e faz emergir os padrões silenciosos —
+            a assinatura esquecida, o gasto que dobrou, o mês em que sempre estoura.
+          </p>
+          <div className="grid gap-3.5 sm:grid-cols-2">
+            <div className="rounded-[14px] bg-fl-50 p-5">
+              <div className="text-[28px] font-extrabold tracking-[-.02em] text-fl-500">R$ 214</div>
+              <div className="mt-1 text-[13px] text-fl-ink-2">em assinaturas esquecidas, detectadas no 1º mês*</div>
+            </div>
+            <div className="rounded-[14px] bg-fl-50 p-5">
+              <div className="text-[28px] font-extrabold tracking-[-.02em] text-fl-500">0 min</div>
+              <div className="mt-1 text-[13px] text-fl-ink-2">de digitação manual — categorização é automática</div>
+            </div>
+          </div>
+          <p className="mt-3.5 text-[11.5px] text-fl-ink-3">*Estimativa de projeto em desenvolvimento, sujeita a validação.</p>
+        </Reveal>
+        <Reveal className="flex justify-center">
+          <div className="w-[270px] sm:w-[290px]">
+            <div className="rounded-[44px] bg-fl-800 p-[11px] shadow-[0_24px_50px_-20px_rgba(17,47,48,.45)]">
+              <div className="flex h-[580px] flex-col overflow-hidden rounded-[34px] bg-fl-page">
+                <div className="px-[22px] pb-2.5 pt-4">
+                  <div className="text-xs font-medium text-fl-ink-2">Para você hoje</div>
+                  <div className="text-lg font-extrabold tracking-tight">Insights</div>
+                </div>
+                <div className="flex flex-1 flex-col gap-3 overflow-hidden px-4 pt-1.5">
+                  <div className="rounded-[14px] border border-fl-border border-l-[3px] border-l-fl-accent bg-white p-3.5">
+                    <div className="mb-1.5 text-[11px] font-bold uppercase tracking-[.5px] text-fl-accent-dark">⚑ Atenção</div>
+                    <div className="text-[13.5px] leading-[1.45]">Seu gasto com <strong>delivery</strong> subiu <strong>38%</strong> este mês. São R$ 480 — o equivalente a 2 semanas do seu mercado.</div>
+                  </div>
+                  <div className="rounded-[14px] border border-fl-border border-l-[3px] border-l-fl-500 bg-white p-3.5">
+                    <div className="mb-1.5 text-[11px] font-bold uppercase tracking-[.5px] text-fl-500">◆ Descoberta</div>
+                    <div className="text-[13.5px] leading-[1.45]">Você paga <strong>2 apps de streaming</strong> quase iguais. Cancelar um economiza R$ 39,90/mês.</div>
+                  </div>
+                  <div className="rounded-[14px] border border-fl-border border-l-[3px] border-l-fl-success bg-white p-3.5">
+                    <div className="mb-1.5 text-[11px] font-bold uppercase tracking-[.5px] text-fl-success">✓ No caminho</div>
+                    <div className="text-[13.5px] leading-[1.45]">No ritmo atual, sua <strong>reserva de emergência</strong> chega à meta em 3 meses.</div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between border-t border-fl-divider bg-white px-[30px] pb-5 pt-3.5">
+                  <div className="h-5 w-5 rounded-full bg-fl-100" />
+                  <div className="h-5 w-5 rounded-md bg-fl-100" />
+                  <div className="h-[22px] w-[22px] rounded-md bg-fl-500" />
+                  <div className="flex flex-col gap-[3px]">
+                    <span className="h-[2.5px] w-5 rounded-sm bg-fl-100" />
+                    <span className="h-[2.5px] w-5 rounded-sm bg-fl-100" />
+                    <span className="h-[2.5px] w-3.5 rounded-sm bg-fl-100" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ============ COMO FUNCIONA ============ */}
+      <section id="como" className="bg-fl-800 px-5 py-16 text-[#EDEEEC] sm:px-6 lg:py-24">
+        <div className="mx-auto max-w-[1100px]">
+          <Reveal className="mx-auto mb-14 max-w-[680px] text-center">
+            <div className="mb-4 text-[13px] font-bold uppercase tracking-[1.4px] text-fl-dark-accent">Como funciona</div>
+            <h2 className="text-balance text-[32px] font-extrabold leading-[1.1] tracking-[-.03em] text-white lg:text-[40px]">
+              Da bagunça à clareza em três passos
+            </h2>
+          </Reveal>
+          <Reveal className="grid gap-7 md:grid-cols-3">
+            {[
+              { n: "1", t: "Conecte suas contas", d: "Ligação segura e criptografada. Suas transações entram sozinhas — nada de digitar CSV." },
+              { n: "2", t: "A IA organiza tudo", d: "Categoriza, encontra padrões e limpa o ruído. Em minutos, o caos vira um painel legível." },
+              { n: "3", t: "Você decide com clareza", d: "Insights, metas e um assistente pronto para responder. Cada decisão apoiada em dados reais." },
+            ].map((p) => (
+              <div key={p.n}>
+                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-fl-600 text-lg font-extrabold text-fl-dark-accent">
+                  {p.n}
+                </div>
+                <h3 className="mb-2.5 text-xl font-bold text-white">{p.t}</h3>
+                <p className="text-[15px] leading-relaxed text-fl-dark-text">{p.d}</p>
+              </div>
+            ))}
+          </Reveal>
         </div>
       </section>
 
-      {/* ===== FOOTER ===== */}
-      <footer className="border-t border-white/5">
-        <div className="mx-auto flex max-w-[1180px] flex-col items-center justify-between gap-3 px-5 py-8 sm:flex-row sm:px-8">
-          <div className="flex items-center gap-2">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/icon.png" alt="" className="h-6 w-6" />
-            <span className={`${grotesk.className} text-base font-bold`}>finlow</span>
+      {/* ============ DIFERENCIAL ============ */}
+      <section className="mx-auto max-w-[1000px] px-5 pb-14 pt-16 sm:px-6 lg:pt-24">
+        <Reveal className="mx-auto mb-12 max-w-[680px] text-center">
+          <div className="mb-4 text-[13px] font-bold uppercase tracking-[1.4px] text-fl-500">Por que Finlow</div>
+          <h2 className="text-balance text-[32px] font-extrabold leading-[1.1] tracking-[-.03em] lg:text-[40px]">
+            Feito para dar alívio — não mais uma cobrança
+          </h2>
+        </Reveal>
+        <Reveal className="grid gap-5 md:grid-cols-2">
+          <div className="rounded-[20px] border border-fl-border bg-white p-7">
+            <div className="mb-4 text-[13px] font-bold uppercase tracking-[.6px] text-fl-ink-3">Os outros apps</div>
+            <div className="flex flex-col gap-3.5 text-[15px] text-fl-ink-2">
+              {[
+                "Gráficos que você precisa interpretar sozinho",
+                "Categorização manual e cansativa",
+                "Cores alarmantes e notificações de culpa",
+                "Feito para quem já entende de finanças",
+              ].map((t) => (
+                <div key={t} className="flex gap-2.5"><span className="font-bold text-fl-error">✕</span> {t}</div>
+              ))}
+            </div>
           </div>
-          <div className="text-center text-[13px] text-finlow-muted">© 2026 Finlow · Conformidade LGPD · Educação financeira comportamental</div>
+          <div className="rounded-[20px] bg-fl-500 p-7 text-white shadow-[0_8px_24px_rgba(43,109,112,.24)]">
+            <div className="mb-4 text-[13px] font-bold uppercase tracking-[.6px] text-fl-200">Com o Finlow</div>
+            <div className="flex flex-col gap-3.5 text-[15px]">
+              {[
+                "A IA interpreta e te diz o que importa",
+                "Tudo categorizado automaticamente",
+                "Tom calmo, sem alarme, sem julgamento",
+                "Feito para quem nunca aprendeu do assunto",
+              ].map((t) => (
+                <div key={t} className="flex gap-2.5"><span className="font-bold text-fl-accent-light">✓</span> {t}</div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ============ LISTA DE ESPERA ============ */}
+      <section id="lista" className="px-5 pb-24 pt-10 sm:px-6">
+        <Reveal className="relative mx-auto max-w-[820px] overflow-hidden rounded-[28px] bg-fl-sand px-6 py-14 text-center sm:px-12 sm:py-16">
+          <div aria-hidden className="pointer-events-none absolute -right-16 -top-20 h-[260px] w-[260px] rounded-full [background:radial-gradient(circle,#EFDDBE_0%,rgba(239,221,190,0)_70%)]" />
+          <div className="relative">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-fl-page px-3.5 py-[7px] text-[12.5px] font-semibold tracking-[.4px] text-fl-accent-dark">
+              <span className="h-[7px] w-[7px] rounded-full bg-fl-accent [animation:pulseDot_2s_infinite]" />
+              Vagas limitadas de acesso antecipado
+            </div>
+            <h2 className="mb-4 text-balance text-[30px] font-extrabold leading-[1.1] tracking-[-.03em] text-fl-sand-text lg:text-[40px]">
+              Seja um dos primeiros a ver o dinheiro com clareza
+            </h2>
+            <p className="mx-auto mb-8 max-w-[520px] text-[16px] leading-[1.55] text-[#6b5f4a] sm:text-lg">
+              Entre na lista de espera e ganhe acesso antecipado, sem custo, assim que a primeira versão abrir.
+              Sem spam — só um aviso quando for a sua vez.
+            </p>
+            <WaitlistForm />
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ============ FAQ ============ */}
+      <section id="faq" className="mx-auto max-w-[760px] px-5 pb-24 pt-5 sm:px-6">
+        <Reveal>
+          <h2 className="mb-10 text-center text-[28px] font-extrabold leading-tight tracking-[-.02em] lg:text-[34px]">
+            Perguntas frequentes
+          </h2>
+        </Reveal>
+        <Faq />
+      </section>
+
+      {/* ============ FOOTER ============ */}
+      <footer className="bg-fl-800 px-5 pb-10 pt-14 text-fl-dark-text sm:px-6">
+        <div className="mx-auto flex max-w-[1100px] flex-wrap items-start justify-between gap-8">
+          <div className="max-w-[320px]">
+            <div className="mb-3.5 flex items-center gap-2.5">
+              <LogoMarca />
+              <span className="text-[19px] font-bold tracking-tight text-white">Finlow</span>
+            </div>
+            <p className="text-sm leading-[1.55]">
+              O espaço onde o dinheiro para de ser confuso. Clareza financeira com inteligência artificial.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-14">
+            <div className="flex flex-col gap-2.5 text-sm">
+              <span className="mb-1 font-semibold text-white">Produto</span>
+              <a href="#recursos" className="text-fl-dark-text hover:text-white">Recursos</a>
+              <a href="#como" className="text-fl-dark-text hover:text-white">Como funciona</a>
+              <a href="#lista" className="text-fl-dark-text hover:text-white">Acesso antecipado</a>
+            </div>
+            <div className="flex flex-col gap-2.5 text-sm">
+              <span className="mb-1 font-semibold text-white">Empresa</span>
+              <a href="#faq" className="text-fl-dark-text hover:text-white">Dúvidas</a>
+              <a href={`mailto:finlow.app@gmail.com`} className="text-fl-dark-text hover:text-white">Contato</a>
+            </div>
+          </div>
+        </div>
+        <div className="mx-auto mt-10 flex max-w-[1100px] flex-wrap justify-between gap-2.5 border-t border-fl-600 pt-6 text-[12.5px] text-[#6B7275]">
+          <span>© 2026 Finlow · Produto em desenvolvimento</span>
+          <span>Feito com clareza, no Brasil 🇧🇷</span>
         </div>
       </footer>
-    </main>
+    </div>
   )
 }

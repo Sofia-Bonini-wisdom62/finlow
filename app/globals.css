@@ -36,11 +36,37 @@
   --color-finlow-yellow: #F5A623;
   --color-finlow-text: #FFFFFF;
   --color-finlow-muted: #A0AEC0;
+
+  /* Identidade nova (uploads/finlow-identidade-visual.md) — azul-petróleo "Clareza" */
+  --color-fl-50: #EAF3F3;
+  --color-fl-100: #D1E4E4;
+  --color-fl-200: #A7CBCC;
+  --color-fl-300: #7BAEB0;
+  --color-fl-500: #2B6D70;
+  --color-fl-600: #215659;
+  --color-fl-700: #194244;
+  --color-fl-800: #112F30;
+  --color-fl-sand: #E7DCC9;
+  --color-fl-sand-text: #4A3F2F;
+  --color-fl-accent: #B8863C;
+  --color-fl-accent-light: #EFDDBE;
+  --color-fl-accent-dark: #8C651F;
+  --color-fl-success: #4A7F63;
+  --color-fl-error: #AA4B3E;
+  --color-fl-page: #FAF9F6;
+  --color-fl-ink: #20262A;
+  --color-fl-ink-2: #5C6469;
+  --color-fl-ink-3: #9AA0A3;
+  --color-fl-border: #E1DED6;
+  --color-fl-divider: #ECEAE4;
+  --color-fl-dark-text: #A7ADAF;
+  --color-fl-dark-accent: #5FA7A9;
 }
 
 :root {
-  --background: #0d1b2a;
-  --foreground: #ffffff;
+  /* fundo raiz claro (identidade nova) — telas internas pintam o próprio fundo */
+  --background: #faf9f6;
+  --foreground: #20262a;
   --card: #1a2b3c;
   --card-foreground: #ffffff;
   --popover: #1a2b3c;
@@ -61,6 +87,16 @@
 }
 
 @layer utilities {
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes pulseDot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+
   .card-enter {
     animation: card-enter 0.35s ease both;
   }

@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Finlow — Seu dinheiro, suas regras",
-  description: "Educação financeira comportamental pra quem já tem a própria grana. Descobre seu perfil em 2 minutos e recebe uma trilha feita pro seu jeito de lidar com dinheiro.",
+  title: "Finlow — Seu dinheiro, enfim claro",
+  description: "Clareza financeira com inteligência artificial: o Finlow lê seus gastos, revela padrões que você não vê e te devolve o controle. Entre na lista de acesso antecipado.",
 };
 
 export default function RootLayout({
