@@ -1,4 +1,4 @@
-// Processa a logo oficial (public/logo-original.png, RGB com fundo branco) e gera:
+// Processa a logo oficial (assets/logo-original.png, RGB com fundo branco) e gera:
 //   app/icon.png        512x512  (favicon moderno, fundo transparente)
 //   app/apple-icon.png  180x180  (ícone de tela inicial no iPhone)
 //   app/favicon.ico     32x32    (fallback navegadores antigos)
@@ -7,7 +7,7 @@
 import { readFileSync, writeFileSync } from "fs"
 import zlib from "zlib"
 
-const ORIGEM = "public/logo-original.png"
+const ORIGEM = "assets/logo-original.png"
 const LIMIAR_BRANCO = 220 // acima disso (r,g,b) conta como fundo branco
 
 // ---------- decode PNG (8-bit RGB/RGBA, sem interlace) ----------
