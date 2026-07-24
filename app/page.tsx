@@ -25,7 +25,7 @@ export default function LandingPage() {
 
       {/* ============ NAV ============ */}
       <header className="sticky top-0 z-50 border-b border-fl-divider bg-fl-page/[0.82] backdrop-blur-[14px] backdrop-saturate-150">
-        <nav className="mx-auto flex max-w-[1200px] items-center justify-between gap-6 px-5 py-4 sm:px-6">
+        <nav className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-5 py-3 sm:px-6 sm:py-4">
           <div className="flex items-center gap-2.5">
             <LogoMarca />
             <span className="text-[19px] font-bold tracking-tight">Finlow</span>
@@ -39,12 +39,30 @@ export default function LandingPage() {
             </div>
             <a
               href="#lista"
-              className="rounded-xl bg-fl-500 px-4 py-2.5 text-sm font-semibold text-white shadow-[0_1px_2px_rgba(24,28,30,.08)] transition-colors hover:bg-fl-600 sm:px-5 sm:text-[14.5px]"
+              className="flex min-h-11 items-center rounded-xl bg-fl-500 px-4 text-sm font-semibold text-white shadow-[0_1px_2px_rgba(24,28,30,.08)] transition-colors hover:bg-fl-600 sm:px-5 sm:text-[14.5px]"
             >
               Entrar na lista
             </a>
           </div>
         </nav>
+
+        {/* navegação de seções no mobile — o menu do desktop fica escondido aqui */}
+        <div className="flex gap-1 overflow-x-auto border-t border-fl-divider px-3 pb-1.5 [scrollbar-width:none] lg:hidden [&::-webkit-scrollbar]:hidden">
+          {[
+            ["#problema", "O problema"],
+            ["#recursos", "Recursos"],
+            ["#como", "Como funciona"],
+            ["#faq", "Dúvidas"],
+          ].map(([href, label]) => (
+            <a
+              key={href}
+              href={href}
+              className="shrink-0 whitespace-nowrap rounded-lg px-2.5 py-2.5 text-[13.5px] font-medium text-fl-ink-2 active:bg-fl-50"
+            >
+              {label}
+            </a>
+          ))}
+        </div>
       </header>
 
       {/* ============ HERO ============ */}
@@ -63,16 +81,16 @@ export default function LandingPage() {
             que lê seus gastos, revela padrões que você não vê e te devolve o controle.{" "}
             <strong className="font-semibold text-fl-ink">Sem planilha, sem julgamento, sem esforço.</strong>
           </p>
-          <div className="mb-6 flex flex-wrap items-center gap-3.5">
+          <div className="mb-6 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3.5">
             <a
               href="#lista"
-              className="rounded-[14px] bg-fl-500 px-7 py-4 text-base font-semibold text-white shadow-[0_2px_8px_rgba(43,109,112,.28)] transition-colors hover:bg-fl-600"
+              className="rounded-[14px] bg-fl-500 px-7 py-4 text-center text-base font-semibold text-white shadow-[0_2px_8px_rgba(43,109,112,.28)] transition-colors hover:bg-fl-600"
             >
               Quero acesso antecipado →
             </a>
             <a
               href="#como"
-              className="rounded-[14px] border-[1.5px] border-fl-500 px-6 py-[15px] text-base font-semibold text-fl-500 transition-colors hover:bg-fl-50"
+              className="rounded-[14px] border-[1.5px] border-fl-500 px-6 py-[15px] text-center text-base font-semibold text-fl-500 transition-colors hover:bg-fl-50"
             >
               Ver como funciona
             </a>
@@ -453,17 +471,17 @@ export default function LandingPage() {
               O espaço onde o dinheiro para de ser confuso. Clareza financeira com inteligência artificial.
             </p>
           </div>
-          <div className="flex flex-wrap gap-14">
-            <div className="flex flex-col gap-2.5 text-sm">
-              <span className="mb-1 font-semibold text-white">Produto</span>
-              <a href="#recursos" className="text-fl-dark-text hover:text-white">Recursos</a>
-              <a href="#como" className="text-fl-dark-text hover:text-white">Como funciona</a>
-              <a href="#lista" className="text-fl-dark-text hover:text-white">Acesso antecipado</a>
+          <div className="flex flex-wrap gap-x-14 gap-y-6">
+            <div className="flex flex-col text-sm">
+              <span className="mb-2 font-semibold text-white">Produto</span>
+              <a href="#recursos" className="py-2.5 text-fl-dark-text hover:text-white">Recursos</a>
+              <a href="#como" className="py-2.5 text-fl-dark-text hover:text-white">Como funciona</a>
+              <a href="#lista" className="py-2.5 text-fl-dark-text hover:text-white">Acesso antecipado</a>
             </div>
-            <div className="flex flex-col gap-2.5 text-sm">
-              <span className="mb-1 font-semibold text-white">Empresa</span>
-              <a href="#faq" className="text-fl-dark-text hover:text-white">Dúvidas</a>
-              <a href={`mailto:finlow.app@gmail.com`} className="text-fl-dark-text hover:text-white">Contato</a>
+            <div className="flex flex-col text-sm">
+              <span className="mb-2 font-semibold text-white">Empresa</span>
+              <a href="#faq" className="py-2.5 text-fl-dark-text hover:text-white">Dúvidas</a>
+              <a href="mailto:finlow.app@gmail.com" className="py-2.5 text-fl-dark-text hover:text-white">Contato</a>
             </div>
           </div>
         </div>

@@ -53,19 +53,21 @@ export function WaitlistForm() {
 
   return (
     <div className="mx-auto max-w-[480px]">
-      <form onSubmit={submeter} className="flex flex-wrap gap-2.5">
+      <form onSubmit={submeter} className="flex flex-col gap-2.5 sm:flex-row">
         <input
           type="email"
+          inputMode="email"
+          autoComplete="email"
           value={email}
           onChange={(e) => { setEmail(e.target.value); setErro(null) }}
           placeholder="seu@email.com"
           aria-label="Seu e-mail"
-          className="min-w-[200px] flex-1 rounded-[14px] border-[1.5px] border-[#d8cdb8] bg-fl-page px-[18px] py-[15px] text-base text-fl-ink outline-none focus:border-fl-500"
+          className="w-full rounded-[14px] border-[1.5px] border-[#d8cdb8] bg-fl-page px-[18px] py-[15px] text-base text-fl-ink outline-none focus:border-fl-500 sm:min-w-[200px] sm:flex-1"
         />
         <button
           type="submit"
           disabled={enviando}
-          className="rounded-[14px] bg-fl-500 px-7 py-[15px] text-base font-semibold text-white shadow-[0_2px_8px_rgba(43,109,112,.28)] transition-colors hover:bg-fl-600 disabled:opacity-60"
+          className="w-full shrink-0 rounded-[14px] bg-fl-500 px-7 py-[15px] text-base font-semibold text-white shadow-[0_2px_8px_rgba(43,109,112,.28)] transition-colors hover:bg-fl-600 disabled:opacity-60 sm:w-auto"
         >
           {enviando ? "Salvando…" : "Garantir minha vaga →"}
         </button>
