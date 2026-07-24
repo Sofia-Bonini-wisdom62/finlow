@@ -7,15 +7,15 @@ const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "
 
 function LogoMarca({ tamanho = 30 }: { tamanho?: number }) {
   return (
-    <div
-      className="flex shrink-0 items-center justify-center rounded-[9px] bg-fl-500"
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/logo.png"
+      alt="Finlow"
+      width={tamanho}
+      height={tamanho}
+      className="shrink-0 rounded-[22%]"
       style={{ width: tamanho, height: tamanho }}
-    >
-      <div
-        className="rounded-full border-fl-sand"
-        style={{ width: tamanho * 0.4, height: tamanho * 0.4, borderWidth: tamanho * 0.083 }}
-      />
-    </div>
+    />
   )
 }
 
