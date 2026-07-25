@@ -2,20 +2,20 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Map, Wallet, CircleUser, Settings } from "lucide-react"
+import { MessageCircle, ChartColumn, CircleUser, Menu } from "lucide-react"
 
 const itens = [
-  { href: "/trilha", label: "Trilha", Icon: Map },
-  { href: "/painel", label: "Painel", Icon: Wallet },
+  { href: "/chat", label: "Chat", Icon: MessageCircle },
+  { href: "/analises", label: "Análises", Icon: ChartColumn },
   { href: "/perfil", label: "Perfil", Icon: CircleUser },
-  { href: "/ajustes", label: "Ajustes", Icon: Settings },
+  { href: "/ajustes", label: "Menu", Icon: Menu },
 ]
 
 export function BottomNav() {
   const pathname = usePathname()
 
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-finlow-card bg-finlow-bg/95 backdrop-blur">
+    <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-fl-divider bg-fl-page/95 backdrop-blur">
       <div className="mx-auto grid max-w-md grid-cols-4">
         {itens.map(({ href, label, Icon }) => {
           const ativo = pathname === href || pathname.startsWith(`${href}/`)
@@ -23,11 +23,12 @@ export function BottomNav() {
             <Link
               key={href}
               href={href}
-              className={`flex flex-col items-center gap-1 py-2.5 text-[11px] font-medium transition-colors ${
-                ativo ? "text-finlow-green" : "text-finlow-muted hover:text-finlow-text"
+              aria-current={ativo ? "page" : undefined}
+              className={`flex min-h-14 flex-col items-center justify-center gap-1 text-[11px] font-medium transition-colors ${
+                ativo ? "text-fl-500" : "text-fl-ink-2 hover:text-fl-ink"
               }`}
             >
-              <Icon className="size-5" />
+              <Icon className="size-5" strokeWidth={ativo ? 2.4 : 1.8} />
               {label}
             </Link>
           )

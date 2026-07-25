@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { getUserIdOr401 } from "@/lib/painel"
-import { categoriasPadraoPorPerfil, categoriasPadraoGenericas } from "@/prisma/seed-categorias"
-import type { TipoPerfil } from "@/types/trilha"
+import { categoriasPadrao } from "@/prisma/seed-categorias"
 
 export const dynamic = "force-dynamic"
 
@@ -49,12 +48,8 @@ export async function PATCH() {
     // (reativar depois de apagar tudo repopula; ativar duas vezes não duplica)
     const jaTem = await db.categoria.count({ where: { userId } })
     if (jaTem === 0) {
-      const perfil = await db.perfil.findUnique({ where: { userId } })
-      const padrao = perfil
-        ? categoriasPadraoPorPerfil[perfil.tipo as TipoPerfil] ?? categoriasPadraoGenericas
-        : categoriasPadraoGenericas
       await db.categoria.createMany({
-        data: padrao.map((c) => ({ userId, nome: c.nome, tipo: c.tipo, cor: c.cor, padrao: true })),
+        data: categoriasPadrao.map((c) => ({ userId, nome: c.nome, tipo: c.tipo, cor: c.cor, padrao: true })),
       })
     }
 

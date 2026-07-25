@@ -21,25 +21,25 @@ export function GastoMedioPorDiaChart({ transacoes }: { transacoes: TransacaoDat
   const temDados = medias.some((m) => m > 0)
 
   return (
-    <div className="rounded-2xl bg-finlow-card p-5">
-      <span className="text-xs font-semibold uppercase tracking-wider text-finlow-muted">
+    <div className="rounded-2xl bg-white p-5">
+      <span className="text-xs font-semibold uppercase tracking-wider text-fl-ink-2">
         Gasto Médio por Dia
       </span>
 
       {!temDados ? (
-        <p className="mt-3 text-sm text-finlow-muted">Registra algumas despesas pra ver seu padrão semanal.</p>
+        <p className="mt-3 text-sm text-fl-ink-2">Registra algumas despesas pra ver seu padrão semanal.</p>
       ) : (
         <div className="mt-4 flex items-end justify-between gap-2" style={{ height: 140 }}>
           {medias.map((m, i) => (
             <div key={i} className="flex flex-1 flex-col items-center justify-end gap-1.5 self-stretch">
               {m > 0 && (
-                <span className="text-[10px] text-finlow-muted">{brl(m).replace(",00", "")}</span>
+                <span className="text-[10px] text-fl-ink-2">{brl(m).replace(",00", "")}</span>
               )}
               <div
-                className="w-full rounded-t-md bg-finlow-green transition-all"
+                className="w-full rounded-t-md bg-fl-500 transition-all"
                 style={{ height: `${Math.max((m / max) * 100, m > 0 ? 4 : 0)}%`, opacity: m > 0 ? 1 : 0.15 }}
               />
-              <span className="text-[10px] text-finlow-muted">{DIAS[i]}</span>
+              <span className="text-[10px] text-fl-ink-2">{DIAS[i]}</span>
             </div>
           ))}
         </div>

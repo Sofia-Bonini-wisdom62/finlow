@@ -68,20 +68,20 @@ export function TransacoesCard({ transacoes, categorias, onMudou }: Props) {
   const categoriasDoTipo = categorias.filter((c) => c.tipo === tipo)
 
   return (
-    <div className="rounded-2xl bg-finlow-card p-5">
+    <div className="rounded-2xl bg-white p-5">
       <div className="flex items-center justify-between">
-        <span className="text-xs font-semibold uppercase tracking-wider text-finlow-muted">Últimas Transações</span>
+        <span className="text-xs font-semibold uppercase tracking-wider text-fl-ink-2">Últimas Transações</span>
         <button
           aria-label="Adicionar transação"
           onClick={abrir}
-          className="flex h-9 w-9 items-center justify-center rounded-full bg-finlow-bg text-finlow-green"
+          className="flex h-9 w-9 items-center justify-center rounded-full bg-fl-page text-fl-500"
         >
           <Plus className="size-4" />
         </button>
       </div>
 
       {transacoes.length === 0 ? (
-        <p className="mt-3 text-sm text-finlow-muted">Nenhuma transação neste período.</p>
+        <p className="mt-3 text-sm text-fl-ink-2">Nenhuma transação neste período.</p>
       ) : (
         <ul className="mt-3 flex flex-col gap-2.5">
           {transacoes.map((t) => (
@@ -89,21 +89,21 @@ export function TransacoesCard({ transacoes, categorias, onMudou }: Props) {
               <div className="flex min-w-0 items-center gap-2">
                 <span
                   className="h-2 w-2 shrink-0 rounded-full"
-                  style={{ background: t.categoria?.cor ?? "#A0AEC0" }}
+                  style={{ background: t.categoria?.cor ?? "#5C6469" }}
                   aria-hidden
                 />
                 <div className="min-w-0">
-                  <span className="block truncate text-finlow-text">{t.descricao}</span>
-                  <span className="text-xs text-finlow-muted">
+                  <span className="block truncate text-fl-ink">{t.descricao}</span>
+                  <span className="text-xs text-fl-ink-2">
                     {dataCurta(t.data)}{t.categoria ? ` · ${t.categoria.nome}` : ""}
                   </span>
                 </div>
               </div>
               <div className="flex shrink-0 items-center gap-2">
-                <span className={t.tipo === "receita" ? "text-finlow-green" : "text-finlow-muted"}>
+                <span className={t.tipo === "receita" ? "text-fl-500" : "text-fl-ink-2"}>
                   {t.tipo === "receita" ? "+" : "−"} {brl(t.valor)}
                 </span>
-                <button aria-label={`Excluir ${t.descricao}`} onClick={() => excluir(t.id)} className="p-1.5 text-finlow-muted hover:text-finlow-yellow">
+                <button aria-label={`Excluir ${t.descricao}`} onClick={() => excluir(t.id)} className="p-1.5 text-fl-ink-2 hover:text-fl-accent-dark">
                   <Trash2 className="size-4" />
                 </button>
               </div>
@@ -124,8 +124,8 @@ export function TransacoesCard({ transacoes, categorias, onMudou }: Props) {
                 onClick={() => { setTipo(t); setCategoriaId("") }}
                 className={`flex-1 rounded-xl border py-2.5 text-sm font-medium capitalize transition-colors ${
                   tipo === t
-                    ? "border-finlow-green bg-finlow-green/10 text-finlow-green"
-                    : "border-finlow-bg bg-finlow-bg text-finlow-muted"
+                    ? "border-fl-500 bg-fl-500/10 text-fl-500"
+                    : "border-fl-border bg-fl-page text-fl-ink-2"
                 }`}
               >
                 {t}
@@ -142,7 +142,7 @@ export function TransacoesCard({ transacoes, categorias, onMudou }: Props) {
 
           <input className={`${inputPainel} [color-scheme:dark]`} type="date" value={data} onChange={(e) => setData(e.target.value)} />
 
-          {erro && <p className="text-sm text-finlow-yellow">{erro}</p>}
+          {erro && <p className="text-sm text-fl-accent-dark">{erro}</p>}
           <button className={botaoPrimario} disabled={salvando || !descricao || !valor} onClick={salvar}>
             {salvando ? "Salvando..." : "Salvar"}
           </button>

@@ -76,17 +76,17 @@ export default function PainelPage() {
 
   if (carregando) {
     return (
-      <main className="flex min-h-dvh items-center justify-center bg-finlow-bg">
-        <div className="h-6 w-6 animate-spin rounded-full border-2 border-finlow-green border-t-transparent" />
+      <main className="flex min-h-dvh items-center justify-center bg-fl-page">
+        <div className="h-6 w-6 animate-spin rounded-full border-2 border-fl-500 border-t-transparent" />
       </main>
     )
   }
 
   if (!logado) {
     return (
-      <main className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-finlow-bg px-6 text-center">
-        <p className="text-finlow-muted">Entra na sua conta pra usar o Painel.</p>
-        <Link href="/login" className="rounded-full bg-finlow-green px-6 py-3 text-sm font-semibold text-finlow-bg">
+      <main className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-fl-page px-6 text-center">
+        <p className="text-fl-ink-2">Entra na sua conta pra usar o Painel.</p>
+        <Link href="/login" className="rounded-full bg-fl-500 px-6 py-3 text-sm font-semibold text-fl-ink">
           Entrar
         </Link>
       </main>
@@ -94,19 +94,19 @@ export default function PainelPage() {
   }
 
   return (
-    <main className="min-h-dvh bg-finlow-bg pb-24">
+    <main className="min-h-dvh bg-fl-page pb-24">
       <div className="mx-auto w-full max-w-md px-5 py-8">
         <header className="flex flex-col gap-4">
-          <span className="text-lg font-bold tracking-tight text-finlow-green">Finlow</span>
+          <span className="text-lg font-bold tracking-tight text-fl-500">Finlow</span>
 
           {/* sub-toggle Controle Financeiro / Análises */}
-          <div className="flex rounded-2xl bg-finlow-card p-1">
+          <div className="flex rounded-2xl bg-white p-1">
             {([["controle", "Controle Financeiro"], ["analises", "Análises"]] as [Aba, string][]).map(([id, label]) => (
               <button
                 key={id}
                 onClick={() => setAba(id)}
                 className={`flex-1 rounded-xl py-2.5 text-sm font-semibold transition-colors ${
-                  aba === id ? "bg-finlow-green text-finlow-bg" : "text-finlow-muted"
+                  aba === id ? "bg-fl-500 text-fl-ink" : "text-fl-ink-2"
                 }`}
               >
                 {label}
@@ -120,13 +120,13 @@ export default function PainelPage() {
         {!consentiu ? (
           /* estado vazio sem opt-in — não bloqueia navegação */
           <div className="mt-10 flex flex-col items-center gap-4 text-center">
-            <p className="text-sm leading-relaxed text-finlow-muted">
+            <p className="text-sm leading-relaxed text-fl-ink-2">
               O Painel guarda seus números de verdade — contas, gastos, saldo.
               Ativa quando quiser começar.
             </p>
             <button
               onClick={() => setModalConsentimento(true)}
-              className="rounded-full bg-finlow-green px-6 py-3 text-sm font-semibold text-finlow-bg"
+              className="rounded-full bg-fl-500 px-6 py-3 text-sm font-semibold text-fl-ink"
             >
               Ativar meu Painel
             </button>

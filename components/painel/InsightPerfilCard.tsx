@@ -90,14 +90,14 @@ export function InsightPerfilCard({ transacoes }: { transacoes: TransacaoData[] 
   if (!escolha) return null
 
   return (
-    <div className="rounded-2xl border border-finlow-green/30 bg-finlow-green/10 p-5">
-      <span className="text-xs font-semibold uppercase tracking-wider text-finlow-green">
+    <div className="rounded-2xl border border-fl-500/30 bg-fl-500/10 p-5">
+      <span className="text-xs font-semibold uppercase tracking-wider text-fl-500">
         Seu perfil te avisou sobre isso
       </span>
-      <p className="mt-2 text-sm leading-relaxed text-finlow-muted">{escolha.frase}</p>
+      <p className="mt-2 text-sm leading-relaxed text-fl-ink-2">{escolha.frase}</p>
       <Link
         href={`/trilha/${escolha.modulo.id}`}
-        className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-finlow-green"
+        className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-fl-500"
       >
         Revisitar &quot;{escolha.modulo.titulo}&quot;
         <ArrowRight className="size-4" />

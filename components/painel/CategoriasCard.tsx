@@ -5,7 +5,7 @@ import { Plus, Pencil, Trash2 } from "lucide-react"
 import type { CategoriaData } from "@/types/painel"
 import { ModalBase, inputPainel, botaoPrimario } from "./ModalBase"
 
-const CORES = ["#00C896", "#F5A623", "#4FD1C5", "#63B3ED", "#9F7AEA", "#F87171"]
+const CORES = ["#2B6D70", "#B8863C", "#4FD1C5", "#63B3ED", "#9F7AEA", "#AA4B3E"]
 
 interface Props {
   categorias: CategoriaData[]
@@ -63,34 +63,34 @@ export function CategoriasCard({ categorias, onMudou }: Props) {
   }
 
   return (
-    <div className="rounded-2xl bg-finlow-card p-5">
+    <div className="rounded-2xl bg-white p-5">
       <div className="flex items-center justify-between">
-        <span className="text-xs font-semibold uppercase tracking-wider text-finlow-muted">Categorias</span>
+        <span className="text-xs font-semibold uppercase tracking-wider text-fl-ink-2">Categorias</span>
         <button
           aria-label="Criar categoria"
           onClick={abrirNovo}
-          className="flex h-9 w-9 items-center justify-center rounded-full bg-finlow-bg text-finlow-green"
+          className="flex h-9 w-9 items-center justify-center rounded-full bg-fl-page text-fl-500"
         >
           <Plus className="size-4" />
         </button>
       </div>
 
       {categorias.length === 0 ? (
-        <p className="mt-3 text-sm text-finlow-muted">Nenhuma categoria ainda.</p>
+        <p className="mt-3 text-sm text-fl-ink-2">Nenhuma categoria ainda.</p>
       ) : (
         <ul className="mt-3 flex flex-col gap-2">
           {categorias.map((c) => (
             <li key={c.id} className="flex items-center justify-between text-sm">
               <div className="flex items-center gap-2">
-                <span className="h-2.5 w-2.5 rounded-full" style={{ background: c.cor ?? "#A0AEC0" }} aria-hidden />
-                <span className="text-finlow-text">{c.nome}</span>
-                <span className="text-xs text-finlow-muted">{c.tipo}</span>
+                <span className="h-2.5 w-2.5 rounded-full" style={{ background: c.cor ?? "#5C6469" }} aria-hidden />
+                <span className="text-fl-ink">{c.nome}</span>
+                <span className="text-xs text-fl-ink-2">{c.tipo}</span>
               </div>
               <div className="flex items-center gap-1">
-                <button aria-label={`Editar ${c.nome}`} onClick={() => abrirEdicao(c)} className="p-1.5 text-finlow-muted hover:text-finlow-text">
+                <button aria-label={`Editar ${c.nome}`} onClick={() => abrirEdicao(c)} className="p-1.5 text-fl-ink-2 hover:text-fl-ink">
                   <Pencil className="size-4" />
                 </button>
-                <button aria-label={`Excluir ${c.nome}`} onClick={() => excluir(c.id)} className="p-1.5 text-finlow-muted hover:text-finlow-yellow">
+                <button aria-label={`Excluir ${c.nome}`} onClick={() => excluir(c.id)} className="p-1.5 text-fl-ink-2 hover:text-fl-accent-dark">
                   <Trash2 className="size-4" />
                 </button>
               </div>
@@ -110,8 +110,8 @@ export function CategoriasCard({ categorias, onMudou }: Props) {
                 onClick={() => setTipo(t)}
                 className={`flex-1 rounded-xl border py-2.5 text-sm font-medium capitalize transition-colors ${
                   tipo === t
-                    ? "border-finlow-green bg-finlow-green/10 text-finlow-green"
-                    : "border-finlow-bg bg-finlow-bg text-finlow-muted"
+                    ? "border-fl-500 bg-fl-500/10 text-fl-500"
+                    : "border-fl-border bg-fl-page text-fl-ink-2"
                 }`}
               >
                 {t}
@@ -131,7 +131,7 @@ export function CategoriasCard({ categorias, onMudou }: Props) {
             ))}
           </div>
 
-          {erro && <p className="text-sm text-finlow-yellow">{erro}</p>}
+          {erro && <p className="text-sm text-fl-accent-dark">{erro}</p>}
           <button className={botaoPrimario} disabled={salvando || !nome} onClick={salvar}>
             {salvando ? "Salvando..." : "Salvar"}
           </button>

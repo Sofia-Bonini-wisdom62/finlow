@@ -1,117 +1,262 @@
 "use client"
 
-import Link from "next/link"
-import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
-import { PerfilCard, type TipoPerfil } from "@/components/perfil-card"
-import { descricoesPerfil } from "@/lib/perfis"
+import Link from "next/link"
+import { Search, ArrowRight, Check, X } from "lucide-react"
 import { BottomNav } from "@/components/bottom-nav"
+import type { MetricasPerfil } from "@/lib/financas"
+
+interface Perfil {
+  nome: string
+  email: string | null
+  image: string | null
+  nivel: string
+  resumo: string
+  metricas: MetricasPerfil
+}
+
+interface ModuloCard {
+  id: string
+  slug: string
+  titulo: string
+  subtitulo: string
+  dificuldade: string
+  duracao: string
+  progresso: number
+  concluido: boolean
+}
+
+function Metrica({ rotulo, valor, nota, barra }: { rotulo: string; valor: string; nota?: string; barra?: number }) {
+  return (
+    <div className="rounded-2xl border border-fl-border bg-white px-4 py-3.5">
+      <div className="text-[11px] font-semibold uppercase tracking-wide text-fl-ink-2">{rotulo}</div>
+      <div className="mt-0.5 text-xl font-extrabold tabular-nums tracking-tight text-fl-ink">{valor}</div>
+      {barra !== undefined && (
+        <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-fl-divider">
+          <div className="h-full rounded-full bg-fl-500 transition-all" style={{ width: `${Math.min(100, barra)}%` }} />
+        </div>
+      )}
+      {nota && <div className="mt-1.5 text-[11px] leading-snug text-fl-ink-3">{nota}</div>}
+    </div>
+  )
+}
+
+function CardModulo({ m }: { m: ModuloCard }) {
+  return (
+    <div className="rounded-2xl border border-fl-border bg-white p-4">
+      <div className="flex items-start justify-between gap-3">
+        <h3 className="text-[15px] font-bold leading-snug text-fl-ink">{m.titulo}</h3>
+        {m.concluido && (
+          <span className="flex shrink-0 items-center gap-1 rounded-full bg-fl-success/10 px-2 py-0.5 text-[10.5px] font-bold text-fl-success">
+            <Check className="size-3" /> feito
+          </span>
+        )}
+      </div>
+      <p className="mt-1 line-clamp-2 text-[13px] leading-relaxed text-fl-ink-2">{m.subtitulo}</p>
+
+      <div className="mt-2.5 flex items-center gap-2 text-[11px] text-fl-ink-3">
+        <span className="rounded-full bg-fl-50 px-2 py-0.5 font-semibold text-fl-500">{m.dificuldade}</span>
+        <span>{m.duracao}</span>
+      </div>
+
+      {m.progresso > 0 && !m.concluido && (
+        <div className="mt-3">
+          <div className="h-1.5 overflow-hidden rounded-full bg-fl-divider">
+            <div className="h-full rounded-full bg-fl-500" style={{ width: `${m.progresso}%` }} />
+          </div>
+          <div className="mt-1 text-[10.5px] text-fl-ink-3">{m.progresso}% concluído</div>
+        </div>
+      )}
+
+      <Link
+        href={`/trilha/${m.slug}`}
+        className="mt-3.5 flex items-center justify-center gap-1.5 rounded-xl bg-fl-500 py-3 text-sm font-semibold text-white transition-colors hover:bg-fl-600"
+      >
+        {m.concluido ? "Revisitar" : m.progresso > 0 ? "Continuar" : "Começar"}
+        <ArrowRight className="size-4" />
+      </Link>
+    </div>
+  )
+}
 
 export default function PerfilPage() {
-  const [tipo, setTipo] = useState<TipoPerfil | null>(null)
+  const [perfil, setPerfil] = useState<Perfil | null>(null)
+  const [recomendados, setRecomendados] = useState<ModuloCard[]>([])
+  const [carregando, setCarregando] = useState(true)
+  const [logado, setLogado] = useState(true)
+
+  const [busca, setBusca] = useState("")
+  const [resultados, setResultados] = useState<ModuloCard[] | null>(null)
+  const [buscando, setBuscando] = useState(false)
 
   useEffect(() => {
-    const salvo = localStorage.getItem("finlow_perfil") as TipoPerfil | null
-    if (salvo) {
-      setTipo(salvo)
-      return
-    }
-    // sem localStorage (outro dispositivo?) — recupera do banco pela sessão
-    fetch("/api/perfil")
-      .then((r) => r.json())
-      .then((d) => {
-        if (d.tipo) {
-          localStorage.setItem("finlow_perfil", d.tipo)
-          setTipo(d.tipo)
-        }
+    Promise.all([
+      fetch("/api/perfil-financeiro").then((r) => (r.status === 401 ? null : r.json())),
+      fetch("/api/modulos").then((r) => (r.ok ? r.json() : { recomendados: [] })),
+    ])
+      .then(([p, m]) => {
+        if (!p) { setLogado(false); return }
+        setPerfil(p)
+        setRecomendados(m.recomendados ?? [])
       })
       .catch(() => {})
+      .finally(() => setCarregando(false))
   }, [])
 
-  if (!tipo) {
+  // busca com debounce
+  useEffect(() => {
+    const termo = busca.trim()
+    if (termo.length < 2) { setResultados(null); return }
+
+    setBuscando(true)
+    const t = setTimeout(async () => {
+      try {
+        const r = await fetch(`/api/modulos?q=${encodeURIComponent(termo)}`)
+        const d = await r.json()
+        setResultados(d.resultados ?? [])
+      } catch {
+        setResultados([])
+      } finally {
+        setBuscando(false)
+      }
+    }, 350)
+    return () => clearTimeout(t)
+  }, [busca])
+
+  if (carregando) {
     return (
-      <main className="flex min-h-dvh items-center justify-center bg-background">
-        <div className="flex flex-col items-center gap-4 text-center px-6">
-          <p className="text-muted-foreground">Calculando seu perfil...</p>
-          <Link href="/diagnostico" className="text-sm text-primary underline underline-offset-4">
-            Fazer o diagnóstico
-          </Link>
-        </div>
+      <main className="flex min-h-dvh items-center justify-center bg-fl-page">
+        <div className="size-6 animate-spin rounded-full border-2 border-fl-500 border-t-transparent" />
       </main>
     )
   }
 
-  const perfil = descricoesPerfil[tipo]
+  if (!logado || !perfil) {
+    return (
+      <main className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-fl-page px-6 text-center">
+        <p className="text-fl-ink-2">Entra na sua conta pra ver seu perfil.</p>
+        <Link href="/login" className="rounded-full bg-fl-500 px-6 py-3 text-sm font-semibold text-white">
+          Entrar
+        </Link>
+      </main>
+    )
+  }
+
+  const m = perfil.metricas
+  const inicial = perfil.nome.trim().charAt(0).toUpperCase() || "?"
 
   return (
-    <main className="min-h-dvh bg-background px-5 py-8 pb-24"
-      style={{ background: "linear-gradient(to bottom, #0D1B2A, #0a1622)" }}
-    >
-      <div className="mx-auto flex max-w-[390px] flex-col gap-8 lg:max-w-4xl">
-        <header className="flex justify-center lg:justify-start">
-          <span className="text-2xl font-bold text-primary">Finlow</span>
+    <main className="min-h-dvh bg-fl-page pb-24">
+      <div className="mx-auto w-full max-w-md px-5 py-6">
+        {/* cabeçalho */}
+        <header className="flex items-center gap-3.5">
+          {perfil.image ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={perfil.image} alt="" className="size-14 rounded-full object-cover" />
+          ) : (
+            <div className="flex size-14 items-center justify-center rounded-full bg-fl-100 text-xl font-extrabold text-fl-500">
+              {inicial}
+            </div>
+          )}
+          <div className="min-w-0">
+            <h1 className="truncate text-xl font-extrabold tracking-tight text-fl-ink">{perfil.nome}</h1>
+            <p className="text-sm text-fl-500">{perfil.nivel}</p>
+          </div>
         </header>
 
-        <div className="flex flex-col gap-8 lg:grid lg:grid-cols-2 lg:items-center lg:gap-12">
-          {/* Lado esquerdo — texto intro (só desktop) */}
-          <div className="flex flex-col items-center gap-6 lg:items-start lg:text-left">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-medium text-primary"
-            >
-              Seu perfil está pronto
-              <span aria-hidden="true">🎯</span>
-            </motion.div>
+        {/* resumo */}
+        <p className="mt-5 rounded-2xl bg-fl-sand px-4 py-3.5 text-[14.5px] leading-relaxed text-fl-sand-text">
+          {perfil.resumo}
+        </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="hidden flex-col gap-3 lg:flex"
-            >
-              <h1 className="text-balance text-4xl font-bold leading-tight text-foreground">
-                Esse é o jeito que você se relaciona com dinheiro.
-              </h1>
-              <p className="text-pretty leading-relaxed text-muted-foreground">
-                A partir daqui, montamos uma trilha sob medida pra você evoluir no seu ritmo.
-              </p>
-            </motion.div>
+        {/* métricas — sem histórico, os valores são desconhecidos, não zero:
+            mostrar "0%" leria como "você está mal" em vez de "ainda não sei" */}
+        {(() => {
+          const vazio = m.mesesComDados === 0
+          const v = (texto: string) => (vazio ? "—" : texto)
+          const b = (n: number) => (vazio ? undefined : n)
+          return (
+            <section className="mt-5 grid grid-cols-2 gap-2.5" aria-label="Métricas financeiras">
+              <div className="col-span-2">
+                <Metrica
+                  rotulo="Índice de saúde financeira"
+                  valor={vazio ? "—" : `${m.saudeFinanceira}/100`}
+                  barra={b(m.saudeFinanceira)}
+                  nota={
+                    vazio
+                      ? "Aparece depois do seu primeiro mês de lançamentos"
+                      : `Composto de economia, controle, reserva e consistência · ${m.mesesComDados} ${m.mesesComDados === 1 ? "mês" : "meses"} de dados`
+                  }
+                />
+              </div>
+              <Metrica rotulo="Taxa de economia" valor={v(`${m.taxaEconomia}%`)} nota="da renda" barra={b(m.taxaEconomia)} />
+              <Metrica rotulo="Controle orçamentário" valor={v(`${m.controleOrcamentario}%`)} nota="meses no orçamento" barra={b(m.controleOrcamentario)} />
+              <Metrica rotulo="Reserva de emergência" valor={v(`${m.reservaEmergencia.toLocaleString("pt-BR")} meses`)} nota="de despesa coberta" barra={b((m.reservaEmergencia / 6) * 100)} />
+              <Metrica rotulo="Consistência" valor={v(`${m.consistencia}%`)} nota="meses com sobra" barra={b(m.consistencia)} />
+            </section>
+          )
+        })()}
+
+        {/* trilha recomendada */}
+        <section className="mt-8">
+          <h2 className="text-[17px] font-extrabold tracking-tight text-fl-ink">Recomendado para você</h2>
+          <p className="mt-0.5 text-[13px] leading-relaxed text-fl-ink-2">
+            Sequência montada a partir dos seus números — atualiza conforme seu comportamento muda.
+          </p>
+          <div className="mt-4 flex flex-col gap-3">
+            {recomendados.length === 0 ? (
+              <p className="text-sm text-fl-ink-2">Nenhum módulo disponível no momento.</p>
+            ) : (
+              recomendados.map((mod) => <CardModulo key={mod.id} m={mod} />)
+            )}
           </div>
+        </section>
 
-          {/* Lado direito — card + botões */}
-          <div className="flex flex-col gap-6">
-            <PerfilCard
-              tipo={tipo}
-              titulo={perfil.titulo}
-              subtitulo={perfil.subtitulo}
-              descricao={perfil.descricao}
-              cor={perfil.cor}
+        {/* busca */}
+        <section className="mt-8">
+          <h2 className="text-[17px] font-extrabold tracking-tight text-fl-ink">Pesquisar qualquer assunto</h2>
+          <div className="relative mt-3">
+            <Search className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-fl-ink-3" />
+            <input
+              type="search"
+              value={busca}
+              onChange={(e) => setBusca(e.target.value)}
+              placeholder="Pesquise por investimentos, cartão de crédito, orçamento, renda extra..."
+              aria-label="Pesquisar módulos"
+              className="w-full rounded-2xl border border-fl-border bg-white py-3.5 pl-11 pr-10 text-sm text-fl-ink placeholder-fl-ink-3 outline-none focus:border-fl-500"
             />
-
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-col gap-3"
-            >
-              <Link
-                href="/trilha"
-                className="flex h-14 w-full items-center justify-center rounded-full bg-primary text-base font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
+            {busca && (
+              <button
+                aria-label="Limpar busca"
+                onClick={() => setBusca("")}
+                className="absolute right-3 top-1/2 flex size-7 -translate-y-1/2 items-center justify-center rounded-full text-fl-ink-2 hover:bg-fl-divider"
               >
-                Ver minha trilha
-              </Link>
-              <Link
-                href="/diagnostico"
-                className="flex h-14 w-full items-center justify-center rounded-full border border-border bg-transparent text-base font-semibold text-foreground hover:bg-card transition-colors"
-              >
-                Refazer diagnóstico
-              </Link>
-            </motion.div>
+                <X className="size-4" />
+              </button>
+            )}
           </div>
-        </div>
+
+          {buscando && <p className="mt-3 text-sm text-fl-ink-2">Buscando…</p>}
+
+          {!buscando && resultados !== null && (
+            <div className="mt-4 flex flex-col gap-3">
+              {resultados.length === 0 ? (
+                <p className="text-sm text-fl-ink-2">
+                  Nada encontrado para <strong className="text-fl-ink">“{busca}”</strong>. Tenta outra palavra?
+                </p>
+              ) : (
+                <>
+                  <p className="text-xs text-fl-ink-2">
+                    {resultados.length} {resultados.length === 1 ? "módulo" : "módulos"}
+                  </p>
+                  {resultados.map((mod) => <CardModulo key={mod.id} m={mod} />)}
+                </>
+              )}
+            </div>
+          )}
+        </section>
       </div>
+
       <BottomNav />
     </main>
   )

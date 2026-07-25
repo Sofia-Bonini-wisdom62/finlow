@@ -24,21 +24,21 @@ export function SeletorMes({ mes, ano, onChange }: Props) {
   }
 
   return (
-    <div className="flex items-center justify-between rounded-2xl bg-finlow-card px-2 py-1">
+    <div className="flex items-center justify-between rounded-2xl bg-white px-2 py-1">
       <button
         aria-label="Mês anterior"
         onClick={anterior}
-        className="flex h-11 w-11 items-center justify-center rounded-full text-finlow-muted transition-colors hover:text-finlow-text"
+        className="flex h-11 w-11 items-center justify-center rounded-full text-fl-ink-2 transition-colors hover:text-fl-ink"
       >
         <ChevronLeft className="size-5" />
       </button>
-      <span className="text-sm font-semibold text-finlow-text">
+      <span className="text-sm font-semibold text-fl-ink">
         {NOMES_MESES[mes - 1]} / {ano}
       </span>
       <button
         aria-label="Próximo mês"
         onClick={proximo}
-        className="flex h-11 w-11 items-center justify-center rounded-full text-finlow-muted transition-colors hover:text-finlow-text"
+        className="flex h-11 w-11 items-center justify-center rounded-full text-fl-ink-2 transition-colors hover:text-fl-ink"
       >
         <ChevronRight className="size-5" />
       </button>
