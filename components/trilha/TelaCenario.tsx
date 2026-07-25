@@ -1,10 +1,10 @@
 "use client"
 
 import type { ConteudoCenario } from "@/types/trilha"
+import { formatBRL as brl } from "@/lib/resultado"
 
 function formatBRL(v: number): string {
-  const abs = Math.abs(v)
-  return `R$ ${abs.toFixed(2).replace(".", ",")}`
+  return `R$ ${brl(Math.abs(v))}`
 }
 
 export function TelaCenario({ conteudo }: { conteudo: ConteudoCenario }) {
