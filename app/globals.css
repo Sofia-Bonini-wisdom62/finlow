@@ -3,6 +3,9 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Os tokens fl-* apontam para variáveis, não para hex literal: é isso que
+   permite o mesmo `bg-fl-page` responder ao tema. Os valores de cada modo
+   ficam em :root e .dark abaixo. */
 @theme inline {
   --font-sans: var(--font-geist-sans), 'Geist Fallback';
   --font-mono: var(--font-geist-mono), 'Geist Mono Fallback';
@@ -30,60 +33,170 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  --color-finlow-bg: #0D1B2A;
-  --color-finlow-card: #1A2B3C;
-  --color-finlow-green: #00C896;
-  --color-finlow-yellow: #F5A623;
-  --color-finlow-text: #FFFFFF;
-  --color-finlow-muted: #A0AEC0;
+  /* Identidade — azul-petróleo "Clareza" (uploads/finlow-identidade-visual.md) */
+  --color-fl-50: var(--fl-50);
+  --color-fl-100: var(--fl-100);
+  --color-fl-200: var(--fl-200);
+  --color-fl-300: var(--fl-300);
+  --color-fl-500: var(--fl-500);
+  --color-fl-600: var(--fl-600);
+  --color-fl-700: var(--fl-700);
+  --color-fl-800: var(--fl-800);
+  --color-fl-sand: var(--fl-sand);
+  --color-fl-sand-text: var(--fl-sand-text);
+  --color-fl-accent: var(--fl-accent);
+  --color-fl-accent-light: var(--fl-accent-light);
+  --color-fl-accent-dark: var(--fl-accent-dark);
+  --color-fl-success: var(--fl-success);
+  --color-fl-error: var(--fl-error);
+  --color-fl-info: var(--fl-info);
+  --color-fl-page: var(--fl-page);
+  --color-fl-surface: var(--fl-surface);
+  --color-fl-card: var(--fl-card);
+  --color-fl-ink: var(--fl-ink);
+  --color-fl-ink-2: var(--fl-ink-2);
+  --color-fl-ink-3: var(--fl-ink-3);
+  --color-fl-border: var(--fl-border);
+  --color-fl-divider: var(--fl-divider);
 
-  /* Identidade nova (uploads/finlow-identidade-visual.md) — azul-petróleo "Clareza" */
-  --color-fl-50: #EAF3F3;
-  --color-fl-100: #D1E4E4;
-  --color-fl-200: #A7CBCC;
-  --color-fl-300: #7BAEB0;
-  --color-fl-500: #2B6D70;
-  --color-fl-600: #215659;
-  --color-fl-700: #194244;
-  --color-fl-800: #112F30;
-  --color-fl-sand: #E7DCC9;
-  --color-fl-sand-text: #4A3F2F;
-  --color-fl-accent: #B8863C;
-  --color-fl-accent-light: #EFDDBE;
-  --color-fl-accent-dark: #8C651F;
-  --color-fl-success: #4A7F63;
-  --color-fl-error: #AA4B3E;
-  --color-fl-page: #FAF9F6;
-  --color-fl-ink: #20262A;
-  --color-fl-ink-2: #5C6469;
-  --color-fl-ink-3: #9AA0A3;
-  --color-fl-border: #E1DED6;
-  --color-fl-divider: #ECEAE4;
+  /* Constantes: o player da trilha e as faixas escuras da landing são blocos
+     deliberadamente escuros nos DOIS modos — não acompanham o tema. */
+  --color-fl-dark-bg: #112F30;
+  --color-fl-dark-surface: #1B3B3C;
   --color-fl-dark-text: #A7ADAF;
   --color-fl-dark-accent: #5FA7A9;
 }
 
+/* ---------- modo claro ---------- */
 :root {
-  /* fundo raiz claro (identidade nova) — telas internas pintam o próprio fundo */
-  --background: #faf9f6;
-  --foreground: #20262a;
-  --card: #1a2b3c;
-  --card-foreground: #ffffff;
-  --popover: #1a2b3c;
-  --popover-foreground: #ffffff;
-  --primary: #00c896;
-  --primary-foreground: #0d1b2a;
-  --secondary: #1a2b3c;
-  --secondary-foreground: #ffffff;
-  --muted: #1a2b3c;
-  --muted-foreground: #a0aec0;
-  --accent: #f5a623;
-  --accent-foreground: #0d1b2a;
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.12);
-  --ring: #00c896;
+  --fl-50: #EAF3F3;
+  --fl-100: #D1E4E4;
+  --fl-200: #A7CBCC;
+  --fl-300: #7BAEB0;
+  --fl-500: #2B6D70;
+  --fl-600: #215659;
+  --fl-700: #194244;
+  --fl-800: #112F30;
+  --fl-sand: #E7DCC9;
+  --fl-sand-text: #4A3F2F;
+  --fl-accent: #B8863C;
+  --fl-accent-light: #EFDDBE;
+  --fl-accent-dark: #8C651F;
+  --fl-success: #4A7F63;
+  --fl-error: #AA4B3E;
+  --fl-info: #3E6E93;
+  --fl-page: #FAF9F6;
+  --fl-surface: #FFFFFF;
+  --fl-card: #FFFFFF;
+  --fl-ink: #20262A;
+  --fl-ink-2: #5C6469;
+  /* A identidade lista #9AA0A3 como "Text Disabled", mas o app usa este token
+     para legenda, nota e metadado — texto que a pessoa precisa ler. #9AA0A3
+     sobre o fundo dá 2,5:1 e reprova AA (falha que já existia no modo claro,
+     antes do escuro). Escurecido até 4,65:1. Item indisponível é sinalizado
+     pelo selo "em breve", não por contraste baixo. */
+  --fl-ink-3: #6B7276;
+  --fl-border: #E1DED6;
+  --fl-divider: #ECEAE4;
+  --fl-sombra: rgba(24, 28, 30, 0.10);
+
+  --background: var(--fl-page);
+  --foreground: var(--fl-ink);
+  --card: var(--fl-card);
+  --card-foreground: var(--fl-ink);
+  --popover: var(--fl-surface);
+  --popover-foreground: var(--fl-ink);
+  --primary: var(--fl-500);
+  --primary-foreground: #FFFFFF;
+  --secondary: var(--fl-sand);
+  --secondary-foreground: var(--fl-sand-text);
+  --muted: var(--fl-divider);
+  --muted-foreground: var(--fl-ink-2);
+  --accent: var(--fl-accent);
+  --accent-foreground: #FFFFFF;
+  --destructive: var(--fl-error);
+  --border: var(--fl-border);
+  --input: var(--fl-border);
+  --ring: var(--fl-500);
   --radius: 0.625rem;
+
+  color-scheme: light;
+}
+
+/* ---------- modo escuro ----------
+   Valores da seção 6 da identidade. Não é inversão: o primary é CLAREADO para
+   manter contraste sobre fundo escuro, as semânticas sobem na mesma proporção
+   para preservar a hierarquia entre elas, o fundo nunca é preto puro (reduz
+   halação do texto claro) e a elevação vem de camadas de cinza, não de sombra
+   — sombra é praticamente invisível sobre fundo escuro. */
+.dark {
+  --fl-50: #1A2A2B;
+  --fl-100: #23393A;
+  --fl-200: #2E4A4C;
+  --fl-300: #4C8D90;
+  --fl-500: #5FA7A9;   /* Primary clareado ~2 níveis */
+  --fl-600: #79BBBC;   /* hover CLAREIA no escuro, não escurece */
+  --fl-700: #4C8D90;   /* pressed */
+  --fl-800: #112F30;
+  --fl-sand: #3A342A;  /* areia invertida para tom quente escuro */
+  --fl-sand-text: #E7DCC9;
+  --fl-accent: #D3A75C;
+  --fl-accent-light: #4A3E28;
+  --fl-accent-dark: #D0A059;
+  --fl-success: #6FA588;
+  --fl-error: #D08277;
+  --fl-info: #6C9BC0;
+  --fl-page: #14181A;     /* Background — cinza-azulado quase-preto */
+  --fl-surface: #1B2124;  /* camada 1 */
+  --fl-card: #212829;     /* camada 2 */
+  --fl-ink: #EDEEEC;      /* branco quebrado, não branco puro */
+  --fl-ink-2: #A7ADAF;
+  --fl-ink-3: #909799;   /* ver nota no modo claro */
+  --fl-border: #333B3E;
+  --fl-divider: #2A3133;
+  --fl-sombra: rgba(0, 0, 0, 0.4);
+
+  --primary-foreground: #14181A; /* texto sobre o primary clareado */
+  --accent-foreground: #14181A;
+
+  color-scheme: dark;
+}
+
+/* Os mockups de celular da landing são ilustração do produto, não superfície da
+   página — como um screenshot. Este escopo trava os tokens nos valores claros
+   dentro deles, então a tela do "celular" continua legível no modo escuro sem
+   precisar duplicar nenhuma classe na marcação. */
+.mockup {
+  --fl-50: #EAF3F3;
+  --fl-100: #D1E4E4;
+  --fl-200: #A7CBCC;
+  --fl-300: #7BAEB0;
+  --fl-500: #2B6D70;
+  --fl-600: #215659;
+  --fl-700: #194244;
+  --fl-sand: #E7DCC9;
+  --fl-sand-text: #4A3F2F;
+  --fl-accent: #B8863C;
+  --fl-accent-light: #EFDDBE;
+  --fl-accent-dark: #8C651F;
+  --fl-success: #4A7F63;
+  --fl-error: #AA4B3E;
+  --fl-info: #3E6E93;
+  --fl-page: #FAF9F6;
+  --fl-surface: #FFFFFF;
+  --fl-card: #FFFFFF;
+  --fl-ink: #20262A;
+  --fl-ink-2: #5C6469;
+  --fl-ink-3: #6B7276;
+  --fl-border: #E1DED6;
+  --fl-divider: #ECEAE4;
+  --primary-foreground: #FFFFFF;
+  color-scheme: light;
+  /* `color` herda o valor JÁ COMPUTADO do ancestral, então só redefinir as
+     variáveis acima não conserta texto sem classe de cor própria: ele chegaria
+     aqui com o tom claro do modo escuro e desapareceria no fundo branco da
+     "tela". Reancorar a cor aqui reinicia a herança dentro do mockup. */
+  color: var(--fl-ink);
 }
 
 @layer utilities {
@@ -112,14 +225,28 @@
     }
   }
 
-  /* conteúdo rico das telas do card flow (vem do seed, controlado) */
+  /* Cores de dado (categoria) vêm do banco — são escolha do usuário, não token,
+     então não podem trocar por tema. Várias foram definidas para fundo claro e
+     ficam quase invisíveis sobre a superfície escura: o azul-petróleo #2B6D70
+     sobre o card #212829 dá ~1,9:1. Este realce uniforme resolve sem reescrever
+     nenhuma linha do banco e sem distorcer a relação entre as fatias. */
+  .cor-dado {
+    filter: none;
+  }
+  .dark .cor-dado {
+    filter: brightness(1.45) saturate(0.92);
+  }
+
+  /* Conteúdo rico das telas do card flow (vem do seed, controlado).
+     O player é escuro nos dois modos, então estas cores são fixas.
+     (Antes apontavam para o verde #00C896 da paleta aposentada.) */
   .rich-text em {
     font-style: normal;
-    color: #00c896;
+    color: #5FA7A9;
   }
   .rich-text strong {
     font-weight: 600;
-    color: #e2e8f0;
+    color: #EDEEEC;
   }
 }
 
@@ -132,5 +259,10 @@
   }
   html {
     @apply font-sans;
+  }
+  /* Sem isto, trocar de tema anima cada cor da tela por 240ms e a mudança
+     parece um glitch. A troca é instantânea; o resto mantém suas transições. */
+  html.trocando-tema * {
+    transition: none !important;
   }
 }

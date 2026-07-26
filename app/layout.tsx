@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { SCRIPT_ANTI_FLASH } from "@/lib/tema";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,9 +25,16 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="pt-BR"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
+      <head>
+        {/* Roda antes da primeira pintura: sem isso, quem escolheu escuro leva
+            um flash branco em todo carregamento, porque o React só hidrata
+            depois de o HTML já estar na tela. */}
+        <script dangerouslySetInnerHTML={{ __html: SCRIPT_ANTI_FLASH }} />
+      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

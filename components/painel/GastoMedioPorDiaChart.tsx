@@ -21,7 +21,7 @@ export function GastoMedioPorDiaChart({ transacoes }: { transacoes: TransacaoDat
   const temDados = medias.some((m) => m > 0)
 
   return (
-    <div className="rounded-2xl bg-white p-5">
+    <div className="rounded-2xl bg-fl-card p-5">
       <span className="text-xs font-semibold uppercase tracking-wider text-fl-ink-2">
         Gasto Médio por Dia
       </span>

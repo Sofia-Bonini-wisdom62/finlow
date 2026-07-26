@@ -40,7 +40,7 @@ export function WaitlistForm() {
   if (enviado) {
     return (
       <div className="mx-auto max-w-[460px] rounded-2xl bg-fl-page p-7">
-        <div className="mx-auto mb-3.5 flex h-13 w-13 items-center justify-center rounded-full bg-fl-500 text-2xl text-white" style={{ height: 52, width: 52 }}>
+        <div className="mx-auto mb-3.5 flex h-13 w-13 items-center justify-center rounded-full bg-fl-500 text-2xl text-primary-foreground" style={{ height: 52, width: 52 }}>
           ✓
         </div>
         <div className="mb-1.5 text-[19px] font-bold text-fl-ink">Você está na lista!</div>
@@ -62,18 +62,18 @@ export function WaitlistForm() {
           onChange={(e) => { setEmail(e.target.value); setErro(null) }}
           placeholder="seu@email.com"
           aria-label="Seu e-mail"
-          className="w-full rounded-[14px] border-[1.5px] border-[#d8cdb8] bg-fl-page px-[18px] py-[15px] text-base text-fl-ink outline-none focus:border-fl-500 sm:min-w-[200px] sm:flex-1"
+          className="w-full rounded-[14px] border-[1.5px] border-fl-border bg-fl-card px-[18px] py-[15px] text-base text-fl-ink outline-none focus:border-fl-500 sm:min-w-[200px] sm:flex-1"
         />
         <button
           type="submit"
           disabled={enviando}
-          className="w-full shrink-0 rounded-[14px] bg-fl-500 px-7 py-[15px] text-base font-semibold text-white shadow-[0_2px_8px_rgba(43,109,112,.28)] transition-colors hover:bg-fl-600 disabled:opacity-60 sm:w-auto"
+          className="w-full shrink-0 rounded-[14px] bg-fl-500 px-7 py-[15px] text-base font-semibold text-primary-foreground shadow-[0_2px_8px_rgba(43,109,112,.28)] transition-colors hover:bg-fl-600 disabled:opacity-60 sm:w-auto"
         >
           {enviando ? "Salvando…" : "Garantir minha vaga →"}
         </button>
       </form>
       {erro && <div className="mt-2.5 text-left text-[13.5px] font-medium text-fl-error">{erro}</div>}
-      <div className="mt-3.5 text-[12.5px] text-[#8c8069]">
+      <div className="mt-3.5 text-[12.5px] text-fl-sand-text/70">
         🔒 Seus dados ficam com você. Nunca vendemos nada, nunca viramos vitrine de anúncio.
       </div>
     </div>

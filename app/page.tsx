@@ -39,7 +39,7 @@ export default function LandingPage() {
             </div>
             <a
               href="#lista"
-              className="flex min-h-11 items-center rounded-xl bg-fl-500 px-4 text-sm font-semibold text-white shadow-[0_1px_2px_rgba(24,28,30,.08)] transition-colors hover:bg-fl-600 sm:px-5 sm:text-[14.5px]"
+              className="flex min-h-11 items-center rounded-xl bg-fl-500 px-4 text-sm font-semibold text-primary-foreground shadow-[0_1px_2px_rgba(24,28,30,.08)] transition-colors hover:bg-fl-600 sm:px-5 sm:text-[14.5px]"
             >
               Entrar na lista
             </a>
@@ -67,7 +67,7 @@ export default function LandingPage() {
 
       {/* ============ HERO ============ */}
       <section className="relative mx-auto grid max-w-[1200px] items-center gap-12 px-5 pb-10 pt-14 sm:px-6 lg:grid-cols-[1.05fr_.95fr] lg:gap-14 lg:pt-20">
-        <div aria-hidden className="pointer-events-none absolute -left-40 -top-10 h-[420px] w-[420px] opacity-60 [background:radial-gradient(circle,#D1E4E4_0%,rgba(209,228,228,0)_70%)]" />
+        <div aria-hidden className="pointer-events-none absolute -left-40 -top-10 h-[420px] w-[420px] opacity-60 [background:radial-gradient(circle,var(--fl-100)_0%,transparent_70%)]" />
         <Reveal className="relative">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-fl-accent-light px-3.5 py-[7px] text-[12.5px] font-semibold uppercase tracking-[.4px] text-fl-accent-dark">
             <span className="h-[7px] w-[7px] rounded-full bg-fl-accent [animation:pulseDot_2s_infinite]" />
@@ -84,7 +84,7 @@ export default function LandingPage() {
           <div className="mb-6 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3.5">
             <a
               href="#lista"
-              className="rounded-[14px] bg-fl-500 px-7 py-4 text-center text-base font-semibold text-white shadow-[0_2px_8px_rgba(43,109,112,.28)] transition-colors hover:bg-fl-600"
+              className="rounded-[14px] bg-fl-500 px-7 py-4 text-center text-base font-semibold text-primary-foreground shadow-[0_2px_8px_rgba(43,109,112,.28)] transition-colors hover:bg-fl-600"
             >
               Quero acesso antecipado →
             </a>
@@ -104,9 +104,9 @@ export default function LandingPage() {
 
         {/* mockup — dashboard */}
         <Reveal className="relative flex justify-center">
-          <div aria-hidden className="pointer-events-none absolute -inset-8 [background:radial-gradient(circle_at_60%_40%,#EAF3F3_0%,rgba(234,243,243,0)_65%)]" />
+          <div aria-hidden className="pointer-events-none absolute -inset-8 [background:radial-gradient(circle_at_60%_40%,var(--fl-50)_0%,transparent_65%)]" />
           <div className="relative w-[280px] sm:w-[300px] [animation:floaty_6s_ease-in-out_infinite]">
-            <div className="rounded-[44px] bg-fl-800 p-[11px] shadow-[0_30px_60px_-20px_rgba(17,47,48,.5),0_12px_24px_rgba(24,28,30,.16)]">
+            <div className="mockup rounded-[44px] bg-fl-800 p-[11px] shadow-[0_30px_60px_-20px_rgba(17,47,48,.5),0_12px_24px_rgba(24,28,30,.16)]">
               <div className="flex h-[600px] flex-col overflow-hidden rounded-[34px] bg-fl-page">
                 <div className="flex items-center justify-between px-[22px] pb-1.5 pt-4 text-xs font-semibold">
                   <span>9:41</span><span className="tracking-[2px]">● ● ●</span>
@@ -118,27 +118,27 @@ export default function LandingPage() {
                   </div>
                   <div className="h-[34px] w-[34px] rounded-full bg-fl-100" />
                 </div>
-                <div className="mx-[18px] rounded-2xl border border-fl-border border-t-[3px] border-t-fl-500 bg-white px-[18px] py-4 shadow-[0_1px_2px_rgba(24,28,30,.06)]">
+                <div className="mx-[18px] rounded-2xl border border-fl-border border-t-[3px] border-t-fl-500 bg-fl-card px-[18px] py-4 shadow-[0_1px_2px_rgba(24,28,30,.06)]">
                   <div className="text-[11px] font-semibold uppercase tracking-[.6px] text-fl-ink-2">Saldo disponível</div>
                   <div className="my-0.5 text-[30px] font-extrabold tracking-[-.02em]">R$ 8.240<span className="text-lg text-fl-ink-2">,50</span></div>
                   <div className="text-[12.5px] font-semibold text-fl-success">▲ 12% vs. mês passado</div>
                 </div>
                 <div className="grid grid-cols-2 gap-2.5 px-[18px] pb-1 pt-3.5">
-                  <div className="rounded-xl border border-fl-border bg-white px-3 py-2.5">
+                  <div className="rounded-xl border border-fl-border bg-fl-card px-3 py-2.5">
                     <div className="text-[10.5px] font-semibold text-fl-ink-2">Entradas</div>
                     <div className="text-[15px] font-bold text-fl-success">R$ 12.400</div>
                   </div>
-                  <div className="rounded-xl border border-fl-border bg-white px-3 py-2.5">
+                  <div className="rounded-xl border border-fl-border bg-fl-card px-3 py-2.5">
                     <div className="text-[10.5px] font-semibold text-fl-ink-2">Saídas</div>
                     <div className="text-[15px] font-bold text-fl-error">R$ 4.159</div>
                   </div>
                 </div>
-                <div className="mx-[18px] mt-2.5 flex items-center gap-4 rounded-2xl border border-fl-border bg-white p-4">
+                <div className="mx-[18px] mt-2.5 flex items-center gap-4 rounded-2xl border border-fl-border bg-fl-card p-4">
                   <div
                     className="flex h-[88px] w-[88px] shrink-0 items-center justify-center rounded-full"
                     style={{ background: "conic-gradient(#2B6D70 0 42%,#B8863C 42% 62%,#7BAEB0 62% 82%,#E7DCC9 82% 100%)" }}
                   >
-                    <div className="flex h-[52px] w-[52px] flex-col items-center justify-center rounded-full bg-white">
+                    <div className="flex h-[52px] w-[52px] flex-col items-center justify-center rounded-full bg-fl-card">
                       <div className="text-sm font-extrabold">62%</div>
                       <div className="text-[8px] text-fl-ink-2">no plano</div>
                     </div>
@@ -157,7 +157,7 @@ export default function LandingPage() {
                     ))}
                   </div>
                 </div>
-                <div className="mt-auto flex items-center justify-between border-t border-fl-divider bg-white px-[30px] pb-5 pt-3.5">
+                <div className="mt-auto flex items-center justify-between border-t border-fl-divider bg-fl-card px-[30px] pb-5 pt-3.5">
                   <div className="h-[22px] w-[22px] rounded-md bg-fl-500" />
                   <div className="h-5 w-5 rounded-md bg-fl-100" />
                   <div className="h-5 w-5 rounded-full bg-fl-100" />
@@ -186,13 +186,16 @@ export default function LandingPage() {
       {/* ============ PROBLEMA ============ */}
       <section id="problema" className="bg-fl-sand px-5 py-16 sm:px-6 lg:py-22">
         <Reveal className="mx-auto max-w-[1000px] text-center">
-          <div className="mb-4 text-[13px] font-bold uppercase tracking-[1.4px] text-fl-accent-dark">
+          {/* Era âmbar (#8C651F): 3,87:1 sobre a areia, e a identidade reserva o
+              dourado a conquista — "sua raridade é o que sustenta seu significado".
+              O tom próprio da areia dá 7,58:1 e respeita essa regra. */}
+          <div className="mb-4 text-[13px] font-bold uppercase tracking-[1.4px] text-fl-sand-text">
             Você conhece essa sensação
           </div>
           <h2 className="mx-auto mb-5 max-w-[760px] text-balance text-[32px] font-extrabold leading-[1.12] tracking-[-.025em] text-fl-sand-text lg:text-[40px]">
             O problema nunca foi falta de dinheiro. Foi falta de <span className="text-fl-500">clareza.</span>
           </h2>
-          <p className="mx-auto mb-12 max-w-[620px] text-[16px] leading-[1.55] text-[#6b5f4a] sm:text-lg">
+          <p className="mx-auto mb-12 max-w-[620px] text-[16px] leading-[1.55] text-fl-sand-text sm:text-lg">
             Abrir o extrato dá um aperto. Você sabe que gasta demais em algum lugar — só não sabe onde.
             E toda vez que tenta organizar numa planilha, desiste na segunda semana.
           </p>
@@ -229,7 +232,7 @@ export default function LandingPage() {
             { icone: <div className="h-[18px] w-[22px] rounded-[8px_8px_8px_2px] bg-fl-500" />, t: "Converse com seu dinheiro", d: "\"Posso gastar R$ 300 esse fim de semana?\" Pergunte em português. O Finlow responde com base nos seus números reais." },
             { icone: <div className="h-5 w-5 rounded-full border-[5px] border-fl-500" />, t: "Controle de verdade", d: "Metas, orçamentos e alertas calmos — que avisam antes, não depois. Você decide com dados, não com culpa." },
           ].map((c) => (
-            <div key={c.t} className="rounded-[20px] border border-fl-border bg-white p-7 shadow-[0_1px_2px_rgba(24,28,30,.06)]">
+            <div key={c.t} className="rounded-[20px] border border-fl-border bg-fl-card p-7 shadow-[0_1px_2px_rgba(24,28,30,.06)]">
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-[14px] bg-fl-50">{c.icone}</div>
               <h3 className="mb-2.5 text-xl font-bold tracking-tight">{c.t}</h3>
               <p className="text-[15px] leading-relaxed text-fl-ink-2">{c.d}</p>
@@ -242,7 +245,7 @@ export default function LandingPage() {
       <section className="mx-auto grid max-w-[1200px] items-center gap-12 px-5 py-14 sm:px-6 lg:grid-cols-[.95fr_1.05fr] lg:gap-16 lg:py-[70px]">
         <Reveal className="order-2 flex justify-center lg:order-1">
           <div className="w-[270px] sm:w-[290px]">
-            <div className="rounded-[44px] bg-fl-800 p-[11px] shadow-[0_24px_50px_-20px_rgba(17,47,48,.45)]">
+            <div className="mockup rounded-[44px] bg-fl-800 p-[11px] shadow-[0_24px_50px_-20px_rgba(17,47,48,.45)]">
               <div className="flex h-[580px] flex-col overflow-hidden rounded-[34px] bg-fl-page">
                 <div className="flex items-center gap-2.5 border-b border-fl-divider px-[22px] pb-3 pt-4">
                   <LogoMarca />
@@ -255,10 +258,10 @@ export default function LandingPage() {
                   <div className="max-w-[80%] self-end rounded-[16px_16px_4px_16px] bg-fl-500 px-3.5 py-2.5 text-[13.5px] leading-[1.45] text-white">
                     Posso gastar R$ 300 no rolê esse fim de semana?
                   </div>
-                  <div className="max-w-[88%] self-start rounded-[16px_16px_16px_4px] border border-fl-border bg-white px-3.5 py-3 text-[13.5px] leading-[1.5]">
+                  <div className="max-w-[88%] self-start rounded-[16px_16px_16px_4px] border border-fl-border bg-fl-card px-3.5 py-3 text-[13.5px] leading-[1.5]">
                     Pode sim 🙂 Você tem R$ 640 livres no orçamento de lazer este mês. Gastando R$ 300, ainda fica dentro do plano.
                   </div>
-                  <div className="max-w-[88%] self-start rounded-2xl border border-fl-border bg-white p-3 text-[13px]">
+                  <div className="max-w-[88%] self-start rounded-2xl border border-fl-border bg-fl-card p-3 text-[13px]">
                     <div className="mb-2 text-[11px] font-semibold text-fl-ink-2">Lazer · julho</div>
                     <div className="mb-1.5 h-2 overflow-hidden rounded-full bg-fl-divider">
                       <div className="h-full w-[53%] rounded-full bg-fl-500" />
@@ -269,7 +272,7 @@ export default function LandingPage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2.5 border-t border-fl-divider px-4 pb-[22px] pt-3.5">
-                  <div className="flex-1 rounded-full border border-fl-border bg-white px-4 py-2.5 text-[12.5px] text-[#A7ACAE]">
+                  <div className="flex-1 rounded-full border border-fl-border bg-fl-card px-4 py-2.5 text-[12.5px] text-[#A7ACAE]">
                     Pergunte qualquer coisa…
                   </div>
                   <div className="h-[38px] w-[38px] shrink-0 rounded-full bg-fl-500" />
@@ -327,27 +330,27 @@ export default function LandingPage() {
         </Reveal>
         <Reveal className="flex justify-center">
           <div className="w-[270px] sm:w-[290px]">
-            <div className="rounded-[44px] bg-fl-800 p-[11px] shadow-[0_24px_50px_-20px_rgba(17,47,48,.45)]">
+            <div className="mockup rounded-[44px] bg-fl-800 p-[11px] shadow-[0_24px_50px_-20px_rgba(17,47,48,.45)]">
               <div className="flex h-[580px] flex-col overflow-hidden rounded-[34px] bg-fl-page">
                 <div className="px-[22px] pb-2.5 pt-4">
                   <div className="text-xs font-medium text-fl-ink-2">Para você hoje</div>
                   <div className="text-lg font-extrabold tracking-tight">Insights</div>
                 </div>
                 <div className="flex flex-1 flex-col gap-3 overflow-hidden px-4 pt-1.5">
-                  <div className="rounded-[14px] border border-fl-border border-l-[3px] border-l-fl-accent bg-white p-3.5">
+                  <div className="rounded-[14px] border border-fl-border border-l-[3px] border-l-fl-accent bg-fl-card p-3.5">
                     <div className="mb-1.5 text-[11px] font-bold uppercase tracking-[.5px] text-fl-accent-dark">⚑ Atenção</div>
                     <div className="text-[13.5px] leading-[1.45]">Seu gasto com <strong>delivery</strong> subiu <strong>38%</strong> este mês. São R$ 480 — o equivalente a 2 semanas do seu mercado.</div>
                   </div>
-                  <div className="rounded-[14px] border border-fl-border border-l-[3px] border-l-fl-500 bg-white p-3.5">
+                  <div className="rounded-[14px] border border-fl-border border-l-[3px] border-l-fl-500 bg-fl-card p-3.5">
                     <div className="mb-1.5 text-[11px] font-bold uppercase tracking-[.5px] text-fl-500">◆ Descoberta</div>
                     <div className="text-[13.5px] leading-[1.45]">Você paga <strong>2 apps de streaming</strong> quase iguais. Cancelar um economiza R$ 39,90/mês.</div>
                   </div>
-                  <div className="rounded-[14px] border border-fl-border border-l-[3px] border-l-fl-success bg-white p-3.5">
+                  <div className="rounded-[14px] border border-fl-border border-l-[3px] border-l-fl-success bg-fl-card p-3.5">
                     <div className="mb-1.5 text-[11px] font-bold uppercase tracking-[.5px] text-fl-success">✓ No caminho</div>
                     <div className="text-[13.5px] leading-[1.45]">No ritmo atual, sua <strong>reserva de emergência</strong> chega à meta em 3 meses.</div>
                   </div>
                 </div>
-                <div className="flex items-center justify-between border-t border-fl-divider bg-white px-[30px] pb-5 pt-3.5">
+                <div className="flex items-center justify-between border-t border-fl-divider bg-fl-card px-[30px] pb-5 pt-3.5">
                   <div className="h-5 w-5 rounded-full bg-fl-100" />
                   <div className="h-5 w-5 rounded-md bg-fl-100" />
                   <div className="h-[22px] w-[22px] rounded-md bg-fl-500" />
@@ -379,7 +382,7 @@ export default function LandingPage() {
               { n: "3", t: "Você decide com clareza", d: "Insights, metas e um assistente pronto para responder. Cada decisão apoiada em dados reais." },
             ].map((p) => (
               <div key={p.n}>
-                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-fl-600 text-lg font-extrabold text-fl-dark-accent">
+                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-fl-dark-surface text-[19px] font-extrabold text-fl-dark-accent">
                   {p.n}
                 </div>
                 <h3 className="mb-2.5 text-xl font-bold text-white">{p.t}</h3>
@@ -399,7 +402,7 @@ export default function LandingPage() {
           </h2>
         </Reveal>
         <Reveal className="grid gap-5 md:grid-cols-2">
-          <div className="rounded-[20px] border border-fl-border bg-white p-7">
+          <div className="rounded-[20px] border border-fl-border bg-fl-card p-7">
             <div className="mb-4 text-[13px] font-bold uppercase tracking-[.6px] text-fl-ink-3">Os outros apps</div>
             <div className="flex flex-col gap-3.5 text-[15px] text-fl-ink-2">
               {[
@@ -412,8 +415,8 @@ export default function LandingPage() {
               ))}
             </div>
           </div>
-          <div className="rounded-[20px] bg-fl-500 p-7 text-white shadow-[0_8px_24px_rgba(43,109,112,.24)]">
-            <div className="mb-4 text-[13px] font-bold uppercase tracking-[.6px] text-fl-200">Com o Finlow</div>
+          <div className="rounded-[20px] bg-fl-500 p-7 text-primary-foreground shadow-[0_8px_24px_rgba(43,109,112,.24)]">
+            <div className="mb-4 text-[13px] font-bold uppercase tracking-[.6px] text-primary-foreground">Com o Finlow</div>
             <div className="flex flex-col gap-3.5 text-[15px]">
               {[
                 "A IA interpreta e te diz o que importa",
@@ -421,7 +424,7 @@ export default function LandingPage() {
                 "Tom calmo, sem alarme, sem julgamento",
                 "Feito para quem nunca aprendeu do assunto",
               ].map((t) => (
-                <div key={t} className="flex gap-2.5"><span className="font-bold text-fl-accent-light">✓</span> {t}</div>
+                <div key={t} className="flex gap-2.5"><span className="font-bold text-primary-foreground">✓</span> {t}</div>
               ))}
             </div>
           </div>
@@ -431,7 +434,7 @@ export default function LandingPage() {
       {/* ============ LISTA DE ESPERA ============ */}
       <section id="lista" className="px-5 pb-24 pt-10 sm:px-6">
         <Reveal className="relative mx-auto max-w-[820px] overflow-hidden rounded-[28px] bg-fl-sand px-6 py-14 text-center sm:px-12 sm:py-16">
-          <div aria-hidden className="pointer-events-none absolute -right-16 -top-20 h-[260px] w-[260px] rounded-full [background:radial-gradient(circle,#EFDDBE_0%,rgba(239,221,190,0)_70%)]" />
+          <div aria-hidden className="pointer-events-none absolute -right-16 -top-20 h-[260px] w-[260px] rounded-full [background:radial-gradient(circle,var(--fl-accent-light)_0%,transparent_70%)]" />
           <div className="relative">
             <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-fl-page px-3.5 py-[7px] text-[12.5px] font-semibold tracking-[.4px] text-fl-accent-dark">
               <span className="h-[7px] w-[7px] rounded-full bg-fl-accent [animation:pulseDot_2s_infinite]" />
@@ -440,7 +443,7 @@ export default function LandingPage() {
             <h2 className="mb-4 text-balance text-[30px] font-extrabold leading-[1.1] tracking-[-.03em] text-fl-sand-text lg:text-[40px]">
               Seja um dos primeiros a ver o dinheiro com clareza
             </h2>
-            <p className="mx-auto mb-8 max-w-[520px] text-[16px] leading-[1.55] text-[#6b5f4a] sm:text-lg">
+            <p className="mx-auto mb-8 max-w-[520px] text-[16px] leading-[1.55] text-fl-sand-text sm:text-lg">
               Entre na lista de espera e ganhe acesso antecipado, sem custo, assim que a primeira versão abrir.
               Sem spam — só um aviso quando for a sua vez.
             </p>
@@ -485,7 +488,7 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-        <div className="mx-auto mt-10 flex max-w-[1100px] flex-wrap justify-between gap-2.5 border-t border-fl-600 pt-6 text-[12.5px] text-[#6B7275]">
+        <div className="mx-auto mt-10 flex max-w-[1100px] flex-wrap justify-between gap-2.5 border-t border-white/10 pt-6 text-[12.5px] text-fl-dark-text">
           <span>© 2026 Finlow · Produto em desenvolvimento</span>
           <span>Feito com clareza, no Brasil 🇧🇷</span>
         </div>

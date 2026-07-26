@@ -39,20 +39,20 @@ export function GraficoLinha({ pontos, altura = 140, mostrarZero = false }: Prop
         >
           <defs>
             <linearGradient id="grad-linha" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#2B6D70" stopOpacity="0.18" />
-              <stop offset="100%" stopColor="#2B6D70" stopOpacity="0" />
+              <stop offset="0%" stopColor="var(--fl-500)" stopOpacity="0.18" />
+              <stop offset="100%" stopColor="var(--fl-500)" stopOpacity="0" />
             </linearGradient>
           </defs>
 
           {mostrarZero && min < 0 && (
-            <line x1="0" y1={yZero} x2="100" y2={yZero} stroke="#E1DED6" strokeWidth="0.5" strokeDasharray="2 2" vectorEffect="non-scaling-stroke" />
+            <line x1="0" y1={yZero} x2="100" y2={yZero} stroke="var(--fl-border)" strokeWidth="0.5" strokeDasharray="2 2" vectorEffect="non-scaling-stroke" />
           )}
 
           <polygon points={area} fill="url(#grad-linha)" />
           <polyline
             points={linha}
             fill="none"
-            stroke="#2B6D70"
+            stroke="var(--fl-500)"
             strokeWidth="2"
             strokeLinejoin="round"
             strokeLinecap="round"
@@ -60,7 +60,7 @@ export function GraficoLinha({ pontos, altura = 140, mostrarZero = false }: Prop
           />
           {pontos.length <= 12 &&
             pontos.map((p, i) => (
-              <circle key={i} cx={x(i)} cy={y(p.valor)} r="3" fill="#FAF9F6" stroke="#2B6D70" strokeWidth="2" vectorEffect="non-scaling-stroke" />
+              <circle key={i} cx={x(i)} cy={y(p.valor)} r="3" fill="var(--fl-page)" stroke="var(--fl-500)" strokeWidth="2" vectorEffect="non-scaling-stroke" />
             ))}
         </svg>
       </div>

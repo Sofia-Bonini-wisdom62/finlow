@@ -100,7 +100,7 @@ export default function PainelPage() {
           <span className="text-lg font-bold tracking-tight text-fl-500">Finlow</span>
 
           {/* sub-toggle Controle Financeiro / Análises */}
-          <div className="flex rounded-2xl bg-white p-1">
+          <div className="flex rounded-2xl bg-fl-card p-1">
             {([["controle", "Controle Financeiro"], ["analises", "Análises"]] as [Aba, string][]).map(([id, label]) => (
               <button
                 key={id}

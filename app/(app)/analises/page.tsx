@@ -24,7 +24,7 @@ interface Dados {
 
 function Aviso({ titulo, texto, acao }: { titulo: string; texto: string; acao?: React.ReactNode }) {
   return (
-    <div className="mt-8 rounded-[20px] border border-fl-border bg-white p-6 text-center">
+    <div className="mt-8 rounded-[20px] border border-fl-border bg-fl-card p-6 text-center">
       <div className="mx-auto mb-3 flex size-11 items-center justify-center rounded-xl bg-fl-50">
         <TrendingUp className="size-5 text-fl-500" />
       </div>
@@ -37,7 +37,7 @@ function Aviso({ titulo, texto, acao }: { titulo: string; texto: string; acao?: 
 
 function Secao({ titulo, legenda, children }: { titulo: string; legenda?: string; children: React.ReactNode }) {
   return (
-    <section className="rounded-[20px] border border-fl-border bg-white p-5">
+    <section className="rounded-[20px] border border-fl-border bg-fl-card p-5">
       <h2 className="text-[15px] font-bold text-fl-ink">{titulo}</h2>
       {legenda && <p className="mt-0.5 text-xs text-fl-ink-2">{legenda}</p>}
       <div className="mt-4">{children}</div>
@@ -78,7 +78,7 @@ export default function AnalisesPage() {
     return (
       <main className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-fl-page px-6 text-center">
         <p className="text-fl-ink-2">Entra na sua conta pra ver suas análises.</p>
-        <Link href="/login" className="rounded-full bg-fl-500 px-6 py-3 text-sm font-semibold text-white">
+        <Link href="/login" className="rounded-full bg-fl-500 px-6 py-3 text-sm font-semibold text-primary-foreground">
           Entrar
         </Link>
       </main>
@@ -114,7 +114,7 @@ export default function AnalisesPage() {
           {kpis.map((k, i) => (
             <div
               key={k.rotulo}
-              className={`rounded-2xl border border-fl-border bg-white px-4 py-3 ${
+              className={`rounded-2xl border border-fl-border bg-fl-card px-4 py-3 ${
                 i === kpis.length - 1 ? "col-span-2" : ""
               }`}
             >
@@ -143,7 +143,7 @@ export default function AnalisesPage() {
             acao={
               <button
                 onClick={carregar}
-                className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-fl-500 px-5 py-3 text-sm font-semibold text-white"
+                className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-fl-500 px-5 py-3 text-sm font-semibold text-primary-foreground"
               >
                 Tentar de novo
               </button>
@@ -156,7 +156,7 @@ export default function AnalisesPage() {
             acao={
               <Link
                 href="/painel"
-                className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-fl-500 px-5 py-3 text-sm font-semibold text-white"
+                className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-fl-500 px-5 py-3 text-sm font-semibold text-primary-foreground"
               >
                 <Plus className="size-4" /> Registrar lançamentos
               </Link>
@@ -171,7 +171,7 @@ export default function AnalisesPage() {
                 {dados.mesAnterior && (
                   <button
                     onClick={() => { setMes(dados.mesAnterior!.mes); setAno(dados.mesAnterior!.ano) }}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-fl-500 px-5 py-3 text-sm font-semibold text-white"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-fl-500 px-5 py-3 text-sm font-semibold text-primary-foreground"
                   >
                     Ver {NOMES_MESES[dados.mesAnterior.mes - 1].toLowerCase()} de {dados.mesAnterior.ano}
                   </button>
@@ -217,7 +217,7 @@ export default function AnalisesPage() {
 
             <Link
               href="/painel"
-              className="flex items-center justify-center gap-2 rounded-2xl border border-fl-border bg-white py-4 text-sm font-semibold text-fl-500 transition-colors hover:bg-fl-50"
+              className="flex items-center justify-center gap-2 rounded-2xl border border-fl-border bg-fl-card py-4 text-sm font-semibold text-fl-500 transition-colors hover:bg-fl-50"
             >
               <Plus className="size-4" /> Registrar ou editar lançamentos
             </Link>

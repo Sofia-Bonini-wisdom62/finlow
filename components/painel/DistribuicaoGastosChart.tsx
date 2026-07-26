@@ -3,7 +3,7 @@
 import type { TransacaoData } from "@/types/painel"
 import { brl } from "@/lib/formato"
 
-const COR_SEM_CATEGORIA = "#5C6469"
+const COR_SEM_CATEGORIA = "var(--fl-ink-2)"
 
 export interface FatiaCategoria {
   nome: string
@@ -49,7 +49,7 @@ export function DistribuicaoGastosChart({ transacoes }: { transacoes: TransacaoD
   })
 
   return (
-    <div className="rounded-2xl bg-white p-5">
+    <div className="rounded-2xl bg-fl-card p-5">
       <span className="text-xs font-semibold uppercase tracking-wider text-fl-ink-2">
         Distribuição de Gastos
       </span>
@@ -60,14 +60,14 @@ export function DistribuicaoGastosChart({ transacoes }: { transacoes: TransacaoD
         <div className="mt-4 flex items-center gap-5">
           <div
             aria-hidden
-            className="h-28 w-28 shrink-0 rounded-full"
+            className="cor-dado h-28 w-28 shrink-0 rounded-full"
             style={{ background: `conic-gradient(${paradas.join(", ")})` }}
           />
           <ul className="flex min-w-0 flex-1 flex-col gap-2">
             {fatias.map((f) => (
               <li key={f.nome} className="flex items-center justify-between gap-2 text-sm">
                 <div className="flex min-w-0 items-center gap-2">
-                  <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: f.cor }} aria-hidden />
+                  <span className="cor-dado h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: f.cor }} aria-hidden />
                   <span className="truncate text-fl-ink">{f.nome}</span>
                 </div>
                 <span className="shrink-0 text-xs text-fl-ink-2">{f.pct}% · {brl(f.total)}</span>

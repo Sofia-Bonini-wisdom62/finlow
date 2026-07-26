@@ -68,7 +68,7 @@ export function TransacoesCard({ transacoes, categorias, onMudou }: Props) {
   const categoriasDoTipo = categorias.filter((c) => c.tipo === tipo)
 
   return (
-    <div className="rounded-2xl bg-white p-5">
+    <div className="rounded-2xl bg-fl-card p-5">
       <div className="flex items-center justify-between">
         <span className="text-xs font-semibold uppercase tracking-wider text-fl-ink-2">Últimas Transações</span>
         <button
@@ -88,8 +88,8 @@ export function TransacoesCard({ transacoes, categorias, onMudou }: Props) {
             <li key={t.id} className="group flex items-center justify-between text-sm">
               <div className="flex min-w-0 items-center gap-2">
                 <span
-                  className="h-2 w-2 shrink-0 rounded-full"
-                  style={{ background: t.categoria?.cor ?? "#5C6469" }}
+                  className="cor-dado h-2 w-2 shrink-0 rounded-full"
+                  style={{ background: t.categoria?.cor ?? "var(--fl-ink-2)" }}
                   aria-hidden
                 />
                 <div className="min-w-0">

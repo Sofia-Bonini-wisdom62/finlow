@@ -5,7 +5,18 @@ import { Plus, Pencil, Trash2 } from "lucide-react"
 import type { CategoriaData } from "@/types/painel"
 import { ModalBase, inputPainel, botaoPrimario } from "./ModalBase"
 
-const CORES = ["#2B6D70", "#B8863C", "#4FD1C5", "#63B3ED", "#9F7AEA", "#AA4B3E"]
+// Paleta de categoria conforme a identidade: Primary + Secondary + Accent +
+// neutros intermediários. Nunca cores semânticas (verde/vermelho) — essas são
+// reservadas a "dentro/fora do orçamento". A lista antiga trazia roxo (#9F7AEA),
+// que a identidade veta explicitamente por ser território do Nubank.
+const CORES = [
+  "var(--fl-500)",
+  "var(--fl-accent)",
+  "var(--fl-300)",
+  "var(--fl-info)",
+  "var(--fl-200)",
+  "var(--fl-sand)",
+]
 
 interface Props {
   categorias: CategoriaData[]
@@ -63,7 +74,7 @@ export function CategoriasCard({ categorias, onMudou }: Props) {
   }
 
   return (
-    <div className="rounded-2xl bg-white p-5">
+    <div className="rounded-2xl bg-fl-card p-5">
       <div className="flex items-center justify-between">
         <span className="text-xs font-semibold uppercase tracking-wider text-fl-ink-2">Categorias</span>
         <button
@@ -82,7 +93,7 @@ export function CategoriasCard({ categorias, onMudou }: Props) {
           {categorias.map((c) => (
             <li key={c.id} className="flex items-center justify-between text-sm">
               <div className="flex items-center gap-2">
-                <span className="h-2.5 w-2.5 rounded-full" style={{ background: c.cor ?? "#5C6469" }} aria-hidden />
+                <span className="cor-dado h-2.5 w-2.5 rounded-full" style={{ background: c.cor ?? "var(--fl-ink-2)" }} aria-hidden />
                 <span className="text-fl-ink">{c.nome}</span>
                 <span className="text-xs text-fl-ink-2">{c.tipo}</span>
               </div>
@@ -125,7 +136,7 @@ export function CategoriasCard({ categorias, onMudou }: Props) {
                 key={c}
                 aria-label={`Cor ${c}`}
                 onClick={() => setCor(c)}
-                className={`h-8 w-8 rounded-full transition-transform ${cor === c ? "scale-110 ring-2 ring-finlow-text" : ""}`}
+                className={`h-8 w-8 rounded-full transition-transform ${cor === c ? "scale-110 ring-2 ring-fl-ink" : ""}`}
                 style={{ background: c }}
               />
             ))}

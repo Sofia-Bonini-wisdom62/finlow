@@ -8,6 +8,7 @@ import {
   User, Landmark, Sparkles, ShieldCheck, Palette, LifeBuoy,
 } from "lucide-react"
 import { BottomNav } from "@/components/bottom-nav"
+import { SeletorTema } from "@/components/SeletorTema"
 import { EMAIL_CONTATO } from "@/lib/constantes"
 
 interface Conta {
@@ -23,7 +24,7 @@ function Secao({ titulo, Icon, children }: { titulo: string; Icon: typeof User; 
       <h2 className="mb-2 flex items-center gap-2 px-1 text-[11px] font-bold uppercase tracking-wider text-fl-ink-2">
         <Icon className="size-3.5" /> {titulo}
       </h2>
-      <div className="divide-y divide-fl-divider overflow-hidden rounded-2xl border border-fl-border bg-white">
+      <div className="divide-y divide-fl-divider overflow-hidden rounded-2xl border border-fl-border bg-fl-card">
         {children}
       </div>
     </section>
@@ -161,7 +162,7 @@ export default function AjustesPage() {
     return (
       <main className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-fl-page px-6 text-center">
         <p className="text-fl-ink-2">Entra na sua conta pra ver os ajustes.</p>
-        <Link href="/login" className="rounded-full bg-fl-500 px-6 py-3 text-sm font-semibold text-white">Entrar</Link>
+        <Link href="/login" className="rounded-full bg-fl-500 px-6 py-3 text-sm font-semibold text-primary-foreground">Entrar</Link>
       </main>
     )
   }
@@ -193,7 +194,7 @@ export default function AjustesPage() {
               <label htmlFor="nome" className="text-[13px] font-semibold text-fl-ink-2">Nome</label>
               <input id="nome" value={nome} onChange={(e) => setNome(e.target.value)} className={inputClass} />
               <div className="flex gap-2">
-                <button onClick={salvarNome} disabled={salvando} className="flex-1 rounded-xl bg-fl-500 py-2.5 text-sm font-semibold text-white disabled:opacity-60">
+                <button onClick={salvarNome} disabled={salvando} className="flex-1 rounded-xl bg-fl-500 py-2.5 text-sm font-semibold text-primary-foreground disabled:opacity-60">
                   {salvando ? "Salvando…" : "Salvar"}
                 </button>
                 <button onClick={() => { setEditandoNome(false); setNome(conta?.nome ?? "") }} className="flex-1 rounded-xl bg-fl-divider py-2.5 text-sm font-medium text-fl-ink-2">
@@ -219,7 +220,7 @@ export default function AjustesPage() {
               )}
               <input type="password" placeholder="Senha nova (mín. 6)" value={senhaNova} onChange={(e) => setSenhaNova(e.target.value)} className={inputClass} />
               <div className="flex gap-2">
-                <button onClick={salvarSenha} disabled={salvando || senhaNova.length < 6} className="flex-1 rounded-xl bg-fl-500 py-2.5 text-sm font-semibold text-white disabled:opacity-60">
+                <button onClick={salvarSenha} disabled={salvando || senhaNova.length < 6} className="flex-1 rounded-xl bg-fl-500 py-2.5 text-sm font-semibold text-primary-foreground disabled:opacity-60">
                   {salvando ? "Salvando…" : "Alterar senha"}
                 </button>
                 <button onClick={() => { setTrocandoSenha(false); setSenhaAtual(""); setSenhaNova("") }} className="flex-1 rounded-xl bg-fl-divider py-2.5 text-sm font-medium text-fl-ink-2">
@@ -258,7 +259,7 @@ export default function AjustesPage() {
                 Apagar todas as transações, contas fixas e categorias? Não tem volta.
               </p>
               <div className="flex gap-2">
-                <button onClick={apagarDados} disabled={salvando} className="flex-1 rounded-xl bg-fl-error py-2.5 text-sm font-bold text-white disabled:opacity-60">
+                <button onClick={apagarDados} disabled={salvando} className="flex-1 rounded-xl bg-fl-error py-2.5 text-sm font-bold text-primary-foreground disabled:opacity-60">
                   {salvando ? "Apagando…" : "Sim, apagar tudo"}
                 </button>
                 <button onClick={() => setConfirmandoApagar(false)} className="flex-1 rounded-xl bg-fl-divider py-2.5 text-sm font-medium text-fl-ink-2">
@@ -275,7 +276,15 @@ export default function AjustesPage() {
 
         {/* ---------- APARÊNCIA ---------- */}
         <Secao titulo="Aparência" Icon={Palette}>
-          <EmBreve rotulo="Tema claro / escuro" motivo="O modo escuro está especificado na identidade, mas ainda não aplicado nas telas." />
+          <div className="flex flex-col gap-2.5 py-3">
+            <div>
+              <div className="text-[15px] text-fl-ink">Tema</div>
+              <div className="text-[12.5px] text-fl-ink-3">
+                Em &quot;Sistema&quot;, acompanha a configuração do seu aparelho.
+              </div>
+            </div>
+            <SeletorTema />
+          </div>
           <EmBreve rotulo="Idioma" motivo="Hoje o Finlow existe só em português." />
         </Secao>
 
@@ -288,7 +297,7 @@ export default function AjustesPage() {
 
         <button
           onClick={() => signOut({ callbackUrl: "/" })}
-          className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl border border-fl-border bg-white py-4 text-sm font-semibold text-fl-ink-2 transition-colors hover:text-fl-ink"
+          className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl border border-fl-border bg-fl-card py-4 text-sm font-semibold text-fl-ink-2 transition-colors hover:text-fl-ink"
         >
           <LogOut className="size-4" /> Sair da conta
         </button>

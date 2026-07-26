@@ -28,7 +28,7 @@ interface ModuloCard {
 
 function Metrica({ rotulo, valor, nota, barra }: { rotulo: string; valor: string; nota?: string; barra?: number }) {
   return (
-    <div className="rounded-2xl border border-fl-border bg-white px-4 py-3.5">
+    <div className="rounded-2xl border border-fl-border bg-fl-card px-4 py-3.5">
       <div className="text-[11px] font-semibold uppercase tracking-wide text-fl-ink-2">{rotulo}</div>
       <div className="mt-0.5 text-xl font-extrabold tabular-nums tracking-tight text-fl-ink">{valor}</div>
       {barra !== undefined && (
@@ -43,7 +43,7 @@ function Metrica({ rotulo, valor, nota, barra }: { rotulo: string; valor: string
 
 function CardModulo({ m }: { m: ModuloCard }) {
   return (
-    <div className="rounded-2xl border border-fl-border bg-white p-4">
+    <div className="rounded-2xl border border-fl-border bg-fl-card p-4">
       <div className="flex items-start justify-between gap-3">
         <h3 className="text-[15px] font-bold leading-snug text-fl-ink">{m.titulo}</h3>
         {m.concluido && (
@@ -70,7 +70,7 @@ function CardModulo({ m }: { m: ModuloCard }) {
 
       <Link
         href={`/trilha/${m.slug}`}
-        className="mt-3.5 flex items-center justify-center gap-1.5 rounded-xl bg-fl-500 py-3 text-sm font-semibold text-white transition-colors hover:bg-fl-600"
+        className="mt-3.5 flex items-center justify-center gap-1.5 rounded-xl bg-fl-500 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-fl-600"
       >
         {m.concluido ? "Revisitar" : m.progresso > 0 ? "Continuar" : "Começar"}
         <ArrowRight className="size-4" />
@@ -135,7 +135,7 @@ export default function PerfilPage() {
     return (
       <main className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-fl-page px-6 text-center">
         <p className="text-fl-ink-2">Entra na sua conta pra ver seu perfil.</p>
-        <Link href="/login" className="rounded-full bg-fl-500 px-6 py-3 text-sm font-semibold text-white">
+        <Link href="/login" className="rounded-full bg-fl-500 px-6 py-3 text-sm font-semibold text-primary-foreground">
           Entrar
         </Link>
       </main>
@@ -223,7 +223,7 @@ export default function PerfilPage() {
               onChange={(e) => setBusca(e.target.value)}
               placeholder="Pesquise por investimentos, cartão de crédito, orçamento, renda extra..."
               aria-label="Pesquisar módulos"
-              className="w-full rounded-2xl border border-fl-border bg-white py-3.5 pl-11 pr-10 text-sm text-fl-ink placeholder-fl-ink-3 outline-none focus:border-fl-500"
+              className="w-full rounded-2xl border border-fl-border bg-fl-card py-3.5 pl-11 pr-10 text-sm text-fl-ink placeholder-fl-ink-3 outline-none focus:border-fl-500"
             />
             {busca && (
               <button
