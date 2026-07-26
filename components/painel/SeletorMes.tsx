@@ -24,7 +24,7 @@ export function SeletorMes({ mes, ano, onChange }: Props) {
   }
 
   return (
-    <div className="flex items-center justify-between rounded-2xl bg-white px-2 py-1">
+    <div className="flex items-center justify-between rounded-2xl bg-fl-card px-2 py-1">
       <button
         aria-label="Mês anterior"
         onClick={anterior}

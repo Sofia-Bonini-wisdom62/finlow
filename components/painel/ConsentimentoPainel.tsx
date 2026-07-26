@@ -19,7 +19,7 @@ export function ConsentimentoPainel({ menorDe18, onAtivar, onAgoraNao }: Props) 
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 sm:items-center">
-      <div className="w-full max-w-md rounded-t-3xl bg-white p-6 sm:rounded-3xl">
+      <div className="w-full max-w-md rounded-t-3xl bg-fl-card p-6 sm:rounded-3xl">
         <h2 className="text-xl font-bold text-fl-ink">Isso aqui guarda número de verdade</h2>
 
         <p className="mt-3 text-sm leading-relaxed text-fl-ink-2">

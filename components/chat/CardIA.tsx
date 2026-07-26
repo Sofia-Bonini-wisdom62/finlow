@@ -10,7 +10,7 @@ import { brl } from "@/lib/formato"
 export function CardIA({ card }: { card: CardIATipo }) {
   if (card.tipo === "resumo") {
     return (
-      <div className="rounded-2xl border border-fl-border bg-white p-4">
+      <div className="rounded-2xl border border-fl-border bg-fl-card p-4">
         <div className="mb-3 text-[11px] font-bold uppercase tracking-wider text-fl-ink-2">
           {card.titulo}
         </div>
@@ -29,7 +29,7 @@ export function CardIA({ card }: { card: CardIATipo }) {
   if (card.tipo === "grafico") {
     const max = Math.max(...card.barras.map((b) => Math.abs(b.valor)), 1)
     return (
-      <div className="rounded-2xl border border-fl-border bg-white p-4">
+      <div className="rounded-2xl border border-fl-border bg-fl-card p-4">
         <div className="mb-3 text-[11px] font-bold uppercase tracking-wider text-fl-ink-2">
           {card.titulo}
         </div>

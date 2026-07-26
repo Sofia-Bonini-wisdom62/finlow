@@ -18,7 +18,7 @@ export function Faq() {
       {faqs.map((f, i) => {
         const aberto = aberta === i
         return (
-          <div key={f.q} className="overflow-hidden rounded-2xl border border-fl-border bg-white">
+          <div key={f.q} className="overflow-hidden rounded-2xl border border-fl-border bg-fl-card">
             <button
               onClick={() => setAberta(aberto ? null : i)}
               aria-expanded={aberto}

@@ -177,7 +177,7 @@ export function ChatIA({ nome }: { nome: string }) {
                   <button
                     key={s}
                     onClick={() => enviar(s)}
-                    className="rounded-2xl border border-fl-border bg-white px-4 py-3 text-left text-sm text-fl-ink transition-colors hover:border-fl-500/50 hover:bg-fl-50"
+                    className="rounded-2xl border border-fl-border bg-fl-card px-4 py-3 text-left text-sm text-fl-ink transition-colors hover:border-fl-500/50 hover:bg-fl-50"
                   >
                     {s}
                   </button>
@@ -189,7 +189,7 @@ export function ChatIA({ nome }: { nome: string }) {
           {mensagens.map((m, i) =>
             m.papel === "usuario" ? (
               <div key={i} className="flex flex-col items-end gap-1.5">
-                <div className="max-w-[85%] rounded-[16px_16px_4px_16px] bg-fl-500 px-4 py-2.5 text-[14.5px] leading-relaxed text-white">
+                <div className="max-w-[85%] rounded-[16px_16px_4px_16px] bg-fl-500 px-4 py-2.5 text-[14.5px] leading-relaxed text-primary-foreground">
                   {m.texto}
                 </div>
                 {m.anexos?.map((a) => (
@@ -201,7 +201,7 @@ export function ChatIA({ nome }: { nome: string }) {
             ) : (
               <div key={i} className="flex flex-col gap-2.5">
                 {m.texto && (
-                  <div className="max-w-[92%] self-start rounded-[16px_16px_16px_4px] border border-fl-border bg-white px-4 py-3 text-[14.5px] leading-relaxed text-fl-ink">
+                  <div className="max-w-[92%] self-start rounded-[16px_16px_16px_4px] border border-fl-border bg-fl-card px-4 py-3 text-[14.5px] leading-relaxed text-fl-ink">
                     {m.texto}
                   </div>
                 )}
@@ -211,7 +211,7 @@ export function ChatIA({ nome }: { nome: string }) {
           )}
 
           {enviando && (
-            <div className="flex items-center gap-2 self-start rounded-full border border-fl-border bg-white px-4 py-2.5">
+            <div className="flex items-center gap-2 self-start rounded-full border border-fl-border bg-fl-card px-4 py-2.5">
               {[0, 150, 300].map((atraso) => (
                 <span
                   key={atraso}
@@ -240,7 +240,7 @@ export function ChatIA({ nome }: { nome: string }) {
               {anexos.map((a, i) => (
                 <span
                   key={`${a.nome}-${i}`}
-                  className="flex items-center gap-1.5 rounded-full border border-fl-border bg-white py-1 pl-2.5 pr-1 text-xs text-fl-ink"
+                  className="flex items-center gap-1.5 rounded-full border border-fl-border bg-fl-card py-1 pl-2.5 pr-1 text-xs text-fl-ink"
                 >
                   <FileText className="size-3 text-fl-ink-2" />
                   <span className="max-w-32 truncate">{a.nome}</span>
@@ -258,7 +258,7 @@ export function ChatIA({ nome }: { nome: string }) {
 
           <form
             onSubmit={(e) => { e.preventDefault(); enviar() }}
-            className="flex items-end gap-2 rounded-[22px] border border-fl-border bg-white p-2"
+            className="flex items-end gap-2 rounded-[22px] border border-fl-border bg-fl-card p-2"
           >
             <input
               ref={inputArquivo}
@@ -286,7 +286,7 @@ export function ChatIA({ nome }: { nome: string }) {
               rows={1}
               placeholder="Pergunte qualquer coisa…"
               aria-label="Sua mensagem"
-              className="max-h-32 min-h-10 flex-1 resize-none bg-transparent py-2.5 text-[15px] text-fl-ink placeholder-[#A7ACAE] outline-none"
+              className="max-h-32 min-h-10 flex-1 resize-none bg-transparent py-2.5 text-[15px] text-fl-ink placeholder-fl-ink-3 outline-none"
             />
 
             {temVoz && (
@@ -306,7 +306,7 @@ export function ChatIA({ nome }: { nome: string }) {
               type="submit"
               aria-label="Enviar"
               disabled={enviando || (!rascunho.trim() && anexos.length === 0)}
-              className="flex size-10 shrink-0 items-center justify-center rounded-full bg-fl-500 text-white transition-opacity disabled:opacity-30"
+              className="flex size-10 shrink-0 items-center justify-center rounded-full bg-fl-500 text-primary-foreground transition-opacity disabled:opacity-30"
             >
               <ArrowUp className="size-5" />
             </button>

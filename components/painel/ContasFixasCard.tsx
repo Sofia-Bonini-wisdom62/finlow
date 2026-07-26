@@ -69,7 +69,7 @@ export function ContasFixasCard({ contas, onMudou }: Props) {
   }
 
   return (
-    <div className="rounded-2xl bg-white p-5">
+    <div className="rounded-2xl bg-fl-card p-5">
       <div className="flex items-center justify-between">
         <span className="text-xs font-semibold uppercase tracking-wider text-fl-ink-2">Contas Fixas</span>
         <div className="flex items-center gap-1">

@@ -45,7 +45,7 @@ export default function ModuloPage() {
         <p className="text-fl-ink-2">Módulo não encontrado.</p>
         <button
           onClick={() => router.push("/perfil")}
-          className="rounded-full bg-fl-500 px-6 py-3 text-sm font-semibold text-white"
+          className="rounded-full bg-fl-500 px-6 py-3 text-sm font-semibold text-primary-foreground"
         >
           Voltar ao perfil
         </button>
