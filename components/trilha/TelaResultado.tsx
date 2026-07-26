@@ -4,9 +4,9 @@ import type { ConteudoResultado, SessaoFluxo } from "@/types/trilha"
 import { calcular, interpolar, avaliarFaixa } from "@/lib/resultado"
 
 const corClasses = {
-  green: { border: "border-[#00C896]/30", bg: "bg-[#00C896]/10", text: "text-[#00C896]", badge: "bg-[#00C896]/20 text-[#00C896]" },
-  yellow: { border: "border-[#F5A623]/30", bg: "bg-[#F5A623]/10", text: "text-[#F5A623]", badge: "bg-[#F5A623]/20 text-[#F5A623]" },
-  red: { border: "border-[#F87171]/30", bg: "bg-[#F87171]/10", text: "text-[#F87171]", badge: "bg-[#F87171]/20 text-[#F87171]" },
+  green: { border: "border-[#5FA7A9]/30", bg: "bg-[#5FA7A9]/10", text: "text-[#5FA7A9]", badge: "bg-[#5FA7A9]/20 text-[#5FA7A9]" },
+  yellow: { border: "border-[#D3A75C]/30", bg: "bg-[#D3A75C]/10", text: "text-[#D3A75C]", badge: "bg-[#D3A75C]/20 text-[#D3A75C]" },
+  red: { border: "border-[#D08277]/30", bg: "bg-[#D08277]/10", text: "text-[#D08277]", badge: "bg-[#D08277]/20 text-[#D08277]" },
 }
 
 interface Props {
@@ -35,8 +35,8 @@ export function TelaResultado({ conteudo, sessao }: Props) {
       )}
 
       {insight && insight.trim().length > 0 && (
-        <div className="rounded-2xl border border-[#1A2B3C] bg-[#1A2B3C] p-4">
-          <p className="text-sm leading-relaxed text-[#A0AEC0]">{insight}</p>
+        <div className="rounded-2xl border border-[#1B3B3C] bg-[#1B3B3C] p-4">
+          <p className="text-sm leading-relaxed text-[#A7ADAF]">{insight}</p>
         </div>
       )}
     </div>

@@ -52,7 +52,7 @@ export function CardFlow({ modulo, telaInicial = 0, onConcluir, onAvancarTela }:
   }
 
   return (
-    <div className="relative flex h-dvh flex-col" style={{ background: "#0D1B2A" }}>
+    <div className="relative flex h-dvh flex-col" style={{ background: "#112F30" }}>
       {/* header: voltar (a partir da tela 1) + label + contador */}
       <div className="flex items-center justify-between px-4 pt-3 pb-1">
         <div className="flex items-center">
@@ -60,14 +60,14 @@ export function CardFlow({ modulo, telaInicial = 0, onConcluir, onAvancarTela }:
             <button
               aria-label="Voltar"
               onClick={anterior}
-              className="-ml-2 mr-1 flex h-11 w-11 items-center justify-center rounded-full text-[#A0AEC0] transition-colors hover:text-white"
+              className="-ml-2 mr-1 flex h-11 w-11 items-center justify-center rounded-full text-[#A7ADAF] transition-colors hover:text-white"
             >
               <ChevronLeft className="size-6" />
             </button>
           )}
-          <span className="text-xs font-semibold uppercase tracking-wider text-[#A0AEC0]">{tela.label}</span>
+          <span className="text-xs font-semibold uppercase tracking-wider text-[#A7ADAF]">{tela.label}</span>
         </div>
-        <span className="text-xs text-[#A0AEC0]">{atual + 1} / {modulo.telas.length}</span>
+        <span className="text-xs text-[#A7ADAF]">{atual + 1} / {modulo.telas.length}</span>
       </div>
 
       <ProgressSegments total={modulo.telas.length} atual={atual} />
@@ -89,8 +89,8 @@ export function CardFlow({ modulo, telaInicial = 0, onConcluir, onAvancarTela }:
           onClick={proxima}
           className="w-full rounded-2xl py-4 text-base font-bold transition-colors disabled:cursor-not-allowed"
           style={{
-            background: podeAvancar() ? "#00C896" : "#1A2B3C",
-            color: podeAvancar() ? "#0D1B2A" : "#A0AEC0",
+            background: podeAvancar() ? "#5FA7A9" : "#1B3B3C",
+            color: podeAvancar() ? "#112F30" : "#A7ADAF",
           }}
         >
           {ehUltima ? "Concluir módulo →" : "Continuar"}

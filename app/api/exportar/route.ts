@@ -1,0 +1,74 @@
+import { NextResponse } from "next/server"
+import { db } from "@/lib/db"
+import { getUserIdOr401 } from "@/lib/painel"
+
+export const dynamic = "force-dynamic"
+
+// GET /api/exportar — baixa TODOS os dados do usuário em JSON.
+// Portabilidade de dados (LGPD art. 18): o usuário leva o que é dele.
+// Não inclui hash de senha nem tokens de sessão.
+export async function GET() {
+  const userId = await getUserIdOr401()
+  if (userId instanceof NextResponse) return userId
+
+  try {
+    const [user, categorias, contas, transacoes, progresso] = await Promise.all([
+      db.user.findUnique({
+        where: { id: userId },
+        select: { nome: true, email: true, dataNascimento: true, criadoEm: true, consentimentoPainelEm: true },
+      }),
+      db.categoria.findMany({
+        where: { userId },
+        select: { nome: true, tipo: true, cor: true, padrao: true },
+        orderBy: { nome: "asc" },
+      }),
+      db.contaFixa.findMany({
+        where: { userId },
+        select: { nome: true, valor: true, diaVencimento: true, ativa: true, criadoEm: true },
+        orderBy: { criadoEm: "asc" },
+      }),
+      db.transacao.findMany({
+        where: { userId },
+        select: { descricao: true, valor: true, tipo: true, data: true, criadoEm: true, categoria: { select: { nome: true } } },
+        orderBy: { data: "asc" },
+      }),
+      db.progressoModulo.findMany({
+        where: { userId },
+        select: { concluido: true, telaAtual: true, concluidoEm: true, modulo: { select: { slug: true, titulo: true } } },
+      }),
+    ])
+
+    const dump = {
+      exportadoEm: new Date().toISOString(),
+      conta: user,
+      categorias,
+      contasFixas: contas.map((c) => ({ ...c, valor: c.valor.toString() })),
+      transacoes: transacoes.map((t) => ({
+        descricao: t.descricao,
+        valor: t.valor.toString(),
+        tipo: t.tipo,
+        categoria: t.categoria?.nome ?? null,
+        data: t.data,
+        criadoEm: t.criadoEm,
+      })),
+      progressoModulos: progresso.map((p) => ({
+        modulo: p.modulo.slug,
+        titulo: p.modulo.titulo,
+        concluido: p.concluido,
+        telaAtual: p.telaAtual,
+        concluidoEm: p.concluidoEm,
+      })),
+    }
+
+    const data = new Date().toISOString().split("T")[0]
+    return new NextResponse(JSON.stringify(dump, null, 2), {
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        "Content-Disposition": `attachment; filename="finlow-dados-${data}.json"`,
+      },
+    })
+  } catch (e) {
+    console.error("[exportar]", e)
+    return NextResponse.json({ error: "Erro ao exportar" }, { status: 500 })
+  }
+}

@@ -1,13 +1,8 @@
 import { redirect } from "next/navigation"
-import { auth } from "@/lib/auth"
-import { DiagnosticoClient } from "./diagnostico-client"
 
-export const dynamic = "force-dynamic"
-
-export default async function DiagnosticoPage() {
-  // login obrigatório antes do diagnóstico — visitante novo vai pro cadastro
-  const session = await auth()
-  if (!session?.user) redirect("/cadastro")
-
-  return <DiagnosticoClient />
+// O diagnóstico de 4 perguntas foi aposentado: o Perfil Financeiro agora é
+// calculado a partir dos lançamentos reais do usuário (lib/financas.ts), não de
+// um quiz comportamental. Rota mantida só para não quebrar links antigos.
+export default function DiagnosticoPage() {
+  redirect("/perfil")
 }

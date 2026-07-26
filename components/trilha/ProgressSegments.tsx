@@ -11,12 +11,12 @@ export function ProgressSegments({ total, atual }: Props) {
       {Array.from({ length: total }).map((_, i) => (
         <div
           key={i}
-          className="h-1 flex-1 overflow-hidden rounded-full bg-[#1A2B3C]"
+          className="h-1 flex-1 overflow-hidden rounded-full bg-[#1B3B3C]"
         >
           <div
             className={`h-full rounded-full transition-all duration-300 ${
               i < atual
-                ? "w-full bg-[#00C896]"
+                ? "w-full bg-[#5FA7A9]"
                 : i === atual
                 ? "w-full bg-white/80"
                 : "w-0"

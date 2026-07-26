@@ -21,7 +21,7 @@ export function TelaInput({ conteudo, sessao, onMudou }: Props) {
           dangerouslySetInnerHTML={{ __html: conteudo.headline }}
         />
         {conteudo.subtitulo && (
-          <p className="mt-2 text-sm text-[#A0AEC0]">{conteudo.subtitulo}</p>
+          <p className="mt-2 text-sm text-[#A7ADAF]">{conteudo.subtitulo}</p>
         )}
       </div>
 
@@ -43,8 +43,8 @@ export function TelaInput({ conteudo, sessao, onMudou }: Props) {
                       onClick={() => handleChange(campo.id, opcao.valor)}
                       className={`rounded-full border px-4 py-3 text-sm transition-colors ${
                         ativa
-                          ? "border-[#00C896] bg-[#00C896]/10 font-semibold text-[#00C896]"
-                          : "border-[#1A2B3C] bg-[#1A2B3C] text-[#A0AEC0]"
+                          ? "border-[#5FA7A9] bg-[#5FA7A9]/10 font-semibold text-[#5FA7A9]"
+                          : "border-[#1B3B3C] bg-[#1B3B3C] text-[#A7ADAF]"
                       }`}
                     >
                       {opcao.label}
@@ -59,7 +59,7 @@ export function TelaInput({ conteudo, sessao, onMudou }: Props) {
                 placeholder={campo.placeholder}
                 value={sessao[campo.id] ?? ""}
                 onChange={(e) => handleChange(campo.id, e.target.value)}
-                className="w-full rounded-xl border border-[#1A2B3C] bg-[#1A2B3C] px-4 py-3 text-sm text-white placeholder-[#A0AEC0] outline-none focus:border-[#00C896] transition-colors"
+                className="w-full rounded-xl border border-[#1B3B3C] bg-[#1B3B3C] px-4 py-3 text-sm text-white placeholder-[#A7ADAF] outline-none focus:border-[#5FA7A9] transition-colors"
               />
             )}
           </div>
@@ -67,7 +67,7 @@ export function TelaInput({ conteudo, sessao, onMudou }: Props) {
       </div>
 
       {conteudo.aviso && (
-        <p className="text-xs text-[#A0AEC0]">🔒 {conteudo.aviso}</p>
+        <p className="text-xs text-[#A7ADAF]">🔒 {conteudo.aviso}</p>
       )}
     </div>
   )

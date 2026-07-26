@@ -25,25 +25,25 @@ export default function LoginPage() {
       return
     }
 
-    router.push("/trilha")
+    router.push("/chat")
   }
 
   const inputClass =
-    "w-full rounded-xl border border-[#1A2B3C] bg-[#1A2B3C] px-4 py-3.5 text-sm text-white placeholder-[#A0AEC0] outline-none focus:border-[#00C896] transition-colors"
+    "w-full rounded-xl border border-[#FFFFFF] bg-[#FFFFFF] px-4 py-3.5 text-sm text-fl-ink placeholder-fl-ink-3 outline-none focus:border-[#2B6D70] transition-colors"
 
   return (
     <main
       className="flex min-h-dvh flex-col items-center justify-center px-6 py-10"
-      style={{ background: "radial-gradient(ellipse at top, rgba(0,200,150,0.08), transparent 55%), #0D1B2A" }}
+      style={{ background: "radial-gradient(ellipse at top, rgba(43,109,112,0.08), transparent 55%), #FAF9F6" }}
     >
       <div className="w-full max-w-sm">
-        <Link href="/" className="text-2xl font-bold tracking-tight" style={{ color: "#00C896" }}>
+        <Link href="/" className="text-2xl font-bold tracking-tight" style={{ color: "#2B6D70" }}>
           Finlow
         </Link>
 
-        <h1 className="mt-8 text-2xl font-bold text-white">Bom te ver de novo</h1>
-        <p className="mt-1 text-sm" style={{ color: "#A0AEC0" }}>
-          Entra pra continuar sua trilha.
+        <h1 className="mt-8 text-2xl font-bold text-fl-ink">Bom te ver de novo</h1>
+        <p className="mt-1 text-sm" style={{ color: "#5C6469" }}>
+          Entra pra continuar de onde parou.
         </p>
 
         <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-3">
@@ -65,7 +65,7 @@ export default function LoginPage() {
           />
 
           {erro && (
-            <p className="rounded-xl border border-[#F87171]/30 bg-[#F87171]/10 px-4 py-3 text-sm text-[#F87171]">
+            <p className="rounded-xl border border-[#AA4B3E]/30 bg-[#AA4B3E]/10 px-4 py-3 text-sm text-[#AA4B3E]">
               {erro}
             </p>
           )}
@@ -74,15 +74,15 @@ export default function LoginPage() {
             type="submit"
             disabled={enviando}
             className="mt-2 w-full rounded-2xl py-4 text-base font-bold transition-opacity disabled:opacity-60"
-            style={{ background: "#00C896", color: "#0D1B2A" }}
+            style={{ background: "#2B6D70", color: "#FAF9F6" }}
           >
             {enviando ? "Entrando..." : "Entrar"}
           </button>
         </form>
 
-        <p className="mt-6 text-center text-sm" style={{ color: "#A0AEC0" }}>
+        <p className="mt-6 text-center text-sm" style={{ color: "#5C6469" }}>
           Ainda não tem conta?{" "}
-          <Link href="/cadastro" className="font-semibold" style={{ color: "#00C896" }}>
+          <Link href="/cadastro" className="font-semibold" style={{ color: "#2B6D70" }}>
             Criar conta
           </Link>
         </p>

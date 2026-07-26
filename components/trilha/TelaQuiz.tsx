@@ -28,20 +28,20 @@ export function TelaQuiz({ conteudo, selecionada, onSelecionar }: Props) {
           const isResponded = selecionada !== null
           const isCorreta = opcao.correta
 
-          let borderColor = "border-[#1A2B3C]"
-          let bgColor = "bg-[#1A2B3C]"
+          let borderColor = "border-[#1B3B3C]"
+          let bgColor = "bg-[#1B3B3C]"
           let textColor = "text-white"
 
           if (isResponded) {
             if (isCorreta) {
-              borderColor = "border-[#00C896]"
-              bgColor = "bg-[#00C896]/10"
+              borderColor = "border-[#5FA7A9]"
+              bgColor = "bg-[#5FA7A9]/10"
             } else if (isSelected && !isCorreta) {
-              borderColor = "border-[#F87171]"
-              bgColor = "bg-[#F87171]/10"
-              textColor = "text-[#F87171]"
+              borderColor = "border-[#D08277]"
+              bgColor = "bg-[#D08277]/10"
+              textColor = "text-[#D08277]"
             } else {
-              textColor = "text-[#A0AEC0]"
+              textColor = "text-[#A7ADAF]"
             }
           }
 
@@ -54,9 +54,9 @@ export function TelaQuiz({ conteudo, selecionada, onSelecionar }: Props) {
             >
               <span className={`mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full border ${borderColor} text-xs font-bold ${textColor}`}>
                 {isResponded && isCorreta ? (
-                  <Check className="size-4 text-[#00C896]" aria-label="Correta" />
+                  <Check className="size-4 text-[#5FA7A9]" aria-label="Correta" />
                 ) : isResponded && isSelected && !isCorreta ? (
-                  <X className="size-4 text-[#F87171]" aria-label="Incorreta" />
+                  <X className="size-4 text-[#D08277]" aria-label="Incorreta" />
                 ) : (
                   opcao.letra
                 )}
@@ -68,8 +68,8 @@ export function TelaQuiz({ conteudo, selecionada, onSelecionar }: Props) {
       </div>
 
       {opcaoSelecionada && (
-        <div className={`rounded-2xl p-4 ${opcaoSelecionada.correta ? "bg-[#00C896]/10 border border-[#00C896]/30" : "bg-[#F87171]/10 border border-[#F87171]/30"}`}>
-          <p className="text-sm leading-relaxed text-[#A0AEC0]">{opcaoSelecionada.feedback}</p>
+        <div className={`rounded-2xl p-4 ${opcaoSelecionada.correta ? "bg-[#5FA7A9]/10 border border-[#5FA7A9]/30" : "bg-[#D08277]/10 border border-[#D08277]/30"}`}>
+          <p className="text-sm leading-relaxed text-[#A7ADAF]">{opcaoSelecionada.feedback}</p>
         </div>
       )}
     </div>

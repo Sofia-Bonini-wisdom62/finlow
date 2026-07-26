@@ -3,7 +3,7 @@
 import type { TransacaoData } from "@/types/painel"
 import { brl } from "@/lib/formato"
 
-const COR_SEM_CATEGORIA = "#A0AEC0"
+const COR_SEM_CATEGORIA = "#5C6469"
 
 export interface FatiaCategoria {
   nome: string
@@ -49,13 +49,13 @@ export function DistribuicaoGastosChart({ transacoes }: { transacoes: TransacaoD
   })
 
   return (
-    <div className="rounded-2xl bg-finlow-card p-5">
-      <span className="text-xs font-semibold uppercase tracking-wider text-finlow-muted">
+    <div className="rounded-2xl bg-white p-5">
+      <span className="text-xs font-semibold uppercase tracking-wider text-fl-ink-2">
         Distribuição de Gastos
       </span>
 
       {fatias.length === 0 ? (
-        <p className="mt-3 text-sm text-finlow-muted">Suas despesas por categoria aparecem aqui.</p>
+        <p className="mt-3 text-sm text-fl-ink-2">Suas despesas por categoria aparecem aqui.</p>
       ) : (
         <div className="mt-4 flex items-center gap-5">
           <div
@@ -68,9 +68,9 @@ export function DistribuicaoGastosChart({ transacoes }: { transacoes: TransacaoD
               <li key={f.nome} className="flex items-center justify-between gap-2 text-sm">
                 <div className="flex min-w-0 items-center gap-2">
                   <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: f.cor }} aria-hidden />
-                  <span className="truncate text-finlow-text">{f.nome}</span>
+                  <span className="truncate text-fl-ink">{f.nome}</span>
                 </div>
-                <span className="shrink-0 text-xs text-finlow-muted">{f.pct}% · {brl(f.total)}</span>
+                <span className="shrink-0 text-xs text-fl-ink-2">{f.pct}% · {brl(f.total)}</span>
               </li>
             ))}
           </ul>

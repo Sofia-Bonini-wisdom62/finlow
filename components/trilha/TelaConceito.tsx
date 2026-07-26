@@ -10,16 +10,16 @@ export function TelaConceito({ conteudo }: { conteudo: ConteudoConceito }) {
         dangerouslySetInnerHTML={{ __html: conteudo.headline }}
       />
       <p
-        className="rich-text text-base leading-relaxed text-[#A0AEC0]"
+        className="rich-text text-base leading-relaxed text-[#A7ADAF]"
         dangerouslySetInnerHTML={{ __html: conteudo.corpo }}
       />
       {conteudo.insight && (
-        <div className="rounded-2xl border border-[#00C896]/30 bg-[#00C896]/10 p-4">
-          <span className="mb-1 block text-xs font-semibold uppercase tracking-wider text-[#00C896]">
+        <div className="rounded-2xl border border-[#5FA7A9]/30 bg-[#5FA7A9]/10 p-4">
+          <span className="mb-1 block text-xs font-semibold uppercase tracking-wider text-[#5FA7A9]">
             {conteudo.insight.label}
           </span>
           <p
-            className="rich-text text-sm leading-relaxed text-[#A0AEC0]"
+            className="rich-text text-sm leading-relaxed text-[#A7ADAF]"
             dangerouslySetInnerHTML={{ __html: conteudo.insight.texto }}
           />
         </div>

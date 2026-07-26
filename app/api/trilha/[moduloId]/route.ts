@@ -16,8 +16,9 @@ export async function GET(
     const session = await auth()
     const userId = session?.user?.id ?? searchParams.get("userId")
 
-    const modulo = await db.modulo.findUnique({
-      where: { id: moduloId },
+    // aceita id (cuid) ou slug — os cards do Perfil linkam por slug
+    const modulo = await db.modulo.findFirst({
+      where: { OR: [{ id: moduloId }, { slug: moduloId }] },
       include: {
         telas: { orderBy: { ordem: "asc" } },
         ...(userId ? { progresso: { where: { userId } } } : {}),

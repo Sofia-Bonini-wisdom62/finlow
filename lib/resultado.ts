@@ -17,7 +17,7 @@ export interface Derivados {
   pctGuardador: number
   porMesNum: number
   respiroNum: number     // lançador M2
-  semanasNum: number     // lançador M3
+  periodosNum: number    // lançador M3 — períodos (meses) até a meta
   acimaLimite: number    // lançador M4 (0/1)
   livreNum: number       // guardador M2
   rendeNum: number       // guardador M3
@@ -27,7 +27,7 @@ export interface Derivados {
 }
 
 const ZERO: Omit<Derivados, "entrou" | "saiu" | "sobrou" | "pct"> = {
-  valor: 0, pctGuardador: 0, porMesNum: 0, respiroNum: 0, semanasNum: 0,
+  valor: 0, pctGuardador: 0, porMesNum: 0, respiroNum: 0, periodosNum: 0,
   acimaLimite: 0, livreNum: 0, rendeNum: 0, mesesJuntar: 0, cobre: 0, pctMeta: 0,
 }
 
@@ -62,7 +62,7 @@ export function calcular(formula: string | undefined, sessao: SessaoFluxo): Deri
     }
     case "semanas_meta": {
       const custo = num(sessao.custo), respiro = Math.max(1, num(sessao.respiro))
-      return { ...base, semanasNum: Math.ceil(custo / respiro) }
+      return { ...base, periodosNum: Math.ceil(custo / respiro) }
     }
     case "freio_limite": {
       const gastoRecente = num(sessao.gastoRecente), valorLimite = num(sessao.valorLimite)
@@ -108,15 +108,15 @@ export function interpolar(texto: string, d: Derivados, sessao: SessaoFluxo): st
       case "pctMeta":
         return String(d[chave as "pct" | "pctGuardador" | "pctMeta"])
       case "porMes":
-        return "R$ " + d.porMesNum // inteiro, sem centavos
+        return "R$ " + formatInteiroBRL(d.porMesNum)
       case "respiro":
-        return "R$ " + d.respiroNum
+        return "R$ " + formatInteiroBRL(d.respiroNum)
       case "livre":
-        return "R$ " + d.livreNum
+        return "R$ " + formatInteiroBRL(d.livreNum)
       case "rende":
-        return "R$ " + d.rendeNum
-      case "semanas":
-        return String(d.semanasNum)
+        return "R$ " + formatInteiroBRL(d.rendeNum)
+      case "periodos":
+        return String(d.periodosNum)
       case "mesesJuntar":
         return String(d.mesesJuntar)
       case "entrou":
@@ -130,8 +130,15 @@ export function interpolar(texto: string, d: Derivados, sessao: SessaoFluxo): st
   })
 }
 
+// Com valores de adulto (milhares), separador de milhar deixou de ser opcional:
+// "3800,00" lê errado, "3.800,00" lê certo.
 export function formatBRL(v: number): string {
-  return v.toFixed(2).replace(".", ",")
+  return v.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+}
+
+// Valores inteiros interpolados no texto ({respiro}, {livre}, {rende}, {porMes})
+export function formatInteiroBRL(v: number): string {
+  return v.toLocaleString("pt-BR", { maximumFractionDigits: 0 })
 }
 
 // Condições: "<campo> <op> <numero>[pct]" — ex: "sobrou > 30pct", "valor > 100", "pctGuardador < 5"
