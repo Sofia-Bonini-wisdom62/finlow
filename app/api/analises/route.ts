@@ -12,6 +12,24 @@ import {
 
 export const dynamic = "force-dynamic"
 
+// Mês com lançamento mais recente ANTES do selecionado — o estado vazio usa isso
+// pra oferecer um destino real ("ver junho") em vez de um beco sem saída.
+function mesComDadosAntes(
+  calc: TransacaoCalc[],
+  ate: { mes: number; ano: number }
+): { mes: number; ano: number } | null {
+  const limite = ate.ano * 12 + ate.mes
+  let melhor = 0
+  for (const t of calc) {
+    const dt = t.data instanceof Date ? t.data : new Date(t.data)
+    const ordinal = dt.getFullYear() * 12 + dt.getMonth() + 1
+    if (ordinal < limite && ordinal > melhor) melhor = ordinal
+  }
+  if (melhor === 0) return null
+  const mes = ((melhor - 1) % 12) + 1
+  return { mes, ano: Math.floor((melhor - mes) / 12) }
+}
+
 // GET /api/analises?mes=7&ano=2026
 export async function GET(req: NextRequest) {
   const userId = await getUserIdOr401()
@@ -36,12 +54,19 @@ export async function GET(req: NextRequest) {
       categoria: t.categoria,
     }))
 
+    const ind = indicadores(calc, mes, ano)
+    const ate = { mes, ano }
+
+    // Todos os recortes terminam no mês selecionado: a página inteira responde
+    // "como estavam as coisas até <mês>", em vez de misturar mês e histórico.
     return NextResponse.json({
-      temDados: calc.length > 0,
-      indicadores: indicadores(calc, mes, ano),
-      patrimonio: evolucaoPatrimonio(calc, 6),
+      temDados: calc.length > 0,           // já registrou alguma coisa, algum dia
+      temDadosNoMes: ind.lancamentosNoMes > 0, // tem lançamento no mês selecionado
+      mesAnterior: mesComDadosAntes(calc, ate),
+      indicadores: ind,
+      patrimonio: evolucaoPatrimonio(calc, 6, ate),
       categorias: gastosPorCategoria(calc, mes, ano),
-      receitasDespesas: receitasVsDespesas(calc, 6),
+      receitasDespesas: receitasVsDespesas(calc, 6, ate),
       fluxoDiario: fluxoCaixaDiario(calc, mes, ano),
     })
   } catch (e) {

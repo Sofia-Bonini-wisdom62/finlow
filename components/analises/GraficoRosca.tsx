@@ -8,13 +8,17 @@ export function GraficoRosca({ fatias }: { fatias: FatiaCategoria[] }) {
     return <p className="text-sm text-fl-ink-2">Nenhuma despesa registrada neste mês.</p>
   }
 
-  let acumulado = 0
-  const paradas = fatias.map((f) => {
-    const inicio = acumulado
-    acumulado += f.pct
-    return `${f.cor} ${inicio}% ${acumulado}%`
-  })
   const total = fatias.reduce((s, f) => s + f.total, 0)
+
+  // As paradas saem do valor real, não do pct arredondado: somar inteiros
+  // arredondados dava 99% ou 101% e a rosca fechava com uma fatia torta.
+  let acumulado = 0
+  const paradas = fatias.map((f, i) => {
+    const inicio = (acumulado / total) * 100
+    acumulado += f.total
+    const fim = i === fatias.length - 1 ? 100 : (acumulado / total) * 100
+    return `${f.cor} ${inicio.toFixed(3)}% ${fim.toFixed(3)}%`
+  })
 
   return (
     <div className="flex flex-col gap-5 sm:flex-row sm:items-center">

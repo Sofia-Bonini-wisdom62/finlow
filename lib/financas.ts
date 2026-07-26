@@ -28,32 +28,48 @@ function chaveMes(data: Date): string {
   return `${data.getFullYear()}-${String(data.getMonth() + 1).padStart(2, "0")}`
 }
 
+// Corte por competência: as Análises são sempre "a situação ATÉ o mês selecionado".
+// Sem isso, escolher março mostrava gráficos que já contavam julho.
+export interface Competencia { mes: number; ano: number }
+
+function ateChave(ate: Competencia): string {
+  return `${ate.ano}-${String(ate.mes).padStart(2, "0")}`
+}
+
+function dentroDoCorte(data: Date, ate?: Competencia): boolean {
+  return ate ? chaveMes(data) <= ateChave(ate) : true
+}
+
 // ---------- indicadores rápidos (topo das Análises) ----------
 
 export interface Indicadores {
   receita: number
   despesa: number
-  economia: number       // receita − despesa do período
-  investimentos: number  // despesas em categorias de investimento/reserva
-  patrimonio: number     // acumulado de (receita − despesa) em todo o histórico
+  economia: number        // receita − despesa do mês
+  investimentos: number   // parte da despesa que foi para categorias de investimento/reserva
+  acumulado: number       // (receita − despesa) somado desde o 1º registro ATÉ o mês selecionado
+  lancamentosNoMes: number
 }
 
 export function indicadores(todas: TransacaoCalc[], mes: number, ano: number): Indicadores {
   let receita = 0
   let despesa = 0
   let investimentos = 0
-  let patrimonio = 0
+  let acumulado = 0
+  let lancamentosNoMes = 0
 
   for (const t of todas) {
     const v = n(t.valor)
     const dt = d(t.data)
     const ehReceita = t.tipo === "receita"
 
-    // patrimônio: histórico completo
-    patrimonio += ehReceita ? v : -v
+    // acumulado: do começo do histórico até o fim do mês selecionado — nunca depois.
+    // Selecionar março e ver um número que já embute julho seria mentira.
+    if (dentroDoCorte(dt, { mes, ano })) acumulado += ehReceita ? v : -v
 
     // demais: só o mês selecionado
     if (dt.getMonth() + 1 !== mes || dt.getFullYear() !== ano) continue
+    lancamentosNoMes++
     if (ehReceita) {
       receita += v
     } else {
@@ -63,7 +79,7 @@ export function indicadores(todas: TransacaoCalc[], mes: number, ano: number): I
     }
   }
 
-  return { receita, despesa, economia: receita - despesa, investimentos, patrimonio }
+  return { receita, despesa, economia: receita - despesa, investimentos, acumulado, lancamentosNoMes }
 }
 
 // ---------- gráfico 1: evolução do patrimônio ----------
@@ -76,12 +92,14 @@ export interface PontoPatrimonio {
 
 const MESES_CURTOS = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
 
-export function evolucaoPatrimonio(todas: TransacaoCalc[], meses = 6): PontoPatrimonio[] {
+export function evolucaoPatrimonio(todas: TransacaoCalc[], meses = 6, ate?: Competencia): PontoPatrimonio[] {
   if (todas.length === 0) return []
 
   const porMes = new Map<string, number>()
   for (const t of todas) {
-    const k = chaveMes(d(t.data))
+    const dt = d(t.data)
+    if (!dentroDoCorte(dt, ate)) continue
+    const k = chaveMes(dt)
     const v = n(t.valor) * (t.tipo === "receita" ? 1 : -1)
     porMes.set(k, (porMes.get(k) ?? 0) + v)
   }
@@ -145,11 +163,13 @@ export interface BarraMes {
   deficitario: boolean
 }
 
-export function receitasVsDespesas(todas: TransacaoCalc[], meses = 6): BarraMes[] {
+export function receitasVsDespesas(todas: TransacaoCalc[], meses = 6, ate?: Competencia): BarraMes[] {
   const mapa = new Map<string, { receita: number; despesa: number }>()
 
   for (const t of todas) {
-    const k = chaveMes(d(t.data))
+    const dt = d(t.data)
+    if (!dentroDoCorte(dt, ate)) continue
+    const k = chaveMes(dt)
     const atual = mapa.get(k) ?? { receita: 0, despesa: 0 }
     if (t.tipo === "receita") atual.receita += n(t.valor)
     else atual.despesa += n(t.valor)
@@ -175,7 +195,7 @@ export function receitasVsDespesas(todas: TransacaoCalc[], meses = 6): BarraMes[
 
 export interface PontoDia {
   dia: number
-  saldo: number // saldo acumulado dentro do mês
+  saldo: number // acumulado do mês (não é saldo bancário: começa em zero no dia 1)
 }
 
 export function fluxoCaixaDiario(todas: TransacaoCalc[], mes: number, ano: number): PontoDia[] {
@@ -188,9 +208,18 @@ export function fluxoCaixaDiario(todas: TransacaoCalc[], mes: number, ano: numbe
     porDia[dt.getDate()] += n(t.valor) * (t.tipo === "receita" ? 1 : -1)
   }
 
+  // No mês corrente a curva para em hoje. Desenhar até o dia 31 criava uma reta
+  // horizontal no futuro que parecia informação ("meu saldo estabilizou") sendo
+  // só ausência de dado.
+  const hoje = new Date()
+  const ultimoDia =
+    hoje.getMonth() + 1 === mes && hoje.getFullYear() === ano
+      ? Math.min(hoje.getDate(), diasNoMes)
+      : diasNoMes
+
   const pontos: PontoDia[] = []
   let saldo = 0
-  for (let dia = 1; dia <= diasNoMes; dia++) {
+  for (let dia = 1; dia <= ultimoDia; dia++) {
     saldo += porDia[dia]
     pontos.push({ dia, saldo })
   }

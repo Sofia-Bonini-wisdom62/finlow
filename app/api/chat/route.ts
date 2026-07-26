@@ -44,7 +44,7 @@ async function montarContexto(userId: string): Promise<ContextoFinanceiro> {
     receitaMes: ind.receita,
     despesaMes: ind.despesa,
     economiaMes: ind.economia,
-    patrimonio: ind.patrimonio,
+    acumulado: ind.acumulado,
     reservaEmergenciaMeses: met.reservaEmergencia,
     taxaEconomiaPct: met.taxaEconomia,
     maioresCategorias: cats.slice(0, 5).map((c) => ({ nome: c.nome, total: c.total, pct: c.pct })),

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react"
 import Link from "next/link"
 import { Plus, TrendingUp } from "lucide-react"
 import { BottomNav } from "@/components/bottom-nav"
-import { SeletorMes } from "@/components/painel/SeletorMes"
+import { SeletorMes, NOMES_MESES } from "@/components/painel/SeletorMes"
 import { GraficoLinha } from "@/components/analises/GraficoLinha"
 import { GraficoRosca } from "@/components/analises/GraficoRosca"
 import { GraficoBarras } from "@/components/analises/GraficoBarras"
@@ -13,11 +13,26 @@ import type { Indicadores, PontoPatrimonio, FatiaCategoria, BarraMes, PontoDia }
 
 interface Dados {
   temDados: boolean
+  temDadosNoMes: boolean
+  mesAnterior: { mes: number; ano: number } | null
   indicadores: Indicadores
   patrimonio: PontoPatrimonio[]
   categorias: FatiaCategoria[]
   receitasDespesas: BarraMes[]
   fluxoDiario: PontoDia[]
+}
+
+function Aviso({ titulo, texto, acao }: { titulo: string; texto: string; acao?: React.ReactNode }) {
+  return (
+    <div className="mt-8 rounded-[20px] border border-fl-border bg-white p-6 text-center">
+      <div className="mx-auto mb-3 flex size-11 items-center justify-center rounded-xl bg-fl-50">
+        <TrendingUp className="size-5 text-fl-500" />
+      </div>
+      <p className="text-[15px] font-bold text-fl-ink">{titulo}</p>
+      <p className="mt-1.5 text-sm leading-relaxed text-fl-ink-2">{texto}</p>
+      {acao}
+    </div>
+  )
 }
 
 function Secao({ titulo, legenda, children }: { titulo: string; legenda?: string; children: React.ReactNode }) {
@@ -37,15 +52,21 @@ export default function AnalisesPage() {
   const [dados, setDados] = useState<Dados | null>(null)
   const [carregando, setCarregando] = useState(true)
   const [logado, setLogado] = useState(true)
+  const [erro, setErro] = useState(false)
 
   const carregar = useCallback(async () => {
     setCarregando(true)
+    setErro(false)
     try {
       const res = await fetch(`/api/analises?mes=${mes}&ano=${ano}`)
       if (res.status === 401) { setLogado(false); return }
+      if (!res.ok) throw new Error("falhou")
       setDados(await res.json())
     } catch {
-      // mantém o último estado válido
+      // Manter os números do mês anterior sob o cabeçalho do novo mês seria
+      // mostrar dado errado com cara de dado certo. Melhor descartar e avisar.
+      setDados(null)
+      setErro(true)
     } finally {
       setCarregando(false)
     }
@@ -65,12 +86,15 @@ export default function AnalisesPage() {
   }
 
   const ind = dados?.indicadores
-  const kpis: { rotulo: string; valor: number; destaque?: boolean }[] = [
-    { rotulo: "Receita do mês", valor: ind?.receita ?? 0 },
-    { rotulo: "Despesas", valor: ind?.despesa ?? 0 },
-    { rotulo: "Economia", valor: ind?.economia ?? 0, destaque: true },
-    { rotulo: "Investimentos", valor: ind?.investimentos ?? 0 },
-    { rotulo: "Patrimônio", valor: ind?.patrimonio ?? 0, destaque: true },
+  // "Investimentos" sai de dentro de "Saídas" (é uma despesa em categoria de
+  // reserva/aporte) e "Acumulado" atravessa meses — os dois precisam dizer isso,
+  // senão o usuário soma tudo e a conta não fecha.
+  const kpis: { rotulo: string; valor: number; nota?: string; destaque?: boolean }[] = [
+    { rotulo: "Entradas", valor: ind?.receita ?? 0 },
+    { rotulo: "Saídas", valor: ind?.despesa ?? 0 },
+    { rotulo: "Sobrou", valor: ind?.economia ?? 0, nota: "entradas − saídas", destaque: true },
+    { rotulo: "Investido", valor: ind?.investimentos ?? 0, nota: "já contado em saídas" },
+    { rotulo: "Acumulado", valor: ind?.acumulado ?? 0, nota: "desde o 1º registro até este mês", destaque: true },
   ]
 
   return (
@@ -84,9 +108,9 @@ export default function AnalisesPage() {
           <SeletorMes mes={mes} ano={ano} onChange={(m, a) => { setMes(m); setAno(a) }} />
         </header>
 
-        {/* indicadores rápidos — cinco "R$ 0,00" acima do estado vazio só poluem */}
-        {dados?.temDados && (
-        <section className="mt-5 grid grid-cols-2 gap-2.5" aria-label="Indicadores do mês">
+        {/* indicadores rápidos — só quando o mês selecionado tem lançamento */}
+        {dados?.temDadosNoMes && (
+        <section className="mt-5 grid grid-cols-2 gap-2.5" aria-label={`Indicadores de ${NOMES_MESES[mes - 1]} de ${ano}`}>
           {kpis.map((k, i) => (
             <div
               key={k.rotulo}
@@ -102,47 +126,89 @@ export default function AnalisesPage() {
               >
                 {brl(k.valor)}
               </div>
+              {k.nota && <div className="mt-0.5 text-[10.5px] leading-snug text-fl-ink-3">{k.nota}</div>}
             </div>
           ))}
         </section>
         )}
 
-        {carregando && !dados ? (
+        {carregando ? (
           <div className="mt-10 flex justify-center">
             <div className="size-6 animate-spin rounded-full border-2 border-fl-500 border-t-transparent" />
           </div>
+        ) : erro ? (
+          <Aviso
+            titulo="Não deu pra carregar"
+            texto="Alguma coisa falhou ao buscar seus lançamentos. Os números de outro mês não aparecem aqui pra não confundir."
+            acao={
+              <button
+                onClick={carregar}
+                className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-fl-500 px-5 py-3 text-sm font-semibold text-white"
+              >
+                Tentar de novo
+              </button>
+            }
+          />
         ) : !dados?.temDados ? (
-          <div className="mt-8 rounded-[20px] border border-fl-border bg-white p-6 text-center">
-            <div className="mx-auto mb-3 flex size-11 items-center justify-center rounded-xl bg-fl-50">
-              <TrendingUp className="size-5 text-fl-500" />
-            </div>
-            <p className="text-[15px] font-bold text-fl-ink">Nada pra mostrar ainda</p>
-            <p className="mt-1.5 text-sm leading-relaxed text-fl-ink-2">
-              Registre suas entradas e saídas e os gráficos aparecem aqui — evolução do patrimônio,
-              gastos por categoria e fluxo de caixa.
-            </p>
-            <Link
-              href="/painel"
-              className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-fl-500 px-5 py-3 text-sm font-semibold text-white"
-            >
-              <Plus className="size-4" /> Registrar lançamentos
-            </Link>
-          </div>
+          <Aviso
+            titulo="Nada pra mostrar ainda"
+            texto="Registre suas entradas e saídas e os gráficos aparecem aqui — evolução do acumulado, gastos por categoria e fluxo de caixa."
+            acao={
+              <Link
+                href="/painel"
+                className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-fl-500 px-5 py-3 text-sm font-semibold text-white"
+              >
+                <Plus className="size-4" /> Registrar lançamentos
+              </Link>
+            }
+          />
+        ) : !dados.temDadosNoMes ? (
+          <Aviso
+            titulo={`Nenhum lançamento em ${NOMES_MESES[mes - 1]}`}
+            texto="Você tem lançamentos em outros meses — este está vazio. Gráficos com zeros não diriam nada sobre suas finanças."
+            acao={
+              <div className="mt-4 flex flex-col items-center gap-2">
+                {dados.mesAnterior && (
+                  <button
+                    onClick={() => { setMes(dados.mesAnterior!.mes); setAno(dados.mesAnterior!.ano) }}
+                    className="inline-flex items-center gap-1.5 rounded-full bg-fl-500 px-5 py-3 text-sm font-semibold text-white"
+                  >
+                    Ver {NOMES_MESES[dados.mesAnterior.mes - 1].toLowerCase()} de {dados.mesAnterior.ano}
+                  </button>
+                )}
+                <Link href="/painel" className="text-sm font-semibold text-fl-500">
+                  Registrar lançamentos deste mês
+                </Link>
+              </div>
+            }
+          />
         ) : (
           <div className="mt-4 flex flex-col gap-4">
-            <Secao titulo="Evolução do patrimônio" legenda="Acumulado das entradas menos as saídas, mês a mês">
-              <GraficoLinha pontos={dados.patrimonio.map((p) => ({ rotulo: p.rotulo, valor: p.patrimonio }))} />
+            <Secao
+              titulo="Evolução do acumulado"
+              legenda={`Entradas menos saídas, somadas mês a mês até ${NOMES_MESES[mes - 1].toLowerCase()}`}
+            >
+              <GraficoLinha
+                pontos={dados.patrimonio.map((p) => ({ rotulo: p.rotulo, valor: p.patrimonio }))}
+                mostrarZero
+              />
             </Secao>
 
-            <Secao titulo="Gastos por categoria" legenda="Onde o dinheiro foi neste mês">
+            <Secao titulo="Saídas por categoria" legenda={`Onde o dinheiro foi em ${NOMES_MESES[mes - 1].toLowerCase()}`}>
               <GraficoRosca fatias={dados.categorias} />
             </Secao>
 
-            <Secao titulo="Receitas × Despesas" legenda="Compare mês a mês e identifique os deficitários">
+            <Secao
+              titulo="Entradas × Saídas"
+              legenda={`Últimos meses até ${NOMES_MESES[mes - 1].toLowerCase()} — o marcador aponta os deficitários`}
+            >
               <GraficoBarras meses={dados.receitasDespesas} />
             </Secao>
 
-            <Secao titulo="Fluxo de caixa diário" legenda="Saldo ao longo do mês — ajuda a prever o aperto">
+            <Secao
+              titulo="Fluxo de caixa diário"
+              legenda="Quanto entrou menos quanto saiu ao longo do mês, dia a dia — começa do zero, não é saldo de conta"
+            >
               <GraficoLinha
                 pontos={dados.fluxoDiario.map((p) => ({ rotulo: String(p.dia), valor: p.saldo }))}
                 mostrarZero

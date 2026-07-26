@@ -45,7 +45,14 @@ export interface ContextoFinanceiro {
   receitaMes: number
   despesaMes: number
   economiaMes: number
-  patrimonio: number
+  /**
+   * Acumulado de (receitas − despesas) desde o primeiro lançamento.
+   * NÃO é patrimônio nem saldo bancário: o Finlow não vê conta, imóvel,
+   * investimento fora do app nem dívida não registrada. Quem for implementar
+   * responderIA() precisa refletir isso na resposta — chamar de "patrimônio"
+   * seria afirmar ao usuário algo que o app não tem como saber.
+   */
+  acumulado: number
   reservaEmergenciaMeses: number
   taxaEconomiaPct: number
   maioresCategorias: { nome: string; total: number; pct: number }[]

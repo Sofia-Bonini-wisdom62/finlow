@@ -40,7 +40,10 @@ export function GraficoBarras({ meses }: { meses: BarraMes[] }) {
       <div className="mt-3 flex items-center gap-4 text-[11px] text-fl-ink-2">
         <span className="flex items-center gap-1.5"><span className="size-2.5 rounded-sm bg-fl-success" /> Entradas</span>
         <span className="flex items-center gap-1.5"><span className="size-2.5 rounded-sm bg-fl-error" /> Saídas</span>
-        <span className="flex items-center gap-1"><span className="text-fl-error">▾</span> deficitário</span>
+        {/* só explica o marcador quando ele existe no gráfico */}
+        {meses.some((m) => m.deficitario) && (
+          <span className="flex items-center gap-1"><span className="text-fl-error">▾</span> deficitário</span>
+        )}
       </div>
     </div>
   )
