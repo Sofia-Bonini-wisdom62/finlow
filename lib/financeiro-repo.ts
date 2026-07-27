@@ -20,6 +20,9 @@ export interface TransacaoClara {
   categoriaId: string | null
   data: Date
   criadoEm: Date
+  confirmado: boolean
+  origem: string
+  extratoImportId: string | null
   categoria?: { nome: string; cor: string | null } | null
 }
 
@@ -36,6 +39,7 @@ export interface ContaFixaClara {
 type LinhaTransacao = {
   id: string; userId: string; descricao: string; valor: string; tipo: string
   categoriaId: string | null; data: Date; criadoEm: Date
+  confirmado: boolean; origem: string; extratoImportId: string | null
   categoria?: { nome: string; cor: string | null } | null
 }
 
@@ -64,9 +68,21 @@ function abrirContaFixa(c: LinhaContaFixa): ContaFixaClara {
 
 export async function listarTransacoes(
   userId: string,
-  opcoes?: { mes?: number; ano?: number; ordem?: "asc" | "desc"; comCategoria?: boolean }
+  opcoes?: {
+    mes?: number
+    ano?: number
+    ordem?: "asc" | "desc"
+    comCategoria?: boolean
+    /** "confirmadas" é o padrão: o que veio de extrato e ainda não foi revisado
+     *  NÃO pode aparecer em Análises, Perfil nem no contexto da IA. */
+    incluir?: "confirmadas" | "todas" | "pendentes"
+    extratoImportId?: string
+  }
 ): Promise<TransacaoClara[]> {
-  const { mes, ano, ordem = "asc", comCategoria = true } = opcoes ?? {}
+  const { mes, ano, ordem = "asc", comCategoria = true, incluir = "confirmadas", extratoImportId } = opcoes ?? {}
+
+  const filtroConfirmacao =
+    incluir === "todas" ? {} : { confirmado: incluir === "confirmadas" }
 
   // O filtro por data continua no BANCO porque `data` fica em claro — de outra
   // forma toda tela teria de puxar o histórico inteiro para filtrar em memória.
@@ -76,7 +92,12 @@ export async function listarTransacoes(
       : {}
 
   const linhas = await db.transacao.findMany({
-    where: { userId, ...filtroData },
+    where: {
+      userId,
+      ...filtroData,
+      ...filtroConfirmacao,
+      ...(extratoImportId ? { extratoImportId } : {}),
+    },
     ...(comCategoria ? { include: { categoria: { select: { nome: true, cor: true } } } } : {}),
     orderBy: { data: ordem },
   })
@@ -111,6 +132,57 @@ export async function criarTransacao(
     },
   })
   return abrirTransacao(linha as LinhaTransacao)
+}
+
+/**
+ * Grava em lote o que veio de um extrato. Nasce SEMPRE confirmado: false —
+ * o dash só passa a contar depois que a pessoa revisar linha a linha.
+ */
+export async function criarTransacoesDeExtrato(
+  userId: string,
+  extratoImportId: string,
+  itens: { descricao: string; valor: number; tipo: string; categoriaId: string | null; data: Date }[]
+): Promise<TransacaoClara[]> {
+  if (itens.length === 0) return []
+
+  // createMany não devolve as linhas criadas, e o front precisa dos ids para
+  // deixar a pessoa desmarcar cada uma. Uma transação garante tudo-ou-nada.
+  const criadas = await db.$transaction(
+    itens.map((i) =>
+      db.transacao.create({
+        data: {
+          userId,
+          descricao: cifrar(i.descricao, userId, "descricao"),
+          valor: cifrarNumero(i.valor, userId, "valor"),
+          tipo: i.tipo,
+          categoriaId: i.categoriaId,
+          data: i.data,
+          confirmado: false,
+          origem: "extrato",
+          extratoImportId,
+        },
+      })
+    )
+  )
+  return (criadas as LinhaTransacao[]).map(abrirTransacao)
+}
+
+/** Confirma as aceitas e apaga as recusadas, numa transação só. */
+export async function confirmarLoteExtrato(
+  userId: string,
+  extratoImportId: string,
+  idsAceitos: string[]
+): Promise<{ confirmadas: number; descartadas: number }> {
+  const [confirmadas, descartadas] = await db.$transaction([
+    db.transacao.updateMany({
+      where: { userId, extratoImportId, id: { in: idsAceitos } },
+      data: { confirmado: true },
+    }),
+    db.transacao.deleteMany({
+      where: { userId, extratoImportId, id: { notIn: idsAceitos }, confirmado: false },
+    }),
+  ])
+  return { confirmadas: confirmadas.count, descartadas: descartadas.count }
 }
 
 export async function atualizarTransacao(

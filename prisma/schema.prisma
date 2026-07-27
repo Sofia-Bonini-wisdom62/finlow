@@ -20,6 +20,7 @@ model User {
   criadoEm         DateTime          @default(now())
   perfil        Perfil?
   progresso     ProgressoModulo[]
+  extratoImports ExtratoImport[]
   contasFixas   ContaFixa[]
   transacoes    Transacao[]
   categorias    Categoria[]
@@ -70,6 +71,39 @@ model Transacao {
   categoria   Categoria? @relation(fields: [categoriaId], references: [id], onDelete: SetNull)
   data        DateTime
   criadoEm    DateTime   @default(now())
+
+  // Nada entra no dash sem ação explícita do usuário. Lançamento manual já
+  // nasce confirmado; o que vem de extrato nasce false e espera a revisão.
+  // O default true é obrigatório: sem ele, os registros que já existem
+  // sumiriam das Análises no instante do db push.
+  confirmado      Boolean @default(true)
+  origem          String  @default("manual") // "manual" | "extrato"
+  extratoImportId String?
+  extratoImport   ExtratoImport? @relation(fields: [extratoImportId], references: [id], onDelete: SetNull)
+
+  @@index([userId, confirmado])
+}
+
+/// Metadados do processamento de um extrato. NÃO guarda o arquivo nem o texto
+/// do extrato — só o que é preciso para auditar o import e o custo da chamada.
+model ExtratoImport {
+  id            String    @id @default(cuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status        String    // "processando" | "aguardando_confirmacao" | "confirmado" | "falhou"
+  banco         String?   // detectado pelo modelo, ex: "nubank"
+  periodoInicio DateTime?
+  periodoFim    DateTime?
+  totalLinhas   Int?
+  erroValidacao String?   // preenchido quando a validação aritmética falha
+  tokensEntrada Int?
+  tokensSaida   Int?
+  modelo        String?   // qual modelo processou — o preço muda com ele
+  criadoEm      DateTime  @default(now())
+
+  transacoes    Transacao[]
+
+  @@index([userId, criadoEm])
 }
 
 model Perfil {
