@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Plus, Pencil, Trash2 } from "lucide-react"
 import type { ContaFixaData } from "@/types/painel"
-import { brl } from "@/lib/formato"
+import { brl, paraNumero } from "@/lib/formato"
 import { ModalBase, inputPainel, botaoPrimario } from "./ModalBase"
 
 interface Props {
@@ -45,7 +45,7 @@ export function ContasFixasCard({ contas, onMudou }: Props) {
     const payload = {
       ...(editando ? { id: editando.id } : {}),
       nome,
-      valor: valor.replace(",", "."),
+      valor: paraNumero(valor),
       diaVencimento: dia || null,
     }
     const res = await fetch("/api/painel/contas-fixas", {

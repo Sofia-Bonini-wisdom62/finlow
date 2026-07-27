@@ -12,7 +12,7 @@ export function GastoMedioPorDiaChart({ transacoes }: { transacoes: TransacaoDat
   for (const t of transacoes) {
     if (t.tipo !== "despesa") continue
     const dia = new Date(t.data).getDay()
-    somas[dia] += parseFloat(t.valor)
+    somas[dia] += t.valor
     contagens[dia]++
   }
 

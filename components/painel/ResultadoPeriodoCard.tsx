@@ -8,9 +8,9 @@ import { brl } from "@/lib/formato"
 export function ResultadoPeriodoCard({ transacoes }: { transacoes: TransacaoData[] }) {
   const [expandido, setExpandido] = useState(false)
 
-  const receitas = transacoes.filter((t) => t.tipo === "receita").reduce((s, t) => s + parseFloat(t.valor), 0)
+  const receitas = transacoes.filter((t) => t.tipo === "receita").reduce((s, t) => s + t.valor, 0)
   const despesasLista = transacoes.filter((t) => t.tipo === "despesa")
-  const despesas = despesasLista.reduce((s, t) => s + parseFloat(t.valor), 0)
+  const despesas = despesasLista.reduce((s, t) => s + t.valor, 0)
   const saldo = receitas - despesas
 
   return (
