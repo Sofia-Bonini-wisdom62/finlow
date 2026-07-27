@@ -43,10 +43,25 @@ export class ChaveAusente extends Error {
   }
 }
 
+let avisou = false
+
 function chave(): Buffer {
   if (cacheChave) return cacheChave
   const bruta = process.env.ENCRYPTION_KEY
-  if (!bruta) throw new ChaveAusente()
+  if (!bruta) {
+    // Sem isto, a ausência da chave chega como um 500 genérico em toda tela
+    // financeira, e diagnosticar leva horas. Uma linha no log resolve.
+    if (!avisou) {
+      avisou = true
+      console.error(
+        "[cripto] ENCRYPTION_KEY ausente neste ambiente. Os dados financeiros " +
+        "estão cifrados no banco e NÃO podem ser lidos sem ela. Se isto é " +
+        "produção, configure a variável na Vercel — o valor tem de ser o mesmo " +
+        "usado na migração."
+      )
+    }
+    throw new ChaveAusente()
+  }
   const buf = Buffer.from(bruta, "base64")
   if (buf.length !== 32) {
     throw new Error(`ENCRYPTION_KEY deve ter 32 bytes em base64 (tem ${buf.length}).`)
