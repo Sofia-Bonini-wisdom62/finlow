@@ -38,8 +38,8 @@ model ContaFixa {
   id            String   @id @default(cuid())
   userId        String
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  nome          String
-  valor         Decimal
+  nome          String   // cifrado (AES-256-GCM) — ver lib/cripto.ts
+  valor         String   // cifrado; era Decimal, virou texto porque cifra não é número
   diaVencimento Int?
   ativa         Boolean  @default(true)
   criadoEm      DateTime @default(now())
@@ -60,8 +60,11 @@ model Transacao {
   id          String     @id @default(cuid())
   userId      String
   user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  descricao   String
-  valor       Decimal
+  descricao   String     // cifrado (AES-256-GCM) — ver lib/cripto.ts
+  valor       String     // cifrado; era Decimal, virou texto porque cifra não é número
+  // tipo, data e categoriaId ficam em claro de propósito: o banco filtra e
+  // ordena por eles. Sozinhos revelam a FORMA do histórico (quantos lançamentos,
+  // quando, quantos de entrada), nunca quanto nem do quê.
   tipo        String     // "receita" | "despesa"
   categoriaId String?
   categoria   Categoria? @relation(fields: [categoriaId], references: [id], onDelete: SetNull)

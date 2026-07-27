@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Plus, Trash2 } from "lucide-react"
 import type { TransacaoData, CategoriaData } from "@/types/painel"
-import { brl, dataCurta } from "@/lib/formato"
+import { brl, dataCurta, paraNumero } from "@/lib/formato"
 import { ModalBase, inputPainel, botaoPrimario } from "./ModalBase"
 
 interface Props {
@@ -44,7 +44,7 @@ export function TransacoesCard({ transacoes, categorias, onMudou }: Props) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         descricao,
-        valor: valor.replace(",", "."),
+        valor: paraNumero(valor),
         tipo,
         categoriaId: categoriaId || null,
         data,
@@ -140,7 +140,7 @@ export function TransacoesCard({ transacoes, categorias, onMudou }: Props) {
             ))}
           </select>
 
-          <input className={`${inputPainel} [color-scheme:dark]`} type="date" value={data} onChange={(e) => setData(e.target.value)} />
+          <input className={`${inputPainel} `} type="date" value={data} onChange={(e) => setData(e.target.value)} />
 
           {erro && <p className="text-sm text-fl-accent-dark">{erro}</p>}
           <button className={botaoPrimario} disabled={salvando || !descricao || !valor} onClick={salvar}>

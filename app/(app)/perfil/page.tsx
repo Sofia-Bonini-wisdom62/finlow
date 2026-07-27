@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import Link from "next/link"
 import { Search, ArrowRight, Check, X } from "lucide-react"
 import { BottomNav } from "@/components/bottom-nav"
@@ -84,24 +84,39 @@ export default function PerfilPage() {
   const [recomendados, setRecomendados] = useState<ModuloCard[]>([])
   const [carregando, setCarregando] = useState(true)
   const [logado, setLogado] = useState(true)
+  const [erro, setErro] = useState(false)
 
   const [busca, setBusca] = useState("")
   const [resultados, setResultados] = useState<ModuloCard[] | null>(null)
   const [buscando, setBuscando] = useState(false)
 
-  useEffect(() => {
+  const carregar = useCallback(() => {
+    setCarregando(true)
+    setErro(false)
     Promise.all([
-      fetch("/api/perfil-financeiro").then((r) => (r.status === 401 ? null : r.json())),
+      fetch("/api/perfil-financeiro").then(async (r) => {
+        if (r.status === 401) return { deslogado: true as const }
+        // Um 500 devolve {error: "..."} — objeto truthy. Aceitar isso como
+        // perfil válido fazia `perfil.metricas` virar undefined e o render
+        // estourar em `m.mesesComDados`, derrubando a árvore React: a tela
+        // ficava congelada em vez de mostrar que algo falhou.
+        if (!r.ok) return { falhou: true as const }
+        const j = await r.json()
+        return j && j.metricas ? { perfil: j as Perfil } : { falhou: true as const }
+      }),
       fetch("/api/modulos").then((r) => (r.ok ? r.json() : { recomendados: [] })),
     ])
       .then(([p, m]) => {
-        if (!p) { setLogado(false); return }
-        setPerfil(p)
+        if ("deslogado" in p) { setLogado(false); return }
+        if ("falhou" in p) { setErro(true); return }
+        setPerfil(p.perfil)
         setRecomendados(m.recomendados ?? [])
       })
-      .catch(() => {})
+      .catch(() => setErro(true))
       .finally(() => setCarregando(false))
   }, [])
+
+  useEffect(() => { carregar() }, [carregar])
 
   // busca com debounce
   useEffect(() => {
@@ -127,6 +142,23 @@ export default function PerfilPage() {
     return (
       <main className="flex min-h-dvh items-center justify-center bg-fl-page">
         <div className="size-6 animate-spin rounded-full border-2 border-fl-500 border-t-transparent" />
+      </main>
+    )
+  }
+
+  if (erro) {
+    return (
+      <main className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-fl-page px-6 text-center">
+        <div>
+          <p className="text-[15px] font-bold text-fl-ink">Não deu pra carregar seu perfil</p>
+          <p className="mt-1.5 text-sm text-fl-ink-2">
+            Alguma coisa falhou ao buscar seus números. Nada foi perdido.
+          </p>
+        </div>
+        <button onClick={carregar} className="rounded-full bg-fl-500 px-6 py-3 text-sm font-semibold text-primary-foreground">
+          Tentar de novo
+        </button>
+        <BottomNav />
       </main>
     )
   }

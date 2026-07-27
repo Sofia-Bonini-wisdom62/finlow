@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
+import { listarTransacoes } from "@/lib/financeiro-repo"
 import { getUserIdOr401 } from "@/lib/painel"
 import { metricasPerfil, type TransacaoCalc, type MetricasPerfil } from "@/lib/financas"
 
@@ -127,15 +128,7 @@ export async function GET(req: NextRequest) {
     }
 
     // ---- trilha recomendada ----
-    const transacoes = await db.transacao.findMany({
-      where: { userId },
-      select: { valor: true, tipo: true, data: true },
-    })
-    const calc: TransacaoCalc[] = transacoes.map((t) => ({
-      valor: t.valor.toString(),
-      tipo: t.tipo,
-      data: t.data,
-    }))
+    const calc: TransacaoCalc[] = await listarTransacoes(userId, { comCategoria: false })
     const met = metricasPerfil(calc)
 
     const porSlug = new Map(modulos.map((m) => [m.slug, m]))

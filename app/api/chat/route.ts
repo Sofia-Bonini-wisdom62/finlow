@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { getUserIdOr401 } from "@/lib/painel"
+import { listarTransacoes, listarContasFixas } from "@/lib/financeiro-repo"
 import { indicadores, gastosPorCategoria, metricasPerfil, type TransacaoCalc } from "@/lib/financas"
 import { responderIA, IANaoConfigurada, type ContextoFinanceiro, type MensagemChat } from "@/lib/ia"
 
@@ -14,21 +15,10 @@ const NOMES_MESES = [
 // Monta o retrato financeiro real do usuário para a IA usar como base.
 // A IA nunca recebe as transações cruas — só os agregados de que precisa.
 async function montarContexto(userId: string): Promise<ContextoFinanceiro> {
-  const [transacoes, contas] = await Promise.all([
-    db.transacao.findMany({
-      where: { userId },
-      include: { categoria: { select: { nome: true, cor: true } } },
-      orderBy: { data: "desc" },
-    }),
-    db.contaFixa.findMany({ where: { userId, ativa: true } }),
+  const [calc, contas] = await Promise.all([
+    listarTransacoes(userId, { ordem: "desc" }),
+    listarContasFixas(userId, { apenasAtivas: true }),
   ])
-
-  const calc: TransacaoCalc[] = transacoes.map((t) => ({
-    valor: t.valor.toString(),
-    tipo: t.tipo,
-    data: t.data,
-    categoria: t.categoria,
-  }))
 
   const hoje = new Date()
   const mes = hoje.getMonth() + 1
@@ -48,7 +38,7 @@ async function montarContexto(userId: string): Promise<ContextoFinanceiro> {
     reservaEmergenciaMeses: met.reservaEmergencia,
     taxaEconomiaPct: met.taxaEconomia,
     maioresCategorias: cats.slice(0, 5).map((c) => ({ nome: c.nome, total: c.total, pct: c.pct })),
-    contasFixasTotal: contas.reduce((s, c) => s + parseFloat(c.valor.toString()), 0),
+    contasFixasTotal: contas.reduce((s, c) => s + c.valor, 0),
     mesesComHistorico: met.mesesComDados,
   }
 }

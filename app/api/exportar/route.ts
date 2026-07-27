@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { getUserIdOr401 } from "@/lib/painel"
+import { listarTransacoes, listarContasFixas } from "@/lib/financeiro-repo"
 
 export const dynamic = "force-dynamic"
 
@@ -22,16 +23,8 @@ export async function GET() {
         select: { nome: true, tipo: true, cor: true, padrao: true },
         orderBy: { nome: "asc" },
       }),
-      db.contaFixa.findMany({
-        where: { userId },
-        select: { nome: true, valor: true, diaVencimento: true, ativa: true, criadoEm: true },
-        orderBy: { criadoEm: "asc" },
-      }),
-      db.transacao.findMany({
-        where: { userId },
-        select: { descricao: true, valor: true, tipo: true, data: true, criadoEm: true, categoria: { select: { nome: true } } },
-        orderBy: { data: "asc" },
-      }),
+      listarContasFixas(userId),
+      listarTransacoes(userId),
       db.progressoModulo.findMany({
         where: { userId },
         select: { concluido: true, telaAtual: true, concluidoEm: true, modulo: { select: { slug: true, titulo: true } } },
@@ -42,10 +35,14 @@ export async function GET() {
       exportadoEm: new Date().toISOString(),
       conta: user,
       categorias,
-      contasFixas: contas.map((c) => ({ ...c, valor: c.valor.toString() })),
+      // a exportação sai em CLARO de propósito: é o direito de portabilidade da
+      // LGPD, e um arquivo cifrado com chave que o usuário não tem seria inútil
+      contasFixas: contas.map((c) => ({
+        nome: c.nome, valor: c.valor, diaVencimento: c.diaVencimento, ativa: c.ativa, criadoEm: c.criadoEm,
+      })),
       transacoes: transacoes.map((t) => ({
         descricao: t.descricao,
-        valor: t.valor.toString(),
+        valor: t.valor,
         tipo: t.tipo,
         categoria: t.categoria?.nome ?? null,
         data: t.data,

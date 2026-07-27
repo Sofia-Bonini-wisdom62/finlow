@@ -18,7 +18,7 @@ export function agruparPorCategoria(transacoes: TransacaoData[]): FatiaCategoria
 
   for (const t of transacoes) {
     if (t.tipo !== "despesa") continue
-    const valor = parseFloat(t.valor)
+    const valor = t.valor
     totalGeral += valor
     const nome = t.categoria?.nome ?? "Sem categoria"
     const cor = t.categoria?.cor ?? COR_SEM_CATEGORIA
