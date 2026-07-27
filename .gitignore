@@ -39,3 +39,6 @@ next-env.d.ts
 
 # zips
 *.zip
+
+# snapshots de dados financeiros em claro — nunca versionar
+backups/

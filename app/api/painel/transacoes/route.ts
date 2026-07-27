@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { getUserIdOr401, checarConsentimento } from "@/lib/painel"
+import { listarTransacoes, criarTransacao, atualizarTransacao } from "@/lib/financeiro-repo"
 
 export const dynamic = "force-dynamic"
 
@@ -13,17 +14,7 @@ export async function GET(req: NextRequest) {
   const mes = Number(searchParams.get("mes"))
   const ano = Number(searchParams.get("ano"))
 
-  const filtroData =
-    mes >= 1 && mes <= 12 && ano > 2000
-      ? { data: { gte: new Date(ano, mes - 1, 1), lt: new Date(ano, mes, 1) } }
-      : {}
-
-  const transacoes = await db.transacao.findMany({
-    where: { userId, ...filtroData },
-    include: { categoria: { select: { nome: true, cor: true } } },
-    orderBy: { data: "desc" },
-  })
-
+  const transacoes = await listarTransacoes(userId, { mes, ano, ordem: "desc" })
   return NextResponse.json({ transacoes })
 }
 
@@ -46,15 +37,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Tipo inválido" }, { status: 400 })
     }
 
-    const transacao = await db.transacao.create({
-      data: {
-        userId,
-        descricao: descricao.trim(),
-        valor: valorNum,
-        tipo,
-        categoriaId: categoriaId || null,
-        data: data ? new Date(data) : new Date(),
-      },
+    const transacao = await criarTransacao(userId, {
+      descricao: descricao.trim(),
+      valor: valorNum,
+      tipo,
+      categoriaId: categoriaId || null,
+      data: data ? new Date(data) : new Date(),
     })
     return NextResponse.json({ transacao })
   } catch (e) {
@@ -73,18 +61,14 @@ export async function PATCH(req: NextRequest) {
     const { id, descricao, valor, tipo, categoriaId, data } = await req.json()
     if (!id) return NextResponse.json({ error: "id obrigatório" }, { status: 400 })
 
-    // updateMany com userId no where garante que ninguém edita transação de outro
-    const r = await db.transacao.updateMany({
-      where: { id, userId },
-      data: {
-        ...(descricao !== undefined ? { descricao: String(descricao).trim() } : {}),
-        ...(valor !== undefined ? { valor: Number(valor) } : {}),
-        ...(tipo !== undefined ? { tipo } : {}),
-        ...(categoriaId !== undefined ? { categoriaId: categoriaId || null } : {}),
-        ...(data !== undefined ? { data: new Date(data) } : {}),
-      },
+    const count = await atualizarTransacao(userId, id, {
+      ...(descricao !== undefined ? { descricao: String(descricao).trim() } : {}),
+      ...(valor !== undefined ? { valor: Number(valor) } : {}),
+      ...(tipo !== undefined ? { tipo } : {}),
+      ...(categoriaId !== undefined ? { categoriaId: categoriaId || null } : {}),
+      ...(data !== undefined ? { data: new Date(data) } : {}),
     })
-    if (r.count === 0) return NextResponse.json({ error: "Não encontrada" }, { status: 404 })
+    if (count === 0) return NextResponse.json({ error: "Não encontrada" }, { status: 404 })
     return NextResponse.json({ ok: true })
   } catch (e) {
     console.error("[painel/transacoes PATCH]", e)

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
-import { db } from "@/lib/db"
 import { getUserIdOr401 } from "@/lib/painel"
+import { listarTransacoes } from "@/lib/financeiro-repo"
 import {
   indicadores,
   evolucaoPatrimonio,
@@ -41,18 +41,8 @@ export async function GET(req: NextRequest) {
   const ano = Number(searchParams.get("ano")) || hoje.getFullYear()
 
   try {
-    const transacoes = await db.transacao.findMany({
-      where: { userId },
-      include: { categoria: { select: { nome: true, cor: true } } },
-      orderBy: { data: "asc" },
-    })
-
-    const calc: TransacaoCalc[] = transacoes.map((t) => ({
-      valor: t.valor.toString(),
-      tipo: t.tipo,
-      data: t.data,
-      categoria: t.categoria,
-    }))
+    // decifra na camada de repositório; daqui pra baixo os números são claros
+    const calc: TransacaoCalc[] = await listarTransacoes(userId)
 
     const ind = indicadores(calc, mes, ano)
     const ate = { mes, ano }

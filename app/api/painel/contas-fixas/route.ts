@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { getUserIdOr401, checarConsentimento } from "@/lib/painel"
+import { listarContasFixas, criarContaFixa, atualizarContaFixa } from "@/lib/financeiro-repo"
 
 export const dynamic = "force-dynamic"
 
@@ -8,10 +9,7 @@ export async function GET() {
   const userId = await getUserIdOr401()
   if (userId instanceof NextResponse) return userId
 
-  const contas = await db.contaFixa.findMany({
-    where: { userId, ativa: true },
-    orderBy: { criadoEm: "asc" },
-  })
+  const contas = await listarContasFixas(userId, { apenasAtivas: true })
   return NextResponse.json({ contas })
 }
 
@@ -35,9 +33,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Dia de vencimento inválido" }, { status: 400 })
     }
 
-    const conta = await db.contaFixa.create({
-      data: { userId, nome: nome.trim(), valor: valorNum, diaVencimento: dia },
-    })
+    const conta = await criarContaFixa(userId, { nome: nome.trim(), valor: valorNum, diaVencimento: dia })
     return NextResponse.json({ conta })
   } catch (e) {
     console.error("[painel/contas-fixas POST]", e)
@@ -55,16 +51,13 @@ export async function PATCH(req: NextRequest) {
     const { id, nome, valor, diaVencimento, ativa } = await req.json()
     if (!id) return NextResponse.json({ error: "id obrigatório" }, { status: 400 })
 
-    const r = await db.contaFixa.updateMany({
-      where: { id, userId },
-      data: {
-        ...(nome !== undefined ? { nome: String(nome).trim() } : {}),
-        ...(valor !== undefined ? { valor: Number(valor) } : {}),
-        ...(diaVencimento !== undefined ? { diaVencimento: diaVencimento ? Number(diaVencimento) : null } : {}),
-        ...(ativa !== undefined ? { ativa: Boolean(ativa) } : {}),
-      },
+    const count = await atualizarContaFixa(userId, id, {
+      ...(nome !== undefined ? { nome: String(nome).trim() } : {}),
+      ...(valor !== undefined ? { valor: Number(valor) } : {}),
+      ...(diaVencimento !== undefined ? { diaVencimento: diaVencimento ? Number(diaVencimento) : null } : {}),
+      ...(ativa !== undefined ? { ativa: Boolean(ativa) } : {}),
     })
-    if (r.count === 0) return NextResponse.json({ error: "Não encontrada" }, { status: 404 })
+    if (count === 0) return NextResponse.json({ error: "Não encontrada" }, { status: 404 })
     return NextResponse.json({ ok: true })
   } catch (e) {
     console.error("[painel/contas-fixas PATCH]", e)
