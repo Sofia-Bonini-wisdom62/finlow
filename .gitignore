@@ -42,3 +42,8 @@ next-env.d.ts
 
 # snapshots de dados financeiros em claro — nunca versionar
 backups/
+
+# credenciais locais (json de service account, chave de API, etc.)
+# tudo aqui é ignorado — só o README é versionado
+secrets/*
+!secrets/README.md
