@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react"
 import Link from "next/link"
-import { Plus, TrendingUp } from "lucide-react"
+import { Plus, TrendingUp, Upload } from "lucide-react"
 import { BottomNav } from "@/components/bottom-nav"
 import { SeletorMes, NOMES_MESES } from "@/components/painel/SeletorMes"
 import { GraficoLinha } from "@/components/analises/GraficoLinha"
@@ -154,12 +154,17 @@ export default function AnalisesPage() {
             titulo="Nada pra mostrar ainda"
             texto="Registre suas entradas e saídas e os gráficos aparecem aqui — evolução do acumulado, gastos por categoria e fluxo de caixa."
             acao={
-              <Link
-                href="/painel"
-                className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-fl-500 px-5 py-3 text-sm font-semibold text-primary-foreground"
-              >
-                <Plus className="size-4" /> Registrar lançamentos
-              </Link>
+              <div className="mt-4 flex flex-col items-center gap-2">
+                <Link
+                  href="/extrato"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-fl-500 px-5 py-3 text-sm font-semibold text-primary-foreground"
+                >
+                  <Upload className="size-4" /> Subir extrato do banco
+                </Link>
+                <Link href="/painel" className="text-sm font-semibold text-fl-500">
+                  Ou lançar na mão
+                </Link>
+              </div>
             }
           />
         ) : !dados.temDadosNoMes ? (
@@ -215,12 +220,20 @@ export default function AnalisesPage() {
               />
             </Secao>
 
-            <Link
-              href="/painel"
-              className="flex items-center justify-center gap-2 rounded-2xl border border-fl-border bg-fl-card py-4 text-sm font-semibold text-fl-500 transition-colors hover:bg-fl-50"
-            >
-              <Plus className="size-4" /> Registrar ou editar lançamentos
-            </Link>
+            <div className="flex flex-col gap-2.5">
+              <Link
+                href="/extrato"
+                className="flex items-center justify-center gap-2 rounded-2xl bg-fl-500 py-4 text-sm font-semibold text-primary-foreground"
+              >
+                <Upload className="size-4" /> Subir extrato do banco
+              </Link>
+              <Link
+                href="/painel"
+                className="flex items-center justify-center gap-2 rounded-2xl border border-fl-border bg-fl-card py-4 text-sm font-semibold text-fl-500 transition-colors hover:bg-fl-50"
+              >
+                <Plus className="size-4" /> Registrar ou editar lançamentos
+              </Link>
+            </div>
           </div>
         )}
       </div>
