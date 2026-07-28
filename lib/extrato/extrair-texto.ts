@@ -17,31 +17,6 @@ export type TextoExtraido =
   | { modo: "texto"; texto: string; paginas: number; textoPorPagina: string[] }
   | { modo: "imagem"; imagens: { base64: string; mime: string }[]; paginas: number }
 
-/**
- * O pdfjs carrega o worker por caminho construído em tempo de execução, não
- * por import estático. Local isso resolve sozinho; empacotado (Vercel) o
- * arquivo pode nem estar na função, e a falha vem como crash — não como
- * exceção capturável, o que produz um 500 sem corpo JSON.
- *
- * Resolver o caminho explicitamente aqui faz duas coisas: aponta o pdfjs para
- * o arquivo certo, e cria uma referência estática que o rastreador de
- * dependências consegue enxergar.
- */
-let workerPronto = false
-function garantirWorker(): void {
-  if (workerPronto) return
-  workerPronto = true
-  for (const alvo of ["pdfjs-dist/legacy/build/pdf.worker.mjs", "pdfjs-dist/build/pdf.worker.mjs"]) {
-    try {
-      PDFParse.setWorker(require.resolve(alvo))
-      return
-    } catch {
-      // tenta o próximo
-    }
-  }
-  console.warn("[extrato] worker do pdfjs não resolvido; seguindo com o padrão do pdfjs")
-}
-
 function ehErroDeSenha(e: unknown): boolean {
   const nome = (e as { name?: string })?.name ?? ""
   const msg = (e as { message?: string })?.message ?? ""
@@ -55,8 +30,6 @@ export async function extrairTexto(buffer: Buffer): Promise<TextoExtraido> {
       "Esse arquivo passa de 10 MB. Tenta exportar de novo pelo app do banco — o PDF do extrato costuma ser bem menor."
     )
   }
-
-  garantirWorker()
 
   let parser: PDFParse | null = null
   try {
