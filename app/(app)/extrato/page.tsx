@@ -67,10 +67,33 @@ export default function ExtratoPage() {
     }
 
     setEnviando(true)
+    const inicio = Date.now()
+    // Um extrato de 3 meses leva ~25s; extrato digitalizado (rota de visão)
+    // leva bem mais. O corte precisa ser generoso o suficiente para não matar
+    // um processamento que ia dar certo.
+    const ctrl = new AbortController()
+    const limite = setTimeout(() => ctrl.abort(), 180_000)
+
     try {
       const form = new FormData()
       form.append("arquivo", arquivo)
-      const res = await fetch("/api/extrato", { method: "POST", body: form })
+      const res = await fetch("/api/extrato", { method: "POST", body: form, signal: ctrl.signal })
+
+      // Resposta que não é JSON quase sempre é a plataforma cortando o caminho:
+      // página de timeout do gateway, 413 de tamanho, HTML de erro.
+      const tipo = res.headers.get("content-type") ?? ""
+      if (!tipo.includes("application/json")) {
+        setFalha({
+          codigo: "PLATAFORMA",
+          erro:
+            res.status === 413
+              ? "O servidor recusou o arquivo por tamanho antes mesmo de eu ler."
+              : "O servidor encerrou a requisição antes de eu terminar de ler o extrato.",
+          motivo: `HTTP ${res.status} após ${Math.round((Date.now() - inicio) / 1000)}s, resposta não-JSON`,
+        })
+        return
+      }
+
       const d = await res.json()
       if (!res.ok) {
         setFalha({ codigo: d.codigo ?? "ERRO", erro: d.erro ?? "Não consegui processar esse extrato.", motivo: d.motivo })
@@ -79,9 +102,26 @@ export default function ExtratoPage() {
       setResultado(d)
       // tudo vem marcado: o caminho comum é aceitar, e desmarcar é a exceção
       setAceitos(new Set(d.transacoes.map((t: TransacaoLida) => t.id)))
-    } catch {
-      setFalha({ codigo: "REDE", erro: "A conexão caiu no meio do envio. Tenta de novo." })
+    } catch (e) {
+      const segundos = Math.round((Date.now() - inicio) / 1000)
+      const abortado = e instanceof DOMException && e.name === "AbortError"
+      setFalha(
+        abortado
+          ? {
+              codigo: "DEMOROU",
+              erro: "A leitura passou de 3 minutos e eu parei de esperar. Extrato muito longo ou digitalizado costuma demorar — tenta um período menor, ou o PDF gerado pelo próprio app do banco em vez de um escaneado.",
+              motivo: `abortado pelo app após ${segundos}s`,
+            }
+          : {
+              codigo: "REDE",
+              // Não afirmo mais "a conexão caiu": pode ter sido o servidor
+              // encerrando a função no meio. Digo o que sei, não o que suponho.
+              erro: "A requisição foi interrompida antes de terminar. Pode ter sido a conexão ou o servidor ter desistido de esperar.",
+              motivo: `interrompida após ${segundos}s`,
+            }
+      )
     } finally {
+      clearTimeout(limite)
       setEnviando(false)
     }
   }

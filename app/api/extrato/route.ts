@@ -85,9 +85,16 @@ export async function POST(req: NextRequest) {
   }
 
   const registro = await db.extratoImport.create({ data: { userId, status: "processando" } })
+  // Duração é o que diferencia "falhou" de "a plataforma me matou no meio".
+  // Sem isso, um timeout de função vira erro mudo e indistinguível.
+  const t0 = Date.now()
 
   try {
     const entrada = await extrairTexto(buffer)
+    console.log(
+      `[extrato] ${registro.id} extração=${((Date.now() - t0) / 1000).toFixed(1)}s modo=${entrada.modo} ` +
+      `paginas=${entrada.paginas} arquivo=${(buffer.byteLength / 1024).toFixed(0)}KB`
+    )
 
     // 1ª tentativa
     let r = await parsearExtrato(entrada)
@@ -156,6 +163,10 @@ export async function POST(req: NextRequest) {
     })
 
     const custo = estimarCustoBRL(tokensEntrada, tokensSaida, r.modelo)
+    console.log(
+      `[extrato] ${registro.id} OK total=${((Date.now() - t0) / 1000).toFixed(1)}s ` +
+      `linhas=${criadas.length} tokens=${tokensEntrada}/${tokensSaida} custo=R$${custo.brl}`
+    )
 
     return NextResponse.json({
       extratoImportId: registro.id,
@@ -171,7 +182,11 @@ export async function POST(req: NextRequest) {
   } catch (e) {
     const erro = e instanceof ErroExtrato ? e : null
     // console.error sem o conteúdo do extrato — só o código e o detalhe curto.
-    console.error("[extrato]", erro?.codigo ?? "ERRO", erro?.detalhe ?? (e as Error)?.message)
+    console.error(
+      `[extrato] ${registro.id} FALHOU total=${((Date.now() - t0) / 1000).toFixed(1)}s`,
+      erro?.codigo ?? "ERRO",
+      erro?.detalhe ?? (e as Error)?.message
+    )
 
     await db.extratoImport.update({
       where: { id: registro.id },
