@@ -15,6 +15,20 @@ const nextConfig: NextConfig = {
    * caminho do worker resolve normalmente. Só quebra atravessando a rota.
    */
   serverExternalPackages: ["pdf-parse", "pdfjs-dist"],
+
+  /**
+   * serverExternalPackages resolve o empacotamento, mas não garante que o
+   * arquivo do worker entre na função serverless: ele é carregado por caminho
+   * construído em runtime, e o rastreador de dependências não enxerga isso.
+   * Sem estas entradas o deploy sobe sem o worker e a rota morre com 500 sem
+   * corpo — que foi o sintoma em produção.
+   */
+  outputFileTracingIncludes: {
+    "/api/extrato": [
+      "./node_modules/.pnpm/pdfjs-dist@*/node_modules/pdfjs-dist/legacy/build/**",
+      "./node_modules/pdfjs-dist/legacy/build/**",
+    ],
+  },
 };
 
 export default nextConfig;

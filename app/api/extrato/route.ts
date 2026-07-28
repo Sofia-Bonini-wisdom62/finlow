@@ -60,10 +60,27 @@ function resumir(e: ExtratoParseado) {
 }
 
 export async function POST(req: NextRequest) {
-  const userId = await getUserIdOr401()
-  if (userId instanceof NextResponse) return userId
-  const bloqueio = await checarConsentimento(userId)
-  if (bloqueio) return bloqueio
+  // Auth e consentimento também ficavam fora de qualquer try. Uma falha de
+  // conexão aqui subia pro framework e virava 500 com HTML — sem código, sem
+  // mensagem, indiagnosticável. Esta rota nunca mais responde não-JSON.
+  let userId: string
+  try {
+    const r = await getUserIdOr401()
+    if (r instanceof NextResponse) return r
+    userId = r
+    const bloqueio = await checarConsentimento(userId)
+    if (bloqueio) return bloqueio
+  } catch (e) {
+    console.error("[extrato] falha antes de começar:", (e as Error)?.message)
+    return NextResponse.json(
+      {
+        codigo: "INDISPONIVEL",
+        erro: "Não consegui nem começar. Tenta de novo em alguns segundos.",
+        motivo: (e as Error)?.message?.slice(0, 200),
+      },
+      { status: 503 }
+    )
+  }
 
   // ---- arquivo, em memória ----
   let buffer: Buffer
@@ -84,10 +101,27 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ codigo: "FORMATO_INVALIDO", erro: "Não consegui ler o upload." }, { status: 400 })
   }
 
-  const registro = await db.extratoImport.create({ data: { userId, status: "processando" } })
   // Duração é o que diferencia "falhou" de "a plataforma me matou no meio".
-  // Sem isso, um timeout de função vira erro mudo e indistinguível.
   const t0 = Date.now()
+
+  // O create ficava FORA do try. Se ele estourasse — pool esgotado, tabela
+  // fora de sincronia, o que for — o erro subia pro framework e virava um 500
+  // com HTML, sem código nem mensagem. Foi exatamente o "HTTP 500 após 1s,
+  // resposta não-JSON" visto em produção. Daqui pra baixo, TUDO devolve JSON.
+  let registro: { id: string }
+  try {
+    registro = await db.extratoImport.create({ data: { userId, status: "processando" } })
+  } catch (e) {
+    console.error("[extrato] falha ao abrir o registro de import:", (e as Error)?.message)
+    return NextResponse.json(
+      {
+        codigo: "BANCO_INDISPONIVEL",
+        erro: "Não consegui nem começar a leitura porque o banco de dados não respondeu. Tenta de novo em alguns segundos.",
+        motivo: (e as Error)?.message?.slice(0, 200),
+      },
+      { status: 503 }
+    )
+  }
 
   try {
     const entrada = await extrairTexto(buffer)
