@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto"
 import { db } from "@/lib/db"
 import { cifrar, cifrarNumero, decifrar, decifrarNumero } from "@/lib/cripto"
 
@@ -145,26 +146,30 @@ export async function criarTransacoesDeExtrato(
 ): Promise<TransacaoClara[]> {
   if (itens.length === 0) return []
 
-  // createMany não devolve as linhas criadas, e o front precisa dos ids para
-  // deixar a pessoa desmarcar cada uma. Uma transação garante tudo-ou-nada.
-  const criadas = await db.$transaction(
-    itens.map((i) =>
-      db.transacao.create({
-        data: {
-          userId,
-          descricao: cifrar(i.descricao, userId, "descricao"),
-          valor: cifrarNumero(i.valor, userId, "valor"),
-          tipo: i.tipo,
-          categoriaId: i.categoriaId,
-          data: i.data,
-          confirmado: false,
-          origem: "extrato",
-          extratoImportId,
-        },
-      })
-    )
-  )
-  return (criadas as LinhaTransacao[]).map(abrirTransacao)
+  // Antes eram N `create` dentro de uma transação — uma ida ao banco POR LINHA.
+  // Num extrato real de 142 lançamentos isso custava ~20s sobre o pooler, mais
+  // do que metade do tempo total da requisição, e sozinho ameaçava estourar o
+  // limite de duração da função.
+  //
+  // O motivo de não usar createMany era que ele não devolve as linhas criadas,
+  // e a tela de confirmação precisa dos ids. Resolvido gerando os ids aqui: o
+  // id deixa de ser algo que o banco informa e passa a ser algo que já sabemos.
+  const linhas = itens.map((i) => ({
+    id: randomUUID(),
+    userId,
+    descricao: cifrar(i.descricao, userId, "descricao"),
+    valor: cifrarNumero(i.valor, userId, "valor"),
+    tipo: i.tipo,
+    categoriaId: i.categoriaId,
+    data: i.data,
+    confirmado: false,
+    origem: "extrato",
+    extratoImportId,
+    criadoEm: new Date(),
+  }))
+
+  await db.transacao.createMany({ data: linhas })
+  return linhas.map((l) => abrirTransacao(l as LinhaTransacao))
 }
 
 /** Confirma as aceitas e apaga as recusadas, numa transação só. */
