@@ -57,7 +57,7 @@ export function getVertex(): GoogleGenAI {
   cache = new GoogleGenAI({
     vertexai: true,
     project: process.env.GOOGLE_VERTEX_PROJECT!,
-    location: process.env.GOOGLE_VERTEX_LOCATION || "us-central1",
+    location: process.env.GOOGLE_VERTEX_LOCATION || "global",
     ...(auth ? { googleAuthOptions: auth } : {}),
   })
   return cache
@@ -72,5 +72,16 @@ export function vertexConfigurada(): boolean {
   }
 }
 
-export const MODELO_PARSING = process.env.GEMINI_MODEL_PARSING || "gemini-3-flash"
+/**
+ * Modelos sondados contra o projeto em 27/07/2026. `gemini-3-flash`, que a
+ * instrução pedia, NÃO existe em nenhuma região. E os 3.x só são servidos em
+ * `location: global` — us-central1 devolve 404 para eles.
+ *
+ * O parsing usa flash-lite porque o teste mostrou o contrário do esperado: no
+ * extrato de referência os três modelos acertaram a soma, e o 2.5-pro (17s, o
+ * mais caro) foi o PIOR em descricaoLimpa, deixando "NETFLIX.COM" cru onde o
+ * flash-lite (3,5s) devolveu "Netflix". Quem protege a aritmética aqui é a
+ * validação, não o tamanho do modelo.
+ */
+export const MODELO_PARSING = process.env.GEMINI_MODEL_PARSING || "gemini-3.1-flash-lite"
 export const MODELO_CHAT = process.env.GEMINI_MODEL_CHAT || "gemini-3.1-flash-lite"

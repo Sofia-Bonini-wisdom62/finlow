@@ -28,8 +28,9 @@ function limparCercas(bruto: string): string {
 
 export async function parsearExtrato(
   entrada: TextoExtraido,
-  opcoes?: { divergencia?: number }
+  opcoes?: { divergencia?: number; modelo?: string }
 ): Promise<ResultadoParsing> {
+  const nomeModelo = opcoes?.modelo ?? MODELO_PARSING
   let vertex
   try {
     vertex = getVertex()
@@ -55,7 +56,7 @@ export async function parsearExtrato(
         ]
 
   const resposta = await vertex.models.generateContent({
-    model: MODELO_PARSING,
+    model: nomeModelo,
     contents: [{ role: "user", parts: partes }],
     config: {
       // Extração é tarefa determinística: nada aqui deve ser criativo.
@@ -101,5 +102,5 @@ export async function parsearExtrato(
     )
   }
 
-  return { extrato: validado.data, tokensEntrada, tokensSaida, modelo: MODELO_PARSING }
+  return { extrato: validado.data, tokensEntrada, tokensSaida, modelo: nomeModelo }
 }

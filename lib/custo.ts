@@ -9,8 +9,13 @@
 // Preços por 1M de tokens, em USD — verificados em 26/07/2026.
 // REVISAR em toda troca de modelo.
 export const PRECOS = {
-  "gemini-3-flash": { in: 0.5, out: 3.0 },
+  // gemini-3-flash saiu da tabela: sondagem em 27/07/2026 mostrou que o modelo
+  // não existe no projeto. Manter um preço para modelo inexistente só produziria
+  // estimativa de algo que nunca é chamado.
   "gemini-3.1-flash-lite": { in: 0.25, out: 1.5 },
+  // 2.5-flash e 2.5-pro existem e podem ser usados via env, mas não temos preço
+  // atribuível verificado — caem no caminho precoConhecido: false, que reporta
+  // custo desconhecido em vez de chutar um número.
 } as const
 
 export type ModeloComPreco = keyof typeof PRECOS
