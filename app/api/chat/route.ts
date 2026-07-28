@@ -65,8 +65,14 @@ export async function POST(req: NextRequest) {
         { status: 503 }
       )
     }
-    console.error("[chat]", e)
-    return NextResponse.json({ error: "Erro ao responder" }, { status: 500 })
+    // Falha do provedor é TEMPORÁRIA e merece "tenta de novo" — diferente de
+    // "não está ligado", que é definitivo. Misturar os dois faria a UI mostrar
+    // um aviso permanente para um timeout de 3 segundos.
+    console.error("[chat]", (e as Error)?.message)
+    return NextResponse.json(
+      { error: "falha_temporaria", mensagem: "Não consegui responder agora. Tenta de novo em alguns segundos." },
+      { status: 502 }
+    )
   }
 }
 

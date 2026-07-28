@@ -1,10 +1,10 @@
 // ============================================================================
 // COSTURA DA IA — ponto único de integração com o provedor de LLM.
 //
-// Nada de LLM está implementado aqui de propósito: a escolha do provedor é
-// externa a este código. Para ligar a IA, implemente APENAS `responderIA()`.
-// Todo o resto do Chat (UI, histórico, montagem do contexto financeiro,
-// renderização de cards) já está pronto e não precisa ser tocado.
+// LIGADA em 28/07/2026: `responderIA()` fala com a Vertex AI (Gemini), o mesmo
+// backend do parsing de extrato. Trocar de provedor continua sendo mexer só
+// nesta função — o resto do Chat (UI, histórico, contexto financeiro,
+// renderização de cards) não conhece o provedor.
 //
 // O que você recebe:
 //   - `mensagens`: histórico da conversa (o último item é a pergunta atual)
@@ -79,18 +79,125 @@ export class IANaoConfigurada extends Error {
   }
 }
 
+/** Cerca de markdown em volta do JSON — defesa extra além do responseMimeType. */
+function limparCercas(bruto: string): string {
+  const t = bruto.trim()
+  const cerca = t.match(/^```(?:json)?\s*\n?([\s\S]*?)\n?```$/)
+  if (cerca) return cerca[1].trim()
+  const i = t.indexOf("{")
+  const f = t.lastIndexOf("}")
+  if (i > 0 && f > i) return t.slice(i, f + 1)
+  return t
+}
+
+/** Aceita só os cards que batem com o contrato — modelo às vezes inventa forma. */
+function cardsValidos(bruto: unknown): CardIA[] {
+  if (!Array.isArray(bruto)) return []
+  const ok: CardIA[] = []
+  for (const c of bruto.slice(0, 2)) {
+    if (!c || typeof c !== "object") continue
+    const x = c as Record<string, unknown>
+    const titulo = typeof x.titulo === "string" ? x.titulo : null
+    if (!titulo) continue
+
+    if (x.tipo === "resumo" && Array.isArray(x.itens)) {
+      const itens = x.itens
+        .filter((i): i is { rotulo: string; valor: string } =>
+          !!i && typeof (i as never as { rotulo: unknown }).rotulo === "string" &&
+          typeof (i as never as { valor: unknown }).valor === "string")
+        .slice(0, 6)
+      if (itens.length) ok.push({ tipo: "resumo", titulo, itens })
+    } else if (x.tipo === "grafico" && Array.isArray(x.barras)) {
+      const barras = x.barras
+        .filter((b): b is { rotulo: string; valor: number } =>
+          !!b && typeof (b as never as { rotulo: unknown }).rotulo === "string" &&
+          Number.isFinite((b as never as { valor: unknown }).valor as number))
+        .slice(0, 8)
+      if (barras.length) ok.push({ tipo: "grafico", titulo, barras })
+    } else if (x.tipo === "recomendacao" && typeof x.texto === "string") {
+      ok.push({
+        tipo: "recomendacao", titulo, texto: x.texto,
+        ...(typeof x.moduloSlug === "string" && x.moduloSlug ? { moduloSlug: x.moduloSlug } : {}),
+      })
+    } else if (x.tipo === "lembrete" && typeof x.texto === "string") {
+      ok.push({
+        tipo: "lembrete", titulo, texto: x.texto,
+        ...(typeof x.quando === "string" && x.quando ? { quando: x.quando } : {}),
+      })
+    }
+  }
+  return ok
+}
+
 /**
- * Único ponto a implementar. Chame seu provedor de LLM aqui, passando
- * `contexto` no prompt de sistema e `mensagens` como histórico.
+ * Implementação: Vertex AI (Gemini), o mesmo backend do parsing de extrato.
  *
- * Sugestão de prompt de sistema (o tom já está alinhado com a marca):
- *   "Você é o assistente financeiro do Finlow. Responda em português, direto e
- *    calmo, sem jargão e sem julgar. Baseie-se SOMENTE nos números do contexto
- *    abaixo — se não tiver o dado, diga que não tem em vez de estimar."
+ * Duas decisões que valem registro:
+ *  - O contexto financeiro vai no PROMPT DE SISTEMA, não como mensagem do
+ *    usuário. Assim ele não se perde no histórico longo e a pessoa não
+ *    consegue reescrevê-lo pedindo "esqueça os números acima".
+ *  - Falha do provedor NÃO vira IANaoConfigurada. Esse erro significa "não
+ *    está ligado" e a UI mostra um aviso definitivo; um timeout da Vertex é
+ *    temporário e merece "tenta de novo".
  */
 export async function responderIA(
-  _mensagens: MensagemChat[],
-  _contexto: ContextoFinanceiro
+  mensagens: MensagemChat[],
+  contexto: ContextoFinanceiro
 ): Promise<RespostaIA> {
-  throw new IANaoConfigurada()
+  const { getVertex, MODELO_CHAT, VertexNaoConfigurada } = await import("@/lib/vertex")
+  const { promptSistemaChat } = await import("@/lib/prompts/chat")
+
+  let vertex
+  try {
+    vertex = getVertex()
+  } catch (e) {
+    if (e instanceof VertexNaoConfigurada) throw new IANaoConfigurada()
+    throw e
+  }
+
+  // Histórico recente. Conversa longa não melhora a resposta e multiplica o
+  // custo por token a cada turno.
+  const recentes = mensagens.slice(-12)
+
+  const contents = recentes.map((m) => ({
+    role: m.papel === "usuario" ? ("user" as const) : ("model" as const),
+    parts: [
+      ...(m.texto ? [{ text: m.texto }] : []),
+      ...(m.anexos ?? []).map((a) => ({
+        inlineData: { mimeType: a.tipo, data: a.base64 },
+      })),
+    ],
+  })).filter((c) => c.parts.length > 0)
+
+  if (contents.length === 0) return { texto: "Não recebi sua pergunta. Escreve de novo?" }
+
+  const resposta = await vertex.models.generateContent({
+    model: MODELO_CHAT,
+    contents,
+    config: {
+      systemInstruction: promptSistemaChat(contexto),
+      // Baixa, não zero: resposta a pergunta aberta com temperatura 0 fica
+      // robótica e repetitiva. O que protege os números é o prompt, não isto.
+      temperature: 0.3,
+      responseMimeType: "application/json",
+      maxOutputTokens: 2048,
+    },
+  })
+
+  const bruto = (resposta.text ?? "").trim()
+  if (!bruto) {
+    throw new Error(`resposta vazia do modelo (finishReason=${resposta.candidates?.[0]?.finishReason})`)
+  }
+
+  try {
+    const j = JSON.parse(limparCercas(bruto)) as { texto?: unknown; cards?: unknown }
+    const texto = typeof j.texto === "string" && j.texto.trim() ? j.texto.trim() : null
+    if (!texto) throw new Error("sem campo texto")
+    return { texto, cards: cardsValidos(j.cards) }
+  } catch {
+    // JSON quebrado não é motivo para engolir a resposta: o texto costuma estar
+    // lá e é o que interessa. Devolve sem cards em vez de falhar a conversa.
+    const semJson = bruto.replace(/^\s*\{[\s\S]*?"texto"\s*:\s*"/, "").replace(/"[\s\S]*\}\s*$/, "")
+    return { texto: (semJson || bruto).slice(0, 4000) }
+  }
 }
