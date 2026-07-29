@@ -1,0 +1,6 @@
+# O worker do pdfjs é vendor minificado de ~1,2 MB, servido como asset
+# estático de public/. Sem isto o git normaliza quebra de linha: o arquivo
+# sai com CRLF no Windows e LF no Linux, deixa de ser byte-a-byte igual ao
+# que está em node_modules, e o scripts/copiar-worker-pdfjs.mjs passa a
+# recopiá-lo em todo install — git status sujo pra sempre.
+public/pdf.worker.min.mjs binary
