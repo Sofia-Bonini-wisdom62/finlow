@@ -96,7 +96,16 @@ export default function ExtratoPage() {
 
       const d = await res.json()
       if (!res.ok) {
-        setFalha({ codigo: d.codigo ?? "ERRO", erro: d.erro ?? "Não consegui processar esse extrato.", motivo: d.motivo })
+        // Os helpers compartilhados (getUserIdOr401, checarConsentimento) usam a
+        // chave `error`; esta rota usa `erro`. Lendo só uma delas, um 401 ou 403
+        // chegava como JSON válido e a tela caía no texto genérico — foi o
+        // "Não consegui processar esse extrato." sem motivo nenhum.
+        const mensagem = d.erro ?? d.error ?? d.mensagem
+        setFalha({
+          codigo: d.codigo ?? (res.status === 401 ? "SEM_SESSAO" : res.status === 403 ? "PAINEL_INATIVO" : `HTTP_${res.status}`),
+          erro: mensagem ?? "Não consegui processar esse extrato.",
+          motivo: d.motivo,
+        })
         return
       }
       setResultado(d)
@@ -137,7 +146,7 @@ export default function ExtratoPage() {
       })
       if (!res.ok) {
         const d = await res.json().catch(() => ({}))
-        setFalha({ codigo: "CONFIRMAR", erro: d.erro ?? "Não deu pra confirmar agora. Tenta de novo." })
+        setFalha({ codigo: "CONFIRMAR", erro: d.erro ?? d.error ?? "Não deu pra confirmar agora. Tenta de novo." })
         return
       }
       router.push("/analises")
@@ -176,13 +185,25 @@ export default function ExtratoPage() {
                 Você também pode lançar na mão — leva alguns minutos, mas funciona sempre.
               </p>
             )}
+            {/* Erro de sessão ou de consentimento tem conserto de um clique —
+                mandar a pessoa "tentar outro arquivo" seria um beco sem saída. */}
             <div className="mt-4 flex flex-col gap-2">
-              <button
-                onClick={() => { setFalha(null); setResultado(null) }}
-                className="rounded-xl bg-fl-500 py-3 text-sm font-semibold text-primary-foreground"
-              >
-                Tentar outro arquivo
-              </button>
+              {falha.codigo === "SEM_SESSAO" ? (
+                <Link href="/login" className="rounded-xl bg-fl-500 py-3 text-center text-sm font-semibold text-primary-foreground">
+                  Entrar de novo
+                </Link>
+              ) : falha.codigo === "PAINEL_INATIVO" ? (
+                <Link href="/painel" className="rounded-xl bg-fl-500 py-3 text-center text-sm font-semibold text-primary-foreground">
+                  Ativar meu Painel
+                </Link>
+              ) : (
+                <button
+                  onClick={() => { setFalha(null); setResultado(null) }}
+                  className="rounded-xl bg-fl-500 py-3 text-sm font-semibold text-primary-foreground"
+                >
+                  Tentar outro arquivo
+                </button>
+              )}
               <Link href="/painel" className="rounded-xl border border-fl-border py-3 text-center text-sm font-semibold text-fl-ink-2">
                 Lançar na mão
               </Link>
