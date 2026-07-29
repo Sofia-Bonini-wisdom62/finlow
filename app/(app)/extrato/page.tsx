@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import { Upload, FileText, AlertTriangle, Check, Repeat, ArrowLeft, Loader2 } from "lucide-react"
 import { BottomNav } from "@/components/bottom-nav"
 import { brl } from "@/lib/formato"
+import { lerArquivo, ErroLeitura } from "@/lib/extrato/ler-no-navegador"
 
 const LIMITE_MB = 10
 
@@ -57,10 +58,6 @@ export default function ExtratoPage() {
 
   async function enviar(arquivo: File) {
     setFalha(null)
-    if (!/\.pdf$/i.test(arquivo.name)) {
-      setFalha({ codigo: "FORMATO_INVALIDO", erro: "Só consigo ler PDF por enquanto. Exporta o extrato em PDF pelo app do banco." })
-      return
-    }
     if (arquivo.size > LIMITE_MB * 1024 * 1024) {
       setFalha({ codigo: "ARQUIVO_GRANDE", erro: `Esse arquivo passa de ${LIMITE_MB} MB. Tenta exportar de novo pelo app do banco — o PDF do extrato costuma ser bem menor.` })
       return
@@ -75,9 +72,16 @@ export default function ExtratoPage() {
     const limite = setTimeout(() => ctrl.abort(), 180_000)
 
     try {
-      const form = new FormData()
-      form.append("arquivo", arquivo)
-      const res = await fetch("/api/extrato", { method: "POST", body: form, signal: ctrl.signal })
+      // A leitura acontece AQUI, no navegador. O arquivo não é enviado —
+      // o servidor recebe só o texto (ou as páginas em imagem, se for
+      // digitalizado). Ver lib/extrato/ler-no-navegador.ts para o porquê.
+      const lido = await lerArquivo(arquivo)
+      const res = await fetch("/api/extrato", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(lido),
+        signal: ctrl.signal,
+      })
 
       // Resposta que não é JSON quase sempre é a plataforma cortando o caminho:
       // página de timeout do gateway, 413 de tamanho, HTML de erro.
@@ -113,6 +117,12 @@ export default function ExtratoPage() {
       setAceitos(new Set(d.transacoes.map((t: TransacaoLida) => t.id)))
     } catch (e) {
       const segundos = Math.round((Date.now() - inicio) / 1000)
+      // Erro de leitura local (PDF com senha, formato não suportado) tem
+      // mensagem própria e não é falha de rede.
+      if (e instanceof ErroLeitura) {
+        setFalha({ codigo: e.codigo, erro: e.mensagemUsuario })
+        return
+      }
       const abortado = e instanceof DOMException && e.name === "AbortError"
       setFalha(
         abortado
@@ -376,15 +386,15 @@ export default function ExtratoPage() {
         <header className="mt-4">
           <h1 className="text-[26px] font-extrabold tracking-tight text-fl-ink">Subir extrato</h1>
           <p className="mt-1 text-sm leading-relaxed text-fl-ink-2">
-            Manda o PDF do extrato ou da fatura. Eu leio, organizo por categoria e te mostro tudo
-            antes de qualquer coisa entrar.
+            Manda o extrato ou a fatura em PDF, CSV ou OFX. Eu leio, organizo por categoria e te
+            mostro tudo antes de qualquer coisa entrar.
           </p>
         </header>
 
         <input
           ref={inputRef}
           type="file"
-          accept="application/pdf,.pdf"
+          accept="application/pdf,.pdf,.csv,.ofx,.txt"
           className="hidden"
           onChange={(e) => { const f = e.target.files?.[0]; if (f) enviar(f) }}
         />
@@ -408,7 +418,7 @@ export default function ExtratoPage() {
                 <Upload className="size-5 text-fl-500" />
               </div>
               <span className="text-[15px] font-bold text-fl-ink">Escolher arquivo</span>
-              <span className="text-[12.5px] text-fl-ink-3">PDF, até {LIMITE_MB} MB</span>
+              <span className="text-[12.5px] text-fl-ink-3">PDF, CSV ou OFX — até {LIMITE_MB} MB</span>
             </>
           )}
         </button>
@@ -418,7 +428,7 @@ export default function ExtratoPage() {
             <FileText className="size-4 text-fl-500" /> O que acontece com o arquivo
           </h2>
           <ul className="mt-2.5 flex flex-col gap-1.5 text-[13px] leading-relaxed text-fl-ink-2">
-            <li>• O PDF não é salvo em lugar nenhum — é lido na memória e descartado.</li>
+            <li>• O arquivo <strong className="font-semibold">não sai do seu computador</strong> — a leitura acontece aqui, e só o texto vai para o servidor.</li>
             <li>• Nome de pessoa, CPF e chave Pix são removidos das descrições.</li>
             <li>• Nada entra nas suas Análises sem você confirmar linha a linha.</li>
           </ul>

@@ -49,3 +49,14 @@ export class ErroExtrato extends Error {
     this.name = "ErroExtrato"
   }
 }
+
+/**
+ * Conteúdo do arquivo JÁ LIDO — o que trafega do navegador para a rota.
+ *
+ * A leitura acontece no cliente (lib/extrato/ler-no-navegador.ts). O servidor
+ * nunca recebe o arquivo bruto: chega texto, ou páginas em imagem quando o PDF
+ * é digitalizado.
+ */
+export type ConteudoExtrato =
+  | { modo: "texto"; texto: string; paginas: number }
+  | { modo: "imagem"; imagens: { base64: string; mime: string }[]; paginas: number }

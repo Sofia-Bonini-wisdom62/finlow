@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Assets estáticos: o worker do pdfjs é vendor minificado e sozinho gera
+    // ~1600 avisos, que afogam qualquer problema real do nosso código.
+    "public/**",
   ]),
 ]);
 

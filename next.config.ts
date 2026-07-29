@@ -2,36 +2,26 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /**
-   * pdf-parse carrega o pdfjs-dist, que precisa de um arquivo de worker em
-   * disco. Empacotado pelo Turbopack, o worker vira um chunk com outro nome e
-   * o pdfjs não acha o caminho — a rota do extrato falhava com
-   * "Setting up fake worker failed: Cannot find module .../pdf.worker.mjs".
+   * NÃO traga a leitura de PDF de volta para o servidor.
    *
-   * Marcar como externo faz o Next carregar os dois de node_modules em tempo
-   * de execução, com a árvore de arquivos intacta. Vale só para código de
-   * servidor, que é onde a leitura do PDF acontece.
+   * Ela morava aqui e quebrou produção três vezes seguidas, sempre pelo mesmo
+   * motivo de fundo: o pdfjs precisa de um arquivo de worker em disco, e
+   * nenhuma forma de fazê-lo sobreviver ao empacotamento funcionou —
+   *   - `require.resolve` com variável: o bundler não resolve estaticamente,
+   *     build quebrado com "Module not found";
+   *   - `outputFileTracingIncludes` com glob para node_modules: atravessou os
+   *     symlinks do pnpm e derrubou o deploy com
+   *     "ENOTDIR: not a directory, mkdir '.../.pnpm/node_modules/pdfjs-dist'";
+   *   - sem nada disso: o módulo não carregava na função e a rota morria com
+   *     500 sem corpo, antes de qualquer try/catch conseguir explicar.
    *
-   * Isso NÃO aparece em teste unitário: rodando o mesmo PDF direto no Node o
-   * caminho do worker resolve normalmente. Só quebra atravessando a rota.
-   */
-  serverExternalPackages: ["pdf-parse", "pdfjs-dist"],
-
-  /**
-   * NÃO reintroduza outputFileTracingIncludes apontando para dentro de
-   * node_modules aqui.
+   * Hoje a leitura acontece no navegador (lib/extrato/ler-no-navegador.ts),
+   * onde o worker é um asset estático de public/ e não passa por empacotador.
+   * De brinde, o arquivo do extrato nunca sai do computador da pessoa.
    *
-   * Havia um bloco assim, com globs para o worker do pdfjs. Ele derrubava o
-   * build na Vercel com:
-   *   ENOTDIR: not a directory, mkdir '.../node_modules/.pnpm/node_modules/pdfjs-dist'
-   *
-   * Motivo: na árvore do pnpm, `.pnpm/node_modules/<pacote>` é um SYMLINK, não
-   * uma pasta. O glob atravessava essa árvore e o empacotador da Vercel tentava
-   * criar diretório em cima do symlink ao montar a função.
-   *
-   * Era belt-and-braces: serverExternalPackages sozinho já basta para o pdfjs
-   * carregar o worker. Se algum dia o worker faltar de fato na função, o
-   * sintoma agora é um JSON com codigo e motivo (a rota inteira está
-   * protegida), não um 500 mudo — dá para diagnosticar antes de mexer aqui.
+   * Ou seja: nada de pdf-parse/pdfjs em serverExternalPackages. Se a leitura
+   * um dia precisar voltar para o servidor, resolva o worker primeiro — não
+   * depois.
    */
 };
 

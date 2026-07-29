@@ -2,12 +2,14 @@ import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { getUserIdOr401, checarConsentimento } from "@/lib/painel"
 import { criarTransacoesDeExtrato } from "@/lib/financeiro-repo"
-import { extrairTexto, LIMITE_BYTES } from "@/lib/extrato/extrair-texto"
 import { parsearExtrato } from "@/lib/extrato/parsear"
 import { validarExtrato, limitarA3Meses } from "@/lib/extrato/validar"
 import { mapearCategorias, nomeDaCategoria } from "@/lib/extrato/categorias"
-import { ErroExtrato, type ExtratoParseado } from "@/types/extrato"
+import { ErroExtrato, type ExtratoParseado, type ConteudoExtrato } from "@/types/extrato"
 import { estimarCustoBRL } from "@/lib/custo"
+
+/** ~1 MB de texto cobre extrato de 3 meses com folga. */
+const LIMITE_TEXTO = 1_000_000
 
 export const dynamic = "force-dynamic"
 // O parsing de um extrato de 3 meses pode passar de 60s no modelo.
@@ -82,23 +84,39 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  // ---- arquivo, em memória ----
-  let buffer: Buffer
+  // ---- conteúdo já extraído no navegador ----
+  // O servidor NÃO recebe mais o arquivo. A leitura acontece no cliente
+  // (lib/extrato/ler-no-navegador.ts) e aqui chega só texto ou imagens de
+  // página. Isso tirou o pdfjs da função serverless — origem de três quebras
+  // seguidas de deploy — e faz o arquivo bruto nunca sair do computador
+  // da pessoa, que é mais forte do que a promessa da tela.
+  let entrada: ConteudoExtrato
   try {
-    const form = await req.formData()
-    const arquivo = form.get("arquivo")
-    if (!(arquivo instanceof File)) {
-      return NextResponse.json({ codigo: "FORMATO_INVALIDO", erro: "Envie o PDF no campo 'arquivo'." }, { status: 400 })
-    }
-    if (arquivo.size > LIMITE_BYTES) {
+    const corpo = await req.json()
+    if (corpo?.modo === "texto" && typeof corpo.texto === "string" && corpo.texto.trim().length >= 20) {
+      if (corpo.texto.length > LIMITE_TEXTO) {
+        return NextResponse.json(
+          { codigo: "ARQUIVO_GRANDE", erro: "Esse extrato é longo demais. Tenta exportar um período menor pelo app do banco." },
+          { status: 413 }
+        )
+      }
+      entrada = { modo: "texto", texto: corpo.texto, paginas: Number(corpo.paginas) || 1 }
+    } else if (corpo?.modo === "imagem" && Array.isArray(corpo.imagens) && corpo.imagens.length) {
+      entrada = {
+        modo: "imagem",
+        paginas: Number(corpo.paginas) || corpo.imagens.length,
+        imagens: corpo.imagens.slice(0, 10).filter(
+          (i: unknown) => !!i && typeof (i as { base64?: unknown }).base64 === "string"
+        ),
+      }
+    } else {
       return NextResponse.json(
-        { codigo: "ARQUIVO_GRANDE", erro: "Esse arquivo passa de 10 MB. Tenta exportar de novo pelo app do banco." },
-        { status: 413 }
+        { codigo: "FORMATO_INVALIDO", erro: "Não recebi conteúdo legível do arquivo." },
+        { status: 400 }
       )
     }
-    buffer = Buffer.from(await arquivo.arrayBuffer())
   } catch {
-    return NextResponse.json({ codigo: "FORMATO_INVALIDO", erro: "Não consegui ler o upload." }, { status: 400 })
+    return NextResponse.json({ codigo: "FORMATO_INVALIDO", erro: "Não consegui ler o envio." }, { status: 400 })
   }
 
   // Duração é o que diferencia "falhou" de "a plataforma me matou no meio".
@@ -124,10 +142,9 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const entrada = await extrairTexto(buffer)
     console.log(
-      `[extrato] ${registro.id} extração=${((Date.now() - t0) / 1000).toFixed(1)}s modo=${entrada.modo} ` +
-      `paginas=${entrada.paginas} arquivo=${(buffer.byteLength / 1024).toFixed(0)}KB`
+      `[extrato] ${registro.id} recebido modo=${entrada.modo} paginas=${entrada.paginas} ` +
+      `tamanho=${(entrada.modo === "texto" ? entrada.texto.length : entrada.imagens.length)}`
     )
 
     // 1ª tentativa

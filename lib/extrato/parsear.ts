@@ -1,7 +1,6 @@
 import { getVertex, MODELO_PARSING, VertexNaoConfigurada } from "@/lib/vertex"
 import { promptParsingExtrato } from "@/lib/prompts/parsing-extrato"
-import { ExtratoParseado, ErroExtrato } from "@/types/extrato"
-import type { TextoExtraido } from "./extrair-texto"
+import { ExtratoParseado, ErroExtrato, type ConteudoExtrato } from "@/types/extrato"
 
 export interface ResultadoParsing {
   extrato: ExtratoParseado
@@ -27,7 +26,7 @@ function limparCercas(bruto: string): string {
 }
 
 export async function parsearExtrato(
-  entrada: TextoExtraido,
+  entrada: ConteudoExtrato,
   opcoes?: { divergencia?: number; modelo?: string }
 ): Promise<ResultadoParsing> {
   const nomeModelo = opcoes?.modelo ?? MODELO_PARSING
