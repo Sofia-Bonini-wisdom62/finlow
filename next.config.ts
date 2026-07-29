@@ -17,18 +17,22 @@ const nextConfig: NextConfig = {
   serverExternalPackages: ["pdf-parse", "pdfjs-dist"],
 
   /**
-   * serverExternalPackages resolve o empacotamento, mas não garante que o
-   * arquivo do worker entre na função serverless: ele é carregado por caminho
-   * construído em runtime, e o rastreador de dependências não enxerga isso.
-   * Sem estas entradas o deploy sobe sem o worker e a rota morre com 500 sem
-   * corpo — que foi o sintoma em produção.
+   * NÃO reintroduza outputFileTracingIncludes apontando para dentro de
+   * node_modules aqui.
+   *
+   * Havia um bloco assim, com globs para o worker do pdfjs. Ele derrubava o
+   * build na Vercel com:
+   *   ENOTDIR: not a directory, mkdir '.../node_modules/.pnpm/node_modules/pdfjs-dist'
+   *
+   * Motivo: na árvore do pnpm, `.pnpm/node_modules/<pacote>` é um SYMLINK, não
+   * uma pasta. O glob atravessava essa árvore e o empacotador da Vercel tentava
+   * criar diretório em cima do symlink ao montar a função.
+   *
+   * Era belt-and-braces: serverExternalPackages sozinho já basta para o pdfjs
+   * carregar o worker. Se algum dia o worker faltar de fato na função, o
+   * sintoma agora é um JSON com codigo e motivo (a rota inteira está
+   * protegida), não um 500 mudo — dá para diagnosticar antes de mexer aqui.
    */
-  outputFileTracingIncludes: {
-    "/api/extrato": [
-      "./node_modules/.pnpm/pdfjs-dist@*/node_modules/pdfjs-dist/legacy/build/**",
-      "./node_modules/pdfjs-dist/legacy/build/**",
-    ],
-  },
 };
 
 export default nextConfig;
