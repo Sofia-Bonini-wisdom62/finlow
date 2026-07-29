@@ -1,5 +1,35 @@
-import { PDFParse } from "pdf-parse"
+import type { PDFParse as TipoPDFParse } from "pdf-parse"
 import { ErroExtrato } from "@/types/extrato"
+
+/**
+ * O pdf-parse é carregado SOB DEMANDA, não no topo do módulo.
+ *
+ * Com `import { PDFParse } from "pdf-parse"` estático, uma falha ao carregar a
+ * lib derruba o módulo inteiro da rota — e aí o try/catch de dentro do handler
+ * nunca chega a rodar. O resultado é um 500 do framework, com HTML e sem
+ * mensagem: exatamente o "HTTP 500 após 1s, resposta não-JSON" que apareceu em
+ * produção e sobreviveu a todas as proteções que eu tinha colocado DENTRO da
+ * rota.
+ *
+ * Carregando aqui, uma falha de carga vira um ErroExtrato normal, com código e
+ * motivo — diagnosticável.
+ */
+let PDFParse: typeof TipoPDFParse | null = null
+
+async function carregarPdfParse(): Promise<typeof TipoPDFParse> {
+  if (PDFParse) return PDFParse
+  try {
+    const mod = await import("pdf-parse")
+    PDFParse = mod.PDFParse
+    return PDFParse
+  } catch (e) {
+    throw new ErroExtrato(
+      "PDF_ILEGIVEL",
+      "A leitura de PDF não está disponível neste ambiente. Você pode lançar na mão enquanto isso.",
+      `falha ao carregar pdf-parse: ${(e as Error)?.message?.slice(0, 200)}`
+    )
+  }
+}
 
 /**
  * Texto do PDF, sempre a partir do Buffer que veio no request.
@@ -31,9 +61,11 @@ export async function extrairTexto(buffer: Buffer): Promise<TextoExtraido> {
     )
   }
 
-  let parser: PDFParse | null = null
+  const PDF = await carregarPdfParse()
+
+  let parser: InstanceType<typeof TipoPDFParse> | null = null
   try {
-    parser = new PDFParse({ data: new Uint8Array(buffer) })
+    parser = new PDF({ data: new Uint8Array(buffer) })
 
     let resultado
     try {
