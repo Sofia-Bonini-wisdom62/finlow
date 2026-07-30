@@ -60,15 +60,27 @@ export default function OnboardingPage() {
 
   useEffect(() => { fim.current?.scrollIntoView({ behavior: "smooth" }) }, [mensagens, enviando])
 
+  /**
+   * A abertura é FIXA, escrita por nós, e não vem do modelo.
+   *
+   * Dois motivos. O técnico: com histórico vazio a costura da IA responde
+   * "Não recebi sua pergunta" — não existe turno zero. O de produto, que pesa
+   * mais: esta é a primeira frase que a pessoa lê dentro do app, e ela não pode
+   * mudar a cada execução nem depender de o modelo estar bem-humorado.
+   */
   async function comecar() {
     setFase("conversa")
-    setEnviando(true)
     await fetch("/api/onboarding", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ memoria: true, painel: true }),
     }).catch(() => {})
-    await turno([])
+    setMensagens([{
+      papel: "ia",
+      texto:
+        "O Finlow serve pra você saber para onde o seu dinheiro vai, sem planilha e sem culpa. " +
+        "Pra começar bem: o que te fez procurar isso agora?",
+    }])
   }
 
   async function turno(historico: Mensagem[]) {
