@@ -224,6 +224,7 @@ export async function POST(req: NextRequest) {
       banco: extrato.banco,
       periodo: { inicio: extrato.periodoInicio, fim: extrato.periodoFim },
       validacaoForte: veredito.forte,
+      comoConferi: veredito.comoConferi ?? null,
       cortadoPara3Meses: cortou,
       resumo: resumir(extrato),
       // id do banco casado com a linha lida, para a tela permitir desmarcar

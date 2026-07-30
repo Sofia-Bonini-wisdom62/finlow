@@ -16,8 +16,27 @@ export const TransacaoExtraida = z.object({
   categoria: z.enum(CATEGORIAS_EXTRATO),
   /** Heurística do modelo: parece cobrança recorrente? */
   recorrente: z.boolean(),
+  /**
+   * Se esta linha mexe no SALDO DA CONTA.
+   *
+   * Compra no crédito aparece no extrato mas não debita a conta — ela cai na
+   * fatura do cartão. Confirmado no extrato real: em 10/06 o saldo vai de
+   * R$534,11 para R$524,11 (−R$10,00 de Pix) mesmo havendo uma compra de
+   * R$28,58 "Com cartão" listada no mesmo dia.
+   *
+   * A transação continua sendo gasto de verdade e entra nas Análises. Isto
+   * serve só para a conferência por saldo diário não reprovar leitura correta.
+   */
+  afetaSaldo: z.boolean().default(true),
 })
 export type TransacaoExtraida = z.infer<typeof TransacaoExtraida>
+
+/** Saldo de fechamento de um dia, como declarado no documento. */
+export const SaldoDiario = z.object({
+  data: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  saldo: z.number().finite(),
+})
+export type SaldoDiario = z.infer<typeof SaldoDiario>
 
 export const ExtratoParseado = z.object({
   banco: z.string().nullable(),
@@ -25,6 +44,18 @@ export const ExtratoParseado = z.object({
   periodoFim: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   saldoInicial: z.number().finite().nullable(),
   saldoFinal: z.number().finite().nullable(),
+  /**
+   * Todo "Saldo ao final do dia" que o documento declarar.
+   *
+   * É o que permite detectar OMISSÃO. Conferir só o saldo final não serve:
+   * o PicPay não declara saldo inicial, então a validação caía na versão
+   * fraca e 294 linhas sumiram sem ninguém perceber. Com saldo por dia, a
+   * soma de cada intervalo tem que fechar sozinha.
+   *
+   * default([]) e não obrigatório: documento sem saldo diário continua
+   * válido, só não ganha a conferência forte.
+   */
+  saldosDiarios: z.array(SaldoDiario).default([]),
   transacoes: z.array(TransacaoExtraida),
 })
 export type ExtratoParseado = z.infer<typeof ExtratoParseado>

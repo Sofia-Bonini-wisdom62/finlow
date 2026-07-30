@@ -1,6 +1,7 @@
 import { getVertex, MODELO_PARSING, VertexNaoConfigurada } from "@/lib/vertex"
 import { promptParsingExtrato } from "@/lib/prompts/parsing-extrato"
 import { ExtratoParseado, ErroExtrato, type ConteudoExtrato } from "@/types/extrato"
+import { lerSaldosDiarios } from "./saldos-diarios"
 
 export interface ResultadoParsing {
   extrato: ExtratoParseado
@@ -122,5 +123,21 @@ export async function parsearExtrato(
     )
   }
 
-  return { extrato: validado.data, tokensEntrada, tokensSaida, modelo: nomeModelo }
+  /**
+   * Os saldos diários NÃO vêm do modelo — são lidos do texto por regex.
+   *
+   * Duas razões. A prática: pedir transações e saldos na mesma resposta
+   * degradou a extração de 438 linhas para 14 (o modelo devolvia os saldos e
+   * só o primeiro dia de transações). A conceitual, que é a que importa: o
+   * saldo existe para CONFERIR o que o modelo extraiu. Se ele produzisse os
+   * dois, estaria corrigindo a própria prova.
+   */
+  const saldosDiarios = entrada.modo === "texto" ? lerSaldosDiarios(entrada.texto) : []
+
+  return {
+    extrato: { ...validado.data, saldosDiarios },
+    tokensEntrada,
+    tokensSaida,
+    modelo: nomeModelo,
+  }
 }

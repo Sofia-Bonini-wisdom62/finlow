@@ -4,7 +4,7 @@
  * precisa aparecer no diff.
  */
 
-export const VERSAO_PROMPT_PARSING = "2026-07-29.1"
+export const VERSAO_PROMPT_PARSING = "2026-07-30.3"
 
 const CATEGORIAS = [
   "alimentacao", "delivery", "transporte", "moradia", "assinaturas",
@@ -42,7 +42,8 @@ Formato:
       "descricaoLimpa": string,
       "valor": number,
       "categoria": string,
-      "recorrente": boolean
+      "recorrente": boolean,
+      "afetaSaldo": boolean
     }
   ]
 }
@@ -104,6 +105,21 @@ Use exatamente uma de: ${CATEGORIAS}
 RECORRENTE
 true quando a linha tem cara de cobrança que se repete todo mês (assinatura,
 mensalidade, aluguel, plano). Na dúvida, false.
+
+AFETA SALDO
+true quando o dinheiro sai ou entra na CONTA na hora. false quando a compra foi
+no crédito e vai cair na fatura do cartão depois.
+
+Muitos extratos trazem uma coluna de forma de pagamento: "Com saldo" → true,
+"Com cartão" / "no crédito" / "cartão de crédito" → false. Sem essa informação,
+use true.
+
+Isso importa porque o saldo do dia não muda com compra no crédito. Num extrato
+real, o saldo foi de R$534,11 para R$524,11 (um Pix de R$10,00) num dia que
+também tinha uma compra de R$28,58 no cartão. Marcar essa compra como true faria
+a conferência reprovar uma leitura correta.
+
+Numa FATURA de cartão (não extrato de conta), tudo é crédito: use false em todas.
 
 O QUE NÃO FAZER
 - Não invente transação. Linha ilegível: omita. A validação aritmética depois

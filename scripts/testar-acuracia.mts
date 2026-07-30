@@ -240,10 +240,11 @@ console.log(`  (nomes de pessoa no CSV, para referência: ${nomesDePessoa.length
 const { validarExtrato } = await import("../lib/extrato/validar.js")
 const v = validarExtrato(extrato)
 console.log(`\nVALIDAÇÃO INTERNA (o gate que decide se a tela mostra número)`)
-console.log(`  saldoInicial declarado: ${extrato.saldoInicial ?? "não veio"}   saldoFinal: ${extrato.saldoFinal ?? "não veio"}`)
+console.log(`  saldoInicial: ${extrato.saldoInicial ?? "não veio"}   saldoFinal: ${extrato.saldoFinal ?? "não veio"}   saldos diários: ${extrato.saldosDiarios.length}`)
 console.log(
   v.ok
-    ? `  passou: sim   forte: ${v.forte}${v.forte ? "" : "  ← fraca: sem saldo inicial, não confere aritmética"}`
+    ? `  passou: sim   forte: ${v.forte}${v.comoConferi ? `
+  como conferi: ${v.comoConferi}` : "  ← sem saldo diário nem saldo inicial: não confere aritmética"}`
     : `  passou: NÃO   motivo: ${v.motivo}`
 )
 

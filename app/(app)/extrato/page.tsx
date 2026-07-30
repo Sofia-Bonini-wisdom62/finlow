@@ -25,6 +25,7 @@ interface Resultado {
   banco: string | null
   periodo: { inicio: string; fim: string }
   validacaoForte: boolean
+  comoConferi: string | null
   cortadoPara3Meses: boolean
   resumo: {
     totalEntradas: number
@@ -242,10 +243,19 @@ export default function ExtratoPage() {
               {resultado.banco ? ` do ${resultado.banco}` : ""}, de {dataCurta(resultado.periodo.inicio)} a{" "}
               {dataCurta(resultado.periodo.fim)}. <strong className="text-fl-ink">Nada entra sem você confirmar.</strong>
             </p>
-            {!resultado.validacaoForte && (
+            {/* O produto promete "esse número é verdade". Quando dá para
+                provar, prova — a frase abaixo é a diferença entre pedir
+                confiança e mostrar o serviço. */}
+            {resultado.validacaoForte ? (
+              <p className="mt-2 rounded-xl bg-fl-500/10 px-3 py-2 text-[12.5px] leading-snug text-fl-ink-2">
+                <strong className="font-semibold text-fl-ink">A conta fecha.</strong>{" "}
+                Somei os lançamentos dia a dia e bateram com os saldos que o próprio banco declara no extrato
+                {resultado.comoConferi ? ` (${resultado.comoConferi})` : ""}.
+              </p>
+            ) : (
               <p className="mt-2 rounded-xl bg-fl-accent/10 px-3 py-2 text-[12.5px] leading-snug text-fl-accent-dark">
-                Esse extrato não trazia saldo inicial e final, então não consegui conferir a soma contra o documento.
-                Vale uma olhada com mais atenção nos valores.
+                Esse extrato não declara saldo suficiente para eu conferir a soma contra o documento. Li o que
+                estava lá, mas vale uma olhada com mais atenção nos valores.
               </p>
             )}
             {resultado.cortadoPara3Meses && (
