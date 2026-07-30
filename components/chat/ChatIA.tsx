@@ -2,13 +2,15 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Mic, Paperclip, ArrowUp, X, FileText, Square } from "lucide-react"
-import type { CardIA as CardIATipo, AnexoChat } from "@/lib/ia"
+import type { CardIA as CardIATipo, AnexoChat, LancamentoProposto } from "@/lib/ia"
 import { CardIA } from "./CardIA"
+import { ConfirmarLancamentos } from "./ConfirmarLancamentos"
 
 interface Mensagem {
   papel: "usuario" | "ia"
   texto: string
   cards?: CardIATipo[]
+  lancamentos?: LancamentoProposto[]
   anexos?: { nome: string; tipo: string }[]
 }
 
@@ -148,7 +150,17 @@ export function ChatIA({ nome }: { nome: string }) {
         return
       }
 
-      setMensagens((m) => [...m, { papel: "ia", texto: dados.texto ?? "", cards: dados.cards }])
+      setMensagens((m) => [
+        ...m,
+        {
+          papel: "ia",
+          texto: dados.texto ?? "",
+          cards: dados.cards,
+          lancamentos: Array.isArray(dados.lancamentos) && dados.lancamentos.length
+            ? dados.lancamentos
+            : undefined,
+        },
+      ])
     } catch {
       setErro("Sem conexão. Tenta de novo?")
     } finally {
@@ -206,6 +218,7 @@ export function ChatIA({ nome }: { nome: string }) {
                   </div>
                 )}
                 {m.cards?.map((c, j) => <CardIA key={j} card={c} />)}
+                {m.lancamentos && <ConfirmarLancamentos lancamentos={m.lancamentos} />}
               </div>
             )
           )}

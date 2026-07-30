@@ -81,9 +81,26 @@ export interface MemoriaProposta {
   conteudo: string
 }
 
+/**
+ * Lançamento que o modelo entendeu da conversa. PROPOSTA, não registro.
+ *
+ * O modelo NUNCA escreve no banco. Ele devolve isto, a tela mostra com valor e
+ * data à vista, e só o toque da pessoa em "Confirmar" grava. É a diferença
+ * entre um assistente que anota o que você dita e um que mexe na sua conta.
+ */
+export interface LancamentoProposto {
+  descricao: string
+  valor: number          // sempre positivo; o sinal vem do tipo
+  tipo: "receita" | "despesa"
+  categoria: string      // slug de CATEGORIAS_EXTRATO
+  data: string           // yyyy-mm-dd
+}
+
 export interface RespostaIA {
   texto: string
   cards?: CardIA[]
+  /** Propostas para a pessoa confirmar. Nada aqui foi gravado. */
+  lancamentos?: LancamentoProposto[]
   /**
    * Só vem preenchido quando a memória está LIGADA para a pessoa. A rota é
    * quem decide gravar — aqui é proposta, não fato.
@@ -108,6 +125,59 @@ function limparCercas(bruto: string): string {
   const f = t.lastIndexOf("}")
   if (i > 0 && f > i) return t.slice(i, f + 1)
   return t
+}
+
+/**
+ * Aceita só lançamentos com forma plausível, no máximo 10 por resposta.
+ *
+ * Cada filtro aqui existe por um motivo concreto:
+ *  - valor não-finito ou <= 0 viraria NaN no gráfico e zero silencioso no total
+ *  - data fora de uma janela sensata denuncia alucinação de ano ("2019" num
+ *    "gastei ontem"), e uma transação em 2019 suja o histórico para sempre
+ *  - teto de valor barra o erro de escala (R$ 45 virando R$ 4.500.000)
+ * Isto é a última linha; o prompt já pede o mesmo, mas prompt é pedido.
+ */
+const TETO_VALOR = 1_000_000
+const CATEGORIAS_OK = new Set([
+  "alimentacao", "delivery", "transporte", "moradia", "assinaturas",
+  "compras", "saude", "lazer", "educacao", "transferencia",
+  "renda", "taxas_juros", "poupanca", "outros",
+])
+
+export function lancamentosValidos(bruto: unknown, hoje = new Date()): LancamentoProposto[] {
+  if (!Array.isArray(bruto)) return []
+
+  // Janela: 2 anos para trás, 1 dia para frente. Lançamento futuro não é
+  // registro, é plano — e plano vai para a memória, não para o extrato.
+  const limiteAntigo = new Date(hoje); limiteAntigo.setFullYear(hoje.getFullYear() - 2)
+  const limiteFuturo = new Date(hoje); limiteFuturo.setDate(hoje.getDate() + 1)
+
+  const ok: LancamentoProposto[] = []
+  for (const l of bruto.slice(0, 10)) {
+    if (!l || typeof l !== "object") continue
+    const x = l as Record<string, unknown>
+
+    const descricao = typeof x.descricao === "string" ? x.descricao.trim().slice(0, 120) : ""
+    if (descricao.length < 2) continue
+
+    const valor = typeof x.valor === "number" ? Math.abs(x.valor) : NaN
+    if (!Number.isFinite(valor) || valor <= 0 || valor > TETO_VALOR) continue
+
+    const tipo = x.tipo === "receita" || x.tipo === "despesa" ? x.tipo : null
+    if (!tipo) continue
+
+    const categoria = typeof x.categoria === "string" && CATEGORIAS_OK.has(x.categoria)
+      ? x.categoria
+      : "outros"
+
+    const data = typeof x.data === "string" && /^\d{4}-\d{2}-\d{2}$/.test(x.data) ? x.data : ""
+    if (!data) continue
+    const d = new Date(`${data}T12:00:00`)
+    if (isNaN(d.getTime()) || d < limiteAntigo || d > limiteFuturo) continue
+
+    ok.push({ descricao, valor: Math.round(valor * 100) / 100, tipo, categoria, data })
+  }
+  return ok
 }
 
 /**
@@ -200,7 +270,8 @@ function cardsValidos(bruto: unknown): CardIA[] {
 export async function responderIA(
   mensagens: MensagemChat[],
   contexto: ContextoFinanceiro,
-  memoria?: { ligada: boolean; conhecidas: MemoriaConhecida[] }
+  memoria?: { ligada: boolean; conhecidas: MemoriaConhecida[] },
+  opcoes?: { podeLancar?: boolean; sistemaExtra?: string }
 ): Promise<RespostaIA> {
   const { getVertex, MODELO_CHAT, VertexNaoConfigurada } = await import("@/lib/vertex")
   const { promptSistemaChat } = await import("@/lib/prompts/chat")
@@ -233,12 +304,12 @@ export async function responderIA(
     model: MODELO_CHAT,
     contents,
     config: {
-      systemInstruction: promptSistemaChat(contexto, memoria),
+      systemInstruction: promptSistemaChat(contexto, memoria, opcoes),
       // Baixa, não zero: resposta a pergunta aberta com temperatura 0 fica
       // robótica e repetitiva. O que protege os números é o prompt, não isto.
       temperature: 0.3,
       responseMimeType: "application/json",
-      maxOutputTokens: 2048,
+      maxOutputTokens: 3072,
     },
   })
 
@@ -249,7 +320,7 @@ export async function responderIA(
 
   try {
     const j = JSON.parse(limparCercas(bruto)) as {
-      texto?: unknown; cards?: unknown; memorias?: unknown
+      texto?: unknown; cards?: unknown; memorias?: unknown; lancamentos?: unknown
     }
     const texto = typeof j.texto === "string" && j.texto.trim() ? j.texto.trim() : null
     if (!texto) throw new Error("sem campo texto")
@@ -259,6 +330,9 @@ export async function responderIA(
       // Memória desligada: descarta o que o modelo tenha proposto. A decisão
       // de guardar é da pessoa, não dele.
       memorias: memoria?.ligada ? memoriasValidas(j.memorias) : [],
+      // Sem consentimento do Painel não existe destino para o lançamento —
+      // descartar aqui evita mostrar um botão "Confirmar" que vai dar 403.
+      lancamentos: opcoes?.podeLancar ? lancamentosValidos(j.lancamentos) : [],
     }
   } catch {
     // JSON quebrado não é motivo para engolir a resposta: o texto costuma estar

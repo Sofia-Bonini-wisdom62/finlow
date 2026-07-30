@@ -54,18 +54,24 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Nenhuma mensagem enviada" }, { status: 400 })
     }
 
-    const [contexto, ligada] = await Promise.all([
+    const [contexto, ligada, usuario] = await Promise.all([
       montarContexto(userId),
       memoriaLigada(userId),
+      db.user.findUnique({ where: { id: userId }, select: { consentimentoPainelEm: true } }),
     ])
+    // Sem consentimento do Painel não há onde gravar. Melhor o modelo saber
+    // disso e nem propor do que a tela mostrar um botão que dá 403.
+    const podeLancar = !!usuario?.consentimentoPainelEm
     const conhecidas = ligada
       ? (await listarMemorias(userId)).map((m) => ({ tipo: m.tipo, conteudo: m.conteudo }))
       : []
 
-    const resposta = await responderIA(mensagens as MensagemChat[], contexto, {
-      ligada,
-      conhecidas,
-    })
+    const resposta = await responderIA(
+      mensagens as MensagemChat[],
+      contexto,
+      { ligada, conhecidas },
+      { podeLancar }
+    )
 
     // Gravar não pode derrubar a conversa: a resposta já está pronta e é o que
     // a pessoa pediu. Falha aqui vira log, não erro na tela.
@@ -84,7 +90,7 @@ export async function POST(req: NextRequest) {
 
     // A tela mostra o que foi guardado. Memória que grava calada é memória que
     // a pessoa descobre tarde demais, quando já não concorda com o que está lá.
-    return NextResponse.json({ ...resposta, memorias: undefined, memoriasGuardadas: guardadas })
+    return NextResponse.json({ ...resposta, memorias: undefined, memoriasGuardadas: guardadas, podeLancar })
   } catch (e) {
     if (e instanceof IANaoConfigurada) {
       // Estado honesto enquanto a IA não está ligada — não finge resposta.

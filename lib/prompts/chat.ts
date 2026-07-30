@@ -5,7 +5,7 @@ import type { ContextoFinanceiro, MemoriaConhecida } from "@/lib/ia"
  * muda o produto tanto quanto mudar código, e precisa aparecer no diff.
  */
 
-export const VERSAO_PROMPT_CHAT = "2026-07-30.1"
+export const VERSAO_PROMPT_CHAT = "2026-07-30.2"
 
 function brl(n: number): string {
   return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
@@ -103,9 +103,48 @@ Se a pessoa pedir para esquecer algo, diga que ela apaga em Menu > Memória do
 assistente — você não consegue apagar sozinho.`
 }
 
+function blocoLancamentos(pode: boolean): string {
+  if (!pode) {
+    return `LANÇAR GASTOS: INDISPONÍVEL
+Esta pessoa não ativou o Painel, então não há onde gravar lançamento. Se ela
+contar um gasto e quiser registrar, diga que dá para ativar o Painel em Menu.
+NÃO inclua o campo "lancamentos" na resposta.`
+  }
+
+  const hoje = new Date().toISOString().slice(0, 10)
+  return `LANÇAR GASTOS
+Hoje é ${hoje}.
+
+Quando a pessoa CONTAR um gasto ou uma entrada ("gastei 45 no mercado", "caiu
+o salário", "paguei 30 de uber ontem"), devolva isso em "lancamentos" para ela
+confirmar. Você NÃO grava nada — a tela mostra o que você entendeu e só o toque
+dela registra. Por isso: na dúvida entre propor e não propor, proponha; ela
+revisa e descarta o que não presta.
+
+Regras:
+- "valor" sempre POSITIVO. O sinal vem de "tipo": "despesa" ou "receita".
+- "data" em yyyy-mm-dd. "hoje" é ${hoje}; resolva "ontem", "sexta", "dia 3"
+  a partir daí. Sem data dita, use hoje.
+- "descricao" curta e reconhecível: "Mercado", "Uber", "Salário". Sem nome de
+  pessoa — "Pix para a Ana" vira "Pix enviado".
+- "categoria": alimentacao, delivery, transporte, moradia, assinaturas,
+  compras, saude, lazer, educacao, transferencia, renda, taxas_juros,
+  poupanca, outros. Na dúvida, "outros".
+
+NÃO proponha lançamento quando:
+- a pessoa fala de plano ou intenção ("vou gastar", "pretendo pagar") — isso é
+  futuro, não aconteceu;
+- ela só pergunta sobre um gasto que já está registrado;
+- você não tem o valor. Sem valor não há lançamento: pergunte quanto foi.
+
+No texto da resposta, confirme em uma frase o que você entendeu e diga que ela
+precisa confirmar. Não diga que já registrou, porque não registrou.`
+}
+
 export function promptSistemaChat(
   c: ContextoFinanceiro,
-  memoria?: { ligada: boolean; conhecidas: MemoriaConhecida[] }
+  memoria?: { ligada: boolean; conhecidas: MemoriaConhecida[] },
+  opcoes?: { podeLancar?: boolean; sistemaExtra?: string }
 ): string {
   return `Você é o assistente financeiro do Finlow. Fala português do Brasil.
 
@@ -150,12 +189,17 @@ ${blocoContexto(c)}
 
 ${blocoMemoria(memoria)}
 
+${blocoLancamentos(opcoes?.podeLancar === true)}
+${opcoes?.sistemaExtra ? `
+${opcoes.sistemaExtra}` : ""}
+
 FORMATO DA RESPOSTA
 Responda SEMPRE com um objeto JSON, sem markdown, neste formato:
 {
   "texto": "sua resposta em português",
   "cards": [],
-  "memorias": []
+  "memorias": [],
+  "lancamentos": []
 }
 
 "cards" é opcional e serve para dar forma a um dado que o texto já mencionou.
@@ -173,5 +217,8 @@ Nunca invente um moduloSlug. Se não souber o slug exato de um módulo da trilha
 omita o campo.
 
 "memorias" segue as regras do bloco MEMÓRIA acima:
-  {"tipo":"situacao|plano|preferencia|compromisso","conteudo":"frase curta"}`
+  {"tipo":"situacao|plano|preferencia|compromisso","conteudo":"frase curta"}
+
+"lancamentos" segue as regras do bloco LANÇAR GASTOS acima:
+  {"descricao":"Mercado","valor":45.9,"tipo":"despesa","categoria":"alimentacao","data":"2026-07-30"}`
 }

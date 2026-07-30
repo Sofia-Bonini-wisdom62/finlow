@@ -5,7 +5,7 @@ import Link from "next/link"
 import { signOut } from "next-auth/react"
 import {
   ChevronRight, Download, LogOut, Trash2, Check, X, Clock,
-  User, Landmark, Sparkles, ShieldCheck, Palette, LifeBuoy, Brain,
+  User, Landmark, Sparkles, ShieldCheck, Palette, LifeBuoy, Brain, FileUp, MessageCircle,
 } from "lucide-react"
 import { BottomNav } from "@/components/bottom-nav"
 import { SeletorTema } from "@/components/SeletorTema"
@@ -238,18 +238,17 @@ export default function AjustesPage() {
         {/* ---------- DADOS FINANCEIROS ---------- */}
         <Secao titulo="Dados financeiros" Icon={Landmark}>
           <Acao rotulo="Registrar e editar lançamentos" href="/painel" />
+          <Acao rotulo="Ler extrato do banco (PDF, CSV ou OFX)" Icon={FileUp} href="/extrato" />
           <Acao rotulo="Exportar meus dados (JSON)" Icon={Download} href="/api/exportar" download />
-          <EmBreve rotulo="Bancos conectados" motivo="Requer integração de Open Finance." />
-          <EmBreve rotulo="Atualizar sincronização" motivo="Disponível quando houver banco conectado." />
-          <EmBreve rotulo="Importar dados" motivo="Leitura de extrato (CSV/OFX) entra junto com a IA." />
+          <EmBreve rotulo="Bancos conectados" motivo="Requer Open Finance. Por ora, o extrato faz o mesmo trabalho." />
         </Secao>
 
         {/* ---------- IA ---------- */}
         <Secao titulo="Assistente de IA" Icon={Sparkles}>
           <Acao rotulo="Memória do assistente" Icon={Brain} href="/memoria" />
-          <EmBreve rotulo="Personalidade da IA" motivo="Configurável quando o assistente estiver ligado." />
+          <Acao rotulo="Conversar com o assistente" Icon={MessageCircle} href="/chat" />
+          <EmBreve rotulo="Personalidade da IA" motivo="O tom do assistente é fixo por enquanto." />
           <EmBreve rotulo="Frequência de lembretes" motivo="Depende de notificações, ainda não implementadas." />
-          <EmBreve rotulo="Objetivos financeiros" motivo="Entra junto com o assistente." />
         </Secao>
 
         {/* ---------- PRIVACIDADE ---------- */}
@@ -271,8 +270,8 @@ export default function AjustesPage() {
           ) : (
             <Acao rotulo="Apagar meus dados financeiros" Icon={Trash2} onClick={() => setConfirmandoApagar(true)} perigo />
           )}
+          <Acao rotulo="Apagar a memória do assistente" Icon={Brain} href="/memoria" />
           <EmBreve rotulo="Biometria e PIN" motivo="Precisa de app nativo — hoje o Finlow roda no navegador." />
-          <EmBreve rotulo="Permissões" motivo="Aparece quando houver dados de terceiros conectados." />
         </Secao>
 
         {/* ---------- APARÊNCIA ---------- */}
