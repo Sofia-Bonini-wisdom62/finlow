@@ -8,24 +8,48 @@ datasource db {
 }
 
 model User {
-  id                String            @id @default(cuid())
-  email             String            @unique
-  nome              String?
-  dataNascimento    DateTime?         // só informativo — sem validação de idade (decisão da fundadora, 04/07/2026)
-  senha             String?           // hash bcrypt — null para contas OAuth
-  consentimentoLGPD DateTime?         // quando o consentimento do responsável foi registrado (menores de 18)
-  consentimentoPainelEm DateTime?     // opt-in específico do Painel (R8) — sem ele, nenhum write de Painel
-  emailVerified     DateTime?
-  image             String?
-  criadoEm         DateTime          @default(now())
-  perfil        Perfil?
-  progresso     ProgressoModulo[]
-  extratoImports ExtratoImport[]
-  contasFixas   ContaFixa[]
-  transacoes    Transacao[]
-  categorias    Categoria[]
-  accounts      Account[]
-  sessions      Session[]
+  id                    String            @id @default(cuid())
+  email                 String            @unique
+  nome                  String?
+  dataNascimento        DateTime? // só informativo — sem validação de idade (decisão da fundadora, 04/07/2026)
+  senha                 String? // hash bcrypt — null para contas OAuth
+  consentimentoLGPD     DateTime? // quando o consentimento do responsável foi registrado (menores de 18)
+  consentimentoPainelEm DateTime? // opt-in específico do Painel (R8) — sem ele, nenhum write de Painel
+  memoriaAtiva          Boolean           @default(false) // opt-in da memória do assistente — desligada até a pessoa ligar
+  emailVerified         DateTime?
+  image                 String?
+  criadoEm              DateTime          @default(now())
+  perfil                Perfil?
+  progresso             ProgressoModulo[]
+  extratoImports        ExtratoImport[]
+  contasFixas           ContaFixa[]
+  transacoes            Transacao[]
+  categorias            Categoria[]
+  memorias              MemoriaUsuario[]
+  accounts              Account[]
+  sessions              Session[]
+}
+
+/// Memória do assistente: o que ele aprendeu sobre a pessoa e deve lembrar
+/// nas próximas conversas.
+///
+/// São registros DISCRETOS, não um arquivo único de texto. A diferença importa:
+/// registro solto pode ser lido, apagado e podado um a um; um blob cresce sem
+/// limite e não dá para esquecer só uma coisa.
+///
+/// `conteudo` é CIFRADO (AES-256-GCM, lib/cripto.ts) — passe sempre por
+/// lib/memoria-repo.ts, nunca por db.memoriaUsuario direto. É o mesmo motivo
+/// de Transacao: ler direto devolve "v1.…" e ninguém percebe.
+model MemoriaUsuario {
+  id       String   @id @default(cuid())
+  userId   String
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tipo     String // "situacao" | "plano" | "preferencia" | "compromisso"
+  conteudo String // CIFRADO
+  origem   String   @default("ia") // "ia" (aprendeu na conversa) | "usuario" (escreveu à mão)
+  criadoEm DateTime @default(now())
+
+  @@index([userId, criadoEm])
 }
 
 // Lista de espera da landing (produto em desenvolvimento)
@@ -39,8 +63,8 @@ model ContaFixa {
   id            String   @id @default(cuid())
   userId        String
   user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  nome          String   // cifrado (AES-256-GCM) — ver lib/cripto.ts
-  valor         String   // cifrado; era Decimal, virou texto porque cifra não é número
+  nome          String // cifrado (AES-256-GCM) — ver lib/cripto.ts
+  valor         String // cifrado; era Decimal, virou texto porque cifra não é número
   diaVencimento Int?
   ativa         Boolean  @default(true)
   criadoEm      DateTime @default(now())
@@ -51,7 +75,7 @@ model Categoria {
   userId     String
   user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   nome       String
-  tipo       String      // "receita" | "despesa"
+  tipo       String // "receita" | "despesa"
   cor        String?
   padrao     Boolean     @default(false) // veio pré-populada por perfil, ou criada pelo usuário
   transacoes Transacao[]
@@ -61,12 +85,12 @@ model Transacao {
   id          String     @id @default(cuid())
   userId      String
   user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  descricao   String     // cifrado (AES-256-GCM) — ver lib/cripto.ts
-  valor       String     // cifrado; era Decimal, virou texto porque cifra não é número
+  descricao   String // cifrado (AES-256-GCM) — ver lib/cripto.ts
+  valor       String // cifrado; era Decimal, virou texto porque cifra não é número
   // tipo, data e categoriaId ficam em claro de propósito: o banco filtra e
   // ordena por eles. Sozinhos revelam a FORMA do histórico (quantos lançamentos,
   // quando, quantos de entrada), nunca quanto nem do quê.
-  tipo        String     // "receita" | "despesa"
+  tipo        String // "receita" | "despesa"
   categoriaId String?
   categoria   Categoria? @relation(fields: [categoriaId], references: [id], onDelete: SetNull)
   data        DateTime
@@ -76,8 +100,8 @@ model Transacao {
   // nasce confirmado; o que vem de extrato nasce false e espera a revisão.
   // O default true é obrigatório: sem ele, os registros que já existem
   // sumiriam das Análises no instante do db push.
-  confirmado      Boolean @default(true)
-  origem          String  @default("manual") // "manual" | "extrato"
+  confirmado      Boolean        @default(true)
+  origem          String         @default("manual") // "manual" | "extrato"
   extratoImportId String?
   extratoImport   ExtratoImport? @relation(fields: [extratoImportId], references: [id], onDelete: SetNull)
 
@@ -90,18 +114,18 @@ model ExtratoImport {
   id            String    @id @default(cuid())
   userId        String
   user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  status        String    // "processando" | "aguardando_confirmacao" | "confirmado" | "falhou"
-  banco         String?   // detectado pelo modelo, ex: "nubank"
+  status        String // "processando" | "aguardando_confirmacao" | "confirmado" | "falhou"
+  banco         String? // detectado pelo modelo, ex: "nubank"
   periodoInicio DateTime?
   periodoFim    DateTime?
   totalLinhas   Int?
-  erroValidacao String?   // preenchido quando a validação aritmética falha
+  erroValidacao String? // preenchido quando a validação aritmética falha
   tokensEntrada Int?
   tokensSaida   Int?
-  modelo        String?   // qual modelo processou — o preço muda com ele
+  modelo        String? // qual modelo processou — o preço muda com ele
   criadoEm      DateTime  @default(now())
 
-  transacoes    Transacao[]
+  transacoes Transacao[]
 
   @@index([userId, criadoEm])
 }
@@ -112,7 +136,7 @@ model Perfil {
   user      User     @relation(fields: [userId], references: [id])
   tipo      String
   respostas Json
-  criadoEm DateTime @default(now())
+  criadoEm  DateTime @default(now())
 }
 
 model Modulo {

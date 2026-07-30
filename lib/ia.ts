@@ -66,9 +66,29 @@ export type CardIA =
   | { tipo: "recomendacao"; titulo: string; texto: string; moduloSlug?: string }
   | { tipo: "lembrete"; titulo: string; texto: string; quando?: string }
 
+/**
+ * O que o assistente já sabe sobre a pessoa, vindo de conversas anteriores.
+ * Montado por app/api/chat/route.ts a partir de lib/memoria-repo.ts.
+ */
+export interface MemoriaConhecida {
+  tipo: string
+  conteudo: string
+}
+
+/** Memória que o modelo propôs guardar nesta conversa. Ainda não gravada. */
+export interface MemoriaProposta {
+  tipo: string
+  conteudo: string
+}
+
 export interface RespostaIA {
   texto: string
   cards?: CardIA[]
+  /**
+   * Só vem preenchido quando a memória está LIGADA para a pessoa. A rota é
+   * quem decide gravar — aqui é proposta, não fato.
+   */
+  memorias?: MemoriaProposta[]
 }
 
 /** Sinaliza que a IA ainda não foi ligada — a UI mostra um aviso honesto. */
@@ -88,6 +108,43 @@ function limparCercas(bruto: string): string {
   const f = t.lastIndexOf("}")
   if (i > 0 && f > i) return t.slice(i, f + 1)
   return t
+}
+
+/**
+ * Aceita só memórias com forma válida, e no máximo 2 por conversa.
+ *
+ * O teto é de propósito: sem ele o modelo tende a "anotar" meia dúzia de coisas
+ * por turno e a memória vira transcrição da conversa em vez de conhecimento
+ * sobre a pessoa. Duas por vez obriga a escolher o que importa.
+ *
+ * Os filtros de conteúdo aqui são a última linha — o prompt já proíbe o mesmo,
+ * mas prompt é pedido e isto é regra. Número com R$ e sequência longa de dígito
+ * (CPF, conta, cartão) não passam, porque memória não é lugar de valor
+ * financeiro nem de identificador.
+ */
+const TIPOS_VALIDOS = new Set(["situacao", "plano", "preferencia", "compromisso"])
+// Sem \b de propósito: a borda de palavra não acrescenta nada aqui e já custou
+// caro uma vez — escrita por script, virou o caractere de backspace literal
+// (0x08) dentro do padrão, invisível no editor e no grep. A segunda alternativa
+// parou de casar e "Gasta 1.234,56 com delivery" passou pela guarda. Quem pegou
+// foi scripts/testar-memoria.mts.
+const TEM_DINHEIRO = /R\$\s*[\d.,]+|\d+[.,]\d{2}/
+const TEM_IDENTIFICADOR = /\d[\d.\-/\s]{8,}/
+
+export function memoriasValidas(bruto: unknown): MemoriaProposta[] {
+  if (!Array.isArray(bruto)) return []
+  const ok: MemoriaProposta[] = []
+  for (const m of bruto.slice(0, 2)) {
+    if (!m || typeof m !== "object") continue
+    const x = m as Record<string, unknown>
+    const tipo = typeof x.tipo === "string" ? x.tipo : ""
+    const conteudo = typeof x.conteudo === "string" ? x.conteudo.trim() : ""
+    if (!TIPOS_VALIDOS.has(tipo)) continue
+    if (conteudo.length < 8 || conteudo.length > 240) continue
+    if (TEM_DINHEIRO.test(conteudo) || TEM_IDENTIFICADOR.test(conteudo)) continue
+    ok.push({ tipo, conteudo })
+  }
+  return ok
 }
 
 /** Aceita só os cards que batem com o contrato — modelo às vezes inventa forma. */
@@ -142,7 +199,8 @@ function cardsValidos(bruto: unknown): CardIA[] {
  */
 export async function responderIA(
   mensagens: MensagemChat[],
-  contexto: ContextoFinanceiro
+  contexto: ContextoFinanceiro,
+  memoria?: { ligada: boolean; conhecidas: MemoriaConhecida[] }
 ): Promise<RespostaIA> {
   const { getVertex, MODELO_CHAT, VertexNaoConfigurada } = await import("@/lib/vertex")
   const { promptSistemaChat } = await import("@/lib/prompts/chat")
@@ -175,7 +233,7 @@ export async function responderIA(
     model: MODELO_CHAT,
     contents,
     config: {
-      systemInstruction: promptSistemaChat(contexto),
+      systemInstruction: promptSistemaChat(contexto, memoria),
       // Baixa, não zero: resposta a pergunta aberta com temperatura 0 fica
       // robótica e repetitiva. O que protege os números é o prompt, não isto.
       temperature: 0.3,
@@ -190,10 +248,18 @@ export async function responderIA(
   }
 
   try {
-    const j = JSON.parse(limparCercas(bruto)) as { texto?: unknown; cards?: unknown }
+    const j = JSON.parse(limparCercas(bruto)) as {
+      texto?: unknown; cards?: unknown; memorias?: unknown
+    }
     const texto = typeof j.texto === "string" && j.texto.trim() ? j.texto.trim() : null
     if (!texto) throw new Error("sem campo texto")
-    return { texto, cards: cardsValidos(j.cards) }
+    return {
+      texto,
+      cards: cardsValidos(j.cards),
+      // Memória desligada: descarta o que o modelo tenha proposto. A decisão
+      // de guardar é da pessoa, não dele.
+      memorias: memoria?.ligada ? memoriasValidas(j.memorias) : [],
+    }
   } catch {
     // JSON quebrado não é motivo para engolir a resposta: o texto costuma estar
     // lá e é o que interessa. Devolve sem cards em vez de falhar a conversa.

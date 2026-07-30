@@ -4,6 +4,7 @@ import { getUserIdOr401 } from "@/lib/painel"
 import { listarTransacoes, listarContasFixas } from "@/lib/financeiro-repo"
 import { indicadores, gastosPorCategoria, metricasPerfil, type TransacaoCalc } from "@/lib/financas"
 import { responderIA, IANaoConfigurada, type ContextoFinanceiro, type MensagemChat } from "@/lib/ia"
+import { memoriaLigada, listarMemorias, guardarMemorias, type TipoMemoria } from "@/lib/memoria-repo"
 
 export const dynamic = "force-dynamic"
 
@@ -53,10 +54,37 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Nenhuma mensagem enviada" }, { status: 400 })
     }
 
-    const contexto = await montarContexto(userId)
-    const resposta = await responderIA(mensagens as MensagemChat[], contexto)
+    const [contexto, ligada] = await Promise.all([
+      montarContexto(userId),
+      memoriaLigada(userId),
+    ])
+    const conhecidas = ligada
+      ? (await listarMemorias(userId)).map((m) => ({ tipo: m.tipo, conteudo: m.conteudo }))
+      : []
 
-    return NextResponse.json(resposta)
+    const resposta = await responderIA(mensagens as MensagemChat[], contexto, {
+      ligada,
+      conhecidas,
+    })
+
+    // Gravar não pode derrubar a conversa: a resposta já está pronta e é o que
+    // a pessoa pediu. Falha aqui vira log, não erro na tela.
+    let guardadas: { id: string; tipo: string; conteudo: string }[] = []
+    if (ligada && resposta.memorias?.length) {
+      try {
+        const novas = await guardarMemorias(
+          userId,
+          resposta.memorias.map((m) => ({ tipo: m.tipo as TipoMemoria, conteudo: m.conteudo }))
+        )
+        guardadas = novas.map((m) => ({ id: m.id, tipo: m.tipo, conteudo: m.conteudo }))
+      } catch (e) {
+        console.error("[chat] falha ao guardar memória:", (e as Error)?.message)
+      }
+    }
+
+    // A tela mostra o que foi guardado. Memória que grava calada é memória que
+    // a pessoa descobre tarde demais, quando já não concorda com o que está lá.
+    return NextResponse.json({ ...resposta, memorias: undefined, memoriasGuardadas: guardadas })
   } catch (e) {
     if (e instanceof IANaoConfigurada) {
       // Estado honesto enquanto a IA não está ligada — não finge resposta.

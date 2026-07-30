@@ -5,7 +5,7 @@ import Link from "next/link"
 import { signOut } from "next-auth/react"
 import {
   ChevronRight, Download, LogOut, Trash2, Check, X, Clock,
-  User, Landmark, Sparkles, ShieldCheck, Palette, LifeBuoy,
+  User, Landmark, Sparkles, ShieldCheck, Palette, LifeBuoy, Brain,
 } from "lucide-react"
 import { BottomNav } from "@/components/bottom-nav"
 import { SeletorTema } from "@/components/SeletorTema"
@@ -246,6 +246,7 @@ export default function AjustesPage() {
 
         {/* ---------- IA ---------- */}
         <Secao titulo="Assistente de IA" Icon={Sparkles}>
+          <Acao rotulo="Memória do assistente" Icon={Brain} href="/memoria" />
           <EmBreve rotulo="Personalidade da IA" motivo="Configurável quando o assistente estiver ligado." />
           <EmBreve rotulo="Frequência de lembretes" motivo="Depende de notificações, ainda não implementadas." />
           <EmBreve rotulo="Objetivos financeiros" motivo="Entra junto com o assistente." />
