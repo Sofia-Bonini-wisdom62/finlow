@@ -86,14 +86,15 @@ export default function AnalisesPage() {
   }
 
   const ind = dados?.indicadores
-  // "Investimentos" sai de dentro de "Saídas" (é uma despesa em categoria de
-  // reserva/aporte) e "Acumulado" atravessa meses — os dois precisam dizer isso,
-  // senão o usuário soma tudo e a conta não fecha.
+  // "Guardado" fica FORA de Entradas e Saídas: cofrinho, reserva e aplicação são
+  // bolsos da própria pessoa, e contar isso como saída dizia "você se
+  // descontrolou" no mês em que ela mais guardou. "Acumulado" atravessa meses.
+  // Os dois precisam dizer isso, senão o usuário soma tudo e a conta não fecha.
   const kpis: { rotulo: string; valor: number; nota?: string; destaque?: boolean }[] = [
     { rotulo: "Entradas", valor: ind?.receita ?? 0 },
     { rotulo: "Saídas", valor: ind?.despesa ?? 0 },
     { rotulo: "Sobrou", valor: ind?.economia ?? 0, nota: "entradas − saídas", destaque: true },
-    { rotulo: "Investido", valor: ind?.investimentos ?? 0, nota: "já contado em saídas" },
+    { rotulo: "Guardado", valor: ind?.investimentos ?? 0, nota: "cofrinho e reserva — fora das saídas" },
     { rotulo: "Acumulado", valor: ind?.acumulado ?? 0, nota: "desde o 1º registro até este mês", destaque: true },
   ]
 

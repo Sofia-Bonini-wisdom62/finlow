@@ -70,12 +70,33 @@ export async function parsearExtrato(
   const tokensSaida = uso?.candidatesTokenCount ?? 0
 
   const bruto = (resposta.text ?? "").trim()
+  const motivoFim = resposta.candidates?.[0]?.finishReason
 
   if (!bruto) {
     throw new ErroExtrato(
       "RESPOSTA_INVALIDA",
       "A leitura do extrato não retornou nada. Tenta de novo em alguns instantes.",
-      `finishReason=${resposta.candidates?.[0]?.finishReason}`
+      `finishReason=${motivoFim}`
+    )
+  }
+
+  /**
+   * Resposta cortada no teto de tokens.
+   *
+   * Isso virou risco real quando o prompt passou a exigir TODAS as linhas,
+   * inclusive movimentação de cofrinho: a saída triplicou (11k → 37k tokens
+   * num extrato de 438 transações, 57% do teto). Perto de 770 transações a
+   * resposta é truncada.
+   *
+   * Sem este check o JSON cortado só quebra no JSON.parse e a pessoa recebe
+   * "não consegui interpretar" — mensagem que não diz o que fazer, para um
+   * problema com solução óbvia: pedir um período menor.
+   */
+  if (motivoFim === "MAX_TOKENS") {
+    throw new ErroExtrato(
+      "ARQUIVO_GRANDE",
+      "Esse extrato tem transações demais para eu ler de uma vez. Exporta um período menor pelo app do banco — um mês por vez costuma resolver.",
+      `finishReason=MAX_TOKENS, ${bruto.length} caracteres devolvidos`
     )
   }
 

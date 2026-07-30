@@ -4,12 +4,12 @@
  * precisa aparecer no diff.
  */
 
-export const VERSAO_PROMPT_PARSING = "2026-07-27.1"
+export const VERSAO_PROMPT_PARSING = "2026-07-29.1"
 
 const CATEGORIAS = [
   "alimentacao", "delivery", "transporte", "moradia", "assinaturas",
   "compras", "saude", "lazer", "educacao", "transferencia",
-  "renda", "taxas_juros", "outros",
+  "renda", "taxas_juros", "poupanca", "outros",
 ].join(", ")
 
 export function promptParsingExtrato(opcoes?: { divergencia?: number }): string {
@@ -47,6 +47,20 @@ Formato:
   ]
 }
 
+COMPLETUDE — REGRA MAIS IMPORTANTE DESTE PROMPT
+Extraia TODAS as linhas de movimentação do documento, sem exceção. Isso inclui
+movimentações entre contas ou reservas da PRÓPRIA pessoa, que é o erro comum:
+"Troco guardado", "Dinheiro guardado", "Dinheiro resgatado", "No cofrinho X",
+"Do cofrinho X", "caixinha", "reserva", "aplicação", "resgate", "poupança".
+
+Essas linhas mexem no saldo e por isso são obrigatórias. Não as trate como
+detalhe interno, não as agrupe, não as resuma. Se a mesma operação aparece três
+vezes seguidas com valores diferentes (uma por reserva), devolva as três.
+
+Omitir uma classe inteira de linha é o pior erro possível aqui: a conferência
+aritmética não consegue detectar isso, e a pessoa vê um número errado achando
+que conferiu.
+
 REGRAS DE VALOR
 - "valor" negativo = dinheiro saindo. Positivo = dinheiro entrando.
 - Use ponto decimal. Não use separador de milhar. Ex.: -1234.56
@@ -81,6 +95,9 @@ CATEGORIA
 Use exatamente uma de: ${CATEGORIAS}
 - "transferencia" para Pix/TED entre contas sem destino de consumo claro
 - "renda" para salário, pagamento de cliente, rendimento
+- "poupanca" para dinheiro guardado ou resgatado de cofrinho, caixinha,
+  reserva, aplicação ou poupança — nos DOIS sentidos. Guardar leva valor
+  negativo (sai da conta), resgatar leva positivo (volta para a conta).
 - "taxas_juros" para tarifa, anuidade, IOF, juros de rotativo
 - "outros" só quando nenhuma servir. Prefira errar para "outros" a chutar.
 

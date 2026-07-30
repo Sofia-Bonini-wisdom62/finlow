@@ -3,7 +3,7 @@ import { z } from "zod"
 export const CATEGORIAS_EXTRATO = [
   "alimentacao", "delivery", "transporte", "moradia", "assinaturas",
   "compras", "saude", "lazer", "educacao", "transferencia",
-  "renda", "taxas_juros", "outros",
+  "renda", "taxas_juros", "poupanca", "outros",
 ] as const
 
 export const TransacaoExtraida = z.object({

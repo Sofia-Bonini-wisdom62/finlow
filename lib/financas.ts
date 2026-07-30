@@ -15,6 +15,24 @@ export interface TransacaoCalc {
 
 const NOMES_INVESTIMENTO = ["investimento", "reserva", "poupança", "poupanca", "aporte"]
 
+/**
+ * Guardar dinheiro não é gastar, e resgatar não é ganhar.
+ *
+ * Cofrinho, caixinha, reserva e aplicação são bolsos da própria pessoa. O
+ * dinheiro sai da conta corrente, mas não sai do patrimônio dela. Contar isso
+ * como despesa dá dois erros de uma vez: infla o gasto (num extrato real de 3
+ * meses, R$ 5.270 de "gasto" que era só dinheiro trocando de bolso) e, num mês
+ * em que a pessoa só guarda, mostra "Sobrou: negativo" — dizendo que ela se
+ * descontrolou justamente quando fez a coisa certa.
+ *
+ * Por isso poupança é neutra em receita, despesa, patrimônio e no gráfico de
+ * categorias. Ela aparece no seu próprio indicador: quanto foi guardado.
+ */
+function ehPoupanca(t: TransacaoCalc): boolean {
+  const nome = (t.categoria?.nome ?? "").toLowerCase()
+  return NOMES_INVESTIMENTO.some((k) => nome.includes(k))
+}
+
 function n(v: string | number): number {
   const x = typeof v === "string" ? parseFloat(v) : v
   return isFinite(x) ? x : 0
@@ -45,8 +63,8 @@ function dentroDoCorte(data: Date, ate?: Competencia): boolean {
 export interface Indicadores {
   receita: number
   despesa: number
-  economia: number        // receita − despesa do mês
-  investimentos: number   // parte da despesa que foi para categorias de investimento/reserva
+  economia: number        // receita − despesa do mês (sem poupança dos dois lados)
+  investimentos: number   // líquido guardado no mês: guardado − resgatado. NÃO entra em despesa.
   acumulado: number       // (receita − despesa) somado desde o 1º registro ATÉ o mês selecionado
   lancamentosNoMes: number
 }
@@ -62,20 +80,26 @@ export function indicadores(todas: TransacaoCalc[], mes: number, ano: number): I
     const v = n(t.valor)
     const dt = d(t.data)
     const ehReceita = t.tipo === "receita"
+    const poupanca = ehPoupanca(t)
 
     // acumulado: do começo do histórico até o fim do mês selecionado — nunca depois.
     // Selecionar março e ver um número que já embute julho seria mentira.
-    if (dentroDoCorte(dt, { mes, ano })) acumulado += ehReceita ? v : -v
+    // Poupança fica de fora: mover dinheiro entre bolsos próprios não muda o
+    // patrimônio, e contá-la faria o gráfico despencar toda vez que a pessoa
+    // guardasse dinheiro.
+    if (!poupanca && dentroDoCorte(dt, { mes, ano })) acumulado += ehReceita ? v : -v
 
     // demais: só o mês selecionado
     if (dt.getMonth() + 1 !== mes || dt.getFullYear() !== ano) continue
     lancamentosNoMes++
-    if (ehReceita) {
+
+    if (poupanca) {
+      // guardado (saída da conta) soma; resgatado (entrada) subtrai.
+      investimentos += ehReceita ? -v : v
+    } else if (ehReceita) {
       receita += v
     } else {
       despesa += v
-      const nome = (t.categoria?.nome ?? "").toLowerCase()
-      if (NOMES_INVESTIMENTO.some((k) => nome.includes(k))) investimentos += v
     }
   }
 
@@ -97,6 +121,7 @@ export function evolucaoPatrimonio(todas: TransacaoCalc[], meses = 6, ate?: Comp
 
   const porMes = new Map<string, number>()
   for (const t of todas) {
+    if (ehPoupanca(t)) continue // trocar de bolso não muda o patrimônio
     const dt = d(t.data)
     if (!dentroDoCorte(dt, ate)) continue
     const k = chaveMes(dt)
@@ -132,6 +157,8 @@ export function gastosPorCategoria(todas: TransacaoCalc[], mes: number, ano: num
 
   for (const t of todas) {
     if (t.tipo !== "despesa") continue
+    // "onde seu dinheiro foi" — dinheiro guardado não FOI a lugar nenhum.
+    if (ehPoupanca(t)) continue
     const dt = d(t.data)
     if (dt.getMonth() + 1 !== mes || dt.getFullYear() !== ano) continue
 
@@ -167,6 +194,7 @@ export function receitasVsDespesas(todas: TransacaoCalc[], meses = 6, ate?: Comp
   const mapa = new Map<string, { receita: number; despesa: number }>()
 
   for (const t of todas) {
+    if (ehPoupanca(t)) continue
     const dt = d(t.data)
     if (!dentroDoCorte(dt, ate)) continue
     const k = chaveMes(dt)

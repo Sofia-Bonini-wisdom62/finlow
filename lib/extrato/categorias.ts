@@ -20,6 +20,11 @@ const NOMES: Record<string, { nome: string; tipo: "receita" | "despesa"; cor: st
   transferencia: { nome: "Transferências", tipo: "despesa", cor: "#9AA0A3" },
   renda:         { nome: "Renda",         tipo: "receita", cor: "#4A7F63" },
   taxas_juros:   { nome: "Taxas e juros", tipo: "despesa", cor: "#8C651F" },
+  // Guardar/resgatar em cofrinho, caixinha, reserva ou aplicação. O nome
+  // "Poupança" não é decorativo: lib/financas.ts reconhece categorias de
+  // reserva por nome (NOMES_INVESTIMENTO) e as tira do cálculo de gasto.
+  // Renomear isto quebra essa ligação em silêncio.
+  poupanca:      { nome: "Poupança",      tipo: "despesa", cor: "#4A7F63" },
   outros:        { nome: "Outros",        tipo: "despesa", cor: "#9AA0A3" },
 }
 
