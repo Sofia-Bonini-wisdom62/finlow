@@ -73,7 +73,7 @@ export default function CadastroPage() {
         return
       }
 
-      router.push("/chat")
+      router.push("/onboarding")
     } catch {
       setErro("Sem conexão. Tenta de novo?")
       setEnviando(false)

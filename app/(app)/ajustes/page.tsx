@@ -245,6 +245,7 @@ export default function AjustesPage() {
 
         {/* ---------- IA ---------- */}
         <Secao titulo="Assistente de IA" Icon={Sparkles}>
+          <Acao rotulo="Refazer a primeira conversa" Icon={Sparkles} href="/onboarding" />
           <Acao rotulo="Memória do assistente" Icon={Brain} href="/memoria" />
           <Acao rotulo="Conversar com o assistente" Icon={MessageCircle} href="/chat" />
           <EmBreve rotulo="Personalidade da IA" motivo="O tom do assistente é fixo por enquanto." />

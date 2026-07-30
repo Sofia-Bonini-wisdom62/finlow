@@ -101,6 +101,9 @@ export interface RespostaIA {
   cards?: CardIA[]
   /** Propostas para a pessoa confirmar. Nada aqui foi gravado. */
   lancamentos?: LancamentoProposto[]
+  /** Só no onboarding: trilha escolhida e sinal de que a conversa fechou. */
+  perfilSugerido?: string
+  concluido?: boolean
   /**
    * Só vem preenchido quando a memória está LIGADA para a pessoa. A rota é
    * quem decide gravar — aqui é proposta, não fato.
@@ -137,6 +140,7 @@ function limparCercas(bruto: string): string {
  *  - teto de valor barra o erro de escala (R$ 45 virando R$ 4.500.000)
  * Isto é a última linha; o prompt já pede o mesmo, mas prompt é pedido.
  */
+const PERFIS_VALIDOS = new Set(["lancador", "guardador", "impulsivo", "sonhador"])
 const TETO_VALOR = 1_000_000
 const CATEGORIAS_OK = new Set([
   "alimentacao", "delivery", "transporte", "moradia", "assinaturas",
@@ -271,7 +275,7 @@ export async function responderIA(
   mensagens: MensagemChat[],
   contexto: ContextoFinanceiro,
   memoria?: { ligada: boolean; conhecidas: MemoriaConhecida[] },
-  opcoes?: { podeLancar?: boolean; sistemaExtra?: string }
+  opcoes?: { podeLancar?: boolean; sistemaExtra?: string; onboarding?: boolean }
 ): Promise<RespostaIA> {
   const { getVertex, MODELO_CHAT, VertexNaoConfigurada } = await import("@/lib/vertex")
   const { promptSistemaChat } = await import("@/lib/prompts/chat")
@@ -321,6 +325,7 @@ export async function responderIA(
   try {
     const j = JSON.parse(limparCercas(bruto)) as {
       texto?: unknown; cards?: unknown; memorias?: unknown; lancamentos?: unknown
+      perfilSugerido?: unknown; concluido?: unknown
     }
     const texto = typeof j.texto === "string" && j.texto.trim() ? j.texto.trim() : null
     if (!texto) throw new Error("sem campo texto")
@@ -333,6 +338,11 @@ export async function responderIA(
       // Sem consentimento do Painel não existe destino para o lançamento —
       // descartar aqui evita mostrar um botão "Confirmar" que vai dar 403.
       lancamentos: opcoes?.podeLancar ? lancamentosValidos(j.lancamentos) : [],
+      // Perfil inventado levaria a pessoa a uma trilha que não existe. Só as
+      // quatro reais passam, e só durante o onboarding.
+      ...(opcoes?.onboarding && typeof j.perfilSugerido === "string" && PERFIS_VALIDOS.has(j.perfilSugerido)
+        ? { perfilSugerido: j.perfilSugerido, concluido: j.concluido === true }
+        : {}),
     }
   } catch {
     // JSON quebrado não é motivo para engolir a resposta: o texto costuma estar

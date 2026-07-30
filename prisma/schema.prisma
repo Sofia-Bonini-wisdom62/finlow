@@ -16,6 +16,7 @@ model User {
   consentimentoLGPD     DateTime? // quando o consentimento do responsável foi registrado (menores de 18)
   consentimentoPainelEm DateTime? // opt-in específico do Painel (R8) — sem ele, nenhum write de Painel
   memoriaAtiva          Boolean           @default(false) // opt-in da memória do assistente — desligada até a pessoa ligar
+  onboardingEm          DateTime? // quando terminou a primeira conversa; null = ainda não fez
   emailVerified         DateTime?
   image                 String?
   criadoEm              DateTime          @default(now())
