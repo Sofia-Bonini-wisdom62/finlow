@@ -5,6 +5,8 @@ import { Mic, Paperclip, ArrowUp, X, FileText, Square } from "lucide-react"
 import type { CardIA as CardIATipo, AnexoChat, LancamentoProposto } from "@/lib/ia"
 import { CardIA } from "./CardIA"
 import { ConfirmarLancamentos } from "./ConfirmarLancamentos"
+import { ExtratoNoChat, type ExtratoLido } from "./ExtratoNoChat"
+import { lerArquivo, ErroLeitura } from "@/lib/extrato/ler-no-navegador"
 
 interface Mensagem {
   papel: "usuario" | "ia"
@@ -12,7 +14,18 @@ interface Mensagem {
   cards?: CardIATipo[]
   lancamentos?: LancamentoProposto[]
   anexos?: { nome: string; tipo: string }[]
+  extrato?: ExtratoLido
 }
+
+/**
+ * Extrato ou comprovante?
+ *
+ * PDF, CSV e OFX vão pelo pipeline do extrato — o que tem conferência
+ * aritmética contra o saldo do banco. Imagem continua indo como anexo para o
+ * modelo olhar, porque foto de comprovante é uma linha só e não fecha conta
+ * nenhuma.
+ */
+const EH_EXTRATO = /\.(pdf|csv|ofx|qif|txt)$/i
 
 const SUGESTOES = [
   "Quanto posso gastar esse fim de semana?",
@@ -49,6 +62,8 @@ function criarReconhecimento(): Reconhecimento | null {
 }
 
 const MAX_ANEXO_MB = 8
+/** Extrato tem limite próprio, igual ao da tela de extrato. */
+const MAX_EXTRATO_MB = 10
 
 export function ChatIA({ nome }: { nome: string }) {
   const [mensagens, setMensagens] = useState<Mensagem[]>([])
@@ -89,12 +104,71 @@ export function ChatIA({ nome }: { nome: string }) {
     r.start()
   }
 
+  /**
+   * Lê o extrato AQUI, no navegador, e manda só o texto para /api/extrato — a
+   * mesma rota da tela de extrato. O arquivo não sai do computador da pessoa.
+   */
+  async function lerExtrato(f: File) {
+    // O caminho do extrato pula a checagem do laço de anexos, então precisa da
+    // sua: sem isto, um PDF de 80 MB seria lido inteiro na memória do celular.
+    if (f.size > MAX_EXTRATO_MB * 1024 * 1024) {
+      setErro(`"${f.name}" passa de ${MAX_EXTRATO_MB} MB. Tenta exportar um período menor pelo app do banco.`)
+      return
+    }
+    setEnviando(true)
+    setErro(null)
+    setMensagens((m) => [
+      ...m,
+      { papel: "usuario", texto: "(extrato)", anexos: [{ nome: f.name, tipo: f.type }] },
+    ])
+    try {
+      const lido = await lerArquivo(f)
+      const r = await fetch("/api/extrato", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(lido),
+      })
+      const d = await r.json().catch(() => ({}))
+      if (!r.ok) {
+        setMensagens((m) => [
+          ...m,
+          {
+            papel: "ia",
+            texto:
+              (d.erro ?? d.error ?? "Não consegui ler esse extrato.") +
+              (d.codigo === "PAINEL_INATIVO" ? " Ativa o Painel em Menu para eu poder registrar." : ""),
+          },
+        ])
+        return
+      }
+      setMensagens((m) => [
+        ...m,
+        {
+          papel: "ia",
+          texto: `Terminei de ler. Confere antes de entrar no seu Painel.`,
+          extrato: d as ExtratoLido,
+        },
+      ])
+    } catch (e) {
+      setMensagens((m) => [
+        ...m,
+        {
+          papel: "ia",
+          texto: e instanceof ErroLeitura ? e.mensagemUsuario : "Não consegui abrir esse arquivo.",
+        },
+      ])
+    } finally {
+      setEnviando(false)
+    }
+  }
+
   async function escolherArquivos(e: React.ChangeEvent<HTMLInputElement>) {
     const arquivos = Array.from(e.target.files ?? [])
     e.target.value = ""
     setErro(null)
 
     for (const f of arquivos) {
+      if (EH_EXTRATO.test(f.name)) { await lerExtrato(f); continue }
       if (f.size > MAX_ANEXO_MB * 1024 * 1024) {
         setErro(`"${f.name}" passa de ${MAX_ANEXO_MB} MB.`)
         continue
@@ -219,6 +293,7 @@ export function ChatIA({ nome }: { nome: string }) {
                 )}
                 {m.cards?.map((c, j) => <CardIA key={j} card={c} />)}
                 {m.lancamentos && <ConfirmarLancamentos lancamentos={m.lancamentos} />}
+                {m.extrato && <ExtratoNoChat extrato={m.extrato} />}
               </div>
             )
           )}
@@ -297,7 +372,7 @@ export function ChatIA({ nome }: { nome: string }) {
                 if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); enviar() }
               }}
               rows={1}
-              placeholder="Pergunte qualquer coisa…"
+              placeholder="Pergunte, ou solte o extrato do banco aqui…"
               aria-label="Sua mensagem"
               className="max-h-32 min-h-10 flex-1 resize-none bg-transparent py-2.5 text-[15px] text-fl-ink placeholder-fl-ink-3 outline-none"
             />
