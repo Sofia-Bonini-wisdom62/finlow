@@ -95,8 +95,11 @@ export default function AjustesPage() {
   const [trocandoSenha, setTrocandoSenha] = useState(false)
   const [senhaAtual, setSenhaAtual] = useState("")
   const [senhaNova, setSenhaNova] = useState("")
-  // apagar dados
+  // apagar dados financeiros
   const [confirmandoApagar, setConfirmandoApagar] = useState(false)
+  // apagar a conta inteira — separado de propósito, ver a seção lá embaixo
+  const [apagandoConta, setApagandoConta] = useState(false)
+  const [confirmacaoEmail, setConfirmacaoEmail] = useState("")
 
   const [msg, setMsg] = useState<{ tipo: "ok" | "erro"; texto: string } | null>(null)
   const [salvando, setSalvando] = useState(false)
@@ -156,6 +159,31 @@ export default function AjustesPage() {
         : { tipo: "erro", texto: "Não deu pra apagar agora." }
     )
     if (res.ok) setConta((c) => (c ? { ...c, painelAtivo: false } : c))
+  }
+
+  async function apagarConta() {
+    setSalvando(true)
+    setMsg(null)
+    try {
+      const res = await fetch("/api/conta", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ confirmacao: confirmacaoEmail.trim() }),
+      })
+      const d = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        setSalvando(false)
+        setMsg({ tipo: "erro", texto: d.erro ?? d.error ?? "Não consegui apagar agora." })
+        return
+      }
+      // O perfil da trilha vive no localStorage; sem limpar, a próxima conta
+      // criada neste navegador herdaria a trilha de uma conta que não existe.
+      try { localStorage.removeItem("finlow_perfil") } catch {}
+      await signOut({ callbackUrl: "/" })
+    } catch {
+      setSalvando(false)
+      setMsg({ tipo: "erro", texto: "Sem conexão. Tenta de novo?" })
+    }
   }
 
   if (!logado) {
@@ -302,6 +330,69 @@ export default function AjustesPage() {
         >
           <LogOut className="size-4" /> Sair da conta
         </button>
+
+        {/* ---------- APAGAR A CONTA ----------
+            Fica no fim, numa seção própria, longe de "Apagar dados
+            financeiros". As duas são destrutivas e parecidas no nome; vizinhas
+            na tela, alguém toca na errada. */}
+        <section className="mt-10 rounded-2xl border border-fl-error/30 p-4">
+          <h2 className="text-[13px] font-bold uppercase tracking-wider text-fl-error">Apagar a conta</h2>
+
+          {!apagandoConta ? (
+            <>
+              <p className="mt-2 text-[13px] leading-relaxed text-fl-ink-2">
+                Some tudo: lançamentos, extratos, categorias, progresso da trilha, a memória do
+                assistente e o seu login. Não dá para desfazer, e não guardamos cópia.
+              </p>
+              <a
+                href="/api/exportar"
+                download
+                className="mt-3 flex items-center gap-2 text-[13px] font-semibold text-fl-ink-2"
+              >
+                <Download className="size-3.5" /> Baixar meus dados antes
+              </a>
+              <button
+                onClick={() => setApagandoConta(true)}
+                className="mt-4 w-full rounded-xl border border-fl-error/40 py-3 text-[14px] font-semibold text-fl-error"
+              >
+                Quero apagar minha conta
+              </button>
+            </>
+          ) : (
+            <div className="mt-3">
+              <p className="text-[13px] leading-relaxed text-fl-ink-2">
+                Para confirmar, digita{" "}
+                <strong className="font-semibold text-fl-ink">{conta?.email}</strong> abaixo.
+              </p>
+              <input
+                value={confirmacaoEmail}
+                onChange={(e) => setConfirmacaoEmail(e.target.value)}
+                placeholder="seu e-mail"
+                autoComplete="off"
+                aria-label="Confirme digitando seu e-mail"
+                className="mt-2.5 w-full rounded-xl border border-fl-border bg-fl-page px-3.5 py-2.5 text-sm text-fl-ink outline-none focus:border-fl-error"
+              />
+              <div className="mt-2.5 flex gap-2">
+                <button
+                  onClick={apagarConta}
+                  disabled={
+                    salvando ||
+                    confirmacaoEmail.trim().toLowerCase() !== (conta?.email ?? "").toLowerCase()
+                  }
+                  className="flex-1 rounded-xl bg-fl-error py-3 text-sm font-bold text-primary-foreground disabled:opacity-40"
+                >
+                  {salvando ? "Apagando…" : "Apagar para sempre"}
+                </button>
+                <button
+                  onClick={() => { setApagandoConta(false); setConfirmacaoEmail("") }}
+                  className="flex-1 rounded-xl bg-fl-divider py-3 text-sm font-medium text-fl-ink-2"
+                >
+                  Cancelar
+                </button>
+              </div>
+            </div>
+          )}
+        </section>
       </div>
 
       <BottomNav />

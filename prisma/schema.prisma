@@ -134,7 +134,7 @@ model ExtratoImport {
 model Perfil {
   id        String   @id @default(cuid())
   userId    String   @unique
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   tipo      String
   respostas Json
   criadoEm  DateTime @default(now())

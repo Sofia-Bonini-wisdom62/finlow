@@ -64,3 +64,58 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json({ error: "Erro ao salvar" }, { status: 500 })
   }
 }
+
+/**
+ * DELETE — apaga a conta e tudo que está ligado a ela.
+ *
+ * IRREVERSÍVEL, e a única operação do app que é. Por isso:
+ *
+ *  - exige a pessoa DIGITAR o próprio e-mail. Um botão "confirmar" pode ser
+ *    tocado sem ler; digitar o e-mail não acontece por acidente. E funciona
+ *    para conta com senha e para conta do Google, que não tem senha para pedir.
+ *  - o apagamento é o `delete` do User. Todo o resto sai por CASCADE no banco,
+ *    e é de propósito: lista explícita de tabelas envelhece calada — bastaria
+ *    alguém criar uma tabela nova e esquecer de somar aqui para sobrar dado de
+ *    uma conta apagada. O banco é quem garante a completude.
+ *
+ * A Waitlist NÃO cascateia (não tem relação com User — é só um e-mail), então
+ * sai por e-mail, explicitamente. Manter um endereço numa lista de e-mail
+ * depois de a pessoa apagar a conta é exatamente o que ela não quis.
+ */
+export async function DELETE(req: NextRequest) {
+  const userId = await getUserIdOr401()
+  if (userId instanceof NextResponse) return userId
+
+  try {
+    const { confirmacao } = await req.json().catch(() => ({}))
+
+    const user = await db.user.findUnique({ where: { id: userId }, select: { email: true } })
+    if (!user) {
+      return NextResponse.json({ codigo: "SEM_CONTA", erro: "Conta não encontrada." }, { status: 404 })
+    }
+
+    const digitado = typeof confirmacao === "string" ? confirmacao.trim().toLowerCase() : ""
+    if (digitado !== user.email.toLowerCase()) {
+      return NextResponse.json(
+        { codigo: "CONFIRMACAO_INVALIDA", erro: "Digite o seu e-mail exatamente como aparece acima." },
+        { status: 400 }
+      )
+    }
+
+    await db.$transaction([
+      db.waitlist.deleteMany({ where: { email: user.email } }),
+      db.user.delete({ where: { id: userId } }),
+    ])
+
+    // Sem e-mail no log: a conta acabou de ser apagada, registrar quem era
+    // seria guardar justamente o que a pessoa pediu para sumir.
+    console.log("[conta] conta apagada")
+    return NextResponse.json({ apagada: true })
+  } catch (e) {
+    console.error("[conta] falha ao apagar:", (e as Error)?.message)
+    return NextResponse.json(
+      { codigo: "FALHOU", erro: "Não consegui apagar agora. Tenta de novo em alguns segundos." },
+      { status: 500 }
+    )
+  }
+}
