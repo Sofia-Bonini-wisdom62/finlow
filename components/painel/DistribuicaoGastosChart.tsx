@@ -1,7 +1,10 @@
 "use client"
 
+import { useState } from "react"
+import { ChevronRight } from "lucide-react"
 import type { TransacaoData } from "@/types/painel"
 import { brl } from "@/lib/formato"
+import { DetalheCategoria } from "@/components/analises/DetalheCategoria"
 
 const COR_SEM_CATEGORIA = "var(--fl-ink-2)"
 
@@ -37,15 +40,28 @@ export function agruparPorCategoria(transacoes: TransacaoData[]): FatiaCategoria
     .sort((a, b) => b.total - a.total)
 }
 
-// pizza em conic-gradient — comunica "fatia do total" sem lib de gráfico
+/**
+ * Pizza em conic-gradient — comunica "fatia do total" sem lib de gráfico.
+ *
+ * Tocar numa categoria abre os lançamentos que a formam. Não há busca: o Painel
+ * já tem o mês inteiro em memória, então o detalhe filtra o que está aqui.
+ */
 export function DistribuicaoGastosChart({ transacoes }: { transacoes: TransacaoData[] }) {
-  const fatias = agruparPorCategoria(transacoes)
+  const [aberta, setAberta] = useState<FatiaCategoria | null>(null)
+  const [destaque, setDestaque] = useState<string | null>(null)
 
+  const fatias = agruparPorCategoria(transacoes)
+  const total = fatias.reduce((s, f) => s + f.total, 0)
+
+  // As paradas saem do valor real, não do pct arredondado. Somando inteiros
+  // arredondados o total dava 99% ou 101% e a última fatia fechava torta.
   let acumulado = 0
-  const paradas = fatias.map((f) => {
-    const inicio = acumulado
-    acumulado += f.pct
-    return `${f.cor} ${inicio}% ${acumulado}%`
+  const paradas = fatias.map((f, i) => {
+    const inicio = (acumulado / total) * 100
+    acumulado += f.total
+    const fim = i === fatias.length - 1 ? 100 : (acumulado / total) * 100
+    const cor = !destaque || f.nome === destaque ? f.cor : "var(--fl-divider)"
+    return `${cor} ${inicio.toFixed(3)}% ${fim.toFixed(3)}%`
   })
 
   return (
@@ -60,22 +76,42 @@ export function DistribuicaoGastosChart({ transacoes }: { transacoes: TransacaoD
         <div className="mt-4 flex items-center gap-5">
           <div
             aria-hidden
-            className="cor-dado h-28 w-28 shrink-0 rounded-full"
+            className="cor-dado h-28 w-28 shrink-0 rounded-full transition-[background]"
             style={{ background: `conic-gradient(${paradas.join(", ")})` }}
           />
-          <ul className="flex min-w-0 flex-1 flex-col gap-2">
+          <ul className="flex min-w-0 flex-1 flex-col gap-0.5">
             {fatias.map((f) => (
-              <li key={f.nome} className="flex items-center justify-between gap-2 text-sm">
-                <div className="flex min-w-0 items-center gap-2">
-                  <span className="cor-dado h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: f.cor }} aria-hidden />
-                  <span className="truncate text-fl-ink">{f.nome}</span>
-                </div>
-                <span className="shrink-0 text-xs text-fl-ink-2">{f.pct}% · {brl(f.total)}</span>
+              <li key={f.nome}>
+                <button
+                  type="button"
+                  onClick={() => setAberta(f)}
+                  onPointerEnter={() => setDestaque(f.nome)}
+                  onPointerLeave={() => setDestaque(null)}
+                  onFocus={() => setDestaque(f.nome)}
+                  onBlur={() => setDestaque(null)}
+                  aria-label={`${f.nome}: ${brl(f.total)}, ${f.pct}% das saídas. Ver lançamentos.`}
+                  className="flex w-full items-center justify-between gap-2 rounded-lg px-1 py-1.5 text-left text-sm outline-none transition-colors hover:bg-fl-50 focus-visible:ring-2 focus-visible:ring-fl-500"
+                >
+                  <span className="flex min-w-0 items-center gap-2">
+                    <span className="cor-dado h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: f.cor }} aria-hidden />
+                    <span className="truncate text-fl-ink">{f.nome}</span>
+                  </span>
+                  <span className="flex shrink-0 items-center gap-1 text-xs tabular-nums text-fl-ink-2">
+                    {f.pct}% · {brl(f.total)}
+                    <ChevronRight className="size-3.5 text-fl-ink-3" />
+                  </span>
+                </button>
               </li>
             ))}
           </ul>
         </div>
       )}
+
+      <DetalheCategoria
+        fatia={aberta}
+        itens={transacoes}
+        onFechar={() => setAberta(null)}
+      />
     </div>
   )
 }

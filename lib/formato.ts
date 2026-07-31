@@ -27,7 +27,22 @@ export function brl(v: number | string): string {
   return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
 }
 
-export function dataCurta(iso: string): string {
-  const d = new Date(iso)
-  return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" })
+/**
+ * Dia de um LANÇAMENTO, como dd/mm.
+ *
+ * Lê as partes em UTC de propósito. A data de um lançamento é um dia de
+ * calendário, não um instante: quem gastou no dia 21 gastou no dia 21 em
+ * qualquer fuso. Formatando em hora local, uma data gravada à meia-noite UTC
+ * aparece como o dia ANTERIOR em todo o Brasil (UTC-3) — foi o que acontecia
+ * com os 449 lançamentos que já estavam no banco.
+ *
+ * Para carimbo de tempo de verdade (criadoEm, "há 2 minutos") isto está errado:
+ * ali a hora local é a certa.
+ */
+export function dataCurta(iso: string | Date): string {
+  const d = iso instanceof Date ? iso : new Date(iso)
+  if (isNaN(d.getTime())) return "--/--"
+  const dia = String(d.getUTCDate()).padStart(2, "0")
+  const mes = String(d.getUTCMonth() + 1).padStart(2, "0")
+  return `${dia}/${mes}`
 }

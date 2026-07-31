@@ -197,7 +197,11 @@ export async function POST(req: NextRequest) {
         valor: Math.abs(t.valor),
         tipo: t.valor >= 0 ? "receita" : "despesa",
         categoriaId: mapaCat.get(t.categoria) ?? null,
-        data: new Date(t.data),
+        // Meio-dia, não meia-noite: gravado como 00:00 UTC, o dia 21 vira dia
+        // 20 em qualquer fuso negativo — e o lançamento do dia 1º cai no mês
+        // anterior em qualquer conta feita no navegador. O caminho do chat já
+        // fazia isto; este aqui, que importa centenas de linhas, não fazia.
+        data: new Date(`${t.data}T12:00:00Z`),
       }))
     )
 

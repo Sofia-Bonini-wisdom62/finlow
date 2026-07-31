@@ -8,6 +8,7 @@ import { SeletorMes, NOMES_MESES } from "@/components/painel/SeletorMes"
 import { GraficoLinha } from "@/components/analises/GraficoLinha"
 import { GraficoRosca } from "@/components/analises/GraficoRosca"
 import { GraficoBarras } from "@/components/analises/GraficoBarras"
+import { DetalheCategoria } from "@/components/analises/DetalheCategoria"
 import { brl } from "@/lib/formato"
 import type { Indicadores, PontoPatrimonio, FatiaCategoria, BarraMes, PontoDia } from "@/lib/financas"
 
@@ -47,6 +48,8 @@ function Secao({ titulo, legenda, children }: { titulo: string; legenda?: string
 
 export default function AnalisesPage() {
   const hoje = new Date()
+  // Categoria aberta no detalhe. null = nenhuma.
+  const [categoriaAberta, setCategoriaAberta] = useState<FatiaCategoria | null>(null)
   const [mes, setMes] = useState(hoje.getMonth() + 1)
   const [ano, setAno] = useState(hoje.getFullYear())
   const [dados, setDados] = useState<Dados | null>(null)
@@ -201,7 +204,7 @@ export default function AnalisesPage() {
             </Secao>
 
             <Secao titulo="Saídas por categoria" legenda={`Onde o dinheiro foi em ${NOMES_MESES[mes - 1].toLowerCase()}`}>
-              <GraficoRosca fatias={dados.categorias} />
+              <GraficoRosca fatias={dados.categorias} onAbrir={setCategoriaAberta} />
             </Secao>
 
             <Secao
@@ -238,6 +241,13 @@ export default function AnalisesPage() {
           </div>
         )}
       </div>
+
+      <DetalheCategoria
+        fatia={categoriaAberta}
+        mes={mes}
+        ano={ano}
+        onFechar={() => setCategoriaAberta(null)}
+      />
 
       <BottomNav />
     </main>
