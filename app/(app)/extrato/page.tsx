@@ -179,8 +179,8 @@ export default function ExtratoPage() {
   if (falha) {
     const temCaminhoCSV = falha.codigo === "PDF_PROTEGIDO" || falha.codigo === "VALIDACAO_FALHOU" || falha.codigo === "PDF_ILEGIVEL"
     return (
-      <main className="min-h-dvh bg-fl-page pb-24">
-        <div className="mx-auto w-full max-w-md px-5 py-6">
+      <main className="min-h-dvh bg-fl-page pb-24 lg:pb-10 lg:pl-56">
+        <div className="mx-auto w-full max-w-md px-5 py-6 md:max-w-2xl md:px-8 lg:max-w-3xl lg:px-10">
           <Voltar />
           <div className="mt-6 rounded-[20px] border border-fl-border bg-fl-card p-6">
             <div className="flex size-11 items-center justify-center rounded-xl bg-fl-error/10">
@@ -233,7 +233,7 @@ export default function ExtratoPage() {
 
     return (
       <main className="min-h-dvh bg-fl-page pb-32">
-        <div className="mx-auto w-full max-w-md px-5 py-6">
+        <div className="mx-auto w-full max-w-md px-5 py-6 md:max-w-2xl md:px-8 lg:max-w-3xl lg:px-10">
           <Voltar />
 
           <header className="mt-4">
@@ -368,8 +368,10 @@ export default function ExtratoPage() {
         </div>
 
         {/* barra fixa: a decisão fica sempre à mão, sem precisar rolar até o fim */}
-        <div className="fixed inset-x-0 bottom-14 border-t border-fl-border bg-fl-card/95 px-5 py-3 backdrop-blur">
-          <div className="mx-auto flex w-full max-w-md items-center gap-3">
+        {/* bottom-14 abre espaço para a barra inferior do celular; no desktop ela
+              não existe, e a barra começa depois da lateral em vez de passar por baixo. */}
+          <div className="fixed inset-x-0 bottom-14 border-t border-fl-border bg-fl-card/95 px-5 py-3 backdrop-blur lg:bottom-0 lg:left-56">
+          <div className="mx-auto flex w-full max-w-md items-center gap-3 lg:max-w-3xl">
             <span className="text-[12.5px] text-fl-ink-2">
               {somaAceita} de {transacoes.length}
             </span>
@@ -389,8 +391,8 @@ export default function ExtratoPage() {
 
   // ---------- upload ----------
   return (
-    <main className="min-h-dvh bg-fl-page pb-24">
-      <div className="mx-auto w-full max-w-md px-5 py-6">
+    <main className="min-h-dvh bg-fl-page pb-24 lg:pb-10 lg:pl-56">
+      <div className="mx-auto w-full max-w-md px-5 py-6 md:max-w-2xl md:px-8 lg:max-w-3xl lg:px-10">
         <Voltar />
 
         <header className="mt-4">

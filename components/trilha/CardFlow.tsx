@@ -51,8 +51,12 @@ export function CardFlow({ modulo, telaInicial = 0, onConcluir, onAvancarTela }:
     setAtual(atual - 1)
   }
 
+  // O fundo escuro sangra a tela inteira, mas o conteúdo fica numa coluna: num
+  // monitor de 1440px uma linha de texto com 1400px de largura é ilegível — o
+  // olho se perde ao voltar para a linha seguinte.
   return (
-    <div className="relative flex h-dvh flex-col" style={{ background: "#112F30" }}>
+    <div className="min-h-dvh w-full" style={{ background: "#112F30" }}>
+      <div className="relative mx-auto flex h-dvh w-full flex-col md:max-w-lg">
       {/* header: voltar (a partir da tela 1) + label + contador */}
       <div className="flex items-center justify-between px-4 pt-3 pb-1">
         <div className="flex items-center">
@@ -95,6 +99,7 @@ export function CardFlow({ modulo, telaInicial = 0, onConcluir, onAvancarTela }:
         >
           {ehUltima ? "Concluir módulo →" : "Continuar"}
         </button>
+        </div>
       </div>
     </div>
   )

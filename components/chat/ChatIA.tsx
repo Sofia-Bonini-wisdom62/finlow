@@ -257,10 +257,10 @@ export function ChatIA({ nome }: { nome: string }) {
   const vazio = mensagens.length === 0
 
   return (
-    <div className="flex h-dvh flex-col bg-fl-page">
+    <div className="flex h-dvh flex-col bg-fl-page lg:pl-56">
       {/* histórico */}
       <div className="flex-1 overflow-y-auto px-4 pb-4 pt-4 sm:px-5">
-        <div className="mx-auto flex max-w-md flex-col gap-4">
+        <div className="mx-auto flex max-w-md flex-col gap-4 lg:max-w-2xl">
           {vazio && (
             <div className="pt-6">
               <h1 className="text-[26px] font-extrabold leading-tight tracking-tight text-fl-ink">
@@ -333,8 +333,8 @@ export function ChatIA({ nome }: { nome: string }) {
       </div>
 
       {/* composer */}
-      <div className="border-t border-fl-divider bg-fl-page px-4 pb-[76px] pt-3 sm:px-5">
-        <div className="mx-auto max-w-md">
+      <div className="border-t border-fl-divider bg-fl-page px-4 pb-[76px] pt-3 sm:px-5 lg:pb-5">
+        <div className="mx-auto max-w-md lg:max-w-2xl">
           {anexos.length > 0 && (
             <div className="mb-2 flex flex-wrap gap-2">
               {anexos.map((a, i) => (

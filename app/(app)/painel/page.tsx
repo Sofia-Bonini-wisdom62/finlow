@@ -94,10 +94,10 @@ export default function PainelPage() {
   }
 
   return (
-    <main className="min-h-dvh bg-fl-page pb-24">
-      <div className="mx-auto w-full max-w-md px-5 py-8">
+    <main className="min-h-dvh bg-fl-page pb-24 lg:pb-10 lg:pl-56">
+      <div className="mx-auto w-full max-w-md px-5 py-8 md:max-w-2xl md:px-8 lg:max-w-5xl lg:px-10">
         <header className="flex flex-col gap-4">
-          <span className="text-lg font-bold tracking-tight text-fl-500">Finlow</span>
+          <span className="text-lg font-bold tracking-tight text-fl-500 lg:hidden">Finlow</span>
 
           {/* sub-toggle Controle Financeiro / Análises */}
           <div className="flex rounded-2xl bg-fl-card p-1">
@@ -132,14 +132,14 @@ export default function PainelPage() {
             </button>
           </div>
         ) : aba === "controle" ? (
-          <section className="mt-5 flex flex-col gap-4">
+          <section className="mt-5 flex flex-col gap-4 md:grid md:grid-cols-2 md:items-start md:gap-5">
             <ResultadoPeriodoCard transacoes={transacoes} />
             <ContasFixasCard contas={contas} onMudou={carregarDados} />
             <TransacoesCard transacoes={transacoes} categorias={categorias} onMudou={carregarDados} />
             <CategoriasCard categorias={categorias} onMudou={carregarDados} />
           </section>
         ) : (
-          <section className="mt-5 flex flex-col gap-4">
+          <section className="mt-5 flex flex-col gap-4 md:grid md:grid-cols-2 md:items-start md:gap-5">
             <GastoMedioPorDiaChart transacoes={transacoes} />
             <DistribuicaoGastosChart transacoes={transacoes} />
             <InsightPerfilCard transacoes={transacoes} />

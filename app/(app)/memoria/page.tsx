@@ -110,7 +110,8 @@ export default function MemoriaPage() {
   }
 
   return (
-    <main className="mx-auto min-h-dvh w-full max-w-[520px] px-5 pb-28">
+    <main className="min-h-dvh bg-fl-page pb-28 lg:pb-12 lg:pl-56">
+      <div className="mx-auto w-full max-w-[520px] px-5 md:max-w-2xl md:px-8 lg:max-w-3xl lg:px-10">
       <div className="flex items-center gap-3 pt-6">
         <Link href="/ajustes" className="grid size-9 place-items-center rounded-full border border-fl-border text-fl-ink-2">
           <ArrowLeft className="size-4" />
@@ -266,6 +267,8 @@ export default function MemoriaPage() {
           </button>
         )}
       </section>
+
+      </div>
 
       <BottomNav />
     </main>

@@ -102,8 +102,8 @@ export default function AnalisesPage() {
   ]
 
   return (
-    <main className="min-h-dvh bg-fl-page pb-24">
-      <div className="mx-auto w-full max-w-md px-5 py-6">
+    <main className="min-h-dvh bg-fl-page pb-24 lg:pb-10 lg:pl-56">
+      <div className="mx-auto w-full max-w-md px-5 py-6 md:max-w-2xl md:px-8 lg:max-w-5xl lg:px-10">
         <header className="flex flex-col gap-4">
           <div>
             <h1 className="text-[26px] font-extrabold tracking-tight text-fl-ink">Análises</h1>
@@ -114,7 +114,7 @@ export default function AnalisesPage() {
 
         {/* indicadores rápidos — só quando o mês selecionado tem lançamento */}
         {dados?.temDadosNoMes && (
-        <section className="mt-5 grid grid-cols-2 gap-2.5" aria-label={`Indicadores de ${NOMES_MESES[mes - 1]} de ${ano}`}>
+        <section className="mt-5 grid grid-cols-2 gap-2.5 md:grid-cols-3 lg:grid-cols-5" aria-label={`Indicadores de ${NOMES_MESES[mes - 1]} de ${ano}`}>
           {kpis.map((k, i) => (
             <div
               key={k.rotulo}
@@ -192,7 +192,7 @@ export default function AnalisesPage() {
             }
           />
         ) : (
-          <div className="mt-4 flex flex-col gap-4">
+          <div className="mt-4 flex flex-col gap-4 md:grid md:grid-cols-2 md:items-start md:gap-5">
             <Secao
               titulo="Evolução do acumulado"
               legenda={`Entradas menos saídas, somadas mês a mês até ${NOMES_MESES[mes - 1].toLowerCase()}`}

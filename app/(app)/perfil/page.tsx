@@ -178,8 +178,8 @@ export default function PerfilPage() {
   const inicial = perfil.nome.trim().charAt(0).toUpperCase() || "?"
 
   return (
-    <main className="min-h-dvh bg-fl-page pb-24">
-      <div className="mx-auto w-full max-w-md px-5 py-6">
+    <main className="min-h-dvh bg-fl-page pb-24 lg:pb-10 lg:pl-56">
+      <div className="mx-auto w-full max-w-md px-5 py-6 md:max-w-2xl md:px-8 lg:max-w-3xl lg:px-10">
         {/* cabeçalho */}
         <header className="flex items-center gap-3.5">
           {perfil.image ? (

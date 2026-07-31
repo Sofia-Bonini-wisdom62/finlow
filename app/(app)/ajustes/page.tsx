@@ -198,8 +198,8 @@ export default function AjustesPage() {
   const inputClass = "w-full rounded-xl border border-fl-border bg-fl-page px-3.5 py-2.5 text-sm text-fl-ink outline-none focus:border-fl-500"
 
   return (
-    <main className="min-h-dvh bg-fl-page pb-24">
-      <div className="mx-auto w-full max-w-md px-5 py-6">
+    <main className="min-h-dvh bg-fl-page pb-24 lg:pb-10 lg:pl-56">
+      <div className="mx-auto w-full max-w-md px-5 py-6 md:max-w-2xl md:px-8 lg:max-w-3xl lg:px-10">
         <h1 className="text-[26px] font-extrabold tracking-tight text-fl-ink">Menu</h1>
 
         {msg && (
