@@ -7,6 +7,7 @@ import { Upload, FileText, AlertTriangle, Check, Repeat, ArrowLeft, Loader2 } fr
 import { BottomNav } from "@/components/bottom-nav"
 import { brl } from "@/lib/formato"
 import { lerArquivo, ErroLeitura } from "@/lib/extrato/ler-no-navegador"
+import { DecisaoAjuste, type Ajuste } from "@/components/extrato/DecisaoAjuste"
 
 const LIMITE_MB = 10
 
@@ -26,6 +27,9 @@ interface Resultado {
   periodo: { inicio: string; fim: string }
   validacaoForte: boolean
   comoConferi: string | null
+  contaFechou: boolean
+  motivoDivergencia: string | null
+  ajuste: Ajuste | null
   cortadoPara3Meses: boolean
   resumo: {
     totalEntradas: number
@@ -53,6 +57,9 @@ export default function ExtratoPage() {
 
   const [enviando, setEnviando] = useState(false)
   const [resultado, setResultado] = useState<Resultado | null>(null)
+  // Marcado por padrão: sem a linha o total fica errado, e o caso comum é a
+  // pessoa querer o número certo. Desmarcar continua sendo um toque.
+  const [incluirAjuste, setIncluirAjuste] = useState(true)
   const [falha, setFalha] = useState<Falha | null>(null)
   const [aceitos, setAceitos] = useState<Set<string>>(new Set())
   const [confirmando, setConfirmando] = useState(false)
@@ -153,7 +160,11 @@ export default function ExtratoPage() {
       const res = await fetch("/api/extrato/confirmar", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ extratoImportId: resultado.extratoImportId, idsAceitos: [...aceitos] }),
+        body: JSON.stringify({
+          extratoImportId: resultado.extratoImportId,
+          idsAceitos: [...aceitos],
+          ajuste: incluirAjuste ? resultado.ajuste : null,
+        }),
       })
       if (!res.ok) {
         const d = await res.json().catch(() => ({}))
@@ -245,19 +256,32 @@ export default function ExtratoPage() {
             </p>
             {/* O produto promete "esse número é verdade". Quando dá para
                 provar, prova — a frase abaixo é a diferença entre pedir
-                confiança e mostrar o serviço. */}
-            {resultado.validacaoForte ? (
-              <p className="mt-2 rounded-xl bg-fl-500/10 px-3 py-2 text-[12.5px] leading-snug text-fl-ink-2">
-                <strong className="font-semibold text-fl-ink">A conta fecha.</strong>{" "}
-                Somei os lançamentos dia a dia e bateram com os saldos que o próprio banco declara no extrato
-                {resultado.comoConferi ? ` (${resultado.comoConferi})` : ""}.
-              </p>
-            ) : (
-              <p className="mt-2 rounded-xl bg-fl-accent/10 px-3 py-2 text-[12.5px] leading-snug text-fl-accent-dark">
-                Esse extrato não declara saldo suficiente para eu conferir a soma contra o documento. Li o que
-                estava lá, mas vale uma olhada com mais atenção nos valores.
-              </p>
-            )}
+                confiança e mostrar o serviço.
+
+                Quando a conta NÃO fechou, quem fala é o bloco de decisão logo
+                abaixo: dois avisos sobre a mesma coisa competem, e a pessoa
+                acaba não lendo nenhum dos dois. */}
+            {resultado.contaFechou &&
+              (resultado.validacaoForte ? (
+                <p className="mt-2 rounded-xl bg-fl-500/10 px-3 py-2 text-[12.5px] leading-snug text-fl-ink-2">
+                  <strong className="font-semibold text-fl-ink">A conta fecha.</strong>{" "}
+                  Somei os lançamentos dia a dia e bateram com os saldos que o próprio banco declara no extrato
+                  {resultado.comoConferi ? ` (${resultado.comoConferi})` : ""}.
+                </p>
+              ) : (
+                <p className="mt-2 rounded-xl bg-fl-accent/10 px-3 py-2 text-[12.5px] leading-snug text-fl-accent-dark">
+                  Esse extrato não declara saldo suficiente para eu conferir a soma contra o documento. Li o que
+                  estava lá, mas vale uma olhada com mais atenção nos valores.
+                </p>
+              ))}
+
+            <DecisaoAjuste
+              ajuste={resultado.ajuste}
+              contaFechou={resultado.contaFechou}
+              motivo={resultado.motivoDivergencia}
+              incluir={incluirAjuste}
+              onMudar={setIncluirAjuste}
+            />
             {resultado.cortadoPara3Meses && (
               <p className="mt-2 text-[12.5px] leading-snug text-fl-ink-3">
                 O arquivo tinha mais de 3 meses — trouxe só os 3 mais recentes.

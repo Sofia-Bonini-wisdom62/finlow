@@ -120,7 +120,17 @@ export async function listarContasFixas(
 
 export async function criarTransacao(
   userId: string,
-  d: { descricao: string; valor: number; tipo: string; categoriaId: string | null; data: Date }
+  d: {
+    descricao: string
+    valor: number
+    tipo: string
+    categoriaId: string | null
+    data: Date
+    /** "manual" (padrão), "chat", "ajuste". Diz de onde a linha veio. */
+    origem?: string
+    /** Amarra a linha ao extrato que a originou, para dar para desfazer junto. */
+    extratoImportId?: string | null
+  }
 ): Promise<TransacaoClara> {
   const linha = await db.transacao.create({
     data: {
@@ -130,6 +140,8 @@ export async function criarTransacao(
       tipo: d.tipo,
       categoriaId: d.categoriaId,
       data: d.data,
+      ...(d.origem ? { origem: d.origem } : {}),
+      ...(d.extratoImportId ? { extratoImportId: d.extratoImportId } : {}),
     },
   })
   return abrirTransacao(linha as LinhaTransacao)

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { getUserIdOr401, checarConsentimento } from "@/lib/painel"
-import { confirmarLoteExtrato } from "@/lib/financeiro-repo"
+import { confirmarLoteExtrato, criarTransacao } from "@/lib/financeiro-repo"
 
 export const dynamic = "force-dynamic"
 
@@ -17,7 +17,7 @@ export async function PATCH(req: NextRequest) {
   if (bloqueio) return bloqueio
 
   try {
-    const { extratoImportId, idsAceitos } = await req.json()
+    const { extratoImportId, idsAceitos, ajuste } = await req.json()
 
     if (!extratoImportId || typeof extratoImportId !== "string") {
       return NextResponse.json({ erro: "extratoImportId obrigatório" }, { status: 400 })
@@ -40,12 +40,39 @@ export async function PATCH(req: NextRequest) {
 
     const r = await confirmarLoteExtrato(userId, extratoImportId, idsAceitos)
 
+    /**
+     * A linha que faz a conta fechar, se a pessoa aceitou incluí-la.
+     *
+     * Nasce com origem "ajuste" e amarrada ao import: assim ela é distinguível
+     * de um gasto real em qualquer consulta futura, e some junto se o extrato
+     * for desfeito. Um ajuste indistinguível de uma compra seria um número
+     * inventado morando no meio dos verdadeiros.
+     */
+    let ajusteCriado: { descricao: string; valor: number } | null = null
+    if (ajuste && typeof ajuste.valor === "number" && Number.isFinite(ajuste.valor) && Math.abs(ajuste.valor) >= 0.01) {
+      const descricao = ajuste.tipo === "saldo_inicial" ? "Saldo inicial" : "Compensação"
+      const data = typeof ajuste.data === "string" && /^\d{4}-\d{2}-\d{2}$/.test(ajuste.data)
+        ? new Date(`${ajuste.data}T12:00:00Z`)
+        : new Date()
+      const criada = await criarTransacao(userId, {
+        descricao,
+        valor: Math.abs(ajuste.valor),
+        tipo: ajuste.valor >= 0 ? "receita" : "despesa",
+        categoriaId: null,
+        data,
+        origem: "ajuste",
+        extratoImportId,
+      })
+      ajusteCriado = { descricao, valor: criada.valor }
+      console.log(`[extrato/confirmar] ajuste ${descricao} de ${ajuste.valor}`)
+    }
+
     await db.extratoImport.update({
       where: { id: extratoImportId },
       data: { status: "confirmado", totalLinhas: r.confirmadas },
     })
 
-    return NextResponse.json({ ok: true, ...r })
+    return NextResponse.json({ ok: true, ...r, ajuste: ajusteCriado })
   } catch (e) {
     console.error("[extrato/confirmar]", (e as Error)?.message)
     return NextResponse.json({ erro: "Erro ao confirmar" }, { status: 500 })

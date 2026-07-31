@@ -4,6 +4,7 @@ import { getUserIdOr401, checarConsentimento } from "@/lib/painel"
 import { criarTransacoesDeExtrato } from "@/lib/financeiro-repo"
 import { parsearExtratoParalelo } from "@/lib/extrato/parsear"
 import { validarExtrato, limitarA3Meses } from "@/lib/extrato/validar"
+import { calcularAjuste } from "@/lib/extrato/ajuste"
 import { mapearCategorias, nomeDaCategoria } from "@/lib/extrato/categorias"
 import { ErroExtrato, type ExtratoParseado, type ConteudoExtrato } from "@/types/extrato"
 import { estimarCustoBRL } from "@/lib/custo"
@@ -163,29 +164,37 @@ export async function POST(req: NextRequest) {
       else veredito = v2
     }
 
-    if (!veredito.ok) {
+    // Nenhuma transação lida é o único caso sem saída: não há o que decidir.
+    if (!veredito.ok && r.extrato.transacoes.length === 0) {
       await db.extratoImport.update({
         where: { id: registro.id },
-        data: {
-          status: "falhou",
-          erroValidacao: veredito.motivo,
-          tokensEntrada, tokensSaida, modelo: r.modelo,
-        },
+        data: { status: "falhou", erroValidacao: veredito.motivo, tokensEntrada, tokensSaida, modelo: r.modelo },
       })
-      // Sem número na resposta: o produto vende "esse número é verdade".
-      // Parsing que não fechou a conta não vira tela, nem parcialmente.
       return NextResponse.json(
         {
           codigo: "VALIDACAO_FALHOU",
           extratoImportId: registro.id,
-          erro: "Não consegui conferir esse extrato com segurança, então prefiro não te mostrar números que podem estar errados. Tenta exportar em CSV ou OFX pelo app do banco.",
+          erro: "Não consegui ler nenhuma transação nesse arquivo. Tenta exportar em CSV ou OFX pelo app do banco.",
           motivo: veredito.motivo,
         },
         { status: 422 }
       )
     }
 
+    /**
+     * A conta não fechou — e mesmo assim os números vão para a tela.
+     *
+     * A regra antiga era descartar tudo. A intenção estava certa (não mostrar
+     * número que pode estar errado), mas o resultado era pior que o problema:
+     * 430 linhas corretas de 438 iam para o lixo por causa de 8, e a pessoa
+     * ficava sem nada e sem saber o quê.
+     *
+     * Agora ela vê o tamanho do furo, decide, e a diferença vira uma LINHA
+     * NOMEADA em vez de um erro invisível. Nada disso entra sem o toque dela —
+     * as transações continuam nascendo confirmado:false.
+     */
     const { extrato, cortou } = limitarA3Meses(r.extrato)
+    const ajuste = calcularAjuste(extrato, veredito)
 
     // ---- grava, sempre não confirmado ----
     const mapaCat = await mapearCategorias(userId, extrato.transacoes.map((t) => t.categoria))
@@ -209,6 +218,7 @@ export async function POST(req: NextRequest) {
       where: { id: registro.id },
       data: {
         status: "aguardando_confirmacao",
+        erroValidacao: veredito.ok ? null : veredito.motivo,
         banco: extrato.banco,
         periodoInicio: new Date(extrato.periodoInicio),
         periodoFim: new Date(extrato.periodoFim),
@@ -227,8 +237,13 @@ export async function POST(req: NextRequest) {
       extratoImportId: registro.id,
       banco: extrato.banco,
       periodo: { inicio: extrato.periodoInicio, fim: extrato.periodoFim },
-      validacaoForte: veredito.forte,
-      comoConferi: veredito.comoConferi ?? null,
+      validacaoForte: veredito.ok ? veredito.forte : false,
+      comoConferi: veredito.ok ? (veredito.comoConferi ?? null) : null,
+      // Quando a conta não fechou, a tela precisa dizer isso ANTES de a pessoa
+      // confirmar — e com o tamanho do furo à vista, não como aviso genérico.
+      contaFechou: veredito.ok,
+      motivoDivergencia: veredito.ok ? null : veredito.motivo,
+      ajuste,
       cortadoPara3Meses: cortou,
       resumo: resumir(extrato),
       // id do banco casado com a linha lida, para a tela permitir desmarcar

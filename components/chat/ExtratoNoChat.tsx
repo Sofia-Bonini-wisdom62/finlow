@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Check, ChevronDown, ChevronUp, ShieldCheck, AlertTriangle, ArrowRight, Repeat } from "lucide-react"
+import { DecisaoAjuste, type Ajuste } from "@/components/extrato/DecisaoAjuste"
 
 /**
  * Extrato lido dentro da conversa.
@@ -26,6 +27,9 @@ export interface ExtratoLido {
   periodo: { inicio: string; fim: string }
   validacaoForte: boolean
   comoConferi: string | null
+  contaFechou: boolean
+  motivoDivergencia: string | null
+  ajuste: Ajuste | null
   cortadoPara3Meses: boolean
   resumo: {
     totalEntradas: number
@@ -52,6 +56,9 @@ const dataCurta = (iso: string) => {
 
 export function ExtratoNoChat({ extrato }: { extrato: ExtratoLido }) {
   const [recusados, setRecusados] = useState<Set<string>>(new Set())
+  // Ajuste vem marcado: sem ele o total fica errado, e o caso comum é a pessoa
+  // querer o número certo. Desmarcar continua sendo um toque.
+  const [incluirAjuste, setIncluirAjuste] = useState(true)
   const [aberto, setAberto] = useState(false)
   const [estado, setEstado] = useState<"aberto" | "salvando" | "salvo" | "erro">("aberto")
   const [erro, setErro] = useState<string | null>(null)
@@ -69,6 +76,7 @@ export function ExtratoNoChat({ extrato }: { extrato: ExtratoLido }) {
         body: JSON.stringify({
           extratoImportId: extrato.extratoImportId,
           idsAceitos: aceitos.map((t) => t.id),
+          ajuste: incluirAjuste ? extrato.ajuste : null,
         }),
       })
       const d = await r.json().catch(() => ({}))
@@ -121,28 +129,38 @@ export function ExtratoNoChat({ extrato }: { extrato: ExtratoLido }) {
           </div>
         </div>
 
-        {/* A conferência é o produto. Quando dá para provar, mostra. */}
-        <p
-          className={`mt-3 flex items-start gap-1.5 rounded-xl px-3 py-2 text-[12px] leading-snug ${
-            extrato.validacaoForte
-              ? "bg-fl-500/10 text-fl-ink-2"
-              : "bg-fl-accent/10 text-fl-accent-dark"
-          }`}
-        >
-          {extrato.validacaoForte ? (
-            <ShieldCheck className="mt-px size-3.5 shrink-0 text-fl-500" />
-          ) : (
-            <AlertTriangle className="mt-px size-3.5 shrink-0" />
-          )}
-          {extrato.validacaoForte ? (
-            <span>
-              <strong className="font-semibold text-fl-ink">A conta fecha.</strong> Somei dia a dia e bateu
-              com os saldos que o banco declara.
-            </span>
-          ) : (
-            <span>Esse extrato não declara saldo suficiente para eu conferir a soma. Vale uma olhada com atenção.</span>
-          )}
-        </p>
+        {/* A conferência só aparece quando ela EXISTE. Quando a conta não
+            fechou, quem fala é o bloco de decisão logo abaixo — dois avisos
+            sobre a mesma coisa competem e a pessoa não lê nenhum. */}
+        {extrato.contaFechou && (
+          <p
+            className={`mt-3 flex items-start gap-1.5 rounded-xl px-3 py-2 text-[12px] leading-snug ${
+              extrato.validacaoForte ? "bg-fl-500/10 text-fl-ink-2" : "bg-fl-accent/10 text-fl-accent-dark"
+            }`}
+          >
+            {extrato.validacaoForte ? (
+              <ShieldCheck className="mt-px size-3.5 shrink-0 text-fl-500" />
+            ) : (
+              <AlertTriangle className="mt-px size-3.5 shrink-0" />
+            )}
+            {extrato.validacaoForte ? (
+              <span>
+                <strong className="font-semibold text-fl-ink">A conta fecha.</strong> Somei dia a dia e bateu
+                com os saldos que o banco declara.
+              </span>
+            ) : (
+              <span>Esse extrato não declara saldo suficiente para eu conferir a soma. Vale uma olhada com atenção.</span>
+            )}
+          </p>
+        )}
+
+        <DecisaoAjuste
+          ajuste={extrato.ajuste}
+          contaFechou={extrato.contaFechou}
+          motivo={extrato.motivoDivergencia}
+          incluir={incluirAjuste}
+          onMudar={setIncluirAjuste}
+        />
 
         {extrato.cortadoPara3Meses && (
           <p className="mt-1.5 text-[11.5px] text-fl-ink-3">

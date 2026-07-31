@@ -13,7 +13,14 @@ const VALOR_ABSURDO = 500_000
 
 export type ResultadoValidacao =
   | { ok: true; forte: boolean; comoConferi?: string }
-  | { ok: false; motivo: string; divergencia?: number }
+  | {
+      ok: false
+      motivo: string
+      divergencia?: number
+      /** Dia em que a conta parou de fechar. Serve para datar o ajuste no
+       *  lugar certo em vez de jogá-lo no fim do extrato. */
+      dataDivergencia?: string
+    }
 
 function centavos(n: number): number {
   return Math.round(n * 100)
@@ -38,7 +45,7 @@ function centavos(n: number): number {
  */
 function conferirPorSaldoDiario(e: ExtratoParseado):
   | { tipo: "sem_dados" }
-  | { tipo: "falhou"; motivo: string; divergencia: number }
+  | { tipo: "falhou"; motivo: string; divergencia: number; data: string }
   | { tipo: "ok"; intervalos: number; conferidas: number; conferiveis: number } {
   const saldos = [...e.saldosDiarios]
     .filter((s) => !isNaN(new Date(s.data).getTime()))
@@ -82,6 +89,7 @@ function conferirPorSaldoDiario(e: ExtratoParseado):
           `Em ${ate.data} a soma do dia não bate com o saldo declarado: ` +
           `diferença de R$ ${Math.abs(diferenca).toFixed(2)}.`,
         divergencia: diferenca,
+        data: ate.data,
       }
     }
     conferidas += noIntervalo.length
@@ -104,7 +112,12 @@ export function validarExtrato(e: ExtratoParseado): ResultadoValidacao {
   // ---- conferência dia a dia: a única que enxerga omissão ----
   const diario = conferirPorSaldoDiario(e)
   if (diario.tipo === "falhou") {
-    return { ok: false, motivo: diario.motivo, divergencia: diario.divergencia }
+    return {
+      ok: false,
+      motivo: diario.motivo,
+      divergencia: diario.divergencia,
+      dataDivergencia: diario.data,
+    }
   }
   if (diario.tipo === "ok") {
     const cobertura = diario.conferiveis > 0 ? diario.conferidas / diario.conferiveis : 0
@@ -146,6 +159,8 @@ export function validarExtrato(e: ExtratoParseado): ResultadoValidacao {
         ok: false,
         motivo: `A soma das transações diverge do saldo declarado em R$ ${Math.abs(diferenca).toFixed(2)}.`,
         divergencia: diferenca,
+        // Sem dia específico: o furo pode estar em qualquer ponto do período.
+        dataDivergencia: e.periodoFim,
       }
     }
     return { ok: true, forte: true }
