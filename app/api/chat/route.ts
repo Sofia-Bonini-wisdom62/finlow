@@ -7,6 +7,9 @@ import { responderIA, IANaoConfigurada, type ContextoFinanceiro, type MensagemCh
 import { memoriaLigada, listarMemorias, guardarMemorias, type TipoMemoria } from "@/lib/memoria-repo"
 
 export const dynamic = "force-dynamic"
+// Resposta de chat leva 5–15s. 60 dá folga sem deixar um travamento
+// consumir 5 minutos de função.
+export const maxDuration = 60
 
 const NOMES_MESES = [
   "janeiro", "fevereiro", "março", "abril", "maio", "junho",

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { getUserIdOr401, checarConsentimento } from "@/lib/painel"
 import { criarTransacoesDeExtrato } from "@/lib/financeiro-repo"
-import { parsearExtrato } from "@/lib/extrato/parsear"
+import { parsearExtratoParalelo } from "@/lib/extrato/parsear"
 import { validarExtrato, limitarA3Meses } from "@/lib/extrato/validar"
 import { mapearCategorias, nomeDaCategoria } from "@/lib/extrato/categorias"
 import { ErroExtrato, type ExtratoParseado, type ConteudoExtrato } from "@/types/extrato"
@@ -148,14 +148,14 @@ export async function POST(req: NextRequest) {
     )
 
     // 1ª tentativa
-    let r = await parsearExtrato(entrada)
+    let r = await parsearExtratoParalelo(entrada)
     let veredito = validarExtrato(r.extrato)
     let tokensEntrada = r.tokensEntrada
     let tokensSaida = r.tokensSaida
 
     // Retry único, informando ao modelo a diferença encontrada.
     if (!veredito.ok && veredito.divergencia !== undefined) {
-      const r2 = await parsearExtrato(entrada, { divergencia: veredito.divergencia })
+      const r2 = await parsearExtratoParalelo(entrada, { divergencia: veredito.divergencia })
       tokensEntrada += r2.tokensEntrada
       tokensSaida += r2.tokensSaida
       const v2 = validarExtrato(r2.extrato)
@@ -215,7 +215,7 @@ export async function POST(req: NextRequest) {
 
     const custo = estimarCustoBRL(tokensEntrada, tokensSaida, r.modelo)
     console.log(
-      `[extrato] ${registro.id} OK total=${((Date.now() - t0) / 1000).toFixed(1)}s ` +
+      `[extrato] ${registro.id} OK total=${((Date.now() - t0) / 1000).toFixed(1)}s pedacos=${r.pedacos} ` +
       `linhas=${criadas.length} tokens=${tokensEntrada}/${tokensSaida} custo=R$${custo.brl}`
     )
 

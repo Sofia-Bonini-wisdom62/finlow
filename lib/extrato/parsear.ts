@@ -2,6 +2,7 @@ import { getVertex, MODELO_PARSING, VertexNaoConfigurada } from "@/lib/vertex"
 import { promptParsingExtrato } from "@/lib/prompts/parsing-extrato"
 import { ExtratoParseado, ErroExtrato, type ConteudoExtrato } from "@/types/extrato"
 import { lerSaldosDiarios } from "./saldos-diarios"
+import { dividirPorDia } from "./dividir"
 
 export interface ResultadoParsing {
   extrato: ExtratoParseado
@@ -139,5 +140,66 @@ export async function parsearExtrato(
     tokensEntrada,
     tokensSaida,
     modelo: nomeModelo,
+  }
+}
+
+/**
+ * Parseia um extrato grande em pedaços paralelos.
+ *
+ * Uma chamada só, num extrato de 3 meses, leva 90 segundos — e com o retry da
+ * validação passa de 180, o que estoura o tempo da função e a pessoa vê
+ * "timeout" sem entender por quê. Em paralelo o tempo vira o do maior pedaço.
+ *
+ * SÓ CORTA COM REDE EMBAIXO. A condição é ter pelo menos 2 saldos diários no
+ * texto inteiro, lidos por regex, sem o modelo. Isso garante que a conferência
+ * dia a dia vai rodar sobre o resultado remontado — e ela é o que pega qualquer
+ * linha perdida ou duplicada numa emenda entre pedaços. Sem essa rede, não
+ * corta: uma chamada lenta e conferida vale mais que uma rápida e cega.
+ *
+ * saldoInicial e saldoFinal são descartados de propósito. Um pedaço do meio não
+ * sabe que é do meio: ele lê o saldo do primeiro dia que enxerga e chama de
+ * "saldoInicial". Os saldos diários vêm do texto completo e não têm esse
+ * problema.
+ */
+export async function parsearExtratoParalelo(
+  entrada: ConteudoExtrato,
+  opcoes?: { divergencia?: number; modelo?: string }
+): Promise<ResultadoParsing & { pedacos: number }> {
+  if (entrada.modo !== "texto") {
+    return { ...(await parsearExtrato(entrada, opcoes)), pedacos: 1 }
+  }
+
+  const saldos = lerSaldosDiarios(entrada.texto)
+  const pedacos = saldos.length >= 2 ? dividirPorDia(entrada.texto) : [{ texto: entrada.texto, dias: 0 }]
+
+  if (pedacos.length < 2) {
+    return { ...(await parsearExtrato(entrada, opcoes)), pedacos: 1 }
+  }
+
+  const partes = await Promise.all(
+    pedacos.map((p) =>
+      parsearExtrato({ modo: "texto", texto: p.texto, paginas: entrada.paginas }, opcoes)
+    )
+  )
+
+  const transacoes = partes.flatMap((p) => p.extrato.transacoes)
+  const datas = transacoes.map((t) => t.data).sort()
+
+  return {
+    pedacos: pedacos.length,
+    modelo: partes[0].modelo,
+    tokensEntrada: partes.reduce((s, p) => s + p.tokensEntrada, 0),
+    tokensSaida: partes.reduce((s, p) => s + p.tokensSaida, 0),
+    extrato: {
+      banco: partes.find((p) => p.extrato.banco)?.extrato.banco ?? null,
+      // Período vem das transações, não do que cada pedaço declarou: um pedaço
+      // do meio declara o período que ele vê, que não é o do extrato.
+      periodoInicio: datas[0] ?? partes[0].extrato.periodoInicio,
+      periodoFim: datas[datas.length - 1] ?? partes[0].extrato.periodoFim,
+      saldoInicial: null,
+      saldoFinal: null,
+      saldosDiarios: saldos,
+      transacoes,
+    },
   }
 }

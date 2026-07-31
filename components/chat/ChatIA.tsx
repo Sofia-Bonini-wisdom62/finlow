@@ -121,12 +121,18 @@ export function ChatIA({ nome }: { nome: string }) {
       ...m,
       { papel: "usuario", texto: "(extrato)", anexos: [{ nome: f.name, tipo: f.type }] },
     ])
+    // Sem isto o fetch fica pendurado calado: a pessoa vê os pontinhos girando
+    // para sempre e não sabe se travou ou se ainda está lendo. 180s cobre
+    // extrato de 3 meses com folga (33s em paralelo, ~66s com o retry).
+    const ctrl = new AbortController()
+    const limite = setTimeout(() => ctrl.abort(), 180_000)
     try {
       const lido = await lerArquivo(f)
       const r = await fetch("/api/extrato", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(lido),
+        signal: ctrl.signal,
       })
       const d = await r.json().catch(() => ({}))
       if (!r.ok) {
@@ -150,14 +156,20 @@ export function ChatIA({ nome }: { nome: string }) {
         },
       ])
     } catch (e) {
+      const abortado = e instanceof DOMException && e.name === "AbortError"
       setMensagens((m) => [
         ...m,
         {
           papel: "ia",
-          texto: e instanceof ErroLeitura ? e.mensagemUsuario : "Não consegui abrir esse arquivo.",
+          texto: abortado
+            ? "Esse extrato demorou demais e eu parei no meio. Tenta exportar um período menor pelo app do banco — um mês por vez costuma resolver."
+            : e instanceof ErroLeitura
+              ? e.mensagemUsuario
+              : "Não consegui abrir esse arquivo.",
         },
       ])
     } finally {
+      clearTimeout(limite)
       setEnviando(false)
     }
   }
