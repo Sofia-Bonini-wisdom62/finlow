@@ -8,7 +8,9 @@
     "postinstall": "prisma generate && node scripts/copiar-worker-pdfjs.mjs",
     "start": "next start",
     "lint": "eslint",
-    "prebuild": "node scripts/copiar-worker-pdfjs.mjs"
+    "prebuild": "node scripts/copiar-worker-pdfjs.mjs",
+    "db:push": "prisma db push && node scripts/aplicar-rls.mjs",
+    "db:rls": "node scripts/aplicar-rls.mjs"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

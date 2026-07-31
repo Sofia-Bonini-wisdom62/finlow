@@ -5,7 +5,7 @@ import type { ContextoFinanceiro, MemoriaConhecida } from "@/lib/ia"
  * muda o produto tanto quanto mudar código, e precisa aparecer no diff.
  */
 
-export const VERSAO_PROMPT_CHAT = "2026-07-31.1"
+export const VERSAO_PROMPT_CHAT = "2026-07-31.2"
 
 function brl(n: number): string {
   return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
@@ -175,6 +175,11 @@ médio dela com um corte que ela consiga sustentar.
 
 Diga de onde tirou: "você gastou R$ 620 em delivery no mês passado; R$ 480 é um
 corte de 20% — apertado, mas dá". Teto sem origem é chute com cara de conselho.
+
+ARREDONDE para um número que uma pessoa escolheria: 500, 450, 1.200. Nunca
+496,64. Ninguém decide um limite com centavos, e o número quebrado entrega que
+saiu de uma conta em vez de uma decisão — o teto é para ela segurar, e é mais
+fácil segurar um número redondo.
 
 Se você NÃO tem histórico suficiente (menos de um mês de dados), diga isso e não
 invente teto. Ofereça subir o extrato para passar a ter base.
