@@ -9,6 +9,8 @@ import { GraficoLinha } from "@/components/analises/GraficoLinha"
 import { GraficoRosca } from "@/components/analises/GraficoRosca"
 import { GraficoBarras } from "@/components/analises/GraficoBarras"
 import { DetalheCategoria } from "@/components/analises/DetalheCategoria"
+import { TetosCard } from "@/components/analises/TetosCard"
+import type { OrcamentoComGasto } from "@/lib/orcamento-repo"
 import { brl } from "@/lib/formato"
 import type { Indicadores, PontoPatrimonio, FatiaCategoria, BarraMes, PontoDia } from "@/lib/financas"
 
@@ -21,6 +23,7 @@ interface Dados {
   categorias: FatiaCategoria[]
   receitasDespesas: BarraMes[]
   fluxoDiario: PontoDia[]
+  tetos: OrcamentoComGasto[]
 }
 
 function Aviso({ titulo, texto, acao }: { titulo: string; texto: string; acao?: React.ReactNode }) {
@@ -193,6 +196,7 @@ export default function AnalisesPage() {
           />
         ) : (
           <div className="mt-4 flex flex-col gap-4 md:grid md:grid-cols-2 md:items-start md:gap-5">
+            {dados.tetos?.length > 0 && <TetosCard tetos={dados.tetos} onMudou={carregar} />}
             <Secao
               titulo="Evolução do acumulado"
               legenda={`Entradas menos saídas, somadas mês a mês até ${NOMES_MESES[mes - 1].toLowerCase()}`}

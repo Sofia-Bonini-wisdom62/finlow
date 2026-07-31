@@ -5,6 +5,8 @@ import { listarTransacoes, listarContasFixas } from "@/lib/financeiro-repo"
 import { indicadores, gastosPorCategoria, metricasPerfil, type TransacaoCalc } from "@/lib/financas"
 import { responderIA, IANaoConfigurada, type ContextoFinanceiro, type MensagemChat } from "@/lib/ia"
 import { memoriaLigada, listarMemorias, guardarMemorias, type TipoMemoria } from "@/lib/memoria-repo"
+import { listarOrcamentos, cruzarComGasto } from "@/lib/orcamento-repo"
+import { slugDaCategoria } from "@/lib/extrato/categorias"
 
 export const dynamic = "force-dynamic"
 // Resposta de chat leva 5–15s. 60 dá folga sem deixar um travamento
@@ -19,9 +21,10 @@ const NOMES_MESES = [
 // Monta o retrato financeiro real do usuário para a IA usar como base.
 // A IA nunca recebe as transações cruas — só os agregados de que precisa.
 async function montarContexto(userId: string): Promise<ContextoFinanceiro> {
-  const [calc, contas] = await Promise.all([
+  const [calc, contas, tetos] = await Promise.all([
     listarTransacoes(userId, { ordem: "desc" }),
     listarContasFixas(userId, { apenasAtivas: true }),
+    listarOrcamentos(userId),
   ])
 
   const hoje = new Date()
@@ -44,6 +47,14 @@ async function montarContexto(userId: string): Promise<ContextoFinanceiro> {
     maioresCategorias: cats.slice(0, 5).map((c) => ({ nome: c.nome, total: c.total, pct: c.pct })),
     contasFixasTotal: contas.reduce((s, c) => s + c.valor, 0),
     mesesComHistorico: met.mesesComDados,
+    // Sem os tetos no contexto, o assistente proporia de novo o que ela já
+    // decidiu — e desfaria a decisão dela sem nem saber que existia.
+    orcamentos: cruzarComGasto(
+      tetos,
+      calc
+        .filter((t) => t.tipo === "despesa" && new Date(t.data).getUTCMonth() + 1 === mes && new Date(t.data).getUTCFullYear() === ano)
+        .map((t) => ({ nomeCategoria: t.categoria?.nome ?? null, valor: t.valor }))
+    ).map((o) => ({ nome: o.nome, limite: o.limite, gasto: o.gasto, restante: o.restante, pct: o.pct })),
   }
 }
 
@@ -93,7 +104,21 @@ export async function POST(req: NextRequest) {
 
     // A tela mostra o que foi guardado. Memória que grava calada é memória que
     // a pessoa descobre tarde demais, quando já não concorda com o que está lá.
-    return NextResponse.json({ ...resposta, memorias: undefined, memoriasGuardadas: guardadas, podeLancar })
+    // O gasto por slug vai junto para o card de confirmação mostrar
+    // "hoje: R$ 620" ao lado de cada teto proposto. Só busca quando há proposta
+    // — o caso comum é uma conversa sem orçamento nenhum.
+    let gastoAtual: Record<string, number> = {}
+    if (resposta.orcamento?.length) {
+      gastoAtual = await gastoDoMesPorSlug(userId)
+    }
+
+    return NextResponse.json({
+      ...resposta,
+      memorias: undefined,
+      memoriasGuardadas: guardadas,
+      podeLancar,
+      gastoAtual,
+    })
   } catch (e) {
     if (e instanceof IANaoConfigurada) {
       // Estado honesto enquanto a IA não está ligada — não finge resposta.
@@ -111,6 +136,23 @@ export async function POST(req: NextRequest) {
       { status: 502 }
     )
   }
+}
+
+/** Quanto saiu neste mês, por slug de categoria, mais "total". */
+async function gastoDoMesPorSlug(userId: string): Promise<Record<string, number>> {
+  const hoje = new Date()
+  const doMes = await listarTransacoes(userId, {
+    mes: hoje.getMonth() + 1,
+    ano: hoje.getFullYear(),
+  })
+  const mapa: Record<string, number> = {}
+  for (const t of doMes) {
+    if (t.tipo !== "despesa") continue
+    mapa.total = (mapa.total ?? 0) + t.valor
+    const slug = slugDaCategoria(t.categoria?.nome)
+    if (slug) mapa[slug] = (mapa[slug] ?? 0) + t.valor
+  }
+  return mapa
 }
 
 // GET — devolve só o contexto (útil pra depurar o que a IA recebe)

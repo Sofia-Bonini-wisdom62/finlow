@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getUserIdOr401 } from "@/lib/painel"
 import { listarTransacoes } from "@/lib/financeiro-repo"
+import { listarOrcamentos, cruzarComGasto } from "@/lib/orcamento-repo"
 import {
   indicadores,
   evolucaoPatrimonio,
@@ -42,7 +43,10 @@ export async function GET(req: NextRequest) {
 
   try {
     // decifra na camada de repositório; daqui pra baixo os números são claros
-    const calc: TransacaoCalc[] = await listarTransacoes(userId)
+    const [calc, tetos] = await Promise.all([
+      listarTransacoes(userId) as Promise<TransacaoCalc[]>,
+      listarOrcamentos(userId),
+    ])
 
     const ind = indicadores(calc, mes, ano)
     const ate = { mes, ano }
@@ -58,6 +62,20 @@ export async function GET(req: NextRequest) {
       categorias: gastosPorCategoria(calc, mes, ano),
       receitasDespesas: receitasVsDespesas(calc, 6, ate),
       fluxoDiario: fluxoCaixaDiario(calc, mes, ano),
+      // Cruzado aqui e não no cliente: o gasto vem de valores decifrados, que
+      // nunca saem do servidor em forma bruta.
+      tetos: cruzarComGasto(
+        tetos,
+        calc
+          .filter((t) => {
+            const d = t.data instanceof Date ? t.data : new Date(t.data)
+            return t.tipo === "despesa" && d.getUTCMonth() + 1 === mes && d.getUTCFullYear() === ano
+          })
+          .map((t) => ({
+            nomeCategoria: t.categoria?.nome ?? null,
+            valor: typeof t.valor === "string" ? parseFloat(t.valor) : t.valor,
+          }))
+      ),
     })
   } catch (e) {
     console.error("[analises]", e)

@@ -2,9 +2,10 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Mic, Paperclip, ArrowUp, X, FileText, Square } from "lucide-react"
-import type { CardIA as CardIATipo, AnexoChat, LancamentoProposto } from "@/lib/ia"
+import type { CardIA as CardIATipo, AnexoChat, LancamentoProposto, TetoProposto } from "@/lib/ia"
 import { CardIA } from "./CardIA"
 import { ConfirmarLancamentos } from "./ConfirmarLancamentos"
+import { ConfirmarOrcamento } from "./ConfirmarOrcamento"
 import { ExtratoNoChat, type ExtratoLido } from "./ExtratoNoChat"
 import { lerArquivo, ErroLeitura } from "@/lib/extrato/ler-no-navegador"
 
@@ -13,6 +14,8 @@ interface Mensagem {
   texto: string
   cards?: CardIATipo[]
   lancamentos?: LancamentoProposto[]
+  orcamento?: TetoProposto[]
+  gastoAtual?: Record<string, number>
   anexos?: { nome: string; tipo: string }[]
   extrato?: ExtratoLido
 }
@@ -245,6 +248,10 @@ export function ChatIA({ nome }: { nome: string }) {
           lancamentos: Array.isArray(dados.lancamentos) && dados.lancamentos.length
             ? dados.lancamentos
             : undefined,
+          orcamento: Array.isArray(dados.orcamento) && dados.orcamento.length
+            ? dados.orcamento
+            : undefined,
+          gastoAtual: dados.gastoAtual,
         },
       ])
     } catch {
@@ -306,6 +313,7 @@ export function ChatIA({ nome }: { nome: string }) {
                 {m.cards?.map((c, j) => <CardIA key={j} card={c} />)}
                 {m.lancamentos && <ConfirmarLancamentos lancamentos={m.lancamentos} />}
                 {m.extrato && <ExtratoNoChat extrato={m.extrato} />}
+                {m.orcamento && <ConfirmarOrcamento tetos={m.orcamento} gastoAtual={m.gastoAtual} />}
               </div>
             )
           )}

@@ -67,6 +67,19 @@ export async function mapearCategorias(
   return mapa
 }
 
+/**
+ * Nome de exibição → slug. Derivado de NOMES, nunca escrito à mão: uma segunda
+ * lista envelheceria calada no dia em que alguém renomeasse uma categoria.
+ */
+const SLUG_POR_NOME = new Map(
+  Object.entries(NOMES).map(([slug, { nome }]) => [nome.toLowerCase(), slug])
+)
+
+export function slugDaCategoria(nome: string | null | undefined): string | null {
+  if (!nome) return null
+  return SLUG_POR_NOME.get(nome.toLowerCase()) ?? null
+}
+
 export function nomeDaCategoria(slug: string): string {
   return NOMES[slug]?.nome ?? "Outros"
 }

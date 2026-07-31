@@ -27,6 +27,7 @@ model User {
   transacoes            Transacao[]
   categorias            Categoria[]
   memorias              MemoriaUsuario[]
+  orcamentos            Orcamento[]
   accounts              Account[]
   sessions              Session[]
 }
@@ -80,6 +81,29 @@ model Categoria {
   cor        String?
   padrao     Boolean     @default(false) // veio pré-populada por perfil, ou criada pelo usuário
   transacoes Transacao[]
+  orcamentos Orcamento[]
+}
+
+/// Teto de gasto mensal, por categoria ou para o mês inteiro.
+///
+/// É um teto PERMANENTE, não um por mês. É assim que a pessoa pensa ("meu
+/// limite de delivery é R$400"), e um registro por mês significaria alguém ter
+/// de recriar doze orçamentos por ano para que nada mude.
+///
+/// `limite` é CIFRADO — é valor financeiro, mesma regra de Transacao. Passe
+/// sempre por lib/orcamento-repo.ts.
+model Orcamento {
+  id           String     @id @default(cuid())
+  userId       String
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  /// null = teto do mês inteiro, somando todas as saídas
+  categoriaId  String?
+  categoria    Categoria? @relation(fields: [categoriaId], references: [id], onDelete: Cascade)
+  limite       String // CIFRADO
+  criadoEm     DateTime   @default(now())
+  atualizadoEm DateTime   @updatedAt
+
+  @@index([userId])
 }
 
 model Transacao {

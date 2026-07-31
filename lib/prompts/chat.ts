@@ -5,7 +5,7 @@ import type { ContextoFinanceiro, MemoriaConhecida } from "@/lib/ia"
  * muda o produto tanto quanto mudar código, e precisa aparecer no diff.
  */
 
-export const VERSAO_PROMPT_CHAT = "2026-07-30.2"
+export const VERSAO_PROMPT_CHAT = "2026-07-31.1"
 
 function brl(n: number): string {
   return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
@@ -33,7 +33,21 @@ mão para você passar a ter os números dele.`
 - Contas fixas somam: ${brl(c.contasFixasTotal)}
 - Histórico disponível: ${c.mesesComHistorico} ${c.mesesComHistorico === 1 ? "mês" : "meses"}
 - Maiores saídas do mês:
-${cats}`
+${cats}${blocoTetos(c)}`
+}
+
+function blocoTetos(c: ContextoFinanceiro): string {
+  if (!c.orcamentos?.length) return ""
+  const linhas = c.orcamentos
+    .map((o) => {
+      const situacao =
+        o.restante < 0
+          ? `passou ${brl(-o.restante)}`
+          : `restam ${brl(o.restante)}`
+      return `  - ${o.nome}: ${brl(o.gasto)} de ${brl(o.limite)} (${o.pct}%, ${situacao})`
+    })
+    .join("\n")
+  return `\n- Tetos que ela definiu, e como estão neste mês:\n${linhas}`
 }
 
 function blocoMemoria(m: { ligada: boolean; conhecidas: MemoriaConhecida[] } | undefined): string {
@@ -141,6 +155,57 @@ No texto da resposta, confirme em uma frase o que você entendeu e diga que ela
 precisa confirmar. Não diga que já registrou, porque não registrou.`
 }
 
+function blocoOrcamento(pode: boolean, temTetos: boolean): string {
+  if (!pode) {
+    return `PLANEJAR ORÇAMENTO: INDISPONÍVEL
+Sem o Painel ativo não há onde salvar teto nem números para basear um. Você
+ainda pode explicar como se monta um orçamento, mas não proponha valores e não
+inclua o campo "orcamento".`
+  }
+
+  return `PLANEJAR ORÇAMENTO
+Você ajuda a montar tetos de gasto mensais. Devolva em "orcamento" para a pessoa
+confirmar — você não salva nada, o toque dela salva.
+
+DE ONDE SAI O NÚMERO
+Do gasto REAL dela, que está no bloco de números acima. Nunca de fórmula pronta.
+"50/30/20" e "no máximo 30% com moradia" são médias de outras pessoas: para quem
+mora em São Paulo e não tem carro, os dois erram feio. O bom teto é o gasto
+médio dela com um corte que ela consiga sustentar.
+
+Diga de onde tirou: "você gastou R$ 620 em delivery no mês passado; R$ 480 é um
+corte de 20% — apertado, mas dá". Teto sem origem é chute com cara de conselho.
+
+Se você NÃO tem histórico suficiente (menos de um mês de dados), diga isso e não
+invente teto. Ofereça subir o extrato para passar a ter base.
+
+QUANTOS
+No máximo 4 tetos de uma vez. Orçamento com 12 linhas ninguém acompanha, e a
+pessoa abandona tudo na primeira semana. Comece pelas categorias em que ela
+gasta mais e onde há escolha de verdade — aluguel não se corta por decisão, mas
+delivery e lazer sim.
+
+"total" é o teto do mês inteiro, somando todas as saídas. Use quando ela pedir
+um limite geral, e não junto de muitos tetos por categoria — os dois brigando
+confundem.
+
+COMO FALAR DE TETO ESTOURADO
+Sem julgamento e sem alarme. "Delivery passou o teto em R$ 80" é fato; "você
+estourou o orçamento de novo" é sermão. E se ela estourou porque a vida
+aconteceu, o teto é que pode estar errado — sugira ajustar em vez de cobrar.
+
+Nunca chame teto de meta, nem trate cumprir como vitória e passar como derrota.
+É uma régua para enxergar, não uma prova para passar.${
+    temTetos
+      ? `
+
+Ela JÁ TEM tetos definidos (estão no bloco de números). Ao propor de
+novo, considere o que existe: sugerir R$ 500 para quem já tem R$ 450 é
+desfazer a decisão dela sem dizer. Se quiser mudar, explique por quê.`
+      : ""
+  }`
+}
+
 export function promptSistemaChat(
   c: ContextoFinanceiro,
   memoria?: { ligada: boolean; conhecidas: MemoriaConhecida[] },
@@ -190,6 +255,8 @@ ${blocoContexto(c)}
 ${blocoMemoria(memoria)}
 
 ${blocoLancamentos(opcoes?.podeLancar === true)}
+
+${blocoOrcamento(opcoes?.podeLancar === true, (c.orcamentos?.length ?? 0) > 0)}
 ${opcoes?.sistemaExtra ? `
 ${opcoes.sistemaExtra}` : ""}
 
@@ -199,7 +266,8 @@ Responda SEMPRE com um objeto JSON, sem markdown, neste formato:
   "texto": "sua resposta em português",
   "cards": [],
   "memorias": [],
-  "lancamentos": []
+  "lancamentos": [],
+  "orcamento": []
 }
 
 "cards" é opcional e serve para dar forma a um dado que o texto já mencionou.
@@ -220,5 +288,9 @@ omita o campo.
   {"tipo":"situacao|plano|preferencia|compromisso","conteudo":"frase curta"}
 
 "lancamentos" segue as regras do bloco LANÇAR GASTOS acima:
-  {"descricao":"Mercado","valor":45.9,"tipo":"despesa","categoria":"alimentacao","data":"2026-07-30"}`
+  {"descricao":"Mercado","valor":45.9,"tipo":"despesa","categoria":"alimentacao","data":"2026-07-30"}
+
+"orcamento" segue as regras do bloco PLANEJAR ORÇAMENTO acima:
+  {"categoria":"delivery","limite":480}
+  {"categoria":"total","limite":3200}`
 }

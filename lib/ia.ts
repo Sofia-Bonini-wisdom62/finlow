@@ -58,6 +58,8 @@ export interface ContextoFinanceiro {
   maioresCategorias: { nome: string; total: number; pct: number }[]
   contasFixasTotal: number
   mesesComHistorico: number
+  /** Tetos já definidos, com quanto já foi gasto no mês. */
+  orcamentos?: { nome: string; limite: number; gasto: number; restante: number; pct: number }[]
 }
 
 export type CardIA =
@@ -96,11 +98,24 @@ export interface LancamentoProposto {
   data: string           // yyyy-mm-dd
 }
 
+/**
+ * Teto de gasto proposto na conversa. PROPOSTA, não registro — igual aos
+ * lançamentos: o modelo sugere a partir dos números reais, a tela mostra ao
+ * lado o quanto a pessoa gasta hoje, e só o toque dela salva.
+ */
+export interface TetoProposto {
+  /** slug de categoria, ou "total" para o mês inteiro */
+  categoria: string
+  limite: number
+}
+
 export interface RespostaIA {
   texto: string
   cards?: CardIA[]
   /** Propostas para a pessoa confirmar. Nada aqui foi gravado. */
   lancamentos?: LancamentoProposto[]
+  /** Tetos de gasto propostos. Nada aqui foi salvo. */
+  orcamento?: TetoProposto[]
   /** Só no onboarding: trilha escolhida e sinal de que a conversa fechou. */
   perfilSugerido?: string
   concluido?: boolean
@@ -147,6 +162,31 @@ const CATEGORIAS_OK = new Set([
   "compras", "saude", "lazer", "educacao", "transferencia",
   "renda", "taxas_juros", "poupanca", "outros",
 ])
+
+/**
+ * Um teto tem de ser número positivo e plausível, numa categoria conhecida.
+ *
+ * O limite de R$ 10 milhões não é paranoia: um modelo que escorrega de "450"
+ * para "450000" produz uma barra que nunca enche, e a pessoa acha que está indo
+ * bem até o mês fechar no vermelho.
+ */
+export function orcamentoValido(bruto: unknown): TetoProposto[] {
+  if (!Array.isArray(bruto)) return []
+  const vistos = new Set<string>()
+  const ok: TetoProposto[] = []
+  for (const t of bruto.slice(0, 12)) {
+    if (!t || typeof t !== "object") continue
+    const x = t as Record<string, unknown>
+    const categoria = typeof x.categoria === "string" ? x.categoria : ""
+    if (categoria !== "total" && !CATEGORIAS_OK.has(categoria)) continue
+    if (vistos.has(categoria)) continue
+    const limite = typeof x.limite === "number" ? x.limite : NaN
+    if (!Number.isFinite(limite) || limite <= 0 || limite > 10_000_000) continue
+    vistos.add(categoria)
+    ok.push({ categoria, limite: Math.round(limite * 100) / 100 })
+  }
+  return ok
+}
 
 export function lancamentosValidos(bruto: unknown, hoje = new Date()): LancamentoProposto[] {
   if (!Array.isArray(bruto)) return []
@@ -325,7 +365,7 @@ export async function responderIA(
   try {
     const j = JSON.parse(limparCercas(bruto)) as {
       texto?: unknown; cards?: unknown; memorias?: unknown; lancamentos?: unknown
-      perfilSugerido?: unknown; concluido?: unknown
+      orcamento?: unknown; perfilSugerido?: unknown; concluido?: unknown
     }
     const texto = typeof j.texto === "string" && j.texto.trim() ? j.texto.trim() : null
     if (!texto) throw new Error("sem campo texto")
@@ -338,6 +378,8 @@ export async function responderIA(
       // Sem consentimento do Painel não existe destino para o lançamento —
       // descartar aqui evita mostrar um botão "Confirmar" que vai dar 403.
       lancamentos: opcoes?.podeLancar ? lancamentosValidos(j.lancamentos) : [],
+      // Mesmo portão do lançamento: sem Painel não existe onde salvar um teto.
+      orcamento: opcoes?.podeLancar ? orcamentoValido(j.orcamento) : [],
       // Perfil inventado levaria a pessoa a uma trilha que não existe. Só as
       // quatro reais passam, e só durante o onboarding.
       ...(opcoes?.onboarding && typeof j.perfilSugerido === "string" && PERFIS_VALIDOS.has(j.perfilSugerido)
