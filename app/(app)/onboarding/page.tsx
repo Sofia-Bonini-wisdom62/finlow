@@ -25,7 +25,26 @@ interface Mensagem {
   papel: "usuario" | "ia"
   texto: string
   lancamentos?: LancamentoProposto[]
+  /** Respostas prontas para a pergunta desta mensagem. */
+  sugestoes?: string[]
 }
+
+/**
+ * As opções da primeira pergunta são fixas, escritas por nós.
+ *
+ * A abertura também é fixa (ver `comecar()`), então não existe modelo nenhum
+ * para gerá-las neste ponto. E mesmo que existisse: esta é a primeira coisa
+ * que a pessoa vê dentro do app, e as quatro portas de entrada do produto não
+ * deveriam mudar a cada carregamento.
+ *
+ * Uma para cada trilha, de propósito — quem toca já entra pelo caminho certo.
+ */
+const SUGESTOES_ABERTURA = [
+  "Some tudo antes do fim do mês",
+  "Levei um susto com a fatura",
+  "Quero juntar pra uma meta",
+  "Guardo, mas não sei o que fazer com isso",
+]
 
 const PERFIS: Record<string, string> = {
   lancador: "Fluxo de caixa",
@@ -80,6 +99,7 @@ export default function OnboardingPage() {
       texto:
         "O Finlow serve pra você saber para onde o seu dinheiro vai, sem planilha e sem culpa. " +
         "Pra começar bem: o que te fez procurar isso agora?",
+      sugestoes: SUGESTOES_ABERTURA,
     }])
   }
 
@@ -110,6 +130,7 @@ export default function OnboardingPage() {
           papel: "ia",
           texto: d.texto ?? "",
           lancamentos: Array.isArray(d.lancamentos) && d.lancamentos.length ? d.lancamentos : undefined,
+          sugestoes: Array.isArray(d.sugestoes) && d.sugestoes.length ? d.sugestoes : undefined,
         },
       ])
 
@@ -126,8 +147,14 @@ export default function OnboardingPage() {
     }
   }
 
-  async function enviar() {
-    const texto = rascunho.trim()
+  /**
+   * Um caminho só para os dois jeitos de responder.
+   *
+   * O card manda o mesmo texto que a pessoa teria escrito, então nada depois
+   * daqui precisa saber se ela tocou ou digitou — inclusive o modelo.
+   */
+  async function enviar(escolhido?: string) {
+    const texto = (escolhido ?? rascunho).trim()
     if (!texto || enviando) return
     const proximo: Mensagem[] = [...mensagens, { papel: "usuario", texto }]
     setMensagens(proximo)
@@ -248,6 +275,26 @@ export default function OnboardingPage() {
                 </div>
               )}
               {m.lancamentos && <ConfirmarLancamentos lancamentos={m.lancamentos} />}
+
+              {/* Só na última mensagem: card de pergunta velha continuaria
+                  clicável e responderia coisa que já passou. */}
+              {m.sugestoes && i === mensagens.length - 1 && !enviando && (
+                <div className="mt-0.5 flex flex-col gap-1.5">
+                  {m.sugestoes.map((s) => (
+                    <button
+                      key={s}
+                      onClick={() => enviar(s)}
+                      className="flex items-center justify-between gap-2 rounded-2xl border border-fl-500/25 bg-fl-50/60 px-4 py-3 text-left text-[14px] font-medium leading-snug text-fl-ink transition-colors hover:border-fl-500 hover:bg-fl-50 active:scale-[0.99]"
+                    >
+                      {s}
+                      <ArrowRight className="size-3.5 shrink-0 text-fl-500" />
+                    </button>
+                  ))}
+                  <p className="mt-0.5 px-1 text-[12px] text-fl-ink-3">
+                    Ou escreve do seu jeito aqui embaixo.
+                  </p>
+                </div>
+              )}
             </div>
           )
         )}
@@ -275,7 +322,7 @@ export default function OnboardingPage() {
           className="max-h-32 flex-1 resize-none rounded-2xl border border-fl-border bg-fl-card px-4 py-3 text-[14.5px] text-fl-ink outline-none placeholder:text-fl-ink-3 focus:border-fl-500"
         />
         <button
-          onClick={enviar}
+          onClick={() => enviar()}
           disabled={enviando || !rascunho.trim()}
           aria-label="Enviar"
           className="grid size-11 shrink-0 place-items-center rounded-full bg-fl-500 text-primary-foreground disabled:opacity-40"

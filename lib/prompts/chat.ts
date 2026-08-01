@@ -6,7 +6,7 @@ import { blocoMapaDoApp } from "@/lib/app-mapa"
  * muda o produto tanto quanto mudar código, e precisa aparecer no diff.
  */
 
-export const VERSAO_PROMPT_CHAT = "2026-08-01.2"
+export const VERSAO_PROMPT_CHAT = "2026-08-01.3"
 
 function brl(n: number): string {
   return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
@@ -278,8 +278,14 @@ Responda SEMPRE com um objeto JSON, sem markdown, neste formato:
   "cards": [],
   "memorias": [],
   "lancamentos": [],
-  "orcamento": []
-}
+  "orcamento": []${opcoes?.onboarding ? `,
+  "sugestoes": [],
+  "perfilSugerido": null,
+  "concluido": false` : ""}
+}${opcoes?.onboarding ? `
+
+Os três últimos campos existem só nesta primeira conversa, e as regras deles
+estão no bloco da PRIMEIRA CONVERSA acima. O formato aqui é só a forma.` : ""}
 
 "cards" é opcional e serve para dar forma a um dado que o texto já mencionou.
 Use no máximo 2, e só quando ajudarem de verdade, texto sozinho é o normal.

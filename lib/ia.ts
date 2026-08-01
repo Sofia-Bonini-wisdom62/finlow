@@ -135,6 +135,16 @@ export interface RespostaIA {
   perfilSugerido?: string
   concluido?: boolean
   /**
+   * Respostas prontas para a pergunta que acabou de ser feita — só no
+   * onboarding.
+   *
+   * Existem porque campo de texto vazio na primeira tela do app é a pior hora
+   * de pedir que alguém escreva do zero. Tocar num card responde; escrever
+   * também responde; e o que sai dos dois é texto igual, então o modelo não
+   * precisa saber qual dos dois a pessoa usou.
+   */
+  sugestoes?: string[]
+  /**
    * Só vem preenchido quando a memória está LIGADA para a pessoa. A rota é
    * quem decide gravar — aqui é proposta, não fato.
    */
@@ -279,6 +289,37 @@ export function memoriasValidas(bruto: unknown): MemoriaProposta[] {
 /** Rotas que um card pode apontar. Fonte única: lib/app-mapa.ts. */
 const HREFS_VALIDOS = new Set(DESTINOS.map((d) => d.href))
 
+/**
+ * Respostas prontas do onboarding.
+ *
+ * O corte em 4 e em 52 caracteres não é enfeite: no celular elas ficam
+ * empilhadas acima do teclado. Sete opções empurram a pergunta para fora da
+ * tela, e opção longa quebra em três linhas e deixa de parecer um botão.
+ *
+ * Duplicata sai porque o modelo às vezes devolve a mesma ideia com duas
+ * palavras diferentes, e dois cards iguais fazem a pessoa procurar a diferença
+ * que não existe.
+ */
+const MAX_SUGESTOES = 4
+const MAX_LETRAS_SUGESTAO = 52
+
+export function sugestoesValidas(bruto: unknown): string[] {
+  if (!Array.isArray(bruto)) return []
+  const vistas = new Set<string>()
+  const ok: string[] = []
+  for (const s of bruto) {
+    if (typeof s !== "string") continue
+    const limpo = s.trim().replace(/\s+/g, " ")
+    if (!limpo || limpo.length > MAX_LETRAS_SUGESTAO) continue
+    const chave = limpo.toLowerCase()
+    if (vistas.has(chave)) continue
+    vistas.add(chave)
+    ok.push(limpo)
+    if (ok.length === MAX_SUGESTOES) break
+  }
+  return ok
+}
+
 /** Aceita só os cards que batem com o contrato — modelo às vezes inventa forma.
  *
  *  `slugsReais` são as aulas que existem mesmo, do banco. Sem essa lista o
@@ -402,6 +443,7 @@ export async function responderIA(
     const j = JSON.parse(limparCercas(bruto)) as {
       texto?: unknown; cards?: unknown; memorias?: unknown; lancamentos?: unknown
       orcamento?: unknown; perfilSugerido?: unknown; concluido?: unknown
+      sugestoes?: unknown
     }
     const texto = typeof j.texto === "string" && j.texto.trim() ? j.texto.trim() : null
     if (!texto) throw new Error("sem campo texto")
@@ -425,6 +467,11 @@ export async function responderIA(
       // quatro reais passam, e só durante o onboarding.
       ...(opcoes?.onboarding && typeof j.perfilSugerido === "string" && PERFIS_VALIDOS.has(j.perfilSugerido)
         ? { perfilSugerido: j.perfilSugerido, concluido: j.concluido === true }
+        : {}),
+      // Só no onboarding, e nunca no fecho: card de resposta pronta embaixo de
+      // "sua trilha é X" convidaria a responder uma pergunta que não foi feita.
+      ...(opcoes?.onboarding && j.concluido !== true
+        ? { sugestoes: sugestoesValidas(j.sugestoes) }
         : {}),
     }
   } catch {
