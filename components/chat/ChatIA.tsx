@@ -1,12 +1,13 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Mic, Paperclip, ArrowUp, X, FileText, Square } from "lucide-react"
+import { Mic, Paperclip, ArrowUp, X, FileText, Square, History } from "lucide-react"
 import type { CardIA as CardIATipo, AnexoChat, LancamentoProposto, TetoProposto } from "@/lib/ia"
 import { CardIA } from "./CardIA"
 import { ConfirmarLancamentos } from "./ConfirmarLancamentos"
 import { ConfirmarOrcamento } from "./ConfirmarOrcamento"
 import { ExtratoNoChat, type ExtratoLido } from "./ExtratoNoChat"
+import { HistoricoConversas } from "./HistoricoConversas"
 import { lerArquivo, ErroLeitura } from "@/lib/extrato/ler-no-navegador"
 
 interface Mensagem {
@@ -76,6 +77,9 @@ export function ChatIA({ nome }: { nome: string }) {
   const [erro, setErro] = useState<string | null>(null)
   const [ouvindo, setOuvindo] = useState(false)
   const [temVoz, setTemVoz] = useState(false)
+  // null = conversa ainda não gravada. O servidor devolve o id no 1º turno.
+  const [conversaId, setConversaId] = useState<string | null>(null)
+  const [historicoAberto, setHistoricoAberto] = useState(false)
 
   const fimRef = useRef<HTMLDivElement>(null)
   const inputArquivo = useRef<HTMLInputElement>(null)
@@ -225,6 +229,7 @@ export function ChatIA({ nome }: { nome: string }) {
             texto: m.texto,
             ...(i === historico.length - 1 && anexosEnvio.length > 0 ? { anexos: anexosEnvio } : {}),
           })),
+          conversaId,
         }),
       })
 
@@ -238,6 +243,8 @@ export function ChatIA({ nome }: { nome: string }) {
         )
         return
       }
+
+      if (dados.conversaId) setConversaId(dados.conversaId)
 
       setMensagens((m) => [
         ...m,
@@ -263,8 +270,49 @@ export function ChatIA({ nome }: { nome: string }) {
 
   const vazio = mensagens.length === 0
 
+  /** Abre uma conversa guardada. Cards de ação não voltam, por desenho. */
+  async function abrirConversa(id: string) {
+    setErro(null)
+    setEnviando(true)
+    try {
+      const r = await fetch(`/api/chat/conversas?id=${encodeURIComponent(id)}`)
+      const d = await r.json().catch(() => ({}))
+      if (!r.ok) { setErro(d.erro ?? "Não consegui abrir essa conversa."); return }
+      setConversaId(id)
+      setMensagens(
+        (d.mensagens ?? []).map((m: { papel: string; texto: string; cards?: CardIATipo[] }) => ({
+          papel: m.papel === "ia" ? "ia" : "usuario",
+          texto: m.texto,
+          cards: m.cards,
+        }))
+      )
+    } catch {
+      setErro("Sem conexão. Tenta de novo?")
+    } finally {
+      setEnviando(false)
+    }
+  }
+
+  function novaConversa() {
+    setConversaId(null)
+    setMensagens([])
+    setErro(null)
+  }
+
   return (
     <div className="flex h-dvh flex-col bg-fl-page lg:pl-56">
+      {/* Barra fina só com o acesso ao histórico. Um cabeçalho cheio roubaria
+          altura da conversa, que é o que a pessoa veio ver. */}
+      <div className="flex justify-end px-4 pt-3 sm:px-5">
+        <button
+          onClick={() => setHistoricoAberto(true)}
+          aria-label="Conversas anteriores"
+          className="flex items-center gap-1.5 rounded-full border border-fl-border px-3 py-1.5 text-[12.5px] font-medium text-fl-ink-2 transition-colors hover:bg-fl-50 hover:text-fl-ink"
+        >
+          <History className="size-3.5" /> Conversas
+        </button>
+      </div>
+
       {/* histórico */}
       <div className="flex-1 overflow-y-auto px-4 pb-4 pt-4 sm:px-5">
         <div className="mx-auto flex max-w-md flex-col gap-4 lg:max-w-2xl">
@@ -421,6 +469,14 @@ export function ChatIA({ nome }: { nome: string }) {
           </form>
         </div>
       </div>
+
+      <HistoricoConversas
+        aberto={historicoAberto}
+        atual={conversaId}
+        onFechar={() => setHistoricoAberto(false)}
+        onAbrir={abrirConversa}
+        onNova={novaConversa}
+      />
     </div>
   )
 }

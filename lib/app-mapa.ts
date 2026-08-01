@@ -113,6 +113,17 @@ export const ACOES: Acao[] = [
     cuidado: "Desligar não apaga o que já está guardado.",
   },
   {
+    pedido: "ver conversas antigas / histórico do chat",
+    passos: ["Chat", "ícone de histórico no topo"],
+    href: "/chat",
+  },
+  {
+    pedido: "apagar uma conversa / limpar o histórico do chat",
+    passos: ["Chat", "ícone de histórico no topo", "Apagar tudo"],
+    href: "/chat",
+    cuidado: "Apagar a conversa não apaga o que o assistente aprendeu; isso fica em Menu > Memória do assistente.",
+  },
+  {
     pedido: "apagar meus dados financeiros",
     passos: ["Menu", "Privacidade", "Apagar meus dados financeiros"],
     href: "/ajustes",

@@ -6,6 +6,7 @@ import { indicadores, gastosPorCategoria, metricasPerfil, type TransacaoCalc } f
 import { responderIA, IANaoConfigurada, type ContextoFinanceiro, type MensagemChat } from "@/lib/ia"
 import { memoriaLigada, listarMemorias, guardarMemorias, type TipoMemoria } from "@/lib/memoria-repo"
 import { listarOrcamentos, cruzarComGasto } from "@/lib/orcamento-repo"
+import { guardarTurno } from "@/lib/conversa-repo"
 import { slugDaCategoria } from "@/lib/extrato/categorias"
 
 export const dynamic = "force-dynamic"
@@ -63,7 +64,7 @@ export async function POST(req: NextRequest) {
   if (userId instanceof NextResponse) return userId
 
   try {
-    const { mensagens } = await req.json()
+    const { mensagens, conversaId } = await req.json()
     if (!Array.isArray(mensagens) || mensagens.length === 0) {
       return NextResponse.json({ error: "Nenhuma mensagem enviada" }, { status: 400 })
     }
@@ -120,12 +121,31 @@ export async function POST(req: NextRequest) {
       gastoAtual = await gastoDoMesPorSlug(userId)
     }
 
+    /**
+     * Guarda o turno. Falha aqui NÃO derruba a conversa: a resposta já está
+     * pronta e é o que a pessoa pediu. Perder uma linha de histórico é bem
+     * menos grave do que engolir a resposta por causa dela.
+     */
+    let idConversa: string | null = conversaId ?? null
+    try {
+      const ultima = (mensagens as MensagemChat[]).filter((m) => m.papel === "usuario").pop()
+      if (ultima?.texto) {
+        idConversa = await guardarTurno(userId, idConversa, ultima.texto, {
+          texto: resposta.texto,
+          cards: resposta.cards,
+        })
+      }
+    } catch (e) {
+      console.error("[chat] falha ao guardar a conversa:", (e as Error)?.message)
+    }
+
     return NextResponse.json({
       ...resposta,
       memorias: undefined,
       memoriasGuardadas: guardadas,
       podeLancar,
       gastoAtual,
+      conversaId: idConversa,
     })
   } catch (e) {
     if (e instanceof IANaoConfigurada) {

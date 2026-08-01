@@ -38,6 +38,7 @@ model User {
   eventos               EventoPontuacao[]
   insights              Insight[]
   recomendacoes         RecomendacaoTrilha[]
+  conversas             Conversa[]
   accounts              Account[]
   sessions              Session[]
 }
@@ -170,6 +171,45 @@ model ExtratoImport {
   transacoes Transacao[]
 
   @@index([userId, criadoEm])
+}
+
+/// Uma conversa do chat. O histórico que a pessoa pode reabrir.
+///
+/// `titulo` é CIFRADO como as mensagens: ele sai da primeira frase que a pessoa
+/// escreveu, e "como eu pago o cartão da minha mãe" é tão sensível quanto o
+/// resto da conversa.
+model Conversa {
+  id           String             @id @default(cuid())
+  userId       String
+  user         User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  titulo       String? // CIFRADO
+  criadoEm     DateTime           @default(now())
+  atualizadoEm DateTime           @updatedAt
+  mensagens    ConversaMensagem[]
+
+  @@index([userId, atualizadoEm])
+}
+
+/// Mensagem de uma conversa.
+///
+/// `texto` é CIFRADO, e aqui isso é ainda menos negociável que em Transacao: a
+/// conversa junta número, contexto de vida e o que a pessoa contou sobre a
+/// família dela no mesmo lugar.
+///
+/// `cards` guarda SÓ os cards informativos (resumo, gráfico, recomendação,
+/// lembrete, caminho). Proposta de ação — lançamento, orçamento, extrato — não
+/// volta: ela é de uma vez só, e reabrir a conversa com um botão "Confirmar"
+/// vivo convidaria a registrar duas vezes o mesmo gasto.
+model ConversaMensagem {
+  id         String   @id @default(cuid())
+  conversaId String
+  conversa   Conversa @relation(fields: [conversaId], references: [id], onDelete: Cascade)
+  papel      String // "usuario" | "ia"
+  texto      String // CIFRADO
+  cards      Json?
+  criadoEm   DateTime @default(now())
+
+  @@index([conversaId, criadoEm])
 }
 
 /// Respostas do onboarding de 3 passos (SPEC v3 §2.4–2.6).
