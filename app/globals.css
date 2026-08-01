@@ -266,3 +266,66 @@
     transition: none !important;
   }
 }
+
+/* ===================== PALETAS DE DESTAQUE =====================
+   Três opções, e só a rampa de destaque muda: fundo, texto e superfícies
+   continuam iguais nas três. Trocar tudo daria três apps; trocar só o destaque
+   dá um app com três humores.
+
+   Cada paleta tem valores PRÓPRIOS para claro e escuro. A mesma cor não serve
+   nos dois: um destaque que funciona sobre papel branco some sobre fundo
+   quase-preto, e vice-versa.
+
+   Nenhuma é cinza, de propósito: cinza não se destaca do resto da página, que
+   é justamente o trabalho de uma cor de destaque.
+   ================================================================ */
+
+/* terracota: mesma força de contraste do teal (5,66 no claro, 6,47 no escuro),
+   matiz 14°. Gerado resolvendo POR CONTRASTE, não copiando luminosidade:
+   a mesma L em matizes diferentes dá contrastes muito diferentes. */
+[data-paleta="terracota"] {
+  --fl-50: #F7F0ED;
+  --fl-100: #ECDDD9;
+  --fl-200: #DBBEB5;
+  --fl-300: #C69C8E;
+  --fl-500: #9F4B31;
+  --fl-600: #7F3A26;
+  --fl-700: #612D1D;
+  --fl-800: #462014;
+}
+
+.dark[data-paleta="terracota"] {
+  --fl-50: #37221C;
+  --fl-100: #4B2E26;
+  --fl-200: #613C31;
+  --fl-300: #B7715B;
+  --fl-500: #C58F7E;
+  --fl-600: #D4A597;
+  --fl-700: #B7715B;
+  --fl-800: #462014;
+}
+
+/* indigo: mesma força de contraste do teal (5,66 no claro, 6,47 no escuro),
+   matiz 247°. Gerado resolvendo POR CONTRASTE, não copiando luminosidade:
+   a mesma L em matizes diferentes dá contrastes muito diferentes. */
+[data-paleta="indigo"] {
+  --fl-50: #F2F0F9;
+  --fl-100: #E1DEF2;
+  --fl-200: #C5C0E6;
+  --fl-300: #A59FD7;
+  --fl-500: #5E4ED4;
+  --fl-600: #4330CD;
+  --fl-700: #33259F;
+  --fl-800: #241A74;
+}
+
+.dark[data-paleta="indigo"] {
+  --fl-50: #26214E;
+  --fl-100: #342C6A;
+  --fl-200: #433A89;
+  --fl-300: #8278CE;
+  --fl-500: #9B94D7;
+  --fl-600: #B0A9E2;
+  --fl-700: #8278CE;
+  --fl-800: #241A74;
+}

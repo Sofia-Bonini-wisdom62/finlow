@@ -9,6 +9,7 @@ import {
 } from "lucide-react"
 import { BottomNav } from "@/components/bottom-nav"
 import { SeletorTema } from "@/components/SeletorTema"
+import { SeletorPaleta } from "@/components/SeletorPaleta"
 import { EMAIL_CONTATO } from "@/lib/constantes"
 
 interface Conta {
@@ -314,6 +315,17 @@ export default function AjustesPage() {
             </div>
             <SeletorTema />
           </div>
+
+          <div className="flex flex-col gap-2.5 py-3">
+            <div>
+              <div className="text-[15px] text-fl-ink">Cor de destaque</div>
+              <div className="text-[12.5px] text-fl-ink-3">
+                Muda só os destaques. Cada uma tem uma versão para o claro e outra para o escuro.
+              </div>
+            </div>
+            <SeletorPaleta />
+          </div>
+
           <EmBreve rotulo="Idioma" motivo="Hoje o Finlow existe só em português." />
         </Secao>
 
