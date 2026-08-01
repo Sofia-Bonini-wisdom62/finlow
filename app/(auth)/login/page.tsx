@@ -1,9 +1,24 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { signIn } from "next-auth/react"
+import { BotaoGoogle } from "@/components/auth/BotaoGoogle"
+
+/**
+ * Quando o login pelo Google falha, o NextAuth traz a pessoa de volta para cá
+ * com ?error=. Sem tradução ela lê "OAuthAccountNotLinked" e não tem como
+ * saber que a conta dela existe e só precisa da senha.
+ *
+ * O caso que mais acontece é justamente esse: cadastrou com e-mail e senha,
+ * meses depois tenta o botão do Google com o mesmo e-mail.
+ */
+const ERROS_OAUTH: Record<string, string> = {
+  OAuthAccountNotLinked:
+    "Esse e-mail já tem conta aqui, criada com senha. Entra com a senha aqui embaixo.",
+  AccessDenied: "O Google não liberou o acesso. Tenta de novo ou entra com e-mail e senha.",
+}
 
 export default function LoginPage() {
   const router = useRouter()
@@ -11,6 +26,14 @@ export default function LoginPage() {
   const [senha, setSenha] = useState("")
   const [erro, setErro] = useState<string | null>(null)
   const [enviando, setEnviando] = useState(false)
+
+  // Lido do window em vez de useSearchParams: esta página é estática, e o hook
+  // exigiria envolvê-la num Suspense só para ler um parâmetro de erro.
+  useEffect(() => {
+    const codigo = new URLSearchParams(window.location.search).get("error")
+    if (!codigo) return
+    setErro(ERROS_OAUTH[codigo] ?? "Não deu pra entrar com o Google. Tenta de novo?")
+  }, [])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -79,6 +102,8 @@ export default function LoginPage() {
             {enviando ? "Entrando..." : "Entrar"}
           </button>
         </form>
+
+        <BotaoGoogle />
 
         <p className="mt-6 text-center text-sm" style={{ color: "var(--fl-ink-2)" }}>
           Ainda não tem conta?{" "}

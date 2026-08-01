@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { signIn } from "next-auth/react"
+import { BotaoGoogle } from "@/components/auth/BotaoGoogle"
 
 // máscara DD/MM/AAAA — insere as barras enquanto digita
 function maskData(v: string): string {
@@ -157,6 +158,8 @@ export default function CadastroPage() {
             {enviando ? "Criando..." : "Criar conta"}
           </button>
         </form>
+
+        <BotaoGoogle rotulo="Criar conta com o Google" />
 
         <p className="mt-6 text-center text-sm" style={{ color: "var(--fl-ink-2)" }}>
           Já tem conta?{" "}
