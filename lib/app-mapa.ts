@@ -48,13 +48,16 @@ export const DESTINOS: Destino[] = [
   {
     href: "/analises",
     nome: "Análises",
-    caminho: ["Análises"],
+    // Deixou de ser aba: agora é profundidade do Perfil.
+    caminho: ["Perfil", "Análises"],
     paraQue: "gráficos do mês, gastos por categoria, tetos de orçamento",
   },
   {
     href: "/painel",
     nome: "Painel",
-    caminho: ["Menu", "Registrar e editar lançamentos"],
+    // Também dá pra chegar por Menu > "Registrar e editar lançamentos", mas o
+    // mapa dá UM caminho: dois caminhos na mesma resposta viram dúvida.
+    caminho: ["Perfil", "Painel"],
     paraQue: "lançar na mão, editar ou apagar um lançamento, contas fixas",
   },
   {
@@ -163,7 +166,7 @@ export const ACOES: Acao[] = [
   },
   {
     pedido: "ver ou apagar um teto de orçamento",
-    passos: ["Análises", "card Seus tetos"],
+    passos: ["Perfil", "Análises", "card Seus tetos"],
     href: "/analises",
   },
   {

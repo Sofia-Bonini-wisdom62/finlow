@@ -137,7 +137,13 @@ export async function GET(req: NextRequest) {
       .filter((m): m is (typeof modulos)[number] => m !== undefined)
       .map(enriquecer)
 
-    return NextResponse.json({ recomendados })
+    // `todos` alimenta a seção "Todos os módulos" da Trilha. Vai na mesma
+    // resposta de propósito: são 16 módulos já carregados e enriquecidos aqui;
+    // uma segunda rota faria uma consulta idêntica para devolver o que já
+    // estava em memória.
+    const todos = modulos.map(enriquecer)
+
+    return NextResponse.json({ recomendados, todos })
   } catch (e) {
     console.error("[modulos]", e)
     return NextResponse.json({ error: "Erro ao carregar módulos" }, { status: 500 })

@@ -14,6 +14,7 @@
  */
 import { existsSync } from "node:fs"
 import { DESTINOS, ACOES } from "../lib/app-mapa.js"
+import { ABAS } from "../lib/abas.js"
 
 /** Uma rota existe se houver um page.tsx correspondente, em qualquer grupo. */
 function rotaExiste(href: string): boolean {
@@ -57,6 +58,27 @@ const semPasso = [...DESTINOS.map((d) => ({ n: d.nome, p: d.caminho })), ...ACOE
 if (semPasso.length) {
   falhas++
   console.log(`\n✗ caminho com passo vazio: ${semPasso.map((x) => x.n).join(", ")}`)
+}
+
+/**
+ * O primeiro passo de todo caminho tem de ser uma aba de verdade.
+ *
+ * A rota existir não basta. /analises continuou existindo depois de deixar de
+ * ser aba, e o mapa continuou dizendo "toca em Análises": instrução impossível
+ * de seguir, apontando para uma tela que existe. Nenhuma checagem de rota pega
+ * isso — só comparar com `lib/abas.ts` pega.
+ */
+const abas = new Set(ABAS.map((a) => a.label))
+const foraDaAba = [
+  ...DESTINOS.map((d) => ({ n: d.nome, primeiro: d.caminho[0] })),
+  ...ACOES.map((a) => ({ n: a.pedido, primeiro: a.passos[0] })),
+].filter((x) => x.primeiro && !abas.has(x.primeiro))
+if (foraDaAba.length) {
+  falhas++
+  console.log(
+    `\n✗ caminho começando fora das abas (${[...abas].join(" · ")}):\n` +
+      foraDaAba.map((x) => `    "${x.primeiro}" em ${x.n}`).join("\n")
+  )
 }
 
 console.log(`\n${falhas === 0 ? "✓ todo caminho do mapa existe" : `✗ ${falhas} problema(s)`}`)

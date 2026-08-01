@@ -2,7 +2,8 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { MessageCircle, ChartColumn, CircleUser, Menu, Wallet } from "lucide-react"
+import { MessageCircle, BookText, CircleUser, Menu } from "lucide-react"
+import { ABAS } from "@/lib/abas"
 
 /**
  * Navegação do app. Barra embaixo no celular, coluna à esquerda no desktop.
@@ -18,15 +19,21 @@ import { MessageCircle, ChartColumn, CircleUser, Menu, Wallet } from "lucide-rea
  * página: quem usa não precisa saber que existem duas formas.
  */
 
-const itens = [
-  { href: "/chat", label: "Chat", Icon: MessageCircle },
-  { href: "/analises", label: "Análises", Icon: ChartColumn },
-  // O Painel só entra na lateral: na barra de baixo, um 5º item deixaria cada
-  // alvo com menos de 75px de largura num iPhone SE.
-  { href: "/painel", label: "Painel", Icon: Wallet, soDesktop: true },
-  { href: "/perfil", label: "Perfil", Icon: CircleUser },
-  { href: "/ajustes", label: "Menu", Icon: Menu },
-]
+/**
+ * Quatro abas, como o quadro desenha. Análises e Painel saíram daqui: os dois
+ * são profundidade do Perfil, e viraram destino do botão DASH lá dentro.
+ *
+ * A lista vem de `lib/abas.ts` porque o assistente também precisa dela para
+ * dizer "toca em Perfil, depois Análises". Aqui só entra o ícone.
+ */
+const ICONE: Record<string, typeof MessageCircle> = {
+  "/chat": MessageCircle,
+  "/trilha": BookText,
+  "/perfil": CircleUser,
+  "/ajustes": Menu,
+}
+
+const itens = ABAS.map((a) => ({ ...a, Icon: ICONE[a.href] ?? Menu }))
 
 export function BottomNav() {
   const pathname = usePathname()
@@ -37,24 +44,22 @@ export function BottomNav() {
       {/* celular: barra inferior */}
       <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-fl-divider bg-fl-page/95 backdrop-blur lg:hidden">
         <div className="mx-auto grid max-w-md grid-cols-4">
-          {itens
-            .filter((i) => !i.soDesktop)
-            .map(({ href, label, Icon }) => {
-              const ativo = ehAtivo(href)
-              return (
-                <Link
-                  key={href}
-                  href={href}
-                  aria-current={ativo ? "page" : undefined}
-                  className={`flex min-h-14 flex-col items-center justify-center gap-1 text-[11px] font-medium transition-colors ${
-                    ativo ? "text-fl-500" : "text-fl-ink-2 hover:text-fl-ink"
-                  }`}
-                >
-                  <Icon className="size-5" strokeWidth={ativo ? 2.4 : 1.8} />
-                  {label}
-                </Link>
-              )
-            })}
+          {itens.map(({ href, label, Icon }) => {
+            const ativo = ehAtivo(href)
+            return (
+              <Link
+                key={href}
+                href={href}
+                aria-current={ativo ? "page" : undefined}
+                className={`flex min-h-14 flex-col items-center justify-center gap-1 text-[11px] font-medium transition-colors ${
+                  ativo ? "text-fl-500" : "text-fl-ink-2 hover:text-fl-ink"
+                }`}
+              >
+                <Icon className="size-5" strokeWidth={ativo ? 2.4 : 1.8} />
+                {label}
+              </Link>
+            )
+          })}
         </div>
       </nav>
 
