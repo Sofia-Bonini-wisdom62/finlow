@@ -8,18 +8,24 @@ datasource db {
 }
 
 model User {
-  id                    String            @id @default(cuid())
-  email                 String            @unique
+  id                    String               @id @default(cuid())
+  email                 String               @unique
   nome                  String?
   dataNascimento        DateTime? // só informativo — sem validação de idade (decisão da fundadora, 04/07/2026)
   senha                 String? // hash bcrypt — null para contas OAuth
   consentimentoLGPD     DateTime? // quando o consentimento do responsável foi registrado (menores de 18)
   consentimentoPainelEm DateTime? // opt-in específico do Painel (R8) — sem ele, nenhum write de Painel
-  memoriaAtiva          Boolean           @default(false) // opt-in da memória do assistente — desligada até a pessoa ligar
+  memoriaAtiva          Boolean              @default(false) // opt-in da memória do assistente — desligada até a pessoa ligar
   onboardingEm          DateTime? // quando terminou a primeira conversa; null = ainda não fez
+  // --- SPEC v3 §3 ---
+  nivel                 String               @default("iniciante") // inferido no processamento; depois só por sinal duro
+  tendencia             String? // legado; a IA pode revisar observando o dash
+  pontos                Int                  @default(0)
+  apelido               String?              @unique // nome exibido no ranking
+  rankingOptIn          Boolean              @default(false) // ranking é opt-in explícito
   emailVerified         DateTime?
   image                 String?
-  criadoEm              DateTime          @default(now())
+  criadoEm              DateTime             @default(now())
   perfil                Perfil?
   progresso             ProgressoModulo[]
   extratoImports        ExtratoImport[]
@@ -28,6 +34,10 @@ model User {
   categorias            Categoria[]
   memorias              MemoriaUsuario[]
   orcamentos            Orcamento[]
+  onboarding            Onboarding?
+  eventos               EventoPontuacao[]
+  insights              Insight[]
+  recomendacoes         RecomendacaoTrilha[]
   accounts              Account[]
   sessions              Session[]
 }
@@ -121,11 +131,18 @@ model Transacao {
   data        DateTime
   criadoEm    DateTime   @default(now())
 
-  // Nada entra no dash sem ação explícita do usuário. Lançamento manual já
-  // nasce confirmado; o que vem de extrato nasce false e espera a revisão.
-  // O default true é obrigatório: sem ele, os registros que já existem
-  // sumiriam das Análises no instante do db push.
-  confirmado      Boolean        @default(true)
+  // Nada entra no dash sem ação explícita do usuário.
+  //
+  // O default virou FALSE (SPEC v3 §3). Antes era true, e o argumento na época
+  // era proteger as linhas já existentes — mas default só vale para linha NOVA,
+  // então as antigas nunca estiveram em risco. O que o default true fazia de
+  // verdade era transformar qualquer caminho de escrita novo que esquecesse o
+  // campo num caminho que conta dinheiro no dash sem ninguém ter confirmado.
+  //
+  // Agora esquecer produz linha PENDENTE, que é visível e inofensiva. Os
+  // caminhos que já têm confirmação da pessoa (lançamento manual, card do chat,
+  // linha de ajuste) passam `confirmado: true` explicitamente.
+  confirmado      Boolean        @default(false)
   origem          String         @default("manual") // "manual" | "extrato"
   extratoImportId String?
   extratoImport   ExtratoImport? @relation(fields: [extratoImportId], references: [id], onDelete: SetNull)
@@ -155,6 +172,74 @@ model ExtratoImport {
   @@index([userId, criadoEm])
 }
 
+/// Respostas do onboarding de 3 passos (SPEC v3 §2.4–2.6).
+///
+/// NÃO substitui `Perfil`, ao contrário do que a spec supõe: a spec fala em
+/// remover `Diagnostico`, que nunca existiu neste banco. `Perfil` guarda a
+/// trilha (lancador/guardador/impulsivo/sonhador) e é lido pela Trilha hoje —
+/// apagá-lo esvaziaria a trilha de todo mundo. Os dois convivem: `Perfil` diz
+/// QUAL trilha, `Onboarding` diz O QUE a pessoa respondeu e por quê.
+model Onboarding {
+  id            String    @id @default(cuid())
+  userId        String    @unique
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  objetivo      String // ver §2.4
+  objetivoOutro String?
+  eixo2         String // "dificuldade" | "motivacao"
+  eixo2Valor    String
+  eixo2Outro    String?
+  momento       String // "extrato" | "chat" | "depois"
+  nivelInferido String? // saída do processamento, não pergunta
+  situacoes     String[] // inferidas
+  concluidoEm   DateTime?
+  criadoEm      DateTime  @default(now())
+}
+
+/// Cada crédito de ponto, com o que o originou.
+///
+/// A chave única (userId, motivo, refId) é o que impede farmar: concluir o
+/// mesmo módulo duas vezes tenta gravar a mesma linha e o banco recusa.
+model EventoPontuacao {
+  id       String   @id @default(cuid())
+  userId   String
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  motivo   String // "onboarding"|"modulo_concluido"|"quiz_acerto"|"lancamento_confirmado"|"streak_semana"
+  pontos   Int
+  refId    String? // id do módulo/lançamento que gerou
+  criadoEm DateTime @default(now())
+
+  @@unique([userId, motivo, refId])
+  @@index([userId, criadoEm])
+}
+
+/// As três linhas de texto que a IA escreve lendo o dash (§2.10).
+model Insight {
+  id       String   @id @default(cuid())
+  userId   String
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  texto    String   @db.Text
+  tipo     String // "gasto"|"divida"|"progresso"|"alerta"
+  ativo    Boolean  @default(true)
+  criadoEm DateTime @default(now())
+
+  @@index([userId, criadoEm])
+}
+
+/// Módulo recomendado pela IA, com o porquê — que o card exibe.
+model RecomendacaoTrilha {
+  id       String   @id @default(cuid())
+  userId   String
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  moduloId String
+  modulo   Modulo   @relation(fields: [moduloId], references: [id], onDelete: Cascade)
+  motivo   String   @db.Text
+  origem   String // "onboarding"|"gatilho_percentual"|"lacuna_chat"
+  ordem    Int
+  criadoEm DateTime @default(now())
+
+  @@unique([userId, moduloId, origem])
+}
+
 model Perfil {
   id        String   @id @default(cuid())
   userId    String   @unique
@@ -165,15 +250,20 @@ model Perfil {
 }
 
 model Modulo {
-  id         String            @id @default(cuid())
-  slug       String            @unique
-  titulo     String
-  subtitulo  String
-  tipoPerfil String
-  ordem      Int
-  xp         Int               @default(50)
-  telas      Tela[]
-  progresso  ProgressoModulo[]
+  id            String               @id @default(cuid())
+  slug          String               @unique
+  titulo        String
+  subtitulo     String
+  tipoPerfil    String
+  ordem         Int
+  xp            Int                  @default(50)
+  // --- SPEC v3 §3 ---
+  thumbnail     String?
+  duracaoMin    Int                  @default(2)
+  tags          String[] // alimenta a busca da Trilha
+  telas         Tela[]
+  progresso     ProgressoModulo[]
+  recomendacoes RecomendacaoTrilha[]
 
   @@index([tipoPerfil, ordem])
 }

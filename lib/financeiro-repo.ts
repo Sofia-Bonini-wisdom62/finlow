@@ -130,6 +130,19 @@ export async function criarTransacao(
     origem?: string
     /** Amarra a linha ao extrato que a originou, para dar para desfazer junto. */
     extratoImportId?: string | null
+    /**
+     * Só passe false para criar linha pendente de propósito.
+     *
+     * O default do BANCO é false (SPEC v3 §3): ele protege contra caminho novo
+     * que esqueça o campo — esquecer produz linha pendente, visível e
+     * inofensiva, em vez de dinheiro contado sem ninguém ter confirmado.
+     *
+     * Aqui o default é true, e as duas coisas não se contradizem: esta função
+     * SÓ é chamada depois de uma ação deliberada da pessoa (lançar na mão,
+     * tocar em Confirmar no card, aceitar a linha de ajuste). O banco protege
+     * o descuido; a função descreve a intenção.
+     */
+    confirmado?: boolean
   }
 ): Promise<TransacaoClara> {
   const linha = await db.transacao.create({
@@ -140,6 +153,7 @@ export async function criarTransacao(
       tipo: d.tipo,
       categoriaId: d.categoriaId,
       data: d.data,
+      confirmado: d.confirmado ?? true,
       ...(d.origem ? { origem: d.origem } : {}),
       ...(d.extratoImportId ? { extratoImportId: d.extratoImportId } : {}),
     },
