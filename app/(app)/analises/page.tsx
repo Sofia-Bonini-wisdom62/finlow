@@ -100,7 +100,7 @@ export default function AnalisesPage() {
     { rotulo: "Entradas", valor: ind?.receita ?? 0 },
     { rotulo: "Saídas", valor: ind?.despesa ?? 0 },
     { rotulo: "Sobrou", valor: ind?.economia ?? 0, nota: "entradas − saídas", destaque: true },
-    { rotulo: "Guardado", valor: ind?.investimentos ?? 0, nota: "cofrinho e reserva — fora das saídas" },
+    { rotulo: "Guardado", valor: ind?.investimentos ?? 0, nota: "cofrinho e reserva, fora das saídas" },
     { rotulo: "Acumulado", valor: ind?.acumulado ?? 0, nota: "desde o 1º registro até este mês", destaque: true },
   ]
 
@@ -159,7 +159,7 @@ export default function AnalisesPage() {
         ) : !dados?.temDados ? (
           <Aviso
             titulo="Nada pra mostrar ainda"
-            texto="Registre suas entradas e saídas e os gráficos aparecem aqui — evolução do acumulado, gastos por categoria e fluxo de caixa."
+            texto="Registre suas entradas e saídas e os gráficos aparecem aqui. Evolução do acumulado, gastos por categoria e fluxo de caixa."
             acao={
               <div className="mt-4 flex flex-col items-center gap-2">
                 <Link
@@ -177,7 +177,7 @@ export default function AnalisesPage() {
         ) : !dados.temDadosNoMes ? (
           <Aviso
             titulo={`Nenhum lançamento em ${NOMES_MESES[mes - 1]}`}
-            texto="Você tem lançamentos em outros meses — este está vazio. Gráficos com zeros não diriam nada sobre suas finanças."
+            texto="Você tem lançamentos em outros meses. Este está vazio. Gráficos com zeros não diriam nada sobre suas finanças."
             acao={
               <div className="mt-4 flex flex-col items-center gap-2">
                 {dados.mesAnterior && (
@@ -213,14 +213,14 @@ export default function AnalisesPage() {
 
             <Secao
               titulo="Entradas × Saídas"
-              legenda={`Últimos meses até ${NOMES_MESES[mes - 1].toLowerCase()} — o marcador aponta os deficitários`}
+              legenda={`Últimos meses até ${NOMES_MESES[mes - 1].toLowerCase()}, o marcador aponta os deficitários`}
             >
               <GraficoBarras meses={dados.receitasDespesas} />
             </Secao>
 
             <Secao
               titulo="Fluxo de caixa diário"
-              legenda="Quanto entrou menos quanto saiu ao longo do mês, dia a dia — começa do zero, não é saldo de conta"
+              legenda="Quanto entrou menos quanto saiu ao longo do mês, dia a dia. Começa do zero, não é saldo de conta"
             >
               <GraficoLinha
                 pontos={dados.fluxoDiario.map((p) => ({ rotulo: String(p.dia), valor: p.saldo }))}

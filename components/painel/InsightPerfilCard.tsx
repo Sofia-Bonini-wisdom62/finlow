@@ -30,7 +30,7 @@ function escolherModulo(
     case "lancador":
       if (cat.includes("delivery") || cat.includes("streaming")) {
         alvo = porOrdem(1)
-        frase = `"${topCategoria}" foi sua maior fatia do mês — o retrato clássico do gasto pequeno que soma sem você ver.`
+        frase = `"${topCategoria}" foi sua maior fatia do mês. O retrato clássico do gasto pequeno que soma sem você ver.`
       } else {
         alvo = porOrdem(4)
         frase = `Sua maior fatia foi "${topCategoria}". Antes da próxima compra grande, lembra da regra das 24 horas.`
@@ -39,28 +39,28 @@ function escolherModulo(
     case "guardador":
       if (cat.includes("investimento") || cat.includes("reserva")) {
         alvo = porOrdem(4)
-        frase = `Quase tudo foi pra "${topCategoria}" — guardar você domina. E o gasto bom com data marcada, já agendou?`
+        frase = `Quase tudo foi pra "${topCategoria}". Guardar você domina. E o gasto bom com data marcada, já agendou?`
       } else {
         alvo = porOrdem(2)
-        frase = `"${topCategoria}" liderou o mês. Se coube no seu valor livre, foi plano — não deslize.`
+        frase = `"${topCategoria}" liderou o mês. Se coube no seu valor livre, foi plano, não deslize.`
       }
       break
     case "impulsivo":
       if (cat.includes("impulso")) {
         alvo = porOrdem(2)
-        frase = `"${topCategoria}" foi sua maior fatia — teu gatilho apareceu esse mês. A pausa de 24h pega exatamente isso.`
+        frase = `"${topCategoria}" foi sua maior fatia. Teu gatilho apareceu esse mês. A pausa de 24h pega exatamente isso.`
       } else {
         alvo = porOrdem(4)
-        frase = `Maior fatia: "${topCategoria}". Desejo que sobrevive à espera vira compra sem culpa — a lista tá rodando?`
+        frase = `Maior fatia: "${topCategoria}". Desejo que sobrevive à espera vira compra sem culpa, a lista tá rodando?`
       }
       break
     case "sonhador":
       if (cat.includes("sonho")) {
         alvo = porOrdem(4)
-        frase = `"${topCategoria}" no topo do mês — o sonho tá recebendo. O check semanal mantém isso vivo.`
+        frase = `"${topCategoria}" no topo do mês. O sonho tá recebendo. O check semanal mantém isso vivo.`
       } else {
         alvo = porOrdem(2)
-        frase = `"${topCategoria}" liderou — e quanto foi pro seu sonho? O menor passo possível ainda vale.`
+        frase = `"${topCategoria}" liderou, e quanto foi pro seu sonho? O menor passo possível ainda vale.`
       }
       break
   }

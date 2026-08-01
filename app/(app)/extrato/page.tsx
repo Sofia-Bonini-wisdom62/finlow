@@ -67,7 +67,7 @@ export default function ExtratoPage() {
   async function enviar(arquivo: File) {
     setFalha(null)
     if (arquivo.size > LIMITE_MB * 1024 * 1024) {
-      setFalha({ codigo: "ARQUIVO_GRANDE", erro: `Esse arquivo passa de ${LIMITE_MB} MB. Tenta exportar de novo pelo app do banco — o PDF do extrato costuma ser bem menor.` })
+      setFalha({ codigo: "ARQUIVO_GRANDE", erro: `Esse arquivo passa de ${LIMITE_MB} MB. Tenta exportar de novo pelo app do banco. O PDF do extrato costuma ser bem menor.` })
       return
     }
 
@@ -136,7 +136,7 @@ export default function ExtratoPage() {
         abortado
           ? {
               codigo: "DEMOROU",
-              erro: "A leitura passou de 3 minutos e eu parei de esperar. Extrato muito longo ou digitalizado costuma demorar — tenta um período menor, ou o PDF gerado pelo próprio app do banco em vez de um escaneado.",
+              erro: "A leitura passou de 3 minutos e eu parei de esperar. Extrato muito longo ou digitalizado costuma demorar. Tenta um período menor, ou o PDF gerado pelo próprio app do banco em vez de um escaneado.",
               motivo: `abortado pelo app após ${segundos}s`,
             }
           : {
@@ -204,7 +204,7 @@ export default function ExtratoPage() {
             )}
             {temCaminhoCSV && (
               <p className="mt-3 text-[12.5px] leading-relaxed text-fl-ink-3">
-                Você também pode lançar na mão — leva alguns minutos, mas funciona sempre.
+                Você também pode lançar na mão, leva alguns minutos, mas funciona sempre.
               </p>
             )}
             {/* Erro de sessão ou de consentimento tem conserto de um clique —
@@ -284,7 +284,7 @@ export default function ExtratoPage() {
             />
             {resultado.cortadoPara3Meses && (
               <p className="mt-2 text-[12.5px] leading-snug text-fl-ink-3">
-                O arquivo tinha mais de 3 meses — trouxe só os 3 mais recentes.
+                O arquivo tinha mais de 3 meses, trouxe só os 3 mais recentes.
               </p>
             )}
           </header>
@@ -445,7 +445,7 @@ export default function ExtratoPage() {
               <Loader2 className="size-7 animate-spin text-fl-500" />
               <span className="text-[15px] font-bold text-fl-ink">Lendo seu extrato…</span>
               <span className="text-center text-[12.5px] leading-relaxed text-fl-ink-2">
-                Leva alguns segundos. O arquivo não é salvo — some assim que eu termino de ler.
+                Leva alguns segundos. O arquivo não é salvo, some assim que eu termino de ler.
               </span>
             </>
           ) : (
@@ -454,7 +454,7 @@ export default function ExtratoPage() {
                 <Upload className="size-5 text-fl-500" />
               </div>
               <span className="text-[15px] font-bold text-fl-ink">Escolher arquivo</span>
-              <span className="text-[12.5px] text-fl-ink-3">PDF, CSV ou OFX — até {LIMITE_MB} MB</span>
+              <span className="text-[12.5px] text-fl-ink-3">PDF, CSV ou OFX, até {LIMITE_MB} MB</span>
             </>
           )}
         </button>
@@ -464,7 +464,7 @@ export default function ExtratoPage() {
             <FileText className="size-4 text-fl-500" /> O que acontece com o arquivo
           </h2>
           <ul className="mt-2.5 flex flex-col gap-1.5 text-[13px] leading-relaxed text-fl-ink-2">
-            <li>• O arquivo <strong className="font-semibold">não sai do seu computador</strong> — a leitura acontece aqui, e só o texto vai para o servidor.</li>
+            <li>• O arquivo <strong className="font-semibold">não sai do seu computador</strong>. A leitura acontece aqui, e só o texto vai para o servidor.</li>
             <li>• Nome de pessoa, CPF e chave Pix são removidos das descrições.</li>
             <li>• Nada entra nas suas Análises sem você confirmar linha a linha.</li>
           </ul>

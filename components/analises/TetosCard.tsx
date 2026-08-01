@@ -92,7 +92,7 @@ export function TetosCard({
 
       <p className="mt-4 border-t border-fl-divider pt-3 text-[11.5px] leading-snug text-fl-ink-3">
         Teto é régua para enxergar, não prova para passar. Se um deles vive estourando, pode ser que ele
-        esteja errado — pede pro assistente refazer.
+        esteja errado, pede pro assistente refazer.
       </p>
     </section>
   )

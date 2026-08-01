@@ -75,7 +75,7 @@ export async function lerArquivo(arquivo: File): Promise<ConteudoExtrato> {
     if (ehErroDeSenha(e)) {
       throw new ErroLeitura(
         "PDF_PROTEGIDO",
-        "Esse PDF tem senha (geralmente seu CPF ou data de nascimento). Abre ele no computador, salva uma cópia sem senha e sobe de novo — ou exporta em CSV pelo app do banco."
+        "Esse PDF tem senha (geralmente seu CPF ou data de nascimento). Abre ele no computador, salva uma cópia sem senha e sobe de novo, ou exporta em CSV pelo app do banco."
       )
     }
     throw new ErroLeitura("FORMATO_INVALIDO", "Não consegui abrir esse arquivo. Confere se é mesmo o PDF do extrato.")

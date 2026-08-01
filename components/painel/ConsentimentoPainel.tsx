@@ -23,7 +23,7 @@ export function ConsentimentoPainel({ menorDe18, onAtivar, onAgoraNao }: Props) 
         <h2 className="text-xl font-bold text-fl-ink">Isso aqui guarda número de verdade</h2>
 
         <p className="mt-3 text-sm leading-relaxed text-fl-ink-2">
-          Diferente da Trilha, o Painel salva os valores que você digitar — contas, gastos, saldo.
+          Diferente da Trilha, o Painel salva os valores que você digitar, contas, gastos, saldo.
           É seu controle financeiro de verdade, não só um exercício.
         </p>
 

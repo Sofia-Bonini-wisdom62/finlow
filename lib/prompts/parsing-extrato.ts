@@ -15,11 +15,11 @@ const CATEGORIAS = [
 export function promptParsingExtrato(opcoes?: { divergencia?: number }): string {
   const retry = opcoes?.divergencia
     ? `
-ATENÇÃO — esta é uma segunda tentativa. Na primeira, a soma das transações
+ATENÇÃO. Esta é uma segunda tentativa. Na primeira, a soma das transações
 divergiu do saldo declarado em R$ ${opcoes.divergencia.toFixed(2)}. Revise com
 cuidado: procure linhas que você possa ter pulado, valores com sinal trocado
 (saída deve ser negativa), ou linhas de saldo que foram lidas como transação.
-Não invente linha para fechar a conta — se a diferença for real, devolva o que
+Não invente linha para fechar a conta, se a diferença for real, devolva o que
 você realmente consegue ler.
 `
     : ""
@@ -48,7 +48,7 @@ Formato:
   ]
 }
 
-COMPLETUDE — REGRA MAIS IMPORTANTE DESTE PROMPT
+COMPLETUDE: REGRA MAIS IMPORTANTE DESTE PROMPT
 Extraia TODAS as linhas de movimentação do documento, sem exceção. Isso inclui
 movimentações entre contas ou reservas da PRÓPRIA pessoa, que é o erro comum:
 "Troco guardado", "Dinheiro guardado", "Dinheiro resgatado", "No cofrinho X",
@@ -66,14 +66,14 @@ REGRAS DE VALOR
 - "valor" negativo = dinheiro saindo. Positivo = dinheiro entrando.
 - Use ponto decimal. Não use separador de milhar. Ex.: -1234.56
 - "saldoInicial" e "saldoFinal" são os saldos declarados no documento. Se o
-  documento não trouxer, use null — não calcule nem estime.
+  documento não trouxer, use null, não calcule nem estime.
 
 REGRAS DE DATA
 - Sempre yyyy-mm-dd.
 - Data sem ano herda o ano do período do extrato. Numa virada de ano (extrato
   de dezembro a janeiro), atribua o ano correto a cada lado da virada.
 
-DESCRIÇÃO LIMPA — REGRA DE PRIVACIDADE, NÃO NEGOCIÁVEL
+DESCRIÇÃO LIMPA: REGRA DE PRIVACIDADE, NÃO NEGOCIÁVEL
 "descricaoLimpa" NUNCA pode conter:
 - nome de pessoa física
 - CPF ou CNPJ
@@ -89,7 +89,7 @@ Exemplos:
 
 Nome de empresa/estabelecimento conhecido PODE ficar (iFood, Uber, Netflix,
 Amazon, o supermercado do bairro). O que sai é a identificação de pessoa.
-"descricaoOriginal" mantém o texto como está no extrato — o app usa a limpa,
+"descricaoOriginal" mantém o texto como está no extrato, o app usa a limpa,
 mas a original serve para a pessoa reconhecer a linha na hora de conferir.
 
 CATEGORIA
@@ -97,7 +97,7 @@ Use exatamente uma de: ${CATEGORIAS}
 - "transferencia" para Pix/TED entre contas sem destino de consumo claro
 - "renda" para salário, pagamento de cliente, rendimento
 - "poupanca" para dinheiro guardado ou resgatado de cofrinho, caixinha,
-  reserva, aplicação ou poupança — nos DOIS sentidos. Guardar leva valor
+  reserva, aplicação ou poupança, nos DOIS sentidos. Guardar leva valor
   negativo (sai da conta), resgatar leva positivo (volta para a conta).
 - "taxas_juros" para tarifa, anuidade, IOF, juros de rotativo
 - "outros" só quando nenhuma servir. Prefira errar para "outros" a chutar.
@@ -123,7 +123,7 @@ Numa FATURA de cartão (não extrato de conta), tudo é crédito: use false em t
 
 O QUE NÃO FAZER
 - Não invente transação. Linha ilegível: omita. A validação aritmética depois
-  detecta a diferença — inventar linha para fechar a conta é pior que omitir.
+  detecta a diferença. Inventar linha para fechar a conta é pior que omitir.
 - Não repita a mesma transação duas vezes.
 - Não trate linha de "saldo", "total" ou "subtotal" como transação.
 - Não devolva markdown, comentário ou explicação. Só o JSON.${retry}`

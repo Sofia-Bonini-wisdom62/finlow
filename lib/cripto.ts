@@ -56,7 +56,7 @@ function chave(): Buffer {
       console.error(
         "[cripto] ENCRYPTION_KEY ausente neste ambiente. Os dados financeiros " +
         "estão cifrados no banco e NÃO podem ser lidos sem ela. Se isto é " +
-        "produção, configure a variável na Vercel — o valor tem de ser o mesmo " +
+        "produção, configure a variável na Vercel. O valor tem de ser o mesmo " +
         "usado na migração."
       )
     }

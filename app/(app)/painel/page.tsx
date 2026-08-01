@@ -121,7 +121,7 @@ export default function PainelPage() {
           /* estado vazio sem opt-in — não bloqueia navegação */
           <div className="mt-10 flex flex-col items-center gap-4 text-center">
             <p className="text-sm leading-relaxed text-fl-ink-2">
-              O Painel guarda seus números de verdade — contas, gastos, saldo.
+              O Painel guarda seus números de verdade, contas, gastos, saldo.
               Ativa quando quiser começar.
             </p>
             <button

@@ -164,7 +164,7 @@ export function ExtratoNoChat({ extrato }: { extrato: ExtratoLido }) {
 
         {extrato.cortadoPara3Meses && (
           <p className="mt-1.5 text-[11.5px] text-fl-ink-3">
-            O arquivo tinha mais de 3 meses — trouxe só os 3 mais recentes.
+            O arquivo tinha mais de 3 meses, trouxe só os 3 mais recentes.
           </p>
         )}
       </div>
@@ -255,7 +255,7 @@ export function ExtratoNoChat({ extrato }: { extrato: ExtratoLido }) {
         </button>
         {recusados.size > 0 && (
           <p className="mt-1.5 text-center text-[11.5px] text-fl-ink-3">
-            {recusados.size} desmarcado{recusados.size > 1 ? "s" : ""} — some sem entrar no Painel
+            {recusados.size} desmarcado{recusados.size > 1 ? "s" : ""}, some sem entrar no Painel
           </p>
         )}
       </div>

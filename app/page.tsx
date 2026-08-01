@@ -77,7 +77,7 @@ export default function LandingPage() {
             Seu dinheiro,<br />enfim <span className="text-fl-500">claro.</span>
           </h1>
           <p className="mb-8 max-w-[500px] text-pretty text-[17px] leading-[1.55] text-fl-ink-2 sm:text-[19.5px]">
-            O Finlow transforma a bagunça das suas finanças em clareza — com inteligência artificial
+            O Finlow transforma a bagunça das suas finanças em clareza, com inteligência artificial
             que lê seus gastos, revela padrões que você não vê e te devolve o controle.{" "}
             <strong className="font-semibold text-fl-ink">Sem planilha, sem julgamento, sem esforço.</strong>
           </p>
@@ -196,14 +196,14 @@ export default function LandingPage() {
             O problema nunca foi falta de dinheiro. Foi falta de <span className="text-fl-500">clareza.</span>
           </h2>
           <p className="mx-auto mb-12 max-w-[620px] text-[16px] leading-[1.55] text-fl-sand-text sm:text-lg">
-            Abrir o extrato dá um aperto. Você sabe que gasta demais em algum lugar — só não sabe onde.
+            Abrir o extrato dá um aperto. Você sabe que gasta demais em algum lugar, só não sabe onde.
             E toda vez que tenta organizar numa planilha, desiste na segunda semana.
           </p>
           <div className="grid gap-5 text-left sm:grid-cols-2 lg:grid-cols-3">
             {[
               { e: "😮‍💨", t: "Extrato confuso", d: "Dezenas de transações sem nome que faça sentido. Cadê o padrão?" },
               { e: "🧾", t: "Planilha abandonada", d: "Muito trabalho manual. Você nunca mantém por mais que alguns dias." },
-              { e: "🌀", t: "Decisão no escuro", d: "Dá pra viajar esse mês? Cabe essa parcela? Você chuta — e torce." },
+              { e: "🌀", t: "Decisão no escuro", d: "Dá pra viajar esse mês? Cabe essa parcela? Você chuta, e torce." },
             ].map((c) => (
               <div key={c.t} className="rounded-2xl bg-fl-page p-6">
                 <div className="mb-3 text-[26px]">{c.e}</div>
@@ -223,14 +223,14 @@ export default function LandingPage() {
             A IA faz o trabalho pesado. Você fica só com a clareza.
           </h2>
           <p className="text-[16px] leading-[1.55] text-fl-ink-2 sm:text-lg">
-            O Finlow lê, categoriza e interpreta cada movimento — e traduz tudo em uma frase que você entende de primeira.
+            O Finlow lê, categoriza e interpreta cada movimento, e traduz tudo em uma frase que você entende de primeira.
           </p>
         </Reveal>
         <Reveal className="grid gap-5 md:grid-cols-3">
           {[
-            { icone: <div className="h-5 w-5 rounded-md bg-fl-500" />, t: "Insights que fazem sentido", d: "Nada de gráfico solto. A IA aponta exatamente onde seu dinheiro vaza e o que muda se você ajustar — em linguagem humana." },
+            { icone: <div className="h-5 w-5 rounded-md bg-fl-500" />, t: "Insights que fazem sentido", d: "Nada de gráfico solto. A IA aponta exatamente onde seu dinheiro vaza e o que muda se você ajustar, em linguagem humana." },
             { icone: <div className="h-[18px] w-[22px] rounded-[8px_8px_8px_2px] bg-fl-500" />, t: "Converse com seu dinheiro", d: "\"Posso gastar R$ 300 esse fim de semana?\" Pergunte em português. O Finlow responde com base nos seus números reais." },
-            { icone: <div className="h-5 w-5 rounded-full border-[5px] border-fl-500" />, t: "Controle de verdade", d: "Metas, orçamentos e alertas calmos — que avisam antes, não depois. Você decide com dados, não com culpa." },
+            { icone: <div className="h-5 w-5 rounded-full border-[5px] border-fl-500" />, t: "Controle de verdade", d: "Metas, orçamentos e alertas calmos, que avisam antes, não depois. Você decide com dados, não com culpa." },
           ].map((c) => (
             <div key={c.t} className="rounded-[20px] border border-fl-border bg-fl-card p-7 shadow-[0_1px_2px_rgba(24,28,30,.06)]">
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-[14px] bg-fl-50">{c.icone}</div>
@@ -288,13 +288,13 @@ export default function LandingPage() {
           </h2>
           <p className="mb-7 max-w-[520px] text-[16px] leading-relaxed text-fl-ink-2 sm:text-[17.5px]">
             Chega de abrir cinco telas pra entender uma coisa. Pergunte em linguagem natural e receba uma
-            resposta direta — baseada nos seus dados, não em conselho genérico da internet.
+            resposta direta. Baseada nos seus dados, não em conselho genérico da internet.
           </p>
           <div className="flex flex-col gap-4">
             {[
-              ["Respostas com contexto real", " — cruza saldo, metas e histórico antes de responder."],
-              ["Sem jargão", " — se usar um termo técnico, ele explica na hora."],
-              ["Sempre calmo", " — nunca te faz sentir mal por uma pergunta."],
+              ["Respostas com contexto real", ". Cruza saldo, metas e histórico antes de responder."],
+              ["Sem jargão", ", se usar um termo técnico, ele explica na hora."],
+              ["Sempre calmo", ". Nunca te faz sentir mal por uma pergunta."],
             ].map(([forte, resto]) => (
               <div key={forte} className="flex items-start gap-3">
                 <span className="text-lg font-extrabold text-fl-500">✓</span>
@@ -323,7 +323,7 @@ export default function LandingPage() {
             </div>
             <div className="rounded-[14px] bg-fl-50 p-5">
               <div className="text-[28px] font-extrabold tracking-[-.02em] text-fl-500">0 min</div>
-              <div className="mt-1 text-[13px] text-fl-ink-2">de digitação manual — categorização é automática</div>
+              <div className="mt-1 text-[13px] text-fl-ink-2">de digitação manual, categorização é automática</div>
             </div>
           </div>
           <p className="mt-3.5 text-[11.5px] text-fl-ink-3">*Estimativa de projeto em desenvolvimento, sujeita a validação.</p>
@@ -339,7 +339,7 @@ export default function LandingPage() {
                 <div className="flex flex-1 flex-col gap-3 overflow-hidden px-4 pt-1.5">
                   <div className="rounded-[14px] border border-fl-border border-l-[3px] border-l-fl-accent bg-fl-card p-3.5">
                     <div className="mb-1.5 text-[11px] font-bold uppercase tracking-[.5px] text-fl-accent-dark">⚑ Atenção</div>
-                    <div className="text-[13.5px] leading-[1.45]">Seu gasto com <strong>delivery</strong> subiu <strong>38%</strong> este mês. São R$ 480 — o equivalente a 2 semanas do seu mercado.</div>
+                    <div className="text-[13.5px] leading-[1.45]">Seu gasto com <strong>delivery</strong> subiu <strong>38%</strong> este mês. São R$ 480. O equivalente a 2 semanas do seu mercado.</div>
                   </div>
                   <div className="rounded-[14px] border border-fl-border border-l-[3px] border-l-fl-500 bg-fl-card p-3.5">
                     <div className="mb-1.5 text-[11px] font-bold uppercase tracking-[.5px] text-fl-500">◆ Descoberta</div>
@@ -377,7 +377,7 @@ export default function LandingPage() {
           </Reveal>
           <Reveal className="grid gap-7 md:grid-cols-3">
             {[
-              { n: "1", t: "Conecte suas contas", d: "Ligação segura e criptografada. Suas transações entram sozinhas — nada de digitar CSV." },
+              { n: "1", t: "Conecte suas contas", d: "Ligação segura e criptografada. Suas transações entram sozinhas, nada de digitar CSV." },
               { n: "2", t: "A IA organiza tudo", d: "Categoriza, encontra padrões e limpa o ruído. Em minutos, o caos vira um painel legível." },
               { n: "3", t: "Você decide com clareza", d: "Insights, metas e um assistente pronto para responder. Cada decisão apoiada em dados reais." },
             ].map((p) => (
@@ -398,7 +398,7 @@ export default function LandingPage() {
         <Reveal className="mx-auto mb-12 max-w-[680px] text-center">
           <div className="mb-4 text-[13px] font-bold uppercase tracking-[1.4px] text-fl-500">Por que Finlow</div>
           <h2 className="text-balance text-[32px] font-extrabold leading-[1.1] tracking-[-.03em] lg:text-[40px]">
-            Feito para dar alívio — não mais uma cobrança
+            Feito para dar alívio, não mais uma cobrança
           </h2>
         </Reveal>
         <Reveal className="grid gap-5 md:grid-cols-2">
@@ -445,7 +445,7 @@ export default function LandingPage() {
             </h2>
             <p className="mx-auto mb-8 max-w-[520px] text-[16px] leading-[1.55] text-fl-sand-text sm:text-lg">
               Entre na lista de espera e ganhe acesso antecipado, sem custo, assim que a primeira versão abrir.
-              Sem spam — só um aviso quando for a sua vez.
+              Sem spam, só um aviso quando for a sua vez.
             </p>
             <WaitlistForm />
           </div>

@@ -89,7 +89,7 @@ export function calcularAjuste(
       explicacao:
         `Esse extrato começa no meio da história da conta: antes da primeira linha você já tinha ` +
         `${brl(valor)}. Posso incluir isso como "Saldo inicial" para o Acumulado do app bater com o ` +
-        `saldo real do banco — sem ele, o app conta como se você tivesse começado do zero.`,
+        `saldo real do banco, sem ele, o app conta como se você tivesse começado do zero.`,
     }
   }
 

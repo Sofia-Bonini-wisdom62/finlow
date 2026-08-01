@@ -85,7 +85,7 @@ export function DecisaoAjuste({
 
       <p className="mt-2 text-[11.5px] leading-snug text-fl-ink-3">
         {incluir
-          ? "Vai entrar como um lançamento comum, com esse nome — dá para apagar quando quiser."
+          ? "Vai entrar como um lançamento comum, com esse nome, dá para apagar quando quiser."
           : alerta
             ? "Sem essa linha, o total do Painel vai ficar diferente do saldo do banco."
             : "Sem essa linha, o Acumulado conta como se você tivesse começado do zero."}

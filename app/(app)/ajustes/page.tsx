@@ -300,7 +300,7 @@ export default function AjustesPage() {
             <Acao rotulo="Apagar meus dados financeiros" Icon={Trash2} onClick={() => setConfirmandoApagar(true)} perigo />
           )}
           <Acao rotulo="Apagar a memória do assistente" Icon={Brain} href="/memoria" />
-          <EmBreve rotulo="Biometria e PIN" motivo="Precisa de app nativo — hoje o Finlow roda no navegador." />
+          <EmBreve rotulo="Biometria e PIN" motivo="Precisa de app nativo, hoje o Finlow roda no navegador." />
         </Secao>
 
         {/* ---------- APARÊNCIA ---------- */}

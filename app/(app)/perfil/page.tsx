@@ -233,7 +233,7 @@ export default function PerfilPage() {
         <section className="mt-8">
           <h2 className="text-[17px] font-extrabold tracking-tight text-fl-ink">Recomendado para você</h2>
           <p className="mt-0.5 text-[13px] leading-relaxed text-fl-ink-2">
-            Sequência montada a partir dos seus números — atualiza conforme seu comportamento muda.
+            Sequência montada a partir dos seus números, atualiza conforme seu comportamento muda.
           </p>
           <div className="mt-4 flex flex-col gap-3">
             {recomendados.length === 0 ? (

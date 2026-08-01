@@ -97,7 +97,7 @@ export async function parsearExtrato(
   if (motivoFim === "MAX_TOKENS") {
     throw new ErroExtrato(
       "ARQUIVO_GRANDE",
-      "Esse extrato tem transações demais para eu ler de uma vez. Exporta um período menor pelo app do banco — um mês por vez costuma resolver.",
+      "Esse extrato tem transações demais para eu ler de uma vez. Exporta um período menor pelo app do banco, um mês por vez costuma resolver.",
       `finishReason=MAX_TOKENS, ${bruto.length} caracteres devolvidos`
     )
   }

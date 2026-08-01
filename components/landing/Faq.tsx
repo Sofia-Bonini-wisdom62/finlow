@@ -3,11 +3,11 @@
 import { useState } from "react"
 
 const faqs = [
-  { q: "O Finlow já está disponível?", a: "Ainda não — estamos em desenvolvimento ativo. Quem entra na lista de espera ganha acesso antecipado e gratuito assim que a primeira versão abrir." },
+  { q: "O Finlow já está disponível?", a: "Ainda não. Estamos em desenvolvimento ativo. Quem entra na lista de espera ganha acesso antecipado e gratuito assim que a primeira versão abrir." },
   { q: "Meus dados financeiros ficam seguros?", a: "Sim. Segurança e privacidade são inegociáveis: usamos conexão criptografada, nunca vendemos seus dados e a interface nunca vira espaço de anúncio. Seus dados são seus." },
   { q: "Preciso entender de finanças para usar?", a: "Não. O Finlow foi feito exatamente para quem nunca teve educação financeira formal. A IA traduz tudo em linguagem simples, sem jargão e sem julgamento." },
-  { q: "Como a inteligência artificial ajuda no dia a dia?", a: "Ela categoriza suas transações automaticamente, revela padrões de gasto que passam despercebidos e responde suas perguntas em português — sempre com base nos seus números reais." },
-  { q: "Vai ter custo?", a: "Entrar na lista de espera é gratuito. Os detalhes de planos serão definidos ao longo do desenvolvimento — quem entrar cedo terá condições especiais." },
+  { q: "Como a inteligência artificial ajuda no dia a dia?", a: "Ela categoriza suas transações automaticamente, revela padrões de gasto que passam despercebidos e responde suas perguntas em português. Sempre com base nos seus números reais." },
+  { q: "Vai ter custo?", a: "Entrar na lista de espera é gratuito. Os detalhes de planos serão definidos ao longo do desenvolvimento, quem entrar cedo terá condições especiais." },
 ]
 
 export function Faq() {

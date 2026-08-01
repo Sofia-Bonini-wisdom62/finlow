@@ -121,7 +121,7 @@ export default function MemoriaPage() {
 
       <p className="mt-3 text-sm leading-relaxed text-fl-ink-2">
         Com a memória ligada, o assistente guarda o que você conta sobre a sua vida financeira e usa nas
-        próximas conversas — sem você ter que repetir. Tudo que ele guardar aparece aqui.
+        próximas conversas, sem você ter que repetir. Tudo que ele guardar aparece aqui.
       </p>
 
       {/* Interruptor */}
@@ -151,7 +151,7 @@ export default function MemoriaPage() {
         </div>
 
         <p className="mt-3 rounded-xl bg-fl-50 px-3 py-2 text-[12px] leading-snug text-fl-ink-3">
-          Ele nunca guarda valor em dinheiro, saldo, CPF, conta ou senha — esses dados ficam só no Painel.
+          Ele nunca guarda valor em dinheiro, saldo, CPF, conta ou senha, esses dados ficam só no Painel.
           O conteúdo é gravado cifrado e desligar não apaga o que já está aqui.
         </p>
       </section>

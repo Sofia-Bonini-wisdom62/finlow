@@ -43,7 +43,7 @@ export default function CadastroPage() {
 
     const dataISO = parseData(dataNascimento)
     if (!dataISO) {
-      setErro("Data de nascimento inválida — usa o formato DD/MM/AAAA")
+      setErro("Data de nascimento inválida, usa o formato DD/MM/AAAA")
       return
     }
 

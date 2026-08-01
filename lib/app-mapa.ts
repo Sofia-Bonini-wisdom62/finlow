@@ -164,17 +164,17 @@ export const ACOES: Acao[] = [
 
 /** Bloco compacto para o prompt. Só o que o modelo precisa para acertar. */
 export function blocoMapaDoApp(modulos: { slug: string; titulo: string }[]): string {
-  const telas = DESTINOS.map((d) => `  ${d.href} — ${d.nome}: ${d.paraQue}. Caminho: ${d.caminho.join(" > ")}`).join("\n")
+  const telas = DESTINOS.map((d) => `  ${d.href}, ${d.nome}: ${d.paraQue}. Caminho: ${d.caminho.join(" > ")}`).join("\n")
   const acoes = ACOES.map(
     (a) => `  "${a.pedido}" -> ${a.passos.join(" > ")}${a.cuidado ? `  (${a.cuidado})` : ""}`
   ).join("\n")
   const aulas = modulos.length
-    ? modulos.map((m) => `  ${m.slug} — ${m.titulo}`).join("\n")
+    ? modulos.map((m) => `  ${m.slug}, ${m.titulo}`).join("\n")
     : "  (nenhuma aula cadastrada)"
 
   return `O APP POR DENTRO
 Você conhece este app. Quando perguntarem onde fica alguma coisa, responda com
-o caminho REAL abaixo — nunca invente nome de menu. Caminho inventado é pior
+o caminho REAL abaixo. Nunca invente nome de menu. Caminho inventado é pior
 que "não sei": a pessoa procura, não acha, e conclui que ela é que se perdeu.
 
 Telas:

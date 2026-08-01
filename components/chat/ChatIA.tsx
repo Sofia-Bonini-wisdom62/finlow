@@ -165,7 +165,7 @@ export function ChatIA({ nome }: { nome: string }) {
         {
           papel: "ia",
           texto: abortado
-            ? "Esse extrato demorou demais e eu parei no meio. Tenta exportar um período menor pelo app do banco — um mês por vez costuma resolver."
+            ? "Esse extrato demorou demais e eu parei no meio. Tenta exportar um período menor pelo app do banco, um mês por vez costuma resolver."
             : e instanceof ErroLeitura
               ? e.mensagemUsuario
               : "Não consegui abrir esse arquivo.",
@@ -275,7 +275,7 @@ export function ChatIA({ nome }: { nome: string }) {
                 <span className="text-fl-500">O que você quer entender?</span>
               </h1>
               <p className="mt-2 text-[15px] leading-relaxed text-fl-ink-2">
-                Pergunte em português. As respostas usam os seus números — não conselho genérico.
+                Pergunte em português. As respostas usam os seus números, não conselho genérico.
               </p>
               <div className="mt-6 flex flex-col gap-2">
                 {SUGESTOES.map((s) => (
