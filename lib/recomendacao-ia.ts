@@ -1,4 +1,5 @@
 import { getVertex, vertexConfigurada, MODELO_CHAT } from "@/lib/vertex"
+import { registrarUso } from "@/lib/uso-ia"
 import type { ContextoFinanceiro } from "@/lib/ia"
 import type { Recomendada } from "@/lib/recomendacao"
 
@@ -101,6 +102,8 @@ Responda SÓ com JSON, sem markdown:
       contents: [{ role: "user", parts: [{ text: prompt }] }],
       config: { temperature: 0.4, responseMimeType: "application/json" },
     })
+
+    registrarUso("recomendacao", MODELO_CHAT, r)
 
     const bruto = (r.text ?? "").trim()
     const j = JSON.parse(bruto) as { escolhas?: unknown }

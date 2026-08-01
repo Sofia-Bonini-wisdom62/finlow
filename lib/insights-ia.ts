@@ -1,4 +1,5 @@
 import { getVertex, vertexConfigurada, MODELO_CHAT } from "@/lib/vertex"
+import { registrarUso } from "@/lib/uso-ia"
 import type { ContextoFinanceiro } from "@/lib/ia"
 
 /**
@@ -70,6 +71,8 @@ Responda SÓ com JSON, sem markdown:
       contents: [{ role: "user", parts: [{ text: prompt }] }],
       config: { temperature: 0.5, responseMimeType: "application/json" },
     })
+
+    registrarUso("insights", MODELO_CHAT, r)
 
     const j = JSON.parse((r.text ?? "").trim()) as { insights?: unknown }
     if (!Array.isArray(j.insights)) return []

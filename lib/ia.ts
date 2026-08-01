@@ -21,6 +21,7 @@
 // ============================================================================
 
 import { DESTINOS } from "@/lib/app-mapa"
+import { registrarUso } from "@/lib/uso-ia"
 
 /**
  * Anexo enviado pelo usuário (comprovante, extrato). Chega em base64 e NÃO é
@@ -433,6 +434,8 @@ export async function responderIA(
       maxOutputTokens: 3072,
     },
   })
+
+  registrarUso(opcoes?.onboarding ? "onboarding" : "chat", MODELO_CHAT, resposta)
 
   const bruto = (resposta.text ?? "").trim()
   if (!bruto) {

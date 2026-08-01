@@ -1,4 +1,5 @@
 import { getVertex, MODELO_PARSING, VertexNaoConfigurada } from "@/lib/vertex"
+import { registrarUso } from "@/lib/uso-ia"
 import { promptParsingExtrato } from "@/lib/prompts/parsing-extrato"
 import { ExtratoParseado, ErroExtrato, type ConteudoExtrato } from "@/types/extrato"
 import { lerSaldosDiarios } from "./saldos-diarios"
@@ -70,6 +71,9 @@ export async function parsearExtrato(
   const uso = resposta.usageMetadata
   const tokensEntrada = uso?.promptTokenCount ?? 0
   const tokensSaida = uso?.candidatesTokenCount ?? 0
+  // Já era contado aqui, mas num formato próprio. Passa pelo mesmo registro que
+  // as outras chamadas para dar pra somar tudo por uma busca só.
+  registrarUso("extrato", MODELO_PARSING, resposta)
 
   const bruto = (resposta.text ?? "").trim()
   const motivoFim = resposta.candidates?.[0]?.finishReason
