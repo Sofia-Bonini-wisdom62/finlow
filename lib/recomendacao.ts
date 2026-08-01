@@ -78,7 +78,18 @@ export async function levaAtual(userId: string): Promise<Recomendada[]> {
 export async function garantirLevaInicial(
   userId: string,
   slugs: string[],
-  motivoPorSlug?: Record<string, string>
+  opcoes?: {
+    motivoPorSlug?: Record<string, string>
+    /**
+     * Nasce já entregue, sem virar mensagem no chat.
+     *
+     * `true` quando quem semeia é a própria Trilha: a pessoa está OLHANDO a
+     * lista, mandar uma mensagem contando o que ela acabou de ver é ruído.
+     * `false` quando quem semeia é o pipeline do onboarding — aí a
+     * recomendação chega dentro da conversa, que é o que a §2.7 pede.
+     */
+    jaEntregue?: boolean
+  }
 ): Promise<number> {
   const jaTem = await db.recomendacaoTrilha.count({ where: { userId } })
   if (jaTem > 0) return 0
@@ -99,10 +110,8 @@ export async function garantirLevaInicial(
       moduloId: x.id,
       ordem: x.ordem,
       origem: "onboarding",
-      motivo: motivoPorSlug?.[x.slug] ?? "Escolhida a partir dos seus números.",
-      // A leva inicial já nasce entregue: ela aparece na Trilha desde o
-      // primeiro dia. Só a leva do GATILHO vira mensagem no chat.
-      entregueEm: new Date(),
+      motivo: opcoes?.motivoPorSlug?.[x.slug] ?? "Escolhida a partir dos seus números.",
+      entregueEm: opcoes?.jaEntregue === false ? null : new Date(),
     }))
 
   if (dados.length === 0) return 0
@@ -179,7 +188,7 @@ export async function talvezGerarNovaLeva(
     skipDuplicates: true,
   })
 
-  return (await levaAtual(userId)).filter((r) => r.origem === "gatilho_percentual" && !r.entregueEm)
+  return (await levaAtual(userId)).filter((r) => !r.entregueEm)
 }
 
 /** Marca como entregue. É o que impede a mesma leva de reaparecer a cada

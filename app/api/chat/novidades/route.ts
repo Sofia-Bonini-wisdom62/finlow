@@ -33,9 +33,7 @@ export async function GET() {
   try {
     // Primeiro o que já estava pendente: se a geração anterior nasceu e a
     // entrega falhou (rede caiu, aba fechou), a leva não pode ficar presa.
-    let pendentes = (await levaAtual(userId)).filter(
-      (r) => r.origem === "gatilho_percentual" && !r.entregueEm
-    )
+    let pendentes = (await levaAtual(userId)).filter((r) => !r.entregueEm)
 
     if (pendentes.length === 0) {
       const contexto = await montarContexto(userId)
@@ -50,9 +48,14 @@ export async function GET() {
 
     const recs = await levaAtual(userId)
     const { concluidos, total } = medirProgresso(recs)
+    // Primeira leva = a do onboarding. Ela precisa de outra frase: dizer
+    // "você já fechou 0 de 0 aulas" para quem acabou de chegar é absurdo.
+    const primeira = total === pendentes.length
 
     return NextResponse.json({
-      texto: textoDaLeva(concluidos, total - pendentes.length),
+      texto: primeira
+        ? textoDaPrimeira(pendentes.length)
+        : textoDaLeva(concluidos, total - pendentes.length),
       recomendacoes: pendentes.map((p) => ({
         slug: p.slug,
         titulo: p.titulo,
@@ -65,6 +68,13 @@ export async function GET() {
     console.error("[chat/novidades]", (e as Error)?.message)
     return NextResponse.json({ recomendacoes: [] })
   }
+}
+
+function textoDaPrimeira(quantas: number): string {
+  return (
+    `Montei a sua trilha: ${quantas} ${quantas === 1 ? "aula" : "aulas"} de dois minutos, ` +
+    `na ordem que faz sentido pro que você me contou. Dá pra começar por qualquer uma.`
+  )
 }
 
 function textoDaLeva(concluidos: number, totalAnterior: number): string {

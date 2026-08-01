@@ -21,6 +21,14 @@ import { ConfirmarLancamentos } from "@/components/chat/ConfirmarLancamentos"
  *    alguém que só queria ver o app por dentro.
  */
 
+/** Um passo do processamento, como o servidor devolve. */
+interface PassoFeito {
+  id: string
+  rotulo: string
+  ok: boolean
+  detalhe?: string
+}
+
 interface Mensagem {
   papel: "usuario" | "ia"
   texto: string
@@ -55,7 +63,9 @@ const PERFIS: Record<string, string> = {
 
 export default function OnboardingPage() {
   const router = useRouter()
-  const [fase, setFase] = useState<"carregando" | "aceite" | "conversa" | "fim">("carregando")
+  const [fase, setFase] = useState<"carregando" | "aceite" | "conversa" | "processando" | "fim">("carregando")
+  const [feitos, setFeitos] = useState<PassoFeito[]>([])
+  const [passos, setPassos] = useState<{ id: string; rotulo: string }[]>([])
   const [nome, setNome] = useState("")
   const [mensagens, setMensagens] = useState<Mensagem[]>([])
   const [rascunho, setRascunho] = useState("")
@@ -78,6 +88,15 @@ export default function OnboardingPage() {
   }, [router])
 
   useEffect(() => { fim.current?.scrollIntoView({ behavior: "smooth" }) }, [mensagens, enviando])
+
+  // A lista de passos vem antes de ser precisa: mostrar o que FALTA é o que
+  // torna a espera legível. Uma lista que cresce sozinha não diz quanto falta.
+  useEffect(() => {
+    fetch("/api/onboarding/pipeline")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => { if (d?.passos) setPassos(d.passos) })
+      .catch(() => {})
+  }, [])
 
   /**
    * A abertura é FIXA, escrita por nós, e não vem do modelo.
@@ -138,12 +157,54 @@ export default function OnboardingPage() {
         // A trilha lê o perfil daqui — sem isto ela abriria vazia.
         try { localStorage.setItem("finlow_perfil", d.perfilSugerido) } catch {}
         setPerfil(d.perfilSugerido)
-        setFase("fim")
+        setFase("processando")
+        processar()
       }
     } catch {
       setErro("Sem conexão. Tenta de novo?")
     } finally {
       setEnviando(false)
+    }
+  }
+
+  /**
+   * O processamento do fim (§2.7), passo a passo de verdade.
+   *
+   * Lê NDJSON conforme o servidor manda, uma linha por passo terminado. É por
+   * isso que a lista à esquerda anda junto com o que está mesmo acontecendo, e
+   * não numa animação por conta própria.
+   *
+   * Falhar aqui não prende a pessoa na tela: o pipeline não derruba nada por
+   * causa de um passo, e o que ela contou já está gravado desde a conversa.
+   */
+  async function processar() {
+    try {
+      const r = await fetch("/api/onboarding/pipeline", { method: "POST" })
+      if (!r.ok || !r.body) { setFase("fim"); return }
+
+      const leitor = r.body.getReader()
+      const dec = new TextDecoder()
+      let resto = ""
+
+      for (;;) {
+        const { done, value } = await leitor.read()
+        if (done) break
+        resto += dec.decode(value, { stream: true })
+        const linhas = resto.split("\n")
+        // A última pode estar cortada no meio: fica para o próximo pedaço.
+        resto = linhas.pop() ?? ""
+        for (const linha of linhas) {
+          if (!linha.trim()) continue
+          try {
+            const p = JSON.parse(linha) as PassoFeito
+            setFeitos((f) => [...f, p])
+          } catch {}
+        }
+      }
+    } catch {
+      // sem conexão: segue para o fim, o app funciona igual
+    } finally {
+      setFase("fim")
     }
   }
 
@@ -213,6 +274,53 @@ export default function OnboardingPage() {
         <Link href="/chat" className="mt-3 text-center text-[13.5px] font-medium text-fl-ink-3">
           Prefiro olhar o app sozinha
         </Link>
+      </main>
+    )
+  }
+
+  // ---------- processando ----------
+  if (fase === "processando") {
+    const lista = passos.length ? passos : feitos
+    const emCurso = lista[feitos.length]
+
+    return (
+      <main className="mx-auto flex min-h-dvh w-full max-w-[520px] flex-col justify-center px-6 py-10">
+        <h1 className="text-[24px] font-extrabold leading-tight tracking-tight text-fl-ink">
+          Deixa eu organizar isso.
+        </h1>
+        <p className="mt-2 text-[14.5px] leading-relaxed text-fl-ink-2">
+          Uns segundos. Estou lendo o que você me contou e montando o seu começo.
+        </p>
+
+        <ul className="mt-7 space-y-2.5" aria-live="polite">
+          {lista.map((p, i) => {
+            const feito = feitos[i]
+            const agora = !feito && p.id === emCurso?.id
+            return (
+              <li key={p.id} className="flex items-center gap-3">
+                <span
+                  aria-hidden
+                  className={`grid size-6 shrink-0 place-items-center rounded-full ${
+                    feito ? (feito.ok ? "bg-fl-500" : "bg-fl-divider") : "border border-fl-border"
+                  }`}
+                >
+                  {feito ? (
+                    feito.ok ? <Check className="size-3.5 text-primary-foreground" />
+                             : <span className="text-[11px] text-fl-ink-3">–</span>
+                  ) : agora ? (
+                    <span className="size-2 animate-pulse rounded-full bg-fl-500" />
+                  ) : null}
+                </span>
+                <span className={`text-[14px] ${feito ? "text-fl-ink" : agora ? "text-fl-ink" : "text-fl-ink-3"}`}>
+                  {p.rotulo}
+                  {feito?.detalhe && (
+                    <span className="ml-1.5 text-[12.5px] text-fl-ink-3">{feito.detalhe}</span>
+                  )}
+                </span>
+              </li>
+            )
+          })}
+        </ul>
       </main>
     )
   }

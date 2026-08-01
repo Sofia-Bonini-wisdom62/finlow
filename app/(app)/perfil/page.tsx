@@ -15,6 +15,7 @@ interface Perfil {
   metricas: MetricasPerfil
   pontos: number
   noRanking: boolean
+  insights: { texto: string; tipo: string }[]
 }
 
 function Metrica({ rotulo, valor, nota, barra }: { rotulo: string; valor: string; nota?: string; barra?: number }) {
@@ -154,6 +155,27 @@ export default function PerfilPage() {
             </section>
           )
         })()}
+
+        {/* As três leituras do mês, escritas quando o onboarding fechou.
+            Ficam ANTES da trilha porque respondem "o que os meus números
+            dizem", que é a pergunta que traz a pessoa ao Perfil. */}
+        {perfil.insights?.length > 0 && (
+          <section className="mt-6 space-y-2" aria-label="Leituras do seu mês">
+            {perfil.insights.map((i) => (
+              <div
+                key={i.texto}
+                className="flex gap-2.5 rounded-2xl border border-fl-border bg-fl-card px-4 py-3.5"
+              >
+                <span
+                  aria-hidden
+                  className="mt-1.5 size-1.5 shrink-0 rounded-full"
+                  style={{ background: i.tipo === "alerta" || i.tipo === "divida" ? "var(--fl-accent)" : "var(--fl-500)" }}
+                />
+                <p className="text-[13.5px] leading-relaxed text-fl-ink">{i.texto}</p>
+              </div>
+            ))}
+          </section>
+        )}
 
         {/* A trilha saiu daqui: virou aba própria. Fica um convite curto, não
             a lista inteira, porque duplicar a Trilha dentro do Perfil daria

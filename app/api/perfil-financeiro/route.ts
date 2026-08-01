@@ -19,6 +19,16 @@ export async function GET() {
       listarTransacoes(userId, { comCategoria: false }),
     ])
 
+    // As três linhas que o pipeline escreveu (§2.10). Ficam no banco, não são
+    // regeradas a cada abertura: custo de IA por pull-to-refresh não se
+    // justifica, e a leitura de ontem não fica errada hoje.
+    const insights = await db.insight.findMany({
+      where: { userId, ativo: true },
+      orderBy: { criadoEm: "desc" },
+      take: 3,
+      select: { texto: true, tipo: true },
+    })
+
     const calc: TransacaoCalc[] = transacoes
 
     const metricas = metricasPerfil(calc)
@@ -30,6 +40,7 @@ export async function GET() {
       nivel: nivelFinanceiro(metricas),
       resumo: resumoUsuario(metricas),
       metricas,
+      insights,
       pontos: user?.pontos ?? 0,
       noRanking: !!user?.rankingOptIn,
     })
