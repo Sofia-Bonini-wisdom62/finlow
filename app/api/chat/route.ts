@@ -80,11 +80,19 @@ export async function POST(req: NextRequest) {
       ? (await listarMemorias(userId)).map((m) => ({ tipo: m.tipo, conteudo: m.conteudo }))
       : []
 
+    // As aulas vêm do banco, nunca de uma lista escrita à mão: slug inventado
+    // vira card que abre um 404 — foi exatamente o que aconteceu com
+    // /modulo/{slug} por meses.
+    const modulos = await db.modulo.findMany({
+      select: { slug: true, titulo: true },
+      orderBy: [{ tipoPerfil: "asc" }, { ordem: "asc" }],
+    })
+
     const resposta = await responderIA(
       mensagens as MensagemChat[],
       contexto,
       { ligada, conhecidas },
-      { podeLancar }
+      { podeLancar, modulos }
     )
 
     // Gravar não pode derrubar a conversa: a resposta já está pronta e é o que

@@ -1,11 +1,12 @@
-import type { ContextoFinanceiro, MemoriaConhecida } from "@/lib/ia"
+import type { ContextoFinanceiro, MemoriaConhecida, OpcoesResposta } from "@/lib/ia"
+import { blocoMapaDoApp } from "@/lib/app-mapa"
 
 /**
  * Prompt de sistema do chat. Versionado aqui, nunca inline: mudar o prompt
  * muda o produto tanto quanto mudar código, e precisa aparecer no diff.
  */
 
-export const VERSAO_PROMPT_CHAT = "2026-07-31.2"
+export const VERSAO_PROMPT_CHAT = "2026-08-01.1"
 
 function brl(n: number): string {
   return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
@@ -214,7 +215,7 @@ desfazer a decisão dela sem dizer. Se quiser mudar, explique por quê.`
 export function promptSistemaChat(
   c: ContextoFinanceiro,
   memoria?: { ligada: boolean; conhecidas: MemoriaConhecida[] },
-  opcoes?: { podeLancar?: boolean; sistemaExtra?: string }
+  opcoes?: OpcoesResposta
 ): string {
   return `Você é o assistente financeiro do Finlow. Fala português do Brasil.
 
@@ -262,6 +263,8 @@ ${blocoMemoria(memoria)}
 ${blocoLancamentos(opcoes?.podeLancar === true)}
 
 ${blocoOrcamento(opcoes?.podeLancar === true, (c.orcamentos?.length ?? 0) > 0)}
+
+${blocoMapaDoApp(opcoes?.modulos ?? [])}
 ${opcoes?.sistemaExtra ? `
 ${opcoes.sistemaExtra}` : ""}
 
@@ -282,12 +285,14 @@ Tipos disponíveis:
   {"tipo":"grafico","titulo":"...","barras":[{"rotulo":"...","valor":123}]}
   {"tipo":"recomendacao","titulo":"...","texto":"...","moduloSlug":"..."}
   {"tipo":"lembrete","titulo":"...","texto":"...","quando":"..."}
+  {"tipo":"caminho","titulo":"...","passos":["Menu","..."],"href":"/..."}
 
 Em "grafico", "valor" é número puro, sem R$ e sem texto. Em "resumo", "valor" é
 string já formatada ("R$ 1.234,56").
 
-Nunca invente um moduloSlug. Se não souber o slug exato de um módulo da trilha,
-omita o campo.
+Nunca invente um moduloSlug nem um href: os dois só valem se estiverem na lista
+do bloco O APP POR DENTRO. Rota inventada leva a uma tela que não existe, e a
+pessoa conclui que ela é que se perdeu.
 
 "memorias" segue as regras do bloco MEMÓRIA acima:
   {"tipo":"situacao|plano|preferencia|compromisso","conteudo":"frase curta"}

@@ -16,9 +16,11 @@
 //     jargão, sem julgamento — ver identidade da marca)
 //   - `cards` (opcional): blocos estruturados que a UI renderiza abaixo do texto
 //
-// A UI já sabe desenhar os 4 tipos de card definidos em `CardIA`. Devolver
+// A UI já sabe desenhar os tipos de card definidos em `CardIA`. Devolver
 // `cards: []` ou omitir é válido — o texto sozinho funciona.
 // ============================================================================
+
+import { DESTINOS } from "@/lib/app-mapa"
 
 /**
  * Anexo enviado pelo usuário (comprovante, extrato). Chega em base64 e NÃO é
@@ -67,6 +69,8 @@ export type CardIA =
   | { tipo: "grafico"; titulo: string; barras: { rotulo: string; valor: number }[] }
   | { tipo: "recomendacao"; titulo: string; texto: string; moduloSlug?: string }
   | { tipo: "lembrete"; titulo: string; texto: string; quando?: string }
+  /** Atalho para uma tela do app, com o caminho de toques à vista. */
+  | { tipo: "caminho"; titulo: string; passos: string[]; href: string }
 
 /**
  * O que o assistente já sabe sobre a pessoa, vindo de conversas anteriores.
@@ -107,6 +111,17 @@ export interface TetoProposto {
   /** slug de categoria, ou "total" para o mês inteiro */
   categoria: string
   limite: number
+}
+
+/** Opções da chamada. Um tipo só, usado aqui e no prompt: duas listas
+ *  separadas divergem no dia em que alguém acrescenta campo numa e esquece a
+ *  outra, e o campo esquecido some sem erro nenhum. */
+export interface OpcoesResposta {
+  podeLancar?: boolean
+  sistemaExtra?: string
+  onboarding?: boolean
+  /** Aulas reais, do banco. Sem elas o modelo não recomenda módulo nenhum. */
+  modulos?: { slug: string; titulo: string }[]
 }
 
 export interface RespostaIA {
@@ -261,6 +276,9 @@ export function memoriasValidas(bruto: unknown): MemoriaProposta[] {
   return ok
 }
 
+/** Rotas que um card pode apontar. Fonte única: lib/app-mapa.ts. */
+const HREFS_VALIDOS = new Set(DESTINOS.map((d) => d.href))
+
 /** Aceita só os cards que batem com o contrato — modelo às vezes inventa forma. */
 function cardsValidos(bruto: unknown): CardIA[] {
   if (!Array.isArray(bruto)) return []
@@ -290,6 +308,14 @@ function cardsValidos(bruto: unknown): CardIA[] {
         tipo: "recomendacao", titulo, texto: x.texto,
         ...(typeof x.moduloSlug === "string" && x.moduloSlug ? { moduloSlug: x.moduloSlug } : {}),
       })
+    } else if (x.tipo === "caminho" && Array.isArray(x.passos) && typeof x.href === "string") {
+      // href só passa se estiver no mapa. O modelo não inventa rota — foi
+      // exatamente assim que o card de módulo passou meses apontando para
+      // /modulo/{slug}, uma rota que nunca existiu.
+      const passos = x.passos.filter((p): p is string => typeof p === "string" && !!p.trim()).slice(0, 5)
+      if (passos.length && HREFS_VALIDOS.has(x.href)) {
+        ok.push({ tipo: "caminho", titulo, passos, href: x.href })
+      }
     } else if (x.tipo === "lembrete" && typeof x.texto === "string") {
       ok.push({
         tipo: "lembrete", titulo, texto: x.texto,
@@ -315,7 +341,7 @@ export async function responderIA(
   mensagens: MensagemChat[],
   contexto: ContextoFinanceiro,
   memoria?: { ligada: boolean; conhecidas: MemoriaConhecida[] },
-  opcoes?: { podeLancar?: boolean; sistemaExtra?: string; onboarding?: boolean }
+  opcoes?: OpcoesResposta
 ): Promise<RespostaIA> {
   const { getVertex, MODELO_CHAT, VertexNaoConfigurada } = await import("@/lib/vertex")
   const { promptSistemaChat } = await import("@/lib/prompts/chat")
