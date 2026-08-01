@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { getUserIdOr401, checarConsentimento } from "@/lib/painel"
 import { listarTransacoes, criarTransacao, atualizarTransacao } from "@/lib/financeiro-repo"
+import { creditar } from "@/lib/pontos"
 
 export const dynamic = "force-dynamic"
 
@@ -44,6 +45,13 @@ export async function POST(req: NextRequest) {
       categoriaId: categoriaId || null,
       data: data ? new Date(data) : new Date(),
     })
+
+    // Lançar na mão já é confirmação: a pessoa digitou o valor. Pontuar não
+    // pode derrubar o lançamento, que é o que ela veio fazer.
+    await creditar(userId, "lancamento_confirmado", transacao.id).catch((e) =>
+      console.warn("[painel/transacoes] ponto:", (e as Error)?.message)
+    )
+
     return NextResponse.json({ transacao })
   } catch (e) {
     console.error("[painel/transacoes POST]", e)

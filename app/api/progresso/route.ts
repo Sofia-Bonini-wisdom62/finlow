@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { auth } from "@/lib/auth"
+import { creditar } from "@/lib/pontos"
 
 export const dynamic = "force-dynamic"
 
@@ -63,7 +64,12 @@ export async function POST(req: NextRequest) {
       update: { concluido: true, concluidoEm: new Date() },
     })
 
-    return NextResponse.json({ ok: true })
+    // Refazer um módulo já concluído não credita de novo: o refId é o próprio
+    // módulo, então a segunda vez esbarra na chave única e vira `creditado:
+    // false`. Ponto não pode ser pagar de novo pelo mesmo trabalho.
+    const credito = await creditar(userId, "modulo_concluido", moduloId)
+
+    return NextResponse.json({ ok: true, pontos: credito })
   } catch (e) {
     console.warn("[progresso POST]", e)
     return NextResponse.json({ ok: false }, { status: 500 })

@@ -61,6 +61,12 @@ export const DESTINOS: Destino[] = [
     paraQue: "lançar na mão, editar ou apagar um lançamento, contas fixas",
   },
   {
+    href: "/ranking",
+    nome: "Ranking",
+    caminho: ["Perfil", "card de pontos"],
+    paraQue: "ver os pontos, entrar ou sair do ranking (é opcional e vem desligado)",
+  },
+  {
     href: "/extrato",
     nome: "Ler extrato do banco",
     caminho: ["Menu", "Ler extrato do banco"],
@@ -168,6 +174,19 @@ export const ACOES: Acao[] = [
     pedido: "ver ou apagar um teto de orçamento",
     passos: ["Perfil", "Análises", "card Seus tetos"],
     href: "/analises",
+  },
+  {
+    pedido: "entrar no ranking / aparecer para outras pessoas",
+    passos: ["Perfil", "card de pontos", "Entrar no ranking"],
+    href: "/ranking",
+    cuidado:
+      "Os outros veem só o apelido e os pontos. Nenhum valor, dívida, renda ou categoria de gasto sai dali.",
+  },
+  {
+    pedido: "sair do ranking / não quero mais aparecer",
+    passos: ["Perfil", "card de pontos", "Sair do ranking"],
+    href: "/ranking",
+    cuidado: "Sair tira da listagem na hora. Os pontos continuam contando para você.",
   },
   {
     pedido: "sair da conta",

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getUserIdOr401, checarConsentimento } from "@/lib/painel"
 import { criarTransacao } from "@/lib/financeiro-repo"
+import { creditar } from "@/lib/pontos"
 import { mapearCategorias } from "@/lib/extrato/categorias"
 import { lancamentosValidos } from "@/lib/ia"
 
@@ -60,6 +61,16 @@ export async function POST(req: NextRequest) {
         })
       )
     )
+
+    // Pontua só AQUI, depois do toque dela. A proposta da IA no chat não vale
+    // ponto nenhum: se valesse, bastaria pedir lançamento e nunca confirmar.
+    // O refId é o id da transação, então reenviar o mesmo lote não credita duas
+    // vezes. Falha na pontuação não derruba o registro, que é o que ela pediu.
+    for (const c of criadas) {
+      await creditar(userId, "lancamento_confirmado", c.id).catch((e) =>
+        console.warn("[chat/lancamentos] ponto:", (e as Error)?.message)
+      )
+    }
 
     console.log(`[chat/lancamentos] ${criadas.length} registrados`)
     return NextResponse.json({

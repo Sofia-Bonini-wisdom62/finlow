@@ -239,13 +239,20 @@ model Onboarding {
 ///
 /// A chave única (userId, motivo, refId) é o que impede farmar: concluir o
 /// mesmo módulo duas vezes tenta gravar a mesma linha e o banco recusa.
+///
+/// `refId` NÃO pode ser nulo, e isso não é preciosismo. No Postgres, dois NULL
+/// não colidem num índice único: com refId nulo a chave deixa de garantir
+/// qualquer coisa, em silêncio. Testado contra o banco antes de mudar — duas
+/// linhas idênticas entraram sem erro. E o motivo mais exposto é justamente um
+/// sem referência natural ("onboarding"), que rodaria a cada refazer.
+/// Quem não tem referência escreve o sentinela SEM_REF (lib/pontos.ts).
 model EventoPontuacao {
   id       String   @id @default(cuid())
   userId   String
   user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   motivo   String // "onboarding"|"modulo_concluido"|"quiz_acerto"|"lancamento_confirmado"|"streak_semana"
   pontos   Int
-  refId    String? // id do módulo/lançamento que gerou
+  refId    String   @default("-") // id do módulo/lançamento que gerou, ou "-"
   criadoEm DateTime @default(now())
 
   @@unique([userId, motivo, refId])

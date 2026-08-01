@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react"
 import Link from "next/link"
-import { ArrowRight, BookText, ChartColumn, Wallet } from "lucide-react"
+import { ArrowRight, BookText, ChartColumn, Trophy, Wallet } from "lucide-react"
 import { BottomNav } from "@/components/bottom-nav"
 import type { MetricasPerfil } from "@/lib/financas"
 
@@ -13,6 +13,8 @@ interface Perfil {
   nivel: string
   resumo: string
   metricas: MetricasPerfil
+  pontos: number
+  noRanking: boolean
 }
 
 function Metrica({ rotulo, valor, nota, barra }: { rotulo: string; valor: string; nota?: string; barra?: number }) {
@@ -173,6 +175,29 @@ export default function PerfilPage() {
             <ArrowRight className="size-4 shrink-0 text-fl-ink-3" />
           </Link>
         </section>
+
+        {/* Score: pontos e a porta do ranking (§2.10). Fica ANTES do DASH
+            porque é leitura de um segundo, e o DASH é para quem quer cavar. */}
+        <Link
+          href="/ranking"
+          className="mt-4 flex items-center gap-3 rounded-[20px] border border-fl-border bg-fl-card p-5 transition-colors hover:border-fl-500/40 hover:bg-fl-50/50"
+        >
+          <div className="grid size-11 shrink-0 place-items-center rounded-xl bg-fl-50">
+            <Trophy className="size-5 text-fl-500" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-[15px] font-bold text-fl-ink">
+              <span className="tabular-nums">{perfil.pontos}</span>{" "}
+              {perfil.pontos === 1 ? "ponto" : "pontos"}
+            </p>
+            <p className="mt-0.5 text-[13px] leading-snug text-fl-ink-2">
+              {perfil.noRanking
+                ? "Você está no ranking. Toca pra ver sua posição."
+                : "O ranking é opcional. Toca pra ver como funciona."}
+            </p>
+          </div>
+          <ArrowRight className="size-4 shrink-0 text-fl-ink-3" />
+        </Link>
 
         {/* DASH: a profundidade do Perfil. Análises e Painel deixaram de ser
             abas e passam por aqui. */}

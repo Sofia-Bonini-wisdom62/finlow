@@ -14,7 +14,7 @@ export async function GET() {
     const [user, transacoes] = await Promise.all([
       db.user.findUnique({
         where: { id: userId },
-        select: { nome: true, email: true, image: true },
+        select: { nome: true, email: true, image: true, pontos: true, rankingOptIn: true },
       }),
       listarTransacoes(userId, { comCategoria: false }),
     ])
@@ -30,6 +30,8 @@ export async function GET() {
       nivel: nivelFinanceiro(metricas),
       resumo: resumoUsuario(metricas),
       metricas,
+      pontos: user?.pontos ?? 0,
+      noRanking: !!user?.rankingOptIn,
     })
   } catch (e) {
     console.error("[perfil-financeiro]", e)

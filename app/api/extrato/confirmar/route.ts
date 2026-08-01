@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { getUserIdOr401, checarConsentimento } from "@/lib/painel"
 import { confirmarLoteExtrato, criarTransacao } from "@/lib/financeiro-repo"
+import { creditar } from "@/lib/pontos"
 
 export const dynamic = "force-dynamic"
 
@@ -71,6 +72,16 @@ export async function PATCH(req: NextRequest) {
       where: { id: extratoImportId },
       data: { status: "confirmado", totalLinhas: r.confirmadas },
     })
+
+    // UM crédito para o lote inteiro, com o id da importação como refId.
+    //
+    // Não é por economia: pontuar linha a linha faria um extrato de 400 linhas
+    // valer 800 pontos contra 50 do onboarding inteiro, e o ranking passaria a
+    // medir quem subiu o arquivo maior. Confirmar o extrato é UMA ação da
+    // pessoa, independente de quantas linhas o banco mandou.
+    await creditar(userId, "lancamento_confirmado", extratoImportId).catch((e) =>
+      console.warn("[extrato/confirmar] ponto:", (e as Error)?.message)
+    )
 
     return NextResponse.json({ ok: true, ...r, ajuste: ajusteCriado })
   } catch (e) {

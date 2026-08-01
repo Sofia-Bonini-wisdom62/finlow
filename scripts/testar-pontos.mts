@@ -1,0 +1,153 @@
+/**
+ * Testa as guardas dos pontos e do ranking.
+ *
+ * POR QUE ISTO EXISTE
+ * A spec diz que a chave única (userId, motivo, refId) impede farmar. Ela não
+ * impedia: no Postgres dois NULL não colidem num índice único, então todo
+ * motivo sem referência natural — "onboarding", justamente — creditava de novo
+ * a cada repetição, em silêncio e sem erro. Só dá para ver isso falando com o
+ * banco, e por isso este teste fala.
+ *
+ * Cria um usuário descartável, exercita as regras e apaga no fim, inclusive se
+ * algo falhar no meio.
+ *
+ *   node --import tsx scripts/testar-pontos.mts
+ */
+import { config } from "dotenv"
+config({ path: ".env.local" })
+config({ path: ".env" })
+
+const { db } = await import("../lib/db.js")
+const { creditar, recalcularTotal, listarRanking, apelidoValido, inicioDoDiaSP, SEM_REF } =
+  await import("../lib/pontos.js")
+
+let falhas = 0
+function checar(nota: string, ok: boolean, detalhe = "") {
+  if (!ok) falhas++
+  console.log(`  ${ok ? "ok   " : "FALHA"} ${nota}${detalhe ? `  ${detalhe}` : ""}`)
+}
+
+const marca = `teste-pontos-${Date.now()}`
+let userId = ""
+let outroId = ""
+
+try {
+  const u = await db.user.create({ data: { email: `${marca}@exemplo.invalido`, nome: "Teste" } })
+  userId = u.id
+
+  // ---------------------------------------------------------- idempotência ---
+  console.log("IDEMPOTÊNCIA")
+
+  const c1 = await creditar(userId, "modulo_concluido", "modulo-x")
+  const c2 = await creditar(userId, "modulo_concluido", "modulo-x")
+  checar("primeiro crédito entra", c1.creditado && c1.pontos === 30, `total=${c1.total}`)
+  checar("repetir o mesmo módulo não credita", !c2.creditado, `total=${c2.total}`)
+  checar("total não subiu na repetição", c1.total === c2.total, `${c1.total} vs ${c2.total}`)
+
+  // Este é o caso que estava furado antes de refId virar não-nulo.
+  const o1 = await creditar(userId, "onboarding")
+  const o2 = await creditar(userId, "onboarding")
+  const nOnb = await db.eventoPontuacao.count({ where: { userId, motivo: "onboarding" } })
+  checar("onboarding credita uma vez", o1.creditado && o1.pontos === 50)
+  checar("refazer o onboarding NÃO credita de novo", !o2.creditado)
+  checar("existe uma única linha de onboarding", nOnb === 1, `linhas=${nOnb}`)
+  checar("o sentinela foi gravado, não NULL", (await db.eventoPontuacao.findFirst({
+    where: { userId, motivo: "onboarding" }, select: { refId: true },
+  }))?.refId === SEM_REF)
+
+  // Módulo diferente é trabalho diferente: tem de creditar.
+  const c3 = await creditar(userId, "modulo_concluido", "modulo-y")
+  checar("outro módulo credita normalmente", c3.creditado, `total=${c3.total}`)
+
+  // ----------------------------------------------------------------- teto ---
+  console.log("\nTETO DIÁRIO")
+
+  let creditados = 0
+  for (let i = 0; i < 13; i++) {
+    const r = await creditar(userId, "lancamento_confirmado", `lanc-${i}`)
+    if (r.creditado) creditados++
+  }
+  checar("para no teto de 10 por dia", creditados === 10, `creditou ${creditados} de 13`)
+
+  const ultimo = await creditar(userId, "lancamento_confirmado", "lanc-99")
+  checar("depois do teto avisa noTeto", ultimo.noTeto === true && !ultimo.creditado)
+
+  // O teto conta o dia de São Paulo. Se estivesse contando dia UTC, um evento
+  // gravado às 22h de Brasília cairia no dia seguinte e o teto reiniciaria.
+  const inicio = inicioDoDiaSP(new Date("2026-08-01T02:00:00Z"))
+  checar(
+    "01/08 02:00 UTC ainda é 31/07 em São Paulo",
+    inicio.toISOString() === "2026-07-31T03:00:00.000Z",
+    inicio.toISOString()
+  )
+
+  // ---------------------------------------------------------------- cache ---
+  console.log("\nTOTAL")
+
+  const somaEventos = await db.eventoPontuacao.aggregate({ where: { userId }, _sum: { pontos: true } })
+  const cache = (await db.user.findUnique({ where: { id: userId }, select: { pontos: true } }))?.pontos
+  checar("cache bate com a soma dos eventos", cache === somaEventos._sum.pontos, `${cache} vs ${somaEventos._sum.pontos}`)
+
+  // Cache corrompido na mão volta ao certo pelo recálculo.
+  await db.user.update({ where: { id: userId }, data: { pontos: 99999 } })
+  const recalculado = await recalcularTotal(userId)
+  checar("recálculo conserta o cache", recalculado === somaEventos._sum.pontos, `${recalculado}`)
+
+  // -------------------------------------------------------------- ranking ---
+  console.log("\nRANKING")
+
+  const outro = await db.user.create({
+    data: { email: `${marca}-outro@exemplo.invalido`, nome: "Outro", pontos: 9999 },
+  })
+  outroId = outro.id
+
+  // Sem opt-in ninguém aparece, nem quem tem mais pontos que todo mundo.
+  await db.user.update({ where: { id: userId }, data: { rankingOptIn: true, apelido: `eu-${marca}` } })
+  const lista = await listarRanking(userId)
+  checar("quem deu opt-in aparece", lista.some((l) => l.apelido === `eu-${marca}`))
+  checar("quem NÃO deu opt-in fica de fora", !lista.some((l) => l.pontos === 9999))
+  checar("a linha de quem olha vem marcada", lista.find((l) => l.apelido === `eu-${marca}`)?.euMesmo === true)
+
+  // O que sai daqui é só apelido e pontos.
+  const campos = Object.keys(lista[0] ?? {}).sort().join(",")
+  checar("nenhum campo além do previsto", campos === "apelido,euMesmo,pontos,posicao", campos)
+
+  // Sair some na hora.
+  await db.user.update({ where: { id: userId }, data: { rankingOptIn: false } })
+  const depois = await listarRanking(userId)
+  checar("sair remove da listagem", !depois.some((l) => l.apelido === `eu-${marca}`))
+
+  // -------------------------------------------------------------- apelido ---
+  console.log("\nAPELIDO")
+
+  const casos: [string, boolean, string][] = [
+    ["Sofia", true, "nome normal"],
+    ["ana.paula_92", true, "com ponto, número e underline"],
+    ["Zé Ninguém", true, "com acento e espaço"],
+    ["a", false, "curto demais"],
+    ["a".repeat(21), false, "longo demais"],
+    ["sofia@gmail.com", false, "e-mail identifica fora do app"],
+    ["@sofia", false, "arroba"],
+    ["  ", false, "só espaço"],
+    ["<script>", false, "caractere fora da lista"],
+  ]
+  for (const [entrada, esperado, nota] of casos) {
+    checar(nota, apelidoValido(entrada).ok === esperado, `"${entrada}"`)
+  }
+  checar("espaço sobrando é normalizado", (() => {
+    const r = apelidoValido("  Ana   Paula  ")
+    return r.ok && r.apelido === "Ana Paula"
+  })())
+} finally {
+  // Sempre limpa, inclusive se um checar acima explodir.
+  for (const id of [userId, outroId].filter(Boolean)) {
+    await db.user.delete({ where: { id } }).catch(() => {})
+  }
+  const sobrou = await db.user.count({ where: { email: { contains: marca } } })
+  console.log(`\nlimpeza: ${sobrou === 0 ? "nada ficou no banco" : `SOBRARAM ${sobrou} usuários`}`)
+  if (sobrou !== 0) falhas++
+  await db.$disconnect()
+}
+
+console.log(`\n${falhas === 0 ? "✓ todos os casos passaram" : `✗ ${falhas} falha(s)`}`)
+process.exit(falhas === 0 ? 0 : 1)
