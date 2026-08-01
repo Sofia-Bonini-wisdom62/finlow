@@ -101,6 +101,14 @@ export async function POST(req: NextRequest) {
     // no arco sem precisar reler a conversa inteira para contar.
     const turno = mensagens.filter((m: MensagemChat) => m.papel === "ia").length + 1
 
+    // As aulas vêm do banco, iguais às do chat. Sem elas o onboarding não
+    // consegue terminar recomendando uma aula de verdade — que é o ponto dele —
+    // e um slug inventado passaria sem ninguém conferir.
+    const modulos = await db.modulo.findMany({
+      select: { slug: true, titulo: true },
+      orderBy: [{ tipoPerfil: "asc" }, { ordem: "asc" }],
+    })
+
     const resposta = await responderIA(
       mensagens as MensagemChat[],
       contexto,
@@ -108,6 +116,7 @@ export async function POST(req: NextRequest) {
       {
         podeLancar,
         onboarding: true,
+        modulos,
         sistemaExtra: promptOnboarding(usuario?.nome ?? "", turno),
       }
     )

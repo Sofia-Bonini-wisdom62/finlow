@@ -7,7 +7,7 @@
    permite o mesmo `bg-fl-page` responder ao tema. Os valores de cada modo
    ficam em :root e .dark abaixo. */
 @theme inline {
-  --font-sans: var(--font-geist-sans), 'Geist Fallback';
+  --font-sans: var(--font-ui), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), 'Geist Mono Fallback';
   --color-ring: var(--ring);
   --color-input: var(--input);

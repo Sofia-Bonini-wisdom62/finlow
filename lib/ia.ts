@@ -279,8 +279,13 @@ export function memoriasValidas(bruto: unknown): MemoriaProposta[] {
 /** Rotas que um card pode apontar. Fonte única: lib/app-mapa.ts. */
 const HREFS_VALIDOS = new Set(DESTINOS.map((d) => d.href))
 
-/** Aceita só os cards que batem com o contrato — modelo às vezes inventa forma. */
-function cardsValidos(bruto: unknown): CardIA[] {
+/** Aceita só os cards que batem com o contrato — modelo às vezes inventa forma.
+ *
+ *  `slugsReais` são as aulas que existem mesmo, do banco. Sem essa lista o
+ *  card de recomendação aceitaria qualquer slug: o modelo escreve um plausível,
+ *  o card fica bonito, e o toque abre um 404. É o mesmo erro do /modulo/{slug},
+ *  só que dentro de um campo em vez de dentro de uma rota. */
+function cardsValidos(bruto: unknown, slugsReais?: Set<string>): CardIA[] {
   if (!Array.isArray(bruto)) return []
   const ok: CardIA[] = []
   for (const c of bruto.slice(0, 2)) {
@@ -304,9 +309,14 @@ function cardsValidos(bruto: unknown): CardIA[] {
         .slice(0, 8)
       if (barras.length) ok.push({ tipo: "grafico", titulo, barras })
     } else if (x.tipo === "recomendacao" && typeof x.texto === "string") {
+      // Slug inventado vira card sem botão, não card com botão quebrado: a
+      // recomendação em si continua valendo, só perde o atalho.
+      const slug = typeof x.moduloSlug === "string" ? x.moduloSlug.trim() : ""
+      const slugVale = !!slug && (!slugsReais || slugsReais.has(slug))
+      if (slug && !slugVale) console.warn("[ia] slug de módulo inexistente descartado:", slug)
       ok.push({
         tipo: "recomendacao", titulo, texto: x.texto,
-        ...(typeof x.moduloSlug === "string" && x.moduloSlug ? { moduloSlug: x.moduloSlug } : {}),
+        ...(slugVale ? { moduloSlug: slug } : {}),
       })
     } else if (x.tipo === "caminho" && Array.isArray(x.passos) && typeof x.href === "string") {
       // href só passa se estiver no mapa. O modelo não inventa rota — foi
@@ -397,7 +407,12 @@ export async function responderIA(
     if (!texto) throw new Error("sem campo texto")
     return {
       texto,
-      cards: cardsValidos(j.cards),
+      // Sem lista não dá para validar: passa `undefined` em vez de um Set vazio,
+      // senão quem chama sem `modulos` perderia toda recomendação em silêncio.
+      cards: cardsValidos(
+        j.cards,
+        opcoes?.modulos?.length ? new Set(opcoes.modulos.map((m) => m.slug)) : undefined
+      ),
       // Memória desligada: descarta o que o modelo tenha proposto. A decisão
       // de guardar é da pessoa, não dele.
       memorias: memoria?.ligada ? memoriasValidas(j.memorias) : [],

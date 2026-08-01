@@ -1,11 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SCRIPT_ANTI_FLASH } from "@/lib/tema";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+/**
+ * A fonte nunca tinha sido escolhida: Geist é a que vem no scaffold do Next.
+ *
+ * Plus Jakarta Sans entra por três motivos concretos, não por gosto:
+ *  - `latin-ext` traz ã, õ, ç, ê desenhados, não emprestados de fallback — num
+ *    app em português isso aparece em quase toda frase;
+ *  - segura bem os títulos em extrabold com tracking apertado, que é como as
+ *    telas daqui são compostas;
+ *  - continua legível nos 12–13px que a interface usa bastante.
+ *
+ * Números: as telas de dinheiro usam `tabular-nums` em 15 arquivos. Se a fonte
+ * não trouxer figuras tabulares, a coluna de valores dança a cada dígito.
+ * Conferido no navegador medindo a largura de "1" contra "8".
+ */
+const fonteUI = Plus_Jakarta_Sans({
+  variable: "--font-ui",
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
@@ -26,7 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${fonteUI.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>
