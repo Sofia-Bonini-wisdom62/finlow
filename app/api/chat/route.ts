@@ -1,63 +1,17 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { getUserIdOr401 } from "@/lib/painel"
-import { listarTransacoes, listarContasFixas } from "@/lib/financeiro-repo"
-import { indicadores, gastosPorCategoria, metricasPerfil, type TransacaoCalc } from "@/lib/financas"
-import { responderIA, IANaoConfigurada, type ContextoFinanceiro, type MensagemChat } from "@/lib/ia"
+import { listarTransacoes } from "@/lib/financeiro-repo"
+import { responderIA, IANaoConfigurada, type MensagemChat } from "@/lib/ia"
 import { memoriaLigada, listarMemorias, guardarMemorias, type TipoMemoria } from "@/lib/memoria-repo"
-import { listarOrcamentos, cruzarComGasto } from "@/lib/orcamento-repo"
 import { guardarTurno } from "@/lib/conversa-repo"
+import { montarContexto } from "@/lib/contexto-financeiro"
 import { slugDaCategoria } from "@/lib/extrato/categorias"
 
 export const dynamic = "force-dynamic"
 // Resposta de chat leva 5–15s. 60 dá folga sem deixar um travamento
 // consumir 5 minutos de função.
 export const maxDuration = 60
-
-const NOMES_MESES = [
-  "janeiro", "fevereiro", "março", "abril", "maio", "junho",
-  "julho", "agosto", "setembro", "outubro", "novembro", "dezembro",
-]
-
-// Monta o retrato financeiro real do usuário para a IA usar como base.
-// A IA nunca recebe as transações cruas — só os agregados de que precisa.
-async function montarContexto(userId: string): Promise<ContextoFinanceiro> {
-  const [calc, contas, tetos] = await Promise.all([
-    listarTransacoes(userId, { ordem: "desc" }),
-    listarContasFixas(userId, { apenasAtivas: true }),
-    listarOrcamentos(userId),
-  ])
-
-  const hoje = new Date()
-  const mes = hoje.getMonth() + 1
-  const ano = hoje.getFullYear()
-
-  const ind = indicadores(calc, mes, ano)
-  const cats = gastosPorCategoria(calc, mes, ano)
-  const met = metricasPerfil(calc)
-
-  return {
-    temDados: calc.length > 0,
-    mesReferencia: `${NOMES_MESES[mes - 1]} de ${ano}`,
-    receitaMes: ind.receita,
-    despesaMes: ind.despesa,
-    economiaMes: ind.economia,
-    acumulado: ind.acumulado,
-    reservaEmergenciaMeses: met.reservaEmergencia,
-    taxaEconomiaPct: met.taxaEconomia,
-    maioresCategorias: cats.slice(0, 5).map((c) => ({ nome: c.nome, total: c.total, pct: c.pct })),
-    contasFixasTotal: contas.reduce((s, c) => s + c.valor, 0),
-    mesesComHistorico: met.mesesComDados,
-    // Sem os tetos no contexto, o assistente proporia de novo o que ela já
-    // decidiu — e desfaria a decisão dela sem nem saber que existia.
-    orcamentos: cruzarComGasto(
-      tetos,
-      calc
-        .filter((t) => t.tipo === "despesa" && new Date(t.data).getUTCMonth() + 1 === mes && new Date(t.data).getUTCFullYear() === ano)
-        .map((t) => ({ nomeCategoria: t.categoria?.nome ?? null, valor: t.valor }))
-    ).map((o) => ({ nome: o.nome, limite: o.limite, gasto: o.gasto, restante: o.restante, pct: o.pct })),
-  }
-}
 
 export async function POST(req: NextRequest) {
   const userId = await getUserIdOr401()

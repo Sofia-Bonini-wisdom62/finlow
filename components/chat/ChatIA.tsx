@@ -89,6 +89,40 @@ export function ChatIA({ nome }: { nome: string }) {
     setTemVoz(criarReconhecimento() !== null)
   }, [])
 
+  /**
+   * A leva de aulas que o gatilho de percentual liberou (§2.7 passo 5).
+   *
+   * Chega como mensagem do assistente, não como aviso: é uma recomendação com
+   * um porquê, e o lugar de uma recomendação neste app é a conversa.
+   *
+   * Só entra se o chat ainda estiver vazio. Empurrar isso por cima de uma
+   * conversa em andamento interromperia a pessoa no meio do assunto dela.
+   */
+  useEffect(() => {
+    let vivo = true
+    fetch("/api/chat/novidades")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (!vivo || !d?.recomendacoes?.length) return
+        setMensagens((m) =>
+          m.length > 0
+            ? m
+            : [{
+                papel: "ia",
+                texto: d.texto ?? "Separei mais algumas aulas pra você.",
+                cards: d.recomendacoes.map((r: { titulo: string; motivo: string; slug: string }) => ({
+                  tipo: "recomendacao" as const,
+                  titulo: r.titulo,
+                  texto: r.motivo,
+                  moduloSlug: r.slug,
+                })),
+              }]
+        )
+      })
+      .catch(() => {})
+    return () => { vivo = false }
+  }, [])
+
   useEffect(() => {
     fimRef.current?.scrollIntoView({ behavior: "smooth" })
   }, [mensagens, enviando])

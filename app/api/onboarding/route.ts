@@ -1,48 +1,15 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { getUserIdOr401 } from "@/lib/painel"
-import { listarTransacoes, listarContasFixas } from "@/lib/financeiro-repo"
-import { indicadores, gastosPorCategoria, metricasPerfil, type TransacaoCalc } from "@/lib/financas"
-import { responderIA, IANaoConfigurada, type ContextoFinanceiro, type MensagemChat } from "@/lib/ia"
+import { responderIA, IANaoConfigurada, type MensagemChat } from "@/lib/ia"
 import { listarMemorias, guardarMemorias, type TipoMemoria } from "@/lib/memoria-repo"
 import { promptOnboarding } from "@/lib/prompts/onboarding"
+import { montarContexto } from "@/lib/contexto-financeiro"
 
 export const dynamic = "force-dynamic"
 // Resposta de chat leva 5–15s. 60 dá folga sem deixar um travamento
 // consumir 5 minutos de função.
 export const maxDuration = 60
-
-const NOMES_MESES = [
-  "janeiro", "fevereiro", "março", "abril", "maio", "junho",
-  "julho", "agosto", "setembro", "outubro", "novembro", "dezembro",
-]
-
-async function montarContexto(userId: string): Promise<ContextoFinanceiro> {
-  const [calc, contas] = await Promise.all([
-    listarTransacoes(userId, { ordem: "desc" }),
-    listarContasFixas(userId, { apenasAtivas: true }),
-  ])
-  const hoje = new Date()
-  const mes = hoje.getMonth() + 1
-  const ano = hoje.getFullYear()
-  const ind = indicadores(calc as TransacaoCalc[], mes, ano)
-  const met = metricasPerfil(calc as TransacaoCalc[])
-  return {
-    temDados: calc.length > 0,
-    mesReferencia: `${NOMES_MESES[mes - 1]} de ${ano}`,
-    receitaMes: ind.receita,
-    despesaMes: ind.despesa,
-    economiaMes: ind.economia,
-    acumulado: ind.acumulado,
-    reservaEmergenciaMeses: met.reservaEmergencia,
-    taxaEconomiaPct: met.taxaEconomia,
-    maioresCategorias: gastosPorCategoria(calc as TransacaoCalc[], mes, ano)
-      .slice(0, 5)
-      .map((c) => ({ nome: c.nome, total: c.total, pct: c.pct })),
-    contasFixasTotal: contas.reduce((s, c) => s + c.valor, 0),
-    mesesComHistorico: met.mesesComDados,
-  }
-}
 
 // GET — estado da primeira conversa
 export async function GET() {

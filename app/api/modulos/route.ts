@@ -3,6 +3,7 @@ import { db } from "@/lib/db"
 import { listarTransacoes } from "@/lib/financeiro-repo"
 import { getUserIdOr401 } from "@/lib/painel"
 import { metricasPerfil, type TransacaoCalc, type MetricasPerfil } from "@/lib/financas"
+import { garantirLevaInicial, levaAtual } from "@/lib/recomendacao"
 
 export const dynamic = "force-dynamic"
 
@@ -132,10 +133,24 @@ export async function GET(req: NextRequest) {
     const met = metricasPerfil(calc)
 
     const porSlug = new Map(modulos.map((m) => [m.slug, m]))
-    const recomendados = slugsRecomendados(met)
-      .map((s) => porSlug.get(s))
-      .filter((m): m is (typeof modulos)[number] => m !== undefined)
-      .map(enriquecer)
+
+    // A primeira leva é GRAVADA na primeira vez que a Trilha é aberta.
+    //
+    // Sem isso a recomendação seria recalculada a cada chamada, e o gatilho da
+    // §2.7 ("concluiu X% da trilha recomendada") mediria contra uma lista que
+    // muda de tamanho junto com o extrato da pessoa. Ninguém nunca chegaria aos
+    // 60%. Chamar de novo não duplica.
+    await garantirLevaInicial(userId, slugsRecomendados(met))
+
+    // O que vale é o gravado: é ele que inclui as levas que o gatilho
+    // acrescentou depois.
+    const leva = await levaAtual(userId)
+    const recomendados = leva
+      .map((r) => {
+        const m = porSlug.get(r.slug)
+        return m ? { ...enriquecer(m), motivo: r.motivo } : null
+      })
+      .filter((x): x is NonNullable<typeof x> => x !== null)
 
     // `todos` alimenta a seção "Todos os módulos" da Trilha. Vai na mesma
     // resposta de propósito: são 16 módulos já carregados e enriquecidos aqui;

@@ -273,16 +273,26 @@ model Insight {
 }
 
 /// Módulo recomendado pela IA, com o porquê — que o card exibe.
+///
+/// A recomendação PRECISA ficar gravada, não recalculada a cada chamada. O
+/// gatilho da §2.7 dispara ao concluir X% da trilha recomendada, e uma trilha
+/// que se recalcula muda de tamanho conforme os números da pessoa mudam: a
+/// porcentagem perseguiria um alvo móvel e ninguém nunca terminaria.
+///
+/// `entregueEm` é o que faz a leva nova chegar no chat UMA vez. Sem ele a
+/// mensagem reapareceria a cada abertura, porque a condição que a gerou
+/// continua verdadeira.
 model RecomendacaoTrilha {
-  id       String   @id @default(cuid())
-  userId   String
-  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  moduloId String
-  modulo   Modulo   @relation(fields: [moduloId], references: [id], onDelete: Cascade)
-  motivo   String   @db.Text
-  origem   String // "onboarding"|"gatilho_percentual"|"lacuna_chat"
-  ordem    Int
-  criadoEm DateTime @default(now())
+  id         String    @id @default(cuid())
+  userId     String
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  moduloId   String
+  modulo     Modulo    @relation(fields: [moduloId], references: [id], onDelete: Cascade)
+  motivo     String    @db.Text
+  origem     String // "onboarding"|"gatilho_percentual"|"lacuna_chat"
+  ordem      Int
+  entregueEm DateTime?
+  criadoEm   DateTime  @default(now())
 
   @@unique([userId, moduloId, origem])
 }
