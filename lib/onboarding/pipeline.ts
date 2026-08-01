@@ -1,7 +1,7 @@
 import { db } from "@/lib/db"
 import { listarTransacoes } from "@/lib/financeiro-repo"
 import { metricasPerfil, nivelFinanceiro, type TransacaoCalc } from "@/lib/financas"
-import { montarContexto } from "@/lib/contexto-financeiro"
+import { montarContexto, ultimoMesComMovimento } from "@/lib/contexto-financeiro"
 import { listarMemorias } from "@/lib/memoria-repo"
 import { garantirLevaInicial, levaAtual } from "@/lib/recomendacao"
 import { creditar } from "@/lib/pontos"
@@ -136,7 +136,10 @@ export async function* rodarPipeline(userId: string): AsyncGenerator<Resultado> 
     if (jaTem > 0) {
       yield ok("insights", `${jaTem} já escritos`)
     } else {
-      const contexto = await montarContexto(userId)
+      // O último mês COM movimento, não o corrente: no dia 1º o mês corrente
+      // está vazio por definição, e as três linhas sairiam todas sobre zero
+      // para quem tem meses de histórico.
+      const contexto = await montarContexto(userId, await ultimoMesComMovimento(userId))
       const linhas = await gerarInsights(contexto)
       if (linhas.length) {
         await db.insight.createMany({

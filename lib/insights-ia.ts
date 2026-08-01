@@ -45,7 +45,7 @@ Histórico: ${c.mesesComHistorico} ${c.mesesComHistorico === 1 ? "mês" : "meses
 Maiores saídas:
 ${cats}
 
-Escreva ${QUANTOS} linhas.
+Escreva até ${QUANTOS} linhas. Menos é melhor que encher com linha vazia.
 
 REGRAS
 - Cada linha até ${MAX_LETRAS} caracteres, uma frase, falando com ela ("você").
@@ -57,7 +57,13 @@ REGRAS
   "você deveria cortar o delivery" não é.
 - Se um número for bom, diga que é bom. O app não existe para dar má notícia.
 - Sem jargão sem explicação. Sem "fluxo de caixa", "aporte", "patrimônio
-  líquido".
+  líquido", "período de análise", "movimentação registrada".
+- Fale do DINHEIRO dela, não do app. "Você tem 3 meses de histórico no Finlow"
+  não é leitura nenhuma: é fato sobre o produto, e ela já sabe. O número de
+  meses serve para você calibrar a confiança do que diz, não para virar linha.
+- Se um valor for zero, NÃO escreva uma linha sobre ele. "Você teve R$ 0,00 de
+  movimentação" não informa nada e faz a tela parecer quebrada. Escreva sobre
+  o que tem número de verdade, mesmo que sobrem menos de três linhas.
 
 Tipos: "gasto" (para onde foi), "divida" (juros, fatura, parcelas),
 "progresso" (o que melhorou), "alerta" (o que aperta o mês).
