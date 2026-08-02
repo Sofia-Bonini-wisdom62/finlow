@@ -4,9 +4,8 @@ import { useState } from "react"
 import { ChevronRight } from "lucide-react"
 import type { TransacaoData } from "@/types/painel"
 import { brl } from "@/lib/formato"
+import { montarFatias } from "@/lib/financas"
 import { DetalheCategoria } from "@/components/analises/DetalheCategoria"
-
-const COR_SEM_CATEGORIA = "var(--fl-ink-2)"
 
 export interface FatiaCategoria {
   nome: string
@@ -15,29 +14,29 @@ export interface FatiaCategoria {
   pct: number
 }
 
+/**
+ * A cor vem do mesmo lugar da rosca de Análises (`corDaSerie`), não do banco.
+ * Duas roscas no mesmo app com paletas diferentes seriam duas linguagens; e as
+ * cores do banco colidem entre si, o que juntava fatias vizinhas numa cunha só.
+ *
+ * Teto de fatias igual pelo mesmo motivo: são seis cores que se distinguem em
+ * círculo fechado, nos dois modos, inclusive para daltonismo.
+ */
 export function agruparPorCategoria(transacoes: TransacaoData[]): FatiaCategoria[] {
-  const mapa = new Map<string, { cor: string; total: number }>()
+  const mapa = new Map<string, number>()
   let totalGeral = 0
 
   for (const t of transacoes) {
     if (t.tipo !== "despesa") continue
-    const valor = t.valor
-    totalGeral += valor
+    totalGeral += t.valor
     const nome = t.categoria?.nome ?? "Sem categoria"
-    const cor = t.categoria?.cor ?? COR_SEM_CATEGORIA
-    const atual = mapa.get(nome) ?? { cor, total: 0 }
-    atual.total += valor
-    mapa.set(nome, atual)
+    mapa.set(nome, (mapa.get(nome) ?? 0) + t.valor)
   }
 
-  return [...mapa.entries()]
-    .map(([nome, { cor, total }]) => ({
-      nome,
-      cor,
-      total,
-      pct: totalGeral > 0 ? Math.round((total / totalGeral) * 100) : 0,
-    }))
-    .sort((a, b) => b.total - a.total)
+  return montarFatias(
+    [...mapa.entries()].map(([nome, total]) => ({ nome, total })),
+    totalGeral
+  )
 }
 
 /**
@@ -76,7 +75,7 @@ export function DistribuicaoGastosChart({ transacoes }: { transacoes: TransacaoD
         <div className="mt-4 flex items-center gap-5">
           <div
             aria-hidden
-            className="cor-dado h-28 w-28 shrink-0 rounded-full transition-[background]"
+            className="cor-serie h-28 w-28 shrink-0 rounded-full transition-[background]"
             style={{ background: `conic-gradient(${paradas.join(", ")})` }}
           />
           <ul className="flex min-w-0 flex-1 flex-col gap-0.5">
@@ -93,7 +92,7 @@ export function DistribuicaoGastosChart({ transacoes }: { transacoes: TransacaoD
                   className="flex w-full items-center justify-between gap-2 rounded-lg px-1 py-1.5 text-left text-sm outline-none transition-colors hover:bg-fl-50 focus-visible:ring-2 focus-visible:ring-fl-500"
                 >
                   <span className="flex min-w-0 items-center gap-2">
-                    <span className="cor-dado h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: f.cor }} aria-hidden />
+                    <span className="cor-serie h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: f.cor }} aria-hidden />
                     <span className="truncate text-fl-ink">{f.nome}</span>
                   </span>
                   <span className="flex shrink-0 items-center gap-1 text-xs tabular-nums text-fl-ink-2">

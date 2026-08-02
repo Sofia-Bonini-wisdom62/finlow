@@ -36,21 +36,35 @@ export function GraficoRosca({
 
   // As paradas saem do valor real, não do pct arredondado: somar inteiros
   // arredondados dava 99% ou 101% e a rosca fechava com uma fatia torta.
+  //
+  // Entre uma fatia e a seguinte entra um fio da cor do card. Duas cores
+  // encostadas se contaminam na borda, e num anel a última fatia ainda encosta
+  // na primeira — o vão é o que garante que cada uma comece e termine num
+  // lugar visível, mesmo para quem não distingue as duas cores.
+  const VAO = fatias.length > 1 ? 0.55 : 0 // ≈2px na circunferência de 132px
+  const paradas: string[] = []
   let acumulado = 0
-  const paradas = fatias.map((f, i) => {
+  // Laço, não forEach: o acumulador é reatribuído a cada volta, e a regra do
+  // React que proíbe reatribuir depois do render não consegue provar que uma
+  // callback roda durante ele.
+  for (let i = 0; i < fatias.length; i++) {
+    const f = fatias[i]
     const inicio = (acumulado / total) * 100
     acumulado += f.total
-    const fim = i === fatias.length - 1 ? 100 : (acumulado / total) * 100
+    const bruto = i === fatias.length - 1 ? 100 : (acumulado / total) * 100
+    // Fatia minúscula não pode ser engolida pelo próprio vão.
+    const fim = Math.max(inicio + 0.15, bruto - VAO)
     // Fatia sem destaque desbota; sem destaque nenhum, todas cheias.
     const cor = !destaque || f.nome === destaque ? f.cor : "var(--fl-divider)"
-    return `${cor} ${inicio.toFixed(3)}% ${fim.toFixed(3)}%`
-  })
+    paradas.push(`${cor} ${inicio.toFixed(3)}% ${fim.toFixed(3)}%`)
+    if (VAO > 0) paradas.push(`var(--fl-card) ${fim.toFixed(3)}% ${bruto.toFixed(3)}%`)
+  }
 
   return (
     <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
       <div
         aria-hidden
-        className="cor-dado relative mx-auto size-[132px] shrink-0 rounded-full transition-[background] sm:mx-0"
+        className="cor-serie relative mx-auto size-[132px] shrink-0 rounded-full transition-[background] sm:mx-0"
         style={{ background: `conic-gradient(${paradas.join(", ")})` }}
       >
         <div className="absolute inset-[26px] flex flex-col items-center justify-center rounded-full bg-fl-card px-1 text-center">
@@ -68,7 +82,7 @@ export function GraficoRosca({
           const conteudo = (
             <>
               <span className="flex min-w-0 items-center gap-2">
-                <span className="cor-dado size-2.5 shrink-0 rounded-full" style={{ background: f.cor }} />
+                <span className="cor-serie size-2.5 shrink-0 rounded-full" style={{ background: f.cor }} />
                 <span className="truncate text-fl-ink">{f.nome}</span>
               </span>
               <span className="flex shrink-0 items-center gap-1 text-xs tabular-nums text-fl-ink-2">

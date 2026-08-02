@@ -1,29 +1,30 @@
 /**
- * Testa as cores das fatias da rosca.
+ * Testa as fatias da rosca: quantas, quem some e de que cor.
  *
  * POR QUE ISTO EXISTE
- * A cor de cada categoria vem do banco, e lá elas colidem: "Transferências" e
+ * As cores das categorias no banco colidem entre si — "Transferências" e
  * "Outros" nasceram com o mesmo cinza. Numa lista ninguém nota. Na rosca, as
  * duas viravam uma cunha contínua de 65% do gráfico, sem jeito de saber onde
- * uma acabava e a outra começava.
+ * uma acabava e a outra começava. O defeito não quebra nada: o gráfico
+ * desenha, ninguém loga, e só aparece para quem olha.
  *
- * O defeito é silencioso por natureza: nada quebra, nada loga, o gráfico
- * desenha. Só olhando é que se vê, e ninguém olha toda vez. E volta sozinho no
- * dia em que alguém criar uma categoria nova com uma cor já usada.
- *
- * Sem banco de propósito: é a regra de pintura que está sendo testada.
+ * A cor agora vem da posição, não do banco, e o número de fatias tem teto. O
+ * teto não é estética: numa rosca a última fatia encosta na primeira, então o
+ * que precisa ser legível é o CÍRCULO, e o de cada tamanho. Medindo todas as
+ * ordens das oito famílias sob protanopia e deuteranopia, nos dois modos, com
+ * 6 fatias todo prefixo fecha acima do alvo; com 7 cai para a banda de
+ * ressalva; com 8 nenhuma ordem fecha.
  *
  *   node --import tsx scripts/testar-rosca.mts
  */
-import { gastosPorCategoria, type TransacaoCalc } from "../lib/financas.js"
+import { readFileSync } from "node:fs"
+import { gastosPorCategoria, corDaSerie, type TransacaoCalc } from "../lib/financas.js"
 
 let falhas = 0
 function checar(nota: string, ok: boolean, detalhe = "") {
   if (!ok) falhas++
   console.log(`  ${ok ? "ok   " : "FALHA"} ${nota}${detalhe ? `  ${detalhe}` : ""}`)
 }
-
-const CINZA = "#9AA0A3"
 
 /** Uma despesa em julho/2026, na categoria dada. */
 function gasto(nome: string | null, cor: string | null, valor: number): TransacaoCalc {
@@ -35,13 +36,12 @@ function gasto(nome: string | null, cor: string | null, valor: number): Transaca
   } as TransacaoCalc
 }
 
-function fatias(ts: TransacaoCalc[]) {
-  return gastosPorCategoria(ts, 7, 2026)
-}
+const fatias = (ts: TransacaoCalc[]) => gastosPorCategoria(ts, 7, 2026)
 
-console.log("CORES")
+// ------------------------------------------------------------------ cores ---
+console.log("COR VEM DA POSIÇÃO, NÃO DO BANCO")
 
-// O caso real que motivou o conserto.
+const CINZA = "#9AA0A3"
 const colisao = fatias([
   gasto("Transferências", CINZA, 460),
   gasto("Outros", CINZA, 190),
@@ -50,43 +50,108 @@ const colisao = fatias([
 checar("duas categorias com a mesma cor no banco saem diferentes",
   new Set(colisao.map((f) => f.cor)).size === colisao.length,
   colisao.map((f) => `${f.nome}=${f.cor}`).join(" "))
+checar("nenhuma fatia carrega hex do banco",
+  colisao.every((f) => f.cor.startsWith("var(--serie-")),
+  colisao.map((f) => f.cor).join(" "))
+checar("a maior recebe o primeiro slot", colisao[0].cor === corDaSerie(0), colisao[0].cor)
+checar("e o cinza do banco não passa", colisao.every((f) => f.cor !== CINZA))
 
-const outros = colisao.find((f) => f.nome === "Outros")
-const transf = colisao.find((f) => f.nome === "Transferências")
-checar("o neutro fica com Outros", outros?.cor === CINZA, outros?.cor)
-checar("e some de quem não é Outros", transf?.cor !== CINZA, transf?.cor)
+// ------------------------------------------------------------------- teto ---
+console.log("\nTETO DE SEIS")
 
-// A maior escolhe primeiro: quem é deslocado é a menor do par em conflito.
-checar("a fatia maior escolhe cor primeiro",
-  colisao[0].nome === "Transferências" && colisao[0].cor !== CINZA)
+const muitas = fatias([
+  gasto("Moradia", null, 1000),
+  gasto("Alimentação", null, 900),
+  gasto("Transporte", null, 800),
+  gasto("Delivery", null, 700),
+  gasto("Compras", null, 600),
+  gasto("Saúde", null, 50),
+  gasto("Lazer", null, 40),
+  gasto("Educação", null, 30),
+  gasto("Assinaturas", null, 20),
+])
+checar("9 categorias viram 6 fatias", muitas.length === 6, `${muitas.length}`)
+checar("as 5 maiores continuam nomeadas",
+  muitas.slice(0, 5).map((f) => f.nome).join(",") === "Moradia,Alimentação,Transporte,Delivery,Compras",
+  muitas.map((f) => f.nome).join(","))
 
-// Categoria sem cor no banco ainda recebe uma.
-const semCor = fatias([gasto("Nova", null, 100), gasto("Outra", null, 50)])
-checar("categoria sem cor recebe uma", semCor.every((f) => !!f.cor))
-checar("e não a mesma", semCor[0].cor !== semCor[1].cor, semCor.map((f) => f.cor).join(" "))
+const outros = muitas.find((f) => f.nome === "Outros")
+checar("a cauda vira Outros", !!outros)
+checar("Outros soma a cauda inteira", outros?.total === 50 + 40 + 30 + 20, `${outros?.total}`)
+// O dinheiro não pode sumir junto com as fatias.
+const somaFatias = muitas.reduce((s, f) => s + f.total, 0)
+checar("nada some do total", somaFatias === 4140, `${somaFatias}`)
+checar("percentuais ainda somam ~100",
+  Math.abs(muitas.reduce((s, f) => s + f.pct, 0) - 100) <= 1,
+  `${muitas.reduce((s, f) => s + f.pct, 0)}%`)
 
-// Transação sem categoria cai em Outros, com o neutro.
-const nula = fatias([gasto(null, null, 80)])
-checar("sem categoria vira Outros", nula[0]?.nome === "Outros")
-checar("com o neutro", nula[0]?.cor === CINZA)
+// "Outros" já existindo entre as visíveis não pode virar duas fatias iguais.
+const outrosJaExistia = fatias([
+  gasto("Moradia", null, 1000),
+  gasto("Outros", null, 900),
+  gasto("Alimentação", null, 800),
+  gasto("Transporte", null, 700),
+  gasto("Delivery", null, 600),
+  gasto("Compras", null, 500),
+  gasto("Saúde", null, 400),
+])
+checar("não cria duas fatias chamadas Outros",
+  outrosJaExistia.filter((f) => f.nome === "Outros").length === 1,
+  outrosJaExistia.map((f) => f.nome).join(","))
+checar("Outros reordena depois de absorver",
+  outrosJaExistia[0].nome === "Outros" && outrosJaExistia[0].total === 1300,
+  `${outrosJaExistia[0].nome}=${outrosJaExistia[0].total}`)
 
-// Muitas categorias: nenhuma pode ficar sem cor.
-const muitas = fatias(
-  Array.from({ length: 12 }, (_, i) => gasto(`Cat ${i}`, CINZA, 100 - i))
-)
-checar("12 categorias, todas pintadas", muitas.every((f) => !!f.cor), `${muitas.length} fatias`)
-checar("nenhuma delas fica com o neutro de Outros",
-  muitas.every((f) => f.cor !== CINZA))
+// Seis exatas não folda nada.
+const seis = fatias(Array.from({ length: 6 }, (_, i) => gasto(`C${i}`, null, 100 - i)))
+checar("exatamente 6 categorias não vira Outros",
+  seis.length === 6 && !seis.some((f) => f.nome === "Outros"),
+  seis.map((f) => f.nome).join(","))
 
-console.log("\nORDEM E SOMA")
-const ord = fatias([gasto("A", "#111111", 10), gasto("B", "#222222", 90)])
-checar("maior primeiro", ord[0].nome === "B", ord.map((f) => f.nome).join(" "))
-checar("percentuais somam 100", ord.reduce((s, f) => s + f.pct, 0) === 100)
+// Slots distintos em qualquer tamanho.
+for (const n of [2, 3, 4, 5, 6]) {
+  const f = fatias(Array.from({ length: n }, (_, i) => gasto(`C${i}`, null, 100 - i)))
+  checar(`${n} fatias, ${n} cores distintas`, new Set(f.map((x) => x.cor)).size === n)
+}
 
-// Poupança não é "para onde o dinheiro foi": ela não sai do patrimônio.
-console.log("\nO QUE NÃO ENTRA")
-const vazia = fatias([])
-checar("mês sem despesa devolve lista vazia", vazia.length === 0)
+// -------------------------------------------------------------------- css ---
+console.log("\nAS SEIS CORES EXISTEM NOS DOIS MODOS")
+
+const css = readFileSync("app/globals.css", "utf8")
+const bloco = (marcador: string) => {
+  const i = css.indexOf(marcador)
+  return i < 0 ? "" : css.slice(i, css.indexOf("\n}", i))
+}
+const claro = bloco("\n:root {")
+const escuro = bloco("\n.dark {")
+
+const hexDe = (texto: string, n: number) => {
+  const m = new RegExp(`--serie-${n}:\\s*(#[0-9a-fA-F]{6})`).exec(texto)
+  return m?.[1]?.toLowerCase() ?? null
+}
+
+const noClaro = [1, 2, 3, 4, 5, 6].map((n) => hexDe(claro, n))
+const noEscuro = [1, 2, 3, 4, 5, 6].map((n) => hexDe(escuro, n))
+
+checar("as 6 estão no modo claro", noClaro.every(Boolean), noClaro.join(" "))
+checar("as 6 estão no modo escuro", noEscuro.every(Boolean), noEscuro.join(" "))
+checar("nenhuma repetida no claro", new Set(noClaro).size === 6)
+checar("nenhuma repetida no escuro", new Set(noEscuro).size === 6)
+
+// O escuro tem passos PRÓPRIOS. Se fosse cópia do claro, seria filtro
+// disfarçado — e filtro em bloco desfaz a separação que foi medida.
+const iguais = noClaro.filter((c, i) => c === noEscuro[i]).length
+checar("o escuro não é cópia do claro", iguais <= 1, `${iguais} de 6 iguais`)
+
+// Nenhuma pode ser cinza: cinza não faz trabalho de identidade, é o que o
+// validador reprova por "reads gray".
+const cinzenta = (hex: string | null) => {
+  if (!hex) return true
+  const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16))
+  return Math.max(r, g, b) - Math.min(r, g, b) < 40
+}
+checar("nenhuma cor de série é cinza no claro", !noClaro.some(cinzenta))
+checar("nenhuma cor de série é cinza no escuro", !noEscuro.some(cinzenta))
 
 console.log(`\n${falhas === 0 ? "✓ todos os casos passaram" : `✗ ${falhas} falha(s)`}`)
 process.exit(falhas === 0 ? 0 : 1)

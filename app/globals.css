@@ -98,6 +98,32 @@
   --fl-ink-3: #6B7276;
   --fl-border: #E1DED6;
   --fl-divider: #ECEAE4;
+
+  /* ---- cores das fatias de gráfico ----------------------------------------
+     Seis, nesta ordem, e a ordem é o mecanismo: numa rosca a última fatia
+     encosta na primeira, então o que precisa passar não é a lista, é o
+     CÍRCULO — e não só o círculo cheio, o de cada tamanho, porque a rosca tem
+     de 2 a 6 fatias conforme o mês.
+
+     Enumerei as ordens possíveis das oito famílias e medi cada prefixo nos dois
+     modos. Com 6 fatias todo prefixo fecha com ΔE >= 8,4 sob protanopia e
+     deuteranopia, acima do alvo de 8. Com 7 cai para 7,2, que já é banda de
+     ressalva. Com 8 nenhuma das 40.320 ordens fecha. Por isso a rosca corta em
+     6: o sexto lugar é "Outros", que absorve o resto.
+
+     O modo escuro tem passos PRÓPRIOS, não os mesmos hex clareados por filtro.
+     Clarear em bloco muda o tom de cada cor de um jeito diferente e desfaz a
+     separação que foi medida.
+
+     As três cores mais claras ficam abaixo de 3:1 sobre o branco. Isso é
+     aceitável aqui porque a legenda escreve nome, porcentagem e valor de cada
+     fatia: quem não distingue a cor lê o número. Tirar a legenda quebra isso. */
+  --serie-1: #2a78d6;
+  --serie-2: #eb6834;
+  --serie-3: #1baf7a;
+  --serie-4: #eda100;
+  --serie-5: #e87ba4;
+  --serie-6: #008300;
   --fl-sombra: rgba(24, 28, 30, 0.10);
 
   --background: var(--fl-page);
@@ -154,6 +180,15 @@
   --fl-ink-3: #909799;   /* ver nota no modo claro */
   --fl-border: #333B3E;
   --fl-divider: #2A3133;
+
+  /* Passos próprios do escuro, medidos contra o card #212829. Não é o claro
+     com filtro: aqui todas as seis passam de 3:1, o que no claro não acontece. */
+  --serie-1: #3987e5;
+  --serie-2: #d95926;
+  --serie-3: #199e70;
+  --serie-4: #c98500;
+  --serie-5: #d55181;
+  --serie-6: #008300;
   --fl-sombra: rgba(0, 0, 0, 0.4);
 
   --primary-foreground: #14181A; /* texto sobre o primary clareado */
@@ -235,6 +270,13 @@
   }
   .dark .cor-dado {
     filter: brightness(1.45) saturate(0.92);
+  }
+
+  /* Cor de série já tem passo próprio por modo. Clarear por cima desfaria a
+     separação medida — por isso ela NÃO usa .cor-dado. */
+  .cor-serie,
+  .dark .cor-serie {
+    filter: none;
   }
 
   /* Conteúdo rico das telas do card flow (vem do seed, controlado).

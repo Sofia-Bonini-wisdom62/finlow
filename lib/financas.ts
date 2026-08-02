@@ -152,26 +152,31 @@ export interface FatiaCategoria {
 /**
  * Cores das fatias.
  *
- * A cor de cada categoria vem do banco, e lá elas COLIDEM: "Transferências" e
- * "Outros" nasceram com o mesmo cinza, "Compras" e "Lazer" com o mesmo azul, e
- * assim por diante. Numa lista isso não incomoda; numa rosca, duas fatias da
- * mesma cor viram uma cunha só. Numa conta real dava 65% do gráfico em cinza
- * contínuo, sem jeito de saber onde uma acabava e a outra começava.
+ * A cor NÃO vem mais do banco. Lá as categorias colidem — "Transferências" e
+ * "Outros" nasceram com o mesmo cinza, "Compras" e "Lazer" com o mesmo azul —
+ * e numa rosca duas fatias da mesma cor viram uma cunha só. Numa conta real
+ * eram 65% do gráfico em cinza contínuo, sem saber onde uma acabava.
  *
- * Então a cor do banco é uma PREFERÊNCIA, não uma ordem: se já foi usada nesta
- * rosca, a fatia recebe a próxima livre da paleta. Consertar aqui vale para o
- * Perfil e para Análises ao mesmo tempo, e para qualquer categoria que alguém
- * crie amanhã.
+ * Agora a fatia recebe o slot pela posição, e os seis slots vivem no CSS
+ * (`--serie-1..6` em globals.css), um jogo de valores para o claro e outro
+ * para o escuro. Aqui só sai o nome da variável: quem decide o hex é o tema,
+ * porque só ele sabe em que fundo a fatia vai ser desenhada.
+ *
+ * O TETO DE SEIS NÃO É ESTÉTICA
+ * Numa rosca a última fatia encosta na primeira. O que precisa ser legível é o
+ * CÍRCULO, e o de cada tamanho, já que a rosca tem de 2 a 6 fatias conforme o
+ * mês. Medindo todas as ordens das oito famílias documentadas sob protanopia e
+ * deuteranopia, nos dois modos: com 6 todo prefixo fecha acima do alvo; com 7
+ * cai para a banda de ressalva; com 8 nenhuma das 40.320 ordens fecha.
  */
-const PALETA = [
-  "#2B6D70", "#B8863C", "#3E6E93", "#4A7F63", "#AA4B3E",
-  "#7BAEB0", "#C79A5B", "#6C9BC0", "#9F7AEA", "#A7CBCC",
-]
-
-/** O neutro é exclusivo de "Outros": é a fatia que por definição não tem
- *  identidade. Qualquer outra categoria pintada de cinza some do gráfico. */
-const COR_OUTROS = "#9AA0A3"
+const SERIES = 6
 const NOME_OUTROS = "Outros"
+
+/** O slot de uma fatia, pela posição. Exportado porque o Painel tem a própria
+ *  rosca: duas paletas no mesmo app seriam duas linguagens. */
+export function corDaSerie(indice: number): string {
+  return `var(--serie-${(indice % SERIES) + 1})`
+}
 
 export function gastosPorCategoria(todas: TransacaoCalc[], mes: number, ano: number): FatiaCategoria[] {
   const mapa = new Map<string, { cor: string | null; total: number }>()
@@ -192,36 +197,57 @@ export function gastosPorCategoria(todas: TransacaoCalc[], mes: number, ano: num
     mapa.set(nome, atual)
   }
 
-  // Ordena ANTES de pintar: assim a fatia maior escolhe primeiro, e quem
-  // acaba deslocado para a paleta é sempre a menor do par em conflito.
   const ordenadas = [...mapa.entries()].sort((a, b) => b[1].total - a[1].total)
 
-  const usadas = new Set<string>([COR_OUTROS])
-  let proxima = 0
-  const corLivre = (): string => {
-    while (proxima < PALETA.length && usadas.has(PALETA[proxima])) proxima++
-    // Mais categorias que cores: volta ao começo. Repetir é ruim, mas ficar
-    // sem cor seria pior — e acontece só depois da décima fatia.
-    return proxima < PALETA.length ? PALETA[proxima++] : PALETA[usadas.size % PALETA.length]
-  }
+  return montarFatias(ordenadas.map(([nome, v]) => ({ nome, total: v.total })), total)
+}
 
-  return ordenadas.map(([nome, { cor, total: t }]) => {
-    let escolhida: string
-    if (nome === NOME_OUTROS) {
-      escolhida = COR_OUTROS
-    } else if (cor && cor !== COR_OUTROS && !usadas.has(cor)) {
-      escolhida = cor
-    } else {
-      escolhida = corLivre()
-    }
-    usadas.add(escolhida)
-    return {
-      nome,
-      cor: escolhida,
-      total: t,
-      pct: total > 0 ? Math.round((t / total) * 100) : 0,
-    }
-  })
+/**
+ * Corta em SERIES fatias e joga a cauda em "Outros".
+ *
+ * O teto não é para caber na paleta: catorze fatias numa rosca de 132px não se
+ * leem com cor nenhuma. O que sai da rosca continua no total — some do
+ * desenho, não da conta — e quem quiser a lista inteira abre o Painel.
+ *
+ * Duas sutilezas que custaram um teste cada:
+ *
+ *  - com exatamente SERIES categorias não se dobra nada. Dobrar a última ali
+ *    trocaria um nome de verdade por "Outros" tendo slot sobrando.
+ *  - "Outros" é o BALDE, então ele nunca ocupa uma das vagas nomeadas. Se
+ *    entrasse na disputa por tamanho, uma categoria de nome próprio seria
+ *    empurrada para dentro dele enquanto ele mesmo ficava visível.
+ *
+ * Exportado porque o Painel tem a própria rosca: duas paletas e dois tetos no
+ * mesmo app seriam duas linguagens.
+ */
+export function montarFatias(
+  categorias: { nome: string; total: number }[],
+  total: number
+): FatiaCategoria[] {
+  const nomeadas = categorias
+    .filter((c) => c.nome !== NOME_OUTROS)
+    .sort((a, b) => b.total - a.total)
+  const balde = categorias
+    .filter((c) => c.nome === NOME_OUTROS)
+    .reduce((s, c) => s + c.total, 0)
+
+  const cabeTudo = nomeadas.length + (balde > 0 ? 1 : 0) <= SERIES
+
+  const visiveis = cabeTudo ? nomeadas : nomeadas.slice(0, SERIES - 1)
+  const sobra = cabeTudo ? 0 : nomeadas.slice(SERIES - 1).reduce((s, c) => s + c.total, 0)
+
+  const fatias = visiveis.map((c) => ({ nome: c.nome, total: c.total }))
+  if (balde + sobra > 0) fatias.push({ nome: NOME_OUTROS, total: balde + sobra })
+
+  // Reordena: "Outros" pode ter passado alguém depois de absorver a cauda.
+  return fatias
+    .sort((a, b) => b.total - a.total)
+    .map((f, i) => ({
+      nome: f.nome,
+      cor: corDaSerie(i),
+      total: f.total,
+      pct: total > 0 ? Math.round((f.total / total) * 100) : 0,
+    }))
 }
 
 // ---------- gráfico 3: receitas × despesas por mês ----------

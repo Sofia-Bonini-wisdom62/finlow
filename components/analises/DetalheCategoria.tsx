@@ -115,7 +115,7 @@ export function DetalheCategoria({ fatia, mes, ano, onFechar, itens: itensPronto
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
             <p className="flex items-center gap-2 text-[15px] font-bold text-fl-ink">
-              <span className="cor-dado size-3 shrink-0 rounded-full" style={{ background: fatia.cor }} />
+              <span className="cor-serie size-3 shrink-0 rounded-full" style={{ background: fatia.cor }} />
               <span className="truncate">{fatia.nome}</span>
             </p>
             <p className="mt-0.5 text-[12.5px] text-fl-ink-3">
