@@ -21,6 +21,26 @@ const { rodarPipeline, PASSOS } = await import("../lib/onboarding/pipeline.js")
 const { levaAtual } = await import("../lib/recomendacao.js")
 
 let falhas = 0
+/**
+ * Varre a FAMÍLIA inteira, não só esta execução.
+ *
+ * Os testes criam usuário no banco de produção — não há banco separado. O
+ * `finally` cobre o caso normal, mas não cobre processo morto no meio, e a
+ * conferência antiga só olhava a marca desta execução: órfão de uma execução
+ * anterior ficava lá para sempre. Sete ficaram, e só apareceram porque fui
+ * olhar outra coisa.
+ */
+async function varrerDescartaveis(familia: string): Promise<number> {
+  const orfaos = await db.user.findMany({
+    where: { email: { startsWith: familia, endsWith: "@exemplo.invalido" } },
+    select: { id: true },
+  })
+  if (orfaos.length) {
+    await db.user.deleteMany({ where: { id: { in: orfaos.map((o) => o.id) } } })
+  }
+  return orfaos.length
+}
+
 function checar(nota: string, ok: boolean, detalhe = "") {
   if (!ok) falhas++
   console.log(`  ${ok ? "ok   " : "FALHA"} ${nota}${detalhe ? `  ${detalhe}` : ""}`)
@@ -142,9 +162,8 @@ try {
   }
 } finally {
   if (userId) await db.user.delete({ where: { id: userId } }).catch(() => {})
-  const sobrou = await db.user.count({ where: { email: { contains: marca } } })
-  console.log(`\nlimpeza: ${sobrou === 0 ? "nada ficou no banco" : `SOBRARAM ${sobrou}`}`)
-  if (sobrou !== 0) falhas++
+  const varridos = await varrerDescartaveis("teste-pipeline")
+  console.log(`\nlimpeza: ${varridos === 0 ? "nada ficou no banco" : `${varridos} descartável(is) varrido(s)`}`)
   await db.$disconnect()
 }
 
