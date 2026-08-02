@@ -3,7 +3,7 @@ import { getUserIdOr401 } from "@/lib/painel"
 import { montarContexto } from "@/lib/contexto-financeiro"
 import {
   levaAtual,
-  medirProgresso,
+  progressoDaTrilha,
   talvezGerarNovaLeva,
   marcarEntregues,
   type Recomendada,
@@ -49,8 +49,9 @@ export async function GET() {
     // estiver em andamento, a leva fica marcada como entregue e ninguém nunca a
     // vê. Aconteceu — 8 recomendações entregues numa conta com ZERO conversas.
     // Quem confirma é o cliente, depois de desenhar, pelo POST abaixo.
-    const recs = await levaAtual(userId)
-    const { concluidos, total } = medirProgresso(recs)
+    // Mesma medida do gatilho: aula feita fora da recomendação também conta,
+    // senão a mensagem diz um número e o gatilho usa outro.
+    const { concluidos, total } = await progressoDaTrilha(userId)
     // Primeira leva = a do onboarding. Ela precisa de outra frase: dizer
     // "você já fechou 0 de 0 aulas" para quem acabou de chegar é absurdo.
     const primeira = total === pendentes.length

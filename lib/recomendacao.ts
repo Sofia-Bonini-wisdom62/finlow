@@ -11,11 +11,22 @@ import { db } from "@/lib/db"
  *
  * Então a leva vira linha no banco. O que está gravado é o que conta.
  *
- * POR QUE O GATILHO NÃO SE REPETE SOZINHO
- * A leva nova ENTRA na conta do denominador. Com limiar de 60%: 5 aulas e 3
- * concluídas dá 60%, dispara, viram 9 aulas e 3 concluídas, que dá 33%. A
- * própria geração empurra a porcentagem para baixo do limiar. Não precisa de
- * trava, flag nem cooldown — o número se resolve.
+ * O QUE SEGURA O GATILHO DE REPETIR
+ * A leva nova entra no denominador, então a própria geração empurra a
+ * porcentagem para baixo. Isso é quase suficiente, e a primeira versão deste
+ * arquivo dizia que era suficiente. Não era, e custou um incidente:
+ *
+ *  - se a leva trouxer uma aula que a pessoa JÁ concluiu, o módulo entra no
+ *    numerador junto com o denominador e a fração não cai o bastante. Foi o
+ *    que houve: 4/4 = 100% disparou, virou 5/8 = 63%, disparou de novo 22
+ *    segundos depois, e a pessoa recebeu 8 aulas de uma vez. Por isso
+ *    `talvezGerarNovaLeva` exclui os concluídos dos candidatos.
+ *  - e quem conclui TUDO cai exatamente no limiar depois da leva nova (6 de 6
+ *    vira 6/10 = 60%), o que dispara outra vez na borda. Por isso existe a
+ *    segunda condição: tem de haver alguma conclusão NOVA desde a última leva.
+ *
+ * A lição que vale para o próximo: "o número se resolve sozinho" é uma
+ * afirmação sobre TODOS os caminhos, e basta um caminho para derrubá-la.
  */
 
 /** 60%: exigir 100% deixaria de fora quem pula uma aula e nunca mais recebe
@@ -132,6 +143,58 @@ export function medirProgresso(recs: Recomendada[]): Progresso {
 }
 
 /**
+ * O progresso que o gatilho mede: aula concluída CONTA, tenha sido recomendada
+ * ou não.
+ *
+ * A trilha é o que foi recomendado MAIS o que a pessoa fez por conta. A aba
+ * Trilha tem busca e "Todos os módulos" em destaque; quem estuda por ali
+ * estava estudando de graça — o Muniz tinha uma aula concluída e o app dizia
+ * 0/4 = 0%.
+ *
+ * A conta se comporta: concluir qualquer aula sobe um no numerador e no
+ * denominador, então a fração sempre SOBE; e uma leva nova acrescenta 4 só ao
+ * denominador, então sempre DESCE.
+ *
+ * `desdeUltimaLeva` é a segunda condição, e ela existe por causa de um caso de
+ * borda que a fração sozinha não cobre: quem conclui tudo fica exatamente no
+ * limiar depois da leva nova (6 de 6 vira 6/10 = 60%) e dispararia outra vez
+ * na hora. Exigir uma conclusão NOVA desde a última leva fecha isso sem
+ * inventar trava artificial — é o mesmo princípio, medido no tempo.
+ */
+export async function progressoDaTrilha(
+  userId: string
+): Promise<Progresso & { desdeUltimaLeva: number }> {
+  const [recs, feitos, ultima] = await Promise.all([
+    db.recomendacaoTrilha.findMany({ where: { userId }, select: { moduloId: true } }),
+    db.progressoModulo.findMany({
+      where: { userId, concluido: true },
+      select: { moduloId: true, concluidoEm: true },
+    }),
+    db.recomendacaoTrilha.findFirst({
+      where: { userId },
+      orderBy: { criadoEm: "desc" },
+      select: { criadoEm: true },
+    }),
+  ])
+
+  const uniao = new Set([...recs.map((r) => r.moduloId), ...feitos.map((f) => f.moduloId)])
+  const total = uniao.size
+  const concluidos = feitos.length
+
+  const corte = ultima?.criadoEm
+  const desdeUltimaLeva = corte
+    ? feitos.filter((f) => f.concluidoEm && f.concluidoEm > corte).length
+    : concluidos
+
+  return {
+    total,
+    concluidos,
+    fracao: total === 0 ? 0 : concluidos / total,
+    desdeUltimaLeva,
+  }
+}
+
+/**
  * Dispara a leva nova, se for a hora.
  *
  * Devolve as recomendações criadas, ou lista vazia quando não é hora. Quem
@@ -153,8 +216,11 @@ export async function talvezGerarNovaLeva(
   // pode ter concluído 60% dela.
   if (recs.length === 0) return []
 
-  const { fracao } = medirProgresso(recs)
-  if (fracao < LIMIAR_NOVA_LEVA) return []
+  const progresso = await progressoDaTrilha(userId)
+  if (progresso.fracao < LIMIAR_NOVA_LEVA) return []
+  // Nada concluído desde a última leva: a fração pode até estar no limiar por
+  // arredondamento, mas não houve avanço novo a premiar.
+  if (progresso.desdeUltimaLeva === 0) return []
 
   /**
    * Fora: o que já foi recomendado E o que ela já concluiu por conta própria.
@@ -192,7 +258,7 @@ export async function talvezGerarNovaLeva(
   // 8 aulas de uma vez, com módulos diferentes, então nem a chave única
   // segura. Reler aqui estreita a janela de segundos para milissegundos.
   const agora = await levaAtual(userId)
-  if (agora.length !== recs.length || medirProgresso(agora).fracao < LIMIAR_NOVA_LEVA) {
+  if (agora.length !== recs.length || (await progressoDaTrilha(userId)).fracao < LIMIAR_NOVA_LEVA) {
     return agora.filter((r) => !r.entregueEm)
   }
 
