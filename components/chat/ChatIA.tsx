@@ -104,20 +104,31 @@ export function ChatIA({ nome }: { nome: string }) {
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => {
         if (!vivo || !d?.recomendacoes?.length) return
-        setMensagens((m) =>
-          m.length > 0
-            ? m
-            : [{
-                papel: "ia",
-                texto: d.texto ?? "Separei mais algumas aulas pra você.",
-                cards: d.recomendacoes.map((r: { titulo: string; motivo: string; slug: string }) => ({
-                  tipo: "recomendacao" as const,
-                  titulo: r.titulo,
-                  texto: r.motivo,
-                  moduloSlug: r.slug,
-                })),
-              }]
-        )
+        let apareceu = false
+        setMensagens((m) => {
+          if (m.length > 0) return m
+          apareceu = true
+          return [{
+            papel: "ia",
+            texto: d.texto ?? "Separei mais algumas aulas pra você.",
+            cards: d.recomendacoes.map((r: { titulo: string; motivo: string; slug: string }) => ({
+              tipo: "recomendacao" as const,
+              titulo: r.titulo,
+              texto: r.motivo,
+              moduloSlug: r.slug,
+            })),
+          }]
+        })
+
+        // Só confirma o que REALMENTE entrou na tela. O servidor não marca mais
+        // sozinho: marcar na hora de gerar dava leva entregue que ninguém viu.
+        if (apareceu && Array.isArray(d.ids) && d.ids.length) {
+          fetch("/api/chat/novidades", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ids: d.ids }),
+          }).catch(() => {})
+        }
       })
       .catch(() => {})
     return () => { vivo = false }

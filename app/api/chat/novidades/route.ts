@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 import { getUserIdOr401 } from "@/lib/painel"
 import { montarContexto } from "@/lib/contexto-financeiro"
 import {
@@ -44,8 +44,11 @@ export async function GET() {
 
     if (pendentes.length === 0) return NextResponse.json({ recomendacoes: [] })
 
-    await marcarEntregues(userId, pendentes.map((p) => p.id))
-
+    // NÃO marca entregue aqui. Marcar no mesmo pedido em que gera é apostar que
+    // a tela vai renderizar: se a aba fechar, a rede cair ou a conversa já
+    // estiver em andamento, a leva fica marcada como entregue e ninguém nunca a
+    // vê. Aconteceu — 8 recomendações entregues numa conta com ZERO conversas.
+    // Quem confirma é o cliente, depois de desenhar, pelo POST abaixo.
     const recs = await levaAtual(userId)
     const { concluidos, total } = medirProgresso(recs)
     // Primeira leva = a do onboarding. Ela precisa de outra frase: dizer
@@ -56,6 +59,8 @@ export async function GET() {
       texto: primeira
         ? textoDaPrimeira(pendentes.length)
         : textoDaLeva(concluidos, total - pendentes.length),
+      // Os ids voltam para o cliente confirmar o que realmente apareceu.
+      ids: pendentes.map((p) => p.id),
       recomendacoes: pendentes.map((p) => ({
         slug: p.slug,
         titulo: p.titulo,
@@ -85,3 +90,29 @@ function textoDaLeva(concluidos: number, totalAnterior: number): string {
 }
 
 export type { Recomendada }
+
+/**
+ * POST — o cliente confirma que a leva apareceu na tela.
+ *
+ * Separado do GET de propósito. O risco que sobra é o inverso do anterior e é
+ * muito menor: se a confirmação falhar depois de a mensagem aparecer, a leva
+ * volta na próxima abertura. Ver a mesma recomendação duas vezes incomoda;
+ * nunca receber a recomendação que o app prometeu é perder a feature inteira.
+ */
+export async function POST(req: NextRequest) {
+  const userId = await getUserIdOr401()
+  if (userId instanceof NextResponse) return userId
+
+  try {
+    const corpo = await req.json().catch(() => ({}))
+    const ids = Array.isArray(corpo?.ids) ? corpo.ids.filter((i: unknown) => typeof i === "string") : []
+    if (ids.length === 0) return NextResponse.json({ confirmadas: 0 })
+
+    // `marcarEntregues` filtra por userId: id de outra pessoa não marca nada.
+    await marcarEntregues(userId, ids)
+    return NextResponse.json({ confirmadas: ids.length })
+  } catch (e) {
+    console.error("[chat/novidades] POST", (e as Error)?.message)
+    return NextResponse.json({ confirmadas: 0 }, { status: 503 })
+  }
+}

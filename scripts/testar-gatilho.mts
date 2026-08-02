@@ -139,6 +139,79 @@ try {
   )
 } finally {
   if (userId) await db.user.delete({ where: { id: userId } }).catch(() => {})
+}
+
+// ------------------------------------------- aula já feita fora da trilha ---
+/**
+ * O caso que ESTOUROU em produção, e que o teste acima não pegava.
+ *
+ * Quem estuda uma aula fora da trilha recomendada cria um módulo "concluído mas
+ * não recomendado". Se o gatilho puder escolhê-lo, ele entra no numerador E no
+ * denominador ao mesmo tempo: a leva nova não derruba a porcentagem como
+ * deveria e o gatilho dispara outra vez em seguida.
+ *
+ * Foi exatamente isso: 4/4 = 100% disparou, a leva trouxe uma aula já feita,
+ * virou 5/8 = 63%, ainda acima do limiar, e disparou de novo 22 segundos
+ * depois. A pessoa levou 8 aulas de uma vez.
+ */
+const marca2 = `teste-gatilho2-${Date.now()}`
+let userId2 = ""
+
+try {
+  console.log("\nAULA JÁ FEITA FORA DA TRILHA")
+
+  const modulos = await db.modulo.findMany({
+    select: { id: true, slug: true },
+    orderBy: [{ tipoPerfil: "asc" }, { ordem: "asc" }],
+  })
+  const u = await db.user.create({ data: { email: `${marca2}@exemplo.invalido`, nome: "Teste 2" } })
+  userId2 = u.id
+
+  const naLeva = modulos.slice(0, 4)
+  const foraDaLeva = modulos[4] // esta ela faz por conta própria
+
+  await garantirLevaInicial(userId2, naLeva.map((m) => m.slug))
+
+  async function concluir2(moduloId: string) {
+    await db.progressoModulo.upsert({
+      where: { userId_moduloId: { userId: userId2, moduloId } },
+      create: { userId: userId2, moduloId, concluido: true, concluidoEm: new Date(), telaAtual: 999 },
+      update: { concluido: true, concluidoEm: new Date() },
+    })
+  }
+
+  for (const m of naLeva) await concluir2(m.id)
+  await concluir2(foraDaLeva.id) // a de fora
+
+  const p100 = medirProgresso(await levaAtual(userId2))
+  checar("fecha a trilha recomendada", Math.round(p100.fracao * 100) === 100, `${Math.round(p100.fracao * 100)}%`)
+
+  // A escolha ingênua: pega os 4 primeiros candidatos que vierem.
+  const primeiros = async (c: { id: string; slug: string; titulo: string; subtitulo: string }[]) =>
+    c.slice(0, 4).map((x) => ({ moduloId: x.id, motivo: `porque ${x.slug}` }))
+
+  const nova = await talvezGerarNovaLeva(userId2, primeiros)
+  checar("gera a leva", nova.length === 4, `${nova.length}`)
+  checar(
+    "a aula que ela JÁ FEZ não é recomendada",
+    !nova.some((r) => r.moduloId === foraDaLeva.id),
+    nova.map((r) => r.slug).join(", ")
+  )
+
+  const depois2 = medirProgresso(await levaAtual(userId2))
+  checar(
+    "a porcentagem cai abaixo do limiar",
+    depois2.fracao < LIMIAR_NOVA_LEVA,
+    `${depois2.concluidos}/${depois2.total} = ${Math.round(depois2.fracao * 100)}%`
+  )
+  checar(
+    "e NÃO dispara uma segunda vez",
+    (await talvezGerarNovaLeva(userId2, primeiros)).length === 0
+  )
+  checar("continuam 8 recomendações, não 12", (await levaAtual(userId2)).length === 8,
+    `${(await levaAtual(userId2)).length}`)
+} finally {
+  if (userId) await db.user.delete({ where: { id: userId } }).catch(() => {})
   const sobrou = await db.user.count({ where: { email: { contains: marca } } })
   console.log(`\nlimpeza: ${sobrou === 0 ? "nada ficou no banco" : `SOBRARAM ${sobrou}`}`)
   if (sobrou !== 0) falhas++

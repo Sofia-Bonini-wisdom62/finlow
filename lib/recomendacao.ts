@@ -156,9 +156,27 @@ export async function talvezGerarNovaLeva(
   const { fracao } = medirProgresso(recs)
   if (fracao < LIMIAR_NOVA_LEVA) return []
 
-  const jaRecomendados = new Set(recs.map((r) => r.moduloId))
+  /**
+   * Fora: o que já foi recomendado E o que ela já concluiu por conta própria.
+   *
+   * O segundo conjunto não é detalhe. Recomendar uma aula já concluída é ruim
+   * por si só, mas o estrago real é na conta: o módulo entra no numerador E no
+   * denominador ao mesmo tempo, então a leva nova NÃO derruba a porcentagem
+   * como deveria, e o gatilho dispara outra vez em seguida.
+   *
+   * Aconteceu em produção: 4/4 = 100% disparou; a leva trouxe uma aula que a
+   * pessoa já tinha feito fora da trilha; virou 5/8 = 63%, ainda acima do
+   * limiar; disparou de novo 22 segundos depois. Ela recebeu 8 aulas de uma
+   * vez em vez de 4.
+   */
+  const feitos = await db.progressoModulo.findMany({
+    where: { userId, concluido: true },
+    select: { moduloId: true },
+  })
+  const fora = new Set([...recs.map((r) => r.moduloId), ...feitos.map((f) => f.moduloId)])
+
   const candidatos = await db.modulo.findMany({
-    where: { id: { notIn: [...jaRecomendados] } },
+    where: { id: { notIn: [...fora] } },
     select: { id: true, slug: true, titulo: true, subtitulo: true },
     orderBy: [{ tipoPerfil: "asc" }, { ordem: "asc" }],
   })
@@ -168,6 +186,15 @@ export async function talvezGerarNovaLeva(
 
   const escolhidas = (await escolher(candidatos, recs)).slice(0, TAMANHO_DA_LEVA)
   if (escolhidas.length === 0) return []
+
+  // `escolher` fala com a IA e leva segundos. Duas abas abertas ao mesmo tempo
+  // leem a mesma porcentagem antes de qualquer uma gravar, e as duas geram —
+  // 8 aulas de uma vez, com módulos diferentes, então nem a chave única
+  // segura. Reler aqui estreita a janela de segundos para milissegundos.
+  const agora = await levaAtual(userId)
+  if (agora.length !== recs.length || medirProgresso(agora).fracao < LIMIAR_NOVA_LEVA) {
+    return agora.filter((r) => !r.entregueEm)
+  }
 
   const permitidos = new Set(candidatos.map((c) => c.id))
   const base = await db.recomendacaoTrilha.count({ where: { userId } })
