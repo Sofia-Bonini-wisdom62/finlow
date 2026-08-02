@@ -2,9 +2,24 @@
 
 import { useCallback, useEffect, useState } from "react"
 import Link from "next/link"
-import { ArrowRight, BookText, ChartColumn, Trophy, Wallet } from "lucide-react"
+import { BookText, ChartColumn, Trophy, Wallet } from "lucide-react"
 import { BottomNav } from "@/components/bottom-nav"
-import type { MetricasPerfil } from "@/lib/financas"
+import { GraficoRosca } from "@/components/analises/GraficoRosca"
+import type { MetricasPerfil, FatiaCategoria } from "@/lib/financas"
+
+/**
+ * Perfil: retrato de um minuto.
+ *
+ * A ordem é para onde foi o dinheiro, o que isso quer dizer, e para onde ir.
+ * Rosca, leituras, portas. Nada de número solto no meio.
+ *
+ * OS KPIs SAÍRAM DAQUI
+ * Taxa de economia, controle orçamentário, reserva e consistência foram para
+ * Análises. São quatro percentuais que exigem interpretação, e num retrato eles
+ * competiam com a rosca e com as leituras pela mesma atenção — as leituras
+ * dizem em português a mesma coisa que os percentuais dizem em número, e em
+ * português ganha. Quem quer o número atrás da frase toca em Análises.
+ */
 
 interface Perfil {
   nome: string
@@ -13,23 +28,32 @@ interface Perfil {
   nivel: string
   resumo: string
   metricas: MetricasPerfil
+  categorias: FatiaCategoria[]
+  mesRosca: string
   pontos: number
   noRanking: boolean
   insights: { texto: string; tipo: string }[]
 }
 
-function Metrica({ rotulo, valor, nota, barra }: { rotulo: string; valor: string; nota?: string; barra?: number }) {
+/** As quatro portas. Mesma forma para as quatro: nenhuma é mais importante,
+ *  e tamanhos diferentes fariam a pessoa achar que uma é a principal. */
+function Porta({
+  href, Icon, titulo, nota,
+}: {
+  href: string
+  Icon: typeof BookText
+  titulo: string
+  nota: string
+}) {
   return (
-    <div className="rounded-2xl border border-fl-border bg-fl-card px-4 py-3.5">
-      <div className="text-[11px] font-semibold uppercase tracking-wide text-fl-ink-2">{rotulo}</div>
-      <div className="mt-0.5 text-xl font-extrabold tabular-nums tracking-tight text-fl-ink">{valor}</div>
-      {barra !== undefined && (
-        <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-fl-divider">
-          <div className="h-full rounded-full bg-fl-500 transition-all" style={{ width: `${Math.min(100, barra)}%` }} />
-        </div>
-      )}
-      {nota && <div className="mt-1.5 text-[11px] leading-snug text-fl-ink-3">{nota}</div>}
-    </div>
+    <Link
+      href={href}
+      className="flex flex-col gap-1.5 rounded-[20px] border border-fl-border bg-fl-card p-4 transition-colors hover:border-fl-500/40 hover:bg-fl-50/50"
+    >
+      <Icon className="size-5 text-fl-500" />
+      <span className="text-[14.5px] font-bold text-fl-ink">{titulo}</span>
+      <span className="text-[12px] leading-snug text-fl-ink-2">{nota}</span>
+    </Link>
   )
 }
 
@@ -101,8 +125,8 @@ export default function PerfilPage() {
     )
   }
 
-  const m = perfil.metricas
   const inicial = perfil.nome.trim().charAt(0).toUpperCase() || "?"
+  const temGastos = perfil.categorias?.length > 0
 
   return (
     <main className="min-h-dvh bg-fl-page pb-24 lg:pb-10 lg:pl-56">
@@ -123,44 +147,40 @@ export default function PerfilPage() {
           </div>
         </header>
 
-        {/* resumo */}
-        <p className="mt-5 rounded-2xl bg-fl-sand px-4 py-3.5 text-[14.5px] leading-relaxed text-fl-sand-text">
-          {perfil.resumo}
-        </p>
+        {/* A rosca abre a página: "para onde foi o meu dinheiro" é a pergunta
+            que traz alguém ao Perfil, e ela se responde de relance.
 
-        {/* métricas — sem histórico, os valores são desconhecidos, não zero:
-            mostrar "0%" leria como "você está mal" em vez de "ainda não sei" */}
-        {(() => {
-          const vazio = m.mesesComDados === 0
-          const v = (texto: string) => (vazio ? "—" : texto)
-          const b = (n: number) => (vazio ? undefined : n)
-          return (
-            <section className="mt-5 grid grid-cols-2 gap-2.5" aria-label="Métricas financeiras">
-              <div className="col-span-2">
-                <Metrica
-                  rotulo="Índice de saúde financeira"
-                  valor={vazio ? "—" : `${m.saudeFinanceira}/100`}
-                  barra={b(m.saudeFinanceira)}
-                  nota={
-                    vazio
-                      ? "Aparece depois do seu primeiro mês de lançamentos"
-                      : `Composto de economia, controle, reserva e consistência · ${m.mesesComDados} ${m.mesesComDados === 1 ? "mês" : "meses"} de dados`
-                  }
-                />
+            A legenda não é clicável aqui de propósito. Em Análises tocar abre
+            os lançamentos da categoria; repetir isso no Perfil daria dois
+            lugares para a mesma tela e dois lugares para manter. O Perfil é
+            retrato, e a porta para cavar está logo abaixo. */}
+        <section className="mt-6" aria-label="Saídas por categoria">
+          <div className="rounded-[20px] border border-fl-border bg-fl-card p-5">
+            <h2 className="text-[15px] font-bold text-fl-ink">Para onde foi</h2>
+            <p className="mt-0.5 text-xs text-fl-ink-2">
+              {temGastos
+                ? `Suas saídas em ${perfil.mesRosca}`
+                : "Aparece assim que você registrar as primeiras saídas"}
+            </p>
+            {/* Sem gasto, só a legenda acima. O gráfico tem mensagem própria
+                de vazio, e as duas juntas diriam a mesma coisa duas vezes. */}
+            {temGastos && (
+              <div className="mt-4">
+                <GraficoRosca fatias={perfil.categorias} />
               </div>
-              <Metrica rotulo="Taxa de economia" valor={v(`${m.taxaEconomia}%`)} nota="da renda" barra={b(m.taxaEconomia)} />
-              <Metrica rotulo="Controle orçamentário" valor={v(`${m.controleOrcamentario}%`)} nota="meses no orçamento" barra={b(m.controleOrcamentario)} />
-              <Metrica rotulo="Reserva de emergência" valor={v(`${m.reservaEmergencia.toLocaleString("pt-BR")} meses`)} nota="de despesa coberta" barra={b((m.reservaEmergencia / 6) * 100)} />
-              <Metrica rotulo="Consistência" valor={v(`${m.consistencia}%`)} nota="meses com sobra" barra={b(m.consistencia)} />
-            </section>
-          )
-        })()}
+            )}
+            {!temGastos && (
+              <Link href="/extrato" className="mt-3 inline-block text-[13px] font-semibold text-fl-500">
+                Subir o extrato do banco
+              </Link>
+            )}
+          </div>
+        </section>
 
-        {/* As três leituras do mês, escritas quando o onboarding fechou.
-            Ficam ANTES da trilha porque respondem "o que os meus números
-            dizem", que é a pergunta que traz a pessoa ao Perfil. */}
+        {/* As leituras vêm logo depois porque dizem em português o que a rosca
+            mostra em fatia. Uma explica a outra. */}
         {perfil.insights?.length > 0 && (
-          <section className="mt-6 space-y-2" aria-label="Leituras do seu mês">
+          <section className="mt-4 space-y-2" aria-label="Leituras do seu mês">
             {perfil.insights.map((i) => (
               <div
                 key={i.texto}
@@ -177,69 +197,25 @@ export default function PerfilPage() {
           </section>
         )}
 
-        {/* A trilha saiu daqui: virou aba própria. Fica um convite curto, não
-            a lista inteira, porque duplicar a Trilha dentro do Perfil daria
-            dois lugares para manter e nenhum dono claro. */}
-        <section className="mt-8">
-          <Link
-            href="/trilha"
-            className="flex items-center gap-3 rounded-[20px] border border-fl-border bg-fl-card p-5 transition-colors hover:border-fl-500/40 hover:bg-fl-50/50"
-          >
-            <div className="grid size-11 shrink-0 place-items-center rounded-xl bg-fl-50">
-              <BookText className="size-5 text-fl-500" />
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="text-[15px] font-bold text-fl-ink">Sua trilha</p>
-              <p className="mt-0.5 text-[13px] leading-snug text-fl-ink-2">
-                Aulas de dois minutos, escolhidas a partir dos seus números.
-              </p>
-            </div>
-            <ArrowRight className="size-4 shrink-0 text-fl-ink-3" />
-          </Link>
-        </section>
+        {/* Sem leitura ainda, o resumo faz o papel: uma frase é melhor que um
+            buraco entre a rosca e os botões. */}
+        {!perfil.insights?.length && (
+          <p className="mt-4 rounded-2xl bg-fl-sand px-4 py-3.5 text-[14.5px] leading-relaxed text-fl-sand-text">
+            {perfil.resumo}
+          </p>
+        )}
 
-        {/* Score: pontos e a porta do ranking (§2.10). Fica ANTES do DASH
-            porque é leitura de um segundo, e o DASH é para quem quer cavar. */}
-        <Link
-          href="/ranking"
-          className="mt-4 flex items-center gap-3 rounded-[20px] border border-fl-border bg-fl-card p-5 transition-colors hover:border-fl-500/40 hover:bg-fl-50/50"
-        >
-          <div className="grid size-11 shrink-0 place-items-center rounded-xl bg-fl-50">
-            <Trophy className="size-5 text-fl-500" />
-          </div>
-          <div className="min-w-0 flex-1">
-            <p className="text-[15px] font-bold text-fl-ink">
-              <span className="tabular-nums">{perfil.pontos}</span>{" "}
-              {perfil.pontos === 1 ? "ponto" : "pontos"}
-            </p>
-            <p className="mt-0.5 text-[13px] leading-snug text-fl-ink-2">
-              {perfil.noRanking
-                ? "Você está no ranking. Toca pra ver sua posição."
-                : "O ranking é opcional. Toca pra ver como funciona."}
-            </p>
-          </div>
-          <ArrowRight className="size-4 shrink-0 text-fl-ink-3" />
-        </Link>
-
-        {/* DASH: a profundidade do Perfil. Análises e Painel deixaram de ser
-            abas e passam por aqui. */}
-        <section className="mt-4 grid grid-cols-2 gap-2.5">
-          <Link
-            href="/analises"
-            className="flex flex-col gap-1.5 rounded-[20px] border border-fl-border bg-fl-card p-4 transition-colors hover:border-fl-500/40 hover:bg-fl-50/50"
-          >
-            <ChartColumn className="size-5 text-fl-500" />
-            <span className="text-[14.5px] font-bold text-fl-ink">Análises</span>
-            <span className="text-[12px] leading-snug text-fl-ink-2">Gráficos, categorias e tetos</span>
-          </Link>
-          <Link
-            href="/painel"
-            className="flex flex-col gap-1.5 rounded-[20px] border border-fl-border bg-fl-card p-4 transition-colors hover:border-fl-500/40 hover:bg-fl-50/50"
-          >
-            <Wallet className="size-5 text-fl-500" />
-            <span className="text-[14.5px] font-bold text-fl-ink">Painel</span>
-            <span className="text-[12px] leading-snug text-fl-ink-2">Lançamentos e contas fixas</span>
-          </Link>
+        {/* As quatro portas. */}
+        <section className="mt-6 grid grid-cols-2 gap-2.5" aria-label="Onde ir">
+          <Porta href="/trilha" Icon={BookText} titulo="Trilha" nota="Aulas escolhidas pelos seus números" />
+          <Porta
+            href="/ranking"
+            Icon={Trophy}
+            titulo="Ranking"
+            nota={`${perfil.pontos} ${perfil.pontos === 1 ? "ponto" : "pontos"} · ${perfil.noRanking ? "você está dentro" : "entrar é opcional"}`}
+          />
+          <Porta href="/analises" Icon={ChartColumn} titulo="Análises" nota="Saúde financeira, gráficos e tetos" />
+          <Porta href="/painel" Icon={Wallet} titulo="Painel" nota="Lançamentos e contas fixas" />
         </section>
       </div>
 

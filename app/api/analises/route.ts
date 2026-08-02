@@ -8,6 +8,7 @@ import {
   gastosPorCategoria,
   receitasVsDespesas,
   fluxoCaixaDiario,
+  metricasPerfil,
   type TransacaoCalc,
 } from "@/lib/financas"
 
@@ -58,6 +59,10 @@ export async function GET(req: NextRequest) {
       temDadosNoMes: ind.lancamentosNoMes > 0, // tem lançamento no mês selecionado
       mesAnterior: mesComDadosAntes(calc, ate),
       indicadores: ind,
+      // Saúde financeira: percorre TODO o histórico, não o mês selecionado.
+      // Veio do Perfil, que virou retrato de um minuto; quem quer o número
+      // atrás do retrato vem para cá.
+      metricas: metricasPerfil(calc),
       patrimonio: evolucaoPatrimonio(calc, 6, ate),
       categorias: gastosPorCategoria(calc, mes, ano),
       receitasDespesas: receitasVsDespesas(calc, 6, ate),

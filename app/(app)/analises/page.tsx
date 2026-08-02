@@ -12,7 +12,7 @@ import { DetalheCategoria } from "@/components/analises/DetalheCategoria"
 import { TetosCard } from "@/components/analises/TetosCard"
 import type { OrcamentoComGasto } from "@/lib/orcamento-repo"
 import { brl } from "@/lib/formato"
-import type { Indicadores, PontoPatrimonio, FatiaCategoria, BarraMes, PontoDia } from "@/lib/financas"
+import type { Indicadores, PontoPatrimonio, FatiaCategoria, BarraMes, PontoDia, MetricasPerfil } from "@/lib/financas"
 
 interface Dados {
   temDados: boolean
@@ -24,6 +24,29 @@ interface Dados {
   receitasDespesas: BarraMes[]
   fluxoDiario: PontoDia[]
   tetos: OrcamentoComGasto[]
+  metricas: MetricasPerfil
+}
+
+/**
+ * Um indicador de saúde, com barra.
+ *
+ * Veio do Perfil. Lá ele competia com a rosca e com as leituras pela mesma
+ * atenção, e num retrato de um minuto quatro percentuais atrapalham. Aqui é
+ * onde a pessoa já veio cavar, e o número é o que ela veio buscar.
+ */
+function Metrica({ rotulo, valor, nota, barra }: { rotulo: string; valor: string; nota?: string; barra?: number }) {
+  return (
+    <div className="rounded-2xl border border-fl-border bg-fl-page px-4 py-3.5">
+      <div className="text-[11px] font-semibold uppercase tracking-wide text-fl-ink-2">{rotulo}</div>
+      <div className="mt-0.5 text-xl font-extrabold tabular-nums tracking-tight text-fl-ink">{valor}</div>
+      {barra !== undefined && (
+        <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-fl-divider">
+          <div className="h-full rounded-full bg-fl-500 transition-all" style={{ width: `${Math.min(100, barra)}%` }} />
+        </div>
+      )}
+      {nota && <div className="mt-1.5 text-[11px] leading-snug text-fl-ink-3">{nota}</div>}
+    </div>
+  )
 }
 
 function Aviso({ titulo, texto, acao }: { titulo: string; texto: string; acao?: React.ReactNode }) {
@@ -196,6 +219,30 @@ export default function AnalisesPage() {
           />
         ) : (
           <div className="mt-4 flex flex-col gap-4 md:grid md:grid-cols-2 md:items-start md:gap-5">
+            {dados.metricas && (
+              <div className="md:col-span-2">
+                <Secao
+                  titulo="Saúde financeira"
+                  legenda={`Percorre todo o seu histórico, ${dados.metricas.mesesComDados} ${dados.metricas.mesesComDados === 1 ? "mês" : "meses"}. Não muda com o mês escolhido acima`}
+                >
+                  <div className="grid grid-cols-2 gap-2.5 lg:grid-cols-4">
+                    <div className="col-span-2 lg:col-span-4">
+                      <Metrica
+                        rotulo="Índice de saúde financeira"
+                        valor={`${dados.metricas.saudeFinanceira}/100`}
+                        barra={dados.metricas.saudeFinanceira}
+                        nota="Composto de economia, controle, reserva e consistência"
+                      />
+                    </div>
+                    <Metrica rotulo="Taxa de economia" valor={`${dados.metricas.taxaEconomia}%`} nota="da renda" barra={dados.metricas.taxaEconomia} />
+                    <Metrica rotulo="Controle orçamentário" valor={`${dados.metricas.controleOrcamentario}%`} nota="meses no orçamento" barra={dados.metricas.controleOrcamentario} />
+                    <Metrica rotulo="Reserva de emergência" valor={`${dados.metricas.reservaEmergencia.toLocaleString("pt-BR")} meses`} nota="de despesa coberta" barra={(dados.metricas.reservaEmergencia / 6) * 100} />
+                    <Metrica rotulo="Consistência" valor={`${dados.metricas.consistencia}%`} nota="meses com sobra" barra={dados.metricas.consistencia} />
+                  </div>
+                </Secao>
+              </div>
+            )}
+
             {dados.tetos?.length > 0 && <TetosCard tetos={dados.tetos} onMudou={carregar} />}
             <Secao
               titulo="Evolução do acumulado"

@@ -149,7 +149,29 @@ export interface FatiaCategoria {
   pct: number
 }
 
-const PALETA = ["#2B6D70", "#B8863C", "#7BAEB0", "#E7DCC9", "#4A7F63", "#3E6E93", "#A7CBCC"]
+/**
+ * Cores das fatias.
+ *
+ * A cor de cada categoria vem do banco, e lá elas COLIDEM: "Transferências" e
+ * "Outros" nasceram com o mesmo cinza, "Compras" e "Lazer" com o mesmo azul, e
+ * assim por diante. Numa lista isso não incomoda; numa rosca, duas fatias da
+ * mesma cor viram uma cunha só. Numa conta real dava 65% do gráfico em cinza
+ * contínuo, sem jeito de saber onde uma acabava e a outra começava.
+ *
+ * Então a cor do banco é uma PREFERÊNCIA, não uma ordem: se já foi usada nesta
+ * rosca, a fatia recebe a próxima livre da paleta. Consertar aqui vale para o
+ * Perfil e para Análises ao mesmo tempo, e para qualquer categoria que alguém
+ * crie amanhã.
+ */
+const PALETA = [
+  "#2B6D70", "#B8863C", "#3E6E93", "#4A7F63", "#AA4B3E",
+  "#7BAEB0", "#C79A5B", "#6C9BC0", "#9F7AEA", "#A7CBCC",
+]
+
+/** O neutro é exclusivo de "Outros": é a fatia que por definição não tem
+ *  identidade. Qualquer outra categoria pintada de cinza some do gráfico. */
+const COR_OUTROS = "#9AA0A3"
+const NOME_OUTROS = "Outros"
 
 export function gastosPorCategoria(todas: TransacaoCalc[], mes: number, ano: number): FatiaCategoria[] {
   const mapa = new Map<string, { cor: string | null; total: number }>()
@@ -170,14 +192,36 @@ export function gastosPorCategoria(todas: TransacaoCalc[], mes: number, ano: num
     mapa.set(nome, atual)
   }
 
-  return [...mapa.entries()]
-    .map(([nome, { cor, total: t }], i) => ({
+  // Ordena ANTES de pintar: assim a fatia maior escolhe primeiro, e quem
+  // acaba deslocado para a paleta é sempre a menor do par em conflito.
+  const ordenadas = [...mapa.entries()].sort((a, b) => b[1].total - a[1].total)
+
+  const usadas = new Set<string>([COR_OUTROS])
+  let proxima = 0
+  const corLivre = (): string => {
+    while (proxima < PALETA.length && usadas.has(PALETA[proxima])) proxima++
+    // Mais categorias que cores: volta ao começo. Repetir é ruim, mas ficar
+    // sem cor seria pior — e acontece só depois da décima fatia.
+    return proxima < PALETA.length ? PALETA[proxima++] : PALETA[usadas.size % PALETA.length]
+  }
+
+  return ordenadas.map(([nome, { cor, total: t }]) => {
+    let escolhida: string
+    if (nome === NOME_OUTROS) {
+      escolhida = COR_OUTROS
+    } else if (cor && cor !== COR_OUTROS && !usadas.has(cor)) {
+      escolhida = cor
+    } else {
+      escolhida = corLivre()
+    }
+    usadas.add(escolhida)
+    return {
       nome,
-      cor: cor ?? PALETA[i % PALETA.length],
+      cor: escolhida,
       total: t,
       pct: total > 0 ? Math.round((t / total) * 100) : 0,
-    }))
-    .sort((a, b) => b.total - a.total)
+    }
+  })
 }
 
 // ---------- gráfico 3: receitas × despesas por mês ----------
