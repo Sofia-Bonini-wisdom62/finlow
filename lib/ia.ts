@@ -22,6 +22,7 @@
 
 import { DESTINOS } from "@/lib/app-mapa"
 import { registrarUso } from "@/lib/uso-ia"
+import { contemConteudoProibido, RESPOSTA_FORA_DE_ESCOPO } from "@/lib/conteudo-proibido"
 
 /**
  * Anexo enviado pelo usuário (comprovante, extrato). Chega em base64 e NÃO é
@@ -228,6 +229,9 @@ export function lancamentosValidos(bruto: unknown, hoje = new Date()): Lancament
     const x = l as Record<string, unknown>
 
     const descricao = typeof x.descricao === "string" ? x.descricao.trim().slice(0, 120) : ""
+    // Trava de conteúdo (decisão da fundadora, 03/08/2026): descrição com
+    // termo chulo/sexual não vira proposta nem registro.
+    if (contemConteudoProibido(descricao)) continue
     if (descricao.length < 2) continue
 
     const valor = typeof x.valor === "number" ? Math.abs(x.valor) : NaN
@@ -279,6 +283,8 @@ export function memoriasValidas(bruto: unknown): MemoriaProposta[] {
     const x = m as Record<string, unknown>
     const tipo = typeof x.tipo === "string" ? x.tipo : ""
     const conteudo = typeof x.conteudo === "string" ? x.conteudo.trim() : ""
+    // Memória é registro durável — conteúdo chulo/sexual não entra.
+    if (contemConteudoProibido(conteudo)) continue
     if (!TIPOS_VALIDOS.has(tipo)) continue
     if (conteudo.length < 8 || conteudo.length > 240) continue
     if (TEM_DINHEIRO.test(conteudo) || TEM_IDENTIFICADOR.test(conteudo)) continue
@@ -312,6 +318,7 @@ export function sugestoesValidas(bruto: unknown): string[] {
     if (typeof s !== "string") continue
     const limpo = s.trim().replace(/\s+/g, " ")
     if (!limpo || limpo.length > MAX_LETRAS_SUGESTAO) continue
+    if (contemConteudoProibido(limpo)) continue
     const chave = limpo.toLowerCase()
     if (vistas.has(chave)) continue
     vistas.add(chave)
@@ -375,7 +382,9 @@ function cardsValidos(bruto: unknown, slugsReais?: Set<string>): CardIA[] {
       })
     }
   }
-  return ok
+  // Trava de conteúdo também nos cards: o gate da resposta cobre o texto,
+  // e um card com termo proibido num campo próprio passaria por fora dele.
+  return ok.filter((c) => !contemConteudoProibido(JSON.stringify(c)))
 }
 
 /**
@@ -450,6 +459,22 @@ export async function responderIA(
     }
     const texto = typeof j.texto === "string" && j.texto.trim() ? j.texto.trim() : null
     if (!texto) throw new Error("sem campo texto")
+
+    /**
+     * Trava de conteúdo na SAÍDA (decisão da fundadora, 03/08/2026).
+     *
+     * O prompt já instrui o modelo a recusar assunto chulo/sexual sem repetir
+     * o termo — mas prompt é pedido. Se mesmo assim a resposta vier com o
+     * termo (porque o usuário xingou e o modelo ecoou, ou porque o modelo
+     * escorregou), a resposta INTEIRA é substituída pela recusa padrão: texto
+     * parcialmente censurado com buracos seria pior de ler do que recusar.
+     * Cards e propostas caem junto — nada daquela resposta sobrevive.
+     */
+    if (contemConteudoProibido(texto)) {
+      console.warn("[ia] resposta barrada pela trava de conteúdo")
+      return { texto: RESPOSTA_FORA_DE_ESCOPO }
+    }
+
     return {
       texto,
       // Sem lista não dá para validar: passa `undefined` em vez de um Set vazio,
@@ -481,6 +506,13 @@ export async function responderIA(
     // JSON quebrado não é motivo para engolir a resposta: o texto costuma estar
     // lá e é o que interessa. Devolve sem cards em vez de falhar a conversa.
     const semJson = bruto.replace(/^\s*\{[\s\S]*?"texto"\s*:\s*"/, "").replace(/"[\s\S]*\}\s*$/, "")
-    return { texto: (semJson || bruto).slice(0, 4000) }
+    const salvo = (semJson || bruto).slice(0, 4000)
+    // A trava vale também no caminho de recuperação: é justamente o caminho
+    // sem validação nenhuma, então é onde ela mais faz falta.
+    if (contemConteudoProibido(salvo)) {
+      console.warn("[ia] resposta (recuperada) barrada pela trava de conteúdo")
+      return { texto: RESPOSTA_FORA_DE_ESCOPO }
+    }
+    return { texto: salvo }
   }
 }

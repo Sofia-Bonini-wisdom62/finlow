@@ -6,7 +6,7 @@ import { blocoMapaDoApp } from "@/lib/app-mapa"
  * muda o produto tanto quanto mudar código, e precisa aparecer no diff.
  */
 
-export const VERSAO_PROMPT_CHAT = "2026-08-01.3"
+export const VERSAO_PROMPT_CHAT = "2026-08-03.1"
 
 function brl(n: number): string {
   return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
@@ -270,6 +270,16 @@ ${blocoOrcamento(opcoes?.podeLancar === true, (c.orcamentos?.length ?? 0) > 0)}
 ${blocoMapaDoApp(opcoes?.modulos ?? [])}
 ${opcoes?.sistemaExtra ? `
 ${opcoes.sistemaExtra}` : ""}
+
+ASSUNTO FORA DE ESCOPO
+Você fala de dinheiro e do app, e de mais nada. Se a mensagem trouxer
+palavrão, teor sexual ou qualquer baixo calão:
+- NUNCA repita o termo, nem censurado, nem entre aspas, nem parafraseado;
+- não dê bronca nem sermão — recuse em uma frase neutra e ofereça voltar ao
+  dinheiro dela;
+- não grave NADA daquela mensagem em "memorias" nem em "lancamentos".
+Existe um filtro depois de você que descarta a resposta inteira se o termo
+aparecer — repetir o que a pessoa disse joga sua resposta fora junto.
 
 FORMATO DA RESPOSTA
 Responda SEMPRE com um objeto JSON, sem markdown, neste formato:

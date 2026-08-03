@@ -3,6 +3,7 @@ import { db } from "@/lib/db"
 import { getUserIdOr401, checarConsentimento } from "@/lib/painel"
 import { listarTransacoes, criarTransacao, atualizarTransacao } from "@/lib/financeiro-repo"
 import { creditar } from "@/lib/pontos"
+import { contemConteudoProibido } from "@/lib/conteudo-proibido"
 
 export const dynamic = "force-dynamic"
 
@@ -38,6 +39,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Tipo inválido" }, { status: 400 })
     }
 
+    // Trava de conteúdo: lançamento é registro durável e aparece no Painel,
+    // nas Análises e no contexto que a IA lê.
+    if (contemConteudoProibido(String(descricao ?? ""))) {
+      return NextResponse.json({ error: "Essa descrição não pode ser registrada." }, { status: 400 })
+    }
+
     const transacao = await criarTransacao(userId, {
       descricao: descricao.trim(),
       valor: valorNum,
@@ -68,6 +75,13 @@ export async function PATCH(req: NextRequest) {
   try {
     const { id, descricao, valor, tipo, categoriaId, data } = await req.json()
     if (!id) return NextResponse.json({ error: "id obrigatório" }, { status: 400 })
+
+    // Recusar com mensagem, não ignorar em silêncio: descartar o campo faria a
+    // pessoa editar, ver "salvo" e a descrição continuar a antiga sem saber
+    // por quê.
+    if (descricao !== undefined && contemConteudoProibido(String(descricao))) {
+      return NextResponse.json({ error: "Essa descrição não pode ser registrada." }, { status: 400 })
+    }
 
     const count = await atualizarTransacao(userId, id, {
       ...(descricao !== undefined ? { descricao: String(descricao).trim() } : {}),

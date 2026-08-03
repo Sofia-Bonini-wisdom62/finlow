@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
+import { contemConteudoProibido } from "@/lib/conteudo-proibido"
 import { db } from "@/lib/db"
 import { getUserIdOr401 } from "@/lib/painel"
 import {
@@ -67,7 +68,10 @@ export async function POST(req: NextRequest) {
 
   try {
     const { tipo, conteudo } = await req.json()
-    if (!TIPOS_MEMORIA.includes(tipo) || typeof conteudo !== "string" || conteudo.trim().length < 8) {
+    if (typeof conteudo === "string" && contemConteudoProibido(conteudo)) {
+    return NextResponse.json({ erro: "Esse conteúdo não pode ser guardado." }, { status: 400 })
+  }
+  if (!TIPOS_MEMORIA.includes(tipo) || typeof conteudo !== "string" || conteudo.trim().length < 8) {
       return NextResponse.json(
         { codigo: "PEDIDO_INVALIDO", erro: "Escreve uma frase um pouco maior e escolhe um tipo." },
         { status: 400 }

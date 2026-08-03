@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
+import { contemConteudoProibido } from "@/lib/conteudo-proibido"
 import { db } from "@/lib/db"
 import { getUserIdOr401, checarConsentimento } from "@/lib/painel"
 import { listarContasFixas, criarContaFixa, atualizarContaFixa } from "@/lib/financeiro-repo"
@@ -33,6 +34,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Dia de vencimento inválido" }, { status: 400 })
     }
 
+    if (contemConteudoProibido(String(nome ?? ""))) {
+      return NextResponse.json({ error: "Esse nome não pode ser registrado." }, { status: 400 })
+    }
     const conta = await criarContaFixa(userId, { nome: nome.trim(), valor: valorNum, diaVencimento: dia })
     return NextResponse.json({ conta })
   } catch (e) {
@@ -49,6 +53,9 @@ export async function PATCH(req: NextRequest) {
 
   try {
     const { id, nome, valor, diaVencimento, ativa } = await req.json()
+    if (nome !== undefined && contemConteudoProibido(String(nome))) {
+      return NextResponse.json({ error: "Esse nome não pode ser registrado." }, { status: 400 })
+    }
     if (!id) return NextResponse.json({ error: "id obrigatório" }, { status: 400 })
 
     const count = await atualizarContaFixa(userId, id, {

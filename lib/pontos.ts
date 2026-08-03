@@ -1,4 +1,5 @@
 import { db } from "@/lib/db"
+import { contemConteudoProibido } from "@/lib/conteudo-proibido"
 import { Prisma } from "@prisma/client"
 
 /**
@@ -234,6 +235,11 @@ export function apelidoValido(bruto: string): { ok: true; apelido: string } | { 
   }
   if (!/^[\p{L}\p{N} ._-]+$/u.test(apelido)) {
     return { ok: false, erro: "Usa letras, números, espaço, ponto, hífen ou _." }
+  }
+  // O apelido é o ÚNICO texto do app que outras pessoas leem. A trava aqui
+  // protege quem olha o ranking, não quem escreve.
+  if (contemConteudoProibido(apelido)) {
+    return { ok: false, erro: "Esse apelido não pode aparecer no ranking. Escolhe outro." }
   }
   return { ok: true, apelido }
 }
