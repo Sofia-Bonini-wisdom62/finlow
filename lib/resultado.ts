@@ -24,11 +24,15 @@ export interface Derivados {
   mesesJuntar: number    // guardador M4
   cobre: number          // impulsivo M2 (0/1)
   pctMeta: number        // sonhador M3
+  semTetoNum: number     // M01 — o que a taxa diz
+  comTetoNum: number     // M01 — o que a lei permite
+  subestimou: number     // M01 (0/1)
 }
 
 const ZERO: Omit<Derivados, "entrou" | "saiu" | "sobrou" | "pct"> = {
   valor: 0, pctGuardador: 0, porMesNum: 0, respiroNum: 0, periodosNum: 0,
   acimaLimite: 0, livreNum: 0, rendeNum: 0, mesesJuntar: 0, cobre: 0, pctMeta: 0,
+  semTetoNum: 0, comTetoNum: 0, subestimou: 0,
 }
 
 export function calcular(formula: string | undefined, sessao: SessaoFluxo): Derivados {
@@ -92,6 +96,41 @@ export function calcular(formula: string | undefined, sessao: SessaoFluxo): Deri
       return { ...base, pctMeta: entrou > 0 ? Math.round((valorMes / entrou) * 100) : 100 }
     }
 
+    /**
+     * M01 — o rotativo do cartão.
+     *
+     * A pessoa chuta no que R$ 1.000 se transformam em 12 meses. Duas verdades
+     * saem daqui, e as duas precisam aparecer:
+     *
+     *  - a TAXA diz R$ 5.283, porque 428,3% ao ano multiplica a dívida por
+     *    5,283 em doze meses;
+     *  - a LEI diz R$ 2.000, porque desde 03/01/2024 os encargos não podem
+     *    passar de 100% da dívida original (Lei 14.690/2023).
+     *
+     * Mostrar só a taxa assusta e mente por exagero; mostrar só o teto acalma
+     * e esconde o absurdo do juro. O módulo mostra os dois: é isso que separa
+     * "o cartão é caro" de saber por que e até onde.
+     *
+     * A taxa vem da sessão (`ind_rotativo_medio`), não do código: quando o
+     * Banco Central publicar outra, é UPDATE numa linha.
+     */
+    case "rotativo_bola_de_neve": {
+      const divida = 1000
+      const taxaAno = num(sessao.ind_rotativo_medio) || 428.3
+      const tetoPct = num(sessao.ind_teto_rotativo) || 100
+      const semTeto = Math.round(divida * (1 + taxaAno / 100))
+      const comTeto = Math.round(divida * (1 + tetoPct / 100))
+      const chute = num(sessao.chute)
+      return {
+        ...base,
+        valor: chute,
+        semTetoNum: semTeto,
+        comTetoNum: comTeto,
+        // Quem chuta abaixo do teto legal subestimou até o piso protegido.
+        subestimou: chute < comTeto ? 1 : 0,
+      }
+    }
+
     case "entrou_saiu_pct":
     default:
       return base
@@ -119,6 +158,10 @@ export function interpolar(texto: string, d: Derivados, sessao: SessaoFluxo): st
         return String(d.periodosNum)
       case "mesesJuntar":
         return String(d.mesesJuntar)
+      case "semTeto":
+        return "R$ " + formatInteiroBRL(d.semTetoNum)
+      case "comTeto":
+        return "R$ " + formatInteiroBRL(d.comTetoNum)
       case "entrou":
       case "saiu":
       case "sobrou":

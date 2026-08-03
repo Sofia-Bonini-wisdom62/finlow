@@ -393,3 +393,22 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+/// Dado macro que os módulos citam, versionado fora do texto.
+///
+/// O conteúdo da aula NUNCA crava o número: escreve `{{selic_atual}}` e a
+/// variável é preenchida na hora de exibir. Selic e IPCA mudam várias vezes
+/// por ano, e um número no corpo do texto vira mentira silenciosa meses depois
+/// — o mesmo motivo da tabela de preços em lib/custo.ts.
+///
+/// `fonte` e `apuradoEm` não são enfeite: um número macro sem data e sem quem
+/// apurou não dá para conferir nem para saber se envelheceu.
+model Indicador {
+  chave        String   @id // "selic_atual", "ipca_12m", "rotativo_medio"
+  valor        String // texto: alguns são percentual, outros moeda, outros regra
+  rotulo       String // como aparece no texto: "14,25% ao ano"
+  numero       Float? // quando dá para calcular com ele
+  fonte        String // "Copom/Banco Central"
+  apuradoEm    DateTime
+  atualizadoEm DateTime @updatedAt
+}

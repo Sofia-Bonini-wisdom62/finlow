@@ -9,13 +9,24 @@ import { ProgressSegments } from "./ProgressSegments"
 interface Props {
   modulo: ModuloData
   telaInicial?: number
+  /**
+   * Valores que já entram na sessão, antes de a pessoa digitar qualquer coisa.
+   *
+   * Hoje são os indicadores macro (`ind_rotativo_medio` e afins). Viajam pela
+   * sessão em vez de por prop própria porque a sessão já é encaminhada até a
+   * tela de resultado, que é quem calcula: uma prop nova teria de atravessar
+   * quatro assinaturas para levar dois números.
+   *
+   * O prefixo `ind_` é o que impede colisão com id de campo de formulário.
+   */
+  sessaoInicial?: SessaoFluxo
   onConcluir: () => void
   onAvancarTela: (tela: number) => void
 }
 
-export function CardFlow({ modulo, telaInicial = 0, onConcluir, onAvancarTela }: Props) {
+export function CardFlow({ modulo, telaInicial = 0, sessaoInicial, onConcluir, onAvancarTela }: Props) {
   const [atual, setAtual] = useState(telaInicial)
-  const [sessao, setSessao] = useState<SessaoFluxo>({})
+  const [sessao, setSessao] = useState<SessaoFluxo>(sessaoInicial ?? {})
   // letra escolhida por tela de quiz — permite voltar e reexibir a resposta
   const [respostasQuiz, setRespostasQuiz] = useState<Record<string, string>>({})
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)

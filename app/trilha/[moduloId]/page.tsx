@@ -14,6 +14,7 @@ export default function ModuloPage() {
   const chave = params.moduloId as string
 
   const [modulo, setModulo] = useState<ModuloData | null | undefined>(undefined)
+  const [indicadores, setIndicadores] = useState<Record<string, string>>({})
   const [telaInicial, setTelaInicial] = useState(0)
 
   useEffect(() => {
@@ -23,6 +24,11 @@ export default function ModuloPage() {
         const m = data.modulo
         if (!m) { setModulo(null); return }
         setModulo(m as ModuloData)
+        // Prefixo `ind_` para não colidir com id de campo de formulário.
+        const nums = (data?.indicadores ?? {}) as Record<string, number>
+        setIndicadores(
+          Object.fromEntries(Object.entries(nums).map(([k, v]) => [`ind_${k}`, String(v)]))
+        )
         const prog = m.progresso?.[0]
         if (prog && !prog.concluido && prog.telaAtual > 0) {
           setTelaInicial(Math.min(prog.telaAtual, m.telas.length - 1))
@@ -65,6 +71,7 @@ export default function ModuloPage() {
     <CardFlow
       modulo={modulo}
       telaInicial={telaInicial}
+      sessaoInicial={indicadores}
       onAvancarTela={(tela) => { salvarProgresso("PATCH", { telaAtual: tela }) }}
       onConcluir={() => {
         salvarProgresso("POST", {}).finally(() => router.push("/perfil"))
