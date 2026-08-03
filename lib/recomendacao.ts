@@ -29,9 +29,18 @@ import { db } from "@/lib/db"
  * afirmação sobre TODOS os caminhos, e basta um caminho para derrubá-la.
  */
 
-/** 60%: exigir 100% deixaria de fora quem pula uma aula e nunca mais recebe
- *  leva nova. Três de cinco já mostra que a pessoa está andando. */
-export const LIMIAR_NOVA_LEVA = 0.6
+/**
+ * A leva fecha quando a ÚLTIMA aula dela é concluída — não antes.
+ *
+ * A regra anterior era 60%, e ela produzia um efeito ruim: as aulas iam sumindo
+ * uma a uma conforme eram feitas, e a leva seguinte chegava por cima do que
+ * ainda faltava. "Recomendados" virava uma fila em movimento, não um conjunto
+ * com começo e fim.
+ *
+ * Com a leva inteira, quem olha vê um bloco de 4 que não muda até estar
+ * fechado. É um objetivo com contorno, não uma esteira.
+ */
+export const LIMIAR_NOVA_LEVA = 1
 
 /** Quantas aulas a leva nova traz, conforme a §2.7 ("recomenda +4"). */
 export const TAMANHO_DA_LEVA = 4
@@ -46,9 +55,12 @@ export interface Recomendada {
   origem: string
   concluido: boolean
   entregueEm: Date | null
+  leva: number
+  substituida: boolean
 }
 
-/** Tudo que já foi recomendado a esta pessoa, com o estado de cada uma. */
+/** Tudo que já foi recomendado a esta pessoa, com o estado de cada uma.
+ *  Inclui leva fechada e aula trocada — é o histórico. */
 export async function levaAtual(userId: string): Promise<Recomendada[]> {
   const [recs, progresso] = await Promise.all([
     db.recomendacaoTrilha.findMany({
@@ -56,6 +68,7 @@ export async function levaAtual(userId: string): Promise<Recomendada[]> {
       orderBy: [{ criadoEm: "asc" }, { ordem: "asc" }],
       select: {
         id: true, moduloId: true, motivo: true, origem: true, entregueEm: true,
+        leva: true, substituidaEm: true,
         modulo: { select: { slug: true, titulo: true, subtitulo: true } },
       },
     }),
@@ -75,8 +88,30 @@ export async function levaAtual(userId: string): Promise<Recomendada[]> {
     motivo: r.motivo,
     origem: r.origem,
     entregueEm: r.entregueEm,
+    leva: r.leva,
+    substituida: r.substituidaEm !== null,
     concluido: concluidos.has(r.moduloId),
   }))
+}
+
+/**
+ * A leva ATIVA: as aulas que estão em Recomendados agora.
+ *
+ * É a leva de número mais alto, sem as que o chat trocou. Aula concluída
+ * CONTINUA aqui — some só quando a leva inteira fecha. Ver a aula que você
+ * acabou de terminar ainda no bloco é o que mostra o progresso; tirá-la na
+ * hora faria a lista encolher sem explicar por quê.
+ */
+export async function levaAtiva(userId: string): Promise<Recomendada[]> {
+  const todas = await levaAtual(userId)
+  if (todas.length === 0) return []
+  const numero = Math.max(...todas.map((r) => r.leva))
+  return todas.filter((r) => r.leva === numero && !r.substituida)
+}
+
+/** A leva fechou: todas as aulas dela foram concluídas. */
+export function levaFechada(ativa: Recomendada[]): boolean {
+  return ativa.length > 0 && ativa.every((r) => r.concluido)
 }
 
 /**
@@ -212,15 +247,14 @@ export async function talvezGerarNovaLeva(
   ) => Promise<{ moduloId: string; motivo: string }[]>
 ): Promise<Recomendada[]> {
   const recs = await levaAtual(userId)
-  // Sem leva inicial não há o que medir: quem nunca recebeu recomendação não
-  // pode ter concluído 60% dela.
+  // Quem nunca recebeu recomendação não tem leva para fechar.
   if (recs.length === 0) return []
 
-  const progresso = await progressoDaTrilha(userId)
-  if (progresso.fracao < LIMIAR_NOVA_LEVA) return []
-  // Nada concluído desde a última leva: a fração pode até estar no limiar por
-  // arredondamento, mas não houve avanço novo a premiar.
-  if (progresso.desdeUltimaLeva === 0) return []
+  const ativa = await levaAtiva(userId)
+  // A leva só fecha quando a ÚLTIMA aula dela é concluída. Enquanto faltar
+  // uma, nada de leva nova — senão a seguinte chegaria por cima do que ainda
+  // está aberto e "Recomendados" viraria uma esteira.
+  if (!levaFechada(ativa)) return []
 
   /**
    * Fora: o que já foi recomendado E o que ela já concluiu por conta própria.
@@ -258,12 +292,13 @@ export async function talvezGerarNovaLeva(
   // 8 aulas de uma vez, com módulos diferentes, então nem a chave única
   // segura. Reler aqui estreita a janela de segundos para milissegundos.
   const agora = await levaAtual(userId)
-  if (agora.length !== recs.length || (await progressoDaTrilha(userId)).fracao < LIMIAR_NOVA_LEVA) {
+  if (agora.length !== recs.length || !levaFechada(await levaAtiva(userId))) {
     return agora.filter((r) => !r.entregueEm)
   }
 
   const permitidos = new Set(candidatos.map((c) => c.id))
   const base = await db.recomendacaoTrilha.count({ where: { userId } })
+  const proximaLeva = Math.max(...recs.map((r) => r.leva)) + 1
 
   await db.recomendacaoTrilha.createMany({
     data: escolhidas
@@ -276,6 +311,7 @@ export async function talvezGerarNovaLeva(
         motivo: e.motivo,
         origem: "gatilho_percentual",
         ordem: base + i,
+        leva: proximaLeva,
         entregueEm: null, // vira mensagem no chat na próxima abertura
       })),
     skipDuplicates: true,
@@ -314,32 +350,71 @@ export async function guardarRecomendacaoDoChat(
   })
   if (modulos.length === 0) return 0
 
-  // Já recomendado por qualquer via não vira linha nova: a aula já está na
-  // trilha, e uma segunda entrada faria o denominador do gatilho subir sem a
-  // pessoa ter recebido nada novo.
-  const jaTem = new Set(
-    (await db.recomendacaoTrilha.findMany({
-      where: { userId, moduloId: { in: modulos.map((m) => m.id) } },
-      select: { moduloId: true },
-    })).map((r) => r.moduloId)
+  const ativa = await levaAtiva(userId)
+  // Sem leva ainda: não há o que trocar. A primeira leva é assunto do
+  // onboarding ou da primeira abertura da Trilha.
+  if (ativa.length === 0) return 0
+
+  const jaNaLeva = new Set(ativa.map((r) => r.moduloId))
+  const entrando = modulos.filter((m) => !jaNaLeva.has(m.id))
+  if (entrando.length === 0) return 0
+
+  /**
+   * Quem sai é a aula NÃO CONCLUÍDA que menos combina com a situação de agora.
+   *
+   * Concluída nunca sai: ela é trabalho feito, precisa continuar contando para
+   * a leva fechar, e tirá-la faria a leva nunca completar. Entre as pendentes,
+   * sai a de menor encaixe — se a conversa revelou uma necessidade nova, a
+   * aula menos pertinente é justamente a que devia ceder o lugar.
+   */
+  const pendentes = ativa.filter((r) => !r.concluido)
+  if (pendentes.length === 0) return 0
+
+  const { posicaoDaPessoa } = await import("@/lib/posicionar-trilha")
+  const { pontuarAula } = await import("@/lib/situacoes")
+  const posicao = await posicaoDaPessoa(userId)
+
+  const notas = await db.modulo.findMany({
+    where: { id: { in: pendentes.map((p) => p.moduloId) } },
+    select: { id: true, nivel: true, situacoes: true },
+  })
+  const notaPorId = new Map(notas.map((m) => [m.id, pontuarAula(m, posicao)]))
+
+  const fila = [...pendentes].sort(
+    (a, b) => (notaPorId.get(a.moduloId) ?? 0) - (notaPorId.get(b.moduloId) ?? 0)
   )
 
-  const novos = modulos.filter((m) => !jaTem.has(m.id))
-  if (novos.length === 0) return 0
+  // Troca 1 por 1: a leva tem tamanho fixo. Se o assistente citar três aulas e
+  // só houver duas pendentes, entram duas — a leva não incha para acomodar a
+  // conversa.
+  const quantas = Math.min(entrando.length, fila.length)
+  if (quantas === 0) return 0
 
+  const numeroDaLeva = ativa[0].leva
   const base = await db.recomendacaoTrilha.count({ where: { userId } })
-  const r = await db.recomendacaoTrilha.createMany({
-    data: novos.map((m, i) => ({
-      userId,
-      moduloId: m.id,
-      origem: "lacuna_chat",
-      ordem: base + i,
-      motivo: motivoPorSlug[m.slug] ?? "Veio de uma conversa sua com o assistente.",
-      entregueEm: new Date(),
-    })),
-    skipDuplicates: true,
-  })
-  return r.count
+
+  await db.$transaction([
+    db.recomendacaoTrilha.updateMany({
+      where: { userId, id: { in: fila.slice(0, quantas).map((f) => f.id) } },
+      data: { substituidaEm: new Date() },
+    }),
+    db.recomendacaoTrilha.createMany({
+      data: entrando.slice(0, quantas).map((m, i) => ({
+        userId,
+        moduloId: m.id,
+        origem: "lacuna_chat",
+        ordem: base + i,
+        leva: numeroDaLeva,
+        motivo: motivoPorSlug[m.slug] ?? "Veio de uma conversa sua com o assistente.",
+        // Já entregue: a pessoa está lendo a recomendação no chat agora. Mandar
+        // uma mensagem contando o que o chat acabou de dizer seria eco.
+        entregueEm: new Date(),
+      })),
+      skipDuplicates: true,
+    }),
+  ])
+
+  return quantas
 }
 
 /** Marca como entregue. É o que impede a mesma leva de reaparecer a cada

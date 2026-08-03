@@ -157,9 +157,8 @@ export default function TrilhaPage() {
             <section className="mt-7">
               <div className="flex items-baseline justify-between gap-3">
                 <h2 className="text-[17px] font-extrabold tracking-tight text-fl-ink">Recomendados</h2>
-                {/* Concluída sai da lista, mas o esforço não some da tela: sem
-                    este contador, terminar quatro aulas deixa a Trilha igual à
-                    de quem não fez nenhuma. */}
+                {/* A leva só some inteira, então o contador é o que mostra o
+                    quanto falta para ela fechar. */}
                 {concluidas > 0 && (
                   <span className="shrink-0 text-[12.5px] font-semibold text-fl-500">
                     {concluidas} de {totalLeva} {totalLeva === 1 ? "concluída" : "concluídas"}
@@ -167,8 +166,8 @@ export default function TrilhaPage() {
                 )}
               </div>
               <p className="mt-0.5 text-[13px] leading-relaxed text-fl-ink-2">
-                O que falta fazer. Montado a partir dos seus números, muda conforme seu
-                comportamento muda.
+                Quatro aulas escolhidas a partir dos seus números. Elas ficam aqui até você
+                fechar as quatro, e aí entram outras.
               </p>
 
               {recomendados.length === 0 ? (
@@ -179,12 +178,12 @@ export default function TrilhaPage() {
                   {concluidas > 0 ? (
                     <>
                       <p className="text-[15px] font-bold text-fl-ink">
-                        Você fechou tudo que estava indicado.
+                        Leva fechada. Você terminou as quatro.
                       </p>
                       <p className="mt-1 text-[13px] leading-relaxed text-fl-ink-2">
-                        A próxima leva é montada a partir dos seus números de agora. Abre o{" "}
+                        As próximas são montadas a partir dos seus números de agora. Abre o{" "}
                         <Link href="/chat" className="font-semibold text-fl-500">Chat</Link> que
-                        ela chega por lá, ou procura um assunto na busca aqui em cima.
+                        elas chegam por lá, ou procura um assunto na busca aqui em cima.
                       </p>
                     </>
                   ) : (

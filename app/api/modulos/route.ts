@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { getUserIdOr401 } from "@/lib/painel"
-import { garantirLevaInicial, levaAtual } from "@/lib/recomendacao"
+import { garantirLevaInicial, levaAtiva, TAMANHO_DA_LEVA } from "@/lib/recomendacao"
 import { aulasParaSituacao } from "@/lib/posicionar-trilha"
 
 export const dynamic = "force-dynamic"
@@ -105,15 +105,14 @@ export async function GET(req: NextRequest) {
 
     // A primeira leva é GRAVADA na primeira vez que a Trilha é aberta.
     //
-    // Sem isso a recomendação seria recalculada a cada chamada, e o gatilho da
-    // §2.7 ("concluiu X% da trilha recomendada") mediria contra uma lista que
-    // muda de tamanho junto com o extrato da pessoa. Ninguém nunca chegaria aos
-    // 60%. Chamar de novo não duplica.
-    await garantirLevaInicial(userId, await aulasParaSituacao(userId, 5))
+    // Sem isso a recomendação seria recalculada a cada chamada, e não haveria
+    // como saber se a leva fechou: a lista mudaria de tamanho junto com o
+    // extrato da pessoa. Chamar de novo não duplica.
+    await garantirLevaInicial(userId, await aulasParaSituacao(userId, TAMANHO_DA_LEVA))
 
-    // O que vale é o gravado: é ele que inclui as levas que o gatilho
-    // acrescentou depois.
-    const leva = await levaAtual(userId)
+    // Só a leva ATIVA. As levas fechadas saíram de cena — continuam em "Todos
+    // os módulos", com o selo de concluída.
+    const leva = await levaAtiva(userId)
     const daLeva = leva
       .map((r) => {
         const m = porSlug.get(r.slug)
@@ -122,19 +121,15 @@ export async function GET(req: NextRequest) {
       .filter((x): x is NonNullable<typeof x> => x !== null)
 
     /**
-     * Recomendado é o que FALTA fazer.
+     * A leva inteira fica à vista, concluída inclusive.
      *
-     * Aula concluída sai da lista: a seção responde "o que eu faço agora", e
-     * uma aula já feita ocupando espaço ali empurra para baixo justamente o que
-     * ainda não foi feito. Ela continua achável em "Todos os módulos", com o
-     * selo de concluída, e continua contando para o gatilho.
-     *
-     * `concluidasDaLeva` volta junto porque esconder sem contar apaga o
-     * esforço: a pessoa termina quatro aulas e a tela fica igual à de quem não
-     * fez nenhuma.
+     * Some tudo de uma vez quando a última é concluída, e aí outra de 4 entra.
+     * Tirar uma a uma conforme são feitas transformaria o bloco numa esteira:
+     * a lista encolheria sem explicar por quê, e o progresso — "faltam 2 de
+     * 4" — deixaria de ser visível justamente para quem está avançando.
      */
-    const recomendados = daLeva.filter((m) => !m.concluido)
-    const concluidasDaLeva = daLeva.length - recomendados.length
+    const recomendados = daLeva
+    const concluidasDaLeva = daLeva.filter((m) => m.concluido).length
 
     // `todos` alimenta a seção "Todos os módulos" da Trilha. Vai na mesma
     // resposta de propósito: são 16 módulos já carregados e enriquecidos aqui;

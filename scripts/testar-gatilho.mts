@@ -1,14 +1,21 @@
 /**
- * Testa o gatilho de percentual e a leva de +4 (SPEC v3, tarefa 11).
+ * Testa a leva da Trilha: quando fecha, o que entra, e o que o chat troca.
  *
- * O critério da spec é "dispara uma única vez, sem duplicar", e é justamente o
- * tipo de coisa que passa despercebida: um gatilho que dispara duas vezes gera
- * recomendação a mais, não erro. Ninguém vê no log, a pessoa só recebe uma
- * enxurrada de aulas e acha o app confuso.
+ * A REGRA
+ * A leva é um bloco de 4 que fica à vista até a ÚLTIMA aula ser concluída. Só
+ * então ela fecha e outra de 4 entra. Quando o chat detecta uma necessidade
+ * nova, ele TROCA uma aula da leva — não acrescenta uma quinta.
  *
- * A escolha das aulas é injetada, então este teste não fala com a IA: o que
- * está sendo testado é a REGRA (quando dispara, o que entra, o que não repete),
- * e regra que só dá para testar com rede não é testada.
+ * POR QUE ESTE ARQUIVO É GRANDE
+ * Cada guarda aqui existe porque a versão sem ela falhou de um jeito que não
+ * dava erro nenhum:
+ *
+ *  - recomendar aula já concluída inflava a conta e a leva disparava duas vezes
+ *    seguidas (aconteceu em produção: 8 aulas de uma vez);
+ *  - trocar uma aula CONCLUÍDA faria a leva nunca fechar, porque o trabalho
+ *    feito sairia da conta;
+ *  - a troca sem limite faria a leva crescer para acomodar a conversa, e
+ *    "Recomendados" voltaria a ser um acúmulo.
  *
  *   node --import tsx scripts/testar-gatilho.mts
  */
@@ -18,11 +25,12 @@ config({ path: ".env" })
 
 const { db } = await import("../lib/db.js")
 const {
-  garantirLevaInicial, levaAtual, medirProgresso, progressoDaTrilha,
-  talvezGerarNovaLeva, marcarEntregues, guardarRecomendacaoDoChat, LIMIAR_NOVA_LEVA,
+  garantirLevaInicial, levaAtual, levaAtiva, levaFechada,
+  talvezGerarNovaLeva, guardarRecomendacaoDoChat, marcarEntregues,
 } = await import("../lib/recomendacao.js")
 
 let falhas = 0
+
 /**
  * Varre a FAMÍLIA inteira, não só esta execução.
  *
@@ -48,337 +56,155 @@ function checar(nota: string, ok: boolean, detalhe = "") {
   console.log(`  ${ok ? "ok   " : "FALHA"} ${nota}${detalhe ? `  ${detalhe}` : ""}`)
 }
 
-const marca = `teste-gatilho-${Date.now()}`
-let userId = ""
-
 /** Escolhe as 4 primeiras da fila. Determinístico de propósito. */
 const escolherFake = async (
   candidatos: { id: string; slug: string; titulo: string; subtitulo: string }[]
 ) => candidatos.slice(0, 4).map((c) => ({ moduloId: c.id, motivo: `porque ${c.slug}` }))
 
-/** Tenta empurrar o mesmo módulo que já foi recomendado. */
-const escolherRepetido = async () => [{ moduloId: "id-inventado", motivo: "não existe" }]
+const marca = `teste-gatilho-${Date.now()}`
+let userId = ""
+
+async function concluir(uid: string, moduloId: string) {
+  await db.progressoModulo.upsert({
+    where: { userId_moduloId: { userId: uid, moduloId } },
+    create: { userId: uid, moduloId, concluido: true, concluidoEm: new Date(), telaAtual: 999 },
+    update: { concluido: true, concluidoEm: new Date() },
+  })
+}
 
 try {
   const modulos = await db.modulo.findMany({
     select: { id: true, slug: true },
     orderBy: [{ tipoPerfil: "asc" }, { ordem: "asc" }],
   })
-  if (modulos.length < 9) {
-    console.log(`✗ preciso de ao menos 9 módulos no banco, achei ${modulos.length}`)
+  if (modulos.length < 12) {
+    console.log(`✗ preciso de ao menos 12 módulos, achei ${modulos.length}`)
     process.exit(1)
   }
 
   const u = await db.user.create({ data: { email: `${marca}@exemplo.invalido`, nome: "Teste" } })
   userId = u.id
 
-  const cinco = modulos.slice(0, 5)
+  const quatro = modulos.slice(0, 4)
+  await garantirLevaInicial(userId, quatro.map((m) => m.slug))
 
-  // -------------------------------------------------------------- semear ---
-  console.log("LEVA INICIAL")
-  const n1 = await garantirLevaInicial(userId, cinco.map((m) => m.slug))
-  const n2 = await garantirLevaInicial(userId, cinco.map((m) => m.slug))
-  checar("grava as 5 da primeira vez", n1 === 5, `gravou ${n1}`)
-  checar("chamar de novo não duplica", n2 === 0, `gravou ${n2}`)
-  checar("existem 5 recomendações", (await levaAtual(userId)).length === 5)
-  checar(
-    "a leva inicial já nasce entregue (aparece na Trilha, não vira mensagem)",
-    (await levaAtual(userId)).every((r) => r.entregueEm !== null)
-  )
+  // ------------------------------------------------------------ a leva ---
+  console.log("A LEVA")
 
-  // -------------------------------------------------------------- gatilho ---
-  console.log("\nGATILHO")
+  const inicial = await levaAtiva(userId)
+  checar("nasce com 4 aulas", inicial.length === 4, `${inicial.length}`)
+  checar("é a leva 1", inicial.every((r) => r.leva === 1))
+  checar("não está fechada", !levaFechada(inicial))
 
-  async function concluir(moduloId: string) {
-    await db.progressoModulo.upsert({
-      where: { userId_moduloId: { userId, moduloId } },
-      create: { userId, moduloId, concluido: true, concluidoEm: new Date(), telaAtual: 999 },
-      update: { concluido: true, concluidoEm: new Date() },
-    })
+  // ------------------------------------------------- só fecha com todas ---
+  console.log("\nSÓ FECHA COM AS QUATRO")
+
+  for (const [i, m] of quatro.slice(0, 3).entries()) {
+    await concluir(userId, m.id)
+    const ativa = await levaAtiva(userId)
+    checar(
+      `${i + 1} de 4 concluídas: não fecha`,
+      !levaFechada(ativa),
+      `${ativa.filter((r) => r.concluido).length}/${ativa.length}`
+    )
+    checar(`  e não gera leva nova`, (await talvezGerarNovaLeva(userId, escolherFake)).length === 0)
   }
 
-  await concluir(cinco[0].id)
-  await concluir(cinco[1].id)
-  const p40 = await progressoDaTrilha(userId)
-  checar("2 de 5 dá 40%", Math.round(p40.fracao * 100) === 40, `${Math.round(p40.fracao * 100)}%`)
-  checar(
-    "abaixo do limiar não gera nada",
-    (await talvezGerarNovaLeva(userId, escolherFake)).length === 0
-  )
+  // A aula concluída CONTINUA na leva — é o que mostra o progresso.
+  const comTres = await levaAtiva(userId)
+  checar("a concluída continua na leva ativa", comTres.length === 4,
+    `${comTres.filter((r) => r.concluido).length} concluídas de ${comTres.length}`)
 
-  await concluir(cinco[2].id)
-  const p60 = await progressoDaTrilha(userId)
-  checar("3 de 5 dá 60%", Math.round(p60.fracao * 100) === 60)
-  checar("60% é o limiar", p60.fracao >= LIMIAR_NOVA_LEVA)
+  await concluir(userId, quatro[3].id)
+  checar("a quarta fecha a leva", levaFechada(await levaAtiva(userId)))
+
+  // ------------------------------------------------------ a leva nova ---
+  console.log("\nA LEVA NOVA")
 
   const nova = await talvezGerarNovaLeva(userId, escolherFake)
-  checar("gera a leva de 4", nova.length === 4, `gerou ${nova.length}`)
-  checar("as novas nascem por entregar", nova.every((r) => r.entregueEm === null))
-  checar("as novas vêm com motivo", nova.every((r) => r.motivo.startsWith("porque ")))
+  checar("entram 4 aulas", nova.length === 4, `${nova.length}`)
+  checar("com número de leva próprio", nova.every((r) => r.leva === 2))
 
-  // O ponto do teste: a geração empurra a porcentagem para baixo do limiar, e
-  // por isso não precisa de trava nenhuma para não repetir.
-  const depois = await levaAtual(userId)
-  const p33 = await progressoDaTrilha(userId)
-  checar("agora são 9 recomendações", depois.length === 9, `${depois.length}`)
-  checar(
-    "a própria leva derruba a porcentagem",
-    p33.fracao < LIMIAR_NOVA_LEVA,
-    `${Math.round(p33.fracao * 100)}%`
+  const ativa2 = await levaAtiva(userId)
+  checar("a leva ativa passa a ser a nova", ativa2.every((r) => r.leva === 2))
+  checar("e tem só as 4 novas", ativa2.length === 4, `${ativa2.length}`)
+  checar("nenhuma delas está concluída", ativa2.every((r) => !r.concluido))
+  checar("a leva 1 sai de cena mas fica no histórico",
+    (await levaAtual(userId)).filter((r) => r.leva === 1).length === 4)
+  checar("não dispara de novo com a leva 2 aberta",
+    (await talvezGerarNovaLeva(userId, escolherFake)).length === 0)
+
+  await marcarEntregues(userId, nova.map((n) => n.id))
+
+  // ------------------------------------------------- o chat troca uma ---
+  console.log("\nO CHAT TROCA, NÃO SOMA")
+
+  // Uma aula que o chat vai citar e que não está na leva nem no histórico.
+  const historico = new Set((await levaAtual(userId)).map((r) => r.moduloId))
+  const nova1 = modulos.find((m) => !historico.has(m.id))!
+
+  const antesDaTroca = await levaAtiva(userId)
+  const trocadas = await guardarRecomendacaoDoChat(
+    userId, [nova1.slug], { [nova1.slug]: "você perguntou sobre isso" }
   )
-  checar(
-    "chamar de novo NÃO gera outra leva",
-    (await talvezGerarNovaLeva(userId, escolherFake)).length === 0
-  )
-  checar("continuam 9, sem duplicata", (await levaAtual(userId)).length === 9)
+  const depoisDaTroca = await levaAtiva(userId)
 
-  // ------------------------------------------------------------- entrega ---
-  console.log("\nENTREGA")
+  checar("troca uma", trocadas === 1, `${trocadas}`)
+  checar("a leva continua com 4", depoisDaTroca.length === 4, `${depoisDaTroca.length}`)
+  checar("a aula citada entrou", depoisDaTroca.some((r) => r.moduloId === nova1.id))
+  checar("com origem lacuna_chat",
+    depoisDaTroca.find((r) => r.moduloId === nova1.id)?.origem === "lacuna_chat")
+  checar("e já entregue, porque o card do chat é a entrega",
+    depoisDaTroca.find((r) => r.moduloId === nova1.id)?.entregueEm !== null)
 
-  const pendentes = (await levaAtual(userId)).filter((r) => !r.entregueEm)
-  checar("4 esperando entrega", pendentes.length === 4)
+  const saiu = antesDaTroca.filter((a) => !depoisDaTroca.some((d) => d.moduloId === a.moduloId))
+  checar("exatamente uma saiu", saiu.length === 1, saiu.map((s) => s.slug).join(", "))
+  checar("a que saiu continua no histórico, marcada",
+    (await levaAtual(userId)).some((r) => r.moduloId === saiu[0]?.moduloId && r.substituida))
 
-  await marcarEntregues(userId, pendentes.map((p) => p.id))
-  const aindaPendente = (await levaAtual(userId)).filter((r) => !r.entregueEm)
-  checar("depois de entregue não sobra pendente", aindaPendente.length === 0)
+  // ------------------------------------ concluída nunca é trocada ---
+  console.log("\nA CONCLUÍDA NUNCA CEDE O LUGAR")
 
-  // ------------------------------------------------------- o que não passa ---
-  console.log("\nO QUE NÃO PASSA")
+  const paraConcluir = (await levaAtiva(userId)).filter((r) => r.origem !== "lacuna_chat").slice(0, 3)
+  for (const r of paraConcluir) await concluir(userId, r.moduloId)
 
-  // Volta a cruzar o limiar para o gatilho poder disparar de novo.
-  for (const m of depois.slice(0, 6)) await concluir(m.moduloId)
-  const p66 = await progressoDaTrilha(userId)
-  checar("6 de 9 volta a passar do limiar", p66.fracao >= LIMIAR_NOVA_LEVA, `${Math.round(p66.fracao * 100)}%`)
+  const antes3 = await levaAtiva(userId)
+  const concluidasAntes = antes3.filter((r) => r.concluido).map((r) => r.moduloId)
+  checar("3 concluídas na leva", concluidasAntes.length === 3, `${concluidasAntes.length}`)
 
-  const antes = (await levaAtual(userId)).length
-  await talvezGerarNovaLeva(userId, escolherRepetido)
-  checar(
-    "módulo inexistente escolhido pela IA não entra",
-    (await levaAtual(userId)).length === antes,
-    `${antes} antes`
-  )
+  const hist2 = new Set((await levaAtual(userId)).map((r) => r.moduloId))
+  const nova2 = modulos.find((m) => !hist2.has(m.id))
+  if (nova2) {
+    await guardarRecomendacaoDoChat(userId, [nova2.slug], { [nova2.slug]: "outra necessidade" })
+    const depois3 = await levaAtiva(userId)
+    checar("as 3 concluídas continuam na leva",
+      concluidasAntes.every((id) => depois3.some((r) => r.moduloId === id)),
+      `${depois3.filter((r) => r.concluido).length} concluídas`)
+    checar("quem saiu foi a pendente", depois3.length === 4)
+  }
+
+  // Sem pendente nenhuma não há o que trocar.
+  for (const r of await levaAtiva(userId)) await concluir(userId, r.moduloId)
+  const hist3 = new Set((await levaAtual(userId)).map((r) => r.moduloId))
+  const nova3 = modulos.find((m) => !hist3.has(m.id))
+  if (nova3) {
+    checar("com a leva toda concluída, o chat não troca nada",
+      (await guardarRecomendacaoDoChat(userId, [nova3.slug], {})) === 0)
+  }
+
+  // --------------------------------------- aula já feita não é indicada ---
+  console.log("\nAULA JÁ FEITA NÃO É INDICADA")
+
+  checar("a leva está fechada", levaFechada(await levaAtiva(userId)))
+  const proxima = await talvezGerarNovaLeva(userId, escolherFake)
+  const feitos = new Set((await db.progressoModulo.findMany({
+    where: { userId, concluido: true }, select: { moduloId: true },
+  })).map((p) => p.moduloId))
+  checar("a leva nova não traz nada já concluído",
+    proxima.every((r) => !feitos.has(r.moduloId)),
+    proxima.map((r) => r.slug).join(", "))
 } finally {
   if (userId) await db.user.delete({ where: { id: userId } }).catch(() => {})
-}
-
-// ------------------------------------------- aula já feita fora da trilha ---
-/**
- * O caso que ESTOUROU em produção, e que o teste acima não pegava.
- *
- * Quem estuda uma aula fora da trilha recomendada cria um módulo "concluído mas
- * não recomendado". Se o gatilho puder escolhê-lo, ele entra no numerador E no
- * denominador ao mesmo tempo: a leva nova não derruba a porcentagem como
- * deveria e o gatilho dispara outra vez em seguida.
- *
- * Foi exatamente isso: 4/4 = 100% disparou, a leva trouxe uma aula já feita,
- * virou 5/8 = 63%, ainda acima do limiar, e disparou de novo 22 segundos
- * depois. A pessoa levou 8 aulas de uma vez.
- */
-const marca2 = `teste-gatilho2-${Date.now()}`
-let userId2 = ""
-
-try {
-  console.log("\nAULA JÁ FEITA FORA DA TRILHA")
-
-  const modulos = await db.modulo.findMany({
-    select: { id: true, slug: true },
-    orderBy: [{ tipoPerfil: "asc" }, { ordem: "asc" }],
-  })
-  const u = await db.user.create({ data: { email: `${marca2}@exemplo.invalido`, nome: "Teste 2" } })
-  userId2 = u.id
-
-  const naLeva = modulos.slice(0, 4)
-  const foraDaLeva = modulos[4] // esta ela faz por conta própria
-
-  await garantirLevaInicial(userId2, naLeva.map((m) => m.slug))
-
-  async function concluir2(moduloId: string) {
-    await db.progressoModulo.upsert({
-      where: { userId_moduloId: { userId: userId2, moduloId } },
-      create: { userId: userId2, moduloId, concluido: true, concluidoEm: new Date(), telaAtual: 999 },
-      update: { concluido: true, concluidoEm: new Date() },
-    })
-  }
-
-  for (const m of naLeva) await concluir2(m.id)
-  await concluir2(foraDaLeva.id) // a de fora
-
-  const p100 = medirProgresso(await levaAtual(userId2))
-  checar("fecha a trilha recomendada", Math.round(p100.fracao * 100) === 100, `${Math.round(p100.fracao * 100)}%`)
-
-  // A escolha ingênua: pega os 4 primeiros candidatos que vierem.
-  const primeiros = async (c: { id: string; slug: string; titulo: string; subtitulo: string }[]) =>
-    c.slice(0, 4).map((x) => ({ moduloId: x.id, motivo: `porque ${x.slug}` }))
-
-  const nova = await talvezGerarNovaLeva(userId2, primeiros)
-  checar("gera a leva", nova.length === 4, `${nova.length}`)
-  checar(
-    "a aula que ela JÁ FEZ não é recomendada",
-    !nova.some((r) => r.moduloId === foraDaLeva.id),
-    nova.map((r) => r.slug).join(", ")
-  )
-
-  const depois2 = await progressoDaTrilha(userId2)
-  checar(
-    "a porcentagem cai abaixo do limiar",
-    depois2.fracao < LIMIAR_NOVA_LEVA,
-    `${depois2.concluidos}/${depois2.total} = ${Math.round(depois2.fracao * 100)}%`
-  )
-  checar(
-    "e NÃO dispara uma segunda vez",
-    (await talvezGerarNovaLeva(userId2, primeiros)).length === 0
-  )
-  checar("continuam 8 recomendações, não 12", (await levaAtual(userId2)).length === 8,
-    `${(await levaAtual(userId2)).length}`)
-} finally {
-  if (userId2) await db.user.delete({ where: { id: userId2 } }).catch(() => {})
-}
-
-// ------------------------------------ aula fora da trilha conta, e a borda ---
-const marca3 = `teste-gatilho3-${Date.now()}`
-let userId3 = ""
-
-try {
-  const modulos = await db.modulo.findMany({
-    select: { id: true, slug: true },
-    orderBy: [{ tipoPerfil: "asc" }, { ordem: "asc" }],
-  })
-  const u = await db.user.create({ data: { email: `${marca3}@exemplo.invalido`, nome: "Teste 3" } })
-  userId3 = u.id
-
-  async function concluir3(moduloId: string, quando = new Date()) {
-    await db.progressoModulo.upsert({
-      where: { userId_moduloId: { userId: userId3, moduloId } },
-      create: { userId: userId3, moduloId, concluido: true, concluidoEm: quando, telaAtual: 999 },
-      update: { concluido: true, concluidoEm: quando },
-    })
-  }
-
-  console.log("\nAULA FORA DA TRILHA CONTA PARA O GATILHO")
-
-  const naLeva = modulos.slice(0, 4)
-  await garantirLevaInicial(userId3, naLeva.map((m) => m.slug))
-  await concluir3(naLeva[0].id)
-  await concluir3(naLeva[1].id)
-
-  const so2 = await progressoDaTrilha(userId3)
-  checar("2 de 4 recomendadas dá 50%", Math.round(so2.fracao * 100) === 50, `${so2.concluidos}/${so2.total}`)
-  checar("e não dispara", (await talvezGerarNovaLeva(userId3, escolherFake)).length === 0)
-
-  // Uma aula estudada por conta própria, achada pela busca da Trilha.
-  await concluir3(modulos[10].id)
-  const com3 = await progressoDaTrilha(userId3)
-  checar(
-    "estudar por fora sobe a conta",
-    com3.concluidos === 3 && com3.total === 5,
-    `${com3.concluidos}/${com3.total} = ${Math.round(com3.fracao * 100)}%`
-  )
-  checar("e passa a disparar", (await talvezGerarNovaLeva(userId3, escolherFake)).length === 4)
-} finally {
-  if (userId3) await db.user.delete({ where: { id: userId3 } }).catch(() => {})
-}
-
-const marca4 = `teste-gatilho4-${Date.now()}`
-let userId4 = ""
-
-try {
-  /**
-   * A borda: concluir TUDO deixa a fração exatamente no limiar depois da leva
-   * nova (6 de 6 vira 6/10 = 60%), e o gatilho dispararia outra vez na hora.
-   */
-  console.log("\nA BORDA DE QUEM CONCLUI TUDO")
-
-  const modulos = await db.modulo.findMany({
-    select: { id: true, slug: true },
-    orderBy: [{ tipoPerfil: "asc" }, { ordem: "asc" }],
-  })
-  const u = await db.user.create({ data: { email: `${marca4}@exemplo.invalido`, nome: "Teste 4" } })
-  userId4 = u.id
-
-  const seis = modulos.slice(0, 6)
-  await garantirLevaInicial(userId4, seis.map((m) => m.slug))
-  for (const m of seis) {
-    await db.progressoModulo.create({
-      data: { userId: userId4, moduloId: m.id, concluido: true, concluidoEm: new Date(), telaAtual: 999 },
-    })
-  }
-
-  checar("6 de 6 dá 100%", Math.round((await progressoDaTrilha(userId4)).fracao * 100) === 100)
-  const leva1 = await talvezGerarNovaLeva(userId4, escolherFake)
-  checar("dispara uma vez", leva1.length === 4, `${leva1.length}`)
-
-  const naBorda = await progressoDaTrilha(userId4)
-  checar(
-    "e fica EXATAMENTE no limiar, que a fração sozinha não barraria",
-    Math.round(naBorda.fracao * 100) === 60 && naBorda.fracao >= LIMIAR_NOVA_LEVA,
-    `${naBorda.concluidos}/${naBorda.total} = ${Math.round(naBorda.fracao * 100)}%`
-  )
-  checar("nada concluído desde a leva nova", naBorda.desdeUltimaLeva === 0)
-  checar(
-    "por isso NÃO dispara de novo",
-    (await talvezGerarNovaLeva(userId4, escolherFake)).length === 0
-  )
-  checar("continuam 10 recomendações", (await levaAtual(userId4)).length === 10,
-    `${(await levaAtual(userId4)).length}`)
-
-  // Concluir uma aula NOVA volta a destravar.
-  const jaNaLeva = new Set((await levaAtual(userId4)).map((r) => r.moduloId))
-  const proxima = modulos.find((m) => !jaNaLeva.has(m.id))
-  if (proxima) {
-    await db.progressoModulo.upsert({
-      where: { userId_moduloId: { userId: userId4, moduloId: proxima.id } },
-      create: { userId: userId4, moduloId: proxima.id, concluido: true, concluidoEm: new Date(), telaAtual: 999 },
-      update: { concluido: true, concluidoEm: new Date() },
-    })
-    checar("concluir algo novo volta a contar",
-      (await progressoDaTrilha(userId4)).desdeUltimaLeva === 1)
-  }
-
-  // ---------------------------------------------- aula vinda da conversa ---
-  /**
-   * `lacuna_chat` estava no schema desde o começo e nunca tinha sido escrito.
-   * O assistente citava a aula num card e o card morria com a conversa: a aula
-   * não entrava na trilha nem contava para o gatilho.
-   */
-  console.log("\nAULA QUE VEIO DA CONVERSA")
-
-  const foraDeTudo = modulos.filter((m) => !jaNaLeva.has(m.id))
-  if (foraDeTudo.length >= 2) {
-    const antes = (await levaAtual(userId4)).length
-    const n = await guardarRecomendacaoDoChat(
-      userId4,
-      [foraDeTudo[0].slug],
-      { [foraDeTudo[0].slug]: "porque você falou de fatura" }
-    )
-    checar("a aula citada no chat entra na trilha", n === 1, `${n}`)
-
-    const agora = await levaAtual(userId4)
-    checar("virou uma linha a mais", agora.length === antes + 1, `${antes} → ${agora.length}`)
-
-    const nova = agora.find((r) => r.slug === foraDeTudo[0].slug)
-    checar("com origem lacuna_chat", nova?.origem === "lacuna_chat", nova?.origem)
-    checar("já entregue: o card FOI a entrega", nova?.entregueEm !== null)
-    checar("e guarda o porquê que o assistente deu",
-      nova?.motivo === "porque você falou de fatura", nova?.motivo)
-
-    // O assistente citar a mesma aula de novo não pode inflar o denominador.
-    const repetido = await guardarRecomendacaoDoChat(userId4, [foraDeTudo[0].slug], {})
-    checar("citar a mesma aula de novo não grava nada", repetido === 0, `${repetido}`)
-    checar("continua o mesmo tamanho", (await levaAtual(userId4)).length === antes + 1)
-
-    // Aula que a pessoa JÁ tem na trilha por outra via também não duplica.
-    const umaJaNaTrilha = [...jaNaLeva][0]
-    const slugJaNaLeva = modulos.find((m) => m.id === umaJaNaTrilha)?.slug
-    if (slugJaNaLeva) {
-      const dup = await guardarRecomendacaoDoChat(userId4, [slugJaNaLeva], {})
-      checar("aula que já está na trilha não vira segunda linha", dup === 0, `${dup}`)
-    }
-  }
-} finally {
-  // Este bloco apagava `userId`, do PRIMEIRO caso, em vez de `userId4`. Foi
-  // assim que descartáveis foram parar no banco de produção: o teste dizia
-  // "nada ficou no banco" porque conferia a marca errada.
-  if (userId4) await db.user.delete({ where: { id: userId4 } }).catch(() => {})
   const varridos = await varrerDescartaveis("teste-gatilho")
   console.log(`\nlimpeza: ${varridos === 0 ? "nada ficou no banco" : `${varridos} descartável(is) varrido(s)`}`)
   await db.$disconnect()

@@ -294,6 +294,17 @@ model RecomendacaoTrilha {
   entregueEm DateTime?
   criadoEm   DateTime  @default(now())
 
+  /// A leva é uma UNIDADE, não um acúmulo.
+  ///
+  /// São 4 aulas que ficam à vista até a última ser concluída; só então a leva
+  /// fecha e outra de 4 entra. Sem este número, as recomendações se empilhavam
+  /// para sempre — uma conta chegou a 12 — e "Recomendados" virava um arquivo
+  /// morto em vez de responder "o que eu faço agora".
+  leva          Int       @default(1)
+  /// Trocada pelo chat: saiu da leva ativa, mas a linha fica para o histórico
+  /// mostrar que aquela aula chegou a ser recomendada e por quê.
+  substituidaEm DateTime?
+
   @@unique([userId, moduloId, origem])
 }
 

@@ -28,10 +28,24 @@ for (const c of CLASSIFICACAO_T1) {
   }
 }
 
-const semClassificar = [...slugs].filter((s) => !CLASSIFICACAO_T1.some((c) => c.slug === s))
-if (semClassificar.length) console.log(`\n  sem classificação: ${semClassificar.join(", ")}`)
+/**
+ * Módulo fora desta lista NÃO é erro: é da Temporada 2, que já nasce
+ * classificado no próprio seed. O que este script cobre é a reclassificação do
+ * que veio ANTES do schema de biblioteca existir.
+ *
+ * Erro de verdade é módulo sem posição nenhuma — nível vazio E sem situação —,
+ * porque aí alguém escreveu conteúdo que ninguém vai encontrar.
+ */
+const foraDaT1 = [...slugs].filter((s) => !CLASSIFICACAO_T1.some((c) => c.slug === s))
+const semPosicao = await db.modulo.findMany({
+  where: { slug: { in: foraDaT1 }, nivel: "", situacoes: { isEmpty: true } },
+  select: { slug: true },
+})
 
-console.log(`\n${CLASSIFICACAO_T1.length} classificados · ${faltando} faltando no banco · ${semClassificar.length} sem classificação`)
+if (foraDaT1.length) console.log(`\n  da T2, classificados no próprio seed: ${foraDaT1.join(", ")}`)
+if (semPosicao.length) console.log(`  SEM POSIÇÃO: ${semPosicao.map((m) => m.slug).join(", ")}`)
+
+console.log(`\n${CLASSIFICACAO_T1.length} da T1 classificados · ${faltando} faltando no banco · ${foraDaT1.length} da T2`)
 
 console.log("\nSOBREPOSIÇÕES COM O BACKLOG T2 (regra dos 70%)")
 for (const s of SOBREPOSICOES) {
@@ -41,4 +55,4 @@ for (const s of SOBREPOSICOES) {
 
 if (!aplicar) console.log("\n(simulação — rode com --aplicar)")
 await db.$disconnect()
-process.exit(faltando === 0 && semClassificar.length === 0 ? 0 : 1)
+process.exit(faltando === 0 && semPosicao.length === 0 ? 0 : 1)
