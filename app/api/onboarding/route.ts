@@ -5,6 +5,7 @@ import { responderIA, IANaoConfigurada, type MensagemChat } from "@/lib/ia"
 import { listarMemorias, guardarMemorias, type TipoMemoria } from "@/lib/memoria-repo"
 import { promptOnboarding } from "@/lib/prompts/onboarding"
 import { montarContexto } from "@/lib/contexto-financeiro"
+import { ativarIndicacaoSeHouver } from "@/lib/indicacao"
 
 export const dynamic = "force-dynamic"
 // Resposta de chat leva 5–15s. 60 dá folga sem deixar um travamento
@@ -113,6 +114,12 @@ export async function POST(req: NextRequest) {
           }),
           db.user.update({ where: { id: userId }, data: { onboardingEm: new Date() } }),
         ])
+        // A indicação ativa AQUI, não no cadastro: indicado só "vale" quando
+        // conversou de verdade. Idempotente — refazer a primeira conversa
+        // repassa por este ponto e a chave única dos pontos segura a repetição.
+        await ativarIndicacaoSeHouver(userId).catch((e) =>
+          console.error("[onboarding] indicação:", (e as Error)?.message)
+        )
       } catch (e) {
         console.error("[onboarding] falha ao concluir:", (e as Error)?.message)
       }

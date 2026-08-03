@@ -4,6 +4,7 @@ import Google from "next-auth/providers/google"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import bcrypt from "bcryptjs"
 import { db } from "@/lib/db"
+import { COOKIE_INDICACAO, vincularIndicacao } from "@/lib/indicacao"
 
 // Google só entra quando as credenciais existirem no .env.local
 // (criar em console.cloud.google.com → APIs & Services → Credentials)
@@ -49,6 +50,21 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     signIn: "/login",
   },
   providers,
+  events: {
+    // Conta criada pelo Google nasce no adapter, não em /api/cadastro — o
+    // vínculo de indicação precisa deste segundo gancho, lendo o MESMO cookie.
+    // next/headers entra por import dinâmico para este arquivo continuar
+    // importável fora de request (scripts de teste importam lib/*).
+    async createUser({ user }) {
+      try {
+        const { cookies } = await import("next/headers")
+        const codigo = (await cookies()).get(COOKIE_INDICACAO)?.value
+        if (codigo && user.id) await vincularIndicacao(user.id, codigo)
+      } catch (e) {
+        console.error("[auth] indicação no cadastro Google:", (e as Error)?.message)
+      }
+    },
+  },
   callbacks: {
     jwt({ token, user }) {
       if (user?.id) token.id = user.id

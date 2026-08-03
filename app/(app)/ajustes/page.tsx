@@ -5,8 +5,9 @@ import Link from "next/link"
 import { signOut } from "next-auth/react"
 import {
   ChevronRight, Download, LogOut, Trash2, Check, X, Clock,
-  User, Landmark, Sparkles, ShieldCheck, Palette, LifeBuoy, Brain, FileUp, MessageCircle,
+  User, Landmark, Sparkles, ShieldCheck, Palette, LifeBuoy, Brain, FileUp, MessageCircle, Gift,
 } from "lucide-react"
+import { ConvidarAmigos } from "@/components/ajustes/ConvidarAmigos"
 import { BottomNav } from "@/components/bottom-nav"
 import { SeletorTema } from "@/components/SeletorTema"
 import { SeletorPaleta } from "@/components/SeletorPaleta"
@@ -279,6 +280,11 @@ export default function AjustesPage() {
           <Acao rotulo="Conversar com o assistente" Icon={MessageCircle} href="/chat" />
           <EmBreve rotulo="Personalidade da IA" motivo="O tom do assistente é fixo por enquanto." />
           <EmBreve rotulo="Frequência de lembretes" motivo="Depende de notificações, ainda não implementadas." />
+        </Secao>
+
+        {/* ---------- CONVIDE AMIGOS ---------- */}
+        <Secao titulo="Convide amigos" Icon={Gift}>
+          <ConvidarAmigos />
         </Secao>
 
         {/* ---------- PRIVACIDADE ---------- */}

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import bcrypt from "bcryptjs"
 import { db } from "@/lib/db"
+import { COOKIE_INDICACAO, vincularIndicacao } from "@/lib/indicacao"
 
 export const dynamic = "force-dynamic"
 
@@ -39,7 +40,7 @@ export async function POST(req: NextRequest) {
 
     const hash = await bcrypt.hash(senha, 10)
 
-    await db.user.create({
+    const novo = await db.user.create({
       data: {
         nome: nome.trim(),
         email: emailNorm,
@@ -52,7 +53,22 @@ export async function POST(req: NextRequest) {
       },
     })
 
-    return NextResponse.json({ ok: true })
+    // Cookie plantado por /r/{codigo}. Falha aqui não derruba o cadastro:
+    // a conta é o produto, o convite é acessório.
+    const codigoRef = req.cookies.get(COOKIE_INDICACAO)?.value
+    if (codigoRef) {
+      try {
+        await vincularIndicacao(novo.id, codigoRef)
+      } catch (e) {
+        console.error("[cadastro] indicação:", (e as Error)?.message)
+      }
+    }
+
+    const res = NextResponse.json({ ok: true })
+    // Consumido, some — vinculado ou não. Deixar o cookie vivo faria a PRÓXIMA
+    // conta criada neste navegador cair no mesmo indicador sem ninguém clicar.
+    if (codigoRef) res.cookies.delete(COOKIE_INDICACAO)
+    return res
   } catch (e) {
     console.error("[cadastro]", e)
     return NextResponse.json({ error: "Erro ao criar conta. Tenta de novo?" }, { status: 500 })

@@ -23,6 +23,7 @@ model User {
   pontos                Int                  @default(0)
   apelido               String?              @unique // nome exibido no ranking
   rankingOptIn          Boolean              @default(false) // ranking é opt-in explícito
+  codigoIndicacao       String?              @unique // 8 chars base36 do link /r/{codigo} — gerado sob demanda, nunca no cadastro
   emailVerified         DateTime?
   image                 String?
   criadoEm              DateTime             @default(now())
@@ -39,8 +40,36 @@ model User {
   insights              Insight[]
   recomendacoes         RecomendacaoTrilha[]
   conversas             Conversa[]
+  indicacoesFeitas      Indicacao[]          @relation("indicador")
+  indicacaoRecebida     Indicacao?           @relation("indicado")
   accounts              Account[]
   sessions              Session[]
+}
+
+/// Programa de indicação: quem convidou quem, e se o convite "valeu".
+///
+/// `indicadoId` é ÚNICO de propósito: cada pessoa entra por no máximo UMA
+/// indicação, e é o banco que garante isso — não uma checagem de rota que uma
+/// segunda aba consegue furar. Autoindicação é barrada em lib/indicacao.ts.
+///
+/// O vínculo nasce "cadastrado" e só vira "ativado" quando o indicado termina
+/// a primeira conversa (onboardingEm) — cadastro sozinho não paga ponto,
+/// senão o programa premia criação de conta fantasma.
+///
+/// Os pontos dos dois lados usam refId = Indicacao.id, então apagar a conta
+/// do indicado leva a linha embora (Cascade) mas NÃO desfaz os pontos já
+/// pagos ao indicador — crédito é evento, não estado derivado.
+model Indicacao {
+  id          String    @id @default(cuid())
+  indicadorId String
+  indicador   User      @relation("indicador", fields: [indicadorId], references: [id], onDelete: Cascade)
+  indicadoId  String    @unique
+  indicado    User      @relation("indicado", fields: [indicadoId], references: [id], onDelete: Cascade)
+  status      String    @default("cadastrado") // "cadastrado" | "ativado"
+  criadoEm    DateTime  @default(now())
+  ativadoEm   DateTime?
+
+  @@index([indicadorId])
 }
 
 /// Memória do assistente: o que ele aprendeu sobre a pessoa e deve lembrar

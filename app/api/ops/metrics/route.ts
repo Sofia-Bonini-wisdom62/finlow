@@ -127,6 +127,38 @@ async function safeRead(
   }
 }
 
+/**
+ * Métricas do PRODUTO, direto do banco — a resposta desta rota era só Vertex,
+ * e "quantos usuários novos vieram por indicação" não mora no Google.
+ * Agregados apenas: nenhum e-mail, nome ou id sai daqui.
+ */
+async function metricasProduto() {
+  try {
+    const { db } = await import("@/lib/db")
+    const corte30d = new Date(Date.now() - 30 * 24 * 3600 * 1000)
+    const [usuarios, usuarios30d, indicados, indicados30d, ativadas] = await Promise.all([
+      db.user.count(),
+      db.user.count({ where: { criadoEm: { gte: corte30d } } }),
+      db.indicacao.count(),
+      db.indicacao.count({ where: { criadoEm: { gte: corte30d } } }),
+      db.indicacao.count({ where: { status: "ativado" } }),
+    ])
+    return {
+      ok: true as const,
+      usuarios: { total: usuarios, novos30d: usuarios30d },
+      indicacao: {
+        cadastradas: indicados,
+        ativadas,
+        // % dos usuários que entraram por indicação — na base toda e nos últimos 30 dias
+        pctViaIndicacao: usuarios > 0 ? indicados / usuarios : 0,
+        pctViaIndicacao30d: usuarios30d > 0 ? indicados30d / usuarios30d : 0,
+      },
+    }
+  } catch (err) {
+    return { ok: false as const, error: mensagemErro(err) }
+  }
+}
+
 export async function GET(request: Request) {
   const expected = process.env.OPS_METRICS_TOKEN
   if (expected) {
@@ -136,12 +168,15 @@ export async function GET(request: Request) {
     }
   }
 
+  const produto = await metricasProduto()
+
   let conexao: ReturnType<typeof getClient>
   try {
     conexao = getClient()
   } catch (err) {
+    // Vertex indisponível não esconde o produto: cada bloco falha sozinho.
     return NextResponse.json(
-      { ok: false, error: mensagemErro(err) },
+      { ok: false, error: mensagemErro(err), produto },
       { status: 500 },
     )
   }
@@ -181,6 +216,7 @@ export async function GET(request: Request) {
     project: projectId,
     windowHours: LOOKBACK_HOURS,
     generatedAt: new Date().toISOString(),
+    produto,
     errorRate,
     counters,
     latencyP50Ms: p50s,

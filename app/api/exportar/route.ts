@@ -13,10 +13,10 @@ export async function GET() {
   if (userId instanceof NextResponse) return userId
 
   try {
-    const [user, categorias, contas, transacoes, progresso] = await Promise.all([
+    const [user, categorias, contas, transacoes, progresso, indicacoesFeitas, indicacaoRecebida] = await Promise.all([
       db.user.findUnique({
         where: { id: userId },
-        select: { nome: true, email: true, dataNascimento: true, criadoEm: true, consentimentoPainelEm: true },
+        select: { nome: true, email: true, dataNascimento: true, criadoEm: true, consentimentoPainelEm: true, codigoIndicacao: true },
       }),
       db.categoria.findMany({
         where: { userId },
@@ -28,6 +28,17 @@ export async function GET() {
       db.progressoModulo.findMany({
         where: { userId },
         select: { concluido: true, telaAtual: true, concluidoEm: true, modulo: { select: { slug: true, titulo: true } } },
+      }),
+      // Indicações: só status e datas. A identidade do outro lado (quem entrou
+      // pelo meu link, ou quem me convidou) é dado DELE, não meu — não sai aqui.
+      db.indicacao.findMany({
+        where: { indicadorId: userId },
+        select: { status: true, criadoEm: true, ativadoEm: true },
+        orderBy: { criadoEm: "asc" },
+      }),
+      db.indicacao.findUnique({
+        where: { indicadoId: userId },
+        select: { status: true, criadoEm: true, ativadoEm: true },
       }),
     ])
 
@@ -55,6 +66,11 @@ export async function GET() {
         telaAtual: p.telaAtual,
         concluidoEm: p.concluidoEm,
       })),
+      indicacoes: {
+        meuCodigo: user?.codigoIndicacao ?? null,
+        convitesQueFiz: indicacoesFeitas,
+        entreiPorIndicacao: indicacaoRecebida,
+      },
     }
 
     const data = new Date().toISOString().split("T")[0]

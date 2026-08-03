@@ -24,6 +24,10 @@ export const PONTOS_POR_MOTIVO = {
   quiz_acerto: 5,
   lancamento_confirmado: 2,
   streak_semana: 20,
+  // Indicação paga quando o convidado TERMINA a primeira conversa, nunca no
+  // cadastro (lib/indicacao.ts). refId = Indicacao.id nos dois lados.
+  indicacao_ativada: 50, // para quem convidou
+  indicado_ativado: 20, // para quem entrou pelo convite
 } as const
 
 export type MotivoPonto = keyof typeof PONTOS_POR_MOTIVO

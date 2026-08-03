@@ -36,8 +36,8 @@ Legenda: ✅ pronto · 🔧 em desenvolvimento · 📋 planejado · 🚫 fora de
 | Fase | Promessa | Status | Onde |
 |---|---|---|---|
 | 1 | Documentação alinhada ao produto real | ✅ | `README.md`, este arquivo |
-| 2 | Programa de indicação (link → cadastro → ativação → pontos) | 📋 | — |
-| 2 | Métrica: % de novos usuários via indicação | 📋 | — |
+| 2 | Programa de indicação (link → cadastro → ativação → pontos) | ✅ | `lib/indicacao.ts`, `/r/[codigo]`, Ajustes |
+| 2 | Métrica: % de novos usuários via indicação | ✅ | `/api/ops/metrics`, bloco `produto` |
 | 3 | Diagnóstico de Vazamento (motor + página + card) | 📋 | — |
 | 3 | Entrega única no chat após 1º extrato | 📋 | — |
 | 4 | Módulo Avançado atrás de flag (`moduloAvancado`) | 📋 | — |
