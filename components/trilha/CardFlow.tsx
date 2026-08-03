@@ -20,7 +20,9 @@ interface Props {
    * O prefixo `ind_` é o que impede colisão com id de campo de formulário.
    */
   sessaoInicial?: SessaoFluxo
-  onConcluir: () => void
+  /** Recebe as respostas de quiz (telaId → letra) para o servidor conferir
+   *  e dar os pontos proporcionais ao acerto. */
+  onConcluir: (respostasQuiz: Record<string, string>) => void
   onAvancarTela: (tela: number) => void
 }
 
@@ -47,7 +49,7 @@ export function CardFlow({ modulo, telaInicial = 0, sessaoInicial, onConcluir, o
   function proxima() {
     if (!podeAvancar()) return
     if (ehUltima) {
-      onConcluir()
+      onConcluir(respostasQuiz)
       return
     }
     const next = atual + 1

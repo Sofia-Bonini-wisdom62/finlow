@@ -18,8 +18,8 @@ config({ path: ".env.local" })
 config({ path: ".env" })
 
 const { db } = await import("../lib/db.js")
-const { creditar, recalcularTotal, listarRanking, apelidoValido, inicioDoDiaSP, SEM_REF } =
-  await import("../lib/pontos.js")
+const { creditar, recalcularTotal, listarRanking, apelidoValido, inicioDoDiaSP, SEM_REF,
+  pontosPorConclusao } = await import("../lib/pontos.js")
 
 let falhas = 0
 /**
@@ -78,6 +78,23 @@ try {
   // Módulo diferente é trabalho diferente: tem de creditar.
   const c3 = await creditar(userId, "modulo_concluido", "modulo-y")
   checar("outro módulo credita normalmente", c3.creditado, `total=${c3.total}`)
+
+  // ------------------------------------------------ pontos proporcionais ---
+  console.log("\nPONTOS PROPORCIONAIS AO ACERTO")
+
+  checar("sem quiz vale cheio", pontosPorConclusao(0, 0) === 30, `${pontosPorConclusao(0, 0)}`)
+  checar("1 de 1 vale cheio", pontosPorConclusao(1, 1) === 30, `${pontosPorConclusao(1, 1)}`)
+  checar("0 de 1 vale o piso", pontosPorConclusao(0, 1) === 10, `${pontosPorConclusao(0, 1)}`)
+  checar("1 de 2 vale o meio", pontosPorConclusao(1, 2) === 20, `${pontosPorConclusao(1, 2)}`)
+  checar("acertos acima do total não estouram", pontosPorConclusao(5, 2) === 30)
+  checar("acertos negativos não afundam", pontosPorConclusao(-3, 2) === 10)
+
+  // O override é TETO, não substituto: ninguém infla ponto por ele.
+  const cProp = await creditar(userId, "modulo_concluido", "modulo-prop", 10)
+  checar("crédito proporcional grava o valor menor", cProp.creditado && cProp.pontos === 10)
+  const cInflado = await creditar(userId, "modulo_concluido", "modulo-inflado", 999)
+  checar("tentar creditar acima da tabela é cortado no teto",
+    cInflado.creditado && cInflado.pontos === 30, `${cInflado.pontos}`)
 
   // ----------------------------------------------------------------- teto ---
   console.log("\nTETO DIÁRIO")

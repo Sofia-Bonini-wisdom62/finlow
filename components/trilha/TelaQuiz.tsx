@@ -1,6 +1,8 @@
 "use client"
 
+import { useMemo } from "react"
 import { Check, X } from "lucide-react"
+import { embaralharPorSemente } from "@/lib/embaralhar"
 import type { ConteudoQuiz, OpcaoQuiz } from "@/types/trilha"
 
 interface Props {
@@ -10,7 +12,26 @@ interface Props {
   onSelecionar: (letra: string) => void
 }
 
+/**
+ * A ordem das opções é embaralhada NA EXIBIÇÃO, não nos dados.
+ *
+ * Motivo: no conteúdo gravado, metade das corretas estava na primeira posição
+ * — quem clicasse sempre na primeira acertaria sem ler. Reescrever 60 quizzes
+ * à mão só rebalancearia a foto de hoje; o próximo módulo escrito
+ * desbalancearia de novo. Embaralhar ao exibir resolve para sempre, inclusive
+ * para conteúdo antigo.
+ *
+ * O embaralho é DETERMINÍSTICO por pergunta (semente = headline): a mesma
+ * pessoa vê a mesma ordem ao voltar de tela, e ordens diferentes entre
+ * perguntas. A letra exibida é a da POSIÇÃO; a `letra` original vira só
+ * identidade interna, que é o que o servidor confere ao dar os pontos.
+ */
 export function TelaQuiz({ conteudo, selecionada, onSelecionar }: Props) {
+  const opcoes = useMemo(
+    () => embaralharPorSemente(conteudo.opcoes, conteudo.headline),
+    [conteudo]
+  )
+
   function selecionar(opcao: OpcaoQuiz) {
     if (selecionada !== null) return
     onSelecionar(opcao.letra)
@@ -23,7 +44,7 @@ export function TelaQuiz({ conteudo, selecionada, onSelecionar }: Props) {
       <h2 className="text-2xl font-bold leading-snug text-white">{conteudo.headline}</h2>
 
       <div className="flex flex-col gap-3">
-        {conteudo.opcoes.map((opcao) => {
+        {opcoes.map((opcao, indice) => {
           const isSelected = selecionada === opcao.letra
           const isResponded = selecionada !== null
           const isCorreta = opcao.correta
@@ -58,7 +79,9 @@ export function TelaQuiz({ conteudo, selecionada, onSelecionar }: Props) {
                 ) : isResponded && isSelected && !isCorreta ? (
                   <X className="size-4 text-[#D08277]" aria-label="Incorreta" />
                 ) : (
-                  opcao.letra
+                  // Letra da POSIÇÃO exibida, não a dos dados: depois do
+                  // embaralho, a letra gravada deixa de corresponder à ordem.
+                  String.fromCharCode(65 + indice)
                 )}
               </span>
               <span className={`text-sm leading-relaxed ${textColor}`}>{opcao.texto}</span>

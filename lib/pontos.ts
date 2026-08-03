@@ -38,6 +38,27 @@ export type MotivoPonto = keyof typeof PONTOS_POR_MOTIVO
 export const SEM_REF = "-"
 
 /**
+ * Pontos de um módulo concluído, proporcionais ao acerto nos quizzes.
+ *
+ * O motivo de existir: dava para concluir clicando em qualquer alternativa —
+ * o fluxo deixa avançar com resposta errada de propósito, porque o feedback
+ * ensina — e levar os 30 pontos inteiros. Concluir clicando aleatório valia o
+ * mesmo que concluir lendo.
+ *
+ * A régua: módulo sem quiz vale cheio (não há o que errar); com quiz, um
+ * piso de 10 por ter percorrido as telas, mais o resto proporcional ao
+ * acerto. Errar tudo ainda paga o piso — a pessoa viu o conteúdo e o
+ * feedback corrigiu, o que já é a aula acontecendo.
+ */
+export function pontosPorConclusao(acertos: number, totalQuiz: number): number {
+  const cheio = PONTOS_POR_MOTIVO.modulo_concluido
+  if (totalQuiz <= 0) return cheio
+  const piso = 10
+  const fracao = Math.max(0, Math.min(1, acertos / totalQuiz))
+  return piso + Math.round((cheio - piso) * fracao)
+}
+
+/**
  * Teto por dia, para os motivos que a própria pessoa dispara à vontade.
  *
  * A chave única impede pagar DUAS VEZES pela mesma coisa. Ela não impede fazer
@@ -99,9 +120,19 @@ export interface Credito {
 export async function creditar(
   userId: string,
   motivo: MotivoPonto,
-  refId: string = SEM_REF
+  refId: string = SEM_REF,
+  /**
+   * Valor menor que o da tabela, para crédito proporcional (módulo concluído
+   * com quiz errado). É TETO, não substituto: nunca credita acima da tabela,
+   * então nenhum chamador consegue inflar pontos por aqui.
+   */
+  pontosCustom?: number
 ): Promise<Credito> {
-  const pontos = PONTOS_POR_MOTIVO[motivo]
+  const tabela = PONTOS_POR_MOTIVO[motivo]
+  const pontos =
+    pontosCustom === undefined
+      ? tabela
+      : Math.max(0, Math.min(tabela, Math.round(pontosCustom)))
 
   const teto = TETO_DIARIO[motivo]
   if (teto !== undefined) {

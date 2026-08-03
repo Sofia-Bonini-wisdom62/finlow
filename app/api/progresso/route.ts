@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { auth } from "@/lib/auth"
-import { creditar } from "@/lib/pontos"
+import { creditar, pontosPorConclusao } from "@/lib/pontos"
 
 export const dynamic = "force-dynamic"
 
@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
     const userId = await getUserId(req)
     if (!userId) return NextResponse.json({ error: "userId obrigatório" }, { status: 400 })
 
-    const { moduloId } = await req.json()
+    const { moduloId, respostas } = await req.json()
     if (!moduloId) return NextResponse.json({ error: "moduloId obrigatório" }, { status: 400 })
 
     await ensureUser(userId)
@@ -64,12 +64,41 @@ export async function POST(req: NextRequest) {
       update: { concluido: true, concluidoEm: new Date() },
     })
 
+    /**
+     * Os pontos são proporcionais ao acerto nos quizzes, e quem confere é o
+     * SERVIDOR, contra o gabarito do banco. O cliente manda as escolhas
+     * (telaId → letra), nunca "acertei N": mandar acertos seria pedir para o
+     * navegador dar a própria nota.
+     *
+     * Resposta ausente conta como erro. É a escolha anti-fraude: quem POSTar
+     * direto na rota sem responder nada leva o piso, não o cheio — e quem usa
+     * o app de verdade sempre respondeu, porque o fluxo não avança sem.
+     */
+    const quizzes = await db.tela.findMany({
+      where: { moduloId, tipo: "quiz" },
+      select: { id: true, conteudo: true },
+    })
+    const escolhas: Record<string, string> =
+      respostas && typeof respostas === "object" ? respostas : {}
+    let acertos = 0
+    for (const q of quizzes) {
+      const opcoes = ((q.conteudo as { opcoes?: { letra: string; correta: boolean }[] })
+        ?.opcoes) ?? []
+      const escolhida = opcoes.find((o) => o.letra === escolhas[q.id])
+      if (escolhida?.correta) acertos++
+    }
+
     // Refazer um módulo já concluído não credita de novo: o refId é o próprio
     // módulo, então a segunda vez esbarra na chave única e vira `creditado:
     // false`. Ponto não pode ser pagar de novo pelo mesmo trabalho.
-    const credito = await creditar(userId, "modulo_concluido", moduloId)
+    const credito = await creditar(
+      userId,
+      "modulo_concluido",
+      moduloId,
+      pontosPorConclusao(acertos, quizzes.length)
+    )
 
-    return NextResponse.json({ ok: true, pontos: credito })
+    return NextResponse.json({ ok: true, pontos: credito, acertos, quizzes: quizzes.length })
   } catch (e) {
     console.warn("[progresso POST]", e)
     return NextResponse.json({ ok: false }, { status: 500 })

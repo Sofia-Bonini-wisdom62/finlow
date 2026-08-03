@@ -733,7 +733,7 @@ export const modulosSeeds: SeedModulo[] = [
         insight: { label: "Por que isso importa", texto: "Não dá pra prever qual compra vai aparecer. Dá pra decidir ANTES o que acontece quando ela aparecer. Regra pré-combinada vence decisão tomada no calor do momento." },
       }},
       { ordem: 1, tipo: "quiz", label: "Situação real", conteudo: {
-        headline: "Sexta à noite: o notebook que você queria, 30% off, 'só hoje'. O que o Lançador treinado faz?",
+        headline: "Sexta à noite: o notebook que você queria, 30% off, 'só hoje'. O que quem já treinou o freio faz?",
         opcoes: [
           { letra: "A", texto: "Anota, fecha o app e decide amanhã no mesmo horário", correta: true, feedback: "Isso. Se amanhã ainda fizer sentido, e couber sem tocar no respiro. Compra. A maioria das 'promoções de hoje' reaparece na semana seguinte com outro nome." },
           { letra: "B", texto: "Compra. 30% off é economia, não gasto", correta: false, feedback: "Desconto em algo que você não ia comprar não é economia: é gasto com marketing de urgência embutido. O 'só hoje' foi desenhado exatamente pra impedir o seu amanhã." },
@@ -764,7 +764,7 @@ export const modulosSeeds: SeedModulo[] = [
         insightDinamico: "Sua regra a partir de hoje: acima de R$ {valorLimite}, anota e decide amanhã. Uma regra só, decidida com a cabeça fria de hoje, protegendo todas as sextas à noite do futuro.",
       }},
       { ordem: 5, tipo: "conceito", label: "Trilha completa", conteudo: {
-        headline: "Trilha do Lançador <em>completa</em> 🏁",
+        headline: "Trilha de fluxo de caixa <em>completa</em> 🏁",
         corpo: "Olha o sistema que você montou: <strong>enxerga o fluxo</strong> (M1), <strong>separa antes de gastar</strong> (M2), <strong>tem uma meta puxando</strong> (M3) e <strong>um freio protegendo</strong> (M4). Isso não é teoria: são quatro regras suas, com seus números.",
         insight: { label: "Trilha completa", texto: "O jogo agora é manutenção: o respiro todo mês, o freio nos gastos grandes, e a meta enchendo. Quando ela completar. Escolhe a próxima e roda de novo." },
       }},
@@ -809,7 +809,7 @@ export const modulosSeeds: SeedModulo[] = [
       }},
       { ordem: 3, tipo: "conceito", label: "O nome disso", conteudo: {
         headline: "Orçamento não é corrente: é <em>alvará</em>",
-        corpo: "Todo mundo acha que orçamento serve pra impedir gasto. Pro seu perfil é o contrário: <strong>o orçamento é o documento que AUTORIZA o gasto.</strong> Com limite claro, a liberdade dentro dele é total.",
+        corpo: "Todo mundo acha que orçamento serve pra impedir gasto. Pra quem guarda bem é o contrário: <strong>o orçamento é o documento que AUTORIZA o gasto.</strong> Com limite claro, a liberdade dentro dele é total.",
         insight: { label: "O tamanho certo", texto: "Entre 10% e 30% do que entra é uma faixa comum. Menos que isso e a regra quase não muda sua vida. O número exato é seu. O que importa é ele existir e ser usado." },
       }},
       { ordem: 4, tipo: "input", label: "Agora é com você", conteudo: {
@@ -827,7 +827,7 @@ export const modulosSeeds: SeedModulo[] = [
         faixas: [
           { condicao: "valor < 10", mensagem: "Menos de 10% é quase simbólico. A regra existe mas mal muda seu mês. Se a ideia de subir dá aperto no peito, repara nisso: é exatamente a dissonância do módulo 1 defendendo território.", cor: "yellow" },
           { condicao: "valor <= 30", mensagem: "Faixa de equilíbrio: espaço real pra viver sem comprometer o que você guarda. Agora a regra é usar. Valor livre que sobra todo mês vira poupança disfarçada, e aí nada mudou.", cor: "green" },
-          { condicao: "valor > 30", mensagem: "Passo grande pro seu perfil, e pode ser ótimo. Só confere no fim do mês se foi confortável ou se a culpa apareceu. A regra certa é a que você consegue manter em paz.", cor: "yellow" },
+          { condicao: "valor > 30", mensagem: "Passo grande pra quem está acostumado a segurar, e pode ser ótimo. Só confere no fim do mês se foi confortável ou se a culpa apareceu. A regra certa é a que você consegue manter em paz.", cor: "yellow" },
         ],
         insightDinamico: "{livre} por mês, seus, sem julgamento. Gastou dentro disso? Assunto encerrado, o plano já tinha aprovado.",
       }},
@@ -852,7 +852,7 @@ export const modulosSeeds: SeedModulo[] = [
     telas: [
       { ordem: 0, tipo: "conceito", label: "Ponto de partida", conteudo: {
         headline: "Guardar você domina. Mas onde o dinheiro <em>dorme?</em>",
-        corpo: "Plot twist do seu perfil: o dinheiro que você protege com tanto cuidado está <strong>perdendo valor em silêncio.</strong> Todo ano tudo fica mais caro, e R$ 20.000 parados continuam R$ 20.000, comprando menos.",
+        corpo: "O contrassenso de quem guarda bem: o dinheiro que você protege com tanto cuidado está <strong>perdendo valor em silêncio.</strong> Todo ano tudo fica mais caro, e R$ 20.000 parados continuam R$ 20.000, comprando menos.",
         insight: { label: "Por que isso importa", texto: "Isso se chama inflação. Ela não cobra de quem gasta. Cobra de quem guarda parado. Ou seja: cobra exatamente de você. A defesa é fazer o guardado render pelo menos o suficiente pra empatar." },
       }},
       { ordem: 1, tipo: "input", label: "Agora é com você", conteudo: {
@@ -905,7 +905,7 @@ export const modulosSeeds: SeedModulo[] = [
   {
     slug: "guardador-m4-prazer",
     titulo: "Prazer com data marcada",
-    subtitulo: "O módulo que seu perfil mais precisa.",
+    subtitulo: "Gastar planejado também é saúde financeira.",
     tipoPerfil: "guardador",
     ordem: 4,
     xp: 50,
@@ -916,7 +916,7 @@ export const modulosSeeds: SeedModulo[] = [
         insight: { label: "Por que isso importa", texto: "Gasto planejado com antecedência tem um bônus escondido: a espera. Quem marca a viagem pra daqui a três meses aproveita duas vezes. Os três meses de expectativa e a viagem em si." },
       }},
       { ordem: 1, tipo: "quiz", label: "Situação real", conteudo: {
-        headline: "O Théo quer ir num show daqui a 2 meses (R$ 400). O que o Guardador treinado faz?",
+        headline: "O Théo quer ir num show daqui a 2 meses (R$ 400). O que quem planeja o prazer faz?",
         opcoes: [
           { letra: "A", texto: "Reserva R$ 200/mês do valor livre e compra o ingresso já", correta: true, feedback: "Isso. Cabe no valor livre, tem data, tem plano. Comprar já garante o preço e transforma dois meses de espera em dois meses de expectativa boa." },
           { letra: "B", texto: "Espera a véspera pra decidir se 'realmente vale a pena'", correta: false, feedback: "Você conhece o final: na véspera o ingresso subiu ou esgotou, e a dúvida vence de novo. 'Decidir depois' nesse perfil quase sempre significa 'não'." },
@@ -949,7 +949,7 @@ export const modulosSeeds: SeedModulo[] = [
         insightDinamico: "Gasto planejado, alinhado ao que importa, dentro da sua regra. Se a culpa aparecer mesmo assim, ela não está te protegendo de nada: é só o hábito antigo fazendo barulho.",
       }},
       { ordem: 5, tipo: "conceito", label: "Trilha completa", conteudo: {
-        headline: "Trilha do Guardador <em>completa</em> 🏁",
+        headline: "Trilha de guardar e usar <em>completa</em> 🏁",
         corpo: "Olha o caminho: você entendeu a culpa (M1), criou seu valor livre (M2), acordou o dinheiro parado (M3) e <strong>marcou data com o próprio prazer</strong> (M4). Guardar continua sendo seu superpoder, agora com direção.",
         insight: { label: "Trilha completa", texto: "Manutenção: valor livre todo mês (e USA ele), guardado rendendo, e pelo menos uma experiência com data marcada por vez. Segurança e vida, as duas ao mesmo tempo." },
       }},
@@ -1131,7 +1131,7 @@ export const modulosSeeds: SeedModulo[] = [
         insightDinamico: "Sua lista vive em: \"{onde}\". A partir de hoje o fluxo é um só: impulso → pausa → lista → 7 dias → decisão. Nenhuma etapa é proibição, todas são filtro.",
       }},
       { ordem: 5, tipo: "conceito", label: "Trilha completa", conteudo: {
-        headline: "Trilha do Impulsivo <em>completa</em> 🏁",
+        headline: "Trilha de compra por impulso <em>completa</em> 🏁",
         corpo: "Olha o sistema: você <strong>conhece seu gatilho</strong> (M1), <strong>tem uma pausa que dispara sozinha</strong> (M2), <strong>um alívio que não custa</strong> (M3) e <strong>uma lista que separa desejo real de falso alarme</strong> (M4). O impulso não sumiu, ele só não manda mais.",
         insight: { label: "Trilha completa", texto: "Manutenção: a pausa em todo gasto acima do limite, o substituto quando o gatilho bater, e a lista rodando. O que sobreviver, compra sem culpa, isso também é vitória." },
       }},
@@ -1287,7 +1287,7 @@ export const modulosSeeds: SeedModulo[] = [
         opcoes: [
           { letra: "A", texto: "Registrar sem drama e ajustar a semana seguinte", correta: true, feedback: "Exato. O check é painel de controle, não tribunal. Uma semana falhada e detectada custa uma semana. Uma semana falhada e escondida vira um mês, e depois vira o fim do plano." },
           { letra: "B", texto: "Compensar dobrando o valor da próxima semana", correta: false, feedback: "Punição transforma o check em coisa a evitar, e check evitado é plano morto. Além disso, dobrar o valor depois de falhar o normal é receita pra falhar de novo, agora com juros de culpa." },
-          { letra: "C", texto: "Nada. Falhou uma vez, o plano já era", correta: false, feedback: "O pensamento tudo-ou-nada de novo. O maior inimigo do seu perfil. Todo plano de longo prazo tem semanas falhas. A diferença entre realizar e desistir é o que acontece na semana SEGUINTE." },
+          { letra: "C", texto: "Nada. Falhou uma vez, o plano já era", correta: false, feedback: "O pensamento tudo-ou-nada de novo. O maior inimigo de quem tem muitos planos. Todo plano de longo prazo tem semanas falhas. A diferença entre realizar e desistir é o que acontece na semana SEGUINTE." },
         ],
       }},
       { ordem: 2, tipo: "conceito", label: "Como funciona", conteudo: {
@@ -1310,7 +1310,7 @@ export const modulosSeeds: SeedModulo[] = [
         insightDinamico: "Registro em: \"{onde}\". Três perguntas, cinco minutos, toda semana. Esse ritual minúsculo é o que separa a sua trilha inteira de mais um plano bonito que ficou pela metade. Primeira sessão: já no próximo {dia}.",
       }},
       { ordem: 5, tipo: "conceito", label: "Trilha completa", conteudo: {
-        headline: "Trilha do Sonhador <em>completa</em> 🏁",
+        headline: "Trilha de metas e planos <em>completa</em> 🏁",
         corpo: "Olha a jornada: um objetivo <strong>escolhido e ancorado</strong> (M1), um <strong>primeiro passo que quebrou o zero</strong> (M2), a <strong>matemática conferida</strong> (M3) e um <strong>ritual que sobrevive à empolgação</strong> (M4). Você não virou outra pessoa, virou alguém que executa o que planeja.",
         insight: { label: "Trilha completa", texto: "Manutenção: o se-então rodando, o check toda semana, e quando a meta completar. Comemora de verdade, e só DEPOIS escolhe a próxima. Um objetivo por vez continua sendo a regra." },
       }},

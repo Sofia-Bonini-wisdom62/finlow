@@ -73,8 +73,10 @@ export default function ModuloPage() {
       telaInicial={telaInicial}
       sessaoInicial={indicadores}
       onAvancarTela={(tela) => { salvarProgresso("PATCH", { telaAtual: tela }) }}
-      onConcluir={() => {
-        salvarProgresso("POST", {}).finally(() => router.push("/perfil"))
+      onConcluir={(respostas) => {
+        // As respostas vão para o servidor CONFERIR contra o gabarito do
+        // banco — o cliente não manda acertos, manda escolhas.
+        salvarProgresso("POST", { respostas }).finally(() => router.push("/perfil"))
       }}
     />
   )

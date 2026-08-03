@@ -228,7 +228,7 @@ export const MODULOS_T2: ModuloNovo[] = [
             { label: "O que o credor cobrava", valor: 2500, tipo: "saldo" },
           ],
           rodape:
-            "A parte que cresceu foi a de encargos, não a da compra. É justamente essa parte que o credor tem margem para descontar numa negociação — ele prefere receber o principal a não receber nada.",
+            "A parte que cresceu foi a de encargos, não a da compra. É justamente essa parte que o credor tem margem para descontar numa negociação, ele prefere receber o principal a não receber nada.",
         },
       },
       {
@@ -276,7 +276,7 @@ export const MODULOS_T2: ModuloNovo[] = [
         conteudo: {
           headline: "Quanto está em atraso hoje?",
           subtitulo:
-            "Só o que já passou do vencimento. Valor aproximado serve — o objetivo é ter um número na mão antes de ligar.",
+            "Só o que já passou do vencimento. Valor aproximado serve: o objetivo é ter um número na mão antes de ligar.",
           aviso: "Fica só nesta tela, no seu aparelho. Não é gravado em lugar nenhum.",
           campos: [
             { id: "divida", emoji: "📄", label: "Total em atraso", placeholder: "2500", tipo: "decimal" },
@@ -305,7 +305,7 @@ export const MODULOS_T2: ModuloNovo[] = [
             },
           ],
           insightDinamico:
-            "Para calibrar: o ticket médio de acordo no Brasil é {{ticket_acordo}}, e a dívida média de quem está negativado é {{divida_media}}. Isso não é promessa de desconto — depende do credor, do tempo de atraso e da campanha do mês. É só o retrato de onde as negociações costumam fechar.",
+            "Para calibrar: o ticket médio de acordo no Brasil é {{ticket_acordo}}, e a dívida média de quem está negativado é {{divida_media}}. Isso não é promessa de desconto: depende do credor, do tempo de atraso e da campanha do mês. É só o retrato de onde as negociações costumam fechar.",
         },
       },
       {
@@ -371,7 +371,7 @@ export const MODULOS_T2: ModuloNovo[] = [
             { label: "Juros do parcelamento no ano", valor: 190, tipo: "saida" },
           ],
           rodape:
-            "O conserto custou R$ 1.400. Ela pagou R$ 1.590. A diferença é o preço de não ter tido R$ 1.400 parados — e ela ficou com 6 meses de parcela comprometida, o que reduziu a chance de guardar para o próximo imprevisto.",
+            "O conserto custou R$ 1.400. Ela pagou R$ 1.590. A diferença é o preço de não ter tido R$ 1.400 parados, e ela ficou com 6 meses de parcela comprometida, o que reduziu a chance de guardar para o próximo imprevisto.",
         },
       },
       {
@@ -404,7 +404,7 @@ export const MODULOS_T2: ModuloNovo[] = [
             },
           ],
           insightDinamico:
-            "E o número cheio não é a meta de agora. A meta de agora é UM mês: {valor}. É o suficiente para o próximo imprevisto não virar cartão, e é o que faz a maioria das pessoas continuar em vez de desistir olhando para {reserva6}.",
+            "E o número cheio não é a meta de agora. A meta de agora é UM mês: R$ {valor}. É o suficiente para o próximo imprevisto não virar cartão, e é o que faz a maioria das pessoas continuar em vez de desistir olhando para {reserva6}.",
         },
       },
       {
@@ -624,7 +624,7 @@ export const MODULOS_T2: ModuloNovo[] = [
         conteudo: {
           headline: "Parcelado sem juros é dívida, só que sem a palavra dívida",
           corpo:
-            "Não tem juro, é verdade. Mas tem uma coisa que o juro também tem: ele compromete uma renda que ainda não chegou.\n\nCada 10x que você aceita hoje reserva um pedaço dos seus próximos dez meses. Quando várias se acumulam, o salário chega e já está gasto — e aí a compra do mês entra no cartão de novo, porque não sobrou dinheiro vivo.",
+            "Não tem juro, é verdade. Mas tem uma coisa que o juro também tem: ele compromete uma renda que ainda não chegou.\n\nCada 10x que você aceita hoje reserva um pedaço dos seus próximos dez meses. Quando várias se acumulam, o salário chega e já está gasto, e aí a compra do mês entra no cartão de novo, porque não sobrou dinheiro vivo.",
           insight: {
             label: "O tamanho disso no Brasil",
             texto:
@@ -687,7 +687,7 @@ export const MODULOS_T2: ModuloNovo[] = [
             {
               condicao: "valor >= 0",
               mensagem:
-                "Sobra espaço no mês que vem. É desse espaço que sai a reserva — e é ele que o próximo 10x consome.",
+                "Sobra espaço no mês que vem. É desse espaço que sai a reserva, e é ele que o próximo 10x consome.",
               cor: "green",
             },
           ],
@@ -775,7 +775,7 @@ export const MODULOS_T2: ModuloNovo[] = [
         conteudo: {
           headline: "O salário combinado é o bruto. O que cai é o líquido",
           corpo:
-            "Entre um e outro entram descontos obrigatórios:\n\n• INSS — sua contribuição para a Previdência. É o que garante aposentadoria, auxílio-doença e salário-maternidade.\n• IRRF — imposto de renda retido direto na fonte. Depende da faixa e de quantos dependentes você tem.\n• Outros — vale-transporte, plano de saúde, consignado, se houver.\n\nO FGTS não aparece como desconto: ele é depositado PELO empregador numa conta no seu nome. Não sai do seu líquido.",
+            "Entre um e outro entram descontos obrigatórios:\n\n• INSS: sua contribuição para a Previdência. É o que garante aposentadoria, auxílio-doença e salário-maternidade.\n• IRRF: imposto de renda retido direto na fonte. Depende da faixa e de quantos dependentes você tem.\n• Outros: vale-transporte, plano de saúde, consignado, se houver.\n\nO FGTS não aparece como desconto: ele é depositado PELO empregador numa conta no seu nome. Não sai do seu líquido.",
           insight: {
             label: "Por que isso é confuso",
             texto:
@@ -900,7 +900,7 @@ export const MODULOS_T2: ModuloNovo[] = [
         conteudo: {
           headline: "A vantagem da casa é embutida, não escondida",
           corpo:
-            "Numa aposta equilibrada, com chance real de 50%, o pagamento justo seria 2 para 1. A casa paga menos que isso — 1,90, 1,85. A diferença é a margem dela.\n\nEssa margem não aparece em nenhum lugar, não é ilegal e não é trapaça. É o preço do serviço. E ela funciona igual ao juro composto: pequena em cada rodada, inevitável ao longo de muitas.\n\nPor isso apostar mais vezes não aumenta a chance de recuperar. Aumenta a certeza de que a margem vai aparecer.",
+            "Numa aposta equilibrada, com chance real de 50%, o pagamento justo seria 2 para 1. A casa paga menos que isso. 1,90, 1,85. A diferença é a margem dela.\n\nEssa margem não aparece em nenhum lugar, não é ilegal e não é trapaça. É o preço do serviço. E ela funciona igual ao juro composto: pequena em cada rodada, inevitável ao longo de muitas.\n\nPor isso apostar mais vezes não aumenta a chance de recuperar. Aumenta a certeza de que a margem vai aparecer.",
           insight: {
             label: "O que os dados brasileiros mostram",
             texto:
@@ -921,7 +921,7 @@ export const MODULOS_T2: ModuloNovo[] = [
             { label: "Perdeu de novo, dobrou de novo", valor: 400, tipo: "saida" }
           ],
           rodape:
-            "A cada perda, a aposta seguinte cresceu. Não por vício de jogo: por uma conta que parece lógica — se eu recuperar, empato. O problema é que a margem da casa incide sobre o valor apostado, e o valor apostado estava crescendo.",
+            "A cada perda, a aposta seguinte cresceu. Não por vício de jogo, mas por uma conta que parece lógica: se eu recuperar, empato. O problema é que a margem da casa incide sobre o valor apostado, e o valor apostado estava crescendo.",
         },
       },
       {
@@ -949,7 +949,7 @@ export const MODULOS_T2: ModuloNovo[] = [
             {
               condicao: "valor > 1200",
               mensagem:
-                "Você chutou acima do que foi apostado. Isso acontece porque a memória guarda os ganhos com muito mais nitidez que as perdas — é assim que o produto foi desenhado para ser lembrado.",
+                "Você chutou acima do que foi apostado. Isso acontece porque a memória guarda os ganhos com muito mais nitidez que as perdas: é assim que o produto foi desenhado para ser lembrado.",
               cor: "red",
             },
             {
@@ -977,7 +977,7 @@ export const MODULOS_T2: ModuloNovo[] = [
             { letra: "C", texto: "Perder uma aposta grande", correta: false,
               feedback: "Perder faz parte, e uma perda grande isolada não define nada. O que define é o que se faz depois dela." },
             { letra: "D", texto: "Usar aplicativo em vez de casa física", correta: false,
-              feedback: "O canal não muda a matemática. O que muda é a facilidade de repetir, e é por isso que o sinal da letra B aparece mais rápido no aplicativo." },
+              feedback: "O canal não muda a matemática. O que muda é a facilidade de repetir, e é por isso que perseguir a perda aparece mais rápido no aplicativo." },
           ],
         },
       },
@@ -996,7 +996,7 @@ export const MODULOS_T2: ModuloNovo[] = [
             },
           ],
           insightDinamico:
-            "Onde procurar: o SUS atende transtorno do jogo pela rede de saúde mental, pelos CAPS. E o CVV atende 24 horas, de graça, pelo 188 — para qualquer sofrimento, inclusive o de dívida.",
+            "Onde procurar: o SUS atende transtorno do jogo pela rede de saúde mental, pelos CAPS. E o CVV atende 24 horas, de graça, pelo 188: para qualquer sofrimento, inclusive o de dívida.",
         },
       },
     ],
@@ -1043,7 +1043,7 @@ export const MODULOS_T2: ModuloNovo[] = [
             { label: "O Pix de segurança que pediram", valor: 2400, tipo: "saida" }
           ],
           rodape:
-            "Tudo batia: o atendente sabia o nome dela, os quatro últimos dígitos do cartão, e o número no visor era o do banco. O único detalhe fora do lugar era o pedido em si — banco nenhum pede transferência para conta segura, porque isso não existe.",
+            "Tudo batia: o atendente sabia o nome dela, os quatro últimos dígitos do cartão, e o número no visor era o do banco. O único detalhe fora do lugar era o pedido em si: banco nenhum pede transferência para conta segura, porque isso não existe.",
         },
       },
       {
@@ -1058,9 +1058,9 @@ export const MODULOS_T2: ModuloNovo[] = [
             { letra: "B", texto: "Desligo e ligo eu mesma no número do cartão", correta: true,
               feedback: "Certo, e é a única resposta que funciona sempre. Quem liga controla a ligação; quem retorna pelo número oficial controla a verificação." },
             { letra: "C", texto: "Peço pra pessoa provar que é do banco", correta: false,
-              feedback: "Eles têm os seus dados — nome, final do cartão, às vezes até compras recentes. Provar identidade por telefone é justamente o que não dá para fazer." },
+              feedback: "Eles têm os seus dados: nome, final do cartão, às vezes até compras recentes. Provar identidade por telefone é justamente o que não dá para fazer." },
             { letra: "D", texto: "Bloqueio o cartão pelo aplicativo e continuo ouvindo", correta: false,
-              feedback: "Bloquear é bom, continuar na linha não. Enquanto você fala, eles trabalham — e o número no visor pode ser clonado." },
+              feedback: "Bloquear é bom, continuar na linha não. Enquanto você fala, eles trabalham, e o número no visor pode ser clonado." },
           ],
         },
       },
@@ -1098,7 +1098,7 @@ export const MODULOS_T2: ModuloNovo[] = [
             {
               condicao: "valor >= 0",
               mensagem:
-                "Senha, código de SMS, Pix para conta segura, cartão na mão de um portador: nada disso é procedimento de banco nenhum, em nenhuma circunstância.\n\nA regra que resolve todos de uma vez: desconfie, desligue, confirme pelo canal oficial. Não é preciso identificar o golpe — basta nunca agir dentro da ligação que chegou até você.",
+                "Senha, código de SMS, Pix para conta segura, cartão na mão de um portador: nada disso é procedimento de banco nenhum, em nenhuma circunstância.\n\nA regra que resolve todos de uma vez: desconfie, desligue, confirme pelo canal oficial. Não é preciso identificar o golpe: basta nunca agir dentro da ligação que chegou até você.",
               cor: "green",
             },
           ],
@@ -1138,7 +1138,7 @@ export const MODULOS_T2: ModuloNovo[] = [
     telas: [
       { ordem: 0, tipo: "conceito", label: "A assinatura da fraude", conteudo: {
         headline: "Retorno alto, garantido e sem risco: os três juntos não existem",
-        corpo: "Investimento de verdade tem os três presos por um elástico: quanto maior o retorno, maior o risco, ou menor a liquidez. Sempre. Quem promete os três no máximo não descobriu um atalho — está pagando os antigos com o dinheiro dos novos.\n\nIsso tem nome: esquema Ponzi. Funciona enquanto entra gente nova, e quebra no dia em que para de entrar. Não é possibilidade: é aritmética.",
+        corpo: "Investimento de verdade tem os três presos por um elástico: quanto maior o retorno, maior o risco, ou menor a liquidez. Sempre. Quem promete os três no máximo não descobriu um atalho, está pagando os antigos com o dinheiro dos novos.\n\nIsso tem nome: esquema Ponzi. Funciona enquanto entra gente nova, e quebra no dia em que para de entrar. Não é possibilidade: é aritmética.",
         insight: { label: "Como reconhecer em uma frase",
           texto: "Se o retorno é fixo, alto e não depende de nada, o dinheiro não vem de um investimento. Vem de outra pessoa." } } },
       { ordem: 1, tipo: "cenario", label: "Na prática", conteudo: {
@@ -1177,7 +1177,7 @@ export const MODULOS_T2: ModuloNovo[] = [
       { ordem: 5, tipo: "resultado", label: "Levar daqui", conteudo: {
         headline: "Especular não é investir, e nenhum dos dois é apostar",
         faixas: [ { condicao: "valor >= 0", cor: "green",
-          mensagem: "Cripto existe, é legal e algumas pessoas ganham dinheiro com ela. Isso não a torna investimento: sem fluxo de caixa, o preço depende só de alguém pagar mais caro depois.\n\nO Finlow não indica ativo nenhum, e quem indica sem ser autorizado pela CVM está cometendo infração — não fazendo um favor." } ],
+          mensagem: "Cripto existe, é legal e algumas pessoas ganham dinheiro com ela. Isso não a torna investimento: sem fluxo de caixa, o preço depende só de alguém pagar mais caro depois.\n\nO Finlow não indica ativo nenhum, e quem indica sem ser autorizado pela CVM está cometendo infração: não fazendo um favor." } ],
         insightDinamico: "A regra que evita quase todo prejuízo: dinheiro que você não pode perder não entra em nada que você não saiba explicar para outra pessoa." } },
     ],
   },
@@ -1228,7 +1228,7 @@ export const MODULOS_T2: ModuloNovo[] = [
         headline: "Quatro perguntas antes de seguir qualquer dica",
         faixas: [ { condicao: "valor >= 0", cor: "green",
           mensagem: "1. Quem ganha se eu fizer isso?\n2. Qual é o risco, dito em voz alta?\n3. A pessoa é autorizada pela CVM a recomendar produto?\n4. A dica serve para qualquer pessoa, ou depende da minha situação?\n\nA quarta é a que mais elimina: nenhuma recomendação séria vale para todo mundo ao mesmo tempo." } ],
-        insightDinamico: "E vale saber: recomendar produto específico sem autorização da CVM é infração. Explicar como funciona um investimento é permitido a qualquer um — dizer em qual você deve pôr o seu dinheiro, não." } },
+        insightDinamico: "E vale saber: recomendar produto específico sem autorização da CVM é infração. Explicar como funciona um investimento é permitido a qualquer um: dizer em qual você deve pôr o seu dinheiro, não." } },
       { ordem: 5, tipo: "resultado", label: "Levar daqui", conteudo: {
         headline: "O conteúdo bom não te apressa",
         faixas: [ { condicao: "valor >= 0", cor: "green",
@@ -1249,7 +1249,7 @@ export const MODULOS_T2: ModuloNovo[] = [
     telas: [
       { ordem: 0, tipo: "conceito", label: "Por que os métodos falham", conteudo: {
         headline: "Quase todo método de orçamento assume salário fixo",
-        corpo: "Aquela divisão em porcentagens funciona bem quando entra o mesmo valor todo mês. Com renda que varia, ela quebra: no mês bom sobra e você gasta, no mês ruim falta e você usa o cartão.\n\nPara renda irregular, o que funciona é inverter a lógica. Em vez de dividir o que entrou, você define quanto TIRA — um valor fixo, calculado pela média dos meses ruins — e deixa o excedente numa conta separada, para cobrir os meses fracos.",
+        corpo: "Aquela divisão em porcentagens funciona bem quando entra o mesmo valor todo mês. Com renda que varia, ela quebra: no mês bom sobra e você gasta, no mês ruim falta e você usa o cartão.\n\nPara renda irregular, o que funciona é inverter a lógica. Em vez de dividir o que entrou, você define quanto TIRA, um valor fixo, calculado pela média dos meses ruins, e deixa o excedente numa conta separada, para cobrir os meses fracos.",
         insight: { label: "Não é caso raro",
           texto: "{{sem_controle_orcamento}} não controlam o orçamento, e a informalidade chega a {{informalidade}}. Renda que varia é a regra para muita gente, não a exceção." } } },
       { ordem: 1, tipo: "cenario", label: "Na prática", conteudo: {
@@ -1270,7 +1270,7 @@ export const MODULOS_T2: ModuloNovo[] = [
           { letra: "C", texto: "Gastar pouco em tudo, o tempo todo", correta: false,
             feedback: "Aperto permanente não é método, é desgaste. Ele funciona algumas semanas e depois estoura." },
           { letra: "D", texto: "Esperar a renda estabilizar para organizar", correta: false,
-            feedback: "É a ordem invertida. O método é justamente o que estabiliza — a renda pode continuar variando para sempre." } ] } },
+            feedback: "É a ordem invertida. O método é justamente o que estabiliza: a renda pode continuar variando para sempre." } ] } },
       { ordem: 3, tipo: "input", label: "Seus números", conteudo: {
         headline: "Dois números pra montar o esqueleto",
         subtitulo: "A média do que entra e o que você gasta com o essencial num mês.",
@@ -1285,10 +1285,10 @@ export const MODULOS_T2: ModuloNovo[] = [
           { condicao: "pctMeta >= 80", cor: "red",
             mensagem: "Com o essencial acima de 80%, não há método que resolva sozinho: o caminho é mexer numa conta fixa grande, ou na renda. Método organiza; ele não cria dinheiro." },
           { condicao: "pctMeta >= 60", cor: "yellow",
-            mensagem: "É apertado mas administrável. A ordem que funciona: primeiro separa o que vai guardar, depois vive com o resto — nunca o contrário." },
+            mensagem: "É apertado mas administrável. A ordem que funciona: primeiro separa o que vai guardar, depois vive com o resto. Nunca o contrário." },
           { condicao: "valor > 0", cor: "green",
             mensagem: "Você tem folga real. O risco aqui não é faltar: é a folga sumir sem você perceber para onde foi." } ],
-        insightDinamico: "A regra do pague-se primeiro: no dia em que o dinheiro entra, a primeira transferência é para você. O que sobra é o orçamento do mês — e não o contrário, que é como quase todo mundo faz." } },
+        insightDinamico: "A regra do pague-se primeiro: no dia em que o dinheiro entra, a primeira transferência é para você. O que sobra é o orçamento do mês, e não o contrário, que é como quase todo mundo faz." } },
       { ordem: 5, tipo: "resultado", label: "Levar daqui", conteudo: {
         headline: "Um salário para você, pago por você",
         faixas: [ { condicao: "valor >= 0", cor: "green",
@@ -1309,7 +1309,7 @@ export const MODULOS_T2: ModuloNovo[] = [
     telas: [
       { ordem: 0, tipo: "conceito", label: "O que acontece", conteudo: {
         headline: "Você não desistiu por preguiça. Desistiu porque custava caro",
-        corpo: "Registrar gasto numa planilha custa: abrir o arquivo, lembrar a categoria, digitar, salvar. Um minuto, talvez dois. Parece nada — mas é um minuto multiplicado por várias vezes ao dia, todo dia, para um benefício que só aparece no fim do mês.\n\nÉ o pior desenho possível para o cérebro humano: custo imediato, recompensa distante. Não existe força de vontade que segure isso por muito tempo, e não deveria mesmo.",
+        corpo: "Registrar gasto numa planilha custa: abrir o arquivo, lembrar a categoria, digitar, salvar. Um minuto, talvez dois. Parece nada: mas é um minuto multiplicado por várias vezes ao dia, todo dia, para um benefício que só aparece no fim do mês.\n\nÉ o pior desenho possível para o cérebro humano: custo imediato, recompensa distante. Não existe força de vontade que segure isso por muito tempo, e não deveria mesmo.",
         insight: { label: "A pergunta certa",
           texto: "Não é 'como eu me disciplino mais'. É 'como eu faço isso custar menos'. Todo método que dura resolveu a segunda pergunta." } } },
       { ordem: 1, tipo: "cenario", label: "Na prática", conteudo: {
@@ -1326,7 +1326,7 @@ export const MODULOS_T2: ModuloNovo[] = [
           { letra: "A", texto: "Categorizar tudo com precisão", correta: false,
             feedback: "Precisão é o principal inimigo da constância. Categoria errada e valor aproximado servem; planilha abandonada não serve para nada." },
           { letra: "B", texto: "Levar menos de trinta segundos", correta: true,
-            feedback: "Isso. Abaixo de meio minuto, o registro cabe na vida real — no ônibus, na fila, esperando o café." },
+            feedback: "Isso. Abaixo de meio minuto, o registro cabe na vida real: no ônibus, na fila, esperando o café." },
           { letra: "C", texto: "Fazer uma vez por semana, com calma", correta: false,
             feedback: "Semanal parece mais fácil e é mais difícil: você não lembra dos gastos pequenos, e a sessão vira uma tarefa grande que dá para adiar." },
           { letra: "D", texto: "Estar preso a algo que você já faz todo dia", correta: true,
@@ -1343,7 +1343,7 @@ export const MODULOS_T2: ModuloNovo[] = [
       { ordem: 4, tipo: "resultado", label: "A conta do esforço", conteudo: {
         headline: "Trinta segundos por dia ganham de uma hora por mês",
         faixas: [ { condicao: "valor >= 0", cor: "green",
-          mensagem: "Não porque somam mais tempo — somam menos. Ganham porque acontecem.\n\nA planilha caprichada de uma hora tem duas propriedades ruins: é fácil de adiar, e quando você adia duas vezes, ela vira uma dívida de trabalho que ninguém quer pagar." } ],
+          mensagem: "Não porque somam mais tempo: somam menos. Ganham porque acontecem.\n\nA planilha caprichada de uma hora tem duas propriedades ruins: é fácil de adiar, e quando você adia duas vezes, ela vira uma dívida de trabalho que ninguém quer pagar." } ],
         insightDinamico: "Comece pelo mínimo que você consegue manter numa semana ruim, não numa semana boa. É a semana ruim que decide se o hábito sobrevive." } },
       { ordem: 5, tipo: "resultado", label: "Levar daqui", conteudo: {
         headline: "Aproximado e feito ganha de exato e abandonado",
@@ -1364,9 +1364,9 @@ export const MODULOS_T2: ModuloNovo[] = [
     telas: [
       { ordem: 0, tipo: "conceito", label: "O que muda", conteudo: {
         headline: "Formalizar é trocar informalidade por três coisas concretas",
-        corpo: "CNPJ para emitir nota, uma alíquota fixa mensal no lugar de imposto sobre cada serviço, e cobertura previdenciária — aposentadoria, auxílio-doença, salário-maternidade.\n\nO MEI paga o DAS, uma guia única e barata, todo mês. Quem não formaliza e não contribui como autônomo não acumula tempo: continua trabalhando, mas sem nada por trás se ficar doente ou parar.",
+        corpo: "CNPJ para emitir nota, uma alíquota fixa mensal no lugar de imposto sobre cada serviço, e cobertura previdenciária: aposentadoria, auxílio-doença, salário-maternidade.\n\nO MEI paga o DAS, uma guia única e barata, todo mês. Quem não formaliza e não contribui como autônomo não acumula tempo: continua trabalhando, mas sem nada por trás se ficar doente ou parar.",
         insight: { label: "O tamanho e o buraco",
-          texto: "São {{mei_total}} no Brasil, mas {{mei_inadimplente_das}}. Guia atrasada não conta tempo de contribuição — é o erro mais caro e mais silencioso do MEI." } } },
+          texto: "São {{mei_total}} no Brasil, mas {{mei_inadimplente_das}}. Guia atrasada não conta tempo de contribuição: é o erro mais caro e mais silencioso do MEI." } } },
       { ordem: 1, tipo: "cenario", label: "Na prática", conteudo: {
         headline: "A Luana trabalha há 12 anos e tem zero de contribuição",
         personagem: "Luana, 35 anos, manicure",
@@ -1374,7 +1374,7 @@ export const MODULOS_T2: ModuloNovo[] = [
           { label: "Fatura por mês, em média", valor: 3200, tipo: "entrada" },
           { label: "Custo do DAS se fosse MEI", valor: 76, tipo: "saida" },
           { label: "Tempo de contribuição acumulado", valor: 0, tipo: "saldo" } ],
-        rodape: "Doze anos de trabalho que não contam para nada. O valor mensal que resolveria isso é menor do que ela gasta com transporte numa semana — o problema nunca foi o preço, foi ninguém ter explicado o que estava em jogo." } },
+        rodape: "Doze anos de trabalho que não contam para nada. O valor mensal que resolveria isso é menor do que ela gasta com transporte numa semana: o problema nunca foi o preço, foi ninguém ter explicado o que estava em jogo." } },
       { ordem: 2, tipo: "quiz", label: "O que o DAS cobre", conteudo: {
         headline: "Pagar o DAS do MEI garante o quê?",
         opcoes: [
@@ -1396,10 +1396,10 @@ export const MODULOS_T2: ModuloNovo[] = [
         formula: "mei_cabe",
         faixas: [
           { condicao: "cabe > 0", cor: "green",
-            mensagem: "Cabe no MEI. O teto é anual, não mensal — o que importa é a soma dos doze meses, então um mês forte não desenquadra ninguém." },
+            mensagem: "Cabe no MEI. O teto é anual, não mensal: o que importa é a soma dos doze meses, então um mês forte não desenquadra ninguém." },
           { condicao: "valor > 0", cor: "yellow",
             mensagem: "Passa do teto do MEI. O caminho seria Microempresa, com contabilidade e alíquota diferentes. Vale conversar com um contador antes de decidir." } ],
-        insightDinamico: "O teto do MEI é {{teto_mei}}. E o custo mensal é uma guia fixa e baixa, que não sobe quando você fatura mais — dentro do teto." } },
+        insightDinamico: "O teto do MEI é {{teto_mei}}. E o custo mensal é uma guia fixa e baixa, que não sobe quando você fatura mais: dentro do teto." } },
       { ordem: 5, tipo: "resultado", label: "Levar daqui", conteudo: {
         headline: "A guia em dia é o que vira tempo",
         faixas: [ { condicao: "valor >= 0", cor: "green",
@@ -1420,7 +1420,7 @@ export const MODULOS_T2: ModuloNovo[] = [
     telas: [
       { ordem: 0, tipo: "conceito", label: "O que entra no preço", conteudo: {
         headline: "Quase todo mundo esquece de cobrar o próprio tempo",
-        corpo: "O preço mínimo tem três partes: o que você gastou de material, o tempo que levou, e uma margem para o negócio existir.\n\nA parte esquecida é sempre a segunda. Quando você cobra só o material mais um pouco, está trabalhando de graça e chamando isso de lucro — e como o dinheiro entra, demora meses para perceber.",
+        corpo: "O preço mínimo tem três partes: o que você gastou de material, o tempo que levou, e uma margem para o negócio existir.\n\nA parte esquecida é sempre a segunda. Quando você cobra só o material mais um pouco, está trabalhando de graça e chamando isso de lucro, e como o dinheiro entra, demora meses para perceber.",
         insight: { label: "Não é impressão",
           texto: "Quem trabalha por aplicativo ganha em média {{rendimento_app}}, com renda por hora 8,3% menor que a dos demais trabalhadores. Tempo mal precificado tem escala nacional." } } },
       { ordem: 1, tipo: "cenario", label: "Na prática", conteudo: {
@@ -1431,7 +1431,7 @@ export const MODULOS_T2: ModuloNovo[] = [
           { label: "Ingredientes", valor: 32, tipo: "saida" },
           { label: "Gás, energia, embalagem", valor: 8, tipo: "saida" },
           { label: "Sobrava", valor: 20, tipo: "saldo" } ],
-        rodape: "Vinte reais por três horas de trabalho: menos de R$ 7 por hora. Ela não estava lucrando pouco — estava se pagando abaixo de qualquer piso, e o negócio parecia dar certo porque o dinheiro entrava." } },
+        rodape: "Vinte reais por três horas de trabalho: menos de R$ 7 por hora. Ela não estava lucrando pouco, estava se pagando abaixo de qualquer piso, e o negócio parecia dar certo porque o dinheiro entrava." } },
       { ordem: 2, tipo: "input", label: "Seu produto", conteudo: {
         headline: "Pensa num produto ou serviço que você faz",
         subtitulo: "Quanto custa o material, quanto tempo leva, e quanto vale a sua hora.",
@@ -1445,7 +1445,7 @@ export const MODULOS_T2: ModuloNovo[] = [
         formula: "preco_minimo",
         faixas: [ { condicao: "precoNum > 0", cor: "green",
           mensagem: "Esse é o PISO, não o preço. Ele cobre material e o seu tempo, e não deixa nada para o negócio crescer, para o imprevisto ou para o imposto." } ],
-        insightDinamico: "O preço de venda fica acima do piso. Quanto acima depende do que o mercado paga e do que você entrega de diferente — mas nunca abaixo, porque abaixo do piso cada venda te empobrece." } },
+        insightDinamico: "O preço de venda fica acima do piso. Quanto acima depende do que o mercado paga e do que você entrega de diferente: mas nunca abaixo, porque abaixo do piso cada venda te empobrece." } },
       { ordem: 4, tipo: "quiz", label: "PF e PJ", conteudo: {
         headline: "Por que misturar a conta pessoal com a do trabalho atrapalha?",
         opcoes: [
@@ -1460,7 +1460,7 @@ export const MODULOS_T2: ModuloNovo[] = [
       { ordem: 5, tipo: "resultado", label: "Levar daqui", conteudo: {
         headline: "Duas contas, e uma reserva do negócio",
         faixas: [ { condicao: "valor >= 0", cor: "green",
-          mensagem: "Uma conta recebe o que os clientes pagam. Dali sai o material, e uma parte fica como reserva do trabalho — para o equipamento que quebra, o mês fraco, o imposto.\n\nO que sobra você transfere para a sua conta pessoal. Isso é o seu salário, e ele passa a ser um número que você conhece." } ],
+          mensagem: "Uma conta recebe o que os clientes pagam. Dali sai o material, e uma parte fica como reserva do trabalho: para o equipamento que quebra, o mês fraco, o imposto.\n\nO que sobra você transfere para a sua conta pessoal. Isso é o seu salário, e ele passa a ser um número que você conhece." } ],
         insightDinamico: "Preço baixo demais não traz cliente fiel: traz cliente que some quando alguém cobra menos. Quem compra por preço vai embora por preço." } },
     ],
   },
@@ -1477,7 +1477,7 @@ export const MODULOS_T2: ModuloNovo[] = [
     telas: [
       { ordem: 0, tipo: "conceito", label: "Declarar x pagar", conteudo: {
         headline: "Declarar e pagar são coisas diferentes",
-        corpo: "Muita gente que declara não paga nada, e muita gente que não é obrigada a declarar deveria — porque tem imposto retido a devolver.\n\nA obrigação depende de renda no ano, bens, atividade rural e algumas outras situações. A isenção depende da faixa. São dois testes distintos, e confundi-los é o erro mais comum.",
+        corpo: "Muita gente que declara não paga nada, e muita gente que não é obrigada a declarar deveria: porque tem imposto retido a devolver.\n\nA obrigação depende de renda no ano, bens, atividade rural e algumas outras situações. A isenção depende da faixa. São dois testes distintos, e confundi-los é o erro mais comum.",
         insight: { label: "O que mudou",
           texto: "Desde janeiro de 2026, quem ganha até {{isencao_ir}} ficou isento do imposto na fonte, o que alcançou cerca de 16 milhões de contribuintes." } } },
       { ordem: 1, tipo: "cenario", label: "Na prática", conteudo: {
@@ -1487,7 +1487,7 @@ export const MODULOS_T2: ModuloNovo[] = [
           { label: "Imposto retido na fonte no ano", valor: 1840, tipo: "saida" },
           { label: "Devido, depois das deduções", valor: 620, tipo: "saldo" },
           { label: "Restituição que ele quase perdeu", valor: 1220, tipo: "entrada" } ],
-        rodape: "Ele tinha dois dependentes e despesas de saúde que nunca informou. Não declarar não economizou nada — só deixou com a Receita um dinheiro que era dele." } },
+        rodape: "Ele tinha dois dependentes e despesas de saúde que nunca informou. Não declarar não economizou nada: só deixou com a Receita um dinheiro que era dele." } },
       { ordem: 2, tipo: "quiz", label: "O que deduz", conteudo: {
         headline: "O que pode ser deduzido na declaração completa?",
         opcoes: [
@@ -1512,12 +1512,12 @@ export const MODULOS_T2: ModuloNovo[] = [
             mensagem: "Você está na faixa de isenção do imposto retido na fonte. Isso NÃO quer dizer que está dispensado de declarar: obrigação de declarar e isenção de pagar são testes diferentes, e vale conferir os dois." },
           { condicao: "valor > 0", cor: "yellow",
             mensagem: "Acima da faixa de isenção, há imposto retido. Nesse caso as deduções são o que decide se você recebe restituição ou paga a diferença." } ],
-        insightDinamico: "A isenção hoje é para quem ganha até {{isencao_ir}}. As regras e os limites mudam todo ano — este módulo explica o mecanismo, e os números do ano você confere no site da Receita." } },
+        insightDinamico: "A isenção hoje é para quem ganha até {{isencao_ir}}. As regras e os limites mudam todo ano, este módulo explica o mecanismo, e os números do ano você confere no site da Receita." } },
       { ordem: 5, tipo: "resultado", label: "Levar daqui", conteudo: {
         headline: "Guardar comprovante durante o ano é metade do trabalho",
         faixas: [ { condicao: "valor >= 0", cor: "green",
           mensagem: "Uma pasta, física ou no celular, com recibo de saúde, boleto de escola e informe de rendimento. Em março isso vira meia hora em vez de um fim de semana.\n\nE o que mais cai na malha é bobagem: valor de saúde diferente do que o profissional declarou, dependente informado por duas pessoas, renda esquecida de um trabalho antigo." } ],
-        insightDinamico: "Isto aqui não é assessoria contábil. Para caso complicado — vários rendimentos, empresa, ganho de capital, exterior — meia hora com um contador custa menos que uma malha fina." } },
+        insightDinamico: "Isto aqui não é assessoria contábil. Para caso complicado, vários rendimentos, empresa, ganho de capital, exterior, meia hora com um contador custa menos que uma malha fina." } },
     ],
   },
 
@@ -1567,11 +1567,11 @@ export const MODULOS_T2: ModuloNovo[] = [
         formula: "divisao_casal",
         faixas: [ { condicao: "valor > 0", cor: "green",
           mensagem: "Das despesas comuns, cada um entra com essa fatia. Não é caridade nem dependência: é a mesma proporção de esforço dos dois lados, e é isso que faz sobrar o mesmo para cada um." } ],
-        insightDinamico: "O resto de cada renda continua sendo de cada um, sem prestação de contas. A parte que é comum fica clara; a parte que é sua continua sua — e é justamente isso que faz o combinado durar." } },
+        insightDinamico: "O resto de cada renda continua sendo de cada um, sem prestação de contas. A parte que é comum fica clara; a parte que é sua continua sua, e é justamente isso que faz o combinado durar." } },
       { ordem: 5, tipo: "resultado", label: "E os filhos", conteudo: {
         headline: "Mesada não é presente, é aula",
         faixas: [ { condicao: "valor >= 0", cor: "green",
-          mensagem: "Valor pequeno, data fixa, e liberdade real de errar. Criança que só pode gastar com o que os pais aprovam não está aprendendo a decidir — está executando decisão dos outros.\n\nO erro barato aos oito anos é o que evita o caro aos vinte e oito." } ],
+          mensagem: "Valor pequeno, data fixa, e liberdade real de errar. Criança que só pode gastar com o que os pais aprovam não está aprendendo a decidir, está executando decisão dos outros.\n\nO erro barato aos oito anos é o que evita o caro aos vinte e oito." } ],
         insightDinamico: "E sobre pensão, se for o caso: o valor sai do binômio necessidade de quem recebe e possibilidade de quem paga. Não existe percentual automático em lei, apesar de a prática girar em torno de 20% a 30% da renda líquida." } },
     ],
   },
@@ -1588,7 +1588,7 @@ export const MODULOS_T2: ModuloNovo[] = [
     telas: [
       { ordem: 0, tipo: "conceito", label: "O que falta", conteudo: {
         headline: "Meta sem número é desejo, e desejo não entra na conta do mês",
-        corpo: "Toda meta grande precisa de três coisas: valor, prazo e aporte mensal. Faltando qualquer uma, ela não compete com os gastos do dia a dia — e perde sempre, porque o presente sempre grita mais alto.\n\nO aporte é o que transforma a meta em item do orçamento. Enquanto ela for 'um dia', ela nunca disputa espaço com nada.",
+        corpo: "Toda meta grande precisa de três coisas: valor, prazo e aporte mensal. Faltando qualquer uma, ela não compete com os gastos do dia a dia, e perde sempre, porque o presente sempre grita mais alto.\n\nO aporte é o que transforma a meta em item do orçamento. Enquanto ela for 'um dia', ela nunca disputa espaço com nada.",
         insight: { label: "Onde as pessoas param",
           texto: "{{pouparam_no_ano}} conseguiram poupar no último ano, mas só uma pequena parte transformou isso em algo com destino. Poupar sem meta costuma virar dinheiro reabsorvido pelo mês seguinte." } } },
       { ordem: 1, tipo: "cenario", label: "Na prática", conteudo: {
@@ -1598,7 +1598,7 @@ export const MODULOS_T2: ModuloNovo[] = [
           { label: "Entrada que ela precisa", valor: 60000, tipo: "saldo" },
           { label: "Dividido por 36 meses", valor: 1667, tipo: "saida" },
           { label: "O que ela consegue guardar hoje", valor: 900, tipo: "entrada" } ],
-        rodape: "A conta não fechou, e isso é informação, não fracasso. Com R$ 900 por mês, a mesma entrada leva 67 meses. Ela escolheu esticar para cinco anos e continuar — em vez de descobrir no terceiro ano que não ia dar." } },
+        rodape: "A conta não fechou, e isso é informação, não fracasso. Com R$ 900 por mês, a mesma entrada leva 67 meses. Ela escolheu esticar para cinco anos e continuar, em vez de descobrir no terceiro ano que não ia dar." } },
       { ordem: 2, tipo: "input", label: "Sua meta", conteudo: {
         headline: "Escolhe uma, a que mais te puxa",
         subtitulo: "Quanto custa, e em quantos meses você quer chegar lá.",
@@ -1611,7 +1611,7 @@ export const MODULOS_T2: ModuloNovo[] = [
         formula: "sonhador_por_mes",
         faixas: [ { condicao: "porMesNum > 0", cor: "green",
           mensagem: "Esse é o número que decide tudo. Ou ele cabe no seu mês, ou a meta precisa mudar de prazo, de tamanho, ou você precisa de renda extra. Não existe quarta opção." } ],
-        insightDinamico: "E ele é conservador de propósito: não contei rendimento nenhum. Se o dinheiro render, você chega antes — o que é uma surpresa boa. O contrário, planejar contando com rendimento que não veio, é a surpresa ruim." } },
+        insightDinamico: "E ele é conservador de propósito: não contei rendimento nenhum. Se o dinheiro render, você chega antes: o que é uma surpresa boa. O contrário, planejar contando com rendimento que não veio, é a surpresa ruim." } },
       { ordem: 4, tipo: "quiz", label: "Quando não cabe", conteudo: {
         headline: "O aporte não cabe no seu mês. O que fazer?",
         opcoes: [
@@ -1627,7 +1627,7 @@ export const MODULOS_T2: ModuloNovo[] = [
         headline: "Uma meta por vez, com data no calendário",
         faixas: [ { condicao: "valor >= 0", cor: "green",
           mensagem: "Três metas ao mesmo tempo é o mesmo que nenhuma: o aporte se divide, nenhuma anda visivelmente, e você desiste das três.\n\nEscolhe uma. Bota o aporte no automático no dia em que o dinheiro entra. E revisa a cada três meses, não todo dia." } ],
-        insightDinamico: "Importante: a reserva de emergência vem antes da meta. Sem colchão, o primeiro imprevisto consome o que você juntou — e aí a meta volta ao zero junto com a motivação." } },
+        insightDinamico: "Importante: a reserva de emergência vem antes da meta. Sem colchão, o primeiro imprevisto consome o que você juntou, e aí a meta volta ao zero junto com a motivação." } },
     ],
   },
   // ======================= M18 — Consignado e FGTS ======================
@@ -1652,7 +1652,7 @@ export const MODULOS_T2: ModuloNovo[] = [
           { label: "Saldo que rolava no cartão", valor: 5000, tipo: "saldo" },
           { label: "Juro que corria por mês", valor: 750, tipo: "saida" },
           { label: "Juro no consignado", valor: 160, tipo: "saida" } ],
-        rodape: "A dívida continuou sendo R$ 5.000. O que mudou foi o quanto ela crescia por mês. Trocar não apaga dívida — para de fazer ela correr." } },
+        rodape: "A dívida continuou sendo R$ 5.000. O que mudou foi o quanto ela crescia por mês. Trocar não apaga dívida: para de fazer ela correr." } },
       { ordem: 2, tipo: "input", label: "Sua dívida", conteudo: {
         headline: "Qual dívida você tem hoje?",
         subtitulo: "O saldo devedor e a taxa mensal que ela cobra. A taxa está no extrato ou na fatura.",
@@ -1665,15 +1665,15 @@ export const MODULOS_T2: ModuloNovo[] = [
         formula: "troca_divida",
         faixas: [
           { condicao: "cabe > 0", cor: "green",
-            mensagem: "A troca faz sentido pela taxa. Mas só vale se o dinheiro novo QUITAR a dívida antiga — pegar consignado e manter o cartão rolando é ficar com as duas." },
+            mensagem: "A troca faz sentido pela taxa. Mas só vale se o dinheiro novo QUITAR a dívida antiga: pegar consignado e manter o cartão rolando é ficar com as duas." },
           { condicao: "valor > 0", cor: "yellow",
             mensagem: "A sua taxa já está próxima ou abaixo do consignado. Nesse caso a troca não compensa: o ganho seria pequeno e você criaria um novo compromisso." } ],
-        insightDinamico: "E compare sempre pelo CET, não pela taxa nem pela parcela. O CET inclui tarifa, seguro e IOF — é o único número que dá para comparar entre bancos." } },
+        insightDinamico: "E compare sempre pelo CET, não pela taxa nem pela parcela. O CET inclui tarifa, seguro e IOF: é o único número que dá para comparar entre bancos." } },
       { ordem: 4, tipo: "quiz", label: "Quando vira armadilha", conteudo: {
         headline: "Quando o consignado ou o FGTS deixam de ser boa ideia?",
         opcoes: [
           { letra: "A", texto: "Quando o crédito barato vira consumo, não quitação", correta: true,
-            feedback: "Esse é o desvio mais comum. O consignado foi tomado para trocar dívida, o dinheiro caiu na conta e virou outra coisa — e agora são duas dívidas." },
+            feedback: "Esse é o desvio mais comum. O consignado foi tomado para trocar dívida, o dinheiro caiu na conta e virou outra coisa, e agora são duas dívidas." },
           { letra: "B", texto: "Quando antecipa o saque-aniversário do FGTS", correta: true,
             feedback: "Também. Ao aderir, você troca o saque em caso de demissão por parcelas anuais antecipadas. Se for demitido, o dinheiro que existiria para te segurar está comprometido." },
           { letra: "C", texto: "Quando a parcela cabe no orçamento", correta: false,
@@ -1710,7 +1710,7 @@ export const MODULOS_T2: ModuloNovo[] = [
           { label: "Primeira parcela no Price", valor: 2900, tipo: "saida" },
           { label: "Primeira parcela no SAC", valor: 3600, tipo: "saida" },
           { label: "Parcela do SAC no ano 15", valor: 2100, tipo: "saida" } ],
-        rodape: "O SAC começa R$ 700 mais caro e termina bem mais barato. Escolher entre os dois é escolher entre folga agora e economia total — e a resposta depende de qual dos dois aperta mais a sua vida." } },
+        rodape: "O SAC começa R$ 700 mais caro e termina bem mais barato. Escolher entre os dois é escolher entre folga agora e economia total, e a resposta depende de qual dos dois aperta mais a sua vida." } },
       { ordem: 2, tipo: "quiz", label: "Qual é qual", conteudo: {
         headline: "Qual sistema começa com parcela maior e vai caindo?",
         opcoes: [
@@ -1734,11 +1734,11 @@ export const MODULOS_T2: ModuloNovo[] = [
         formula: "price_vs_sac",
         faixas: [ { condicao: "valor > 0", cor: "yellow",
           mensagem: "A diferença entre os dois costuma ser maior que o valor do imóvel em prazos longos. É a conta que menos aparece na hora de assinar, e a que mais pesa no total." } ],
-        insightDinamico: "Isto é aproximação didática, para você entender a direção — não substitui a planilha do banco. Peça a simulação nos dois sistemas e compare o CET, que é o número que inclui tarifa e seguro." } },
+        insightDinamico: "Isto é aproximação didática, para você entender a direção: não substitui a planilha do banco. Peça a simulação nos dois sistemas e compare o CET, que é o número que inclui tarifa e seguro." } },
       { ordem: 5, tipo: "resultado", label: "Amortizar", conteudo: {
         headline: "Amortizar prazo ou parcela?",
         faixas: [ { condicao: "valor >= 0", cor: "green",
-          mensagem: "Abater PRAZO economiza muito mais juro: você corta os meses do fim, que são os que mais tempo tiveram para acumular.\n\nAbater PARCELA alivia o mês, e faz sentido quando o orçamento está apertado agora. As duas são válidas — o que não vale é não saber que existem duas." } ],
+          mensagem: "Abater PRAZO economiza muito mais juro: você corta os meses do fim, que são os que mais tempo tiveram para acumular.\n\nAbater PARCELA alivia o mês, e faz sentido quando o orçamento está apertado agora. As duas são válidas: o que não vale é não saber que existem duas." } ],
         insightDinamico: "E a pergunta antes de amortizar: existe alguma dívida mais cara? Nenhum imóvel tem juro perto do rotativo, então quitar cartão vem sempre antes de amortizar financiamento." } },
     ],
   },
@@ -1755,7 +1755,7 @@ export const MODULOS_T2: ModuloNovo[] = [
     telas: [
       { ordem: 0, tipo: "conceito", label: "O que acontece", conteudo: {
         headline: "Seu cérebro trata o você de daqui a dez anos como um estranho",
-        corpo: "Não é força de expressão. Em exames de imagem, pensar em si mesmo no futuro distante ativa regiões parecidas com as de pensar em outra pessoa.\n\nIsso explica por que é tão difícil guardar: você está sendo convidado a tirar algo de você agora para dar a alguém que o seu cérebro não reconhece como você. O presente ganha sempre — não por indisciplina, por arquitetura.",
+        corpo: "Não é força de expressão. Em exames de imagem, pensar em si mesmo no futuro distante ativa regiões parecidas com as de pensar em outra pessoa.\n\nIsso explica por que é tão difícil guardar: você está sendo convidado a tirar algo de você agora para dar a alguém que o seu cérebro não reconhece como você. O presente ganha sempre: não por indisciplina, por arquitetura.",
         insight: { label: "O que a pesquisa mostrou",
           texto: "Pessoas que viram uma imagem envelhecida de si mesmas passaram a destinar mais dinheiro à aposentadoria. Tornar o eu futuro concreto muda a decisão de hoje." } } },
       { ordem: 1, tipo: "cenario", label: "Na prática", conteudo: {
@@ -1768,14 +1768,14 @@ export const MODULOS_T2: ModuloNovo[] = [
         rodape: "Ele nunca decidiu não guardar. Decidiu começar mês que vem, vinte e quatro vezes seguidas. Cada adiamento isolado foi razoável; a soma deles custou uma reserva inteira." } },
       { ordem: 2, tipo: "input", label: "Daqui a cinco anos", conteudo: {
         headline: "Onde você quer estar em cinco anos?",
-        subtitulo: "Escreva uma frase. Não precisa ser grandiosa — precisa ser sua.",
+        subtitulo: "Escreva uma frase. Não precisa ser grandiosa: precisa ser sua.",
         aviso: "Fica só nesta tela, no seu aparelho. Não é gravado em lugar nenhum.",
         campos: [ { id: "futuro", emoji: "🔮", label: "Em cinco anos, eu…", placeholder: "…moro num lugar meu e não devo pra ninguém", tipo: "texto" } ] } },
       { ordem: 3, tipo: "resultado", label: "O preço disso", conteudo: {
         headline: "Isso não acontece por decisão. Acontece por transferência",
         faixas: [ { condicao: "valor >= 0", cor: "green",
           mensagem: "O que você escreveu não vai virar realidade por vontade, nem por lembrar dele de vez em quando. Vai virar por um valor que sai da sua conta todo mês, sem passar pela sua decisão.\n\nEsse é o único mecanismo que atravessa o viés do presente: não depender de você estar disposto no dia." } ],
-        insightDinamico: "Por isso o automático funciona e a força de vontade não. Não porque você é fraco — porque o débito automático acontece antes de existir uma decisão para tomar." } },
+        insightDinamico: "Por isso o automático funciona e a força de vontade não. Não porque você é fraco: porque o débito automático acontece antes de existir uma decisão para tomar." } },
       { ordem: 4, tipo: "quiz", label: "O que funciona", conteudo: {
         headline: "Qual estratégia vence o viés do presente?",
         opcoes: [
@@ -1817,7 +1817,7 @@ export const MODULOS_T2: ModuloNovo[] = [
           { label: "Meses tentando guardar por vontade", valor: 7, tipo: "saldo" },
           { label: "Quanto tinha guardado ao fim deles", valor: 0, tipo: "saldo" },
           { label: "Guardado nos 3 meses seguintes, com a regra", valor: 900, tipo: "entrada" } ],
-        rodape: "A regra dela cabia numa linha: se cair o salário, então transfiro R$ 300 na hora. Não mudou nada na renda nem na disciplina — mudou onde a decisão acontecia." } },
+        rodape: "A regra dela cabia numa linha: se cair o salário, então transfiro R$ 300 na hora. Não mudou nada na renda nem na disciplina: mudou onde a decisão acontecia." } },
       { ordem: 2, tipo: "input", label: "O seu plano", conteudo: {
         headline: "Escreve o seu, agora",
         subtitulo: "Duas partes: um gatilho que acontece de verdade, e uma ação pequena o bastante para caber.",
@@ -1861,7 +1861,7 @@ export const MODULOS_T2: ModuloNovo[] = [
     telas: [
       { ordem: 0, tipo: "conceito", label: "Nominal e real", conteudo: {
         headline: "O número subiu. A pergunta é se comprou mais",
-        corpo: "Ganho nominal é o que aparece no contracheque. Ganho real é o que sobra depois de descontar a inflação — o quanto o seu dinheiro compra de verdade.\n\nUm aumento de 4% num ano em que os preços subiram 4,64% não é aumento: é uma perda de poder de compra disfarçada de boa notícia. E dinheiro parado, sem render nada, perde essa diferença todo ano, em silêncio.",
+        corpo: "Ganho nominal é o que aparece no contracheque. Ganho real é o que sobra depois de descontar a inflação: o quanto o seu dinheiro compra de verdade.\n\nUm aumento de 4% num ano em que os preços subiram 4,64% não é aumento: é uma perda de poder de compra disfarçada de boa notícia. E dinheiro parado, sem render nada, perde essa diferença todo ano, em silêncio.",
         insight: { label: "Onde estamos",
           texto: "O IPCA acumulava {{ipca_12m}}, contra uma meta de {{meta_inflacao}}. É o quanto o dinheiro parado encolheu em doze meses." } } },
       { ordem: 1, tipo: "cenario", label: "Na prática", conteudo: {
@@ -1882,7 +1882,7 @@ export const MODULOS_T2: ModuloNovo[] = [
         formula: "perda_inflacao",
         faixas: [ { condicao: "valor > 0", cor: "yellow",
           mensagem: "O número na conta continua o mesmo. O que muda é o que ele compra. É a perda mais silenciosa que existe: não aparece em extrato nenhum." } ],
-        insightDinamico: "Isso NÃO quer dizer correr para investir em qualquer coisa. A reserva de emergência pode e deve ficar em algo de saque imediato, mesmo rendendo pouco — o custo de não ter liquidez na hora do aperto é maior que o da inflação." } },
+        insightDinamico: "Isso NÃO quer dizer correr para investir em qualquer coisa. A reserva de emergência pode e deve ficar em algo de saque imediato, mesmo rendendo pouco: o custo de não ter liquidez na hora do aperto é maior que o da inflação." } },
       { ordem: 4, tipo: "quiz", label: "Os índices", conteudo: {
         headline: "Qual índice mede a inflação oficial do país?",
         opcoes: [
@@ -1914,9 +1914,9 @@ export const MODULOS_T2: ModuloNovo[] = [
     telas: [
       { ordem: 0, tipo: "conceito", label: "Juro sobre juro", conteudo: {
         headline: "O cérebro humano projeta em linha reta. Juro composto não é reta",
-        corpo: "Juro simples incide sempre sobre o valor inicial. Juro composto incide sobre o que já tinha rendido — e é essa diferença que faz o crescimento acelerar sozinho.\n\nO problema é que ninguém consegue simular isso mentalmente. Pedem para você estimar quanto algo vira em dez anos e você projeta uma reta, porque é o que o cérebro sabe fazer. Erra sempre para menos, e erra muito.",
+        corpo: "Juro simples incide sempre sobre o valor inicial. Juro composto incide sobre o que já tinha rendido, e é essa diferença que faz o crescimento acelerar sozinho.\n\nO problema é que ninguém consegue simular isso mentalmente. Pedem para você estimar quanto algo vira em dez anos e você projeta uma reta, porque é o que o cérebro sabe fazer. Erra sempre para menos, e erra muito.",
         insight: { label: "Não é falta de estudo",
-          texto: "Só {{letramento_juros}} conseguem fazer um cálculo simples de juros. E mesmo quem consegue subestima o crescimento composto — o viés é de projeção, não de conta." } } },
+          texto: "Só {{letramento_juros}} conseguem fazer um cálculo simples de juros. E mesmo quem consegue subestima o crescimento composto: o viés é de projeção, não de conta." } } },
       { ordem: 1, tipo: "cenario", label: "Começar cedo x aportar muito", conteudo: {
         headline: "A Camila começou cedo. O irmão dela aportou o dobro",
         personagem: "Camila, 31 anos",
@@ -1924,7 +1924,7 @@ export const MODULOS_T2: ModuloNovo[] = [
           { label: "Ela guardou por mês, dos 25 aos 35", valor: 200, tipo: "entrada" },
           { label: "Ele guardou por mês, dos 35 aos 55", valor: 400, tipo: "entrada" },
           { label: "Anos que ela ficou parada, sem aportar", valor: 20, tipo: "saldo" } ],
-        rodape: "Ela aportou por dez anos e parou. Ele aportou por vinte, o dobro por mês. Aos 55, os montantes chegam perto — e em muitos cenários o dela é maior. A diferença não é quanto: é quando." } },
+        rodape: "Ela aportou por dez anos e parou. Ele aportou por vinte, o dobro por mês. Aos 55, os montantes chegam perto, e em muitos cenários o dela é maior. A diferença não é quanto: é quando." } },
       { ordem: 2, tipo: "input", label: "Seu chute", conteudo: {
         headline: "A que taxa anual você quer testar?",
         subtitulo: "Escolha uma taxa e chute em quantos anos o dinheiro dobra a ela.",
@@ -1933,11 +1933,11 @@ export const MODULOS_T2: ModuloNovo[] = [
           { id: "taxaAno", emoji: "📈", label: "Taxa ao ano (%)", placeholder: "10", tipo: "decimal" },
           { id: "chute", emoji: "🎯", label: "Anos pra dobrar, no meu chute", placeholder: "10", tipo: "decimal" } ] } },
       { ordem: 3, tipo: "resultado", label: "A regra do 72", conteudo: {
-        headline: "Você chutou <strong>R$ {valor}</strong> anos. A conta dá <strong>{anosDobrar}</strong>.",
+        headline: "Você chutou <strong>{chute}</strong> anos. A conta dá <strong>{anosDobrar}</strong>.",
         formula: "regra_72",
         faixas: [ { condicao: "valor >= 0", cor: "green",
           mensagem: "A regra do 72 é o atalho: divida 72 pela taxa anual e você tem, por aproximação, os anos para o dinheiro dobrar. Serve para fazer de cabeça, em qualquer conversa, sem calculadora." } ],
-        insightDinamico: "E ela vale nos dois sentidos. Uma dívida a 6% ao mês dobra em cerca de um ano. É a mesma matemática que faz o aporte crescer — só que trabalhando contra você." } },
+        insightDinamico: "E ela vale nos dois sentidos. Uma dívida a 6% ao mês dobra em cerca de um ano. É a mesma matemática que faz o aporte crescer: só que trabalhando contra você." } },
       { ordem: 4, tipo: "quiz", label: "O que pesa mais", conteudo: {
         headline: "O que pesa mais no montante final?",
         opcoes: [
@@ -1948,7 +1948,7 @@ export const MODULOS_T2: ModuloNovo[] = [
           { letra: "C", texto: "Encontrar a aplicação de maior retorno", correta: false,
             feedback: "Retorno alto atrai atenção e costuma vir com risco alto. Consistência ao longo de anos ganha de retorno alto por pouco tempo." },
           { letra: "D", texto: "Acertar o momento de entrar", correta: false,
-            feedback: "Tentar acertar o momento é a estratégia que mais custa dinheiro para quem não é profissional — e para muitos que são." } ] } },
+            feedback: "Tentar acertar o momento é a estratégia que mais custa dinheiro para quem não é profissional, e para muitos que são." } ] } },
       { ordem: 5, tipo: "resultado", label: "Levar daqui", conteudo: {
         headline: "O mesmo mecanismo, dos dois lados",
         faixas: [ { condicao: "valor >= 0", cor: "green",
@@ -1969,7 +1969,7 @@ export const MODULOS_T2: ModuloNovo[] = [
     telas: [
       { ordem: 0, tipo: "conceito", label: "Quem é quem", conteudo: {
         headline: "A Selic é o juro base. Todo o resto anda em volta dela",
-        corpo: "O Banco Central define a Selic a cada 45 dias. Ela é a referência do custo do dinheiro no país: quando sobe, crédito fica mais caro e aplicação pós-fixada rende mais; quando cai, o contrário.\n\nO CDI é a taxa entre bancos, e anda quase colada na Selic. Por isso muita aplicação é descrita como '% do CDI' — 100% do CDI significa render praticamente o mesmo que a taxa básica.",
+        corpo: "O Banco Central define a Selic a cada 45 dias. Ela é a referência do custo do dinheiro no país: quando sobe, crédito fica mais caro e aplicação pós-fixada rende mais; quando cai, o contrário.\n\nO CDI é a taxa entre bancos, e anda quase colada na Selic. Por isso muita aplicação é descrita como '% do CDI'. 100% do CDI significa render praticamente o mesmo que a taxa básica.",
         insight: { label: "Onde está agora",
           texto: "A Selic estava em {{selic_atual}}. Mesmo assim, {{poupanca_pct}} ainda mantêm dinheiro na poupança." } } },
       { ordem: 1, tipo: "cenario", label: "A regra da poupança", conteudo: {
@@ -1979,7 +1979,7 @@ export const MODULOS_T2: ModuloNovo[] = [
           { label: "Guardado na poupança", valor: 10000, tipo: "saldo" },
           { label: "Rendimento em um ano", valor: 600, tipo: "entrada" },
           { label: "O que a inflação levou no mesmo ano", valor: 464, tipo: "saida" } ],
-        rodape: "Rendeu 6% e a inflação comeu 4,64%. O ganho real foi de pouco mais de 1%. A poupança não é perda garantida — é um rendimento baixo que muita gente acha que é alto porque o número na conta sobe." } },
+        rodape: "Rendeu 6% e a inflação comeu 4,64%. O ganho real foi de pouco mais de 1%. A poupança não é perda garantida: é um rendimento baixo que muita gente acha que é alto porque o número na conta sobe." } },
       { ordem: 2, tipo: "input", label: "Seu dinheiro", conteudo: {
         headline: "Quanto você tem na poupança hoje?",
         subtitulo: "Se não tiver nada, chuta um valor pra ver a conta funcionando.",
@@ -1990,7 +1990,7 @@ export const MODULOS_T2: ModuloNovo[] = [
         formula: "poupanca_rende",
         faixas: [ { condicao: "valor > 0", cor: "yellow",
           mensagem: "Com a Selic acima de 8,5% ao ano, a poupança rende 0,5% ao mês mais TR, e essa regra não muda por mais que a Selic suba. É por isso que ela descola das outras aplicações pós-fixadas quando o juro está alto." } ],
-        insightDinamico: "Compare com o que a Selic está pagando: {{selic_atual}}. A diferença entre os dois é o custo de deixar na poupança — e é maior justamente quando o juro está alto, que é agora." } },
+        insightDinamico: "Compare com o que a Selic está pagando: {{selic_atual}}. A diferença entre os dois é o custo de deixar na poupança, e é maior justamente quando o juro está alto, que é agora." } },
       { ordem: 4, tipo: "quiz", label: "% do CDI", conteudo: {
         headline: "Uma aplicação que paga 100% do CDI rende o quê?",
         opcoes: [
@@ -2005,7 +2005,7 @@ export const MODULOS_T2: ModuloNovo[] = [
       { ordem: 5, tipo: "resultado", label: "Levar daqui", conteudo: {
         headline: "Selic sobe: dívida fica mais cara, aplicação rende mais",
         faixas: [ { condicao: "valor >= 0", cor: "green",
-          mensagem: "É a leitura que serve para os dois lados da sua vida financeira. Com juro alto, quitar dívida vale ainda mais — porque ela cresce mais rápido — e dinheiro parado custa ainda mais caro.\n\nCom juro baixo, o oposto: crédito fica mais acessível e aplicação conservadora rende pouco." } ],
+          mensagem: "É a leitura que serve para os dois lados da sua vida financeira. Com juro alto, quitar dívida vale ainda mais, porque ela cresce mais rápido, e dinheiro parado custa ainda mais caro.\n\nCom juro baixo, o oposto: crédito fica mais acessível e aplicação conservadora rende pouco." } ],
         insightDinamico: "O Finlow explica o mecanismo e não indica produto: qual aplicação escolher é conversa com profissional autorizado pela CVM." } },
     ],
   },
@@ -2031,14 +2031,14 @@ export const MODULOS_T2: ModuloNovo[] = [
         linhas: [
           { label: "O que ela tinha", valor: 20000, tipo: "saldo" },
           { label: "Precisava em 6 meses, para a entrada", valor: 20000, tipo: "saldo" } ],
-        rodape: "Com prazo curto e destino certo, o que importa é o dinheiro estar lá no dia — não render mais alguns por cento. Prazo curto elimina sozinho quase todas as opções, e isso simplifica a decisão em vez de limitá-la." } },
+        rodape: "Com prazo curto e destino certo, o que importa é o dinheiro estar lá no dia: não render mais alguns por cento. Prazo curto elimina sozinho quase todas as opções, e isso simplifica a decisão em vez de limitá-la." } },
       { ordem: 2, tipo: "quiz", label: "Para a reserva", conteudo: {
         headline: "Para a reserva de emergência, o que prioriza?",
         opcoes: [
           { letra: "A", texto: "Rentabilidade", correta: false,
             feedback: "Reserva não existe para render. Existe para estar disponível no pior dia, e rendimento alto costuma custar prazo." },
           { letra: "B", texto: "Liquidez, e depois segurança", correta: true,
-            feedback: "Isso. Poder sacar hoje é o requisito. Segurança vem em seguida, e rendimento é o que sobra da conta — não o objetivo." },
+            feedback: "Isso. Poder sacar hoje é o requisito. Segurança vem em seguida, e rendimento é o que sobra da conta: não o objetivo." },
           { letra: "C", texto: "Diversificação", correta: false,
             feedback: "Diversificar faz sentido para patrimônio de longo prazo. Para a reserva, complexidade é atrito na hora de sacar." },
           { letra: "D", texto: "Isenção de imposto", correta: false,
@@ -2086,17 +2086,17 @@ export const MODULOS_T2: ModuloNovo[] = [
         linhas: [
           { label: "Banco A, taxa anunciada de 1,9% a.m.", valor: 12400, tipo: "saldo" },
           { label: "Banco B, taxa anunciada de 2,1% a.m.", valor: 11800, tipo: "saldo" } ],
-        rodape: "O total pago no banco A foi maior, apesar do juro menor. A diferença estava em tarifa de cadastro e seguro embutido — coisas que a taxa anunciada não mostra e o CET mostra." } },
+        rodape: "O total pago no banco A foi maior, apesar do juro menor. A diferença estava em tarifa de cadastro e seguro embutido: coisas que a taxa anunciada não mostra e o CET mostra." } },
       { ordem: 2, tipo: "input", label: "Converta", conteudo: {
         headline: "Qual taxa mensal você quer converter?",
         subtitulo: "Pega uma taxa de um crédito que te ofereceram, ou testa com qualquer valor.",
         aviso: "Fica só nesta tela, no seu aparelho. Não é gravado em lugar nenhum.",
         campos: [ { id: "taxaMes", emoji: "📊", label: "Taxa ao mês (%)", placeholder: "2", tipo: "decimal" } ] } },
       { ordem: 3, tipo: "resultado", label: "No ano", conteudo: {
-        headline: "<strong>R$ {valor}%</strong> ao mês são <strong>{taxaAnual}%</strong> ao ano.",
+        headline: "<strong>{taxaMes}%</strong> ao mês são <strong>{taxaAnual}%</strong> ao ano.",
         formula: "taxa_anual",
         faixas: [ { condicao: "valor > 0", cor: "yellow",
-          mensagem: "Sempre mais que multiplicar por doze. A diferença é o juro sobre juro, e ela cresce rápido conforme a taxa sobe — o que faz taxas altas serem muito piores do que parecem." } ],
+          mensagem: "Sempre mais que multiplicar por doze. A diferença é o juro sobre juro, e ela cresce rápido conforme a taxa sobe: o que faz taxas altas serem muito piores do que parecem." } ],
         insightDinamico: "É o mesmo motivo pelo qual o rotativo tem número tão alto: uma taxa de dois dígitos ao mês, composta doze vezes, produz um número que ninguém estimaria de cabeça." } },
       { ordem: 4, tipo: "quiz", label: "O que o CET inclui", conteudo: {
         headline: "O que entra no CET e não aparece na taxa de juros?",
@@ -2113,7 +2113,7 @@ export const MODULOS_T2: ModuloNovo[] = [
         headline: "Uma pergunta antes de qualquer crédito",
         faixas: [ { condicao: "valor >= 0", cor: "green",
           mensagem: "'Qual é o CET desta operação?' O banco é obrigado a informar, e a resposta é o número que você compara com o de outro banco.\n\nNunca compare pela parcela: parcela pequena com prazo longo esconde total maior. Parcela é sobre caber no mês; CET é sobre quanto custa." } ],
-        insightDinamico: "Vale para câmbio também: a cotação anunciada raramente é a que você paga. Entre o spread da casa e o IOF, o custo real fica bem acima do número da vitrine — e a lógica de perguntar o total é a mesma." } },
+        insightDinamico: "Vale para câmbio também: a cotação anunciada raramente é a que você paga. Entre o spread da casa e o IOF, o custo real fica bem acima do número da vitrine, e a lógica de perguntar o total é a mesma." } },
     ],
   },
 
@@ -2129,7 +2129,7 @@ export const MODULOS_T2: ModuloNovo[] = [
     telas: [
       { ordem: 0, tipo: "conceito", label: "Fluxo e estoque", conteudo: {
         headline: "Renda é o rio. Patrimônio é o reservatório",
-        corpo: "Renda é quanto passa pela sua mão por mês. Patrimônio é quanto ficou. São coisas independentes: dá para ter renda alta e patrimônio zero, e é bem mais comum do que parece.\n\nQuem confunde os dois mede sucesso pelo salário. Mas salário some quando o emprego some; patrimônio é o que continua existindo — e é ele que dá escolha.",
+        corpo: "Renda é quanto passa pela sua mão por mês. Patrimônio é quanto ficou. São coisas independentes: dá para ter renda alta e patrimônio zero, e é bem mais comum do que parece.\n\nQuem confunde os dois mede sucesso pelo salário. Mas salário some quando o emprego some; patrimônio é o que continua existindo, e é ele que dá escolha.",
         insight: { label: "Por que isso engana",
           texto: "Renda alta traz padrão de vida alto, e padrão de vida alto consome o aumento inteiro. O rio engrossa e o reservatório continua vazio." } } },
       { ordem: 1, tipo: "cenario", label: "Na prática", conteudo: {
@@ -2152,7 +2152,7 @@ export const MODULOS_T2: ModuloNovo[] = [
         formula: "fluxo_estoque",
         faixas: [ { condicao: "valor >= 0", cor: "green",
           mensagem: "Esse é o número que mede independência, não o salário. Ele responde a única pergunta que importa quando algo dá errado: quanto tempo eu aguento sem receber?" } ],
-        insightDinamico: "E ele sobe de dois jeitos: guardando mais, ou precisando de menos. O segundo caminho é mais rápido do que parece — cortar uma despesa fixa alta melhora os dois lados da conta ao mesmo tempo." } },
+        insightDinamico: "E ele sobe de dois jeitos: guardando mais, ou precisando de menos. O segundo caminho é mais rápido do que parece: cortar uma despesa fixa alta melhora os dois lados da conta ao mesmo tempo." } },
       { ordem: 4, tipo: "quiz", label: "Custo de oportunidade", conteudo: {
         headline: "Te oferecem um bico de 8 horas por R$ 200. Como avaliar?",
         opcoes: [
