@@ -22,6 +22,8 @@ const ATRASO_BUSCA = 320
 
 export default function TrilhaPage() {
   const [recomendados, setRecomendados] = useState<ModuloCard[]>([])
+  const [concluidas, setConcluidas] = useState(0)
+  const [totalLeva, setTotalLeva] = useState(0)
   const [todos, setTodos] = useState<ModuloCard[]>([])
   const [carregando, setCarregando] = useState(true)
   const [logado, setLogado] = useState(true)
@@ -48,6 +50,8 @@ export default function TrilhaPage() {
       if (!r.ok) throw new Error("falhou")
       const d = await r.json()
       setRecomendados(d.recomendados ?? [])
+      setConcluidas(d.concluidasDaLeva ?? 0)
+      setTotalLeva(d.totalDaLeva ?? 0)
       setTodos(d.todos ?? d.modulos ?? [])
     } catch {
       setErro(true)
@@ -151,17 +155,50 @@ export default function TrilhaPage() {
         ) : (
           <>
             <section className="mt-7">
-              <h2 className="text-[17px] font-extrabold tracking-tight text-fl-ink">Recomendados</h2>
-              <p className="mt-0.5 text-[13px] leading-relaxed text-fl-ink-2">
-                Montado a partir dos seus números, muda conforme seu comportamento muda.
-              </p>
-              <div className="mt-3.5 flex flex-col gap-2.5 md:grid md:grid-cols-2 md:items-start">
-                {recomendados.length === 0 ? (
-                  <p className="text-sm text-fl-ink-2">Nenhuma aula disponível no momento.</p>
-                ) : (
-                  recomendados.map((m) => <CardModulo key={m.id} m={m} />)
+              <div className="flex items-baseline justify-between gap-3">
+                <h2 className="text-[17px] font-extrabold tracking-tight text-fl-ink">Recomendados</h2>
+                {/* Concluída sai da lista, mas o esforço não some da tela: sem
+                    este contador, terminar quatro aulas deixa a Trilha igual à
+                    de quem não fez nenhuma. */}
+                {concluidas > 0 && (
+                  <span className="shrink-0 text-[12.5px] font-semibold text-fl-500">
+                    {concluidas} de {totalLeva} {totalLeva === 1 ? "concluída" : "concluídas"}
+                  </span>
                 )}
               </div>
+              <p className="mt-0.5 text-[13px] leading-relaxed text-fl-ink-2">
+                O que falta fazer. Montado a partir dos seus números, muda conforme seu
+                comportamento muda.
+              </p>
+
+              {recomendados.length === 0 ? (
+                /* Vazio aqui quer dizer duas coisas diferentes, e a pessoa
+                   precisa saber qual: ou ela fechou tudo que foi indicado, ou
+                   ainda não há indicação nenhuma. */
+                <div className="mt-3.5 rounded-[20px] border border-fl-border bg-fl-card p-5">
+                  {concluidas > 0 ? (
+                    <>
+                      <p className="text-[15px] font-bold text-fl-ink">
+                        Você fechou tudo que estava indicado.
+                      </p>
+                      <p className="mt-1 text-[13px] leading-relaxed text-fl-ink-2">
+                        A próxima leva é montada a partir dos seus números de agora. Abre o{" "}
+                        <Link href="/chat" className="font-semibold text-fl-500">Chat</Link> que
+                        ela chega por lá, ou procura um assunto na busca aqui em cima.
+                      </p>
+                    </>
+                  ) : (
+                    <p className="text-[13.5px] leading-relaxed text-fl-ink-2">
+                      Ainda não tenho o que indicar. Registra alguns gastos e eu monto sua
+                      trilha a partir deles.
+                    </p>
+                  )}
+                </div>
+              ) : (
+                <div className="mt-3.5 flex flex-col gap-2.5 md:grid md:grid-cols-2 md:items-start">
+                  {recomendados.map((m) => <CardModulo key={m.id} m={m} />)}
+                </div>
+              )}
             </section>
 
             <section className="mt-8">

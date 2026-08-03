@@ -114,12 +114,27 @@ export async function GET(req: NextRequest) {
     // O que vale é o gravado: é ele que inclui as levas que o gatilho
     // acrescentou depois.
     const leva = await levaAtual(userId)
-    const recomendados = leva
+    const daLeva = leva
       .map((r) => {
         const m = porSlug.get(r.slug)
         return m ? { ...enriquecer(m), motivo: r.motivo } : null
       })
       .filter((x): x is NonNullable<typeof x> => x !== null)
+
+    /**
+     * Recomendado é o que FALTA fazer.
+     *
+     * Aula concluída sai da lista: a seção responde "o que eu faço agora", e
+     * uma aula já feita ocupando espaço ali empurra para baixo justamente o que
+     * ainda não foi feito. Ela continua achável em "Todos os módulos", com o
+     * selo de concluída, e continua contando para o gatilho.
+     *
+     * `concluidasDaLeva` volta junto porque esconder sem contar apaga o
+     * esforço: a pessoa termina quatro aulas e a tela fica igual à de quem não
+     * fez nenhuma.
+     */
+    const recomendados = daLeva.filter((m) => !m.concluido)
+    const concluidasDaLeva = daLeva.length - recomendados.length
 
     // `todos` alimenta a seção "Todos os módulos" da Trilha. Vai na mesma
     // resposta de propósito: são 16 módulos já carregados e enriquecidos aqui;
@@ -127,7 +142,7 @@ export async function GET(req: NextRequest) {
     // estava em memória.
     const todos = modulos.map(enriquecer)
 
-    return NextResponse.json({ recomendados, todos })
+    return NextResponse.json({ recomendados, concluidasDaLeva, totalDaLeva: daLeva.length, todos })
   } catch (e) {
     console.error("[modulos]", e)
     return NextResponse.json({ error: "Erro ao carregar módulos" }, { status: 500 })
