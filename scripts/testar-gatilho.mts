@@ -19,7 +19,7 @@ config({ path: ".env" })
 const { db } = await import("../lib/db.js")
 const {
   garantirLevaInicial, levaAtual, medirProgresso, progressoDaTrilha,
-  talvezGerarNovaLeva, marcarEntregues, LIMIAR_NOVA_LEVA,
+  talvezGerarNovaLeva, marcarEntregues, guardarRecomendacaoDoChat, LIMIAR_NOVA_LEVA,
 } = await import("../lib/recomendacao.js")
 
 let falhas = 0
@@ -332,6 +332,47 @@ try {
     })
     checar("concluir algo novo volta a contar",
       (await progressoDaTrilha(userId4)).desdeUltimaLeva === 1)
+  }
+
+  // ---------------------------------------------- aula vinda da conversa ---
+  /**
+   * `lacuna_chat` estava no schema desde o começo e nunca tinha sido escrito.
+   * O assistente citava a aula num card e o card morria com a conversa: a aula
+   * não entrava na trilha nem contava para o gatilho.
+   */
+  console.log("\nAULA QUE VEIO DA CONVERSA")
+
+  const foraDeTudo = modulos.filter((m) => !jaNaLeva.has(m.id))
+  if (foraDeTudo.length >= 2) {
+    const antes = (await levaAtual(userId4)).length
+    const n = await guardarRecomendacaoDoChat(
+      userId4,
+      [foraDeTudo[0].slug],
+      { [foraDeTudo[0].slug]: "porque você falou de fatura" }
+    )
+    checar("a aula citada no chat entra na trilha", n === 1, `${n}`)
+
+    const agora = await levaAtual(userId4)
+    checar("virou uma linha a mais", agora.length === antes + 1, `${antes} → ${agora.length}`)
+
+    const nova = agora.find((r) => r.slug === foraDeTudo[0].slug)
+    checar("com origem lacuna_chat", nova?.origem === "lacuna_chat", nova?.origem)
+    checar("já entregue: o card FOI a entrega", nova?.entregueEm !== null)
+    checar("e guarda o porquê que o assistente deu",
+      nova?.motivo === "porque você falou de fatura", nova?.motivo)
+
+    // O assistente citar a mesma aula de novo não pode inflar o denominador.
+    const repetido = await guardarRecomendacaoDoChat(userId4, [foraDeTudo[0].slug], {})
+    checar("citar a mesma aula de novo não grava nada", repetido === 0, `${repetido}`)
+    checar("continua o mesmo tamanho", (await levaAtual(userId4)).length === antes + 1)
+
+    // Aula que a pessoa JÁ tem na trilha por outra via também não duplica.
+    const umaJaNaTrilha = [...jaNaLeva][0]
+    const slugJaNaLeva = modulos.find((m) => m.id === umaJaNaTrilha)?.slug
+    if (slugJaNaLeva) {
+      const dup = await guardarRecomendacaoDoChat(userId4, [slugJaNaLeva], {})
+      checar("aula que já está na trilha não vira segunda linha", dup === 0, `${dup}`)
+    }
   }
 } finally {
   // Este bloco apagava `userId`, do PRIMEIRO caso, em vez de `userId4`. Foi

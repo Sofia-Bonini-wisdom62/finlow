@@ -284,6 +284,64 @@ export async function talvezGerarNovaLeva(
   return (await levaAtual(userId)).filter((r) => !r.entregueEm)
 }
 
+/**
+ * A aula que o chat recomendou vira parte da trilha.
+ *
+ * POR QUE ISTO PRECISA EXISTIR
+ * O assistente já sabia recomendar módulo num card. Só que o card morria com a
+ * conversa: a aula não entrava na trilha da pessoa, não contava para o gatilho
+ * de percentual, e sumia quando o histórico rolava. `origem: "lacuna_chat"`
+ * estava no schema e nunca tinha sido escrito por ninguém — era o gatilho
+ * declarado na maioria do backlog e a justificativa da Faixa 1 inteira.
+ *
+ * Nasce ENTREGUE porque o card já é a entrega: a pessoa está lendo a
+ * recomendação agora. Mandar uma mensagem no chat contando o que o chat acabou
+ * de dizer seria eco.
+ *
+ * Idempotente pela chave (userId, moduloId, origem): o assistente citar a mesma
+ * aula em três conversas grava uma linha só.
+ */
+export async function guardarRecomendacaoDoChat(
+  userId: string,
+  slugs: string[],
+  motivoPorSlug: Record<string, string>
+): Promise<number> {
+  if (slugs.length === 0) return 0
+
+  const modulos = await db.modulo.findMany({
+    where: { slug: { in: slugs } },
+    select: { id: true, slug: true },
+  })
+  if (modulos.length === 0) return 0
+
+  // Já recomendado por qualquer via não vira linha nova: a aula já está na
+  // trilha, e uma segunda entrada faria o denominador do gatilho subir sem a
+  // pessoa ter recebido nada novo.
+  const jaTem = new Set(
+    (await db.recomendacaoTrilha.findMany({
+      where: { userId, moduloId: { in: modulos.map((m) => m.id) } },
+      select: { moduloId: true },
+    })).map((r) => r.moduloId)
+  )
+
+  const novos = modulos.filter((m) => !jaTem.has(m.id))
+  if (novos.length === 0) return 0
+
+  const base = await db.recomendacaoTrilha.count({ where: { userId } })
+  const r = await db.recomendacaoTrilha.createMany({
+    data: novos.map((m, i) => ({
+      userId,
+      moduloId: m.id,
+      origem: "lacuna_chat",
+      ordem: base + i,
+      motivo: motivoPorSlug[m.slug] ?? "Veio de uma conversa sua com o assistente.",
+      entregueEm: new Date(),
+    })),
+    skipDuplicates: true,
+  })
+  return r.count
+}
+
 /** Marca como entregue. É o que impede a mesma leva de reaparecer a cada
  *  abertura do chat, já que a condição que a gerou continua verdadeira. */
 export async function marcarEntregues(userId: string, ids: string[]): Promise<void> {

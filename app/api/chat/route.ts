@@ -5,6 +5,7 @@ import { listarTransacoes } from "@/lib/financeiro-repo"
 import { responderIA, IANaoConfigurada, type MensagemChat } from "@/lib/ia"
 import { memoriaLigada, listarMemorias, guardarMemorias, type TipoMemoria } from "@/lib/memoria-repo"
 import { guardarTurno } from "@/lib/conversa-repo"
+import { guardarRecomendacaoDoChat } from "@/lib/recomendacao"
 import { montarContexto } from "@/lib/contexto-financeiro"
 import { slugDaCategoria } from "@/lib/extrato/categorias"
 
@@ -49,6 +50,22 @@ export async function POST(req: NextRequest) {
       { ligada, conhecidas },
       { podeLancar, modulos }
     )
+
+    // A aula que o assistente citou entra na trilha da pessoa.
+    //
+    // Sem isto o card morria com a conversa: a aula não entrava na trilha, não
+    // contava para o gatilho de percentual e sumia quando o histórico rolava.
+    // Falha aqui não derruba a resposta, que é o que ela pediu.
+    const recomendadas = (resposta.cards ?? [])
+      .filter((c): c is Extract<typeof c, { tipo: "recomendacao" }> => c.tipo === "recomendacao")
+      .filter((c) => !!c.moduloSlug)
+    if (recomendadas.length) {
+      await guardarRecomendacaoDoChat(
+        userId,
+        recomendadas.map((c) => c.moduloSlug as string),
+        Object.fromEntries(recomendadas.map((c) => [c.moduloSlug as string, c.texto]))
+      ).catch((e) => console.warn("[chat] recomendação:", (e as Error)?.message))
+    }
 
     // Gravar não pode derrubar a conversa: a resposta já está pronta e é o que
     // a pessoa pediu. Falha aqui vira log, não erro na tela.
