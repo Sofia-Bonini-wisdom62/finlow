@@ -73,6 +73,12 @@ export const DESTINOS: Destino[] = [
     paraQue: "subir PDF, CSV ou OFX do banco e importar tudo de uma vez",
   },
   {
+    href: "/diagnostico",
+    nome: "Diagnóstico de Vazamento",
+    caminho: ["Menu", "Diagnóstico de Vazamento"],
+    paraQue: "ver quanto escapa por mês em assinaturas, tarifas, juros e cobranças em dobro",
+  },
+  {
     href: "/memoria",
     nome: "Memória do assistente",
     caminho: ["Menu", "Memória do assistente"],

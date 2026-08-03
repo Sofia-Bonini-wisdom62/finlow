@@ -5,7 +5,7 @@ import Link from "next/link"
 import { signOut } from "next-auth/react"
 import {
   ChevronRight, Download, LogOut, Trash2, Check, X, Clock,
-  User, Landmark, Sparkles, ShieldCheck, Palette, LifeBuoy, Brain, FileUp, MessageCircle, Gift,
+  User, Landmark, Sparkles, ShieldCheck, Palette, LifeBuoy, Brain, FileUp, MessageCircle, Gift, Droplets,
 } from "lucide-react"
 import { ConvidarAmigos } from "@/components/ajustes/ConvidarAmigos"
 import { BottomNav } from "@/components/bottom-nav"
@@ -269,6 +269,7 @@ export default function AjustesPage() {
         <Secao titulo="Dados financeiros" Icon={Landmark}>
           <Acao rotulo="Registrar e editar lançamentos" href="/painel" />
           <Acao rotulo="Ler extrato do banco (PDF, CSV ou OFX)" Icon={FileUp} href="/extrato" />
+          <Acao rotulo="Diagnóstico de Vazamento" Icon={Droplets} href="/diagnostico" />
           <Acao rotulo="Exportar meus dados (JSON)" Icon={Download} href="/api/exportar" download />
           <EmBreve rotulo="Bancos conectados" motivo="Requer Open Finance. Por ora, o extrato faz o mesmo trabalho." />
         </Secao>

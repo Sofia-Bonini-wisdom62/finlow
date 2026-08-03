@@ -103,12 +103,11 @@ export function ChatIA({ nome }: { nome: string }) {
     fetch("/api/chat/novidades")
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => {
-        if (!vivo || !d?.recomendacoes?.length) return
-        let apareceu = false
-        setMensagens((m) => {
-          if (m.length > 0) return m
-          apareceu = true
-          return [{
+        if (!vivo) return
+
+        const novidades: Mensagem[] = []
+        if (d?.recomendacoes?.length) {
+          novidades.push({
             papel: "ia",
             texto: d.texto ?? "Separei mais algumas aulas pra você.",
             cards: d.recomendacoes.map((r: { titulo: string; motivo: string; slug: string }) => ({
@@ -117,16 +116,41 @@ export function ChatIA({ nome }: { nome: string }) {
               texto: r.motivo,
               moduloSlug: r.slug,
             })),
-          }]
+          })
+        }
+        // O Diagnóstico de Vazamento chega UMA vez na vida da conta — como
+        // mensagem do assistente com o atalho, no mesmo contrato da leva.
+        if (d?.vazamento?.texto) {
+          novidades.push({
+            papel: "ia",
+            texto: d.vazamento.texto,
+            cards: [{
+              tipo: "caminho" as const,
+              titulo: "Diagnóstico de Vazamento",
+              passos: ["Menu", "Diagnóstico de Vazamento"],
+              href: "/diagnostico",
+            }],
+          })
+        }
+        if (novidades.length === 0) return
+
+        let apareceu = false
+        setMensagens((m) => {
+          if (m.length > 0) return m
+          apareceu = true
+          return novidades
         })
 
         // Só confirma o que REALMENTE entrou na tela. O servidor não marca mais
         // sozinho: marcar na hora de gerar dava leva entregue que ninguém viu.
-        if (apareceu && Array.isArray(d.ids) && d.ids.length) {
+        if (apareceu && ((Array.isArray(d.ids) && d.ids.length) || d?.vazamento)) {
           fetch("/api/chat/novidades", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ ids: d.ids }),
+            body: JSON.stringify({
+              ids: Array.isArray(d.ids) ? d.ids : [],
+              vazamento: !!d?.vazamento,
+            }),
           }).catch(() => {})
         }
       })

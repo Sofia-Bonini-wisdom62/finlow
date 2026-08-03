@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { getUserIdOr401 } from "@/lib/painel"
 import { listarTransacoes, listarContasFixas } from "@/lib/financeiro-repo"
+import { lerDiagnostico } from "@/lib/vazamento-repo"
 
 export const dynamic = "force-dynamic"
 
@@ -13,7 +14,7 @@ export async function GET() {
   if (userId instanceof NextResponse) return userId
 
   try {
-    const [user, categorias, contas, transacoes, progresso, indicacoesFeitas, indicacaoRecebida] = await Promise.all([
+    const [user, categorias, contas, transacoes, progresso, indicacoesFeitas, indicacaoRecebida, diagnostico] = await Promise.all([
       db.user.findUnique({
         where: { id: userId },
         select: { nome: true, email: true, dataNascimento: true, criadoEm: true, consentimentoPainelEm: true, codigoIndicacao: true },
@@ -40,6 +41,7 @@ export async function GET() {
         where: { indicadoId: userId },
         select: { status: true, criadoEm: true, ativadoEm: true },
       }),
+      lerDiagnostico(userId),
     ])
 
     const dump = {
@@ -71,6 +73,16 @@ export async function GET() {
         convitesQueFiz: indicacoesFeitas,
         entreiPorIndicacao: indicacaoRecebida,
       },
+      diagnosticoVazamento: diagnostico
+        ? {
+            totalAnual: diagnostico.totalAnual,
+            totalMensal: diagnostico.totalMensal,
+            mesesAnalisados: diagnostico.mesesAnalisados,
+            achados: diagnostico.achados,
+            narrativa: diagnostico.narrativa,
+            geradoEm: diagnostico.geradoEm,
+          }
+        : null,
     }
 
     const data = new Date().toISOString().split("T")[0]

@@ -42,8 +42,33 @@ model User {
   conversas             Conversa[]
   indicacoesFeitas      Indicacao[]          @relation("indicador")
   indicacaoRecebida     Indicacao?           @relation("indicado")
+  diagnosticoVazamento  DiagnosticoVazamento?
   accounts              Account[]
   sessions              Session[]
+}
+
+/// Diagnóstico de Vazamento: quanto escapa por mês sem a pessoa ver —
+/// assinaturas, cobranças em dobro, juros/tarifas e categoria fora da curva.
+///
+/// UMA linha por usuário (userId @unique), reescrita a cada geração: o
+/// diagnóstico é uma FOTO dos números de agora, não um histórico. O que
+/// precisa sobreviver às regerações mora em colunas próprias: `entregueEm`
+/// (a entrega no chat acontece UMA vez) e `tokenPublico` (o link do card
+/// compartilhável não pode trocar toda vez que a foto atualiza).
+///
+/// `totalAnual`, `achados` e `narrativa` são CIFRADOS (AES-256-GCM) — é
+/// leitura direta dos valores financeiros, mesma regra de Transacao.
+/// `tokenPublico` só existe se a pessoa PEDIU o link público (opt-in).
+model DiagnosticoVazamento {
+  id           String    @id @default(cuid())
+  userId       String    @unique
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  totalAnual   String // CIFRADO
+  achados      String // CIFRADO — JSON dos achados
+  narrativa    String? // CIFRADO — leitura da IA (opcional; tem fallback)
+  geradoEm     DateTime  @default(now())
+  entregueEm   DateTime? // quando apareceu no chat; null = ainda não
+  tokenPublico String?   @unique
 }
 
 /// Programa de indicação: quem convidou quem, e se o convite "valeu".
