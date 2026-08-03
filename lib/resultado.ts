@@ -31,6 +31,21 @@ export interface Derivados {
   reserva6Num: number    // M03 — meta de 6 meses
   anoNum: number         // M04 — o mesmo gasto ao longo de 12 meses
   acimaDaMedia: number   // M02 (0/1) — a dívida está acima da média nacional
+  comprometidoNum: number // M05 — quanto do mês que vem já foi
+  descontoNum: number     // M06 — bruto menos líquido
+  apostadoNum: number     // M07 — o total que sai da mão em 12 meses
+  guardadoNum: number     // M07/M24 — o mesmo dinheiro do outro lado
+  sobraNum: number        // M11 — o que sobra depois do essencial
+  anualNum: number        // M13/M26 — o valor no ano, ou a taxa no ano
+  cabe: number            // M13/M15/M18 (0/1)
+  precoNum: number        // M14 — preço mínimo que não dá prejuízo
+  pctA: number            // M16 — participação de quem ganha mais
+  economiaNum: number     // M18 — o que a troca de dívida devolve por mês
+  jurosPriceNum: number   // M19
+  jurosSacNum: number     // M19
+  perdaNum: number        // M07/M22 — o que se perde no ano
+  anosNum: number         // M23 — anos para dobrar, pela regra do 72
+  mesesRendaNum: number   // M27 — meses de renda guardados
 }
 
 const ZERO: Omit<Derivados, "entrou" | "saiu" | "sobrou" | "pct"> = {
@@ -38,6 +53,9 @@ const ZERO: Omit<Derivados, "entrou" | "saiu" | "sobrou" | "pct"> = {
   acimaLimite: 0, livreNum: 0, rendeNum: 0, mesesJuntar: 0, cobre: 0, pctMeta: 0,
   semTetoNum: 0, comTetoNum: 0, subestimou: 0,
   reserva3Num: 0, reserva6Num: 0, anoNum: 0, acimaDaMedia: 0,
+  comprometidoNum: 0, descontoNum: 0, apostadoNum: 0, guardadoNum: 0,
+  sobraNum: 0, anualNum: 0, cabe: 0, precoNum: 0, pctA: 0, economiaNum: 0,
+  jurosPriceNum: 0, jurosSacNum: 0, perdaNum: 0, anosNum: 0, mesesRendaNum: 0,
 }
 
 export function calcular(formula: string | undefined, sessao: SessaoFluxo): Derivados {
@@ -175,6 +193,175 @@ export function calcular(formula: string | undefined, sessao: SessaoFluxo): Deri
       return { ...base, valor: porMes, anoNum: Math.round(porMes * 12), porMesNum: Math.round(porMes) }
     }
 
+
+    /** M05 — quanto do mês que vem já está gasto antes de ele começar. */
+    case "parcelas_comprometem": {
+      const parcelas = num(sessao.parcelas), renda = num(sessao.rendaMes)
+      return {
+        ...base,
+        valor: parcelas,
+        comprometidoNum: renda > 0 ? Math.round((parcelas / renda) * 100) : 0,
+      }
+    }
+
+    /**
+     * M06 — o que some entre o combinado e o que cai.
+     *
+     * NÃO reparte o desconto entre INSS e IRRF. As duas tabelas são
+     * progressivas, mudam de ano em ano e dependem de dependentes e de outras
+     * deduções: uma repartição estimada aqui pareceria precisa e estaria errada
+     * para quase todo mundo. Mostra o TOTAL, que a pessoa confere no próprio
+     * holerite, e explica cada linha por escrito.
+     */
+    case "holerite_descontos": {
+      const bruto = num(sessao.bruto), liquido = num(sessao.liquido)
+      const desconto = Math.max(0, bruto - liquido)
+      return {
+        ...base,
+        valor: bruto,
+        descontoNum: Math.round(desconto),
+        pctMeta: bruto > 0 ? Math.round((desconto / bruto) * 100) : 0,
+      }
+    }
+
+    /**
+     * M07 — a aposta contra o mesmo dinheiro guardado.
+     *
+     * A perda não é projeção de probabilidade: é o gasto médio mensal do
+     * apostador ativo brasileiro, medido pela Secretaria de Prêmios e Apostas.
+     * Estimar "quanto você perderia" a partir de odds seria discutível; usar o
+     * que os apostadores REAIS perderam, não.
+     */
+    case "bets_comparacao": {
+      const porMes = 100, meses = 12
+      const perdaMes = num(sessao.ind_gasto_medio_bets) || 164
+      return {
+        ...base,
+        valor: num(sessao.chute),
+        apostadoNum: porMes * meses,
+        guardadoNum: Math.round(porMes * meses * 1.05),
+        perdaNum: Math.round(perdaMes * meses),
+      }
+    }
+
+    /** M11 — o esqueleto: essencial, guardar, torrar. */
+    case "orcamento_esqueleto": {
+      const renda = num(sessao.rendaMedia), fixo = num(sessao.gastoFixo)
+      return {
+        ...base,
+        valor: renda,
+        sobraNum: Math.round(renda - fixo),
+        pctMeta: renda > 0 ? Math.round((fixo / renda) * 100) : 0,
+      }
+    }
+
+    /** M13 — cabe no MEI? O teto é anual, não mensal. */
+    case "mei_cabe": {
+      const mes = num(sessao.faturamento)
+      const ano = mes * 12
+      const teto = num(sessao.ind_teto_mei) || 81000
+      return { ...base, valor: mes, anualNum: Math.round(ano), cabe: ano <= teto ? 1 : 0 }
+    }
+
+    /** M14 — o preço abaixo do qual você trabalha de graça. */
+    case "preco_minimo": {
+      const custo = num(sessao.custoMaterial)
+      const horas = Math.max(0.5, num(sessao.horas))
+      const valorHora = num(sessao.valorHora)
+      return { ...base, precoNum: Math.round(custo + horas * valorHora), valor: custo }
+    }
+
+    /** M15 — está na faixa de isenção? */
+    case "ir_isencao": {
+      const renda = num(sessao.rendaMes)
+      const teto = num(sessao.ind_isencao_ir) || 5000
+      return { ...base, valor: renda, cabe: renda <= teto ? 1 : 0 }
+    }
+
+    /** M16 — divisão proporcional à renda, não meio a meio. */
+    case "divisao_casal": {
+      const a = num(sessao.rendaA), b = num(sessao.rendaB)
+      const total = a + b
+      return { ...base, valor: total, pctA: total > 0 ? Math.round((a / total) * 100) : 50 }
+    }
+
+    /** M18 — o que trocar dívida cara por barata devolve por mês. */
+    case "troca_divida": {
+      const saldo = num(sessao.saldo)
+      const taxaAtual = num(sessao.taxaAtual)
+      const consignado = num(sessao.ind_consignado_clt) || 3.2
+      return {
+        ...base,
+        valor: saldo,
+        economiaNum: Math.round(Math.max(0, saldo * ((taxaAtual - consignado) / 100))),
+        cabe: taxaAtual > consignado ? 1 : 0,
+      }
+    }
+
+    /**
+     * M19 — Price contra SAC.
+     *
+     * Aproximação didática, e o módulo diz que é. No SAC a amortização é
+     * constante, então os juros somam o saldo médio vezes a taxa vezes o prazo;
+     * no Price a parcela é fixa e os juros somam mais. Não substitui a planilha
+     * do banco: serve para entender a DIREÇÃO antes de pedir o CET.
+     */
+    case "price_vs_sac": {
+      const valor = num(sessao.valorFinanciado)
+      const anos = Math.max(1, num(sessao.anos))
+      const taxaAno = (num(sessao.ind_financiamento_imovel) || 11) / 100
+      const n = anos * 12
+      const i = taxaAno / 12
+      const parcelaPrice = i > 0 ? (valor * i) / (1 - Math.pow(1 + i, -n)) : valor / n
+      return {
+        ...base,
+        valor,
+        jurosPriceNum: Math.round(parcelaPrice * n - valor),
+        jurosSacNum: Math.round((valor * i * (n + 1)) / 2),
+      }
+    }
+
+    /** M22 — o que a inflação tira de quem deixa parado. */
+    case "perda_inflacao": {
+      const parado = num(sessao.parado)
+      const ipca = num(sessao.ind_ipca_12m) || 4.64
+      return { ...base, valor: parado, perdaNum: Math.round(parado * (ipca / 100)) }
+    }
+
+    /**
+     * M23 — a regra do 72.
+     *
+     * 72 dividido pela taxa anual dá, por aproximação, os anos para o dinheiro
+     * dobrar. É atalho de cabeça, não fórmula exata, e o módulo apresenta assim.
+     */
+    case "regra_72": {
+      const taxa = Math.max(0.1, num(sessao.taxaAno))
+      return { ...base, valor: num(sessao.chute), anosNum: Math.round((72 / taxa) * 10) / 10 }
+    }
+
+    /** M24 — o que rende parado na poupança, em um ano. */
+    case "poupanca_rende": {
+      const guardado = num(sessao.guardadoPoupanca)
+      // Com a Selic acima de 8,5% ao ano, a poupança rende 0,5% ao mês mais TR.
+      return { ...base, valor: guardado, guardadoNum: Math.round(guardado * 0.005 * 12) }
+    }
+
+    /** M26 — a taxa mensal, no ano, com juro sobre juro. */
+    case "taxa_anual": {
+      const mes = num(sessao.taxaMes)
+      return { ...base, valor: mes, anualNum: Math.round((Math.pow(1 + mes / 100, 12) - 1) * 1000) / 10 }
+    }
+
+    /** M27 — quantos meses de vida o seu estoque cobre. */
+    case "fluxo_estoque": {
+      const renda = num(sessao.rendaMensal), patrimonio = num(sessao.patrimonio)
+      return {
+        ...base,
+        valor: patrimonio,
+        mesesRendaNum: renda > 0 ? Math.round((patrimonio / renda) * 10) / 10 : 0,
+      }
+    }
+
     case "entrou_saiu_pct":
     default:
       return base
@@ -202,6 +389,38 @@ export function interpolar(texto: string, d: Derivados, sessao: SessaoFluxo): st
         return String(d.periodosNum)
       case "mesesJuntar":
         return String(d.mesesJuntar)
+      case "comprometido":
+        return String(d.comprometidoNum)
+      case "desconto":
+        return "R$ " + formatInteiroBRL(d.descontoNum)
+      case "apostado":
+        return "R$ " + formatInteiroBRL(d.apostadoNum)
+      case "guardado":
+        return "R$ " + formatInteiroBRL(d.guardadoNum)
+      case "sobra":
+        return "R$ " + formatInteiroBRL(d.sobraNum)
+      case "anual":
+        return "R$ " + formatInteiroBRL(d.anualNum)
+      case "taxaAnual":
+        return String(d.anualNum).replace(".", ",")
+      case "preco":
+        return "R$ " + formatInteiroBRL(d.precoNum)
+      case "pctA":
+        return String(d.pctA)
+      case "pctB":
+        return String(100 - d.pctA)
+      case "economia":
+        return "R$ " + formatInteiroBRL(d.economiaNum)
+      case "jurosPrice":
+        return "R$ " + formatInteiroBRL(d.jurosPriceNum)
+      case "jurosSac":
+        return "R$ " + formatInteiroBRL(d.jurosSacNum)
+      case "perda":
+        return "R$ " + formatInteiroBRL(d.perdaNum)
+      case "anosDobrar":
+        return String(d.anosNum).replace(".", ",")
+      case "mesesRenda":
+        return String(d.mesesRendaNum).replace(".", ",")
       case "reserva3":
         return "R$ " + formatInteiroBRL(d.reserva3Num)
       case "reserva6":
