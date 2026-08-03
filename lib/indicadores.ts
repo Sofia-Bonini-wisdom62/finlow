@@ -79,6 +79,58 @@ export const INDICADORES_INICIAIS = [
     fonte: "Lei 15.270/2025, em vigor desde jan/2026",
     apuradoEm: new Date("2026-01-01"),
   },
+
+  // ---- dados de comportamento, citados pelos módulos da Faixa 1 ----------
+  // Envelhecem como os macro: pesquisa nova sai todo ano. Mesma regra, mesma
+  // tabela — módulo nenhum crava esses números no texto.
+  {
+    chave: "inadimplentes",
+    valor: "81700000",
+    rotulo: "81,7 milhões de pessoas",
+    numero: 81700000,
+    fonte: "Serasa, Mapa da Inadimplência",
+    apuradoEm: new Date("2026-02-28"),
+  },
+  {
+    chave: "divida_media",
+    valor: "6598.13",
+    rotulo: "R$ 6.598,13",
+    numero: 6598.13,
+    fonte: "Serasa, Mapa da Inadimplência",
+    apuradoEm: new Date("2026-02-28"),
+  },
+  {
+    chave: "ticket_acordo",
+    valor: "793",
+    rotulo: "R$ 793",
+    numero: 793,
+    fonte: "Serasa, ticket médio de acordo",
+    apuradoEm: new Date("2026-02-28"),
+  },
+  {
+    chave: "endividamento_familias",
+    valor: "80.4",
+    rotulo: "80,4% das famílias",
+    numero: 80.4,
+    fonte: "Peic / CNC",
+    apuradoEm: new Date("2026-03-31"),
+  },
+  {
+    chave: "sem_reserva_pct",
+    valor: "31",
+    rotulo: "31% dos brasileiros",
+    numero: 31,
+    fonte: "Anbima / Datafolha, Raio-X do Investidor 9ª ed.",
+    apuradoEm: new Date("2025-12-31"),
+  },
+  {
+    chave: "gasto_assinaturas",
+    valor: "56",
+    rotulo: "entre R$ 51 e R$ 200 por mês",
+    numero: 56,
+    fonte: "Vindi / Opinion Box, Pesquisa de Assinaturas",
+    apuradoEm: new Date("2025-05-31"),
+  },
 ] as const
 
 export interface Indicador {

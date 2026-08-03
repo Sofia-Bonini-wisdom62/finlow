@@ -184,4 +184,423 @@ export const MODULOS_T2: ModuloNovo[] = [
       },
     ],
   },
+
+  // =====================================================================
+  // M02 — Sair do vermelho
+  // =====================================================================
+  {
+    slug: "sair-do-vermelho-negociar",
+    titulo: "Sair do vermelho",
+    subtitulo: "O que a negativação trava, e como se negocia de verdade.",
+    tipoPerfil: "lancador",
+    ordem: 11,
+    nivel: "iniciante",
+    situacoes: ["divida_rotativa", "sem_reserva"],
+    tags: ["negativacao", "serasa", "desenrola", "superendividamento", "renegociacao", "divida"],
+    xp: 50,
+    telas: [
+      {
+        ordem: 0,
+        tipo: "conceito",
+        label: "O que trava",
+        conteudo: {
+          headline: "Nome negativado não é sentença, é um aviso público",
+          corpo:
+            "Quando uma dívida passa do prazo, o credor pode registrar seu CPF num cadastro de inadimplentes. A partir daí, quem consulta vê o registro: banco, loja, imobiliária, às vezes empregador.\n\nO que trava na prática é crédito novo, conta em algumas instituições, aluguel e compra parcelada. O que NÃO trava: receber salário, movimentar sua conta, sacar FGTS, trabalhar.",
+          insight: {
+            label: "Você não está sozinho nisso",
+            texto:
+              "São {{inadimplentes}} com o nome restrito no Brasil, e a dívida média é de {{divida_media}}. É situação de multidão, não de exceção.",
+          },
+        },
+      },
+      {
+        ordem: 1,
+        tipo: "cenario",
+        label: "Na prática",
+        conteudo: {
+          headline: "O Marcos descobriu que a dívida tinha três partes",
+          personagem: "Marcos, 38 anos, técnico",
+          linhas: [
+            { label: "O que ele gastou de verdade", valor: 1800, tipo: "saldo" },
+            { label: "Juros e encargos acumulados", valor: 520, tipo: "saida" },
+            { label: "Multa e mora do atraso", valor: 180, tipo: "saida" },
+            { label: "O que o credor cobrava", valor: 2500, tipo: "saldo" },
+          ],
+          rodape:
+            "A parte que cresceu foi a de encargos, não a da compra. É justamente essa parte que o credor tem margem para descontar numa negociação — ele prefere receber o principal a não receber nada.",
+        },
+      },
+      {
+        ordem: 2,
+        tipo: "quiz",
+        label: "A lei que te protege",
+        conteudo: {
+          headline: "A Lei do Superendividamento garante o quê?",
+          opcoes: [
+            {
+              letra: "A",
+              texto: "Que a dívida é perdoada depois de 5 anos",
+              correta: false,
+              feedback:
+                "Não. O que caduca em 5 anos é o REGISTRO no cadastro de inadimplentes, não a dívida. Ela continua existindo e o credor pode cobrar.",
+            },
+            {
+              letra: "B",
+              texto: "Um plano de pagamento e a garantia do mínimo existencial",
+              correta: true,
+              feedback:
+                "Isso. A Lei 14.181/2021 permite repactuar dívidas num plano de até 5 anos e garante que sobre um mínimo para você viver. Nenhum acordo pode consumir tudo o que você ganha.",
+            },
+            {
+              letra: "C",
+              texto: "Que o banco é obrigado a aceitar sua proposta",
+              correta: false,
+              feedback:
+                "Não existe obrigação de aceitar um valor específico. O que a lei cria é o dever de negociar de boa-fé e o direito à audiência de conciliação.",
+            },
+            {
+              letra: "D",
+              texto: "Que você pode parar de pagar sem consequência",
+              correta: false,
+              feedback:
+                "Não. A lei protege quem está superendividado de boa-fé, e o caminho é repactuar, não parar de pagar.",
+            },
+          ],
+        },
+      },
+      {
+        ordem: 3,
+        tipo: "input",
+        label: "Sua dívida",
+        conteudo: {
+          headline: "Quanto está em atraso hoje?",
+          subtitulo:
+            "Só o que já passou do vencimento. Valor aproximado serve — o objetivo é ter um número na mão antes de ligar.",
+          aviso: "Fica só nesta tela, no seu aparelho. Não é gravado em lugar nenhum.",
+          campos: [
+            { id: "divida", emoji: "📄", label: "Total em atraso", placeholder: "2500", tipo: "decimal" },
+          ],
+        },
+      },
+      {
+        ordem: 4,
+        tipo: "resultado",
+        label: "O que dá pra fazer",
+        conteudo: {
+          headline: "Você tem <strong>R$ {valor}</strong> em atraso.",
+          formula: "divida_negociada",
+          faixas: [
+            {
+              condicao: "acimaDaMedia > 0",
+              mensagem:
+                "Está acima da dívida média do país, e isso muda a estratégia: com valor maior, vale pedir a audiência de conciliação prevista na Lei do Superendividamento em vez de aceitar a primeira proposta do balcão.",
+              cor: "yellow",
+            },
+            {
+              condicao: "valor >= 0",
+              mensagem:
+                "Está na faixa em que a maioria dos acordos acontece. Credor prefere receber parte a não receber nada, e é por isso que a negociação costuma ter margem.",
+              cor: "green",
+            },
+          ],
+          insightDinamico:
+            "Para calibrar: o ticket médio de acordo no Brasil é {{ticket_acordo}}, e a dívida média de quem está negativado é {{divida_media}}. Isso não é promessa de desconto — depende do credor, do tempo de atraso e da campanha do mês. É só o retrato de onde as negociações costumam fechar.",
+        },
+      },
+      {
+        ordem: 5,
+        tipo: "resultado",
+        label: "Levar daqui",
+        conteudo: {
+          headline: "A ordem que funciona",
+          faixas: [
+            {
+              condicao: "valor >= 0",
+              mensagem:
+                "1. Liste tudo o que está em atraso, com credor e valor.\n2. Comece pela mais cara, não pela maior.\n3. Procure o canal oficial do credor ou os mutirões de renegociação. Nunca um intermediário que cobra para negociar.\n4. Antes de aceitar: peça o valor total do acordo, não a parcela. Parcela pequena com prazo longo pode custar mais que a dívida atual.",
+              cor: "green",
+            },
+          ],
+          insightDinamico:
+            "E o mais importante: só feche um acordo que cabe. Acordo quebrado costuma voltar pior que a dívida original, e a Lei 14.181/2021 existe justamente para você não precisar assinar algo que não cabe no seu mês.",
+        },
+      },
+    ],
+  },
+
+  // =====================================================================
+  // M03 — Reserva de emergência
+  // =====================================================================
+  {
+    slug: "reserva-de-emergencia-colchao",
+    titulo: "O colchão antes de investir",
+    subtitulo: "Quanto guardar pra um imprevisto não virar dívida.",
+    tipoPerfil: "lancador",
+    ordem: 12,
+    nivel: "iniciante",
+    situacoes: ["sem_reserva", "renda_variavel"],
+    tags: ["reserva", "emergencia", "liquidez", "colchao", "imprevisto"],
+    xp: 50,
+    telas: [
+      {
+        ordem: 0,
+        tipo: "conceito",
+        label: "O que é",
+        conteudo: {
+          headline: "Reserva é o dinheiro que existe pra você não pegar emprestado",
+          corpo:
+            "Não é investimento e não é poupança para um objetivo. É um valor parado, de saque imediato, que cobre o mês quando algo quebra, some ou adoece.\n\nSem ela, todo imprevisto vira cartão. E cartão vira rotativo, que é a dívida mais cara do país. A reserva não é o passo depois de organizar as contas: é o que impede as contas de desorganizarem de novo.",
+          insight: {
+            label: "Por que ela vem antes",
+            texto:
+              "{{sem_reserva_pct}} não têm reserva nenhuma. É também por isso que {{endividamento_familias}} estão endividadas: sem colchão, o imprevisto só tem um lugar para cair.",
+          },
+        },
+      },
+      {
+        ordem: 1,
+        tipo: "cenario",
+        label: "Na prática",
+        conteudo: {
+          headline: "A Carla não tinha reserva, e o carro quebrou",
+          personagem: "Carla, 29 anos, autônoma",
+          linhas: [
+            { label: "O conserto", valor: 1400, tipo: "saida" },
+            { label: "Foi pro cartão, em 6x", valor: 280, tipo: "saida" },
+            { label: "Juros do parcelamento no ano", valor: 190, tipo: "saida" },
+          ],
+          rodape:
+            "O conserto custou R$ 1.400. Ela pagou R$ 1.590. A diferença é o preço de não ter tido R$ 1.400 parados — e ela ficou com 6 meses de parcela comprometida, o que reduziu a chance de guardar para o próximo imprevisto.",
+        },
+      },
+      {
+        ordem: 2,
+        tipo: "input",
+        label: "Seu custo fixo",
+        conteudo: {
+          headline: "Quanto você gasta num mês só pra viver?",
+          subtitulo:
+            "Aluguel ou prestação, contas de casa, mercado, transporte, remédio. O essencial. Não inclua lazer nem o que dá pra cortar num mês apertado.",
+          aviso: "Fica só nesta tela, no seu aparelho. Não é gravado em lugar nenhum.",
+          campos: [
+            { id: "custoFixo", emoji: "🏠", label: "Custo fixo do mês", placeholder: "2800", tipo: "decimal" },
+          ],
+        },
+      },
+      {
+        ordem: 3,
+        tipo: "resultado",
+        label: "Sua meta",
+        conteudo: {
+          headline: "Sua reserva cheia é entre <strong>{reserva3}</strong> e <strong>{reserva6}</strong>.",
+          formula: "reserva_meta",
+          faixas: [
+            {
+              condicao: "valor > 0",
+              mensagem:
+                "É de 3 a 6 meses do seu custo fixo, não da sua renda. A diferença é grande e é de propósito: a reserva precisa cobrir o que você GASTA para viver, não o que você ganha.",
+              cor: "green",
+            },
+          ],
+          insightDinamico:
+            "E o número cheio não é a meta de agora. A meta de agora é UM mês: {valor}. É o suficiente para o próximo imprevisto não virar cartão, e é o que faz a maioria das pessoas continuar em vez de desistir olhando para {reserva6}.",
+        },
+      },
+      {
+        ordem: 4,
+        tipo: "quiz",
+        label: "Onde deixar",
+        conteudo: {
+          headline: "O que importa na hora de escolher onde deixar a reserva?",
+          opcoes: [
+            {
+              letra: "A",
+              texto: "O maior rendimento possível",
+              correta: false,
+              feedback:
+                "Não. Rendimento alto costuma vir com prazo ou com risco, e reserva presa no dia do aperto deixa de ser reserva.",
+            },
+            {
+              letra: "B",
+              texto: "Poder sacar no mesmo dia, com risco baixo",
+              correta: true,
+              feedback:
+                "Isso. Liquidez primeiro, segurança depois, rendimento por último. A reserva não existe para render: existe para estar lá.",
+            },
+            {
+              letra: "C",
+              texto: "Deixar em casa, em dinheiro vivo",
+              correta: false,
+              feedback:
+                "Perde para a inflação todo mês e some num roubo ou num incêndio. Liquidez imediata dá para ter sem abrir mão de segurança.",
+            },
+            {
+              letra: "D",
+              texto: "Investir em algo que valorize no longo prazo",
+              correta: false,
+              feedback:
+                "Longo prazo é o oposto do que a reserva precisa. Se o imprevisto chega num mês ruim do mercado, você saca no prejuízo.",
+            },
+          ],
+        },
+      },
+      {
+        ordem: 5,
+        tipo: "resultado",
+        label: "Levar daqui",
+        conteudo: {
+          headline: "Comece pelo mês, não pelo colchão inteiro",
+          faixas: [
+            {
+              condicao: "valor >= 0",
+              mensagem:
+                "Escolha um valor que sai da conta no dia em que o dinheiro entra, antes de qualquer gasto. Pode ser pequeno. O que faz a reserva existir é a repetição, não o tamanho do primeiro depósito.",
+              cor: "green",
+            },
+          ],
+          insightDinamico:
+            "Regra prática: enquanto a reserva não fecha o primeiro mês, ela vem antes de qualquer investimento. Depois dela, aí sim faz sentido pensar em prazo e em render.",
+        },
+      },
+    ],
+  },
+
+  // =====================================================================
+  // M04 — Assinaturas fantasma
+  // =====================================================================
+  {
+    slug: "assinaturas-fantasma",
+    titulo: "As assinaturas que você esqueceu",
+    subtitulo: "O gasto que não dói porque nunca aparece de uma vez.",
+    tipoPerfil: "impulsivo",
+    ordem: 13,
+    nivel: "iniciante",
+    situacoes: ["sem_reserva", "divida_rotativa"],
+    tags: ["assinaturas", "streaming", "recorrencia", "extrato", "cancelar"],
+    xp: 50,
+    telas: [
+      {
+        ordem: 0,
+        tipo: "conceito",
+        label: "O que é",
+        conteudo: {
+          headline: "Recorrência é o gasto que some da sua atenção",
+          corpo:
+            "Uma compra de R$ 40 você percebe. Uma assinatura de R$ 40 por mês você percebe uma vez, no dia que assinou, e nunca mais.\n\nNão é distração: é como a cobrança foi desenhada. Ela não pede confirmação, não manda lembrete, e o valor é pequeno o bastante para não chamar atenção na fatura. O que aparece na fatura é o total, e o total não denuncia ninguém.",
+          insight: {
+            label: "Quanto costuma ser",
+            texto:
+              "A maioria dos brasileiros gasta {{gasto_assinaturas}} com assinaturas e mensalidades recorrentes. Quase sempre é mais do que a pessoa imagina antes de conferir.",
+          },
+        },
+      },
+      {
+        ordem: 1,
+        tipo: "cenario",
+        label: "Na prática",
+        conteudo: {
+          headline: "O João achou quatro streamings ativos",
+          personagem: "João, 35 anos, vendedor",
+          linhas: [
+            { label: "O que ele assistia", valor: 40, tipo: "saida" },
+            { label: "Assinado no teste grátis e esquecido", valor: 35, tipo: "saida" },
+            { label: "Da série que ele terminou em janeiro", valor: 30, tipo: "saida" },
+            { label: "Que ele nem lembrava de ter assinado", valor: 35, tipo: "saida" },
+          ],
+          rodape:
+            "R$ 140 por mês, dos quais ele usava R$ 40. Não é que ele não pudesse pagar: é que ele estava pagando por três coisas que não queria, sem saber.",
+        },
+      },
+      {
+        ordem: 2,
+        tipo: "input",
+        label: "Seu chute",
+        conteudo: {
+          headline: "Quanto você acha que gasta por mês com assinaturas?",
+          subtitulo:
+            "Streaming, música, academia, aplicativo, nuvem, clube de assinatura, jogo. Chuta antes de conferir a fatura.",
+          aviso: "Sem consultar. O chute é o ponto do exercício.",
+          campos: [
+            { id: "assinaturas", emoji: "🔁", label: "Meu chute por mês", placeholder: "90", tipo: "decimal" },
+          ],
+        },
+      },
+      {
+        ordem: 3,
+        tipo: "resultado",
+        label: "No ano",
+        conteudo: {
+          headline: "<strong>R$ {valor}</strong> por mês são <strong>{ano}</strong> no ano.",
+          formula: "assinaturas_ano",
+          faixas: [
+            {
+              condicao: "valor > 0",
+              mensagem:
+                "O número do mês é fácil de aceitar. O do ano costuma ser o que faz a pessoa abrir o extrato. É o mesmo dinheiro, contado de um jeito que dá pra sentir.",
+              cor: "yellow",
+            },
+          ],
+          insightDinamico:
+            "Agora o teste que vale: abre a fatura do cartão e confere. Quase ninguém acerta o próprio chute, e a diferença entre o que você imaginou e o que está lá é exatamente o dinheiro que sai sem você decidir.",
+        },
+      },
+      {
+        ordem: 4,
+        tipo: "quiz",
+        label: "O que cortar",
+        conteudo: {
+          headline: "Você achou uma assinatura que usa pouco. O que fazer?",
+          opcoes: [
+            {
+              letra: "A",
+              texto: "Cancelo agora e reassino quando precisar",
+              correta: true,
+              feedback:
+                "Certo. Quase toda assinatura digital volta com um clique, e sem multa. O custo de reassinar é baixo; o de manter doze meses ligado, não.",
+            },
+            {
+              letra: "B",
+              texto: "Mantenho, porque é barato",
+              correta: false,
+              feedback:
+                "Barato por mês é caro por ano. E o problema não é o preço: é pagar por algo que você não escolheria hoje.",
+            },
+            {
+              letra: "C",
+              texto: "Espero acabar o ano pra decidir",
+              correta: false,
+              feedback:
+                "Adiar a decisão é a decisão de continuar pagando. Se você não usaria hoje, cada mês de espera é dinheiro que já foi.",
+            },
+            {
+              letra: "D",
+              texto: "Troco por um plano mais barato do mesmo serviço",
+              correta: true,
+              feedback:
+                "Também vale, quando você realmente usa. Plano com anúncio ou compartilhado costuma cortar metade do valor sem tirar o que você assiste.",
+            },
+          ],
+        },
+      },
+      {
+        ordem: 5,
+        tipo: "resultado",
+        label: "Levar daqui",
+        conteudo: {
+          headline: "Uma varredura por mês, no mesmo dia",
+          faixas: [
+            {
+              condicao: "valor >= 0",
+              mensagem:
+                "Escolhe um dia fixo, logo depois de a fatura fechar. Abre o extrato, procura o que se repete, e pergunta de cada linha: eu assinaria isso hoje? O que não passar nesse teste, cancela na hora.",
+              cor: "green",
+            },
+          ],
+          insightDinamico:
+            "É a vitória mais rápida que existe em dinheiro: não exige ganhar mais, não exige cortar nada que você goste, e o efeito aparece já na próxima fatura. Cada assinatura cancelada vira o primeiro depósito da sua reserva.",
+        },
+      },
+    ],
+  },
 ]

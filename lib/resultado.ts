@@ -27,12 +27,17 @@ export interface Derivados {
   semTetoNum: number     // M01 — o que a taxa diz
   comTetoNum: number     // M01 — o que a lei permite
   subestimou: number     // M01 (0/1)
+  reserva3Num: number    // M03 — meta de 3 meses de custo fixo
+  reserva6Num: number    // M03 — meta de 6 meses
+  anoNum: number         // M04 — o mesmo gasto ao longo de 12 meses
+  acimaDaMedia: number   // M02 (0/1) — a dívida está acima da média nacional
 }
 
 const ZERO: Omit<Derivados, "entrou" | "saiu" | "sobrou" | "pct"> = {
   valor: 0, pctGuardador: 0, porMesNum: 0, respiroNum: 0, periodosNum: 0,
   acimaLimite: 0, livreNum: 0, rendeNum: 0, mesesJuntar: 0, cobre: 0, pctMeta: 0,
   semTetoNum: 0, comTetoNum: 0, subestimou: 0,
+  reserva3Num: 0, reserva6Num: 0, anoNum: 0, acimaDaMedia: 0,
 }
 
 export function calcular(formula: string | undefined, sessao: SessaoFluxo): Derivados {
@@ -131,6 +136,45 @@ export function calcular(formula: string | undefined, sessao: SessaoFluxo): Deri
       }
     }
 
+    /**
+     * M02 — a dívida negociada.
+     *
+     * NÃO calcula desconto. Seria fácil escrever "você consegue 50% off" e
+     * seria invenção: desconto depende do credor, do tempo de atraso e da
+     * campanha da semana. O que existe com fonte é o ticket médio de acordo
+     * e a dívida média do país, e é só isso que a tela mostra — o suficiente
+     * para a pessoa ver que a dívida dela cabe no que se costuma negociar.
+     */
+    case "divida_negociada": {
+      const divida = num(sessao.divida)
+      const media = num(sessao.ind_divida_media) || 6598.13
+      return { ...base, valor: divida, acimaDaMedia: divida > media ? 1 : 0 }
+    }
+
+    /**
+     * M03 — o tamanho do colchão.
+     *
+     * A meta é de 3 a 6 meses de CUSTO FIXO, não de renda. A diferença importa:
+     * quem ganha 6 mil e gasta 3 mil precisa de um colchão de 9 a 18 mil, não
+     * de 18 a 36. Calcular sobre a renda infla a meta e faz desistir na
+     * primeira conta.
+     */
+    case "reserva_meta": {
+      const custoFixo = num(sessao.custoFixo)
+      return {
+        ...base,
+        valor: custoFixo,
+        reserva3Num: Math.round(custoFixo * 3),
+        reserva6Num: Math.round(custoFixo * 6),
+      }
+    }
+
+    /** M04 — o mesmo boleto, doze vezes. */
+    case "assinaturas_ano": {
+      const porMes = num(sessao.assinaturas)
+      return { ...base, valor: porMes, anoNum: Math.round(porMes * 12), porMesNum: Math.round(porMes) }
+    }
+
     case "entrou_saiu_pct":
     default:
       return base
@@ -158,6 +202,12 @@ export function interpolar(texto: string, d: Derivados, sessao: SessaoFluxo): st
         return String(d.periodosNum)
       case "mesesJuntar":
         return String(d.mesesJuntar)
+      case "reserva3":
+        return "R$ " + formatInteiroBRL(d.reserva3Num)
+      case "reserva6":
+        return "R$ " + formatInteiroBRL(d.reserva6Num)
+      case "ano":
+        return "R$ " + formatInteiroBRL(d.anoNum)
       case "semTeto":
         return "R$ " + formatInteiroBRL(d.semTetoNum)
       case "comTeto":
