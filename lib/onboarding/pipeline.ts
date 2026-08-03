@@ -4,6 +4,7 @@ import { metricasPerfil, nivelFinanceiro, type TransacaoCalc } from "@/lib/finan
 import { montarContexto, ultimoMesComMovimento } from "@/lib/contexto-financeiro"
 import { listarMemorias } from "@/lib/memoria-repo"
 import { garantirLevaInicial, levaAtual } from "@/lib/recomendacao"
+import { aulasParaSituacao, guardarSituacoes } from "@/lib/posicionar-trilha"
 import { creditar } from "@/lib/pontos"
 import { gerarInsights } from "@/lib/insights-ia"
 
@@ -117,13 +118,19 @@ export async function* rodarPipeline(userId: string): AsyncGenerator<Resultado> 
 
   // ---------------------------------------------------------------- 4 ---
   try {
-    const perfil = await db.perfil.findUnique({ where: { userId }, select: { tipo: true } })
-    const slugs = await slugsDaTrilha(perfil?.tipo ?? "lancador")
+    // A trilha vem da SITUAÇÃO, não do perfil. Antes eram os 4 módulos da
+    // trilha do rótulo dado na conversa; agora a biblioteca inteira concorre e
+    // ganha a aula que responde ao que os números e a conversa mostram.
+    const situacoes = await guardarSituacoes(userId)
+    const slugs = await aulasParaSituacao(userId, 4)
     // Pendente de propósito: a recomendação chega como a primeira mensagem
     // do chat, não numa tela à parte. É o passo 3 da §2.7.
     await garantirLevaInicial(userId, slugs, { jaEntregue: false })
     const leva = await levaAtual(userId)
-    yield ok("trilha", `${leva.length} ${leva.length === 1 ? "aula" : "aulas"}`)
+    // Mostra a situação junto: é o que explica POR QUE estas aulas, e sem isso
+    // a tela diz "4 aulas" sem dizer 4 aulas de quê.
+    const porQue = situacoes.length ? ` · ${situacoes.join(", ")}` : ""
+    yield ok("trilha", `${leva.length} ${leva.length === 1 ? "aula" : "aulas"}${porQue}`)
   } catch (e) {
     yield falhou("trilha", e)
   }
@@ -181,22 +188,3 @@ function falhou(id: string, e: unknown): Resultado {
   return { id, rotulo: rotulo(id), ok: false, detalhe: "deixei pra depois" }
 }
 
-/** As aulas da trilha do perfil, na ordem. */
-async function slugsDaTrilha(tipoPerfil: string): Promise<string[]> {
-  const modulos = await db.modulo.findMany({
-    where: { tipoPerfil },
-    select: { slug: true },
-    orderBy: { ordem: "asc" },
-  })
-  // Perfil sem módulo seria trilha vazia. Cai no fluxo de caixa, que é a
-  // trilha de quem ainda não sabe para onde o dinheiro vai.
-  if (modulos.length === 0) {
-    const fallback = await db.modulo.findMany({
-      where: { tipoPerfil: "lancador" },
-      select: { slug: true },
-      orderBy: { ordem: "asc" },
-    })
-    return fallback.map((m) => m.slug)
-  }
-  return modulos.map((m) => m.slug)
-}

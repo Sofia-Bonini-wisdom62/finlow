@@ -392,6 +392,28 @@ export function nivelFinanceiro(m: MetricasPerfil): string {
   return "Construindo o controle"
 }
 
+/**
+ * O nível no vocabulário da TRILHA: iniciante, intermediario, avancado.
+ *
+ * São dois níveis diferentes e o nome do campo é o mesmo nos dois lugares, o
+ * que é exatamente o tipo de coisa que alguém confunde daqui a três meses:
+ *
+ *   `nivelFinanceiro`  → rótulo que a pessoa LÊ no Perfil ("Planejador em
+ *                        evolução"). Serve para ela se reconhecer.
+ *   `nivelDeTrilha`    → chave que CASA com `Modulo.nivel`. Serve para a
+ *                        biblioteca escolher a aula.
+ *
+ * Traduzir um no outro não funcionaria: o rótulo tem cinco faixas porque é
+ * gradiente de identidade; a trilha tem três porque é dificuldade de conteúdo.
+ * Quem está "Organizando as contas" ainda quer aula iniciante.
+ */
+export function nivelDeTrilha(m: MetricasPerfil): "iniciante" | "intermediario" | "avancado" {
+  if (m.mesesComDados === 0) return "iniciante"
+  if (m.saudeFinanceira >= 75) return "avancado"
+  if (m.saudeFinanceira >= 45) return "intermediario"
+  return "iniciante"
+}
+
 // Resumo em no máximo 30 palavras, derivado das métricas (sem IA).
 export function resumoUsuario(m: MetricasPerfil): string {
   if (m.mesesComDados === 0) {

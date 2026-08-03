@@ -318,6 +318,15 @@ model Modulo {
   thumbnail     String?
   duracaoMin    Int                  @default(2)
   tags          String[] // alimenta a busca da Trilha
+  /// Biblioteca posicionada, não corredor: a aula é achada por NÍVEL e por
+  /// SITUAÇÃO de quem chega, não pela ordem numa fila.
+  ///
+  /// `situacoes` VAZIO não é falta de classificação: é "serve pra todo mundo".
+  /// O vocabulário é todo de déficit (dívida, sem reserva, renda que varia), e
+  /// as aulas de quem JÁ guarda bem não casam com nenhum deles — se situação
+  /// fosse o único eixo, elas ficariam inalcançáveis.
+  nivel         String               @default("iniciante") // iniciante|intermediario|avancado
+  situacoes     String[]
   telas         Tela[]
   progresso     ProgressoModulo[]
   recomendacoes RecomendacaoTrilha[]

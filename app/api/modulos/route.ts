@@ -1,59 +1,31 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
-import { listarTransacoes } from "@/lib/financeiro-repo"
 import { getUserIdOr401 } from "@/lib/painel"
-import { metricasPerfil, type TransacaoCalc, type MetricasPerfil } from "@/lib/financas"
 import { garantirLevaInicial, levaAtual } from "@/lib/recomendacao"
+import { aulasParaSituacao } from "@/lib/posicionar-trilha"
 
 export const dynamic = "force-dynamic"
 
-// Dificuldade e duração derivam da posição e do tamanho do módulo —
-// não há campo próprio no banco (e não precisa ter: são funções do conteúdo).
-function dificuldade(ordem: number): string {
-  if (ordem <= 1) return "Iniciante"
-  if (ordem <= 3) return "Intermediário"
-  return "Avançado"
+/**
+ * A dificuldade vem do campo `nivel`, não mais da posição na fila.
+ *
+ * Derivar da `ordem` era o resto do modelo de corredor: numa biblioteca, ser a
+ * quarta aula de uma trilha não torna nada avançado. E dava contradição visível
+ * — "O freio de 24 horas" é ordem 4 e aparecia como Avançado sendo iniciante.
+ */
+const ROTULO_NIVEL: Record<string, string> = {
+  iniciante: "Iniciante",
+  intermediario: "Intermediário",
+  avancado: "Avançado",
+}
+
+function dificuldade(nivel: string): string {
+  return ROTULO_NIVEL[nivel] ?? "Iniciante"
 }
 
 function duracao(telas: number): string {
   const min = Math.max(2, Math.round((telas * 20) / 60))
   return `${telas} telas · ~${min} min`
-}
-
-// Ordem de recomendação: cada sinal financeiro fraco puxa os módulos que o
-// endereçam. Percorre os sinais do mais urgente ao menos e monta a sequência
-// cruzando os quatro perfis (o usuário não fica preso a uma trilha só).
-function slugsRecomendados(m: MetricasPerfil): string[] {
-  const seq: string[] = []
-  const add = (...s: string[]) => s.forEach((x) => { if (!seq.includes(x)) seq.push(x) })
-
-  // Sem histórico: começa pelo básico de consciência de fluxo
-  if (m.mesesComDados === 0) {
-    add("lancador-m1-fluxo", "lancador-m2-respiro", "sonhador-m1-sonho-prazo",
-        "impulsivo-m1-gatilho", "guardador-m3-investir")
-    return seq
-  }
-
-  // 1. Gasta mais do que entra → enxergar o fluxo e inverter a ordem
-  if (m.controleOrcamentario < 70) add("lancador-m1-fluxo", "lancador-m2-respiro")
-
-  // 2. Sobra pouco → separar antes de gastar, freio nos gastos grandes
-  if (m.taxaEconomia < 15) add("lancador-m2-respiro", "lancador-m4-freio")
-
-  // 3. Reserva curta → destino pro que sobra e primeiro passo
-  if (m.reservaEmergencia < 3) add("lancador-m3-meta-ancora", "sonhador-m2-passo-minimo")
-
-  // 4. Irregular → gatilho e pausa (padrão emocional) + ritual de revisão
-  if (m.consistencia < 60) add("impulsivo-m1-gatilho", "impulsivo-m2-pausa", "sonhador-m4-revisao")
-
-  // 5. Base sólida → fazer o dinheiro render e gastar sem culpa
-  if (m.reservaEmergencia >= 3 && m.taxaEconomia >= 15) {
-    add("guardador-m3-investir", "guardador-m2-valor-livre", "guardador-m4-prazer")
-  }
-
-  // Completa até 5 com o arco de metas
-  add("sonhador-m1-sonho-prazo", "sonhador-m3-realidade", "impulsivo-m4-lista")
-  return seq.slice(0, 5)
 }
 
 // GET /api/modulos            → trilha recomendada
@@ -90,7 +62,7 @@ export async function GET(req: NextRequest) {
         // os subtítulos do seed começam com "2 minutos." — a duração agora tem
         // campo próprio no card, então o prefixo sai pra não repetir
         subtitulo: m.subtitulo.replace(/^\s*\d+\s*minutos?\.\s*/i, ""),
-        dificuldade: dificuldade(m.ordem),
+        dificuldade: dificuldade(m.nivel),
         duracao: duracao(totalTelas),
         progresso: pct,
         concluido: p?.concluido ?? false,
@@ -129,9 +101,6 @@ export async function GET(req: NextRequest) {
     }
 
     // ---- trilha recomendada ----
-    const calc: TransacaoCalc[] = await listarTransacoes(userId, { comCategoria: false })
-    const met = metricasPerfil(calc)
-
     const porSlug = new Map(modulos.map((m) => [m.slug, m]))
 
     // A primeira leva é GRAVADA na primeira vez que a Trilha é aberta.
@@ -140,7 +109,7 @@ export async function GET(req: NextRequest) {
     // §2.7 ("concluiu X% da trilha recomendada") mediria contra uma lista que
     // muda de tamanho junto com o extrato da pessoa. Ninguém nunca chegaria aos
     // 60%. Chamar de novo não duplica.
-    await garantirLevaInicial(userId, slugsRecomendados(met))
+    await garantirLevaInicial(userId, await aulasParaSituacao(userId, 5))
 
     // O que vale é o gravado: é ele que inclui as levas que o gatilho
     // acrescentou depois.
