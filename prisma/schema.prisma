@@ -13,7 +13,7 @@ model User {
   nome                  String?
   dataNascimento        DateTime? // só informativo — sem validação de idade (decisão da fundadora, 04/07/2026)
   senha                 String? // hash bcrypt — null para contas OAuth
-  consentimentoLGPD     DateTime? // quando o consentimento do responsável foi registrado (menores de 18)
+  consentimentoLGPD     DateTime? // reservado de antes do pivô (era consentimento de responsável); público hoje é adulto — manter até a política de privacidade (R1) definir o destino
   consentimentoPainelEm DateTime? // opt-in específico do Painel (R8) — sem ele, nenhum write de Painel
   memoriaAtiva          Boolean              @default(false) // opt-in da memória do assistente — desligada até a pessoa ligar
   onboardingEm          DateTime? // quando terminou a primeira conversa; null = ainda não fez

@@ -116,7 +116,11 @@ seja real e verificável, e não um selo.
 
 ## Ressalva de conteúdo, independente da matriz
 
-Os 104 telas atuais falam com adolescente — "mesada", "Bia, 16 anos", "a maioria dos jovens
-não sabe", valores de R$ 120. Depois do pivô para adultos, esse texto está em conflito com o
-produto. Qualquer expansão de base deveria vir junto com a reescrita de voz dos módulos
-existentes, senão a base cresce torta.
+> **RESOLVIDA (03/08/2026).** A ressalva abaixo descrevia o estado de julho/2026
+> e fica como histórico. A voz foi reescrita para adultos, a T1 foi reformada
+> (resquícios dos 4 perfis removidos) e a T2 (27 módulos) já nasceu adulta.
+
+Os 104 telas da época falavam com adolescente — "mesada", "Bia, 16 anos", "a maioria dos
+jovens não sabe", valores de R$ 120. Depois do pivô para adultos, esse texto estava em
+conflito com o produto. Qualquer expansão de base deveria vir junto com a reescrita de voz
+dos módulos existentes, senão a base cresceria torta.
