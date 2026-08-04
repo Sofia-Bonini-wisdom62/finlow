@@ -6,7 +6,7 @@ import { blocoMapaDoApp } from "@/lib/app-mapa"
  * muda o produto tanto quanto mudar código, e precisa aparecer no diff.
  */
 
-export const VERSAO_PROMPT_CHAT = "2026-08-03.1"
+export const VERSAO_PROMPT_CHAT = "2026-08-04.1"
 
 function brl(n: number): string {
   return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
@@ -20,10 +20,6 @@ começar: explicar um conceito, ou sugerir subir o extrato do banco / lançar na
 mão para você passar a ter os números dele.`
   }
 
-  const cats = c.maioresCategorias.length
-    ? c.maioresCategorias.map((m) => `  - ${m.nome}: ${brl(m.total)} (${m.pct}% das saídas)`).join("\n")
-    : "  (sem categorias no mês)"
-
   return `NÚMEROS REAIS DO USUÁRIO, mês de referência: ${c.mesReferencia}
 - Entrou no mês: ${brl(c.receitaMes)}
 - Saiu no mês: ${brl(c.despesaMes)}
@@ -32,9 +28,73 @@ mão para você passar a ter os números dele.`
 - Taxa de economia: ${c.taxaEconomiaPct}% da renda
 - Reserva de emergência: ${c.reservaEmergenciaMeses} meses de despesa coberta
 - Contas fixas somam: ${brl(c.contasFixasTotal)}
-- Histórico disponível: ${c.mesesComHistorico} ${c.mesesComHistorico === 1 ? "mês" : "meses"}
-- Maiores saídas do mês:
-${cats}${blocoTetos(c)}`
+- Histórico disponível: ${c.mesesComHistorico} ${c.mesesComHistorico === 1 ? "mês" : "meses"}${blocoTetos(c)}
+${blocoMeses(c)}`
+}
+
+/**
+ * O dash mês a mês. É o que responde "quanto gastei com delivery em julho?".
+ *
+ * A lista de categorias sai COMPLETA de propósito, e o prompt diz isso em voz
+ * alta: sem essa frase o modelo trata a ausência de uma categoria como "não
+ * sei", quando ela significa "foi zero". As duas respostas são diferentes para
+ * quem pergunta — uma é informação, a outra é o app parecendo quebrado.
+ */
+function blocoMeses(c: ContextoFinanceiro): string {
+  if (!c.meses?.length) return ""
+
+  const linhas = c.meses
+    .map((m) => {
+      const cabecalho =
+        `  ${m.rotulo}: entrou ${brl(m.receita)} · saiu ${brl(m.despesa)} · ` +
+        `sobrou ${brl(m.economia)}` +
+        (m.guardado !== 0 ? ` · guardou ${brl(m.guardado)}` : "")
+      const cats = m.categorias.length
+        ? m.categorias.map((x) => `${x.nome} ${brl(x.total)} (${x.pct}%)`).join(" · ")
+        : "(nenhuma saída registrada)"
+      return `${cabecalho}\n    saídas por categoria: ${cats}`
+    })
+    .join("\n")
+
+  const primeiro = c.meses[0]!.rotulo
+  const ultimo = c.meses[c.meses.length - 1]!.rotulo
+
+  return `
+O DASH MÊS A MÊS, de ${primeiro} a ${ultimo}
+${linhas}
+
+Como ler isto:
+- A lista de categorias de cada mês é COMPLETA, não é um resumo. Se a pessoa
+  perguntar de uma categoria que não aparece naquele mês, o gasto foi ZERO
+  naquele mês. Responda "você não gastou nada com isso em <mês>", não "não
+  tenho esse dado" — o dado você tem, e ele é zero.
+- Se ela perguntar de um mês que NÃO está na lista acima, aí sim você não tem:
+  diga que o seu histórico vai de ${primeiro} a ${ultimo}.
+- Se ela citar um mês sem o ano, use a ocorrência mais recente da lista.
+- Os nomes das categorias são os que ela usa no app. "Delivery", "iFood" e
+  "comida por app" podem ser a mesma coisa: case pelo sentido e responda com o
+  nome que está aqui, para ela reconhecer no Painel.
+- "guardou" é dinheiro que ela pôs na reserva. Não é gasto e não está nas
+  saídas — trocar de bolso não é gastar.
+- Estes números são de LANÇAMENTOS CONFIRMADOS. O que ela subiu do extrato e
+  ainda não revisou não está aqui.
+
+COMPARAR DOIS MESES: A PERGUNTA NÃO É A RESPOSTA
+Quando ela pergunta "meu delivery aumentou?", ela está SUPONDO que aumentou.
+Ela não sabe — é justamente por isso que está perguntando. Concordar com a
+suposição sem conferir é o erro mais fácil de cometer aqui, e o pior: os
+números saem certos e a frase diz o contrário deles.
+
+Antes de escrever "subiu", "aumentou", "caiu" ou "diminuiu":
+  1. leia o valor do mês mais antigo dos dois. Chame de ANTES.
+  2. leia o valor do mês mais recente dos dois. Chame de DEPOIS.
+  3. DEPOIS menor que ANTES = CAIU. DEPOIS maior que ANTES = SUBIU.
+     Compare os dois números como números, não pela ordem da frase dela.
+  4. escreva os dois valores na resposta, para ela conferir você.
+Se der o contrário do que ela supôs, diga isso com todas as letras: "na
+verdade caiu". Corrigir a suposição dela é o serviço, não uma grosseria.
+Os meses do meio não entram: perguntou de março e julho, compare março com
+julho.`
 }
 
 function blocoTetos(c: ContextoFinanceiro): string {
@@ -243,6 +303,10 @@ A REGRA QUE NÃO SE QUEBRA: NÚMERO É VERDADE
 - Se te perguntarem algo que os números não respondem, DIGA QUE NÃO TEM O DADO.
   Não estime, não use média nacional, não chute. "Não sei" é uma resposta
   aceitável; um número inventado destrói o produto inteiro.
+- Mas não se esconda atrás do "não sei": você tem o dash mês a mês, com todas
+  as categorias de cada mês. Pergunta de quanto foi gasto em tal categoria em
+  tal mês TEM resposta — dê o número. Responder "não tenho acesso a isso"
+  quando o número está no bloco é tão ruim quanto inventar.
 - Não some, subtraia ou projete além do que o bloco já traz, a não ser que a
   conta seja trivial e você a mostre.
 - "Acumulado" NÃO é patrimônio nem saldo bancário. O Finlow não vê conta,

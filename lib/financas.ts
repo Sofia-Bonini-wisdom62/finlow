@@ -289,6 +289,104 @@ export function receitasVsDespesas(todas: TransacaoCalc[], meses = 6, ate?: Comp
     .slice(-meses)
 }
 
+// ---------- histórico detalhado (é o que a IA lê) ----------
+
+export interface CategoriaDoMes {
+  nome: string
+  total: number
+  /** Fatia das saídas daquele mês. */
+  pct: number
+}
+
+export interface MesDetalhado {
+  mes: string // "2026-07"
+  rotulo: string // "julho de 2026"
+  receita: number
+  despesa: number
+  economia: number
+  guardado: number
+  /** TODAS as categorias do mês, da maior para a menor. */
+  categorias: CategoriaDoMes[]
+}
+
+const MESES_LONGOS = [
+  "janeiro", "fevereiro", "março", "abril", "maio", "junho",
+  "julho", "agosto", "setembro", "outubro", "novembro", "dezembro",
+]
+
+/**
+ * O dash inteiro, mês a mês, em números.
+ *
+ * POR QUE NÃO DÁ PARA REUSAR `gastosPorCategoria` AQUI
+ * Aquela função corta em seis fatias e joga a cauda em "Outros" — e faz certo,
+ * porque catorze fatias numa rosca de 132px não se leem. Só que o assistente
+ * não desenha rosca nenhuma. Alimentado por ela, ele passava a NÃO SABER o que
+ * o app sabe: perguntado "quanto gastei com delivery", respondia "não tenho
+ * esse dado" enquanto o valor estava vivo no banco, dobrado dentro de "Outros"
+ * por um limite de legibilidade de gráfico. Aqui a lista sai inteira.
+ *
+ * O outro pedaço do mesmo problema era o recorte de UM mês. Em agosto,
+ * "quanto gastei com delivery em julho" não tinha resposta possível: julho não
+ * chegava ao modelo. Agora chegam os últimos `meses` com movimento.
+ *
+ * Poupança segue de fora das saídas e das categorias, como no resto do dash
+ * (guardar não é gastar), e aparece na sua própria coluna.
+ */
+export function historicoDetalhado(
+  todas: TransacaoCalc[],
+  meses = 12,
+  ate?: Competencia
+): MesDetalhado[] {
+  const porMes = new Map<
+    string,
+    { receita: number; despesa: number; guardado: number; cats: Map<string, number> }
+  >()
+
+  for (const t of todas) {
+    const dt = d(t.data)
+    if (!dentroDoCorte(dt, ate)) continue
+
+    const k = chaveMes(dt)
+    const atual = porMes.get(k) ?? { receita: 0, despesa: 0, guardado: 0, cats: new Map() }
+    const v = n(t.valor)
+
+    if (ehPoupanca(t)) {
+      // guardado (saída da conta) soma; resgatado (entrada) subtrai
+      atual.guardado += t.tipo === "receita" ? -v : v
+    } else if (t.tipo === "receita") {
+      atual.receita += v
+    } else {
+      atual.despesa += v
+      const nome = t.categoria?.nome ?? "Sem categoria"
+      atual.cats.set(nome, (atual.cats.get(nome) ?? 0) + v)
+    }
+
+    porMes.set(k, atual)
+  }
+
+  return [...porMes.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .slice(-meses)
+    .map(([k, v]) => {
+      const [aa, mm] = k.split("-")
+      return {
+        mes: k,
+        rotulo: `${MESES_LONGOS[Number(mm) - 1]} de ${aa}`,
+        receita: v.receita,
+        despesa: v.despesa,
+        economia: v.receita - v.despesa,
+        guardado: v.guardado,
+        categorias: [...v.cats.entries()]
+          .sort((a, b) => b[1] - a[1])
+          .map(([nome, total]) => ({
+            nome,
+            total,
+            pct: v.despesa > 0 ? Math.round((total / v.despesa) * 100) : 0,
+          })),
+      }
+    })
+}
+
 // ---------- gráfico 4: fluxo de caixa diário ----------
 
 export interface PontoDia {

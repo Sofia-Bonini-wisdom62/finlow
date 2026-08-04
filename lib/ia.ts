@@ -21,6 +21,7 @@
 // ============================================================================
 
 import { DESTINOS } from "@/lib/app-mapa"
+import type { MesDetalhado } from "@/lib/financas"
 import { registrarUso } from "@/lib/uso-ia"
 import { contemConteudoProibido, RESPOSTA_FORA_DE_ESCOPO } from "@/lib/conteudo-proibido"
 
@@ -59,11 +60,24 @@ export interface ContextoFinanceiro {
   acumulado: number
   reservaEmergenciaMeses: number
   taxaEconomiaPct: number
+  /**
+   * Top 5 do mês de referência, com a cauda dobrada em "Outros" — é o recorte
+   * da ROSCA. Serve para as leituras do Perfil (lib/insights-ia.ts), que falam
+   * das maiores saídas. O chat não usa: ele lê `meses`, que vem completo.
+   */
   maioresCategorias: { nome: string; total: number; pct: number }[]
   contasFixasTotal: number
   mesesComHistorico: number
   /** Tetos já definidos, com quanto já foi gasto no mês. */
   orcamentos?: { nome: string; limite: number; gasto: number; restante: number; pct: number }[]
+  /**
+   * O dash mês a mês, com TODAS as categorias de cada mês.
+   *
+   * É o que permite responder "quanto gastei com delivery em julho?" — antes
+   * disso o contexto tinha um mês só, e as categorias vinham cortadas em seis
+   * pela regra da rosca. Ver lib/financas.ts → historicoDetalhado.
+   */
+  meses?: MesDetalhado[]
 }
 
 export type CardIA =

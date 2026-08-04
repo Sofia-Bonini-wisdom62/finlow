@@ -1,5 +1,5 @@
 import { listarTransacoes, listarContasFixas } from "@/lib/financeiro-repo"
-import { indicadores, gastosPorCategoria, metricasPerfil } from "@/lib/financas"
+import { indicadores, gastosPorCategoria, metricasPerfil, historicoDetalhado } from "@/lib/financas"
 import { listarOrcamentos, cruzarComGasto } from "@/lib/orcamento-repo"
 import type { ContextoFinanceiro } from "@/lib/ia"
 
@@ -14,8 +14,13 @@ import type { ContextoFinanceiro } from "@/lib/ia"
  * existia. A terceira cópia (as novidades do chat) seria a que consolida o
  * hábito, então ela virou a que consolidou o contrário.
  *
- * A IA nunca recebe transação crua. Só agregado, e só o que ela usa.
+ * A IA nunca recebe transação crua: nem descrição de estabelecimento, nem
+ * lançamento a lançamento. O que ela recebe é o DASH — os mesmos agregados que
+ * a pessoa vê nas Análises, mês a mês e categoria a categoria.
  */
+
+/** Quantos meses de histórico detalhado vão para o assistente. */
+const MESES_NO_CONTEXTO = 12
 
 const NOMES_MESES = [
   "janeiro", "fevereiro", "março", "abril", "maio", "junho",
@@ -65,6 +70,10 @@ export async function montarContexto(
     maioresCategorias: cats.slice(0, 5).map((c) => ({ nome: c.nome, total: c.total, pct: c.pct })),
     contasFixasTotal: contas.reduce((s, c) => s + c.valor, 0),
     mesesComHistorico: met.mesesComDados,
+    // O histórico mês a mês, categoria por categoria. Sem ele o assistente só
+    // enxergava o mês de referência, e perguntar de um mês anterior não tinha
+    // resposta possível.
+    meses: historicoDetalhado(calc, MESES_NO_CONTEXTO, { mes, ano }),
     // Sem os tetos no contexto, o assistente proporia de novo o que ela já
     // decidiu — e desfaria a decisão dela sem nem saber que existia.
     orcamentos: cruzarComGasto(
