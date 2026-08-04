@@ -12,9 +12,11 @@ import { CategoriasCard } from "@/components/painel/CategoriasCard"
 import { GastoMedioPorDiaChart } from "@/components/painel/GastoMedioPorDiaChart"
 import { DistribuicaoGastosChart } from "@/components/painel/DistribuicaoGastosChart"
 import { InsightPerfilCard } from "@/components/painel/InsightPerfilCard"
+import { InvestimentosCard } from "@/components/painel/InvestimentosCard"
 import type { TransacaoData, ContaFixaData, CategoriaData } from "@/types/painel"
 
 type Aba = "controle" | "analises"
+type Escopo = "todos" | "pessoal" | "trabalho"
 
 export default function PainelPage() {
   const hoje = new Date()
@@ -31,6 +33,18 @@ export default function PainelPage() {
   const [transacoes, setTransacoes] = useState<TransacaoData[]>([])
   const [contas, setContas] = useState<ContaFixaData[]>([])
   const [categorias, setCategorias] = useState<CategoriaData[]>([])
+
+  // Módulo Avançado: separa pessoal × trabalho. O filtro só aparece com a
+  // flag; sem ela a página é idêntica à de sempre ("todos").
+  const [avancado, setAvancado] = useState(false)
+  const [escopo, setEscopo] = useState<Escopo>("todos")
+
+  useEffect(() => {
+    fetch("/api/investimentos")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => setAvancado(!!d?.ativo))
+      .catch(() => {})
+  }, [])
 
   const carregarDados = useCallback(async () => {
     const [t, c, cat] = await Promise.all([
@@ -65,6 +79,11 @@ export default function PainelPage() {
   useEffect(() => {
     if (consentiu) carregarDados()
   }, [consentiu, carregarDados])
+
+  // O filtro corta em memória: a lista do mês já está aqui, e refazer a
+  // chamada para cada toque no chip seria ida ao banco por nada.
+  const transacoesDoEscopo =
+    escopo === "todos" ? transacoes : transacoes.filter((t) => (t.escopo ?? "pessoal") === escopo)
 
   async function ativarPainel() {
     const res = await fetch("/api/painel/consentimento", { method: "PATCH" })
@@ -115,6 +134,22 @@ export default function PainelPage() {
           </div>
 
           <SeletorMes mes={mes} ano={ano} onChange={(m, a) => { setMes(m); setAno(a) }} />
+
+          {avancado && consentiu && (
+            <div className="flex gap-1.5">
+              {([["todos", "Tudo"], ["pessoal", "Pessoal"], ["trabalho", "Trabalho"]] as [Escopo, string][]).map(([id, label]) => (
+                <button
+                  key={id}
+                  onClick={() => setEscopo(id)}
+                  className={`rounded-full px-3.5 py-1.5 text-[12.5px] font-semibold transition-colors ${
+                    escopo === id ? "bg-fl-500 text-primary-foreground" : "bg-fl-card text-fl-ink-2"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          )}
         </header>
 
         {!consentiu ? (
@@ -133,16 +168,17 @@ export default function PainelPage() {
           </div>
         ) : aba === "controle" ? (
           <section className="mt-5 flex flex-col gap-4 md:grid md:grid-cols-2 md:items-start md:gap-5">
-            <ResultadoPeriodoCard transacoes={transacoes} />
+            <ResultadoPeriodoCard transacoes={transacoesDoEscopo} />
             <ContasFixasCard contas={contas} onMudou={carregarDados} />
-            <TransacoesCard transacoes={transacoes} categorias={categorias} onMudou={carregarDados} />
+            <TransacoesCard transacoes={transacoesDoEscopo} categorias={categorias} onMudou={carregarDados} avancado={avancado} />
+            {avancado && <InvestimentosCard />}
             <CategoriasCard categorias={categorias} onMudou={carregarDados} />
           </section>
         ) : (
           <section className="mt-5 flex flex-col gap-4 md:grid md:grid-cols-2 md:items-start md:gap-5">
-            <GastoMedioPorDiaChart transacoes={transacoes} />
-            <DistribuicaoGastosChart transacoes={transacoes} />
-            <InsightPerfilCard transacoes={transacoes} />
+            <GastoMedioPorDiaChart transacoes={transacoesDoEscopo} />
+            <DistribuicaoGastosChart transacoes={transacoesDoEscopo} />
+            <InsightPerfilCard transacoes={transacoesDoEscopo} />
           </section>
         )}
       </div>

@@ -24,6 +24,7 @@ model User {
   apelido               String?              @unique // nome exibido no ranking
   rankingOptIn          Boolean              @default(false) // ranking é opt-in explícito
   codigoIndicacao       String?              @unique // 8 chars base36 do link /r/{codigo} — gerado sob demanda, nunca no cadastro
+  moduloAvancado        Boolean              @default(false) // Módulo Avançado (persona C) — liga aqui ou via AVANCADO_BETA_EMAILS (lib/plano.ts)
   emailVerified         DateTime?
   image                 String?
   criadoEm              DateTime             @default(now())
@@ -43,8 +44,31 @@ model User {
   indicacoesFeitas      Indicacao[]          @relation("indicador")
   indicacaoRecebida     Indicacao?           @relation("indicado")
   diagnosticoVazamento  DiagnosticoVazamento?
+  investimentos         Investimento[]
   accounts              Account[]
   sessions              Session[]
+}
+
+/// Consolidação de investimentos (Módulo Avançado, persona C). Entrada
+/// MANUAL — Open Finance é outra frente e este repo não toca nisso.
+///
+/// `nome`, `instituicao` e `valorAtual` são CIFRADOS: passe por
+/// lib/investimento-repo.ts, nunca por db.investimento direto (só deleteMany —
+/// apagar não toca campo cifrado). `tipo` fica em claro de propósito, como
+/// Transacao.tipo: o card agrupa por ele no banco e o tipo sozinho não revela
+/// quanto nem onde.
+model Investimento {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tipo         String // "renda_fixa" | "acoes" | "fundos" | "cripto" | "outro"
+  nome         String // CIFRADO
+  instituicao  String? // CIFRADO
+  valorAtual   String // CIFRADO
+  criadoEm     DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+
+  @@index([userId])
 }
 
 /// Diagnóstico de Vazamento: quanto escapa por mês sem a pessoa ver —
@@ -145,6 +169,7 @@ model Categoria {
   tipo       String // "receita" | "despesa"
   cor        String?
   padrao     Boolean     @default(false) // veio pré-populada por perfil, ou criada pelo usuário
+  escopo     String      @default("pessoal") // "pessoal" | "trabalho" (Módulo Avançado)
   transacoes Transacao[]
   orcamentos Orcamento[]
 }
@@ -199,6 +224,9 @@ model Transacao {
   // linha de ajuste) passam `confirmado: true` explicitamente.
   confirmado      Boolean        @default(false)
   origem          String         @default("manual") // "manual" | "extrato"
+  // Separação pessoal × trabalho (Módulo Avançado, MEI/autônomo). Em claro
+  // como tipo e data: o banco filtra por ele e ele sozinho não revela valor.
+  escopo          String         @default("pessoal") // "pessoal" | "trabalho"
   extratoImportId String?
   extratoImport   ExtratoImport? @relation(fields: [extratoImportId], references: [id], onDelete: SetNull)
 

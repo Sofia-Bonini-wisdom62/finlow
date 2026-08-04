@@ -23,6 +23,7 @@ export interface TransacaoClara {
   criadoEm: Date
   confirmado: boolean
   origem: string
+  escopo: string
   extratoImportId: string | null
   categoria?: { nome: string; cor: string | null } | null
 }
@@ -40,7 +41,7 @@ export interface ContaFixaClara {
 type LinhaTransacao = {
   id: string; userId: string; descricao: string; valor: string; tipo: string
   categoriaId: string | null; data: Date; criadoEm: Date
-  confirmado: boolean; origem: string; extratoImportId: string | null
+  confirmado: boolean; origem: string; escopo: string; extratoImportId: string | null
   categoria?: { nome: string; cor: string | null } | null
 }
 
@@ -78,9 +79,11 @@ export async function listarTransacoes(
      *  NÃO pode aparecer em Análises, Perfil nem no contexto da IA. */
     incluir?: "confirmadas" | "todas" | "pendentes"
     extratoImportId?: string
+    /** Separação pessoal × trabalho (Módulo Avançado). Sem ele, vem tudo. */
+    escopo?: "pessoal" | "trabalho"
   }
 ): Promise<TransacaoClara[]> {
-  const { mes, ano, ordem = "asc", comCategoria = true, incluir = "confirmadas", extratoImportId } = opcoes ?? {}
+  const { mes, ano, ordem = "asc", comCategoria = true, incluir = "confirmadas", extratoImportId, escopo } = opcoes ?? {}
 
   const filtroConfirmacao =
     incluir === "todas" ? {} : { confirmado: incluir === "confirmadas" }
@@ -98,6 +101,7 @@ export async function listarTransacoes(
       ...filtroData,
       ...filtroConfirmacao,
       ...(extratoImportId ? { extratoImportId } : {}),
+      ...(escopo ? { escopo } : {}),
     },
     ...(comCategoria ? { include: { categoria: { select: { nome: true, cor: true } } } } : {}),
     orderBy: { data: ordem },
@@ -143,6 +147,8 @@ export async function criarTransacao(
      * o descuido; a função descreve a intenção.
      */
     confirmado?: boolean
+    /** "trabalho" marca gasto do trabalho (Módulo Avançado); padrão "pessoal". */
+    escopo?: string
   }
 ): Promise<TransacaoClara> {
   const linha = await db.transacao.create({
@@ -156,6 +162,7 @@ export async function criarTransacao(
       confirmado: d.confirmado ?? true,
       ...(d.origem ? { origem: d.origem } : {}),
       ...(d.extratoImportId ? { extratoImportId: d.extratoImportId } : {}),
+      ...(d.escopo === "trabalho" ? { escopo: "trabalho" } : {}),
     },
   })
   return abrirTransacao(linha as LinhaTransacao)
@@ -219,7 +226,7 @@ export async function confirmarLoteExtrato(
 export async function atualizarTransacao(
   userId: string,
   id: string,
-  d: Partial<{ descricao: string; valor: number; tipo: string; categoriaId: string | null; data: Date }>
+  d: Partial<{ descricao: string; valor: number; tipo: string; categoriaId: string | null; data: Date; escopo: string }>
 ): Promise<number> {
   // updateMany com userId no where impede editar transação de outro dono
   const r = await db.transacao.updateMany({
@@ -230,6 +237,7 @@ export async function atualizarTransacao(
       ...(d.tipo !== undefined ? { tipo: d.tipo } : {}),
       ...(d.categoriaId !== undefined ? { categoriaId: d.categoriaId } : {}),
       ...(d.data !== undefined ? { data: d.data } : {}),
+      ...(d.escopo === "pessoal" || d.escopo === "trabalho" ? { escopo: d.escopo } : {}),
     },
   })
   return r.count

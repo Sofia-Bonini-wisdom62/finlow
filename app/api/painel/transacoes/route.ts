@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
   if (bloqueio) return bloqueio
 
   try {
-    const { descricao, valor, tipo, categoriaId, data } = await req.json()
+    const { descricao, valor, tipo, categoriaId, data, escopo } = await req.json()
     if (!descricao || typeof descricao !== "string") {
       return NextResponse.json({ error: "Descrição obrigatória" }, { status: 400 })
     }
@@ -51,6 +51,8 @@ export async function POST(req: NextRequest) {
       tipo,
       categoriaId: categoriaId || null,
       data: data ? new Date(data) : new Date(),
+      // qualquer outra coisa cai no padrão "pessoal" do banco
+      ...(escopo === "trabalho" ? { escopo: "trabalho" } : {}),
     })
 
     // Lançar na mão já é confirmação: a pessoa digitou o valor. Pontuar não
@@ -73,7 +75,7 @@ export async function PATCH(req: NextRequest) {
   if (bloqueio) return bloqueio
 
   try {
-    const { id, descricao, valor, tipo, categoriaId, data } = await req.json()
+    const { id, descricao, valor, tipo, categoriaId, data, escopo } = await req.json()
     if (!id) return NextResponse.json({ error: "id obrigatório" }, { status: 400 })
 
     // Recusar com mensagem, não ignorar em silêncio: descartar o campo faria a
@@ -89,6 +91,7 @@ export async function PATCH(req: NextRequest) {
       ...(tipo !== undefined ? { tipo } : {}),
       ...(categoriaId !== undefined ? { categoriaId: categoriaId || null } : {}),
       ...(data !== undefined ? { data: new Date(data) } : {}),
+      ...(escopo === "pessoal" || escopo === "trabalho" ? { escopo } : {}),
     })
     if (count === 0) return NextResponse.json({ error: "Não encontrada" }, { status: 404 })
     return NextResponse.json({ ok: true })

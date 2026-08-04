@@ -10,19 +10,22 @@ interface Props {
   transacoes: TransacaoData[]
   categorias: CategoriaData[]
   onMudou: () => void
+  /** Módulo Avançado ligado: mostra o marcador pessoal × trabalho no form. */
+  avancado?: boolean
 }
 
 function hojeISO(): string {
   return new Date().toISOString().split("T")[0]
 }
 
-export function TransacoesCard({ transacoes, categorias, onMudou }: Props) {
+export function TransacoesCard({ transacoes, categorias, onMudou, avancado }: Props) {
   const [modalAberto, setModalAberto] = useState(false)
   const [descricao, setDescricao] = useState("")
   const [valor, setValor] = useState("")
   const [tipo, setTipo] = useState<"receita" | "despesa">("despesa")
   const [categoriaId, setCategoriaId] = useState("")
   const [data, setData] = useState(hojeISO())
+  const [escopo, setEscopo] = useState<"pessoal" | "trabalho">("pessoal")
   const [salvando, setSalvando] = useState(false)
   const [erro, setErro] = useState<string | null>(null)
 
@@ -32,6 +35,7 @@ export function TransacoesCard({ transacoes, categorias, onMudou }: Props) {
     setTipo("despesa")
     setCategoriaId("")
     setData(hojeISO())
+    setEscopo("pessoal")
     setErro(null)
     setModalAberto(true)
   }
@@ -48,6 +52,7 @@ export function TransacoesCard({ transacoes, categorias, onMudou }: Props) {
         tipo,
         categoriaId: categoriaId || null,
         data,
+        ...(avancado && escopo === "trabalho" ? { escopo } : {}),
       }),
     })
     setSalvando(false)
@@ -141,6 +146,24 @@ export function TransacoesCard({ transacoes, categorias, onMudou }: Props) {
           </select>
 
           <input className={`${inputPainel} `} type="date" value={data} onChange={(e) => setData(e.target.value)} />
+
+          {avancado && (
+            <div className="flex gap-2">
+              {(["pessoal", "trabalho"] as const).map((e) => (
+                <button
+                  key={e}
+                  onClick={() => setEscopo(e)}
+                  className={`flex-1 rounded-xl border py-2.5 text-sm font-medium capitalize transition-colors ${
+                    escopo === e
+                      ? "border-fl-500 bg-fl-500/10 text-fl-500"
+                      : "border-fl-border bg-fl-page text-fl-ink-2"
+                  }`}
+                >
+                  {e}
+                </button>
+              ))}
+            </div>
+          )}
 
           {erro && <p className="text-sm text-fl-accent-dark">{erro}</p>}
           <button className={botaoPrimario} disabled={salvando || !descricao || !valor} onClick={salvar}>

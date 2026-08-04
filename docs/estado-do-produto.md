@@ -40,10 +40,10 @@ Legenda: ✅ pronto · 🔧 em desenvolvimento · 📋 planejado · 🚫 fora de
 | 2 | Métrica: % de novos usuários via indicação | ✅ | `/api/ops/metrics`, bloco `produto` |
 | 3 | Diagnóstico de Vazamento (motor + página + card) | ✅ | `lib/vazamento.ts`, `/diagnostico`, `/v/[token]` |
 | 3 | Entrega única no chat após 1º extrato | ✅ | `/api/chat/novidades`, padrão `entregueEm` |
-| 4 | Módulo Avançado atrás de flag (`moduloAvancado`) | 📋 | — |
-| 4 | Consolidação de investimentos (entrada manual) | 📋 | — |
-| 4 | Projeção de patrimônio 1/5/10 anos | 📋 | — |
-| 4 | Separação gasto pessoal × trabalho | 📋 | — |
+| 4 | Módulo Avançado atrás de flag (`moduloAvancado`) | ✅ | `lib/plano.ts` + `AVANCADO_BETA_EMAILS` |
+| 4 | Consolidação de investimentos (entrada manual) | ✅ | `lib/investimento-repo.ts`, `/api/investimentos`, card no Painel |
+| 4 | Projeção de patrimônio 1/5/10 anos | ✅ | `lib/projecao.ts`, card nas Análises |
+| 4 | Separação gasto pessoal × trabalho | ✅ | `Transacao.escopo`, filtros no Painel/Análises |
 | 5 | Landing B2B + captação de leads | 📋 | — |
 
 ## Fora deste repo (outra frente — NÃO tocar aqui)

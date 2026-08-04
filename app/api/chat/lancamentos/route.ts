@@ -39,6 +39,10 @@ export async function POST(req: NextRequest) {
   try {
     const corpo = await req.json()
     const itens = lancamentosValidos(corpo?.lancamentos)
+    // O toque em "gasto do trabalho" vale para o lote inteiro: quem lança pelo
+    // chat descreve UMA situação por vez. Linha fora do padrão se corrige no
+    // Painel. Qualquer outro valor cai no "pessoal" do banco.
+    const escopo = corpo?.escopo === "trabalho" ? "trabalho" : undefined
 
     if (itens.length === 0) {
       return NextResponse.json(
@@ -58,6 +62,7 @@ export async function POST(req: NextRequest) {
           categoriaId: mapa.get(i.categoria) ?? null,
           // meio-dia para o fuso não empurrar o lançamento para o dia anterior
           data: new Date(`${i.data}T12:00:00`),
+          escopo,
         })
       )
     )

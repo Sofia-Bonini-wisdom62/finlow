@@ -32,7 +32,7 @@ function mesComDadosAntes(
   return { mes, ano: Math.floor((melhor - mes) / 12) }
 }
 
-// GET /api/analises?mes=7&ano=2026
+// GET /api/analises?mes=7&ano=2026&escopo=trabalho
 export async function GET(req: NextRequest) {
   const userId = await getUserIdOr401()
   if (userId instanceof NextResponse) return userId
@@ -41,11 +41,15 @@ export async function GET(req: NextRequest) {
   const hoje = new Date()
   const mes = Number(searchParams.get("mes")) || hoje.getMonth() + 1
   const ano = Number(searchParams.get("ano")) || hoje.getFullYear()
+  // Filtro pessoal × trabalho (Módulo Avançado). Sem parâmetro, tudo junto —
+  // que é o comportamento de sempre e o único que quem não tem a flag vê.
+  const escopoBruto = searchParams.get("escopo")
+  const escopo = escopoBruto === "pessoal" || escopoBruto === "trabalho" ? escopoBruto : undefined
 
   try {
     // decifra na camada de repositório; daqui pra baixo os números são claros
     const [calc, tetos] = await Promise.all([
-      listarTransacoes(userId) as Promise<TransacaoCalc[]>,
+      listarTransacoes(userId, { escopo }) as Promise<TransacaoCalc[]>,
       listarOrcamentos(userId),
     ])
 

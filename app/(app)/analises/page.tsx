@@ -10,6 +10,7 @@ import { GraficoRosca } from "@/components/analises/GraficoRosca"
 import { GraficoBarras } from "@/components/analises/GraficoBarras"
 import { DetalheCategoria } from "@/components/analises/DetalheCategoria"
 import { TetosCard } from "@/components/analises/TetosCard"
+import { ProjecaoPatrimonio } from "@/components/analises/ProjecaoPatrimonio"
 import type { OrcamentoComGasto } from "@/lib/orcamento-repo"
 import { brl } from "@/lib/formato"
 import type { Indicadores, PontoPatrimonio, FatiaCategoria, BarraMes, PontoDia, MetricasPerfil } from "@/lib/financas"
@@ -72,6 +73,8 @@ function Secao({ titulo, legenda, children }: { titulo: string; legenda?: string
   )
 }
 
+type Escopo = "todos" | "pessoal" | "trabalho"
+
 export default function AnalisesPage() {
   const hoje = new Date()
   // Categoria aberta no detalhe. null = nenhuma.
@@ -83,11 +86,25 @@ export default function AnalisesPage() {
   const [logado, setLogado] = useState(true)
   const [erro, setErro] = useState(false)
 
+  // Módulo Avançado: filtro pessoal × trabalho. Aqui o corte é no SERVIDOR
+  // (parâmetro da API): as agregações rodam sobre valores decifrados que não
+  // saem de lá, então não há lista local para filtrar.
+  const [avancado, setAvancado] = useState(false)
+  const [escopo, setEscopo] = useState<Escopo>("todos")
+
+  useEffect(() => {
+    fetch("/api/investimentos")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => setAvancado(!!d?.ativo))
+      .catch(() => {})
+  }, [])
+
   const carregar = useCallback(async () => {
     setCarregando(true)
     setErro(false)
     try {
-      const res = await fetch(`/api/analises?mes=${mes}&ano=${ano}`)
+      const filtro = escopo === "todos" ? "" : `&escopo=${escopo}`
+      const res = await fetch(`/api/analises?mes=${mes}&ano=${ano}${filtro}`)
       if (res.status === 401) { setLogado(false); return }
       if (!res.ok) throw new Error("falhou")
       setDados(await res.json())
@@ -99,7 +116,7 @@ export default function AnalisesPage() {
     } finally {
       setCarregando(false)
     }
-  }, [mes, ano])
+  }, [mes, ano, escopo])
 
   useEffect(() => { carregar() }, [carregar])
 
@@ -136,6 +153,22 @@ export default function AnalisesPage() {
             <p className="text-sm text-fl-ink-2">Sua situação financeira, visualmente.</p>
           </div>
           <SeletorMes mes={mes} ano={ano} onChange={(m, a) => { setMes(m); setAno(a) }} />
+
+          {avancado && (
+            <div className="flex gap-1.5">
+              {([["todos", "Tudo"], ["pessoal", "Pessoal"], ["trabalho", "Trabalho"]] as [Escopo, string][]).map(([id, label]) => (
+                <button
+                  key={id}
+                  onClick={() => setEscopo(id)}
+                  className={`rounded-full px-3.5 py-1.5 text-[12.5px] font-semibold transition-colors ${
+                    escopo === id ? "bg-fl-500 text-primary-foreground" : "bg-fl-card text-fl-ink-2"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          )}
         </header>
 
         {/* indicadores rápidos — só quando o mês selecionado tem lançamento */}
@@ -274,6 +307,8 @@ export default function AnalisesPage() {
                 mostrarZero
               />
             </Secao>
+
+            <ProjecaoPatrimonio />
 
             <div className="flex flex-col gap-2.5">
               <Link

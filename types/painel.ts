@@ -27,5 +27,6 @@ export interface TransacaoData {
   tipo: "receita" | "despesa"
   categoriaId: string | null
   categoria?: { nome: string; cor: string | null } | null
+  escopo?: string // "pessoal" | "trabalho" (Módulo Avançado)
   data: string
 }

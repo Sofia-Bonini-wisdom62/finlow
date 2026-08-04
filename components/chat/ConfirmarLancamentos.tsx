@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
-import { Check, Plus, Minus, ArrowRight } from "lucide-react"
+import { Check, Plus, Minus, ArrowRight, Briefcase } from "lucide-react"
 import type { LancamentoProposto } from "@/lib/ia"
 
 /**
@@ -36,6 +36,19 @@ export function ConfirmarLancamentos({ lancamentos }: { lancamentos: LancamentoP
   const [erro, setErro] = useState<string | null>(null)
   const [registrados, setRegistrados] = useState(0)
 
+  // Separação pessoal × trabalho: o toggle só existe para quem tem o Módulo
+  // Avançado — para o resto o card fica exatamente como sempre foi. Vale para
+  // o LOTE: quem lança pelo chat descreve uma situação por vez.
+  const [temAvancado, setTemAvancado] = useState(false)
+  const [ehTrabalho, setEhTrabalho] = useState(false)
+
+  useEffect(() => {
+    fetch("/api/investimentos")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => setTemAvancado(!!d?.ativo))
+      .catch(() => {})
+  }, [])
+
   const escolhidos = lancamentos.filter((_, i) => marcados[i])
 
   async function confirmar() {
@@ -46,7 +59,10 @@ export function ConfirmarLancamentos({ lancamentos }: { lancamentos: LancamentoP
       const r = await fetch("/api/chat/lancamentos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ lancamentos: escolhidos }),
+        body: JSON.stringify({
+          lancamentos: escolhidos,
+          ...(temAvancado && ehTrabalho ? { escopo: "trabalho" } : {}),
+        }),
       })
       const d = await r.json().catch(() => ({}))
       if (!r.ok) {
@@ -126,6 +142,26 @@ export function ConfirmarLancamentos({ lancamentos }: { lancamentos: LancamentoP
           </li>
         ))}
       </ul>
+
+      {temAvancado && (
+        <button
+          onClick={() => setEhTrabalho((v) => !v)}
+          disabled={estado === "salvando"}
+          className="flex w-full items-center gap-2.5 border-t border-fl-divider px-4 py-2.5 text-left"
+        >
+          <span
+            aria-hidden
+            className={`grid size-[18px] shrink-0 place-items-center rounded-md border transition-colors ${
+              ehTrabalho ? "border-fl-500 bg-fl-500" : "border-fl-border"
+            }`}
+          >
+            {ehTrabalho && <Check className="size-3 text-primary-foreground" />}
+          </span>
+          <span className="flex items-center gap-1.5 text-[12.5px] text-fl-ink-2">
+            <Briefcase className="size-3.5" /> São gastos do trabalho (MEI/autônomo)
+          </span>
+        </button>
+      )}
 
       {erro && <p className="px-4 pt-2 text-[12.5px] text-fl-error">{erro}</p>}
 

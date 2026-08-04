@@ -3,6 +3,7 @@ import { db } from "@/lib/db"
 import { getUserIdOr401 } from "@/lib/painel"
 import { listarTransacoes, listarContasFixas } from "@/lib/financeiro-repo"
 import { lerDiagnostico } from "@/lib/vazamento-repo"
+import { listarInvestimentos } from "@/lib/investimento-repo"
 
 export const dynamic = "force-dynamic"
 
@@ -14,7 +15,7 @@ export async function GET() {
   if (userId instanceof NextResponse) return userId
 
   try {
-    const [user, categorias, contas, transacoes, progresso, indicacoesFeitas, indicacaoRecebida, diagnostico] = await Promise.all([
+    const [user, categorias, contas, transacoes, progresso, indicacoesFeitas, indicacaoRecebida, diagnostico, investimentos] = await Promise.all([
       db.user.findUnique({
         where: { id: userId },
         select: { nome: true, email: true, dataNascimento: true, criadoEm: true, consentimentoPainelEm: true, codigoIndicacao: true },
@@ -42,6 +43,7 @@ export async function GET() {
         select: { status: true, criadoEm: true, ativadoEm: true },
       }),
       lerDiagnostico(userId),
+      listarInvestimentos(userId),
     ])
 
     const dump = {
@@ -58,8 +60,17 @@ export async function GET() {
         valor: t.valor,
         tipo: t.tipo,
         categoria: t.categoria?.nome ?? null,
+        escopo: t.escopo,
         data: t.data,
         criadoEm: t.criadoEm,
+      })),
+      investimentos: investimentos.map((i) => ({
+        tipo: i.tipo,
+        nome: i.nome,
+        instituicao: i.instituicao,
+        valorAtual: i.valorAtual,
+        criadoEm: i.criadoEm,
+        atualizadoEm: i.atualizadoEm,
       })),
       progressoModulos: progresso.map((p) => ({
         modulo: p.modulo.slug,
