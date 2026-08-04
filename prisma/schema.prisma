@@ -150,6 +150,21 @@ model Waitlist {
   criadoEm DateTime @default(now())
 }
 
+/// Lead B2B da página /empresas. Sem userId de propósito: quem preenche é
+/// contato comercial, não usuário do app. E-mail único com upsert — mandar
+/// duas vezes atualiza o pedido em vez de duplicar a fila.
+model LeadEmpresa {
+  id       String   @id @default(cuid())
+  empresa  String
+  nome     String
+  email    String   @unique
+  tamanho  String? // faixa de funcionários: "1-10" | "11-50" | "51-200" | "200+"
+  mensagem String?
+  criadoEm DateTime @default(now())
+
+  @@index([criadoEm])
+}
+
 model ContaFixa {
   id            String   @id @default(cuid())
   userId        String

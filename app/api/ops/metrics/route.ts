@@ -136,12 +136,14 @@ async function metricasProduto() {
   try {
     const { db } = await import("@/lib/db")
     const corte30d = new Date(Date.now() - 30 * 24 * 3600 * 1000)
-    const [usuarios, usuarios30d, indicados, indicados30d, ativadas] = await Promise.all([
+    const [usuarios, usuarios30d, indicados, indicados30d, ativadas, leads, leads30d] = await Promise.all([
       db.user.count(),
       db.user.count({ where: { criadoEm: { gte: corte30d } } }),
       db.indicacao.count(),
       db.indicacao.count({ where: { criadoEm: { gte: corte30d } } }),
       db.indicacao.count({ where: { status: "ativado" } }),
+      db.leadEmpresa.count(),
+      db.leadEmpresa.count({ where: { criadoEm: { gte: corte30d } } }),
     ])
     return {
       ok: true as const,
@@ -153,6 +155,7 @@ async function metricasProduto() {
         pctViaIndicacao: usuarios > 0 ? indicados / usuarios : 0,
         pctViaIndicacao30d: usuarios30d > 0 ? indicados30d / usuarios30d : 0,
       },
+      leadsEmpresa: { total: leads, novos30d: leads30d },
     }
   } catch (err) {
     return { ok: false as const, error: mensagemErro(err) }

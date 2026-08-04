@@ -7,7 +7,8 @@ um app para adolescentes que já não existia).
 
 Legenda: ✅ pronto · 🔧 em desenvolvimento · 📋 planejado · 🚫 fora deste repo
 
-Última revisão: 03/08/2026.
+Última revisão: 03/08/2026 — todas as fases do script do Plano 2026–2029
+entregues (1 a 5); ver a tabela de entregas abaixo.
 
 ## Núcleo
 
@@ -44,7 +45,7 @@ Legenda: ✅ pronto · 🔧 em desenvolvimento · 📋 planejado · 🚫 fora de
 | 4 | Consolidação de investimentos (entrada manual) | ✅ | `lib/investimento-repo.ts`, `/api/investimentos`, card no Painel |
 | 4 | Projeção de patrimônio 1/5/10 anos | ✅ | `lib/projecao.ts`, card nas Análises |
 | 4 | Separação gasto pessoal × trabalho | ✅ | `Transacao.escopo`, filtros no Painel/Análises |
-| 5 | Landing B2B + captação de leads | 📋 | — |
+| 5 | Landing B2B + captação de leads | ✅ | `/empresas`, `/api/empresas/lead`, contagem em ops/metrics |
 
 ## Fora deste repo (outra frente — NÃO tocar aqui)
 

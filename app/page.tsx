@@ -36,6 +36,7 @@ export default function LandingPage() {
               <a href="#recursos" className="hover:text-fl-500">Recursos</a>
               <a href="#como" className="hover:text-fl-500">Como funciona</a>
               <a href="#faq" className="hover:text-fl-500">Dúvidas</a>
+              <a href="/empresas" className="hover:text-fl-500">Para empresas</a>
             </div>
             <a
               href="#lista"
@@ -53,6 +54,7 @@ export default function LandingPage() {
             ["#recursos", "Recursos"],
             ["#como", "Como funciona"],
             ["#faq", "Dúvidas"],
+            ["/empresas", "Para empresas"],
           ].map(([href, label]) => (
             <a
               key={href}
@@ -483,6 +485,7 @@ export default function LandingPage() {
             </div>
             <div className="flex flex-col text-sm">
               <span className="mb-2 font-semibold text-white">Empresa</span>
+              <a href="/empresas" className="py-2.5 text-fl-dark-text hover:text-white">Para empresas</a>
               <a href="#faq" className="py-2.5 text-fl-dark-text hover:text-white">Dúvidas</a>
               <a href="mailto:finlow.app@gmail.com" className="py-2.5 text-fl-dark-text hover:text-white">Contato</a>
             </div>
