@@ -7,8 +7,9 @@ um app para adolescentes que já não existia).
 
 Legenda: ✅ pronto · 🔧 em desenvolvimento · 📋 planejado · 🚫 fora deste repo
 
-Última revisão: 03/08/2026 — todas as fases do script do Plano 2026–2029
-entregues (1 a 5); ver a tabela de entregas abaixo.
+Última revisão: 05/08/2026 — trilha de Ensino Médio portada e semeada atrás do
+gate de público (seção própria abaixo). As cinco fases do script do Plano
+2026–2029 seguem entregues; ver a tabela de entregas.
 
 ## Núcleo
 
@@ -46,6 +47,29 @@ entregues (1 a 5); ver a tabela de entregas abaixo.
 | 4 | Projeção de patrimônio 1/5/10 anos | ✅ | `lib/projecao.ts`, card nas Análises |
 | 4 | Separação gasto pessoal × trabalho | ✅ | `Transacao.escopo`, filtros no Painel/Análises |
 | 5 | Landing B2B + captação de leads | ✅ | `/empresas`, `/api/empresas/lead`, contagem em ops/metrics |
+
+## Trilha de Ensino Médio (05/08/2026)
+
+24 módulos cobrindo as 47 habilidades de EM da Matriz de Competências de
+Letramento Financeiro (Banco Central / Aprender Valor, 2025), na mesma tabela
+`Modulo` e atrás de `publico: "em"`.
+
+| Promessa | Status | Onde |
+|---|---|---|
+| 24 módulos · 120 telas · 47/47 habilidades | ✅ | `prisma/modulos-em.ts` |
+| Gate de público (as aulas não vazam para o app adulto) | ✅ | `lib/publico.ts`, `scripts/testar-publico.mts` |
+| Porte da fonte para o contrato das telas | ✅ | `scripts/portar-em.mts` + `prisma/editorial-em.ts` |
+| Faixas de resultado que discriminam de verdade | ✅ | `formula: "valor_direto"`, `scripts/testar-em.mts` |
+| `ensino_superior` e `primeiro_emprego` no vocabulário | ✅ | `lib/situacoes.ts` |
+| Thumbnails dos 24 | 📋 | `/public/thumbs/` — hoje `null`, o card usa o estado sem imagem |
+| Revisão pedagógica humana | 📋 | cobertura da matriz verificada por código; adequação didática, não |
+| Decisão de linha de produto (oferta separada?) | 📋 | enquanto não houver, `PUBLICO_ATUAL` mantém tudo invisível |
+
+**Ordem que não pode inverter, e custou uma exposição em produção:** coluna
+(`pnpm db:push`) → **deploy do código com o filtro** → seed
+(`scripts/semear-em.mts --aplicar`). Semear antes do deploy coloca as 24 aulas
+num app cujo código ainda não filtra — elas aparecem para todo usuário adulto
+até o deploy subir. Foi o que aconteceu em 05/08/2026.
 
 ## Fora deste repo (outra frente — NÃO tocar aqui)
 
