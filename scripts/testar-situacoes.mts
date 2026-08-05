@@ -108,7 +108,13 @@ checar("lixo na conversa é ignorado",
 // Recalcular os números não pode esquecer o que a pessoa contou.
 checar("recálculo não apaga o que veio da conversa",
   mesclarSituacoes([], ["dependentes"]).includes("dependentes"))
-checar("o vocabulário tem as cinco", SITUACOES.length === 5 && ehSituacao("divida_rotativa"))
+// Sete: as cinco originais mais `ensino_superior` e `primeiro_emprego`, que
+// entraram com a trilha de Ensino Médio. As duas novas seguem a regra de
+// `financiamento` e `dependentes` — não saem dos números, só da conversa —
+// e é isso que a checagem seguinte afirma.
+checar("o vocabulário tem as sete", SITUACOES.length === 7 && ehSituacao("divida_rotativa"))
+checar("as situações de EM entram pela conversa, não pelo extrato",
+  mesclarSituacoes([], ["ensino_superior", "primeiro_emprego"]).length === 2)
 
 // ------------------------------------------------------------- pontuação ---
 console.log("\nQUAL AULA GANHA")

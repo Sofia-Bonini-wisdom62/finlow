@@ -362,6 +362,21 @@ export function calcular(formula: string | undefined, sessao: SessaoFluxo): Deri
       }
     }
 
+    /**
+     * O que a pessoa digitou, sem conta nenhuma em cima.
+     *
+     * É a fórmula da trilha de Ensino Médio, onde a tela de input quase sempre
+     * pergunta UM número (um percentual, um valor, uma quantidade de meses) e a
+     * tela de resultado só precisa comparar esse número com faixas.
+     *
+     * Sem isto as faixas não funcionam — e falham do pior jeito possível: com
+     * `formula` ausente, `calcular` cai no `default`, `valor` fica 0 fixo, e
+     * `avaliarFaixa` devolve sempre a mesma mensagem sem erro nenhum. Todo
+     * mundo receberia o mesmo resultado final, tendo digitado o que digitasse.
+     */
+    case "valor_direto":
+      return { ...base, valor: num(sessao.valor) }
+
     case "entrou_saiu_pct":
     default:
       return base
@@ -431,6 +446,16 @@ export function interpolar(texto: string, d: Derivados, sessao: SessaoFluxo): st
         return "R$ " + formatInteiroBRL(d.semTetoNum)
       case "comTeto":
         return "R$ " + formatInteiroBRL(d.comTetoNum)
+      /**
+       * O número como a pessoa digitou, sem moeda.
+       *
+       * `{valor}` formata como BRL, e isso é certo quando a pergunta é sobre
+       * dinheiro. A trilha de Ensino Médio também pergunta percentual, meses e
+       * quantidade — ali o BRL leria errado: "você estimou 30,00 em papel".
+       * Quem escreve a aula escolhe a chave conforme a unidade da pergunta.
+       */
+      case "valorCru":
+        return sessao.valor ?? ""
       case "entrou":
       case "saiu":
       case "sobrou":

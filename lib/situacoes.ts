@@ -26,6 +26,13 @@ export const SITUACOES = [
   "renda_variavel",
   "financiamento",
   "dependentes",
+  // As duas de baixo entraram com a trilha de Ensino Médio e seguem a mesma
+  // regra de `financiamento` e `dependentes`: NÃO saem dos números. Nenhum
+  // extrato diz que a pessoa está prestes a entrar na faculdade nem que aquele
+  // é o primeiro salário dela — só a conversa conta isso. `derivarSituacoes`
+  // não as produz de propósito; quem as escreve é `mesclarSituacoes`.
+  "ensino_superior",
+  "primeiro_emprego",
 ] as const
 export type Situacao = (typeof SITUACOES)[number]
 

@@ -1,4 +1,5 @@
 import { db } from "@/lib/db"
+import { filtroDeModulo } from "@/lib/publico"
 
 /**
  * A trilha recomendada, gravada, e o gatilho que gera a próxima leva.
@@ -141,7 +142,7 @@ export async function garantirLevaInicial(
   if (jaTem > 0) return 0
 
   const modulos = await db.modulo.findMany({
-    where: { slug: { in: slugs } },
+    where: { slug: { in: slugs }, ...filtroDeModulo() },
     select: { id: true, slug: true },
   })
   const porSlug = new Map(modulos.map((m) => [m.slug, m.id]))
@@ -276,7 +277,7 @@ export async function talvezGerarNovaLeva(
   const fora = new Set([...recs.map((r) => r.moduloId), ...feitos.map((f) => f.moduloId)])
 
   const candidatos = await db.modulo.findMany({
-    where: { id: { notIn: [...fora] } },
+    where: { id: { notIn: [...fora] }, ...filtroDeModulo() },
     select: { id: true, slug: true, titulo: true, subtitulo: true },
     orderBy: [{ tipoPerfil: "asc" }, { ordem: "asc" }],
   })
@@ -345,7 +346,7 @@ export async function guardarRecomendacaoDoChat(
   if (slugs.length === 0) return 0
 
   const modulos = await db.modulo.findMany({
-    where: { slug: { in: slugs } },
+    where: { slug: { in: slugs }, ...filtroDeModulo() },
     select: { id: true, slug: true },
   })
   if (modulos.length === 0) return 0
@@ -375,7 +376,7 @@ export async function guardarRecomendacaoDoChat(
   const posicao = await posicaoDaPessoa(userId)
 
   const notas = await db.modulo.findMany({
-    where: { id: { in: pendentes.map((p) => p.moduloId) } },
+    where: { id: { in: pendentes.map((p) => p.moduloId) }, ...filtroDeModulo() },
     select: { id: true, nivel: true, situacoes: true },
   })
   const notaPorId = new Map(notas.map((m) => [m.id, pontuarAula(m, posicao)]))

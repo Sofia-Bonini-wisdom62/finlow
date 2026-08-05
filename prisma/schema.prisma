@@ -435,11 +435,24 @@ model Modulo {
   /// fosse o único eixo, elas ficariam inalcançáveis.
   nivel         String               @default("iniciante") // iniciante|intermediario|avancado
   situacoes     String[]
+  /// Para QUEM esta aula é. Separa a trilha adulta (o produto no ar) da trilha
+  /// de Ensino Médio, que cobre a matriz do Banco Central e fala com 15–17 anos.
+  ///
+  /// O default é "adulto" e isso não é detalhe: as aulas já gravadas não têm o
+  /// campo, e sem default elas nasceriam com string vazia e sumiriam da
+  /// biblioteca de todo mundo no mesmo deploy.
+  ///
+  /// NUNCA leia Modulo sem filtrar por aqui — use `filtroDeModulo()`
+  /// (lib/publico.ts). Um findMany sem o filtro devolve as duas trilhas
+  /// misturadas, e o sintoma é a IA recomendando "Estudar sem se afundar" para
+  /// alguém de 38 anos. `scripts/testar-publico.mts` quebra quando isso escapa.
+  publico       String               @default("adulto") // "adulto" | "em"
   telas         Tela[]
   progresso     ProgressoModulo[]
   recomendacoes RecomendacaoTrilha[]
 
   @@index([tipoPerfil, ordem])
+  @@index([publico, ordem])
 }
 
 model Tela {

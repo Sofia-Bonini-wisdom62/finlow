@@ -3,6 +3,7 @@ import { db } from "@/lib/db"
 import { getUserIdOr401 } from "@/lib/painel"
 import { garantirLevaInicial, levaAtiva, TAMANHO_DA_LEVA } from "@/lib/recomendacao"
 import { aulasParaSituacao } from "@/lib/posicionar-trilha"
+import { filtroDeModulo } from "@/lib/publico"
 
 export const dynamic = "force-dynamic"
 
@@ -39,6 +40,7 @@ export async function GET(req: NextRequest) {
   try {
     const [modulos, progresso] = await Promise.all([
       db.modulo.findMany({
+        where: filtroDeModulo(),
         include: { telas: { select: { conteudo: true } } },
         orderBy: [{ tipoPerfil: "asc" }, { ordem: "asc" }],
       }),

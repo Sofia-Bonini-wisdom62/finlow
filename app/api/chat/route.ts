@@ -8,6 +8,7 @@ import { guardarTurno } from "@/lib/conversa-repo"
 import { guardarRecomendacaoDoChat } from "@/lib/recomendacao"
 import { montarContexto } from "@/lib/contexto-financeiro"
 import { slugDaCategoria } from "@/lib/extrato/categorias"
+import { filtroDeModulo } from "@/lib/publico"
 
 export const dynamic = "force-dynamic"
 // Resposta de chat leva 5–15s. 60 dá folga sem deixar um travamento
@@ -40,6 +41,7 @@ export async function POST(req: NextRequest) {
     // vira card que abre um 404 — foi exatamente o que aconteceu com
     // /modulo/{slug} por meses.
     const modulos = await db.modulo.findMany({
+      where: filtroDeModulo(),
       select: { slug: true, titulo: true },
       orderBy: [{ tipoPerfil: "asc" }, { ordem: "asc" }],
     })
