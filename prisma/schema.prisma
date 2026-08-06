@@ -45,6 +45,7 @@ model User {
   indicacaoRecebida     Indicacao?           @relation("indicado")
   diagnosticoVazamento  DiagnosticoVazamento?
   investimentos         Investimento[]
+  objetivos             Objetivo[]
   accounts              Account[]
   sessions              Session[]
 }
@@ -69,6 +70,46 @@ model Investimento {
   atualizadoEm DateTime @updatedAt
 
   @@index([userId])
+}
+
+/// Objetivo financeiro: o que a pessoa quer conquistar e quanto já separou
+/// para isso. É a parte do app que fala de futuro — o resto dela conta o que
+/// já aconteceu.
+///
+/// `valorGuardado` É MARCADOR, NÃO MOVIMENTO. Guardar R$200 aqui não cria
+/// Transacao nem tira nada do saldo do Painel, e isso é decisão, não falta:
+/// o dinheiro já foi contado quando entrou, e debitá-lo de novo faria a mesma
+/// quantia sumir duas vezes do dash. Quem separou de verdade (transferiu para
+/// outra conta, comprou um CDB) registra o lançamento no Painel como qualquer
+/// outro; aqui fica O QUANTO FALTA, que é a pergunta que traz alguém a esta
+/// tela.
+///
+/// `nome`, `valorAlvo` e `valorGuardado` são CIFRADOS — passe sempre por
+/// lib/objetivo-repo.ts, nunca por db.objetivo direto (só deleteMany, que não
+/// toca campo cifrado). `valorGuardado` não tem @default porque a cifra
+/// depende do userId, que o banco não conhece na hora do default: quem cria
+/// escreve o zero cifrado explicitamente.
+///
+/// `prazo`, `emoji` e `concluidoEm` ficam em claro pelo mesmo critério de
+/// Transacao.data: o banco ordena por eles e nenhum revela quanto nem do quê.
+model Objetivo {
+  id            String    @id @default(cuid())
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  nome          String // CIFRADO
+  valorAlvo     String // CIFRADO
+  valorGuardado String // CIFRADO
+  emoji         String?
+  /// Quando a pessoa quer ter o valor completo. Opcional: sonho sem data é
+  /// sonho do mesmo jeito, e exigir prazo faria alguém inventar um.
+  prazo         DateTime?
+  /// Carimbado sozinho quando o guardado alcança o alvo, e limpo se cair
+  /// abaixo de novo — o estado é derivado, não um botão para a pessoa marcar.
+  concluidoEm   DateTime?
+  criadoEm      DateTime  @default(now())
+  atualizadoEm  DateTime  @updatedAt
+
+  @@index([userId, prazo])
 }
 
 /// Diagnóstico de Vazamento: quanto escapa por mês sem a pessoa ver —

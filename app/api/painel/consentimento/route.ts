@@ -70,6 +70,10 @@ export async function DELETE() {
       db.transacao.deleteMany({ where: { userId } }),
       db.contaFixa.deleteMany({ where: { userId } }),
       db.categoria.deleteMany({ where: { userId } }),
+      // Objetivo entra aqui porque nasceu sob o mesmo consentimento (R8):
+      // revogar o opt-in e deixar valor financeiro guardado seria manter dado
+      // que a pessoa acabou de pedir para apagar.
+      db.objetivo.deleteMany({ where: { userId } }),
       db.user.update({ where: { id: userId }, data: { consentimentoPainelEm: null } }),
     ])
     return NextResponse.json({ ok: true })

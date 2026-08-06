@@ -5,7 +5,7 @@ import Link from "next/link"
 import { signOut } from "next-auth/react"
 import {
   ChevronRight, Download, LogOut, Trash2, Check, X, Clock,
-  User, Landmark, Sparkles, ShieldCheck, Palette, LifeBuoy, Brain, FileUp, MessageCircle, Gift, Droplets,
+  User, Landmark, Sparkles, ShieldCheck, Palette, LifeBuoy, Brain, FileUp, MessageCircle, Gift, Droplets, Target,
 } from "lucide-react"
 import { ConvidarAmigos } from "@/components/ajustes/ConvidarAmigos"
 import { BottomNav } from "@/components/bottom-nav"
@@ -268,6 +268,7 @@ export default function AjustesPage() {
         {/* ---------- DADOS FINANCEIROS ---------- */}
         <Secao titulo="Dados financeiros" Icon={Landmark}>
           <Acao rotulo="Registrar e editar lançamentos" href="/painel" />
+          <Acao rotulo="Meus objetivos" Icon={Target} href="/objetivos" />
           <Acao rotulo="Ler extrato do banco (PDF, CSV ou OFX)" Icon={FileUp} href="/extrato" />
           <Acao rotulo="Diagnóstico de Vazamento" Icon={Droplets} href="/diagnostico" />
           <Acao rotulo="Exportar meus dados (JSON)" Icon={Download} href="/api/exportar" download />

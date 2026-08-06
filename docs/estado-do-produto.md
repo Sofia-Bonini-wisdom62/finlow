@@ -7,9 +7,10 @@ um app para adolescentes que já não existia).
 
 Legenda: ✅ pronto · 🔧 em desenvolvimento · 📋 planejado · 🚫 fora deste repo
 
-Última revisão: 05/08/2026 — trilha de Ensino Médio portada e semeada atrás do
-gate de público (seção própria abaixo). As cinco fases do script do Plano
-2026–2029 seguem entregues; ver a tabela de entregas.
+Última revisão: 06/08/2026 — Objetivos financeiros entregues, primeiro item do
+[`backlog-produto.md`](backlog-produto.md) a sair da fila. A trilha de Ensino
+Médio segue portada e semeada atrás do gate de público (seção própria abaixo), e
+as cinco fases do script do Plano 2026–2029 seguem entregues.
 
 ## Núcleo
 
@@ -20,6 +21,7 @@ gate de público (seção própria abaixo). As cinco fases do script do Plano
 | Validação aritmética do extrato (saldos diários) | ✅ | `lib/extrato/saldos-diarios.ts` |
 | Nada entra confirmado sem toque da pessoa | ✅ | `Transacao.confirmado @default(false)` |
 | Painel de lançamentos + contas fixas | ✅ | `app/(app)/painel` |
+| Objetivos: alvo, prazo e quanto já separou | ✅ | `app/(app)/objetivos`, `lib/objetivo-repo.ts` |
 | Análises (gráficos, categorias, tetos, saúde) | ✅ | `app/(app)/analises` |
 | Onboarding conversacional + pipeline de 6 passos | ✅ | `app/(app)/onboarding`, `lib/onboarding/pipeline.ts` |
 | Memória do assistente (opt-in, cifrada, apagável) | ✅ | `lib/memoria-repo.ts`, `/memoria` |
@@ -71,11 +73,38 @@ Letramento Financeiro (Banco Central / Aprender Valor, 2025), na mesma tabela
 num app cujo código ainda não filtra — elas aparecem para todo usuário adulto
 até o deploy subir. Foi o que aconteceu em 05/08/2026.
 
-## Fila de produto (05/08/2026)
+## Objetivos financeiros (06/08/2026)
+
+A parte do app que fala de futuro: a pessoa escreve o que quer, quanto custa,
+para quando, e marca o quanto já separou.
+
+| Promessa | Status | Onde |
+|---|---|---|
+| Registrar objetivo (nome, emoji, alvo, prazo) | ✅ | `app/(app)/objetivos`, `/api/objetivos` |
+| Guardar e tirar valor, com o quanto falta | ✅ | `guardarNoObjetivo()` em `lib/objetivo-repo.ts` |
+| Conclusão derivada dos valores, não botão | ✅ | `carimbo()` — alcançou carimba, caiu abaixo descarimba |
+| Nome e valores cifrados (AES-256-GCM) | ✅ | mesma regra de Transacao; só `deleteMany` vai direto ao banco |
+| Escrita atrás do consentimento do Painel (R8) | ✅ | `checarConsentimento()` no POST/PATCH/DELETE |
+| Sai na exportação LGPD e na exclusão de dados | ✅ | `/api/exportar`, `DELETE /api/painel/consentimento` |
+| O assistente sabe indicar a tela | ✅ | `lib/app-mapa.ts` + `scripts/testar-mapa.mts` |
+
+**Guardar aqui NÃO mexe no saldo.** `valorGuardado` é marcador de progresso, não
+lançamento: o dinheiro já foi contado quando entrou, e descontá-lo de novo faria
+a mesma quantia sumir duas vezes do dash. A tela diz isso em uma linha, e o mapa
+do assistente também — senão a primeira pessoa que guardar R$ 500 vai achar que
+o Painel quebrou.
+
+**Passo de banco antes do deploy:** a tabela `Objetivo` é nova, então
+`pnpm db:push` **e** `pnpm db:rls`. O `db push` cria tabela SEM Row Level
+Security, e tabela sem RLS no Supabase é leitura aberta pela chave anônima —
+ver o cabeçalho de `prisma/seguranca-rls.sql`.
+
+## Fila de produto (06/08/2026)
 
 O que está decidido construir e ainda não começou vive em
-[`backlog-produto.md`](backlog-produto.md). Duas linhas de lá mudam o que este
-arquivo dizia, e por isso aparecem aqui:
+[`backlog-produto.md`](backlog-produto.md). A tela de objetivos saiu de lá e
+está na seção acima. Duas linhas que continuam na fila mudam o que este arquivo
+dizia, e por isso aparecem aqui:
 
 | Tema | Status | Nota |
 |---|---|---|

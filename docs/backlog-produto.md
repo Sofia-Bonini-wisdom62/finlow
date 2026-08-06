@@ -7,15 +7,32 @@ Registrado em 05/08/2026.
 
 ---
 
-## Tela de objetivos
+## ~~Tela de objetivos~~ — entregue em 06/08/2026
 
 Construir uma nova tela onde se pode registrar novos objetivos financeiros para
 guardar dinheiro para eles, uma coisa meio sonho.
+
+> ✅ **Feito.** `/objetivos`, com alvo, prazo opcional, emoji e o quanto já foi
+> separado. O que existe está descrito em
+> [`estado-do-produto.md`](estado-do-produto.md#objetivos-financeiros-06082026).
+>
+> Uma decisão que o pedido não resolvia: **guardar num objetivo não mexe no
+> saldo do Painel**. O valor já foi contado quando entrou, e descontá-lo de novo
+> faria a mesma quantia sumir duas vezes do dash — então o campo é marcador de
+> progresso, e quem transferiu de verdade registra a transferência no Painel. Se
+> a intenção era o outro comportamento (objetivo como "cofre" que debita), é
+> reversível, mas precisa vir junto de uma regra para o dash não contar em dobro.
 
 ## Tela de perfil a reconfigurar
 
 Nome e foto no topo, saldo atual + (entrada + saída) do mês, logo abaixo. Aí sim
 o gráfico de rosca e os 4 botões que tem atualmente.
+
+> Nota de quem entregou os Objetivos: a entrada da tela nova está hoje em
+> **Menu > Meus objetivos**, e não como quinta porta no Perfil — cinco botões
+> quebrariam a grade de dois em dois, e os quatro atuais são deliberadamente do
+> mesmo tamanho. Se a reconfiguração mudar essa grade, promover Objetivos a
+> porta é o lugar natural dele.
 
 ## Conector Open Finance
 

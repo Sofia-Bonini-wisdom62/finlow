@@ -61,6 +61,13 @@ export const DESTINOS: Destino[] = [
     paraQue: "lançar na mão, editar ou apagar um lançamento, contas fixas",
   },
   {
+    href: "/objetivos",
+    nome: "Objetivos",
+    caminho: ["Menu", "Meus objetivos"],
+    paraQue:
+      "registrar o que a pessoa quer conquistar (viagem, reserva, troca de celular), quanto custa, para quando, e marcar o quanto já separou",
+  },
+  {
     href: "/ranking",
     nome: "Ranking",
     caminho: ["Perfil", "card de pontos"],
@@ -175,6 +182,18 @@ export const ACOES: Acao[] = [
     pedido: "corrigir ou apagar um lançamento",
     passos: ["Menu", "Registrar e editar lançamentos"],
     href: "/painel",
+  },
+  {
+    pedido: "criar um objetivo / juntar dinheiro para alguma coisa",
+    passos: ["Menu", "Meus objetivos", "botão +"],
+    href: "/objetivos",
+  },
+  {
+    pedido: "marcar que guardei dinheiro para um objetivo",
+    passos: ["Menu", "Meus objetivos", "Guardar um valor"],
+    href: "/objetivos",
+    cuidado:
+      "Marcar aqui não mexe no saldo nem cria lançamento — é o controle do quanto já separou. A transferência de verdade se registra no Painel.",
   },
   {
     pedido: "ver ou apagar um teto de orçamento",
