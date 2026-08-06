@@ -186,7 +186,7 @@ BRL (`lib/custo.ts`), uso registrado por origem (`lib/uso-ia.ts`).
 
 | # | Promessa | Onde está escrita | Estado real |
 |---|---|---|---|
-| 1 | "**Conecte suas contas.** Suas transações entram sozinhas, nada de digitar CSV" | Landing, passo 1 de *Como funciona* | **Não existe neste produto.** Hoje é upload manual de extrato. Open Finance é outra frente. É a divergência mais visível: é o primeiro passo do fluxo prometido na home. |
+| 1 | "**Conecte suas contas.** Suas transações entram sozinhas, nada de digitar CSV" | Landing, passo 1 de *Como funciona* | **Ainda não existe.** Hoje é upload manual de extrato. Desde 05/08/2026 o conector Open Finance está no [backlog deste repo](backlog-produto.md) — deixou de ser "outra frente", mas continua não construído. É a divergência mais visível: é o primeiro passo do fluxo prometido na home. |
 | 2 | "**Metas**, orçamentos e **alertas calmos, que avisam antes**" | Landing, *Recursos* | Orçamento existe (teto por categoria ou do mês). **Meta não existe** como objeto no schema. **Alerta que avisa antes não existe** — não há push, e-mail nem job; o insight só aparece quando a pessoa abre a tela. |
 | 3 | "Enquanto você vive sua vida, a IA cruza cada transação" | Landing, *Insights automáticos* | Geração é **sob demanda**, na abertura da tela. Não há processamento em segundo plano. |
 | 4 | "O Finlow já está disponível? **Ainda não.**" | FAQ da landing | O app logado está **inteiro no ar** — chat, extrato, painel, análises, trilha, diagnóstico. Landing e produto contam histórias diferentes hoje. |
@@ -212,7 +212,9 @@ app**. As três divergências que importam estão todas **fora dele**:
 
 - **A landing vende Open Finance** ("transações entram sozinhas") para um
   produto cujo caminho real é upload de extrato. Quem entra pela home espera uma
-  coisa e encontra outra.
+  coisa e encontra outra. O conector entrou no backlog em 05/08/2026, o que
+  fecha a divergência no futuro — mas não fecha hoje, e a home segue prometendo
+  no presente.
 - **A exportação LGPD não exporta tudo** — e o que falta (conversas e memórias)
   é justamente o mais sensível.
 - **Chat e extrato não têm rate limit.** Uma conta abusiva vira conta de Vertex.

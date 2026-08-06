@@ -64,8 +64,10 @@ docs/             matriz BCB, backlog T2, estado do produto
 - **Hoje:** extrato em PDF/CSV/OFX lido **no navegador** (pdfjs-dist) — o
   arquivo bruto nunca sobe. O texto vai para a Vertex, as linhas voltam como
   propostas, e nada entra confirmado sem toque da pessoa.
-- **Em desenvolvimento (outra frente):** Open Finance/agregador. Este repo não
-  toca nesse tema.
+- **Na fila (05/08/2026):** conector Open Finance — ligar os bancos direto no
+  app para puxar extrato, saldo e contas fixas. Saiu de "outra frente" e entrou
+  no backlog deste repo; enquanto não começa, o caminho de entrada continua
+  sendo o upload acima. Ver [`docs/backlog-produto.md`](docs/backlog-produto.md).
 - Campos financeiros (`descricao`, `valor`, `nome`, `limite`…) são cifrados e
   só se acessam pelos repos (`lib/financeiro-repo.ts` etc.) — ler direto
   devolve `"v1.…"` e o número vira 0 em silêncio.
@@ -79,6 +81,14 @@ docs/             matriz BCB, backlog T2, estado do produto
 4. O Finlow explica mecanismo e nunca indica produto financeiro — recomendação
    é de profissional autorizado pela CVM.
 5. Antes de qualquer push: `pnpm build` verde e as baterias `scripts/testar-*`.
+6. Documentação e código mudam no **mesmo commit** — ver
+   [`docs/`](docs/README.md).
 
-O estado real de cada promessa do plano de negócios está em
-[`docs/estado-do-produto.md`](docs/estado-do-produto.md).
+## Documentação
+
+Toda a governança do projeto está em **[`docs/`](docs/README.md)**. Os dois
+atalhos mais usados:
+
+- [`docs/estado-do-produto.md`](docs/estado-do-produto.md) — o que existe de
+  verdade, promessa por promessa.
+- [`docs/backlog-produto.md`](docs/backlog-produto.md) — o que está na fila.

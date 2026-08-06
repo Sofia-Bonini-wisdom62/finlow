@@ -71,11 +71,21 @@ Letramento Financeiro (Banco Central / Aprender Valor, 2025), na mesma tabela
 num app cujo código ainda não filtra — elas aparecem para todo usuário adulto
 até o deploy subir. Foi o que aconteceu em 05/08/2026.
 
+## Fila de produto (05/08/2026)
+
+O que está decidido construir e ainda não começou vive em
+[`backlog-produto.md`](backlog-produto.md). Duas linhas de lá mudam o que este
+arquivo dizia, e por isso aparecem aqui:
+
+| Tema | Status | Nota |
+|---|---|---|
+| Open Finance / agregador bancário | 📋 planejado | **Deixou de ser "outra frente" em 05/08/2026.** Estava marcado 🚫 aqui e o README dizia "este repo não toca nesse tema". Passou para o backlog: conectar bancos no app para puxar extrato, saldo, contas fixas. Enquanto não começa, o caminho real de entrada de dados continua sendo o upload de extrato. |
+| Trilha em blocos de 4 lições, com sequência travada | 📋 em conflito | Inverte a arquitetura documentada: hoje a trilha é *biblioteca posicionada*, sem bloqueio por sequência (`prisma/schema.prisma`, `lib/situacoes.ts`, `app/trilha/page.tsx`, `backlog-trilha-t2.md`). Decisão legítima, mas quem começar precisa desfazer essa documentação no mesmo commit. |
+
 ## Fora deste repo (outra frente — NÃO tocar aqui)
 
 | Tema | Status |
 |---|---|
-| Open Finance / agregador bancário | 🚫 outra frente |
 | Gateway de pagamento / paywall / cobrança | 🚫 outra frente |
 
 ## Pendências conhecidas
