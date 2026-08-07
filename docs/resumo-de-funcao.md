@@ -3,9 +3,10 @@
 O que o produto **faz** hoje, função por função, e onde a **promessa** ainda
 não encontrou a entrega.
 
-Levantado direto do código em 05/08/2026 (último commit: `a1bddd6`, árvore
-limpa). Complementa `docs/estado-do-produto.md`: aquele arquivo é a matriz
-promessa-do-plano × código; este descreve o **comportamento** de cada peça.
+Levantado direto do código em 05/08/2026 e revisto em 07/08/2026, na varredura
+de resto do pré-pivô (ver a seção *Limpeza* de `docs/estado-do-produto.md`).
+Complementa aquele arquivo: lá está a matriz promessa-do-plano × código; aqui,
+o **comportamento** de cada peça.
 
 ---
 
@@ -195,6 +196,8 @@ BRL (`lib/custo.ts`), uso registrado por origem (`lib/uso-ia.ts`).
 | 7 | Política escrita de retenção e privacidade (R1) | `docs/estado-do-produto.md` | Engenharia pronta (consentimento separado, cifra, RLS, exclusão, exportação). **Falta o texto jurídico**: base legal, finalidade, prazo de retenção. |
 | 8 | Revisão jurídica CVM/LGPD do conteúdo | `docs/estado-do-produto.md` | Pendente nos módulos que tocam investimento (M09, M10, M22–M25) e no M07 (bets). |
 | 9 | Proteção de custo por abuso | — | Rate limit existe **só** na rota de lead B2B. **Chat e extrato — as chamadas que custam dinheiro — não têm limite.** |
+| 11 | "userId sempre da sessão — nunca do client" | `lib/painel.ts`, regra de segurança do Painel | Verdade em todas as rotas de dinheiro, e era **mentira em três da trilha** até 07/08/2026: `/api/progresso` aceitava o header `x-user-id` (e criava a conta correspondente), `/api/trilha` e `/api/trilha/[moduloId]` aceitavam `?userId=`. Fechado — ver *Limpeza* em `estado-do-produto.md`. |
+| 12 | Rota de operação só para quem opera | — | **`/api/ops/metrics` não tem autenticação.** Devolve id do projeto GCP, consumo de Vertex de 24h e as contagens de indicação e lead B2B para qualquer um que saiba a URL. |
 | 10 | "Condições especiais para quem entrar cedo" / planos | FAQ da landing | Não há paywall, cobrança ou noção de plano pago no repo. Monetização é outra frente. |
 
 **Nota sobre `docs/backlog-trilha-t2.md`:** a seção "verificação contra o
@@ -218,3 +221,7 @@ app**. As três divergências que importam estão todas **fora dele**:
 - **A exportação LGPD não exporta tudo** — e o que falta (conversas e memórias)
   é justamente o mais sensível.
 - **Chat e extrato não têm rate limit.** Uma conta abusiva vira conta de Vertex.
+
+Dentro do app sobrou uma só, e é de operação, não de usuário: **`/api/ops/metrics`
+responde sem login**. As portas do pré-login que davam para escrever na conta
+alheia foram fechadas em 07/08/2026.

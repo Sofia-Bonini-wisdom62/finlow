@@ -6,17 +6,19 @@ import { filtroDeModulo } from "@/lib/publico"
 
 export const dynamic = "force-dynamic"
 
-// GET /api/trilha/[moduloId]?userId=xxx
+// GET /api/trilha/[moduloId]
+//
+// O conteúdo da aula é público para quem tem conta; o PROGRESSO só sai da
+// sessão. O fallback `?userId=` que existia aqui deixava qualquer um ler o
+// progresso de qualquer conta passando o id na URL.
 export async function GET(
-  req: NextRequest,
+  _req: NextRequest,
   { params }: { params: Promise<{ moduloId: string }> }
 ) {
   try {
     const { moduloId } = await params
-    const { searchParams } = new URL(req.url)
-    // sessão NextAuth tem prioridade; query param é o fallback anônimo
     const session = await auth()
-    const userId = session?.user?.id ?? searchParams.get("userId")
+    const userId = session?.user?.id ?? null
 
     // aceita id (cuid) ou slug — os cards do Perfil linkam por slug
     const modulo = await db.modulo.findFirst({

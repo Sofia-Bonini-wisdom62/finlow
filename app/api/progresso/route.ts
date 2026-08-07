@@ -5,34 +5,31 @@ import { creditar, pontosPorConclusao } from "@/lib/pontos"
 
 export const dynamic = "force-dynamic"
 
-// sessão NextAuth primeiro; header anônimo como fallback até todo mundo ter conta
-async function getUserId(req: NextRequest): Promise<string | null> {
+/**
+ * O userId sai SEMPRE da sessão — a mesma regra do Painel (`lib/painel.ts`).
+ *
+ * Aqui havia um fallback: sem sessão, valia o header `x-user-id` do cliente, e
+ * um `ensureUser` criava a conta correspondente (`<id>@anon.finlow`) na hora.
+ * Somados, os dois davam uma rota de ESCRITA sem login — dava para criar
+ * usuário à vontade, gravar progresso na conta de outra pessoa sabendo o id
+ * dela e creditar ponto sem nunca abrir uma aula. Nenhuma tela mandava esse
+ * header: era resto da era pré-auth. Fechou.
+ */
+async function getUserId(): Promise<string | null> {
   const session = await auth()
-  if (session?.user?.id) return session.user.id
-  return req.headers.get("x-user-id") || null
-}
-
-// garante que existe uma linha User pro id anônimo (fallback sem conta)
-async function ensureUser(userId: string) {
-  await db.user.upsert({
-    where: { id: userId },
-    create: { id: userId, email: `${userId}@anon.finlow` },
-    update: {},
-  })
+  return session?.user?.id ?? null
 }
 
 // PATCH — atualiza telaAtual (fire-and-forget do CardFlow)
 export async function PATCH(req: NextRequest) {
   try {
-    const userId = await getUserId(req)
-    if (!userId) return NextResponse.json({ error: "userId obrigatório" }, { status: 400 })
+    const userId = await getUserId()
+    if (!userId) return NextResponse.json({ error: "Entra na sua conta primeiro" }, { status: 401 })
 
     const { moduloId, telaAtual } = await req.json()
     if (!moduloId || telaAtual === undefined) {
       return NextResponse.json({ error: "moduloId e telaAtual obrigatórios" }, { status: 400 })
     }
-
-    await ensureUser(userId)
 
     await db.progressoModulo.upsert({
       where: { userId_moduloId: { userId, moduloId } },
@@ -50,13 +47,11 @@ export async function PATCH(req: NextRequest) {
 // POST — marca módulo como concluído
 export async function POST(req: NextRequest) {
   try {
-    const userId = await getUserId(req)
-    if (!userId) return NextResponse.json({ error: "userId obrigatório" }, { status: 400 })
+    const userId = await getUserId()
+    if (!userId) return NextResponse.json({ error: "Entra na sua conta primeiro" }, { status: 401 })
 
     const { moduloId, respostas } = await req.json()
     if (!moduloId) return NextResponse.json({ error: "moduloId obrigatório" }, { status: 400 })
-
-    await ensureUser(userId)
 
     await db.progressoModulo.upsert({
       where: { userId_moduloId: { userId, moduloId } },

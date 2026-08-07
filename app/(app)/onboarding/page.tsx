@@ -154,8 +154,9 @@ export default function OnboardingPage() {
       ])
 
       if (d.concluido && d.perfilSugerido) {
-        // A trilha lê o perfil daqui — sem isto ela abriria vazia.
-        try { localStorage.setItem("finlow_perfil", d.perfilSugerido) } catch {}
+        // Só estado de tela. O perfil que o app lê é o do banco, gravado por
+        // /api/onboarding — copiá-lo para o localStorage criava uma segunda
+        // verdade, que sobrevivia ao logout e vazava para a conta seguinte.
         setPerfil(d.perfilSugerido)
         setFase("processando")
         processar()

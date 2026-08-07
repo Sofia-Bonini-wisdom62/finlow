@@ -11,6 +11,7 @@ interface ModuloRef {
   id: string
   titulo: string
   ordem: number
+  tipoPerfil: TipoPerfil
 }
 
 // Qual módulo da trilha conversa com a maior categoria de gasto do mês.
@@ -73,13 +74,18 @@ export function InsightPerfilCard({ transacoes }: { transacoes: TransacaoData[] 
   const [perfil, setPerfil] = useState<TipoPerfil | null>(null)
   const [modulos, setModulos] = useState<ModuloRef[]>([])
 
+  // O perfil vem do SERVIDOR junto com os módulos, não do localStorage.
+  // Lido do navegador, ele sobrevivia ao logout: a próxima conta abria o
+  // Painel com o insight da conta anterior.
   useEffect(() => {
-    const tipo = localStorage.getItem("finlow_perfil") as TipoPerfil | null
-    if (!tipo) return
-    setPerfil(tipo)
-    fetch(`/api/trilha?tipoPerfil=${tipo}`)
-      .then((r) => r.json())
-      .then((d) => setModulos((d.modulos ?? []).map((m: ModuloRef) => ({ id: m.id, titulo: m.titulo, ordem: m.ordem }))))
+    fetch("/api/trilha")
+      .then((r) => (r.ok ? r.json() : { modulos: [] }))
+      .then((d) => {
+        const lista = (d.modulos ?? []) as ModuloRef[]
+        if (!lista.length) return
+        setPerfil(lista[0].tipoPerfil)
+        setModulos(lista.map((m) => ({ id: m.id, titulo: m.titulo, ordem: m.ordem, tipoPerfil: m.tipoPerfil })))
+      })
       .catch(() => {})
   }, [])
 
