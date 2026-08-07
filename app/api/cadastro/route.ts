@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic"
 
 export async function POST(req: NextRequest) {
   try {
-    const { nome, email, senha, dataNascimento, perfilTipo } = await req.json()
+    const { nome, email, senha, dataNascimento } = await req.json()
 
     if (!nome || typeof nome !== "string" || nome.trim().length < 2) {
       return NextResponse.json({ error: "Me diz seu nome" }, { status: 400 })
@@ -40,16 +40,23 @@ export async function POST(req: NextRequest) {
 
     const hash = await bcrypt.hash(senha, 10)
 
+    /**
+     * A conta nasce SEM perfil, e isso é a correção de um vazamento entre
+     * contas.
+     *
+     * O cadastro aceitava um `perfilTipo` vindo do cliente, herdado de quando
+     * existia um diagnóstico de 4 perguntas ANTES do login. Esse diagnóstico
+     * foi aposentado no pivô: hoje o perfil é inferido na primeira conversa,
+     * DEPOIS do cadastro (`/api/onboarding`). O que sobrava no `localStorage`
+     * na hora de criar conta só podia ser de outra pessoa que usou o mesmo
+     * navegador — e ela entrava com o perfil de um estranho.
+     */
     const novo = await db.user.create({
       data: {
         nome: nome.trim(),
         email: emailNorm,
         senha: hash,
         dataNascimento: nascimento,
-        // se o usuário já fez o diagnóstico antes de criar conta, vincula o perfil
-        ...(perfilTipo && ["lancador", "guardador", "impulsivo", "sonhador"].includes(perfilTipo)
-          ? { perfil: { create: { tipo: perfilTipo, respostas: [] } } }
-          : {}),
       },
     })
 

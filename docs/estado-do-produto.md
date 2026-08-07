@@ -7,9 +7,11 @@ um app para adolescentes que já não existia).
 
 Legenda: ✅ pronto · 🔧 em desenvolvimento · 📋 planejado · 🚫 fora deste repo
 
-Última revisão: 05/08/2026 — trilha de Ensino Médio portada e semeada atrás do
-gate de público (seção própria abaixo). As cinco fases do script do Plano
-2026–2029 seguem entregues; ver a tabela de entregas.
+Última revisão: 07/08/2026 — varredura de resto morto e das portas que ele
+deixou abertas (seção *Limpeza* abaixo). Nenhuma funcionalidade mudou de
+status; o que mudou foi o que existia por baixo delas. A trilha de Ensino Médio
+segue portada e semeada atrás do gate de público, e as cinco fases do script do
+Plano 2026–2029 seguem entregues.
 
 ## Núcleo
 
@@ -82,6 +84,37 @@ arquivo dizia, e por isso aparecem aqui:
 | Open Finance / agregador bancário | 📋 planejado | **Deixou de ser "outra frente" em 05/08/2026.** Estava marcado 🚫 aqui e o README dizia "este repo não toca nesse tema". Passou para o backlog: conectar bancos no app para puxar extrato, saldo, contas fixas. Enquanto não começa, o caminho real de entrada de dados continua sendo o upload de extrato. |
 | Trilha em blocos de 4 lições, com sequência travada | 📋 em conflito | Inverte a arquitetura documentada: hoje a trilha é *biblioteca posicionada*, sem bloqueio por sequência (`prisma/schema.prisma`, `lib/situacoes.ts`, `app/trilha/page.tsx`, `backlog-trilha-t2.md`). Decisão legítima, mas quem começar precisa desfazer essa documentação no mesmo commit. |
 
+## Limpeza do pré-pivô (07/08/2026)
+
+O produto pivotou de um app de educação para adolescentes (diagnóstico de 4
+perguntas antes do login, trilha por perfil, sem conta) para o assistente
+financeiro adulto. O código do produto novo está de pé; o que sobrou do antigo
+é que não tinha sido varrido. Três desses restos não eram apenas peso morto —
+eram porta aberta.
+
+### Portas que o resto do pré-login deixou aberta
+
+| O que era | Efeito | Correção |
+|---|---|---|
+| `/api/progresso` aceitava o header `x-user-id` quando não havia sessão, e um `ensureUser` criava a conta `<id>@anon.finlow` na hora | Rota de **escrita sem login**: criar usuário à vontade, gravar progresso na conta alheia sabendo o id, e creditar ponto sem abrir aula nenhuma. Nenhuma tela mandava o header | userId só da sessão; sem sessão, 401 |
+| `/api/trilha` e `/api/trilha/[moduloId]` aceitavam `?userId=` como "sessão anônima" | Ler o progresso de qualquer conta passando o id na URL | Parâmetro removido nas duas |
+| `/api/cadastro` aceitava `perfilTipo` do cliente, lido do `localStorage` | O diagnóstico que escrevia essa chave foi aposentado no pivô. O que restava no navegador na hora de criar conta só podia ser de **outra pessoa** que o usou antes — e ela entrava com o perfil de um estranho | Campo removido do cliente e do servidor. O perfil é inferido na primeira conversa, depois do cadastro |
+
+A chave `finlow_perfil` no `localStorage` foi eliminada junto: era uma segunda
+verdade sobre o perfil (a primeira é `Perfil.tipo`, no banco), sobrevivia ao
+logout e alimentava o card de insight do Painel. Ele passou a ler do servidor.
+
+### Arquivos removidos
+
+| Arquivo | Por quê |
+|---|---|
+| `prisma/seed-data.sql` (93 KB) + `scripts/gen-seed-sql.ts` | Cópia paralela e **desatualizada** do seed da T1, de antes da reforma. Rodar apagava as 16 aulas, levava o `ProgressoModulo` de todo mundo em cascade e reescrevia o conteúdo na versão velha, sem `nivel`/`situacoes`/`tags`. O arquivo do banco em `docs/banco/` faz o mesmo trabalho sem destruir nada |
+| `scripts/backfill-spec-v3.mts` | Backfill de uso único, já rodado. Montava a leva inicial **por perfil**, roteamento que a biblioteca posicionada substituiu — rodar hoje corromperia as levas |
+| `prisma/migration-card-flow.sql`, `scripts/migrar-identidade.mjs` | Migrações de uso único, já aplicadas. O esquema e as telas atuais são a verdade |
+| `lib/usuario-id.ts` | Gerava um id de usuário no `localStorage` "até o auth estar configurado". O auth está configurado desde então; zero importações |
+| `components/perfil-card.tsx`, `types/index.ts`, `lib/perfis.ts` | Card e tipos do diagnóstico de 4 perguntas aposentado. `TipoPerfil` estava declarado em quatro lugares; sobrou o de `types/trilha.ts` |
+| `components/ui/button.tsx` | Primitivo do shadcn que nenhuma tela importa |
+
 ## Fora deste repo (outra frente — NÃO tocar aqui)
 
 | Tema | Status |
@@ -90,9 +123,28 @@ arquivo dizia, e por isso aparecem aqui:
 
 ## Pendências conhecidas
 
+- **`/api/ops/metrics` não tem autenticação nenhuma.** É a única rota logada
+  sem porta: qualquer um que saiba a URL lê o id do projeto GCP, o consumo de
+  Vertex das últimas 24h e as contagens de produto (indicações, leads B2B).
+  Não há dado pessoal ali, e é por isso que não é urgência — mas é métrica de
+  negócio na rua, e a correção é uma linha (um segredo em env conferido no
+  topo da rota). Fica como decisão, não como conserto silencioso: quem chama
+  essa rota hoje precisa saber que vai passar a mandar o segredo.
+- **Chat e extrato continuam sem limite de taxa.** São as duas chamadas que
+  custam dinheiro; o limitador (`lib/limite-taxa.ts`) só está na rota de lead
+  B2B. Uma conta abusiva vira conta de Vertex.
+- **`/api/exportar` não exporta tudo**, apesar do que o comentário no topo dela
+  diz. Ficam de fora memórias, conversas do chat, orçamentos, respostas do
+  onboarding, eventos de pontuação e insights — e o que falta é justamente o
+  mais sensível. O *delete* cobre tudo por cascade; a exportação, não.
 - R1 (política escrita de retenção/privacidade): a engenharia existe
   (consentimento separado, cifra, RLS, exclusão, exportação); falta o texto
   jurídico — base legal, finalidade, prazo de retenção.
 - Revisão jurídica (CVM/LGPD) dos módulos que tocam investimento (M09, M10,
   M22–M25) e do M07 (bets).
 - Chaves OAuth do Google na Vercel para o botão de login aparecer em produção.
+- `components/painel/InsightPerfilCard.tsx` escolhe a aula por `ordem`
+  cravada no código (1, 2 e 4 de cada arco) e escreve a frase por `switch` nos
+  quatro perfis. Funciona porque a T1 tem os quatro arcos com quatro aulas
+  cada; renumerar ou aposentar um módulo troca a frase sem quebrar nada, em
+  silêncio. É a última peça do app que ainda raciocina por perfil.

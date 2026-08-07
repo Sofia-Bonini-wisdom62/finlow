@@ -51,13 +51,13 @@ export default function CadastroPage() {
     setEnviando(true)
 
     try {
-      // se já fez o diagnóstico sem conta, aproveita e vincula o perfil
-      const perfilTipo = localStorage.getItem("finlow_perfil")
-
+      // Nada de perfil daqui: ele é inferido na primeira conversa, depois do
+      // cadastro. Mandar o que estivesse no localStorage deste navegador só
+      // conseguiria herdar o perfil da conta anterior — ver /api/cadastro.
       const res = await fetch("/api/cadastro", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, email, senha, dataNascimento: dataISO, perfilTipo }),
+        body: JSON.stringify({ nome, email, senha, dataNascimento: dataISO }),
       })
 
       const data = await res.json()

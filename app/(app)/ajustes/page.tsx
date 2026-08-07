@@ -178,9 +178,6 @@ export default function AjustesPage() {
         setMsg({ tipo: "erro", texto: d.erro ?? d.error ?? "Não consegui apagar agora." })
         return
       }
-      // O perfil da trilha vive no localStorage; sem limpar, a próxima conta
-      // criada neste navegador herdaria a trilha de uma conta que não existe.
-      try { localStorage.removeItem("finlow_perfil") } catch {}
       await signOut({ callbackUrl: "/" })
     } catch {
       setSalvando(false)

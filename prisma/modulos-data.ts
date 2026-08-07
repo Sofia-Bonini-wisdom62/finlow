@@ -1,6 +1,15 @@
-// Fonte única dos 16 módulos da trilha.
-// Usada pelo seed.ts (pnpm prisma db seed) e pelo scripts/gen-seed-sql.ts
-// (gera SQL pro Supabase SQL Editor quando a rede bloqueia conexão direta).
+// Fonte única dos 16 módulos da trilha (Temporada 1).
+//
+// Quem lê: `prisma/seed.ts` (pnpm prisma db seed). Havia um segundo consumidor,
+// `scripts/gen-seed-sql.ts`, que despejava tudo em `prisma/seed-data.sql` para
+// colar no SQL Editor do Supabase. Os dois saíram em 07/08/2026: o .sql
+// envelheceu na versão pré-reforma e, pior, apagava os módulos antes de
+// reinserir — levando o ProgressoModulo de todo mundo em cascade. Precisa do
+// banco em SQL? É `docs/banco/`, que é gerado e não destrói nada.
+//
+// Este arquivo NÃO carrega `nivel`, `situacoes` nem `tags`: quem os aplica é
+// `scripts/classificar-t1.mts --aplicar`, e sem ele a T1 fica sem posição na
+// biblioteca.
 //
 // Público: adultos de 25 a 40 anos com renda própria e contas no nome.
 // Ciclo é MENSAL (salário/projeto), não semanal. Personagens:

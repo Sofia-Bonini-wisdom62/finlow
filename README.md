@@ -36,10 +36,18 @@ pnpm install
 cp .env.example .env.local   # preencher — ver comentários no próprio arquivo
 pnpm db:push                 # prisma db push + RLS (scripts/aplicar-rls.mjs)
 npx tsx prisma/seed.ts       # módulos da Temporada 1
+npx tsx scripts/classificar-t1.mts --aplicar   # nível e situações da T1
 npx tsx scripts/semear-indicadores.mts --aplicar
 npx tsx scripts/semear-t2.mts --aplicar
 pnpm dev
 ```
+
+O `classificar-t1` não é opcional e faltava nesta lista. `prisma/seed.ts` grava
+os 16 módulos da T1 **sem** `nivel`, `situacoes` e `tags` — eles nascem no
+default (`iniciante`, listas vazias). Sem esse passo a T1 entra na biblioteca
+sem posição nenhuma: a recomendação por situação não a alcança e a busca por
+tag não a encontra. A T2 e a trilha de EM já nascem classificadas no próprio
+seed.
 
 `ENCRYPTION_KEY` precisa ser idêntica no `.env.local` e na Vercel. **Perder a
 chave é perder os dados financeiros** — não há recuperação.
