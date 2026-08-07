@@ -16,7 +16,7 @@ config({ path: ".env" })
 const { db } = await import("../lib/db.js")
 const { calcular, interpolar } = await import("../lib/resultado.js")
 const { chavesCitadas } = await import("../lib/indicadores.js")
-const { embaralharPorSemente } = await import("../lib/embaralhar.js")
+const { ordemDoQuiz, LICOES_COM_QUIZ } = await import("../lib/licoes.js")
 
 let problemas = 0
 function acusar(slug: string, msg: string) {
@@ -86,19 +86,33 @@ for (const m of modulos) {
 
       // O que interessa é a posição EXIBIDA da correta, depois do embaralho da
       // tela — a letra gravada nos dados deixou de decidir qualquer coisa.
+      //
+      // Mede as DUAS exibições: o mesmo quiz aparece na lição 1 (com o
+      // conceito antes) e na 3 (sem). São duas ordens diferentes, as duas
+      // vistas por gente, e as duas contam para o viés de posição.
       const headlineQuiz = (c.headline as string) ?? ""
-      const exibidas = embaralharPorSemente(opcoes, headlineQuiz)
-      exibidas.forEach((o, i) => {
-        if (o.correta) {
-          const pos = String.fromCharCode(65 + i)
-          distribuicaoCorretas[pos] = (distribuicaoCorretas[pos] ?? 0) + 1
-        }
-      })
+      const ordens: string[] = []
+      for (const licao of LICOES_COM_QUIZ) {
+        const exibidas = ordemDoQuiz(opcoes, headlineQuiz, licao)
+        exibidas.forEach((o, i) => {
+          if (o.correta) {
+            const pos = String.fromCharCode(65 + i)
+            distribuicaoCorretas[pos] = (distribuicaoCorretas[pos] ?? 0) + 1
+          }
+        })
+        ordens.push(exibidas.map((o) => o.letra).join())
 
-      // Determinismo: voltar de tela não pode rearrumar as opções.
-      const deNovo = embaralharPorSemente(opcoes, headlineQuiz)
-      if (exibidas.map((o) => o.letra).join() !== deNovo.map((o) => o.letra).join())
-        acusar(m.slug, `quiz ${t.ordem}: embaralho não é determinístico`)
+        // Determinismo: voltar de tela não pode rearrumar as opções.
+        const deNovo = ordemDoQuiz(opcoes, headlineQuiz, licao)
+        if (ordens[ordens.length - 1] !== deNovo.map((o) => o.letra).join())
+          acusar(m.slug, `quiz ${t.ordem}: embaralho não é determinístico (lição ${licao})`)
+      }
+
+      // A revisão TEM de sair noutra ordem, senão mede "era a segunda opção"
+      // em vez do conteúdo. `ordemDoQuiz` garante isso rotacionando quando as
+      // duas sementes colidem; esta linha é a prova de que a garantia vale.
+      if (opcoes.length >= 2 && ordens[0] === ordens[1])
+        acusar(m.slug, `quiz ${t.ordem}: revisão sai na MESMA ordem da lição 1`)
     }
 
     if (t.tipo === "input") {

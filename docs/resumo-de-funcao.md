@@ -115,12 +115,24 @@ percentuais moram em Análises de propósito.
 
 ### 2.9 Trilha
 
-- **Biblioteca posicionada, não corredor:** a aula é achada por **nível** e
-  **situação** (`divida_rotativa`, `sem_reserva`, `renda_variavel`,
-  `financiamento`, `dependentes`). Nada é bloqueado por sequência.
-- **43 módulos** — 16 da T1 (reformada e reclassificada em
+- **Corredor** (decisão da fundadora, 05/08/2026): cada módulo tem **4 lições**
+  em sequência — Novo conceito!, História!, Revisão!, Aplicação! — e o módulo
+  seguinte só abre quando o atual fecha todas. A regra mora em
+  `lib/corredor.ts` e é conferida no **servidor**, não só no desenho.
+  > Até essa data a trilha era *biblioteca posicionada*, sem trava nenhuma. A
+  > reversão foi feita com a ressalva à vista e o custo aceito: quem chega com
+  > dúvida no módulo 5 passa pelos quatro primeiros.
+- **Nível e situação** (`divida_rotativa`, `sem_reserva`, `renda_variavel`,
+  `financiamento`, `dependentes`) deixaram de dar acesso livre e passaram a
+  definir a **ordem da fila** — que é personalizada por pessoa, montada pela IA.
+- **43 módulos adultos** — 16 da T1 (reformada e reclassificada em
   `prisma/classificacao-t1.ts`) + 27 da T2 — de ~2 minutos, com exatamente 5
-  tipos de tela: conceito, cenário, quiz, input, resultado.
+  tipos de tela: conceito, cenário, quiz, input, resultado. As lições são
+  derivadas desses tipos em `lib/licoes.ts`, sem duplicar conteúdo: o quiz
+  aparece na lição 1 (com o conceito à vista) e na 3 (sem), em ordens
+  diferentes.
+- **Fim de lição**: XP, tempo, acertos e o conceito que ficou. Antes o módulo
+  terminava e a pessoa era despejada em `/perfil` sem saber de nada.
 - **Recomendados** é uma **leva de 4**: fica à vista até a última ser concluída,
   e só então outra entra. O chat **troca** uma aula da leva em vez de empilhar.
 - Busca por título, subtítulo e conteúdo das telas.

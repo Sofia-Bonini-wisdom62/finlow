@@ -13,9 +13,11 @@ interface Props {
   quizSelecionada: string | null
   onQuizSelecionar: (letra: string) => void
   onInputMudou: (valores: SessaoFluxo) => void
+  /** Qual lição está sendo jogada — muda a ordem das opções do quiz. */
+  licao?: number
 }
 
-export function TelaRenderer({ tela, sessao, quizSelecionada, onQuizSelecionar, onInputMudou }: Props) {
+export function TelaRenderer({ tela, sessao, quizSelecionada, onQuizSelecionar, onInputMudou, licao }: Props) {
   switch (tela.tipo) {
     case "conceito":
       return <TelaConceito conteudo={tela.conteudo as Parameters<typeof TelaConceito>[0]["conteudo"]} />
@@ -27,6 +29,7 @@ export function TelaRenderer({ tela, sessao, quizSelecionada, onQuizSelecionar, 
           conteudo={tela.conteudo as Parameters<typeof TelaQuiz>[0]["conteudo"]}
           selecionada={quizSelecionada}
           onSelecionar={onQuizSelecionar}
+          licao={licao}
         />
       )
     case "input":

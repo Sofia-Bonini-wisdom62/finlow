@@ -8,28 +8,29 @@ datasource db {
 }
 
 model User {
-  id                    String               @id @default(cuid())
-  email                 String               @unique
+  id                    String                @id @default(cuid())
+  email                 String                @unique
   nome                  String?
   dataNascimento        DateTime? // só informativo — sem validação de idade (decisão da fundadora, 04/07/2026)
   senha                 String? // hash bcrypt — null para contas OAuth
   consentimentoLGPD     DateTime? // reservado de antes do pivô (era consentimento de responsável); público hoje é adulto — manter até a política de privacidade (R1) definir o destino
   consentimentoPainelEm DateTime? // opt-in específico do Painel (R8) — sem ele, nenhum write de Painel
-  memoriaAtiva          Boolean              @default(false) // opt-in da memória do assistente — desligada até a pessoa ligar
+  memoriaAtiva          Boolean               @default(false) // opt-in da memória do assistente — desligada até a pessoa ligar
   onboardingEm          DateTime? // quando terminou a primeira conversa; null = ainda não fez
   // --- SPEC v3 §3 ---
-  nivel                 String               @default("iniciante") // inferido no processamento; depois só por sinal duro
+  nivel                 String                @default("iniciante") // inferido no processamento; depois só por sinal duro
   tendencia             String? // legado; a IA pode revisar observando o dash
-  pontos                Int                  @default(0)
-  apelido               String?              @unique // nome exibido no ranking
-  rankingOptIn          Boolean              @default(false) // ranking é opt-in explícito
-  codigoIndicacao       String?              @unique // 8 chars base36 do link /r/{codigo} — gerado sob demanda, nunca no cadastro
-  moduloAvancado        Boolean              @default(false) // Módulo Avançado (persona C) — liga aqui ou via AVANCADO_BETA_EMAILS (lib/plano.ts)
+  pontos                Int                   @default(0)
+  apelido               String?               @unique // nome exibido no ranking
+  rankingOptIn          Boolean               @default(false) // ranking é opt-in explícito
+  codigoIndicacao       String?               @unique // 8 chars base36 do link /r/{codigo} — gerado sob demanda, nunca no cadastro
+  moduloAvancado        Boolean               @default(false) // Módulo Avançado (persona C) — liga aqui ou via AVANCADO_BETA_EMAILS (lib/plano.ts)
   emailVerified         DateTime?
   image                 String?
-  criadoEm              DateTime             @default(now())
+  criadoEm              DateTime              @default(now())
   perfil                Perfil?
   progresso             ProgressoModulo[]
+  progressoLicoes       ProgressoLicao[]
   extratoImports        ExtratoImport[]
   contasFixas           ContaFixa[]
   transacoes            Transacao[]
@@ -41,8 +42,8 @@ model User {
   insights              Insight[]
   recomendacoes         RecomendacaoTrilha[]
   conversas             Conversa[]
-  indicacoesFeitas      Indicacao[]          @relation("indicador")
-  indicacaoRecebida     Indicacao?           @relation("indicado")
+  indicacoesFeitas      Indicacao[]           @relation("indicador")
+  indicacaoRecebida     Indicacao?            @relation("indicado")
   diagnosticoVazamento  DiagnosticoVazamento?
   investimentos         Investimento[]
   accounts              Account[]
@@ -415,26 +416,31 @@ model Perfil {
 }
 
 model Modulo {
-  id            String               @id @default(cuid())
-  slug          String               @unique
-  titulo        String
-  subtitulo     String
-  tipoPerfil    String
-  ordem         Int
-  xp            Int                  @default(50)
+  id              String               @id @default(cuid())
+  slug            String               @unique
+  titulo          String
+  subtitulo       String
+  tipoPerfil      String
+  ordem           Int
+  xp              Int                  @default(50)
   // --- SPEC v3 §3 ---
-  thumbnail     String?
-  duracaoMin    Int                  @default(2)
-  tags          String[] // alimenta a busca da Trilha
-  /// Biblioteca posicionada, não corredor: a aula é achada por NÍVEL e por
-  /// SITUAÇÃO de quem chega, não pela ordem numa fila.
+  thumbnail       String?
+  duracaoMin      Int                  @default(2)
+  tags            String[] // alimenta a busca da Trilha
+  /// NÍVEL e SITUAÇÃO decidem a ORDEM do corredor, não mais o acesso livre.
+  ///
+  /// Até 05/08/2026 a trilha era biblioteca posicionada: estes dois campos
+  /// achavam a aula certa e NADA travava nada. Com o corredor (decisão da
+  /// fundadora, ver lib/corredor.ts) eles continuam sendo o que posiciona a
+  /// pessoa — só que agora posicionam a FILA: é por eles que a IA monta a
+  /// sequência de módulos, e a sequência é o que abre um de cada vez.
   ///
   /// `situacoes` VAZIO não é falta de classificação: é "serve pra todo mundo".
   /// O vocabulário é todo de déficit (dívida, sem reserva, renda que varia), e
   /// as aulas de quem JÁ guarda bem não casam com nenhum deles — se situação
   /// fosse o único eixo, elas ficariam inalcançáveis.
-  nivel         String               @default("iniciante") // iniciante|intermediario|avancado
-  situacoes     String[]
+  nivel           String               @default("iniciante") // iniciante|intermediario|avancado
+  situacoes       String[]
   /// Para QUEM esta aula é. Separa a trilha adulta (o produto no ar) da trilha
   /// de Ensino Médio, que cobre a matriz do Banco Central e fala com 15–17 anos.
   ///
@@ -446,10 +452,11 @@ model Modulo {
   /// (lib/publico.ts). Um findMany sem o filtro devolve as duas trilhas
   /// misturadas, e o sintoma é a IA recomendando "Estudar sem se afundar" para
   /// alguém de 38 anos. `scripts/testar-publico.mts` quebra quando isso escapa.
-  publico       String               @default("adulto") // "adulto" | "em"
-  telas         Tela[]
-  progresso     ProgressoModulo[]
-  recomendacoes RecomendacaoTrilha[]
+  publico         String               @default("adulto") // "adulto" | "em"
+  telas           Tela[]
+  progresso       ProgressoModulo[]
+  progressoLicoes ProgressoLicao[]
+  recomendacoes   RecomendacaoTrilha[]
 
   @@index([tipoPerfil, ordem])
   @@index([publico, ordem])
@@ -464,9 +471,25 @@ model Tela {
   label    String
   conteudo Json
 
+  /// A qual lição esta tela pertence NÃO é coluna, e isso é decisão, não falta.
+  ///
+  /// O agrupamento sai do TIPO da tela, calculado em lib/licoes.ts, porque uma
+  /// coluna só guardaria UM valor e a tela de quiz precisa aparecer em DUAS
+  /// lições: na "Novo conceito!", com o conceito ainda na tela (com consulta),
+  /// e na "Revisão!", sozinha (sem consulta). Gravar o vínculo obrigaria a
+  /// duplicar a pergunta no banco, e aí duas cópias da mesma questão passariam
+  /// a divergir na primeira correção de texto.
   @@unique([moduloId, ordem])
 }
 
+/// O módulo como um todo. Com o corredor (05/08/2026) ele passou a ser o
+/// AGREGADO das lições: `concluido` vira true quando todas as lições do módulo
+/// fecham, e é ele que o corredor consulta para liberar o módulo seguinte.
+///
+/// `telaAtual` ficou como resíduo do player antigo, que percorria as telas do
+/// módulo em fila única. Quem retoma de onde parou agora lê
+/// ProgressoLicao.telaAtual — a coluna fica porque as linhas antigas têm dado
+/// nela e apagar não devolve nada.
 model ProgressoModulo {
   id          String    @id @default(cuid())
   userId      String
@@ -479,6 +502,37 @@ model ProgressoModulo {
   criadoEm    DateTime  @default(now())
 
   @@unique([userId, moduloId])
+}
+
+/// Progresso de UMA lição de um módulo.
+///
+/// Existe porque com os 4 tipos de lição (Novo conceito, História, Revisão,
+/// Aplicação) o módulo deixou de ser a unidade que se conclui: cada lição tem
+/// o seu fim, o seu XP e a sua tela de fechamento, e a lição seguinte só abre
+/// quando a anterior fecha.
+///
+/// `acertos`/`totalQuiz` ficam aqui, e não são recalculáveis depois: a tela de
+/// fim mostra "4 de 5" e o XP creditado foi proporcional a ISSO. Guardar o
+/// resultado é o que permite reabrir a tela de fim sem recreditar nada.
+model ProgressoLicao {
+  id          String    @id @default(cuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  moduloId    String
+  modulo      Modulo    @relation(fields: [moduloId], references: [id], onDelete: Cascade)
+  /// 1..4 — ver TIPOS_LICAO em lib/licoes.ts
+  licao       Int
+  concluido   Boolean   @default(false)
+  telaAtual   Int       @default(0)
+  acertos     Int       @default(0)
+  totalQuiz   Int       @default(0)
+  /// Segundos gastos na lição, somados entre as visitas. Alimenta a tela de fim.
+  segundos    Int       @default(0)
+  concluidoEm DateTime?
+  criadoEm    DateTime  @default(now())
+
+  @@unique([userId, moduloId, licao])
+  @@index([userId, moduloId])
 }
 
 model Account {

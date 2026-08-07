@@ -39,9 +39,11 @@ Daí decorre o resto:
    junto — não se acrescenta a decisão nova deixando a antiga de pé. Duas
    verdades no repositório é pior que nenhuma.
 3. **Vai começar algo do `backlog-produto.md`?** Confira antes se aquela linha
-   tem um aviso ⚠️. Dois itens de hoje invertem decisões registradas (Open
-   Finance e a trilha em corredor); a documentação que eles contrariam precisa
-   cair no mesmo commit em que o trabalho começar.
+   tem um aviso ⚠️: ela inverte uma decisão registrada, e a documentação que
+   ela contraria precisa cair no mesmo commit em que o trabalho começar. Foi o
+   que aconteceu com a trilha em corredor (06/08/2026) — o aviso serviu para
+   pôr o custo à mesa antes da decisão, não para impedi-la. Open Finance é o
+   que ainda está de pé com ⚠️.
 
 ## O que NÃO mora aqui
 

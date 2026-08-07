@@ -8,10 +8,17 @@ Recebido em 02/08/2026. Público: adulto brasileiro de 25 a 40 anos.
 
 ---
 
-## Verificação contra o código (02/08/2026)
+## Verificação contra o código (02/08/2026) — HISTÓRICO
 
-Quatro coisas que o documento assume e que **não existem** no que está no ar.
-Registradas aqui porque são pré-requisito, não detalhe de implementação.
+> ⚠️ **Esta seção descreve o código de 02/08/2026 e não vale mais.** Os quatro
+> pré-requisitos foram construídos: `Modulo.nivel` e `Modulo.situacoes[]`
+> existem, os 27 módulos da T2 estão no ar, e o eixo de recomendação deixou de
+> ser o `tipoPerfil`. Fica registrada porque explica POR QUE as decisões
+> seguintes foram tomadas — não como retrato do que existe. Para o estado real,
+> [`estado-do-produto.md`](estado-do-produto.md).
+
+Quatro coisas que o documento assume e que **não existiam** no que estava no ar.
+Registradas aqui porque eram pré-requisito, não detalhe de implementação.
 
 **1. `nivel` e `situacoes[]` não existem no `Modulo`.**
 O modelo tem `tipoPerfil`, `ordem`, `tags`, `duracaoMin`. O campo `situacoes[]`
@@ -51,7 +58,13 @@ e prazo de retenção.
 - Percurso de ~2 minutos por módulo.
 - Exatamente 5 tipos de tela, sem componente novo: `conceito`, `cenario`,
   `quiz`, `input`, `resultado`.
-- Trilha como biblioteca posicionada, não corredor sequencial.
+- ~~Trilha como biblioteca posicionada, não corredor sequencial.~~
+  **Caiu em 06/08/2026:** a trilha virou corredor, com 4 lições por módulo e o
+  seguinte trancado até o atual fechar (decisão da fundadora — ver
+  `lib/corredor.ts` e `backlog-produto.md`). O que continua valendo desta
+  linha: as 5 telas seguem sendo as mesmas, e as lições são **derivadas** delas
+  em `lib/licoes.ts` — módulo novo não precisa ser escrito em 4 partes, precisa
+  ter os tipos de tela de sempre.
 - Guardrails de CVM e LGPD mantidos e adaptados ao público adulto.
 
 ## Dados macro de referência (ago/2026)

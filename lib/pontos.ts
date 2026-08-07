@@ -21,6 +21,17 @@ import { Prisma } from "@prisma/client"
 export const PONTOS_POR_MOTIVO = {
   onboarding: 50,
   modulo_concluido: 30,
+  /**
+   * Uma das lições do módulo (Novo conceito, História, Revisão, Aplicação).
+   *
+   * Vale POUCO de propósito. O módulo continua pagando os 30 dele ao fechar, e
+   * se cada lição pagasse como um módulo antigo o mesmo conteúdo passaria a
+   * valer quatro vezes mais que valia — as 26 contas anteriores ao corredor
+   * ficariam para trás no ranking sem ter feito nada de errado.
+   *
+   * refId é `${moduloId}:${licao}`, então refazer uma lição não paga de novo.
+   */
+  licao_concluida: 5,
   quiz_acerto: 5,
   lancamento_confirmado: 2,
   streak_semana: 20,
@@ -59,6 +70,19 @@ export function pontosPorConclusao(acertos: number, totalQuiz: number): number {
   const cheio = PONTOS_POR_MOTIVO.modulo_concluido
   if (totalQuiz <= 0) return cheio
   const piso = 10
+  const fracao = Math.max(0, Math.min(1, acertos / totalQuiz))
+  return piso + Math.round((cheio - piso) * fracao)
+}
+
+/**
+ * Pontos de uma LIÇÃO concluída, na mesma lógica do módulo: piso por ter
+ * percorrido, resto proporcional ao acerto. Lição sem quiz (História,
+ * Aplicação) paga cheio — não há o que errar nela.
+ */
+export function pontosPorLicao(acertos: number, totalQuiz: number): number {
+  const cheio = PONTOS_POR_MOTIVO.licao_concluida
+  if (totalQuiz <= 0) return cheio
+  const piso = 2
   const fracao = Math.max(0, Math.min(1, acertos / totalQuiz))
   return piso + Math.round((cheio - piso) * fracao)
 }

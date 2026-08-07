@@ -28,6 +28,7 @@ const {
   garantirLevaInicial, levaAtual, levaAtiva, levaFechada,
   talvezGerarNovaLeva, guardarRecomendacaoDoChat, marcarEntregues,
 } = await import("../lib/recomendacao.js")
+const { filtroDeModulo } = await import("../lib/publico.js")
 
 let falhas = 0
 
@@ -73,7 +74,20 @@ async function concluir(uid: string, moduloId: string) {
 }
 
 try {
+  /**
+   * O MESMO filtro de público que o código sob teste usa.
+   *
+   * Sem ele este arquivo passou a falhar em 15 casos sem ninguém mexer nele:
+   * `tipoPerfil: "em"` ordena antes de "guardador", então as 4 primeiras da
+   * fila viraram aulas de Ensino Médio quando os 24 módulos de EM entraram no
+   * banco — e `garantirLevaInicial`, que filtra por público, não achava
+   * nenhuma delas. O teste montava a leva com slugs que a função descarta.
+   *
+   * É o erro que lib/publico.ts existe para evitar, cometido no lugar que
+   * deveria denunciá-lo.
+   */
   const modulos = await db.modulo.findMany({
+    where: filtroDeModulo(),
     select: { id: true, slug: true },
     orderBy: [{ tipoPerfil: "asc" }, { ordem: "asc" }],
   })

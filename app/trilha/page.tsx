@@ -13,9 +13,17 @@ import { CardModulo, type ModuloCard } from "@/components/trilha/CardModulo"
  * quem chega com uma dúvida ("como funciona juros do cartão") não quer
  * percorrer uma lista curada antes de perguntar.
  *
- * Nenhum módulo é bloqueado por sequência. A trilha é biblioteca posicionada,
- * não corredor: travar a aula 3 até concluir a 2 transforma quem veio tirar uma
- * dúvida específica em alguém que desiste.
+ * A TRILHA É UM CORREDOR (decisão da fundadora, 05/08/2026).
+ * Cada módulo tem 4 lições em sequência, e o módulo seguinte só abre quando o
+ * atual fecha todas — a regra mora em lib/corredor.ts, e quem decide é o
+ * servidor. Até esta data a trilha era biblioteca posicionada, sem trava; a
+ * reversão foi feita com a ressalva à vista, e o custo aceito está escrito
+ * lá: quem chega com dúvida no módulo 5 passa pelos quatro primeiros.
+ *
+ * A BUSCA CONTINUA MOSTRANDO TUDO, inclusive o que está trancado — com o
+ * cadeado e o motivo. Esconder o resultado faria a pessoa concluir que a aula
+ * não existe; mostrar trancado responde a pergunta dela ("existe, e é ali que
+ * fica") sem furar o corredor.
  */
 
 const ATRASO_BUSCA = 320
@@ -166,8 +174,9 @@ export default function TrilhaPage() {
                 )}
               </div>
               <p className="mt-0.5 text-[13px] leading-relaxed text-fl-ink-2">
-                Quatro aulas escolhidas a partir dos seus números. Elas ficam aqui até você
-                fechar as quatro, e aí entram outras.
+                Quatro aulas escolhidas a partir dos seus números, na ordem em que fazem
+                sentido. Cada uma tem 4 lições, e a seguinte abre quando você fecha a
+                anterior.
               </p>
 
               {recomendados.length === 0 ? (

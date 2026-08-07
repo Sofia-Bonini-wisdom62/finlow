@@ -4,6 +4,7 @@ import { getUserIdOr401 } from "@/lib/painel"
 import { garantirLevaInicial, levaAtiva, TAMANHO_DA_LEVA } from "@/lib/recomendacao"
 import { aulasParaSituacao } from "@/lib/posicionar-trilha"
 import { filtroDeModulo } from "@/lib/publico"
+import { montarCorredor } from "@/lib/corredor"
 
 export const dynamic = "force-dynamic"
 
@@ -38,25 +39,38 @@ export async function GET(req: NextRequest) {
   const q = (new URL(req.url).searchParams.get("q") ?? "").trim().toLowerCase()
 
   try {
-    const [modulos, progresso] = await Promise.all([
-      db.modulo.findMany({
-        where: filtroDeModulo(),
-        include: { telas: { select: { conteudo: true } } },
-        orderBy: [{ tipoPerfil: "asc" }, { ordem: "asc" }],
-      }),
-      db.progressoModulo.findMany({ where: { userId } }),
-    ])
+    const modulos = await db.modulo.findMany({
+      where: filtroDeModulo(),
+      include: { telas: { select: { conteudo: true } } },
+      orderBy: [{ tipoPerfil: "asc" }, { ordem: "asc" }],
+    })
 
-    const progressoPorModulo = new Map(progresso.map((p) => [p.moduloId, p]))
+    /**
+     * A primeira leva nasce ANTES do corredor ser montado, e a ordem importa.
+     *
+     * O corredor libera a partir da SEQUÊNCIA da pessoa. Se ele fosse montado
+     * junto com a consulta dos módulos, na primeira visita a sequência ainda
+     * não existiria e a Trilha abriria com os 67 módulos trancados — inclusive
+     * o primeiro, que é justamente por onde ela deveria começar.
+     *
+     * Chamar de novo não duplica: `garantirLevaInicial` conta antes de gravar.
+     */
+    await garantirLevaInicial(userId, await aulasParaSituacao(userId, TAMANHO_DA_LEVA))
 
+    const corredor = await montarCorredor(userId)
+
+    /**
+     * O progresso passou a ser contado em LIÇÕES, não em telas.
+     *
+     * É o que a pessoa vê no card ("2 de 4 lições"), e é a mesma contagem que
+     * o corredor usa para decidir se o módulo seguinte abre — dois números
+     * diferentes para a mesma pergunta acabariam divergindo, e aí o card diria
+     * "completo" com o próximo módulo ainda trancado.
+     */
     const enriquecer = (m: (typeof modulos)[number]) => {
-      const p = progressoPorModulo.get(m.id)
-      const totalTelas = m.telas.length
-      const pct = p?.concluido
-        ? 100
-        : totalTelas > 0
-        ? Math.round((Math.min(p?.telaAtual ?? 0, totalTelas) / totalTelas) * 100)
-        : 0
+      const c = corredor.modulos.get(m.id)
+      const total = c?.licoesTotal ?? 0
+      const feitas = c?.licoesConcluidas ?? 0
       return {
         id: m.id,
         slug: m.slug,
@@ -65,9 +79,15 @@ export async function GET(req: NextRequest) {
         // campo próprio no card, então o prefixo sai pra não repetir
         subtitulo: m.subtitulo.replace(/^\s*\d+\s*minutos?\.\s*/i, ""),
         dificuldade: dificuldade(m.nivel),
-        duracao: duracao(totalTelas),
-        progresso: pct,
-        concluido: p?.concluido ?? false,
+        duracao: duracao(m.telas.length),
+        progresso: total > 0 ? Math.round((feitas / total) * 100) : 0,
+        concluido: c?.estado === "concluido",
+        // --- corredor (05/08/2026) ---
+        estado: c?.estado ?? "trancado",
+        bloqueio: c?.bloqueio ?? null,
+        licoesConcluidas: feitas,
+        licoesTotal: total,
+        proximaLicao: c?.proximaLicao ?? null,
       }
     }
 
@@ -104,13 +124,6 @@ export async function GET(req: NextRequest) {
 
     // ---- trilha recomendada ----
     const porSlug = new Map(modulos.map((m) => [m.slug, m]))
-
-    // A primeira leva é GRAVADA na primeira vez que a Trilha é aberta.
-    //
-    // Sem isso a recomendação seria recalculada a cada chamada, e não haveria
-    // como saber se a leva fechou: a lista mudaria de tamanho junto com o
-    // extrato da pessoa. Chamar de novo não duplica.
-    await garantirLevaInicial(userId, await aulasParaSituacao(userId, TAMANHO_DA_LEVA))
 
     // Só a leva ATIVA. As levas fechadas saíram de cena — continuam em "Todos
     // os módulos", com o selo de concluída.

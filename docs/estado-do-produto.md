@@ -25,8 +25,10 @@ Plano 2026–2029 seguem entregues.
 | Análises (gráficos, categorias, tetos, saúde) | ✅ | `app/(app)/analises` |
 | Onboarding conversacional + pipeline de 6 passos | ✅ | `app/(app)/onboarding`, `lib/onboarding/pipeline.ts` |
 | Memória do assistente (opt-in, cifrada, apagável) | ✅ | `lib/memoria-repo.ts`, `/memoria` |
-| Trilha como biblioteca por situação + nível | ✅ | `lib/situacoes.ts`, `lib/posicionar-trilha.ts` |
-| 43 módulos (16 T1 reformada + 27 T2) | ✅ | `prisma/modulos-data.ts`, `prisma/modulos-t2.ts` |
+| Trilha em corredor: 4 lições por módulo, em sequência | ✅ | `lib/corredor.ts`, `lib/licoes.ts` |
+| Tela de fim de lição (XP, tempo, acertos, conceito) | ✅ | `components/trilha/FimDaLicao.tsx` |
+| Ordem do corredor personalizada por situação + nível | ✅ | `lib/situacoes.ts`, `lib/posicionar-trilha.ts` |
+| 43 módulos adultos (16 T1 reformada + 27 T2) | ✅ | `prisma/modulos-data.ts`, `prisma/modulos-t2.ts` |
 | Leva de 4 aulas, gatilho ao fechar, chat troca | ✅ | `lib/recomendacao.ts` |
 | Pontos idempotentes + XP proporcional ao acerto | ✅ | `lib/pontos.ts` |
 | Ranking opt-in (apelido e pontos, nada mais) | ✅ | `app/api/ranking` |
@@ -82,7 +84,7 @@ arquivo dizia, e por isso aparecem aqui:
 | Tema | Status | Nota |
 |---|---|---|
 | Open Finance / agregador bancário | 📋 planejado | **Deixou de ser "outra frente" em 05/08/2026.** Estava marcado 🚫 aqui e o README dizia "este repo não toca nesse tema". Passou para o backlog: conectar bancos no app para puxar extrato, saldo, contas fixas. Enquanto não começa, o caminho real de entrada de dados continua sendo o upload de extrato. |
-| Trilha em blocos de 4 lições, com sequência travada | 📋 em conflito | Inverte a arquitetura documentada: hoje a trilha é *biblioteca posicionada*, sem bloqueio por sequência (`prisma/schema.prisma`, `lib/situacoes.ts`, `app/trilha/page.tsx`, `backlog-trilha-t2.md`). Decisão legítima, mas quem começar precisa desfazer essa documentação no mesmo commit. |
+| Trilha em blocos de 4 lições, com sequência travada | ✅ entregue em 06/08/2026 | Era "em conflito" com a biblioteca posicionada. Sofia decidiu pelo corredor com a ressalva à vista, escolhendo travar **entre módulos**. A documentação da biblioteca caiu no mesmo commit — este arquivo, `resumo-de-funcao.md`, `backlog-trilha-t2.md`, o comentário de `Modulo.situacoes` e `app/trilha/page.tsx`. |
 
 ## Limpeza do pré-pivô (07/08/2026)
 

@@ -34,13 +34,17 @@ atualizando em tempo real ou diariamente.
 Permitir que o agente se conecte melhor com o usuário por uma definição de
 personalidade de resposta.
 
-## Tela de fim de cada lição
+## ~~Tela de fim de cada lição~~ ✅ 06/08/2026
 
 Ao final de cada lição adicionar uma telinha de checkout com o XP que o usuário
 ganhou, o tempo que ele levou na lição, o quanto ele acertou e o conceito que ele
 aprendeu nessa lição.
 
-## Divisão dos 4 tipos de lição na trilha
+> Entregue em `components/trilha/FimDaLicao.tsx`. Os quatro números vêm do
+> servidor, inclusive os acertos — se a tela calculasse o próprio acerto, ela
+> poderia discordar do XP que foi creditado.
+
+## ~~Divisão dos 4 tipos de lição na trilha~~ ✅ 06/08/2026
 
 Dividir os módulos existentes em 4 partes, e apenas quando as 4 lições forem
 feitas é que se vai pro próximo módulo. As quatro lições são respectivamente:
@@ -52,21 +56,34 @@ feitas é que se vai pro próximo módulo. As quatro lições são respectivamen
 4. **Aplicação!** A IA interpreta o contexto do próprio usuário e faz uma
    pergunta sobre o assunto dentro do conceito dele. *(EXTRA)*
 
-> ⚠️ **Inverte a arquitetura atual da Trilha.** Hoje nenhum módulo é bloqueado
-> por sequência: a trilha é *biblioteca posicionada*, não corredor — a aula é
-> achada por nível e situação, e travar a aula 3 até concluir a 2 foi removido de
+> ✅ **Decidido e entregue.** A ressalva abaixo era real e foi posta à mesa antes
+> de começar; Sofia escolheu o corredor com ela à vista, na variante que trava
+> **entre módulos**. O custo está aceito e registrado: quem chega com dúvida no
+> módulo 5 passa pelos quatro primeiros. A regra mora em `lib/corredor.ts`, é
+> conferida no servidor, e a documentação da biblioteca posicionada caiu no
+> mesmo commit.
+>
+> ~~⚠️ Inverte a arquitetura atual da Trilha. Hoje nenhum módulo é bloqueado por
+> sequência: a trilha é biblioteca posicionada, não corredor — a aula é achada
+> por nível e situação, e travar a aula 3 até concluir a 2 foi removido de
 > propósito, porque transformava quem veio tirar uma dúvida específica em alguém
-> que desiste. A regra está escrita em `prisma/schema.prisma` (comentário de
-> `Modulo.situacoes`), em `lib/situacoes.ts`, em `app/trilha/page.tsx` e em
-> [`backlog-trilha-t2.md`](backlog-trilha-t2.md). Voltar ao corredor é uma
-> decisão legítima, mas precisa desfazer essa documentação junto — senão o repo
-> volta a descrever um produto que não existe.
+> que desiste.~~
+>
+> **O que ficou de fora, e é conteúdo, não código:** a lição "História!" hoje é
+> a tela de cenário sozinha — falta a parte de "perguntas durante a lição". E a
+> "Aplicação!" usa as telas de input e resultado, que já trabalham com os
+> números da pessoa, mas ainda não é a IA gerando pergunta (era marcado EXTRA).
+> Os 4 módulos sem tela de cenário ficam com 3 lições em vez de 4.
 
-## Remodelagem dos módulos
+## ~~Remodelagem dos módulos~~ ✅ 06/08/2026
 
 Agora em trilha! Blocos em ordem, ordenados pela IA: ela entende o contexto do
 usuário e edita a fila de prioridade dos blocos para que seja personalizada para
 ele.
+
+> É a ordem do corredor: a sequência sai de `RecomendacaoTrilha`, montada pela
+> IA a partir dos números da pessoa. Duas pessoas têm corredores diferentes — é
+> o que impede o corredor de virar uma fila única igual para todo mundo.
 
 ## Popular a base desde o 1º ano
 

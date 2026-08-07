@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { ChevronLeft } from "lucide-react"
 import type { ModuloData, SessaoFluxo } from "@/types/trilha"
 import { TelaRenderer } from "./TelaRenderer"
@@ -8,6 +8,8 @@ import { ProgressSegments } from "./ProgressSegments"
 
 interface Props {
   modulo: ModuloData
+  /** A lição sendo jogada: número, nome e posição ("2 de 4"). */
+  licao?: { numero: number; nome: string; indice: number; total: number }
   telaInicial?: number
   /**
    * Valores que já entram na sessão, antes de a pessoa digitar qualquer coisa.
@@ -20,18 +22,32 @@ interface Props {
    * O prefixo `ind_` é o que impede colisão com id de campo de formulário.
    */
   sessaoInicial?: SessaoFluxo
-  /** Recebe as respostas de quiz (telaId → letra) para o servidor conferir
-   *  e dar os pontos proporcionais ao acerto. */
-  onConcluir: (respostasQuiz: Record<string, string>) => void
+  /** Recebe as respostas de quiz (telaId → letra) e os segundos gastos, para o
+   *  servidor conferir o gabarito e dar os pontos proporcionais ao acerto. */
+  onConcluir: (respostasQuiz: Record<string, string>, segundos: number) => void
   onAvancarTela: (tela: number) => void
 }
 
-export function CardFlow({ modulo, telaInicial = 0, sessaoInicial, onConcluir, onAvancarTela }: Props) {
+export function CardFlow({ modulo, licao, telaInicial = 0, sessaoInicial, onConcluir, onAvancarTela }: Props) {
   const [atual, setAtual] = useState(telaInicial)
   const [sessao, setSessao] = useState<SessaoFluxo>(sessaoInicial ?? {})
   // letra escolhida por tela de quiz — permite voltar e reexibir a resposta
   const [respostasQuiz, setRespostasQuiz] = useState<Record<string, string>>({})
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  /**
+   * Quanto tempo a lição levou, para a tela de fim.
+   *
+   * Conta a partir de quando ESTA lição abriu, não da montagem do componente,
+   * e o servidor ainda impõe um teto — aba esquecida aberta a noite toda não
+   * vira "8 horas de estudo".
+   */
+  const inicioRef = useRef<number | null>(null)
+  useEffect(() => {
+    // Só no efeito, nunca durante a renderização: ler o relógio no corpo do
+    // componente é impuro e o React pode renderizar duas vezes.
+    inicioRef.current = Date.now()
+  }, [licao?.numero, modulo.id])
 
   const tela = modulo.telas[atual]
   const ehUltima = atual === modulo.telas.length - 1
@@ -49,7 +65,8 @@ export function CardFlow({ modulo, telaInicial = 0, sessaoInicial, onConcluir, o
   function proxima() {
     if (!podeAvancar()) return
     if (ehUltima) {
-      onConcluir(respostasQuiz)
+      const inicio = inicioRef.current
+      onConcluir(respostasQuiz, inicio === null ? 0 : Math.round((Date.now() - inicio) / 1000))
       return
     }
     const next = atual + 1
@@ -82,9 +99,19 @@ export function CardFlow({ modulo, telaInicial = 0, sessaoInicial, onConcluir, o
               <ChevronLeft className="size-6" />
             </button>
           )}
-          <span className="text-xs font-semibold uppercase tracking-wider text-[#A7ADAF]">{tela.label}</span>
+          <div className="flex flex-col">
+            {licao && (
+              <span className="text-[11px] font-bold uppercase tracking-wider" style={{ color: "#5FA7A9" }}>
+                {licao.nome}
+              </span>
+            )}
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#A7ADAF]">{tela.label}</span>
+          </div>
         </div>
-        <span className="text-xs text-[#A7ADAF]">{atual + 1} / {modulo.telas.length}</span>
+        <span className="text-xs text-[#A7ADAF]">
+          {licao ? `lição ${licao.indice}/${licao.total} · ` : ""}
+          {atual + 1}/{modulo.telas.length}
+        </span>
       </div>
 
       <ProgressSegments total={modulo.telas.length} atual={atual} />
@@ -97,6 +124,7 @@ export function CardFlow({ modulo, telaInicial = 0, sessaoInicial, onConcluir, o
           quizSelecionada={respostasQuiz[tela.id] ?? null}
           onQuizSelecionar={(letra) => setRespostasQuiz((prev) => ({ ...prev, [tela.id]: letra }))}
           onInputMudou={setSessao}
+          licao={licao?.numero}
         />
       </div>
 
@@ -110,7 +138,7 @@ export function CardFlow({ modulo, telaInicial = 0, sessaoInicial, onConcluir, o
             color: podeAvancar() ? "#112F30" : "#A7ADAF",
           }}
         >
-          {ehUltima ? "Concluir módulo →" : "Continuar"}
+          {ehUltima ? "Concluir lição →" : "Continuar"}
         </button>
         </div>
       </div>

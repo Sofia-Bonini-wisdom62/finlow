@@ -2,7 +2,7 @@
 
 import { useMemo } from "react"
 import { Check, X } from "lucide-react"
-import { embaralharPorSemente } from "@/lib/embaralhar"
+import { ordemDoQuiz } from "@/lib/licoes"
 import type { ConteudoQuiz, OpcaoQuiz } from "@/types/trilha"
 
 interface Props {
@@ -10,6 +10,8 @@ interface Props {
   // letra escolhida (estado vive no CardFlow — sobrevive ao voltar/avançar)
   selecionada: string | null
   onSelecionar: (letra: string) => void
+  /** Entra na semente do embaralho — ver o comentário abaixo. */
+  licao?: number
 }
 
 /**
@@ -25,11 +27,17 @@ interface Props {
  * pessoa vê a mesma ordem ao voltar de tela, e ordens diferentes entre
  * perguntas. A letra exibida é a da POSIÇÃO; a `letra` original vira só
  * identidade interna, que é o que o servidor confere ao dar os pontos.
+ *
+ * A LIÇÃO ENTRA NA SEMENTE porque a mesma pergunta aparece duas vezes: na
+ * "Novo conceito!", com a explicação na tela anterior, e na "Revisão!",
+ * sozinha. Com a mesma ordem nas duas, a revisão mediria "era a segunda
+ * opção" em vez do conteúdo — que é exatamente o que uma revisão não deve
+ * medir.
  */
-export function TelaQuiz({ conteudo, selecionada, onSelecionar }: Props) {
+export function TelaQuiz({ conteudo, selecionada, onSelecionar, licao }: Props) {
   const opcoes = useMemo(
-    () => embaralharPorSemente(conteudo.opcoes, conteudo.headline),
-    [conteudo]
+    () => ordemDoQuiz(conteudo.opcoes, conteudo.headline, licao ?? 1),
+    [conteudo, licao]
   )
 
   function selecionar(opcao: OpcaoQuiz) {
