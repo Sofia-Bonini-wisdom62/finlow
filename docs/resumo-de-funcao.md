@@ -146,8 +146,12 @@ percentuais moram em Análises de propósito.
 - Crédito é **evento**, não contador: chave única `(userId, motivo, refId)`
   torna impossível farmar. `User.pontos` é só cache.
 - Tabela: onboarding 50 · módulo concluído 30 (proporcional ao acerto no quiz,
-  piso de 10) · acerto de quiz 5 · lançamento confirmado 2 · streak semanal 20 ·
-  indicação ativada 50 (quem convidou) / 20 (quem entrou).
+  piso de 10) · **lição concluída 5** (proporcional, piso de 2) · acerto de quiz
+  5 · lançamento confirmado 2 · streak semanal 20 · indicação ativada 50 (quem
+  convidou) / 20 (quem entrou).
+  > A lição vale pouco de propósito. Se cada uma pagasse como um módulo antigo,
+  > o mesmo conteúdo passaria a valer quatro vezes mais e as contas anteriores
+  > ao corredor ficariam para trás no ranking sem ter feito nada.
 - **Ranking é opt-in** e mostra **apelido e pontos, nada mais**. É a única tela
   em que alguém vê dado de outra pessoa.
 - Indicação: código base36 gerado sob demanda, uma indicação por pessoa
