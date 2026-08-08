@@ -16,6 +16,8 @@ model User {
   consentimentoLGPD     DateTime? // reservado de antes do pivô (era consentimento de responsável); público hoje é adulto — manter até a política de privacidade (R1) definir o destino
   consentimentoPainelEm DateTime? // opt-in específico do Painel (R8) — sem ele, nenhum write de Painel
   memoriaAtiva          Boolean               @default(false) // opt-in da memória do assistente — desligada até a pessoa ligar
+  personalidadeIA       String                @default("equilibrado") // tom escolhido em /personalidade — ids em lib/personalidade.ts; valor desconhecido cai no padrão em vez de quebrar
+  personalidadeDetalhe  String? // CIFRADO — texto livre sobre como quer ser atendida. Cifrado pelo mesmo motivo da memória: é a pessoa falando de si, não configuração
   onboardingEm          DateTime? // quando terminou a primeira conversa; null = ainda não fez
   // --- SPEC v3 §3 ---
   nivel                 String                @default("iniciante") // inferido no processamento; depois só por sinal duro

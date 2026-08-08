@@ -71,10 +71,30 @@ o extrato passa a conferir o que chega contra o que já está lançado.
 > cafés de R$ 12 no mesmo dia), e desmarcar linha verdadeira faz faltar dinheiro
 > no total tanto quanto duplicata faz sobrar.
 
-## Melhorar prompt e personalização do agente
+## ~~Melhorar prompt e personalização do agente~~ ✅ 08/08/2026
 
 Permitir que o agente se conecte melhor com o usuário por uma definição de
 personalidade de resposta.
+
+> Entregue em `lib/personalidade.ts` (catálogo e bloco de prompt),
+> `lib/personalidade-repo.ts` (leitura e gravação) e a tela
+> `/personalidade`, em Menu > Personalidade do assistente. Cinco tons —
+> Equilibrado (padrão), Direto ao ponto, Acolhedor, Explicador, Incentivador —
+> mais um campo livre de 200 caracteres para a pessoa escrever como quer ser
+> atendida. O tom vale no chat e também no onboarding refeito, para o
+> assistente não trocar de voz entre as duas telas.
+>
+> **A decisão que sustenta o resto:** tom muda COMO ele fala, nunca O QUE é
+> verdade. O bloco do prompt repete, em todos os tons, que continuam valendo os
+> números do contexto, o "não sei" quando não há dado, o não julgar gasto, o
+> não recomendar ativo e o formato JSON. Sem essa cláusula, a escolha de tom
+> viraria uma porta para afrouxar as regras que protegem os números — e o campo
+> livre seria um segundo prompt de sistema escrito pelo usuário.
+>
+> O campo livre entra no prompt cercado: rotulado como preferência, marcado
+> como texto não confiável, sem quebra de linha (não forja seção nossa) e sem
+> aspas duplas (não fecha o delimitador). `scripts/testar-personalidade.mts`
+> cobre as duas coisas, e o teste foi conferido contra o código mutilado.
 
 ## ~~Tela de fim de cada lição~~ ✅ 06/08/2026
 

@@ -1,12 +1,13 @@
 import type { ContextoFinanceiro, MemoriaConhecida, OpcoesResposta } from "@/lib/ia"
 import { blocoMapaDoApp } from "@/lib/app-mapa"
+import { blocoPersonalidade } from "@/lib/personalidade"
 
 /**
  * Prompt de sistema do chat. Versionado aqui, nunca inline: mudar o prompt
  * muda o produto tanto quanto mudar código, e precisa aparecer no diff.
  */
 
-export const VERSAO_PROMPT_CHAT = "2026-08-04.1"
+export const VERSAO_PROMPT_CHAT = "2026-08-08.1"
 
 function brl(n: number): string {
   return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
@@ -322,6 +323,8 @@ LIMITES
   profissional.
 - Se a pessoa demonstrar sofrimento real (dívida impagável, desespero), acolha
   em uma frase e seja prático. Nada de motivação vazia.
+
+${blocoPersonalidade(opcoes?.personalidade?.id, opcoes?.personalidade?.detalhe)}
 
 ${blocoContexto(c)}
 
