@@ -22,7 +22,7 @@ async function main() {
         subtitulo: mod.subtitulo,
         tipoPerfil: mod.tipoPerfil,
         ordem: mod.ordem,
-        xp: mod.xp,
+        pontos: mod.xp, // a fonte da T1 ainda chama de xp; a coluna virou pontos
         telas: { deleteMany: {}, create: telas },
       },
       create: {
@@ -31,7 +31,7 @@ async function main() {
         subtitulo: mod.subtitulo,
         tipoPerfil: mod.tipoPerfil,
         ordem: mod.ordem,
-        xp: mod.xp,
+        pontos: mod.xp, // a fonte da T1 ainda chama de xp; a coluna virou pontos
         telas: { create: telas },
       },
     })

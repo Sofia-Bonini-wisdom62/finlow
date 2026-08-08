@@ -416,17 +416,43 @@ model Perfil {
 }
 
 model Modulo {
-  id              String               @id @default(cuid())
-  slug            String               @unique
-  titulo          String
-  subtitulo       String
-  tipoPerfil      String
-  ordem           Int
-  xp              Int                  @default(50)
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  titulo           String
+  subtitulo        String
+  tipoPerfil       String
+  ordem            Int
+  /// Quanto o módulo vale ao ser concluído. 30 iniciante · 40 intermediário ·
+  /// 50 avançado, na régua da trilha escolar.
+  ///
+  /// Chamava-se `xp` e era coluna MORTA: os seeds gravavam 50 em todos e
+  /// nenhum arquivo de lib/, app/ ou components/ lia. O crédito real sempre
+  /// veio de PONTOS_POR_MOTIVO. Renomear em vez de acrescentar `pontos` evita
+  /// duas colunas para a mesma ideia — mas note que o valor daqui AINDA não é
+  /// o que se credita; ligar os dois muda a economia de pontos e é decisão à
+  /// parte (ver docs/backlog-produto.md).
+  pontos           Int      @default(50)
   // --- SPEC v3 §3 ---
-  thumbnail       String?
-  duracaoMin      Int                  @default(2)
-  tags            String[] // alimenta a busca da Trilha
+  thumbnail        String?
+  duracaoMin       Int      @default(2)
+  tags             String[] // alimenta a busca da Trilha
+  // --- trilha escolar (07/08/2026): bloco, pré-requisito e pontuação ---
+  /// Unidade temática dentro da trilha do segmento. 33 blocos ao todo; o
+  /// rótulo viaja junto porque é texto editorial ("Bloco A · Circulação social
+  /// do dinheiro"), e uma tabela `Bloco` só para guardar um par id/rótulo
+  /// obrigaria um join em toda leitura da trilha para não ganhar nada.
+  blocoId          String?
+  blocoRotulo      String?
+  /// O módulo que precisa estar concluído para este abrir, por SLUG.
+  ///
+  /// Slug e não id porque o grafo vem escrito na fonte (102 arestas, 5 raízes)
+  /// e o slug é o que existe lá — resolver para id no seed criaria uma ordem
+  /// de inserção obrigatória, e um upsert fora de ordem gravaria null em
+  /// silêncio. Com slug, semear em qualquer ordem dá o mesmo grafo.
+  preRequisitoSlug String?
+  /// Quiz sem consulta: muda o rótulo da tela e a expectativa de quem responde.
+  ehRevisao        Boolean  @default(false)
+
   /// NÍVEL e SITUAÇÃO decidem a ORDEM do corredor, não mais o acesso livre.
   ///
   /// Até 05/08/2026 a trilha era biblioteca posicionada: estes dois campos
