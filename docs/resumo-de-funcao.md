@@ -145,10 +145,17 @@ percentuais moram em Análises de propósito.
 
 - Crédito é **evento**, não contador: chave única `(userId, motivo, refId)`
   torna impossível farmar. `User.pontos` é só cache.
-- Tabela: onboarding 50 · módulo concluído 30 (proporcional ao acerto no quiz,
-  piso de 10) · **lição concluída 5** (proporcional, piso de 2) · acerto de quiz
-  5 · lançamento confirmado 2 · streak semanal 20 · indicação ativada 50 (quem
-  convidou) / 20 (quem entrou).
+- Tabela: onboarding 50 · **módulo concluído: o valor do próprio módulo**
+  (`Modulo.pontos` — 30 iniciante, 40 intermediário, 50 avançado), proporcional
+  ao acerto no quiz, com piso de 1/3 · **lição concluída 5** (proporcional,
+  piso de 2) · acerto de quiz 5 · lançamento confirmado 2 · streak semanal 20 ·
+  indicação ativada 50 (quem convidou) / 20 (quem entrou).
+  > Até 07/08/2026 todo módulo pagava 30, do mais simples ao mais difícil, e a
+  > coluna existia sem ninguém ler. Os 67 módulos já gravados estavam com 50
+  > por herança do default da coluna morta `xp` — 63 deles foram corrigidos
+  > pelo nível (`scripts/pontos-por-nivel.mts`), a maioria para BAIXO.
+  > Módulo concluído antes disso recebeu 30 e continua com 30: evento de
+  > pontuação é imutável.
   > A lição vale pouco de propósito. Se cada uma pagasse como um módulo antigo,
   > o mesmo conteúdo passaria a valer quatro vezes mais e as contas anteriores
   > ao corredor ficariam para trás no ranking sem ter feito nada.

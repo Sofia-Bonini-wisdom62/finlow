@@ -20,7 +20,19 @@ import { Prisma } from "@prisma/client"
  *  ganha um valor pensado, em vez de aparecer solto no meio de uma rota. */
 export const PONTOS_POR_MOTIVO = {
   onboarding: 50,
-  modulo_concluido: 30,
+  /**
+   * TETO do módulo, não o valor fixo.
+   *
+   * Quanto um módulo vale passou a sair da coluna `Modulo.pontos` — 30
+   * iniciante, 40 intermediário, 50 avançado —, e este número é o limite que
+   * `creditar` impõe a qualquer chamador. Era 30 fixo, e nesse tempo a coluna
+   * existia sem ninguém ler: todo módulo pagava igual, do mais simples ao mais
+   * difícil.
+   *
+   * Módulo concluído ANTES desta mudança recebeu 30 e continua com 30 — evento
+   * de pontuação é imutável, e não há recrédito porque o refId é o módulo.
+   */
+  modulo_concluido: 50,
   /**
    * Uma das lições do módulo (Novo conceito, História, Revisão, Aplicação).
    *
@@ -66,10 +78,22 @@ export const SEM_REF = "-"
  * acerto. Errar tudo ainda paga o piso — a pessoa viu o conteúdo e o
  * feedback corrigiu, o que já é a aula acontecendo.
  */
-export function pontosPorConclusao(acertos: number, totalQuiz: number): number {
-  const cheio = PONTOS_POR_MOTIVO.modulo_concluido
+export function pontosPorConclusao(
+  acertos: number,
+  totalQuiz: number,
+  /**
+   * Quanto ESTE módulo vale (`Modulo.pontos`). O default 30 é o piso da
+   * escala, para chamador antigo e para módulo sem valor gravado — nunca o
+   * teto, senão esquecer o argumento premiaria por engano.
+   */
+  pontosDoModulo = 30
+): number {
+  const cheio = Math.max(0, Math.min(PONTOS_POR_MOTIVO.modulo_concluido, pontosDoModulo))
   if (totalQuiz <= 0) return cheio
-  const piso = 10
+  // O piso é 1/3 do valor do módulo, a mesma proporção de quando o cheio era
+  // 30 e o piso 10: quem percorreu as telas leva algo mesmo errando tudo,
+  // porque o feedback corrigiu e isso já é a aula acontecendo.
+  const piso = Math.round(cheio / 3)
   const fracao = Math.max(0, Math.min(1, acertos / totalQuiz))
   return piso + Math.round((cheio - piso) * fracao)
 }

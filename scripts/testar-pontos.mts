@@ -60,7 +60,9 @@ try {
 
   const c1 = await creditar(userId, "modulo_concluido", "modulo-x")
   const c2 = await creditar(userId, "modulo_concluido", "modulo-x")
-  checar("primeiro crédito entra", c1.creditado && c1.pontos === 30, `total=${c1.total}`)
+  // Sem valor custom, credita o TETO da tabela — que passou de 30 para 50
+  // quando o valor do módulo virou 30/40/50 por nível.
+  checar("primeiro crédito entra", c1.creditado && c1.pontos === 50, `total=${c1.total}`)
   checar("repetir o mesmo módulo não credita", !c2.creditado, `total=${c2.total}`)
   checar("total não subiu na repetição", c1.total === c2.total, `${c1.total} vs ${c2.total}`)
 
@@ -82,6 +84,8 @@ try {
   // ------------------------------------------------ pontos proporcionais ---
   console.log("\nPONTOS PROPORCIONAIS AO ACERTO")
 
+  // Sem o valor do módulo, o default é o PISO da escala (30) e não o teto:
+  // chamador que esquece o argumento não pode premiar por engano.
   checar("sem quiz vale cheio", pontosPorConclusao(0, 0) === 30, `${pontosPorConclusao(0, 0)}`)
   checar("1 de 1 vale cheio", pontosPorConclusao(1, 1) === 30, `${pontosPorConclusao(1, 1)}`)
   checar("0 de 1 vale o piso", pontosPorConclusao(0, 1) === 10, `${pontosPorConclusao(0, 1)}`)
@@ -89,12 +93,22 @@ try {
   checar("acertos acima do total não estouram", pontosPorConclusao(5, 2) === 30)
   checar("acertos negativos não afundam", pontosPorConclusao(-3, 2) === 10)
 
+  // ---- o valor vem do MÓDULO (30/40/50 por nível) ----
+  checar("módulo de 50 sem quiz paga 50", pontosPorConclusao(0, 0, 50) === 50, `${pontosPorConclusao(0, 0, 50)}`)
+  checar("módulo de 50 acertando tudo paga 50", pontosPorConclusao(2, 2, 50) === 50)
+  checar("módulo de 50 errando tudo paga 1/3", pontosPorConclusao(0, 2, 50) === 17, `${pontosPorConclusao(0, 2, 50)}`)
+  checar("módulo de 40 acertando tudo paga 40", pontosPorConclusao(1, 1, 40) === 40)
+  checar("módulo de 40 pela metade fica no meio", pontosPorConclusao(1, 2, 40) === 27, `${pontosPorConclusao(1, 2, 40)}`)
+  // O teto da tabela continua sendo o limite duro de qualquer chamador.
+  checar("módulo pedindo acima do teto é cortado", pontosPorConclusao(1, 1, 999) === 50, `${pontosPorConclusao(1, 1, 999)}`)
+  checar("módulo com valor negativo não vira crédito", pontosPorConclusao(1, 1, -10) === 0)
+
   // O override é TETO, não substituto: ninguém infla ponto por ele.
   const cProp = await creditar(userId, "modulo_concluido", "modulo-prop", 10)
   checar("crédito proporcional grava o valor menor", cProp.creditado && cProp.pontos === 10)
   const cInflado = await creditar(userId, "modulo_concluido", "modulo-inflado", 999)
   checar("tentar creditar acima da tabela é cortado no teto",
-    cInflado.creditado && cInflado.pontos === 30, `${cInflado.pontos}`)
+    cInflado.creditado && cInflado.pontos === 50, `${cInflado.pontos}`)
 
   // ----------------------------------------------------------------- teto ---
   console.log("\nTETO DIÁRIO")

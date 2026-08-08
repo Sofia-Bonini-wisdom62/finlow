@@ -158,19 +158,23 @@ export async function POST(req: NextRequest) {
         create: { userId, moduloId, concluido: true, concluidoEm: new Date(), telaAtual: 999 },
         update: { concluido: true, concluidoEm: new Date() },
       })
-      // Soma o acerto de TODAS as lições para o bônus do módulo — o valor da
-      // tabela continua 30, igual ao que as contas antigas receberam.
-      const todas = await db.progressoLicao.findMany({
-        where: { userId, moduloId, concluido: true },
-        select: { acertos: true, totalQuiz: true },
-      })
+      // Soma o acerto de TODAS as lições para o bônus do módulo, e o valor
+      // cheio vem do PRÓPRIO módulo (30/40/50 por nível). Antes era 30 fixo
+      // para todos, do mais simples ao mais difícil.
+      const [todas, modulo] = await Promise.all([
+        db.progressoLicao.findMany({
+          where: { userId, moduloId, concluido: true },
+          select: { acertos: true, totalQuiz: true },
+        }),
+        db.modulo.findUnique({ where: { id: moduloId }, select: { pontos: true } }),
+      ])
       const somaAcertos = todas.reduce((s, p) => s + p.acertos, 0)
       const somaQuiz = todas.reduce((s, p) => s + p.totalQuiz, 0)
       creditoModulo = await creditar(
         userId,
         "modulo_concluido",
         moduloId,
-        pontosPorConclusao(somaAcertos, somaQuiz)
+        pontosPorConclusao(somaAcertos, somaQuiz, modulo?.pontos)
       )
     }
 
