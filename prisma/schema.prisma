@@ -429,22 +429,26 @@ model Modulo {
   /// Chamava-se `xp` e era coluna morta: os seeds gravavam 50 em todos e
   /// ninguém lia. `scripts/pontos-por-nivel.mts` corrigiu os 67 pelo nível.
   pontos           Int      @default(50)
-  /// ⚠️ NÃO REMOVA ESTA COLUNA ATÉ O DEPLOY NOVO ESTAR NO AR.
+  /// ⚠️ COLUNA MORTA À ESPERA DE DOIS DEPLOYS. Não basta apagar esta linha.
   ///
-  /// É a antiga `xp`, e ela existe aqui só para o Prisma não dropá-la de novo.
-  /// O que aconteceu em 07/08/2026: a coluna foi renomeada para `pontos` e o
-  /// `db push` rodou ANTES do deploy. O código no ar ainda selecionava `xp`, e
-  /// como `findMany` sem `select` pede todas as colunas que o client conhece,
-  /// TODA leitura de Modulo passou a falhar — a Trilha inteira caiu com
-  /// "The column Modulo.xp does not exist", e ficou assim até alguém olhar.
+  /// É a antiga `xp`, hoje sem nenhum leitor: quem vale é `pontos`. Ela segue
+  /// aqui porque removê-la exige a ordem inversa da de criar, e essa ordem já
+  /// custou uma queda.
   ///
-  /// É exatamente a ordem que o CLAUDE.md manda não inverter: coluna nova →
-  /// DEPLOY → só então o resto. Para remover coluna a ordem é a mesma de
-  /// cabeça para baixo: deploy do código que não a usa mais → só então dropar.
+  /// O QUE ACONTECEU EM 07/08/2026
+  /// A coluna foi renomeada para `pontos` e o `db push` rodou ANTES do deploy.
+  /// O código no ar ainda a selecionava, e como `findMany` sem `select` pede
+  /// todas as colunas que o client conhece, TODA leitura de Modulo passou a
+  /// falhar: a Trilha inteira caiu com "The column Modulo.xp does not exist" e
+  /// ficou assim por horas. Criar coluna é coluna → deploy → seed; REMOVER é o
+  /// contrário, e eu apliquei a regra de criar num caso de remoção.
   ///
-  /// Enquanto o deploy atual não subir, esta coluna é o que mantém o app de
-  /// pé. Depois que a Trilha em produção estiver servindo lições, some daqui e
-  /// rode `pnpm db:push`.
+  /// COMO TIRAR DAQUI, quando quiser
+  ///   1. apague esta linha e faça o DEPLOY (o client novo deixa de pedi-la);
+  ///   2. só depois de a produção estar servindo esse deploy, `pnpm db:push`
+  ///      dropa a coluna do banco.
+  /// Fazer os dois no mesmo passo derruba a Trilha de novo — o deploy que está
+  /// no ar AGORA tem esta coluna no client dele.
   xp               Int      @default(50)
   // --- SPEC v3 §3 ---
   thumbnail        String?
