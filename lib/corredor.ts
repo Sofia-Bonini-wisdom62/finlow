@@ -60,6 +60,15 @@ export interface ModuloNoCorredor {
   licoes: LicaoNoCorredor[]
   /** Por que está trancado, em português, pronto para a tela. */
   bloqueio: string | null
+  /**
+   * Só o TÍTULO do módulo que barra este.
+   *
+   * Existe além de `bloqueio` porque as duas telas pedem coisas diferentes: a
+   * lista quer a frase pronta, e o caminho monta a própria ("conclua X para
+   * abrir"). Passar a frase onde se espera o título produz "conclua Conclua X
+   * para abrir. para abrir" — que foi o que apareceu na primeira montagem.
+   */
+  bloqueadoPor: string | null
   /** A lição a abrir ao tocar. null quando o módulo está concluído ou trancado. */
   proximaLicao: NumeroLicao | null
 }
@@ -142,7 +151,8 @@ export async function montarCorredor(userId: string): Promise<Corredor> {
   }
 
   // ------ 1. os módulos da sequência, em ordem, com a trava entre eles ------
-  let travadoDaqui: string | null = null // título do módulo que barra os seguintes
+  // Título puro do módulo que barra os seguintes. As aspas entram só na frase.
+  let travadoDaqui: string | null = null
 
   sequencia.forEach((moduloId, i) => {
     const m = porId.get(moduloId)
@@ -163,13 +173,14 @@ export async function montarCorredor(userId: string): Promise<Corredor> {
       licoesConcluidas: concluidas,
       licoesTotal: existentes.length,
       licoes,
-      bloqueio: trancado ? `Conclua ${travadoDaqui} para abrir.` : null,
+      bloqueio: trancado ? `Conclua “${travadoDaqui}” para abrir.` : null,
+      bloqueadoPor: trancado ? travadoDaqui : null,
       proximaLicao: trancado || fechado ? null : primeiraAberta,
     })
 
     // O primeiro não concluído fecha o corredor para todos os seguintes.
     // O TÍTULO, não o slug: "Conclua lancador-m1-fluxo" não diz nada a ninguém.
-    if (!fechado && travadoDaqui === null) travadoDaqui = `“${m.titulo}”`
+    if (!fechado && travadoDaqui === null) travadoDaqui = m.titulo
   })
 
   // ------ 2. o que ainda não entrou em leva nenhuma ------
@@ -190,6 +201,7 @@ export async function montarCorredor(userId: string): Promise<Corredor> {
       licoesTotal: existentes.length,
       licoes,
       bloqueio: fechado ? null : "Ainda não entrou na sua trilha.",
+      bloqueadoPor: null,
       proximaLicao: null,
     })
   }

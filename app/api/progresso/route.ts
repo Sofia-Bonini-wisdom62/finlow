@@ -4,6 +4,7 @@ import { auth } from "@/lib/auth"
 import { creditar, pontosPorConclusao, pontosPorLicao } from "@/lib/pontos"
 import { montarLicoes, licoesExistentes } from "@/lib/licoes"
 import { podeAbrir } from "@/lib/corredor"
+import { filtroDeModulo } from "@/lib/publico"
 
 export const dynamic = "force-dynamic"
 
@@ -166,7 +167,14 @@ export async function POST(req: NextRequest) {
           where: { userId, moduloId, concluido: true },
           select: { acertos: true, totalQuiz: true },
         }),
-        db.modulo.findUnique({ where: { id: moduloId }, select: { pontos: true } }),
+        // findFirst com o filtro, e não findUnique por id: `findUnique` só
+        // aceita campo único no where, então não haveria onde encaixar o
+        // público. A regra de lib/publico.ts é absoluta justamente porque a
+        // exceção "aqui não precisa" é como o décimo ponto de leitura escapa.
+        db.modulo.findFirst({
+          where: { id: moduloId, ...filtroDeModulo() },
+          select: { pontos: true },
+        }),
       ])
       const somaAcertos = todas.reduce((s, p) => s + p.acertos, 0)
       const somaQuiz = todas.reduce((s, p) => s + p.totalQuiz, 0)

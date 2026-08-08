@@ -5,7 +5,7 @@ import { filtroDeModulo } from "@/lib/publico"
  * A trilha recomendada, gravada, e o gatilho que gera a próxima leva.
  *
  * O QUE MUDA EM RELAÇÃO AO QUE JÁ EXISTIA
- * `/api/modulos` monta a recomendação na hora, dos números do momento. Isso
+ * a Trilha monta a recomendação na hora, dos números do momento. Isso
  * serve para exibir, mas não serve para MEDIR: o gatilho da §2.7 dispara ao
  * concluir X% da trilha recomendada, e uma lista que se remonta muda de tamanho
  * junto com o extrato da pessoa. A porcentagem perseguiria um alvo móvel.
@@ -118,7 +118,7 @@ export function levaFechada(ativa: Recomendada[]): boolean {
 /**
  * Grava a primeira leva, se ainda não existir.
  *
- * Recebe os slugs de fora (de `/api/modulos` ou do pipeline do onboarding)
+ * Recebe os slugs de fora (da página da Trilha ou do pipeline do onboarding)
  * porque a ESCOLHA de quais aulas é assunto de lá; aqui é só a persistência.
  * Chamar duas vezes não duplica: a segunda encontra linhas e não faz nada.
  */

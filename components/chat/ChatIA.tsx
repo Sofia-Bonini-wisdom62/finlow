@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { useSearchParams } from "next/navigation"
 import { Mic, Paperclip, ArrowUp, X, FileText, Square, History } from "lucide-react"
 import type { CardIA as CardIATipo, AnexoChat, LancamentoProposto, TetoProposto } from "@/lib/ia"
 import { CardIA } from "./CardIA"
@@ -70,8 +71,19 @@ const MAX_ANEXO_MB = 8
 const MAX_EXTRATO_MB = 10
 
 export function ChatIA({ nome }: { nome: string }) {
+  const busca = useSearchParams()
   const [mensagens, setMensagens] = useState<Mensagem[]>([])
-  const [rascunho, setRascunho] = useState("")
+  /**
+   * `?pergunta=` deixa a mensagem PRONTA, não enviada.
+   *
+   * Quem chega assim veio da trilha, do botão "Preciso disso agora" de um
+   * módulo trancado. Mandar sozinho gastaria uma chamada de IA por um toque
+   * que a pessoa deu noutra tela, e tiraria dela a chance de corrigir o texto
+   * antes — ela é quem sabe o motivo de verdade.
+   *
+   * Inicializador preguiçoso: roda uma vez, sem setState dentro de efeito.
+   */
+  const [rascunho, setRascunho] = useState(() => busca.get("pergunta") ?? "")
   const [anexos, setAnexos] = useState<AnexoChat[]>([])
   const [enviando, setEnviando] = useState(false)
   const [erro, setErro] = useState<string | null>(null)

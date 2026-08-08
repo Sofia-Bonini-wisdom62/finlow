@@ -371,3 +371,54 @@
   --fl-700: #8278CE;
   --fl-800: #241A74;
 }
+
+/* ---------------------------------------------------------------------------
+   PONTE PARA A INTERFACE NOVA DA TRILHA (components/trilha-visual/)
+
+   Os componentes vieram do protótipo escritos contra `--finlow-*`, com uma
+   paleta azul-marinho própria. Copiá-la faria a Trilha parecer outro produto,
+   e cravaria cor num app que tem tema claro, escuro e três paletas.
+
+   Aqui as variáveis deles APONTAM para os nossos tokens. Ganha-se duas coisas:
+   a Trilha herda a identidade e responde a tema/paleta sem os componentes
+   saberem disso, e uma versão nova vinda do designer entra por cima sem
+   precisar de reescrita de cor.
+   --------------------------------------------------------------------------- */
+:root {
+  --finlow-bg: var(--fl-page);
+  --finlow-surface: var(--fl-card);
+  --finlow-surface-2: var(--fl-50);
+  --finlow-accent: var(--fl-500);
+  --finlow-accent-2: var(--fl-accent);
+  --finlow-warn: var(--fl-accent);
+  --finlow-text: var(--fl-ink);
+  --finlow-muted: var(--fl-ink-2);
+  --finlow-locked-text: var(--fl-ink-3);
+  --finlow-branch: var(--fl-accent-dark);
+  --finlow-radius: 16px;
+  --finlow-node: 60px;
+  --finlow-node-current: 68px;
+  --finlow-node-branch: 48px;
+  --finlow-glow: 0 8px 24px -6px color-mix(in srgb, var(--fl-500) 45%, transparent);
+}
+
+@keyframes finlow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--finlow-accent) 55%, transparent); }
+  50% { box-shadow: 0 0 0 10px color-mix(in srgb, var(--finlow-accent) 0%, transparent); }
+}
+
+@keyframes finlow-skeleton {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 0.8; }
+}
+
+.finlow-pulse { animation: finlow-pulse 2s ease-in-out infinite; }
+.finlow-skeleton { animation: finlow-skeleton 1.4s ease-in-out infinite; }
+
+.finlow-no-scrollbar { scrollbar-width: none; }
+.finlow-no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Quem prefere menos movimento não deve levar pulso nem esqueleto piscando. */
+@media (prefers-reduced-motion: reduce) {
+  .finlow-pulse, .finlow-skeleton { animation: none; }
+}
