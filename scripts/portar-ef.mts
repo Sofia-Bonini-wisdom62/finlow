@@ -52,7 +52,16 @@ const FONTE = (TRILHA_ESCOLAR as Bruto[]).filter((m) => m.segmento !== "em")
  *
  * Devolve null quando a condição é prosa — aí quem decide é o editorial.
  */
-function traduzirCondicao(se: string, rotulos: string[] = []): string | null {
+/**
+ * A fonte lista as faixas em ordem crescente OU decrescente, conforme o autor.
+ * Descobrir qual decide que ponta de um intervalo vira a condição.
+ */
+function ehDescendente(regras: Bruto[]): boolean {
+  const primeira = String(regras[0]?.se ?? "").toLowerCase()
+  return /^valor\s*(>=|>)\s*-?\d/.test(primeira)
+}
+
+function traduzirCondicao(se: string, rotulos: string[] = [], descendente = false): string | null {
   const s = se
     .trim()
     .toLowerCase()
@@ -121,13 +130,25 @@ function traduzirCondicao(se: string, rotulos: string[] = []): string | null {
   m = s.match(new RegExp(`^valor (>=|<=|>|<) ${num}$`))
   if (m) return `valor ${m[1]} ${n(m[2]!)}`
 
-  // "valor entre A e B" → o limite inferior basta: as faixas são avaliadas em
-  // ordem, então quem chegou aqui já não casou com as anteriores.
+  /**
+   * "valor entre A e B" vira o limite SUPERIOR, não o inferior.
+   *
+   * As faixas são avaliadas em ordem e a primeira que casa vence, então quem
+   * chega nesta linha já não casou com as anteriores — o piso está garantido
+   * por elas. É o TETO que precisa ser dito, senão a condição engole tudo daí
+   * para cima e a regra seguinte nunca dispara.
+   *
+   * Foi exatamente o que aconteceu na primeira versão: com `valor >= A`, mais
+   * de trinta módulos ficaram com a última mensagem inalcançável. Nada dava
+   * erro — a tela simplesmente nunca mostrava aquele texto.
+   * `scripts/testar-ef.mts` executa cada resultado e exige que toda faixa
+   * escrita seja alcançável, que é como isso apareceu.
+   */
   m = s.match(new RegExp(`^valor entre ${num} e ${num}$`))
-  if (m) return `valor >= ${n(m[1]!)}`
+  if (m) return descendente ? `valor >= ${n(m[1]!)}` : `valor <= ${n(m[2]!)}`
 
   m = s.match(new RegExp(`^valor (?:>=|>) ${num} e valor (?:<=|<) ${num}$`))
-  if (m) return `valor >= ${n(m[1]!)}`
+  if (m) return descendente ? `valor >= ${n(m[1]!)}` : `valor <= ${n(m[2]!)}`
 
   return null
 }
@@ -142,9 +163,22 @@ function traduzirCondicao(se: string, rotulos: string[] = []): string | null {
  */
 function valorDaFaixa(rotulo: string): string | null {
   const s = rotulo.toLowerCase().replace(/\./g, "").replace(",", ".")
+
+  /**
+   * "Nada guardado em casa" é ZERO, não é rótulo sem número.
+   *
+   * Sem isto, uma única opção assim marcava a escala inteira como categórica e
+   * trocava valores em reais por índices 1..5 — e aí a regra "valor <= 200"
+   * passava a comparar índice com dinheiro, engolia todas as opções e matava a
+   * última mensagem. Aconteceu em ef89-casa-ou-banco, cujas outras quatro
+   * opções são faixas de real.
+   */
+  if (/^(nada|nenhum|nenhuma|zero|não|nunca)\b/.test(s)) return "0"
+
   const nums = [...s.matchAll(/(\d+(?:\.\d+)?)/g)].map((x) => Number(x[1]))
   if (nums.length === 0) return null
-  if (/^entre/.test(s) && nums.length >= 2) return String((nums[0]! + nums[1]!) / 2)
+  // "entre A e B" e "de A a B" são a mesma faixa escrita de dois jeitos.
+  if (nums.length >= 2 && /^(entre|de)\b/.test(s)) return String((nums[0]! + nums[1]!) / 2)
   if (/menos de|até|abaixo/.test(s)) return String(nums[0]! / 2)
   if (/mais de|acima|ou mais/.test(s)) return String(nums[0]! * 1.4)
   return String(nums[0])
@@ -223,6 +257,36 @@ for (const m of FONTE) {
       }
 
       case "input": {
+        /**
+         * O editorial pode TROCAR o campo por uma escolha.
+         *
+         * Sete módulos tinham texto livre (ou percentual) com regras de
+         * resultado que só um humano lendo a resposta avaliaria. Virar escolha
+         * é o que mantém as três devolutivas escritas pelo autor alcançáveis —
+         * ver o cabeçalho de prisma/editorial-ef.ts.
+         */
+        if (ed.opcoes?.length) {
+          rotulosDaVez.set(m.slug, ed.opcoes)
+          return {
+            ...base,
+            conteudo: {
+              headline: ed.pergunta ?? c.pergunta,
+              campos: [
+                {
+                  id: "valor",
+                  emoji: ed.emoji ?? "✏️",
+                  label: c.ajuda ?? ed.pergunta ?? c.pergunta,
+                  tipo: "faixa",
+                  opcoes: ed.opcoes.map((r: string, i: number) => ({
+                    label: r,
+                    valor: String(i + 1),
+                  })),
+                },
+              ],
+            },
+          }
+        }
+
         const tipo = TIPO_CAMPO[c.campo as string]
         if (!tipo) {
           pendencias.push(`${m.slug}: campo de input "${c.campo}" sem tradução`)
@@ -267,7 +331,11 @@ for (const m of FONTE) {
           const traduzida = ehUltima
             ? "resto"
             : ed.condicoes?.[i] ??
-              traduzirCondicao(String(r.se ?? ""), rotulosDaVez.get(m.slug) ?? []) ??
+              traduzirCondicao(
+                String(r.se ?? ""),
+                rotulosDaVez.get(m.slug) ?? [],
+                ehDescendente(regras)
+              ) ??
               (numerica ? porRotuloNumerico(String(r.se ?? ""), numerica) : null)
           if (traduzida === null) {
             pendencias.push(`${m.slug}: condição em prosa — "${r.se}"`)
