@@ -3,6 +3,7 @@ import { auth } from "@/lib/auth"
 import { garantirLevaInicial, TAMANHO_DA_LEVA } from "@/lib/recomendacao"
 import { aulasParaSituacao } from "@/lib/posicionar-trilha"
 import { montarTrilhaVisual } from "@/lib/trilha-visual"
+import { registrarDiaAtivo } from "@/lib/ofensiva"
 import TrilhaContainer from "@/components/trilha-visual/TrilhaContainer"
 import { BottomNav } from "@/components/bottom-nav"
 
@@ -38,6 +39,19 @@ export default async function TrilhaPage() {
       </main>
     )
   }
+
+  /**
+   * O dia ativo é marcado AQUI porque esta página está fora do grupo `(app)`,
+   * cujo layout faz isso para todas as outras telas logadas. São os dois
+   * únicos pontos de registro da ofensiva — se um terceiro aparecer, o certo
+   * é mover a página para dentro do grupo, não copiar a chamada.
+   *
+   * Antes da leva: a ofensiva não depende dela e não deve ficar refém de uma
+   * consulta mais cara.
+   */
+  await registrarDiaAtivo(userId).catch((e) =>
+    console.warn("[ofensiva] não registrou o dia:", (e as Error)?.message)
+  )
 
   // A primeira leva nasce ANTES de montar o caminho: sem sequência, o corredor
   // não tem o que liberar e a trilha abriria inteira trancada.

@@ -1,6 +1,7 @@
 import { db } from "@/lib/db"
 import { filtroDeModulo } from "@/lib/publico"
 import { montarCorredor, type ModuloNoCorredor } from "@/lib/corredor"
+import { lerOfensiva } from "@/lib/ofensiva"
 
 /**
  * A trilha como o CAMINHO desenha: blocos temáticos, nós e travas.
@@ -96,7 +97,7 @@ export async function montarTrilhaVisual(userId: string): Promise<{
   trilhas: TrilhaResumo[]
   usuario: Usuario
 }> {
-  const [corredor, modulos, user] = await Promise.all([
+  const [corredor, modulos, user, ofensiva] = await Promise.all([
     montarCorredor(userId),
     db.modulo.findMany({
       where: filtroDeModulo(),
@@ -107,6 +108,7 @@ export async function montarTrilhaVisual(userId: string): Promise<{
       },
     }),
     db.user.findUnique({ where: { id: userId }, select: { nome: true, pontos: true } }),
+    lerOfensiva(userId),
   ])
 
   const porId = new Map(modulos.map((m) => [m.id, m]))
@@ -165,8 +167,7 @@ export async function montarTrilhaVisual(userId: string): Promise<{
     usuario: {
       nome: user?.nome ?? "",
       inicial: (user?.nome ?? "?").trim().charAt(0).toUpperCase() || "?",
-      // Streak ainda não existe como dado; 0 é honesto, número inventado não.
-      sequencia: 0,
+      sequencia: ofensiva.atual,
       pontos: user?.pontos ?? 0,
     },
   }

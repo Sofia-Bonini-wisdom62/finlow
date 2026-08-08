@@ -46,6 +46,7 @@ model User {
   indicacaoRecebida     Indicacao?            @relation("indicado")
   diagnosticoVazamento  DiagnosticoVazamento?
   investimentos         Investimento[]
+  diasAtivos            DiaAtivo[]
   accounts              Account[]
   sessions              Session[]
 }
@@ -94,6 +95,30 @@ model DiagnosticoVazamento {
   geradoEm     DateTime  @default(now())
   entregueEm   DateTime? // quando apareceu no chat; null = ainda não
   tokenPublico String?   @unique
+}
+
+/// Um dia em que a pessoa usou o app. É daqui que sai a ofensiva.
+///
+/// UMA LINHA POR DIA, não um contador no User.
+/// Contador é a mesma armadilha dos pontos: `ofensivaAtual += 1` não sabe se
+/// já contou, e uma escrita perdida deixa o número errado para sempre, sem
+/// nada que permita auditar. Com uma linha por dia a ofensiva é DERIVADA — dá
+/// para recontar, corrigir e explicar de onde veio.
+///
+/// `dia` é a data em SÃO PAULO, não o instante do acesso. Guardar timestamp
+/// faria a virada acontecer às 21h de Brasília no servidor da Vercel, que roda
+/// em UTC: quem usasse o app às 22h veria o dia seguinte já contado e perderia
+/// a ofensiva no dia em que estava usando. É o mesmo defeito que o teto diário
+/// de pontos teve, e a correção vem da mesma função (`inicioDoDiaSP`).
+model DiaAtivo {
+  id       String   @id @default(cuid())
+  userId   String
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  dia      DateTime @db.Date
+  criadoEm DateTime @default(now())
+
+  @@unique([userId, dia])
+  @@index([userId, dia])
 }
 
 /// Programa de indicação: quem convidou quem, e se o convite "valeu".

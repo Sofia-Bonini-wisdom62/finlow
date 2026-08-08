@@ -133,9 +133,17 @@ percentuais moram em Análises de propósito.
   diferentes.
 - **Fim de lição**: XP, tempo, acertos e o conceito que ficou. Antes o módulo
   terminava e a pessoa era despejada em `/perfil` sem saber de nada.
+- **A tela é um caminho** (07/08/2026), não uma lista: blocos temáticos, nós com
+  estado (concluído, atual, disponível, travado) e o drawer do módulo com
+  pontos, nível e as lições. `components/trilha-visual/`, alimentado por
+  `lib/trilha-visual.ts`.
 - **Recomendados** é uma **leva de 4**: fica à vista até a última ser concluída,
   e só então outra entra. O chat **troca** uma aula da leva em vez de empilhar.
-- Busca por título, subtítulo e conteúdo das telas.
+- **A busca saiu.** Ela existia quando a trilha era biblioteca; com o corredor,
+  achar uma aula trancada e não poder abri-la é pior que não achar. Quem chega
+  com dúvida específica vai ao Chat — e o botão "Preciso disso agora" do módulo
+  travado leva para lá com o assunto escrito, porque o assistente consegue
+  ADIANTAR a aula na trilha.
 - Valores digitados nas telas de input **nunca persistem** — só sessão local.
 - Números macro (Selic, IPCA, rotativo) entram por `{{variável}}` da tabela
   `Indicador`, com fonte e data de apuração. O texto da aula nunca crava o
@@ -149,7 +157,8 @@ percentuais moram em Análises de propósito.
   (`Modulo.pontos` — 30 iniciante, 40 intermediário, 50 avançado), proporcional
   ao acerto no quiz, com piso de 1/3 · **lição concluída 5** (proporcional,
   piso de 2) · acerto de quiz 5 · lançamento confirmado 2 · streak semanal 20 ·
-  indicação ativada 50 (quem convidou) / 20 (quem entrou).
+  indicação ativada 50 (quem convidou) / 20 (quem entrou) · **ofensiva 20 a
+  cada 7 dias seguidos** de uso.
   > Até 07/08/2026 todo módulo pagava 30, do mais simples ao mais difícil, e a
   > coluna existia sem ninguém ler. Os 67 módulos já gravados estavam com 50
   > por herança do default da coluna morta `xp` — 63 deles foram corrigidos
