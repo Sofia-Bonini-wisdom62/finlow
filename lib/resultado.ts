@@ -487,8 +487,38 @@ export function avaliarFaixa(faixas: FaixaResultado[], d: Derivados): FaixaResul
   return faixas[faixas.length - 1]
 }
 
+/**
+ * A gramática das faixas: `campo op numero`, `campo em n,n,n`, ou "resto".
+ *
+ * Duas coisas entraram com a trilha escolar, e a primeira conserta um erro
+ * que já estava aqui:
+ *
+ *  - DECIMAL. O número só aceitava `-?\d+`, então uma condição como
+ *    `valor >= 1.5` não casava com o padrão e a função devolvia false — a
+ *    faixa era silenciosamente pulada e a pessoa caía na última. Ninguém
+ *    escrevera condição decimal ainda, então o defeito nunca apareceu.
+ *
+ *  - `em`, para escolha entre opções. As perguntas do Fundamental são
+ *    categóricas ("Hoje", "Esta semana", "Mês que vem"), e a regra da fonte
+ *    casa por rótulo: "valor == 'Hoje' ou valor == 'Esta semana'". As opções
+ *    viram índices no porte, e o "ou" vira pertencimento a um conjunto —
+ *    porque índices escolhidos NÃO são contíguos ("influenciador ou site da
+ *    loja" são a 2ª e a 4ª), e sem isso a condição teria de ser reescrita à
+ *    mão em dezenas de módulos.
+ */
 function testarCondicao(cond: string, d: Derivados): boolean {
-  const m = cond.match(/^(\w+)\s*(>=|<=|>|<|==)\s*(-?\d+)(pct)?$/)
+  const lista = cond.match(/^(\w+)\s+em\s+([-\d.,\s]+)$/)
+  if (lista) {
+    const esquerda = (d as unknown as Record<string, number>)[lista[1]!]
+    if (typeof esquerda !== "number") return false
+    return lista[2]!
+      .split(",")
+      .map((x) => parseFloat(x.trim()))
+      .filter((x) => isFinite(x))
+      .some((x) => x === esquerda)
+  }
+
+  const m = cond.match(/^(\w+)\s*(>=|<=|>|<|==)\s*(-?\d+(?:\.\d+)?)(pct)?$/)
   if (!m) return false
   const [, campo, op, numStr, isPct] = m
   const esquerda = (d as unknown as Record<string, number>)[campo]

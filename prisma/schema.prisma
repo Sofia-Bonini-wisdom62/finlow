@@ -497,6 +497,22 @@ model Tela {
   label    String
   conteudo Json
 
+  /// O que dizer a quem está acompanhando a criança.
+  ///
+  /// "Mostre uma moeda e uma cédula de verdade enquanto lê o texto." Vem em
+  /// todas as 535 telas da trilha escolar e é a parte pedagógica do material:
+  /// sem ela o conteúdo vira só texto na tela.
+  ///
+  /// É COLUNA, e não mais uma chave dentro de `conteudo`, porque é universal —
+  /// os cinco tipos de tela têm formatos de conteúdo diferentes e este campo
+  /// não pertence a nenhum deles em particular.
+  ///
+  /// A criança pode estar sozinha ou acompanhada (decisão da fundadora,
+  /// 07/08/2026), então o player NÃO mostra por padrão nem esconde de vez:
+  /// fica a um toque, para quem estiver junto. Obrigar a passar por ela
+  /// atrapalharia quem está só; omitir tiraria o material de quem medeia.
+  mediacao String?
+
   /// A qual lição esta tela pertence NÃO é coluna, e isso é decisão, não falta.
   ///
   /// O agrupamento sai do TIPO da tela, calculado em lib/licoes.ts, porque uma

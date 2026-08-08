@@ -20,6 +20,18 @@ export function TelaCenario({ conteudo }: { conteudo: ConteudoCenario }) {
         )}
       </div>
 
+      {/* A HISTÓRIA, quando o cenário é narrativo.
+          No produto adulto o cenário é uma conta e a tabela abaixo é o miolo
+          da tela. No Fundamental é uma história de feira, e não há entrada,
+          saída nem saldo para tabelar — a narrativa ocupa esse lugar. */}
+      {conteudo.narrativa && (
+        <p
+          className="rich-text rounded-2xl border border-[#1B3B3C] bg-[#1B3B3C] px-4 py-4 text-[15px] leading-relaxed text-white"
+          dangerouslySetInnerHTML={{ __html: conteudo.narrativa }}
+        />
+      )}
+
+      {!!conteudo.linhas?.length && (
       <div className="overflow-hidden rounded-2xl border border-[#1B3B3C] bg-[#1B3B3C]">
         {conteudo.linhas.map((linha, i) => {
           const isSaldo = linha.tipo === "saldo"
@@ -60,6 +72,7 @@ export function TelaCenario({ conteudo }: { conteudo: ConteudoCenario }) {
           )
         })}
       </div>
+      )}
 
       {conteudo.rodape && (
         <p

@@ -20,7 +20,18 @@ export interface LinhaCenario {
 export interface ConteudoCenario {
   headline: string
   personagem?: string
-  linhas: LinhaCenario[]
+  /**
+   * A tabelinha de entradas e saídas. OPCIONAL desde a trilha escolar.
+   *
+   * No produto adulto o cenário é uma conta: três linhas e um saldo, e a
+   * tabela é o que a tela existe para mostrar. No Fundamental o cenário é uma
+   * HISTÓRIA — "Alessandra foi à feira com a avó e entregou uma cédula de 10
+   * reais" — e não há entrada, saída nem saldo para tabelar. Fabricar linhas
+   * ali seria inventar dado que a fonte não tem, para preencher um componente.
+   */
+  linhas?: LinhaCenario[]
+  /** A história, quando o cenário é narrativo em vez de numérico. */
+  narrativa?: string
   rodape?: string
 }
 
@@ -85,6 +96,8 @@ export interface TelaData {
   tipo: TipoTela
   label: string
   conteudo: ConteudoTela
+  /** Instrução para quem acompanha a criança. Ver `Tela.mediacao` no schema. */
+  mediacao?: string | null
 }
 
 export interface ModuloData {
