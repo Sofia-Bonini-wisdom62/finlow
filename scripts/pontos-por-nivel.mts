@@ -55,10 +55,13 @@ try {
   } else {
     let n = 0
     for (const [nivel, pontos] of Object.entries(POR_NIVEL)) {
-      const r = await db.modulo.updateMany({ where: { nivel }, data: { pontos } })
+      // `xp` vai junto enquanto as duas colunas existirem: o código NO AR ainda
+      // lê a antiga, e deixá-la defasada faria a Trilha em produção mostrar um
+      // valor e o app novo creditar outro. Ver o comentário de `xp` no schema.
+      const r = await db.modulo.updateMany({ where: { nivel }, data: { pontos, xp: pontos } })
       n += r.count
     }
-    console.log(`\n${n} módulos atualizados.`)
+    console.log(`\n${n} módulos atualizados (pontos e xp).`)
   }
 } finally {
   await db.$disconnect()

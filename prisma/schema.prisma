@@ -423,15 +423,29 @@ model Modulo {
   tipoPerfil       String
   ordem            Int
   /// Quanto o módulo vale ao ser concluído. 30 iniciante · 40 intermediário ·
-  /// 50 avançado, na régua da trilha escolar.
+  /// 50 avançado. É o valor que `pontosPorConclusao` credita, proporcional ao
+  /// acerto no quiz.
   ///
-  /// Chamava-se `xp` e era coluna MORTA: os seeds gravavam 50 em todos e
-  /// nenhum arquivo de lib/, app/ ou components/ lia. O crédito real sempre
-  /// veio de PONTOS_POR_MOTIVO. Renomear em vez de acrescentar `pontos` evita
-  /// duas colunas para a mesma ideia — mas note que o valor daqui AINDA não é
-  /// o que se credita; ligar os dois muda a economia de pontos e é decisão à
-  /// parte (ver docs/backlog-produto.md).
+  /// Chamava-se `xp` e era coluna morta: os seeds gravavam 50 em todos e
+  /// ninguém lia. `scripts/pontos-por-nivel.mts` corrigiu os 67 pelo nível.
   pontos           Int      @default(50)
+  /// ⚠️ NÃO REMOVA ESTA COLUNA ATÉ O DEPLOY NOVO ESTAR NO AR.
+  ///
+  /// É a antiga `xp`, e ela existe aqui só para o Prisma não dropá-la de novo.
+  /// O que aconteceu em 07/08/2026: a coluna foi renomeada para `pontos` e o
+  /// `db push` rodou ANTES do deploy. O código no ar ainda selecionava `xp`, e
+  /// como `findMany` sem `select` pede todas as colunas que o client conhece,
+  /// TODA leitura de Modulo passou a falhar — a Trilha inteira caiu com
+  /// "The column Modulo.xp does not exist", e ficou assim até alguém olhar.
+  ///
+  /// É exatamente a ordem que o CLAUDE.md manda não inverter: coluna nova →
+  /// DEPLOY → só então o resto. Para remover coluna a ordem é a mesma de
+  /// cabeça para baixo: deploy do código que não a usa mais → só então dropar.
+  ///
+  /// Enquanto o deploy atual não subir, esta coluna é o que mantém o app de
+  /// pé. Depois que a Trilha em produção estiver servindo lições, some daqui e
+  /// rode `pnpm db:push`.
+  xp               Int      @default(50)
   // --- SPEC v3 §3 ---
   thumbnail        String?
   duracaoMin       Int      @default(2)
