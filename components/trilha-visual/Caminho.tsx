@@ -1,6 +1,7 @@
 "use client"
 
 import { useMemo } from "react"
+import Link from "next/link"
 import { motion } from "framer-motion"
 import { Flag } from "lucide-react"
 import type { NoTrilha as NoTrilhaTipo, Trilha } from "@/lib/trilha-visual"
@@ -381,16 +382,19 @@ export default function Caminho({
           Fim da trilha atual · a IA libera os próximos 4 módulos quando você
           chegar aqui.
         </p>
-        <button
-          type="button"
-          className="rounded-full px-4 py-2 text-sm font-medium"
+        {/* Era um <button> sem onClick — desenhava e não fazia nada. Virou link
+            porque o destino é uma página inteira, e navegação que finge ser
+            botão perde o meio-clique, o "abrir em nova aba" e o foco do teclado. */}
+        <Link
+          href="/trilha/biblioteca"
+          className="rounded-full px-4 py-2 text-sm font-medium transition-opacity hover:opacity-80"
           style={{
             border: "1px solid var(--finlow-surface-2)",
             color: "var(--finlow-text)",
           }}
         >
           Explorar biblioteca
-        </button>
+        </Link>
       </div>
     </div>
   )
