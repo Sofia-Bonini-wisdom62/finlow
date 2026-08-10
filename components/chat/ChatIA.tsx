@@ -87,6 +87,8 @@ export function ChatIA({ nome }: { nome: string }) {
   const [anexos, setAnexos] = useState<AnexoChat[]>([])
   const [enviando, setEnviando] = useState(false)
   const [erro, setErro] = useState<string | null>(null)
+  /** Separado de `erro` de propósito: fim de cota não é falha, é porta. */
+  const [cotaEsgotada, setCotaEsgotada] = useState<string | null>(null)
   const [ouvindo, setOuvindo] = useState(false)
   const [temVoz, setTemVoz] = useState(false)
   // null = conversa ainda não gravada. O servidor devolve o id no 1º turno.
@@ -317,6 +319,13 @@ export function ChatIA({ nome }: { nome: string }) {
       const dados = await res.json().catch(() => ({}))
 
       if (!res.ok) {
+        // Cota grátis no fim: não é erro, é uma porta. Vira aviso com caminho
+        // em vez de texto vermelho — "não consegui responder" faria a pessoa
+        // achar que o app quebrou e tentar de novo até desistir.
+        if (res.status === 402) {
+          setCotaEsgotada(dados.mensagem ?? "Suas conversas gratuitas deste mês acabaram.")
+          return
+        }
         setErro(
           dados.error === "ia_nao_configurada"
             ? "O assistente ainda não está ligado nesta instalação. Suas Análises e seu Perfil continuam funcionando normalmente."
@@ -462,6 +471,20 @@ export function ChatIA({ nome }: { nome: string }) {
           {erro && (
             <div className="rounded-2xl border border-fl-accent/40 bg-fl-accent-light/40 px-4 py-3 text-sm leading-relaxed text-fl-accent-dark">
               {erro}
+            </div>
+          )}
+
+          {/* Cota no fim. Tom de porta, não de erro — e com a data em que
+              renova, para quem não quer pagar saber que não perdeu o app. */}
+          {cotaEsgotada && (
+            <div className="rounded-2xl border border-fl-sand bg-fl-card px-4 py-4 text-sm leading-relaxed text-fl-ink">
+              <p>{cotaEsgotada}</p>
+              <a
+                href="/premium"
+                className="mt-3 inline-block rounded-xl bg-fl-500 px-4 py-2.5 text-sm font-medium text-white"
+              >
+                Ver o Premium
+              </a>
             </div>
           )}
 

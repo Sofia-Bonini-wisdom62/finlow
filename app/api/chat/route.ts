@@ -9,6 +9,7 @@ import { guardarRecomendacaoDoChat } from "@/lib/recomendacao"
 import { montarContexto } from "@/lib/contexto-financeiro"
 import { slugDaCategoria } from "@/lib/extrato/categorias"
 import { filtroDeModulo } from "@/lib/publico"
+import { cotaDoMes } from "@/lib/pagamento/tokens"
 
 export const dynamic = "force-dynamic"
 // Resposta de chat leva 5–15s. 60 dá folga sem deixar um travamento
@@ -46,11 +47,34 @@ export async function POST(req: NextRequest) {
       orderBy: [{ tipoPerfil: "asc" }, { ordem: "asc" }],
     })
 
+    /**
+     * Limite grátis, em TOKENS. ANTES da chamada ao Vertex.
+     *
+     * Depois não serviria para nada: o token já teria sido gasto, e a gente
+     * pagaria a resposta de quem não paga a gente para então esconder ela.
+     *
+     * 402 e não 403: "precisa pagar" é diferente de "não pode". A tela usa esse
+     * código para abrir o paywall em vez de mostrar erro.
+     */
+    const cota = await cotaDoMes(userId)
+    if (!cota.podeUsar) {
+      return NextResponse.json(
+        {
+          error: "cota_esgotada",
+          mensagem:
+            "Suas conversas gratuitas deste mês acabaram. Assine para continuar — " +
+            "ou volte no dia 1º, que a cota renova.",
+          cota: { usados: cota.usados, teto: cota.teto },
+        },
+        { status: 402 }
+      )
+    }
+
     const resposta = await responderIA(
       mensagens as MensagemChat[],
       contexto,
       { ligada, conhecidas },
-      { podeLancar, modulos }
+      { podeLancar, modulos, userId }
     )
 
     // A aula que o assistente citou entra na trilha da pessoa.
@@ -119,6 +143,10 @@ export async function POST(req: NextRequest) {
       podeLancar,
       gastoAtual,
       conversaId: idConversa,
+      // A cota ANTES desta chamada. A tela usa para avisar quando está perto do
+      // fim, em vez de a pessoa bater na parede sem aviso. Premium vem como
+      // null: não há número para mostrar a quem não tem teto.
+      cota: cota.premium ? null : { usados: cota.usados, teto: cota.teto },
     })
   } catch (e) {
     if (e instanceof IANaoConfigurada) {

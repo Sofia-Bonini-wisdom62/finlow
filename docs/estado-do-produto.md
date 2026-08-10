@@ -121,7 +121,37 @@ logout e alimentava o card de insight do Painel. Ele passou a ler do servidor.
 
 | Tema | Status |
 |---|---|
-| Gateway de pagamento / paywall / cobrança | 🚫 outra frente |
+| _(nada, no momento)_ | |
+
+> **Pagamento entrou neste repo em 10/08/2026.** Até então esta tabela dizia
+> "gateway de pagamento / paywall / cobrança — 🚫 outra frente". Deixou de ser
+> verdade: assinatura, checkout, webhook, cancelamento e o limite grátis por
+> tokens estão em `lib/pagamento/`, `app/api/pagamento/` e `app/(app)/premium/`.
+> Ver `resumo-de-funcao.md` §2.13.
+
+## Premium / cobrança (10/08/2026)
+
+**No ar em modo de teste, não cobrando de verdade.** A chave em uso é `sk_test`;
+nada foi cobrado de ninguém. O que existe e está verificado:
+
+| Peça | Estado |
+|---|---|
+| `Assinatura` + `UsoMensalIA` no banco, com RLS | ✅ |
+| Regra de acesso num só lugar (`decidirAcesso`) | ✅ 26/26 casos em `scripts/testar-pagamento.mts` |
+| Checkout, webhook, cancelamento, estado | ✅ compilam e estão registrados |
+| Limite grátis por tokens, guard antes do Vertex | ✅ |
+| Telas `/premium` e `/premium/obrigado` | ✅ |
+| Assinatura no `/api/exportar` e cancelada no delete da conta | ✅ |
+| **Um checkout de ponta a ponta com cartão** | ❌ **nunca rodou** |
+| **Webhook recebendo evento real da Stripe** | ❌ **nunca rodou** |
+
+As duas últimas linhas são o que separa "implementado" de "funciona", e nenhuma
+bateria as cobre: exigem cartão e um evento chegando de fora. Antes de cobrar de
+alguém de verdade, ver o checklist em `docs/pagamento-antes-de-cobrar.md`.
+
+**Três defeitos do documento de especificação foram corrigidos ao implementar** —
+os três da mesma família (campo que a Stripe mudou de lugar) e os três com falha
+silenciosa. Estão descritos em `lib/pagamento/stripe.ts`, com teste para cada um.
 
 ## Pendências conhecidas
 
@@ -132,13 +162,16 @@ logout e alimentava o card de insight do Painel. Ele passou a ler do servidor.
   negócio na rua, e a correção é uma linha (um segredo em env conferido no
   topo da rota). Fica como decisão, não como conserto silencioso: quem chama
   essa rota hoje precisa saber que vai passar a mandar o segredo.
-- **Chat e extrato continuam sem limite de taxa.** São as duas chamadas que
-  custam dinheiro; o limitador (`lib/limite-taxa.ts`) só está na rota de lead
-  B2B. Uma conta abusiva vira conta de Vertex.
+- **Chat e extrato continuam sem limite de TAXA** — o que entrou em 10/08 foi um
+  teto de VOLUME mensal (tokens), que é coisa diferente. O teto limita a conta do
+  mês; não impede alguém de gastar a cota inteira em dois minutos, nem protege o
+  extrato, que não tem guard nenhum. O limitador (`lib/limite-taxa.ts`) segue só
+  na rota de lead B2B.
 - **`/api/exportar` não exporta tudo**, apesar do que o comentário no topo dela
   diz. Ficam de fora memórias, conversas do chat, orçamentos, respostas do
   onboarding, eventos de pontuação e insights — e o que falta é justamente o
   mais sensível. O *delete* cobre tudo por cascade; a exportação, não.
+  (Assinatura e uso de IA entraram em 10/08; o resto continua de fora.)
 - R1 (política escrita de retenção/privacidade): a engenharia existe
   (consentimento separado, cifra, RLS, exclusão, exportação); falta o texto
   jurídico — base legal, finalidade, prazo de retenção.

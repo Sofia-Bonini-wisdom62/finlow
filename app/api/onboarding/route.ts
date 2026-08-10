@@ -88,6 +88,11 @@ export async function POST(req: NextRequest) {
         onboarding: true,
         modulos,
         sistemaExtra: promptOnboarding(usuario?.nome ?? "", turno),
+        // Conta na cota, mas NÃO tem guard: o onboarding é a primeira coisa que
+        // a pessoa faz e bloqueá-lo seria cobrar antes de mostrar o produto. O
+        // gasto entra na conta porque é gasto de verdade; o custo é pequeno
+        // perto do teto e é custo de aquisição.
+        userId,
       }
     )
 

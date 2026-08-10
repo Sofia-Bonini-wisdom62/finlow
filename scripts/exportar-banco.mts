@@ -50,6 +50,11 @@ const USUARIO = [
   "Investimento", "DiagnosticoVazamento",
   "MemoriaUsuario", "Conversa", "ConversaMensagem", "Insight", "RecomendacaoTrilha",
   "Indicacao",
+  "ProgressoLicao", "DiaAtivo",
+  // Assinatura guarda ids da Stripe (cus_, sub_) e valor pago: dado financeiro
+  // e identificador que fala com um sistema de cobrança. UsoMensalIA diz quanto
+  // cada pessoa conversou — é comportamento de uso, não conteúdo de produto.
+  "Assinatura", "UsoMensalIA",
   // Waitlist e LeadEmpresa são só e-mail e nome: dado pessoal, mesmo não sendo financeiro.
   "Waitlist", "LeadEmpresa",
 ]

@@ -192,7 +192,49 @@ Desligada por padrão. Registros **discretos** (não um blob) nos tipos situaç�
 plano, preferência e compromisso, com origem IA ou usuário. A tela `/memoria`
 mostra tudo em texto com data, permite escrever à mão e apagar um a um ou tudo.
 
-### 2.13 Operação
+### 2.13 Premium — assinatura e limite grátis
+
+**Uma tabela, um decisor.** `Assinatura` tem uma linha por usuário
+(`userId @unique`) com quatro status: `pendente`, `ativa`, `inadimplente`,
+`cancelada`. Quem interpreta esses status é **só** `lib/pagamento/acesso.ts`
+(`decidirAcesso` é a regra pura; `temAcessoPremium` e `resumoDaAssinatura`
+chamam ela). Nenhum outro arquivo decide quem é premium.
+
+Duas leituras que não são óbvias:
+
+- **`inadimplente` MANTÉM o acesso até `expiraEm`** — é a janela em que a Stripe
+  ainda tenta recobrar. Cortar no primeiro erro perderia quem só teve o cartão
+  recusado numa terça.
+- **quem cancela fica `ativa` com `canceladoEm`**, não `cancelada`. O
+  cancelamento é `cancel_at_period_end: true`: a pessoa pagou o mês e usa o mês.
+  `cancelada` só é escrito quando a Stripe manda `customer.subscription.deleted`.
+
+**Rotas.** `POST /api/pagamento/checkout` (verifica premium **antes** de gravar
+`pendente`, `client_reference_id = userId`) · `POST /api/pagamento/webhook`
+(corpo cru via `req.text()`, `constructEvent`, 4 eventos) · `POST
+/api/pagamento/cancelar` (fim do período, **sem** tela de retenção com desconto)
+· `GET /api/pagamento/assinatura` (estado já cozido, para as telas).
+
+**Quem promove alguém a premium é o webhook**, nunca a tela. `/premium/obrigado`
+só *pergunta* se já liberou (consulta repetida por ~21s, porque o
+redirecionamento ganha a corrida contra o evento); escrever no banco ali daria o
+produto a quem digitasse a URL.
+
+**Limite grátis em TOKENS, não em mensagens** (decisão da fundadora). Mensagem
+não mede nada — uma pergunta de três palavras e vinte turnos sobre o extrato
+inteiro contam igual, e é o segundo que custa. `TETO_GRATIS_TOKENS` em
+`lib/pagamento/tokens.ts`, cota mensal em `UsoMensalIA` (uma linha por pessoa
+por mês, não por chamada). O mês é o de **São Paulo** (`mesSP`), pela mesma razão
+que a ofensiva e o teto diário de pontos: em UTC a cota viraria às 21h do dia 31.
+O guard roda **antes** da chamada ao Vertex e devolve **402**; a soma acontece
+dentro de `responderIA` a partir do `userId` em `OpcoesResposta`, para que rota
+nova não esqueça de contar. O onboarding **conta mas não é bloqueado**.
+
+Apagar a conta **cancela a assinatura na Stripe antes** do delete, e falha aí
+aborta o apagamento: `Assinatura` cascateia no nosso banco, mas o objeto na
+Stripe continuaria cobrando um cartão de alguém que já não consegue entrar.
+
+### 2.14 Operação
 
 `/api/ops/metrics` devolve uso da Vertex nas últimas 24h (invocações, tokens,
 caracteres, latências) e um bloco de produto (indicações totais / 30 dias /

@@ -1,5 +1,5 @@
--- Arquitetura das tabelas do Finlow — 26 tabelas.
--- GERADO por scripts/exportar-banco.mts em 2026-08-06. Não edite à mão:
+-- Arquitetura das tabelas do Finlow — 30 tabelas.
+-- GERADO por scripts/exportar-banco.mts em 2026-08-10. Não edite à mão:
 -- a fonte é prisma/schema.prisma, e é lá que os comentários explicam o PORQUÊ
 -- de cada decisão (cifra, cascade, campos em claro).
 --
@@ -11,22 +11,22 @@ CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "nome" TEXT,
-    "dataNascimento" TIMESTAMP(3),
-    "senha" TEXT,
-    "consentimentoLGPD" TIMESTAMP(3),
-    "consentimentoPainelEm" TIMESTAMP(3),
-    "memoriaAtiva" BOOLEAN NOT NULL DEFAULT false,
-    "onboardingEm" TIMESTAMP(3),
-    "nivel" TEXT NOT NULL DEFAULT 'iniciante',
-    "tendencia" TEXT,
-    "pontos" INTEGER NOT NULL DEFAULT 0,
-    "apelido" TEXT,
-    "rankingOptIn" BOOLEAN NOT NULL DEFAULT false,
-    "codigoIndicacao" TEXT,
-    "moduloAvancado" BOOLEAN NOT NULL DEFAULT false,
     "emailVerified" TIMESTAMP(3),
     "image" TEXT,
     "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "consentimentoLGPD" TIMESTAMP(3),
+    "senha" TEXT,
+    "dataNascimento" TIMESTAMP(3),
+    "consentimentoPainelEm" TIMESTAMP(3),
+    "memoriaAtiva" BOOLEAN NOT NULL DEFAULT false,
+    "onboardingEm" TIMESTAMP(3),
+    "apelido" TEXT,
+    "nivel" TEXT NOT NULL DEFAULT 'iniciante',
+    "pontos" INTEGER NOT NULL DEFAULT 0,
+    "rankingOptIn" BOOLEAN NOT NULL DEFAULT false,
+    "tendencia" TEXT,
+    "codigoIndicacao" TEXT,
+    "moduloAvancado" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -57,6 +57,50 @@ CREATE TABLE "DiagnosticoVazamento" (
     "tokenPublico" TEXT,
 
     CONSTRAINT "DiagnosticoVazamento_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "UsoMensalIA" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "mes" TEXT NOT NULL,
+    "tokensEntrada" INTEGER NOT NULL DEFAULT 0,
+    "tokensSaida" INTEGER NOT NULL DEFAULT 0,
+    "chamadas" INTEGER NOT NULL DEFAULT 0,
+    "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "atualizadoEm" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "UsoMensalIA_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Assinatura" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "status" TEXT NOT NULL,
+    "provedor" TEXT NOT NULL,
+    "externalId" TEXT,
+    "clienteStripeId" TEXT,
+    "checkoutId" TEXT,
+    "metodo" TEXT,
+    "valorCentavos" INTEGER,
+    "proximaCobranca" TIMESTAMP(3),
+    "expiraEm" TIMESTAMP(3),
+    "canceladoEm" TIMESTAMP(3),
+    "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "atualizadoEm" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Assinatura_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "DiaAtivo" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "dia" DATE NOT NULL,
+    "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "DiaAtivo_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -154,9 +198,9 @@ CREATE TABLE "Transacao" (
     "data" TIMESTAMP(3) NOT NULL,
     "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "confirmado" BOOLEAN NOT NULL DEFAULT false,
+    "extratoImportId" TEXT,
     "origem" TEXT NOT NULL DEFAULT 'manual',
     "escopo" TEXT NOT NULL DEFAULT 'pessoal',
-    "extratoImportId" TEXT,
 
     CONSTRAINT "Transacao_pkey" PRIMARY KEY ("id")
 );
@@ -252,8 +296,8 @@ CREATE TABLE "RecomendacaoTrilha" (
     "motivo" TEXT NOT NULL,
     "origem" TEXT NOT NULL,
     "ordem" INTEGER NOT NULL,
-    "entregueEm" TIMESTAMP(3),
     "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "entregueEm" TIMESTAMP(3),
     "leva" INTEGER NOT NULL DEFAULT 1,
     "substituidaEm" TIMESTAMP(3),
 
@@ -274,18 +318,23 @@ CREATE TABLE "Perfil" (
 -- CreateTable
 CREATE TABLE "Modulo" (
     "id" TEXT NOT NULL,
-    "slug" TEXT NOT NULL,
     "titulo" TEXT NOT NULL,
-    "subtitulo" TEXT NOT NULL,
     "tipoPerfil" TEXT NOT NULL,
     "ordem" INTEGER NOT NULL,
-    "xp" INTEGER NOT NULL DEFAULT 50,
-    "thumbnail" TEXT,
+    "slug" TEXT NOT NULL,
+    "subtitulo" TEXT NOT NULL,
     "duracaoMin" INTEGER NOT NULL DEFAULT 2,
     "tags" TEXT[],
+    "thumbnail" TEXT,
     "nivel" TEXT NOT NULL DEFAULT 'iniciante',
     "situacoes" TEXT[],
     "publico" TEXT NOT NULL DEFAULT 'adulto',
+    "blocoId" TEXT,
+    "blocoRotulo" TEXT,
+    "ehRevisao" BOOLEAN NOT NULL DEFAULT false,
+    "pontos" INTEGER NOT NULL DEFAULT 50,
+    "preRequisitoSlug" TEXT,
+    "xp" INTEGER NOT NULL DEFAULT 50,
 
     CONSTRAINT "Modulo_pkey" PRIMARY KEY ("id")
 );
@@ -298,6 +347,7 @@ CREATE TABLE "Tela" (
     "tipo" TEXT NOT NULL,
     "label" TEXT NOT NULL,
     "conteudo" JSONB NOT NULL,
+    "mediacao" TEXT,
 
     CONSTRAINT "Tela_pkey" PRIMARY KEY ("id")
 );
@@ -313,6 +363,23 @@ CREATE TABLE "ProgressoModulo" (
     "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "ProgressoModulo_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "ProgressoLicao" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "moduloId" TEXT NOT NULL,
+    "licao" INTEGER NOT NULL,
+    "concluido" BOOLEAN NOT NULL DEFAULT false,
+    "telaAtual" INTEGER NOT NULL DEFAULT 0,
+    "acertos" INTEGER NOT NULL DEFAULT 0,
+    "totalQuiz" INTEGER NOT NULL DEFAULT 0,
+    "segundos" INTEGER NOT NULL DEFAULT 0,
+    "concluidoEm" TIMESTAMP(3),
+    "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "ProgressoLicao_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -382,6 +449,24 @@ CREATE UNIQUE INDEX "DiagnosticoVazamento_userId_key" ON "DiagnosticoVazamento"(
 CREATE UNIQUE INDEX "DiagnosticoVazamento_tokenPublico_key" ON "DiagnosticoVazamento"("tokenPublico");
 
 -- CreateIndex
+CREATE INDEX "UsoMensalIA_mes_idx" ON "UsoMensalIA"("mes");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "UsoMensalIA_userId_mes_key" ON "UsoMensalIA"("userId", "mes");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Assinatura_userId_key" ON "Assinatura"("userId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Assinatura_externalId_key" ON "Assinatura"("externalId");
+
+-- CreateIndex
+CREATE INDEX "DiaAtivo_userId_dia_idx" ON "DiaAtivo"("userId", "dia");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "DiaAtivo_userId_dia_key" ON "DiaAtivo"("userId", "dia");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Indicacao_indicadoId_key" ON "Indicacao"("indicadoId");
 
 -- CreateIndex
@@ -448,6 +533,12 @@ CREATE UNIQUE INDEX "Tela_moduloId_ordem_key" ON "Tela"("moduloId", "ordem");
 CREATE UNIQUE INDEX "ProgressoModulo_userId_moduloId_key" ON "ProgressoModulo"("userId", "moduloId");
 
 -- CreateIndex
+CREATE INDEX "ProgressoLicao_userId_moduloId_idx" ON "ProgressoLicao"("userId", "moduloId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "ProgressoLicao_userId_moduloId_licao_key" ON "ProgressoLicao"("userId", "moduloId", "licao");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Account_provider_providerAccountId_key" ON "Account"("provider", "providerAccountId");
 
 -- CreateIndex
@@ -466,10 +557,19 @@ ALTER TABLE "Investimento" ADD CONSTRAINT "Investimento_userId_fkey" FOREIGN KEY
 ALTER TABLE "DiagnosticoVazamento" ADD CONSTRAINT "DiagnosticoVazamento_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Indicacao" ADD CONSTRAINT "Indicacao_indicadorId_fkey" FOREIGN KEY ("indicadorId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "UsoMensalIA" ADD CONSTRAINT "UsoMensalIA_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Assinatura" ADD CONSTRAINT "Assinatura_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "DiaAtivo" ADD CONSTRAINT "DiaAtivo_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Indicacao" ADD CONSTRAINT "Indicacao_indicadoId_fkey" FOREIGN KEY ("indicadoId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Indicacao" ADD CONSTRAINT "Indicacao_indicadorId_fkey" FOREIGN KEY ("indicadorId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "MemoriaUsuario" ADD CONSTRAINT "MemoriaUsuario_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -481,19 +581,19 @@ ALTER TABLE "ContaFixa" ADD CONSTRAINT "ContaFixa_userId_fkey" FOREIGN KEY ("use
 ALTER TABLE "Categoria" ADD CONSTRAINT "Categoria_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Orcamento" ADD CONSTRAINT "Orcamento_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
 ALTER TABLE "Orcamento" ADD CONSTRAINT "Orcamento_categoriaId_fkey" FOREIGN KEY ("categoriaId") REFERENCES "Categoria"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Transacao" ADD CONSTRAINT "Transacao_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Orcamento" ADD CONSTRAINT "Orcamento_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Transacao" ADD CONSTRAINT "Transacao_categoriaId_fkey" FOREIGN KEY ("categoriaId") REFERENCES "Categoria"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Transacao" ADD CONSTRAINT "Transacao_extratoImportId_fkey" FOREIGN KEY ("extratoImportId") REFERENCES "ExtratoImport"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Transacao" ADD CONSTRAINT "Transacao_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "ExtratoImport" ADD CONSTRAINT "ExtratoImport_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -514,10 +614,10 @@ ALTER TABLE "EventoPontuacao" ADD CONSTRAINT "EventoPontuacao_userId_fkey" FOREI
 ALTER TABLE "Insight" ADD CONSTRAINT "Insight_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "RecomendacaoTrilha" ADD CONSTRAINT "RecomendacaoTrilha_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "RecomendacaoTrilha" ADD CONSTRAINT "RecomendacaoTrilha_moduloId_fkey" FOREIGN KEY ("moduloId") REFERENCES "Modulo"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "RecomendacaoTrilha" ADD CONSTRAINT "RecomendacaoTrilha_moduloId_fkey" FOREIGN KEY ("moduloId") REFERENCES "Modulo"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "RecomendacaoTrilha" ADD CONSTRAINT "RecomendacaoTrilha_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Perfil" ADD CONSTRAINT "Perfil_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -526,10 +626,16 @@ ALTER TABLE "Perfil" ADD CONSTRAINT "Perfil_userId_fkey" FOREIGN KEY ("userId") 
 ALTER TABLE "Tela" ADD CONSTRAINT "Tela_moduloId_fkey" FOREIGN KEY ("moduloId") REFERENCES "Modulo"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "ProgressoModulo" ADD CONSTRAINT "ProgressoModulo_moduloId_fkey" FOREIGN KEY ("moduloId") REFERENCES "Modulo"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "ProgressoModulo" ADD CONSTRAINT "ProgressoModulo_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ProgressoModulo" ADD CONSTRAINT "ProgressoModulo_moduloId_fkey" FOREIGN KEY ("moduloId") REFERENCES "Modulo"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "ProgressoLicao" ADD CONSTRAINT "ProgressoLicao_moduloId_fkey" FOREIGN KEY ("moduloId") REFERENCES "Modulo"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ProgressoLicao" ADD CONSTRAINT "ProgressoLicao_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

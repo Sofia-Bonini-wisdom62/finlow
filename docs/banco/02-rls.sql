@@ -1,4 +1,4 @@
--- CÓPIA de prisma/seguranca-rls.sql, tirada em 2026-08-06 por
+-- CÓPIA de prisma/seguranca-rls.sql, tirada em 2026-08-10 por
 -- scripts/exportar-banco.mts. O original é o que roda em produção (via
 -- `pnpm db:push`); esta cópia existe para o arquivo do banco ficar completo.
 -- Divergiu? O original manda.

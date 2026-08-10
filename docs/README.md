@@ -19,7 +19,8 @@ para quem chega de fora. Ele é a porta; esta pasta é a casa.
 | [`backlog-trilha-t2.md`](backlog-trilha-t2.md) | Especificação dos módulos da Trilha (Temporada 2+) | Ao escrever conteúdo de aula |
 | [`matriz-bcb.md`](matriz-bcb.md) | A Matriz de Competências do Banco Central, lida e mapeada | Ao escrever ou revisar aula da trilha de Ensino Médio |
 | [`matriz-bcb-competencias.json`](matriz-bcb-competencias.json) | A mesma matriz em dado estruturado, para conferência por código | Ao verificar cobertura de habilidades |
-| [`banco/`](banco/README.md) | O banco em SQL: arquitetura das 26 tabelas, RLS e os dados de sistema (módulos, telas, indicadores) | Ao consultar o esquema sem abrir o Supabase, ou ao recriar o banco do zero |
+| [`pagamento-antes-de-cobrar.md`](pagamento-antes-de-cobrar.md) | O que falta para sair do modo de teste e cobrar de verdade — quase tudo passo no painel da Stripe ou na Vercel | **Antes de trocar `sk_test` por `sk_live`** |
+| [`banco/`](banco/README.md) | O banco em SQL: arquitetura das tabelas, RLS e os dados de sistema (módulos, telas, indicadores) | Ao consultar o esquema sem abrir o Supabase, ou ao recriar o banco do zero |
 
 ## A regra que sustenta a pasta
 

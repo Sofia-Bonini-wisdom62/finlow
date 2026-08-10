@@ -138,6 +138,15 @@ export interface OpcoesResposta {
   onboarding?: boolean
   /** Aulas reais, do banco. Sem elas o modelo não recomenda módulo nenhum. */
   modulos?: { slug: string; titulo: string }[]
+  /**
+   * De quem é a conta. Com isto, o gasto desta chamada entra na cota mensal da
+   * pessoa (`lib/pagamento/tokens.ts`).
+   *
+   * A soma acontece AQUI DENTRO, não em cada rota, de propósito: rota nova que
+   * chame a IA e esqueça de contar seria IA de graça sem ninguém notar. Quem
+   * esquecer o `userId` aparece no log como chamada sem dono.
+   */
+  userId?: string
 }
 
 export interface RespostaIA {
@@ -458,7 +467,26 @@ export async function responderIA(
     },
   })
 
-  registrarUso(opcoes?.onboarding ? "onboarding" : "chat", MODELO_CHAT, resposta)
+  const origem = opcoes?.onboarding ? "onboarding" : "chat"
+  const uso = registrarUso(origem, MODELO_CHAT, resposta)
+
+  /**
+   * O gasto entra na cota mensal da pessoa.
+   *
+   * AWAIT, não "dispara e esquece": promessa solta pode ser cortada quando a
+   * função devolve a resposta, e contagem perdida é IA de graça. É um `upsert`
+   * numa chave única, custa pouco, e `somarUso` nunca lança.
+   *
+   * Vem DEPOIS da resposta porque só agora se sabe quanto custou — a chamada já
+   * foi paga de qualquer forma. Quem impede a chamada seguinte é o guard da
+   * rota, que roda antes.
+   */
+  if (opcoes?.userId) {
+    const { somarUso } = await import("@/lib/pagamento/tokens")
+    await somarUso(opcoes.userId, origem, uso)
+  } else {
+    console.warn(`[uso-ia] chamada de ${origem} sem userId: não entrou em cota nenhuma`)
+  }
 
   const bruto = (resposta.text ?? "").trim()
   if (!bruto) {

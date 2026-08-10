@@ -15,7 +15,7 @@ export async function GET() {
   if (userId instanceof NextResponse) return userId
 
   try {
-    const [user, categorias, contas, transacoes, progresso, indicacoesFeitas, indicacaoRecebida, diagnostico, investimentos] = await Promise.all([
+    const [user, categorias, contas, transacoes, progresso, indicacoesFeitas, indicacaoRecebida, diagnostico, investimentos, assinatura, usoIA] = await Promise.all([
       db.user.findUnique({
         where: { id: userId },
         select: { nome: true, email: true, dataNascimento: true, criadoEm: true, consentimentoPainelEm: true, codigoIndicacao: true },
@@ -44,6 +44,22 @@ export async function GET() {
       }),
       lerDiagnostico(userId),
       listarInvestimentos(userId),
+      // Assinatura: o que ela pagou, quando, e até quando vale. SEM os ids da
+      // Stripe (`cus_`, `sub_`, `cs_`) — são identificadores de sistema nosso,
+      // não dado dela, e num arquivo que ela pode compartilhar sem pensar viram
+      // material para alguém falar com a Stripe fingindo ser ela.
+      db.assinatura.findUnique({
+        where: { userId },
+        select: {
+          status: true, provedor: true, metodo: true, valorCentavos: true,
+          proximaCobranca: true, expiraEm: true, canceladoEm: true, criadoEm: true,
+        },
+      }),
+      db.usoMensalIA.findMany({
+        where: { userId },
+        select: { mes: true, tokensEntrada: true, tokensSaida: true, chamadas: true },
+        orderBy: { mes: "asc" },
+      }),
     ])
 
     const dump = {
@@ -94,6 +110,8 @@ export async function GET() {
             geradoEm: diagnostico.geradoEm,
           }
         : null,
+      assinatura,
+      usoDeIA: usoIA,
     }
 
     const data = new Date().toISOString().split("T")[0]

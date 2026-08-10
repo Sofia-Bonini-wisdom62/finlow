@@ -102,6 +102,46 @@ export async function DELETE(req: NextRequest) {
       )
     }
 
+    /**
+     * CANCELA A ASSINATURA NA STRIPE ANTES DE APAGAR.
+     *
+     * `Assinatura` cascateia com o User, então a linha some do nosso banco — mas
+     * a assinatura na Stripe é um objeto DELA, fora do nosso Postgres, e
+     * continuaria cobrando o cartão todo mês. A pessoa apagou a conta, não tem
+     * mais como entrar, e seguiria pagando: é a pior falha possível aqui, porque
+     * ela só descobre pela fatura e não temos mais registro para explicar.
+     *
+     * Aqui é cancelamento IMEDIATO, não `cancel_at_period_end` como no
+     * cancelamento normal: não há mais acesso para honrar até o fim do período.
+     *
+     * ANTES do delete, e falha aqui ABORTA o apagamento — ao contrário de quase
+     * todo `catch` deste código. Apagar a conta e deixar a cobrança de pé é pior
+     * que não apagar e devolver "tenta de novo": o segundo a pessoa resolve
+     * clicando outra vez, o primeiro ela resolve no banco.
+     */
+    const assinatura = await db.assinatura.findUnique({
+      where: { userId },
+      select: { externalId: true, status: true },
+    })
+    if (assinatura?.externalId && assinatura.status !== "cancelada") {
+      const { getStripe } = await import("@/lib/pagamento/stripe")
+      try {
+        await getStripe().subscriptions.cancel(assinatura.externalId)
+        console.log("[conta] assinatura cancelada na Stripe antes de apagar")
+      } catch (e) {
+        // "Já não existe" e "já estava cancelada" são o resultado que se queria:
+        // não há cobrança de pé. Só esses dois — qualquer outro erro sobe e
+        // aborta, porque aí a cobrança pode continuar viva.
+        const codigo = (e as { code?: string; raw?: { code?: string } })?.code
+          ?? (e as { raw?: { code?: string } })?.raw?.code
+        const jaResolvido =
+          codigo === "resource_missing" ||
+          /no such subscription|already canceled/i.test((e as Error)?.message ?? "")
+        if (!jaResolvido) throw e
+        console.log("[conta] nada a cancelar na Stripe")
+      }
+    }
+
     await db.$transaction([
       db.waitlist.deleteMany({ where: { email: user.email } }),
       db.user.delete({ where: { id: userId } }),

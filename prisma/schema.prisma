@@ -47,6 +47,8 @@ model User {
   diagnosticoVazamento  DiagnosticoVazamento?
   investimentos         Investimento[]
   diasAtivos            DiaAtivo[]
+  assinatura            Assinatura?
+  usoMensalIA           UsoMensalIA[]
   accounts              Account[]
   sessions              Session[]
 }
@@ -95,6 +97,63 @@ model DiagnosticoVazamento {
   geradoEm     DateTime  @default(now())
   entregueEm   DateTime? // quando apareceu no chat; null = ainda não
   tokenPublico String?   @unique
+}
+
+/// Tokens de IA que uma pessoa gastou num mês. É daqui que sai o limite grátis.
+///
+/// UMA LINHA POR PESSOA POR MÊS, não por chamada. `lib/uso-ia.ts` diz, com
+/// razão, que uma tabela de uso "cresce sem limite" — uma linha por chamada
+/// cresceria com o tráfego. Assim o teto é o número de usuários vezes os meses,
+/// e a leitura do guard é um `findUnique`, não um `aggregate` sobre o histórico.
+///
+/// O LOG CONTINUA SENDO A CONTABILIDADE. Isto aqui não substitui o
+/// `console.log` do `registrarUso`: aquele detalha por origem e por modelo para
+/// somar custo, este só responde "quanto esta pessoa já gastou neste mês".
+///
+/// `mes` é "AAAA-MM" no fuso de São Paulo, não em UTC — ver `mesSP()`.
+model UsoMensalIA {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  mes           String
+  tokensEntrada Int      @default(0)
+  tokensSaida   Int      @default(0)
+  chamadas      Int      @default(0)
+  criadoEm      DateTime @default(now())
+  atualizadoEm  DateTime @updatedAt
+
+  @@unique([userId, mes])
+  @@index([mes])
+}
+
+/// Assinatura Premium de alguém. UMA por usuário (`userId @unique`).
+///
+/// `status` é o que decide acesso, e quem lê é SÓ `lib/pagamento/acesso.ts`:
+/// "pendente" | "ativa" | "inadimplente" | "cancelada".
+///
+/// "inadimplente" MANTÉM acesso até `expiraEm`, de propósito — é a janela em
+/// que o Stripe ainda tenta recobrar. Cortar no primeiro erro perde assinante
+/// que só teve o cartão recusado numa terça.
+///
+/// `externalId` (sub_…) é o vínculo para todo evento DEPOIS do primeiro:
+/// fatura seguinte, falha de cobrança, cancelamento. `client_reference_id`
+/// resolve só o primeiro. Nunca buscar assinatura por e-mail ou nome.
+model Assinatura {
+  id              String    @id @default(cuid())
+  userId          String    @unique
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status          String // "pendente" | "ativa" | "inadimplente" | "cancelada"
+  provedor        String // "stripe"
+  externalId      String?   @unique // subscription id do Stripe (sub_...)
+  clienteStripeId String? // customer id do Stripe (cus_...)
+  checkoutId      String? // session id do checkout que originou (cs_...)
+  metodo          String? // "cartao"
+  valorCentavos   Int?
+  proximaCobranca DateTime?
+  expiraEm        DateTime?
+  canceladoEm     DateTime?
+  criadoEm        DateTime  @default(now())
+  atualizadoEm    DateTime  @updatedAt
 }
 
 /// Um dia em que a pessoa usou o app. É daqui que sai a ofensiva.
