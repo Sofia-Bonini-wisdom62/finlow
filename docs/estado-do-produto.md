@@ -35,6 +35,7 @@ Plano 2026–2029 seguem entregues.
 | Login com Google | ✅ | botão pronto; falta chave OAuth na Vercel |
 | Trava de conteúdo impróprio (saída + registros) | ✅ | `lib/conteudo-proibido.ts` |
 | Exportar dados (LGPD) + apagar conta em cascade | ✅ | `/api/exportar`, `/api/conta` |
+| Apagar dados financeiros, com a lista conferida contra o schema | ✅ 10/08/2026 | `lib/dados-financeiros.ts`, `lib/apagar-financeiro.ts` |
 | Cifra AES-256-GCM + RLS em todas as tabelas | ✅ | `lib/cripto.ts`, `prisma/seguranca-rls.sql` |
 
 ## Entregas deste script (Plano 2026–2029)
@@ -225,6 +226,20 @@ silenciosa. Estão descritos em `lib/pagamento/stripe.ts`, com teste para cada u
   onboarding, eventos de pontuação e insights — e o que falta é justamente o
   mais sensível. O *delete* cobre tudo por cascade; a exportação, não.
   (Assinatura e uso de IA entraram em 10/08; o resto continua de fora.)
+
+  > O lado do apagar tinha o defeito espelhado, e foi corrigido em 10/08/2026:
+  > "Apagar meus dados financeiros" deixava para trás investimento, orçamento
+  > de mês inteiro, extrato importado, diagnóstico e insights, enquanto a tela
+  > respondia "Dados financeiros apagados.". A lista agora é dado em
+  > `lib/dados-financeiros.ts`, conferida contra o `schema.prisma` — tabela do
+  > usuário sem classificação derruba `scripts/testar-apagar-dados.mts`. Falta
+  > o mesmo tratamento do lado da exportação.
+
+- **`RecomendacaoTrilha.motivo` é decisão de produto em aberto.** É texto livre
+  escrito pela IA a partir dos números da pessoa, e nada impede a frase de citar
+  um valor. Ficou FORA de "apagar dados financeiros" porque é trilha, não
+  dinheiro — mas a chamada é de produto. Se a decisão for que ele também sai, é
+  mover uma linha em `lib/dados-financeiros.ts`.
 - R1 (política escrita de retenção/privacidade): a engenharia existe
   (consentimento separado, cifra, RLS, exclusão, exportação); falta o texto
   jurídico — base legal, finalidade, prazo de retenção.

@@ -298,8 +298,17 @@ export default function AjustesPage() {
         <Secao titulo="Privacidade" Icon={ShieldCheck}>
           {confirmandoApagar ? (
             <div className="flex flex-col gap-2.5 px-4 py-3.5">
+              {/* A lista precisa bater com lib/dados-financeiros.ts. Ela dizia
+                  "transações, contas fixas e categorias" enquanto o botão se
+                  chamava "dados financeiros" — e o investimento, que não estava
+                  em nenhuma das duas frases, ficava no banco. */}
               <p className="text-sm font-semibold text-fl-error">
-                Apagar todas as transações, contas fixas e categorias? Não tem volta.
+                Apagar lançamentos, contas fixas, categorias, investimentos, extratos
+                importados e o Diagnóstico de Vazamento? Não tem volta.
+              </p>
+              <p className="text-xs text-fl-ink-2">
+                Ficam a memória do assistente e o seu progresso na Trilha — cada um
+                tem o próprio botão.
               </p>
               <div className="flex gap-2">
                 <button onClick={apagarDados} disabled={salvando} className="flex-1 rounded-xl bg-fl-error py-2.5 text-sm font-bold text-primary-foreground disabled:opacity-60">
