@@ -86,6 +86,13 @@ especificação, três vezes.
 bom caso. O caso ruim é o inverso: um teste rodando com `sk_live_` **cobra
 dinheiro real do cartão de alguém**.
 
+✅ **O caso ruim passou a ser barrado por código** (`conferirAmbiente`, em
+`lib/pagamento/stripe.ts`). Chave `sk_live_` fora de `VERCEL_ENV=production` —
+ou apontando para localhost — lança antes de o cliente Stripe existir, então
+nenhuma chamada chega a sair. `sk_test_` em produção continua permitido de
+propósito: é o modo atual do projeto e chave de teste não move dinheiro. Os seis
+casos estão em `scripts/testar-pagamento.mts`.
+
 O `STRIPE_PRICE_ID` do modo live é **outro id**: preço criado no teste não existe
 no live. Criar o produto e o preço de novo, em live, é passo obrigatório.
 

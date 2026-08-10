@@ -23,7 +23,7 @@ config({ path: ".env" })
 import type Stripe from "stripe"
 import { decidirAcesso, type StatusAssinatura } from "../lib/pagamento/acesso.js"
 import { mesSP, TETO_GRATIS_TOKENS } from "../lib/pagamento/tokens.js"
-import { idDaAssinaturaNaFatura, fimDoPeriodo } from "../lib/pagamento/stripe.js"
+import { idDaAssinaturaNaFatura, fimDoPeriodo, conferirAmbiente } from "../lib/pagamento/stripe.js"
 
 let falhas = 0
 let total = 0
@@ -138,6 +138,43 @@ conferir(
   "assinatura sem items nem quebra",
   fimDoPeriodo({} as unknown as Stripe.Subscription),
   null
+)
+
+// --------------------------------------------------- a guarda de ambiente ---
+// O caso que importa não é a chave faltando: é a chave CERTA no lugar errado.
+console.log("\nconferirAmbiente — chave live só roda em produção")
+
+const ok = (r: { ok: boolean }) => r.ok
+
+conferir(
+  "sk_test em máquina local passa (é o dia a dia)",
+  ok(conferirAmbiente("sk_test_123", undefined, "http://localhost:3000")),
+  true
+)
+conferir(
+  "sk_test em produção passa (é o modo atual do projeto)",
+  ok(conferirAmbiente("sk_test_123", "production", "https://finlow-xi.vercel.app")),
+  true
+)
+conferir(
+  "sk_live em máquina local é BARRADO",
+  ok(conferirAmbiente("sk_live_123", undefined, "http://localhost:3000")),
+  false
+)
+conferir(
+  "sk_live em preview é BARRADO",
+  ok(conferirAmbiente("sk_live_123", "preview", "https://finlow-xi-git-x.vercel.app")),
+  false
+)
+conferir(
+  "sk_live em produção com URL certa passa",
+  ok(conferirAmbiente("sk_live_123", "production", "https://finlow-xi.vercel.app")),
+  true
+)
+conferir(
+  "sk_live em produção apontando para localhost é BARRADO",
+  ok(conferirAmbiente("sk_live_123", "production", "http://localhost:3000")),
+  false
 )
 
 // ------------------------------------------------------------------ fechamento ---

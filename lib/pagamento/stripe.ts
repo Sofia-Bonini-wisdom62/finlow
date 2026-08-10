@@ -45,6 +45,66 @@ export class StripeNaoConfigurada extends Error {
   }
 }
 
+/** Chave de produção fora de produção. Não é falta de config: é config perigosa. */
+export class StripeAmbienteErrado extends Error {
+  constructor(motivo: string) {
+    super(motivo)
+    this.name = "StripeAmbienteErrado"
+  }
+}
+
+/**
+ * A chave live só pode rodar em produção de verdade.
+ *
+ * O documento de go-live manda "nunca misturar ambiente" e explica o porquê: o
+ * caso bom é chave live com preço de teste, que falha na hora; o caso ruim é o
+ * inverso — um TESTE rodando com `sk_live_` cobra dinheiro real do cartão de
+ * alguém. Até aqui isso dependia só de ninguém errar a variável na Vercel.
+ *
+ * A checagem usa `VERCEL_ENV`, não a URL: é o sinal da própria plataforma
+ * ("production" | "preview" | "development") e não depende de adivinhar se um
+ * `*.vercel.app` com hash no meio é preview. Ausente significa máquina local,
+ * que é justamente onde a chave live não pode estar.
+ *
+ * O QUE ELA NÃO BARRA, DE PROPÓSITO: `sk_test_` em produção. É o modo atual do
+ * projeto — o app está no ar em teste, sem cobrar de ninguém —, e bloquear isso
+ * derrubaria o que está funcionando hoje para prevenir um risco que não existe:
+ * chave de teste não move dinheiro.
+ *
+ * Pura para poder ser testada sem mexer em `process.env`.
+ */
+export function conferirAmbiente(
+  chave: string,
+  vercelEnv: string | undefined,
+  appUrl: string | undefined
+): { ok: true } | { ok: false; motivo: string } {
+  if (!chave.startsWith("sk_live_")) return { ok: true }
+
+  const ambiente = vercelEnv ?? "local"
+  if (ambiente !== "production") {
+    return {
+      ok: false,
+      motivo:
+        `STRIPE_SECRET_KEY é sk_live_ mas o ambiente é "${ambiente}". ` +
+        "Chave de produção fora de produção cobra cartão de verdade num teste. " +
+        "Use sk_test_ aqui, e deixe a live só em Production na Vercel.",
+    }
+  }
+
+  // Chave live com URL de retorno local: a pessoa paga e volta para lugar
+  // nenhum. Sintoma diferente do de cima, mesma origem — variável trocada.
+  if (appUrl && /localhost|127\.0\.0\.1/.test(appUrl)) {
+    return {
+      ok: false,
+      motivo:
+        `STRIPE_SECRET_KEY é sk_live_ mas NEXT_PUBLIC_APP_URL aponta para ${appUrl}. ` +
+        "O checkout cobraria de verdade e devolveria a pessoa para uma URL que não existe.",
+    }
+  }
+
+  return { ok: true }
+}
+
 let cliente: Stripe | null = null
 
 /**
@@ -64,6 +124,15 @@ export function getStripe(): Stripe {
   if (cliente) return cliente
   const chave = process.env.STRIPE_SECRET_KEY
   if (!chave) throw new StripeNaoConfigurada()
+
+  // Antes de criar o cliente, não depois: o objetivo é que a chave live nunca
+  // chegue a fazer uma chamada fora de produção.
+  const ambiente = conferirAmbiente(chave, process.env.VERCEL_ENV, process.env.NEXT_PUBLIC_APP_URL)
+  if (!ambiente.ok) {
+    console.error("[stripe]", ambiente.motivo)
+    throw new StripeAmbienteErrado(ambiente.motivo)
+  }
+
   cliente = new Stripe(chave, { apiVersion: VERSAO_API })
   return cliente
 }
