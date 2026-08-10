@@ -65,8 +65,12 @@ Plano 2026–2029 seguem entregues.
 
 O conteúdo ficou **seis dias no repositório sem existir no banco**: havia
 portador (`portar-ef.mts`) e teste (`testar-ef.mts`), faltava o semeador. Nada
-acusou, porque o teste lê o arquivo, não o banco — e não havia nenhuma
-verificação que comparasse os dois. `scripts/semear-ef.mts` fecha isso.
+acusou, porque todas as baterias liam arquivo, não banco. `scripts/semear-ef.mts`
+fecha o buraco, e `scripts/testar-fonte-x-banco.mts` fecha a **classe** dele:
+compara as quatro fontes com o banco e falha quando um módulo existe só de um
+lado, ou quando título, subtítulo, ordem, público ou a espinha das telas
+divergem. É o que transforma "esqueci de semear" em erro visível em vez de um
+produto que discorda do próprio repositório.
 
 Como o resto da trilha escolar, nascem invisíveis: `filtroDeModulo()` é
 allowlist, então segmento novo não aparece sem alguém mudar `PUBLICO_ATUAL`.
