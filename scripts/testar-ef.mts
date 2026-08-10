@@ -130,9 +130,11 @@ for (const m of MODULOS_EF as unknown as Bruto[]) {
   }
 }
 
+// "declaradas": conta o que os módulos DIZEM cobrir, sem abrir a matriz do BC.
+// Quem confronta de verdade é scripts/testar-matriz.mts.
 console.log(
   `\n${(MODULOS_EF as unknown as Bruto[]).length} módulos · ${telas} telas · ` +
-    `${habilidades.size} habilidades · ${falhas} falha(s)`
+    `${habilidades.size} habilidades declaradas · ${falhas} falha(s)`
 )
 console.log(
   "por segmento: " +

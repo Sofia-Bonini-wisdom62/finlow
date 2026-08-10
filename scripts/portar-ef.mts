@@ -406,7 +406,48 @@ writeFileSync(
   "prisma/modulos-ef.ts",
   `// GERADO por scripts/portar-ef.mts — não edite à mão.\n` +
     `// Fonte: prisma/trilha-escolar-fonte.ts · decisões: prisma/editorial-ef.ts\n\n` +
-    `export const MODULOS_EF = ${JSON.stringify(modulos, null, 2)} as const\n`,
+    /**
+     * Emitido COM anotação de tipo, e sem `as const`.
+     *
+     * Com `as const` o TypeScript infere tuplas readonly e uniões de literais:
+     * `tags` vira `readonly ["dinheiro", "moedas"]`, que o Prisma recusa porque
+     * espera `string[]` mutável, e o conjunto de slugs vira uma união que não
+     * casa com a união de `preRequisitoSlug`. Os dois quebram o `pnpm build` e
+     * nenhum aparece ao rodar o seed, porque o `tsx` não faz type-check.
+     *
+     * A anotação larga resolve os dois e é o que `prisma/modulos-em.ts` já faz.
+     */
+    `export interface TelaEF {\n` +
+    `  ordem: number\n` +
+    `  tipo: "conceito" | "cenario" | "quiz" | "input" | "resultado"\n` +
+    `  label: string\n` +
+    `  /** Orientação para quem conduz a turma. Não aparece para o aluno. */\n` +
+    `  mediacao: string | null\n` +
+    `  conteudo: unknown\n` +
+    `}\n\n` +
+    `export interface ModuloEF {\n` +
+    `  slug: string\n` +
+    `  titulo: string\n` +
+    `  subtitulo: string\n` +
+    `  /** Segmento escolar: "ef12" | "ef35" | "ef67" | "ef89" (lib/publico.ts). */\n` +
+    `  publico: string\n` +
+    `  blocoId: string\n` +
+    `  blocoRotulo: string\n` +
+    `  ordem: number\n` +
+    `  nivel: string\n` +
+    `  duracaoMin: number\n` +
+    `  pontos: number\n` +
+    `  tags: string[]\n` +
+    `  thumbnail: string\n` +
+    `  preRequisitoSlug: string | null\n` +
+    `  ehRevisao: boolean\n` +
+    `  situacoes: string[]\n` +
+    `  tipoPerfil: string\n` +
+    `  /** Habilidades da matriz do BC. Rastreabilidade — não é coluna. */\n` +
+    `  habilidades: string[]\n` +
+    `  telas: TelaEF[]\n` +
+    `}\n\n` +
+    `export const MODULOS_EF: ModuloEF[] = ${JSON.stringify(modulos, null, 2)}\n`,
   "utf8"
 )
 console.log("→ prisma/modulos-ef.ts")

@@ -56,14 +56,6 @@ try {
  * na biblioteca de quem está negativado. Conferido ANTES de gravar qualquer
  * linha, para que a checagem não valha só até o módulo em que falhou.
  */
-/**
- * `Set<string>` explícito, não inferido.
- *
- * `new Set(MODULOS_EF.map(m => m.slug))` infere `Set<"ef12-…" | "ef35-…" | …>`
- * com os 83 slugs literais, e aí `.has(m.preRequisitoSlug)` não compila: o
- * campo é outra união de literais, e o TypeScript recusa comparar as duas.
- * O `tsx` não faz type-check, então isto passa no seed e só quebra no build.
- */
 const slugs = new Set<string>(MODULOS_EF.map((m) => m.slug))
 const avisos: string[] = []
 
@@ -161,13 +153,7 @@ for (const m of MODULOS_EF) {
 
   // `habilidades` é rastreabilidade da matriz do BC, não coluna — sai antes do
   // upsert, senão o Prisma recusa o argumento desconhecido.
-  //
-  // `tags` e `situacoes` são copiados porque chegam `readonly`: ao contrário de
-  // `modulos-em.ts`, o arquivo gerado do EF não declara o tipo do array, então
-  // o TypeScript infere tuplas literais e o Prisma exige `string[]` mutável.
-  // A cópia resolve aqui; a correção de raiz é o porter emitir a anotação.
-  const { telas, habilidades: _habilidades, ...resto } = m
-  const dados = { ...resto, tags: [...resto.tags], situacoes: [...resto.situacoes] }
+  const { telas, habilidades: _habilidades, ...dados } = m
   const salvo = await db.modulo.upsert({
     where: { slug: m.slug },
     create: { ...dados },

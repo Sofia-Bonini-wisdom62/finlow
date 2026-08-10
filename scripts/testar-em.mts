@@ -145,5 +145,10 @@ for (const m of MODULOS_EM) {
 
 const telas = MODULOS_EM.reduce((n, m) => n + m.telas.length, 0)
 const habilidades = new Set(MODULOS_EM.flatMap((m) => m.habilidades))
-console.log(`\n${MODULOS_EM.length} módulos · ${telas} telas · ${habilidades.size}/47 habilidades · ${falhas} falha(s)`)
+// "declaradas", não "cobertas": isto conta o que os módulos DIZEM cobrir, sem
+// abrir a matriz. O 47 era literal cravado aqui, o que fazia a linha parecer
+// uma verificação de cobertura sendo que os dois lados vinham do mesmo lugar.
+// Quem confronta com a matriz do BC é scripts/testar-matriz.mts.
+console.log(`\n${MODULOS_EM.length} módulos · ${telas} telas · ${habilidades.size} habilidades declaradas · ${falhas} falha(s)`)
+console.log(`(cobertura real: node --import tsx scripts/testar-matriz.mts)`)
 process.exit(falhas === 0 ? 0 : 1)

@@ -18,7 +18,21 @@ para quem chega de fora. Ele é a porta; esta pasta é a casa.
 | [`backlog-produto.md`](backlog-produto.md) | O que está na **fila**, na palavra de quem decidiu | Antes de começar algo novo |
 | [`backlog-trilha-t2.md`](backlog-trilha-t2.md) | Especificação dos módulos da Trilha (Temporada 2+) | Ao escrever conteúdo de aula |
 | [`matriz-bcb.md`](matriz-bcb.md) | A Matriz de Competências do Banco Central, lida e mapeada | Ao escrever ou revisar aula da trilha de Ensino Médio |
-| [`matriz-bcb-competencias.json`](matriz-bcb-competencias.json) | A mesma matriz em dado estruturado, para conferência por código | Ao verificar cobertura de habilidades |
+| [`matriz-bcb-competencias.json`](matriz-bcb-competencias.json) | A matriz em dado estruturado — **incompleta, ver aviso abaixo** | Nunca sozinha: rode `scripts/testar-matriz.mts` |
+
+> ⚠️ **`matriz-bcb-competencias.json` perdeu 31 entradas na extração do PDF.**
+> Tem 199 chaves, mas as sequências de cada faixa vão até 230 no total — faltam
+> 2 em EF12, 6 em EF35, 4 em EF67, 11 em EF89 e 8 em EM13. Não dá para completar
+> a partir do repositório: `matriz-bcb.md` cita só 15 códigos e nenhum dos que
+> faltam. Enquanto isso não for refeito a partir do documento do Banco Central,
+> **não use este arquivo como veredito de cobertura** — ele acusa como ausente
+> um código que existe na matriz de verdade.
+>
+> `scripts/testar-matriz.mts` mede o que dá para medir com honestidade: hoje os
+> 107 módulos escolares declaram 230 habilidades distintas, sem duplicata, e
+> cobrem **todos** os 199 códigos que o JSON conhece. Os 31 restantes batem
+> exatamente com os buracos do JSON — indício forte de que a cobertura é
+> integral e o defeito é do arquivo, não do conteúdo.
 | [`pagamento-antes-de-cobrar.md`](pagamento-antes-de-cobrar.md) | O que falta para sair do modo de teste e cobrar de verdade — quase tudo passo no painel da Stripe ou na Vercel | **Antes de trocar `sk_test` por `sk_live`** |
 | [`banco/`](banco/README.md) | O banco em SQL: arquitetura das tabelas, RLS e os dados de sistema (módulos, telas, indicadores) | Ao consultar o esquema sem abrir o Supabase, ou ao recriar o banco do zero |
 

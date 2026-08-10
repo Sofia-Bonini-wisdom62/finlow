@@ -1,7 +1,39 @@
 // GERADO por scripts/portar-ef.mts — não edite à mão.
 // Fonte: prisma/trilha-escolar-fonte.ts · decisões: prisma/editorial-ef.ts
 
-export const MODULOS_EF = [
+export interface TelaEF {
+  ordem: number
+  tipo: "conceito" | "cenario" | "quiz" | "input" | "resultado"
+  label: string
+  /** Orientação para quem conduz a turma. Não aparece para o aluno. */
+  mediacao: string | null
+  conteudo: unknown
+}
+
+export interface ModuloEF {
+  slug: string
+  titulo: string
+  subtitulo: string
+  /** Segmento escolar: "ef12" | "ef35" | "ef67" | "ef89" (lib/publico.ts). */
+  publico: string
+  blocoId: string
+  blocoRotulo: string
+  ordem: number
+  nivel: string
+  duracaoMin: number
+  pontos: number
+  tags: string[]
+  thumbnail: string
+  preRequisitoSlug: string | null
+  ehRevisao: boolean
+  situacoes: string[]
+  tipoPerfil: string
+  /** Habilidades da matriz do BC. Rastreabilidade — não é coluna. */
+  habilidades: string[]
+  telas: TelaEF[]
+}
+
+export const MODULOS_EF: ModuloEF[] = [
   {
     "slug": "ef12-o-dinheiro-serve-pra-que",
     "titulo": "O dinheiro serve pra quê",
@@ -9436,7 +9468,7 @@ export const MODULOS_EF = [
       "credito"
     ],
     "thumbnail": "/trilha/renda.png",
-    "preRequisitoSlug": "a-conta-do-negocio",
+    "preRequisitoSlug": "ef89-a-conta-do-negocio",
     "ehRevisao": false,
     "situacoes": [],
     "tipoPerfil": "ef89",
@@ -10701,4 +10733,4 @@ export const MODULOS_EF = [
       }
     ]
   }
-] as const
+]

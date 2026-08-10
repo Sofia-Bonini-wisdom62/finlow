@@ -7595,7 +7595,10 @@ export const TRILHA_ESCOLAR: ModuloSeed[] = [
     tags: ["marketing", "publicidade", "credito"],
     thumbnail: "/trilha/renda.png",
     estadoInicial: "travado",
-    destravadoPor: "a-conta-do-negocio",
+    // Faltava o prefixo do segmento, e o slug sem ele existe de verdade: é o
+    // módulo 21 do Ensino Médio. O pré-requisito apontava para outro público —
+    // aula de 8º/9º presa atrás de aula de EM, que aluno de fundamental não vê.
+    destravadoPor: "ef89-a-conta-do-negocio",
     habilidades: ["EF89LF48", "EF89LF49"],
     telas: [
       {

@@ -52,6 +52,26 @@ Plano 2026–2029 seguem entregues.
 | 4 | Separação gasto pessoal × trabalho | ✅ | `Transacao.escopo`, filtros no Painel/Análises |
 | 5 | Landing B2B + captação de leads | ✅ | `/empresas`, `/api/empresas/lead`, contagem em ops/metrics |
 
+## Trilha de Ensino Fundamental (06/08/2026, semeada em 07/08)
+
+83 módulos e 415 telas em quatro segmentos, cobrindo do 1º ao 9º ano.
+
+| Segmento | Anos | Módulos | Telas | Status |
+|---|---|---|---|---|
+| `ef12` | 1º e 2º | 5 | 25 | ✅ no banco |
+| `ef35` | 3º ao 5º | 22 | 110 | ✅ no banco |
+| `ef67` | 6º e 7º | 23 | 115 | ✅ no banco |
+| `ef89` | 8º e 9º | 33 | 165 | ✅ no banco |
+
+O conteúdo ficou **seis dias no repositório sem existir no banco**: havia
+portador (`portar-ef.mts`) e teste (`testar-ef.mts`), faltava o semeador. Nada
+acusou, porque o teste lê o arquivo, não o banco — e não havia nenhuma
+verificação que comparasse os dois. `scripts/semear-ef.mts` fecha isso.
+
+Como o resto da trilha escolar, nascem invisíveis: `filtroDeModulo()` é
+allowlist, então segmento novo não aparece sem alguém mudar `PUBLICO_ATUAL`.
+Total no banco hoje: **150 módulos, 801 telas** — o app enxerga 43.
+
 ## Trilha de Ensino Médio (05/08/2026)
 
 24 módulos cobrindo as 47 habilidades de EM da Matriz de Competências de
@@ -60,7 +80,7 @@ Letramento Financeiro (Banco Central / Aprender Valor, 2025), na mesma tabela
 
 | Promessa | Status | Onde |
 |---|---|---|
-| 24 módulos · 120 telas · 47/47 habilidades | ✅ | `prisma/modulos-em.ts` |
+| 24 módulos · 120 telas · 47 habilidades declaradas | ✅ | `prisma/modulos-em.ts` |
 | Gate de público (as aulas não vazam para o app adulto) | ✅ | `lib/publico.ts`, `scripts/testar-publico.mts` |
 | Porte da fonte para o contrato das telas | ✅ | `scripts/portar-em.mts` + `prisma/editorial-em.ts` |
 | Faixas de resultado que discriminam de verdade | ✅ | `formula: "valor_direto"`, `scripts/testar-em.mts` |
