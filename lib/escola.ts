@@ -104,6 +104,25 @@ export async function exigirPapel(
 }
 
 /**
+ * Os segmentos que este vínculo pode ensinar/gerir.
+ *
+ * `null` = SEM RESTRIÇÃO: adm sempre, e professor sem nenhuma competência
+ * registrada. A competência REDUZ (o verbo do quadro branco) — ela nunca
+ * concede o que já era de todos. Uma escola que não usa competências continua
+ * funcionando exatamente como antes, e é isso que permite o piloto começar
+ * sem o adm classificar professor por professor.
+ */
+export async function segmentosDoProfessor(v: VinculoEscolar): Promise<string[] | null> {
+  if (v.papel !== "professor") return null
+  const linhas = await db.competenciaProfessor.findMany({
+    where: { userId: v.userId, escolaId: v.escolaId },
+    select: { segmento: true },
+  })
+  if (linhas.length === 0) return null
+  return linhas.map((l) => l.segmento)
+}
+
+/**
  * Professor só gere a própria turma; adm gere qualquer turma da escola.
  *
  * A checagem de escola importa tanto quanto a de dono: sem o

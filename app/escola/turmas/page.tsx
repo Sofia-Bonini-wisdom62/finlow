@@ -2,7 +2,7 @@ import Link from "next/link"
 import { redirect } from "next/navigation"
 import { auth } from "@/lib/auth"
 import { db } from "@/lib/db"
-import { vinculoEscolar } from "@/lib/escola"
+import { vinculoEscolar, segmentosDoProfessor } from "@/lib/escola"
 import { SEGMENTOS_ESCOLARES } from "@/lib/publico"
 import { NovaTurma } from "@/components/escola/NovaTurma"
 
@@ -16,6 +16,12 @@ export default async function TurmasPage() {
   if (!session?.user?.id) redirect("/login")
   const v = await vinculoEscolar(session.user.id)
   if (!v || v.papel === "aluno") redirect("/chat")
+
+  // Competência reduz o select da turma nova. null = todos os segmentos.
+  const permitidos = await segmentosDoProfessor(v)
+  const segmentosDoSelect = permitidos
+    ? SEGMENTOS_ESCOLARES.filter((s) => permitidos.includes(s.id)).map((s) => ({ ...s }))
+    : undefined
 
   const turmas = await db.turma.findMany({
     where: v.papel === "adm" ? { escolaId: v.escolaId } : { escolaId: v.escolaId, professorId: v.userId },
@@ -38,7 +44,7 @@ export default async function TurmasPage() {
         </h2>
       </div>
 
-      <NovaTurma />
+      <NovaTurma segmentos={segmentosDoSelect} />
 
       {turmas.length === 0 ? (
         <p className="text-sm text-fl-ink/60">

@@ -3,6 +3,7 @@ import { auth } from "@/lib/auth"
 import { db } from "@/lib/db"
 import { vinculoEscolar } from "@/lib/escola"
 import { GerarConvite } from "@/components/escola/GerarConvite"
+import { CompetenciasProfessor } from "@/components/escola/CompetenciasProfessor"
 
 /** Só o adm: professores da escola e o convite para entrar mais um. */
 export default async function ProfessoresPage() {
@@ -16,7 +17,13 @@ export default async function ProfessoresPage() {
       where: { escolaId: v.escolaId, papel: "professor" },
       select: {
         user: {
-          select: { id: true, nome: true, email: true, turmasQueLeciona: { select: { id: true } } },
+          select: {
+            id: true,
+            nome: true,
+            email: true,
+            turmasQueLeciona: { select: { id: true } },
+            competencias: { where: { escolaId: v.escolaId }, select: { segmento: true } },
+          },
         },
       },
       orderBy: { criadoEm: "asc" },
@@ -62,11 +69,19 @@ export default async function ProfessoresPage() {
         ) : (
           <ul className="mt-3 divide-y divide-fl-sand">
             {professores.map((p) => (
-              <li key={p.user.id} className="flex items-baseline justify-between py-2 text-sm">
-                <span className="text-fl-ink">{p.user.nome ?? p.user.email}</span>
-                <span className="text-fl-ink/50">
-                  {p.user.turmasQueLeciona.length} turma{p.user.turmasQueLeciona.length === 1 ? "" : "s"}
-                </span>
+              <li key={p.user.id} className="py-3 text-sm">
+                <div className="flex items-baseline justify-between">
+                  <span className="text-fl-ink">{p.user.nome ?? p.user.email}</span>
+                  <span className="text-fl-ink/50">
+                    {p.user.turmasQueLeciona.length} turma{p.user.turmasQueLeciona.length === 1 ? "" : "s"}
+                  </span>
+                </div>
+                <div className="mt-2">
+                  <CompetenciasProfessor
+                    professorId={p.user.id}
+                    ativas={p.user.competencias.map((c) => c.segmento)}
+                  />
+                </div>
               </li>
             ))}
           </ul>

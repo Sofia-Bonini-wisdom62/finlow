@@ -4,12 +4,22 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { SEGMENTOS_ESCOLARES } from "@/lib/publico"
 
-/** Formulário de turma nova. Quem valida de verdade é a rota. */
-export function NovaTurma() {
+/**
+ * Formulário de turma nova. Quem valida de verdade é a rota.
+ *
+ * `segmentos` chega da página (server), já reduzido pela competência do
+ * professor — o select só mostra o que a API aceitaria. Sem a prop, mostra
+ * todos (adm, ou professor sem competência registrada).
+ */
+export function NovaTurma({
+  segmentos = [...SEGMENTOS_ESCOLARES],
+}: {
+  segmentos?: { id: string; nome: string }[]
+}) {
   const router = useRouter()
   const [aberto, setAberto] = useState(false)
   const [nome, setNome] = useState("")
-  const [segmento, setSegmento] = useState<string>(SEGMENTOS_ESCOLARES[0].id)
+  const [segmento, setSegmento] = useState<string>(segmentos[0]?.id ?? "")
   const [serie, setSerie] = useState("")
   const [erro, setErro] = useState<string | null>(null)
   const [ocupado, setOcupado] = useState(false)
@@ -67,7 +77,7 @@ export function NovaTurma() {
         className={inputClass}
       />
       <select value={segmento} onChange={(e) => setSegmento(e.target.value)} className={inputClass}>
-        {SEGMENTOS_ESCOLARES.map((s) => (
+        {segmentos.map((s) => (
           <option key={s.id} value={s.id}>
             {s.nome}
           </option>

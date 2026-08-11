@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
-import { exigirPapel } from "@/lib/escola"
+import { exigirPapel, segmentosDoProfessor } from "@/lib/escola"
 import { ehPublico, PUBLICO_ATUAL } from "@/lib/publico"
 
 export const dynamic = "force-dynamic"
@@ -45,6 +45,21 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(
       { codigo: "SEGMENTO", erro: "Escolhe o segmento da turma.", error: "Escolhe o segmento da turma." },
       { status: 400 }
+    )
+  }
+
+  // Competência reduz o que o professor ensina (quadro branco). null = sem
+  // restrição. Conferido AQUI e não só no select da tela — esconder opção no
+  // cliente é cortesia; quem decide é a API.
+  const permitidos = await segmentosDoProfessor(v)
+  if (permitidos && !permitidos.includes(segmento)) {
+    return NextResponse.json(
+      {
+        codigo: "FORA_DA_COMPETENCIA",
+        erro: "Esse segmento está fora das suas competências. Fala com a administração.",
+        error: "Esse segmento está fora das suas competências. Fala com a administração.",
+      },
+      { status: 403 }
     )
   }
 
