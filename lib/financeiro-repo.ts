@@ -81,9 +81,19 @@ export async function listarTransacoes(
     extratoImportId?: string
     /** Separação pessoal × trabalho (Módulo Avançado). Sem ele, vem tudo. */
     escopo?: "pessoal" | "trabalho"
+    /**
+     * Intervalo aberto [de, ate]. Existe para a conferência de duplicata do
+     * extrato, que precisa exatamente do período do arquivo — nem o mês
+     * fechado que `mes`/`ano` dão, nem o histórico inteiro.
+     *
+     * Ignorado quando `mes`/`ano` vêm juntos: dois filtros de data na mesma
+     * consulta é ambiguidade, e o par mês/ano é o mais antigo e mais usado.
+     */
+    de?: Date
+    ate?: Date
   }
 ): Promise<TransacaoClara[]> {
-  const { mes, ano, ordem = "asc", comCategoria = true, incluir = "confirmadas", extratoImportId, escopo } = opcoes ?? {}
+  const { mes, ano, ordem = "asc", comCategoria = true, incluir = "confirmadas", extratoImportId, escopo, de, ate } = opcoes ?? {}
 
   const filtroConfirmacao =
     incluir === "todas" ? {} : { confirmado: incluir === "confirmadas" }
@@ -93,7 +103,9 @@ export async function listarTransacoes(
   const filtroData =
     mes && ano && mes >= 1 && mes <= 12 && ano > 2000
       ? { data: { gte: new Date(ano, mes - 1, 1), lt: new Date(ano, mes, 1) } }
-      : {}
+      : de || ate
+        ? { data: { ...(de ? { gte: de } : {}), ...(ate ? { lte: ate } : {}) } }
+        : {}
 
   const linhas = await db.transacao.findMany({
     where: {

@@ -53,8 +53,13 @@ model User {
   sessions              Session[]
 }
 
-/// Consolidação de investimentos (Módulo Avançado, persona C). Entrada
-/// MANUAL — Open Finance é outra frente e este repo não toca nisso.
+/// Consolidação de investimentos (Módulo Avançado, persona C). Entrada MANUAL.
+///
+/// O texto anterior dizia "Open Finance é outra frente e este repo não toca
+/// nisso". Isso deixou de ser verdade em 05/08/2026, quando o conector entrou
+/// no backlog deste repo — o README e estado-do-produto.md mudaram na época e
+/// esta linha ficou para trás. Continua manual porque o conector não foi
+/// construído, que é coisa diferente de não ser deste repo.
 ///
 /// `nome`, `instituicao` e `valorAtual` são CIFRADOS: passe por
 /// lib/investimento-repo.ts, nunca por db.investimento direto (só deleteMany —
