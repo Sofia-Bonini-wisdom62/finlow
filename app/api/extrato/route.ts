@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { getUserIdOr401, checarConsentimento } from "@/lib/painel"
-import { criarTransacoesDeExtrato } from "@/lib/financeiro-repo"
+import { criarTransacoesDeExtrato, listarTransacoes } from "@/lib/financeiro-repo"
+import { acharDuplicatas, type Duplicata } from "@/lib/extrato/duplicatas"
 import { parsearExtratoParalelo } from "@/lib/extrato/parsear"
 import { validarExtrato, limitarA3Meses } from "@/lib/extrato/validar"
 import { calcularAjuste } from "@/lib/extrato/ajuste"
@@ -196,6 +197,57 @@ export async function POST(req: NextRequest) {
     const { extrato, cortou } = limitarA3Meses(r.extrato)
     const ajuste = calcularAjuste(extrato, veredito)
 
+    /**
+     * ---- o que dessas linhas JÁ está lançado ----
+     *
+     * Antes desta conferência, subir dois extratos com período sobreposto
+     * gravava o trecho comum duas vezes e o dash contava o dobro, sem nada na
+     * tela dizendo isso. Como o corte é de 3 meses, sobreposição é o caso
+     * comum.
+     *
+     * Compara só contra o que está CONFIRMADO: linha pendente de outro import
+     * ainda não conta em lugar nenhum, e pode nunca contar — a pessoa pode
+     * descartá-la. Tratá-la como "já lançado" mandaria desmarcar por causa de
+     * algo que talvez nunca exista.
+     *
+     * A janela é o período do próprio extrato, com um dia de folga de cada
+     * lado: o extrato grava às 12:00Z, mas lançamento manual entra na hora em
+     * que foi feito, e a folga garante que o dia inteiro caiba na consulta. O
+     * casamento continua exigindo o mesmo dia UTC — a folga só amplia o que é
+     * lido, não o que casa.
+     */
+    const paraComparar = extrato.transacoes.map((t) => ({
+      data: new Date(`${t.data}T12:00:00Z`),
+      tipo: t.valor >= 0 ? "receita" : "despesa",
+      valor: Math.abs(t.valor),
+      descricao: t.descricaoLimpa,
+    }))
+
+    let duplicatas: Duplicata[] = []
+    // Extrato sem nenhuma linha não tem o que conferir — e a conferência de
+    // lista vazia é verdadeira, não falha: `Math.min()` de lista vazia seria
+    // Infinity, a janela viraria Invalid Date, e a consulta, um erro.
+    let duplicatasConferidas = true
+    if (paraComparar.length > 0) {
+      try {
+        const dias = paraComparar.map((t) => t.data.getTime())
+        const de = new Date(Math.min(...dias) - 86_400_000)
+        const ate = new Date(Math.max(...dias) + 86_400_000)
+        const jaLancadas = await listarTransacoes(userId, {
+          de, ate, incluir: "confirmadas", comCategoria: false,
+        })
+        duplicatas = acharDuplicatas(jaLancadas, paraComparar)
+      } catch (e) {
+        // Falhar aqui NÃO pode derrubar o import — o extrato ainda é útil sem a
+        // conferência. Mas também não pode passar em silêncio: a tela precisa
+        // dizer que não conferiu, senão a ausência de aviso é lida como "não há
+        // duplicata", que é a mensagem errada.
+        duplicatasConferidas = false
+        console.warn(`[extrato] ${registro.id} conferência de duplicata falhou:`, (e as Error)?.message)
+      }
+    }
+    const porIndice = new Map(duplicatas.map((d) => [d.indice, d]))
+
     // ---- grava, sempre não confirmado ----
     const mapaCat = await mapearCategorias(userId, extrato.transacoes.map((t) => t.categoria))
     const criadas = await criarTransacoesDeExtrato(
@@ -246,8 +298,24 @@ export async function POST(req: NextRequest) {
       ajuste,
       cortadoPara3Meses: cortou,
       resumo: resumir(extrato),
+      /** `conferido: false` quer dizer que a checagem não rodou — diferente de
+       *  ter rodado e não achado nada. A tela distingue as duas. */
+      duplicatas: {
+        conferido: duplicatasConferidas,
+        exatas: duplicatas.filter((d) => d.confianca === "exata").length,
+        provaveis: duplicatas.filter((d) => d.confianca === "provavel").length,
+      },
       // id do banco casado com a linha lida, para a tela permitir desmarcar
-      transacoes: extrato.transacoes.map((t, i) => ({ ...t, id: criadas[i]?.id })),
+      transacoes: extrato.transacoes.map((t, i) => ({
+        ...t,
+        id: criadas[i]?.id,
+        duplicata: porIndice.get(i)
+          ? {
+              confianca: porIndice.get(i)!.confianca,
+              jaLancadoEm: porIndice.get(i)!.jaLancadoEm.toISOString().slice(0, 10),
+            }
+          : null,
+      })),
       custo: { brl: custo.brl, tokensEntrada, tokensSaida },
     })
   } catch (e) {

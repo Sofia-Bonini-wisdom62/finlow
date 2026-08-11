@@ -23,11 +23,53 @@ Criar a possibilidade de conexão Open Finance, onde o usuário pode conectar os
 bancos direto no app, para puxar extrato, saldo atual, contas fixas e etc,
 atualizando em tempo real ou diariamente.
 
-> ⚠️ **Muda uma decisão registrada.** Até 05/08/2026 o Open Finance estava
+> ~~⚠️ **Muda uma decisão registrada.** Até 05/08/2026 o Open Finance estava
 > documentado como *fora deste repo* (outra frente), no `README.md` e na tabela
 > de [`estado-do-produto.md`](estado-do-produto.md). Entrar aqui significa que o
 > repo passa a tocar no tema — e que a frase do README sobre não tocar precisa
-> sair no mesmo commit em que o trabalho começar.
+> sair no mesmo commit em que o trabalho começar.~~
+>
+> ✅ **Essa trava caiu, e já tinha caído.** A documentação que o item contrariava
+> mudou no commit `e15e4c4`, que está na main: `README.md`,
+> [`estado-do-produto.md`](estado-do-produto.md) e
+> [`resumo-de-funcao.md`](resumo-de-funcao.md) já descrevem o conector como
+> planejado deste repo. O último resto — o comentário de `Investimento` no
+> `schema.prisma`, que ainda dizia "este repo não toca nisso" — caiu em
+> 11/08/2026. **Não há mais decisão registrada sendo contrariada.**
+>
+> 🔴 **O que ainda trava, e é decisão sua, não de código:** Open Finance no
+> Brasil não se conecta sozinho. É preciso escolher um agregador regulado
+> (Pluggy, Belvo, Klavi ou equivalente), o que traz contrato, custo por conta
+> conectada e credencial de produção. Nenhuma dessas três coisas se decide
+> dentro do repositório, e por isso o conector não foi começado.
+>
+> 🟢 **O que já dá para construir sem essa decisão, e foi construído:**
+> a metade da ingestão. Ver "Conferência de duplicata" abaixo — sincronizar
+> diariamente significa, por definição, receber a mesma transação de novo todo
+> dia, e sem deduplicação um conector multiplicaria o histórico da pessoa pelo
+> número de sincronizações.
+
+### ~~Conferência de duplicata na entrada de dados~~ ✅ 11/08/2026
+
+Primeira metade do conector, e independente de qual agregador for escolhido:
+o extrato passa a conferir o que chega contra o que já está lançado.
+
+> **Era defeito de hoje, não só preparo para amanhã.** Nada no caminho do
+> extrato comparava as linhas novas com o histórico. Como `limitarA3Meses` corta
+> em 3 meses, subir jan–mar e depois fev–abr era o caso comum — e gravava
+> fevereiro e março duas vezes, com o dash contando o dobro e nenhum sinal na
+> tela.
+>
+> A regra mora em [`lib/extrato/duplicatas.ts`](../lib/extrato/duplicatas.ts),
+> pura e sem banco, porque `descricao` e `valor` são cifrados com IV aleatório:
+> o mesmo texto vira cifra diferente a cada gravação, então não existe índice
+> único nem comparação em SQL que resolva — tem de ser em memória, depois de
+> decifrar. `scripts/testar-duplicatas.mts` exercita as duas direções sem banco.
+>
+> **Nunca apaga.** Linha com descrição igual chega desmarcada; mesmo dia e valor
+> com outro nome chega marcada e sinalizada. Repetição legítima existe (dois
+> cafés de R$ 12 no mesmo dia), e desmarcar linha verdadeira faz faltar dinheiro
+> no total tanto quanto duplicata faz sobrar.
 
 ## Melhorar prompt e personalização do agente
 

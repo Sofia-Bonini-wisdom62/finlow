@@ -19,6 +19,9 @@ interface TransacaoLida {
   valor: number
   categoria: string
   recorrente: boolean
+  /** Preenchido quando essa linha parece já estar lançada — ver
+   *  lib/extrato/duplicatas.ts. `null` quando não parece. */
+  duplicata: { confianca: "exata" | "provavel"; jaLancadoEm: string } | null
 }
 
 interface Resultado {
@@ -31,6 +34,7 @@ interface Resultado {
   motivoDivergencia: string | null
   ajuste: Ajuste | null
   cortadoPara3Meses: boolean
+  duplicatas: { conferido: boolean; exatas: number; provaveis: number }
   resumo: {
     totalEntradas: number
     totalSaidas: number
@@ -121,8 +125,20 @@ export default function ExtratoPage() {
         return
       }
       setResultado(d)
-      // tudo vem marcado: o caminho comum é aceitar, e desmarcar é a exceção
-      setAceitos(new Set(d.transacoes.map((t: TransacaoLida) => t.id)))
+      // Tudo vem marcado — o caminho comum é aceitar, e desmarcar é a exceção.
+      //
+      // A exceção é a linha que já está lançada com a MESMA descrição: aí o
+      // padrão se inverte, porque aceitar é que passa a ser o caminho errado.
+      // Duplicata só "provável" (mesmo dia e valor, outro nome) continua
+      // marcada: ali a evidência não sustenta desmarcar sozinha, e a linha
+      // ganha aviso em vez de decisão tomada por ela.
+      setAceitos(
+        new Set(
+          d.transacoes
+            .filter((t: TransacaoLida) => t.duplicata?.confianca !== "exata")
+            .map((t: TransacaoLida) => t.id)
+        )
+      )
     } catch (e) {
       const segundos = Math.round((Date.now() - inicio) / 1000)
       // Erro de leitura local (PDF com senha, formato não suportado) tem
@@ -287,6 +303,40 @@ export default function ExtratoPage() {
                 O arquivo tinha mais de 3 meses, trouxe só os 3 mais recentes.
               </p>
             )}
+
+            {/* Extrato com período sobreposto é o caso comum, não o raro. Dizer
+                quantas linhas já existem — e que elas já vêm desmarcadas — é o
+                que evita a pessoa confirmar o mesmo mês duas vezes sem ver. */}
+            {resultado.duplicatas.conferido
+              ? (resultado.duplicatas.exatas > 0 || resultado.duplicatas.provaveis > 0) && (
+                  <p className="mt-2 rounded-xl bg-fl-accent/10 px-3 py-2 text-[12.5px] leading-snug text-fl-accent-dark">
+                    {resultado.duplicatas.exatas > 0 && (
+                      <>
+                        <strong className="font-semibold">
+                          {resultado.duplicatas.exatas === 1
+                            ? "1 lançamento já está no seu histórico"
+                            : `${resultado.duplicatas.exatas} lançamentos já estão no seu histórico`}
+                        </strong>{" "}
+                        — já {resultado.duplicatas.exatas === 1 ? "vem desmarcado" : "vêm desmarcados"} para não contar
+                        duas vezes.{" "}
+                      </>
+                    )}
+                    {resultado.duplicatas.provaveis > 0 && (
+                      <>
+                        Outr{resultado.duplicatas.provaveis === 1 ? "o" : "os"}{" "}
+                        {resultado.duplicatas.provaveis} caem no mesmo dia e valor de algo que você já lançou, com outro
+                        nome — deixei marcad{resultado.duplicatas.provaveis === 1 ? "o" : "os"} e sinalizad
+                        {resultado.duplicatas.provaveis === 1 ? "o" : "os"} na lista.
+                      </>
+                    )}
+                  </p>
+                )
+              : (
+                <p className="mt-2 rounded-xl bg-fl-accent/10 px-3 py-2 text-[12.5px] leading-snug text-fl-accent-dark">
+                  Não consegui conferir se algum desses lançamentos já está no seu histórico. Se você já subiu um
+                  extrato deste período, vale conferir antes de confirmar.
+                </p>
+              )}
           </header>
 
           {/* O gancho: assinatura esquecida vem ANTES da lista, porque é o
@@ -375,6 +425,16 @@ export default function ExtratoPage() {
                           {dataCurta(t.data)}
                           {t.recorrente ? " · recorrente" : ""}
                         </span>
+                        {/* O motivo fica na linha, não só no topo: quem rola
+                            direto para a lista precisa entender ali por que
+                            aquela linha chegou desmarcada. */}
+                        {t.duplicata && (
+                          <span className="mt-0.5 block text-[11.5px] font-semibold text-fl-accent-dark">
+                            {t.duplicata.confianca === "exata"
+                              ? "Já lançado em " + dataCurta(t.duplicata.jaLancadoEm)
+                              : "Mesmo dia e valor de algo já lançado"}
+                          </span>
+                        )}
                       </span>
                       <span
                         className={`shrink-0 text-sm font-semibold tabular-nums ${
