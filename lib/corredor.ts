@@ -7,6 +7,7 @@ import {
   PUBLICO_ATUAL,
 } from "@/lib/publico"
 import { licoesExistentes, type NumeroLicao } from "@/lib/licoes"
+import { modulosConcedidos } from "@/lib/escola-acesso"
 
 /**
  * O CORREDOR: quem está liberado e quem está trancado.
@@ -145,7 +146,14 @@ export async function montarCorredor(userId: string): Promise<Corredor> {
       if (!sequencia.includes(r.moduloId)) sequencia.push(r.moduloId)
     }
   } else {
-    for (const m of modulos) sequencia.push(m.id)
+    // Concessão da turma (lib/escola-acesso.ts): null = trilha completa.
+    // Módulo fora da concessão fica FORA da sequência — cai no acervo abaixo,
+    // trancado com o motivo escolar, e não trava os seguintes: o corredor é
+    // só o que a turma liberou.
+    const concedidos = await modulosConcedidos(userId)
+    for (const m of modulos) {
+      if (!concedidos || concedidos.has(m.id)) sequencia.push(m.id)
+    }
   }
 
   const porId = new Map(modulos.map((m) => [m.id, m]))
@@ -222,7 +230,11 @@ export async function montarCorredor(userId: string): Promise<Corredor> {
       licoesConcluidas: concluidas,
       licoesTotal: existentes.length,
       licoes,
-      bloqueio: fechado ? null : "Ainda não entrou na sua trilha.",
+      bloqueio: fechado
+        ? null
+        : publico === PUBLICO_ATUAL
+          ? "Ainda não entrou na sua trilha."
+          : "Sua turma ainda não liberou esta parte.",
       bloqueadoPor: null,
       proximaLicao: null,
     })

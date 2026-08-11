@@ -2,8 +2,9 @@ import { redirect, notFound } from "next/navigation"
 import { auth } from "@/lib/auth"
 import { db } from "@/lib/db"
 import { vinculoEscolar } from "@/lib/escola"
-import { SEGMENTOS_ESCOLARES } from "@/lib/publico"
+import { SEGMENTOS_ESCOLARES, filtroDeModulo, ehPublico } from "@/lib/publico"
 import { GerarConvite } from "@/components/escola/GerarConvite"
+import { ConcessaoTrilha, type ItemConcessao } from "@/components/escola/ConcessaoTrilha"
 
 /**
  * A página da turma: alunos, convite e (nas próximas etapas) concessões de
@@ -43,11 +44,52 @@ export default async function TurmaPage({ params }: { params: Promise<{ turmaId:
         orderBy: { criadoEm: "desc" },
         take: 3,
       },
+      acessos: { select: { tipo: true, refId: true } },
     },
   })
   if (!turma) notFound()
 
   const segmento = SEGMENTOS_ESCOLARES.find((s) => s.id === turma.segmento)?.nome ?? turma.segmento
+
+  /**
+   * Os itens concedíveis do segmento: EF por BLOCO; EM (sem bloco) por
+   * MÓDULO. A mesma lista serve para desenhar e para saber o que está ativo.
+   */
+  const modulosDoSegmento = ehPublico(turma.segmento)
+    ? await db.modulo.findMany({
+        where: filtroDeModulo(turma.segmento),
+        select: { id: true, titulo: true, blocoId: true, blocoRotulo: true, ordem: true },
+        orderBy: { ordem: "asc" },
+      })
+    : []
+  const ativos = new Set(turma.acessos.map((a) => `${a.tipo}:${a.refId}`))
+  const temBlocos = modulosDoSegmento.some((m) => m.blocoId)
+
+  let itens: ItemConcessao[]
+  if (temBlocos) {
+    const blocos = new Map<string, { rotulo: string; quantos: number }>()
+    for (const m of modulosDoSegmento) {
+      if (!m.blocoId) continue
+      const b = blocos.get(m.blocoId) ?? { rotulo: m.blocoRotulo ?? m.blocoId, quantos: 0 }
+      b.quantos++
+      blocos.set(m.blocoId, b)
+    }
+    itens = [...blocos].map(([refId, b]) => ({
+      tipo: "bloco" as const,
+      refId,
+      rotulo: b.rotulo,
+      detalhe: `${b.quantos} aula${b.quantos === 1 ? "" : "s"}`,
+      ativo: ativos.has(`bloco:${refId}`),
+    }))
+  } else {
+    itens = modulosDoSegmento.map((m) => ({
+      tipo: "modulo" as const,
+      refId: m.id,
+      rotulo: m.titulo,
+      detalhe: `aula ${m.ordem}`,
+      ativo: ativos.has(`modulo:${m.id}`),
+    }))
+  }
 
   return (
     <div className="space-y-5">
@@ -77,6 +119,18 @@ export default async function TurmaPage({ params }: { params: Promise<{ turmaId:
             ))}
           </ul>
         )}
+      </section>
+
+      <section className="rounded-2xl border border-fl-sand bg-fl-card p-5">
+        <h3 className="text-base font-semibold text-fl-ink">Trilha liberada</h3>
+        <p className="mt-1 text-sm text-fl-ink/60">
+          {temBlocos
+            ? "Libere a trilha bloco a bloco, no ritmo das suas aulas."
+            : "Libere a trilha aula a aula, no ritmo das suas aulas."}
+        </p>
+        <div className="mt-3">
+          <ConcessaoTrilha turmaId={turma.id} itens={itens} restrito={turma.acessos.length > 0} />
+        </div>
       </section>
 
       <section className="rounded-2xl border border-fl-sand bg-fl-card p-5">
