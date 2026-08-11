@@ -4,7 +4,7 @@ import { auth } from "@/lib/auth"
 import { creditar, pontosPorConclusao, pontosPorLicao, ajustarPorPublico } from "@/lib/pontos"
 import { montarLicoes, licoesExistentes } from "@/lib/licoes"
 import { podeAbrir } from "@/lib/corredor"
-import { filtroExploravel, PUBLICO_ATUAL } from "@/lib/publico"
+import { filtroExploravel, publicoDoUsuario, PUBLICO_ATUAL } from "@/lib/publico"
 
 export const dynamic = "force-dynamic"
 
@@ -99,17 +99,22 @@ export async function POST(req: NextRequest) {
     }
 
     /**
-     * O público e o valor do módulo, buscados UMA vez.
+     * O público do MÓDULO e o público da PESSOA, buscados UMA vez.
      *
-     * O público entra no crédito das duas pontas — lição e módulo —, e precisa
-     * ser lido antes da primeira: aula de outra trilha paga menos, e reduzir só
+     * Os dois entram no crédito das duas pontas — lição e módulo —, e precisam
+     * ser lidos antes da primeira: aula de outra trilha paga menos, e reduzir só
      * o fechamento do módulo deixaria as 4 lições pagando cheio, que é onde
-     * está a maior parte dos pontos.
+     * está a maior parte dos pontos. Desde 11/08/2026 a régua é RELATIVA: o
+     * aluno de escola paga cheio na aula do próprio segmento e 1/4 na adulta —
+     * o espelho exato do adulto explorando a escolar.
      */
-    const modulo = await db.modulo.findFirst({
-      where: { id: moduloId, ...filtroExploravel() },
-      select: { pontos: true, publico: true },
-    })
+    const [modulo, publicoDaPessoa] = await Promise.all([
+      db.modulo.findFirst({
+        where: { id: moduloId, ...filtroExploravel() },
+        select: { pontos: true, publico: true },
+      }),
+      publicoDoUsuario(userId),
+    ])
 
     /**
      * Quem confere é o SERVIDOR, contra o gabarito do banco, e só os quizzes
@@ -155,7 +160,11 @@ export async function POST(req: NextRequest) {
       userId,
       "licao_concluida",
       `${moduloId}:${numero}`,
-      ajustarPorPublico(pontosPorLicao(acertos, quizzes.length), modulo?.publico ?? PUBLICO_ATUAL)
+      ajustarPorPublico(
+        pontosPorLicao(acertos, quizzes.length),
+        modulo?.publico ?? PUBLICO_ATUAL,
+        publicoDaPessoa
+      )
     )
 
     // ---- o módulo fecha quando a última lição fecha ----
@@ -187,7 +196,8 @@ export async function POST(req: NextRequest) {
         moduloId,
         ajustarPorPublico(
           pontosPorConclusao(somaAcertos, somaQuiz, modulo?.pontos),
-          modulo?.publico ?? PUBLICO_ATUAL
+          modulo?.publico ?? PUBLICO_ATUAL,
+          publicoDaPessoa
         )
       )
     }

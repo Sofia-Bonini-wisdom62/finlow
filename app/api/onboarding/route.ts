@@ -6,7 +6,7 @@ import { listarMemorias, guardarMemorias, type TipoMemoria } from "@/lib/memoria
 import { promptOnboarding } from "@/lib/prompts/onboarding"
 import { montarContexto } from "@/lib/contexto-financeiro"
 import { ativarIndicacaoSeHouver } from "@/lib/indicacao"
-import { filtroDeModulo } from "@/lib/publico"
+import { filtroDeModulo, publicoDoUsuario } from "@/lib/publico"
 
 export const dynamic = "force-dynamic"
 // Resposta de chat leva 5–15s. 60 dá folga sem deixar um travamento
@@ -74,7 +74,7 @@ export async function POST(req: NextRequest) {
     // consegue terminar recomendando uma aula de verdade — que é o ponto dele —
     // e um slug inventado passaria sem ninguém conferir.
     const modulos = await db.modulo.findMany({
-      where: filtroDeModulo(),
+      where: filtroDeModulo(await publicoDoUsuario(userId)),
       select: { slug: true, titulo: true },
       orderBy: [{ tipoPerfil: "asc" }, { ordem: "asc" }],
     })

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { getUserIdOr401 } from "@/lib/painel"
-import { listarRanking, apelidoValido } from "@/lib/pontos"
+import { listarRanking, rankingEscolar, apelidoValido } from "@/lib/pontos"
 import { Prisma } from "@prisma/client"
 
 export const dynamic = "force-dynamic"
@@ -27,13 +27,20 @@ export async function GET() {
 
     // A lista só vem para quem está dentro. Ver o ranking sem participar
     // transforma em vitrine o que devia ser troca: quem olha não é olhado.
-    const linhas = eu?.rankingOptIn ? await listarRanking(userId) : []
+    //
+    // O rank ESCOLAR tem outra régua (rankingEscolar, lib/pontos.ts): quem
+    // liga é o professor, por turma — vem independente do opt-in global.
+    const [linhas, escolar] = await Promise.all([
+      eu?.rankingOptIn ? listarRanking(userId) : Promise.resolve([]),
+      rankingEscolar(userId),
+    ])
 
     return NextResponse.json({
       participando: !!eu?.rankingOptIn,
       apelido: eu?.apelido ?? null,
       meusPontos: eu?.pontos ?? 0,
       linhas,
+      escolar,
     })
   } catch (e) {
     console.error("[ranking] GET", (e as Error)?.message)

@@ -1,10 +1,22 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { signIn } from "next-auth/react"
 import { BotaoGoogle } from "@/components/auth/BotaoGoogle"
+
+/**
+ * O convite de escola chega por COOKIE (plantado em /convite/[codigo]), não
+ * por query: quem fecha a aba e volta amanhã ainda cai na turma certa. O
+ * banner pergunta à API o que o cookie diz — a página não decide nada.
+ */
+interface Convite {
+  papel: string
+  escolaNome: string
+  turmaNome: string | null
+  recusa: string | null
+}
 
 // máscara DD/MM/AAAA — insere as barras enquanto digita
 function maskData(v: string): string {
@@ -35,8 +47,19 @@ export default function CadastroPage() {
   const [email, setEmail] = useState("")
   const [senha, setSenha] = useState("")
   const [dataNascimento, setDataNascimento] = useState("")
+  const [apelido, setApelido] = useState("")
+  const [convite, setConvite] = useState<Convite | null>(null)
   const [erro, setErro] = useState<string | null>(null)
   const [enviando, setEnviando] = useState(false)
+
+  useEffect(() => {
+    fetch("/api/convite/preview")
+      .then((r) => r.json())
+      .then((d) => {
+        if (d?.existe) setConvite(d)
+      })
+      .catch(() => {})
+  }, [])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -57,7 +80,7 @@ export default function CadastroPage() {
       const res = await fetch("/api/cadastro", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, email, senha, dataNascimento: dataISO }),
+        body: JSON.stringify({ nome, email, senha, dataNascimento: dataISO, apelido: apelido || undefined }),
       })
 
       const data = await res.json()
@@ -74,7 +97,9 @@ export default function CadastroPage() {
         return
       }
 
-      router.push("/onboarding")
+      // Professor cai direto na superfície da escola; todo o resto (aluno
+      // inclusive) passa pelo onboarding normal, que é pulável.
+      router.push(data.escolaPapel === "professor" ? "/escola" : "/onboarding")
     } catch {
       setErro("Sem conexão. Tenta de novo?")
       setEnviando(false)
@@ -98,6 +123,23 @@ export default function CadastroPage() {
         <p className="mt-1 text-sm" style={{ color: "var(--fl-ink-2)" }}>
           Pra salvar seu perfil e seu progresso na trilha.
         </p>
+
+        {convite && !convite.recusa && (
+          <div className="mt-4 rounded-xl border border-[var(--fl-500)]/30 bg-[var(--fl-500)]/10 px-4 py-3 text-sm text-fl-ink">
+            Você está entrando na <strong>{convite.escolaNome}</strong>
+            {convite.papel === "aluno" && convite.turmaNome
+              ? <> como aluno da turma <strong>{convite.turmaNome}</strong>.</>
+              : convite.papel === "professor"
+                ? <> como professor.</>
+                : "."}
+          </div>
+        )}
+        {convite?.recusa && (
+          <div className="mt-4 rounded-xl border border-[var(--fl-error)]/30 bg-[var(--fl-error)]/10 px-4 py-3 text-sm text-fl-ink">
+            Seu convite da {convite.escolaNome} não vale mais — pede um novo. Dá pra criar a
+            conta mesmo assim.
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-3">
           <input
@@ -142,6 +184,23 @@ export default function CadastroPage() {
               className={inputClass}
             />
           </div>
+
+          {convite?.papel === "aluno" && !convite.recusa && (
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="apelido" className="text-sm font-medium" style={{ color: "var(--fl-ink-2)" }}>
+                Como você quer aparecer no ranking da sala? (opcional)
+              </label>
+              <input
+                id="apelido"
+                type="text"
+                placeholder="Seu apelido"
+                value={apelido}
+                onChange={(e) => setApelido(e.target.value)}
+                maxLength={24}
+                className={inputClass}
+              />
+            </div>
+          )}
 
           {erro && (
             <p className="rounded-xl border border-[var(--fl-error)]/30 bg-[var(--fl-error)]/10 px-4 py-3 text-sm text-[var(--fl-error)]">

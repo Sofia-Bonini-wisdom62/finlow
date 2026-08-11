@@ -2,7 +2,14 @@ import Link from "next/link"
 import { ArrowLeft, Check, Lock } from "lucide-react"
 import { auth } from "@/lib/auth"
 import { db } from "@/lib/db"
-import { filtroExploravel, ehDeOutroPublico, SEGMENTOS_ESCOLARES } from "@/lib/publico"
+import {
+  filtroExploravel,
+  ehDeOutroPublico,
+  publicoDoUsuario,
+  SEGMENTOS_ESCOLARES,
+  PUBLICO_ATUAL,
+  type Publico,
+} from "@/lib/publico"
 import { montarCorredor } from "@/lib/corredor"
 import { BottomNav } from "@/components/bottom-nav"
 
@@ -65,10 +72,13 @@ function Secao({
   titulo,
   aulas,
   corredor,
+  publico,
 }: {
   titulo: string
   aulas: AulaCard[]
   corredor: Awaited<ReturnType<typeof montarCorredor>>
+  /** O público da PESSOA — decide o que é "de outra trilha" para ela. */
+  publico: Publico
 }) {
   return (
     <section className="mb-8">
@@ -80,7 +90,7 @@ function Secao({
       </h2>
       <ul className="flex flex-col gap-2">
         {aulas.map((m) => {
-          const deOutraTrilha = ehDeOutroPublico(m.publico)
+          const deOutraTrilha = ehDeOutroPublico(m.publico, publico)
           const no = corredor.modulos.get(m.id)
           const estado = deOutraTrilha ? "liberado" : no?.estado ?? "trancado"
           const trancado = estado === "trancado"
@@ -179,6 +189,7 @@ export default async function BibliotecaPage() {
     )
   }
 
+  const publico = await publicoDoUsuario(userId)
   const [modulos, corredor] = await Promise.all([
     db.modulo.findMany({
       where: filtroExploravel(),
@@ -207,8 +218,8 @@ export default async function BibliotecaPage() {
    * organizam por nível. Um único agrupador serve aos dois sem precisar saber
    * qual público está no ar.
    */
-  const daPessoa = modulos.filter((m) => !ehDeOutroPublico(m.publico))
-  const escolares = modulos.filter((m) => ehDeOutroPublico(m.publico))
+  const daPessoa = modulos.filter((m) => !ehDeOutroPublico(m.publico, publico))
+  const deOutras = modulos.filter((m) => ehDeOutroPublico(m.publico, publico))
 
   const grupos = new Map<string, typeof modulos>()
   for (const m of daPessoa) {
@@ -216,11 +227,19 @@ export default async function BibliotecaPage() {
     grupos.set(chave, [...(grupos.get(chave) ?? []), m])
   }
 
-  /** As aulas escolares, na ordem dos segmentos e não na do banco. */
-  const porSegmento = SEGMENTOS_ESCOLARES.map((s) => ({
-    ...s,
-    aulas: escolares.filter((m) => m.publico === s.id),
-  })).filter((s) => s.aulas.length > 0)
+  /**
+   * As aulas de FORA da trilha da pessoa, agrupadas na ordem dos segmentos.
+   *
+   * Para o adulto são os cinco segmentos escolares. Para o aluno de escola, a
+   * trilha ADULTA entra como primeiro grupo — sem isso as 43 aulas adultas
+   * sumiriam da biblioteca dele, que é o bug espelhado do que o gate evita.
+   */
+  const porSegmento = [
+    ...(publico === PUBLICO_ATUAL ? [] : [{ id: "adulto" as const, nome: "Trilha adulta" }]),
+    ...SEGMENTOS_ESCOLARES.filter((s) => s.id !== publico),
+  ]
+    .map((s) => ({ ...s, aulas: deOutras.filter((m) => m.publico === s.id) }))
+    .filter((s) => s.aulas.length > 0)
 
   const concluidos = daPessoa.filter(
     (m) => corredor.modulos.get(m.id)?.estado === "concluido"
@@ -261,12 +280,13 @@ export default async function BibliotecaPage() {
           className="mb-6 text-[13px] leading-relaxed text-pretty"
           style={{ color: "var(--finlow-muted)" }}
         >
-          Tudo que existe na trilha. As aulas que ainda não abriram aparecem com
-          o motivo — a ordem quem monta é a IA, a partir dos seus números.
+          {publico === PUBLICO_ATUAL
+            ? "Tudo que existe na trilha. As aulas que ainda não abriram aparecem com o motivo — a ordem quem monta é a IA, a partir dos seus números."
+            : "Tudo que existe na sua trilha, na ordem da turma, bloco a bloco. As aulas que ainda não abriram aparecem com o motivo."}
         </p>
 
         {[...grupos].map(([titulo, doGrupo]) => (
-          <Secao key={titulo} titulo={titulo} aulas={doGrupo} corredor={corredor} />
+          <Secao key={titulo} titulo={titulo} aulas={doGrupo} corredor={corredor} publico={publico} />
         ))}
 
         {porSegmento.length > 0 && (
@@ -274,19 +294,19 @@ export default async function BibliotecaPage() {
             className="mt-10 border-t pt-8"
             style={{ borderColor: "var(--finlow-surface-2)" }}
           >
-            <h2 className="text-[15px] font-bold">Trilha escolar</h2>
+            <h2 className="text-[15px] font-bold">
+              {publico === PUBLICO_ATUAL ? "Trilha escolar" : "Outras trilhas"}
+            </h2>
             <p
               className="mt-1.5 mb-6 text-[13px] leading-relaxed text-pretty"
               style={{ color: "var(--finlow-muted)" }}
             >
-              Do 1º ano do fundamental ao Ensino Médio, cobrindo a matriz de
-              letramento financeiro do Banco Central. Você pode fazer qualquer uma,
-              na ordem que quiser — elas não entram no seu caminho e valem menos
-              pontos, porque o percurso que a IA montou para você continua sendo o
-              da sua trilha.
+              {publico === PUBLICO_ATUAL
+                ? "Do 1º ano do fundamental ao Ensino Médio, cobrindo a matriz de letramento financeiro do Banco Central. Você pode fazer qualquer uma, na ordem que quiser — elas não entram no seu caminho e valem menos pontos, porque o percurso que a IA montou para você continua sendo o da sua trilha."
+                : "Aulas de fora da sua trilha. Você pode explorar qualquer uma, na ordem que quiser — elas valem menos pontos, porque o seu caminho continua sendo o da turma."}
             </p>
             {porSegmento.map((s) => (
-              <Secao key={s.id} titulo={s.nome} aulas={s.aulas} corredor={corredor} />
+              <Secao key={s.id} titulo={s.nome} aulas={s.aulas} corredor={corredor} publico={publico} />
             ))}
           </div>
         )}

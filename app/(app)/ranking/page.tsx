@@ -25,12 +25,31 @@ interface Linha {
   euMesmo: boolean
 }
 
+/**
+ * O rank da sala (Finlow para Escolas). Régua própria: quem liga é o
+ * professor da turma, e a lista vem independente do opt-in do ranking
+ * global — o freio individual do aluno é o apelido (sem apelido, fora da
+ * lista). null = sem turma com rank ligado.
+ */
+interface RankEscolar {
+  turmaNome: string
+  escopo: "sala" | "ano" | "escola"
+  linhas: Linha[]
+}
+
+const NOME_ESCOPO: Record<RankEscolar["escopo"], string> = {
+  sala: "sua sala",
+  ano: "seu ano",
+  escola: "sua escola",
+}
+
 export default function RankingPage() {
   const [carregando, setCarregando] = useState(true)
   const [participando, setParticipando] = useState(false)
   const [apelido, setApelido] = useState<string | null>(null)
   const [meusPontos, setMeusPontos] = useState(0)
   const [linhas, setLinhas] = useState<Linha[]>([])
+  const [escolar, setEscolar] = useState<RankEscolar | null>(null)
 
   const [rascunho, setRascunho] = useState("")
   const [salvando, setSalvando] = useState(false)
@@ -45,6 +64,7 @@ export default function RankingPage() {
       setApelido(d.apelido ?? null)
       setMeusPontos(d.meusPontos ?? 0)
       setLinhas(d.linhas ?? [])
+      setEscolar(d.escolar ?? null)
       if (d.apelido) setRascunho(d.apelido)
     } catch {
       setErro("Não consegui carregar agora.")
@@ -90,6 +110,41 @@ export default function RankingPage() {
 
         {erro && (
           <p className="mt-4 rounded-xl bg-fl-error/10 px-3 py-2 text-[13px] text-fl-error">{erro}</p>
+        )}
+
+        {/* ---------- minha sala (Finlow para Escolas) ---------- */}
+        {!carregando && escolar && (
+          <>
+            <h2 className="mt-7 text-[17px] font-bold text-fl-ink">{escolar.turmaNome}</h2>
+            <p className="mt-0.5 text-[12.5px] text-fl-ink-2">
+              O rank de {NOME_ESCOPO[escolar.escopo]}, ligado pela escola. Aparece o apelido e
+              os pontos, nada além disso.
+            </p>
+            <section className="mt-3 overflow-hidden rounded-[20px] border border-fl-border bg-fl-card">
+              <ul className="divide-y divide-fl-divider">
+                {escolar.linhas.map((l) => (
+                  <li
+                    key={`sala-${l.posicao}-${l.apelido}`}
+                    className={`flex items-center gap-3 px-4 py-3 ${l.euMesmo ? "bg-fl-50" : ""}`}
+                  >
+                    <span className="w-7 shrink-0 text-[13px] font-bold tabular-nums text-fl-ink-3">
+                      {l.posicao}
+                    </span>
+                    <span className={`min-w-0 flex-1 truncate text-[14.5px] ${l.euMesmo ? "font-bold text-fl-ink" : "text-fl-ink"}`}>
+                      {l.apelido}{l.euMesmo && <span className="ml-1.5 text-[12px] font-medium text-fl-500">você</span>}
+                    </span>
+                    <span className="shrink-0 text-[14px] font-bold tabular-nums text-fl-ink">{l.pontos}</span>
+                  </li>
+                ))}
+              </ul>
+              {escolar.linhas.length === 0 && (
+                <p className="px-4 py-6 text-center text-sm text-fl-ink-2">
+                  Ninguém apareceu ainda — quem escolher um apelido entra na lista.
+                </p>
+              )}
+            </section>
+            <h2 className="mt-8 text-[17px] font-bold text-fl-ink">Ranking geral</h2>
+          </>
         )}
 
         {carregando ? (

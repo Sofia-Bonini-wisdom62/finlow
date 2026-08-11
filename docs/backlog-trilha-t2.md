@@ -305,9 +305,16 @@ corretora ou alocação.
 
 ## O que morreu do original
 
-- **B2B escolar e BNCC como canal de venda.** O v3 é B2C puro por assinatura. A
-  BNCC fica só como referência pedagógica, nunca comercial.
-- **"Pagante = pais".** O pagante é o próprio adulto.
+> ⚠️ **B2B escolar reaberto em 11/08/2026 (decisão da fundadora).** A linha
+> abaixo que declarava o canal escolar morto caiu: o Finlow para Escolas entrou
+> em desenvolvimento — perfis de professor/aluno/adm, turmas, convites e
+> rankings por sala. O escopo e as decisões estão em `backlog-produto.md`,
+> seção "Finlow para Escolas". O que segue válido desta lista: o produto
+> ADULTO continua B2C por assinatura, e a BNCC/matriz BCB segue sendo
+> referência pedagógica das trilhas — agora também servida ao canal escolar.
+
+- **"Pagante = pais".** O pagante é o próprio adulto — e, no canal escolar, a
+  escola (contrato B2B fora deste repo por enquanto; escola nasce por script).
 - **PISA (estudantes de 15 anos).** Trocado pelo survey OCDE/INFE de adultos
   conduzido pelo Banco Central (2023).
 - **Jovem aprendiz / primeiro contracheque** → holerite CLT adulto (M06).

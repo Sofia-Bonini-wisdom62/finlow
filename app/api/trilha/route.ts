@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { getUserIdOr401 } from "@/lib/painel"
-import { filtroDeModulo } from "@/lib/publico"
+import { filtroDeModulo, publicoDoUsuario } from "@/lib/publico"
 
 export const dynamic = "force-dynamic"
 
@@ -34,7 +34,7 @@ export async function GET() {
     if (!perfil) return NextResponse.json({ modulos: [] })
 
     const modulos = await db.modulo.findMany({
-      where: { tipoPerfil: perfil.tipo, ...filtroDeModulo() },
+      where: { tipoPerfil: perfil.tipo, ...filtroDeModulo(await publicoDoUsuario(userId)) },
       orderBy: { ordem: "asc" },
       include: { progresso: { where: { userId } } },
     })

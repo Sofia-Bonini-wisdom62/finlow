@@ -151,9 +151,10 @@ for (const m of MODULOS_EF) {
 
   if (!aplicar || orfas.length || fora.length) continue
 
-  // `habilidades` é rastreabilidade da matriz do BC, não coluna — sai antes do
-  // upsert, senão o Prisma recusa o argumento desconhecido.
-  const { telas, habilidades: _habilidades, ...dados } = m
+  // `habilidades` VIRA COLUNA em 11/08/2026 (Finlow para Escolas): era
+  // rastreabilidade descartada aqui, agora persiste em Modulo.habilidades —
+  // é o que permitirá competência por código BCB. Fica no spread de `dados`.
+  const { telas, ...dados } = m
   const salvo = await db.modulo.upsert({
     where: { slug: m.slug },
     create: { ...dados },

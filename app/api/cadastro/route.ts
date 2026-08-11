@@ -2,12 +2,14 @@ import { NextRequest, NextResponse } from "next/server"
 import bcrypt from "bcryptjs"
 import { db } from "@/lib/db"
 import { COOKIE_INDICACAO, vincularIndicacao } from "@/lib/indicacao"
+import { COOKIE_CONVITE, resgatarConvite } from "@/lib/convite-escola"
+import { apelidoValido } from "@/lib/pontos"
 
 export const dynamic = "force-dynamic"
 
 export async function POST(req: NextRequest) {
   try {
-    const { nome, email, senha, dataNascimento } = await req.json()
+    const { nome, email, senha, dataNascimento, apelido } = await req.json()
 
     if (!nome || typeof nome !== "string" || nome.trim().length < 2) {
       return NextResponse.json({ error: "Me diz seu nome" }, { status: 400 })
@@ -60,10 +62,36 @@ export async function POST(req: NextRequest) {
       },
     })
 
-    // Cookie plantado por /r/{codigo}. Falha aqui não derruba o cadastro:
-    // a conta é o produto, o convite é acessório.
+    // Convite de escola primeiro (cookie de /convite/{codigo}): se a pessoa
+    // chegou por um convite, é a escola que explica esta conta existir — a
+    // indicação não roda por cima. Falha aqui não derruba o cadastro: a conta
+    // é o produto, o vínculo é acessório. A tela só precisa saber se deu.
+    const codigoConvite = req.cookies.get(COOKIE_CONVITE)?.value
+    let escolaVinculada = false
+    let escolaPapel: string | null = null
+    let escolaMotivo: string | null = null
+    if (codigoConvite) {
+      try {
+        let apelidoLimpo: string | null = null
+        if (typeof apelido === "string" && apelido.trim()) {
+          const v = apelidoValido(apelido)
+          if (v.ok) apelidoLimpo = v.apelido
+          // apelido ruim não trava cadastro nem matrícula — escolhe outro depois
+        }
+        const r = await resgatarConvite(novo.id, codigoConvite, apelidoLimpo)
+        escolaVinculada = r.ok
+        escolaPapel = r.ok ? r.papel : null
+        escolaMotivo = r.ok ? null : r.motivo
+      } catch (e) {
+        console.error("[cadastro] convite de escola:", (e as Error)?.message)
+        escolaMotivo = "erro"
+      }
+    }
+
+    // Cookie plantado por /r/{codigo}. Só quando NÃO houve escola: quem entra
+    // por convite de turma não é "indicado" de ninguém.
     const codigoRef = req.cookies.get(COOKIE_INDICACAO)?.value
-    if (codigoRef) {
+    if (codigoRef && !escolaVinculada) {
       try {
         await vincularIndicacao(novo.id, codigoRef)
       } catch (e) {
@@ -71,9 +99,11 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    const res = NextResponse.json({ ok: true })
-    // Consumido, some — vinculado ou não. Deixar o cookie vivo faria a PRÓXIMA
-    // conta criada neste navegador cair no mesmo indicador sem ninguém clicar.
+    const res = NextResponse.json({ ok: true, escolaVinculada, escolaPapel, escolaMotivo })
+    // Consumidos, somem — vinculados ou não. Deixar cookie vivo faria a
+    // PRÓXIMA conta criada neste navegador cair na mesma escola ou no mesmo
+    // indicador sem ninguém clicar.
+    if (codigoConvite) res.cookies.delete(COOKIE_CONVITE)
     if (codigoRef) res.cookies.delete(COOKIE_INDICACAO)
     return res
   } catch (e) {

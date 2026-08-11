@@ -88,3 +88,120 @@ ele.
 ## Popular a base desde o 1º ano
 
 Implementar todo o conteúdo dos assuntos desde o 1º ano.
+
+## Finlow para Escolas — em desenvolvimento (11/08/2026)
+
+Decisão da fundadora, desenhada em quadro branco: o canal escolar reabre como
+**Finlow para Escolas**. Entrada dupla (escola × usuário comum) e três papéis:
+
+- **Professor** — cria turma/grupo; concede acesso a trilha/bloco/módulo;
+  competências (concedidas pelo adm) filtram o que ele enxerga e gerencia;
+  vê desempenho individual e geral (aluno/grupo); habilita o rank da turma
+  com escopo sala, ano ou escola.
+- **Aluno** — entra por convite com código, cai na turma e no segmento certo;
+  faz a trilha do segmento em corredor (sem IA, ordem pedagógica dos blocos);
+  vê o rank da sala; tem o **app completo como um usuário premium comum**.
+- **Adm da escola** — cria professores e alunos (via convites), concede
+  competências, vê o desempenho geral das salas.
+
+> ⚠️ **Muda uma decisão registrada.** `backlog-trilha-t2.md` declarava "B2B
+> escolar e BNCC como canal de venda" mortos ("o v3 é B2C puro"). O parágrafo
+> caiu no mesmo commit em que este trabalho começou, como manda a regra da
+> pasta. O produto adulto continua B2C por assinatura; a escola é um canal
+> paralelo sobre o mesmo conteúdo.
+
+**Decisões de desenho (fundadora, 11/08/2026):**
+
+- Escopo: o quadro completo, construído em etapas — cada etapa um commit
+  deployável.
+- Alunos e professores entram por **convite com código** (multiuso, por
+  turma); a escola e a conta do adm nascem por **script manual**
+  (`scripts/criar-escola.mts`) — sem UI de signup B2B e sem cobrança B2B
+  neste repo por enquanto.
+- Membro de escola ativa conta como **premium** (quem decide continua sendo
+  só `lib/pagamento/acesso.ts`).
+
+**Pendências abertas que esta frente cria (não bloqueiam build; bloqueiam
+venda):**
+
+- **LGPD de menores** — rank entre colegas expõe apelido+pontos de menor de
+  idade; consentimento de responsável (`consentimentoLGPD`, reservado no
+  schema) precisa de texto jurídico antes de escola real com menores.
+  Relaciona-se com a pendência R1 (política de retenção).
+- **Cota de IA por aluno** — premium por escola ganha teto próprio
+  (`TETO_ESCOLA_TOKENS`) em vez do Infinity do assinante; o número é
+  afinável e a fundadora pode derrubar o teto quando quiser.
+- **Rank por eventos escolares** — a primeira versão do rank da sala usa
+  `User.pontos` total (pontos de uso pessoal contam); recortar por eventos
+  dos módulos do segmento fica para uma segunda rodada.
+- **`preRequisitoSlug` segue inerte** — o corredor escolar usa a ordem
+  linear dos blocos, que na prática cobre o grafo de pré-requisitos; ligar o
+  grafo de verdade é projeto próprio.
+
+---
+
+## Avaliação de UX — jornada como usuário Gen Z (11/08/2026)
+
+Walkthrough completo feito como um usuário de 20 e poucos anos chegando pelo
+celular: landing ao vivo + todas as telas internas. Conclusão geral: **o miolo
+do app é bom; o funil de entrada é que está de costas para o produto** — os
+quatro primeiros itens acontecem antes de a pessoa ver qualquer qualidade.
+Lista do mais crítico ao mais simples; cada item é um trabalho independente.
+
+1. **🔴 Landing sem porta de entrada.** A home é só lista de espera: não existe
+   nenhum link "Entrar" ou "Criar conta" — nem no header, nem no footer
+   (`app/page.tsx`). Quem já tem conta precisa adivinhar `/login` na URL. E o
+   FAQ responde "O Finlow já está disponível? — Ainda não"
+   (`components/landing/Faq.tsx:6`) com o app no ar no mesmo domínio. Agrava:
+   o Menu logado aponta "Perguntas frequentes" para esse mesmo FAQ
+   (`app/(app)/ajustes/page.tsx:347`).
+
+2. **🔴 Landing promete conexão automática de contas que não existe.** "Suas
+   transações entram sozinhas, nada de digitar CSV" descreve Open Finance, que
+   está aqui no backlog (ver *Conector Open Finance*, acima). O produto real é
+   upload de extrato. Quebra de confiança no primeiro contato — corrigir a
+   copy para o que existe hoje, até o conector nascer.
+
+3. **🔴 /premium não mostra o preço para quem não assina.** O `valorCentavos`
+   só renderiza no estado de quem já paga (`app/(app)/premium/page.tsx:213`).
+   Quem não paga vê vantagens → botão "Assinar" → "cobrança mensal pelo
+   cartão", sem valor. Ninguém clica "Assinar" às cegas; parece dark pattern.
+
+4. **🟠 Cadastro com fricção.** Sem as chaves OAuth na Vercel o botão Google
+   não aparece (pendência já registrada em `estado-do-produto.md`); sobra
+   e-mail + senha + **data de nascimento obrigatória sem explicar o porquê**.
+   E o subtítulo "Pra salvar seu perfil e seu progresso na trilha"
+   (`app/(auth)/cadastro/page.tsx:99`) usa "trilha" antes de a pessoa saber o
+   que é — ela veio pelo extrato, não pela trilha.
+
+5. **🟠 Imagem quebrada em toda ficha de módulo.** O drawer usa
+   `no.thumbnail || "/placeholder.svg"` (`components/trilha-visual/DrawerModulo.tsx:150`),
+   mas `public/placeholder.svg` **não existe** e as thumbnails hoje são todas
+   `null` — todo módulo abre com um 16:9 quebrado no topo. Criar o SVG ou
+   desenhar o estado sem imagem.
+
+6. **🟠 Chat sem streaming.** A resposta chega inteira depois de segundos de
+   pontinhos (`components/chat/ChatIA.tsx`). A régua do público é ChatGPT:
+   texto aparecendo em ~1s. Bônus: o placeholder diz "solte o extrato aqui",
+   mas não há handler de drag-and-drop — o gesto sugerido não funciona.
+
+7. **🟡 Botão "Enviar para a IA reordenar" promete o que não faz.** Ele só
+   abre o chat com a mensagem pronta (`components/trilha-visual/DrawerModulo.tsx:394`).
+   Se a IA responder "não dá", vira botão de mentira. Renomear para algo como
+   "Pedir pro assistente" resolve — o problema é a promessa, não a mecânica.
+
+8. **🟡 Cheiro de beta + sem experiência de app.** Seis itens "em breve" no
+   Menu de uma vez; e **não há manifest/PWA** — no celular o Finlow vive numa
+   aba, sem ícone na home e sem push, remando contra a própria mecânica de
+   ofensiva diária da trilha.
+
+9. **🟢 Deslizes pequenos.** (a) "Prefiro olhar o app sozinha" com flexão
+   feminina fixa (`app/(app)/onboarding/page.tsx:276`); (b) o `accept` do
+   input de arquivo do chat não inclui `.qif`/`.txt` que o código trata como
+   extrato (`components/chat/ChatIA.tsx:33`); (c) a cota em tokens continua
+   sendo conta de padaria — a pessoa quer "quantas perguntas ainda tenho";
+   (d) a aba chama "Menu" e a tela interna oscila entre "Menu" e "Ajustes".
+
+**O que segurou o usuário (não mexer):** onboarding pulável com aceites
+explicados, "nada entra sem confirmar", tom sem culpa, tema escuro + paleta,
+exportar/apagar dados em dois toques, estado vazio do chat com sugestões.

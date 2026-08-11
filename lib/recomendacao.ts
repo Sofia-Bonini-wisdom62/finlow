@@ -1,5 +1,12 @@
 import { db } from "@/lib/db"
-import { filtroDeModulo } from "@/lib/publico"
+import { filtroDeModulo, publicoDoUsuario } from "@/lib/publico"
+
+/**
+ * Recomendação é mecânica do produto ADULTO — o aluno de escola tem currículo,
+ * não leva (lib/corredor.ts). Ainda assim TODAS as leituras daqui passam o
+ * público da pessoa: se alguma rota chamar isto para um aluno, a leva sai da
+ * trilha DELE em vez de vazar aula adulta — e o corredor escolar a ignora.
+ */
 
 /**
  * A trilha recomendada, gravada, e o gatilho que gera a próxima leva.
@@ -142,7 +149,7 @@ export async function garantirLevaInicial(
   if (jaTem > 0) return 0
 
   const modulos = await db.modulo.findMany({
-    where: { slug: { in: slugs }, ...filtroDeModulo() },
+    where: { slug: { in: slugs }, ...filtroDeModulo(await publicoDoUsuario(userId)) },
     select: { id: true, slug: true },
   })
   const porSlug = new Map(modulos.map((m) => [m.slug, m.id]))
@@ -277,7 +284,7 @@ export async function talvezGerarNovaLeva(
   const fora = new Set([...recs.map((r) => r.moduloId), ...feitos.map((f) => f.moduloId)])
 
   const candidatos = await db.modulo.findMany({
-    where: { id: { notIn: [...fora] }, ...filtroDeModulo() },
+    where: { id: { notIn: [...fora] }, ...filtroDeModulo(await publicoDoUsuario(userId)) },
     select: { id: true, slug: true, titulo: true, subtitulo: true },
     orderBy: [{ tipoPerfil: "asc" }, { ordem: "asc" }],
   })
@@ -337,6 +344,12 @@ export async function talvezGerarNovaLeva(
  *
  * Idempotente pela chave (userId, moduloId, origem): o assistente citar a mesma
  * aula em três conversas grava uma linha só.
+ *
+ * Para o ALUNO DE ESCOLA isto é um no-op por construção: ele nunca tem leva
+ * ativa (o corredor dele é o currículo), então a checagem de `ativa.length`
+ * devolve 0 antes de escrever qualquer coisa. O card da aula continua
+ * aparecendo no chat — e, como a lista de aulas que a IA enxerga já é a do
+ * segmento dele, o card aponta para a trilha certa.
  */
 export async function guardarRecomendacaoDoChat(
   userId: string,
@@ -345,8 +358,9 @@ export async function guardarRecomendacaoDoChat(
 ): Promise<number> {
   if (slugs.length === 0) return 0
 
+  const publico = await publicoDoUsuario(userId)
   const modulos = await db.modulo.findMany({
-    where: { slug: { in: slugs }, ...filtroDeModulo() },
+    where: { slug: { in: slugs }, ...filtroDeModulo(publico) },
     select: { id: true, slug: true },
   })
   if (modulos.length === 0) return 0
@@ -376,7 +390,7 @@ export async function guardarRecomendacaoDoChat(
   const posicao = await posicaoDaPessoa(userId)
 
   const notas = await db.modulo.findMany({
-    where: { id: { in: pendentes.map((p) => p.moduloId) }, ...filtroDeModulo() },
+    where: { id: { in: pendentes.map((p) => p.moduloId) }, ...filtroDeModulo(publico) },
     select: { id: true, nivel: true, situacoes: true },
   })
   const notaPorId = new Map(notas.map((m) => [m.id, pontuarAula(m, posicao)]))

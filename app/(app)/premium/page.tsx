@@ -20,6 +20,10 @@ import { BottomNav } from "@/components/bottom-nav"
 interface Estado {
   premium: boolean
   status: string | null
+  /** "assinatura" | "escola" | null — de onde vem o premium. Decidido em
+   *  lib/pagamento/acesso.ts; a tela só obedece. */
+  origem: string | null
+  escolaNome: string | null
   saindoNoFimDoPeriodo: boolean
   emAtraso: boolean
   valorCentavos: number | null
@@ -183,12 +187,16 @@ export default function PremiumPage() {
   }
 
   const premium = estado?.premium ?? false
+  // Premium PELA ESCOLA não tem assinatura para gerir nem checkout para
+  // oferecer — mostrar "Valor: — por mês" e um botão de cancelar sem
+  // assinatura na Stripe seria mentira duas vezes.
+  const pelaEscola = premium && estado?.origem === "escola"
 
   return (
     <main className="min-h-screen bg-fl-page pb-24">
       <div className="mx-auto max-w-lg px-5 py-8">
         <h1 className="text-2xl font-semibold text-fl-ink">
-          {premium ? "Sua assinatura" : "Finlow Premium"}
+          {pelaEscola ? "Seu acesso" : premium ? "Sua assinatura" : "Finlow Premium"}
         </h1>
 
         {/* O atraso vem ANTES de tudo: a pessoa tem acesso, mas por tempo
@@ -206,7 +214,22 @@ export default function PremiumPage() {
           </div>
         )}
 
-        {premium ? (
+        {pelaEscola ? (
+          <div className="mt-6 space-y-4">
+            <div className="rounded-2xl border border-fl-sand bg-fl-card p-5">
+              <p className="text-sm text-fl-ink/70">Finlow para Escolas</p>
+              <p className="text-xl font-semibold text-fl-ink">
+                Seu acesso vem da {estado?.escolaNome ?? "sua escola"}
+              </p>
+              <p className="mt-4 text-sm text-fl-ink/70">
+                Enquanto sua escola estiver com o Finlow, você usa o app completo — sem
+                cobrança no seu cartão e sem nada para cancelar aqui.
+              </p>
+            </div>
+
+            {estado && <UsoDoMes cota={estado.cota} premium />}
+          </div>
+        ) : premium ? (
           <div className="mt-6 space-y-4">
             <div className="rounded-2xl border border-fl-sand bg-fl-card p-5">
               <p className="text-sm text-fl-ink/70">Valor</p>

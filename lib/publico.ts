@@ -42,13 +42,40 @@ export const SEGMENTOS_ESCOLARES = [
 ] as const satisfies readonly { id: Publico; nome: string }[]
 
 /**
- * O público do produto que está no ar.
+ * O público DEFAULT do produto — e, desde 11/08/2026, só o default.
  *
- * Hoje é constante porque só existe um app. Quando a trilha de EM virar oferta
- * de verdade, isto vira uma leitura do usuário (`User.publico`) e só este
- * arquivo muda — nenhuma das nove chamadas precisa saber.
+ * A promessa antiga deste comentário ("vira uma leitura do usuário") se
+ * cumpriu com o Finlow para Escolas: `publicoDoUsuario()` lê `User.publico`,
+ * e cada chamador busca o público UMA vez no topo e passa por parâmetro —
+ * `filtroDeModulo(publico)` sempre aceitou o argumento. A constante segue
+ * sendo o chão: usuário sem vínculo escolar é "adulto", e qualquer falha de
+ * leitura cai aqui.
  */
 export const PUBLICO_ATUAL: Publico = "adulto"
+
+/**
+ * O público da TRILHA desta pessoa, lido do banco.
+ *
+ * Falha de banco ou valor desconhecido caem em "adulto": negar a trilha
+ * inteira por erro de leitura seria pior do que mostrar a default — o
+ * contrário da regra do premium, onde erro NEGA, porque lá o erro generoso
+ * daria produto de graça e aqui o erro conservador só mostraria a trilha
+ * errada até a request seguinte.
+ *
+ * Importa `db` por import dinâmico para este arquivo continuar leve para os
+ * scripts que só querem o vocabulário (testar-publico varre a fonte, não
+ * executa; testar-convite importa ehPublico via convite-escola).
+ */
+export async function publicoDoUsuario(userId: string | null | undefined): Promise<Publico> {
+  if (!userId) return PUBLICO_ATUAL
+  try {
+    const { db } = await import("@/lib/db")
+    const u = await db.user.findUnique({ where: { id: userId }, select: { publico: true } })
+    return u && ehPublico(u.publico) ? u.publico : PUBLICO_ATUAL
+  } catch {
+    return PUBLICO_ATUAL
+  }
+}
 
 /** O `where` de toda leitura de `Modulo`. Espalhe isto, nunca a string. */
 export function filtroDeModulo(publico: Publico = PUBLICO_ATUAL): { publico: Publico } {
@@ -81,9 +108,19 @@ export function filtroExploravel(): Record<string, never> {
   return {}
 }
 
-/** A aula é de outro público — dá para explorar, mas não é a trilha da pessoa. */
-export function ehDeOutroPublico(publicoDoModulo: string): boolean {
-  return publicoDoModulo !== PUBLICO_ATUAL
+/**
+ * A aula é de outro público — dá para explorar, mas não é a trilha da pessoa.
+ *
+ * O segundo parâmetro é o público DA PESSOA (publicoDoUsuario). Sem ele vale
+ * o default, que reproduz o comportamento de antes da coluna existir. Para um
+ * aluno de escola a régua inverte sozinha: a aula ADULTA é a "de outro
+ * público" — explorável, valendo 1/4.
+ */
+export function ehDeOutroPublico(
+  publicoDoModulo: string,
+  publicoDaPessoa: Publico = PUBLICO_ATUAL
+): boolean {
+  return publicoDoModulo !== publicoDaPessoa
 }
 
 export function ehPublico(v: string): v is Publico {

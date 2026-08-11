@@ -1,6 +1,6 @@
 import { db } from "@/lib/db"
 import { contemConteudoProibido } from "@/lib/conteudo-proibido"
-import { ehDeOutroPublico } from "@/lib/publico"
+import { ehDeOutroPublico, PUBLICO_ATUAL, type Publico } from "@/lib/publico"
 import { Prisma } from "@prisma/client"
 
 /**
@@ -108,9 +108,17 @@ export const PESO_FORA_DA_TRILHA = 0.25
  *
  * O piso é 1: aula que paga zero é aula que o app pede para a pessoa fazer e
  * depois trata como se não tivesse acontecido.
+ *
+ * O terceiro parâmetro é o público DA PESSOA (publicoDoUsuario): aluno de
+ * escola fazendo aula do PRÓPRIO segmento recebe cheio, e é a aula adulta que
+ * vale 1/4 para ele — a mesma régua do adulto, espelhada.
  */
-export function ajustarPorPublico(pontos: number, publicoDoModulo: string): number {
-  if (!ehDeOutroPublico(publicoDoModulo)) return pontos
+export function ajustarPorPublico(
+  pontos: number,
+  publicoDoModulo: string,
+  publicoDaPessoa: Publico = PUBLICO_ATUAL
+): number {
+  if (!ehDeOutroPublico(publicoDoModulo, publicoDaPessoa)) return pontos
   return Math.max(1, Math.round(pontos * PESO_FORA_DA_TRILHA))
 }
 
@@ -309,6 +317,76 @@ export async function listarRanking(userId: string, limite = 50): Promise<LinhaR
     posicao: i + 1,
     euMesmo: u.id === userId,
   }))
+}
+
+export interface RankingEscolar {
+  turmaNome: string
+  escopo: "sala" | "ano" | "escola"
+  linhas: LinhaRanking[]
+}
+
+/**
+ * O rank da sala (Finlow para Escolas) — mesma disciplina de listarRanking:
+ * APELIDO E PONTOS, nada mais.
+ *
+ * O consentimento aqui é DIFERENTE do rank global, e é decisão de desenho
+ * (quadro branco da fundadora): quem liga o rank é o PROFESSOR, por turma
+ * (Turma.rankAtivo + rankEscopo), porque é dinâmica de sala de aula — não o
+ * opt-in individual de rankingOptIn. O freio individual que resta é o
+ * apelido: aluno sem apelido não aparece para os colegas (o professor vê
+ * nome real no desempenho, que é outra superfície). A pendência LGPD de
+ * menores está registrada em docs/backlog-produto.md e trava venda, não
+ * build.
+ *
+ * Escopos: "sala" = a turma · "ano" = turmas da escola com a MESMA série e
+ * rank ativo (turma sem série cai para sala) · "escola" = todas as turmas da
+ * escola com rank ativo — turma cujo professor não ligou não entra em rank
+ * nenhum, nem no da escola.
+ *
+ * R1 usa User.pontos total: pontos de uso pessoal (lançamentos, streak)
+ * contam no rank da sala. Limitação conhecida e registrada no backlog —
+ * recortar por eventos escolares é a segunda rodada.
+ */
+export async function rankingEscolar(userId: string): Promise<RankingEscolar | null> {
+  const membro = await db.membroTurma.findFirst({
+    where: { userId, turma: { rankAtivo: true } },
+    select: {
+      turma: {
+        select: { id: true, nome: true, escolaId: true, serie: true, rankEscopo: true },
+      },
+    },
+    orderBy: { criadoEm: "asc" },
+  })
+  if (!membro) return null
+  const t = membro.turma
+
+  const escopo: "sala" | "ano" | "escola" =
+    t.rankEscopo === "ano" && t.serie ? "ano" : t.rankEscopo === "escola" ? "escola" : "sala"
+
+  const filtroTurma =
+    escopo === "sala"
+      ? { id: t.id }
+      : escopo === "ano"
+        ? { escolaId: t.escolaId, rankAtivo: true, serie: t.serie }
+        : { escolaId: t.escolaId, rankAtivo: true }
+
+  const linhas = await db.user.findMany({
+    where: { apelido: { not: null }, turmas: { some: { turma: filtroTurma } } },
+    select: { id: true, apelido: true, pontos: true },
+    orderBy: [{ pontos: "desc" }, { criadoEm: "asc" }],
+    take: 50,
+  })
+
+  return {
+    turmaNome: t.nome,
+    escopo,
+    linhas: linhas.map((u, i) => ({
+      apelido: u.apelido as string,
+      pontos: u.pontos,
+      posicao: i + 1,
+      euMesmo: u.id === userId,
+    })),
+  }
 }
 
 /** Um apelido serve se dá para exibir e não se passa por outra pessoa. */

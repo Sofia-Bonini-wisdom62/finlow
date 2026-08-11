@@ -40,6 +40,15 @@ Avançado, atrás de flag).
 - Data de nascimento é informativa — **não há validação de idade**.
 - Ajustes concentra: dados da conta, tema (sistema/claro/escuro), paleta
   (teal/terracota/indigo), convite de amigos, exportar dados, apagar conta.
+- **Convite de escola** (11/08/2026, Finlow para Escolas): `/convite/{codigo}`
+  planta cookie e leva ao cadastro (banner "você está entrando na Escola X")
+  ou, logado, a `/convite/aceitar` — vincular conta existente é botão, nunca
+  efeito colateral de abrir link. O resgate (`lib/convite-escola.ts`) é
+  transacional com teto de usos atômico; aluno cai na turma, ganha
+  `User.publico` do segmento e vira premium pela escola. Convite tem
+  precedência sobre indicação quando os dois cookies existem. Papel nas rotas
+  via `exigirPapel` (`lib/escola.ts`); a superfície do professor/adm é
+  `app/escola/` — fora das abas do app do consumidor de propósito.
 
 ### 2.3 Onboarding — a primeira conversa
 
@@ -148,6 +157,16 @@ percentuais moram em Análises de propósito.
 - Números macro (Selic, IPCA, rotativo) entram por `{{variável}}` da tabela
   `Indicador`, com fonte e data de apuração. O texto da aula nunca crava o
   número.
+- **A trilha é POR PESSOA desde 11/08/2026** (Finlow para Escolas):
+  `publicoDoUsuario()` lê `User.publico` e todos os call sites de
+  `filtroDeModulo` passam o público por parâmetro. Aluno de escola vê a
+  trilha do segmento da turma em **corredor por currículo** — a sequência é a
+  ordem pedagógica dos blocos (`Modulo.ordem`), sem leva de IA
+  (`garantirLevaInicial` é pulado, e o "trocar aula" do chat é no-op por
+  construção). A biblioteca dele agrupa o resto como "Outras trilhas",
+  incluindo a adulta. O peso 1/4 virou **relativo**: cada pessoa paga cheio na
+  própria trilha e 1/4 fora dela (`ajustarPorPublico`, testado em
+  `scripts/testar-pontos.mts`).
 
 ### 2.10 Pontos, ranking e indicação
 
@@ -170,6 +189,12 @@ percentuais moram em Análises de propósito.
   > ao corredor ficariam para trás no ranking sem ter feito nada.
 - **Ranking é opt-in** e mostra **apelido e pontos, nada mais**. É a única tela
   em que alguém vê dado de outra pessoa.
+- **O rank da SALA (11/08/2026, Finlow para Escolas) tem régua própria**: quem
+  liga é o professor, por turma (`Turma.rankAtivo` + escopo sala/ano/escola) —
+  é dinâmica de sala de aula, não opt-in individual. O freio do aluno é o
+  apelido: sem apelido, fora da lista dos colegas. Mesma superfície mínima
+  (apelido+pontos, `rankingEscolar` em `lib/pontos.ts`), independente do
+  ranking global. Pendência LGPD de menores registrada no backlog.
 - Indicação: código base36 gerado sob demanda, uma indicação por pessoa
   garantida **pelo banco**, autoindicação barrada, e o ponto só cai quando o
   convidado **termina a primeira conversa**.
@@ -199,6 +224,16 @@ mostra tudo em texto com data, permite escrever à mão e apagar um a um ou tudo
 `cancelada`. Quem interpreta esses status é **só** `lib/pagamento/acesso.ts`
 (`decidirAcesso` é a regra pura; `temAcessoPremium` e `resumoDaAssinatura`
 chamam ela). Nenhum outro arquivo decide quem é premium.
+
+**Desde 11/08/2026 o premium tem DUAS portas** (Finlow para Escolas): a
+assinatura própria OU o vínculo com escola ativa (`decidirAcessoEscolar`, no
+mesmo arquivo — "ativa" sem vigência é piloto e libera; "suspensa" nega mesmo
+com data futura). `acessoPremium` devolve o veredito com a `origem`
+("assinatura" | "escola"), a assinatura vence quando as duas valem, e a tela
+`/premium` usa isso para não oferecer checkout nem botão de cancelar a quem
+tem acesso pela escola. A cota também distingue: assinante segue sem teto;
+premium pela escola tem `TETO_ESCOLA_TOKENS` (300 mil/mês) — uma escola de
+500 alunos com chat sem teto seria custo sem contrato que o cubra.
 
 Duas leituras que não são óbvias:
 
@@ -234,7 +269,36 @@ Apagar a conta **cancela a assinatura na Stripe antes** do delete, e falha aí
 aborta o apagamento: `Assinatura` cascateia no nosso banco, mas o objeto na
 Stripe continuaria cobrando um cartão de alguém que já não consegue entrar.
 
-### 2.14 Operação
+### 2.14 Finlow para Escolas (11/08/2026)
+
+A escola é uma **camada de vínculo e leitura** por cima do produto: nenhuma
+tabela de conteúdo ou progresso mudou de dono. As peças, na ordem do fluxo:
+
+- **Escola nasce por script** (`scripts/criar-escola.mts`, simulação por
+  default) — sem UI de signup B2B e sem cobrança B2B neste repo.
+- **Papéis** ("adm" | "professor" | "aluno") moram em `MembroEscola` (uma
+  escola por conta, `@unique`); guard de rota é `exigirPapel`
+  (`lib/escola.ts`), lido do banco a cada request, nada no JWT.
+- **Convite com código multiuso** (`lib/convite-escola.ts`): expiração + teto
+  de usos + revogação num `updateMany` atômico; resgate transacional cria
+  vínculo, turma e `User.publico`. Cookie próprio, precedência sobre a
+  indicação.
+- **Aluno = premium pela escola** (`decidirAcessoEscolar`,
+  `lib/pagamento/acesso.ts`) com teto de cota próprio (300 mil tokens/mês).
+- **Trilha do aluno é o currículo do segmento** em corredor sem IA;
+  **concessão** (`lib/escola-acesso.ts`) deixa o professor liberar bloco a
+  bloco (EF) ou aula a aula (EM) — sem concessão, tudo aberto.
+- **Competência reduz** o que o professor cria e concede
+  (`segmentosDoProfessor`); `Modulo.habilidades` persiste os códigos BCB.
+- **Rank da sala** com régua própria (§2.10) e **desempenho**
+  (`lib/escola-desempenho.ts`): turma e aluno para o professor, visão por
+  turma para o adm — nome real nessas telas, apelido entre colegas. O
+  denominador é sempre o segmento: aula adulta explorada não entra na conta
+  da escola.
+- Superfície em `app/escola/` (fora das abas do consumidor); telas do aluno
+  são as do app normal.
+
+### 2.15 Operação
 
 `/api/ops/metrics` devolve uso da Vertex nas últimas 24h (invocações, tokens,
 caracteres, latências) e um bloco de produto (indicações totais / 30 dias /

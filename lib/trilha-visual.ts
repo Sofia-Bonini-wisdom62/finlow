@@ -1,5 +1,5 @@
 import { db } from "@/lib/db"
-import { filtroDeModulo } from "@/lib/publico"
+import { filtroDeModulo, publicoDoUsuario, PUBLICO_ATUAL } from "@/lib/publico"
 import { montarCorredor, type ModuloNoCorredor } from "@/lib/corredor"
 import { lerOfensiva } from "@/lib/ofensiva"
 
@@ -53,6 +53,9 @@ export interface Trilha {
   nome: string
   percentual: number
   blocos: Bloco[]
+  /** true = trilha de segmento escolar (currículo em ordem fixa, sem leva de
+   *  IA). O fim-de-trilha muda de copy: não há "próximos 4 módulos" a liberar. */
+  escolar?: boolean
   reordenadaEm?: string
   resumoReordenacao?: {
     texto: string
@@ -97,10 +100,11 @@ export async function montarTrilhaVisual(userId: string): Promise<{
   trilhas: TrilhaResumo[]
   usuario: Usuario
 }> {
+  const publico = await publicoDoUsuario(userId)
   const [corredor, modulos, user, ofensiva] = await Promise.all([
     montarCorredor(userId),
     db.modulo.findMany({
-      where: filtroDeModulo(),
+      where: filtroDeModulo(publico),
       select: {
         id: true, slug: true, titulo: true, subtitulo: true, nivel: true,
         duracaoMin: true, pontos: true, tags: true, thumbnail: true,
@@ -156,14 +160,16 @@ export async function montarTrilhaVisual(userId: string): Promise<{
   const concluidos = todos.filter((n) => n.estado === "concluido").length
   const percentual = todos.length ? Math.round((concluidos / todos.length) * 100) : 0
 
+  const escolar = publico !== PUBLICO_ATUAL
   return {
     trilha: {
-      id: "adulto",
-      nome: "Sua trilha",
+      id: publico,
+      nome: escolar ? "Trilha da turma" : "Sua trilha",
       percentual,
       blocos: [...blocos.values()],
+      escolar,
     },
-    trilhas: [{ id: "adulto", nome: "Sua trilha", percentual }],
+    trilhas: [{ id: publico, nome: escolar ? "Trilha da turma" : "Sua trilha", percentual }],
     usuario: {
       nome: user?.nome ?? "",
       inicial: (user?.nome ?? "?").trim().charAt(0).toUpperCase() || "?",

@@ -49,6 +49,10 @@ interface Esperado {
   ordem: number
   /** T1 e T2 não declaram: caem no default da coluna. */
   publico: string
+  /** Códigos da matriz BCB. T1/T2 não declaram (trilha adulta → []); EF/EM
+   *  declaram e, desde 11/08/2026, o semeador PERSISTE — este teste é o que
+   *  acusa quando a coluna e a fonte descolarem. */
+  habilidades: string[]
   fonte: string
   telas: { ordem: number; tipo: string; label: string }[]
 }
@@ -69,6 +73,7 @@ const esperados: Esperado[] = [
   subtitulo: m.subtitulo,
   ordem: m.ordem,
   publico: m.publico,
+  habilidades: ("habilidades" in m ? (m.habilidades as string[]) : []) ?? [],
   fonte: m.fonte,
   telas: m.telas.map((t) => ({ ordem: t.ordem, tipo: t.tipo as string, label: t.label })),
 }))
@@ -76,6 +81,7 @@ const esperados: Esperado[] = [
 const noBanco = await db.modulo.findMany({
   select: {
     slug: true, titulo: true, subtitulo: true, ordem: true, publico: true,
+    habilidades: true,
     telas: { select: { ordem: true, tipo: true, label: true } },
   },
 })
@@ -123,6 +129,16 @@ for (const esperado of esperados) {
           `    banco: ${JSON.stringify(real[campo])}`
       )
     }
+  }
+
+  // Verbatim, na ordem da fonte: o semeador grava o array como está, então
+  // qualquer diferença — inclusive de ordem — é semeador por rodar.
+  if (real.habilidades.join(",") !== esperado.habilidades.join(",")) {
+    problemas.push(
+      `DIVERGE habilidades ${esperado.slug}\n` +
+        `    fonte: ${JSON.stringify(esperado.habilidades)}\n` +
+        `    banco: ${JSON.stringify(real.habilidades)}`
+    )
   }
 
   const eF = espinha(esperado.telas)

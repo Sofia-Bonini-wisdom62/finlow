@@ -57,6 +57,12 @@ const USUARIO = [
   "Assinatura", "UsoMensalIA",
   // Waitlist e LeadEmpresa são só e-mail e nome: dado pessoal, mesmo não sendo financeiro.
   "Waitlist", "LeadEmpresa",
+  // Finlow para Escolas: TUDO fica fora do retrato. Escola e Turma não são
+  // "conteúdo do produto igual para todo mundo" — são dado de CLIENTE (nome
+  // da escola, nomes de turma), e os vínculos dizem quem estuda onde, que é
+  // dado pessoal com nome e sobrenome. Não tem metade sistêmica aqui.
+  "Escola", "MembroEscola", "Turma", "MembroTurma",
+  "ConviteEscola", "CompetenciaProfessor", "AcessoTrilhaTurma",
 ]
 
 const agora = new Date()
