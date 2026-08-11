@@ -88,3 +88,71 @@ ele.
 ## Popular a base desde o 1º ano
 
 Implementar todo o conteúdo dos assuntos desde o 1º ano.
+
+---
+
+## Avaliação de UX — jornada como usuário Gen Z (11/08/2026)
+
+Walkthrough completo feito como um usuário de 20 e poucos anos chegando pelo
+celular: landing ao vivo + todas as telas internas. Conclusão geral: **o miolo
+do app é bom; o funil de entrada é que está de costas para o produto** — os
+quatro primeiros itens acontecem antes de a pessoa ver qualquer qualidade.
+Lista do mais crítico ao mais simples; cada item é um trabalho independente.
+
+1. **🔴 Landing sem porta de entrada.** A home é só lista de espera: não existe
+   nenhum link "Entrar" ou "Criar conta" — nem no header, nem no footer
+   (`app/page.tsx`). Quem já tem conta precisa adivinhar `/login` na URL. E o
+   FAQ responde "O Finlow já está disponível? — Ainda não"
+   (`components/landing/Faq.tsx:6`) com o app no ar no mesmo domínio. Agrava:
+   o Menu logado aponta "Perguntas frequentes" para esse mesmo FAQ
+   (`app/(app)/ajustes/page.tsx:347`).
+
+2. **🔴 Landing promete conexão automática de contas que não existe.** "Suas
+   transações entram sozinhas, nada de digitar CSV" descreve Open Finance, que
+   está aqui no backlog (ver *Conector Open Finance*, acima). O produto real é
+   upload de extrato. Quebra de confiança no primeiro contato — corrigir a
+   copy para o que existe hoje, até o conector nascer.
+
+3. **🔴 /premium não mostra o preço para quem não assina.** O `valorCentavos`
+   só renderiza no estado de quem já paga (`app/(app)/premium/page.tsx:213`).
+   Quem não paga vê vantagens → botão "Assinar" → "cobrança mensal pelo
+   cartão", sem valor. Ninguém clica "Assinar" às cegas; parece dark pattern.
+
+4. **🟠 Cadastro com fricção.** Sem as chaves OAuth na Vercel o botão Google
+   não aparece (pendência já registrada em `estado-do-produto.md`); sobra
+   e-mail + senha + **data de nascimento obrigatória sem explicar o porquê**.
+   E o subtítulo "Pra salvar seu perfil e seu progresso na trilha"
+   (`app/(auth)/cadastro/page.tsx:99`) usa "trilha" antes de a pessoa saber o
+   que é — ela veio pelo extrato, não pela trilha.
+
+5. **🟠 Imagem quebrada em toda ficha de módulo.** O drawer usa
+   `no.thumbnail || "/placeholder.svg"` (`components/trilha-visual/DrawerModulo.tsx:150`),
+   mas `public/placeholder.svg` **não existe** e as thumbnails hoje são todas
+   `null` — todo módulo abre com um 16:9 quebrado no topo. Criar o SVG ou
+   desenhar o estado sem imagem.
+
+6. **🟠 Chat sem streaming.** A resposta chega inteira depois de segundos de
+   pontinhos (`components/chat/ChatIA.tsx`). A régua do público é ChatGPT:
+   texto aparecendo em ~1s. Bônus: o placeholder diz "solte o extrato aqui",
+   mas não há handler de drag-and-drop — o gesto sugerido não funciona.
+
+7. **🟡 Botão "Enviar para a IA reordenar" promete o que não faz.** Ele só
+   abre o chat com a mensagem pronta (`components/trilha-visual/DrawerModulo.tsx:394`).
+   Se a IA responder "não dá", vira botão de mentira. Renomear para algo como
+   "Pedir pro assistente" resolve — o problema é a promessa, não a mecânica.
+
+8. **🟡 Cheiro de beta + sem experiência de app.** Seis itens "em breve" no
+   Menu de uma vez; e **não há manifest/PWA** — no celular o Finlow vive numa
+   aba, sem ícone na home e sem push, remando contra a própria mecânica de
+   ofensiva diária da trilha.
+
+9. **🟢 Deslizes pequenos.** (a) "Prefiro olhar o app sozinha" com flexão
+   feminina fixa (`app/(app)/onboarding/page.tsx:276`); (b) o `accept` do
+   input de arquivo do chat não inclui `.qif`/`.txt` que o código trata como
+   extrato (`components/chat/ChatIA.tsx:33`); (c) a cota em tokens continua
+   sendo conta de padaria — a pessoa quer "quantas perguntas ainda tenho";
+   (d) a aba chama "Menu" e a tela interna oscila entre "Menu" e "Ajustes".
+
+**O que segurou o usuário (não mexer):** onboarding pulável com aceites
+explicados, "nada entra sem confirmar", tom sem culpa, tema escuro + paleta,
+exportar/apagar dados em dois toques, estado vazio do chat com sugestões.
