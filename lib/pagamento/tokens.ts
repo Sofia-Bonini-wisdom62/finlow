@@ -1,6 +1,6 @@
 import "server-only"
 import { db } from "@/lib/db"
-import { temAcessoPremium } from "@/lib/pagamento/acesso"
+import { acessoPremium, type OrigemPremium } from "@/lib/pagamento/acesso"
 
 /**
  * O limite grátis, contado em TOKENS.
@@ -32,6 +32,18 @@ import { temAcessoPremium } from "@/lib/pagamento/acesso"
  */
 export const TETO_GRATIS_TOKENS = 120_000
 
+/**
+ * 300 mil tokens por mês para quem é premium PELA ESCOLA (Finlow para
+ * Escolas) — 2,5× o grátis, e não Infinity de propósito: uma escola de 500
+ * alunos com chat sem teto é custo de token sem contrato que o cubra. O
+ * assinante que paga do próprio bolso continua sem teto.
+ *
+ * O número é afinável como PESO_FORA_DA_TRILHA: muda aqui e muda em todo
+ * lugar. A decisão de derrubar o teto é da fundadora e está registrada em
+ * docs/backlog-produto.md.
+ */
+export const TETO_ESCOLA_TOKENS = 300_000
+
 /** As origens de IA que consomem a cota. */
 export type OrigemIA = "chat" | "onboarding" | "recomendacao" | "insights" | "extrato"
 
@@ -53,10 +65,12 @@ export function mesSP(agora: Date = new Date()): string {
 
 export interface Cota {
   premium: boolean
+  /** Por qual porta a pessoa é premium — null quando não é. */
+  origem: OrigemPremium | null
   usados: number
   teto: number
   restam: number
-  /** `false` quando a cota acabou e a pessoa não é premium. */
+  /** `false` quando a cota acabou. */
   podeUsar: boolean
 }
 
@@ -72,24 +86,28 @@ export async function tokensDoMes(userId: string, agora = new Date()): Promise<n
 /**
  * A cota da pessoa: usada pelo guard E pela tela.
  *
- * Premium não tem teto — `restam` vem como `Infinity` para que nenhuma tela
- * mostre "restam 120000" a quem paga.
+ * Assinante não tem teto — `restam` vem como `Infinity` para que nenhuma tela
+ * mostre "restam 120000" a quem paga. Premium PELA ESCOLA tem teto próprio
+ * (TETO_ESCOLA_TOKENS): maior que o grátis, mas finito — ver o comentário da
+ * constante.
  */
 export async function cotaDoMes(userId: string, agora = new Date()): Promise<Cota> {
-  const [premium, usados] = await Promise.all([
-    temAcessoPremium(userId, agora),
+  const [acesso, usados] = await Promise.all([
+    acessoPremium(userId, agora),
     tokensDoMes(userId, agora),
   ])
 
-  if (premium) {
-    return { premium: true, usados, teto: Infinity, restam: Infinity, podeUsar: true }
+  if (acesso.origem === "assinatura") {
+    return { premium: true, origem: "assinatura", usados, teto: Infinity, restam: Infinity, podeUsar: true }
   }
+  const teto = acesso.origem === "escola" ? TETO_ESCOLA_TOKENS : TETO_GRATIS_TOKENS
   return {
-    premium: false,
+    premium: acesso.premium,
+    origem: acesso.origem,
     usados,
-    teto: TETO_GRATIS_TOKENS,
-    restam: Math.max(0, TETO_GRATIS_TOKENS - usados),
-    podeUsar: usados < TETO_GRATIS_TOKENS,
+    teto,
+    restam: Math.max(0, teto - usados),
+    podeUsar: usados < teto,
   }
 }
 

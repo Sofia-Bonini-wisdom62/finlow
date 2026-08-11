@@ -61,23 +61,81 @@ export function decidirAcesso(
 }
 
 /**
- * Premium agora? A regra está em `decidirAcesso`; aqui é só a leitura.
+ * A REGRA ESCOLAR, sem banco — irmã de `decidirAcesso`, pelas mesmas razões.
+ *
+ * Membro de escola ativa (qualquer papel: aluno, professor, adm) conta como
+ * premium — decisão da fundadora, 11/08/2026. Professor precisa do produto
+ * inteiro para mediar; adm é quem avalia a compra.
+ *
+ * "ativa" sem `ativaAte` → sim. É o piloto sem prazo: a escola foi criada por
+ *   script e ninguém definiu vigência ainda.
+ * "ativa" com `ativaAte` → sim ATÉ a data. Borda igual à do inadimplente:
+ *   `ativaAte` IGUAL a agora já venceu.
+ * "suspensa" (ou qualquer outro valor) → não, mesmo com data futura — suspender
+ *   é o botão de emergência e ele não espera o contrato vencer.
+ */
+export function decidirAcessoEscolar(
+  status: string | null | undefined,
+  ativaAte: Date | null | undefined,
+  agora: Date
+): boolean {
+  if (status !== "ativa") return false
+  return !ativaAte || ativaAte > agora
+}
+
+/** De onde vem o premium de alguém. `null` = não é premium. */
+export type OrigemPremium = "assinatura" | "escola"
+
+/**
+ * O veredito completo: premium ou não, e POR QUAL PORTA.
+ *
+ * A assinatura vence a escola quando as duas valem — quem paga do próprio
+ * bolso não pode ver a tela dizer que o acesso é da escola e "cancelar sem
+ * medo": cancelar a assinatura dessa pessoa tem consequência real quando o
+ * vínculo escolar acabar.
+ *
+ * Nunca lança, pela mesma razão de `temAcessoPremium`: falha de banco NEGA.
+ */
+export async function acessoPremium(
+  userId: string,
+  agora = new Date()
+): Promise<{ premium: boolean; origem: OrigemPremium | null; escolaNome: string | null }> {
+  try {
+    const [a, m] = await Promise.all([
+      db.assinatura.findUnique({
+        where: { userId },
+        select: { status: true, expiraEm: true },
+      }),
+      db.membroEscola.findUnique({
+        where: { userId },
+        select: { escola: { select: { nome: true, status: true, ativaAte: true } } },
+      }),
+    ])
+
+    if (decidirAcesso(a?.status as StatusAssinatura | undefined, a?.expiraEm, agora)) {
+      return { premium: true, origem: "assinatura", escolaNome: m?.escola.nome ?? null }
+    }
+    if (m && decidirAcessoEscolar(m.escola.status, m.escola.ativaAte, agora)) {
+      return { premium: true, origem: "escola", escolaNome: m.escola.nome }
+    }
+    return { premium: false, origem: null, escolaNome: null }
+  } catch (e) {
+    console.error("[acesso] falha ao ler assinatura/escola:", (e as Error)?.message)
+    return { premium: false, origem: null, escolaNome: null }
+  }
+}
+
+/**
+ * Premium agora? As regras estão em `decidirAcesso` e `decidirAcessoEscolar`;
+ * aqui é só a leitura. Desde 11/08/2026 as duas portas contam: assinatura
+ * própria OU vínculo com escola ativa (Finlow para Escolas).
  *
  * Nunca lança: falha de banco NEGA acesso em vez de derrubar a tela. Negar por
  * erro dá suporte; um `catch` que devolvesse `true` daria o produto de graça a
  * qualquer um capaz de fazer o banco tossir.
  */
 export async function temAcessoPremium(userId: string, agora = new Date()): Promise<boolean> {
-  try {
-    const a = await db.assinatura.findUnique({
-      where: { userId },
-      select: { status: true, expiraEm: true },
-    })
-    return decidirAcesso(a?.status as StatusAssinatura | undefined, a?.expiraEm, agora)
-  } catch (e) {
-    console.error("[acesso] falha ao ler assinatura:", (e as Error)?.message)
-    return false
-  }
+  return (await acessoPremium(userId, agora)).premium
 }
 
 /**
@@ -88,28 +146,35 @@ export async function temAcessoPremium(userId: string, agora = new Date()): Prom
  * para alguém reinterpretar a regra.
  */
 export async function resumoDaAssinatura(userId: string, agora = new Date()) {
-  const a = await db.assinatura.findUnique({
-    where: { userId },
-    select: {
-      status: true,
-      valorCentavos: true,
-      proximaCobranca: true,
-      expiraEm: true,
-      canceladoEm: true,
-      externalId: true,
-    },
-  })
+  const [a, acesso] = await Promise.all([
+    db.assinatura.findUnique({
+      where: { userId },
+      select: {
+        status: true,
+        valorCentavos: true,
+        proximaCobranca: true,
+        expiraEm: true,
+        canceladoEm: true,
+        externalId: true,
+      },
+    }),
+    acessoPremium(userId, agora),
+  ])
 
   const status = (a?.status ?? null) as StatusAssinatura | null
-  const premium = decidirAcesso(status, a?.expiraEm, agora)
+  const premiumPorAssinatura = decidirAcesso(status, a?.expiraEm, agora)
 
   return {
-    premium,
+    premium: acesso.premium,
     status,
+    /** De onde vem o premium: "assinatura" | "escola" | null. A tela usa isto
+     *  para NÃO oferecer checkout a quem já tem acesso pela escola. */
+    origem: acesso.origem,
+    escolaNome: acesso.escolaNome,
     /** Pediu para sair e ainda está no período pago. */
     saindoNoFimDoPeriodo: status === "ativa" && !!a?.canceladoEm,
     /** Cobrança falhou e a janela de tentativa ainda está aberta. */
-    emAtraso: status === "inadimplente" && premium,
+    emAtraso: status === "inadimplente" && premiumPorAssinatura,
     valorCentavos: a?.valorCentavos ?? null,
     proximaCobranca: a?.proximaCobranca ?? null,
     expiraEm: a?.expiraEm ?? null,

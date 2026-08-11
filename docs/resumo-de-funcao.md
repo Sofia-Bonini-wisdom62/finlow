@@ -200,6 +200,16 @@ mostra tudo em texto com data, permite escrever à mão e apagar um a um ou tudo
 (`decidirAcesso` é a regra pura; `temAcessoPremium` e `resumoDaAssinatura`
 chamam ela). Nenhum outro arquivo decide quem é premium.
 
+**Desde 11/08/2026 o premium tem DUAS portas** (Finlow para Escolas): a
+assinatura própria OU o vínculo com escola ativa (`decidirAcessoEscolar`, no
+mesmo arquivo — "ativa" sem vigência é piloto e libera; "suspensa" nega mesmo
+com data futura). `acessoPremium` devolve o veredito com a `origem`
+("assinatura" | "escola"), a assinatura vence quando as duas valem, e a tela
+`/premium` usa isso para não oferecer checkout nem botão de cancelar a quem
+tem acesso pela escola. A cota também distingue: assinante segue sem teto;
+premium pela escola tem `TETO_ESCOLA_TOKENS` (300 mil/mês) — uma escola de
+500 alunos com chat sem teto seria custo sem contrato que o cubra.
+
 Duas leituras que não são óbvias:
 
 - **`inadimplente` MANTÉM o acesso até `expiraEm`** — é a janela em que a Stripe

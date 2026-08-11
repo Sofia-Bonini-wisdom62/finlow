@@ -114,7 +114,7 @@ arquivo que prova.
 | Etapa | Promessa | Status | Onde |
 |---|---|---|---|
 | 1 | Schema: `User.publico`, `Modulo.habilidades` e 7 tabelas (Escola, MembroEscola, Turma, MembroTurma, ConviteEscola, CompetenciaProfessor, AcessoTrilhaTurma), todas com RLS e classificadas fora do retrato git | ✅ 11/08 | `prisma/schema.prisma`, `scripts/exportar-banco.mts`, `docs/banco/01-esquema.sql` |
-| 2 | Papéis (`vinculoEscolar`, `exigirPapel`) + membro de escola ativa conta como premium + `scripts/criar-escola.mts` | 📋 | — |
+| 2 | Papéis (`vinculoEscolar`, `exigirPapel`) + membro de escola ativa conta como premium (com teto de cota próprio) + `scripts/criar-escola.mts` | ✅ 11/08 | `lib/escola.ts`, `lib/pagamento/acesso.ts` (`decidirAcessoEscolar`, `acessoPremium`), `lib/pagamento/tokens.ts` (`TETO_ESCOLA_TOKENS`), `scripts/criar-escola.mts`, `scripts/testar-escola.mts` |
 | 3 | Convites com código (gerar, resgatar no cadastro e em conta existente) + superfície `/escola` mínima | 📋 | — |
 | 4 | Público por usuário (`publicoDoUsuario`) + corredor escolar sem IA | 📋 | — |
 | 5 | `habilidades` persistido no seed + competências do professor | 📋 | — |
