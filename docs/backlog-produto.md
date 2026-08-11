@@ -89,6 +89,55 @@ ele.
 
 Implementar todo o conteúdo dos assuntos desde o 1º ano.
 
+## Finlow para Escolas — em desenvolvimento (11/08/2026)
+
+Decisão da fundadora, desenhada em quadro branco: o canal escolar reabre como
+**Finlow para Escolas**. Entrada dupla (escola × usuário comum) e três papéis:
+
+- **Professor** — cria turma/grupo; concede acesso a trilha/bloco/módulo;
+  competências (concedidas pelo adm) filtram o que ele enxerga e gerencia;
+  vê desempenho individual e geral (aluno/grupo); habilita o rank da turma
+  com escopo sala, ano ou escola.
+- **Aluno** — entra por convite com código, cai na turma e no segmento certo;
+  faz a trilha do segmento em corredor (sem IA, ordem pedagógica dos blocos);
+  vê o rank da sala; tem o **app completo como um usuário premium comum**.
+- **Adm da escola** — cria professores e alunos (via convites), concede
+  competências, vê o desempenho geral das salas.
+
+> ⚠️ **Muda uma decisão registrada.** `backlog-trilha-t2.md` declarava "B2B
+> escolar e BNCC como canal de venda" mortos ("o v3 é B2C puro"). O parágrafo
+> caiu no mesmo commit em que este trabalho começou, como manda a regra da
+> pasta. O produto adulto continua B2C por assinatura; a escola é um canal
+> paralelo sobre o mesmo conteúdo.
+
+**Decisões de desenho (fundadora, 11/08/2026):**
+
+- Escopo: o quadro completo, construído em etapas — cada etapa um commit
+  deployável.
+- Alunos e professores entram por **convite com código** (multiuso, por
+  turma); a escola e a conta do adm nascem por **script manual**
+  (`scripts/criar-escola.mts`) — sem UI de signup B2B e sem cobrança B2B
+  neste repo por enquanto.
+- Membro de escola ativa conta como **premium** (quem decide continua sendo
+  só `lib/pagamento/acesso.ts`).
+
+**Pendências abertas que esta frente cria (não bloqueiam build; bloqueiam
+venda):**
+
+- **LGPD de menores** — rank entre colegas expõe apelido+pontos de menor de
+  idade; consentimento de responsável (`consentimentoLGPD`, reservado no
+  schema) precisa de texto jurídico antes de escola real com menores.
+  Relaciona-se com a pendência R1 (política de retenção).
+- **Cota de IA por aluno** — premium por escola ganha teto próprio
+  (`TETO_ESCOLA_TOKENS`) em vez do Infinity do assinante; o número é
+  afinável e a fundadora pode derrubar o teto quando quiser.
+- **Rank por eventos escolares** — a primeira versão do rank da sala usa
+  `User.pontos` total (pontos de uso pessoal contam); recortar por eventos
+  dos módulos do segmento fica para uma segunda rodada.
+- **`preRequisitoSlug` segue inerte** — o corredor escolar usa a ordem
+  linear dos blocos, que na prática cobre o grafo de pré-requisitos; ligar o
+  grafo de verdade é projeto próprio.
+
 ---
 
 ## Avaliação de UX — jornada como usuário Gen Z (11/08/2026)

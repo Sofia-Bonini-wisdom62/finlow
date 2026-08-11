@@ -72,9 +72,13 @@ lado, ou quando título, subtítulo, ordem, público ou a espinha das telas
 divergem. É o que transforma "esqueci de semear" em erro visível em vez de um
 produto que discorda do próprio repositório.
 
-Como o resto da trilha escolar, nascem invisíveis: `filtroDeModulo()` é
-allowlist, então segmento novo não aparece sem alguém mudar `PUBLICO_ATUAL`.
-Total no banco hoje: **150 módulos, 801 telas** — o app enxerga 43.
+Como o resto da trilha escolar, nascem **fora da trilha de quem é adulto**:
+`filtroDeModulo()` é allowlist, então segmento novo nunca entra em
+recomendação, chat ou corredor sem alguém mudar o público. Desde 11/08/2026
+(`f43f36d`), porém, a **biblioteca e o player enxergam tudo**: o adulto pode
+explorar e fazer as aulas escolares, valendo 1/4 dos pontos
+(`PESO_FORA_DA_TRILHA`, `lib/pontos.ts`). Total no banco hoje: **150 módulos,
+801 telas** — a trilha do adulto continua sendo 43; a biblioteca mostra 150.
 
 ## Trilha de Ensino Médio (05/08/2026)
 
@@ -91,7 +95,7 @@ Letramento Financeiro (Banco Central / Aprender Valor, 2025), na mesma tabela
 | `ensino_superior` e `primeiro_emprego` no vocabulário | ✅ | `lib/situacoes.ts` |
 | Thumbnails dos 24 | 📋 | `/public/thumbs/` — hoje `null`, o card usa o estado sem imagem |
 | Revisão pedagógica humana | 📋 | cobertura da matriz verificada por código; adequação didática, não |
-| Decisão de linha de produto (oferta separada?) | 📋 | enquanto não houver, `PUBLICO_ATUAL` mantém tudo invisível |
+| Decisão de linha de produto (oferta separada?) | ✅ 11/08 | **Finlow para Escolas** — canal B2B escolar com perfis professor/aluno/adm, decidido pela fundadora; escopo em `backlog-produto.md` |
 
 **Ordem que não pode inverter, e custou uma exposição em produção:** coluna
 (`pnpm db:push`) → **deploy do código com o filtro** → seed
