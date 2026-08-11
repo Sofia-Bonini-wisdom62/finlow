@@ -3,9 +3,11 @@ import { auth } from "@/lib/auth"
 import { db } from "@/lib/db"
 import { vinculoEscolar } from "@/lib/escola"
 import { SEGMENTOS_ESCOLARES, filtroDeModulo, ehPublico } from "@/lib/publico"
+import Link from "next/link"
 import { GerarConvite } from "@/components/escola/GerarConvite"
 import { ConcessaoTrilha, type ItemConcessao } from "@/components/escola/ConcessaoTrilha"
 import { RankDaTurma } from "@/components/escola/RankDaTurma"
+import { desempenhoDaTurma } from "@/lib/escola-desempenho"
 
 /**
  * A página da turma: alunos, convite e (nas próximas etapas) concessões de
@@ -53,6 +55,7 @@ export default async function TurmaPage({ params }: { params: Promise<{ turmaId:
   if (!turma) notFound()
 
   const segmento = SEGMENTOS_ESCOLARES.find((s) => s.id === turma.segmento)?.nome ?? turma.segmento
+  const desempenho = await desempenhoDaTurma(turma.id)
 
   /**
    * Os itens concedíveis do segmento: EF por BLOCO; EM (sem bloco) por
@@ -154,24 +157,54 @@ export default async function TurmaPage({ params }: { params: Promise<{ turmaId:
 
       <section className="rounded-2xl border border-fl-sand bg-fl-card p-5">
         <h3 className="text-base font-semibold text-fl-ink">
-          Alunos ({turma.membros.length})
+          Alunos e desempenho ({turma.membros.length})
         </h3>
         {turma.membros.length === 0 ? (
           <p className="mt-2 text-sm text-fl-ink/60">
             Ninguém ainda — passa o link do convite para a turma.
           </p>
-        ) : (
-          <ul className="mt-3 divide-y divide-fl-sand">
-            {turma.membros.map((m) => (
-              <li key={m.user.id} className="flex items-baseline justify-between py-2 text-sm">
-                <span className="text-fl-ink">{m.user.nome ?? m.user.apelido ?? "sem nome"}</span>
-                <span className="text-fl-ink/50">
-                  desde {new Date(m.user.criadoEm).toLocaleDateString("pt-BR")}
-                </span>
-              </li>
-            ))}
-          </ul>
-        )}
+        ) : desempenho ? (
+          <div className="mt-3 overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="text-left text-xs text-fl-ink/50">
+                  <th className="pb-2 pr-3 font-medium">Aluno</th>
+                  <th className="pb-2 pr-3 font-medium">Aulas</th>
+                  <th className="pb-2 pr-3 font-medium">Acerto</th>
+                  <th className="pb-2 pr-3 font-medium">Tempo</th>
+                  <th className="pb-2 font-medium">Última atividade</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-fl-sand">
+                {desempenho.alunos.map((a) => (
+                  <tr key={a.userId}>
+                    <td className="py-2 pr-3">
+                      <Link
+                        href={`/escola/turmas/${turma.id}/aluno/${a.userId}`}
+                        className="font-medium"
+                        style={{ color: "var(--fl-500)" }}
+                      >
+                        {a.nome}
+                      </Link>
+                    </td>
+                    <td className="py-2 pr-3 tabular-nums text-fl-ink">
+                      {a.modulosConcluidos}/{a.modulosTotal}
+                    </td>
+                    <td className="py-2 pr-3 tabular-nums text-fl-ink">
+                      {a.acertoPct === null ? "—" : `${a.acertoPct}%`}
+                    </td>
+                    <td className="py-2 pr-3 tabular-nums text-fl-ink">{a.minutos} min</td>
+                    <td className="py-2 text-fl-ink/70">
+                      {a.ultimaAtividade
+                        ? new Date(a.ultimaAtividade).toLocaleDateString("pt-BR")
+                        : "ainda não começou"}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : null}
       </section>
     </div>
   )

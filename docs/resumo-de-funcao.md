@@ -269,7 +269,36 @@ Apagar a conta **cancela a assinatura na Stripe antes** do delete, e falha aí
 aborta o apagamento: `Assinatura` cascateia no nosso banco, mas o objeto na
 Stripe continuaria cobrando um cartão de alguém que já não consegue entrar.
 
-### 2.14 Operação
+### 2.14 Finlow para Escolas (11/08/2026)
+
+A escola é uma **camada de vínculo e leitura** por cima do produto: nenhuma
+tabela de conteúdo ou progresso mudou de dono. As peças, na ordem do fluxo:
+
+- **Escola nasce por script** (`scripts/criar-escola.mts`, simulação por
+  default) — sem UI de signup B2B e sem cobrança B2B neste repo.
+- **Papéis** ("adm" | "professor" | "aluno") moram em `MembroEscola` (uma
+  escola por conta, `@unique`); guard de rota é `exigirPapel`
+  (`lib/escola.ts`), lido do banco a cada request, nada no JWT.
+- **Convite com código multiuso** (`lib/convite-escola.ts`): expiração + teto
+  de usos + revogação num `updateMany` atômico; resgate transacional cria
+  vínculo, turma e `User.publico`. Cookie próprio, precedência sobre a
+  indicação.
+- **Aluno = premium pela escola** (`decidirAcessoEscolar`,
+  `lib/pagamento/acesso.ts`) com teto de cota próprio (300 mil tokens/mês).
+- **Trilha do aluno é o currículo do segmento** em corredor sem IA;
+  **concessão** (`lib/escola-acesso.ts`) deixa o professor liberar bloco a
+  bloco (EF) ou aula a aula (EM) — sem concessão, tudo aberto.
+- **Competência reduz** o que o professor cria e concede
+  (`segmentosDoProfessor`); `Modulo.habilidades` persiste os códigos BCB.
+- **Rank da sala** com régua própria (§2.10) e **desempenho**
+  (`lib/escola-desempenho.ts`): turma e aluno para o professor, visão por
+  turma para o adm — nome real nessas telas, apelido entre colegas. O
+  denominador é sempre o segmento: aula adulta explorada não entra na conta
+  da escola.
+- Superfície em `app/escola/` (fora das abas do consumidor); telas do aluno
+  são as do app normal.
+
+### 2.15 Operação
 
 `/api/ops/metrics` devolve uso da Vertex nas últimas 24h (invocações, tokens,
 caracteres, latências) e um bloco de produto (indicações totais / 30 dias /
