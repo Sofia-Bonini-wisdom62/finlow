@@ -5,6 +5,7 @@ import { vinculoEscolar } from "@/lib/escola"
 import { SEGMENTOS_ESCOLARES, filtroDeModulo, ehPublico } from "@/lib/publico"
 import { GerarConvite } from "@/components/escola/GerarConvite"
 import { ConcessaoTrilha, type ItemConcessao } from "@/components/escola/ConcessaoTrilha"
+import { RankDaTurma } from "@/components/escola/RankDaTurma"
 
 /**
  * A página da turma: alunos, convite e (nas próximas etapas) concessões de
@@ -33,6 +34,8 @@ export default async function TurmaPage({ params }: { params: Promise<{ turmaId:
       nome: true,
       segmento: true,
       serie: true,
+      rankAtivo: true,
+      rankEscopo: true,
       professor: { select: { nome: true } },
       membros: {
         select: { user: { select: { id: true, nome: true, apelido: true, criadoEm: true } } },
@@ -119,6 +122,22 @@ export default async function TurmaPage({ params }: { params: Promise<{ turmaId:
             ))}
           </ul>
         )}
+      </section>
+
+      <section className="rounded-2xl border border-fl-sand bg-fl-card p-5">
+        <h3 className="text-base font-semibold text-fl-ink">Rank da sala</h3>
+        <p className="mt-1 text-sm text-fl-ink/60">
+          Uma lista de apelido e pontos entre os alunos — você decide se existe e quem entra
+          na comparação.
+        </p>
+        <div className="mt-3">
+          <RankDaTurma
+            turmaId={turma.id}
+            rankAtivo={turma.rankAtivo}
+            rankEscopo={turma.rankEscopo}
+            temSerie={!!turma.serie}
+          />
+        </div>
       </section>
 
       <section className="rounded-2xl border border-fl-sand bg-fl-card p-5">

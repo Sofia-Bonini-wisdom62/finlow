@@ -189,6 +189,12 @@ percentuais moram em Análises de propósito.
   > ao corredor ficariam para trás no ranking sem ter feito nada.
 - **Ranking é opt-in** e mostra **apelido e pontos, nada mais**. É a única tela
   em que alguém vê dado de outra pessoa.
+- **O rank da SALA (11/08/2026, Finlow para Escolas) tem régua própria**: quem
+  liga é o professor, por turma (`Turma.rankAtivo` + escopo sala/ano/escola) —
+  é dinâmica de sala de aula, não opt-in individual. O freio do aluno é o
+  apelido: sem apelido, fora da lista dos colegas. Mesma superfície mínima
+  (apelido+pontos, `rankingEscolar` em `lib/pontos.ts`), independente do
+  ranking global. Pendência LGPD de menores registrada no backlog.
 - Indicação: código base36 gerado sob demanda, uma indicação por pessoa
   garantida **pelo banco**, autoindicação barrada, e o ponto só cai quando o
   convidado **termina a primeira conversa**.
