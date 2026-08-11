@@ -103,6 +103,29 @@ Letramento Financeiro (Banco Central / Aprender Valor, 2025), na mesma tabela
 num app cujo código ainda não filtra — elas aparecem para todo usuário adulto
 até o deploy subir. Foi o que aconteceu em 05/08/2026.
 
+## Finlow para Escolas (11/08/2026, em construção)
+
+Decisão da fundadora: o canal escolar reabre com perfis de professor, aluno e
+adm — o escopo completo e as decisões estão em
+[`backlog-produto.md`](backlog-produto.md), seção "Finlow para Escolas". A
+tabela abaixo acompanha a entrega etapa a etapa; nada aqui vira ✅ sem o
+arquivo que prova.
+
+| Etapa | Promessa | Status | Onde |
+|---|---|---|---|
+| 1 | Schema: `User.publico`, `Modulo.habilidades` e 7 tabelas (Escola, MembroEscola, Turma, MembroTurma, ConviteEscola, CompetenciaProfessor, AcessoTrilhaTurma), todas com RLS e classificadas fora do retrato git | ✅ 11/08 | `prisma/schema.prisma`, `scripts/exportar-banco.mts`, `docs/banco/01-esquema.sql` |
+| 2 | Papéis (`vinculoEscolar`, `exigirPapel`) + membro de escola ativa conta como premium + `scripts/criar-escola.mts` | 📋 | — |
+| 3 | Convites com código (gerar, resgatar no cadastro e em conta existente) + superfície `/escola` mínima | 📋 | — |
+| 4 | Público por usuário (`publicoDoUsuario`) + corredor escolar sem IA | 📋 | — |
+| 5 | `habilidades` persistido no seed + competências do professor | 📋 | — |
+| 6 | Concessão de acesso professor → turma → trilha/bloco/módulo | 📋 | — |
+| 7 | Ranks escopados (sala/ano/escola) | 📋 | — |
+| 8 | Dashboards de desempenho (professor e adm) | 📋 | — |
+
+Nenhum código lê os campos novos ainda — os defaults (`publico: "adulto"`,
+`habilidades: []`) reproduzem o comportamento de antes da coluna existir, que
+é o que torna a etapa 1 segura de aplicar antes do resto.
+
 ## Fila de produto (05/08/2026)
 
 O que está decidido construir e ainda não começou vive em

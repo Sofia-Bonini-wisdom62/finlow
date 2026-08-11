@@ -1,5 +1,5 @@
--- Arquitetura das tabelas do Finlow — 30 tabelas.
--- GERADO por scripts/exportar-banco.mts em 2026-08-10. Não edite à mão:
+-- Arquitetura das tabelas do Finlow — 37 tabelas.
+-- GERADO por scripts/exportar-banco.mts em 2026-08-11. Não edite à mão:
 -- a fonte é prisma/schema.prisma, e é lá que os comentários explicam o PORQUÊ
 -- de cada decisão (cifra, cascade, campos em claro).
 --
@@ -11,22 +11,23 @@ CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "nome" TEXT,
-    "emailVerified" TIMESTAMP(3),
-    "image" TEXT,
-    "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "consentimentoLGPD" TIMESTAMP(3),
-    "senha" TEXT,
     "dataNascimento" TIMESTAMP(3),
+    "senha" TEXT,
+    "consentimentoLGPD" TIMESTAMP(3),
     "consentimentoPainelEm" TIMESTAMP(3),
     "memoriaAtiva" BOOLEAN NOT NULL DEFAULT false,
     "onboardingEm" TIMESTAMP(3),
-    "apelido" TEXT,
     "nivel" TEXT NOT NULL DEFAULT 'iniciante',
-    "pontos" INTEGER NOT NULL DEFAULT 0,
-    "rankingOptIn" BOOLEAN NOT NULL DEFAULT false,
     "tendencia" TEXT,
+    "pontos" INTEGER NOT NULL DEFAULT 0,
+    "apelido" TEXT,
+    "rankingOptIn" BOOLEAN NOT NULL DEFAULT false,
     "codigoIndicacao" TEXT,
     "moduloAvancado" BOOLEAN NOT NULL DEFAULT false,
+    "publico" TEXT NOT NULL DEFAULT 'adulto',
+    "emailVerified" TIMESTAMP(3),
+    "image" TEXT,
+    "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -198,9 +199,9 @@ CREATE TABLE "Transacao" (
     "data" TIMESTAMP(3) NOT NULL,
     "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "confirmado" BOOLEAN NOT NULL DEFAULT false,
-    "extratoImportId" TEXT,
     "origem" TEXT NOT NULL DEFAULT 'manual',
     "escopo" TEXT NOT NULL DEFAULT 'pessoal',
+    "extratoImportId" TEXT,
 
     CONSTRAINT "Transacao_pkey" PRIMARY KEY ("id")
 );
@@ -296,8 +297,8 @@ CREATE TABLE "RecomendacaoTrilha" (
     "motivo" TEXT NOT NULL,
     "origem" TEXT NOT NULL,
     "ordem" INTEGER NOT NULL,
-    "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "entregueEm" TIMESTAMP(3),
+    "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "leva" INTEGER NOT NULL DEFAULT 1,
     "substituidaEm" TIMESTAMP(3),
 
@@ -318,23 +319,24 @@ CREATE TABLE "Perfil" (
 -- CreateTable
 CREATE TABLE "Modulo" (
     "id" TEXT NOT NULL,
+    "slug" TEXT NOT NULL,
     "titulo" TEXT NOT NULL,
+    "subtitulo" TEXT NOT NULL,
     "tipoPerfil" TEXT NOT NULL,
     "ordem" INTEGER NOT NULL,
-    "slug" TEXT NOT NULL,
-    "subtitulo" TEXT NOT NULL,
+    "pontos" INTEGER NOT NULL DEFAULT 50,
+    "xp" INTEGER NOT NULL DEFAULT 50,
+    "thumbnail" TEXT,
     "duracaoMin" INTEGER NOT NULL DEFAULT 2,
     "tags" TEXT[],
-    "thumbnail" TEXT,
+    "blocoId" TEXT,
+    "blocoRotulo" TEXT,
+    "preRequisitoSlug" TEXT,
+    "ehRevisao" BOOLEAN NOT NULL DEFAULT false,
     "nivel" TEXT NOT NULL DEFAULT 'iniciante',
     "situacoes" TEXT[],
     "publico" TEXT NOT NULL DEFAULT 'adulto',
-    "blocoId" TEXT,
-    "blocoRotulo" TEXT,
-    "ehRevisao" BOOLEAN NOT NULL DEFAULT false,
-    "pontos" INTEGER NOT NULL DEFAULT 50,
-    "preRequisitoSlug" TEXT,
-    "xp" INTEGER NOT NULL DEFAULT 50,
+    "habilidades" TEXT[] DEFAULT ARRAY[]::TEXT[],
 
     CONSTRAINT "Modulo_pkey" PRIMARY KEY ("id")
 );
@@ -428,6 +430,94 @@ CREATE TABLE "Indicador" (
     "atualizadoEm" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Indicador_pkey" PRIMARY KEY ("chave")
+);
+
+-- CreateTable
+CREATE TABLE "Escola" (
+    "id" TEXT NOT NULL,
+    "nome" TEXT NOT NULL,
+    "status" TEXT NOT NULL DEFAULT 'ativa',
+    "ativaAte" TIMESTAMP(3),
+    "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "atualizadoEm" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Escola_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "MembroEscola" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "escolaId" TEXT NOT NULL,
+    "papel" TEXT NOT NULL,
+    "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "MembroEscola_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Turma" (
+    "id" TEXT NOT NULL,
+    "escolaId" TEXT NOT NULL,
+    "nome" TEXT NOT NULL,
+    "segmento" TEXT NOT NULL,
+    "serie" TEXT,
+    "professorId" TEXT,
+    "rankAtivo" BOOLEAN NOT NULL DEFAULT false,
+    "rankEscopo" TEXT NOT NULL DEFAULT 'sala',
+    "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Turma_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "MembroTurma" (
+    "id" TEXT NOT NULL,
+    "turmaId" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "MembroTurma_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "ConviteEscola" (
+    "id" TEXT NOT NULL,
+    "escolaId" TEXT NOT NULL,
+    "papel" TEXT NOT NULL,
+    "turmaId" TEXT,
+    "codigo" TEXT NOT NULL,
+    "criadoPorId" TEXT,
+    "expiraEm" TIMESTAMP(3) NOT NULL,
+    "usosMax" INTEGER NOT NULL DEFAULT 50,
+    "usos" INTEGER NOT NULL DEFAULT 0,
+    "revogadoEm" TIMESTAMP(3),
+    "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "ConviteEscola_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "CompetenciaProfessor" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "escolaId" TEXT NOT NULL,
+    "segmento" TEXT NOT NULL,
+    "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "CompetenciaProfessor_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "AcessoTrilhaTurma" (
+    "id" TEXT NOT NULL,
+    "turmaId" TEXT NOT NULL,
+    "tipo" TEXT NOT NULL,
+    "refId" TEXT NOT NULL,
+    "concedidoPorId" TEXT,
+    "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "AcessoTrilhaTurma_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -550,6 +640,36 @@ CREATE UNIQUE INDEX "VerificationToken_token_key" ON "VerificationToken"("token"
 -- CreateIndex
 CREATE UNIQUE INDEX "VerificationToken_identifier_token_key" ON "VerificationToken"("identifier", "token");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "MembroEscola_userId_key" ON "MembroEscola"("userId");
+
+-- CreateIndex
+CREATE INDEX "MembroEscola_escolaId_papel_idx" ON "MembroEscola"("escolaId", "papel");
+
+-- CreateIndex
+CREATE INDEX "Turma_escolaId_idx" ON "Turma"("escolaId");
+
+-- CreateIndex
+CREATE INDEX "MembroTurma_userId_idx" ON "MembroTurma"("userId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "MembroTurma_turmaId_userId_key" ON "MembroTurma"("turmaId", "userId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "ConviteEscola_codigo_key" ON "ConviteEscola"("codigo");
+
+-- CreateIndex
+CREATE INDEX "ConviteEscola_escolaId_idx" ON "ConviteEscola"("escolaId");
+
+-- CreateIndex
+CREATE INDEX "CompetenciaProfessor_escolaId_idx" ON "CompetenciaProfessor"("escolaId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "CompetenciaProfessor_userId_escolaId_segmento_key" ON "CompetenciaProfessor"("userId", "escolaId", "segmento");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "AcessoTrilhaTurma_turmaId_tipo_refId_key" ON "AcessoTrilhaTurma"("turmaId", "tipo", "refId");
+
 -- AddForeignKey
 ALTER TABLE "Investimento" ADD CONSTRAINT "Investimento_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -566,10 +686,10 @@ ALTER TABLE "Assinatura" ADD CONSTRAINT "Assinatura_userId_fkey" FOREIGN KEY ("u
 ALTER TABLE "DiaAtivo" ADD CONSTRAINT "DiaAtivo_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Indicacao" ADD CONSTRAINT "Indicacao_indicadoId_fkey" FOREIGN KEY ("indicadoId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Indicacao" ADD CONSTRAINT "Indicacao_indicadorId_fkey" FOREIGN KEY ("indicadorId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Indicacao" ADD CONSTRAINT "Indicacao_indicadorId_fkey" FOREIGN KEY ("indicadorId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Indicacao" ADD CONSTRAINT "Indicacao_indicadoId_fkey" FOREIGN KEY ("indicadoId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "MemoriaUsuario" ADD CONSTRAINT "MemoriaUsuario_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -581,19 +701,19 @@ ALTER TABLE "ContaFixa" ADD CONSTRAINT "ContaFixa_userId_fkey" FOREIGN KEY ("use
 ALTER TABLE "Categoria" ADD CONSTRAINT "Categoria_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "Orcamento" ADD CONSTRAINT "Orcamento_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "Orcamento" ADD CONSTRAINT "Orcamento_categoriaId_fkey" FOREIGN KEY ("categoriaId") REFERENCES "Categoria"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Orcamento" ADD CONSTRAINT "Orcamento_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "Transacao" ADD CONSTRAINT "Transacao_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Transacao" ADD CONSTRAINT "Transacao_categoriaId_fkey" FOREIGN KEY ("categoriaId") REFERENCES "Categoria"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Transacao" ADD CONSTRAINT "Transacao_extratoImportId_fkey" FOREIGN KEY ("extratoImportId") REFERENCES "ExtratoImport"("id") ON DELETE SET NULL ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Transacao" ADD CONSTRAINT "Transacao_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "ExtratoImport" ADD CONSTRAINT "ExtratoImport_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -614,10 +734,10 @@ ALTER TABLE "EventoPontuacao" ADD CONSTRAINT "EventoPontuacao_userId_fkey" FOREI
 ALTER TABLE "Insight" ADD CONSTRAINT "Insight_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "RecomendacaoTrilha" ADD CONSTRAINT "RecomendacaoTrilha_moduloId_fkey" FOREIGN KEY ("moduloId") REFERENCES "Modulo"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "RecomendacaoTrilha" ADD CONSTRAINT "RecomendacaoTrilha_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "RecomendacaoTrilha" ADD CONSTRAINT "RecomendacaoTrilha_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "RecomendacaoTrilha" ADD CONSTRAINT "RecomendacaoTrilha_moduloId_fkey" FOREIGN KEY ("moduloId") REFERENCES "Modulo"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Perfil" ADD CONSTRAINT "Perfil_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -626,19 +746,58 @@ ALTER TABLE "Perfil" ADD CONSTRAINT "Perfil_userId_fkey" FOREIGN KEY ("userId") 
 ALTER TABLE "Tela" ADD CONSTRAINT "Tela_moduloId_fkey" FOREIGN KEY ("moduloId") REFERENCES "Modulo"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ProgressoModulo" ADD CONSTRAINT "ProgressoModulo_moduloId_fkey" FOREIGN KEY ("moduloId") REFERENCES "Modulo"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
 ALTER TABLE "ProgressoModulo" ADD CONSTRAINT "ProgressoModulo_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "ProgressoLicao" ADD CONSTRAINT "ProgressoLicao_moduloId_fkey" FOREIGN KEY ("moduloId") REFERENCES "Modulo"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "ProgressoModulo" ADD CONSTRAINT "ProgressoModulo_moduloId_fkey" FOREIGN KEY ("moduloId") REFERENCES "Modulo"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "ProgressoLicao" ADD CONSTRAINT "ProgressoLicao_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ProgressoLicao" ADD CONSTRAINT "ProgressoLicao_moduloId_fkey" FOREIGN KEY ("moduloId") REFERENCES "Modulo"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "MembroEscola" ADD CONSTRAINT "MembroEscola_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "MembroEscola" ADD CONSTRAINT "MembroEscola_escolaId_fkey" FOREIGN KEY ("escolaId") REFERENCES "Escola"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Turma" ADD CONSTRAINT "Turma_escolaId_fkey" FOREIGN KEY ("escolaId") REFERENCES "Escola"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Turma" ADD CONSTRAINT "Turma_professorId_fkey" FOREIGN KEY ("professorId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "MembroTurma" ADD CONSTRAINT "MembroTurma_turmaId_fkey" FOREIGN KEY ("turmaId") REFERENCES "Turma"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "MembroTurma" ADD CONSTRAINT "MembroTurma_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ConviteEscola" ADD CONSTRAINT "ConviteEscola_escolaId_fkey" FOREIGN KEY ("escolaId") REFERENCES "Escola"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ConviteEscola" ADD CONSTRAINT "ConviteEscola_turmaId_fkey" FOREIGN KEY ("turmaId") REFERENCES "Turma"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ConviteEscola" ADD CONSTRAINT "ConviteEscola_criadoPorId_fkey" FOREIGN KEY ("criadoPorId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CompetenciaProfessor" ADD CONSTRAINT "CompetenciaProfessor_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CompetenciaProfessor" ADD CONSTRAINT "CompetenciaProfessor_escolaId_fkey" FOREIGN KEY ("escolaId") REFERENCES "Escola"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "AcessoTrilhaTurma" ADD CONSTRAINT "AcessoTrilhaTurma_turmaId_fkey" FOREIGN KEY ("turmaId") REFERENCES "Turma"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "AcessoTrilhaTurma" ADD CONSTRAINT "AcessoTrilhaTurma_concedidoPorId_fkey" FOREIGN KEY ("concedidoPorId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;

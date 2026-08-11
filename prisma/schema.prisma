@@ -25,6 +25,14 @@ model User {
   rankingOptIn          Boolean               @default(false) // ranking é opt-in explícito
   codigoIndicacao       String?               @unique // 8 chars base36 do link /r/{codigo} — gerado sob demanda, nunca no cadastro
   moduloAvancado        Boolean               @default(false) // Módulo Avançado (persona C) — liga aqui ou via AVANCADO_BETA_EMAILS (lib/plano.ts)
+  /// Para qual público é A TRILHA desta pessoa (lib/publico.ts, PUBLICOS).
+  /// "adulto" para todo mundo; aluno de escola recebe o segmento da turma no
+  /// resgate do convite (Finlow para Escolas). O default reproduz o
+  /// comportamento de antes da coluna existir — quem nunca resgatou convite
+  /// não muda de trilha. NUNCA leia isto direto numa rota: use
+  /// publicoDoUsuario(), que valida o valor e cai em "adulto" quando não
+  /// reconhece.
+  publico               String                @default("adulto") // "adulto"|"ef12"|"ef35"|"ef67"|"ef89"|"em"
   emailVerified         DateTime?
   image                 String?
   criadoEm              DateTime              @default(now())
@@ -51,6 +59,13 @@ model User {
   usoMensalIA           UsoMensalIA[]
   accounts              Account[]
   sessions              Session[]
+  // --- Finlow para Escolas (11/08/2026) ---
+  membroEscola          MembroEscola?
+  turmas                MembroTurma[]
+  turmasQueLeciona      Turma[]                @relation("professorDaTurma")
+  competencias          CompetenciaProfessor[]
+  convitesGerados       ConviteEscola[]        @relation("geradorDoConvite")
+  acessosConcedidos     AcessoTrilhaTurma[]    @relation("concessorDoAcesso")
 }
 
 /// Consolidação de investimentos (Módulo Avançado, persona C). Entrada
@@ -580,7 +595,15 @@ model Modulo {
   /// (lib/publico.ts). Um findMany sem o filtro devolve as duas trilhas
   /// misturadas, e o sintoma é a IA recomendando "Estudar sem se afundar" para
   /// alguém de 38 anos. `scripts/testar-publico.mts` quebra quando isso escapa.
-  publico         String               @default("adulto") // "adulto" | "em"
+  publico         String               @default("adulto") // lib/publico.ts PUBLICOS: "adulto"|"ef12"|"ef35"|"ef67"|"ef89"|"em"
+  /// Códigos da matriz BCB que este módulo cobre (ex.: "EF35LF01").
+  ///
+  /// A fonte (prisma/modulos-ef.ts, prisma/modulos-em.ts) sempre declarou; o
+  /// semeador descartava. Persistir é o que permite competência granular por
+  /// código no Finlow para Escolas — hoje a competência do professor é por
+  /// SEGMENTO (CompetenciaProfessor), e este campo é a ponte para o depois.
+  /// Trilha adulta fica com o default vazio: a matriz é currículo escolar.
+  habilidades     String[]             @default([])
   telas           Tela[]
   progresso       ProgressoModulo[]
   progressoLicoes ProgressoLicao[]
@@ -730,4 +753,165 @@ model Indicador {
   fonte        String // "Copom/Banco Central"
   apuradoEm    DateTime
   atualizadoEm DateTime @updatedAt
+}
+
+// ---------------------------------------------------------------------------
+// Finlow para Escolas (11/08/2026) — decisão da fundadora, ver
+// docs/backlog-produto.md. A escola é uma camada de VÍNCULO por cima do
+// produto: nenhuma tabela de conteúdo ou progresso muda de dono. Regra de
+// delete em duas famílias: o que é dado do usuário cascateia do User
+// (MembroEscola, MembroTurma, CompetenciaProfessor); o que é ESTRUTURA da
+// escola sobrevive ao usuário (Turma.professorId, ConviteEscola.criadoPorId,
+// AcessoTrilhaTurma.concedidoPorId → SetNull). Apagar a Escola cascateia os
+// vínculos, nunca as contas.
+// ---------------------------------------------------------------------------
+
+/// Uma escola cliente. Nasce por scripts/criar-escola.mts, nunca por UI —
+/// venda é manual e cobrança B2B fica fora deste repo por enquanto.
+///
+/// Quem interpreta status + ativaAte é SÓ lib/pagamento/acesso.ts
+/// (decidirAcessoEscolar): membro de escola ativa conta como premium, e
+/// duplicar essa leitura teria o mesmo custo de duplicar decidirAcesso.
+model Escola {
+  id           String    @id @default(cuid())
+  nome         String
+  status       String    @default("ativa") // "ativa" | "suspensa" — vocabulário em lib/escola.ts
+  /// Fim da vigência do contrato. null = piloto sem prazo definido.
+  ativaAte     DateTime?
+  criadoEm     DateTime  @default(now())
+  atualizadoEm DateTime  @updatedAt
+  membros      MembroEscola[]
+  turmas       Turma[]
+  convites     ConviteEscola[]
+  competencias CompetenciaProfessor[]
+}
+
+/// O vínculo pessoa↔escola, com o papel. `userId @unique` = UMA escola por
+/// conta, garantida pelo banco e não por checagem de rota — o mesmo argumento
+/// do @unique de Indicacao.indicadoId.
+///
+/// O papel mora aqui e não no User de propósito: papel só existe DENTRO de
+/// uma escola. Sem vínculo, todo mundo é usuário comum, e apagar o vínculo
+/// devolve a conta ao estado comum sem sobrar coluna órfã no User.
+model MembroEscola {
+  id       String   @id @default(cuid())
+  userId   String   @unique
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  escolaId String
+  escola   Escola   @relation(fields: [escolaId], references: [id], onDelete: Cascade)
+  papel    String // "adm" | "professor" | "aluno" — lib/escola.ts valida
+  criadoEm DateTime @default(now())
+
+  @@index([escolaId, papel])
+}
+
+/// Turma ou grupo. Também carrega a config do rank: quem liga é o PROFESSOR
+/// (decisão do quadro branco — no contexto escolar o rank é dinâmica de sala,
+/// não opt-in individual como o ranking global; a pendência LGPD disso está
+/// registrada em docs/backlog-produto.md).
+model Turma {
+  id          String   @id @default(cuid())
+  escolaId    String
+  escola      Escola   @relation(fields: [escolaId], references: [id], onDelete: Cascade)
+  nome        String // "5º ano A"
+  /// Segmento escolar (lib/publico.ts, SEGMENTOS_ESCOLARES): define a trilha
+  /// dos alunos — quem resgata convite desta turma ganha User.publico daqui.
+  segmento    String // "ef12"|"ef35"|"ef67"|"ef89"|"em"
+  /// Série dentro do segmento ("3", "5", "1em"...). Alimenta o rank de escopo
+  /// "ano". null = turma sem série (clube, reforço): participa só de "sala" e
+  /// "escola".
+  serie       String?
+  /// SetNull: professor que apaga a conta não leva a turma junto — os alunos
+  /// continuam nela e o adm designa outro professor.
+  professorId String?
+  professor   User?    @relation("professorDaTurma", fields: [professorId], references: [id], onDelete: SetNull)
+  rankAtivo   Boolean  @default(false)
+  rankEscopo  String   @default("sala") // "sala" | "ano" | "escola"
+  criadoEm    DateTime @default(now())
+  membros     MembroTurma[]
+  convites    ConviteEscola[]
+  acessos     AcessoTrilhaTurma[]
+
+  @@index([escolaId])
+}
+
+/// Aluno em turma, N:N — o mesmo aluno pode estar na sala E num grupo
+/// (reforço, clube). A trilha dele é a união do que as turmas concedem.
+model MembroTurma {
+  id       String   @id @default(cuid())
+  turmaId  String
+  turma    Turma    @relation(fields: [turmaId], references: [id], onDelete: Cascade)
+  userId   String
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  criadoEm DateTime @default(now())
+
+  @@unique([turmaId, userId])
+  @@index([userId])
+}
+
+/// Convite com código, MULTIUSO de propósito: um código por turma serve à
+/// turma inteira — o professor escreve no quadro. Diferente da Indicacao
+/// (1:1): aqui o código carrega papel e destino, e o teto de usos é o freio.
+///
+/// O resgate é um updateMany condicionado (usos < usosMax, não revogado, não
+/// expirado) — duas abas no mesmo segundo não furam o teto. Ver
+/// lib/convite-escola.ts.
+model ConviteEscola {
+  id          String    @id @default(cuid())
+  escolaId    String
+  escola      Escola    @relation(fields: [escolaId], references: [id], onDelete: Cascade)
+  papel       String // "professor" | "aluno"
+  /// Convite de aluno aponta a turma em que ele cai; de professor, não.
+  /// Cascade: turma apagada leva os convites dela — um código órfão criaria
+  /// aluno sem turma.
+  turmaId     String?
+  turma       Turma?    @relation(fields: [turmaId], references: [id], onDelete: Cascade)
+  codigo      String    @unique // 8 chars base36, mesmo formato do código de indicação
+  /// SetNull: apagar a conta de quem gerou não invalida o convite da turma.
+  criadoPorId String?
+  criadoPor   User?     @relation("geradorDoConvite", fields: [criadoPorId], references: [id], onDelete: SetNull)
+  expiraEm    DateTime
+  usosMax     Int       @default(50)
+  usos        Int       @default(0)
+  revogadoEm  DateTime?
+  criadoEm    DateTime  @default(now())
+
+  @@index([escolaId])
+}
+
+/// Competência do professor, por SEGMENTO: reduz o que ele enxerga e gerencia
+/// nas telas de /escola (o quadro branco: "reduz/filtra as trilhas que ele
+/// ensina"). Quem concede é o adm. Granularidade por código BCB fica para
+/// depois — Modulo.habilidades persistido é o que a viabiliza.
+model CompetenciaProfessor {
+  id       String   @id @default(cuid())
+  userId   String
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  escolaId String
+  escola   Escola   @relation(fields: [escolaId], references: [id], onDelete: Cascade)
+  segmento String // "ef12"|"ef35"|"ef67"|"ef89"|"em"
+  criadoEm DateTime @default(now())
+
+  @@unique([userId, escolaId, segmento])
+  @@index([escolaId])
+}
+
+/// O que o professor liberou para a turma. `tipo` + `refId` em vez de três
+/// FKs: "segmento" (refId = "ef35"), "bloco" (refId = Modulo.blocoId) ou
+/// "modulo" (refId = Modulo.id).
+///
+/// Turma SEM nenhuma linha = trilha completa do segmento em corredor — o
+/// produto funciona sem professor ativo. COM linhas, o app do aluno mostra e
+/// libera só o concedido. A expansão mora em lib/escola-acesso.ts.
+model AcessoTrilhaTurma {
+  id             String   @id @default(cuid())
+  turmaId        String
+  turma          Turma    @relation(fields: [turmaId], references: [id], onDelete: Cascade)
+  tipo           String // "segmento" | "bloco" | "modulo"
+  refId          String
+  concedidoPorId String?
+  concedidoPor   User?    @relation("concessorDoAcesso", fields: [concedidoPorId], references: [id], onDelete: SetNull)
+  criadoEm       DateTime @default(now())
+
+  @@unique([turmaId, tipo, refId])
 }
