@@ -36,8 +36,12 @@ export const FORMATO_CODIGO = /^[0-9a-z]{8}$/
  * 8 caracteres base36 (~41 bits): curto o bastante para caber numa conversa
  * de WhatsApp, espaço grande o bastante para chute ser inútil. O viés do
  * módulo sobre 36 é irrelevante aqui — código não é segredo, é endereço.
+ *
+ * Exportado porque o convite de escola (lib/convite-escola.ts) usa o MESMO
+ * formato — dois geradores de código de 8 base36 seria a duplicação clássica
+ * que diverge em silêncio.
  */
-function gerarCodigo(): string {
+export function gerarCodigo(): string {
   const alfabeto = "0123456789abcdefghijklmnopqrstuvwxyz"
   const bytes = randomBytes(8)
   let codigo = ""

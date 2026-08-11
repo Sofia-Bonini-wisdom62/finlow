@@ -40,6 +40,15 @@ Avançado, atrás de flag).
 - Data de nascimento é informativa — **não há validação de idade**.
 - Ajustes concentra: dados da conta, tema (sistema/claro/escuro), paleta
   (teal/terracota/indigo), convite de amigos, exportar dados, apagar conta.
+- **Convite de escola** (11/08/2026, Finlow para Escolas): `/convite/{codigo}`
+  planta cookie e leva ao cadastro (banner "você está entrando na Escola X")
+  ou, logado, a `/convite/aceitar` — vincular conta existente é botão, nunca
+  efeito colateral de abrir link. O resgate (`lib/convite-escola.ts`) é
+  transacional com teto de usos atômico; aluno cai na turma, ganha
+  `User.publico` do segmento e vira premium pela escola. Convite tem
+  precedência sobre indicação quando os dois cookies existem. Papel nas rotas
+  via `exigirPapel` (`lib/escola.ts`); a superfície do professor/adm é
+  `app/escola/` — fora das abas do app do consumidor de propósito.
 
 ### 2.3 Onboarding — a primeira conversa
 

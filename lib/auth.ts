@@ -5,6 +5,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter"
 import bcrypt from "bcryptjs"
 import { db } from "@/lib/db"
 import { COOKIE_INDICACAO, vincularIndicacao } from "@/lib/indicacao"
+import { COOKIE_CONVITE, resgatarConvite } from "@/lib/convite-escola"
 
 // Google só entra quando as credenciais existirem no .env.local
 // (criar em console.cloud.google.com → APIs & Services → Credentials)
@@ -58,10 +59,19 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     async createUser({ user }) {
       try {
         const { cookies } = await import("next/headers")
-        const codigo = (await cookies()).get(COOKIE_INDICACAO)?.value
-        if (codigo && user.id) await vincularIndicacao(user.id, codigo)
+        const jar = await cookies()
+        // Convite de escola tem precedência sobre indicação — a mesma ordem
+        // de /api/cadastro. Sem apelido aqui: o fluxo do Google não tem
+        // formulário, e a pessoa escolhe em /ranking depois.
+        const convite = jar.get(COOKIE_CONVITE)?.value
+        let vinculadoAEscola = false
+        if (convite && user.id) {
+          vinculadoAEscola = (await resgatarConvite(user.id, convite)).ok
+        }
+        const codigo = jar.get(COOKIE_INDICACAO)?.value
+        if (codigo && user.id && !vinculadoAEscola) await vincularIndicacao(user.id, codigo)
       } catch (e) {
-        console.error("[auth] indicação no cadastro Google:", (e as Error)?.message)
+        console.error("[auth] vínculo no cadastro Google:", (e as Error)?.message)
       }
     },
   },

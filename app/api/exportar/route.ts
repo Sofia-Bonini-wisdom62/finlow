@@ -62,6 +62,26 @@ export async function GET() {
       }),
     ])
 
+    // Vínculo escolar: escola, papel, turmas e competências — o que É da
+    // pessoa. Colegas de turma ficam de fora pela mesma regra das indicações:
+    // quem estuda comigo é dado dos outros.
+    const [membroEscola, minhasTurmas, minhasCompetencias] = await Promise.all([
+      db.membroEscola.findUnique({
+        where: { userId },
+        select: { papel: true, criadoEm: true, escola: { select: { nome: true } } },
+      }),
+      db.membroTurma.findMany({
+        where: { userId },
+        select: { criadoEm: true, turma: { select: { nome: true, segmento: true, serie: true } } },
+        orderBy: { criadoEm: "asc" },
+      }),
+      db.competenciaProfessor.findMany({
+        where: { userId },
+        select: { segmento: true, criadoEm: true },
+        orderBy: { criadoEm: "asc" },
+      }),
+    ])
+
     const dump = {
       exportadoEm: new Date().toISOString(),
       conta: user,
@@ -112,6 +132,20 @@ export async function GET() {
         : null,
       assinatura,
       usoDeIA: usoIA,
+      escola: membroEscola
+        ? {
+            nome: membroEscola.escola.nome,
+            papel: membroEscola.papel,
+            desde: membroEscola.criadoEm,
+            turmas: minhasTurmas.map((t) => ({
+              nome: t.turma.nome,
+              segmento: t.turma.segmento,
+              serie: t.turma.serie,
+              desde: t.criadoEm,
+            })),
+            competencias: minhasCompetencias,
+          }
+        : null,
     }
 
     const data = new Date().toISOString().split("T")[0]
