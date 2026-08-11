@@ -2,7 +2,7 @@ import Link from "next/link"
 import { ArrowLeft, Check, Lock } from "lucide-react"
 import { auth } from "@/lib/auth"
 import { db } from "@/lib/db"
-import { filtroDeModulo } from "@/lib/publico"
+import { filtroExploravel, ehDeOutroPublico, SEGMENTOS_ESCOLARES } from "@/lib/publico"
 import { montarCorredor } from "@/lib/corredor"
 import { BottomNav } from "@/components/bottom-nav"
 
@@ -37,6 +37,130 @@ const NOME_NIVEL: Record<string, string> = {
   avancado: "Avançado",
 }
 
+interface AulaCard {
+  id: string
+  slug: string
+  titulo: string
+  subtitulo: string
+  publico: string
+  duracaoMin: number
+  _count: { telas: number }
+}
+
+/**
+ * Uma seção da biblioteca.
+ *
+ * O ESTADO DE UMA AULA ESCOLAR NÃO VEM DO CORREDOR, e não é omissão: o corredor
+ * é a ordem que a IA montou PARA a pessoa, e ela não montou nada sobre o 4º ano.
+ * Aula de outro público simplesmente não está no mapa — se eu lesse o corredor
+ * para ela, o `undefined` cairia em "trancado" e a biblioteca mostraria 107
+ * cadeados que nada destrava. Por isso o público decide antes: escolar é sempre
+ * abrível, na lição que a pessoa quiser.
+ *
+ * `podeAbrir` (lib/corredor.ts) tem exatamente a mesma regra do outro lado —
+ * são as duas metades da mesma decisão, e divergir aqui produziria um card que
+ * abre e uma rota que recusa.
+ */
+function Secao({
+  titulo,
+  aulas,
+  corredor,
+}: {
+  titulo: string
+  aulas: AulaCard[]
+  corredor: Awaited<ReturnType<typeof montarCorredor>>
+}) {
+  return (
+    <section className="mb-8">
+      <h2
+        className="mb-3 text-[11px] font-bold uppercase tracking-wider"
+        style={{ color: "var(--finlow-muted)" }}
+      >
+        {titulo}
+      </h2>
+      <ul className="flex flex-col gap-2">
+        {aulas.map((m) => {
+          const deOutraTrilha = ehDeOutroPublico(m.publico)
+          const no = corredor.modulos.get(m.id)
+          const estado = deOutraTrilha ? "liberado" : no?.estado ?? "trancado"
+          const trancado = estado === "trancado"
+          const concluido = estado === "concluido"
+
+          const estilo = {
+            border: "1px solid var(--finlow-surface-2)",
+            background: "var(--finlow-surface)",
+            borderRadius: "var(--finlow-radius)",
+            opacity: trancado ? 0.62 : 1,
+          }
+
+          const conteudo = (
+            <div className="flex items-start gap-3">
+              <span
+                aria-hidden="true"
+                className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full"
+                style={{
+                  background: concluido ? "var(--finlow-accent)" : "var(--finlow-surface-2)",
+                  color: concluido ? "var(--finlow-bg)" : "var(--finlow-muted)",
+                }}
+              >
+                {concluido ? <Check size={14} /> : trancado ? <Lock size={12} /> : null}
+              </span>
+              <div className="min-w-0 flex-1">
+                <p
+                  className="text-[15px] font-semibold leading-snug"
+                  style={{
+                    color: trancado ? "var(--finlow-locked-text)" : "var(--finlow-text)",
+                  }}
+                >
+                  {m.titulo}
+                </p>
+                <p
+                  className="mt-0.5 text-[13px] leading-snug text-pretty"
+                  style={{ color: "var(--finlow-muted)" }}
+                >
+                  {m.subtitulo}
+                </p>
+                <p className="mt-1.5 text-[11px]" style={{ color: "var(--finlow-muted)" }}>
+                  {m._count.telas} telas · ~{m.duracaoMin} min
+                  {!deOutraTrilha && no && no.licoesTotal > 0 && !trancado
+                    ? ` · ${no.licoesConcluidas}/${no.licoesTotal} lições`
+                    : ""}
+                </p>
+                {trancado && no?.bloqueio && (
+                  <p className="mt-1.5 text-[12px]" style={{ color: "var(--finlow-warn)" }}>
+                    {no.bloqueio}
+                  </p>
+                )}
+              </div>
+            </div>
+          )
+
+          // Trancado NÃO é link: um cadeado clicável que leva a um 403 é pior
+          // que um cadeado. Quem quiser adiantar a aula fala no Chat, que é o
+          // caminho que o produto oferece para isso.
+          return (
+            <li key={m.id}>
+              {trancado ? (
+                <div className="block p-3.5" style={estilo} aria-disabled="true">
+                  {conteudo}
+                </div>
+              ) : (
+                <Link
+                  href={`/trilha/${m.slug}`}
+                  className="block p-3.5 transition-opacity hover:opacity-80"
+                  style={estilo}
+                >
+                  {conteudo}
+                </Link>
+              )}
+            </li>
+          )
+        })}
+      </ul>
+    </section>
+  )
+}
+
 export default async function BibliotecaPage() {
   const session = await auth()
   const userId = session?.user?.id
@@ -57,7 +181,7 @@ export default async function BibliotecaPage() {
 
   const [modulos, corredor] = await Promise.all([
     db.modulo.findMany({
-      where: filtroDeModulo(),
+      where: filtroExploravel(),
       select: {
         id: true,
         slug: true,
@@ -65,6 +189,7 @@ export default async function BibliotecaPage() {
         subtitulo: true,
         blocoRotulo: true,
         nivel: true,
+        publico: true,
         duracaoMin: true,
         ordem: true,
         _count: { select: { telas: true } },
@@ -82,13 +207,22 @@ export default async function BibliotecaPage() {
    * organizam por nível. Um único agrupador serve aos dois sem precisar saber
    * qual público está no ar.
    */
+  const daPessoa = modulos.filter((m) => !ehDeOutroPublico(m.publico))
+  const escolares = modulos.filter((m) => ehDeOutroPublico(m.publico))
+
   const grupos = new Map<string, typeof modulos>()
-  for (const m of modulos) {
+  for (const m of daPessoa) {
     const chave = m.blocoRotulo ?? NOME_NIVEL[m.nivel] ?? m.nivel
     grupos.set(chave, [...(grupos.get(chave) ?? []), m])
   }
 
-  const concluidos = modulos.filter(
+  /** As aulas escolares, na ordem dos segmentos e não na do banco. */
+  const porSegmento = SEGMENTOS_ESCOLARES.map((s) => ({
+    ...s,
+    aulas: escolares.filter((m) => m.publico === s.id),
+  })).filter((s) => s.aulas.length > 0)
+
+  const concluidos = daPessoa.filter(
     (m) => corredor.modulos.get(m.id)?.estado === "concluido"
   ).length
 
@@ -132,105 +266,30 @@ export default async function BibliotecaPage() {
         </p>
 
         {[...grupos].map(([titulo, doGrupo]) => (
-          <section key={titulo} className="mb-8">
-            <h2
-              className="mb-3 text-[11px] font-bold uppercase tracking-wider"
+          <Secao key={titulo} titulo={titulo} aulas={doGrupo} corredor={corredor} />
+        ))}
+
+        {porSegmento.length > 0 && (
+          <div
+            className="mt-10 border-t pt-8"
+            style={{ borderColor: "var(--finlow-surface-2)" }}
+          >
+            <h2 className="text-[15px] font-bold">Trilha escolar</h2>
+            <p
+              className="mt-1.5 mb-6 text-[13px] leading-relaxed text-pretty"
               style={{ color: "var(--finlow-muted)" }}
             >
-              {titulo}
-            </h2>
-            <ul className="flex flex-col gap-2">
-              {doGrupo.map((m) => {
-                const no = corredor.modulos.get(m.id)
-                const estado = no?.estado ?? "trancado"
-                const trancado = estado === "trancado"
-                const concluido = estado === "concluido"
-
-                const conteudo = (
-                  <>
-                    <div className="flex items-start gap-3">
-                      <span
-                        aria-hidden="true"
-                        className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full"
-                        style={{
-                          background: concluido
-                            ? "var(--finlow-accent)"
-                            : "var(--finlow-surface-2)",
-                          color: concluido ? "var(--finlow-bg)" : "var(--finlow-muted)",
-                        }}
-                      >
-                        {concluido ? <Check size={14} /> : trancado ? <Lock size={12} /> : null}
-                      </span>
-                      <div className="min-w-0 flex-1">
-                        <p
-                          className="text-[15px] font-semibold leading-snug"
-                          style={{
-                            color: trancado
-                              ? "var(--finlow-locked-text)"
-                              : "var(--finlow-text)",
-                          }}
-                        >
-                          {m.titulo}
-                        </p>
-                        <p
-                          className="mt-0.5 text-[13px] leading-snug text-pretty"
-                          style={{ color: "var(--finlow-muted)" }}
-                        >
-                          {m.subtitulo}
-                        </p>
-                        <p
-                          className="mt-1.5 text-[11px]"
-                          style={{ color: "var(--finlow-muted)" }}
-                        >
-                          {m._count.telas} telas · ~{m.duracaoMin} min
-                          {no && no.licoesTotal > 0 && !trancado
-                            ? ` · ${no.licoesConcluidas}/${no.licoesTotal} lições`
-                            : ""}
-                        </p>
-                        {trancado && no?.bloqueio && (
-                          <p
-                            className="mt-1.5 text-[12px]"
-                            style={{ color: "var(--finlow-warn)" }}
-                          >
-                            {no.bloqueio}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  </>
-                )
-
-                const estilo = {
-                  border: "1px solid var(--finlow-surface-2)",
-                  background: "var(--finlow-surface)",
-                  borderRadius: "var(--finlow-radius)",
-                  opacity: trancado ? 0.62 : 1,
-                }
-
-                // Trancado NÃO é link: um cadeado clicável que leva a um 403 é
-                // pior que um cadeado. Quem quiser adiantar a aula fala no Chat,
-                // que é o caminho que o produto oferece para isso.
-                return (
-                  <li key={m.id}>
-                    {trancado ? (
-                      <div className="block p-3.5" style={estilo} aria-disabled="true">
-                        {conteudo}
-                      </div>
-                    ) : (
-                      <Link
-                        href={`/trilha/${m.slug}`}
-                        className="block p-3.5 transition-opacity hover:opacity-80"
-                        style={estilo}
-                      >
-                        {conteudo}
-                      </Link>
-                    )}
-                  </li>
-                )
-              })}
-            </ul>
-          </section>
-        ))}
+              Do 1º ano do fundamental ao Ensino Médio, cobrindo a matriz de
+              letramento financeiro do Banco Central. Você pode fazer qualquer uma,
+              na ordem que quiser — elas não entram no seu caminho e valem menos
+              pontos, porque o percurso que a IA montou para você continua sendo o
+              da sua trilha.
+            </p>
+            {porSegmento.map((s) => (
+              <Secao key={s.id} titulo={s.nome} aulas={s.aulas} corredor={corredor} />
+            ))}
+          </div>
+        )}
       </div>
 
       <BottomNav />

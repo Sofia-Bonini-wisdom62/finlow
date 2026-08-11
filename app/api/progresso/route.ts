@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { auth } from "@/lib/auth"
-import { creditar, pontosPorConclusao, pontosPorLicao } from "@/lib/pontos"
+import { creditar, pontosPorConclusao, pontosPorLicao, ajustarPorPublico } from "@/lib/pontos"
 import { montarLicoes, licoesExistentes } from "@/lib/licoes"
 import { podeAbrir } from "@/lib/corredor"
-import { filtroDeModulo } from "@/lib/publico"
+import { filtroExploravel, PUBLICO_ATUAL } from "@/lib/publico"
 
 export const dynamic = "force-dynamic"
 
@@ -99,6 +99,19 @@ export async function POST(req: NextRequest) {
     }
 
     /**
+     * O público e o valor do módulo, buscados UMA vez.
+     *
+     * O público entra no crédito das duas pontas — lição e módulo —, e precisa
+     * ser lido antes da primeira: aula de outra trilha paga menos, e reduzir só
+     * o fechamento do módulo deixaria as 4 lições pagando cheio, que é onde
+     * está a maior parte dos pontos.
+     */
+    const modulo = await db.modulo.findFirst({
+      where: { id: moduloId, ...filtroExploravel() },
+      select: { pontos: true, publico: true },
+    })
+
+    /**
      * Quem confere é o SERVIDOR, contra o gabarito do banco, e só os quizzes
      * DESTA lição. O cliente manda as escolhas (telaId → letra), nunca
      * "acertei N": mandar acertos seria pedir para o navegador dar a própria
@@ -142,7 +155,7 @@ export async function POST(req: NextRequest) {
       userId,
       "licao_concluida",
       `${moduloId}:${numero}`,
-      pontosPorLicao(acertos, quizzes.length)
+      ajustarPorPublico(pontosPorLicao(acertos, quizzes.length), modulo?.publico ?? PUBLICO_ATUAL)
     )
 
     // ---- o módulo fecha quando a última lição fecha ----
@@ -162,27 +175,20 @@ export async function POST(req: NextRequest) {
       // Soma o acerto de TODAS as lições para o bônus do módulo, e o valor
       // cheio vem do PRÓPRIO módulo (30/40/50 por nível). Antes era 30 fixo
       // para todos, do mais simples ao mais difícil.
-      const [todas, modulo] = await Promise.all([
-        db.progressoLicao.findMany({
-          where: { userId, moduloId, concluido: true },
-          select: { acertos: true, totalQuiz: true },
-        }),
-        // findFirst com o filtro, e não findUnique por id: `findUnique` só
-        // aceita campo único no where, então não haveria onde encaixar o
-        // público. A regra de lib/publico.ts é absoluta justamente porque a
-        // exceção "aqui não precisa" é como o décimo ponto de leitura escapa.
-        db.modulo.findFirst({
-          where: { id: moduloId, ...filtroDeModulo() },
-          select: { pontos: true },
-        }),
-      ])
+      const todas = await db.progressoLicao.findMany({
+        where: { userId, moduloId, concluido: true },
+        select: { acertos: true, totalQuiz: true },
+      })
       const somaAcertos = todas.reduce((s, p) => s + p.acertos, 0)
       const somaQuiz = todas.reduce((s, p) => s + p.totalQuiz, 0)
       creditoModulo = await creditar(
         userId,
         "modulo_concluido",
         moduloId,
-        pontosPorConclusao(somaAcertos, somaQuiz, modulo?.pontos)
+        ajustarPorPublico(
+          pontosPorConclusao(somaAcertos, somaQuiz, modulo?.pontos),
+          modulo?.publico ?? PUBLICO_ATUAL
+        )
       )
     }
 

@@ -1,5 +1,5 @@
 import { db } from "@/lib/db"
-import { filtroDeModulo } from "@/lib/publico"
+import { filtroDeModulo, filtroExploravel, ehDeOutroPublico } from "@/lib/publico"
 import { licoesExistentes, type NumeroLicao } from "@/lib/licoes"
 
 /**
@@ -228,7 +228,27 @@ export async function podeAbrir(
 ): Promise<{ ok: true } | { ok: false; motivo: string }> {
   const corredor = await montarCorredor(userId)
   const m = corredor.modulos.get(moduloId)
-  if (!m) return { ok: false, motivo: "Módulo não encontrado." }
+
+  /**
+   * Módulo fora do corredor: pode ser aula de OUTRO público, e aí é liberado.
+   *
+   * A trilha escolar é explorável mas não é a trilha de ninguém adulto — ela
+   * nunca entra em `RecomendacaoTrilha`, então nunca aparece no corredor. Sem
+   * este ramo o `montarCorredor` diria "não encontrado" e a pessoa veria a aula
+   * na biblioteca sem conseguir abrir, que é o pior dos dois mundos.
+   *
+   * Não há sequência a respeitar aqui de propósito: corredor é a ordem que a IA
+   * montou PARA a pessoa, e ela não montou nada sobre o 4º ano. Quem entra pela
+   * biblioteca abre a lição que quiser.
+   */
+  if (!m) {
+    const outro = await db.modulo.findFirst({
+      where: { id: moduloId, ...filtroExploravel() },
+      select: { publico: true },
+    })
+    if (outro && ehDeOutroPublico(outro.publico)) return { ok: true }
+    return { ok: false, motivo: "Módulo não encontrado." }
+  }
 
   if (m.estado === "trancado") {
     return { ok: false, motivo: m.bloqueio ?? "Este módulo ainda não abriu." }

@@ -55,6 +55,37 @@ export function filtroDeModulo(publico: Publico = PUBLICO_ATUAL): { publico: Pub
   return { publico }
 }
 
+/**
+ * A leitura que enxerga TODOS os públicos, de propósito.
+ *
+ * Existe para a biblioteca: o adulto pode explorar e fazer a trilha escolar,
+ * mas ela nunca entra na recomendação nem no corredor dele. São duas perguntas
+ * diferentes e por isso são dois helpers:
+ *
+ *   filtroDeModulo()   "o que é A TRILHA desta pessoa"  → recomendação, chat,
+ *                      corredor, onboarding. Escolar aqui é o bug que o gate
+ *                      existe para impedir.
+ *   filtroExploravel() "o que esta pessoa PODE abrir"   → biblioteca, player,
+ *                      progresso.
+ *
+ * Devolve objeto vazio em vez de `undefined` para poder ser espalhado num
+ * `where` que já tem outras condições, sem o chamador precisar saber.
+ *
+ * NÃO USE ISTO PARA MONTAR TRILHA. Se aparecer numa leitura que alimenta
+ * recomendação, a IA volta a sugerir aula de 2º ano para quem está negativado —
+ * que é exatamente o sintoma que `scripts/testar-publico.mts` foi escrito para
+ * pegar. O teste aceita os dois helpers, mas exige que um deles esteja lá: a
+ * escolha tem de ser explícita, nunca esquecida.
+ */
+export function filtroExploravel(): Record<string, never> {
+  return {}
+}
+
+/** A aula é de outro público — dá para explorar, mas não é a trilha da pessoa. */
+export function ehDeOutroPublico(publicoDoModulo: string): boolean {
+  return publicoDoModulo !== PUBLICO_ATUAL
+}
+
 export function ehPublico(v: string): v is Publico {
   return (PUBLICOS as readonly string[]).includes(v)
 }

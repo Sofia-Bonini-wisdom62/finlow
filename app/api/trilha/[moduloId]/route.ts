@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { auth } from "@/lib/auth"
 import { carregarIndicadores, interpolarIndicadores } from "@/lib/indicadores"
-import { filtroDeModulo } from "@/lib/publico"
+import { filtroExploravel } from "@/lib/publico"
 import { montarLicoes } from "@/lib/licoes"
 import { montarCorredor } from "@/lib/corredor"
 
@@ -34,7 +34,7 @@ export async function GET(
 
     // aceita id (cuid) ou slug — os cards do Perfil linkam por slug
     const modulo = await db.modulo.findFirst({
-      where: { OR: [{ id: moduloId }, { slug: moduloId }], ...filtroDeModulo() },
+      where: { OR: [{ id: moduloId }, { slug: moduloId }], ...filtroExploravel() },
       include: { telas: { orderBy: { ordem: "asc" } } },
     })
 

@@ -64,6 +64,7 @@ function chamadas(fonte: string): { trecho: string; linha: number }[] {
 
 let total = 0
 let falhas = 0
+let exploraveis = 0
 
 for (const raiz of RAIZES) {
   for (const arquivo of arquivos(raiz)) {
@@ -74,17 +75,32 @@ for (const raiz of RAIZES) {
 
     for (const { trecho, linha } of chamadas(fonte)) {
       total++
+      /**
+       * Dois helpers valem, e é isso que o teste garante: que a escolha foi
+       * FEITA. `filtroDeModulo` é "a trilha desta pessoa"; `filtroExploravel` é
+       * "o que ela pode abrir", e existe para a biblioteca, o player e o
+       * progresso — onde a aula escolar é permitida de propósito.
+       *
+       * O que continua sendo falha é a leitura que não menciona nenhum dos
+       * dois: aí ninguém decidiu nada, e o default do Prisma é trazer tudo.
+       */
       if (trecho.includes("filtroDeModulo")) {
-        console.log(`  ok   ${rel}:${linha}`)
+        console.log(`  trilha      ${rel}:${linha}`)
+      } else if (trecho.includes("filtroExploravel")) {
+        console.log(`  explorável  ${rel}:${linha}`)
+        exploraveis++
       } else {
-        console.log(`  ✗    ${rel}:${linha} — leitura de Modulo sem filtroDeModulo()`)
+        console.log(`  ✗           ${rel}:${linha} — leitura de Modulo sem filtro de público`)
         falhas++
       }
     }
   }
 }
 
-console.log(`\n${total} leitura(s) de Modulo · ${falhas} sem filtro`)
+console.log(
+  `\n${total} leitura(s) de Modulo · ${total - falhas - exploraveis} na trilha · ` +
+    `${exploraveis} explorável(is) · ${falhas} sem filtro`
+)
 if (falhas > 0) {
   console.log(
     "\nToda leitura de Modulo precisa de `...filtroDeModulo()` no where (lib/publico.ts).\n" +
