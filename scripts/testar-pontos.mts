@@ -19,7 +19,7 @@ config({ path: ".env" })
 
 const { db } = await import("../lib/db.js")
 const { creditar, recalcularTotal, listarRanking, apelidoValido, inicioDoDiaSP, SEM_REF,
-  pontosPorConclusao } = await import("../lib/pontos.js")
+  pontosPorConclusao, ajustarPorPublico, PESO_FORA_DA_TRILHA } = await import("../lib/pontos.js")
 
 let falhas = 0
 /**
@@ -189,6 +189,30 @@ try {
     const r = apelidoValido("  Ana   Paula  ")
     return r.ok && r.apelido === "Ana Paula"
   })())
+
+  // ------------------------------------------------- peso fora da trilha ---
+  // A regra que sustenta a justiça do ranking (adulto explorando escolar vale
+  // 1/4) era a única do módulo sem teste. Desde 11/08/2026 ela é RELATIVA ao
+  // público da pessoa (Finlow para Escolas): o aluno paga cheio no próprio
+  // segmento e 1/4 na aula adulta — o espelho exato.
+  console.log("\nPESO FORA DA TRILHA")
+
+  checar("adulto na aula adulta paga cheio", ajustarPorPublico(40, "adulto") === 40)
+  checar(
+    "adulto na aula escolar paga 1/4",
+    ajustarPorPublico(40, "ef35") === Math.round(40 * PESO_FORA_DA_TRILHA)
+  )
+  checar("aluno de EM na aula de EM paga cheio", ajustarPorPublico(40, "em", "em") === 40)
+  checar(
+    "aluno de EM na aula adulta paga 1/4",
+    ajustarPorPublico(40, "adulto", "em") === Math.round(40 * PESO_FORA_DA_TRILHA)
+  )
+  checar(
+    "aluno de EM na aula de EF também paga 1/4 — outra trilha é outra trilha",
+    ajustarPorPublico(40, "ef67", "em") === Math.round(40 * PESO_FORA_DA_TRILHA)
+  )
+  checar("o piso é 1, nunca zero", ajustarPorPublico(2, "ef12") === 1)
+  checar("sem terceiro argumento vale o default do produto", ajustarPorPublico(50, "adulto") === 50)
 } finally {
   // Sempre limpa, inclusive se um checar acima explodir.
   for (const id of [userId, outroId].filter(Boolean)) {

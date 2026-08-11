@@ -1,5 +1,11 @@
 import { db } from "@/lib/db"
-import { filtroDeModulo, filtroExploravel, ehDeOutroPublico } from "@/lib/publico"
+import {
+  filtroDeModulo,
+  filtroExploravel,
+  ehDeOutroPublico,
+  publicoDoUsuario,
+  PUBLICO_ATUAL,
+} from "@/lib/publico"
 import { licoesExistentes, type NumeroLicao } from "@/lib/licoes"
 
 /**
@@ -19,13 +25,21 @@ import { licoesExistentes, type NumeroLicao } from "@/lib/licoes"
  * Quem chegar com dúvida no módulo 5 passa pelos quatro primeiros. Esse é o
  * custo aceito, não um efeito colateral que ninguém previu.
  *
- * A ORDEM DO CORREDOR NÃO É Modulo.ordem
+ * A ORDEM DO CORREDOR NÃO É Modulo.ordem — para o ADULTO.
  * É a sequência das recomendações da própria pessoa (RecomendacaoTrilha,
  * ordenada por leva e depois por ordem), que a IA monta a partir dos números
  * dela. Duas pessoas têm corredores diferentes — é o item "blocos em ordem,
  * ordenados pela IA" do backlog, e é o que impede o corredor de virar uma fila
  * única igual para todo mundo. Módulo que ainda não entrou em leva nenhuma
  * aparece trancado com esse motivo.
+ *
+ * PARA O ALUNO DE ESCOLA (publico escolar, 11/08/2026) a ordem É Modulo.ordem:
+ * a trilha do segmento é currículo, não recomendação — a progressão pedagógica
+ * dos blocos já está codificada na coluna, e não há IA montando leva sobre o
+ * 4º ano. O travamento entre módulos é o MESMO. `preRequisitoSlug` continua
+ * inerte de propósito: a ordem linear cobre o grafo na prática (as 102 arestas
+ * seguem a ordem), e ligar o grafo real é projeto próprio, registrado no
+ * backlog.
  *
  * QUEM JÁ CONCLUIU ANTES DO CORREDOR NÃO PODE SER TRANCADO
  * Existem `ProgressoModulo.concluido = true` de antes das lições existirem, sem
@@ -88,9 +102,10 @@ export interface Corredor {
  * `TelaMinima` em lib/licoes.ts.
  */
 export async function montarCorredor(userId: string): Promise<Corredor> {
+  const publico = await publicoDoUsuario(userId)
   const [modulos, recomendacoes, progModulos, progLicoes] = await Promise.all([
     db.modulo.findMany({
-      where: filtroDeModulo(),
+      where: filtroDeModulo(publico),
       select: {
         id: true,
         slug: true,
@@ -118,12 +133,19 @@ export async function montarCorredor(userId: string): Promise<Corredor> {
   const concluidoAntigo = new Set(progModulos.filter((p) => p.concluido).map((p) => p.moduloId))
   const porModuloLicao = new Map(progLicoes.map((p) => [`${p.moduloId}:${p.licao}`, p]))
 
-  // A sequência da pessoa. Um módulo pode aparecer em duas levas (o chat trocou
-  // e depois voltou); vale a PRIMEIRA aparição, senão ele andaria para o fim do
-  // corredor e trancaria o que já estava liberado.
+  // A sequência da pessoa. No adulto, vem das recomendações — um módulo pode
+  // aparecer em duas levas (o chat trocou e depois voltou); vale a PRIMEIRA
+  // aparição, senão ele andaria para o fim do corredor e trancaria o que já
+  // estava liberado. No aluno de escola, a sequência é a ordem pedagógica dos
+  // blocos (os módulos já chegam ordenados por `ordem`), e TODOS entram — não
+  // existe "ainda não entrou na sua trilha" para quem tem currículo.
   const sequencia: string[] = []
-  for (const r of recomendacoes) {
-    if (!sequencia.includes(r.moduloId)) sequencia.push(r.moduloId)
+  if (publico === PUBLICO_ATUAL) {
+    for (const r of recomendacoes) {
+      if (!sequencia.includes(r.moduloId)) sequencia.push(r.moduloId)
+    }
+  } else {
+    for (const m of modulos) sequencia.push(m.id)
   }
 
   const porId = new Map(modulos.map((m) => [m.id, m]))
@@ -242,11 +264,16 @@ export async function podeAbrir(
    * biblioteca abre a lição que quiser.
    */
   if (!m) {
-    const outro = await db.modulo.findFirst({
-      where: { id: moduloId, ...filtroExploravel() },
-      select: { publico: true },
-    })
-    if (outro && ehDeOutroPublico(outro.publico)) return { ok: true }
+    const [publico, outro] = await Promise.all([
+      publicoDoUsuario(userId),
+      db.modulo.findFirst({
+        where: { id: moduloId, ...filtroExploravel() },
+        select: { publico: true },
+      }),
+    ])
+    // Simétrico desde 11/08/2026: para o aluno de escola, é a aula ADULTA que
+    // cai neste ramo — explorável, na lição que ele quiser, valendo 1/4.
+    if (outro && ehDeOutroPublico(outro.publico, publico)) return { ok: true }
     return { ok: false, motivo: "Módulo não encontrado." }
   }
 

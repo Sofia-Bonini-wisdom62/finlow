@@ -1,6 +1,6 @@
 import { db } from "@/lib/db"
 import { contemConteudoProibido } from "@/lib/conteudo-proibido"
-import { ehDeOutroPublico } from "@/lib/publico"
+import { ehDeOutroPublico, PUBLICO_ATUAL, type Publico } from "@/lib/publico"
 import { Prisma } from "@prisma/client"
 
 /**
@@ -108,9 +108,17 @@ export const PESO_FORA_DA_TRILHA = 0.25
  *
  * O piso é 1: aula que paga zero é aula que o app pede para a pessoa fazer e
  * depois trata como se não tivesse acontecido.
+ *
+ * O terceiro parâmetro é o público DA PESSOA (publicoDoUsuario): aluno de
+ * escola fazendo aula do PRÓPRIO segmento recebe cheio, e é a aula adulta que
+ * vale 1/4 para ele — a mesma régua do adulto, espelhada.
  */
-export function ajustarPorPublico(pontos: number, publicoDoModulo: string): number {
-  if (!ehDeOutroPublico(publicoDoModulo)) return pontos
+export function ajustarPorPublico(
+  pontos: number,
+  publicoDoModulo: string,
+  publicoDaPessoa: Publico = PUBLICO_ATUAL
+): number {
+  if (!ehDeOutroPublico(publicoDoModulo, publicoDaPessoa)) return pontos
   return Math.max(1, Math.round(pontos * PESO_FORA_DA_TRILHA))
 }
 

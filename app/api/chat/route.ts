@@ -8,7 +8,7 @@ import { guardarTurno } from "@/lib/conversa-repo"
 import { guardarRecomendacaoDoChat } from "@/lib/recomendacao"
 import { montarContexto } from "@/lib/contexto-financeiro"
 import { slugDaCategoria } from "@/lib/extrato/categorias"
-import { filtroDeModulo } from "@/lib/publico"
+import { filtroDeModulo, publicoDoUsuario } from "@/lib/publico"
 import { cotaDoMes } from "@/lib/pagamento/tokens"
 
 export const dynamic = "force-dynamic"
@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
     // vira card que abre um 404 — foi exatamente o que aconteceu com
     // /modulo/{slug} por meses.
     const modulos = await db.modulo.findMany({
-      where: filtroDeModulo(),
+      where: filtroDeModulo(await publicoDoUsuario(userId)),
       select: { slug: true, titulo: true },
       orderBy: [{ tipoPerfil: "asc" }, { ordem: "asc" }],
     })

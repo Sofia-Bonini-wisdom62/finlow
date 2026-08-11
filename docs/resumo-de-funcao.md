@@ -157,6 +157,16 @@ percentuais moram em Análises de propósito.
 - Números macro (Selic, IPCA, rotativo) entram por `{{variável}}` da tabela
   `Indicador`, com fonte e data de apuração. O texto da aula nunca crava o
   número.
+- **A trilha é POR PESSOA desde 11/08/2026** (Finlow para Escolas):
+  `publicoDoUsuario()` lê `User.publico` e todos os call sites de
+  `filtroDeModulo` passam o público por parâmetro. Aluno de escola vê a
+  trilha do segmento da turma em **corredor por currículo** — a sequência é a
+  ordem pedagógica dos blocos (`Modulo.ordem`), sem leva de IA
+  (`garantirLevaInicial` é pulado, e o "trocar aula" do chat é no-op por
+  construção). A biblioteca dele agrupa o resto como "Outras trilhas",
+  incluindo a adulta. O peso 1/4 virou **relativo**: cada pessoa paga cheio na
+  própria trilha e 1/4 fora dela (`ajustarPorPublico`, testado em
+  `scripts/testar-pontos.mts`).
 
 ### 2.10 Pontos, ranking e indicação
 

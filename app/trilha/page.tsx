@@ -2,6 +2,7 @@ import Link from "next/link"
 import { auth } from "@/lib/auth"
 import { garantirLevaInicial, TAMANHO_DA_LEVA } from "@/lib/recomendacao"
 import { aulasParaSituacao } from "@/lib/posicionar-trilha"
+import { publicoDoUsuario, PUBLICO_ATUAL } from "@/lib/publico"
 import { montarTrilhaVisual } from "@/lib/trilha-visual"
 import { registrarDiaAtivo } from "@/lib/ofensiva"
 import TrilhaContainer from "@/components/trilha-visual/TrilhaContainer"
@@ -55,7 +56,13 @@ export default async function TrilhaPage() {
 
   // A primeira leva nasce ANTES de montar o caminho: sem sequência, o corredor
   // não tem o que liberar e a trilha abriria inteira trancada.
-  await garantirLevaInicial(userId, await aulasParaSituacao(userId, TAMANHO_DA_LEVA))
+  //
+  // SÓ PARA O ADULTO: o aluno de escola tem currículo, não leva — a sequência
+  // dele é a ordem dos blocos do segmento (lib/corredor.ts), e gerar leva de
+  // IA aqui poluiria RecomendacaoTrilha com linhas que o corredor dele ignora.
+  if ((await publicoDoUsuario(userId)) === PUBLICO_ATUAL) {
+    await garantirLevaInicial(userId, await aulasParaSituacao(userId, TAMANHO_DA_LEVA))
+  }
 
   const { trilha, trilhas, usuario } = await montarTrilhaVisual(userId)
 

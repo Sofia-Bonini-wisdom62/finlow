@@ -379,8 +379,9 @@ export default function Caminho({
           className="max-w-[260px] text-[13px] leading-relaxed text-pretty"
           style={{ color: "var(--finlow-muted)" }}
         >
-          Fim da trilha atual · a IA libera os próximos 4 módulos quando você
-          chegar aqui.
+          {trilha.escolar
+            ? "Fim da trilha da turma · quem chega aqui fechou o segmento inteiro."
+            : "Fim da trilha atual · a IA libera os próximos 4 módulos quando você chegar aqui."}
         </p>
         {/* Era um <button> sem onClick — desenhava e não fazia nada. Virou link
             porque o destino é uma página inteira, e navegação que finge ser

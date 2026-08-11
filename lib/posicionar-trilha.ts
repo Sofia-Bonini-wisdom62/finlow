@@ -1,7 +1,7 @@
 import { db } from "@/lib/db"
 import { listarTransacoes } from "@/lib/financeiro-repo"
 import { metricasPerfil, nivelDeTrilha } from "@/lib/financas"
-import { filtroDeModulo } from "@/lib/publico"
+import { filtroDeModulo, publicoDoUsuario } from "@/lib/publico"
 import {
   derivarSituacoes,
   mesclarSituacoes,
@@ -67,7 +67,7 @@ export async function aulasParaSituacao(
   ])
 
   const modulos = await db.modulo.findMany({
-    where: filtroDeModulo(),
+    where: filtroDeModulo(await publicoDoUsuario(userId)),
     select: { slug: true, nivel: true, situacoes: true, ordem: true, tipoPerfil: true },
     orderBy: [{ tipoPerfil: "asc" }, { ordem: "asc" }],
   })
