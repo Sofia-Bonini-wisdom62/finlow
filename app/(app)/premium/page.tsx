@@ -45,6 +45,72 @@ function dia(iso: string | null): string {
   return new Date(iso).toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" })
 }
 
+const milhar = (n: number) => n.toLocaleString("pt-BR")
+
+/**
+ * O consumo do mês, para os DOIS estados.
+ *
+ * Antes este bloco só existia para quem não paga, e o efeito era esquisito: a
+ * pessoa via o próprio consumo enquanto estava no limite e deixava de ver no
+ * instante em que passou a pagar por ele. Quem assina é justamente quem tem
+ * motivo para acompanhar.
+ *
+ * MOSTRA O NÚMERO, não só a barra. "Você atingiu o limite" não deixa ninguém
+ * calibrar nada; "94.300 de 120.000" deixa. E o rótulo evita "tokens" no lugar
+ * de destaque — é jargão, e a regra do produto é não usar jargão sem explicação
+ * na mesma frase. O termo aparece na nota de rodapé, onde é explicado.
+ */
+function UsoDoMes({ cota, premium }: { cota: Estado["cota"]; premium: boolean }) {
+  const ilimitado = cota.teto == null
+  const pct = ilimitado ? 0 : Math.min(100, Math.round((cota.usados / cota.teto!) * 100))
+
+  return (
+    <div className="rounded-2xl border border-fl-sand bg-fl-card p-5">
+      <div className="flex items-baseline justify-between gap-3">
+        <p className="text-sm text-fl-ink/70">Uso do assistente neste mês</p>
+        {!ilimitado && <p className="text-sm tabular-nums text-fl-ink/50">{pct}%</p>}
+      </div>
+
+      <p className="mt-1 text-xl font-semibold tabular-nums text-fl-ink">
+        {milhar(cota.usados)}
+        {!ilimitado && <span className="text-fl-ink/50"> de {milhar(cota.teto!)}</span>}
+      </p>
+
+      {ilimitado ? (
+        <p className="mt-2 text-sm text-fl-ink/70">
+          Sua assinatura não tem limite. O número acima é só para você acompanhar.
+        </p>
+      ) : (
+        <>
+          <div className="mt-3 h-2 overflow-hidden rounded-full bg-fl-sand">
+            <div
+              className={`h-full rounded-full ${cota.podeUsar ? "bg-fl-500" : "bg-fl-accent"}`}
+              style={{ width: `${pct}%` }}
+            />
+          </div>
+          <p className="mt-3 text-sm text-fl-ink/70">
+            {cota.podeUsar ? (
+              <>
+                Restam <strong className="tabular-nums">{milhar(cota.restam ?? 0)}</strong> até o
+                dia 1º, quando a cota renova.
+              </>
+            ) : (
+              <>Sua cota gratuita deste mês acabou. Ela renova no dia 1º.</>
+            )}
+          </p>
+        </>
+      )}
+
+      {/* O jargão explicado, e só aqui. */}
+      <p className="mt-3 text-xs text-fl-ink/50">
+        A conta é em <em>tokens</em> — pedaços de palavra que o assistente lê e escreve. Uma
+        conversa curta gasta pouco; mandar um extrato inteiro gasta bem mais.
+        {premium && " Cobramos por assinatura, não por uso."}
+      </p>
+    </div>
+  )
+}
+
 export default function PremiumPage() {
   const [estado, setEstado] = useState<Estado | null>(null)
   const [carregando, setCarregando] = useState(true)
@@ -161,6 +227,8 @@ export default function PremiumPage() {
               )}
             </div>
 
+            {estado && <UsoDoMes cota={estado.cota} premium />}
+
             {!estado?.saindoNoFimDoPeriodo && (
               <div className="rounded-2xl border border-fl-sand bg-fl-card p-5">
                 {confirmandoSaida ? (
@@ -202,23 +270,7 @@ export default function PremiumPage() {
             {/* Quanto da cota grátis já foi. Número concreto em vez de "você
                 atingiu o limite": a pessoa consegue calibrar se assinar resolve
                 o problema dela. */}
-            {estado?.cota.teto != null && (
-              <div className="rounded-2xl border border-fl-sand bg-fl-card p-5">
-                <p className="text-sm text-fl-ink/70">
-                  {estado.cota.podeUsar
-                    ? "Você ainda tem conversas gratuitas neste mês."
-                    : "Suas conversas gratuitas deste mês acabaram. A cota renova no dia 1º."}
-                </p>
-                <div className="mt-3 h-2 overflow-hidden rounded-full bg-fl-sand">
-                  <div
-                    className="h-full rounded-full bg-fl-500"
-                    style={{
-                      width: `${Math.min(100, Math.round((estado.cota.usados / estado.cota.teto) * 100))}%`,
-                    }}
-                  />
-                </div>
-              </div>
-            )}
+            {estado && <UsoDoMes cota={estado.cota} premium={false} />}
 
             <div className="rounded-2xl border border-fl-sand bg-fl-card p-5">
               <ul className="space-y-3">

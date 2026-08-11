@@ -6,6 +6,7 @@ import { signOut } from "next-auth/react"
 import {
   ChevronRight, Download, LogOut, Trash2, Check, X, Clock,
   User, Landmark, Sparkles, ShieldCheck, Palette, LifeBuoy, Brain, FileUp, MessageCircle, Gift, Droplets,
+  CreditCard,
 } from "lucide-react"
 import { ConvidarAmigos } from "@/components/ajustes/ConvidarAmigos"
 import { BottomNav } from "@/components/bottom-nav"
@@ -272,6 +273,14 @@ export default function AjustesPage() {
         </Secao>
 
         {/* ---------- IA ---------- */}
+        {/* A assinatura só era alcançável pelo aviso de cota no chat, ou seja:
+            só quem esbarrava no limite achava. Quem paga não tinha caminho
+            nenhum para ver o próprio plano nem para sair dele — e cancelamento
+            escondido é o tipo de coisa que vira reclamação, não retenção. */}
+        <Secao titulo="Assinatura" Icon={CreditCard}>
+          <Acao rotulo="Minha assinatura e uso do mês" Icon={CreditCard} href="/premium" />
+        </Secao>
+
         <Secao titulo="Assistente de IA" Icon={Sparkles}>
           <Acao rotulo="Refazer a primeira conversa" Icon={Sparkles} href="/onboarding" />
           <Acao rotulo="Memória do assistente" Icon={Brain} href="/memoria" />
