@@ -30,7 +30,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Finlow: Seu dinheiro, enfim claro",
-  description: "Clareza financeira com inteligência artificial: o Finlow lê seus gastos, revela padrões que você não vê e te devolve o controle. Entre na lista de acesso antecipado.",
+  description: "Clareza financeira com inteligência artificial: o Finlow lê seus gastos, revela padrões que você não vê e te devolve o controle. Crie sua conta grátis.",
 };
 
 export default function RootLayout({

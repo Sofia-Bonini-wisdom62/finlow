@@ -190,13 +190,41 @@ do app é bom; o funil de entrada é que está de costas para o produto** — os
 quatro primeiros itens acontecem antes de a pessoa ver qualquer qualidade.
 Lista do mais crítico ao mais simples; cada item é um trabalho independente.
 
-1. **🔴 Landing sem porta de entrada.** A home é só lista de espera: não existe
-   nenhum link "Entrar" ou "Criar conta" — nem no header, nem no footer
-   (`app/page.tsx`). Quem já tem conta precisa adivinhar `/login` na URL. E o
-   FAQ responde "O Finlow já está disponível? — Ainda não"
+1. ~~**🔴 Landing sem porta de entrada.**~~ ✅ **12/08/2026.** A home é só lista
+   de espera: não existe nenhum link "Entrar" ou "Criar conta" — nem no header,
+   nem no footer (`app/page.tsx`). Quem já tem conta precisa adivinhar `/login`
+   na URL. E o FAQ responde "O Finlow já está disponível? — Ainda não"
    (`components/landing/Faq.tsx:6`) com o app no ar no mesmo domínio. Agrava:
    o Menu logado aponta "Perguntas frequentes" para esse mesmo FAQ
    (`app/(app)/ajustes/page.tsx:347`).
+
+   > **As duas metades se obrigam.** Dar a porta sem mexer no FAQ deixaria a
+   > home dizendo "ainda não abriu" ao lado de um botão de criar conta; corrigir
+   > o FAQ sem dar a porta deixaria "sim, está disponível" sem caminho nenhum.
+   > Por isso caíram no mesmo commit.
+   >
+   > **O que mudou:** `Entrar` (`/login`) e `Criar conta` (`/cadastro`) no
+   > cabeçalho, no hero ("Já tem conta? Entrar") e no rodapé; o CTA do hero
+   > deixou de apontar para a lista e virou "Criar conta grátis"; o FAQ responde
+   > "Sim" e descreve o que dá para fazer hoje; a `description` do
+   > `app/layout.tsx` parou de vender lista de acesso antecipado.
+   >
+   > **A lista de espera virou "acompanhar por e-mail", e nada foi apagado.**
+   > Com `/cadastro` aberto, "avisamos assim que o acesso abrir" era promessa
+   > vencida — quem deixava o e-mail já podia entrar naquele minuto. A tabela
+   > `Waitlist`, a rota `/api/waitlist` e a limpeza no delete de conta continuam
+   > exatamente as mesmas; mudou só o que a tela promete. A seção final agora
+   > oferece criar conta primeiro e o e-mail como segunda opção.
+   >
+   > **O link do Menu não precisou mudar:** ele aponta para `/#faq`, que passou
+   > a dizer a verdade. O teste confere que ele continua apontando para lá — se
+   > alguém mudar o destino, é para saber.
+   >
+   > **Guardado por `scripts/testar-landing.mts`** (roda sem banco, sem build):
+   > confere que as portas existem no cabeçalho, no hero e no rodapé, que toda
+   > rota interna citada na landing existe como arquivo de rota, e que nem o
+   > FAQ nem o formulário voltaram a prometer acesso que já está aberto. Nenhuma
+   > dessas coisas quebra build, typecheck ou lint — some sem avisar.
 
 2. **🔴 Landing promete conexão automática de contas que não existe.** "Suas
    transações entram sozinhas, nada de digitar CSV" descreve Open Finance, que
