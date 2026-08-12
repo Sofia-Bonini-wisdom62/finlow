@@ -2,6 +2,16 @@
 
 import { useState } from "react"
 
+/**
+ * Captura de e-mail da landing. NÃO é mais lista de espera: o app está no ar e
+ * /cadastro é aberto, então "avisamos quando abrir" era promessa vencida — quem
+ * deixava o e-mail já podia entrar naquele minuto.
+ *
+ * A tabela `Waitlist` e a rota `/api/waitlist` continuam as mesmas de
+ * propósito: os e-mails já coletados não se perdem e o delete de conta segue
+ * limpando o registro (`app/api/conta/route.ts`). O que mudou é só o que a
+ * tela promete, e o caminho para quem quer usar agora.
+ */
 export function WaitlistForm() {
   const [email, setEmail] = useState("")
   const [enviado, setEnviado] = useState(false)
@@ -43,9 +53,14 @@ export function WaitlistForm() {
         <div className="mx-auto mb-3.5 flex h-13 w-13 items-center justify-center rounded-full bg-fl-500 text-2xl text-primary-foreground" style={{ height: 52, width: 52 }}>
           ✓
         </div>
-        <div className="mb-1.5 text-[19px] font-bold text-fl-ink">Você está na lista!</div>
+        <div className="mb-1.5 text-[19px] font-bold text-fl-ink">Pronto, anotado!</div>
         <div className="text-[15px] text-fl-ink-2">
-          Avisaremos em <strong className="text-fl-ink">{email}</strong> assim que o acesso abrir.
+          Mandaremos as novidades do Finlow para <strong className="text-fl-ink">{email}</strong>.
+          Para usar agora, é só{" "}
+          <a href="/cadastro" className="font-semibold text-fl-500 underline underline-offset-4 hover:text-fl-600">
+            criar sua conta
+          </a>{" "}
+          — é grátis.
         </div>
       </div>
     )
@@ -69,7 +84,7 @@ export function WaitlistForm() {
           disabled={enviando}
           className="w-full shrink-0 rounded-[14px] bg-fl-500 px-7 py-[15px] text-base font-semibold text-primary-foreground shadow-[0_2px_8px_rgba(43,109,112,.28)] transition-colors hover:bg-fl-600 disabled:opacity-60 sm:w-auto"
         >
-          {enviando ? "Salvando…" : "Garantir minha vaga →"}
+          {enviando ? "Salvando…" : "Quero acompanhar"}
         </button>
       </form>
       {erro && <div className="mt-2.5 text-left text-[13.5px] font-medium text-fl-error">{erro}</div>}

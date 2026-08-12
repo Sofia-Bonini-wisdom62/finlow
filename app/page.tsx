@@ -30,7 +30,7 @@ export default function LandingPage() {
             <LogoMarca />
             <span className="text-[19px] font-bold tracking-tight">Finlow</span>
           </div>
-          <div className="flex items-center gap-6 sm:gap-8">
+          <div className="flex items-center gap-4 sm:gap-7">
             <div className="hidden gap-7 text-[14.5px] font-medium text-fl-ink-2 lg:flex">
               <a href="#problema" className="hover:text-fl-500">O problema</a>
               <a href="#recursos" className="hover:text-fl-500">Recursos</a>
@@ -38,12 +38,23 @@ export default function LandingPage() {
               <a href="#faq" className="hover:text-fl-500">Dúvidas</a>
               <a href="/empresas" className="hover:text-fl-500">Para empresas</a>
             </div>
-            <a
-              href="#lista"
-              className="flex min-h-11 items-center rounded-xl bg-fl-500 px-4 text-sm font-semibold text-primary-foreground shadow-[0_1px_2px_rgba(24,28,30,.08)] transition-colors hover:bg-fl-600 sm:px-5 sm:text-[14.5px]"
-            >
-              Entrar na lista
-            </a>
+            {/* A porta. Quem já tem conta entra por "Entrar"; quem não tem cria
+                uma. Enquanto isto não existiu, a única forma de voltar ao app
+                era digitar /login na barra de endereço. */}
+            <div className="flex items-center gap-1 sm:gap-2">
+              <a
+                href="/login"
+                className="flex min-h-11 items-center rounded-xl px-2.5 text-sm font-semibold text-fl-ink-2 transition-colors hover:text-fl-500 sm:px-3.5 sm:text-[14.5px]"
+              >
+                Entrar
+              </a>
+              <a
+                href="/cadastro"
+                className="flex min-h-11 items-center rounded-xl bg-fl-500 px-4 text-sm font-semibold text-primary-foreground shadow-[0_1px_2px_rgba(24,28,30,.08)] transition-colors hover:bg-fl-600 sm:px-5 sm:text-[14.5px]"
+              >
+                Criar conta
+              </a>
+            </div>
           </div>
         </nav>
 
@@ -73,7 +84,7 @@ export default function LandingPage() {
         <Reveal className="relative">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-fl-accent-light px-3.5 py-[7px] text-[12.5px] font-semibold uppercase tracking-[.4px] text-fl-accent-dark">
             <span className="h-[7px] w-[7px] rounded-full bg-fl-accent [animation:pulseDot_2s_infinite]" />
-            Em desenvolvimento · vagas de acesso antecipado
+            Já no ar · em desenvolvimento ativo
           </div>
           <h1 className="mb-5 text-balance text-[40px] font-extrabold leading-[1.04] tracking-[-.03em] sm:text-5xl lg:text-[56px]">
             Seu dinheiro,<br />enfim <span className="text-fl-500">claro.</span>
@@ -85,10 +96,10 @@ export default function LandingPage() {
           </p>
           <div className="mb-6 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3.5">
             <a
-              href="#lista"
+              href="/cadastro"
               className="rounded-[14px] bg-fl-500 px-7 py-4 text-center text-base font-semibold text-primary-foreground shadow-[0_2px_8px_rgba(43,109,112,.28)] transition-colors hover:bg-fl-600"
             >
-              Quero acesso antecipado →
+              Criar conta grátis →
             </a>
             <a
               href="#como"
@@ -98,10 +109,16 @@ export default function LandingPage() {
             </a>
           </div>
           <div className="flex flex-wrap items-center gap-4 text-[13.5px] text-fl-ink-2">
-            <div className="flex items-center gap-2"><span className="font-bold text-fl-success">✓</span> Grátis para entrar na lista</div>
+            <div className="flex items-center gap-2"><span className="font-bold text-fl-success">✓</span> Grátis para começar</div>
             <div className="hidden h-4 w-px bg-fl-border sm:block" />
             <div className="flex items-center gap-2"><span className="font-bold text-fl-success">✓</span> Cancele quando quiser</div>
           </div>
+          <p className="mt-5 text-[14.5px] text-fl-ink-2">
+            Já tem conta?{" "}
+            <a href="/login" className="font-semibold text-fl-500 underline underline-offset-4 hover:text-fl-600">
+              Entrar
+            </a>
+          </p>
         </Reveal>
 
         {/* mockup — dashboard */}
@@ -433,23 +450,48 @@ export default function LandingPage() {
         </Reveal>
       </section>
 
-      {/* ============ LISTA DE ESPERA ============ */}
+      {/* ============ CRIAR CONTA (+ novidades por e-mail) ============
+          Era a seção de lista de espera. Com o app no ar e /cadastro aberto,
+          "avisamos quando abrir" virou promessa vencida: quem deixava o e-mail
+          já podia entrar. O e-mail continua sendo capturado, agora pelo que ele
+          é de verdade — quem prefere acompanhar antes de criar conta. */}
       <section id="lista" className="px-5 pb-24 pt-10 sm:px-6">
         <Reveal className="relative mx-auto max-w-[820px] overflow-hidden rounded-[28px] bg-fl-sand px-6 py-14 text-center sm:px-12 sm:py-16">
           <div aria-hidden className="pointer-events-none absolute -right-16 -top-20 h-[260px] w-[260px] rounded-full [background:radial-gradient(circle,var(--fl-accent-light)_0%,transparent_70%)]" />
           <div className="relative">
             <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-fl-page px-3.5 py-[7px] text-[12.5px] font-semibold tracking-[.4px] text-fl-accent-dark">
               <span className="h-[7px] w-[7px] rounded-full bg-fl-accent [animation:pulseDot_2s_infinite]" />
-              Vagas limitadas de acesso antecipado
+              Entre agora, ainda no começo
             </div>
             <h2 className="mb-4 text-balance text-[30px] font-extrabold leading-[1.1] tracking-[-.03em] text-fl-sand-text lg:text-[40px]">
               Seja um dos primeiros a ver o dinheiro com clareza
             </h2>
             <p className="mx-auto mb-8 max-w-[520px] text-[16px] leading-[1.55] text-fl-sand-text sm:text-lg">
-              Entre na lista de espera e ganhe acesso antecipado, sem custo, assim que a primeira versão abrir.
-              Sem spam, só um aviso quando for a sua vez.
+              Criar conta é grátis e leva menos de um minuto. Suba um extrato e a IA já devolve
+              seus gastos organizados, sem planilha e sem julgamento.
             </p>
-            <WaitlistForm />
+            <div className="mb-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+              <a
+                href="/cadastro"
+                className="rounded-[14px] bg-fl-500 px-7 py-4 text-center text-base font-semibold text-primary-foreground shadow-[0_2px_8px_rgba(43,109,112,.28)] transition-colors hover:bg-fl-600"
+              >
+                Criar conta grátis →
+              </a>
+              <a
+                href="/login"
+                className="rounded-[14px] border-[1.5px] border-fl-500 px-6 py-[15px] text-center text-base font-semibold text-fl-500 transition-colors hover:bg-fl-page"
+              >
+                Já tenho conta
+              </a>
+            </div>
+
+            <div className="mx-auto max-w-[520px] border-t border-fl-sand-text/15 pt-8">
+              <p className="mb-4 text-[15px] leading-[1.55] text-fl-sand-text/85">
+                Prefere só acompanhar por enquanto? Deixe seu e-mail e avisamos quando houver
+                novidade. Sem spam.
+              </p>
+              <WaitlistForm />
+            </div>
           </div>
         </Reveal>
       </section>
@@ -481,7 +523,9 @@ export default function LandingPage() {
               <span className="mb-2 font-semibold text-white">Produto</span>
               <a href="#recursos" className="py-2.5 text-fl-dark-text hover:text-white">Recursos</a>
               <a href="#como" className="py-2.5 text-fl-dark-text hover:text-white">Como funciona</a>
-              <a href="#lista" className="py-2.5 text-fl-dark-text hover:text-white">Acesso antecipado</a>
+              <a href="/cadastro" className="py-2.5 text-fl-dark-text hover:text-white">Criar conta</a>
+              <a href="/login" className="py-2.5 text-fl-dark-text hover:text-white">Entrar</a>
+              <a href="#lista" className="py-2.5 text-fl-dark-text hover:text-white">Novidades por e-mail</a>
             </div>
             <div className="flex flex-col text-sm">
               <span className="mb-2 font-semibold text-white">Empresa</span>
