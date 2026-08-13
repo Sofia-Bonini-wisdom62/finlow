@@ -131,6 +131,39 @@ ele.
 
 Implementar todo o conteúdo dos assuntos desde o 1º ano.
 
+## ~~Redesign Fin — gamificação~~ ✅ 13/08/2026
+
+O protótipo mobile Gen-Z da fundadora (navy + dourado + Nunito + o mascote
+Fin) foi implementado no miolo gamificado. **Do backlog de gamificação,
+entregues:** G-03 (pop-up de lição diária), G-04/05 (energia com custo por
+lição, +1/hora, devolução por acerto — limita só usuário grátis sem vínculo
+de escola), G-06/12/13 (Finlo Coins + Loja do Fin com poção ×2 e avatares),
+G-08 (missões diárias derivadas, resgate idempotente), G-11 (baú de unidade).
+Mais: combo que atravessa lições, precisão em %, nível do jogador,
+conquistas derivadas, intro do Fin, manifest PWA.
+
+**Decisões de não-entrada (fundadora, 13/08/2026):**
+
+- **G-17 (dashboard do professor por métrica) e liga semanal NÃO entraram**
+  — o ranking mantém a mecânica de sempre (pontos totais, professor liga o
+  rank da sala); só o visual virou Fin.
+- **"Tema mel" da loja** ficou fora: mexeria em token global de tema.
+
+**Pendências que esta frente cria:**
+
+- **Baú para EM** — Ensino Médio não tem `blocoId` nem leva, então aluno de
+  EM nunca vê baú. Decidir a unidade dele (segmento inteiro? grupos de 4?).
+- **Caminhos SEM design novo** (ficam na identidade petróleo/areia até a
+  fundadora desenhar): `/chat` · `/painel` · `/extrato` · `/perfil`
+  financeiro (convive com o novo `/trilha/perfil` do jogador) · `/analises` ·
+  `/ajustes` · `/onboarding` conversacional · `/memoria` · `/diagnostico` +
+  `/v/[token]` · `/trilha/biblioteca` · `/premium` · `/escola` (adm e
+  professor) · `/cadastro` `/login` · landing `/` e `/empresas` ·
+  `/convite/aceitar` · BottomNav global (4 abas; o protótipo desenhou 3).
+- **Números afináveis quando houver dado de uso**: custo/devolução de
+  energia, preços da loja, coins por lição/missão/baú, curva de nível,
+  bônus de combo (tudo constante nomeada, um lugar cada).
+
 ## Finlow para Escolas — em desenvolvimento (11/08/2026)
 
 Decisão da fundadora, desenhada em quadro branco: o canal escolar reabre como
