@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { Sparkles, Lock, X } from "lucide-react"
 import type { NoTrilha } from "@/lib/trilha-visual"
+import { POSE } from "@/lib/fin"
 
 interface DrawerModuloProps {
   no: NoTrilha | null
@@ -143,14 +144,24 @@ export default function DrawerModulo({
             </div>
 
             <div className="p-4">
-              {/* thumbnail */}
-              <div className="relative mb-4 aspect-video w-full overflow-hidden rounded-2xl">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={no.thumbnail || "/placeholder.svg"}
-                  alt=""
-                  className="h-full w-full object-cover"
-                />
+              {/* thumbnail — sem imagem, o Fin assume: o fallback antigo era
+                  "/placeholder.svg", que nunca existiu, e todo módulo sem thumb
+                  abria com um 16:9 quebrado (item 5 da avaliação de UX). */}
+              <div
+                className="relative mb-4 aspect-video w-full overflow-hidden rounded-2xl"
+                style={{ backgroundColor: "var(--finlow-surface-2)" }}
+              >
+                {no.thumbnail ? (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img src={no.thumbnail} alt="" className="h-full w-full object-cover" />
+                ) : (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
+                    src={POSE.teach}
+                    alt=""
+                    className="mx-auto h-full object-contain py-3"
+                  />
+                )}
                 <div
                   className="absolute inset-0"
                   style={{

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Geist_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Geist_Mono, Nunito } from "next/font/google";
 import "./globals.css";
 import { SCRIPT_ANTI_FLASH } from "@/lib/tema";
 
@@ -28,6 +28,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+/**
+ * A fonte do universo Fin (trilha, player, perfil do jogador, loja, liga).
+ *
+ * Entra como VARIÁVEL adicional, não como troca: o `.tema-fin` de globals.css
+ * é quem a aplica, e só dentro do escopo do jogo — o resto do app continua na
+ * Plus Jakarta. Nunito é variable font (600–900 disponíveis sem lista de
+ * pesos) e tem `latin-ext` pelos mesmos ã/õ/ç/ê de sempre.
+ */
+const fonteFin = Nunito({
+  variable: "--font-fin",
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Finlow: Seu dinheiro, enfim claro",
   description: "Clareza financeira com inteligência artificial: o Finlow lê seus gastos, revela padrões que você não vê e te devolve o controle. Crie sua conta grátis.",
@@ -41,7 +55,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${fonteUI.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${fonteUI.variable} ${geistMono.variable} ${fonteFin.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>

@@ -422,3 +422,108 @@
 @media (prefers-reduced-motion: reduce) {
   .finlow-pulse, .finlow-skeleton { animation: none; }
 }
+
+/* ---------------------------------------------------------------------------
+   TEMA FIN — o universo gamificado (protótipo da fundadora, 13/08/2026)
+
+   Navy + dourado + Nunito + o Fin como guia. Vive DENTRO de um escopo de
+   classe, aplicado só às superfícies do jogo (trilha, player, perfil do
+   jogador, loja, liga): o resto do app segue a identidade petróleo/areia até
+   a fundadora desenhar cada caminho.
+
+   É SEMPRE navy, nos dois modos — a mesma decisão do player e do .mockup:
+   um jogo que muda de cara conforme o tema do sistema perde a identidade.
+   Por isso os valores são fixos e o bloco também REAPONTA os `--finlow-*`
+   (a ponte acima): dentro do escopo, a trilha-visual inteira repinta sem
+   nenhum componente saber.
+   --------------------------------------------------------------------------- */
+.tema-fin {
+  --fin-bg: #0C1B21;
+  --fin-surface: #14262D;
+  --fin-surface-2: #12242B;
+  --fin-border: #1C333B;
+  --fin-border-2: #24404A;
+  --fin-accent: #E9A63C;
+  --fin-accent-sombra: #B97F22;
+  --fin-text: #F2EEE3;
+  --fin-muted: #8CA1A6;
+  --fin-dim: #5E7378;
+  --fin-combo: #F5772E;
+  --fin-energia: #55C7EA;
+  --fin-acerto: #58C08A;
+  --fin-erro: #E0745A;
+  --fin-pocao: #8B6CC9;
+  --fin-locked: #3E555C;
+  --fin-creme: #F6E9CE;
+  --fin-creme-sombra: #C9BA98;
+
+  --finlow-bg: var(--fin-bg);
+  --finlow-surface: var(--fin-surface);
+  --finlow-surface-2: var(--fin-border);
+  --finlow-accent: var(--fin-accent);
+  --finlow-accent-2: var(--fin-combo);
+  --finlow-warn: var(--fin-combo);
+  --finlow-text: var(--fin-text);
+  --finlow-muted: var(--fin-muted);
+  --finlow-locked-text: var(--fin-dim);
+  --finlow-branch: var(--fin-accent-sombra);
+  --finlow-glow: 0 8px 24px -6px color-mix(in srgb, var(--fin-accent) 45%, transparent);
+
+  font-family: var(--font-fin), var(--font-ui), ui-sans-serif, system-ui, sans-serif;
+  color-scheme: dark;
+  background-color: var(--fin-bg);
+  color: var(--fin-text); /* reancora a herança, mesma lição do .mockup */
+}
+
+/* Dentro do jogo, o texto rico fala as cores do jogo. */
+.tema-fin .rich-text em { color: var(--fin-accent); font-style: normal; }
+.tema-fin .rich-text strong { color: var(--fin-text); }
+
+/* Botão 3D do protótipo: sombra dura embaixo, afunda no toque. */
+.fin-btn-3d {
+  box-shadow: 0 4px 0 var(--fin-accent-sombra);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+.fin-btn-3d:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--fin-accent-sombra);
+}
+/* Variante para elementos com a cor da unidade: a sombra vem por variável. */
+.fin-btn-3d-var {
+  box-shadow: 0 4px 0 var(--fin-sombra-do-item, var(--fin-accent-sombra));
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+.fin-btn-3d-var:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--fin-sombra-do-item, var(--fin-accent-sombra));
+}
+
+@keyframes fin-pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  70% { transform: scale(1.06); }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes fin-wob {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+@keyframes fin-slide-up {
+  from { transform: translateY(14px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes fin-floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+@keyframes fin-ring-in {
+  from { stroke-dasharray: 0 339.3; }
+}
+
+.fin-pop { animation: fin-pop 0.4s ease-out; }
+.fin-wob { animation: fin-wob 2s ease-in-out infinite; }
+.fin-slide-up { animation: fin-slide-up 0.3s ease-out; }
+.fin-floaty { animation: fin-floaty 3.4s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fin-pop, .fin-wob, .fin-slide-up, .fin-floaty { animation: none; }
+}
