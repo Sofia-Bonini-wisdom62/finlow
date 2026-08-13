@@ -394,10 +394,16 @@ export default function LandingPage() {
               Da bagunça à clareza em três passos
             </h2>
           </Reveal>
+          {/* O passo 1 dizia "Conecte suas contas — suas transações entram
+              sozinhas, nada de digitar CSV". Isso é Open Finance, que está no
+              backlog e não existe: a entrada de dados real é o extrato que a
+              pessoa exporta do banco. O app logado já dizia a verdade
+              ("Bancos conectados · Em breve", em Ajustes) enquanto a home
+              vendia o recurso como pronto. */}
           <Reveal className="grid gap-7 md:grid-cols-3">
             {[
-              { n: "1", t: "Conecte suas contas", d: "Ligação segura e criptografada. Suas transações entram sozinhas, nada de digitar CSV." },
-              { n: "2", t: "A IA organiza tudo", d: "Categoriza, encontra padrões e limpa o ruído. Em minutos, o caos vira um painel legível." },
+              { n: "1", t: "Suba seu extrato", d: "Exporte o extrato ou a fatura pelo app do banco (PDF, CSV ou OFX) e solte aqui. O arquivo é lido no seu próprio navegador: o que sai do seu computador é só o texto." },
+              { n: "2", t: "A IA organiza tudo", d: "Categoriza, encontra padrões e limpa o ruído. Você confere linha a linha, e nada entra sem a sua confirmação." },
               { n: "3", t: "Você decide com clareza", d: "Insights, metas e um assistente pronto para responder. Cada decisão apoiada em dados reais." },
             ].map((p) => (
               <div key={p.n}>
@@ -408,6 +414,13 @@ export default function LandingPage() {
                 <p className="text-[15px] leading-relaxed text-fl-dark-text">{p.d}</p>
               </div>
             ))}
+          </Reveal>
+          <Reveal className="mx-auto mt-12 max-w-[680px] rounded-2xl bg-fl-dark-surface px-6 py-5 text-center">
+            <p className="text-[14.5px] leading-relaxed text-fl-dark-text">
+              <strong className="font-semibold text-white">E a conexão automática com o banco?</strong>{" "}
+              Está no plano (Open Finance), mas ainda não existe. Hoje a entrada de dados é o
+              extrato que você exporta — e é ele que alimenta tudo que você viu acima.
+            </p>
           </Reveal>
         </div>
       </section>
