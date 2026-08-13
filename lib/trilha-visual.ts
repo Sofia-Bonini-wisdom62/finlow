@@ -2,6 +2,8 @@ import { db } from "@/lib/db"
 import { filtroDeModulo, publicoDoUsuario, PUBLICO_ATUAL } from "@/lib/publico"
 import { montarCorredor, type ModuloNoCorredor } from "@/lib/corredor"
 import { lerOfensiva } from "@/lib/ofensiva"
+import { estadoDaEnergia } from "@/lib/energia"
+import { inicioDoDiaSP } from "@/lib/pontos"
 
 /**
  * A trilha como o CAMINHO desenha: blocos temáticos, nós e travas.
@@ -40,12 +42,23 @@ export interface NoTrilha {
   /** Título do módulo que precisa ser concluído. */
   destravadoPor?: string
   ramo?: { id: string; nome: string; corToken: string }
+  /** A lição a abrir ao tocar (do corredor) — alimenta o tooltip "COMEÇAR ·
+   *  LIÇÃO N" do nó atual. null quando concluído ou trancado. */
+  proximaLicao?: number | null
 }
 
 export interface Bloco {
   id: string
   rotulo: string
   nos: NoTrilha[]
+  /** Posição do bloco na trilha — decide a cor da unidade (lib/fin.ts). */
+  indice: number
+  /**
+   * O baú da unidade (Redesign Fin), só em bloco ESCOLAR de verdade: a trilha
+   * adulta não desenha fronteira de leva no mapa — o baú dela chega pela tela
+   * de fim de lição (bauDaConclusao). Estado vem do ledger de coins.
+   */
+  bau?: { refId: string; estado: "travado" | "disponivel" | "aberto" }
 }
 
 export interface Trilha {
@@ -75,6 +88,16 @@ export interface Usuario {
   inicial: string
   sequencia: number
   pontos: number
+  // --- Redesign Fin ---
+  coins: number
+  /** null = isento (premium ou escola) — o header mostra ∞. */
+  energia: { atual: number; max: number } | null
+  /** A pessoa já usou o app hoje? Alimenta o pop-up de lição diária. */
+  hoje: boolean
+  /** % de acerto dos últimos 7 dias; null = sem quiz na semana. */
+  precisaoSemana: number | null
+  /** Avatar equipado (itemId da loja); null = inicial do nome. */
+  avatarFin: string | null
 }
 
 /** Sem bloco gravado, tudo cai num bloco só — é o caso da trilha adulta. */
@@ -101,19 +124,38 @@ export async function montarTrilhaVisual(userId: string): Promise<{
   usuario: Usuario
 }> {
   const publico = await publicoDoUsuario(userId)
-  const [corredor, modulos, user, ofensiva] = await Promise.all([
-    montarCorredor(userId),
-    db.modulo.findMany({
-      where: filtroDeModulo(publico),
-      select: {
-        id: true, slug: true, titulo: true, subtitulo: true, nivel: true,
-        duracaoMin: true, pontos: true, tags: true, thumbnail: true,
-        blocoId: true, blocoRotulo: true, ordem: true,
-      },
-    }),
-    db.user.findUnique({ where: { id: userId }, select: { nome: true, pontos: true } }),
-    lerOfensiva(userId),
-  ])
+  const seteDias = new Date(inicioDoDiaSP().getTime() - 6 * 24 * 60 * 60 * 1000)
+  const [corredor, modulos, user, ofensiva, energia, bausAbertos, licoesDaSemana] =
+    await Promise.all([
+      montarCorredor(userId),
+      db.modulo.findMany({
+        where: filtroDeModulo(publico),
+        select: {
+          id: true, slug: true, titulo: true, subtitulo: true, nivel: true,
+          duracaoMin: true, pontos: true, tags: true, thumbnail: true,
+          blocoId: true, blocoRotulo: true, ordem: true,
+        },
+      }),
+      db.user.findUnique({
+        where: { id: userId },
+        select: { nome: true, pontos: true, coins: true, avatarFin: true },
+      }),
+      lerOfensiva(userId),
+      estadoDaEnergia(userId),
+      db.eventoCoins.findMany({
+        where: { userId, motivo: "bau" },
+        select: { refId: true },
+      }),
+      db.progressoLicao.findMany({
+        where: { userId, concluido: true, totalQuiz: { gt: 0 }, concluidoEm: { gte: seteDias } },
+        select: { acertos: true, totalQuiz: true },
+      }),
+    ])
+
+  const somaAcertos = licoesDaSemana.reduce((s, l) => s + l.acertos, 0)
+  const somaQuiz = licoesDaSemana.reduce((s, l) => s + l.totalQuiz, 0)
+  const precisaoSemana = somaQuiz > 0 ? Math.round((somaAcertos / somaQuiz) * 100) : null
+  const bauAberto = new Set(bausAbertos.map((b) => b.refId))
 
   const porId = new Map(modulos.map((m) => [m.id, m]))
   const noCorredor = [...corredor.modulos.values()]
@@ -134,7 +176,12 @@ export async function montarTrilhaVisual(userId: string): Promise<{
 
     const chave = m.blocoId ?? BLOCO_PADRAO.id
     if (!blocos.has(chave)) {
-      blocos.set(chave, { id: chave, rotulo: m.blocoRotulo ?? BLOCO_PADRAO.rotulo, nos: [] })
+      blocos.set(chave, {
+        id: chave,
+        rotulo: m.blocoRotulo ?? BLOCO_PADRAO.rotulo,
+        nos: [],
+        indice: blocos.size,
+      })
     }
 
     blocos.get(chave)!.nos.push({
@@ -151,16 +198,31 @@ export async function montarTrilhaVisual(userId: string): Promise<{
       thumbnail: m.thumbnail ?? "",
       telasVistas: c.licoesConcluidas,
       telasTotal: c.licoesTotal,
+      proximaLicao: c.proximaLicao,
       // O TÍTULO, não a frase: o componente monta "conclua X para abrir".
       ...(c.bloqueadoPor ? { destravadoPor: c.bloqueadoPor } : {}),
     })
   }
 
+  const escolar = publico !== PUBLICO_ATUAL
+
+  // O baú de cada unidade escolar. A trilha adulta não desenha fronteira de
+  // leva no mapa — o baú dela chega pela tela de fim de lição.
+  if (escolar) {
+    for (const b of blocos.values()) {
+      if (b.id === BLOCO_PADRAO.id || b.nos.length === 0) continue
+      const refId = `bloco:${b.id}`
+      const completo = b.nos.every((n) => n.estado === "concluido")
+      b.bau = {
+        refId,
+        estado: bauAberto.has(refId) ? "aberto" : completo ? "disponivel" : "travado",
+      }
+    }
+  }
+
   const todos = [...blocos.values()].flatMap((b) => b.nos)
   const concluidos = todos.filter((n) => n.estado === "concluido").length
   const percentual = todos.length ? Math.round((concluidos / todos.length) * 100) : 0
-
-  const escolar = publico !== PUBLICO_ATUAL
   return {
     trilha: {
       id: publico,
@@ -175,6 +237,11 @@ export async function montarTrilhaVisual(userId: string): Promise<{
       inicial: (user?.nome ?? "?").trim().charAt(0).toUpperCase() || "?",
       sequencia: ofensiva.atual,
       pontos: user?.pontos ?? 0,
+      coins: user?.coins ?? 0,
+      energia,
+      hoje: ofensiva.hoje,
+      precisaoSemana,
+      avatarFin: user?.avatarFin ?? null,
     },
   }
 }

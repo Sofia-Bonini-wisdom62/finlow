@@ -14,6 +14,9 @@ interface DrawerModuloProps {
   onFechar: () => void
   /** Entra no módulo. Qual lição servir é decisão do servidor. */
   onComecar: (no: NoTrilha) => void
+  /** true = a pessoa tem gate de energia (Redesign Fin): o CTA avisa o custo
+   *  — substitui o modal de início do protótipo, uma camada a menos. */
+  custoDeEnergia?: boolean
 }
 
 const NIVEL_LABEL: Record<NoTrilha["nivel"], string> = {
@@ -35,6 +38,7 @@ export default function DrawerModulo({
   intensidade,
   onFechar,
   onComecar,
+  custoDeEnergia = false,
 }: DrawerModuloProps) {
   const [dialogoAberto, setDialogoAberto] = useState(false)
   const [motivoSel, setMotivoSel] = useState<string>("")
@@ -307,6 +311,18 @@ export default function DrawerModulo({
                   style={{ color: "var(--finlow-muted)" }}
                 >
                   Refazer não pontua de novo.
+                </p>
+              )}
+
+              {/* O custo de energia, para quem tem o gate: no lugar do modal
+                  de início do protótipo — mesma informação, uma camada a
+                  menos entre a pessoa e a lição. */}
+              {custoDeEnergia && !cta.disabled && no.estado !== "concluido" && (
+                <p
+                  className="mt-2 text-center text-[12px] font-bold"
+                  style={{ color: "var(--fin-energia, #55C7EA)" }}
+                >
+                  ⚡ Lição nova custa 4 · acertos devolvem até 3
                 </p>
               )}
 

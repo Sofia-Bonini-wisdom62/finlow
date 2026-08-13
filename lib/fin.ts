@@ -39,6 +39,17 @@ export type PoseFin = keyof typeof POSE
 
 export const LOGO_FIN = "/fin/logo-mark.png"
 
+/**
+ * A pose de cada avatar comprável (itemIds do catálogo de lib/loja.ts).
+ * Mora AQUI e não na loja porque componentes de cliente precisam resolver a
+ * imagem do avatar equipado — e lib/loja.ts importa o banco.
+ */
+export const AVATAR_POSE: Record<string, string> = {
+  "avatar-flex": POSE.flex,
+  "avatar-fire": POSE.fire,
+  "avatar-stars": POSE.stars,
+}
+
 /** A pose do resultado, por faixa de precisão (0–100). */
 export function poseDoDesempenho(pct: number): string {
   if (pct >= 80) return POSE.stars
