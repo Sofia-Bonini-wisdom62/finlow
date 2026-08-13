@@ -63,6 +63,9 @@ const USUARIO = [
   // dado pessoal com nome e sobrenome. Não tem metade sistêmica aqui.
   "Escola", "MembroEscola", "Turma", "MembroTurma",
   "ConviteEscola", "CompetenciaProfessor", "AcessoTrilhaTurma",
+  // Redesign Fin: o ledger de coins é comportamento de uso de UMA pessoa —
+  // mesma classificação de EventoPontuacao.
+  "EventoCoins",
 ]
 
 const agora = new Date()

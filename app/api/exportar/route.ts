@@ -62,6 +62,19 @@ export async function GET() {
       }),
     ])
 
+    // O jogo (Redesign Fin): carteira, itens e o extrato de coins — tudo dela.
+    const [jogoUser, extratoCoins] = await Promise.all([
+      db.user.findUnique({
+        where: { id: userId },
+        select: { coins: true, energia: true, pocaoAtiva: true, avatarFin: true, comboRecorde: true },
+      }),
+      db.eventoCoins.findMany({
+        where: { userId },
+        select: { motivo: true, moedas: true, refId: true, criadoEm: true },
+        orderBy: { criadoEm: "asc" },
+      }),
+    ])
+
     // Vínculo escolar: escola, papel, turmas e competências — o que É da
     // pessoa. Colegas de turma ficam de fora pela mesma regra das indicações:
     // quem estuda comigo é dado dos outros.
@@ -132,6 +145,14 @@ export async function GET() {
         : null,
       assinatura,
       usoDeIA: usoIA,
+      jogo: {
+        coins: jogoUser?.coins ?? 0,
+        energia: jogoUser?.energia ?? null,
+        pocaoAtiva: jogoUser?.pocaoAtiva ?? false,
+        avatarEquipado: jogoUser?.avatarFin ?? null,
+        comboRecorde: jogoUser?.comboRecorde ?? 0,
+        extratoDeCoins: extratoCoins,
+      },
       escola: membroEscola
         ? {
             nome: membroEscola.escola.nome,

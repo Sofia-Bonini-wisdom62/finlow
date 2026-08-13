@@ -33,6 +33,28 @@ model User {
   /// publicoDoUsuario(), que valida o valor e cai em "adulto" quando não
   /// reconhece.
   publico               String                @default("adulto") // "adulto"|"ef12"|"ef35"|"ef67"|"ef89"|"em"
+  // --- Redesign Fin (13/08/2026): a camada de jogo ---
+  /// CACHE do saldo de Finlo Coins — a verdade é EventoCoins, mesma relação
+  /// de User.pontos com EventoPontuacao. Nunca escreva fora de lib/coins.ts.
+  coins                 Int                   @default(0)
+  /// Energia atual de quem passa pelo gate (grátis sem escola). Máx 24;
+  /// lição custa 4; +1/hora. Quem interpreta é SÓ lib/energia.ts — premium e
+  /// vínculo escolar nem leem estas colunas.
+  energia               Int                   @default(24)
+  /// Âncora da regeneração: avança apenas em horas CHEIAS consumidas, para o
+  /// resto de hora não se perder entre leituras.
+  energiaEm             DateTime              @default(now())
+  /// Poção ×2 comprada e ainda não consumida. Consome na próxima lição que
+  /// creditar pontos (lib/loja.ts + POST /api/progresso).
+  pocaoAtiva            Boolean               @default(false)
+  /// Cosmético equipado como avatar do jogador (itemId do catálogo de
+  /// lib/loja.ts). Posse é conferida no ledger EventoCoins, não aqui.
+  avatarFin             String?
+  /// Sequência corrente de acertos em quiz — ATRAVESSA lições de propósito:
+  /// as lições reais têm 0–2 quizzes, e um combo interno à lição nunca
+  /// acenderia. Recalculada no servidor a cada conclusão (lib/combo.ts).
+  comboAtual            Int                   @default(0)
+  comboRecorde          Int                   @default(0)
   emailVerified         DateTime?
   image                 String?
   criadoEm              DateTime              @default(now())
@@ -59,6 +81,7 @@ model User {
   usoMensalIA           UsoMensalIA[]
   accounts              Account[]
   sessions              Session[]
+  eventosCoins          EventoCoins[]
   // --- Finlow para Escolas (11/08/2026) ---
   membroEscola          MembroEscola?
   turmas                MembroTurma[]
@@ -899,6 +922,30 @@ model CompetenciaProfessor {
 
   @@unique([userId, escolaId, segmento])
   @@index([escolaId])
+}
+
+/// Cada movimento de Finlo Coins (Redesign Fin, 13/08/2026) — espelho exato
+/// de EventoPontuacao: a chave única (userId, motivo, refId) é a idempotência,
+/// User.coins é só cache atualizado na MESMA transação (lib/coins.ts).
+/// `moedas` NEGATIVO é gasto (compra na loja).
+///
+/// O ledger também é o REGISTRO de posse e de resgate — decisão deliberada
+/// para não nascerem três tabelas: missão resgatada = linha "missao" com
+/// refId "AAAA-MM-DD:missaoId" (o dia de SP renova à meia-noite); cosmético
+/// possuído = linha "compra_item" com refId = itemId; baú aberto = linha
+/// "bau" com refId "bloco:X" ou "leva:N". Existência = estado; a unique
+/// impede pagar/comprar/abrir duas vezes.
+model EventoCoins {
+  id       String   @id @default(cuid())
+  userId   String
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  motivo   String // "licao" | "bau" | "missao" | "compra_pocao" | "compra_item" — lib/coins.ts valida
+  moedas   Int
+  refId    String   @default("-")
+  criadoEm DateTime @default(now())
+
+  @@unique([userId, motivo, refId])
+  @@index([userId, criadoEm])
 }
 
 /// O que o professor liberou para a turma. `tipo` + `refId` em vez de três

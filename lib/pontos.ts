@@ -52,6 +52,20 @@ export const PONTOS_POR_MOTIVO = {
   // cadastro (lib/indicacao.ts). refId = Indicacao.id nos dois lados.
   indicacao_ativada: 50, // para quem convidou
   indicado_ativado: 20, // para quem entrou pelo convite
+  /**
+   * Bônus de combo (Redesign Fin): +3 por acerto a partir do 3º seguido,
+   * recalculado NO SERVIDOR contra o gabarito (lib/combo.ts). O teto 9 cobre
+   * a lição mais quizada (2 quizzes) com folga de herança — nunca inflar
+   * `licao_concluida` para caber o bônus: motivo novo, teto próprio.
+   * refId `${moduloId}:${licao}`, como a lição.
+   */
+  combo_bonus: 9,
+  /**
+   * Poção ×2 (Loja do Fin): o "dobro" é um SEGUNDO crédito no valor do
+   * primeiro, nunca o primeiro inflado — o teto de `licao_concluida` continua
+   * intacto e auditável. refId `${moduloId}:${licao}`.
+   */
+  pocao_bonus: 5,
 } as const
 
 export type MotivoPonto = keyof typeof PONTOS_POR_MOTIVO
@@ -170,6 +184,10 @@ export function pontosPorLicao(acertos: number, totalQuiz: number): number {
 const TETO_DIARIO: Partial<Record<MotivoPonto, number>> = {
   lancamento_confirmado: 10,
   quiz_acerto: 20,
+  // Redesign Fin: os bônus são por lição NOVA (refId já barra o refazer), mas
+  // uma maratona de lições num dia não pode virar imprensa de pontos.
+  combo_bonus: 6,
+  pocao_bonus: 4,
 }
 
 /**
