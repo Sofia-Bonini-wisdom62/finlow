@@ -126,6 +126,25 @@ Nenhum código lê os campos novos ainda — os defaults (`publico: "adulto"`,
 `habilidades: []`) reproduzem o comportamento de antes da coluna existir, que
 é o que torna a etapa 1 segura de aplicar antes do resto.
 
+## Redesign Fin (13/08/2026, em construção)
+
+Protótipo da fundadora: o miolo gamificado (trilha, player, resultado, liga,
+perfil do jogador, loja) ganha identidade própria — navy #0C1B21 + dourado
+#E9A63C + Nunito + o mascote **Fin** — e as mecânicas do backlog de
+gamificação. Decisões dela (13/08): tudo que foi desenhado entra; **energia
+limita só usuário grátis sem vínculo de escola**; liga semanal e dashboard do
+professor por métrica (G-17) ficam de fora; os caminhos sem design novo
+(chat, painel, etc.) permanecem na identidade atual até ela desenhar.
+
+| Etapa | Promessa | Status | Onde |
+|---|---|---|---|
+| 1 | Tema `.tema-fin` escopado (reaponta `--finlow-*`), Nunito, 24 poses do Fin, manifest PWA, fallback de thumbnail | ✅ 13/08 | `app/globals.css`, `lib/fin.ts`, `public/fin/`, `app/manifest.ts` |
+| 2 | Servidor do jogo: `EventoCoins` (ledger = estado), energia com recibo, missões derivadas, combo que atravessa lições, nível, loja, baú, conquistas + `/api/jogo/*` | ✅ 13/08 | `lib/{energia,coins,missoes,combo,nivel,loja,bau,conquistas}.ts`, `scripts/testar-jogo.mts` |
+| 3 | Player Fin: quiz com bolha do Fin + chip de combo, botões 3D, débito/devolução de energia, poção/coins no POST, FimDaLicao com anel de precisão %, tela de energia zerada | ✅ 13/08 | `components/trilha/*`, `app/api/trilha/[moduloId]`, `app/api/progresso`. Provado no preview: aluno isento fez lição valendo +5 e +10 coins com anel 100%; conta grátis com 3⚡ levou a tela de recarga SEM recibo, e com 24⚡ pagou 4 uma vez só |
+| 4 | Trilha Fin: header com chips, cards de unidade coloridos, nós 3D, tooltip COMEÇAR, baú no caminho, pop-up diário, intro do Fin | 📋 | — |
+| 5 | Perfil do jogador (`/trilha/perfil`) + Loja do Fin (`/trilha/loja`) | 📋 | — |
+| 6 | Liga (restyle do ranking, mecânica intacta) + relatório de pendências de design | 📋 | — |
+
 ## Fila de produto (05/08/2026)
 
 O que está decidido construir e ainda não começou vive em

@@ -15,9 +15,11 @@ interface Props {
   onInputMudou: (valores: SessaoFluxo) => void
   /** Qual lição está sendo jogada — muda a ordem das opções do quiz. */
   licao?: number
+  /** O combo corrente — decide a pose e a fala do Fin no feedback do quiz. */
+  combo?: number
 }
 
-export function TelaRenderer({ tela, sessao, quizSelecionada, onQuizSelecionar, onInputMudou, licao }: Props) {
+export function TelaRenderer({ tela, sessao, quizSelecionada, onQuizSelecionar, onInputMudou, licao, combo }: Props) {
   switch (tela.tipo) {
     case "conceito":
       return <TelaConceito conteudo={tela.conteudo as Parameters<typeof TelaConceito>[0]["conteudo"]} />
@@ -30,6 +32,7 @@ export function TelaRenderer({ tela, sessao, quizSelecionada, onQuizSelecionar, 
           selecionada={quizSelecionada}
           onSelecionar={onQuizSelecionar}
           licao={licao}
+          combo={combo}
         />
       )
     case "input":

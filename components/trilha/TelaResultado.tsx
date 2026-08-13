@@ -4,9 +4,9 @@ import type { ConteudoResultado, SessaoFluxo } from "@/types/trilha"
 import { calcular, interpolar, avaliarFaixa } from "@/lib/resultado"
 
 const corClasses = {
-  green: { border: "border-[#5FA7A9]/30", bg: "bg-[#5FA7A9]/10", text: "text-[#5FA7A9]", badge: "bg-[#5FA7A9]/20 text-[#5FA7A9]" },
-  yellow: { border: "border-[#D3A75C]/30", bg: "bg-[#D3A75C]/10", text: "text-[#D3A75C]", badge: "bg-[#D3A75C]/20 text-[#D3A75C]" },
-  red: { border: "border-[#D08277]/30", bg: "bg-[#D08277]/10", text: "text-[#D08277]", badge: "bg-[#D08277]/20 text-[#D08277]" },
+  green: { border: "border-[var(--fin-acerto)]/30", bg: "bg-[var(--fin-acerto)]/10", text: "text-[var(--fin-acerto)]", badge: "bg-[var(--fin-acerto)]/20 text-[var(--fin-acerto)]" },
+  yellow: { border: "border-[var(--fin-accent)]/30", bg: "bg-[var(--fin-accent)]/10", text: "text-[var(--fin-accent)]", badge: "bg-[var(--fin-accent)]/20 text-[var(--fin-accent)]" },
+  red: { border: "border-[var(--fin-erro)]/30", bg: "bg-[var(--fin-erro)]/10", text: "text-[var(--fin-erro)]", badge: "bg-[var(--fin-erro)]/20 text-[var(--fin-erro)]" },
 }
 
 interface Props {
@@ -35,8 +35,8 @@ export function TelaResultado({ conteudo, sessao }: Props) {
       )}
 
       {insight && insight.trim().length > 0 && (
-        <div className="rounded-2xl border border-[#1B3B3C] bg-[#1B3B3C] p-4">
-          <p className="text-sm leading-relaxed text-[#A7ADAF]">{insight}</p>
+        <div className="rounded-2xl border border-[var(--fin-surface)] bg-[var(--fin-surface)] p-4">
+          <p className="text-sm leading-relaxed text-[var(--fin-muted)]">{insight}</p>
         </div>
       )}
     </div>

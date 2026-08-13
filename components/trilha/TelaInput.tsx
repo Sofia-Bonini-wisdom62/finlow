@@ -21,7 +21,7 @@ export function TelaInput({ conteudo, sessao, onMudou }: Props) {
           dangerouslySetInnerHTML={{ __html: conteudo.headline }}
         />
         {conteudo.subtitulo && (
-          <p className="mt-2 text-sm text-[#A7ADAF]">{conteudo.subtitulo}</p>
+          <p className="mt-2 text-sm text-[var(--fin-muted)]">{conteudo.subtitulo}</p>
         )}
       </div>
 
@@ -43,8 +43,8 @@ export function TelaInput({ conteudo, sessao, onMudou }: Props) {
                       onClick={() => handleChange(campo.id, opcao.valor)}
                       className={`rounded-full border px-4 py-3 text-sm transition-colors ${
                         ativa
-                          ? "border-[#5FA7A9] bg-[#5FA7A9]/10 font-semibold text-[#5FA7A9]"
-                          : "border-[#1B3B3C] bg-[#1B3B3C] text-[#A7ADAF]"
+                          ? "border-[var(--fin-accent)] bg-[var(--fin-accent)]/10 font-semibold text-[var(--fin-accent)]"
+                          : "border-[var(--fin-surface)] bg-[var(--fin-surface)] text-[var(--fin-muted)]"
                       }`}
                     >
                       {opcao.label}
@@ -59,7 +59,7 @@ export function TelaInput({ conteudo, sessao, onMudou }: Props) {
                 placeholder={campo.placeholder}
                 value={sessao[campo.id] ?? ""}
                 onChange={(e) => handleChange(campo.id, e.target.value)}
-                className="w-full rounded-xl border border-[#1B3B3C] bg-[#1B3B3C] px-4 py-3 text-sm text-white placeholder-[#A7ADAF] outline-none focus:border-[#5FA7A9] transition-colors"
+                className="w-full rounded-xl border border-[var(--fin-surface)] bg-[var(--fin-surface)] px-4 py-3 text-sm text-white placeholder-[var(--fin-muted)] outline-none focus:border-[var(--fin-accent)] transition-colors"
               />
             )}
           </div>
@@ -67,7 +67,7 @@ export function TelaInput({ conteudo, sessao, onMudou }: Props) {
       </div>
 
       {conteudo.aviso && (
-        <p className="text-xs text-[#A7ADAF]">🔒 {conteudo.aviso}</p>
+        <p className="text-xs text-[var(--fin-muted)]">🔒 {conteudo.aviso}</p>
       )}
     </div>
   )

@@ -5,6 +5,11 @@ import { creditar, pontosPorConclusao, pontosPorLicao, ajustarPorPublico } from 
 import { montarLicoes, licoesExistentes } from "@/lib/licoes"
 import { podeAbrir } from "@/lib/corredor"
 import { filtroExploravel, publicoDoUsuario, PUBLICO_ATUAL } from "@/lib/publico"
+import { calcularCombo } from "@/lib/combo"
+import { creditarCoins } from "@/lib/coins"
+import { devolverPorAcertos, isentoDeEnergia } from "@/lib/energia"
+import { bauDaConclusao } from "@/lib/bau"
+import { lerOfensiva } from "@/lib/ofensiva"
 
 export const dynamic = "force-dynamic"
 
@@ -130,10 +135,16 @@ export async function POST(req: NextRequest) {
     const escolhas: Record<string, string> =
       respostas && typeof respostas === "object" ? respostas : {}
     let acertos = 0
+    // A ordem importa desde o combo (Redesign Fin): `alvo.telas` vem ordenado
+    // por `ordem`, então `resultados` é a sequência real de acertos/erros que
+    // lib/combo.ts percorre.
+    const resultados: boolean[] = []
     for (const q of quizzes) {
       const opcoes = ((q.conteudo as { opcoes?: { letra: string; correta: boolean }[] })
         ?.opcoes) ?? []
-      if (opcoes.find((o) => o.letra === escolhas[q.id])?.correta) acertos++
+      const acertou = !!opcoes.find((o) => o.letra === escolhas[q.id])?.correta
+      resultados.push(acertou)
+      if (acertou) acertos++
     }
 
     const gastos = segundosPlausiveis(segundos)
@@ -166,6 +177,65 @@ export async function POST(req: NextRequest) {
         publicoDaPessoa
       )
     )
+
+    /**
+     * A camada de jogo (Redesign Fin) — TUDO condicionado à primeira
+     * conclusão (`creditoLicao.creditado`): refazer lição não mexe no combo,
+     * não paga bônus, não dá coin e não devolve energia. É o mesmo proxy de
+     * idempotência que os pontos já usam.
+     */
+    let comboMax = 0
+    let comboBonus = 0
+    let coinsGanhos: number | null = null
+    let energiaDevolvida: number | null = null
+    let pocaoAplicada = false
+    if (creditoLicao.creditado) {
+      const jogador = await db.user.findUnique({
+        where: { id: userId },
+        select: { comboAtual: true, comboRecorde: true, pocaoAtiva: true },
+      })
+
+      // O combo ATRAVESSA lições: herda de User.comboAtual e devolve a
+      // sequência viva. O chip do player é cortesia; este recálculo contra o
+      // gabarito é o que vale.
+      const combo = calcularCombo(jogador?.comboAtual ?? 0, resultados)
+      comboMax = combo.comboMax
+      if (resultados.length > 0 || combo.combo !== (jogador?.comboAtual ?? 0)) {
+        await db.user.update({
+          where: { id: userId },
+          data: {
+            comboAtual: combo.combo,
+            comboRecorde: Math.max(jogador?.comboRecorde ?? 0, combo.comboMax),
+          },
+        })
+      }
+      if (combo.bonus > 0) {
+        const cb = await creditar(
+          userId,
+          "combo_bonus",
+          `${moduloId}:${numero}`,
+          ajustarPorPublico(combo.bonus, modulo?.publico ?? PUBLICO_ATUAL, publicoDaPessoa)
+        )
+        if (cb.creditado) comboBonus = cb.pontos
+      }
+
+      // Poção ×2: um SEGUNDO crédito no valor do primeiro — o teto de
+      // licao_concluida fica intacto. Consome a poção só se o bônus entrou.
+      if (jogador?.pocaoAtiva && creditoLicao.pontos > 0) {
+        const pb = await creditar(userId, "pocao_bonus", `${moduloId}:${numero}`, creditoLicao.pontos)
+        if (pb.creditado) {
+          pocaoAplicada = true
+          await db.user.update({ where: { id: userId }, data: { pocaoAtiva: false } })
+        }
+      }
+
+      const cc = await creditarCoins(userId, "licao", `${moduloId}:${numero}`)
+      if (cc.creditado) coinsGanhos = cc.moedas
+
+      if (!(await isentoDeEnergia(userId))) {
+        energiaDevolvida = await devolverPorAcertos(userId, acertos, quizzes.length)
+      }
+    }
 
     // ---- o módulo fecha quando a última lição fecha ----
     const concluidas = await db.progressoLicao.count({
@@ -202,6 +272,13 @@ export async function POST(req: NextRequest) {
       )
     }
 
+    // O baú aparece quando o módulo recém-fechado completa a unidade dele
+    // (bloco escolar ou leva adulta) e ainda não foi aberto.
+    const [bauDisponivel, ofensiva] = await Promise.all([
+      moduloFechou ? bauDaConclusao(userId, moduloId) : Promise.resolve(null),
+      lerOfensiva(userId),
+    ])
+
     return NextResponse.json({
       ok: true,
       licao: numero,
@@ -214,6 +291,15 @@ export async function POST(req: NextRequest) {
       pontosModulo: creditoModulo,
       licoesConcluidas: concluidas,
       licoesTotal: totalLicoes,
+      // --- a camada de jogo (Redesign Fin); cliente antigo ignora ---
+      comboMax,
+      comboBonus,
+      coins: coinsGanhos,
+      energiaDevolvida,
+      pocaoAplicada,
+      precisao: quizzes.length > 0 ? Math.round((acertos / quizzes.length) * 100) : null,
+      sequencia: ofensiva.atual,
+      bauDisponivel,
     })
   } catch (e) {
     console.warn("[progresso POST]", e)

@@ -6,6 +6,7 @@ import Link from "next/link"
 import { Lock } from "lucide-react"
 import { CardFlow } from "@/components/trilha/CardFlow"
 import { FimDaLicao, type ResultadoLicao } from "@/components/trilha/FimDaLicao"
+import { POSE } from "@/lib/fin"
 import type { ModuloData } from "@/types/trilha"
 
 /**
@@ -35,6 +36,17 @@ interface Resposta {
   licoesDoModulo?: LicaoDoModulo[]
   indicadores: Record<string, number>
   telaInicial: number
+  /** null = isento (premium ou escola); a UI não mostra custo nenhum. */
+  energia?: { atual: number; max: number } | null
+  /** O combo herdado das lições anteriores — semente do chip do CardFlow. */
+  comboAtual?: number
+}
+
+/** O 403 de energia vem com estes campos — é recusa DIFERENTE de "trancado". */
+interface SemEnergia {
+  energia: number
+  max: number
+  minutos: number
 }
 
 export default function ModuloPage() {
@@ -59,6 +71,7 @@ export default function ModuloPage() {
     para: string
     dados: Resposta | null
     trancado: string | null
+    semEnergia: SemEnergia | null
     resultado: ResultadoLicao | null
   } | null>(null)
 
@@ -69,17 +82,24 @@ export default function ModuloPage() {
       .then(async (r) => {
         if (r.status === 403) {
           const d = await r.json().catch(() => ({}))
-          return { trancado: d.motivo ?? "Esta lição ainda não abriu.", dados: null }
+          if (d.error === "energia") {
+            return {
+              trancado: null,
+              semEnergia: { energia: d.energia ?? 0, max: d.max ?? 24, minutos: d.minutos ?? 60 },
+              dados: null,
+            }
+          }
+          return { trancado: d.motivo ?? "Esta lição ainda não abriu.", semEnergia: null, dados: null }
         }
         if (!r.ok) throw new Error("não encontrado")
         const d = (await r.json()) as Resposta
-        return { trancado: null, dados: d?.modulo ? d : null }
+        return { trancado: null, semEnergia: null, dados: d?.modulo ? d : null }
       })
-      .then(({ dados, trancado }) => {
-        if (vivo) setEstado({ para: alvo, dados, trancado, resultado: null })
+      .then(({ dados, trancado, semEnergia }) => {
+        if (vivo) setEstado({ para: alvo, dados, trancado, semEnergia, resultado: null })
       })
       .catch(() => {
-        if (vivo) setEstado({ para: alvo, dados: null, trancado: null, resultado: null })
+        if (vivo) setEstado({ para: alvo, dados: null, trancado: null, semEnergia: null, resultado: null })
       })
     return () => { vivo = false }
   }, [alvo, chave, licaoPedida])
@@ -87,24 +107,65 @@ export default function ModuloPage() {
   const atual = estado?.para === alvo ? estado : null
   const dados = atual ? atual.dados : undefined
   const trancado = atual?.trancado ?? null
+  const semEnergia = atual?.semEnergia ?? null
   const resultado = atual?.resultado ?? null
   const setResultado = useCallback(
     (r: ResultadoLicao) => setEstado((e) => (e ? { ...e, resultado: r } : e)),
     []
   )
 
+  // ---------- sem energia ----------
+  if (semEnergia) {
+    return (
+      <div className="tema-fin flex h-dvh flex-col items-center justify-center gap-4 px-8 text-center" style={{ background: "var(--fin-bg)" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={POSE.worry} alt="" className="fin-pop h-[110px] object-contain" />
+        <h1 className="text-[21px] font-black text-white">Sua energia acabou</h1>
+        <p className="max-w-xs text-sm leading-relaxed" style={{ color: "var(--fin-muted)" }}>
+          Ela volta sozinha: <strong style={{ color: "var(--fin-energia)" }}>+1 a cada hora</strong>.
+          Próxima recarga em <strong className="text-white">{semEnergia.minutos} min</strong>.
+        </p>
+        <Link
+          href="/premium"
+          className="flex w-full max-w-xs items-center gap-3 rounded-2xl px-4 py-3 text-left"
+          style={{ background: "var(--fin-surface)" }}
+        >
+          <span
+            className="grid size-9 shrink-0 place-items-center rounded-xl text-[15px] font-black"
+            style={{ background: "var(--fin-accent)", color: "var(--fin-bg)" }}
+          >
+            ∞
+          </span>
+          <span>
+            <span className="block text-[13.5px] font-black text-white">Finlow+ tem energia infinita</span>
+            <span className="block text-[11.5px]" style={{ color: "var(--fin-dim)" }}>
+              Se fizer sentido pra você — sem pressa.
+            </span>
+          </span>
+        </Link>
+        <Link
+          href="/trilha"
+          className="rounded-2xl px-6 py-3.5 text-sm font-extrabold"
+          style={{ background: "var(--fin-border)", color: "var(--fin-text)" }}
+        >
+          Volto mais tarde
+        </Link>
+      </div>
+    )
+  }
+
   // ---------- trancado ----------
   if (trancado) {
     return (
-      <div className="flex h-dvh flex-col items-center justify-center gap-4 px-8 text-center" style={{ background: "#112F30" }}>
-        <div className="grid size-14 place-items-center rounded-full" style={{ background: "#1B3B3C" }}>
-          <Lock className="size-6" style={{ color: "#A7ADAF" }} />
+      <div className="tema-fin flex h-dvh flex-col items-center justify-center gap-4 px-8 text-center" style={{ background: "var(--fin-bg)" }}>
+        <div className="grid size-14 place-items-center rounded-full" style={{ background: "var(--fin-surface)" }}>
+          <Lock className="size-6" style={{ color: "var(--fin-muted)" }} />
         </div>
         <p className="max-w-xs text-[15px] leading-relaxed text-white">{trancado}</p>
         <Link
           href="/trilha"
-          className="rounded-full px-6 py-3 text-sm font-bold"
-          style={{ background: "#5FA7A9", color: "#112F30" }}
+          className="fin-btn-3d rounded-2xl px-6 py-3 text-sm font-extrabold"
+          style={{ background: "var(--fin-accent)", color: "var(--fin-bg)" }}
         >
           Ver minha trilha
         </Link>
@@ -171,6 +232,7 @@ export default function ModuloPage() {
       modulo={modulo}
       licao={{ numero: licao.numero, nome: licao.nome, indice, total: licao.total }}
       telaInicial={dados.telaInicial}
+      comboInicial={dados.comboAtual ?? 0}
       sessaoInicial={sessaoInicial}
       onAvancarTela={(tela) => {
         fetch("/api/progresso", {
@@ -201,6 +263,15 @@ export default function ModuloPage() {
               licoesConcluidas: d.licoesConcluidas ?? 0,
               licoesTotal: d.licoesTotal ?? licao.total,
               conceito: d.moduloConcluido ? conceitoDoFecho() : null,
+              // --- a camada de jogo (Redesign Fin) ---
+              comboMax: d.comboMax ?? 0,
+              comboBonus: d.comboBonus ?? 0,
+              coins: d.coins ?? null,
+              energiaDevolvida: d.energiaDevolvida ?? null,
+              pocaoAplicada: !!d.pocaoAplicada,
+              precisao: d.precisao ?? null,
+              sequencia: d.sequencia ?? 0,
+              bauDisponivel: d.bauDisponivel ?? null,
             })
           })
           .catch(() => {
