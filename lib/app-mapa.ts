@@ -67,6 +67,12 @@ export const DESTINOS: Destino[] = [
     paraQue: "ver os pontos, entrar ou sair do ranking (é opcional e vem desligado)",
   },
   {
+    href: "/personalidade",
+    nome: "Personalidade do assistente",
+    caminho: ["Menu", "Personalidade do assistente"],
+    paraQue: "escolher o tom das suas respostas e escrever como a pessoa quer ser atendida",
+  },
+  {
     href: "/extrato",
     nome: "Ler extrato do banco",
     caminho: ["Menu", "Ler extrato do banco"],
@@ -126,6 +132,12 @@ export const ACOES: Acao[] = [
     passos: ["Menu", "Memória do assistente", "desligar o interruptor"],
     href: "/memoria",
     cuidado: "Desligar não apaga o que já está guardado.",
+  },
+  {
+    pedido: "mudar o tom do assistente / você fala demais, seja mais direto, seja mais gentil",
+    passos: ["Menu", "Personalidade do assistente"],
+    href: "/personalidade",
+    cuidado: "Muda o jeito de falar, não os números nem o que ele pode responder.",
   },
   {
     pedido: "ver conversas antigas / histórico do chat",

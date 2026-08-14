@@ -147,6 +147,14 @@ export interface OpcoesResposta {
    * esquecer o `userId` aparece no log como chamada sem dono.
    */
   userId?: string
+  /**
+   * Tom escolhido pela pessoa e o texto livre dela (lib/personalidade.ts).
+   *
+   * Ausente aqui não é erro: cai no tom padrão, que é a voz que o assistente
+   * sempre teve. Uma tela nova que esqueça de passar isto perde a
+   * personalização, não a resposta.
+   */
+  personalidade?: { id: string; detalhe?: string }
 }
 
 export interface RespostaIA {

@@ -217,7 +217,20 @@ Desligada por padrão. Registros **discretos** (não um blob) nos tipos situaç�
 plano, preferência e compromisso, com origem IA ou usuário. A tela `/memoria`
 mostra tudo em texto com data, permite escrever à mão e apagar um a um ou tudo.
 
-### 2.13 Premium — assinatura e limite grátis
+### 2.13 Personalidade do assistente
+
+Cinco tons em `/personalidade` — Equilibrado (padrão), Direto ao ponto,
+Acolhedor, Explicador, Incentivador — cada um com a **mesma frase** escrita
+daquele jeito, para a escolha não ser entre adjetivos. Mais um campo livre de
+200 caracteres, cifrado, que a pessoa usa para dizer como quer ser atendida.
+
+Vale no chat e no onboarding refeito. **Tom muda como ele fala, nunca o que é
+verdade**: a cláusula que preserva os números, o "não sei", o não julgar gasto,
+o não recomendar ativo e o formato da resposta acompanha todos os tons. O campo
+livre entra no prompt como preferência declarada e explicitamente **não
+confiável** — pedido de mudar número ou ignorar regra é para ser ignorado.
+
+### 2.14 Premium — assinatura e limite grátis
 
 **Uma tabela, um decisor.** `Assinatura` tem uma linha por usuário
 (`userId @unique`) com quatro status: `pendente`, `ativa`, `inadimplente`,
@@ -269,7 +282,7 @@ Apagar a conta **cancela a assinatura na Stripe antes** do delete, e falha aí
 aborta o apagamento: `Assinatura` cascateia no nosso banco, mas o objeto na
 Stripe continuaria cobrando um cartão de alguém que já não consegue entrar.
 
-### 2.14 Finlow para Escolas (11/08/2026)
+### 2.15 Finlow para Escolas (11/08/2026)
 
 A escola é uma **camada de vínculo e leitura** por cima do produto: nenhuma
 tabela de conteúdo ou progresso mudou de dono. As peças, na ordem do fluxo:
@@ -298,7 +311,7 @@ tabela de conteúdo ou progresso mudou de dono. As peças, na ordem do fluxo:
 - Superfície em `app/escola/` (fora das abas do consumidor); telas do aluno
   são as do app normal.
 
-### 2.15 Operação
+### 2.16 Operação
 
 `/api/ops/metrics` devolve uso da Vertex nas últimas 24h (invocações, tokens,
 caracteres, latências) e um bloco de produto (indicações totais / 30 dias /

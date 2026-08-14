@@ -7,6 +7,7 @@ import { memoriaLigada, listarMemorias, guardarMemorias, type TipoMemoria } from
 import { guardarTurno } from "@/lib/conversa-repo"
 import { guardarRecomendacaoDoChat } from "@/lib/recomendacao"
 import { montarContexto } from "@/lib/contexto-financeiro"
+import { lerPersonalidade } from "@/lib/personalidade-repo"
 import { slugDaCategoria } from "@/lib/extrato/categorias"
 import { filtroDeModulo, publicoDoUsuario } from "@/lib/publico"
 import { cotaDoMes } from "@/lib/pagamento/tokens"
@@ -26,10 +27,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Nenhuma mensagem enviada" }, { status: 400 })
     }
 
-    const [contexto, ligada, usuario] = await Promise.all([
+    const [contexto, ligada, usuario, personalidade] = await Promise.all([
       montarContexto(userId),
       memoriaLigada(userId),
       db.user.findUnique({ where: { id: userId }, select: { consentimentoPainelEm: true } }),
+      lerPersonalidade(userId),
     ])
     // Sem consentimento do Painel não há onde gravar. Melhor o modelo saber
     // disso e nem propor do que a tela mostrar um botão que dá 403.
@@ -74,7 +76,7 @@ export async function POST(req: NextRequest) {
       mensagens as MensagemChat[],
       contexto,
       { ligada, conhecidas },
-      { podeLancar, modulos, userId }
+      { podeLancar, modulos, userId, personalidade }
     )
 
     // A aula que o assistente citou entra na trilha da pessoa.

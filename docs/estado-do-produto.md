@@ -7,11 +7,10 @@ um app para adolescentes que já não existia).
 
 Legenda: ✅ pronto · 🔧 em desenvolvimento · 📋 planejado · 🚫 fora deste repo
 
-Última revisão: 07/08/2026 — varredura de resto morto e das portas que ele
-deixou abertas (seção *Limpeza* abaixo). Nenhuma funcionalidade mudou de
-status; o que mudou foi o que existia por baixo delas. A trilha de Ensino Médio
-segue portada e semeada atrás do gate de público, e as cinco fases do script do
-Plano 2026–2029 seguem entregues.
+Última revisão: 08/08/2026 — o assistente deixou de ter uma voz só (seção
+*Personalidade do assistente* abaixo). A trilha de Ensino Médio segue portada e
+semeada atrás do gate de público, e as cinco fases do script do Plano 2026–2029
+seguem entregues.
 
 ## Núcleo
 
@@ -25,6 +24,7 @@ Plano 2026–2029 seguem entregues.
 | Análises (gráficos, categorias, tetos, saúde) | ✅ | `app/(app)/analises` |
 | Onboarding conversacional + pipeline de 6 passos | ✅ | `app/(app)/onboarding`, `lib/onboarding/pipeline.ts` |
 | Memória do assistente (opt-in, cifrada, apagável) | ✅ | `lib/memoria-repo.ts`, `/memoria` |
+| Personalidade do assistente (5 tons + campo livre cifrado) | ✅ | `lib/personalidade.ts`, `/personalidade` |
 | Trilha em corredor: 4 lições por módulo, em sequência | ✅ | `lib/corredor.ts`, `lib/licoes.ts` |
 | Tela de fim de lição (XP, tempo, acertos, conceito) | ✅ | `components/trilha/FimDaLicao.tsx` |
 | Ordem do corredor personalizada por situação + nível | ✅ | `lib/situacoes.ts`, `lib/posicionar-trilha.ts` |
@@ -138,6 +138,47 @@ arquivo dizia, e por isso aparecem aqui:
 | Conferência de duplicata na entrada de dados | ✅ entregue em 11/08/2026 | O extrato compara o que chega com o que já está lançado e confirmado. **Corrigiu defeito de hoje:** sem isso, dois extratos com período sobreposto (o caso comum, já que o corte é de 3 meses) gravavam o trecho comum duas vezes e o dash contava o dobro, sem sinal na tela. Regra em `lib/extrato/duplicatas.ts`, pura e sem banco — `descricao` e `valor` são cifrados com IV aleatório, então a comparação não pode acontecer em SQL. Nunca apaga: descrição igual chega desmarcada, mesmo dia/valor com outro nome chega marcada e sinalizada. É também a metade da ingestão que o conector Open Finance exige e que não depende de qual agregador for escolhido — sincronização diária reentrega a mesma transação por definição. |
 | Porta de entrada na landing | ✅ entregue em 12/08/2026 | Item 1 da avaliação UX. A home não tinha nenhum link `Entrar` ou `Criar conta` — quem já tinha conta precisava adivinhar `/login` na barra de endereço — enquanto o FAQ respondia "O Finlow já está disponível? **Ainda não**" com o app inteiro no ar no mesmo domínio, e o Menu do app logado apontava para esse mesmo FAQ. As duas metades caíram juntas porque uma sem a outra fica incoerente. A captura de e-mail deixou de ser lista de espera (o cadastro é aberto, então "avisamos quando abrir" era promessa vencida); `Waitlist`, `/api/waitlist` e a limpeza no delete de conta seguem intactas — mudou só o que a tela promete. Guardado por `scripts/testar-landing.mts`, sem banco. |
 | Trilha em blocos de 4 lições, com sequência travada | ✅ entregue em 06/08/2026 | Era "em conflito" com a biblioteca posicionada. Sofia decidiu pelo corredor com a ressalva à vista, escolhendo travar **entre módulos**. A documentação da biblioteca caiu no mesmo commit — este arquivo, `resumo-de-funcao.md`, `backlog-trilha-t2.md`, o comentário de `Modulo.situacoes` e `app/trilha/page.tsx`. |
+
+## Personalidade do assistente (08/08/2026)
+
+O tom deixou de ser fixo. Em Menu > Personalidade do assistente a pessoa
+escolhe entre cinco tons e, se quiser, escreve em até 200 caracteres como quer
+ser atendida.
+
+| Promessa | Status | Onde |
+|---|---|---|
+| 5 tons, com amostra da mesma frase em cada um | ✅ | `lib/personalidade.ts`, `/personalidade` |
+| Campo livre, cifrado, na exportação LGPD | ✅ | `User.personalidadeDetalhe`, `/api/exportar` |
+| Vale no chat e no onboarding refeito | ✅ | `app/api/chat`, `app/api/onboarding` |
+| O assistente sabe indicar a tela | ✅ | `lib/app-mapa.ts`, `scripts/testar-mapa.mts` |
+| Tom não afrouxa regra de número, limite nem formato | ✅ | `scripts/testar-personalidade.mts` |
+
+**A linha que separa tom de conteúdo, e por que ela está no prompt em voz
+alta.** O bloco de personalidade fica ao lado das regras que protegem os
+números, e o modelo lê os dois no mesmo texto. Por isso todo tom carrega, junto,
+a cláusula do que ele NÃO muda: usar somente os números do contexto, dizer que
+não tem o dado quando não tem, não julgar gasto, não recomendar ativo e
+responder no formato JSON. Um tom que precisasse quebrar uma dessas regras não
+seria um tom.
+
+**O campo livre é a primeira vez que texto do usuário entra no prompt de
+sistema.** A memória também guarda frase dela, mas passa por validação e nasce
+desligada; este campo é lido em toda resposta. Ele entra rotulado como
+preferência, marcado como não confiável, sem quebra de linha (não forja seção
+nossa) e sem aspas duplas (não fecha o delimitador). Baixo calão não entra, pela
+mesma trava da memória.
+
+**Antes de subir para produção — passo de banco.** `User` ganhou duas colunas
+(`personalidadeIA`, `personalidadeDetalhe`). Rode `pnpm db:push` **antes** do
+deploy do código. Nenhuma tabela nova, então não há passo de RLS novo: as
+colunas herdam a política que já protege `User`. Se o código subir primeiro, a
+leitura cai no tom padrão e loga o motivo, em vez de derrubar o chat — mas isso
+é rede de proteção, não a ordem certa.
+
+**O arquivo do banco ficou uma regeneração atrás.** `docs/banco/01-esquema.sql`
+não tem as duas colunas novas. Ele não se edita à mão (ver o README da pasta):
+para atualizar, rode `node --import tsx scripts/exportar-banco.mts` com acesso
+ao banco.
 
 ## Limpeza do pré-pivô (07/08/2026)
 

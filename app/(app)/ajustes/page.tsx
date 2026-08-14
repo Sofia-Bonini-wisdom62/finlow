@@ -5,7 +5,7 @@ import Link from "next/link"
 import { signOut } from "next-auth/react"
 import {
   ChevronRight, Download, LogOut, Trash2, Check, X, Clock,
-  User, Landmark, Sparkles, ShieldCheck, Palette, LifeBuoy, Brain, FileUp, MessageCircle, Gift, Droplets,
+  User, Landmark, Sparkles, ShieldCheck, Palette, LifeBuoy, Brain, FileUp, MessageCircle, Gift, Droplets, Drama,
   CreditCard,
 } from "lucide-react"
 import { ConvidarAmigos } from "@/components/ajustes/ConvidarAmigos"
@@ -285,7 +285,7 @@ export default function AjustesPage() {
           <Acao rotulo="Refazer a primeira conversa" Icon={Sparkles} href="/onboarding" />
           <Acao rotulo="Memória do assistente" Icon={Brain} href="/memoria" />
           <Acao rotulo="Conversar com o assistente" Icon={MessageCircle} href="/chat" />
-          <EmBreve rotulo="Personalidade da IA" motivo="O tom do assistente é fixo por enquanto." />
+          <Acao rotulo="Personalidade do assistente" Icon={Drama} href="/personalidade" />
           <EmBreve rotulo="Frequência de lembretes" motivo="Depende de notificações, ainda não implementadas." />
         </Secao>
 
