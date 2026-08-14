@@ -44,14 +44,23 @@ function hrefs(fonte: string): string[] {
 }
 
 /**
- * Tira os comentários de bloco (inclusive os comentários de JSX) antes de
- * conferir COPY. Os comentários daqui citam de propósito a frase antiga que
- * foi corrigida, para que ninguém a reescreva sem saber — e um teste de copy
- * que lesse o comentário acusaria justamente o aviso que protege a correção.
- * Só bloco: `//` apareceria dentro de URL.
+ * Tira os comentários antes de conferir COPY. Os comentários daqui citam de
+ * propósito a frase antiga que foi corrigida, para que ninguém a reescreva sem
+ * saber — e um teste de copy que lesse o comentário acusaria justamente o aviso
+ * que protege a correção.
+ *
+ * BLOCO E LINHA, e a segunda metade veio de um caso real. O branch do redesign
+ * escreveu esse mesmo aviso com `//` em vez de bloco, e a checagem de Open
+ * Finance acusou falha numa landing que estava CERTA: o "Open Finance" que ela
+ * leu era o do comentário explicando por que a promessa tinha saído. Guard que
+ * depende do estilo de comentário que o autor escolheu não guarda nada — só
+ * treina quem vier depois a desligá-lo.
+ *
+ * O `[^:]` antes do `//` é o que preserva `https://`. Era a razão de a linha
+ * ter ficado de fora, e ela continua valendo.
  */
 function semComentarios(fonte: string): string {
-  return fonte.replace(/\/\*[\s\S]*?\*\//g, " ")
+  return fonte.replace(/\/\*[\s\S]*?\*\//g, " ").replace(/(^|[^:])\/\/[^\n]*/g, "$1 ")
 }
 
 /** Recorta uma seção do JSX pelo comentário de faixa que a abre. */
