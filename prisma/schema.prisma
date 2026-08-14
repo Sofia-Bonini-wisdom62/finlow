@@ -749,6 +749,13 @@ model ProgressoLicao {
   telaAtual   Int       @default(0)
   acertos     Int       @default(0)
   totalQuiz   Int       @default(0)
+  /// A dupla acima é a 1ª PASSADA e vira pedra depois que a lição conclui:
+  /// foi a nota que valeu XP. Refazer grava NESTAS duas — "1ª passada × após
+  /// correção" (protótipo v2, 14/08/2026): a 2ª rodada não vale XP nem infla
+  /// a média do professor, os dois números ficam separados. Null = nunca
+  /// refez.
+  acertosRevisao   Int?
+  totalQuizRevisao Int?
   /// Segundos gastos na lição, somados entre as visitas. Alimenta a tela de fim.
   segundos    Int       @default(0)
   concluidoEm DateTime?

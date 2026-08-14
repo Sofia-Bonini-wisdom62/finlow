@@ -224,12 +224,19 @@ chegarem, é troca de arquivo, não de código.
   card de Objetivos com o Fin, porta "Liga". Convive com /trilha/perfil:
   missões, conquistas e loja continuam SÓ lá — duplicar resgate em duas
   telas dobraria a superfície da mecânica.
-- **Escola** — turmas, turma (2ºB), professores, e o **detalhe do aluno
-  pelo professor** com "1ª passada × após correção" ("a 2ª rodada não vale
-  XP nem infla a média — os dois números separados"): exige medir e
-  persistir a distinção primeira-tentativa × refazer, que hoje não existe.
-- **Landing do Finlow para Escolas** — tela própria no protótipo (hoje o
-  card da landing aponta para o e-mail).
+- ~~**Escola**~~ ✅ 14/08 — `tema-fin` no layout de /escola (vive fora do
+  grupo logado), turmas com inicial colorida, e o **detalhe do aluno pelo
+  professor** com os 4 tiles e "1ª passada × após correção": a nota que
+  valeu XP (`acertos`/`totalQuiz`) vira pedra na 1ª conclusão, refazer
+  grava em `acertosRevisao`/`totalQuizRevisao` — a 2ª rodada não vale XP
+  nem infla a média do professor. ⚠️ `ProgressoLicao` continua FORA de
+  `/api/exportar` (lacuna pré-existente, registrada em
+  resumo-de-funcao.md) — as colunas novas herdam a pendência.
+- **Landing pública do Finlow para Escolas** — ⚠️ correção de catálogo
+  (14/08): a tela "Finlow para Escolas" do protótipo v2 é a **home da
+  administração** (abas Início/Turmas/Professores), que já foi vestida
+  acima — NÃO é landing de marketing. Página pública de venda segue sem
+  desenho; o card da landing continua apontando para o e-mail.
 - **Dashboard do professor por métrica (G-17)** — o desenho existe; a
   decisão de 13/08 de não entrar ainda vale até a fundadora reabrir.
 - **BottomNav** — o protótipo segue com 3 abas (Trilha/Liga/Perfil);

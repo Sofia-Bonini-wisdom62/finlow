@@ -149,6 +149,19 @@ export async function POST(req: NextRequest) {
 
     const gastos = segundosPlausiveis(segundos)
 
+    /**
+     * 1ª passada × após correção (protótipo v2). A nota que valeu XP —
+     * `acertos`/`totalQuiz` da PRIMEIRA conclusão — vira pedra: refazer grava
+     * em `acertosRevisao`/`totalQuizRevisao`, e o professor vê os dois números
+     * separados sem a 2ª rodada inflar a média. A leitura antes do upsert é o
+     * que distingue "concluindo agora" de "refazendo".
+     */
+    const anterior = await db.progressoLicao.findUnique({
+      where: { userId_moduloId_licao: { userId, moduloId, licao: numero } },
+      select: { concluido: true },
+    })
+    const refazendo = !!anterior?.concluido
+
     await db.progressoLicao.upsert({
       where: { userId_moduloId_licao: { userId, moduloId, licao: numero } },
       create: {
@@ -157,13 +170,23 @@ export async function POST(req: NextRequest) {
         acertos, totalQuiz: quizzes.length, segundos: gastos,
         telaAtual: alvo.telas.length,
       },
-      update: {
-        concluido: true, concluidoEm: new Date(),
-        acertos, totalQuiz: quizzes.length,
-        // Soma entre visitas: refazer a lição acrescenta o tempo, não substitui.
-        segundos: { increment: gastos },
-        telaAtual: alvo.telas.length,
-      },
+      update: refazendo
+        ? {
+            // `concluidoEm` continua andando: é o que as missões diárias contam,
+            // e refazer lição sempre valeu para elas. Só a NOTA da 1ª passada
+            // não se move.
+            concluidoEm: new Date(),
+            acertosRevisao: acertos, totalQuizRevisao: quizzes.length,
+            // Soma entre visitas: refazer a lição acrescenta o tempo, não substitui.
+            segundos: { increment: gastos },
+            telaAtual: alvo.telas.length,
+          }
+        : {
+            concluido: true, concluidoEm: new Date(),
+            acertos, totalQuiz: quizzes.length,
+            segundos: { increment: gastos },
+            telaAtual: alvo.telas.length,
+          },
     })
 
     // refId com a lição: refazer não paga de novo, mas cada lição paga a sua.
