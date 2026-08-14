@@ -1,15 +1,25 @@
-import { Inter } from "next/font/google"
 import { WaitlistForm } from "@/components/landing/WaitlistForm"
 import { Faq } from "@/components/landing/Faq"
 import { Reveal } from "@/components/landing/Reveal"
+import { POSE, LOGO_FIN } from "@/lib/fin"
 
-const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] })
+/**
+ * A landing na identidade Fin (protótipo v2 da fundadora, 14/08/2026).
+ *
+ * A ESTRUTURA e a copy são as de antes — decisão dela: "gosto de como a nossa
+ * está, mas eu quero a identidade visual". O que mudou: navy + dourado +
+ * Nunito (via .tema-fin), o Fin no lugar dos mockups de celular (que exibiam
+ * o produto na identidade antiga), botões 3D, e o card do Finlow para
+ * Escolas antes do rodapé. O passo 1 do "Como funciona" também: o protótipo
+ * corrigiu a promessa de conexão automática (item 2 da avaliação de UX) para
+ * o que o produto FAZ — subir o extrato.
+ */
 
 function LogoMarca({ tamanho = 30 }: { tamanho?: number }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src="/logo.png"
+      src={LOGO_FIN}
       alt="Finlow"
       width={tamanho}
       height={tamanho}
@@ -19,38 +29,56 @@ function LogoMarca({ tamanho = 30 }: { tamanho?: number }) {
   )
 }
 
+/** Rótulo de seção: a vozinha dourada em caps que abre cada bloco. */
+function Rotulo({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="mb-4 text-[13px] font-extrabold uppercase tracking-[1.4px]" style={{ color: "var(--fin-accent)" }}>
+      {children}
+    </div>
+  )
+}
+
 export default function LandingPage() {
   return (
-    <div className={`${inter.className} overflow-x-hidden bg-fl-page text-fl-ink [font-variant-numeric:tabular-nums]`}>
+    <div
+      className="tema-fin overflow-x-hidden [font-variant-numeric:tabular-nums]"
+      style={{ background: "var(--fin-bg)", color: "var(--fin-text)" }}
+    >
 
       {/* ============ NAV ============ */}
-      <header className="sticky top-0 z-50 border-b border-fl-divider bg-fl-page/[0.82] backdrop-blur-[14px] backdrop-saturate-150">
+      <header
+        className="sticky top-0 z-50 border-b backdrop-blur-[14px]"
+        style={{
+          borderColor: "var(--fin-border)",
+          background: "color-mix(in srgb, var(--fin-bg) 84%, transparent)",
+        }}
+      >
         <nav className="mx-auto flex max-w-[1200px] items-center justify-between gap-4 px-5 py-3 sm:px-6 sm:py-4">
           <div className="flex items-center gap-2.5">
             <LogoMarca />
-            <span className="text-[19px] font-bold tracking-tight">Finlow</span>
+            <span className="text-[19px] font-black tracking-tight">finlow</span>
           </div>
           <div className="flex items-center gap-4 sm:gap-7">
-            <div className="hidden gap-7 text-[14.5px] font-medium text-fl-ink-2 lg:flex">
-              <a href="#problema" className="hover:text-fl-500">O problema</a>
-              <a href="#recursos" className="hover:text-fl-500">Recursos</a>
-              <a href="#como" className="hover:text-fl-500">Como funciona</a>
-              <a href="#faq" className="hover:text-fl-500">Dúvidas</a>
-              <a href="/empresas" className="hover:text-fl-500">Para empresas</a>
+            <div className="hidden gap-7 text-[14.5px] font-bold lg:flex" style={{ color: "var(--fin-muted)" }}>
+              <a href="#problema" className="transition-colors hover:text-[var(--fin-accent)]">O problema</a>
+              <a href="#recursos" className="transition-colors hover:text-[var(--fin-accent)]">Recursos</a>
+              <a href="#como" className="transition-colors hover:text-[var(--fin-accent)]">Como funciona</a>
+              <a href="#faq" className="transition-colors hover:text-[var(--fin-accent)]">Dúvidas</a>
+              <a href="/empresas" className="transition-colors hover:text-[var(--fin-accent)]">Para empresas</a>
             </div>
-            {/* A porta. Quem já tem conta entra por "Entrar"; quem não tem cria
-                uma. Enquanto isto não existiu, a única forma de voltar ao app
-                era digitar /login na barra de endereço. */}
-            <div className="flex items-center gap-1 sm:gap-2">
+            {/* A porta. Quem já tem conta entra por "Entrar"; quem não tem cria uma. */}
+            <div className="flex items-center gap-1.5 sm:gap-2.5">
               <a
                 href="/login"
-                className="flex min-h-11 items-center rounded-xl px-2.5 text-sm font-semibold text-fl-ink-2 transition-colors hover:text-fl-500 sm:px-3.5 sm:text-[14.5px]"
+                className="flex min-h-11 items-center rounded-full border-[1.5px] px-4 text-sm font-extrabold transition-colors sm:text-[14px]"
+                style={{ borderColor: "var(--fin-border-2)", color: "var(--fin-text)" }}
               >
                 Entrar
               </a>
               <a
                 href="/cadastro"
-                className="flex min-h-11 items-center rounded-xl bg-fl-500 px-4 text-sm font-semibold text-primary-foreground shadow-[0_1px_2px_rgba(24,28,30,.08)] transition-colors hover:bg-fl-600 sm:px-5 sm:text-[14.5px]"
+                className="fin-btn-3d flex min-h-11 items-center rounded-xl px-4 text-sm font-extrabold sm:px-5 sm:text-[14px]"
+                style={{ background: "var(--fin-accent)", color: "var(--fin-bg)" }}
               >
                 Criar conta
               </a>
@@ -59,7 +87,7 @@ export default function LandingPage() {
         </nav>
 
         {/* navegação de seções no mobile — o menu do desktop fica escondido aqui */}
-        <div className="flex gap-1 overflow-x-auto border-t border-fl-divider px-3 pb-1.5 [scrollbar-width:none] lg:hidden [&::-webkit-scrollbar]:hidden">
+        <div className="flex gap-1 overflow-x-auto border-t px-3 pb-1.5 [scrollbar-width:none] lg:hidden [&::-webkit-scrollbar]:hidden" style={{ borderColor: "var(--fin-border)" }}>
           {[
             ["#problema", "O problema"],
             ["#recursos", "Recursos"],
@@ -70,7 +98,8 @@ export default function LandingPage() {
             <a
               key={href}
               href={href}
-              className="shrink-0 whitespace-nowrap rounded-lg px-2.5 py-2.5 text-[13.5px] font-medium text-fl-ink-2 active:bg-fl-50"
+              className="shrink-0 whitespace-nowrap rounded-lg px-2.5 py-2.5 text-[13.5px] font-bold"
+              style={{ color: "var(--fin-muted)" }}
             >
               {label}
             </a>
@@ -80,141 +109,86 @@ export default function LandingPage() {
 
       {/* ============ HERO ============ */}
       <section className="relative mx-auto grid max-w-[1200px] items-center gap-12 px-5 pb-10 pt-14 sm:px-6 lg:grid-cols-[1.05fr_.95fr] lg:gap-14 lg:pt-20">
-        <div aria-hidden className="pointer-events-none absolute -left-40 -top-10 h-[420px] w-[420px] opacity-60 [background:radial-gradient(circle,var(--fl-100)_0%,transparent_70%)]" />
         <Reveal className="relative">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-fl-accent-light px-3.5 py-[7px] text-[12.5px] font-semibold uppercase tracking-[.4px] text-fl-accent-dark">
-            <span className="h-[7px] w-[7px] rounded-full bg-fl-accent [animation:pulseDot_2s_infinite]" />
+          <div
+            className="mb-6 inline-flex items-center gap-2 rounded-full border-[1.5px] px-3.5 py-[7px] text-[11.5px] font-black uppercase tracking-[.8px]"
+            style={{ background: "var(--fin-surface)", borderColor: "var(--fin-border-2)", color: "var(--fin-accent)" }}
+          >
+            <span className="fin-wob h-[7px] w-[7px] rounded-full" style={{ background: "var(--fin-acerto)" }} />
             Já no ar · em desenvolvimento ativo
           </div>
-          <h1 className="mb-5 text-balance text-[40px] font-extrabold leading-[1.04] tracking-[-.03em] sm:text-5xl lg:text-[56px]">
-            Seu dinheiro,<br />enfim <span className="text-fl-500">claro.</span>
+          <h1 className="mb-5 text-balance text-[40px] font-black leading-[1.04] tracking-[-.03em] sm:text-5xl lg:text-[56px]">
+            Seu dinheiro,<br />enfim <span style={{ color: "var(--fin-accent)" }}>claro.</span>
           </h1>
-          <p className="mb-8 max-w-[500px] text-pretty text-[17px] leading-[1.55] text-fl-ink-2 sm:text-[19.5px]">
+          <p className="mb-8 max-w-[500px] text-pretty text-[17px] leading-[1.55] sm:text-[19.5px]" style={{ color: "var(--fin-muted)" }}>
             O Finlow transforma a bagunça das suas finanças em clareza, com inteligência artificial
             que lê seus gastos, revela padrões que você não vê e te devolve o controle.{" "}
-            <strong className="font-semibold text-fl-ink">Sem planilha, sem julgamento, sem esforço.</strong>
+            <strong className="font-extrabold" style={{ color: "var(--fin-text)" }}>Sem planilha, sem julgamento, sem esforço.</strong>
           </p>
           <div className="mb-6 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3.5">
             <a
               href="/cadastro"
-              className="rounded-[14px] bg-fl-500 px-7 py-4 text-center text-base font-semibold text-primary-foreground shadow-[0_2px_8px_rgba(43,109,112,.28)] transition-colors hover:bg-fl-600"
+              className="fin-btn-3d rounded-2xl px-7 py-4 text-center text-base font-extrabold"
+              style={{ background: "var(--fin-accent)", color: "var(--fin-bg)" }}
             >
               Criar conta grátis →
             </a>
             <a
               href="#como"
-              className="rounded-[14px] border-[1.5px] border-fl-500 px-6 py-[15px] text-center text-base font-semibold text-fl-500 transition-colors hover:bg-fl-50"
+              className="rounded-2xl border-[1.5px] px-6 py-[15px] text-center text-base font-extrabold transition-colors"
+              style={{ borderColor: "var(--fin-border-2)", color: "var(--fin-text)" }}
             >
               Ver como funciona
             </a>
           </div>
-          <div className="flex flex-wrap items-center gap-4 text-[13.5px] text-fl-ink-2">
-            <div className="flex items-center gap-2"><span className="font-bold text-fl-success">✓</span> Grátis para começar</div>
-            <div className="hidden h-4 w-px bg-fl-border sm:block" />
-            <div className="flex items-center gap-2"><span className="font-bold text-fl-success">✓</span> Cancele quando quiser</div>
+          <div className="flex flex-wrap items-center gap-4 text-[13.5px]" style={{ color: "var(--fin-muted)" }}>
+            <div className="flex items-center gap-2"><span className="font-black" style={{ color: "var(--fin-acerto)" }}>✓</span> Grátis para começar</div>
+            <div className="hidden h-4 w-px sm:block" style={{ background: "var(--fin-border-2)" }} />
+            <div className="flex items-center gap-2"><span className="font-black" style={{ color: "var(--fin-acerto)" }}>✓</span> Cancele quando quiser</div>
           </div>
-          <p className="mt-5 text-[14.5px] text-fl-ink-2">
+          <p className="mt-5 text-[14.5px]" style={{ color: "var(--fin-muted)" }}>
             Já tem conta?{" "}
-            <a href="/login" className="font-semibold text-fl-500 underline underline-offset-4 hover:text-fl-600">
+            <a href="/login" className="font-extrabold underline underline-offset-4" style={{ color: "var(--fin-accent)" }}>
               Entrar
             </a>
           </p>
         </Reveal>
 
-        {/* mockup — dashboard */}
+        {/* O Fin no lugar do mockup: o mascote é a identidade — e o mockup
+            mostrava o produto na cara antiga. */}
         <Reveal className="relative flex justify-center">
-          <div aria-hidden className="pointer-events-none absolute -inset-8 [background:radial-gradient(circle_at_60%_40%,var(--fl-50)_0%,transparent_65%)]" />
-          <div className="relative w-[280px] sm:w-[300px] [animation:floaty_6s_ease-in-out_infinite]">
-            <div className="mockup rounded-[44px] bg-fl-800 p-[11px] shadow-[0_30px_60px_-20px_rgba(17,47,48,.5),0_12px_24px_rgba(24,28,30,.16)]">
-              <div className="flex h-[600px] flex-col overflow-hidden rounded-[34px] bg-fl-page">
-                <div className="flex items-center justify-between px-[22px] pb-1.5 pt-4 text-xs font-semibold">
-                  <span>9:41</span><span className="tracking-[2px]">● ● ●</span>
-                </div>
-                <div className="flex items-center justify-between px-[22px] pb-3.5 pt-2">
-                  <div>
-                    <div className="text-xs font-medium text-fl-ink-2">Bom dia, Marina</div>
-                    <div className="text-base font-bold tracking-tight">Visão geral</div>
-                  </div>
-                  <div className="h-[34px] w-[34px] rounded-full bg-fl-100" />
-                </div>
-                <div className="mx-[18px] rounded-2xl border border-fl-border border-t-[3px] border-t-fl-500 bg-fl-card px-[18px] py-4 shadow-[0_1px_2px_rgba(24,28,30,.06)]">
-                  <div className="text-[11px] font-semibold uppercase tracking-[.6px] text-fl-ink-2">Saldo disponível</div>
-                  <div className="my-0.5 text-[30px] font-extrabold tracking-[-.02em]">R$ 8.240<span className="text-lg text-fl-ink-2">,50</span></div>
-                  <div className="text-[12.5px] font-semibold text-fl-success">▲ 12% vs. mês passado</div>
-                </div>
-                <div className="grid grid-cols-2 gap-2.5 px-[18px] pb-1 pt-3.5">
-                  <div className="rounded-xl border border-fl-border bg-fl-card px-3 py-2.5">
-                    <div className="text-[10.5px] font-semibold text-fl-ink-2">Entradas</div>
-                    <div className="text-[15px] font-bold text-fl-success">R$ 12.400</div>
-                  </div>
-                  <div className="rounded-xl border border-fl-border bg-fl-card px-3 py-2.5">
-                    <div className="text-[10.5px] font-semibold text-fl-ink-2">Saídas</div>
-                    <div className="text-[15px] font-bold text-fl-error">R$ 4.159</div>
-                  </div>
-                </div>
-                <div className="mx-[18px] mt-2.5 flex items-center gap-4 rounded-2xl border border-fl-border bg-fl-card p-4">
-                  <div
-                    className="flex h-[88px] w-[88px] shrink-0 items-center justify-center rounded-full"
-                    style={{ background: "conic-gradient(#2B6D70 0 42%,#B8863C 42% 62%,#7BAEB0 62% 82%,#E7DCC9 82% 100%)" }}
-                  >
-                    <div className="flex h-[52px] w-[52px] flex-col items-center justify-center rounded-full bg-fl-card">
-                      <div className="text-sm font-extrabold">62%</div>
-                      <div className="text-[8px] text-fl-ink-2">no plano</div>
-                    </div>
-                  </div>
-                  <div className="flex flex-1 flex-col gap-2 text-[11.5px]">
-                    {[
-                      { cor: "#2B6D70", nome: "Moradia", v: "R$ 1.7k" },
-                      { cor: "#B8863C", nome: "Alimentação", v: "R$ 980" },
-                      { cor: "#7BAEB0", nome: "Transporte", v: "R$ 620" },
-                    ].map((l) => (
-                      <div key={l.nome} className="flex items-center gap-2">
-                        <span className="h-[9px] w-[9px] rounded-[3px]" style={{ background: l.cor }} />
-                        <span className="flex-1 text-fl-ink-2">{l.nome}</span>
-                        <span className="font-bold">{l.v}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="mt-auto flex items-center justify-between border-t border-fl-divider bg-fl-card px-[30px] pb-5 pt-3.5">
-                  <div className="h-[22px] w-[22px] rounded-md bg-fl-500" />
-                  <div className="h-5 w-5 rounded-md bg-fl-100" />
-                  <div className="h-5 w-5 rounded-full bg-fl-100" />
-                  <div className="flex flex-col justify-center gap-[3px]">
-                    <span className="h-[2.5px] w-5 rounded-sm bg-fl-100" />
-                    <span className="h-[2.5px] w-5 rounded-sm bg-fl-100" />
-                    <span className="h-[2.5px] w-3.5 rounded-sm bg-fl-100" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -inset-8"
+            style={{ background: "radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--fin-accent) 14%, transparent) 0%, transparent 65%)" }}
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={POSE.hi2}
+            alt="Fin, o mascote do Finlow, acenando"
+            className="fin-floaty relative h-[260px] object-contain sm:h-[320px] lg:h-[380px]"
+          />
         </Reveal>
       </section>
 
       {/* ============ TRUST STRIP ============ */}
       <section className="mx-auto max-w-[1200px] px-5 pb-14 pt-6 sm:px-6">
-        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3.5 text-[13.5px] font-medium text-fl-ink-3">
-          <span className="font-semibold text-fl-ink-2">Construído sobre 3 princípios:</span>
-          <span className="flex items-center gap-2"><span className="text-fl-500">◆</span> Clareza antes de estímulo</span>
-          <span className="flex items-center gap-2"><span className="text-fl-500">◆</span> Zero julgamento</span>
-          <span className="flex items-center gap-2"><span className="text-fl-500">◆</span> Seus dados, seu controle</span>
+        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3.5 text-[13.5px] font-bold" style={{ color: "var(--fin-dim)" }}>
+          <span className="font-extrabold" style={{ color: "var(--fin-muted)" }}>Construído sobre 3 princípios:</span>
+          <span className="flex items-center gap-2"><span style={{ color: "var(--fin-accent)" }}>◆</span> Clareza antes de estímulo</span>
+          <span className="flex items-center gap-2"><span style={{ color: "var(--fin-accent)" }}>◆</span> Zero julgamento</span>
+          <span className="flex items-center gap-2"><span style={{ color: "var(--fin-accent)" }}>◆</span> Seus dados, seu controle</span>
         </div>
       </section>
 
       {/* ============ PROBLEMA ============ */}
-      <section id="problema" className="bg-fl-sand px-5 py-16 sm:px-6 lg:py-22">
+      <section id="problema" className="px-5 py-16 sm:px-6 lg:py-22" style={{ background: "var(--fin-surface-2)" }}>
         <Reveal className="mx-auto max-w-[1000px] text-center">
-          {/* Era âmbar (#8C651F): 3,87:1 sobre a areia, e a identidade reserva o
-              dourado a conquista — "sua raridade é o que sustenta seu significado".
-              O tom próprio da areia dá 7,58:1 e respeita essa regra. */}
-          <div className="mb-4 text-[13px] font-bold uppercase tracking-[1.4px] text-fl-sand-text">
-            Você conhece essa sensação
-          </div>
-          <h2 className="mx-auto mb-5 max-w-[760px] text-balance text-[32px] font-extrabold leading-[1.12] tracking-[-.025em] text-fl-sand-text lg:text-[40px]">
-            O problema nunca foi falta de dinheiro. Foi falta de <span className="text-fl-500">clareza.</span>
+          <Rotulo>Você conhece essa sensação</Rotulo>
+          <h2 className="mx-auto mb-5 max-w-[760px] text-balance text-[32px] font-black leading-[1.12] tracking-[-.025em] lg:text-[40px]">
+            O problema nunca foi falta de dinheiro. Foi falta de <span style={{ color: "var(--fin-accent)" }}>clareza.</span>
           </h2>
-          <p className="mx-auto mb-12 max-w-[620px] text-[16px] leading-[1.55] text-fl-sand-text sm:text-lg">
+          <p className="mx-auto mb-12 max-w-[620px] text-[16px] leading-[1.55] sm:text-lg" style={{ color: "var(--fin-muted)" }}>
             Abrir o extrato dá um aperto. Você sabe que gasta demais em algum lugar, só não sabe onde.
             E toda vez que tenta organizar numa planilha, desiste na segunda semana.
           </p>
@@ -224,10 +198,10 @@ export default function LandingPage() {
               { e: "🧾", t: "Planilha abandonada", d: "Muito trabalho manual. Você nunca mantém por mais que alguns dias." },
               { e: "🌀", t: "Decisão no escuro", d: "Dá pra viajar esse mês? Cabe essa parcela? Você chuta, e torce." },
             ].map((c) => (
-              <div key={c.t} className="rounded-2xl bg-fl-page p-6">
+              <div key={c.t} className="rounded-2xl p-6" style={{ background: "var(--fin-surface)" }}>
                 <div className="mb-3 text-[26px]">{c.e}</div>
-                <div className="mb-1.5 text-base font-bold">{c.t}</div>
-                <div className="text-sm leading-relaxed text-fl-ink-2">{c.d}</div>
+                <div className="mb-1.5 text-base font-black">{c.t}</div>
+                <div className="text-sm leading-relaxed" style={{ color: "var(--fin-muted)" }}>{c.d}</div>
               </div>
             ))}
           </div>
@@ -237,24 +211,25 @@ export default function LandingPage() {
       {/* ============ RECURSOS ============ */}
       <section id="recursos" className="mx-auto max-w-[1200px] px-5 pb-10 pt-16 sm:px-6 lg:pt-24">
         <Reveal className="mx-auto mb-14 max-w-[720px] text-center">
-          <div className="mb-4 text-[13px] font-bold uppercase tracking-[1.4px] text-fl-500">A virada de chave</div>
-          <h2 className="mb-4 text-balance text-[32px] font-extrabold leading-[1.1] tracking-[-.03em] lg:text-[42px]">
+          <Rotulo>A virada de chave</Rotulo>
+          <h2 className="mb-4 text-balance text-[32px] font-black leading-[1.1] tracking-[-.03em] lg:text-[42px]">
             A IA faz o trabalho pesado. Você fica só com a clareza.
           </h2>
-          <p className="text-[16px] leading-[1.55] text-fl-ink-2 sm:text-lg">
+          <p className="text-[16px] leading-[1.55] sm:text-lg" style={{ color: "var(--fin-muted)" }}>
             O Finlow lê, categoriza e interpreta cada movimento, e traduz tudo em uma frase que você entende de primeira.
           </p>
         </Reveal>
         <Reveal className="grid gap-5 md:grid-cols-3">
           {[
-            { icone: <div className="h-5 w-5 rounded-md bg-fl-500" />, t: "Insights que fazem sentido", d: "Nada de gráfico solto. A IA aponta exatamente onde seu dinheiro vaza e o que muda se você ajustar, em linguagem humana." },
-            { icone: <div className="h-[18px] w-[22px] rounded-[8px_8px_8px_2px] bg-fl-500" />, t: "Converse com seu dinheiro", d: "\"Posso gastar R$ 300 esse fim de semana?\" Pergunte em português. O Finlow responde com base nos seus números reais." },
-            { icone: <div className="h-5 w-5 rounded-full border-[5px] border-fl-500" />, t: "Controle de verdade", d: "Metas, orçamentos e alertas calmos, que avisam antes, não depois. Você decide com dados, não com culpa." },
+            { pose: POSE.idea, t: "Insights que fazem sentido", d: "Nada de gráfico solto. A IA aponta exatamente onde seu dinheiro vaza e o que muda se você ajustar, em linguagem humana." },
+            { pose: POSE.point, t: "Converse com seu dinheiro", d: "\"Posso gastar R$ 300 esse fim de semana?\" Pergunte em português. O Finlow responde com base nos seus números reais." },
+            { pose: POSE.determined, t: "Controle de verdade", d: "Metas, orçamentos e alertas calmos, que avisam antes, não depois. Você decide com dados, não com culpa." },
           ].map((c) => (
-            <div key={c.t} className="rounded-[20px] border border-fl-border bg-fl-card p-7 shadow-[0_1px_2px_rgba(24,28,30,.06)]">
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-[14px] bg-fl-50">{c.icone}</div>
-              <h3 className="mb-2.5 text-xl font-bold tracking-tight">{c.t}</h3>
-              <p className="text-[15px] leading-relaxed text-fl-ink-2">{c.d}</p>
+            <div key={c.t} className="rounded-[20px] border p-7" style={{ borderColor: "var(--fin-border-2)", background: "var(--fin-surface)" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={c.pose} alt="" className="mb-4 h-14 object-contain" />
+              <h3 className="mb-2.5 text-xl font-black tracking-tight">{c.t}</h3>
+              <p className="text-[15px] leading-relaxed" style={{ color: "var(--fin-muted)" }}>{c.d}</p>
             </div>
           ))}
         </Reveal>
@@ -263,49 +238,43 @@ export default function LandingPage() {
       {/* ============ SPLIT 1 — CHAT ============ */}
       <section className="mx-auto grid max-w-[1200px] items-center gap-12 px-5 py-14 sm:px-6 lg:grid-cols-[.95fr_1.05fr] lg:gap-16 lg:py-[70px]">
         <Reveal className="order-2 flex justify-center lg:order-1">
-          <div className="w-[270px] sm:w-[290px]">
-            <div className="mockup rounded-[44px] bg-fl-800 p-[11px] shadow-[0_24px_50px_-20px_rgba(17,47,48,.45)]">
-              <div className="flex h-[580px] flex-col overflow-hidden rounded-[34px] bg-fl-page">
-                <div className="flex items-center gap-2.5 border-b border-fl-divider px-[22px] pb-3 pt-4">
-                  <LogoMarca />
-                  <div>
-                    <div className="text-sm font-bold">Finlow IA</div>
-                    <div className="text-[11px] font-medium text-fl-success">● online</div>
-                  </div>
-                </div>
-                <div className="flex flex-1 flex-col gap-3 p-4">
-                  <div className="max-w-[80%] self-end rounded-[16px_16px_4px_16px] bg-fl-500 px-3.5 py-2.5 text-[13.5px] leading-[1.45] text-white">
-                    Posso gastar R$ 300 no rolê esse fim de semana?
-                  </div>
-                  <div className="max-w-[88%] self-start rounded-[16px_16px_16px_4px] border border-fl-border bg-fl-card px-3.5 py-3 text-[13.5px] leading-[1.5]">
-                    Pode sim 🙂 Você tem R$ 640 livres no orçamento de lazer este mês. Gastando R$ 300, ainda fica dentro do plano.
-                  </div>
-                  <div className="max-w-[88%] self-start rounded-2xl border border-fl-border bg-fl-card p-3 text-[13px]">
-                    <div className="mb-2 text-[11px] font-semibold text-fl-ink-2">Lazer · julho</div>
-                    <div className="mb-1.5 h-2 overflow-hidden rounded-full bg-fl-divider">
-                      <div className="h-full w-[53%] rounded-full bg-fl-500" />
-                    </div>
-                    <div className="flex justify-between text-[11px] text-fl-ink-2">
-                      <span>R$ 360 usados</span><span className="font-bold text-fl-ink">R$ 640 livres</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2.5 border-t border-fl-divider px-4 pb-[22px] pt-3.5">
-                  <div className="flex-1 rounded-full border border-fl-border bg-fl-card px-4 py-2.5 text-[12.5px] text-[#A7ACAE]">
-                    Pergunte qualquer coisa…
-                  </div>
-                  <div className="h-[38px] w-[38px] shrink-0 rounded-full bg-fl-500" />
-                </div>
+          {/* A conversa de exemplo, como o protótipo desenha: bolha dourada da
+              pessoa, o Fin respondendo, e a barra do orçamento embaixo. */}
+          <div className="flex w-full max-w-[400px] flex-col gap-3 rounded-[22px] p-5" style={{ background: "var(--fin-surface)" }}>
+            <div
+              className="max-w-[82%] self-end rounded-[16px_16px_4px_16px] px-3.5 py-2.5 text-[13.5px] font-bold leading-[1.45]"
+              style={{ background: "var(--fin-accent)", color: "var(--fin-bg)" }}
+            >
+              Posso gastar R$ 300 no rolê esse fim de semana?
+            </div>
+            <div className="flex max-w-[92%] items-end gap-2 self-start">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={POSE.cheer} alt="" className="h-8 w-8 shrink-0 object-contain" />
+              <div
+                className="rounded-[16px_16px_16px_4px] border-[1.5px] px-3.5 py-3 text-[13.5px] leading-[1.5]"
+                style={{ background: "var(--fin-surface-2)", borderColor: "var(--fin-border-2)" }}
+              >
+                Pode sim! Você tem <strong style={{ color: "var(--fin-accent)" }}>R$ 640 livres</strong> no
+                orçamento de lazer este mês. Gastando R$ 300, ainda fica dentro do plano.
+              </div>
+            </div>
+            <div className="rounded-2xl border-[1.5px] p-3.5 text-[13px]" style={{ borderColor: "var(--fin-border-2)", background: "var(--fin-surface-2)" }}>
+              <div className="mb-2 text-[11px] font-extrabold" style={{ color: "var(--fin-muted)" }}>Lazer · este mês</div>
+              <div className="mb-1.5 h-2 overflow-hidden rounded-full" style={{ background: "var(--fin-border)" }}>
+                <div className="h-full w-[53%] rounded-full" style={{ background: "var(--fin-accent)" }} />
+              </div>
+              <div className="flex justify-between text-[11px]" style={{ color: "var(--fin-muted)" }}>
+                <span>R$ 360 usados</span><span className="font-black" style={{ color: "var(--fin-text)" }}>R$ 640 livres</span>
               </div>
             </div>
           </div>
         </Reveal>
         <Reveal className="order-1 lg:order-2">
-          <div className="mb-4 text-[13px] font-bold uppercase tracking-[1.4px] text-fl-500">Assistente financeiro</div>
-          <h2 className="mb-4 text-balance text-[30px] font-extrabold leading-[1.12] tracking-[-.03em] lg:text-[38px]">
+          <Rotulo>Assistente financeiro</Rotulo>
+          <h2 className="mb-4 text-balance text-[30px] font-black leading-[1.12] tracking-[-.03em] lg:text-[38px]">
             Tire dúvidas de dinheiro como quem manda mensagem
           </h2>
-          <p className="mb-7 max-w-[520px] text-[16px] leading-relaxed text-fl-ink-2 sm:text-[17.5px]">
+          <p className="mb-7 max-w-[520px] text-[16px] leading-relaxed sm:text-[17.5px]" style={{ color: "var(--fin-muted)" }}>
             Chega de abrir cinco telas pra entender uma coisa. Pergunte em linguagem natural e receba uma
             resposta direta. Baseada nos seus dados, não em conselho genérico da internet.
           </p>
@@ -316,7 +285,7 @@ export default function LandingPage() {
               ["Sempre calmo", ". Nunca te faz sentir mal por uma pergunta."],
             ].map(([forte, resto]) => (
               <div key={forte} className="flex items-start gap-3">
-                <span className="text-lg font-extrabold text-fl-500">✓</span>
+                <span className="text-lg font-black" style={{ color: "var(--fin-acerto)" }}>✓</span>
                 <span className="text-base leading-relaxed"><strong>{forte}</strong>{resto}</span>
               </div>
             ))}
@@ -327,85 +296,71 @@ export default function LandingPage() {
       {/* ============ SPLIT 2 — INSIGHTS ============ */}
       <section className="mx-auto grid max-w-[1200px] items-center gap-12 px-5 py-14 sm:px-6 lg:grid-cols-[1.05fr_.95fr] lg:gap-16 lg:py-[70px]">
         <Reveal>
-          <div className="mb-4 text-[13px] font-bold uppercase tracking-[1.4px] text-fl-500">Insights automáticos</div>
-          <h2 className="mb-4 text-balance text-[30px] font-extrabold leading-[1.12] tracking-[-.03em] lg:text-[38px]">
+          <Rotulo>Insights automáticos</Rotulo>
+          <h2 className="mb-4 text-balance text-[30px] font-black leading-[1.12] tracking-[-.03em] lg:text-[38px]">
             Ele percebe o que você não teria tempo de notar
           </h2>
-          <p className="mb-7 max-w-[520px] text-[16px] leading-relaxed text-fl-ink-2 sm:text-[17.5px]">
+          <p className="mb-7 max-w-[520px] text-[16px] leading-relaxed sm:text-[17.5px]" style={{ color: "var(--fin-muted)" }}>
             Enquanto você vive sua vida, a IA cruza cada transação e faz emergir os padrões silenciosos —
             a assinatura esquecida, o gasto que dobrou, o mês em que sempre estoura.
           </p>
           <div className="grid gap-3.5 sm:grid-cols-2">
-            <div className="rounded-[14px] bg-fl-50 p-5">
-              <div className="text-[28px] font-extrabold tracking-[-.02em] text-fl-500">R$ 214</div>
-              <div className="mt-1 text-[13px] text-fl-ink-2">em assinaturas esquecidas, detectadas no 1º mês*</div>
+            <div className="rounded-[14px] p-5" style={{ background: "var(--fin-surface)" }}>
+              <div className="text-[28px] font-black tracking-[-.02em]" style={{ color: "var(--fin-accent)" }}>R$ 214</div>
+              <div className="mt-1 text-[13px]" style={{ color: "var(--fin-muted)" }}>em assinaturas esquecidas, detectadas no 1º mês*</div>
             </div>
-            <div className="rounded-[14px] bg-fl-50 p-5">
-              <div className="text-[28px] font-extrabold tracking-[-.02em] text-fl-500">0 min</div>
-              <div className="mt-1 text-[13px] text-fl-ink-2">de digitação manual, categorização é automática</div>
+            <div className="rounded-[14px] p-5" style={{ background: "var(--fin-surface)" }}>
+              <div className="text-[28px] font-black tracking-[-.02em]" style={{ color: "var(--fin-accent)" }}>0 min</div>
+              <div className="mt-1 text-[13px]" style={{ color: "var(--fin-muted)" }}>de digitação manual, categorização é automática</div>
             </div>
           </div>
-          <p className="mt-3.5 text-[11.5px] text-fl-ink-3">*Estimativa de projeto em desenvolvimento, sujeita a validação.</p>
+          <p className="mt-3.5 text-[11.5px]" style={{ color: "var(--fin-dim)" }}>*Estimativa de projeto em desenvolvimento, sujeita a validação.</p>
         </Reveal>
         <Reveal className="flex justify-center">
-          <div className="w-[270px] sm:w-[290px]">
-            <div className="mockup rounded-[44px] bg-fl-800 p-[11px] shadow-[0_24px_50px_-20px_rgba(17,47,48,.45)]">
-              <div className="flex h-[580px] flex-col overflow-hidden rounded-[34px] bg-fl-page">
-                <div className="px-[22px] pb-2.5 pt-4">
-                  <div className="text-xs font-medium text-fl-ink-2">Para você hoje</div>
-                  <div className="text-lg font-extrabold tracking-tight">Insights</div>
-                </div>
-                <div className="flex flex-1 flex-col gap-3 overflow-hidden px-4 pt-1.5">
-                  <div className="rounded-[14px] border border-fl-border border-l-[3px] border-l-fl-accent bg-fl-card p-3.5">
-                    <div className="mb-1.5 text-[11px] font-bold uppercase tracking-[.5px] text-fl-accent-dark">⚑ Atenção</div>
-                    <div className="text-[13.5px] leading-[1.45]">Seu gasto com <strong>delivery</strong> subiu <strong>38%</strong> este mês. São R$ 480. O equivalente a 2 semanas do seu mercado.</div>
-                  </div>
-                  <div className="rounded-[14px] border border-fl-border border-l-[3px] border-l-fl-500 bg-fl-card p-3.5">
-                    <div className="mb-1.5 text-[11px] font-bold uppercase tracking-[.5px] text-fl-500">◆ Descoberta</div>
-                    <div className="text-[13.5px] leading-[1.45]">Você paga <strong>2 apps de streaming</strong> quase iguais. Cancelar um economiza R$ 39,90/mês.</div>
-                  </div>
-                  <div className="rounded-[14px] border border-fl-border border-l-[3px] border-l-fl-success bg-fl-card p-3.5">
-                    <div className="mb-1.5 text-[11px] font-bold uppercase tracking-[.5px] text-fl-success">✓ No caminho</div>
-                    <div className="text-[13.5px] leading-[1.45]">No ritmo atual, sua <strong>reserva de emergência</strong> chega à meta em 3 meses.</div>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between border-t border-fl-divider bg-fl-card px-[30px] pb-5 pt-3.5">
-                  <div className="h-5 w-5 rounded-full bg-fl-100" />
-                  <div className="h-5 w-5 rounded-md bg-fl-100" />
-                  <div className="h-[22px] w-[22px] rounded-md bg-fl-500" />
-                  <div className="flex flex-col gap-[3px]">
-                    <span className="h-[2.5px] w-5 rounded-sm bg-fl-100" />
-                    <span className="h-[2.5px] w-5 rounded-sm bg-fl-100" />
-                    <span className="h-[2.5px] w-3.5 rounded-sm bg-fl-100" />
-                  </div>
-                </div>
-              </div>
+          {/* Os três insights, nos tons do jogo: atenção, descoberta, no caminho. */}
+          <div className="flex w-full max-w-[400px] flex-col gap-3">
+            <div className="rounded-[14px] border-l-[3px] p-4" style={{ background: "var(--fin-surface)", borderColor: "var(--fin-combo)" }}>
+              <div className="mb-1.5 text-[11px] font-black uppercase tracking-[.5px]" style={{ color: "var(--fin-combo)" }}>⚑ Atenção</div>
+              <div className="text-[13.5px] leading-[1.5]">Seu gasto com <strong>delivery</strong> subiu <strong>38%</strong> este mês. São R$ 480. O equivalente a 2 semanas do seu mercado.</div>
+            </div>
+            <div className="rounded-[14px] border-l-[3px] p-4" style={{ background: "var(--fin-surface)", borderColor: "var(--fin-accent)" }}>
+              <div className="mb-1.5 text-[11px] font-black uppercase tracking-[.5px]" style={{ color: "var(--fin-accent)" }}>◆ Descoberta</div>
+              <div className="text-[13.5px] leading-[1.5]">Você paga <strong>2 apps de streaming</strong> quase iguais. Cancelar um economiza R$ 39,90/mês.</div>
+            </div>
+            <div className="rounded-[14px] border-l-[3px] p-4" style={{ background: "var(--fin-surface)", borderColor: "var(--fin-acerto)" }}>
+              <div className="mb-1.5 text-[11px] font-black uppercase tracking-[.5px]" style={{ color: "var(--fin-acerto)" }}>✓ No caminho</div>
+              <div className="text-[13.5px] leading-[1.5]">No ritmo atual, sua <strong>reserva de emergência</strong> chega à meta em 3 meses.</div>
             </div>
           </div>
         </Reveal>
       </section>
 
       {/* ============ COMO FUNCIONA ============ */}
-      <section id="como" className="bg-fl-800 px-5 py-16 text-[#EDEEEC] sm:px-6 lg:py-24">
+      <section id="como" className="px-5 py-16 sm:px-6 lg:py-24" style={{ background: "var(--fin-surface-2)" }}>
         <div className="mx-auto max-w-[1100px]">
           <Reveal className="mx-auto mb-14 max-w-[680px] text-center">
-            <div className="mb-4 text-[13px] font-bold uppercase tracking-[1.4px] text-fl-dark-accent">Como funciona</div>
-            <h2 className="text-balance text-[32px] font-extrabold leading-[1.1] tracking-[-.03em] text-white lg:text-[40px]">
+            <Rotulo>Como funciona</Rotulo>
+            <h2 className="text-balance text-[32px] font-black leading-[1.1] tracking-[-.03em] lg:text-[40px]">
               Da bagunça à clareza em três passos
             </h2>
           </Reveal>
           <Reveal className="grid gap-7 md:grid-cols-3">
             {[
-              { n: "1", t: "Conecte suas contas", d: "Ligação segura e criptografada. Suas transações entram sozinhas, nada de digitar CSV." },
+              // O passo 1 diz o que o produto FAZ (o protótipo corrigiu a
+              // promessa de conexão automática — Open Finance segue no backlog).
+              { n: "1", t: "Suba seu extrato", d: "O PDF do banco, lido em segundos, direto no seu aparelho. Sem digitar nada." },
               { n: "2", t: "A IA organiza tudo", d: "Categoriza, encontra padrões e limpa o ruído. Em minutos, o caos vira um painel legível." },
               { n: "3", t: "Você decide com clareza", d: "Insights, metas e um assistente pronto para responder. Cada decisão apoiada em dados reais." },
             ].map((p) => (
               <div key={p.n}>
-                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-fl-dark-surface text-[19px] font-extrabold text-fl-dark-accent">
+                <div
+                  className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl text-[19px] font-black"
+                  style={{ background: "var(--fin-accent)", color: "var(--fin-bg)", boxShadow: "0 4px 0 var(--fin-accent-sombra)" }}
+                >
                   {p.n}
                 </div>
-                <h3 className="mb-2.5 text-xl font-bold text-white">{p.t}</h3>
-                <p className="text-[15px] leading-relaxed text-fl-dark-text">{p.d}</p>
+                <h3 className="mb-2.5 text-xl font-black">{p.t}</h3>
+                <p className="text-[15px] leading-relaxed" style={{ color: "var(--fin-muted)" }}>{p.d}</p>
               </div>
             ))}
           </Reveal>
@@ -415,78 +370,79 @@ export default function LandingPage() {
       {/* ============ DIFERENCIAL ============ */}
       <section className="mx-auto max-w-[1000px] px-5 pb-14 pt-16 sm:px-6 lg:pt-24">
         <Reveal className="mx-auto mb-12 max-w-[680px] text-center">
-          <div className="mb-4 text-[13px] font-bold uppercase tracking-[1.4px] text-fl-500">Por que Finlow</div>
-          <h2 className="text-balance text-[32px] font-extrabold leading-[1.1] tracking-[-.03em] lg:text-[40px]">
+          <Rotulo>Por que Finlow</Rotulo>
+          <h2 className="text-balance text-[32px] font-black leading-[1.1] tracking-[-.03em] lg:text-[40px]">
             Feito para dar alívio, não mais uma cobrança
           </h2>
         </Reveal>
         <Reveal className="grid gap-5 md:grid-cols-2">
-          <div className="rounded-[20px] border border-fl-border bg-fl-card p-7">
-            <div className="mb-4 text-[13px] font-bold uppercase tracking-[.6px] text-fl-ink-3">Os outros apps</div>
-            <div className="flex flex-col gap-3.5 text-[15px] text-fl-ink-2">
+          <div className="rounded-[20px] border p-7" style={{ borderColor: "var(--fin-border-2)", background: "var(--fin-surface)" }}>
+            <div className="mb-4 text-[13px] font-black uppercase tracking-[.6px]" style={{ color: "var(--fin-dim)" }}>Os outros apps</div>
+            <div className="flex flex-col gap-3.5 text-[15px]" style={{ color: "var(--fin-muted)" }}>
               {[
                 "Gráficos que você precisa interpretar sozinho",
                 "Categorização manual e cansativa",
                 "Cores alarmantes e notificações de culpa",
                 "Feito para quem já entende de finanças",
               ].map((t) => (
-                <div key={t} className="flex gap-2.5"><span className="font-bold text-fl-error">✕</span> {t}</div>
+                <div key={t} className="flex gap-2.5"><span className="font-black" style={{ color: "var(--fin-erro)" }}>✕</span> {t}</div>
               ))}
             </div>
           </div>
-          <div className="rounded-[20px] bg-fl-500 p-7 text-primary-foreground shadow-[0_8px_24px_rgba(43,109,112,.24)]">
-            <div className="mb-4 text-[13px] font-bold uppercase tracking-[.6px] text-primary-foreground">Com o Finlow</div>
-            <div className="flex flex-col gap-3.5 text-[15px]">
+          {/* O card dourado com sombra 3D — a assinatura visual do protótipo. */}
+          <div className="rounded-[20px] p-7" style={{ background: "var(--fin-accent)", color: "var(--fin-bg)", boxShadow: "0 4px 0 var(--fin-accent-sombra)" }}>
+            <div className="mb-4 text-[13px] font-black uppercase tracking-[.6px] opacity-70">Com o Finlow</div>
+            <div className="flex flex-col gap-3.5 text-[15px] font-bold">
               {[
                 "A IA interpreta e te diz o que importa",
                 "Tudo categorizado automaticamente",
                 "Tom calmo, sem alarme, sem julgamento",
                 "Feito para quem nunca aprendeu do assunto",
               ].map((t) => (
-                <div key={t} className="flex gap-2.5"><span className="font-bold text-primary-foreground">✓</span> {t}</div>
+                <div key={t} className="flex gap-2.5"><span className="font-black">✓</span> {t}</div>
               ))}
             </div>
           </div>
         </Reveal>
       </section>
 
-      {/* ============ CRIAR CONTA (+ novidades por e-mail) ============
-          Era a seção de lista de espera. Com o app no ar e /cadastro aberto,
-          "avisamos quando abrir" virou promessa vencida: quem deixava o e-mail
-          já podia entrar. O e-mail continua sendo capturado, agora pelo que ele
-          é de verdade — quem prefere acompanhar antes de criar conta. */}
+      {/* ============ CRIAR CONTA (+ novidades por e-mail) ============ */}
       <section id="lista" className="px-5 pb-24 pt-10 sm:px-6">
-        <Reveal className="relative mx-auto max-w-[820px] overflow-hidden rounded-[28px] bg-fl-sand px-6 py-14 text-center sm:px-12 sm:py-16">
-          <div aria-hidden className="pointer-events-none absolute -right-16 -top-20 h-[260px] w-[260px] rounded-full [background:radial-gradient(circle,var(--fl-accent-light)_0%,transparent_70%)]" />
+        <Reveal className="relative mx-auto max-w-[820px] overflow-hidden rounded-[28px] px-6 py-14 text-center sm:px-12 sm:py-16 bg-[var(--fin-surface)]">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -right-16 -top-20 h-[260px] w-[260px] rounded-full"
+            style={{ background: "radial-gradient(circle, color-mix(in srgb, var(--fin-accent) 20%, transparent) 0%, transparent 70%)" }}
+          />
           <div className="relative">
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-fl-page px-3.5 py-[7px] text-[12.5px] font-semibold tracking-[.4px] text-fl-accent-dark">
-              <span className="h-[7px] w-[7px] rounded-full bg-fl-accent [animation:pulseDot_2s_infinite]" />
-              Entre agora, ainda no começo
-            </div>
-            <h2 className="mb-4 text-balance text-[30px] font-extrabold leading-[1.1] tracking-[-.03em] text-fl-sand-text lg:text-[40px]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={POSE.flex} alt="" className="mx-auto mb-3 h-[92px] object-contain" />
+            <h2 className="mb-4 text-balance text-[30px] font-black leading-[1.1] tracking-[-.03em] lg:text-[40px]">
               Seja um dos primeiros a ver o dinheiro com clareza
             </h2>
-            <p className="mx-auto mb-8 max-w-[520px] text-[16px] leading-[1.55] text-fl-sand-text sm:text-lg">
+            <p className="mx-auto mb-8 max-w-[520px] text-[16px] leading-[1.55] sm:text-lg" style={{ color: "var(--fin-muted)" }}>
               Criar conta é grátis e leva menos de um minuto. Suba um extrato e a IA já devolve
               seus gastos organizados, sem planilha e sem julgamento.
             </p>
             <div className="mb-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
               <a
                 href="/cadastro"
-                className="rounded-[14px] bg-fl-500 px-7 py-4 text-center text-base font-semibold text-primary-foreground shadow-[0_2px_8px_rgba(43,109,112,.28)] transition-colors hover:bg-fl-600"
+                className="fin-btn-3d rounded-2xl px-7 py-4 text-center text-base font-extrabold"
+                style={{ background: "var(--fin-accent)", color: "var(--fin-bg)" }}
               >
                 Criar conta grátis →
               </a>
               <a
                 href="/login"
-                className="rounded-[14px] border-[1.5px] border-fl-500 px-6 py-[15px] text-center text-base font-semibold text-fl-500 transition-colors hover:bg-fl-page"
+                className="rounded-2xl border-[1.5px] px-6 py-[15px] text-center text-base font-extrabold"
+                style={{ borderColor: "var(--fin-border-2)", color: "var(--fin-text)" }}
               >
                 Já tenho conta
               </a>
             </div>
 
-            <div className="mx-auto max-w-[520px] border-t border-fl-sand-text/15 pt-8">
-              <p className="mb-4 text-[15px] leading-[1.55] text-fl-sand-text/85">
+            <div className="mx-auto max-w-[520px] border-t pt-8" style={{ borderColor: "var(--fin-border-2)" }}>
+              <p className="mb-4 text-[15px] leading-[1.55]" style={{ color: "var(--fin-muted)" }}>
                 Prefere só acompanhar por enquanto? Deixe seu e-mail e avisamos quando houver
                 novidade. Sem spam.
               </p>
@@ -497,22 +453,43 @@ export default function LandingPage() {
       </section>
 
       {/* ============ FAQ ============ */}
-      <section id="faq" className="mx-auto max-w-[760px] px-5 pb-24 pt-5 sm:px-6">
+      <section id="faq" className="mx-auto max-w-[760px] px-5 pb-16 pt-5 sm:px-6">
         <Reveal>
-          <h2 className="mb-10 text-center text-[28px] font-extrabold leading-tight tracking-[-.02em] lg:text-[34px]">
+          <h2 className="mb-10 text-center text-[28px] font-black leading-tight tracking-[-.02em] lg:text-[34px]">
             Perguntas frequentes
           </h2>
         </Reveal>
         <Faq />
       </section>
 
+      {/* ============ FINLOW PARA ESCOLAS ============ */}
+      <section className="mx-auto max-w-[760px] px-5 pb-24 sm:px-6">
+        <Reveal>
+          <a
+            href="mailto:finlow.app@gmail.com?subject=Finlow%20para%20Escolas"
+            className="block rounded-2xl border-[1.5px] p-5 transition-opacity hover:opacity-90"
+            style={{
+              background: "var(--fin-surface-2)",
+              borderColor: "color-mix(in srgb, var(--fin-accent) 40%, transparent)",
+            }}
+          >
+            <div className="text-[11px] font-black uppercase tracking-[1.2px]" style={{ color: "var(--fin-accent)" }}>
+              Finlow para Escolas
+            </div>
+            <div className="mt-1.5 text-[15px] font-extrabold" style={{ color: "var(--fin-text)" }}>
+              Trilhas alinhadas à matriz do Banco Central, do 1º ano ao Ensino Médio →
+            </div>
+          </a>
+        </Reveal>
+      </section>
+
       {/* ============ FOOTER ============ */}
-      <footer className="bg-fl-800 px-5 pb-10 pt-14 text-fl-dark-text sm:px-6">
+      <footer className="border-t px-5 pb-10 pt-14 sm:px-6" style={{ borderColor: "var(--fin-border)", background: "var(--fin-surface-2)", color: "var(--fin-muted)" }}>
         <div className="mx-auto flex max-w-[1100px] flex-wrap items-start justify-between gap-8">
           <div className="max-w-[320px]">
             <div className="mb-3.5 flex items-center gap-2.5">
               <LogoMarca />
-              <span className="text-[19px] font-bold tracking-tight text-white">Finlow</span>
+              <span className="text-[19px] font-black tracking-tight" style={{ color: "var(--fin-text)" }}>finlow</span>
             </div>
             <p className="text-sm leading-[1.55]">
               O espaço onde o dinheiro para de ser confuso. Clareza financeira com inteligência artificial.
@@ -520,22 +497,22 @@ export default function LandingPage() {
           </div>
           <div className="flex flex-wrap gap-x-14 gap-y-6">
             <div className="flex flex-col text-sm">
-              <span className="mb-2 font-semibold text-white">Produto</span>
-              <a href="#recursos" className="py-2.5 text-fl-dark-text hover:text-white">Recursos</a>
-              <a href="#como" className="py-2.5 text-fl-dark-text hover:text-white">Como funciona</a>
-              <a href="/cadastro" className="py-2.5 text-fl-dark-text hover:text-white">Criar conta</a>
-              <a href="/login" className="py-2.5 text-fl-dark-text hover:text-white">Entrar</a>
-              <a href="#lista" className="py-2.5 text-fl-dark-text hover:text-white">Novidades por e-mail</a>
+              <span className="mb-2 font-extrabold" style={{ color: "var(--fin-text)" }}>Produto</span>
+              <a href="#recursos" className="py-2.5 transition-colors hover:text-[var(--fin-accent)]">Recursos</a>
+              <a href="#como" className="py-2.5 transition-colors hover:text-[var(--fin-accent)]">Como funciona</a>
+              <a href="/cadastro" className="py-2.5 transition-colors hover:text-[var(--fin-accent)]">Criar conta</a>
+              <a href="/login" className="py-2.5 transition-colors hover:text-[var(--fin-accent)]">Entrar</a>
+              <a href="#lista" className="py-2.5 transition-colors hover:text-[var(--fin-accent)]">Novidades por e-mail</a>
             </div>
             <div className="flex flex-col text-sm">
-              <span className="mb-2 font-semibold text-white">Empresa</span>
-              <a href="/empresas" className="py-2.5 text-fl-dark-text hover:text-white">Para empresas</a>
-              <a href="#faq" className="py-2.5 text-fl-dark-text hover:text-white">Dúvidas</a>
-              <a href="mailto:finlow.app@gmail.com" className="py-2.5 text-fl-dark-text hover:text-white">Contato</a>
+              <span className="mb-2 font-extrabold" style={{ color: "var(--fin-text)" }}>Empresa</span>
+              <a href="/empresas" className="py-2.5 transition-colors hover:text-[var(--fin-accent)]">Para empresas</a>
+              <a href="#faq" className="py-2.5 transition-colors hover:text-[var(--fin-accent)]">Dúvidas</a>
+              <a href="mailto:finlow.app@gmail.com" className="py-2.5 transition-colors hover:text-[var(--fin-accent)]">Contato</a>
             </div>
           </div>
         </div>
-        <div className="mx-auto mt-10 flex max-w-[1100px] flex-wrap justify-between gap-2.5 border-t border-white/10 pt-6 text-[12.5px] text-fl-dark-text">
+        <div className="mx-auto mt-10 flex max-w-[1100px] flex-wrap justify-between gap-2.5 border-t pt-6 text-[12.5px]" style={{ borderColor: "var(--fin-border)", color: "var(--fin-dim)" }}>
           <span>© 2026 Finlow · Produto em desenvolvimento</span>
           <span>Feito com clareza, no Brasil 🇧🇷</span>
         </div>

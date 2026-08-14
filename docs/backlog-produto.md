@@ -153,16 +153,60 @@ conquistas derivadas, intro do Fin, manifest PWA.
 
 - **Baú para EM** — Ensino Médio não tem `blocoId` nem leva, então aluno de
   EM nunca vê baú. Decidir a unidade dele (segmento inteiro? grupos de 4?).
-- **Caminhos SEM design novo** (ficam na identidade petróleo/areia até a
-  fundadora desenhar): `/chat` · `/painel` · `/extrato` · `/perfil`
-  financeiro (convive com o novo `/trilha/perfil` do jogador) · `/analises` ·
-  `/ajustes` · `/onboarding` conversacional · `/memoria` · `/diagnostico` +
-  `/v/[token]` · `/trilha/biblioteca` · `/premium` · `/escola` (adm e
-  professor) · `/cadastro` `/login` · landing `/` e `/empresas` ·
-  `/convite/aceitar` · BottomNav global (4 abas; o protótipo desenhou 3).
 - **Números afináveis quando houver dado de uso**: custo/devolução de
   energia, preços da loja, coins por lição/missão/baú, curva de nível,
   bônus de combo (tudo constante nomeada, um lugar cada).
+
+## Redesign Fin v2 — o app inteiro desenhado (14/08/2026)
+
+O protótipo ganhou uma segunda versão que **desenha todas as telas
+restantes** na identidade Fin (fonte: "Finlow mobile app redesign (1).zip",
+tela a tela em `Finlow App.dc.html`). A landing está sendo implementada
+agora (a fundadora pediu: manter a estrutura atual, trocar a identidade);
+o resto entra nesta fila, tela a tela, cada uma na régua de sempre — docs e
+código no mesmo commit, tom sem culpa, mecânica só muda se for decisão
+registrada.
+
+⚠️ **Fotos novas do mascote a caminho**: a fundadora vai enviar novas artes
+do gato. As poses atuais de `public/fin/` seguem valendo até lá; quando
+chegarem, é troca de arquivo, não de código.
+
+**A fila, pelo desenho do protótipo v2:**
+
+- ~~**Landing**~~ ✅ 14/08 — estrutura e copy atuais, identidade Fin, Fin no
+  lugar dos mockups, card do Finlow para Escolas, passo 1 honesto ("suba seu
+  extrato").
+- **Login e Cadastro** — navy + botão 3D; o cadastro ganhou campo de
+  **celular** no desenho (decidir se entra no schema — hoje não existe).
+- **1ª conversa (onboarding)** — três telas: aceite (memória/painel),
+  conversa com o Fin, fechamento.
+- **Chat** — bolhas na identidade (usuário dourado, Fin respondendo),
+  sugestões, input.
+- **Menu (Ajustes)** — lista com ícones na identidade.
+- **Painel** — saldo, entradas/saídas, rosca, cards escuros.
+- **Extrato** — upload + lista de transações na identidade.
+- **Análises** — ganhou **toggle Controle/Análises** no desenho (novidade de
+  navegação; avaliar contra a estrutura atual das duas telas).
+- **Objetivos** — TELA NOVA (casa com o item "Tela de objetivos" deste
+  backlog): metas com barra de progresso colorida, "+ Guardar R$ 50",
+  "guardar fica fora das saídas — cofrinho é bolso seu, não gasto",
+  "+ Criar objetivo". Exige modelo novo no banco (Objetivo: nome, meta,
+  guardado) — nasce com userId/Cascade/RLS/export/delete como sempre.
+- **Diagnóstico de Vazamento** — restyle na identidade.
+- **Memória do assistente** — restyle na identidade.
+- **Finlow+ (premium)** — restyle na identidade.
+- **Biblioteca** — restyle na identidade (hoje ainda usa o tema fl-*).
+- **Perfil (financeiro)** — v2 do desenho; convive com /trilha/perfil.
+- **Escola** — turmas, turma (2ºB), professores, e o **detalhe do aluno
+  pelo professor** com "1ª passada × após correção" ("a 2ª rodada não vale
+  XP nem infla a média — os dois números separados"): exige medir e
+  persistir a distinção primeira-tentativa × refazer, que hoje não existe.
+- **Landing do Finlow para Escolas** — tela própria no protótipo (hoje o
+  card da landing aponta para o e-mail).
+- **Dashboard do professor por métrica (G-17)** — o desenho existe; a
+  decisão de 13/08 de não entrar ainda vale até a fundadora reabrir.
+- **BottomNav** — o protótipo segue com 3 abas (Trilha/Liga/Perfil);
+  a decisão de manter as 4 atuais permanece até ela decidir.
 
 ## Finlow para Escolas — em desenvolvimento (11/08/2026)
 
