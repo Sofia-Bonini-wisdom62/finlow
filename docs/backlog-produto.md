@@ -192,10 +192,16 @@ chegarem, é troca de arquivo, não de código.
   `.tema-fin` ignora o toggle claro/escuro e a paleta, e controle que não
   muda nada é pior que controle nenhum — `SeletorTema`/`SeletorPaleta`
   seguem no repositório, sem uso.
-- **Painel** — saldo, entradas/saídas, rosca, cards escuros.
-- **Extrato** — upload + lista de transações na identidade.
-- **Análises** — ganhou **toggle Controle/Análises** no desenho (novidade de
-  navegação; avaliar contra a estrutura atual das duas telas).
+- ~~**Painel**~~ ✅ 14/08 — o toggle Controle/Análises virou **navegação
+  entre as duas páginas** (antes era aba interna do Painel que duplicava
+  /analises em miniatura); CTA "Subir extrato do banco" 3D no fim do
+  Controle.
+- ~~**Extrato**~~ ✅ 14/08 — a tela já era o desenho; refino: CTA de
+  confirmação 3D, chip do upload e checkboxes dourados.
+- ~~**Análises**~~ ✅ 14/08 — ganhou o toggle e herdou os dois cards que só
+  existiam na aba interna do Painel (gasto médio por dia, insight do
+  perfil); `DistribuicaoGastosChart` deixou de renderizar (duplicava a
+  rosca), mas o arquivo fica — exporta `agruparPorCategoria`.
 - **Objetivos** — TELA NOVA (casa com o item "Tela de objetivos" deste
   backlog): metas com barra de progresso colorida, "+ Guardar R$ 50",
   "guardar fica fora das saídas — cofrinho é bolso seu, não gasto",

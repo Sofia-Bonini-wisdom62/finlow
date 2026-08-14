@@ -5,6 +5,10 @@ import Link from "next/link"
 import { Plus, TrendingUp, Upload } from "lucide-react"
 import { BottomNav } from "@/components/bottom-nav"
 import { SeletorMes, NOMES_MESES } from "@/components/painel/SeletorMes"
+import { ToggleControleAnalises } from "@/components/painel/ToggleControleAnalises"
+import { GastoMedioPorDiaChart } from "@/components/painel/GastoMedioPorDiaChart"
+import { InsightPerfilCard } from "@/components/painel/InsightPerfilCard"
+import type { TransacaoData } from "@/types/painel"
 import { GraficoLinha } from "@/components/analises/GraficoLinha"
 import { GraficoRosca } from "@/components/analises/GraficoRosca"
 import { GraficoBarras } from "@/components/analises/GraficoBarras"
@@ -82,6 +86,9 @@ export default function AnalisesPage() {
   const [mes, setMes] = useState(hoje.getMonth() + 1)
   const [ano, setAno] = useState(hoje.getFullYear())
   const [dados, setDados] = useState<Dados | null>(null)
+  // Para os cards que se mudaram da aba interna do Painel (gasto médio por
+  // dia, insight do perfil): eles leem a lista crua do mês, não agregados.
+  const [transacoes, setTransacoes] = useState<TransacaoData[]>([])
   const [carregando, setCarregando] = useState(true)
   const [logado, setLogado] = useState(true)
   const [erro, setErro] = useState(false)
@@ -104,10 +111,17 @@ export default function AnalisesPage() {
     setErro(false)
     try {
       const filtro = escopo === "todos" ? "" : `&escopo=${escopo}`
-      const res = await fetch(`/api/analises?mes=${mes}&ano=${ano}${filtro}`)
+      const [res, resT] = await Promise.all([
+        fetch(`/api/analises?mes=${mes}&ano=${ano}${filtro}`),
+        fetch(`/api/painel/transacoes?mes=${mes}&ano=${ano}`),
+      ])
       if (res.status === 401) { setLogado(false); return }
       if (!res.ok) throw new Error("falhou")
       setDados(await res.json())
+      // Lista crua é acessório: se falhar, os dois cards mostram o vazio deles
+      // e o resto da página segue de pé.
+      const t = resT.ok ? await resT.json().catch(() => null) : null
+      setTransacoes(t?.transacoes ?? [])
     } catch {
       // Manter os números do mês anterior sob o cabeçalho do novo mês seria
       // mostrar dado errado com cara de dado certo. Melhor descartar e avisar.
@@ -132,6 +146,8 @@ export default function AnalisesPage() {
   }
 
   const ind = dados?.indicadores
+  const transacoesDoEscopo =
+    escopo === "todos" ? transacoes : transacoes.filter((t) => (t.escopo ?? "pessoal") === escopo)
   // "Guardado" fica FORA de Entradas e Saídas: cofrinho, reserva e aplicação são
   // bolsos da própria pessoa, e contar isso como saída dizia "você se
   // descontrolou" no mês em que ela mais guardou. "Acumulado" atravessa meses.
@@ -148,10 +164,9 @@ export default function AnalisesPage() {
     <main className="min-h-dvh bg-fl-page pb-24 lg:pb-10 lg:pl-56">
       <div className="mx-auto w-full max-w-md px-5 py-6 md:max-w-2xl md:px-8 lg:max-w-5xl lg:px-10">
         <header className="flex flex-col gap-4">
-          <div>
-            <h1 className="text-[26px] font-extrabold tracking-tight text-fl-ink">Análises</h1>
-            <p className="text-sm text-fl-ink-2">Sua situação financeira, visualmente.</p>
-          </div>
+          <h1 className="sr-only">Análises</h1>
+          <span className="text-lg font-bold tracking-tight text-fl-500 lg:hidden">Finlow</span>
+          <ToggleControleAnalises ativa="analises" />
           <SeletorMes mes={mes} ano={ano} onChange={(m, a) => { setMes(m); setAno(a) }} />
 
           {avancado && (
@@ -308,12 +323,18 @@ export default function AnalisesPage() {
               />
             </Secao>
 
+            {/* Vieram da aba interna do Painel quando o toggle virou navegação
+                (protótipo v2) — o filtro pessoal × trabalho corta em memória,
+                como lá. */}
+            <GastoMedioPorDiaChart transacoes={transacoesDoEscopo} />
+            <InsightPerfilCard transacoes={transacoesDoEscopo} />
+
             <ProjecaoPatrimonio />
 
             <div className="flex flex-col gap-2.5">
               <Link
                 href="/extrato"
-                className="flex items-center justify-center gap-2 rounded-2xl bg-fl-500 py-4 text-sm font-semibold text-primary-foreground"
+                className="fin-btn-3d flex items-center justify-center gap-2 rounded-2xl bg-fl-500 py-4 text-sm font-extrabold text-primary-foreground"
               >
                 <Upload className="size-4" /> Subir extrato do banco
               </Link>

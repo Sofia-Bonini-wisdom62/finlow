@@ -2,27 +2,24 @@
 
 import { useCallback, useEffect, useState } from "react"
 import Link from "next/link"
+import { Upload } from "lucide-react"
 import { BottomNav } from "@/components/bottom-nav"
 import { ConsentimentoPainel } from "@/components/painel/ConsentimentoPainel"
 import { SeletorMes } from "@/components/painel/SeletorMes"
+import { ToggleControleAnalises } from "@/components/painel/ToggleControleAnalises"
 import { ResultadoPeriodoCard } from "@/components/painel/ResultadoPeriodoCard"
 import { ContasFixasCard } from "@/components/painel/ContasFixasCard"
 import { TransacoesCard } from "@/components/painel/TransacoesCard"
 import { CategoriasCard } from "@/components/painel/CategoriasCard"
-import { GastoMedioPorDiaChart } from "@/components/painel/GastoMedioPorDiaChart"
-import { DistribuicaoGastosChart } from "@/components/painel/DistribuicaoGastosChart"
-import { InsightPerfilCard } from "@/components/painel/InsightPerfilCard"
 import { InvestimentosCard } from "@/components/painel/InvestimentosCard"
 import type { TransacaoData, ContaFixaData, CategoriaData } from "@/types/painel"
 
-type Aba = "controle" | "analises"
 type Escopo = "todos" | "pessoal" | "trabalho"
 
 export default function PainelPage() {
   const hoje = new Date()
   const [mes, setMes] = useState(hoje.getMonth() + 1)
   const [ano, setAno] = useState(hoje.getFullYear())
-  const [aba, setAba] = useState<Aba>("controle")
 
   const [carregando, setCarregando] = useState(true)
   const [logado, setLogado] = useState(true)
@@ -105,7 +102,7 @@ export default function PainelPage() {
     return (
       <main className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-fl-page px-6 text-center">
         <p className="text-fl-ink-2">Entra na sua conta pra usar o Painel.</p>
-        <Link href="/login" className="rounded-full bg-fl-500 px-6 py-3 text-sm font-semibold text-fl-ink">
+        <Link href="/login" className="rounded-full bg-fl-500 px-6 py-3 text-sm font-semibold text-primary-foreground">
           Entrar
         </Link>
       </main>
@@ -118,20 +115,7 @@ export default function PainelPage() {
         <header className="flex flex-col gap-4">
           <span className="text-lg font-bold tracking-tight text-fl-500 lg:hidden">Finlow</span>
 
-          {/* sub-toggle Controle Financeiro / Análises */}
-          <div className="flex rounded-2xl bg-fl-card p-1">
-            {([["controle", "Controle Financeiro"], ["analises", "Análises"]] as [Aba, string][]).map(([id, label]) => (
-              <button
-                key={id}
-                onClick={() => setAba(id)}
-                className={`flex-1 rounded-xl py-2.5 text-sm font-semibold transition-colors ${
-                  aba === id ? "bg-fl-500 text-fl-ink" : "text-fl-ink-2"
-                }`}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
+          <ToggleControleAnalises ativa="controle" />
 
           <SeletorMes mes={mes} ano={ano} onChange={(m, a) => { setMes(m); setAno(a) }} />
 
@@ -161,24 +145,24 @@ export default function PainelPage() {
             </p>
             <button
               onClick={() => setModalConsentimento(true)}
-              className="rounded-full bg-fl-500 px-6 py-3 text-sm font-semibold text-fl-ink"
+              className="fin-btn-3d rounded-full bg-fl-500 px-6 py-3 text-sm font-extrabold text-primary-foreground"
             >
               Ativar meu Painel
             </button>
           </div>
-        ) : aba === "controle" ? (
+        ) : (
           <section className="mt-5 flex flex-col gap-4 md:grid md:grid-cols-2 md:items-start md:gap-5">
             <ResultadoPeriodoCard transacoes={transacoesDoEscopo} />
             <ContasFixasCard contas={contas} onMudou={carregarDados} />
             <TransacoesCard transacoes={transacoesDoEscopo} categorias={categorias} onMudou={carregarDados} avancado={avancado} />
             {avancado && <InvestimentosCard />}
             <CategoriasCard categorias={categorias} onMudou={carregarDados} />
-          </section>
-        ) : (
-          <section className="mt-5 flex flex-col gap-4 md:grid md:grid-cols-2 md:items-start md:gap-5">
-            <GastoMedioPorDiaChart transacoes={transacoesDoEscopo} />
-            <DistribuicaoGastosChart transacoes={transacoesDoEscopo} />
-            <InsightPerfilCard transacoes={transacoesDoEscopo} />
+            <Link
+              href="/extrato"
+              className="fin-btn-3d flex items-center justify-center gap-2 rounded-2xl bg-fl-500 py-4 text-sm font-extrabold text-primary-foreground md:col-span-2"
+            >
+              <Upload className="size-4" /> Subir extrato do banco
+            </Link>
           </section>
         )}
       </div>
