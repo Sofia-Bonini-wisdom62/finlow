@@ -18,7 +18,7 @@ export async function GET() {
     const [user, categorias, contas, transacoes, progresso, indicacoesFeitas, indicacaoRecebida, diagnostico, investimentos, assinatura, usoIA] = await Promise.all([
       db.user.findUnique({
         where: { id: userId },
-        select: { nome: true, email: true, dataNascimento: true, criadoEm: true, consentimentoPainelEm: true, codigoIndicacao: true },
+        select: { nome: true, email: true, celular: true, dataNascimento: true, criadoEm: true, consentimentoPainelEm: true, codigoIndicacao: true },
       }),
       db.categoria.findMany({
         where: { userId },

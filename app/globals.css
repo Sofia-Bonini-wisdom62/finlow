@@ -469,6 +469,40 @@
   --finlow-branch: var(--fin-accent-sombra);
   --finlow-glow: 0 8px 24px -6px color-mix(in srgb, var(--fin-accent) 45%, transparent);
 
+  /* E o vocabulário fl inteiro (protótipo v2, 14/08/2026): dentro do escopo,
+     TODA classe bg-fl-…, text-fl-… e border-fl-… já pinta navy+dourado — as
+     telas do app entram no tema trocando UMA classe no layout, e o refino
+     (Fin, botões 3D, layouts novos) vem tela a tela por cima. É a terceira
+     vez que a mesma ponte paga o redesign; o toggle claro/escuro não alcança
+     aqui de propósito: o jogo tem uma cara só. */
+  --fl-page: var(--fin-bg);
+  --fl-surface: var(--fin-surface);
+  --fl-card: var(--fin-surface);
+  --fl-ink: var(--fin-text);
+  --fl-ink-2: var(--fin-muted);
+  --fl-ink-3: var(--fin-dim);
+  --fl-border: var(--fin-border-2);
+  --fl-divider: var(--fin-border);
+  --fl-50: var(--fin-border);
+  --fl-100: var(--fin-border-2);
+  --fl-200: var(--fin-locked);
+  --fl-300: var(--fin-muted);
+  --fl-500: var(--fin-accent);
+  --fl-600: var(--fin-accent-sombra);
+  --fl-700: var(--fin-accent-sombra);
+  --fl-800: var(--fin-surface-2);
+  --fl-sand: var(--fin-surface-2);
+  --fl-sand-text: var(--fin-text);
+  --fl-accent: var(--fin-accent);
+  --fl-accent-light: var(--fin-border-2);
+  --fl-accent-dark: var(--fin-accent);
+  --fl-success: var(--fin-acerto);
+  --fl-error: var(--fin-erro);
+  --fl-info: var(--fin-energia);
+  --fl-sombra: rgba(0, 0, 0, 0.4);
+  /* Botão primário (bg-fl-500) escreve escuro sobre o dourado. */
+  --primary-foreground: var(--fin-bg);
+
   font-family: var(--font-fin), var(--font-ui), ui-sans-serif, system-ui, sans-serif;
   color-scheme: dark;
   background-color: var(--fin-bg);

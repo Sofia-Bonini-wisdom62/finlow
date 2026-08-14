@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { signIn } from "next-auth/react"
 import { BotaoGoogle } from "@/components/auth/BotaoGoogle"
+import { LOGO_FIN } from "@/lib/fin"
 
 /**
  * O convite de escola chega por COOKIE (plantado em /convite/[codigo]), não
@@ -24,6 +25,14 @@ function maskData(v: string): string {
   if (d.length <= 2) return d
   if (d.length <= 4) return `${d.slice(0, 2)}/${d.slice(2)}`
   return `${d.slice(0, 2)}/${d.slice(2, 4)}/${d.slice(4)}`
+}
+
+// máscara (11) 99999-9999 — só visual; a API recebe os dígitos
+function maskCelular(v: string): string {
+  const d = v.replace(/\D/g, "").slice(0, 11)
+  if (d.length <= 2) return d
+  if (d.length <= 7) return `(${d.slice(0, 2)}) ${d.slice(2)}`
+  return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`
 }
 
 // "15/03/2008" -> "2008-03-15" (ISO pra API); null se inválida
@@ -46,6 +55,7 @@ export default function CadastroPage() {
   const [nome, setNome] = useState("")
   const [email, setEmail] = useState("")
   const [senha, setSenha] = useState("")
+  const [celular, setCelular] = useState("")
   const [dataNascimento, setDataNascimento] = useState("")
   const [apelido, setApelido] = useState("")
   const [convite, setConvite] = useState<Convite | null>(null)
@@ -80,7 +90,14 @@ export default function CadastroPage() {
       const res = await fetch("/api/cadastro", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, email, senha, dataNascimento: dataISO, apelido: apelido || undefined }),
+        body: JSON.stringify({
+          nome,
+          email,
+          senha,
+          dataNascimento: dataISO,
+          celular: celular.replace(/\D/g, "") || undefined,
+          apelido: apelido || undefined,
+        }),
       })
 
       const data = await res.json()
@@ -107,25 +124,33 @@ export default function CadastroPage() {
   }
 
   const inputClass =
-    "w-full rounded-xl border border-fl-border bg-fl-card px-4 py-3.5 text-sm text-fl-ink placeholder-fl-ink-3 outline-none focus:border-[var(--fl-500)] transition-colors"
+    "w-full rounded-[14px] border-[1.5px] border-[var(--fin-border-2)] bg-[var(--fin-surface)] px-4 py-3.5 text-sm text-[var(--fin-text)] placeholder-[var(--fin-dim)] outline-none focus:border-[var(--fin-accent)] transition-colors"
 
   return (
     <main
-      className="flex min-h-dvh flex-col items-center justify-center px-6 py-10"
-      style={{ background: "radial-gradient(ellipse at top, rgba(43,109,112,0.08), transparent 55%), var(--fl-page)" }}
+      className="tema-fin flex min-h-dvh flex-col items-center justify-center px-6 py-10"
+      style={{ background: "radial-gradient(ellipse at top, color-mix(in srgb, var(--fin-accent) 7%, transparent), transparent 55%), var(--fin-bg)" }}
     >
       <div className="w-full max-w-sm">
-        <Link href="/" className="text-2xl font-bold tracking-tight" style={{ color: "var(--fl-500)" }}>
-          Finlow
+        <Link href="/" className="flex items-center gap-2.5">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={LOGO_FIN} alt="Finlow" className="size-[52px] rounded-xl" />
         </Link>
 
-        <h1 className="mt-8 text-2xl font-bold text-fl-ink">Cria sua conta</h1>
-        <p className="mt-1 text-sm" style={{ color: "var(--fl-ink-2)" }}>
+        <h1 className="mt-6 text-2xl font-black" style={{ color: "var(--fin-text)" }}>Cria sua conta</h1>
+        <p className="mt-1 text-sm" style={{ color: "var(--fin-muted)" }}>
           Pra salvar seu perfil e seu progresso na trilha.
         </p>
 
         {convite && !convite.recusa && (
-          <div className="mt-4 rounded-xl border border-[var(--fl-500)]/30 bg-[var(--fl-500)]/10 px-4 py-3 text-sm text-fl-ink">
+          <div
+            className="mt-4 rounded-xl border px-4 py-3 text-sm"
+            style={{
+              borderColor: "color-mix(in srgb, var(--fin-accent) 40%, transparent)",
+              background: "color-mix(in srgb, var(--fin-accent) 10%, transparent)",
+              color: "var(--fin-text)",
+            }}
+          >
             Você está entrando na <strong>{convite.escolaNome}</strong>
             {convite.papel === "aluno" && convite.turmaNome
               ? <> como aluno da turma <strong>{convite.turmaNome}</strong>.</>
@@ -135,7 +160,14 @@ export default function CadastroPage() {
           </div>
         )}
         {convite?.recusa && (
-          <div className="mt-4 rounded-xl border border-[var(--fl-error)]/30 bg-[var(--fl-error)]/10 px-4 py-3 text-sm text-fl-ink">
+          <div
+            className="mt-4 rounded-xl border px-4 py-3 text-sm"
+            style={{
+              borderColor: "color-mix(in srgb, var(--fin-erro) 40%, transparent)",
+              background: "color-mix(in srgb, var(--fin-erro) 10%, transparent)",
+              color: "var(--fin-text)",
+            }}
+          >
             Seu convite da {convite.escolaNome} não vale mais — pede um novo. Dá pra criar a
             conta mesmo assim.
           </div>
@@ -167,8 +199,19 @@ export default function CadastroPage() {
             minLength={6}
             className={inputClass}
           />
+          <input
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            placeholder="Celular com DDD — (11) 99999-9999"
+            aria-label="Celular com DDD (opcional)"
+            value={celular}
+            onChange={(e) => setCelular(maskCelular(e.target.value))}
+            maxLength={16}
+            className={inputClass}
+          />
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="dataNascimento" className="text-sm font-medium" style={{ color: "var(--fl-ink-2)" }}>
+            <label htmlFor="dataNascimento" className="text-sm font-bold" style={{ color: "var(--fin-muted)" }}>
               Data de nascimento
             </label>
             <input
@@ -183,27 +226,39 @@ export default function CadastroPage() {
               maxLength={10}
               className={inputClass}
             />
+            <p className="text-[11.5px] leading-snug" style={{ color: "var(--fin-dim)" }}>
+              Usamos pra adequar o conteúdo à sua idade — e garantir que menores nunca vejam anúncio.
+            </p>
           </div>
 
-          {convite?.papel === "aluno" && !convite.recusa && (
-            <div className="flex flex-col gap-1.5">
-              <label htmlFor="apelido" className="text-sm font-medium" style={{ color: "var(--fl-ink-2)" }}>
-                Como você quer aparecer no ranking da sala? (opcional)
-              </label>
-              <input
-                id="apelido"
-                type="text"
-                placeholder="Seu apelido"
-                value={apelido}
-                onChange={(e) => setApelido(e.target.value)}
-                maxLength={24}
-                className={inputClass}
-              />
-            </div>
-          )}
+          {/* Sempre visível desde o protótipo v2 — o apelido alimenta a Liga
+              (e o rank da sala, para quem chega por convite). */}
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="apelido" className="text-sm font-bold" style={{ color: "var(--fin-muted)" }}>
+              {convite?.papel === "aluno" && !convite.recusa
+                ? "Como você quer aparecer no ranking da sala? (opcional)"
+                : "Como você quer aparecer na liga? (opcional)"}
+            </label>
+            <input
+              id="apelido"
+              type="text"
+              placeholder="Seu apelido"
+              value={apelido}
+              onChange={(e) => setApelido(e.target.value)}
+              maxLength={24}
+              className={inputClass}
+            />
+          </div>
 
           {erro && (
-            <p className="rounded-xl border border-[var(--fl-error)]/30 bg-[var(--fl-error)]/10 px-4 py-3 text-sm text-[var(--fl-error)]">
+            <p
+              className="rounded-xl border px-4 py-3 text-sm"
+              style={{
+                borderColor: "color-mix(in srgb, var(--fin-erro) 40%, transparent)",
+                background: "color-mix(in srgb, var(--fin-erro) 10%, transparent)",
+                color: "var(--fin-erro)",
+              }}
+            >
               {erro}
             </p>
           )}
@@ -211,8 +266,8 @@ export default function CadastroPage() {
           <button
             type="submit"
             disabled={enviando}
-            className="mt-2 w-full rounded-2xl py-4 text-base font-bold transition-opacity disabled:opacity-60"
-            style={{ background: "var(--fl-500)", color: "var(--primary-foreground)" }}
+            className="fin-btn-3d mt-2 w-full rounded-2xl py-4 text-base font-extrabold transition-opacity disabled:opacity-60"
+            style={{ background: "var(--fin-accent)", color: "var(--fin-bg)" }}
           >
             {enviando ? "Criando..." : "Criar conta"}
           </button>
@@ -220,9 +275,9 @@ export default function CadastroPage() {
 
         <BotaoGoogle rotulo="Criar conta com o Google" />
 
-        <p className="mt-6 text-center text-sm" style={{ color: "var(--fl-ink-2)" }}>
+        <p className="mt-6 text-center text-sm" style={{ color: "var(--fin-muted)" }}>
           Já tem conta?{" "}
-          <Link href="/login" className="font-semibold" style={{ color: "var(--fl-500)" }}>
+          <Link href="/login" className="font-extrabold" style={{ color: "var(--fin-accent)" }}>
             Entrar
           </Link>
         </p>

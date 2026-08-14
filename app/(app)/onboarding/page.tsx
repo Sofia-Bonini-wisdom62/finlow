@@ -6,6 +6,7 @@ import Link from "next/link"
 import { ArrowUp, Brain, Landmark, Check, ArrowRight } from "lucide-react"
 import type { LancamentoProposto } from "@/lib/ia"
 import { ConfirmarLancamentos } from "@/components/chat/ConfirmarLancamentos"
+import { POSE } from "@/lib/fin"
 
 /**
  * Primeira conversa.
@@ -232,7 +233,9 @@ export default function OnboardingPage() {
   if (fase === "aceite") {
     return (
       <main className="mx-auto flex min-h-dvh w-full max-w-[520px] flex-col justify-center px-6 py-10">
-        <h1 className="text-[27px] font-extrabold leading-tight tracking-tight text-fl-ink">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={POSE.teach} alt="" className="h-[100px] self-start object-contain" />
+        <h1 className="mt-3 text-[27px] font-extrabold leading-tight tracking-tight text-fl-ink">
           {nome ? `Oi, ${nome.split(" ")[0]}.` : "Oi."}
           <br />
           Vamos começar com uma conversa.
@@ -268,7 +271,7 @@ export default function OnboardingPage() {
 
         <button
           onClick={comecar}
-          className="mt-7 w-full rounded-2xl bg-fl-500 py-3.5 text-[15px] font-semibold text-primary-foreground"
+          className="fin-btn-3d mt-7 w-full rounded-2xl bg-fl-500 py-3.5 text-[15px] font-extrabold text-primary-foreground"
         >
           Combinado, vamos
         </button>
@@ -329,11 +332,10 @@ export default function OnboardingPage() {
   // ---------- fim ----------
   if (fase === "fim") {
     return (
-      <main className="mx-auto flex min-h-dvh w-full max-w-[520px] flex-col justify-center px-6 py-10">
-        <div className="grid size-12 place-items-center rounded-full bg-fl-500/10">
-          <Check className="size-6 text-fl-500" />
-        </div>
-        <h1 className="mt-5 text-[26px] font-extrabold leading-tight tracking-tight text-fl-ink">
+      <main className="mx-auto flex min-h-dvh w-full max-w-[520px] flex-col justify-center px-6 py-10 text-center">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={POSE.proud} alt="" className="fin-pop mx-auto h-[130px] object-contain" />
+        <h1 className="mt-4 text-[26px] font-extrabold leading-tight tracking-tight text-fl-ink">
           Pronto. Já sei por onde a gente começa.
         </h1>
         {perfil && (
@@ -345,7 +347,7 @@ export default function OnboardingPage() {
         <div className="mt-7 space-y-2.5">
           <Link
             href="/trilha"
-            className="flex w-full items-center justify-center gap-2 rounded-2xl bg-fl-500 py-3.5 text-[15px] font-semibold text-primary-foreground"
+            className="fin-btn-3d flex w-full items-center justify-center gap-2 rounded-2xl bg-fl-500 py-3.5 text-[15px] font-extrabold text-primary-foreground"
           >
             Ver minha trilha <ArrowRight className="size-4" />
           </Link>
@@ -379,8 +381,12 @@ export default function OnboardingPage() {
           ) : (
             <div key={i} className="flex flex-col gap-2">
               {m.texto && (
-                <div className="max-w-[92%] rounded-[16px_16px_16px_4px] border border-fl-border bg-fl-card px-4 py-3 text-[14.5px] leading-relaxed text-fl-ink">
-                  {m.texto}
+                <div className="flex max-w-[92%] items-end gap-2">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={POSE.hi} alt="" className="size-[30px] shrink-0 object-contain" />
+                  <div className="rounded-[16px_16px_16px_4px] border border-fl-border bg-fl-card px-4 py-3 text-[14.5px] leading-relaxed text-fl-ink">
+                    {m.texto}
+                  </div>
                 </div>
               )}
               {m.lancamentos && <ConfirmarLancamentos lancamentos={m.lancamentos} />}

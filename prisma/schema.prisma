@@ -11,6 +11,10 @@ model User {
   id                    String                @id @default(cuid())
   email                 String                @unique
   nome                  String?
+  /// Celular com DDD, só dígitos (protótipo v2, 14/08/2026 — decisão da
+  /// fundadora). Opcional e informativo, como dataNascimento: cadastro nunca
+  /// trava por causa dele. Sai em /api/exportar.
+  celular               String?
   dataNascimento        DateTime? // só informativo — sem validação de idade (decisão da fundadora, 04/07/2026)
   senha                 String? // hash bcrypt — null para contas OAuth
   consentimentoLGPD     DateTime? // reservado de antes do pivô (era consentimento de responsável); público hoje é adulto — manter até a política de privacidade (R1) definir o destino

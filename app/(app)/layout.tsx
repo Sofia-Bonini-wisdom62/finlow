@@ -26,5 +26,8 @@ export default async function LayoutApp({ children }: { children: React.ReactNod
       console.warn("[ofensiva] não registrou o dia:", (e as Error)?.message)
     )
   }
-  return <>{children}</>
+  // `tema-fin` aqui veste TODO o grupo logado de uma vez (protótipo v2): o
+  // escopo remapeia os tokens --fl-* em globals.css, então cada tela já nasce
+  // navy+dourado sem trocar classe — o refino tela a tela vem por cima.
+  return <div className="tema-fin min-h-dvh bg-fl-page">{children}</div>
 }

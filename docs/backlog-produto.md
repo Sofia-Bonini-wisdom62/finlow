@@ -176,10 +176,14 @@ chegarem, é troca de arquivo, não de código.
 - ~~**Landing**~~ ✅ 14/08 — estrutura e copy atuais, identidade Fin, Fin no
   lugar dos mockups, card do Finlow para Escolas, passo 1 honesto ("suba seu
   extrato").
-- **Login e Cadastro** — navy + botão 3D; o cadastro ganhou campo de
-  **celular** no desenho (decidir se entra no schema — hoje não existe).
-- **1ª conversa (onboarding)** — três telas: aceite (memória/painel),
-  conversa com o Fin, fechamento.
+- ~~**Login e Cadastro**~~ ✅ 14/08 — navy + botão 3D + Google creme; o
+  celular entrou no schema (`User.celular`, opcional e informativo como a
+  data de nascimento, só dígitos, na exportação LGPD); apelido da liga
+  sempre visível no cadastro. De quebra, `tema-fin` no layout de `(app)`
+  remapeia os tokens `--fl-*` — todas as telas logadas já nascem
+  navy+dourado, e o refino vem tela a tela.
+- ~~**1ª conversa (onboarding)**~~ ✅ 14/08 — aceite com Fin professor,
+  bolhas da conversa com avatar do Fin, fechamento com Fin orgulhoso.
 - **Chat** — bolhas na identidade (usuário dourado, Fin respondendo),
   sugestões, input.
 - **Menu (Ajustes)** — lista com ícones na identidade.

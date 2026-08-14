@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic"
 
 export async function POST(req: NextRequest) {
   try {
-    const { nome, email, senha, dataNascimento, apelido } = await req.json()
+    const { nome, email, senha, dataNascimento, apelido, celular } = await req.json()
 
     if (!nome || typeof nome !== "string" || nome.trim().length < 2) {
       return NextResponse.json({ error: "Me diz seu nome" }, { status: 400 })
@@ -19,6 +19,15 @@ export async function POST(req: NextRequest) {
     }
     if (!senha || typeof senha !== "string" || senha.length < 6) {
       return NextResponse.json({ error: "Senha precisa de pelo menos 6 caracteres" }, { status: 400 })
+    }
+
+    // Celular é opcional e informativo, como a data de nascimento (protótipo
+    // v2, 14/08/2026): plausível = 10 ou 11 dígitos; fora disso, descarta em
+    // silêncio — cadastro nunca trava por telefone.
+    let celularLimpo: string | null = null
+    if (typeof celular === "string") {
+      const digitos = celular.replace(/\D/g, "")
+      if (digitos.length === 10 || digitos.length === 11) celularLimpo = digitos
     }
 
     // data de nascimento é só informativa — sem validação de faixa etária
@@ -59,6 +68,7 @@ export async function POST(req: NextRequest) {
         email: emailNorm,
         senha: hash,
         dataNascimento: nascimento,
+        celular: celularLimpo,
       },
     })
 
@@ -85,6 +95,17 @@ export async function POST(req: NextRequest) {
       } catch (e) {
         console.error("[cadastro] convite de escola:", (e as Error)?.message)
         escolaMotivo = "erro"
+      }
+    }
+
+    // Apelido do cadastro SEM convite (o resgate cuida do caso com convite):
+    // best-effort, como lá — apelido em conflito não trava conta nova.
+    if (!codigoConvite && typeof apelido === "string" && apelido.trim()) {
+      const v = apelidoValido(apelido)
+      if (v.ok) {
+        await db.user
+          .update({ where: { id: novo.id }, data: { apelido: v.apelido } })
+          .catch(() => {})
       }
     }
 

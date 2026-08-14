@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { signIn } from "next-auth/react"
 import { BotaoGoogle } from "@/components/auth/BotaoGoogle"
+import { LOGO_FIN } from "@/lib/fin"
 
 /**
  * Quando o login pelo Google falha, o NextAuth traz a pessoa de volta para cá
@@ -52,20 +53,21 @@ export default function LoginPage() {
   }
 
   const inputClass =
-    "w-full rounded-xl border border-fl-border bg-fl-card px-4 py-3.5 text-sm text-fl-ink placeholder-fl-ink-3 outline-none focus:border-[var(--fl-500)] transition-colors"
+    "w-full rounded-[14px] border-[1.5px] border-[var(--fin-border-2)] bg-[var(--fin-surface)] px-4 py-3.5 text-sm text-[var(--fin-text)] placeholder-[var(--fin-dim)] outline-none focus:border-[var(--fin-accent)] transition-colors"
 
   return (
     <main
-      className="flex min-h-dvh flex-col items-center justify-center px-6 py-10"
-      style={{ background: "radial-gradient(ellipse at top, rgba(43,109,112,0.08), transparent 55%), var(--fl-page)" }}
+      className="tema-fin flex min-h-dvh flex-col items-center justify-center px-6 py-10"
+      style={{ background: "radial-gradient(ellipse at top, color-mix(in srgb, var(--fin-accent) 7%, transparent), transparent 55%), var(--fin-bg)" }}
     >
       <div className="w-full max-w-sm">
-        <Link href="/" className="text-2xl font-bold tracking-tight" style={{ color: "var(--fl-500)" }}>
-          Finlow
+        <Link href="/" className="flex items-center gap-2.5">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={LOGO_FIN} alt="Finlow" className="size-[52px] rounded-xl" />
         </Link>
 
-        <h1 className="mt-8 text-2xl font-bold text-fl-ink">Bom te ver de novo</h1>
-        <p className="mt-1 text-sm" style={{ color: "var(--fl-ink-2)" }}>
+        <h1 className="mt-6 text-2xl font-black" style={{ color: "var(--fin-text)" }}>Bom te ver de novo</h1>
+        <p className="mt-1 text-sm" style={{ color: "var(--fin-muted)" }}>
           Entra pra continuar de onde parou.
         </p>
 
@@ -88,7 +90,14 @@ export default function LoginPage() {
           />
 
           {erro && (
-            <p className="rounded-xl border border-[var(--fl-error)]/30 bg-[var(--fl-error)]/10 px-4 py-3 text-sm text-[var(--fl-error)]">
+            <p
+              className="rounded-xl border px-4 py-3 text-sm"
+              style={{
+                borderColor: "color-mix(in srgb, var(--fin-erro) 40%, transparent)",
+                background: "color-mix(in srgb, var(--fin-erro) 10%, transparent)",
+                color: "var(--fin-erro)",
+              }}
+            >
               {erro}
             </p>
           )}
@@ -96,8 +105,8 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={enviando}
-            className="mt-2 w-full rounded-2xl py-4 text-base font-bold transition-opacity disabled:opacity-60"
-            style={{ background: "var(--fl-500)", color: "var(--primary-foreground)" }}
+            className="fin-btn-3d mt-2 w-full rounded-2xl py-4 text-base font-extrabold transition-opacity disabled:opacity-60"
+            style={{ background: "var(--fin-accent)", color: "var(--fin-bg)" }}
           >
             {enviando ? "Entrando..." : "Entrar"}
           </button>
@@ -105,9 +114,9 @@ export default function LoginPage() {
 
         <BotaoGoogle />
 
-        <p className="mt-6 text-center text-sm" style={{ color: "var(--fl-ink-2)" }}>
+        <p className="mt-6 text-center text-sm" style={{ color: "var(--fin-muted)" }}>
           Ainda não tem conta?{" "}
-          <Link href="/cadastro" className="font-semibold" style={{ color: "var(--fl-500)" }}>
+          <Link href="/cadastro" className="font-extrabold" style={{ color: "var(--fin-accent)" }}>
             Criar conta
           </Link>
         </p>
