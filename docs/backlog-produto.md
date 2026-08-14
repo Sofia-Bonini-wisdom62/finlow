@@ -242,6 +242,33 @@ chegarem, é troca de arquivo, não de código.
 - **BottomNav** — o protótipo segue com 3 abas (Trilha/Liga/Perfil);
   a decisão de manter as 4 atuais permanece até ela decidir.
 
+**Pedido novo da fundadora (14/08/2026, fora do protótipo v2) —
+personalização do perfil:**
+
+- **Foto de perfil e banner trocáveis** — o usuário escolhe a própria foto
+  (círculo do avatar) e uma imagem de capa no topo do Perfil, no espírito
+  do mockup de referência que ela enviou (herói de anime sobre o cabeçalho).
+  **A identidade Fin não sai do lugar**: navy + dourado + Nunito seguem
+  mandando na tela inteira — o banner é uma faixa de imagem no topo e a
+  foto entra no círculo; nada além disso muda de cara.
+- O que isso exige, na ordem:
+  1. **Armazenamento de imagens** — não existe hoje; é exatamente o motivo
+     de "Alterar foto" no Menu estar como "em breve". Decidir entre
+     Supabase Storage e Vercel Blob, com limite de tamanho e corte no
+     upload.
+  2. **Campo novo** `User.bannerUrl` (`User.image` já existe — hoje só
+     preenchido pelo Google). Imagem é dado pessoal: entra em
+     `/api/exportar`, morre com a conta, e o arquivo no storage precisa
+     morrer JUNTO (Cascade não alcança bucket).
+  3. **Decisão de design a desenhar**: como a foto convive com o avatar
+     do Fin equipado da loja (`avatarFin`, chip do header da trilha e
+     /trilha/perfil) e com a inicial dourada — o que aparece onde.
+  4. **⚠️ LGPD/segurança antes de expor a foto a terceiros**: hoje o rank
+     da sala mostra só apelido e número, de propósito. Foto de usuário
+     visível para colegas — especialmente com alunos menores do canal
+     escolar — só com moderação e decisão registrada; até lá, foto e
+     banner são visíveis SÓ para o próprio dono.
+
 ## Finlow para Escolas — em desenvolvimento (11/08/2026)
 
 Decisão da fundadora, desenhada em quadro branco: o canal escolar reabre como
