@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react"
 import { useSearchParams } from "next/navigation"
-import { Mic, Paperclip, ArrowUp, X, FileText, Square, History } from "lucide-react"
+import { Mic, Paperclip, ArrowUp, X, FileText, Square, History, Flame } from "lucide-react"
+import { POSE } from "@/lib/fin"
 import type { CardIA as CardIATipo, AnexoChat, LancamentoProposto, TetoProposto } from "@/lib/ia"
 import { CardIA } from "./CardIA"
 import { ConfirmarLancamentos } from "./ConfirmarLancamentos"
@@ -70,7 +71,7 @@ const MAX_ANEXO_MB = 8
 /** Extrato tem limite próprio, igual ao da tela de extrato. */
 const MAX_EXTRATO_MB = 10
 
-export function ChatIA({ nome }: { nome: string }) {
+export function ChatIA({ nome, sequencia = 0 }: { nome: string; sequencia?: number }) {
   const busca = useSearchParams()
   const [mensagens, setMensagens] = useState<Mensagem[]>([])
   /**
@@ -391,16 +392,33 @@ export function ChatIA({ nome }: { nome: string }) {
 
   return (
     <div className="flex h-dvh flex-col bg-fl-page lg:pl-56">
-      {/* Barra fina só com o acesso ao histórico. Um cabeçalho cheio roubaria
-          altura da conversa, que é o que a pessoa veio ver. */}
-      <div className="flex justify-end px-4 pt-3 sm:px-5">
-        <button
-          onClick={() => setHistoricoAberto(true)}
-          aria-label="Conversas anteriores"
-          className="flex items-center gap-1.5 rounded-full border border-fl-border px-3 py-1.5 text-[12.5px] font-medium text-fl-ink-2 transition-colors hover:bg-fl-50 hover:text-fl-ink"
-        >
-          <History className="size-3.5" /> Conversas
-        </button>
+      {/* Cabeçalho do Fin (protótipo v2): quem responde tem cara e nome. A
+          chama e o histórico dividem a ponta direita. */}
+      <div className="flex items-center gap-2.5 border-b-2 border-fl-divider px-4 pb-3 pt-3 sm:px-5">
+        <div className="mx-auto flex w-full max-w-md items-center gap-2.5 lg:max-w-2xl">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={POSE.hi} alt="" className="size-[38px] object-contain" />
+          <div className="min-w-0 flex-1">
+            <div className="text-[16px] font-black tracking-tight text-fl-ink">Fin</div>
+            <div className="text-[11.5px] font-bold text-fl-success">seu assistente · online</div>
+          </div>
+          {sequencia > 0 && (
+            <span
+              className="flex items-center gap-1 text-sm font-black"
+              style={{ color: "var(--fin-combo, #F5772E)" }}
+              title={`${sequencia} dias seguidos`}
+            >
+              <Flame className="size-4 fill-current" /> {sequencia}
+            </span>
+          )}
+          <button
+            onClick={() => setHistoricoAberto(true)}
+            aria-label="Conversas anteriores"
+            className="flex items-center gap-1.5 rounded-full border border-fl-border px-3 py-1.5 text-[12.5px] font-bold text-fl-ink-2 transition-colors hover:text-fl-ink"
+          >
+            <History className="size-3.5" /> Conversas
+          </button>
+        </div>
       </div>
 
       {/* histórico */}
@@ -415,12 +433,12 @@ export function ChatIA({ nome }: { nome: string }) {
               <p className="mt-2 text-[15px] leading-relaxed text-fl-ink-2">
                 Pergunte em português. As respostas usam os seus números, não conselho genérico.
               </p>
-              <div className="mt-6 flex flex-col gap-2">
+              <div className="mt-6 flex flex-wrap gap-2">
                 {SUGESTOES.map((s) => (
                   <button
                     key={s}
                     onClick={() => enviar(s)}
-                    className="rounded-2xl border border-fl-border bg-fl-card px-4 py-3 text-left text-sm text-fl-ink transition-colors hover:border-fl-500/50 hover:bg-fl-50"
+                    className="rounded-full border-[1.5px] border-fl-500/40 bg-fl-card px-3.5 py-2 text-left text-[12.5px] font-bold text-fl-500 transition-colors hover:border-fl-500"
                   >
                     {s}
                   </button>
@@ -432,7 +450,7 @@ export function ChatIA({ nome }: { nome: string }) {
           {mensagens.map((m, i) =>
             m.papel === "usuario" ? (
               <div key={i} className="flex flex-col items-end gap-1.5">
-                <div className="max-w-[85%] rounded-[16px_16px_4px_16px] bg-fl-500 px-4 py-2.5 text-[14.5px] leading-relaxed text-primary-foreground">
+                <div className="max-w-[85%] rounded-[16px_16px_4px_16px] bg-fl-500 px-4 py-2.5 text-[14.5px] font-semibold leading-relaxed text-primary-foreground">
                   {m.texto}
                 </div>
                 {m.anexos?.map((a) => (
@@ -444,14 +462,21 @@ export function ChatIA({ nome }: { nome: string }) {
             ) : (
               <div key={i} className="flex flex-col gap-2.5">
                 {m.texto && (
-                  <div className="max-w-[92%] self-start rounded-[16px_16px_16px_4px] border border-fl-border bg-fl-card px-4 py-3 text-[14.5px] leading-relaxed text-fl-ink">
-                    {m.texto}
+                  <div className="flex max-w-[92%] items-end gap-2 self-start">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={POSE.point} alt="" className="size-[30px] shrink-0 object-contain" />
+                    <div className="rounded-[16px_16px_16px_4px] border-[1.5px] border-fl-border bg-fl-card px-4 py-3 text-[14.5px] leading-relaxed text-fl-ink">
+                      {m.texto}
+                    </div>
                   </div>
                 )}
-                {m.cards?.map((c, j) => <CardIA key={j} card={c} />)}
-                {m.lancamentos && <ConfirmarLancamentos lancamentos={m.lancamentos} />}
-                {m.extrato && <ExtratoNoChat extrato={m.extrato} />}
-                {m.orcamento && <ConfirmarOrcamento tetos={m.orcamento} gastoAtual={m.gastoAtual} />}
+                {/* Cards de ação alinham com a bolha, não com o avatar. */}
+                <div className="flex flex-col gap-2.5 pl-[38px] empty:hidden">
+                  {m.cards?.map((c, j) => <CardIA key={j} card={c} />)}
+                  {m.lancamentos && <ConfirmarLancamentos lancamentos={m.lancamentos} />}
+                  {m.extrato && <ExtratoNoChat extrato={m.extrato} />}
+                  {m.orcamento && <ConfirmarOrcamento tetos={m.orcamento} gastoAtual={m.gastoAtual} />}
+                </div>
               </div>
             )
           )}
@@ -481,7 +506,7 @@ export function ChatIA({ nome }: { nome: string }) {
               <p>{cotaEsgotada}</p>
               <a
                 href="/premium"
-                className="mt-3 inline-block rounded-xl bg-fl-500 px-4 py-2.5 text-sm font-medium text-white"
+                className="fin-btn-3d mt-3 inline-block rounded-xl bg-fl-500 px-4 py-2.5 text-sm font-bold text-primary-foreground"
               >
                 Ver o Premium
               </a>
@@ -566,9 +591,9 @@ export function ChatIA({ nome }: { nome: string }) {
               type="submit"
               aria-label="Enviar"
               disabled={enviando || (!rascunho.trim() && anexos.length === 0)}
-              className="flex size-10 shrink-0 items-center justify-center rounded-full bg-fl-500 text-primary-foreground transition-opacity disabled:opacity-30"
+              className="fin-btn-3d flex size-10 shrink-0 items-center justify-center rounded-full bg-fl-500 text-primary-foreground transition-opacity disabled:opacity-30 disabled:shadow-none"
             >
-              <ArrowUp className="size-5" />
+              <ArrowUp className="size-5" strokeWidth={2.8} />
             </button>
           </form>
         </div>

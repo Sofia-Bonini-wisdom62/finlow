@@ -184,9 +184,14 @@ chegarem, é troca de arquivo, não de código.
   navy+dourado, e o refino vem tela a tela.
 - ~~**1ª conversa (onboarding)**~~ ✅ 14/08 — aceite com Fin professor,
   bolhas da conversa com avatar do Fin, fechamento com Fin orgulhoso.
-- **Chat** — bolhas na identidade (usuário dourado, Fin respondendo),
-  sugestões, input.
-- **Menu (Ajustes)** — lista com ícones na identidade.
+- ~~**Chat**~~ ✅ 14/08 — cabeçalho do Fin ("seu assistente · online" +
+  chama da ofensiva), avatar nas bolhas da IA, bolha do usuário dourada,
+  sugestões em pill, botão de enviar 3D.
+- ~~**Menu (Ajustes)**~~ ✅ 14/08 — card de perfil no topo (inicial + badge
+  FREE/FINLOW+ via `/api/conta`). A seção **Aparência saiu**: o escopo
+  `.tema-fin` ignora o toggle claro/escuro e a paleta, e controle que não
+  muda nada é pior que controle nenhum — `SeletorTema`/`SeletorPaleta`
+  seguem no repositório, sem uso.
 - **Painel** — saldo, entradas/saídas, rosca, cards escuros.
 - **Extrato** — upload + lista de transações na identidade.
 - **Análises** — ganhou **toggle Controle/Análises** no desenho (novidade de

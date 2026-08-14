@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import bcrypt from "bcryptjs"
 import { db } from "@/lib/db"
 import { getUserIdOr401 } from "@/lib/painel"
+import { acessoPremium } from "@/lib/pagamento/acesso"
 
 export const dynamic = "force-dynamic"
 
@@ -9,10 +10,15 @@ export async function GET() {
   const userId = await getUserIdOr401()
   if (userId instanceof NextResponse) return userId
 
-  const user = await db.user.findUnique({
-    where: { id: userId },
-    select: { nome: true, email: true, dataNascimento: true, consentimentoPainelEm: true, senha: true },
-  })
+  const [user, acesso] = await Promise.all([
+    db.user.findUnique({
+      where: { id: userId },
+      select: { nome: true, email: true, dataNascimento: true, consentimentoPainelEm: true, senha: true },
+    }),
+    // Para o badge do Menu (FREE / FINLOW+). Falha aqui não derruba a tela de
+    // ajustes: sem resposta, o badge mostra FREE — errar para baixo é seguro.
+    acessoPremium(userId).catch(() => ({ premium: false })),
+  ])
 
   return NextResponse.json({
     nome: user?.nome ?? "",
@@ -20,6 +26,7 @@ export async function GET() {
     dataNascimento: user?.dataNascimento ?? null,
     painelAtivo: user?.consentimentoPainelEm !== null && user?.consentimentoPainelEm !== undefined,
     temSenha: Boolean(user?.senha),
+    premium: acesso.premium,
   })
 }
 
