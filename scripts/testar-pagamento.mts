@@ -308,7 +308,10 @@ const varDoPreco = libPreco.match(/process\.env\.(STRIPE_[A-Z_]*PRICE[A-Z_]*)/)?
 conferir("o checkout cobra por um id de preço do ambiente", varDoCheckout, "STRIPE_PRICE_ID")
 conferir("a leitura do preço usa EXATAMENTE a mesma variável", varDoPreco, varDoCheckout)
 
-conferir("a rota de assinatura entrega o plano para a tela", /\bplano,?\n/.test(rotaAssinatura), true)
+// `\r?` porque o checkout do git no Windows grava CRLF: um guard que só passa
+// com LF acusaria falha numa rota que está certa — mesma lição do guard da
+// landing, que não pode depender do estilo de quem escreveu.
+conferir("a rota de assinatura entrega o plano para a tela", /\bplano,?\r?\n/.test(rotaAssinatura), true)
 // O bloco de quem NÃO assina é o segundo ramo do ternário do premium; basta
 // garantir que a tela lê o plano e não um número fixo em algum lugar dela.
 conferir("a tela lê o plano da API", /estado\.plano\.valorCentavos/.test(telaPremium), true)

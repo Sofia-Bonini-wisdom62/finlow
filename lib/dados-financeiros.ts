@@ -48,6 +48,9 @@ export const TABELAS_FINANCEIRAS = [
   "contaFixa",
   // a carteira. Foi a que faltava, e a que a exportação LGPD já entregava.
   "investimento",
+  // o cofrinho (Redesign Fin v2): meta e guardado são valores financeiros
+  // dela, cifrados como os da carteira — sai pelo mesmo botão.
+  "objetivo",
   // de qual banco veio o extrato e de que período — não é valor, mas é a sua
   // vida financeira descrita: "Nubank, março a junho".
   "extratoImport",
@@ -83,7 +86,16 @@ export const TABELAS_NAO_FINANCEIRAS: Record<string, string> = {
   progressoModulo: "Progresso na Trilha.",
   progressoLicao: "Progresso dentro da lição.",
   eventoPontuacao: "XP conquistado.",
+  eventoCoins:
+    "Moedas do jogo (Redesign Fin). É moeda DE JOGO, não dinheiro — mesma " +
+    "família do XP; apagar zeraria loja e missões que a pessoa não pediu " +
+    "para perder.",
   diaAtivo: "Dias de uso seguidos (ofensiva). Guarda data, nunca valor.",
+
+  // --- personalização: tem os próprios botões no Perfil ---
+  imagemUsuario:
+    "Foto de perfil e capa. Não é dado financeiro; troca e remoção moram no " +
+    "próprio Perfil, e a imagem morre com a conta pelo Cascade.",
 
   // --- sessão: apagar derrubaria a pessoa do app no meio da própria ação ---
   account: "Vínculo de login (Google). Some só quando a conta some.",
