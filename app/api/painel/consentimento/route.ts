@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { db } from "@/lib/db"
 import { getUserIdOr401 } from "@/lib/painel"
 import { categoriasPadrao } from "@/prisma/seed-categorias"
+import { apagarDadosFinanceiros } from "@/lib/apagar-financeiro"
 
 export const dynamic = "force-dynamic"
 
@@ -60,18 +61,25 @@ export async function PATCH() {
   }
 }
 
-// DELETE — apaga TODOS os dados do Painel e volta a exigir opt-in (irreversível)
+/**
+ * DELETE — apaga TODOS os dados financeiros e volta a exigir opt-in (irreversível)
+ *
+ * O QUE sai não está escrito aqui, e sim em `lib/dados-financeiros.ts`. A lista
+ * morava nesta função e envelheceu calada: ganhamos a tabela de investimentos e
+ * ninguém somou nela, então a tela respondia "Dados financeiros apagados." com a
+ * carteira inteira ainda no banco. Lá fora a lista é conferida contra o schema
+ * por `scripts/testar-apagar-dados.mts`, que falha quando aparece tabela nova
+ * sem classificação — aqui dentro, esquecer não dava erro nenhum.
+ *
+ * Continua em UMA transação: meia limpeza é pior que limpeza nenhuma, porque a
+ * tela diz que acabou.
+ */
 export async function DELETE() {
   const userId = await getUserIdOr401()
   if (userId instanceof NextResponse) return userId
 
   try {
-    await db.$transaction([
-      db.transacao.deleteMany({ where: { userId } }),
-      db.contaFixa.deleteMany({ where: { userId } }),
-      db.categoria.deleteMany({ where: { userId } }),
-      db.user.update({ where: { id: userId }, data: { consentimentoPainelEm: null } }),
-    ])
+    await apagarDadosFinanceiros(db, userId)
     return NextResponse.json({ ok: true })
   } catch (e) {
     console.error("[painel/consentimento DELETE]", e)
