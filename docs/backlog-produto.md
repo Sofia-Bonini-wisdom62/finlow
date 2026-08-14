@@ -210,11 +210,20 @@ chegarem, é troca de arquivo, não de código.
   ⚠️ Pendência de design: o desenho não tem caminho de **remover nem
   editar** objetivo (nome/meta) — sem rota DELETE de propósito, rota sem
   tela é porta morta. Quando desenhar, a rota nasce junto.
-- **Diagnóstico de Vazamento** — restyle na identidade.
-- **Memória do assistente** — restyle na identidade.
-- **Finlow+ (premium)** — restyle na identidade.
-- **Biblioteca** — restyle na identidade (hoje ainda usa o tema fl-*).
-- **Perfil (financeiro)** — v2 do desenho; convive com /trilha/perfil.
+- ~~**Diagnóstico de Vazamento**~~ ✅ 14/08 — Fin assustado com a conta no
+  hero, CTA "Conversar sobre isso com o Fin" 3D.
+- ~~**Memória do assistente**~~ ✅ 14/08 — a tela já era o desenho; só o
+  knob do interruptor trocou branco por navy.
+- ~~**Finlow+ (premium)**~~ ✅ 14/08 — título "Finlow+", Fin animado
+  abrindo a venda, CTA 3D, e a lista de vantagens ganhou "Energia infinita
+  na trilha" — entrou quando virou verdade.
+- ~~**Biblioteca**~~ ✅ 14/08 — classe `tema-fin` na rota (vive fora do
+  grupo `(app)`), aula liberada com anel e borda dourados, concluída verde.
+- ~~**Perfil (financeiro)**~~ ✅ 14/08 — cabeçalho de jogo ("Nível N ·
+  {rótulo financeiro}", barra de XP), tiles DIAS SEGUIDOS/XP/PRECISÃO,
+  card de Objetivos com o Fin, porta "Liga". Convive com /trilha/perfil:
+  missões, conquistas e loja continuam SÓ lá — duplicar resgate em duas
+  telas dobraria a superfície da mecânica.
 - **Escola** — turmas, turma (2ºB), professores, e o **detalhe do aluno
   pelo professor** com "1ª passada × após correção" ("a 2ª rodada não vale
   XP nem infla a média — os dois números separados"): exige medir e

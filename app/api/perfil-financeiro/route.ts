@@ -6,6 +6,8 @@ import {
   type TransacaoCalc,
 } from "@/lib/financas"
 import { listarTransacoes } from "@/lib/financeiro-repo"
+import { lerOfensiva } from "@/lib/ofensiva"
+import { listarObjetivos } from "@/lib/objetivo-repo"
 
 const NOMES_MESES = [
   "janeiro", "fevereiro", "março", "abril", "maio", "junho",
@@ -65,6 +67,26 @@ export async function GET() {
     const metricas = metricasPerfil(calc)
     const { mes, ano } = mesDaRosca(calc)
 
+    // O cabeçalho de jogo do protótipo v2 (chama, precisão, objetivos). Tudo
+    // acessório: qualquer falha vira ausência, nunca derruba o retrato.
+    const [ofensiva, licoes7d, objetivos] = await Promise.all([
+      lerOfensiva(userId).catch(() => null),
+      db.progressoLicao
+        .findMany({
+          where: {
+            userId,
+            concluidoEm: { gte: new Date(Date.now() - 7 * 86_400_000) },
+            totalQuiz: { gt: 0 },
+          },
+          select: { acertos: true, totalQuiz: true },
+        })
+        .catch(() => []),
+      listarObjetivos(userId).catch(() => []),
+    ])
+    const somaAcertos = licoes7d.reduce((s, l) => s + l.acertos, 0)
+    const somaQuiz = licoes7d.reduce((s, l) => s + l.totalQuiz, 0)
+    const emAberto = objetivos.find((o) => o.guardado < o.meta) ?? objetivos[0] ?? null
+
     return NextResponse.json({
       nome: user?.nome ?? "Você",
       email: user?.email ?? null,
@@ -80,6 +102,18 @@ export async function GET() {
       insights,
       pontos: user?.pontos ?? 0,
       noRanking: !!user?.rankingOptIn,
+      sequencia: ofensiva?.atual ?? 0,
+      precisaoSemana: somaQuiz > 0 ? Math.round((somaAcertos / somaQuiz) * 100) : null,
+      objetivos:
+        objetivos.length > 0
+          ? {
+              quantos: objetivos.length,
+              totalGuardado: objetivos.reduce((s, o) => s + o.guardado, 0),
+              destaque: emAberto
+                ? { nome: emAberto.nome, guardado: emAberto.guardado, meta: emAberto.meta }
+                : null,
+            }
+          : null,
     })
   } catch (e) {
     console.error("[perfil-financeiro]", e)

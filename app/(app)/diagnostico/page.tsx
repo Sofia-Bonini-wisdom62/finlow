@@ -9,6 +9,7 @@ import {
 import { BottomNav } from "@/components/bottom-nav"
 import { ConvidarAmigos } from "@/components/ajustes/ConvidarAmigos"
 import { brl } from "@/lib/formato"
+import { POSE } from "@/lib/fin"
 
 /**
  * Diagnóstico de Vazamento — o número grande e de onde ele vem.
@@ -136,20 +137,26 @@ export default function DiagnosticoPage() {
 
         {diag?.pronto && (
           <>
-            {/* ---------- o número grande ---------- */}
-            <section className="mt-6 rounded-2xl border border-fl-500/30 bg-fl-card p-5 text-center">
-              <div className="text-[12px] font-bold uppercase tracking-wider text-fl-ink-2">
-                escapando por ano
-              </div>
-              <div className="mt-1 text-[40px] font-extrabold leading-tight tracking-tight text-fl-500">
-                {brl(diag.totalAnual ?? 0)}
-              </div>
-              <div className="mt-1 text-[13px] text-fl-ink-2">
-                {brl(diag.totalMensal ?? 0)} por mês · {diag.mesesAnalisados}{" "}
-                {diag.mesesAnalisados === 1 ? "mês analisado" : "meses analisados"}
+            {/* ---------- o número grande, com o Fin assustado do lado ---------- */}
+            <section className="mt-6 rounded-[18px] border-[1.5px] border-fl-500/40 bg-fl-card p-4">
+              <div className="flex items-center gap-3">
+                <div className="min-w-0 flex-1">
+                  <div className="text-[10.5px] font-black uppercase tracking-widest text-fl-ink-2">
+                    escapando por ano
+                  </div>
+                  <div className="mt-0.5 text-[34px] font-black leading-tight tracking-tight text-fl-500">
+                    {brl(diag.totalAnual ?? 0)}
+                  </div>
+                  <div className="mt-0.5 text-[12px] text-fl-ink-2">
+                    {brl(diag.totalMensal ?? 0)} por mês · {diag.mesesAnalisados}{" "}
+                    {diag.mesesAnalisados === 1 ? "mês analisado" : "meses analisados"}
+                  </div>
+                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={POSE.bill} alt="Fin assustado com a conta" className="size-[84px] shrink-0 object-contain" />
               </div>
               {diag.narrativa && (
-                <p className="mt-3 border-t border-fl-divider pt-3 text-left text-sm leading-relaxed text-fl-ink">
+                <p className="mt-3 border-t border-fl-divider pt-3 text-sm leading-relaxed text-fl-ink">
                   {diag.narrativa}
                 </p>
               )}
@@ -188,9 +195,9 @@ export default function DiagnosticoPage() {
             {/* ---------- conversar ---------- */}
             <Link
               href="/chat"
-              className="mt-5 flex items-center justify-center gap-2 rounded-2xl bg-fl-500 py-3.5 text-sm font-bold text-primary-foreground"
+              className="fin-btn-3d mt-5 flex items-center justify-center gap-2 rounded-2xl bg-fl-500 py-3.5 text-sm font-extrabold text-primary-foreground"
             >
-              <MessageCircle className="size-4" /> Conversar sobre isso
+              <MessageCircle className="size-4" /> Conversar sobre isso com o Fin
             </Link>
 
             {/* ---------- card público (opt-in) ---------- */}
