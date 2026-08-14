@@ -202,11 +202,14 @@ chegarem, é troca de arquivo, não de código.
   existiam na aba interna do Painel (gasto médio por dia, insight do
   perfil); `DistribuicaoGastosChart` deixou de renderizar (duplicava a
   rosca), mas o arquivo fica — exporta `agruparPorCategoria`.
-- **Objetivos** — TELA NOVA (casa com o item "Tela de objetivos" deste
-  backlog): metas com barra de progresso colorida, "+ Guardar R$ 50",
-  "guardar fica fora das saídas — cofrinho é bolso seu, não gasto",
-  "+ Criar objetivo". Exige modelo novo no banco (Objetivo: nome, meta,
-  guardado) — nasce com userId/Cascade/RLS/export/delete como sempre.
+- ~~**Objetivos**~~ ✅ 14/08 — TELA NOVA em `/objetivos`: modelo `Objetivo`
+  (nome/meta/guardado CIFRADOS, RLS, exportação, Cascade), repo
+  `lib/objetivo-repo.ts` com retentativa no "+ Guardar" (rajada de toques é
+  o caso normal), escrita atrás do consentimento do Painel (R8), cores
+  girando por card, aviso do Fin "cofrinho é bolso seu". Entrada pelo Menu.
+  ⚠️ Pendência de design: o desenho não tem caminho de **remover nem
+  editar** objetivo (nome/meta) — sem rota DELETE de propósito, rota sem
+  tela é porta morta. Quando desenhar, a rota nasce junto.
 - **Diagnóstico de Vazamento** — restyle na identidade.
 - **Memória do assistente** — restyle na identidade.
 - **Finlow+ (premium)** — restyle na identidade.

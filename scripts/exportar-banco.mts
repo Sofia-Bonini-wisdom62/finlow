@@ -47,7 +47,7 @@ const USUARIO = [
   "User", "Account", "Session", "VerificationToken",
   "Perfil", "Onboarding", "ProgressoModulo", "EventoPontuacao",
   "Transacao", "Categoria", "ContaFixa", "Orcamento", "ExtratoImport",
-  "Investimento", "DiagnosticoVazamento",
+  "Investimento", "Objetivo", "DiagnosticoVazamento",
   "MemoriaUsuario", "Conversa", "ConversaMensagem", "Insight", "RecomendacaoTrilha",
   "Indicacao",
   "ProgressoLicao", "DiaAtivo",

@@ -80,6 +80,7 @@ model User {
   indicacaoRecebida     Indicacao?            @relation("indicado")
   diagnosticoVazamento  DiagnosticoVazamento?
   investimentos         Investimento[]
+  objetivos             Objetivo[]
   diasAtivos            DiaAtivo[]
   assinatura            Assinatura?
   usoMensalIA           UsoMensalIA[]
@@ -116,6 +117,29 @@ model Investimento {
   nome         String // CIFRADO
   instituicao  String? // CIFRADO
   valorAtual   String // CIFRADO
+  criadoEm     DateTime @default(now())
+  atualizadoEm DateTime @updatedAt
+
+  @@index([userId])
+}
+
+/// Objetivos de poupança (protótipo v2, 14/08/2026): a pessoa cria uma meta
+/// ("Reserva", "Viagem"), diz quanto quer juntar e vai guardando aos poucos.
+/// Guardar NÃO é saída — cofrinho é bolso da própria pessoa, e contar como
+/// gasto diria "você se descontrolou" no mês em que ela mais guardou (mesma
+/// regra do "Guardado" das Análises).
+///
+/// `nome`, `meta` e `guardado` são CIFRADOS: passe por lib/objetivo-repo.ts,
+/// nunca por db.objetivo direto (só deleteMany — apagar não toca campo
+/// cifrado). Escrita exige o consentimento do Painel (regra R8): objetivo é
+/// dado financeiro real.
+model Objetivo {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  nome         String // CIFRADO
+  meta         String // CIFRADO
+  guardado     String // CIFRADO
   criadoEm     DateTime @default(now())
   atualizadoEm DateTime @updatedAt
 
