@@ -190,10 +190,11 @@ nada foi cobrado de ninguém. O que existe e está verificado:
 | Peça | Estado |
 |---|---|
 | `Assinatura` + `UsoMensalIA` no banco, com RLS | ✅ |
-| Regra de acesso num só lugar (`decidirAcesso`) | ✅ 26/26 casos em `scripts/testar-pagamento.mts` |
+| Regra de acesso num só lugar (`decidirAcesso`) | ✅ 62/62 casos em `scripts/testar-pagamento.mts` |
 | Checkout, webhook, cancelamento, estado | ✅ compilam e estão registrados |
 | Limite grátis por tokens, guard antes do Vertex | ✅ |
 | Telas `/premium` e `/premium/obrigado` | ✅ |
+| **Preço visível para quem ainda não assina** | ✅ 14/08 — `lib/pagamento/preco.ts` lê o `STRIPE_PRICE_ID` que o checkout cobra |
 | Assinatura no `/api/exportar` e cancelada no delete da conta | ✅ |
 | **Um checkout de ponta a ponta com cartão** | ❌ **nunca rodou** |
 | **Webhook recebendo evento real da Stripe** | ❌ **nunca rodou** |

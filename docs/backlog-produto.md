@@ -232,10 +232,54 @@ Lista do mais crítico ao mais simples; cada item é um trabalho independente.
    upload de extrato. Quebra de confiança no primeiro contato — corrigir a
    copy para o que existe hoje, até o conector nascer.
 
-3. **🔴 /premium não mostra o preço para quem não assina.** O `valorCentavos`
-   só renderiza no estado de quem já paga (`app/(app)/premium/page.tsx:213`).
-   Quem não paga vê vantagens → botão "Assinar" → "cobrança mensal pelo
-   cartão", sem valor. Ninguém clica "Assinar" às cegas; parece dark pattern.
+3. ~~**🔴 /premium não mostra o preço para quem não assina.**~~ ✅ **14/08/2026.**
+   O `valorCentavos` só renderiza no estado de quem já paga
+   (`app/(app)/premium/page.tsx:213`). Quem não paga vê vantagens → botão
+   "Assinar" → "cobrança mensal pelo cartão", sem valor. Ninguém clica
+   "Assinar" às cegas; parece dark pattern.
+
+   > **O campo que existia não servia, e essa é a causa.** `valorCentavos` é o
+   > que a Stripe JÁ cobrou daquela pessoa, e mora na linha de `Assinatura` —
+   > que só nasce depois do primeiro pagamento. A tela sabia o valor
+   > exatamente para quem não precisava mais dele. Não dava para "só mostrar o
+   > campo no outro ramo": não havia campo.
+   >
+   > **O que mudou:** `lib/pagamento/preco.ts` (novo) lê o preço na Stripe pelo
+   > `STRIPE_PRICE_ID` — **o mesmo id que `app/api/pagamento/checkout/route.ts`
+   > põe no `line_items`**. `/api/pagamento/assinatura` passa a devolver
+   > `plano` (valor, moeda, intervalo) para quem não é premium, e `/premium`
+   > mostra o valor em destaque logo acima do botão, com a periodicidade e a
+   > letra miúda tirando o número da mesma fonte.
+   >
+   > **A fonte única é o ponto, não um detalhe.** Um preço escrito no código
+   > (ou num `NEXT_PUBLIC_PRECO`) começaria certo e ficaria errado no primeiro
+   > reajuste feito no painel da Stripe — e o modo de falhar seria anunciar um
+   > valor e cobrar outro, que é pior que não anunciar nenhum. Pelo mesmo
+   > motivo o "por mês" deixou de ser texto fixo: ele vem do `recurring` do
+   > preço, então trocar o plano para anual no painel muda a frase sozinho.
+   >
+   > **Quando não há preço para afirmar, a tela diz isso.** Stripe fora do ar,
+   > variável faltando, preço arquivado, preço em faixas ou de cobrança única:
+   > todos caem num estado que avisa que o valor não carregou, lembra que ele
+   > aparece no checkout antes de qualquer cobrança e oferece "Tentar de novo".
+   > O botão continua funcionando — travar a compra por uma falha de leitura
+   > seria um defeito maior que o original.
+   >
+   > **Guardado em `scripts/testar-pagamento.mts`** (roda sem banco, com
+   > `--conditions react-server`): 62 casos, 36 novos. Além da leitura do preço
+   > e da formatação (inclusive moeda sem centavos, onde um `/100` fixo erraria
+   > por cem vezes), quatro conferências olham o CÓDIGO — que a tela e o
+   > checkout leiam a MESMA variável de ambiente, que a rota entregue o plano,
+   > que não exista `R$` escrito à mão na tela e que a letra miúda não afirme
+   > "mensal" por conta própria. Nada disso quebra build, typecheck ou lint:
+   > um preço errado na tela compila perfeitamente e só se revela na fatura de
+   > alguém.
+   >
+   > **O que continua em aberto, e é decisão sua:** o preço só é visível para
+   > quem está logado — `/premium` é tela de dentro do app. A landing segue sem
+   > página de preços, e o FAQ ("Vai ter custo?") continua descrevendo o modelo
+   > sem citar valor. Publicar o número na home é escolha comercial, não
+   > conserto de defeito, e não entrou aqui por isso.
 
 4. **🟠 Cadastro com fricção.** Sem as chaves OAuth na Vercel o botão Google
    não aparece (pendência já registrada em `estado-do-produto.md`); sobra
