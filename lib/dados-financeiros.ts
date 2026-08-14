@@ -88,6 +88,31 @@ export const TABELAS_NAO_FINANCEIRAS: Record<string, string> = {
   // --- sessão: apagar derrubaria a pessoa do app no meio da própria ação ---
   account: "Vínculo de login (Google). Some só quando a conta some.",
   session: "Sessão ativa. Idem.",
+
+  // --- cobrança: é a relação comercial com o Finlow, não o dinheiro DELA ---
+  // Estas duas chegaram com o paywall (10/08) e o teste as pegou sem
+  // classificação, que é exatamente o serviço que ele presta. As duas guardam
+  // número, e nas duas apagar seria pior que manter:
+  assinatura:
+    "Assinatura na Stripe (status, valor cobrado, próxima cobrança). Guarda " +
+    "dinheiro, mas é o que o FINLOW cobra dela, não o que ela ganha e gasta — " +
+    "e a Stripe continuaria cobrando com ou sem esta linha. Apagar aqui " +
+    "derrubaria o acesso de quem está pagando, num botão que não promete nada " +
+    "disso. Quem cancela usa /premium; quem sai de vez apaga a conta.",
+  usoMensalIA:
+    "Tokens de IA gastos no mês. É medidor de cota, não finança da pessoa — e " +
+    "apagar zeraria o contador, o que transformaria este botão num jeito de " +
+    "ganhar cota grátis todo mês.",
+
+  // --- escola: vínculo e progresso, não dinheiro (Finlow para Escolas, 11/08) ---
+  membroEscola:
+    "Vínculo com a escola. Apagar tiraria o premium que vem dela e o segmento " +
+    "da trilha — perda de acesso, não de dado financeiro.",
+  membroTurma: "Vínculo com a turma. Mesma razão: é matrícula, é aprendizado.",
+  competenciaProfessor:
+    "O que o adm liberou para aquele professor enxergar e gerenciar. É " +
+    "permissão, e nem sequer é dado do próprio dono da conta em sentido " +
+    "financeiro.",
 }
 
 /**
