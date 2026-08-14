@@ -344,6 +344,12 @@ export default function LandingPage() {
               Da bagunça à clareza em três passos
             </h2>
           </Reveal>
+          {/* O passo 1 dizia "Conecte suas contas — suas transações entram
+              sozinhas, nada de digitar CSV". Isso é Open Finance, que está no
+              backlog e não existe: a entrada de dados real é o extrato que a
+              pessoa exporta do banco. O app logado já dizia a verdade
+              ("Bancos conectados · Em breve", em Ajustes) enquanto a home
+              vendia o recurso como pronto. */}
           <Reveal className="grid gap-7 md:grid-cols-3">
             {[
               // O passo 1 diz o que o produto FAZ (o protótipo corrigiu a
@@ -363,6 +369,13 @@ export default function LandingPage() {
                 <p className="text-[15px] leading-relaxed" style={{ color: "var(--fin-muted)" }}>{p.d}</p>
               </div>
             ))}
+          </Reveal>
+          <Reveal className="mx-auto mt-12 max-w-[680px] rounded-2xl bg-fl-dark-surface px-6 py-5 text-center">
+            <p className="text-[14.5px] leading-relaxed text-fl-dark-text">
+              <strong className="font-semibold text-white">E a conexão automática com o banco?</strong>{" "}
+              Está no plano (Open Finance), mas ainda não existe. Hoje a entrada de dados é o
+              extrato que você exporta — e é ele que alimenta tudo que você viu acima.
+            </p>
           </Reveal>
         </div>
       </section>
