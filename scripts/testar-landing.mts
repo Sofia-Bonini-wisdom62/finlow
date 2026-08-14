@@ -43,6 +43,26 @@ function hrefs(fonte: string): string[] {
   return [...fonte.matchAll(/href="([^"]+)"/g)].map((m) => m[1])
 }
 
+/**
+ * Tira os comentários antes de conferir COPY. Os comentários daqui citam de
+ * propósito a frase antiga que foi corrigida, para que ninguém a reescreva sem
+ * saber — e um teste de copy que lesse o comentário acusaria justamente o aviso
+ * que protege a correção.
+ *
+ * BLOCO E LINHA, e a segunda metade veio de um caso real. O branch do redesign
+ * escreveu esse mesmo aviso com `//` em vez de bloco, e a checagem de Open
+ * Finance acusou falha numa landing que estava CERTA: o "Open Finance" que ela
+ * leu era o do comentário explicando por que a promessa tinha saído. Guard que
+ * depende do estilo de comentário que o autor escolheu não guarda nada — só
+ * treina quem vier depois a desligá-lo.
+ *
+ * O `[^:]` antes do `//` é o que preserva `https://`. Era a razão de a linha
+ * ter ficado de fora, e ela continua valendo.
+ */
+function semComentarios(fonte: string): string {
+  return fonte.replace(/\/\*[\s\S]*?\*\//g, " ").replace(/(^|[^:])\/\/[^\n]*/g, "$1 ")
+}
+
 /** Recorta uma seção do JSX pelo comentário de faixa que a abre. */
 function trecho(fonte: string, de: RegExp, ate: RegExp): string {
   const i = fonte.search(de)
@@ -116,6 +136,84 @@ checar(
 // respondia "ainda não", quem já era usuário lia que o produto não existia.
 const linkFaqNoMenu = /rotulo="Perguntas frequentes" href="([^"]+)"/.exec(ajustes)
 checar("o Menu do app aponta para o FAQ da landing", linkFaqNoMenu?.[1] === "/#faq", linkFaqNoMenu?.[1] ?? "não achei")
+
+// ------------------------------ a landing não vende o que não existe ---
+console.log("\na landing não promete conexão automática de contas")
+
+/**
+ * O passo 1 do "Como funciona" dizia "Conecte suas contas — suas transações
+ * entram sozinhas, nada de digitar CSV". Isso é Open Finance, que está no
+ * backlog e não foi construído: falta escolher um agregador regulado, que é
+ * contrato e custo, não código. O caminho real é o upload de extrato.
+ *
+ * A checagem é amarrada ao CÓDIGO, não à data: enquanto não houver conector, a
+ * home não pode prometer conexão automática. No dia em que ele existir, esta
+ * seção afrouxa sozinha em vez de virar um teste mentiroso pedindo para ser
+ * apagado.
+ */
+const conectorExiste =
+  existsSync(join(raiz, "app/api/open-finance")) ||
+  existsSync(join(raiz, "lib/open-finance")) ||
+  /"(pluggy|belvo|klavi)[^"]*":/i.test(ler("package.json"))
+
+// trecho() se orienta pelos comentários de faixa, então o corte vem primeiro
+// e a limpeza depois.
+const comoFunciona = semComentarios(
+  trecho(landing, /============ COMO FUNCIONA ============/, /============ DIFERENCIAL ============/)
+)
+const landingCopy = semComentarios(landing)
+checar("achei a seção 'Como funciona'", comoFunciona.length > 0)
+
+if (conectorExiste) {
+  console.log("  (conector Open Finance encontrado no repo — a copy pode prometer conexão; revise esta seção)")
+} else {
+  checar(
+    "o passo 1 não é 'conecte suas contas'",
+    !/t: "Conecte suas contas"/i.test(comoFunciona)
+  )
+  checar(
+    "nenhum passo diz que as transações entram sozinhas",
+    !/entram sozinhas|entram automaticamente|sincroniza(ção|r) com o banco/i.test(comoFunciona)
+  )
+  checar(
+    "o passo 1 descreve o caminho que existe (extrato)",
+    /extrato/i.test(comoFunciona)
+  )
+  // Se a home cita Open Finance, tem de citar como plano — nunca como recurso.
+  const citaOpenFinance = /open finance/i.test(landingCopy)
+  checar(
+    "se cita Open Finance, deixa claro que ainda não existe",
+    !citaOpenFinance || /ainda não existe|está no plano/i.test(landingCopy),
+    citaOpenFinance ? "" : "(não cita)"
+  )
+}
+
+// A home e o app logado não podem discordar sobre o mesmo recurso: Ajustes
+// lista "Bancos conectados" como Em breve. Foi o mesmo erro do FAQ — a tela de
+// dentro dizia a verdade enquanto a de fora vendia o recurso como pronto.
+const bancosEmBreve = /<EmBreve rotulo="Bancos conectados"/.test(ajustes)
+checar(
+  "o app logado ainda trata 'Bancos conectados' como Em breve",
+  bancosEmBreve || conectorExiste,
+  bancosEmBreve ? "" : "(mudou em Ajustes — reveja a copy da home)"
+)
+if (bancosEmBreve) {
+  checar(
+    "e a home não contradiz o app logado",
+    !/Conecte suas contas|entram sozinhas/i.test(landingCopy)
+  )
+}
+
+// Os formatos citados na home têm de ser os que a tela de upload aceita.
+// Prometer OFX na home e não aceitar OFX na tela é a mesma falha, menor.
+const telaExtrato = ler("app/(app)/extrato/page.tsx")
+const aceita = /accept="([^"]+)"/.exec(telaExtrato)?.[1] ?? ""
+checar("achei o accept da tela de extrato", aceita.length > 0, aceita)
+const formatosCitados = [...new Set([...comoFunciona.matchAll(/\b(PDF|CSV|OFX|QIF|TXT|XLSX?|JSON)\b/g)].map((m) => m[1]))]
+checar("a home cita algum formato de arquivo", formatosCitados.length > 0, formatosCitados.join(", "))
+for (const formato of formatosCitados) {
+  checar(`a tela de upload aceita ${formato}`, aceita.toLowerCase().includes(`.${formato.toLowerCase()}`))
+}
 
 // --------------------------------------- a captura de e-mail não mente ---
 console.log("\na captura de e-mail não promete acesso que já está aberto")

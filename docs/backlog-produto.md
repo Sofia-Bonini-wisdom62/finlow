@@ -246,11 +246,38 @@ Lista do mais crítico ao mais simples; cada item é um trabalho independente.
    > FAQ nem o formulário voltaram a prometer acesso que já está aberto. Nenhuma
    > dessas coisas quebra build, typecheck ou lint — some sem avisar.
 
-2. **🔴 Landing promete conexão automática de contas que não existe.** "Suas
-   transações entram sozinhas, nada de digitar CSV" descreve Open Finance, que
-   está aqui no backlog (ver *Conector Open Finance*, acima). O produto real é
-   upload de extrato. Quebra de confiança no primeiro contato — corrigir a
-   copy para o que existe hoje, até o conector nascer.
+2. ~~**🔴 Landing promete conexão automática de contas que não existe.**~~
+   ✅ **13/08/2026.** "Suas transações entram sozinhas, nada de digitar CSV"
+   descreve Open Finance, que está aqui no backlog (ver *Conector Open
+   Finance*, acima). O produto real é upload de extrato.
+
+   > **O app logado já dizia a verdade.** Ajustes lista "Bancos conectados"
+   > como `EmBreve`, com o motivo escrito: *"Requer Open Finance. Por ora, o
+   > extrato faz o mesmo trabalho"* (`app/(app)/ajustes/page.tsx:272`). A home
+   > vendia o mesmo recurso como o **passo 1** de "Como funciona". É a mesma
+   > forma do item 1: a tela de dentro coerente e a de fora não.
+   >
+   > **O que mudou:** o passo 1 virou "Suba seu extrato" e descreve o caminho
+   > real — exportar PDF, CSV ou OFX pelo app do banco. Ele troca uma promessa
+   > falsa por uma verdade mais forte que ela: o arquivo é lido **no próprio
+   > navegador** e o servidor recebe só o texto extraído
+   > (`lib/extrato/ler-no-navegador.ts`). O passo 2 ganhou "nada entra sem a
+   > sua confirmação", que também já era verdade e não estava dita.
+   >
+   > **A pergunta não foi varrida para debaixo do tapete.** Abaixo dos três
+   > passos, um bloco responde "E a conexão automática com o banco?" com
+   > *está no plano, mas ainda não existe*. Sumir com o assunto deixaria quem
+   > veio pelo recurso sem resposta; dizer que existe é o defeito que se está
+   > corrigindo.
+   >
+   > **Guardado por `scripts/testar-landing.mts`** (sem banco, sem build), e a
+   > checagem é amarrada ao código, não à data: ela só exige a copy honesta
+   > **enquanto não houver conector** (`app/api/open-finance`, `lib/open-finance`
+   > ou dependência de agregador no `package.json`) — no dia em que ele nascer,
+   > afrouxa sozinha em vez de virar teste mentiroso pedindo para ser apagado.
+   > Também confere que a home não contradiz o `EmBreve` do Ajustes, e que
+   > **todo formato citado na home é aceito pelo `accept` da tela de upload** —
+   > prometer XLSX na home e não aceitar XLSX na tela é a mesma falha, menor.
 
 3. ~~**🔴 /premium não mostra o preço para quem não assina.**~~ ✅ **14/08/2026.**
    O `valorCentavos` só renderiza no estado de quem já paga
