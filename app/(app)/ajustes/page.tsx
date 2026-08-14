@@ -18,6 +18,7 @@ interface Conta {
   painelAtivo: boolean
   temSenha: boolean
   premium?: boolean
+  temFoto?: boolean
 }
 
 function Secao({ titulo, Icon, children }: { titulo: string; Icon: typeof User; children: React.ReactNode }) {
@@ -204,9 +205,14 @@ export default function AjustesPage() {
         {/* Card de perfil (protótipo v2): quem é, com que plano. */}
         {conta && (
           <div className="mt-4 flex items-center gap-3 rounded-2xl bg-fl-card px-3.5 py-3">
-            <span className="grid size-[46px] shrink-0 place-items-center rounded-full bg-fl-500 text-[19px] font-black text-primary-foreground">
-              {(conta.nome || conta.email).charAt(0).toUpperCase()}
-            </span>
+            {conta.temFoto ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src="/api/imagem/foto" alt="" className="size-[46px] shrink-0 rounded-full object-cover" />
+            ) : (
+              <span className="grid size-[46px] shrink-0 place-items-center rounded-full bg-fl-500 text-[19px] font-black text-primary-foreground">
+                {(conta.nome || conta.email).charAt(0).toUpperCase()}
+              </span>
+            )}
             <div className="min-w-0 flex-1">
               <div className="truncate text-[15.5px] font-extrabold text-fl-ink">{conta.nome || "—"}</div>
               <div className="truncate text-xs text-fl-ink-2">{conta.email}</div>
@@ -275,7 +281,10 @@ export default function AjustesPage() {
             <Acao rotulo={conta?.temSenha ? "Alterar senha" : "Criar senha"} onClick={() => setTrocandoSenha(true)} />
           )}
 
-          <EmBreve rotulo="Alterar foto" motivo="Depende de armazenamento de imagens, ainda não configurado." />
+          {/* A edição mora no Perfil (foto E capa no mesmo lugar) — aqui é só
+              a porta. O "em breve" que vivia nesta linha caiu em 14/08/2026,
+              quando a imagem passou a morar no banco. */}
+          <Acao rotulo="Foto e capa do perfil" Icon={User} href="/perfil" />
         </Secao>
 
         {/* ---------- DADOS FINANCEIROS ---------- */}

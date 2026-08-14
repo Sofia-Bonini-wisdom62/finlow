@@ -9,6 +9,7 @@ import type { MetricasPerfil, FatiaCategoria } from "@/lib/financas"
 import { nivelDoTotal } from "@/lib/nivel"
 import { POSE } from "@/lib/fin"
 import { brl } from "@/lib/formato"
+import { TrocarImagem } from "@/components/perfil/TrocarImagem"
 
 /**
  * Perfil: retrato de um minuto.
@@ -38,6 +39,8 @@ interface Perfil {
   insights: { texto: string; tipo: string }[]
   sequencia?: number
   precisaoSemana?: number | null
+  temFoto?: boolean
+  temBanner?: boolean
   objetivos?: {
     quantos: number
     totalGuardado: number
@@ -72,6 +75,11 @@ export default function PerfilPage() {
   const [carregando, setCarregando] = useState(true)
   const [logado, setLogado] = useState(true)
   const [erro, setErro] = useState(false)
+  // Personalização: flags locais (nascem da API) + versão pra furar o cache
+  // do navegador logo depois de uma troca.
+  const [temFoto, setTemFoto] = useState(false)
+  const [temBanner, setTemBanner] = useState(false)
+  const [versaoImg, setVersaoImg] = useState(0)
 
   const carregar = useCallback(() => {
     setCarregando(true)
@@ -92,6 +100,8 @@ export default function PerfilPage() {
         if ("deslogado" in p) { setLogado(false); return }
         if ("falhou" in p) { setErro(true); return }
         setPerfil(p.perfil)
+        setTemFoto(!!p.perfil.temFoto)
+        setTemBanner(!!p.perfil.temBanner)
       })
       .catch(() => setErro(true))
       .finally(() => setCarregando(false))
@@ -139,21 +149,62 @@ export default function PerfilPage() {
   const temGastos = perfil.categorias?.length > 0
   const jogo = nivelDoTotal(perfil.pontos)
 
+  // A foto do usuário vence a do Google, que vence a inicial dourada — e a
+  // troca fura o cache do navegador com ?v= assim que o servidor confirma.
+  const urlFoto = temFoto ? `/api/imagem/foto?v=${versaoImg}` : perfil.image
+
   return (
     <main className="min-h-dvh bg-fl-page pb-24 lg:pb-10 lg:pl-56">
+      {/* Banner de capa (personalização, 14/08): faixa de imagem no topo, e o
+          resto da tela segue navy+dourado — a identidade não sai do lugar.
+          Visível só pro dono: a rota da imagem exige a sessão dele. */}
+      {temBanner && (
+        <div className="relative h-36 w-full overflow-hidden sm:h-44">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`/api/imagem/banner?v=${versaoImg}`}
+            alt=""
+            className="size-full object-cover"
+          />
+          {/* Esmaece pro navy embaixo: a capa encontra a página, não briga. */}
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{ background: "linear-gradient(to bottom, transparent 55%, var(--fl-page))" }}
+          />
+          <TrocarImagem
+            tipo="banner"
+            temImagem
+            onMudou={(tem) => { setTemBanner(tem); setVersaoImg(Date.now()) }}
+            className="absolute right-4 top-3"
+          />
+        </div>
+      )}
+
       <div className="mx-auto w-full max-w-md px-5 py-6 md:max-w-2xl md:px-8 lg:max-w-3xl lg:px-10">
         {/* Cabeçalho do protótipo v2: quem é, em que nível do jogo está e o
             rótulo financeiro — "Nível 4 · Guardadora". A barra é o XP. */}
-        <header className="flex items-center gap-3.5">
-          {perfil.image ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={perfil.image} alt="" className="size-16 rounded-full object-cover" />
-          ) : (
-            <div className="fin-btn-3d flex size-16 items-center justify-center rounded-full bg-fl-500 text-[26px] font-black text-primary-foreground">
-              {inicial}
-            </div>
-          )}
-          <div className="min-w-0 flex-1">
+        <header className={`flex items-center gap-3.5 ${temBanner ? "-mt-14 sm:-mt-16" : ""}`}>
+          <div className="relative shrink-0">
+            {urlFoto ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={urlFoto}
+                alt=""
+                className={`size-16 rounded-full object-cover ${temBanner ? "ring-4 ring-[var(--fl-page)]" : ""}`}
+              />
+            ) : (
+              <div className={`fin-btn-3d flex size-16 items-center justify-center rounded-full bg-fl-500 text-[26px] font-black text-primary-foreground ${temBanner ? "ring-4 ring-[var(--fl-page)]" : ""}`}>
+                {inicial}
+              </div>
+            )}
+            <TrocarImagem
+              tipo="foto"
+              temImagem={temFoto}
+              onMudou={(tem) => { setTemFoto(tem); setVersaoImg(Date.now()) }}
+              className="absolute -bottom-1 -right-1"
+            />
+          </div>
+          <div className={`min-w-0 flex-1 ${temBanner ? "pt-10 sm:pt-12" : ""}`}>
             <h1 className="truncate text-xl font-black tracking-tight text-fl-ink">{perfil.nome}</h1>
             <p className="text-[13px] text-fl-ink-2">
               Nível {jogo.nivel} · <span className="text-fl-500">{perfil.nivel}</span>
@@ -166,6 +217,18 @@ export default function PerfilPage() {
             </p>
           </div>
         </header>
+
+        {/* Sem capa ainda: o convite fica pequeno e fora do caminho. */}
+        {!temBanner && (
+          <div className="mt-3 flex items-center gap-2">
+            <TrocarImagem
+              tipo="banner"
+              temImagem={false}
+              onMudou={(tem) => { setTemBanner(tem); setVersaoImg(Date.now()) }}
+            />
+            <span className="text-[11.5px] font-bold text-fl-ink-3">Adicionar uma capa</span>
+          </div>
+        )}
 
         {/* Os três tiles do desenho. Precisão só com quiz na semana — zero
             inventado diria "você errou tudo" para quem só não estudou. */}

@@ -81,6 +81,7 @@ model User {
   diagnosticoVazamento  DiagnosticoVazamento?
   investimentos         Investimento[]
   objetivos             Objetivo[]
+  imagens               ImagemUsuario[]
   diasAtivos            DiaAtivo[]
   assinatura            Assinatura?
   usoMensalIA           UsoMensalIA[]
@@ -121,6 +122,31 @@ model Investimento {
   atualizadoEm DateTime @updatedAt
 
   @@index([userId])
+}
+
+/// Foto de perfil e banner do usuário (personalização, 14/08/2026).
+///
+/// A imagem mora NO BANCO (data URI base64), de propósito: não existe bucket
+/// na infra hoje, e criar um traria o problema que o backlog registrou — o
+/// Cascade não alcança storage externo, e conta apagada deixaria a foto órfã
+/// num bucket. Aqui a foto morre com a conta, sai na exportação e fica atrás
+/// de RLS como tudo. O preço é tamanho, e ele é controlado nas duas pontas:
+/// o cliente corta e comprime antes de subir (256² a foto, 1280×512 o banner)
+/// e o servidor recusa acima do teto (app/api/imagem).
+///
+/// Visível SÓ para o próprio dono (decisão LGPD do backlog, 14/08): o GET
+/// exige a sessão do dono, e nenhuma superfície de terceiros — rank da sala
+/// incluído — mostra a foto até haver moderação e decisão registrada.
+model ImagemUsuario {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tipo         String // "foto" | "banner"
+  dados        String // data URI completo (data:image/jpeg;base64,…)
+  atualizadoEm DateTime @updatedAt
+  criadoEm     DateTime @default(now())
+
+  @@unique([userId, tipo])
 }
 
 /// Objetivos de poupança (protótipo v2, 14/08/2026): a pessoa cria uma meta

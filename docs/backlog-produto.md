@@ -245,29 +245,32 @@ chegarem, é troca de arquivo, não de código.
 **Pedido novo da fundadora (14/08/2026, fora do protótipo v2) —
 personalização do perfil:**
 
-- **Foto de perfil e banner trocáveis** — o usuário escolhe a própria foto
-  (círculo do avatar) e uma imagem de capa no topo do Perfil, no espírito
-  do mockup de referência que ela enviou (herói de anime sobre o cabeçalho).
-  **A identidade Fin não sai do lugar**: navy + dourado + Nunito seguem
-  mandando na tela inteira — o banner é uma faixa de imagem no topo e a
-  foto entra no círculo; nada além disso muda de cara.
-- O que isso exige, na ordem:
-  1. **Armazenamento de imagens** — não existe hoje; é exatamente o motivo
-     de "Alterar foto" no Menu estar como "em breve". Decidir entre
-     Supabase Storage e Vercel Blob, com limite de tamanho e corte no
-     upload.
-  2. **Campo novo** `User.bannerUrl` (`User.image` já existe — hoje só
-     preenchido pelo Google). Imagem é dado pessoal: entra em
-     `/api/exportar`, morre com a conta, e o arquivo no storage precisa
-     morrer JUNTO (Cascade não alcança bucket).
-  3. **Decisão de design a desenhar**: como a foto convive com o avatar
-     do Fin equipado da loja (`avatarFin`, chip do header da trilha e
-     /trilha/perfil) e com a inicial dourada — o que aparece onde.
-  4. **⚠️ LGPD/segurança antes de expor a foto a terceiros**: hoje o rank
-     da sala mostra só apelido e número, de propósito. Foto de usuário
-     visível para colegas — especialmente com alunos menores do canal
-     escolar — só com moderação e decisão registrada; até lá, foto e
-     banner são visíveis SÓ para o próprio dono.
+- ~~**Foto de perfil e banner trocáveis**~~ ✅ 14/08 — o usuário troca a
+  foto (círculo do avatar) e a capa no topo do Perfil, no espírito do
+  mockup de referência; a identidade Fin não saiu do lugar (a capa é uma
+  faixa de imagem que esmaece pro navy, o resto segue navy+dourado+
+  Nunito). Como ficou cada decisão:
+  1. **Armazenamento: no próprio banco** (`ImagemUsuario`, data URI), NÃO
+     em bucket — decisão pragmática registrada no schema: sem storage na
+     infra, e no banco a imagem morre com a conta pelo Cascade (bucket
+     não morreria), sai na exportação e fica atrás de RLS. O tamanho é
+     controlado nas duas pontas: corte + compressão no cliente (256² a
+     foto, 1280×512 a capa, JPEG) e teto no servidor. Migrar para
+     Supabase Storage/Vercel Blob só se a imagem um dia precisar de CDN
+     (= visibilidade além do dono).
+  2. `User.bannerUrl` **não existiu** — a tabela própria cobre foto E
+     capa com a mesma mecânica; `User.image` (Google) virou fallback da
+     foto.
+  3. **Convivência com o avatar do Fin**: a foto real aparece no Perfil
+     financeiro e no card do Menu; o `avatarFin` da loja continua dono do
+     chip da trilha e do /trilha/perfil. É um default sensato, não um
+     desenho — a fundadora pode redesenhar quando quiser.
+  4. **LGPD cumprida como decidido**: a rota GET exige a sessão do PRÓPRIO
+     dono (sem sessão = 401, provado); nenhuma superfície de terceiros —
+     rank da sala incluído — mostra a foto. Expor a colegas continua
+     exigindo moderação e decisão registrada.
+  Pendência herdada: SVG recusado de propósito (XML executável); HEIC do
+  iPhone não abre no canvas — a mensagem de erro aponta JPG/PNG.
 
 ## Finlow para Escolas — em desenvolvimento (11/08/2026)
 

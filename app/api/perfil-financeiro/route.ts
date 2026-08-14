@@ -67,9 +67,10 @@ export async function GET() {
     const metricas = metricasPerfil(calc)
     const { mes, ano } = mesDaRosca(calc)
 
-    // O cabeçalho de jogo do protótipo v2 (chama, precisão, objetivos). Tudo
-    // acessório: qualquer falha vira ausência, nunca derruba o retrato.
-    const [ofensiva, licoes7d, objetivos] = await Promise.all([
+    // O cabeçalho de jogo do protótipo v2 (chama, precisão, objetivos) e as
+    // imagens da personalização. Tudo acessório: qualquer falha vira
+    // ausência, nunca derruba o retrato.
+    const [ofensiva, licoes7d, objetivos, imagens] = await Promise.all([
       lerOfensiva(userId).catch(() => null),
       db.progressoLicao
         .findMany({
@@ -82,6 +83,9 @@ export async function GET() {
         })
         .catch(() => []),
       listarObjetivos(userId).catch(() => []),
+      db.imagemUsuario
+        .findMany({ where: { userId }, select: { tipo: true } })
+        .catch(() => [] as { tipo: string }[]),
     ])
     const somaAcertos = licoes7d.reduce((s, l) => s + l.acertos, 0)
     const somaQuiz = licoes7d.reduce((s, l) => s + l.totalQuiz, 0)
@@ -104,6 +108,8 @@ export async function GET() {
       noRanking: !!user?.rankingOptIn,
       sequencia: ofensiva?.atual ?? 0,
       precisaoSemana: somaQuiz > 0 ? Math.round((somaAcertos / somaQuiz) * 100) : null,
+      temFoto: imagens.some((i) => i.tipo === "foto"),
+      temBanner: imagens.some((i) => i.tipo === "banner"),
       objetivos:
         objetivos.length > 0
           ? {

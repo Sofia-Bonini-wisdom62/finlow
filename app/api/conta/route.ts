@@ -10,7 +10,7 @@ export async function GET() {
   const userId = await getUserIdOr401()
   if (userId instanceof NextResponse) return userId
 
-  const [user, acesso] = await Promise.all([
+  const [user, acesso, foto] = await Promise.all([
     db.user.findUnique({
       where: { id: userId },
       select: { nome: true, email: true, dataNascimento: true, consentimentoPainelEm: true, senha: true },
@@ -18,6 +18,9 @@ export async function GET() {
     // Para o badge do Menu (FREE / FINLOW+). Falha aqui não derruba a tela de
     // ajustes: sem resposta, o badge mostra FREE — errar para baixo é seguro.
     acessoPremium(userId).catch(() => ({ premium: false })),
+    db.imagemUsuario
+      .findUnique({ where: { userId_tipo: { userId, tipo: "foto" } }, select: { id: true } })
+      .catch(() => null),
   ])
 
   return NextResponse.json({
@@ -27,6 +30,7 @@ export async function GET() {
     painelAtivo: user?.consentimentoPainelEm !== null && user?.consentimentoPainelEm !== undefined,
     temSenha: Boolean(user?.senha),
     premium: acesso.premium,
+    temFoto: !!foto,
   })
 }
 

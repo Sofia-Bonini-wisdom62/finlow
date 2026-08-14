@@ -64,6 +64,13 @@ export async function GET() {
       }),
     ])
 
+    // Personalização: foto e capa saem como data URI — imagem é dado pessoal,
+    // e portabilidade de imagem é a própria imagem, não um "tem foto: sim".
+    const imagens = await db.imagemUsuario.findMany({
+      where: { userId },
+      select: { tipo: true, dados: true, atualizadoEm: true },
+    })
+
     // O jogo (Redesign Fin): carteira, itens e o extrato de coins — tudo dela.
     const [jogoUser, extratoCoins] = await Promise.all([
       db.user.findUnique({
@@ -154,6 +161,7 @@ export async function GET() {
         : null,
       assinatura,
       usoDeIA: usoIA,
+      imagens: imagens.map((i) => ({ tipo: i.tipo, dados: i.dados, atualizadoEm: i.atualizadoEm })),
       jogo: {
         coins: jogoUser?.coins ?? 0,
         energia: jogoUser?.energia ?? null,
