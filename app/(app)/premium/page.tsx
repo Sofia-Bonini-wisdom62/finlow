@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react"
 import { Check, Loader2, TriangleAlert } from "lucide-react"
 import { BottomNav } from "@/components/bottom-nav"
+import { dinheiro, porIntervalo } from "@/lib/formato"
 
 /**
  * Premium: a mesma página vende e administra.
@@ -26,10 +27,20 @@ interface Estado {
   escolaNome: string | null
   saindoNoFimDoPeriodo: boolean
   emAtraso: boolean
+  /** O que a Stripe JÁ cobrou de quem assina. Não existe para quem não assina. */
   valorCentavos: number | null
   proximaCobranca: string | null
   expiraEm: string | null
   cota: { usados: number; teto: number | null; restam: number | null; podeUsar: boolean }
+  /** O preço de tabela, para quem ainda vai decidir. Vem do mesmo id de preço
+   *  que o checkout cobra (`lib/pagamento/preco.ts`). `null` quando a Stripe não
+   *  respondeu ou não está configurada — a tela tem estado próprio para isso. */
+  plano: {
+    valorCentavos: number
+    moeda: string
+    intervalo: string
+    intervaloContagem: number
+  } | null
 }
 
 const VANTAGENS = [
@@ -38,11 +49,6 @@ const VANTAGENS = [
   "Diagnóstico de vazamentos sempre atualizado",
   "Trilha completa, sem espera entre as lições",
 ]
-
-function reais(centavos: number | null): string {
-  if (centavos == null) return "—"
-  return (centavos / 100).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
-}
 
 function dia(iso: string | null): string {
   if (!iso) return "—"
@@ -233,7 +239,9 @@ export default function PremiumPage() {
           <div className="mt-6 space-y-4">
             <div className="rounded-2xl border border-fl-sand bg-fl-card p-5">
               <p className="text-sm text-fl-ink/70">Valor</p>
-              <p className="text-xl font-semibold text-fl-ink">{reais(estado?.valorCentavos ?? null)} por mês</p>
+              <p className="text-xl font-semibold text-fl-ink">
+                {dinheiro(estado?.valorCentavos ?? null)} por mês
+              </p>
 
               {estado?.saindoNoFimDoPeriodo ? (
                 // Cancelamento pedido: o acesso continua, e dizer isso é o
@@ -306,6 +314,59 @@ export default function PremiumPage() {
               </ul>
             </div>
 
+            {/* O PREÇO, ANTES DO BOTÃO.
+                Esta tela passou a existir com o valor visível só para quem já
+                pagava: quem não paga via as vantagens, um "Assinar" e a letra
+                miúda "cobrança mensal pelo cartão", sem número nenhum. O preço
+                aparecia na tela da Stripe, depois do clique — e pedir para
+                alguém clicar em assinar para descobrir quanto custa é o desenho
+                de um dark pattern, mesmo sem a intenção de ser um.
+
+                O valor e a periodicidade vêm do MESMO id de preço que o checkout
+                cobra. Ver `lib/pagamento/preco.ts`: é o que impede a tela de
+                anunciar um número e a fatura trazer outro. */}
+            <div className="rounded-2xl border border-fl-sand bg-fl-card p-5">
+              {estado?.plano ? (
+                <>
+                  {/* Não repete "Finlow Premium", que já é o h1 da tela: o
+                      rótulo aqui é a pergunta que a pessoa veio fazer. */}
+                  <p className="text-sm text-fl-ink/70">Quanto custa</p>
+                  <p className="mt-1 text-3xl font-semibold tabular-nums text-fl-ink">
+                    {dinheiro(estado.plano.valorCentavos, estado.plano.moeda)}
+                    <span className="text-base font-normal text-fl-ink/60">
+                      {" "}
+                      {porIntervalo(estado.plano.intervalo, estado.plano.intervaloContagem)}
+                    </span>
+                  </p>
+                  <p className="mt-3 text-sm text-fl-ink/70">
+                    Sem fidelidade e sem multa: você cancela quando quiser e mantém o acesso
+                    até o fim do período já pago.
+                  </p>
+                </>
+              ) : (
+                // Sem preço, o defeito voltaria inteiro — então a tela diz que
+                // não sabe, em vez de deixar o botão sozinho como antes. Não
+                // desabilita o botão: o checkout da Stripe mostra o valor antes
+                // de qualquer cobrança, e travar a compra por uma falha de
+                // leitura seria pior do que ela.
+                <>
+                  <p className="text-sm font-medium text-fl-ink">
+                    Não consegui carregar o valor agora.
+                  </p>
+                  <p className="mt-2 text-sm text-fl-ink/70">
+                    O preço aparece na tela de pagamento, antes de qualquer cobrança — nada é
+                    cobrado sem você confirmar lá.
+                  </p>
+                  <button
+                    onClick={() => void buscar()}
+                    className="mt-3 text-sm font-medium text-fl-500 underline underline-offset-4"
+                  >
+                    Tentar de novo
+                  </button>
+                </>
+              )}
+            </div>
+
             <button
               onClick={assinar}
               disabled={ocupado}
@@ -314,7 +375,12 @@ export default function PremiumPage() {
               {ocupado ? "Abrindo pagamento…" : "Assinar"}
             </button>
             <p className="text-center text-xs text-fl-ink/50">
-              Cobrança mensal pelo cartão. Cancele quando quiser, sem multa.
+              {estado?.plano
+                ? `${dinheiro(estado.plano.valorCentavos, estado.plano.moeda)} ${porIntervalo(
+                    estado.plano.intervalo,
+                    estado.plano.intervaloContagem
+                  )}, no cartão. Cancele quando quiser, sem multa.`
+                : "Cobrança recorrente pelo cartão. Cancele quando quiser, sem multa."}
             </p>
           </div>
         )}

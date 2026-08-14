@@ -20,10 +20,13 @@ import { config } from "dotenv"
 config({ path: ".env.local" })
 config({ path: ".env" })
 
+import { readFileSync } from "node:fs"
 import type Stripe from "stripe"
 import { decidirAcesso, type StatusAssinatura } from "../lib/pagamento/acesso.js"
 import { mesSP, TETO_GRATIS_TOKENS } from "../lib/pagamento/tokens.js"
 import { idDaAssinaturaNaFatura, fimDoPeriodo, conferirAmbiente } from "../lib/pagamento/stripe.js"
+import { lerPrecoDaStripe } from "../lib/pagamento/preco.js"
+import { dinheiro, porIntervalo } from "../lib/formato.js"
 
 let falhas = 0
 let total = 0
@@ -174,6 +177,151 @@ conferir(
 conferir(
   "sk_live em produção apontando para localhost é BARRADO",
   ok(conferirAmbiente("sk_live_123", "production", "http://localhost:3000")),
+  false
+)
+
+// ------------------------------------------------- o preço para quem não paga ---
+// A tela de /premium mostrava o valor SÓ para quem já assinava. Quem não assina
+// via vantagens, um "Assinar" e nenhum número — e o preço só aparecia depois do
+// clique, na Stripe. Estes casos guardam as duas metades do conserto: ler o
+// preço certo, e nunca inventar um quando ele não existe.
+console.log("\nlerPrecoDaStripe — o que vira preço na tela")
+
+const precoMensal = {
+  active: true,
+  currency: "brl",
+  unit_amount: 1990,
+  recurring: { interval: "month", interval_count: 1 },
+} as unknown as Stripe.Price
+
+conferir("preço mensal comum", lerPrecoDaStripe(precoMensal), {
+  valorCentavos: 1990,
+  moeda: "BRL",
+  intervalo: "month",
+  intervaloContagem: 1,
+})
+// A moeda da Stripe vem minúscula e o Intl exige maiúscula: sem isto o
+// formatador lança RangeError e a tela inteira cai.
+conferir("a moeda sobe para maiúscula", lerPrecoDaStripe(precoMensal)?.moeda, "BRL")
+conferir(
+  "trimestral preserva a contagem",
+  lerPrecoDaStripe({
+    ...precoMensal,
+    recurring: { interval: "month", interval_count: 3 },
+  } as unknown as Stripe.Price)?.intervaloContagem,
+  3
+)
+conferir(
+  "anual preserva o intervalo",
+  lerPrecoDaStripe({
+    ...precoMensal,
+    recurring: { interval: "year", interval_count: 1 },
+  } as unknown as Stripe.Price)?.intervalo,
+  "year"
+)
+
+console.log("\nlerPrecoDaStripe — os casos em que NÃO existe um preço para estampar")
+// Cada um destes, devolvendo um número, faria a tela anunciar algo que a fatura
+// não confirmaria. `null` manda a tela para o estado "não consegui carregar".
+conferir(
+  "preço em faixas (unit_amount nulo) não vira número",
+  lerPrecoDaStripe({ ...precoMensal, unit_amount: null } as unknown as Stripe.Price),
+  null
+)
+conferir(
+  "cobrança única não vira 'por mês'",
+  lerPrecoDaStripe({ ...precoMensal, recurring: null } as unknown as Stripe.Price),
+  null
+)
+conferir(
+  "preço arquivado não é anunciado (a Stripe recusa o checkout com ele)",
+  lerPrecoDaStripe({ ...precoMensal, active: false } as unknown as Stripe.Price),
+  null
+)
+conferir(
+  "valor negativo é dado corrompido, não desconto",
+  lerPrecoDaStripe({ ...precoMensal, unit_amount: -1990 } as unknown as Stripe.Price),
+  null
+)
+conferir("preço ausente não quebra", lerPrecoDaStripe(null), null)
+// O tipo do SDK admite intervalos que ainda não existem. Sem periodicidade que
+// se saiba dizer em português, o número viraria "por quarter" na tela.
+conferir(
+  "intervalo desconhecido não vira número solto",
+  lerPrecoDaStripe({
+    ...precoMensal,
+    recurring: { interval: "quarter", interval_count: 1 },
+  } as unknown as Stripe.Price),
+  null
+)
+// Grátis é um preço válido — 0 não pode cair no mesmo balde de "não sei".
+conferir(
+  "zero é preço, não ausência de preço",
+  lerPrecoDaStripe({ ...precoMensal, unit_amount: 0 } as unknown as Stripe.Price)?.valorCentavos,
+  0
+)
+// interval_count ausente é o formato antigo/parcial; 1 é o padrão da Stripe.
+conferir(
+  "sem interval_count assume 1",
+  lerPrecoDaStripe({
+    ...precoMensal,
+    recurring: { interval: "month" },
+  } as unknown as Stripe.Price)?.intervaloContagem,
+  1
+)
+
+// ------------------------------------------------ o valor escrito na tela ---
+console.log("\ndinheiro — centavos da Stripe viram texto")
+conferir("1990 centavos em BRL", dinheiro(1990, "BRL").replace(/ /g, " "), "R$ 19,90")
+conferir("valor redondo mantém as casas", dinheiro(2000, "BRL").replace(/ /g, " "), "R$ 20,00")
+conferir("sem valor vira travessão, não R$ 0,00", dinheiro(null), "—")
+// A armadilha das moedas sem centavos: ¥1990 são mil novecentos e noventa
+// ienes. Um `/100` fixo escreveria "¥ 19,90" e erraria por cem vezes.
+conferir("moeda sem centavos não é dividida por 100", /1\.990/.test(dinheiro(1990, "JPY")), true)
+conferir("a mesma quantia em BRL é dividida", /19,90/.test(dinheiro(1990, "BRL")), true)
+// Moeda inválida faz o Intl lançar. A tela não pode deixar de renderizar por isso.
+conferir("moeda inválida não derruba a tela", typeof dinheiro(1990, "XYZ12"), "string")
+
+console.log("\nporIntervalo — a periodicidade acompanha o preço, não o texto fixo")
+conferir("mensal", porIntervalo("month", 1), "por mês")
+conferir("anual", porIntervalo("year", 1), "por ano")
+conferir("semanal", porIntervalo("week", 1), "por semana")
+conferir("trimestral pluraliza", porIntervalo("month", 3), "a cada 3 meses")
+conferir("bienal pluraliza", porIntervalo("year", 2), "a cada 2 anos")
+conferir("sem contagem assume 1", porIntervalo("month"), "por mês")
+
+// ------------------------------------- a tela e a cobrança na MESMA fonte ---
+// Estas quatro conferências não olham comportamento, olham código — porque o
+// defeito que elas guardam não quebra build, typecheck nem lint. Um preço
+// escrito à mão na tela, ou lido de outra variável de ambiente, compila
+// perfeitamente e só se revela na fatura de alguém.
+console.log("\na tela mostra o preço que o checkout cobra")
+
+const fonte = (caminho: string) => readFileSync(new URL(`../${caminho}`, import.meta.url), "utf8")
+const telaPremium = fonte("app/(app)/premium/page.tsx")
+const rotaCheckout = fonte("app/api/pagamento/checkout/route.ts")
+const libPreco = fonte("lib/pagamento/preco.ts")
+const rotaAssinatura = fonte("app/api/pagamento/assinatura/route.ts")
+
+const varDoCheckout = rotaCheckout.match(/process\.env\.(STRIPE_[A-Z_]*PRICE[A-Z_]*)/)?.[1] ?? null
+const varDoPreco = libPreco.match(/process\.env\.(STRIPE_[A-Z_]*PRICE[A-Z_]*)/)?.[1] ?? null
+conferir("o checkout cobra por um id de preço do ambiente", varDoCheckout, "STRIPE_PRICE_ID")
+conferir("a leitura do preço usa EXATAMENTE a mesma variável", varDoPreco, varDoCheckout)
+
+conferir("a rota de assinatura entrega o plano para a tela", /\bplano,?\n/.test(rotaAssinatura), true)
+// O bloco de quem NÃO assina é o segundo ramo do ternário do premium; basta
+// garantir que a tela lê o plano e não um número fixo em algum lugar dela.
+conferir("a tela lê o plano da API", /estado\.plano\.valorCentavos/.test(telaPremium), true)
+conferir(
+  "nenhum preço em reais escrito à mão na tela",
+  /R\$\s?\d/.test(telaPremium.replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, "")),
+  false
+)
+// A letra miúda dizia "Cobrança mensal" com o intervalo vindo da Stripe: se o
+// preço virar anual no painel, a frase fixa passaria a mentir.
+conferir(
+  "a letra miúda não afirma 'mensal' por conta própria",
+  /Cobrança mensal/.test(telaPremium.replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, "")),
   false
 )
 
