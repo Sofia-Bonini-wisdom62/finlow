@@ -71,10 +71,30 @@ o extrato passa a conferir o que chega contra o que já está lançado.
 > cafés de R$ 12 no mesmo dia), e desmarcar linha verdadeira faz faltar dinheiro
 > no total tanto quanto duplicata faz sobrar.
 
-## Melhorar prompt e personalização do agente
+## ~~Melhorar prompt e personalização do agente~~ ✅ 08/08/2026
 
 Permitir que o agente se conecte melhor com o usuário por uma definição de
 personalidade de resposta.
+
+> Entregue em `lib/personalidade.ts` (catálogo e bloco de prompt),
+> `lib/personalidade-repo.ts` (leitura e gravação) e a tela
+> `/personalidade`, em Menu > Personalidade do assistente. Cinco tons —
+> Equilibrado (padrão), Direto ao ponto, Acolhedor, Explicador, Incentivador —
+> mais um campo livre de 200 caracteres para a pessoa escrever como quer ser
+> atendida. O tom vale no chat e também no onboarding refeito, para o
+> assistente não trocar de voz entre as duas telas.
+>
+> **A decisão que sustenta o resto:** tom muda COMO ele fala, nunca O QUE é
+> verdade. O bloco do prompt repete, em todos os tons, que continuam valendo os
+> números do contexto, o "não sei" quando não há dado, o não julgar gasto, o
+> não recomendar ativo e o formato JSON. Sem essa cláusula, a escolha de tom
+> viraria uma porta para afrouxar as regras que protegem os números — e o campo
+> livre seria um segundo prompt de sistema escrito pelo usuário.
+>
+> O campo livre entra no prompt cercado: rotulado como preferência, marcado
+> como texto não confiável, sem quebra de linha (não forja seção nossa) e sem
+> aspas duplas (não fecha o delimitador). `scripts/testar-personalidade.mts`
+> cobre as duas coisas, e o teste foi conferido contra o código mutilado.
 
 ## ~~Tela de fim de cada lição~~ ✅ 06/08/2026
 
@@ -367,16 +387,87 @@ Lista do mais crítico ao mais simples; cada item é um trabalho independente.
    > FAQ nem o formulário voltaram a prometer acesso que já está aberto. Nenhuma
    > dessas coisas quebra build, typecheck ou lint — some sem avisar.
 
-2. **🔴 Landing promete conexão automática de contas que não existe.** "Suas
-   transações entram sozinhas, nada de digitar CSV" descreve Open Finance, que
-   está aqui no backlog (ver *Conector Open Finance*, acima). O produto real é
-   upload de extrato. Quebra de confiança no primeiro contato — corrigir a
-   copy para o que existe hoje, até o conector nascer.
+2. ~~**🔴 Landing promete conexão automática de contas que não existe.**~~
+   ✅ **13/08/2026.** "Suas transações entram sozinhas, nada de digitar CSV"
+   descreve Open Finance, que está aqui no backlog (ver *Conector Open
+   Finance*, acima). O produto real é upload de extrato.
 
-3. **🔴 /premium não mostra o preço para quem não assina.** O `valorCentavos`
-   só renderiza no estado de quem já paga (`app/(app)/premium/page.tsx:213`).
-   Quem não paga vê vantagens → botão "Assinar" → "cobrança mensal pelo
-   cartão", sem valor. Ninguém clica "Assinar" às cegas; parece dark pattern.
+   > **O app logado já dizia a verdade.** Ajustes lista "Bancos conectados"
+   > como `EmBreve`, com o motivo escrito: *"Requer Open Finance. Por ora, o
+   > extrato faz o mesmo trabalho"* (`app/(app)/ajustes/page.tsx:272`). A home
+   > vendia o mesmo recurso como o **passo 1** de "Como funciona". É a mesma
+   > forma do item 1: a tela de dentro coerente e a de fora não.
+   >
+   > **O que mudou:** o passo 1 virou "Suba seu extrato" e descreve o caminho
+   > real — exportar PDF, CSV ou OFX pelo app do banco. Ele troca uma promessa
+   > falsa por uma verdade mais forte que ela: o arquivo é lido **no próprio
+   > navegador** e o servidor recebe só o texto extraído
+   > (`lib/extrato/ler-no-navegador.ts`). O passo 2 ganhou "nada entra sem a
+   > sua confirmação", que também já era verdade e não estava dita.
+   >
+   > **A pergunta não foi varrida para debaixo do tapete.** Abaixo dos três
+   > passos, um bloco responde "E a conexão automática com o banco?" com
+   > *está no plano, mas ainda não existe*. Sumir com o assunto deixaria quem
+   > veio pelo recurso sem resposta; dizer que existe é o defeito que se está
+   > corrigindo.
+   >
+   > **Guardado por `scripts/testar-landing.mts`** (sem banco, sem build), e a
+   > checagem é amarrada ao código, não à data: ela só exige a copy honesta
+   > **enquanto não houver conector** (`app/api/open-finance`, `lib/open-finance`
+   > ou dependência de agregador no `package.json`) — no dia em que ele nascer,
+   > afrouxa sozinha em vez de virar teste mentiroso pedindo para ser apagado.
+   > Também confere que a home não contradiz o `EmBreve` do Ajustes, e que
+   > **todo formato citado na home é aceito pelo `accept` da tela de upload** —
+   > prometer XLSX na home e não aceitar XLSX na tela é a mesma falha, menor.
+
+3. ~~**🔴 /premium não mostra o preço para quem não assina.**~~ ✅ **14/08/2026.**
+   O `valorCentavos` só renderiza no estado de quem já paga
+   (`app/(app)/premium/page.tsx:213`). Quem não paga vê vantagens → botão
+   "Assinar" → "cobrança mensal pelo cartão", sem valor. Ninguém clica
+   "Assinar" às cegas; parece dark pattern.
+
+   > **O campo que existia não servia, e essa é a causa.** `valorCentavos` é o
+   > que a Stripe JÁ cobrou daquela pessoa, e mora na linha de `Assinatura` —
+   > que só nasce depois do primeiro pagamento. A tela sabia o valor
+   > exatamente para quem não precisava mais dele. Não dava para "só mostrar o
+   > campo no outro ramo": não havia campo.
+   >
+   > **O que mudou:** `lib/pagamento/preco.ts` (novo) lê o preço na Stripe pelo
+   > `STRIPE_PRICE_ID` — **o mesmo id que `app/api/pagamento/checkout/route.ts`
+   > põe no `line_items`**. `/api/pagamento/assinatura` passa a devolver
+   > `plano` (valor, moeda, intervalo) para quem não é premium, e `/premium`
+   > mostra o valor em destaque logo acima do botão, com a periodicidade e a
+   > letra miúda tirando o número da mesma fonte.
+   >
+   > **A fonte única é o ponto, não um detalhe.** Um preço escrito no código
+   > (ou num `NEXT_PUBLIC_PRECO`) começaria certo e ficaria errado no primeiro
+   > reajuste feito no painel da Stripe — e o modo de falhar seria anunciar um
+   > valor e cobrar outro, que é pior que não anunciar nenhum. Pelo mesmo
+   > motivo o "por mês" deixou de ser texto fixo: ele vem do `recurring` do
+   > preço, então trocar o plano para anual no painel muda a frase sozinho.
+   >
+   > **Quando não há preço para afirmar, a tela diz isso.** Stripe fora do ar,
+   > variável faltando, preço arquivado, preço em faixas ou de cobrança única:
+   > todos caem num estado que avisa que o valor não carregou, lembra que ele
+   > aparece no checkout antes de qualquer cobrança e oferece "Tentar de novo".
+   > O botão continua funcionando — travar a compra por uma falha de leitura
+   > seria um defeito maior que o original.
+   >
+   > **Guardado em `scripts/testar-pagamento.mts`** (roda sem banco, com
+   > `--conditions react-server`): 62 casos, 36 novos. Além da leitura do preço
+   > e da formatação (inclusive moeda sem centavos, onde um `/100` fixo erraria
+   > por cem vezes), quatro conferências olham o CÓDIGO — que a tela e o
+   > checkout leiam a MESMA variável de ambiente, que a rota entregue o plano,
+   > que não exista `R$` escrito à mão na tela e que a letra miúda não afirme
+   > "mensal" por conta própria. Nada disso quebra build, typecheck ou lint:
+   > um preço errado na tela compila perfeitamente e só se revela na fatura de
+   > alguém.
+   >
+   > **O que continua em aberto, e é decisão sua:** o preço só é visível para
+   > quem está logado — `/premium` é tela de dentro do app. A landing segue sem
+   > página de preços, e o FAQ ("Vai ter custo?") continua descrevendo o modelo
+   > sem citar valor. Publicar o número na home é escolha comercial, não
+   > conserto de defeito, e não entrou aqui por isso.
 
 4. **🟠 Cadastro com fricção.** Sem as chaves OAuth na Vercel o botão Google
    não aparece (pendência já registrada em `estado-do-produto.md`); sobra

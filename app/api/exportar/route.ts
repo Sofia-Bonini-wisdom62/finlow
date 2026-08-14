@@ -5,6 +5,7 @@ import { listarTransacoes, listarContasFixas } from "@/lib/financeiro-repo"
 import { lerDiagnostico } from "@/lib/vazamento-repo"
 import { listarInvestimentos } from "@/lib/investimento-repo"
 import { listarObjetivos } from "@/lib/objetivo-repo"
+import { lerPersonalidade } from "@/lib/personalidade-repo"
 
 export const dynamic = "force-dynamic"
 
@@ -16,7 +17,7 @@ export async function GET() {
   if (userId instanceof NextResponse) return userId
 
   try {
-    const [user, categorias, contas, transacoes, progresso, indicacoesFeitas, indicacaoRecebida, diagnostico, investimentos, objetivos, assinatura, usoIA] = await Promise.all([
+    const [user, categorias, contas, transacoes, progresso, indicacoesFeitas, indicacaoRecebida, diagnostico, investimentos, objetivos, assinatura, usoIA, personalidade] = await Promise.all([
       db.user.findUnique({
         where: { id: userId },
         select: { nome: true, email: true, celular: true, dataNascimento: true, criadoEm: true, consentimentoPainelEm: true, codigoIndicacao: true },
@@ -62,6 +63,10 @@ export async function GET() {
         select: { mes: true, tokensEntrada: true, tokensSaida: true, chamadas: true },
         orderBy: { mes: "asc" },
       }),
+      // O tom escolhido e, principalmente, o texto livre: ele é escrito pela
+      // pessoa sobre ela mesma e fica cifrado no banco, então é exatamente o
+      // tipo de dado que a portabilidade existe para devolver.
+      lerPersonalidade(userId),
     ])
 
     // Personalização: foto e capa saem como data URI — imagem é dado pessoal,
@@ -107,6 +112,10 @@ export async function GET() {
     const dump = {
       exportadoEm: new Date().toISOString(),
       conta: user,
+      personalidadeAssistente: {
+        tom: personalidade.id,
+        comoQuerSerAtendida: personalidade.detalhe || null,
+      },
       categorias,
       // a exportação sai em CLARO de propósito: é o direito de portabilidade da
       // LGPD, e um arquivo cifrado com chave que o usuário não tem seria inútil

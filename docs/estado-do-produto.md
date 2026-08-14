@@ -7,11 +7,10 @@ um app para adolescentes que já não existia).
 
 Legenda: ✅ pronto · 🔧 em desenvolvimento · 📋 planejado · 🚫 fora deste repo
 
-Última revisão: 07/08/2026 — varredura de resto morto e das portas que ele
-deixou abertas (seção *Limpeza* abaixo). Nenhuma funcionalidade mudou de
-status; o que mudou foi o que existia por baixo delas. A trilha de Ensino Médio
-segue portada e semeada atrás do gate de público, e as cinco fases do script do
-Plano 2026–2029 seguem entregues.
+Última revisão: 08/08/2026 — o assistente deixou de ter uma voz só (seção
+*Personalidade do assistente* abaixo). A trilha de Ensino Médio segue portada e
+semeada atrás do gate de público, e as cinco fases do script do Plano 2026–2029
+seguem entregues.
 
 ## Núcleo
 
@@ -25,6 +24,7 @@ Plano 2026–2029 seguem entregues.
 | Análises (gráficos, categorias, tetos, saúde) | ✅ | `app/(app)/analises` |
 | Onboarding conversacional + pipeline de 6 passos | ✅ | `app/(app)/onboarding`, `lib/onboarding/pipeline.ts` |
 | Memória do assistente (opt-in, cifrada, apagável) | ✅ | `lib/memoria-repo.ts`, `/memoria` |
+| Personalidade do assistente (5 tons + campo livre cifrado) | ✅ | `lib/personalidade.ts`, `/personalidade` |
 | Trilha em corredor: 4 lições por módulo, em sequência | ✅ | `lib/corredor.ts`, `lib/licoes.ts` |
 | Tela de fim de lição (XP, tempo, acertos, conceito) | ✅ | `components/trilha/FimDaLicao.tsx` |
 | Ordem do corredor personalizada por situação + nível | ✅ | `lib/situacoes.ts`, `lib/posicionar-trilha.ts` |
@@ -35,6 +35,7 @@ Plano 2026–2029 seguem entregues.
 | Login com Google | ✅ | botão pronto; falta chave OAuth na Vercel |
 | Trava de conteúdo impróprio (saída + registros) | ✅ | `lib/conteudo-proibido.ts` |
 | Exportar dados (LGPD) + apagar conta em cascade | ✅ | `/api/exportar`, `/api/conta` |
+| Apagar dados financeiros, com a lista conferida contra o schema | ✅ 10/08/2026 | `lib/dados-financeiros.ts`, `lib/apagar-financeiro.ts` |
 | Cifra AES-256-GCM + RLS em todas as tabelas | ✅ | `lib/cripto.ts`, `prisma/seguranca-rls.sql` |
 
 ## Entregas deste script (Plano 2026–2029)
@@ -164,7 +165,49 @@ arquivo dizia, e por isso aparecem aqui:
 | Open Finance / agregador bancário | 📋 planejado, **sem trava de documentação** | **Deixou de ser "outra frente" em 05/08/2026.** Estava marcado 🚫 aqui e o README dizia "este repo não toca nesse tema". Passou para o backlog: conectar bancos no app para puxar extrato, saldo, contas fixas. Enquanto não começa, o caminho real de entrada de dados continua sendo o upload de extrato. **Em 11/08/2026 caiu o último resto** (o comentário de `Investimento` no `schema.prisma`): nenhuma decisão registrada é contrariada por começar. O que trava agora é escolher o agregador regulado — contrato, custo por conta e credencial —, que é decisão de produto, não de código. |
 | Conferência de duplicata na entrada de dados | ✅ entregue em 11/08/2026 | O extrato compara o que chega com o que já está lançado e confirmado. **Corrigiu defeito de hoje:** sem isso, dois extratos com período sobreposto (o caso comum, já que o corte é de 3 meses) gravavam o trecho comum duas vezes e o dash contava o dobro, sem sinal na tela. Regra em `lib/extrato/duplicatas.ts`, pura e sem banco — `descricao` e `valor` são cifrados com IV aleatório, então a comparação não pode acontecer em SQL. Nunca apaga: descrição igual chega desmarcada, mesmo dia/valor com outro nome chega marcada e sinalizada. É também a metade da ingestão que o conector Open Finance exige e que não depende de qual agregador for escolhido — sincronização diária reentrega a mesma transação por definição. |
 | Porta de entrada na landing | ✅ entregue em 12/08/2026 | Item 1 da avaliação UX. A home não tinha nenhum link `Entrar` ou `Criar conta` — quem já tinha conta precisava adivinhar `/login` na barra de endereço — enquanto o FAQ respondia "O Finlow já está disponível? **Ainda não**" com o app inteiro no ar no mesmo domínio, e o Menu do app logado apontava para esse mesmo FAQ. As duas metades caíram juntas porque uma sem a outra fica incoerente. A captura de e-mail deixou de ser lista de espera (o cadastro é aberto, então "avisamos quando abrir" era promessa vencida); `Waitlist`, `/api/waitlist` e a limpeza no delete de conta seguem intactas — mudou só o que a tela promete. Guardado por `scripts/testar-landing.mts`, sem banco. |
+| Copy da landing alinhada ao produto real | ✅ entregue em 13/08/2026 | Item 2 da avaliação UX. O passo 1 de "Como funciona" era **"Conecte suas contas — suas transações entram sozinhas, nada de digitar CSV"**: isso é Open Finance, que está no backlog e não foi construído. O app logado já dizia a verdade — Ajustes lista "Bancos conectados" como `EmBreve` com o motivo à vista ("Requer Open Finance. Por ora, o extrato faz o mesmo trabalho") — enquanto a home vendia o recurso como pronto; mesma forma do item 1, a tela de dentro coerente e a de fora não. O passo virou "Suba seu extrato" e troca a promessa falsa por uma verdade mais forte: o arquivo é lido **no navegador da pessoa** e o servidor recebe só o texto (`lib/extrato/ler-no-navegador.ts`). O passo 2 passou a dizer o "nada entra sem confirmar", que já era verdade e não estava dito. A pergunta não sumiu: um bloco abaixo dos três passos responde que a conexão automática **está no plano e ainda não existe**. Guardado por `scripts/testar-landing.mts`, sem banco — e a checagem é amarrada ao código, não à data: afrouxa sozinha quando o conector existir, confere que a home não contradiz o `EmBreve` do Ajustes e que todo formato citado na home está no `accept` da tela de upload. |
 | Trilha em blocos de 4 lições, com sequência travada | ✅ entregue em 06/08/2026 | Era "em conflito" com a biblioteca posicionada. Sofia decidiu pelo corredor com a ressalva à vista, escolhendo travar **entre módulos**. A documentação da biblioteca caiu no mesmo commit — este arquivo, `resumo-de-funcao.md`, `backlog-trilha-t2.md`, o comentário de `Modulo.situacoes` e `app/trilha/page.tsx`. |
+
+## Personalidade do assistente (08/08/2026)
+
+O tom deixou de ser fixo. Em Menu > Personalidade do assistente a pessoa
+escolhe entre cinco tons e, se quiser, escreve em até 200 caracteres como quer
+ser atendida.
+
+| Promessa | Status | Onde |
+|---|---|---|
+| 5 tons, com amostra da mesma frase em cada um | ✅ | `lib/personalidade.ts`, `/personalidade` |
+| Campo livre, cifrado, na exportação LGPD | ✅ | `User.personalidadeDetalhe`, `/api/exportar` |
+| Vale no chat e no onboarding refeito | ✅ | `app/api/chat`, `app/api/onboarding` |
+| O assistente sabe indicar a tela | ✅ | `lib/app-mapa.ts`, `scripts/testar-mapa.mts` |
+| Tom não afrouxa regra de número, limite nem formato | ✅ | `scripts/testar-personalidade.mts` |
+
+**A linha que separa tom de conteúdo, e por que ela está no prompt em voz
+alta.** O bloco de personalidade fica ao lado das regras que protegem os
+números, e o modelo lê os dois no mesmo texto. Por isso todo tom carrega, junto,
+a cláusula do que ele NÃO muda: usar somente os números do contexto, dizer que
+não tem o dado quando não tem, não julgar gasto, não recomendar ativo e
+responder no formato JSON. Um tom que precisasse quebrar uma dessas regras não
+seria um tom.
+
+**O campo livre é a primeira vez que texto do usuário entra no prompt de
+sistema.** A memória também guarda frase dela, mas passa por validação e nasce
+desligada; este campo é lido em toda resposta. Ele entra rotulado como
+preferência, marcado como não confiável, sem quebra de linha (não forja seção
+nossa) e sem aspas duplas (não fecha o delimitador). Baixo calão não entra, pela
+mesma trava da memória.
+
+**Antes de subir para produção — passo de banco.** `User` ganhou duas colunas
+(`personalidadeIA`, `personalidadeDetalhe`). Rode `pnpm db:push` **antes** do
+deploy do código. Nenhuma tabela nova, então não há passo de RLS novo: as
+colunas herdam a política que já protege `User`. Se o código subir primeiro, a
+leitura cai no tom padrão e loga o motivo, em vez de derrubar o chat — mas isso
+é rede de proteção, não a ordem certa.
+
+**O arquivo do banco ficou uma regeneração atrás.** `docs/banco/01-esquema.sql`
+não tem as duas colunas novas. Ele não se edita à mão (ver o README da pasta):
+para atualizar, rode `node --import tsx scripts/exportar-banco.mts` com acesso
+ao banco.
 
 ## Limpeza do pré-pivô (07/08/2026)
 
@@ -217,10 +260,11 @@ nada foi cobrado de ninguém. O que existe e está verificado:
 | Peça | Estado |
 |---|---|
 | `Assinatura` + `UsoMensalIA` no banco, com RLS | ✅ |
-| Regra de acesso num só lugar (`decidirAcesso`) | ✅ 26/26 casos em `scripts/testar-pagamento.mts` |
+| Regra de acesso num só lugar (`decidirAcesso`) | ✅ 62/62 casos em `scripts/testar-pagamento.mts` |
 | Checkout, webhook, cancelamento, estado | ✅ compilam e estão registrados |
 | Limite grátis por tokens, guard antes do Vertex | ✅ |
 | Telas `/premium` e `/premium/obrigado` | ✅ |
+| **Preço visível para quem ainda não assina** | ✅ 14/08 — `lib/pagamento/preco.ts` lê o `STRIPE_PRICE_ID` que o checkout cobra |
 | Assinatura no `/api/exportar` e cancelada no delete da conta | ✅ |
 | **Um checkout de ponta a ponta com cartão** | ❌ **nunca rodou** |
 | **Webhook recebendo evento real da Stripe** | ❌ **nunca rodou** |
@@ -252,6 +296,20 @@ silenciosa. Estão descritos em `lib/pagamento/stripe.ts`, com teste para cada u
   onboarding, eventos de pontuação e insights — e o que falta é justamente o
   mais sensível. O *delete* cobre tudo por cascade; a exportação, não.
   (Assinatura e uso de IA entraram em 10/08; o resto continua de fora.)
+
+  > O lado do apagar tinha o defeito espelhado, e foi corrigido em 10/08/2026:
+  > "Apagar meus dados financeiros" deixava para trás investimento, orçamento
+  > de mês inteiro, extrato importado, diagnóstico e insights, enquanto a tela
+  > respondia "Dados financeiros apagados.". A lista agora é dado em
+  > `lib/dados-financeiros.ts`, conferida contra o `schema.prisma` — tabela do
+  > usuário sem classificação derruba `scripts/testar-apagar-dados.mts`. Falta
+  > o mesmo tratamento do lado da exportação.
+
+- **`RecomendacaoTrilha.motivo` é decisão de produto em aberto.** É texto livre
+  escrito pela IA a partir dos números da pessoa, e nada impede a frase de citar
+  um valor. Ficou FORA de "apagar dados financeiros" porque é trilha, não
+  dinheiro — mas a chamada é de produto. Se a decisão for que ele também sai, é
+  mover uma linha em `lib/dados-financeiros.ts`.
 - R1 (política escrita de retenção/privacidade): a engenharia existe
   (consentimento separado, cifra, RLS, exclusão, exportação); falta o texto
   jurídico — base legal, finalidade, prazo de retenção.

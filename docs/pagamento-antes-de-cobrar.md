@@ -96,6 +96,26 @@ casos estão em `scripts/testar-pagamento.mts`.
 O `STRIPE_PRICE_ID` do modo live é **outro id**: preço criado no teste não existe
 no live. Criar o produto e o preço de novo, em live, é passo obrigatório.
 
+⚠️ **Desde 14/08 o `STRIPE_PRICE_ID` também é o que a tela MOSTRA.** Antes ele só
+era cobrado; agora `lib/pagamento/preco.ts` lê esse mesmo preço na Stripe e
+`/premium` estampa o valor e a periodicidade para quem ainda não assina. Duas
+consequências práticas:
+
+- **Sem essa variável, a tela não mostra valor nenhum** — ela cai num estado que
+  diz "não consegui carregar o valor agora" e manda a pessoa ver o preço no
+  checkout. Não quebra nada, mas é o defeito que o item foi corrigir voltando
+  pela porta dos fundos. Se `/premium` aparecer assim em produção, o problema é
+  configuração, e o log traz a linha `[preco]` dizendo qual dos casos foi.
+- **Reajuste feito no painel aparece sozinho na tela**, em até cinco minutos (é o
+  cache da leitura). Não há preço escrito no código para atualizar junto — e é
+  de propósito: um número escrito à mão começaria certo e viraria, no primeiro
+  reajuste, uma tela anunciando um valor e uma fatura cobrando outro.
+
+O preço precisa ser **recorrente, ativo e de valor único** para ser exibido.
+Preço em faixas (*tiered*), medido por uso, arquivado ou de cobrança única cai no
+estado "não consegui carregar" de propósito: não existe um número honesto para
+estampar. Os casos estão em `scripts/testar-pagamento.mts`.
+
 ## 5. Ativar a conta para receber
 
 A conta Stripe precisa estar com o cadastro completo (dados da empresa ou da

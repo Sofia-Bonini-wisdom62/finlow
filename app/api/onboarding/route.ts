@@ -5,6 +5,7 @@ import { responderIA, IANaoConfigurada, type MensagemChat } from "@/lib/ia"
 import { listarMemorias, guardarMemorias, type TipoMemoria } from "@/lib/memoria-repo"
 import { promptOnboarding } from "@/lib/prompts/onboarding"
 import { montarContexto } from "@/lib/contexto-financeiro"
+import { lerPersonalidade } from "@/lib/personalidade-repo"
 import { ativarIndicacaoSeHouver } from "@/lib/indicacao"
 import { filtroDeModulo, publicoDoUsuario } from "@/lib/publico"
 
@@ -52,12 +53,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Nenhuma mensagem enviada" }, { status: 400 })
     }
 
-    const [contexto, usuario] = await Promise.all([
+    // A personalidade entra aqui também, e não só no chat: quem REFAZ a
+    // primeira conversa já escolheu um tom, e o assistente trocar de voz na
+    // volta ao onboarding é a mesma incoerência que este arquivo já evita ao
+    // não duplicar a costura da IA. Na primeira vez de verdade ninguém
+    // escolheu nada e o valor é o padrão, que é a voz de sempre.
+    const [contexto, usuario, personalidade] = await Promise.all([
       montarContexto(userId),
       db.user.findUnique({
         where: { id: userId },
         select: { nome: true, memoriaAtiva: true, consentimentoPainelEm: true },
       }),
+      lerPersonalidade(userId),
     ])
 
     const ligada = !!usuario?.memoriaAtiva
@@ -87,6 +94,7 @@ export async function POST(req: NextRequest) {
         podeLancar,
         onboarding: true,
         modulos,
+        personalidade,
         sistemaExtra: promptOnboarding(usuario?.nome ?? "", turno),
         // Conta na cota, mas NÃO tem guard: o onboarding é a primeira coisa que
         // a pessoa faz e bloqueá-lo seria cobrar antes de mostrar o produto. O
