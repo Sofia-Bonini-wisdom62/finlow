@@ -1,16 +1,24 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import { ChevronLeft } from "lucide-react"
-import type { ModuloData, SessaoFluxo } from "@/types/trilha"
+import { ChevronLeft, Flame } from "lucide-react"
+import type { ModuloData, SessaoFluxo, ConteudoQuiz } from "@/types/trilha"
 import { TelaRenderer } from "./TelaRenderer"
 import { ProgressSegments } from "./ProgressSegments"
+import { COMBO_ACENDE } from "@/lib/combo"
 
 interface Props {
   modulo: ModuloData
   /** A lição sendo jogada: número, nome e posição ("2 de 4"). */
   licao?: { numero: number; nome: string; indice: number; total: number }
   telaInicial?: number
+  /**
+   * O combo herdado das lições anteriores (User.comboAtual, via GET). O chip
+   * daqui é CORTESIA — quem paga o bônus é o servidor, recalculando contra o
+   * gabarito no POST. Divergência entre os dois é impossível de premiar: o
+   * chip não credita nada.
+   */
+  comboInicial?: number
   /**
    * Valores que já entram na sessão, antes de a pessoa digitar qualquer coisa.
    *
@@ -28,11 +36,12 @@ interface Props {
   onAvancarTela: (tela: number) => void
 }
 
-export function CardFlow({ modulo, licao, telaInicial = 0, sessaoInicial, onConcluir, onAvancarTela }: Props) {
+export function CardFlow({ modulo, licao, telaInicial = 0, comboInicial = 0, sessaoInicial, onConcluir, onAvancarTela }: Props) {
   const [atual, setAtual] = useState(telaInicial)
   const [sessao, setSessao] = useState<SessaoFluxo>(sessaoInicial ?? {})
   // letra escolhida por tela de quiz — permite voltar e reexibir a resposta
   const [respostasQuiz, setRespostasQuiz] = useState<Record<string, string>>({})
+  const [combo, setCombo] = useState(Math.max(0, comboInicial))
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   /**
@@ -81,11 +90,24 @@ export function CardFlow({ modulo, licao, telaInicial = 0, sessaoInicial, onConc
     setAtual(atual - 1)
   }
 
+  /**
+   * O chip acompanha as respostas na hora: acertou soma, errou zera. Cada
+   * tela de quiz só entra uma vez na conta — o guard de resposta única do
+   * TelaQuiz garante que este handler roda uma vez por tela.
+   */
+  function registrarResposta(letra: string) {
+    setRespostasQuiz((prev) => ({ ...prev, [tela.id]: letra }))
+    if (tela.tipo === "quiz") {
+      const acertou = !!(tela.conteudo as ConteudoQuiz).opcoes.find((o) => o.letra === letra)?.correta
+      setCombo((c) => (acertou ? c + 1 : 0))
+    }
+  }
+
   // O fundo escuro sangra a tela inteira, mas o conteúdo fica numa coluna: num
   // monitor de 1440px uma linha de texto com 1400px de largura é ilegível — o
   // olho se perde ao voltar para a linha seguinte.
   return (
-    <div className="min-h-dvh w-full" style={{ background: "#112F30" }}>
+    <div className="tema-fin min-h-dvh w-full" style={{ background: "var(--fin-bg)" }}>
       <div className="relative mx-auto flex h-dvh w-full flex-col md:max-w-lg">
       {/* header: voltar (a partir da tela 1) + label + contador */}
       <div className="flex items-center justify-between px-4 pt-3 pb-1">
@@ -94,21 +116,21 @@ export function CardFlow({ modulo, licao, telaInicial = 0, sessaoInicial, onConc
             <button
               aria-label="Voltar"
               onClick={anterior}
-              className="-ml-2 mr-1 flex h-11 w-11 items-center justify-center rounded-full text-[#A7ADAF] transition-colors hover:text-white"
+              className="-ml-2 mr-1 flex h-11 w-11 items-center justify-center rounded-full text-[var(--fin-muted)] transition-colors hover:text-white"
             >
               <ChevronLeft className="size-6" />
             </button>
           )}
           <div className="flex flex-col">
             {licao && (
-              <span className="text-[11px] font-bold uppercase tracking-wider" style={{ color: "#5FA7A9" }}>
+              <span className="text-[11px] font-bold uppercase tracking-wider" style={{ color: "var(--fin-accent)" }}>
                 {licao.nome}
               </span>
             )}
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#A7ADAF]">{tela.label}</span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-[var(--fin-muted)]">{tela.label}</span>
           </div>
         </div>
-        <span className="text-xs text-[#A7ADAF]">
+        <span className="text-xs text-[var(--fin-muted)]">
           {licao ? `lição ${licao.indice}/${licao.total} · ` : ""}
           {atual + 1}/{modulo.telas.length}
         </span>
@@ -116,15 +138,30 @@ export function CardFlow({ modulo, licao, telaInicial = 0, sessaoInicial, onConc
 
       <ProgressSegments total={modulo.telas.length} atual={atual} />
 
+      {combo >= 2 && (
+        <div
+          className="fin-pop mx-auto mt-2 flex items-center gap-1.5 rounded-full border px-3.5 py-1 text-[12.5px] font-black"
+          style={{
+            borderColor: "var(--fin-combo)",
+            background: "color-mix(in srgb, var(--fin-combo) 13%, transparent)",
+            color: "var(--fin-combo)",
+          }}
+        >
+          <Flame className="size-3.5" aria-hidden="true" />
+          {combo} seguidas{combo >= COMBO_ACENDE ? " · bônus valendo!" : " · bônus a caminho"}
+        </div>
+      )}
+
       <div className="flex-1 overflow-hidden">
         <TelaRenderer
           key={tela.id}
           tela={tela}
           sessao={sessao}
           quizSelecionada={respostasQuiz[tela.id] ?? null}
-          onQuizSelecionar={(letra) => setRespostasQuiz((prev) => ({ ...prev, [tela.id]: letra }))}
+          onQuizSelecionar={registrarResposta}
           onInputMudou={setSessao}
           licao={licao?.numero}
+          combo={combo}
         />
       </div>
 
@@ -132,10 +169,10 @@ export function CardFlow({ modulo, licao, telaInicial = 0, sessaoInicial, onConc
         <button
           disabled={!podeAvancar()}
           onClick={proxima}
-          className="w-full rounded-2xl py-4 text-base font-bold transition-colors disabled:cursor-not-allowed"
+          className={`w-full rounded-2xl py-4 text-base font-extrabold transition-colors disabled:cursor-not-allowed ${podeAvancar() ? "fin-btn-3d" : ""}`}
           style={{
-            background: podeAvancar() ? "#5FA7A9" : "#1B3B3C",
-            color: podeAvancar() ? "#112F30" : "#A7ADAF",
+            background: podeAvancar() ? "var(--fin-accent)" : "var(--fin-surface)",
+            color: podeAvancar() ? "var(--fin-bg)" : "var(--fin-muted)",
           }}
         >
           {ehUltima ? "Concluir lição →" : "Continuar"}

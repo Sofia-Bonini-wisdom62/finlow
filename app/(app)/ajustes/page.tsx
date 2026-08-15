@@ -5,13 +5,11 @@ import Link from "next/link"
 import { signOut } from "next-auth/react"
 import {
   ChevronRight, Download, LogOut, Trash2, Check, X, Clock,
-  User, Landmark, Sparkles, ShieldCheck, Palette, LifeBuoy, Brain, FileUp, MessageCircle, Gift, Droplets, Drama,
-  CreditCard,
+  User, Landmark, Sparkles, ShieldCheck, LifeBuoy, Brain, FileUp, MessageCircle, Gift, Droplets, Drama,
+  CreditCard, Target,
 } from "lucide-react"
 import { ConvidarAmigos } from "@/components/ajustes/ConvidarAmigos"
 import { BottomNav } from "@/components/bottom-nav"
-import { SeletorTema } from "@/components/SeletorTema"
-import { SeletorPaleta } from "@/components/SeletorPaleta"
 import { EMAIL_CONTATO } from "@/lib/constantes"
 
 interface Conta {
@@ -19,6 +17,8 @@ interface Conta {
   email: string
   painelAtivo: boolean
   temSenha: boolean
+  premium?: boolean
+  temFoto?: boolean
 }
 
 function Secao({ titulo, Icon, children }: { titulo: string; Icon: typeof User; children: React.ReactNode }) {
@@ -202,6 +202,27 @@ export default function AjustesPage() {
       <div className="mx-auto w-full max-w-md px-5 py-6 md:max-w-2xl md:px-8 lg:max-w-3xl lg:px-10">
         <h1 className="text-[26px] font-extrabold tracking-tight text-fl-ink">Menu</h1>
 
+        {/* Card de perfil (protótipo v2): quem é, com que plano. */}
+        {conta && (
+          <div className="mt-4 flex items-center gap-3 rounded-2xl bg-fl-card px-3.5 py-3">
+            {conta.temFoto ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src="/api/imagem/foto" alt="" className="size-[46px] shrink-0 rounded-full object-cover" />
+            ) : (
+              <span className="grid size-[46px] shrink-0 place-items-center rounded-full bg-fl-500 text-[19px] font-black text-primary-foreground">
+                {(conta.nome || conta.email).charAt(0).toUpperCase()}
+              </span>
+            )}
+            <div className="min-w-0 flex-1">
+              <div className="truncate text-[15.5px] font-extrabold text-fl-ink">{conta.nome || "—"}</div>
+              <div className="truncate text-xs text-fl-ink-2">{conta.email}</div>
+            </div>
+            <span className="shrink-0 rounded-full border-[1.5px] border-fl-500/40 bg-fl-500/10 px-2.5 py-1 text-[10px] font-black tracking-widest text-fl-500">
+              {conta.premium ? "FINLOW+" : "FREE"}
+            </span>
+          </div>
+        )}
+
         {msg && (
           <div
             className={`mt-4 flex items-start gap-2 rounded-2xl px-4 py-3 text-sm ${
@@ -260,13 +281,17 @@ export default function AjustesPage() {
             <Acao rotulo={conta?.temSenha ? "Alterar senha" : "Criar senha"} onClick={() => setTrocandoSenha(true)} />
           )}
 
-          <EmBreve rotulo="Alterar foto" motivo="Depende de armazenamento de imagens, ainda não configurado." />
+          {/* A edição mora no Perfil (foto E capa no mesmo lugar) — aqui é só
+              a porta. O "em breve" que vivia nesta linha caiu em 14/08/2026,
+              quando a imagem passou a morar no banco. */}
+          <Acao rotulo="Foto e capa do perfil" Icon={User} href="/perfil" />
         </Secao>
 
         {/* ---------- DADOS FINANCEIROS ---------- */}
         <Secao titulo="Dados financeiros" Icon={Landmark}>
           <Acao rotulo="Registrar e editar lançamentos" href="/painel" />
           <Acao rotulo="Ler extrato do banco (PDF, CSV ou OFX)" Icon={FileUp} href="/extrato" />
+          <Acao rotulo="Objetivos" Icon={Target} href="/objetivos" />
           <Acao rotulo="Diagnóstico de Vazamento" Icon={Droplets} href="/diagnostico" />
           <Acao rotulo="Exportar meus dados (JSON)" Icon={Download} href="/api/exportar" download />
           <EmBreve rotulo="Bancos conectados" motivo="Requer Open Finance. Por ora, o extrato faz o mesmo trabalho." />
@@ -326,36 +351,19 @@ export default function AjustesPage() {
           <EmBreve rotulo="Biometria e PIN" motivo="Precisa de app nativo, hoje o Finlow roda no navegador." />
         </Secao>
 
-        {/* ---------- APARÊNCIA ---------- */}
-        <Secao titulo="Aparência" Icon={Palette}>
-          <div className="flex flex-col gap-2.5 py-3">
-            <div>
-              <div className="text-[15px] text-fl-ink">Tema</div>
-              <div className="text-[12.5px] text-fl-ink-3">
-                Em &quot;Sistema&quot;, acompanha a configuração do seu aparelho.
-              </div>
-            </div>
-            <SeletorTema />
-          </div>
-
-          <div className="flex flex-col gap-2.5 py-3">
-            <div>
-              <div className="text-[15px] text-fl-ink">Cor de destaque</div>
-              <div className="text-[12.5px] text-fl-ink-3">
-                Muda só os destaques. Cada uma tem uma versão para o claro e outra para o escuro.
-              </div>
-            </div>
-            <SeletorPaleta />
-          </div>
-
-          <EmBreve rotulo="Idioma" motivo="Hoje o Finlow existe só em português." />
-        </Secao>
+        {/* A seção "Aparência" morava aqui (tema claro/escuro + cor de
+            destaque). Saiu com o redesign Fin (protótipo v2, 14/08/2026): o
+            jogo tem uma cara só, o escopo .tema-fin ignora o toggle, e
+            controle que não muda nada é pior que controle nenhum. Os
+            componentes SeletorTema/SeletorPaleta seguem no repositório para o
+            dia em que uma superfície fora do tema precisar deles. */}
 
         {/* ---------- SUPORTE ---------- */}
         <Secao titulo="Suporte" Icon={LifeBuoy}>
           <Acao rotulo="Perguntas frequentes" href="/#faq" />
           <Acao rotulo="Falar com suporte" href={`mailto:${EMAIL_CONTATO}?subject=${encodeURIComponent("Suporte Finlow")}`} />
           <Acao rotulo="Enviar feedback" href={`mailto:${EMAIL_CONTATO}?subject=${encodeURIComponent("Feedback do Finlow")}`} />
+          <EmBreve rotulo="Idioma" motivo="Hoje o Finlow existe só em português." />
         </Secao>
 
         <button

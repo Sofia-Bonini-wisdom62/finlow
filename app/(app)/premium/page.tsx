@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react"
 import { Check, Loader2, TriangleAlert } from "lucide-react"
 import { BottomNav } from "@/components/bottom-nav"
+import { POSE } from "@/lib/fin"
 import { dinheiro, porIntervalo } from "@/lib/formato"
 
 /**
@@ -43,11 +44,14 @@ interface Estado {
   } | null
 }
 
+// A lista do protótipo v2 — "energia infinita" entrou quando virou verdade
+// (isentoDeEnergia em lib/energia.ts): vender o que não existe seria pior
+// que não vender.
 const VANTAGENS = [
-  "Conversa sem limite com o assistente",
+  "Conversa sem limite com o Fin",
+  "Energia infinita na trilha",
   "Extrato do banco lido quantas vezes precisar",
   "Diagnóstico de vazamentos sempre atualizado",
-  "Trilha completa, sem espera entre as lições",
 ]
 
 function dia(iso: string | null): string {
@@ -201,8 +205,8 @@ export default function PremiumPage() {
   return (
     <main className="min-h-screen bg-fl-page pb-24">
       <div className="mx-auto max-w-lg px-5 py-8">
-        <h1 className="text-2xl font-semibold text-fl-ink">
-          {pelaEscola ? "Seu acesso" : premium ? "Sua assinatura" : "Finlow Premium"}
+        <h1 className="text-2xl font-black tracking-tight text-fl-ink">
+          {pelaEscola ? "Seu acesso" : premium ? "Sua assinatura" : "Finlow+"}
         </h1>
 
         {/* O atraso vem ANTES de tudo: a pessoa tem acesso, mas por tempo
@@ -298,6 +302,12 @@ export default function PremiumPage() {
           </div>
         ) : (
           <div className="mt-6 space-y-4">
+            {/* O Fin animado abre a venda (protótipo v2). */}
+            <div className="text-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={POSE.streak} alt="" className="inline-block h-[92px] object-contain" />
+            </div>
+
             {/* Quanto da cota grátis já foi. Número concreto em vez de "você
                 atingiu o limite": a pessoa consegue calibrar se assinar resolve
                 o problema dela. */}
@@ -370,7 +380,7 @@ export default function PremiumPage() {
             <button
               onClick={assinar}
               disabled={ocupado}
-              className="w-full rounded-xl bg-fl-500 px-5 py-3.5 text-base font-medium text-white disabled:opacity-50"
+              className="fin-btn-3d w-full rounded-2xl bg-fl-500 px-5 py-3.5 text-base font-extrabold text-primary-foreground disabled:opacity-50 disabled:shadow-none"
             >
               {ocupado ? "Abrindo pagamento…" : "Assinar"}
             </button>

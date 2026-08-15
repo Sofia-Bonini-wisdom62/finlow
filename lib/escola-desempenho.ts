@@ -1,5 +1,6 @@
 import { db } from "@/lib/db"
 import { filtroDeModulo, ehPublico } from "@/lib/publico"
+import { lerOfensiva } from "@/lib/ofensiva"
 
 /**
  * Desempenho escolar (Finlow para Escolas) — SÓ LEITURA.
@@ -139,11 +140,31 @@ export interface DesempenhoModuloDoAluno {
   concluidoEm: Date | null
 }
 
+/** Uma lição recente, com os DOIS números do protótipo v2: a 1ª passada (a
+ *  que valeu XP) e, se o aluno refez depois, o resultado após correção. */
+export interface LicaoRecenteDoAluno {
+  moduloTitulo: string
+  licao: number
+  acertos: number
+  totalQuiz: number
+  acertosRevisao: number | null
+  totalQuizRevisao: number | null
+  concluidoEm: Date | null
+}
+
 /** O detalhe de UM aluno, módulo a módulo do segmento da turma. */
 export async function desempenhoDoAluno(
   userId: string,
   turmaId: string
-): Promise<{ nome: string; modulos: DesempenhoModuloDoAluno[] } | null> {
+): Promise<{
+  nome: string
+  modulos: DesempenhoModuloDoAluno[]
+  /** As últimas lições do currículo, mais novas primeiro. */
+  licoesRecentes: LicaoRecenteDoAluno[]
+  /** XP total (User.pontos) e ofensiva atual, para os tiles do professor. */
+  pontos: number
+  ofensiva: number
+} | null> {
   const turma = await db.turma.findUnique({
     where: { id: turmaId },
     select: { segmento: true, membros: { where: { userId }, select: { userId: true } } },
@@ -152,8 +173,8 @@ export async function desempenhoDoAluno(
   // de outra turma e precisa saber, não achar que o aluno nunca estudou.
   if (!turma || !ehPublico(turma.segmento) || turma.membros.length === 0) return null
 
-  const [user, modulos, licoes, fechados] = await Promise.all([
-    db.user.findUnique({ where: { id: userId }, select: { nome: true } }),
+  const [user, modulos, licoes, fechados, ofensiva] = await Promise.all([
+    db.user.findUnique({ where: { id: userId }, select: { nome: true, pontos: true } }),
     db.modulo.findMany({
       where: filtroDeModulo(turma.segmento),
       select: { id: true, titulo: true, ordem: true },
@@ -161,15 +182,26 @@ export async function desempenhoDoAluno(
     }),
     db.progressoLicao.findMany({
       where: { userId, concluido: true },
-      select: { moduloId: true, acertos: true, totalQuiz: true, segundos: true },
+      select: {
+        moduloId: true,
+        licao: true,
+        acertos: true,
+        totalQuiz: true,
+        acertosRevisao: true,
+        totalQuizRevisao: true,
+        segundos: true,
+        concluidoEm: true,
+      },
     }),
     db.progressoModulo.findMany({
       where: { userId, concluido: true },
       select: { moduloId: true, concluidoEm: true },
     }),
+    lerOfensiva(userId).catch(() => null),
   ])
   if (!user) return null
 
+  const tituloPor = new Map(modulos.map((m) => [m.id, m.titulo]))
   const fechadoPor = new Map(fechados.map((f) => [f.moduloId, f.concluidoEm]))
   const linhas = modulos.map((m) => {
     const doModulo = licoes.filter((l) => l.moduloId === m.id)
@@ -185,7 +217,29 @@ export async function desempenhoDoAluno(
     }
   })
 
-  return { nome: user.nome ?? "sem nome", modulos: linhas }
+  // Só o currículo da turma, como no resto do arquivo — e só lição com quiz:
+  // "3/0 de primeira" não diria nada ao professor.
+  const licoesRecentes = licoes
+    .filter((l) => tituloPor.has(l.moduloId) && l.totalQuiz > 0)
+    .sort((a, b) => (b.concluidoEm?.getTime() ?? 0) - (a.concluidoEm?.getTime() ?? 0))
+    .slice(0, 8)
+    .map((l) => ({
+      moduloTitulo: tituloPor.get(l.moduloId)!,
+      licao: l.licao,
+      acertos: l.acertos,
+      totalQuiz: l.totalQuiz,
+      acertosRevisao: l.acertosRevisao,
+      totalQuizRevisao: l.totalQuizRevisao,
+      concluidoEm: l.concluidoEm,
+    }))
+
+  return {
+    nome: user.nome ?? "sem nome",
+    modulos: linhas,
+    licoesRecentes,
+    pontos: user.pontos ?? 0,
+    ofensiva: ofensiva?.atual ?? 0,
+  }
 }
 
 export interface ResumoTurmaDaEscola {

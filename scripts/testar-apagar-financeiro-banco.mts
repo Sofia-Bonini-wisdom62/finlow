@@ -76,6 +76,9 @@ try {
   await db.investimento.create({
     data: { userId: uid, tipo: "cripto", nome: "cifrado", valorAtual: "cifrado" },
   })
+  await db.objetivo.create({
+    data: { userId: uid, nome: "cifrado", meta: "cifrado", guardado: "cifrado" },
+  })
   await db.diagnosticoVazamento.create({
     data: { userId: uid, totalAnual: "cifrado", achados: "cifrado" },
   })
@@ -105,7 +108,7 @@ try {
   // Escrita à mão, ela é um segundo par de olhos: quem tirar `investimento` da
   // lista de produção vê o teste apontar o investimento que sobrou.
   const SEMEADAS = [
-    "transacao", "orcamento", "contaFixa", "investimento",
+    "transacao", "orcamento", "contaFixa", "investimento", "objetivo",
     "extratoImport", "diagnosticoVazamento", "insight", "categoria",
   ] as const
 

@@ -151,6 +151,147 @@ ele.
 
 Implementar todo o conteúdo dos assuntos desde o 1º ano.
 
+## ~~Redesign Fin — gamificação~~ ✅ 13/08/2026
+
+O protótipo mobile Gen-Z da fundadora (navy + dourado + Nunito + o mascote
+Fin) foi implementado no miolo gamificado. **Do backlog de gamificação,
+entregues:** G-03 (pop-up de lição diária), G-04/05 (energia com custo por
+lição, +1/hora, devolução por acerto — limita só usuário grátis sem vínculo
+de escola), G-06/12/13 (Finlo Coins + Loja do Fin com poção ×2 e avatares),
+G-08 (missões diárias derivadas, resgate idempotente), G-11 (baú de unidade).
+Mais: combo que atravessa lições, precisão em %, nível do jogador,
+conquistas derivadas, intro do Fin, manifest PWA.
+
+**Decisões de não-entrada (fundadora, 13/08/2026):**
+
+- **G-17 (dashboard do professor por métrica) e liga semanal NÃO entraram**
+  — o ranking mantém a mecânica de sempre (pontos totais, professor liga o
+  rank da sala); só o visual virou Fin.
+- **"Tema mel" da loja** ficou fora: mexeria em token global de tema.
+
+**Pendências que esta frente cria:**
+
+- **Baú para EM** — Ensino Médio não tem `blocoId` nem leva, então aluno de
+  EM nunca vê baú. Decidir a unidade dele (segmento inteiro? grupos de 4?).
+- **Números afináveis quando houver dado de uso**: custo/devolução de
+  energia, preços da loja, coins por lição/missão/baú, curva de nível,
+  bônus de combo (tudo constante nomeada, um lugar cada).
+
+## Redesign Fin v2 — o app inteiro desenhado (14/08/2026)
+
+O protótipo ganhou uma segunda versão que **desenha todas as telas
+restantes** na identidade Fin (fonte: "Finlow mobile app redesign (1).zip",
+tela a tela em `Finlow App.dc.html`). A landing está sendo implementada
+agora (a fundadora pediu: manter a estrutura atual, trocar a identidade);
+o resto entra nesta fila, tela a tela, cada uma na régua de sempre — docs e
+código no mesmo commit, tom sem culpa, mecânica só muda se for decisão
+registrada.
+
+⚠️ **Fotos novas do mascote a caminho**: a fundadora vai enviar novas artes
+do gato. As poses atuais de `public/fin/` seguem valendo até lá; quando
+chegarem, é troca de arquivo, não de código.
+
+**A fila, pelo desenho do protótipo v2:**
+
+- ~~**Landing**~~ ✅ 14/08 — estrutura e copy atuais, identidade Fin, Fin no
+  lugar dos mockups, card do Finlow para Escolas, passo 1 honesto ("suba seu
+  extrato").
+- ~~**Login e Cadastro**~~ ✅ 14/08 — navy + botão 3D + Google creme; o
+  celular entrou no schema (`User.celular`, opcional e informativo como a
+  data de nascimento, só dígitos, na exportação LGPD); apelido da liga
+  sempre visível no cadastro. De quebra, `tema-fin` no layout de `(app)`
+  remapeia os tokens `--fl-*` — todas as telas logadas já nascem
+  navy+dourado, e o refino vem tela a tela.
+- ~~**1ª conversa (onboarding)**~~ ✅ 14/08 — aceite com Fin professor,
+  bolhas da conversa com avatar do Fin, fechamento com Fin orgulhoso.
+- ~~**Chat**~~ ✅ 14/08 — cabeçalho do Fin ("seu assistente · online" +
+  chama da ofensiva), avatar nas bolhas da IA, bolha do usuário dourada,
+  sugestões em pill, botão de enviar 3D.
+- ~~**Menu (Ajustes)**~~ ✅ 14/08 — card de perfil no topo (inicial + badge
+  FREE/FINLOW+ via `/api/conta`). A seção **Aparência saiu**: o escopo
+  `.tema-fin` ignora o toggle claro/escuro e a paleta, e controle que não
+  muda nada é pior que controle nenhum — `SeletorTema`/`SeletorPaleta`
+  seguem no repositório, sem uso.
+- ~~**Painel**~~ ✅ 14/08 — o toggle Controle/Análises virou **navegação
+  entre as duas páginas** (antes era aba interna do Painel que duplicava
+  /analises em miniatura); CTA "Subir extrato do banco" 3D no fim do
+  Controle.
+- ~~**Extrato**~~ ✅ 14/08 — a tela já era o desenho; refino: CTA de
+  confirmação 3D, chip do upload e checkboxes dourados.
+- ~~**Análises**~~ ✅ 14/08 — ganhou o toggle e herdou os dois cards que só
+  existiam na aba interna do Painel (gasto médio por dia, insight do
+  perfil); `DistribuicaoGastosChart` deixou de renderizar (duplicava a
+  rosca), mas o arquivo fica — exporta `agruparPorCategoria`.
+- ~~**Objetivos**~~ ✅ 14/08 — TELA NOVA em `/objetivos`: modelo `Objetivo`
+  (nome/meta/guardado CIFRADOS, RLS, exportação, Cascade), repo
+  `lib/objetivo-repo.ts` com retentativa no "+ Guardar" (rajada de toques é
+  o caso normal), escrita atrás do consentimento do Painel (R8), cores
+  girando por card, aviso do Fin "cofrinho é bolso seu". Entrada pelo Menu.
+  ⚠️ Pendência de design: o desenho não tem caminho de **remover nem
+  editar** objetivo (nome/meta) — sem rota DELETE de propósito, rota sem
+  tela é porta morta. Quando desenhar, a rota nasce junto.
+- ~~**Diagnóstico de Vazamento**~~ ✅ 14/08 — Fin assustado com a conta no
+  hero, CTA "Conversar sobre isso com o Fin" 3D.
+- ~~**Memória do assistente**~~ ✅ 14/08 — a tela já era o desenho; só o
+  knob do interruptor trocou branco por navy.
+- ~~**Finlow+ (premium)**~~ ✅ 14/08 — título "Finlow+", Fin animado
+  abrindo a venda, CTA 3D, e a lista de vantagens ganhou "Energia infinita
+  na trilha" — entrou quando virou verdade.
+- ~~**Biblioteca**~~ ✅ 14/08 — classe `tema-fin` na rota (vive fora do
+  grupo `(app)`), aula liberada com anel e borda dourados, concluída verde.
+- ~~**Perfil (financeiro)**~~ ✅ 14/08 — cabeçalho de jogo ("Nível N ·
+  {rótulo financeiro}", barra de XP), tiles DIAS SEGUIDOS/XP/PRECISÃO,
+  card de Objetivos com o Fin, porta "Liga". Convive com /trilha/perfil:
+  missões, conquistas e loja continuam SÓ lá — duplicar resgate em duas
+  telas dobraria a superfície da mecânica.
+- ~~**Escola**~~ ✅ 14/08 — `tema-fin` no layout de /escola (vive fora do
+  grupo logado), turmas com inicial colorida, e o **detalhe do aluno pelo
+  professor** com os 4 tiles e "1ª passada × após correção": a nota que
+  valeu XP (`acertos`/`totalQuiz`) vira pedra na 1ª conclusão, refazer
+  grava em `acertosRevisao`/`totalQuizRevisao` — a 2ª rodada não vale XP
+  nem infla a média do professor. ⚠️ `ProgressoLicao` continua FORA de
+  `/api/exportar` (lacuna pré-existente, registrada em
+  resumo-de-funcao.md) — as colunas novas herdam a pendência.
+- **Landing pública do Finlow para Escolas** — ⚠️ correção de catálogo
+  (14/08): a tela "Finlow para Escolas" do protótipo v2 é a **home da
+  administração** (abas Início/Turmas/Professores), que já foi vestida
+  acima — NÃO é landing de marketing. Página pública de venda segue sem
+  desenho; o card da landing continua apontando para o e-mail.
+- **Dashboard do professor por métrica (G-17)** — o desenho existe; a
+  decisão de 13/08 de não entrar ainda vale até a fundadora reabrir.
+- **BottomNav** — o protótipo segue com 3 abas (Trilha/Liga/Perfil);
+  a decisão de manter as 4 atuais permanece até ela decidir.
+
+**Pedido novo da fundadora (14/08/2026, fora do protótipo v2) —
+personalização do perfil:**
+
+- ~~**Foto de perfil e banner trocáveis**~~ ✅ 14/08 — o usuário troca a
+  foto (círculo do avatar) e a capa no topo do Perfil, no espírito do
+  mockup de referência; a identidade Fin não saiu do lugar (a capa é uma
+  faixa de imagem que esmaece pro navy, o resto segue navy+dourado+
+  Nunito). Como ficou cada decisão:
+  1. **Armazenamento: no próprio banco** (`ImagemUsuario`, data URI), NÃO
+     em bucket — decisão pragmática registrada no schema: sem storage na
+     infra, e no banco a imagem morre com a conta pelo Cascade (bucket
+     não morreria), sai na exportação e fica atrás de RLS. O tamanho é
+     controlado nas duas pontas: corte + compressão no cliente (256² a
+     foto, 1280×512 a capa, JPEG) e teto no servidor. Migrar para
+     Supabase Storage/Vercel Blob só se a imagem um dia precisar de CDN
+     (= visibilidade além do dono).
+  2. `User.bannerUrl` **não existiu** — a tabela própria cobre foto E
+     capa com a mesma mecânica; `User.image` (Google) virou fallback da
+     foto.
+  3. **Convivência com o avatar do Fin**: a foto real aparece no Perfil
+     financeiro e no card do Menu; o `avatarFin` da loja continua dono do
+     chip da trilha e do /trilha/perfil. É um default sensato, não um
+     desenho — a fundadora pode redesenhar quando quiser.
+  4. **LGPD cumprida como decidido**: a rota GET exige a sessão do PRÓPRIO
+     dono (sem sessão = 401, provado); nenhuma superfície de terceiros —
+     rank da sala incluído — mostra a foto. Expor a colegas continua
+     exigindo moderação e decisão registrada.
+  Pendência herdada: SVG recusado de propósito (XML executável); HEIC do
+  iPhone não abre no canvas — a mensagem de erro aponta JPG/PNG.
+
 ## Finlow para Escolas — em desenvolvimento (11/08/2026)
 
 Decisão da fundadora, desenhada em quadro branco: o canal escolar reabre como

@@ -48,6 +48,13 @@ export const TABELAS_FINANCEIRAS = [
   "contaFixa",
   // a carteira. Foi a que faltava, e a que a exportação LGPD já entregava.
   "investimento",
+  // o cofrinho (Redesign Fin v2). Nome, meta e guardado são cifrados, e quem
+  // decidiu que isto é dinheiro foi o próprio schema, não eu: o comentário de
+  // `model Objetivo` diz "objetivo é dado financeiro real" e exige o
+  // consentimento do Painel (R8) para escrever. Dado que só se grava com o
+  // consentimento financeiro sai com o apagar financeiro — o contrário deixaria
+  // "Viagem: R$ 3.200 de R$ 8.000" no banco depois de a tela dizer que apagou.
+  "objetivo",
   // de qual banco veio o extrato e de que período — não é valor, mas é a sua
   // vida financeira descrita: "Nubank, março a junho".
   "extratoImport",
@@ -84,6 +91,18 @@ export const TABELAS_NAO_FINANCEIRAS: Record<string, string> = {
   progressoLicao: "Progresso dentro da lição.",
   eventoPontuacao: "XP conquistado.",
   diaAtivo: "Dias de uso seguidos (ofensiva). Guarda data, nunca valor.",
+
+  // --- a camada de jogo (Redesign Fin) ---
+  eventoCoins:
+    "Ledger de Finlo Coins. É moeda de JOGO, ganha por uso e gasta em " +
+    "cosmético — não se compra com dinheiro real, e nenhuma rota de pagamento " +
+    "a toca. Mesmo lugar de eventoPontuacao: apagar aqui zeraria progresso " +
+    "que este botão não promete tocar.",
+
+  // --- personalização: tem os próprios botões no Perfil ---
+  imagemUsuario:
+    "Foto de perfil e capa. Não é dado financeiro; troca e remoção moram no " +
+    "próprio Perfil, e a imagem morre com a conta pelo Cascade.",
 
   // --- sessão: apagar derrubaria a pessoa do app no meio da própria ação ---
   account: "Vínculo de login (Google). Some só quando a conta some.",

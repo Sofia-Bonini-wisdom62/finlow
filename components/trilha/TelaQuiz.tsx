@@ -3,6 +3,8 @@
 import { useMemo } from "react"
 import { Check, X } from "lucide-react"
 import { ordemDoQuiz } from "@/lib/licoes"
+import { POSE } from "@/lib/fin"
+import { COMBO_ACENDE } from "@/lib/combo"
 import type { ConteudoQuiz, OpcaoQuiz } from "@/types/trilha"
 
 interface Props {
@@ -12,6 +14,8 @@ interface Props {
   onSelecionar: (letra: string) => void
   /** Entra na semente do embaralho — ver o comentário abaixo. */
   licao?: number
+  /** O combo corrente (já contando esta resposta) — muda a pose do Fin. */
+  combo?: number
 }
 
 /**
@@ -34,7 +38,7 @@ interface Props {
  * opção" em vez do conteúdo — que é exatamente o que uma revisão não deve
  * medir.
  */
-export function TelaQuiz({ conteudo, selecionada, onSelecionar, licao }: Props) {
+export function TelaQuiz({ conteudo, selecionada, onSelecionar, licao, combo = 0 }: Props) {
   const opcoes = useMemo(
     () => ordemDoQuiz(conteudo.opcoes, conteudo.headline, licao ?? 1),
     [conteudo, licao]
@@ -48,7 +52,7 @@ export function TelaQuiz({ conteudo, selecionada, onSelecionar, licao }: Props) 
   const opcaoSelecionada = conteudo.opcoes.find((o) => o.letra === selecionada)
 
   return (
-    <div className="card-enter flex h-full flex-col justify-center gap-6 px-6 py-8">
+    <div className="card-enter flex h-full flex-col justify-center gap-6 overflow-y-auto px-6 py-8">
       <h2 className="text-2xl font-bold leading-snug text-white">{conteudo.headline}</h2>
 
       <div className="flex flex-col gap-3">
@@ -57,20 +61,20 @@ export function TelaQuiz({ conteudo, selecionada, onSelecionar, licao }: Props) 
           const isResponded = selecionada !== null
           const isCorreta = opcao.correta
 
-          let borderColor = "border-[#1B3B3C]"
-          let bgColor = "bg-[#1B3B3C]"
+          let borderColor = "border-[var(--fin-border-2)]"
+          let bgColor = "bg-[var(--fin-surface)]"
           let textColor = "text-white"
 
           if (isResponded) {
             if (isCorreta) {
-              borderColor = "border-[#5FA7A9]"
-              bgColor = "bg-[#5FA7A9]/10"
+              borderColor = "border-[var(--fin-acerto)]"
+              bgColor = "bg-[var(--fin-acerto)]/10"
             } else if (isSelected && !isCorreta) {
-              borderColor = "border-[#D08277]"
-              bgColor = "bg-[#D08277]/10"
-              textColor = "text-[#D08277]"
+              borderColor = "border-[var(--fin-erro)]"
+              bgColor = "bg-[var(--fin-erro)]/10"
+              textColor = "text-[var(--fin-erro)]"
             } else {
-              textColor = "text-[#A7ADAF]"
+              textColor = "text-[var(--fin-muted)]"
             }
           }
 
@@ -79,13 +83,13 @@ export function TelaQuiz({ conteudo, selecionada, onSelecionar, licao }: Props) 
               key={opcao.letra}
               onClick={() => selecionar(opcao)}
               disabled={isResponded}
-              className={`flex items-start gap-3 rounded-2xl border ${borderColor} ${bgColor} p-4 text-left transition-all duration-200 disabled:cursor-default`}
+              className={`flex items-start gap-3 rounded-2xl border-2 ${borderColor} ${bgColor} p-4 text-left transition-all duration-200 disabled:cursor-default`}
             >
               <span className={`mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full border ${borderColor} text-xs font-bold ${textColor}`}>
                 {isResponded && isCorreta ? (
-                  <Check className="size-4 text-[#5FA7A9]" aria-label="Correta" />
+                  <Check className="size-4 text-[var(--fin-acerto)]" aria-label="Correta" />
                 ) : isResponded && isSelected && !isCorreta ? (
-                  <X className="size-4 text-[#D08277]" aria-label="Incorreta" />
+                  <X className="size-4 text-[var(--fin-erro)]" aria-label="Incorreta" />
                 ) : (
                   // Letra da POSIÇÃO exibida, não a dos dados: depois do
                   // embaralho, a letra gravada deixa de corresponder à ordem.
@@ -98,9 +102,42 @@ export function TelaQuiz({ conteudo, selecionada, onSelecionar, licao }: Props) 
         })}
       </div>
 
+      {/* O Fin reage — bolha de fala no lugar do card seco de antes. */}
       {opcaoSelecionada && (
-        <div className={`rounded-2xl p-4 ${opcaoSelecionada.correta ? "bg-[#5FA7A9]/10 border border-[#5FA7A9]/30" : "bg-[#D08277]/10 border border-[#D08277]/30"}`}>
-          <p className="text-sm leading-relaxed text-[#A7ADAF]">{opcaoSelecionada.feedback}</p>
+        <div className="fin-slide-up flex items-end gap-2.5">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={
+              opcaoSelecionada.correta
+                ? combo >= COMBO_ACENDE
+                  ? POSE.stars
+                  : POSE.cheer
+                : POSE.worried
+            }
+            alt=""
+            className="fin-pop size-[72px] shrink-0 object-contain"
+          />
+          <div
+            className="flex-1 rounded-2xl rounded-bl-sm border px-3.5 py-3"
+            style={{
+              background: "var(--fin-surface)",
+              borderColor: opcaoSelecionada.correta ? "var(--fin-acerto)" : "var(--fin-erro)",
+            }}
+          >
+            <div
+              className="text-[11px] font-black uppercase tracking-wide"
+              style={{ color: opcaoSelecionada.correta ? "var(--fin-acerto)" : "var(--fin-erro)" }}
+            >
+              {opcaoSelecionada.correta
+                ? combo >= COMBO_ACENDE
+                  ? "Incrível!"
+                  : "Boa!"
+                : "Quase lá"}
+            </div>
+            <p className="mt-0.5 text-sm leading-relaxed" style={{ color: "var(--fin-text)" }}>
+              {opcaoSelecionada.feedback}
+            </p>
+          </div>
         </div>
       )}
     </div>

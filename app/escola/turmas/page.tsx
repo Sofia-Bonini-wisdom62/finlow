@@ -51,25 +51,41 @@ export default async function TurmasPage() {
           Nenhuma turma ainda. Cria a primeira e gera o convite para os alunos entrarem.
         </p>
       ) : (
-        <ul className="space-y-3">
-          {turmas.map((t) => (
+        <ul className="space-y-2">
+          {turmas.map((t, i) => (
             <li key={t.id}>
               <Link
                 href={`/escola/turmas/${t.id}`}
-                className="block rounded-2xl border border-fl-sand bg-fl-card p-4 transition-colors hover:border-[var(--fl-500)]"
+                className="flex items-center gap-3 rounded-[14px] border-[1.5px] border-fl-border bg-fl-card px-3.5 py-3 transition-colors hover:border-[var(--fl-500)]"
               >
-                <div className="flex items-baseline justify-between gap-3">
-                  <p className="font-semibold text-fl-ink">{t.nome}</p>
-                  <p className="text-sm text-fl-ink/60">
-                    {t._count.membros} aluno{t._count.membros === 1 ? "" : "s"}
+                {/* A inicial colorida do desenho: cores girando por índice,
+                    como as unidades da trilha. Texto navy em cima. */}
+                <span
+                  className="grid size-10 shrink-0 place-items-center rounded-xl text-[13px] font-black"
+                  style={{
+                    background: [
+                      "var(--fin-accent, #E9A63C)",
+                      "var(--fin-energia, #55C7EA)",
+                      "var(--fin-acerto, #58C08A)",
+                      "var(--fin-pocao, #8B6CC9)",
+                      "var(--fin-combo, #F5772E)",
+                    ][i % 5],
+                    color: "var(--fin-bg, #0C1B21)",
+                  }}
+                >
+                  {t.nome.replace(/\s/g, "").slice(0, 3).toUpperCase()}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-[13.5px] font-black text-fl-ink">{t.nome}</p>
+                  <p className="mt-0.5 truncate text-[11.5px] font-bold text-fl-ink-3">
+                    {t._count.membros} aluno{t._count.membros === 1 ? "" : "s"} ·{" "}
+                    {nomeDoSegmento(t.segmento)}
+                    {v.papel === "adm" && (
+                      <> · {t.professor?.nome ?? "sem professor designado"}</>
+                    )}
                   </p>
                 </div>
-                <p className="mt-1 text-sm text-fl-ink/60">
-                  {nomeDoSegmento(t.segmento)}
-                  {v.papel === "adm" && (
-                    <> · {t.professor?.nome ?? "sem professor designado"}</>
-                  )}
-                </p>
+                <span className="font-black text-fl-ink-3">›</span>
               </Link>
             </li>
           ))}

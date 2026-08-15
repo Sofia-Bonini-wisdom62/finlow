@@ -5,6 +5,7 @@ import { carregarIndicadores, interpolarIndicadores } from "@/lib/indicadores"
 import { filtroExploravel } from "@/lib/publico"
 import { montarLicoes } from "@/lib/licoes"
 import { montarCorredor } from "@/lib/corredor"
+import { cobrarLicao, isentoDeEnergia, ENERGIA_MAX } from "@/lib/energia"
 
 export const dynamic = "force-dynamic"
 
@@ -106,6 +107,33 @@ export async function GET(
       )
     }
 
+    /**
+     * Energia (Redesign Fin): o gate cobra AQUI, no início da lição, depois
+     * de todas as travas de corredor — cobrar antes cobraria por uma lição
+     * que a rota ia recusar. O recibo é a linha de ProgressoLicao
+     * (lib/energia.ts): lição já iniciada um dia é grátis por construção, e
+     * é por isso que refazer/retomar/recarregar não descontam. Isento
+     * (premium ou vínculo escolar) nem passa por aqui.
+     */
+    const isento = await isentoDeEnergia(userId)
+    let energia: { atual: number; max: number } | null = null
+    if (!isento) {
+      const cobranca = await cobrarLicao(userId, modulo.id, l.licao)
+      if (!cobranca.ok) {
+        return NextResponse.json(
+          { error: "energia", energia: cobranca.energia, max: ENERGIA_MAX, minutos: cobranca.minutos },
+          { status: 403 }
+        )
+      }
+      energia = { atual: cobranca.energia ?? 0, max: ENERGIA_MAX }
+    }
+
+    // O combo herdado, para o chip do player nascer certo (o crédito de
+    // verdade é recalculado no POST, contra o gabarito).
+    const comboAtual =
+      (await db.user.findUnique({ where: { id: userId }, select: { comboAtual: true } }))
+        ?.comboAtual ?? 0
+
     const prog = await db.progressoLicao.findUnique({
       where: { userId_moduloId_licao: { userId, moduloId: modulo.id, licao: l.licao } },
       select: { telaAtual: true, concluido: true, segundos: true },
@@ -135,6 +163,8 @@ export async function GET(
         }
       }),
       indicadores: numeros,
+      energia,
+      comboAtual,
       // Retomar de onde parou, sem passar do fim da lição.
       telaInicial:
         prog && !prog.concluido ? Math.min(prog.telaAtual, l.telas.length - 1) : 0,

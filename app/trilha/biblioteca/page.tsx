@@ -96,8 +96,12 @@ function Secao({
           const trancado = estado === "trancado"
           const concluido = estado === "concluido"
 
+          // Protótipo v2: a aula liberada tem borda e anel dourados — é a que
+          // chama pro toque. Concluída fica verde, trancada apaga.
           const estilo = {
-            border: "1px solid var(--finlow-surface-2)",
+            border: trancado || concluido
+              ? "1.5px solid var(--finlow-surface-2)"
+              : "1.5px solid color-mix(in srgb, var(--finlow-accent) 40%, transparent)",
             background: "var(--finlow-surface)",
             borderRadius: "var(--finlow-radius)",
             opacity: trancado ? 0.62 : 1,
@@ -108,10 +112,13 @@ function Secao({
               <span
                 aria-hidden="true"
                 className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full"
-                style={{
-                  background: concluido ? "var(--finlow-accent)" : "var(--finlow-surface-2)",
-                  color: concluido ? "var(--finlow-bg)" : "var(--finlow-muted)",
-                }}
+                style={
+                  concluido
+                    ? { background: "var(--fin-acerto, var(--finlow-accent))", color: "var(--finlow-bg)" }
+                    : trancado
+                      ? { background: "var(--finlow-surface-2)", color: "var(--finlow-muted)" }
+                      : { border: "2.5px solid var(--finlow-accent)" }
+                }
               >
                 {concluido ? <Check size={14} /> : trancado ? <Lock size={12} /> : null}
               </span>
@@ -246,8 +253,10 @@ export default async function BibliotecaPage() {
   ).length
 
   return (
+    // `tema-fin` aqui porque a rota vive FORA do grupo (app): sem o escopo, os
+    // --finlow-* abaixo resolveriam para a paleta antiga da trilha.
     <main
-      className="min-h-dvh pb-24 lg:pl-56"
+      className="tema-fin min-h-dvh pb-24 lg:pl-56"
       style={{ background: "var(--finlow-bg)", color: "var(--finlow-text)" }}
     >
       <header

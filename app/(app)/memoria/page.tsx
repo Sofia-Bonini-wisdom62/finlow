@@ -145,7 +145,7 @@ export default function MemoriaPage() {
             className={`relative h-7 w-12 shrink-0 rounded-full transition-colors ${ligada ? "bg-fl-500" : "bg-fl-border"}`}
           >
             <span
-              className={`absolute top-1 size-5 rounded-full bg-white shadow transition-all ${ligada ? "left-6" : "left-1"}`}
+              className={`absolute top-1 size-5 rounded-full bg-fl-page shadow transition-all ${ligada ? "left-6" : "left-1"}`}
             />
           </button>
         </div>

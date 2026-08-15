@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { Sparkles, Lock, X } from "lucide-react"
 import type { NoTrilha } from "@/lib/trilha-visual"
+import { POSE } from "@/lib/fin"
 
 interface DrawerModuloProps {
   no: NoTrilha | null
@@ -13,6 +14,9 @@ interface DrawerModuloProps {
   onFechar: () => void
   /** Entra no módulo. Qual lição servir é decisão do servidor. */
   onComecar: (no: NoTrilha) => void
+  /** true = a pessoa tem gate de energia (Redesign Fin): o CTA avisa o custo
+   *  — substitui o modal de início do protótipo, uma camada a menos. */
+  custoDeEnergia?: boolean
 }
 
 const NIVEL_LABEL: Record<NoTrilha["nivel"], string> = {
@@ -34,6 +38,7 @@ export default function DrawerModulo({
   intensidade,
   onFechar,
   onComecar,
+  custoDeEnergia = false,
 }: DrawerModuloProps) {
   const [dialogoAberto, setDialogoAberto] = useState(false)
   const [motivoSel, setMotivoSel] = useState<string>("")
@@ -143,14 +148,24 @@ export default function DrawerModulo({
             </div>
 
             <div className="p-4">
-              {/* thumbnail */}
-              <div className="relative mb-4 aspect-video w-full overflow-hidden rounded-2xl">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={no.thumbnail || "/placeholder.svg"}
-                  alt=""
-                  className="h-full w-full object-cover"
-                />
+              {/* thumbnail — sem imagem, o Fin assume: o fallback antigo era
+                  "/placeholder.svg", que nunca existiu, e todo módulo sem thumb
+                  abria com um 16:9 quebrado (item 5 da avaliação de UX). */}
+              <div
+                className="relative mb-4 aspect-video w-full overflow-hidden rounded-2xl"
+                style={{ backgroundColor: "var(--finlow-surface-2)" }}
+              >
+                {no.thumbnail ? (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img src={no.thumbnail} alt="" className="h-full w-full object-cover" />
+                ) : (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
+                    src={POSE.teach}
+                    alt=""
+                    className="mx-auto h-full object-contain py-3"
+                  />
+                )}
                 <div
                   className="absolute inset-0"
                   style={{
@@ -296,6 +311,18 @@ export default function DrawerModulo({
                   style={{ color: "var(--finlow-muted)" }}
                 >
                   Refazer não pontua de novo.
+                </p>
+              )}
+
+              {/* O custo de energia, para quem tem o gate: no lugar do modal
+                  de início do protótipo — mesma informação, uma camada a
+                  menos entre a pessoa e a lição. */}
+              {custoDeEnergia && !cta.disabled && no.estado !== "concluido" && (
+                <p
+                  className="mt-2 text-center text-[12px] font-bold"
+                  style={{ color: "var(--fin-energia, #55C7EA)" }}
+                >
+                  ⚡ Lição nova custa 4 · acertos devolvem até 3
                 </p>
               )}
 

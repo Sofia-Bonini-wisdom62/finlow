@@ -49,16 +49,18 @@ export function BotaoGoogle({ rotulo = "Entrar com o Google" }: { rotulo?: strin
   return (
     <>
       <div className="my-5 flex items-center gap-3">
-        <span className="h-px flex-1 bg-fl-divider" />
-        <span className="text-[12px] text-fl-ink-3">ou</span>
-        <span className="h-px flex-1 bg-fl-divider" />
+        <span className="h-px flex-1" style={{ background: "var(--fin-border, var(--fl-divider))" }} />
+        <span className="text-[12px]" style={{ color: "var(--fin-dim, var(--fl-ink-3))" }}>ou</span>
+        <span className="h-px flex-1" style={{ background: "var(--fin-border, var(--fl-divider))" }} />
       </div>
 
+      {/* Botão creme do protótipo — destaca do navy sem competir com o dourado. */}
       <button
         type="button"
         onClick={() => { setIndo(true); signIn("google", { callbackUrl: "/onboarding" }) }}
         disabled={indo}
-        className="flex w-full items-center justify-center gap-2.5 rounded-2xl border border-fl-border bg-fl-card py-3.5 text-[14.5px] font-semibold text-fl-ink transition-colors hover:bg-fl-50 disabled:opacity-60"
+        className="flex w-full items-center justify-center gap-2.5 rounded-2xl py-3.5 text-[14.5px] font-extrabold transition-opacity hover:opacity-90 disabled:opacity-60"
+        style={{ background: "var(--fin-creme, #F6E9CE)", color: "#0C1B21" }}
       >
         <MarcaGoogle />
         {indo ? "Abrindo o Google…" : rotulo}

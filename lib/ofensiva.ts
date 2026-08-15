@@ -110,7 +110,7 @@ export async function lerOfensiva(userId: string, agora: Date = new Date()): Pro
 export async function registrarDiaAtivo(
   userId: string,
   agora: Date = new Date()
-): Promise<Ofensiva> {
+): Promise<Ofensiva & { diaNovo: boolean }> {
   const hoje = diaDeHoje(agora)
   let diaNovo = false
 
@@ -138,5 +138,9 @@ export async function registrarDiaAtivo(
     )
   }
 
-  return ofensiva
+  // `diaNovo` sai junto (Redesign Fin): é o gatilho do pop-up de lição diária
+  // — "primeira visita do dia", que ofensiva.hoje sozinho não distingue,
+  // porque o registro acima acabou de marcar o dia. Aditivo: quem só quer a
+  // ofensiva ignora o campo.
+  return { ...ofensiva, diaNovo }
 }

@@ -413,8 +413,8 @@ export default function ExtratoPage() {
                     >
                       <span
                         aria-hidden
-                        className={`flex size-5 shrink-0 items-center justify-center rounded-md border transition-colors ${
-                          marcado ? "border-fl-500 bg-fl-500" : "border-fl-border"
+                        className={`flex size-5 shrink-0 items-center justify-center rounded-md border-2 transition-colors ${
+                          marcado ? "border-fl-500 bg-fl-500" : "border-fl-500/60"
                         }`}
                       >
                         {marcado && <Check className="size-3.5 text-primary-foreground" />}
@@ -462,7 +462,7 @@ export default function ExtratoPage() {
             <button
               onClick={confirmar}
               disabled={confirmando || somaAceita === 0}
-              className="flex-1 rounded-xl bg-fl-500 py-3 text-sm font-semibold text-primary-foreground disabled:opacity-50"
+              className="fin-btn-3d flex-1 rounded-xl bg-fl-500 py-3 text-sm font-extrabold text-primary-foreground disabled:opacity-50 disabled:shadow-none"
             >
               {confirmando ? "Confirmando…" : somaAceita === 0 ? "Marque ao menos um" : `Confirmar ${somaAceita}`}
             </button>
@@ -510,7 +510,7 @@ export default function ExtratoPage() {
             </>
           ) : (
             <>
-              <div className="flex size-12 items-center justify-center rounded-2xl bg-fl-50">
+              <div className="flex size-12 items-center justify-center rounded-2xl bg-fl-500/15">
                 <Upload className="size-5 text-fl-500" />
               </div>
               <span className="text-[15px] font-bold text-fl-ink">Escolher arquivo</span>

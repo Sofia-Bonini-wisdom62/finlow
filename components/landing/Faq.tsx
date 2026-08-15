@@ -25,17 +25,22 @@ export function Faq() {
       {faqs.map((f, i) => {
         const aberto = aberta === i
         return (
-          <div key={f.q} className="overflow-hidden rounded-2xl border border-fl-border bg-fl-card">
+          <div
+            key={f.q}
+            className="overflow-hidden rounded-2xl border"
+            style={{ borderColor: "var(--fin-border-2)", background: "var(--fin-surface)" }}
+          >
             <button
               onClick={() => setAberta(aberto ? null : i)}
               aria-expanded={aberto}
-              className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left text-[16px] font-semibold text-fl-ink sm:px-6 sm:text-[17px]"
+              className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left text-[16px] font-extrabold sm:px-6 sm:text-[17px]"
+              style={{ color: "var(--fin-text)" }}
             >
               {f.q}
-              <span className="shrink-0 text-[22px] font-normal text-fl-500">{aberto ? "−" : "+"}</span>
+              <span className="shrink-0 text-[22px] font-normal" style={{ color: "var(--fin-accent)" }}>{aberto ? "−" : "+"}</span>
             </button>
             {aberto && (
-              <div className="px-5 pb-5 text-[15px] leading-relaxed text-fl-ink-2 sm:px-6 sm:text-[15.5px]">
+              <div className="px-5 pb-5 text-[15px] leading-relaxed sm:px-6 sm:text-[15.5px]" style={{ color: "var(--fin-muted)" }}>
                 {f.a}
               </div>
             )}

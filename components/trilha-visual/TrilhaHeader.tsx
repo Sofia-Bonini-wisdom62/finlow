@@ -1,8 +1,10 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Flame, Diamond } from "lucide-react"
+import Link from "next/link"
+import { Flame, Zap } from "lucide-react"
 import type { Usuario } from "@/lib/trilha-visual"
+import { AVATAR_POSE } from "@/lib/fin"
 
 interface TrilhaHeaderProps {
   usuario: Usuario
@@ -41,49 +43,72 @@ export default function TrilhaHeader({
     >
       <div className="mx-auto flex h-14 w-full max-w-md items-center justify-between px-4">
         <span
-          className="text-lg font-semibold tracking-tight"
+          className="text-lg font-extrabold tracking-tight"
           style={{ color: "var(--finlow-text)" }}
         >
           finlow
         </span>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3.5">
           <div
-            className={`flex items-center gap-1 font-medium tabular-nums ${indicadorTexto}`}
-            style={{ color: "var(--finlow-text)" }}
+            className={`flex items-center gap-1 font-extrabold tabular-nums ${indicadorTexto}`}
+            style={{ color: "var(--fin-combo, var(--finlow-warn))" }}
             aria-label={`Sequência de ${usuario.sequencia} dias`}
           >
-            <Flame
-              size={indicadorIcone}
-              style={{ color: "var(--finlow-warn)" }}
-              aria-hidden="true"
-            />
+            <Flame size={indicadorIcone} aria-hidden="true" />
             {usuario.sequencia}
           </div>
 
+          {/* Energia: quem tem gate vê o saldo; isento vê ∞ (Redesign Fin). */}
           <div
-            className={`flex items-center gap-1 font-medium tabular-nums ${indicadorTexto}`}
-            style={{ color: "var(--finlow-text)" }}
-            aria-label={`${usuario.pontos} pontos`}
+            className={`flex items-center gap-1 font-extrabold tabular-nums ${indicadorTexto}`}
+            style={{ color: "var(--fin-energia, #55C7EA)" }}
+            aria-label={
+              usuario.energia
+                ? `${usuario.energia.atual} de ${usuario.energia.max} de energia`
+                : "Energia infinita"
+            }
           >
-            <Diamond
-              size={indicadorIcone}
-              style={{ color: "var(--finlow-accent)" }}
-              aria-hidden="true"
-            />
-            {usuario.pontos.toLocaleString("pt-BR")}
+            <Zap size={indicadorIcone} aria-hidden="true" />
+            {usuario.energia ? usuario.energia.atual : "∞"}
           </div>
 
-          <div
-            className="flex h-8 w-8 items-center justify-center rounded-full text-sm font-semibold"
-            style={{
-              backgroundColor: "var(--finlow-surface-2)",
-              color: "var(--finlow-text)",
-            }}
-            aria-label={`Perfil de ${usuario.nome}`}
+          {/* Coins → Loja do Fin */}
+          <Link
+            href="/trilha/loja"
+            className={`flex items-center gap-1 font-extrabold tabular-nums ${indicadorTexto}`}
+            style={{ color: "var(--finlow-accent)" }}
+            aria-label={`${usuario.coins} Finlo Coins — abrir a loja`}
           >
-            {usuario.inicial}
-          </div>
+            <span
+              className="inline-block size-[13px] rounded-full"
+              style={{
+                background:
+                  "radial-gradient(circle at 50% 50%, var(--fin-accent-sombra, #B97F22) 0 40%, var(--finlow-accent) 41% 100%)",
+              }}
+              aria-hidden="true"
+            />
+            {usuario.coins.toLocaleString("pt-BR")}
+          </Link>
+
+          {/* Avatar → perfil do jogador */}
+          <Link
+            href="/trilha/perfil"
+            className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full text-sm font-extrabold"
+            style={{
+              backgroundColor: "var(--finlow-accent)",
+              color: "var(--finlow-bg)",
+              boxShadow: "0 3px 0 var(--fin-accent-sombra, #B97F22)",
+            }}
+            aria-label={`Perfil do jogador de ${usuario.nome}`}
+          >
+            {usuario.avatarFin && AVATAR_POSE[usuario.avatarFin] ? (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img src={AVATAR_POSE[usuario.avatarFin]} alt="" className="h-full w-full object-cover" />
+            ) : (
+              usuario.inicial
+            )}
+          </Link>
         </div>
       </div>
 

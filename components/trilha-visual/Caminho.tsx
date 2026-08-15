@@ -8,6 +8,7 @@ import type { NoTrilha as NoTrilhaTipo, Trilha } from "@/lib/trilha-visual"
 import NoTrilha from "./NoTrilha"
 import DivisorBloco from "./DivisorBloco"
 import RamoTematico from "./RamoTematico"
+import { corDaUnidade } from "@/lib/fin"
 
 interface CaminhoProps {
   trilha: Trilha
@@ -15,6 +16,8 @@ interface CaminhoProps {
   haloModuloId?: string | null
   carregando?: boolean
   onSelecionarNo: (no: NoTrilhaTipo) => void
+  /** Toque num baú disponível (Redesign Fin). */
+  onAbrirBau?: (refId: string) => void
 }
 
 type Ponto = { x: number; y: number }
@@ -27,12 +30,26 @@ interface EntradaNo {
   size: number
   numero: number
   isRamo: boolean
+  /** A cor da unidade a que o nó pertence. */
+  cor: { cor: string; sombra: string }
 }
 interface EntradaDivisor {
   tipo: "divisor"
   id: string
   rotulo: string
   y: number
+  indice: number
+  subRotulo: string
+  progresso: number
+  ativo: boolean
+}
+interface EntradaBau {
+  tipo: "bau"
+  refId: string
+  estado: "travado" | "disponivel" | "aberto"
+  xPct: number
+  y: number
+  cor: { cor: string; sombra: string }
 }
 interface EtiquetaRamo {
   id: string
@@ -48,7 +65,9 @@ const PADDING_TOP = 40
 const NODE_GAP = 132
 const BRANCH_GAP = 108
 const BRANCH_LEAD = 74 // respiro entre a origem do ramo e o 1º nó, p/ a etiqueta
-const DIVIDER_SPACE = 76
+// O divisor deixou de ser régua e virou CARD de unidade (Redesign Fin) —
+// precisa da altura de um card com barra de progresso, não de uma linha.
+const DIVIDER_SPACE = 150
 const FOOTER_GAP = 150
 
 const LANES = [50, 74, 50, 26]
@@ -75,7 +94,7 @@ function construirPath(pontos: Ponto[]): string {
 function usarLayout(trilha: Trilha, intensidade: "sobria" | "expressiva") {
   return useMemo(() => {
     const T = tamanhos(intensidade)
-    const entradas: (EntradaNo | EntradaDivisor)[] = []
+    const entradas: (EntradaNo | EntradaDivisor | EntradaBau)[] = []
     const etiquetasRamo: EtiquetaRamo[] = []
     const pontosTrunk: Ponto[] = []
     let indiceProgresso = -1
@@ -92,15 +111,24 @@ function usarLayout(trilha: Trilha, intensidade: "sobria" | "expressiva") {
     }[] = []
 
     trilha.blocos.forEach((bloco, bi) => {
-      if (bi > 0) {
-        y += DIVIDER_SPACE / 2
+      const cor = corDaUnidade(bloco.indice ?? bi)
+
+      // O card de unidade abre TODO bloco (a trilha adulta ganha o dela) —
+      // antes só havia régua entre blocos.
+      {
+        if (bi > 0) y += DIVIDER_SPACE / 2
+        const feitos = bloco.nos.filter((n) => n.estado === "concluido").length
         entradas.push({
           tipo: "divisor",
           id: bloco.id,
-          rotulo: bloco.rotulo,
+          rotulo: trilha.escolar ? bloco.rotulo : "Montada pela IA a partir dos seus números",
           y,
+          indice: bloco.indice ?? bi,
+          subRotulo: trilha.escolar ? `Unidade ${(bloco.indice ?? bi) + 1}` : "Sua trilha",
+          progresso: bloco.nos.length ? feitos / bloco.nos.length : 0,
+          ativo: bloco.nos.some((n) => n.estado === "atual"),
         })
-        y += DIVIDER_SPACE / 2
+        y += DIVIDER_SPACE / 2 + 20
       }
 
       const nos = bloco.nos
@@ -127,6 +155,7 @@ function usarLayout(trilha: Trilha, intensidade: "sobria" | "expressiva") {
               size: T.branch,
               numero,
               isRamo: true,
+              cor,
             })
             pontos.push({ x: branchX, y })
             if (rno.estado === "travado") algumTravado = true
@@ -161,6 +190,7 @@ function usarLayout(trilha: Trilha, intensidade: "sobria" | "expressiva") {
             size,
             numero,
             isRamo: false,
+            cor,
           })
           const p = { x: xPct, y }
           pontosTrunk.push(p)
@@ -169,6 +199,23 @@ function usarLayout(trilha: Trilha, intensidade: "sobria" | "expressiva") {
           y += NODE_GAP
           i++
         }
+      }
+
+      // O baú fecha a unidade escolar — entra como nó do tronco, para o
+      // caminho atravessá-lo em vez de terminar antes dele.
+      if (bloco.bau) {
+        const xPct = LANES[trunkIndex % LANES.length]
+        entradas.push({
+          tipo: "bau",
+          refId: bloco.bau.refId,
+          estado: bloco.bau.estado,
+          xPct,
+          y,
+          cor,
+        })
+        pontosTrunk.push({ x: xPct, y })
+        trunkIndex++
+        y += NODE_GAP
       }
     })
 
@@ -208,6 +255,7 @@ export default function Caminho({
   haloModuloId,
   carregando,
   onSelecionarNo,
+  onAbrirBau,
 }: CaminhoProps) {
   const layout = usarLayout(trilha, intensidade)
 
@@ -302,15 +350,57 @@ export default function Caminho({
         />
       </svg>
 
-      {/* Divisores de bloco */}
+      {/* Cards de unidade */}
       {layout.entradas.map((e) =>
         e.tipo === "divisor" ? (
           <div
             key={e.id}
-            className="absolute left-0 right-0 -translate-y-1/2 px-4"
+            className="absolute left-0 right-0 -translate-y-1/2 px-2"
             style={{ top: e.y }}
           >
-            <DivisorBloco rotulo={e.rotulo} />
+            <DivisorBloco
+              rotulo={e.rotulo}
+              indice={e.indice}
+              subRotulo={e.subRotulo}
+              progresso={e.progresso}
+              ativo={e.ativo}
+            />
+          </div>
+        ) : null,
+      )}
+
+      {/* Baús de unidade (Redesign Fin) */}
+      {layout.entradas.map((e) =>
+        e.tipo === "bau" ? (
+          <div
+            key={e.refId}
+            className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
+            style={{ left: `${e.xPct}%`, top: e.y }}
+          >
+            <button
+              type="button"
+              disabled={e.estado !== "disponivel"}
+              onClick={() => e.estado === "disponivel" && onAbrirBau?.(e.refId)}
+              aria-label={
+                e.estado === "aberto"
+                  ? "Baú da unidade, já aberto"
+                  : e.estado === "disponivel"
+                    ? "Abrir o baú da unidade"
+                    : "Baú da unidade — complete a unidade para abrir"
+              }
+              className={`grid size-14 place-items-center rounded-2xl text-2xl ${
+                e.estado === "disponivel" ? "fin-wob cursor-pointer" : "cursor-default"
+              }`}
+              style={
+                e.estado === "disponivel"
+                  ? { backgroundColor: e.cor.cor, boxShadow: `0 5px 0 ${e.cor.sombra}` }
+                  : e.estado === "aberto"
+                    ? { backgroundColor: "var(--finlow-surface)", opacity: 0.85 }
+                    : { backgroundColor: "var(--finlow-surface)" }
+              }
+            >
+              {e.estado === "aberto" ? "🎉" : e.estado === "disponivel" ? "🎁" : "🔒"}
+            </button>
           </div>
         ) : null,
       )}
@@ -356,6 +446,7 @@ export default function Caminho({
               intensidade={intensidade}
               haloAtivo={haloModuloId === e.no.moduloId}
               onSelecionar={() => onSelecionarNo(e.no)}
+              cor={e.cor}
             />
           </div>
         ) : null,

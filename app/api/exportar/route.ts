@@ -4,6 +4,7 @@ import { getUserIdOr401 } from "@/lib/painel"
 import { listarTransacoes, listarContasFixas } from "@/lib/financeiro-repo"
 import { lerDiagnostico } from "@/lib/vazamento-repo"
 import { listarInvestimentos } from "@/lib/investimento-repo"
+import { listarObjetivos } from "@/lib/objetivo-repo"
 import { lerPersonalidade } from "@/lib/personalidade-repo"
 
 export const dynamic = "force-dynamic"
@@ -16,10 +17,10 @@ export async function GET() {
   if (userId instanceof NextResponse) return userId
 
   try {
-    const [user, categorias, contas, transacoes, progresso, indicacoesFeitas, indicacaoRecebida, diagnostico, investimentos, assinatura, usoIA, personalidade] = await Promise.all([
+    const [user, categorias, contas, transacoes, progresso, indicacoesFeitas, indicacaoRecebida, diagnostico, investimentos, objetivos, assinatura, usoIA, personalidade] = await Promise.all([
       db.user.findUnique({
         where: { id: userId },
-        select: { nome: true, email: true, dataNascimento: true, criadoEm: true, consentimentoPainelEm: true, codigoIndicacao: true },
+        select: { nome: true, email: true, celular: true, dataNascimento: true, criadoEm: true, consentimentoPainelEm: true, codigoIndicacao: true },
       }),
       db.categoria.findMany({
         where: { userId },
@@ -45,6 +46,7 @@ export async function GET() {
       }),
       lerDiagnostico(userId),
       listarInvestimentos(userId),
+      listarObjetivos(userId),
       // Assinatura: o que ela pagou, quando, e até quando vale. SEM os ids da
       // Stripe (`cus_`, `sub_`, `cs_`) — são identificadores de sistema nosso,
       // não dado dela, e num arquivo que ela pode compartilhar sem pensar viram
@@ -65,6 +67,26 @@ export async function GET() {
       // pessoa sobre ela mesma e fica cifrado no banco, então é exatamente o
       // tipo de dado que a portabilidade existe para devolver.
       lerPersonalidade(userId),
+    ])
+
+    // Personalização: foto e capa saem como data URI — imagem é dado pessoal,
+    // e portabilidade de imagem é a própria imagem, não um "tem foto: sim".
+    const imagens = await db.imagemUsuario.findMany({
+      where: { userId },
+      select: { tipo: true, dados: true, atualizadoEm: true },
+    })
+
+    // O jogo (Redesign Fin): carteira, itens e o extrato de coins — tudo dela.
+    const [jogoUser, extratoCoins] = await Promise.all([
+      db.user.findUnique({
+        where: { id: userId },
+        select: { coins: true, energia: true, pocaoAtiva: true, avatarFin: true, comboRecorde: true },
+      }),
+      db.eventoCoins.findMany({
+        where: { userId },
+        select: { motivo: true, moedas: true, refId: true, criadoEm: true },
+        orderBy: { criadoEm: "asc" },
+      }),
     ])
 
     // Vínculo escolar: escola, papel, turmas e competências — o que É da
@@ -117,6 +139,13 @@ export async function GET() {
         criadoEm: i.criadoEm,
         atualizadoEm: i.atualizadoEm,
       })),
+      objetivos: objetivos.map((o) => ({
+        nome: o.nome,
+        meta: o.meta,
+        guardado: o.guardado,
+        criadoEm: o.criadoEm,
+        atualizadoEm: o.atualizadoEm,
+      })),
       progressoModulos: progresso.map((p) => ({
         modulo: p.modulo.slug,
         titulo: p.modulo.titulo,
@@ -141,6 +170,15 @@ export async function GET() {
         : null,
       assinatura,
       usoDeIA: usoIA,
+      imagens: imagens.map((i) => ({ tipo: i.tipo, dados: i.dados, atualizadoEm: i.atualizadoEm })),
+      jogo: {
+        coins: jogoUser?.coins ?? 0,
+        energia: jogoUser?.energia ?? null,
+        pocaoAtiva: jogoUser?.pocaoAtiva ?? false,
+        avatarEquipado: jogoUser?.avatarFin ?? null,
+        comboRecorde: jogoUser?.comboRecorde ?? 0,
+        extratoDeCoins: extratoCoins,
+      },
       escola: membroEscola
         ? {
             nome: membroEscola.escola.nome,

@@ -49,15 +49,18 @@ export function WaitlistForm() {
 
   if (enviado) {
     return (
-      <div className="mx-auto max-w-[460px] rounded-2xl bg-fl-page p-7">
-        <div className="mx-auto mb-3.5 flex h-13 w-13 items-center justify-center rounded-full bg-fl-500 text-2xl text-primary-foreground" style={{ height: 52, width: 52 }}>
+      <div className="mx-auto max-w-[460px] rounded-2xl p-7" style={{ background: "var(--fin-surface-2, var(--fl-page))" }}>
+        <div
+          className="mx-auto mb-3.5 flex items-center justify-center rounded-full text-2xl"
+          style={{ height: 52, width: 52, background: "var(--fin-acerto, var(--fl-500))", color: "var(--fin-bg, #fff)" }}
+        >
           ✓
         </div>
-        <div className="mb-1.5 text-[19px] font-bold text-fl-ink">Pronto, anotado!</div>
-        <div className="text-[15px] text-fl-ink-2">
-          Mandaremos as novidades do Finlow para <strong className="text-fl-ink">{email}</strong>.
+        <div className="mb-1.5 text-[19px] font-extrabold" style={{ color: "var(--fin-text, var(--fl-ink))" }}>Pronto, anotado!</div>
+        <div className="text-[15px]" style={{ color: "var(--fin-muted, var(--fl-ink-2))" }}>
+          Mandaremos as novidades do Finlow para <strong style={{ color: "var(--fin-text, var(--fl-ink))" }}>{email}</strong>.
           Para usar agora, é só{" "}
-          <a href="/cadastro" className="font-semibold text-fl-500 underline underline-offset-4 hover:text-fl-600">
+          <a href="/cadastro" className="font-extrabold underline underline-offset-4" style={{ color: "var(--fin-accent, var(--fl-500))" }}>
             criar sua conta
           </a>{" "}
           — é grátis.
@@ -77,18 +80,24 @@ export function WaitlistForm() {
           onChange={(e) => { setEmail(e.target.value); setErro(null) }}
           placeholder="seu@email.com"
           aria-label="Seu e-mail"
-          className="w-full rounded-[14px] border-[1.5px] border-fl-border bg-fl-card px-[18px] py-[15px] text-base text-fl-ink outline-none focus:border-fl-500 sm:min-w-[200px] sm:flex-1"
+          className="w-full rounded-[14px] border-[1.5px] px-[18px] py-[15px] text-base outline-none sm:min-w-[200px] sm:flex-1"
+          style={{
+            borderColor: "var(--fin-border-2, var(--fl-border))",
+            background: "var(--fin-bg, var(--fl-card))",
+            color: "var(--fin-text, var(--fl-ink))",
+          }}
         />
         <button
           type="submit"
           disabled={enviando}
-          className="w-full shrink-0 rounded-[14px] bg-fl-500 px-7 py-[15px] text-base font-semibold text-primary-foreground shadow-[0_2px_8px_rgba(43,109,112,.28)] transition-colors hover:bg-fl-600 disabled:opacity-60 sm:w-auto"
+          className="fin-btn-3d w-full shrink-0 rounded-[14px] px-7 py-[15px] text-base font-extrabold disabled:opacity-60 sm:w-auto"
+          style={{ background: "var(--fin-accent, var(--fl-500))", color: "var(--fin-bg, #fff)" }}
         >
           {enviando ? "Salvando…" : "Quero acompanhar"}
         </button>
       </form>
-      {erro && <div className="mt-2.5 text-left text-[13.5px] font-medium text-fl-error">{erro}</div>}
-      <div className="mt-3.5 text-[12.5px] text-fl-sand-text/70">
+      {erro && <div className="mt-2.5 text-left text-[13.5px] font-bold" style={{ color: "var(--fin-erro, var(--fl-error))" }}>{erro}</div>}
+      <div className="mt-3.5 text-[12.5px]" style={{ color: "var(--fin-dim, var(--fl-ink-3))" }}>
         🔒 Seus dados ficam com você. Nunca vendemos nada, nunca viramos vitrine de anúncio.
       </div>
     </div>

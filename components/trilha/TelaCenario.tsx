@@ -16,7 +16,7 @@ export function TelaCenario({ conteudo }: { conteudo: ConteudoCenario }) {
           dangerouslySetInnerHTML={{ __html: conteudo.headline }}
         />
         {conteudo.personagem && (
-          <span className="mt-1 block text-sm text-[#A7ADAF]">{conteudo.personagem}</span>
+          <span className="mt-1 block text-sm text-[var(--fin-muted)]">{conteudo.personagem}</span>
         )}
       </div>
 
@@ -26,13 +26,13 @@ export function TelaCenario({ conteudo }: { conteudo: ConteudoCenario }) {
           saída nem saldo para tabelar — a narrativa ocupa esse lugar. */}
       {conteudo.narrativa && (
         <p
-          className="rich-text rounded-2xl border border-[#1B3B3C] bg-[#1B3B3C] px-4 py-4 text-[15px] leading-relaxed text-white"
+          className="rich-text rounded-2xl border border-[var(--fin-surface)] bg-[var(--fin-surface)] px-4 py-4 text-[15px] leading-relaxed text-white"
           dangerouslySetInnerHTML={{ __html: conteudo.narrativa }}
         />
       )}
 
       {!!conteudo.linhas?.length && (
-      <div className="overflow-hidden rounded-2xl border border-[#1B3B3C] bg-[#1B3B3C]">
+      <div className="overflow-hidden rounded-2xl border border-[var(--fin-surface)] bg-[var(--fin-surface)]">
         {conteudo.linhas.map((linha, i) => {
           const isSaldo = linha.tipo === "saldo"
           const isSaida = linha.tipo === "saida"
@@ -43,22 +43,22 @@ export function TelaCenario({ conteudo }: { conteudo: ConteudoCenario }) {
             <div
               key={i}
               className={`flex items-center justify-between px-4 py-3 ${
-                i > 0 ? "border-t border-[#112F30]" : ""
-              } ${isSaldo ? "bg-[#112F30]" : ""}`}
+                i > 0 ? "border-t border-[var(--fin-bg)]" : ""
+              } ${isSaldo ? "bg-[var(--fin-bg)]" : ""}`}
             >
-              <span className={`text-sm ${isSaldo ? "font-semibold text-white" : "text-[#A7ADAF]"}`}>
+              <span className={`text-sm ${isSaldo ? "font-semibold text-white" : "text-[var(--fin-muted)]"}`}>
                 {linha.label}
               </span>
               <span
                 className={`text-sm font-semibold ${
                   temTexto
-                    ? "text-[#718096]"
+                    ? "text-[var(--fin-dim)]"
                     : isSaldo
                     ? saldoPositivo
-                      ? "text-[#5FA7A9]"
-                      : "text-[#D08277]"
+                      ? "text-[var(--fin-acerto)]"
+                      : "text-[var(--fin-erro)]"
                     : isSaida
-                    ? "text-[#D08277]"
+                    ? "text-[var(--fin-erro)]"
                     : "text-white"
                 }`}
               >
@@ -76,7 +76,7 @@ export function TelaCenario({ conteudo }: { conteudo: ConteudoCenario }) {
 
       {conteudo.rodape && (
         <p
-          className="rich-text text-sm leading-relaxed text-[#A7ADAF]"
+          className="rich-text text-sm leading-relaxed text-[var(--fin-muted)]"
           dangerouslySetInnerHTML={{ __html: conteudo.rodape }}
         />
       )}

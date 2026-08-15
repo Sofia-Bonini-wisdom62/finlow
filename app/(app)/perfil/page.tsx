@@ -2,10 +2,14 @@
 
 import { useCallback, useEffect, useState } from "react"
 import Link from "next/link"
-import { BookText, ChartColumn, Trophy, Wallet } from "lucide-react"
+import { BookText, ChartColumn, Flame, Target, Trophy, Wallet } from "lucide-react"
 import { BottomNav } from "@/components/bottom-nav"
 import { GraficoRosca } from "@/components/analises/GraficoRosca"
 import type { MetricasPerfil, FatiaCategoria } from "@/lib/financas"
+import { nivelDoTotal } from "@/lib/nivel"
+import { POSE } from "@/lib/fin"
+import { brl } from "@/lib/formato"
+import { TrocarImagem } from "@/components/perfil/TrocarImagem"
 
 /**
  * Perfil: retrato de um minuto.
@@ -33,6 +37,15 @@ interface Perfil {
   pontos: number
   noRanking: boolean
   insights: { texto: string; tipo: string }[]
+  sequencia?: number
+  precisaoSemana?: number | null
+  temFoto?: boolean
+  temBanner?: boolean
+  objetivos?: {
+    quantos: number
+    totalGuardado: number
+    destaque: { nome: string; guardado: number; meta: number } | null
+  } | null
 }
 
 /** As quatro portas. Mesma forma para as quatro: nenhuma é mais importante,
@@ -62,6 +75,11 @@ export default function PerfilPage() {
   const [carregando, setCarregando] = useState(true)
   const [logado, setLogado] = useState(true)
   const [erro, setErro] = useState(false)
+  // Personalização: flags locais (nascem da API) + versão pra furar o cache
+  // do navegador logo depois de uma troca.
+  const [temFoto, setTemFoto] = useState(false)
+  const [temBanner, setTemBanner] = useState(false)
+  const [versaoImg, setVersaoImg] = useState(0)
 
   const carregar = useCallback(() => {
     setCarregando(true)
@@ -82,6 +100,8 @@ export default function PerfilPage() {
         if ("deslogado" in p) { setLogado(false); return }
         if ("falhou" in p) { setErro(true); return }
         setPerfil(p.perfil)
+        setTemFoto(!!p.perfil.temFoto)
+        setTemBanner(!!p.perfil.temBanner)
       })
       .catch(() => setErro(true))
       .finally(() => setCarregando(false))
@@ -127,25 +147,110 @@ export default function PerfilPage() {
 
   const inicial = perfil.nome.trim().charAt(0).toUpperCase() || "?"
   const temGastos = perfil.categorias?.length > 0
+  const jogo = nivelDoTotal(perfil.pontos)
+
+  // A foto do usuário vence a do Google, que vence a inicial dourada — e a
+  // troca fura o cache do navegador com ?v= assim que o servidor confirma.
+  const urlFoto = temFoto ? `/api/imagem/foto?v=${versaoImg}` : perfil.image
 
   return (
     <main className="min-h-dvh bg-fl-page pb-24 lg:pb-10 lg:pl-56">
+      {/* Banner de capa (personalização, 14/08): faixa de imagem no topo, e o
+          resto da tela segue navy+dourado — a identidade não sai do lugar.
+          Visível só pro dono: a rota da imagem exige a sessão dele. */}
+      {temBanner && (
+        <div className="relative h-36 w-full overflow-hidden sm:h-44">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`/api/imagem/banner?v=${versaoImg}`}
+            alt=""
+            className="size-full object-cover"
+          />
+          {/* Esmaece pro navy embaixo: a capa encontra a página, não briga. */}
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{ background: "linear-gradient(to bottom, transparent 55%, var(--fl-page))" }}
+          />
+          <TrocarImagem
+            tipo="banner"
+            temImagem
+            onMudou={(tem) => { setTemBanner(tem); setVersaoImg(Date.now()) }}
+            className="absolute right-4 top-3"
+          />
+        </div>
+      )}
+
       <div className="mx-auto w-full max-w-md px-5 py-6 md:max-w-2xl md:px-8 lg:max-w-3xl lg:px-10">
-        {/* cabeçalho */}
-        <header className="flex items-center gap-3.5">
-          {perfil.image ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={perfil.image} alt="" className="size-14 rounded-full object-cover" />
-          ) : (
-            <div className="flex size-14 items-center justify-center rounded-full bg-fl-100 text-xl font-extrabold text-fl-500">
-              {inicial}
+        {/* Cabeçalho do protótipo v2: quem é, em que nível do jogo está e o
+            rótulo financeiro — "Nível 4 · Guardadora". A barra é o XP. */}
+        <header className={`flex items-center gap-3.5 ${temBanner ? "-mt-14 sm:-mt-16" : ""}`}>
+          <div className="relative shrink-0">
+            {urlFoto ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={urlFoto}
+                alt=""
+                className={`size-16 rounded-full object-cover ${temBanner ? "ring-4 ring-[var(--fl-page)]" : ""}`}
+              />
+            ) : (
+              <div className={`fin-btn-3d flex size-16 items-center justify-center rounded-full bg-fl-500 text-[26px] font-black text-primary-foreground ${temBanner ? "ring-4 ring-[var(--fl-page)]" : ""}`}>
+                {inicial}
+              </div>
+            )}
+            <TrocarImagem
+              tipo="foto"
+              temImagem={temFoto}
+              onMudou={(tem) => { setTemFoto(tem); setVersaoImg(Date.now()) }}
+              className="absolute -bottom-1 -right-1"
+            />
+          </div>
+          <div className={`min-w-0 flex-1 ${temBanner ? "pt-10 sm:pt-12" : ""}`}>
+            <h1 className="truncate text-xl font-black tracking-tight text-fl-ink">{perfil.nome}</h1>
+            <p className="text-[13px] text-fl-ink-2">
+              Nível {jogo.nivel} · <span className="text-fl-500">{perfil.nivel}</span>
+            </p>
+            <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-fl-divider">
+              <div className="h-full rounded-full bg-fl-500 transition-all" style={{ width: `${Math.round(jogo.fracao * 100)}%` }} />
             </div>
-          )}
-          <div className="min-w-0">
-            <h1 className="truncate text-xl font-extrabold tracking-tight text-fl-ink">{perfil.nome}</h1>
-            <p className="text-sm text-fl-500">{perfil.nivel}</p>
+            <p className="mt-1 text-[11px] font-bold text-fl-ink-3">
+              {perfil.pontos} XP · faltam {jogo.paraProximo} pro nível {jogo.nivel + 1}
+            </p>
           </div>
         </header>
+
+        {/* Sem capa ainda: o convite fica pequeno e fora do caminho. */}
+        {!temBanner && (
+          <div className="mt-3 flex items-center gap-2">
+            <TrocarImagem
+              tipo="banner"
+              temImagem={false}
+              onMudou={(tem) => { setTemBanner(tem); setVersaoImg(Date.now()) }}
+            />
+            <span className="text-[11.5px] font-bold text-fl-ink-3">Adicionar uma capa</span>
+          </div>
+        )}
+
+        {/* Os três tiles do desenho. Precisão só com quiz na semana — zero
+            inventado diria "você errou tudo" para quem só não estudou. */}
+        <section className="mt-5 grid grid-cols-3 gap-2.5" aria-label="Seu jogo">
+          <div className="rounded-2xl bg-fl-card px-2 py-3 text-center">
+            <Flame className="mx-auto size-[18px]" style={{ color: "var(--fin-combo, #F5772E)" }} />
+            <div className="mt-1 text-lg font-black text-fl-ink">{perfil.sequencia ?? 0}</div>
+            <div className="text-[10.5px] font-bold text-fl-ink-3">DIAS SEGUIDOS</div>
+          </div>
+          <div className="rounded-2xl bg-fl-card px-2 py-3 text-center">
+            <Trophy className="mx-auto size-[18px] text-fl-500" />
+            <div className="mt-1 text-lg font-black text-fl-ink">{perfil.pontos}</div>
+            <div className="text-[10.5px] font-bold text-fl-ink-3">XP TOTAL</div>
+          </div>
+          <div className="rounded-2xl bg-fl-card px-2 py-3 text-center">
+            <Target className="mx-auto size-[18px] text-fl-success" />
+            <div className="mt-1 text-lg font-black text-fl-ink">
+              {perfil.precisaoSemana != null ? `${perfil.precisaoSemana}%` : "—"}
+            </div>
+            <div className="text-[10.5px] font-bold text-fl-ink-3">PRECISÃO</div>
+          </div>
+        </section>
 
         {/* A rosca abre a página: "para onde foi o meu dinheiro" é a pergunta
             que traz alguém ao Perfil, e ela se responde de relance.
@@ -205,14 +310,53 @@ export default function PerfilPage() {
           </p>
         )}
 
+        {/* Card de Objetivos (protótipo v2): o Fin procurando + o objetivo em
+            andamento. Sem objetivo ainda, o card convida em vez de sumir. */}
+        <Link
+          href="/objetivos"
+          className="mt-4 flex items-center gap-3 rounded-2xl border-[1.5px] border-fl-500/40 bg-fl-card px-3.5 py-3 transition-colors hover:border-fl-500"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={POSE.search} alt="" className="size-10 shrink-0 object-contain" />
+          <div className="min-w-0 flex-1">
+            <div className="flex items-baseline justify-between gap-2">
+              <span className="text-[13.5px] font-black text-fl-ink">Objetivos</span>
+              <span className="text-[11.5px] font-black text-fl-500">
+                {perfil.objetivos ? `${brl(perfil.objetivos.totalGuardado)} guardados` : "começar"}
+              </span>
+            </div>
+            {perfil.objetivos?.destaque ? (
+              <>
+                <div className="mt-0.5 truncate text-[11px] text-fl-ink-2">
+                  {perfil.objetivos.destaque.nome} · {brl(perfil.objetivos.destaque.guardado)} de{" "}
+                  {brl(perfil.objetivos.destaque.meta)}
+                </div>
+                <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-fl-divider">
+                  <div
+                    className="h-full rounded-full bg-fl-500"
+                    style={{
+                      width: `${Math.min(100, Math.round((perfil.objetivos.destaque.guardado / Math.max(1, perfil.objetivos.destaque.meta)) * 100))}%`,
+                    }}
+                  />
+                </div>
+              </>
+            ) : (
+              <div className="mt-0.5 text-[11px] text-fl-ink-2">
+                Dá nome ao que você quer juntar — cofrinho é bolso seu, não gasto.
+              </div>
+            )}
+          </div>
+          <span className="font-black text-fl-ink-3">›</span>
+        </Link>
+
         {/* As quatro portas. */}
-        <section className="mt-6 grid grid-cols-2 gap-2.5" aria-label="Onde ir">
+        <section className="mt-4 grid grid-cols-2 gap-2.5" aria-label="Onde ir">
           <Porta href="/trilha" Icon={BookText} titulo="Trilha" nota="Aulas escolhidas pelos seus números" />
           <Porta
             href="/ranking"
             Icon={Trophy}
-            titulo="Ranking"
-            nota={`${perfil.pontos} ${perfil.pontos === 1 ? "ponto" : "pontos"} · ${perfil.noRanking ? "você está dentro" : "entrar é opcional"}`}
+            titulo="Liga"
+            nota={`${perfil.pontos} XP · ${perfil.noRanking ? "você está dentro" : "entrar é opcional"}`}
           />
           <Porta href="/analises" Icon={ChartColumn} titulo="Análises" nota="Saúde financeira, gráficos e tetos" />
           <Porta href="/painel" Icon={Wallet} titulo="Painel" nota="Lançamentos e contas fixas" />

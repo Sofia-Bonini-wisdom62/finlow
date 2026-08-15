@@ -311,7 +311,37 @@ tabela de conteúdo ou progresso mudou de dono. As peças, na ordem do fluxo:
 - Superfície em `app/escola/` (fora das abas do consumidor); telas do aluno
   são as do app normal.
 
-### 2.16 Operação
+### 2.16 O jogo — Redesign Fin (13/08/2026)
+
+O miolo gamificado (trilha, player, resultado, liga, perfil do jogador,
+loja) tem identidade própria — navy + dourado + Nunito + o mascote **Fin** —
+escopada na classe `.tema-fin` (globals.css), que reaponta os `--finlow-*`
+sem nenhum componente saber. Sempre navy, nos dois modos.
+
+- **Coins**: `EventoCoins` é o espelho de `EventoPontuacao` (unique
+  userId+motivo+refId; `User.coins` cache na mesma transação) e também é
+  ESTADO: missão resgatada, cosmético possuído e baú aberto são linhas do
+  ledger. Coins nunca compram vantagem de ranking.
+- **Energia** (`lib/energia.ts`): máx 24, lição custa 4, +1/hora, acertos
+  devolvem até 3. Limita SÓ usuário grátis sem vínculo de escola. Débito no
+  GET da lição com RECIBO (o create de `ProgressoLicao`): refazer, retomar e
+  recarregar são grátis por construção.
+- **Combo** atravessa lições (`User.comboAtual`); o servidor recalcula
+  contra o gabarito e paga `combo_bonus` (motivo novo com teto — nunca infla
+  os existentes). Poção ×2 idem: `pocao_bonus` é um segundo crédito.
+- **Missões** (`lib/missoes.ts`): 3/dia, progresso DERIVADO de
+  `ProgressoLicao` do dia SP — o único estado é o resgate no ledger, com o
+  dia no refId (renova à meia-noite sem zerar nada).
+- **Baú** (`lib/bau.ts`): fecha bloco escolar ou leva adulta; reconfere
+  completude no servidor. Lacuna registrada: EM não tem bloco nem leva.
+- **Nível e conquistas**: funções puras de leitura (`lib/nivel.ts`,
+  `lib/conquistas.ts`) — nada a dessincronizar.
+- Superfícies: `/trilha` (mapa com unidades coloridas, baú, pop-up diário,
+  intro), `/trilha/[moduloId]` (player com Fin), `/trilha/perfil`,
+  `/trilha/loja`, `/ranking` (Liga — mecânica intacta). Rotas de escrita em
+  `/api/jogo/*`. Bateria: `scripts/testar-jogo.mts` (react-server).
+
+### 2.17 Operação
 
 `/api/ops/metrics` devolve uso da Vertex nas últimas 24h (invocações, tokens,
 caracteres, latências) e um bloco de produto (indicações totais / 30 dias /

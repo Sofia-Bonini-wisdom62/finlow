@@ -11,6 +11,7 @@ import {
   TrendingUp,
   AlertTriangle,
   Sparkles,
+  Star,
 } from "lucide-react"
 import { motion } from "framer-motion"
 import type { NoTrilha as NoTrilhaTipo } from "@/lib/trilha-visual"
@@ -23,6 +24,8 @@ interface NoTrilhaProps {
   haloAtivo?: boolean
   intensidade: "sobria" | "expressiva"
   onSelecionar: () => void
+  /** A cor da unidade (lib/fin.ts) — pinta o nó preenchido e a sombra 3D. */
+  cor?: { cor: string; sombra: string }
 }
 
 const NIVEL_LABEL: Record<NoTrilhaTipo["nivel"], string> = {
@@ -35,6 +38,9 @@ function iconePorNo(no: NoTrilhaTipo) {
   if (no.estado === "concluido") return Check
   if (no.estado === "travado") return Lock
   if (no.estado === "revisao") return RefreshCw
+  // O nó ATUAL é a estrela do caminho (protótipo) — o tema do módulo fica
+  // para o drawer; aqui o que importa é "é AQUI que você está".
+  if (no.estado === "atual") return Star
   const t = no.tags.join(" ")
   if (/juros|cartão|cet|crédito/i.test(t)) return CreditCard
   if (/poupан|poupar|reserva|metas/i.test(t)) return PiggyBank
@@ -69,6 +75,7 @@ export default function NoTrilha({
   haloAtivo,
   intensidade,
   onSelecionar,
+  cor,
 }: NoTrilhaProps) {
   const Icone = iconePorNo(no)
   const isTravado = no.estado === "travado"
@@ -77,10 +84,14 @@ export default function NoTrilha({
   const isRevisao = no.estado === "revisao"
   const iconSize = Math.round(size * 0.4)
 
+  // A cor da unidade pinta o nó; sem ela, o vocabulário --finlow-* de sempre.
+  const corCheia = cor?.cor ?? "var(--finlow-accent)"
+  const corSombra3d = cor?.sombra ?? "var(--finlow-branch)"
+
   // Cores do círculo por estado
   const preenchido = isConcluido || isAtual
   const bg = preenchido
-    ? "var(--finlow-accent)"
+    ? corCheia
     : isTravado
       ? "var(--finlow-surface)"
       : "var(--finlow-surface-2)"
@@ -90,17 +101,12 @@ export default function NoTrilha({
       ? "var(--finlow-locked-text)"
       : "var(--finlow-text)"
 
-  const sombra =
-    isConcluido && intensidade === "expressiva"
-      ? "var(--finlow-glow)"
-      : isTravado
-        ? "none"
-        : undefined
+  // O 3D do protótipo: sombra dura embaixo em tudo que não está travado.
+  const sombra = isTravado ? "none" : `0 5px 0 ${preenchido ? corSombra3d : "var(--finlow-surface)"}`
 
   const anelDuplo = isAtual
     ? {
-        boxShadow:
-          "0 0 0 4px var(--finlow-bg), 0 0 0 6px color-mix(in srgb, var(--finlow-accent) 70%, transparent)",
+        boxShadow: `0 5px 0 ${corSombra3d}, 0 0 0 5px var(--finlow-bg), 0 0 0 8px color-mix(in srgb, ${corCheia} 55%, transparent)`,
       }
     : {}
 
@@ -178,25 +184,33 @@ export default function NoTrilha({
       {isConcluido && (
         <span
           className="absolute top-1/2 -translate-y-1/2 whitespace-nowrap text-xs font-semibold tabular-nums"
-          style={{ ...posCurva, color: "var(--finlow-accent)" }}
+          style={{ ...posCurva, color: corCheia }}
           aria-hidden="true"
         >
           +{no.pontos}
         </span>
       )}
 
-      {/* rótulo flutuante Continuar (atual) — no lado da curva */}
+      {/* tooltip flutuante do protótipo (atual): chip creme acima do nó com
+          seta — substitui a antiga pill "Continuar →" do lado da curva. */}
       {isAtual && (
         <span
-          className="absolute top-1/2 flex -translate-y-1/2 items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-1 text-xs font-semibold"
+          className="fin-floaty absolute left-1/2 z-20 whitespace-nowrap rounded-xl px-3 py-1.5 text-[11px] font-black tracking-wide"
           style={{
-            ...posCurva,
-            backgroundColor: "var(--finlow-accent)",
-            color: "var(--finlow-bg)",
+            top: -14,
+            transform: "translate(-50%, -100%)",
+            backgroundColor: "var(--fin-creme, #F6E9CE)",
+            color: "#0C1B21",
+            boxShadow: "0 3px 0 var(--fin-creme-sombra, #C9BA98)",
           }}
           aria-hidden="true"
         >
-          Continuar →
+          {no.telasVistas > 0 ? "CONTINUAR" : "COMEÇAR"}
+          {no.proximaLicao ? ` · LIÇÃO ${no.proximaLicao}` : ""}
+          <span
+            className="absolute left-1/2 h-2.5 w-2.5 -translate-x-1/2 rotate-45"
+            style={{ bottom: -5, backgroundColor: "var(--fin-creme, #F6E9CE)" }}
+          />
         </span>
       )}
 
