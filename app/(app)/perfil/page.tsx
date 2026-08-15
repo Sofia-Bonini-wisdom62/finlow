@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react"
 import Link from "next/link"
-import { BookText, ChartColumn, Flame, Target, Trophy, Wallet } from "lucide-react"
+import { ArrowDownLeft, ArrowUpRight, BookText, ChartColumn, Flame, PiggyBank, Target, Trophy, Wallet } from "lucide-react"
 import { BottomNav } from "@/components/bottom-nav"
 import { GraficoRosca } from "@/components/analises/GraficoRosca"
 import type { MetricasPerfil, FatiaCategoria } from "@/lib/financas"
@@ -14,8 +14,15 @@ import { TrocarImagem } from "@/components/perfil/TrocarImagem"
 /**
  * Perfil: retrato de um minuto.
  *
- * A ordem é para onde foi o dinheiro, o que isso quer dizer, e para onde ir.
- * Rosca, leituras, portas. Nada de número solto no meio.
+ * A ordem é quem é a pessoa, quanto ela tem, para onde o dinheiro foi, o que
+ * isso quer dizer, e para onde ir. Nada de número solto no meio.
+ *
+ * A ORDEM É DECISÃO DA FUNDADORA (backlog "Tela de perfil a reconfigurar")
+ * Nome e foto no topo; saldo e o que entrou/saiu do mês logo abaixo; aí sim a
+ * rosca e as quatro portas. Os três tiles do jogo (dias seguidos, XP, precisão)
+ * desceram para junto da porta da Liga no mesmo movimento: entre a identidade e
+ * o dinheiro eles quebravam a frase que a tela conta, e ao lado da Liga são a
+ * mesma conversa. Nenhum número saiu da tela — só mudou de lugar.
  *
  * OS KPIs SAÍRAM DAQUI
  * Taxa de economia, controle orçamentário, reserva e consistência foram para
@@ -34,6 +41,14 @@ interface Perfil {
   metricas: MetricasPerfil
   categorias: FatiaCategoria[]
   mesRosca: string
+  mesCurto?: string
+  dinheiro?: {
+    saldo: number
+    entradas: number
+    saidas: number
+    guardado: number
+    lancamentos: number
+  } | null
   pontos: number
   noRanking: boolean
   insights: { texto: string; tipo: string }[]
@@ -67,6 +82,30 @@ function Porta({
       <span className="text-[14.5px] font-bold text-fl-ink">{titulo}</span>
       <span className="text-[12px] leading-snug text-fl-ink-2">{nota}</span>
     </Link>
+  )
+}
+
+/** Uma metade do "entrou × saiu". Mesmo peso visual para as duas: saída em
+ *  vermelho seria julgamento, e a casa não julga gasto. */
+function Fluxo({
+  Icon, rotulo, valor, sinal, cor,
+}: {
+  Icon: typeof ArrowDownLeft
+  rotulo: string
+  valor: number
+  sinal: string
+  cor: string
+}) {
+  return (
+    <div className="rounded-2xl bg-fl-page/60 px-3.5 py-3">
+      <div className="flex items-center gap-1.5">
+        <Icon className="size-3.5" style={{ color: cor }} />
+        <span className="text-[10.5px] font-bold uppercase tracking-wider text-fl-ink-3">{rotulo}</span>
+      </div>
+      <div className="mt-1 text-[16.5px] font-black" style={{ color: cor }}>
+        {sinal} {brl(valor)}
+      </div>
+    </div>
   )
 }
 
@@ -149,6 +188,14 @@ export default function PerfilPage() {
   const temGastos = perfil.categorias?.length > 0
   const jogo = nivelDoTotal(perfil.pontos)
 
+  // O bloco de dinheiro. Ausente vira zerado + estado vazio, nunca quebra: a
+  // rota pode falhar num pedaço acessório e o retrato continua de pé.
+  const dinheiro = perfil.dinheiro ?? { saldo: 0, entradas: 0, saidas: 0, guardado: 0, lancamentos: 0 }
+  // "Tem número" é ter lançamento no mês de que a tela fala — e esse mês é, por
+  // construção, o último com movimento. Zero aqui só acontece com histórico
+  // vazio de verdade.
+  const temNumeros = dinheiro.lancamentos > 0
+
   // A foto do usuário vence a do Google, que vence a inicial dourada — e a
   // troca fura o cache do navegador com ?v= assim que o servidor confirma.
   const urlFoto = temFoto ? `/api/imagem/foto?v=${versaoImg}` : perfil.image
@@ -230,30 +277,87 @@ export default function PerfilPage() {
           </div>
         )}
 
-        {/* Os três tiles do desenho. Precisão só com quiz na semana — zero
-            inventado diria "você errou tudo" para quem só não estudou. */}
-        <section className="mt-5 grid grid-cols-3 gap-2.5" aria-label="Seu jogo">
-          <div className="rounded-2xl bg-fl-card px-2 py-3 text-center">
-            <Flame className="mx-auto size-[18px]" style={{ color: "var(--fin-combo, #F5772E)" }} />
-            <div className="mt-1 text-lg font-black text-fl-ink">{perfil.sequencia ?? 0}</div>
-            <div className="text-[10.5px] font-bold text-fl-ink-3">DIAS SEGUIDOS</div>
-          </div>
-          <div className="rounded-2xl bg-fl-card px-2 py-3 text-center">
-            <Trophy className="mx-auto size-[18px] text-fl-500" />
-            <div className="mt-1 text-lg font-black text-fl-ink">{perfil.pontos}</div>
-            <div className="text-[10.5px] font-bold text-fl-ink-3">XP TOTAL</div>
-          </div>
-          <div className="rounded-2xl bg-fl-card px-2 py-3 text-center">
-            <Target className="mx-auto size-[18px] text-fl-success" />
-            <div className="mt-1 text-lg font-black text-fl-ink">
-              {perfil.precisaoSemana != null ? `${perfil.precisaoSemana}%` : "—"}
-            </div>
-            <div className="text-[10.5px] font-bold text-fl-ink-3">PRECISÃO</div>
+        {/* O DINHEIRO, LOGO ABAIXO DE QUEM É A PESSOA.
+            Saldo primeiro, entrou e saiu do mês em seguida — é a ordem pedida
+            no backlog, e é a ordem em que a pergunta se faz: "quanto eu tenho"
+            antes de "o que fiz com isso".
+
+            O saldo é o ACUMULADO (tudo que entrou menos tudo que saiu desde o
+            primeiro registro), não o saldo da conta no banco: não existe
+            integração bancária, e chamar de "saldo atual" um número que o app
+            não tem como saber seria inventar precisão. A legenda embaixo diz de
+            onde ele vem, com o mês, para ninguém confundir com o app do banco.
+
+            Entradas e saídas são do MESMO mês da rosca (o último com
+            movimento). Dois meses diferentes na mesma tela seriam duas
+            verdades: "saiu R$ 300" ao lado de uma rosca somando R$ 1.200. */}
+        <section className="mt-5" aria-label="Seu dinheiro">
+          <div className="rounded-[20px] border border-fl-border bg-fl-card p-5">
+            {temNumeros ? (
+              <>
+                <span className="text-[10.5px] font-bold uppercase tracking-wider text-fl-ink-3">
+                  Saldo acumulado
+                </span>
+                {/* Negativo em âmbar, nunca no vermelho de erro: quem está no
+                    negativo já sabe, e a tela não precisa gritar. */}
+                <p
+                  className={`mt-0.5 text-[30px] font-black leading-none tracking-tight ${
+                    dinheiro.saldo >= 0 ? "text-fl-500" : "text-fl-accent-dark"
+                  }`}
+                >
+                  {brl(dinheiro.saldo)}
+                </p>
+                <p className="mt-1.5 text-[11.5px] leading-snug text-fl-ink-2">
+                  Tudo que entrou menos tudo que saiu, até {perfil.mesRosca}. Não é o saldo da
+                  sua conta no banco — é a conta do que você registrou aqui.
+                </p>
+
+                <div className="mt-4 grid grid-cols-2 gap-2.5">
+                  <Fluxo
+                    Icon={ArrowDownLeft}
+                    rotulo={`Entrou${perfil.mesCurto ? ` em ${perfil.mesCurto}` : ""}`}
+                    valor={dinheiro.entradas}
+                    sinal="+"
+                    cor="var(--fl-success)"
+                  />
+                  <Fluxo
+                    Icon={ArrowUpRight}
+                    rotulo={`Saiu${perfil.mesCurto ? ` em ${perfil.mesCurto}` : ""}`}
+                    valor={dinheiro.saidas}
+                    sinal="−"
+                    cor="var(--fl-ink)"
+                  />
+                </div>
+
+                {/* Guardar não é gastar: o que foi para a poupança fica fora de
+                    "saiu" (regra de `ehPoupanca`), e some da tela se for zero —
+                    "R$ 0,00 guardado" é cobrança, não informação. */}
+                {dinheiro.guardado > 0 && (
+                  <p className="mt-2.5 flex items-center gap-1.5 text-[11.5px] font-bold text-fl-ink-2">
+                    <PiggyBank className="size-3.5 text-fl-500" />
+                    {brl(dinheiro.guardado)} guardados no mês — isso não conta como saída.
+                  </p>
+                )}
+              </>
+            ) : (
+              /* Sem lançamento nenhum, "R$ 0,00" seria uma afirmação falsa: o
+                 app não sabe que a pessoa tem zero, sabe que não sabe. */
+              <>
+                <h2 className="text-[15px] font-bold text-fl-ink">Seu saldo aparece aqui</h2>
+                <p className="mt-1 text-[13px] leading-relaxed text-fl-ink-2">
+                  Assim que entrar o primeiro lançamento, esta tela mostra quanto você tem e o
+                  que entrou e saiu no mês.
+                </p>
+                <Link href="/extrato" className="mt-3 inline-block text-[13px] font-semibold text-fl-500">
+                  Subir o extrato do banco
+                </Link>
+              </>
+            )}
           </div>
         </section>
 
-        {/* A rosca abre a página: "para onde foi o meu dinheiro" é a pergunta
-            que traz alguém ao Perfil, e ela se responde de relance.
+        {/* Depois do dinheiro vem para onde ele foi — a pergunta que traz
+            alguém ao Perfil, respondida de relance.
 
             A legenda não é clicável aqui de propósito. Em Análises tocar abre
             os lançamentos da categoria; repetir isso no Perfil daria dois
@@ -349,8 +453,33 @@ export default function PerfilPage() {
           <span className="font-black text-fl-ink-3">›</span>
         </Link>
 
+        {/* Os três tiles do jogo, agora aqui embaixo: eles falam de estudo, não
+            de dinheiro, e ao lado da porta da Liga são a mesma conversa. Entre
+            a foto e o saldo, competiam com o número que a pessoa veio ver.
+            Precisão só com quiz na semana — zero inventado diria "você errou
+            tudo" para quem só não estudou. */}
+        <section className="mt-4 grid grid-cols-3 gap-2.5" aria-label="Seu jogo">
+          <div className="rounded-2xl bg-fl-card px-2 py-3 text-center">
+            <Flame className="mx-auto size-[18px]" style={{ color: "var(--fin-combo, #F5772E)" }} />
+            <div className="mt-1 text-lg font-black text-fl-ink">{perfil.sequencia ?? 0}</div>
+            <div className="text-[10.5px] font-bold text-fl-ink-3">DIAS SEGUIDOS</div>
+          </div>
+          <div className="rounded-2xl bg-fl-card px-2 py-3 text-center">
+            <Trophy className="mx-auto size-[18px] text-fl-500" />
+            <div className="mt-1 text-lg font-black text-fl-ink">{perfil.pontos}</div>
+            <div className="text-[10.5px] font-bold text-fl-ink-3">XP TOTAL</div>
+          </div>
+          <div className="rounded-2xl bg-fl-card px-2 py-3 text-center">
+            <Target className="mx-auto size-[18px] text-fl-success" />
+            <div className="mt-1 text-lg font-black text-fl-ink">
+              {perfil.precisaoSemana != null ? `${perfil.precisaoSemana}%` : "—"}
+            </div>
+            <div className="text-[10.5px] font-bold text-fl-ink-3">PRECISÃO</div>
+          </div>
+        </section>
+
         {/* As quatro portas. */}
-        <section className="mt-4 grid grid-cols-2 gap-2.5" aria-label="Onde ir">
+        <section className="mt-2.5 grid grid-cols-2 gap-2.5" aria-label="Onde ir">
           <Porta href="/trilha" Icon={BookText} titulo="Trilha" nota="Aulas escolhidas pelos seus números" />
           <Porta
             href="/ranking"
