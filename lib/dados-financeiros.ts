@@ -48,8 +48,12 @@ export const TABELAS_FINANCEIRAS = [
   "contaFixa",
   // a carteira. Foi a que faltava, e a que a exportação LGPD já entregava.
   "investimento",
-  // o cofrinho (Redesign Fin v2): meta e guardado são valores financeiros
-  // dela, cifrados como os da carteira — sai pelo mesmo botão.
+  // o cofrinho (Redesign Fin v2). Nome, meta e guardado são cifrados, e quem
+  // decidiu que isto é dinheiro foi o próprio schema, não eu: o comentário de
+  // `model Objetivo` diz "objetivo é dado financeiro real" e exige o
+  // consentimento do Painel (R8) para escrever. Dado que só se grava com o
+  // consentimento financeiro sai com o apagar financeiro — o contrário deixaria
+  // "Viagem: R$ 3.200 de R$ 8.000" no banco depois de a tela dizer que apagou.
   "objetivo",
   // de qual banco veio o extrato e de que período — não é valor, mas é a sua
   // vida financeira descrita: "Nubank, março a junho".
@@ -86,11 +90,14 @@ export const TABELAS_NAO_FINANCEIRAS: Record<string, string> = {
   progressoModulo: "Progresso na Trilha.",
   progressoLicao: "Progresso dentro da lição.",
   eventoPontuacao: "XP conquistado.",
-  eventoCoins:
-    "Moedas do jogo (Redesign Fin). É moeda DE JOGO, não dinheiro — mesma " +
-    "família do XP; apagar zeraria loja e missões que a pessoa não pediu " +
-    "para perder.",
   diaAtivo: "Dias de uso seguidos (ofensiva). Guarda data, nunca valor.",
+
+  // --- a camada de jogo (Redesign Fin) ---
+  eventoCoins:
+    "Ledger de Finlo Coins. É moeda de JOGO, ganha por uso e gasta em " +
+    "cosmético — não se compra com dinheiro real, e nenhuma rota de pagamento " +
+    "a toca. Mesmo lugar de eventoPontuacao: apagar aqui zeraria progresso " +
+    "que este botão não promete tocar.",
 
   // --- personalização: tem os próprios botões no Perfil ---
   imagemUsuario:
