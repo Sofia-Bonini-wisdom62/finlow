@@ -7,15 +7,26 @@ Registrado em 05/08/2026.
 
 ---
 
-## Tela de objetivos
+## ~~Tela de objetivos~~ ✅ 14/08/2026
 
 Construir uma nova tela onde se pode registrar novos objetivos financeiros para
 guardar dinheiro para eles, uma coisa meio sonho.
 
-## Tela de perfil a reconfigurar
+> Entregue na etapa V2-4 do Redesign Fin v2: `/objetivos`, com o modelo
+> `Objetivo` cifrado, "+ Guardar R$ 50" e barra colorida. Detalhes na seção
+> "Redesign Fin v2" abaixo; pendência que segue viva lá: remover/editar
+> objetivo não tem desenho.
+
+## ~~Tela de perfil a reconfigurar~~ ✅ 15/08/2026 (com uma sobra)
 
 Nome e foto no topo, saldo atual + (entrada + saída) do mês, logo abaixo. Aí sim
 o gráfico de rosca e os 4 botões que tem atualmente.
+
+> Veio quase inteira com a unificação dos perfis (15/08): nome e FOTO no
+> topo, rosca, os 4 botões, e de quebra nível/XP, missões e conquistas.
+> **A sobra:** o "saldo atual + (entrada + saída) do mês" não está no topo
+> do Perfil — esses números moram no Painel e nas Análises, a um toque. Se
+> a fundadora ainda os quiser no Perfil, é pedido pequeno e a API já os tem.
 
 ## Conector Open Finance
 
@@ -147,9 +158,15 @@ ele.
 > IA a partir dos números da pessoa. Duas pessoas têm corredores diferentes — é
 > o que impede o corredor de virar uma fila única igual para todo mundo.
 
-## Popular a base desde o 1º ano
+## ~~Popular a base desde o 1º ano~~ ✅ 07/08/2026
 
 Implementar todo o conteúdo dos assuntos desde o 1º ano.
+
+> Estava entregue e ninguém cruzou a linha: os quatro segmentos de EF (83
+> módulos, 415 telas) foram portados e semeados em 07/08, e o EM já estava
+> desde 05/08. Total no banco: 150 módulos, 801 telas — a tabela viva está
+> em `estado-do-produto.md`. O que resta ali é conteúdo, não código:
+> thumbnails e revisão pedagógica humana.
 
 ## ~~Redesign Fin — gamificação~~ ✅ 13/08/2026
 
@@ -305,6 +322,23 @@ fila:
   fundadora vai reelaborar as trilhas. O player já suporta qualquer
   quantidade de quiz por lição, e a segunda chance re-enfileira as erradas
   independente de quantas sejam.
+
+**Leva de 16/08/2026 (bug + três pedidos), entregue no mesmo dia:**
+
+- ~~**Bug: aula escolar no perfil adulto "não conclui nem paga"**~~ ✅ — a
+  conclusão SEMPRE gravou; o que quebrava a percepção era o peso 1/4
+  esmagando o piso da lição para 1 XP e a biblioteca forçando aula de outro
+  público como "liberada" pra sempre. O peso virou **METADE** (decisão dela;
+  o custo de varredura dominar o ranking está aceito e anotado em
+  `lib/pontos.ts`) e a biblioteca passou a ler a conclusão real.
+- ~~**Módulo em sequência única**~~ ✅ — as lições emendam sem tela de
+  concluído no meio; a tela de fim aparece uma vez, com a sentada somada.
+  Energia, XP e revanche seguem por lição no servidor.
+- ~~**Foto na Liga**~~ ✅ — a linha PRÓPRIA mostra a foto; as dos colegas
+  seguem de inicial (foto alheia é privada por decisão LGPD).
+- ~~**Comprar energia**~~ ✅ — tocar no raio abre o modal: recarga cheia por
+  10 moedas ou a porta do Finlow+ (energia infinita); o botão também está
+  na tela de energia zerada do player.
 
 ## Finlow para Escolas — em desenvolvimento (11/08/2026)
 
@@ -483,18 +517,16 @@ Lista do mais crítico ao mais simples; cada item é um trabalho independente.
    > sem citar valor. Publicar o número na home é escolha comercial, não
    > conserto de defeito, e não entrou aqui por isso.
 
-4. **🟠 Cadastro com fricção.** Sem as chaves OAuth na Vercel o botão Google
-   não aparece (pendência já registrada em `estado-do-produto.md`); sobra
-   e-mail + senha + **data de nascimento obrigatória sem explicar o porquê**.
-   E o subtítulo "Pra salvar seu perfil e seu progresso na trilha"
-   (`app/(auth)/cadastro/page.tsx:99`) usa "trilha" antes de a pessoa saber o
-   que é — ela veio pelo extrato, não pela trilha.
+4. **🟠 Cadastro com fricção** (revisado 16/08: metade caiu). A data de
+   nascimento GANHOU o porquê na tela ("adequar o conteúdo à idade e menores
+   nunca verem anúncio", V2-1). Segue pendente: as chaves OAuth do Google na
+   Vercel (o botão se esconde sem elas) e o subtítulo que fala "trilha" antes
+   de a pessoa saber o que é.
 
-5. **🟠 Imagem quebrada em toda ficha de módulo.** O drawer usa
-   `no.thumbnail || "/placeholder.svg"` (`components/trilha-visual/DrawerModulo.tsx:150`),
-   mas `public/placeholder.svg` **não existe** e as thumbnails hoje são todas
-   `null` — todo módulo abre com um 16:9 quebrado no topo. Criar o SVG ou
-   desenhar o estado sem imagem.
+5. ~~**🟠 Imagem quebrada em toda ficha de módulo.**~~ ✅ **13/08/2026** (Fin
+   1): o fallback virou o Fin professor num bloco surface — o
+   `/placeholder.svg` fantasma saiu do caminho. Thumbnails reais seguem
+   sendo conteúdo a produzir.
 
 6. **🟠 Chat sem streaming.** A resposta chega inteira depois de segundos de
    pontinhos (`components/chat/ChatIA.tsx`). A régua do público é ChatGPT:
@@ -506,17 +538,16 @@ Lista do mais crítico ao mais simples; cada item é um trabalho independente.
    Se a IA responder "não dá", vira botão de mentira. Renomear para algo como
    "Pedir pro assistente" resolve — o problema é a promessa, não a mecânica.
 
-8. **🟡 Cheiro de beta + sem experiência de app.** Seis itens "em breve" no
-   Menu de uma vez; e **não há manifest/PWA** — no celular o Finlow vive numa
-   aba, sem ícone na home e sem push, remando contra a própria mecânica de
-   ofensiva diária da trilha.
+8. **🟡 Cheiro de beta + sem experiência de app** (revisado 16/08: metade
+   caiu). O manifest/PWA EXISTE desde 13/08 (`app/manifest.ts`, Fin 1); e os
+   "em breve" do Menu caíram de seis pra quatro (foto e personalidade
+   viraram recurso de verdade). Push notification segue sem existir.
 
-9. **🟢 Deslizes pequenos.** (a) "Prefiro olhar o app sozinha" com flexão
-   feminina fixa (`app/(app)/onboarding/page.tsx:276`); (b) o `accept` do
-   input de arquivo do chat não inclui `.qif`/`.txt` que o código trata como
-   extrato (`components/chat/ChatIA.tsx:33`); (c) a cota em tokens continua
-   sendo conta de padaria — a pessoa quer "quantas perguntas ainda tenho";
-   (d) a aba chama "Menu" e a tela interna oscila entre "Menu" e "Ajustes".
+9. **🟢 Deslizes pequenos** (revisado 16/08). (a) "Prefiro olhar o app
+   sozinha" com flexão feminina fixa — segue; (b) ~~accept do chat sem
+   `.qif`/`.txt`~~ ✅ 16/08, uma linha; (c) a cota em tokens continua sendo
+   conta de padaria, a pessoa quer "quantas perguntas ainda tenho" — segue;
+   (d) ~~Menu × Ajustes~~ ✅ com o redesign, a tela diz "Menu" como a aba.
 
 **O que segurou o usuário (não mexer):** onboarding pulável com aceites
 explicados, "nada entra sem confirmar", tom sem culpa, tema escuro + paleta,

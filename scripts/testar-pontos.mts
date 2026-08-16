@@ -199,16 +199,16 @@ try {
 
   checar("adulto na aula adulta paga cheio", ajustarPorPublico(40, "adulto") === 40)
   checar(
-    "adulto na aula escolar paga 1/4",
+    "adulto na aula escolar paga metade",
     ajustarPorPublico(40, "ef35") === Math.round(40 * PESO_FORA_DA_TRILHA)
   )
   checar("aluno de EM na aula de EM paga cheio", ajustarPorPublico(40, "em", "em") === 40)
   checar(
-    "aluno de EM na aula adulta paga 1/4",
+    "aluno de EM na aula adulta paga metade",
     ajustarPorPublico(40, "adulto", "em") === Math.round(40 * PESO_FORA_DA_TRILHA)
   )
   checar(
-    "aluno de EM na aula de EF também paga 1/4 — outra trilha é outra trilha",
+    "aluno de EM na aula de EF também paga metade, outra trilha é outra trilha",
     ajustarPorPublico(40, "ef67", "em") === Math.round(40 * PESO_FORA_DA_TRILHA)
   )
   checar("o piso é 1, nunca zero", ajustarPorPublico(2, "ef12") === 1)

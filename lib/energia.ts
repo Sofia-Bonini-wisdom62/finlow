@@ -1,4 +1,5 @@
 import { db } from "@/lib/db"
+import { Prisma } from "@prisma/client"
 import { acessoPremium } from "@/lib/pagamento/acesso"
 
 /**
@@ -96,14 +97,21 @@ export async function cobrarLicao(
       })
       const r = regenerar(u.energia, u.energiaEm, agora)
 
-      try {
-        await tx.progressoLicao.create({
-          data: { userId, moduloId, licao, telaAtual: 0 },
-        })
-      } catch (e) {
-        // P2002 = a lição já foi iniciada um dia = já foi paga. A regeneração
-        // calculada persiste mesmo assim — ler energia é o momento de acertar
-        // o relógio.
+      /**
+       * O recibo é CONFERIDO antes do create, nunca criado-e-capturado: a
+       * versão anterior deixava o P2002 estourar DENTRO da transação e
+       * seguia usando o `tx` — mas erro numa transação Postgres a envenena
+       * (25P02, "transaction is aborted"), e o update seguinte morria.
+       * Sintoma real: REABRIR qualquer lição já iniciada dava 500, e a tela
+       * dizia "módulo não encontrado" — parecia que nada tinha sido salvo.
+       */
+      const recibo = await tx.progressoLicao.findUnique({
+        where: { userId_moduloId_licao: { userId, moduloId, licao } },
+        select: { id: true },
+      })
+      if (recibo) {
+        // Já iniciada um dia = já paga. A regeneração calculada persiste
+        // mesmo assim — ler energia é o momento de acertar o relógio.
         await tx.user.update({
           where: { id: userId },
           data: { energia: r.valor, energiaEm: r.desde },
@@ -112,11 +120,14 @@ export async function cobrarLicao(
       }
 
       if (r.valor < CUSTO_LICAO) {
-        // Sem energia: o throw desfaz o create — o recibo não pode existir
-        // sem o débito, senão a próxima tentativa entraria de graça.
         throw new SemEnergia(r.valor, minutosParaProxima(r.desde, agora))
       }
 
+      // O recibo não pode existir sem o débito: os dois na mesma transação,
+      // e qualquer falha desfaz ambos.
+      await tx.progressoLicao.create({
+        data: { userId, moduloId, licao, telaAtual: 0 },
+      })
       await tx.user.update({
         where: { id: userId },
         data: { energia: r.valor - CUSTO_LICAO, energiaEm: r.desde },
@@ -126,6 +137,13 @@ export async function cobrarLicao(
   } catch (e) {
     if (e instanceof SemEnergia) {
       return { ok: false, energia: e.energia, minutos: e.minutos }
+    }
+    // Duas abas abrindo a MESMA lição nova ao mesmo tempo: a perdedora colide
+    // no unique do recibo. Para ela a lição está paga (pela vencedora) — é o
+    // caminho grátis, não um erro.
+    if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === "P2002") {
+      const estado = await estadoDaEnergia(userId, agora)
+      return { ok: true, cobrado: false, energia: estado?.atual ?? null }
     }
     throw e
   }
@@ -180,4 +198,54 @@ export async function estadoDaEnergia(
   if (!u) return null
   const r = regenerar(u.energia, u.energiaEm, agora)
   return { atual: r.valor, max: ENERGIA_MAX }
+}
+
+/** Recarga cheia por moedas (pedido da fundadora, 16/08/2026). Em XP: 10
+ *  moedas = 20 XP = quatro lições bem feitas viram seis novas de energia. */
+export const PRECO_RECARGA_MOEDAS = 10
+
+export type ResultadoRecarga =
+  | { ok: true; energia: number; coins: number }
+  | { ok: false; motivo: "isento" | "cheia" | "saldo" }
+
+class SemSaldoRecarga extends Error {}
+
+/**
+ * Compra a recarga: energia vai ao MÁXIMO, âncora de regeneração zera. As
+ * duas pontas na MESMA transação, como toda compra do jogo: o débito
+ * condicionado ao saldo e o evento negativo no ledger — se qualquer perna
+ * falhar, nem moeda sai nem energia entra. refId único por compra: recarga
+ * é repetível por natureza.
+ */
+export async function comprarRecarga(userId: string, agora = new Date()): Promise<ResultadoRecarga> {
+  if (await isentoDeEnergia(userId)) return { ok: false, motivo: "isento" }
+
+  const estado = await estadoDaEnergia(userId, agora)
+  if (!estado || estado.atual >= ENERGIA_MAX) return { ok: false, motivo: "cheia" }
+
+  const refId = `recarga:${Date.now()}:${Math.random().toString(36).slice(2, 8)}`
+  try {
+    const u = await db.$transaction(async (tx) => {
+      const r = await tx.user.updateMany({
+        where: { id: userId, coins: { gte: PRECO_RECARGA_MOEDAS } },
+        data: {
+          coins: { decrement: PRECO_RECARGA_MOEDAS },
+          energia: ENERGIA_MAX,
+          energiaEm: agora,
+        },
+      })
+      if (r.count === 0) throw new SemSaldoRecarga()
+      await tx.eventoCoins.create({
+        data: { userId, motivo: "compra_energia", moedas: -PRECO_RECARGA_MOEDAS, refId },
+      })
+      return tx.user.findUniqueOrThrow({
+        where: { id: userId },
+        select: { energia: true, coins: true },
+      })
+    })
+    return { ok: true, energia: u.energia, coins: u.coins }
+  } catch (e) {
+    if (e instanceof SemSaldoRecarga) return { ok: false, motivo: "saldo" }
+    throw e
+  }
 }

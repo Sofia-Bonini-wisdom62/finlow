@@ -24,6 +24,7 @@ const { nivelDoTotal } = await import("../lib/nivel.js")
 const { creditarCoins, debitarCoins } = await import("../lib/coins.js")
 const { resgatarMissao, MISSOES } = await import("../lib/missoes.js")
 const { converterXpEmMoedas } = await import("../lib/conversao.js")
+const { cobrarLicao } = await import("../lib/energia.js")
 const { comprarItem } = await import("../lib/loja.js")
 
 let falhas = 0
@@ -178,6 +179,17 @@ try {
     "débito de XP e crédito de moeda entram pareados pelo refId",
     perna1?.pontos === -20 && perna2?.moedas === 10 && perna1?.refId === perna2?.refId
   )
+
+  console.log("\nENERGIA — cobrança com recibo e retomada grátis (banco)")
+  // O caso que produziu o 500 de 16/08/2026: reabrir lição já iniciada
+  // estourava P2002 DENTRO da transação e envenenava o resto (25P02).
+  await db.user.update({ where: { id: userId }, data: { energia: 24, energiaEm: new Date() } })
+  const cob1 = await cobrarLicao(userId, moduloReal.id, 2)
+  checar("primeira abertura cobra 4", cob1.ok && cob1.cobrado === true && cob1.energia === 20)
+  const cob2 = await cobrarLicao(userId, moduloReal.id, 2)
+  checar("REABRIR a mesma lição é grátis e NÃO estoura", cob2.ok && cob2.cobrado === false)
+  const cob3 = await cobrarLicao(userId, moduloReal.id, 1)
+  checar("lição concluída também reabre grátis", cob3.ok && cob3.cobrado === false)
 
   console.log("\nPOÇÃO — uma por vez (banco)")
   await db.user.update({ where: { id: userId }, data: { coins: 100 } })

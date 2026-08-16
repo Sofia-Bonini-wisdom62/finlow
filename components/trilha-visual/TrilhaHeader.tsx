@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Flame, Zap } from "lucide-react"
 import type { Usuario } from "@/lib/trilha-visual"
 import { AVATAR_POSE } from "@/lib/fin"
+import { ModalEnergia } from "./fin/ModalEnergia"
 
 interface TrilhaHeaderProps {
   usuario: Usuario
@@ -18,6 +19,7 @@ export default function TrilhaHeader({
   intensidade,
 }: TrilhaHeaderProps) {
   const [rolou, setRolou] = useState(false)
+  const [energiaAberta, setEnergiaAberta] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setRolou(window.scrollY > 4)
@@ -59,19 +61,28 @@ export default function TrilhaHeader({
             {usuario.sequencia}
           </div>
 
-          {/* Energia: quem tem gate vê o saldo; isento vê ∞ (Redesign Fin). */}
-          <div
-            className={`flex items-center gap-1 font-extrabold tabular-nums ${indicadorTexto}`}
-            style={{ color: "var(--fin-energia, #55C7EA)" }}
-            aria-label={
-              usuario.energia
-                ? `${usuario.energia.atual} de ${usuario.energia.max} de energia`
-                : "Energia infinita"
-            }
-          >
-            <Zap size={indicadorIcone} aria-hidden="true" />
-            {usuario.energia ? usuario.energia.atual : "∞"}
-          </div>
+          {/* Energia: quem tem gate vê o saldo e TOCA pra recarregar (pedido
+              da fundadora, 16/08); isento vê ∞ e nada a comprar. */}
+          {usuario.energia ? (
+            <button
+              onClick={() => setEnergiaAberta(true)}
+              className={`flex items-center gap-1 font-extrabold tabular-nums ${indicadorTexto}`}
+              style={{ color: "var(--fin-energia, #55C7EA)" }}
+              aria-label={`${usuario.energia.atual} de ${usuario.energia.max} de energia. Toque para recarregar`}
+            >
+              <Zap size={indicadorIcone} aria-hidden="true" />
+              {usuario.energia.atual}
+            </button>
+          ) : (
+            <div
+              className={`flex items-center gap-1 font-extrabold tabular-nums ${indicadorTexto}`}
+              style={{ color: "var(--fin-energia, #55C7EA)" }}
+              aria-label="Energia infinita"
+            >
+              <Zap size={indicadorIcone} aria-hidden="true" />
+              ∞
+            </div>
+          )}
 
           {/* Coins → Loja do Fin */}
           <Link
@@ -116,6 +127,16 @@ export default function TrilhaHeader({
           </Link>
         </div>
       </div>
+
+      {usuario.energia && (
+        <ModalEnergia
+          aberto={energiaAberta}
+          atual={usuario.energia.atual}
+          max={usuario.energia.max}
+          coins={usuario.coins}
+          onFechar={() => setEnergiaAberta(false)}
+        />
+      )}
 
       <div
         className="h-0.5 w-full"
