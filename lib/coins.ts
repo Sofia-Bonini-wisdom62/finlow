@@ -15,6 +15,13 @@ import { Prisma } from "@prisma/client"
  * próprio em pontos) e cosmético. A régua do ranking continua sendo pontos.
  */
 
+/**
+ * LEGADO desde 15/08/2026 (economia por XP): lição, baú e missão pararam de
+ * creditar moeda — hoje a única origem é a conversão de XP (lib/conversao.ts,
+ * motivo "conversao" gravado direto na transação). Os motivos ficam aqui
+ * porque as linhas antigas existem e continuam sendo lidas como ESTADO
+ * (baú aberto, missão resgatada na era das moedas).
+ */
 export const COINS_POR_MOTIVO = {
   /** Concluir uma lição pela primeira vez. refId `${moduloId}:${licao}`. */
   licao: 10,

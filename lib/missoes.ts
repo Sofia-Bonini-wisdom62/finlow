@@ -1,6 +1,6 @@
 import { db } from "@/lib/db"
-import { inicioDoDiaSP } from "@/lib/pontos"
-import { creditarCoins } from "@/lib/coins"
+import { creditar, inicioDoDiaSP } from "@/lib/pontos"
+import { existeNoLedger } from "@/lib/coins"
 
 /**
  * Missões diárias (G-08) — renovam à meia-noite de São Paulo.
@@ -8,18 +8,23 @@ import { creditarCoins } from "@/lib/coins"
  * O PROGRESSO É DERIVADO, nunca acumulado: as três missões são leituras de
  * ProgressoLicao do dia, então não existe tabela de progresso para
  * dessincronizar, e "renovar à meia-noite" é só o recorte de data mudando —
- * ninguém zera nada. O único estado é o RESGATE, que é uma linha no ledger
- * de coins com o dia no refId: `AAAA-MM-DD:missaoId`. Amanhã o refId é
- * outro, e a mesma missão paga de novo — ontem, nunca mais.
+ * ninguém zera nada. O único estado é o RESGATE, uma linha de ledger com o
+ * dia no refId (`AAAA-MM-DD:missaoId`): amanhã o refId é outro, e a mesma
+ * missão paga de novo. Ontem, nunca mais.
+ *
+ * Desde 15/08/2026 a missão paga XP, não moeda (economia por XP: moeda nasce
+ * só da conversão na loja). O resgate mora no ledger de PONTOS; o de coins
+ * ainda é consultado como legado, para o dia da virada não pagar em dobro o
+ * que já foi resgatado em moeda.
  *
  * O resgate RECONFERE a condição no servidor: o botão da tela é convite,
  * não prova.
  */
 
 export const MISSOES = [
-  { id: "licao_do_dia", titulo: "Complete 1 lição hoje", meta: 1, coins: 10 },
-  { id: "tres_licoes", titulo: "Complete 3 lições hoje", meta: 3, coins: 15 },
-  { id: "acerto_cheio", titulo: "Feche uma lição com 100% de acerto", meta: 1, coins: 15 },
+  { id: "licao_do_dia", titulo: "Complete 1 lição hoje", meta: 1, xp: 10 },
+  { id: "tres_licoes", titulo: "Complete 3 lições hoje", meta: 3, xp: 15 },
+  { id: "acerto_cheio", titulo: "Feche uma lição com 100% de acerto", meta: 1, xp: 15 },
 ] as const
 
 export type MissaoId = (typeof MISSOES)[number]["id"]
@@ -28,7 +33,7 @@ export interface EstadoMissao {
   id: MissaoId
   titulo: string
   meta: number
-  coins: number
+  xp: number
   progresso: number
   completa: boolean
   resgatada: boolean
@@ -54,14 +59,19 @@ async function medir(userId: string, agora: Date): Promise<Record<MissaoId, numb
 }
 
 export async function estadoDasMissoes(userId: string, agora = new Date()): Promise<EstadoMissao[]> {
-  const [medidas, resgates] = await Promise.all([
+  const [medidas, resgates, resgatesLegado] = await Promise.all([
     medir(userId, agora),
+    db.eventoPontuacao.findMany({
+      where: { userId, motivo: "missao", refId: { startsWith: diaISO(agora) } },
+      select: { refId: true },
+    }),
+    // Legado da virada para XP: resgate de hoje pago em moeda ainda conta.
     db.eventoCoins.findMany({
       where: { userId, motivo: "missao", refId: { startsWith: diaISO(agora) } },
       select: { refId: true },
     }),
   ])
-  const resgatadas = new Set(resgates.map((r) => r.refId))
+  const resgatadas = new Set([...resgates, ...resgatesLegado].map((r) => r.refId))
   return MISSOES.map((m) => {
     const progresso = Math.min(m.meta, medidas[m.id])
     return {
@@ -74,7 +84,7 @@ export async function estadoDasMissoes(userId: string, agora = new Date()): Prom
 }
 
 export type ResgateMissao =
-  | { ok: true; moedas: number; total: number }
+  | { ok: true; xp: number; total: number }
   | { ok: false; motivo: "desconhecida" | "incompleta" | "ja_resgatada" }
 
 export async function resgatarMissao(
@@ -88,7 +98,11 @@ export async function resgatarMissao(
   const medidas = await medir(userId, agora)
   if (medidas[missao.id] < missao.meta) return { ok: false, motivo: "incompleta" }
 
-  const credito = await creditarCoins(userId, "missao", refDaMissao(missao.id, agora), missao.coins)
+  const ref = refDaMissao(missao.id, agora)
+  // Já pago em moeda hoje (antes da virada)? Não paga de novo em XP.
+  if (await existeNoLedger(userId, "missao", ref)) return { ok: false, motivo: "ja_resgatada" }
+
+  const credito = await creditar(userId, "missao", ref, missao.xp)
   if (!credito.creditado) return { ok: false, motivo: "ja_resgatada" }
-  return { ok: true, moedas: credito.moedas, total: credito.total }
+  return { ok: true, xp: credito.pontos, total: credito.total }
 }

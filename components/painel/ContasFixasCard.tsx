@@ -125,7 +125,22 @@ export function ContasFixasCard({ contas, onMudou }: Props) {
         <div className="flex flex-col gap-3">
           <input className={inputPainel} placeholder="Nome (ex: Spotify)" value={nome} onChange={(e) => setNome(e.target.value)} />
           <input className={inputPainel} inputMode="decimal" placeholder="Valor (R$)" value={valor} onChange={(e) => setValor(e.target.value)} />
-          <input className={inputPainel} inputMode="numeric" placeholder="Dia do vencimento (opcional)" value={dia} onChange={(e) => setDia(e.target.value)} />
+          {/* Só dia de mês entra (pedido da fundadora, 15/08): dígito a dígito,
+              1 a 31 — "35" nem chega a existir no campo, o segundo dígito é
+              recusado na digitação. */}
+          <input
+            className={inputPainel}
+            inputMode="numeric"
+            placeholder="Dia do vencimento (opcional)"
+            value={dia}
+            maxLength={2}
+            onChange={(e) => {
+              const so = e.target.value.replace(/\D/g, "").slice(0, 2)
+              if (so === "") { setDia(""); return }
+              const n = Number(so)
+              if (n >= 1 && n <= 31) setDia(String(n))
+            }}
+          />
           {erro && <p className="text-sm text-fl-accent-dark">{erro}</p>}
           <button className={botaoPrimario} disabled={salvando || !nome || !valor} onClick={salvar}>
             {salvando ? "Salvando..." : "Salvar"}

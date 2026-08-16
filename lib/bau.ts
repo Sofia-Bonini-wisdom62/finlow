@@ -1,22 +1,25 @@
 import { db } from "@/lib/db"
 import { filtroExploravel } from "@/lib/publico"
-import { creditarCoins, existeNoLedger } from "@/lib/coins"
+import { creditar } from "@/lib/pontos"
+import { existeNoLedger } from "@/lib/coins"
 
 /**
  * Baú de recompensas (G-11): fecha a unidade, ganha o baú.
  *
  * "Unidade" depende da trilha: no público ESCOLAR é o bloco (a unidade
  * pedagógica que já existe em Modulo.blocoId); no ADULTO é a leva de 4
- * módulos que a IA montou (RecomendacaoTrilha.leva). O refId carrega isso —
- * "bloco:X" ou "leva:N" — e a unique do ledger garante que cada baú paga
+ * módulos que a IA montou (RecomendacaoTrilha.leva). O refId carrega isso,
+ * "bloco:X" ou "leva:N", e a unique do ledger garante que cada baú paga
  * uma vez na vida.
  *
- * O estado do baú é o ledger: sem linha = fechado (abre se a unidade estiver
- * completa); com linha = já aberto. `abrirBau` RECONFERE a completude no
- * banco — o botão da tela é convite, não prova.
+ * Desde 15/08/2026 o baú paga XP, não moeda (economia por XP: moeda nasce só
+ * da conversão na loja). O estado "já aberto" vive nos DOIS ledgers de
+ * propósito: baú aberto na era das moedas está no de coins, e ignorá-lo
+ * deixaria todo baú antigo abrível de novo, agora pagando XP. `abrirBau`
+ * RECONFERE a completude no banco: o botão da tela é convite, não prova.
  */
 
-export const COINS_DO_BAU = 30
+export const XP_DO_BAU = 30
 
 export interface BauDisponivel {
   refId: string
@@ -81,20 +84,35 @@ export async function bauDaConclusao(userId: string, moduloId: string): Promise<
   }
   if (!refId) return null
 
-  if (await existeNoLedger(userId, "bau", refId)) return null
+  if (await bauJaAberto(userId, refId)) return null
   const grupo = await grupoCompleto(userId, refId)
   return grupo.ok ? { refId, rotulo: grupo.rotulo } : null
 }
 
+/** Aberto em qualquer era: no ledger de pontos (XP) ou no de coins (legado). */
+export async function bauJaAberto(userId: string, refId: string): Promise<boolean> {
+  const [noDePontos, noDeCoins] = await Promise.all([
+    db.eventoPontuacao.findUnique({
+      where: { userId_motivo_refId: { userId, motivo: "bau", refId } },
+      select: { id: true },
+    }),
+    existeNoLedger(userId, "bau", refId),
+  ])
+  return !!noDePontos || noDeCoins
+}
+
 export type ResultadoBau =
-  | { ok: true; moedas: number; total: number }
+  | { ok: true; xp: number; total: number }
   | { ok: false; motivo: "incompleto" | "ja_aberto" }
 
 export async function abrirBau(userId: string, refId: string): Promise<ResultadoBau> {
   const grupo = await grupoCompleto(userId, refId)
   if (!grupo.ok) return { ok: false, motivo: "incompleto" }
 
-  const credito = await creditarCoins(userId, "bau", refId, COINS_DO_BAU)
+  // Aberto na era das moedas? A unique do ledger de pontos não saberia disso.
+  if (await existeNoLedger(userId, "bau", refId)) return { ok: false, motivo: "ja_aberto" }
+
+  const credito = await creditar(userId, "bau", refId, XP_DO_BAU)
   if (!credito.creditado) return { ok: false, motivo: "ja_aberto" }
-  return { ok: true, moedas: credito.moedas, total: credito.total }
+  return { ok: true, xp: credito.pontos, total: credito.total }
 }

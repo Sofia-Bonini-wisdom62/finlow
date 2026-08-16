@@ -310,7 +310,7 @@ export default function OnboardingPage() {
                 >
                   {feito ? (
                     feito.ok ? <Check className="size-3.5 text-primary-foreground" />
-                             : <span className="text-[11px] text-fl-ink-3">–</span>
+                             : <span className="text-[11px] text-fl-ink-3">-</span>
                   ) : agora ? (
                     <span className="size-2 animate-pulse rounded-full bg-fl-500" />
                   ) : null}

@@ -99,7 +99,7 @@ export function diagnosticar(lancamentos: LancamentoDiagnostico[], agora: Date =
   // manual escreve "Tarifas". Vazamento na certa — ninguém escolhe pagar juros.
   for (const [re, titulo, detalheBase] of [
     [RE_JUROS, "Juros e multas", "dinheiro que só paga atraso e rotativo"],
-    [RE_TARIFA, "Tarifas e anuidades", "custo de manter conta e cartão — quase sempre negociável"],
+    [RE_TARIFA, "Tarifas e anuidades", "custo de manter conta e cartão, quase sempre negociável"],
   ] as const) {
     const grupo = pool.filter((l) => re.test(normalizar(`${l.descricao} ${l.categoria ?? ""}`)))
     if (grupo.length === 0) continue
@@ -108,7 +108,7 @@ export function diagnosticar(lancamentos: LancamentoDiagnostico[], agora: Date =
     achados.push({
       tipo: "encargo",
       titulo,
-      detalhe: `R$ ${total.toFixed(2)} em ${meses} ${meses === 1 ? "mês" : "meses"} — ${detalheBase}.`,
+      detalhe: `R$ ${total.toFixed(2)} em ${meses} ${meses === 1 ? "mês" : "meses"}: ${detalheBase}.`,
       valorMensal: arred(porMes),
       valorAnual: arred(porMes * 12),
     })

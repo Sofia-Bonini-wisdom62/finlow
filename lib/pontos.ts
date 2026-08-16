@@ -66,6 +66,19 @@ export const PONTOS_POR_MOTIVO = {
    * intacto e auditável. refId `${moduloId}:${licao}`.
    */
   pocao_bonus: 5,
+  /**
+   * Economia por XP (decisão da fundadora, 15/08/2026): missão e baú deixaram
+   * de pagar moeda e passaram a pagar XP, porque moeda agora nasce de UM
+   * lugar só, a conversão de XP na loja. Tudo desagua na mesma corrente:
+   * lição, missão e baú geram XP; XP alimenta o ranking e compra moedas;
+   * moedas compram itens.
+   *
+   * `missao` é teto (as três do dia valem 10/15/15, o valor real vem de
+   * lib/missoes.ts); refId "AAAA-MM-DD:missaoId" renova à meia-noite.
+   * `bau` paga cheio; refId "bloco:X" | "leva:N" abre uma vez na vida.
+   */
+  missao: 15,
+  bau: 30,
 } as const
 
 export type MotivoPonto = keyof typeof PONTOS_POR_MOTIVO

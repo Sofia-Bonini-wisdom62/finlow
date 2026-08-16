@@ -165,7 +165,7 @@ export function DetalheCategoria({ fatia, mes, ano, onFechar, itens: itensPronto
                 a pessoa conferir na mão e achar que um dos dois está mentindo. */}
             {Math.abs(somaListada - fatia.total) > 0.01 && (
               <p className="mt-1.5 text-[11.5px] leading-snug text-fl-ink-3">
-                A soma da lista difere do total da fatia em {brl(Math.abs(somaListada - fatia.total))} —
+                A soma da lista difere do total da fatia em {brl(Math.abs(somaListada - fatia.total))},
                 sinal de que algo mudou depois que o gráfico foi calculado. Recarrega a página para os dois
                 baterem.
               </p>

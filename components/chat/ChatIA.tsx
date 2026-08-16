@@ -71,7 +71,15 @@ const MAX_ANEXO_MB = 8
 /** Extrato tem limite próprio, igual ao da tela de extrato. */
 const MAX_EXTRATO_MB = 10
 
-export function ChatIA({ nome, sequencia = 0 }: { nome: string; sequencia?: number }) {
+export function ChatIA({
+  nome,
+  sequencia = 0,
+  premium = false,
+}: {
+  nome: string
+  sequencia?: number
+  premium?: boolean
+}) {
   const busca = useSearchParams()
   const [mensagens, setMensagens] = useState<Mensagem[]>([])
   /**
@@ -410,6 +418,16 @@ export function ChatIA({ nome, sequencia = 0 }: { nome: string; sequencia?: numb
             >
               <Flame className="size-4 fill-current" /> {sequencia}
             </span>
+          )}
+          {/* Quem é grátis vê que existe mais (pedido da fundadora, 15/08):
+              a porta dourada fica no cabeçalho, onde a cota é sentida. */}
+          {!premium && (
+            <a
+              href="/premium"
+              className="fin-btn-3d shrink-0 rounded-full bg-fl-500 px-2.5 py-1 text-[10px] font-black tracking-widest text-primary-foreground"
+            >
+              FINLOW+
+            </a>
           )}
           <button
             onClick={() => setHistoricoAberto(true)}

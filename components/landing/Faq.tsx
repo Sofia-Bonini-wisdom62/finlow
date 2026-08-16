@@ -14,7 +14,7 @@ const faqs = [
   { q: "Meus dados financeiros ficam seguros?", a: "Sim. Segurança e privacidade são inegociáveis: usamos conexão criptografada, nunca vendemos seus dados e a interface nunca vira espaço de anúncio. Seus dados são seus." },
   { q: "Preciso entender de finanças para usar?", a: "Não. O Finlow foi feito exatamente para quem nunca teve educação financeira formal. A IA traduz tudo em linguagem simples, sem jargão e sem julgamento." },
   { q: "Como a inteligência artificial ajuda no dia a dia?", a: "Ela categoriza suas transações automaticamente, revela padrões de gasto que passam despercebidos e responde suas perguntas em português. Sempre com base nos seus números reais." },
-  { q: "Vai ter custo?", a: "Criar conta e usar o Finlow é grátis, com um limite mensal de uso da inteligência artificial. Para quem quiser a IA sem limite existe um plano premium opcional — nada é cobrado sem você escolher e confirmar. Quem chega agora, no começo, terá condições especiais." },
+  { q: "Vai ter custo?", a: "Criar conta e usar o Finlow é grátis, com um limite mensal de uso da inteligência artificial. Para quem quiser a IA sem limite existe um plano premium opcional: nada é cobrado sem você escolher e confirmar. Quem chega agora, no começo, terá condições especiais." },
 ]
 
 export function Faq() {

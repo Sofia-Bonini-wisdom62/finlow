@@ -6,10 +6,11 @@ import { signOut } from "next-auth/react"
 import {
   ChevronRight, Download, LogOut, Trash2, Check, X, Clock,
   User, Landmark, Sparkles, ShieldCheck, LifeBuoy, Brain, FileUp, MessageCircle, Gift, Droplets, Drama,
-  CreditCard, Target,
+  CreditCard, Target, Palette,
 } from "lucide-react"
 import { ConvidarAmigos } from "@/components/ajustes/ConvidarAmigos"
 import { BottomNav } from "@/components/bottom-nav"
+import { SeletorPaleta } from "@/components/SeletorPaleta"
 import { EMAIL_CONTATO } from "@/lib/constantes"
 
 interface Conta {
@@ -214,12 +215,23 @@ export default function AjustesPage() {
               </span>
             )}
             <div className="min-w-0 flex-1">
-              <div className="truncate text-[15.5px] font-extrabold text-fl-ink">{conta.nome || "—"}</div>
+              <div className="truncate text-[15.5px] font-extrabold text-fl-ink">{conta.nome || "-"}</div>
               <div className="truncate text-xs text-fl-ink-2">{conta.email}</div>
             </div>
-            <span className="shrink-0 rounded-full border-[1.5px] border-fl-500/40 bg-fl-500/10 px-2.5 py-1 text-[10px] font-black tracking-widest text-fl-500">
-              {conta.premium ? "FINLOW+" : "FREE"}
-            </span>
+            {conta.premium ? (
+              <span className="shrink-0 rounded-full border-[1.5px] border-fl-500/40 bg-fl-500/10 px-2.5 py-1 text-[10px] font-black tracking-widest text-fl-500">
+                FINLOW+
+              </span>
+            ) : (
+              /* Quem é grátis vê a porta, não um rótulo (pedido da fundadora,
+                 15/08): o badge FREE escondia que existe plano melhor. */
+              <Link
+                href="/premium"
+                className="fin-btn-3d shrink-0 rounded-full bg-fl-500 px-2.5 py-1.5 text-[10px] font-black tracking-widest text-primary-foreground"
+              >
+                FINLOW+ DISPONÍVEL
+              </Link>
+            )}
           </div>
         )}
 
@@ -255,12 +267,12 @@ export default function AjustesPage() {
             <button onClick={() => setEditandoNome(true)} className="flex w-full items-center justify-between gap-3 px-4 py-3.5 text-left transition-colors hover:bg-fl-50">
               <span className="text-[14.5px] text-fl-ink">Nome</span>
               <span className="flex items-center gap-2 truncate text-sm text-fl-ink-2">
-                {conta?.nome || "—"} <ChevronRight className="size-4 shrink-0 text-fl-ink-3" />
+                {conta?.nome || "-"} <ChevronRight className="size-4 shrink-0 text-fl-ink-3" />
               </span>
             </button>
           )}
 
-          <Linha rotulo="E-mail" valor={conta?.email ?? "—"} />
+          <Linha rotulo="E-mail" valor={conta?.email ?? "-"} />
 
           {trocandoSenha ? (
             <div className="flex flex-col gap-2.5 px-4 py-3.5">
@@ -332,7 +344,7 @@ export default function AjustesPage() {
                 importados e o Diagnóstico de Vazamento? Não tem volta.
               </p>
               <p className="text-xs text-fl-ink-2">
-                Ficam a memória do assistente e o seu progresso na Trilha — cada um
+                Ficam a memória do assistente e o seu progresso na Trilha, cada um
                 tem o próprio botão.
               </p>
               <div className="flex gap-2">
@@ -351,12 +363,22 @@ export default function AjustesPage() {
           <EmBreve rotulo="Biometria e PIN" motivo="Precisa de app nativo, hoje o Finlow roda no navegador." />
         </Secao>
 
-        {/* A seção "Aparência" morava aqui (tema claro/escuro + cor de
-            destaque). Saiu com o redesign Fin (protótipo v2, 14/08/2026): o
-            jogo tem uma cara só, o escopo .tema-fin ignora o toggle, e
-            controle que não muda nada é pior que controle nenhum. Os
-            componentes SeletorTema/SeletorPaleta seguem no repositório para o
-            dia em que uma superfície fora do tema precisar deles. */}
+        {/* Aparência saiu em 14/08 (controle morto no tema Fin) e a PALETA
+            voltou em 15/08, a pedido da fundadora: os usuários gostavam. Ela
+            agora troca o ACENTO dentro do navy (globals.css remapeia
+            --fin-accent por data-paleta), então o controle voltou a fazer o
+            que promete. O claro/escuro continua fora: o jogo tem uma cara só. */}
+        <Secao titulo="Aparência" Icon={Palette}>
+          <div className="flex flex-col gap-2.5 px-4 py-3">
+            <div>
+              <div className="text-[15px] text-fl-ink">Cor de destaque</div>
+              <div className="text-[12.5px] text-fl-ink-3">
+                Muda os botões, as barras e os destaques. O restante do visual fica.
+              </div>
+            </div>
+            <SeletorPaleta />
+          </div>
+        </Secao>
 
         {/* ---------- SUPORTE ---------- */}
         <Secao titulo="Suporte" Icon={LifeBuoy}>

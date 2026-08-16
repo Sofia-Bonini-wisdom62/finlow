@@ -105,7 +105,7 @@ export default function DiagnosticoPage() {
           <Droplets className="size-6 text-fl-500" /> Diagnóstico de Vazamento
         </h1>
         <p className="mt-1 text-[13.5px] text-fl-ink-2">
-          Quanto sai todo mês sem você perceber — assinaturas, tarifas, cobrança em dobro.
+          Quanto sai todo mês sem você perceber: assinaturas, tarifas, cobrança em dobro.
         </p>
 
         {erro && (
@@ -188,7 +188,7 @@ export default function DiagnosticoPage() {
             {(diag.achados ?? []).length === 0 && (
               <section className="mt-4 rounded-2xl border border-fl-border bg-fl-card p-5 text-sm leading-relaxed text-fl-ink">
                 Nenhum vazamento claro nos últimos {diag.mesesAnalisados} meses. Bom
-                sinal — repete depois do próximo extrato.
+                sinal. Repete depois do próximo extrato.
               </section>
             )}
 
@@ -206,7 +206,7 @@ export default function DiagnosticoPage() {
                 <Link2 className="size-3.5" /> Card pra compartilhar
               </div>
               <p className="mt-2 text-[12.5px] leading-relaxed text-fl-ink-2">
-                Um link anônimo com só o número do ano — sem seu nome, sem os detalhes.
+                Um link anônimo com só o número do ano, sem seu nome, sem os detalhes.
                 Quem abrir pode fazer o próprio diagnóstico pelo seu convite.
               </p>
               {!urlPublica ? (

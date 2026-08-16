@@ -246,7 +246,7 @@ export default function PerfilPage() {
           <div className="rounded-2xl bg-fl-card px-2 py-3 text-center">
             <Target className="mx-auto size-[18px] text-fl-success" />
             <div className="mt-1 text-lg font-black text-fl-ink">
-              {perfil.precisaoSemana != null ? `${perfil.precisaoSemana}%` : "—"}
+              {perfil.precisaoSemana != null ? `${perfil.precisaoSemana}%` : "-"}
             </div>
             <div className="text-[10.5px] font-bold text-fl-ink-3">PRECISÃO</div>
           </div>
@@ -342,7 +342,7 @@ export default function PerfilPage() {
               </>
             ) : (
               <div className="mt-0.5 text-[11px] text-fl-ink-2">
-                Dá nome ao que você quer juntar — cofrinho é bolso seu, não gasto.
+                Dá nome ao que você quer juntar: cofrinho é bolso seu, não gasto.
               </div>
             )}
           </div>

@@ -55,7 +55,7 @@ export default async function EscolaLayout({ children }: { children: React.React
       {!v.escolaAtiva && (
         <div className="mx-auto max-w-3xl px-5 pt-4">
           <p className="rounded-xl border border-fl-accent/40 bg-fl-accent/10 px-4 py-3 text-sm text-fl-ink">
-            A conta da escola não está ativa — dá para ver tudo, mas nada novo entra até o
+            A conta da escola não está ativa: dá para ver tudo, mas nada novo entra até o
             contrato ser resolvido.
           </p>
         </div>

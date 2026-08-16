@@ -17,11 +17,11 @@ const MAX_LETRAS = 220
 /** Determinística, sempre disponível — e é o que o teste consegue afirmar. */
 export function narrativaPadrao(r: ResultadoVazamento): string {
   if (r.achados.length === 0) {
-    return "Passei um pente-fino e não achei vazamento claro nos seus lançamentos. Bom sinal — vale repetir depois do próximo extrato."
+    return "Passei um pente-fino e não achei vazamento claro nos seus lançamentos. Bom sinal. Vale repetir depois do próximo extrato."
   }
   const maior = r.achados.reduce((a, b) => (b.valorMensal > a.valorMensal ? b : a))
   const anual = r.totalAnual.toFixed(0)
-  return `São R$ ${r.totalMensal.toFixed(2)} por mês escapando — R$ ${anual} num ano. O maior ralo é ${maior.titulo.toLowerCase()}: R$ ${maior.valorMensal.toFixed(2)} por mês.`
+  return `São R$ ${r.totalMensal.toFixed(2)} por mês escapando, R$ ${anual} num ano. O maior ralo é ${maior.titulo.toLowerCase()}: R$ ${maior.valorMensal.toFixed(2)} por mês.`
 }
 
 export async function gerarNarrativa(r: ResultadoVazamento): Promise<string> {
@@ -43,7 +43,7 @@ Escreva UMA leitura de até ${MAX_LETRAS} caracteres, falando com a pessoa ("voc
 
 REGRAS
 - Use os números acima; nunca invente valor.
-- Sem conselho, sem cobrança, sem culpa. Assinatura não é pecado — a pergunta
+- Sem conselho, sem cobrança, sem culpa. Assinatura não é pecado, a pergunta
   é se ela ainda usa.
 - Sem jargão. "Vazamento" pode; "fluxo de caixa" não.
 - Aponte o maior ralo pelo nome.

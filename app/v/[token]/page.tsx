@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ token: st
   const d = await lerDiagnosticoPublico(token)
   if (!d) return { title: "Finlow" }
   return {
-    title: `${brl(d.totalAnual)} vazando por ano — Diagnóstico de Vazamento`,
+    title: `${brl(d.totalAnual)} vazando por ano · Diagnóstico de Vazamento`,
     description: "Assinaturas esquecidas, tarifas e cobranças em dobro. Descubra o seu no Finlow.",
   }
 }
@@ -51,7 +51,7 @@ export default async function CardVazamentoPage({ params }: { params: Promise<{ 
         <p className="mt-4 text-[13px] leading-relaxed text-fl-ink-2">
           {d.quantosAchados}{" "}
           {d.quantosAchados === 1 ? "achado" : "achados"} entre assinaturas, tarifas e
-          cobranças em dobro — direto do extrato, sem planilha.
+          cobranças em dobro, direto do extrato, sem planilha.
         </p>
         <Link
           href={destino}
@@ -60,7 +60,7 @@ export default async function CardVazamentoPage({ params }: { params: Promise<{ 
           Descobrir o meu vazamento
         </Link>
         <p className="mt-3 text-[11.5px] text-fl-ink-3">
-          Finlow — clareza financeira sem culpa.
+          Finlow · clareza financeira sem culpa.
         </p>
       </div>
     </main>

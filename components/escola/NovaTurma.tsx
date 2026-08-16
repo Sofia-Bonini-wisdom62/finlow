@@ -85,7 +85,7 @@ export function NovaTurma({
       </select>
       <input
         type="text"
-        placeholder="Série (opcional — ex.: 5)"
+        placeholder="Série (opcional, ex.: 5)"
         value={serie}
         onChange={(e) => setSerie(e.target.value)}
         maxLength={4}

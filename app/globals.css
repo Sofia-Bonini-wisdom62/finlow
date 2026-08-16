@@ -513,6 +513,29 @@
 .tema-fin .rich-text em { color: var(--fin-accent); font-style: normal; }
 .tema-fin .rich-text strong { color: var(--fin-text); }
 
+/* A paleta voltou (pedido da fundadora, 15/08/2026): dentro do tema Fin ela
+   troca SÓ o acento. O dourado dá lugar a terracota, lilás ou verde-água; o
+   navy, o texto e as superfícies ficam, porque trocar tudo daria quatro apps
+   diferentes. O data-paleta continua no <html> (lib/tema.ts) com as chaves
+   antigas: preferência salva antes do redesign segue valendo. Todo token de
+   acento (--fl-500, --finlow-accent, botões 3D) desce de --fin-accent, então
+   estas duas linhas por paleta repintam o app inteiro. */
+[data-paleta="terracota"] .tema-fin,
+.tema-fin[data-paleta="terracota"] {
+  --fin-accent: #e8825a;
+  --fin-accent-sombra: #b85e3c;
+}
+[data-paleta="indigo"] .tema-fin,
+.tema-fin[data-paleta="indigo"] {
+  --fin-accent: #a78bfa;
+  --fin-accent-sombra: #7c5ce0;
+}
+[data-paleta="verde"] .tema-fin,
+.tema-fin[data-paleta="verde"] {
+  --fin-accent: #45c4a3;
+  --fin-accent-sombra: #2e9679;
+}
+
 /* Botão 3D do protótipo: sombra dura embaixo, afunda no toque. */
 .fin-btn-3d {
   box-shadow: 0 4px 0 var(--fin-accent-sombra);

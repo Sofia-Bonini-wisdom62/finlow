@@ -105,7 +105,7 @@ export default function TrilhaContainer({ trilha, trilhas, usuario, diaNovo = fa
               <strong style={{ color: "var(--fin-acerto)" }}>
                 {usuario.precisaoSemana}% de precisão
               </strong>{" "}
-              esta semana — {usuario.precisaoSemana >= 60 ? "você está indo muito bem" : "cada revisão conta"}
+              esta semana: {usuario.precisaoSemana >= 60 ? "você está indo muito bem" : "cada revisão conta"}
               {usuario.nome ? `, ${usuario.nome.split(" ")[0]}` : ""}!
             </p>
           </div>

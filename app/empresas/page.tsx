@@ -15,7 +15,7 @@ import { LeadEmpresaForm } from "@/components/landing/LeadEmpresaForm"
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"] })
 
 export const metadata: Metadata = {
-  title: "Finlow para empresas — bem-estar financeiro como benefício",
+  title: "Finlow para empresas: bem-estar financeiro como benefício",
   description:
     "Clareza financeira com IA para o time inteiro: menos estresse com dinheiro, mais foco no trabalho. Fale com a gente.",
 }
@@ -39,7 +39,7 @@ const PROVAS = [
     Icone: TrendingUp,
     titulo: "Estresse financeiro custa produtividade",
     texto:
-      "Quem está com o rotativo rodando leva o problema pro expediente. Clareza sobre o próprio dinheiro devolve foco — e o Finlow entrega isso em minutos, não em consultoria.",
+      "Quem está com o rotativo rodando leva o problema pro expediente. Clareza sobre o próprio dinheiro devolve foco, e o Finlow entrega isso em minutos, não em consultoria.",
   },
   {
     Icone: MessageCircle,
@@ -51,7 +51,7 @@ const PROVAS = [
     Icone: ShieldCheck,
     titulo: "Privacidade de verdade",
     texto:
-      "A empresa NUNCA vê os dados de ninguém. Valores são cifrados um a um, e o que a empresa recebe é adesão agregada — nada individual, nem sob pedido.",
+      "A empresa NUNCA vê os dados de ninguém. Valores são cifrados um a um, e o que a empresa recebe é adesão agregada: nada individual, nem sob pedido.",
   },
 ]
 
@@ -83,7 +83,7 @@ export default function EmpresasPage() {
         </h1>
         <p className="mx-auto mt-5 max-w-[560px] text-[16.5px] leading-[1.6] text-fl-ink-2">
           O Finlow dá ao seu time um assistente de IA que lê o extrato, mostra para
-          onde o dinheiro vai e ensina o próximo passo — na linguagem de quem não é
+          onde o dinheiro vai e ensina o próximo passo, na linguagem de quem não é
           do financeiro.
         </p>
       </section>

@@ -223,7 +223,7 @@ export default function RankingPage() {
               </ul>
               {escolar.linhas.length === 0 && (
                 <p className="px-4 py-6 text-center text-sm" style={{ color: "var(--fin-muted)" }}>
-                  Ninguém apareceu ainda — quem escolher um apelido entra na lista.
+                  Ninguém apareceu ainda. Quem escolher um apelido entra na lista.
                 </p>
               )}
             </section>

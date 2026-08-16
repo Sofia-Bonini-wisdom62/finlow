@@ -318,10 +318,17 @@ loja) tem identidade própria — navy + dourado + Nunito + o mascote **Fin** �
 escopada na classe `.tema-fin` (globals.css), que reaponta os `--finlow-*`
 sem nenhum componente saber. Sempre navy, nos dois modos.
 
+- **Economia por XP (decisão da fundadora, 15/08/2026)**: tudo desagua numa
+  corrente só. Lição, missão e baú pagam XP; o XP alimenta o ranking e é a
+  ÚNICA origem de moeda (conversão na loja, `lib/conversao.ts` — débito de
+  pontos e crédito de moeda na MESMA transação, pareados pelo refId);
+  a moeda compra poção e cosmético. Converter DESCONTA do XP de propósito:
+  ranking e nível caem junto, gastar é escolha com preço.
 - **Coins**: `EventoCoins` é o espelho de `EventoPontuacao` (unique
   userId+motivo+refId; `User.coins` cache na mesma transação) e também é
-  ESTADO: missão resgatada, cosmético possuído e baú aberto são linhas do
-  ledger. Coins nunca compram vantagem de ranking.
+  ESTADO: cosmético possuído é linha do ledger. Os motivos `licao`, `bau` e
+  `missao` viraram LEGADO (eram crédito na era das moedas; as linhas antigas
+  seguem lidas como estado). Coins nunca compram vantagem de ranking.
 - **Energia** (`lib/energia.ts`): máx 24, lição custa 4, +1/hora, acertos
   devolvem até 3. Limita SÓ usuário grátis sem vínculo de escola. Débito no
   GET da lição com RECIBO (o create de `ProgressoLicao`): refazer, retomar e
@@ -330,10 +337,16 @@ sem nenhum componente saber. Sempre navy, nos dois modos.
   contra o gabarito e paga `combo_bonus` (motivo novo com teto — nunca infla
   os existentes). Poção ×2 idem: `pocao_bonus` é um segundo crédito.
 - **Missões** (`lib/missoes.ts`): 3/dia, progresso DERIVADO de
-  `ProgressoLicao` do dia SP — o único estado é o resgate no ledger, com o
-  dia no refId (renova à meia-noite sem zerar nada).
-- **Baú** (`lib/bau.ts`): fecha bloco escolar ou leva adulta; reconfere
-  completude no servidor. Lacuna registrada: EM não tem bloco nem leva.
+  `ProgressoLicao` do dia SP — o único estado é o resgate, hoje no ledger de
+  PONTOS com o dia no refId (renova à meia-noite sem zerar nada); o de coins
+  é consultado como legado da virada.
+- **Baú** (`lib/bau.ts`): fecha bloco escolar ou leva adulta; paga XP;
+  reconfere completude no servidor e o "já aberto" olha os DOIS ledgers.
+  Lacuna registrada: EM não tem bloco nem leva.
+- **Segunda chance no player** (15/08/2026): pergunta errada volta ao fim da
+  MESMA lição (`CardFlow`, fila de revanche client-side). A resposta da
+  revanche vive num mapa separado que nunca viaja pro servidor: nota e XP
+  são sempre da primeira tentativa.
 - **Nível e conquistas**: funções puras de leitura (`lib/nivel.ts`,
   `lib/conquistas.ts`) — nada a dessincronizar.
 - Superfícies: `/trilha` (mapa com unidades coloridas, baú, pop-up diário,

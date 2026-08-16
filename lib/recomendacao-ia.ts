@@ -80,7 +80,7 @@ AULAS QUE ELA JÁ CONCLUIU
 ${concluidas.length ? concluidas.map((t) => `- ${t}`).join("\n") : "- (nenhuma)"}
 
 AULAS DISPONÍVEIS (escolha entre estas, pelo id)
-${candidatos.map((c) => `${c.id} | ${c.titulo} — ${c.subtitulo}`).join("\n")}
+${candidatos.map((c) => `${c.id} | ${c.titulo}: ${c.subtitulo}`).join("\n")}
 
 Escolha ${MAX_LEVA} e escreva o porquê de cada uma.
 

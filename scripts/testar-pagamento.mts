@@ -274,7 +274,7 @@ conferir(
 console.log("\ndinheiro — centavos da Stripe viram texto")
 conferir("1990 centavos em BRL", dinheiro(1990, "BRL").replace(/ /g, " "), "R$ 19,90")
 conferir("valor redondo mantém as casas", dinheiro(2000, "BRL").replace(/ /g, " "), "R$ 20,00")
-conferir("sem valor vira travessão, não R$ 0,00", dinheiro(null), "—")
+conferir("sem valor vira hífen, não R$ 0,00 (regra sem-travessão, 15/08/2026)", dinheiro(null), "-")
 // A armadilha das moedas sem centavos: ¥1990 são mil novecentos e noventa
 // ienes. Um `/100` fixo escreveria "¥ 19,90" e erraria por cem vezes.
 conferir("moeda sem centavos não é dividida por 100", /1\.990/.test(dinheiro(1990, "JPY")), true)

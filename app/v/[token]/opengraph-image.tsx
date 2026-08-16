@@ -6,7 +6,7 @@ import { lerDiagnosticoPublico } from "@/lib/vazamento-repo"
  * Mesmo contrato da página: o número e mais nada de pessoal.
  */
 
-export const alt = "Diagnóstico de Vazamento — Finlow"
+export const alt = "Diagnóstico de Vazamento · Finlow"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 

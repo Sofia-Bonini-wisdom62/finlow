@@ -42,11 +42,11 @@ export function brl(v: number | string): string {
  * responde quantas casas a moeda tem, então a conversão acompanha a moeda em vez
  * de repetir uma lista aqui.
  *
- * `null` vira "—" porque a tela às vezes não tem o valor (ver
+ * `null` vira "-" porque a tela às vezes não tem o valor (ver
  * `lib/pagamento/preco.ts`), e "R$ 0,00" seria uma afirmação falsa: de graça.
  */
 export function dinheiro(centavos: number | null | undefined, moeda = "BRL"): string {
-  if (centavos == null || !isFinite(centavos)) return "—"
+  if (centavos == null || !isFinite(centavos)) return "-"
   try {
     const fmt = new Intl.NumberFormat("pt-BR", { style: "currency", currency: moeda })
     const casas = fmt.resolvedOptions().maximumFractionDigits ?? 2

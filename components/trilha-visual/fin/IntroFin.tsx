@@ -12,7 +12,7 @@ const SLIDES = [
   {
     img: POSE.hi,
     t: "Oi! Eu sou o Fin",
-    s: "Seu guia pra dominar o dinheiro de um jeito leve — sem planilha, sem sermão.",
+    s: "Seu guia pra dominar o dinheiro de um jeito leve: sem planilha, sem sermão.",
   },
   {
     img: POSE.point,
@@ -22,7 +22,7 @@ const SLIDES = [
   {
     img: POSE.fire,
     t: "Acertou, ganhou",
-    s: "Sequências de acertos valem bônus — e a ofensiva diária mantém a chama acesa.",
+    s: "Sequências de acertos valem bônus, e a ofensiva diária mantém a chama acesa.",
   },
 ] as const
 

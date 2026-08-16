@@ -6,9 +6,9 @@ export const dynamic = "force-dynamic"
 
 const MENSAGENS: Record<string, string> = {
   desconhecido: "Esse item não existe na loja.",
-  saldo: "Coins insuficientes — complete missões e baús pra juntar mais.",
+  saldo: "Moedas insuficientes. Troque XP por moedas na banca da loja.",
   ja_tem: "Você já tem esse item.",
-  pocao_ativa: "Você já tem uma poção ativa — use antes de comprar outra.",
+  pocao_ativa: "Você já tem uma poção ativa. Use antes de comprar outra.",
 }
 
 /** POST /api/jogo/loja { itemId } — compra um item do catálogo. */

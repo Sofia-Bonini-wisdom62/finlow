@@ -317,7 +317,7 @@ export default function ExtratoPage() {
                             ? "1 lançamento já está no seu histórico"
                             : `${resultado.duplicatas.exatas} lançamentos já estão no seu histórico`}
                         </strong>{" "}
-                        — já {resultado.duplicatas.exatas === 1 ? "vem desmarcado" : "vêm desmarcados"} para não contar
+                        e já {resultado.duplicatas.exatas === 1 ? "vem desmarcado" : "vêm desmarcados"} para não contar
                         duas vezes.{" "}
                       </>
                     )}
@@ -325,7 +325,7 @@ export default function ExtratoPage() {
                       <>
                         Outr{resultado.duplicatas.provaveis === 1 ? "o" : "os"}{" "}
                         {resultado.duplicatas.provaveis} caem no mesmo dia e valor de algo que você já lançou, com outro
-                        nome — deixei marcad{resultado.duplicatas.provaveis === 1 ? "o" : "os"} e sinalizad
+                        nome. Deixei marcad{resultado.duplicatas.provaveis === 1 ? "o" : "os"} e sinalizad
                         {resultado.duplicatas.provaveis === 1 ? "o" : "os"} na lista.
                       </>
                     )}

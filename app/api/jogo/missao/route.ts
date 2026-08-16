@@ -10,7 +10,7 @@ const MENSAGENS: Record<string, string> = {
   ja_resgatada: "Você já resgatou essa missão hoje.",
 }
 
-/** POST /api/jogo/missao { missaoId } — resgata os coins de uma missão do dia. */
+/** POST /api/jogo/missao { missaoId } — resgata o XP de uma missão do dia. */
 export async function POST(req: NextRequest) {
   const userId = await getUserIdOr401()
   if (userId instanceof NextResponse) return userId
@@ -23,5 +23,5 @@ export async function POST(req: NextRequest) {
     const msg = MENSAGENS[r.motivo]
     return NextResponse.json({ ok: false, motivo: r.motivo, erro: msg, error: msg }, { status: 409 })
   }
-  return NextResponse.json({ ok: true, moedas: r.moedas, total: r.total })
+  return NextResponse.json({ ok: true, xp: r.xp, total: r.total })
 }
