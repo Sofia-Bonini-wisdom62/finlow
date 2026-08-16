@@ -2,14 +2,51 @@
 
 import { useCallback, useEffect, useState } from "react"
 import Link from "next/link"
-import { BookText, ChartColumn, Flame, Target, Trophy, Wallet } from "lucide-react"
+import { BookOpen, BookText, ChartColumn, Flame, Gem, Star, Target, Trophy, Wallet, Zap } from "lucide-react"
 import { BottomNav } from "@/components/bottom-nav"
 import { GraficoRosca } from "@/components/analises/GraficoRosca"
+import { MissoesFin } from "@/components/trilha-visual/fin/MissoesFin"
 import type { MetricasPerfil, FatiaCategoria } from "@/lib/financas"
+import type { EstadoMissao } from "@/lib/missoes"
+import type { Conquista } from "@/lib/conquistas"
 import { nivelDoTotal } from "@/lib/nivel"
-import { POSE } from "@/lib/fin"
+import { AVATAR_POSE, POSE } from "@/lib/fin"
 import { brl } from "@/lib/formato"
 import { TrocarImagem } from "@/components/perfil/TrocarImagem"
+
+/** O mesmo card do antigo perfil do jogador, agora morando na tela única. */
+const ICONE_CONQUISTA = {
+  star: Star,
+  flame: Flame,
+  bolt: Zap,
+  gem: Gem,
+  target: Target,
+  book: BookOpen,
+} as const
+
+function CardConquista({ c }: { c: Conquista }) {
+  const Icone = ICONE_CONQUISTA[c.icone]
+  return (
+    <div
+      className="flex flex-col items-center gap-2 rounded-2xl bg-fl-card px-2 py-3.5 text-center"
+      style={{ opacity: c.conquistada ? 1 : 0.45 }}
+    >
+      <span
+        className="grid size-10 place-items-center rounded-full"
+        style={{
+          background: c.conquistada
+            ? "color-mix(in srgb, var(--fin-accent, #E9A63C) 22%, transparent)"
+            : "var(--fin-border, #1C333B)",
+        }}
+      >
+        <Icone className={`size-5 ${c.conquistada ? "text-fl-500" : "text-fl-ink-3"}`} />
+      </span>
+      <span className={`text-[11px] font-extrabold leading-tight ${c.conquistada ? "text-fl-ink" : "text-fl-ink-3"}`}>
+        {c.titulo}
+      </span>
+    </div>
+  )
+}
 
 /**
  * Perfil: retrato de um minuto.
@@ -41,6 +78,10 @@ interface Perfil {
   precisaoSemana?: number | null
   temFoto?: boolean
   temBanner?: boolean
+  recorde?: number
+  avatarFin?: string | null
+  missoes?: EstadoMissao[]
+  conquistas?: Conquista[]
   objetivos?: {
     quantos: number
     totalGuardado: number
@@ -149,9 +190,12 @@ export default function PerfilPage() {
   const temGastos = perfil.categorias?.length > 0
   const jogo = nivelDoTotal(perfil.pontos)
 
-  // A foto do usuário vence a do Google, que vence a inicial dourada — e a
-  // troca fura o cache do navegador com ?v= assim que o servidor confirma.
-  const urlFoto = temFoto ? `/api/imagem/foto?v=${versaoImg}` : perfil.image
+  // A foto do usuário vence a do Google, que vence o avatar do Fin equipado
+  // na loja, que vence a inicial dourada (pedido da fundadora, 15/08: foto em
+  // todo lugar que mostrava inicial). A troca fura o cache com ?v= assim que
+  // o servidor confirma.
+  const poseEquipada = perfil.avatarFin ? AVATAR_POSE[perfil.avatarFin] : null
+  const urlFoto = temFoto ? `/api/imagem/foto?v=${versaoImg}` : perfil.image ?? poseEquipada
 
   return (
     <main className="min-h-dvh bg-fl-page pb-24 lg:pb-10 lg:pl-56">
@@ -361,6 +405,53 @@ export default function PerfilPage() {
           <Porta href="/analises" Icon={ChartColumn} titulo="Análises" nota="Saúde financeira, gráficos e tetos" />
           <Porta href="/painel" Icon={Wallet} titulo="Painel" nota="Lançamentos e contas fixas" />
         </section>
+
+        {/* O placar do jogo mora AQUI desde a unificação dos perfis (decisão
+            da fundadora, 15/08/2026): uma pessoa só, uma tela só. */}
+        {perfil.missoes && perfil.missoes.length > 0 && (
+          <section className="mt-6" aria-label="Missões do dia">
+            <div className="flex items-baseline justify-between px-0.5">
+              <h2 className="text-[15px] font-black text-fl-ink">Missões</h2>
+              <span className="text-[11px] font-bold text-fl-ink-3">renovam à meia-noite</span>
+            </div>
+            <div className="mt-2.5">
+              <MissoesFin missoes={perfil.missoes} />
+            </div>
+          </section>
+        )}
+
+        {perfil.conquistas && perfil.conquistas.length > 0 && (
+          <section className="mt-6" aria-label="Conquistas">
+            <h2 className="px-0.5 text-[15px] font-black text-fl-ink">Conquistas</h2>
+            <div className="mt-2.5 grid grid-cols-3 gap-2.5">
+              {perfil.conquistas.map((c) => (
+                <CardConquista key={c.id} c={c} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {typeof perfil.recorde === "number" && (
+          <div className="mt-5 flex items-center gap-3 rounded-2xl bg-fl-card px-4 py-3">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={POSE.stars} alt="" className="size-11 shrink-0 object-contain" />
+            <p className="text-[12.5px] leading-snug text-fl-ink-2">
+              {perfil.recorde > 0 ? (
+                <>
+                  Seu recorde de ofensiva é{" "}
+                  <strong className="text-fl-ink">
+                    {perfil.recorde} {perfil.recorde === 1 ? "dia" : "dias"}
+                  </strong>
+                  {(perfil.sequencia ?? 0) >= perfil.recorde && perfil.recorde > 1
+                    ? ", e você está nele agora. Segura!"
+                    : ". Que tal quebrar essa marca?"}
+                </>
+              ) : (
+                <>Sua primeira chama acende na primeira lição. Bora?</>
+              )}
+            </p>
+          </div>
+        )}
       </div>
 
       <BottomNav />

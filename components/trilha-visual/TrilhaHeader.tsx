@@ -91,20 +91,25 @@ export default function TrilhaHeader({
             {usuario.coins.toLocaleString("pt-BR")}
           </Link>
 
-          {/* Avatar → perfil do jogador */}
+          {/* Avatar → perfil unificado. O skin equipado da loja vence (a
+              pessoa pagou pra usar); sem skin, a FOTO dela; sem foto, a
+              inicial (pedido da fundadora, 15/08: foto onde havia inicial). */}
           <Link
-            href="/trilha/perfil"
+            href="/perfil"
             className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full text-sm font-extrabold"
             style={{
               backgroundColor: "var(--finlow-accent)",
               color: "var(--finlow-bg)",
               boxShadow: "0 3px 0 var(--fin-accent-sombra, #B97F22)",
             }}
-            aria-label={`Perfil do jogador de ${usuario.nome}`}
+            aria-label={`Perfil de ${usuario.nome}`}
           >
             {usuario.avatarFin && AVATAR_POSE[usuario.avatarFin] ? (
               /* eslint-disable-next-line @next/next/no-img-element */
               <img src={AVATAR_POSE[usuario.avatarFin]} alt="" className="h-full w-full object-cover" />
+            ) : usuario.temFoto ? (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img src="/api/imagem/foto" alt="" className="h-full w-full object-cover" />
             ) : (
               usuario.inicial
             )}

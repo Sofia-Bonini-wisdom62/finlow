@@ -165,6 +165,7 @@ professor por métrica (G-17) ficam de fora; os caminhos sem design novo
 | P5 | Segunda chance: pergunta errada volta ao FIM da mesma lição; a resposta da revanche fica num mapa separado que nunca viaja pro servidor, nota e XP sempre da 1ª tentativa. Mínimo de 8 perguntas é conteúdo dela (backlog) | ✅ 15/08 | `components/trilha/CardFlow.tsx` |
 | P6 | IA com consultas: roteador determinístico detecta pedido de resumo de aprendizado e injeta a consulta pronta do banco no especialista; toda conversa leva a linha de progresso da trilha (a IA sempre sabe o que a pessoa fez) | ✅ 15/08 | `lib/{consultas-trilha,roteador-ia}.ts`, `lib/prompts/chat.ts`, `lib/ia.ts`, `app/api/chat`, `scripts/testar-roteador.mts` |
 | P7 | Regra global: SEM travessão em texto de app (tela, placeholder, erro, prompt, saída da IA). 95 ocorrências varridas à mão, placeholder de vazio virou hífen, regra no CLAUDE.md e guard novo | ✅ 15/08 | `CLAUDE.md`, `scripts/testar-travessao.mts`, 40 arquivos de copy |
+| P8 | Perfis UNIFICADOS (supersede a convivência de 14/08): missões, conquistas e recorde de ofensiva moram no /perfil, /trilha/perfil virou redirect, chip da trilha aponta pro /perfil. E a FOTO em todo lugar que mostrava inicial: chip da trilha (skin da loja > foto > inicial) e cabeçalho do perfil (foto > Google > skin > inicial) | ✅ 15/08 | `app/(app)/perfil/page.tsx`, `app/trilha/perfil/page.tsx` (redirect), `app/api/perfil-financeiro`, `lib/trilha-visual.ts`, `components/trilha-visual/TrilhaHeader.tsx` |
 
 ## Fila de produto (05/08/2026)
 

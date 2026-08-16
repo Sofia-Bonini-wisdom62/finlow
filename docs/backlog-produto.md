@@ -241,9 +241,10 @@ chegarem, é troca de arquivo, não de código.
   grupo `(app)`), aula liberada com anel e borda dourados, concluída verde.
 - ~~**Perfil (financeiro)**~~ ✅ 14/08 — cabeçalho de jogo ("Nível N ·
   {rótulo financeiro}", barra de XP), tiles DIAS SEGUIDOS/XP/PRECISÃO,
-  card de Objetivos com o Fin, porta "Liga". Convive com /trilha/perfil:
-  missões, conquistas e loja continuam SÓ lá — duplicar resgate em duas
-  telas dobraria a superfície da mecânica.
+  card de Objetivos com o Fin, porta "Liga". ⚠️ A convivência com
+  /trilha/perfil foi SUPERADA em 15/08: a fundadora mandou unificar, e
+  missões, conquistas e recorde moram no /perfil; /trilha/perfil virou
+  redirect. O resgate continua numa tela só, como a ressalva pedia.
 - ~~**Escola**~~ ✅ 14/08 — `tema-fin` no layout de /escola (vive fora do
   grupo logado), turmas com inicial colorida, e o **detalhe do aluno pelo
   professor** com os 4 tiles e "1ª passada × após correção": a nota que

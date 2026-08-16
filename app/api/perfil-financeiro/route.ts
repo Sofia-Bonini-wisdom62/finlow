@@ -8,6 +8,8 @@ import {
 import { listarTransacoes } from "@/lib/financeiro-repo"
 import { lerOfensiva } from "@/lib/ofensiva"
 import { listarObjetivos } from "@/lib/objetivo-repo"
+import { estadoDasMissoes } from "@/lib/missoes"
+import { conquistasDe } from "@/lib/conquistas"
 
 const NOMES_MESES = [
   "janeiro", "fevereiro", "março", "abril", "maio", "junho",
@@ -45,7 +47,7 @@ export async function GET() {
     const [user, transacoes] = await Promise.all([
       db.user.findUnique({
         where: { id: userId },
-        select: { nome: true, email: true, image: true, pontos: true, rankingOptIn: true },
+        select: { nome: true, email: true, image: true, pontos: true, rankingOptIn: true, avatarFin: true },
       }),
       // COM categoria: a rosca agrupa por ela. Sem, tudo cai em "Outros" e o
       // gráfico vira um círculo cinza de 100% que não informa nada.
@@ -67,9 +69,16 @@ export async function GET() {
     const metricas = metricasPerfil(calc)
     const { mes, ano } = mesDaRosca(calc)
 
-    // O cabeçalho de jogo do protótipo v2 (chama, precisão, objetivos) e as
-    // imagens da personalização. Tudo acessório: qualquer falha vira
-    // ausência, nunca derruba o retrato.
+    // O cabeçalho de jogo, as imagens da personalização e o placar do jogo
+    // (perfis UNIFICADOS, decisão da fundadora de 15/08/2026: missões,
+    // conquistas e recorde moram aqui agora). Tudo acessório: qualquer falha
+    // vira ausência, nunca derruba o retrato.
+    //
+    // DUAS ONDAS de propósito, não uma: com tudo em paralelo a rota disparava
+    // mais consultas simultâneas do que o pooler de sessões aceita
+    // (EMAXCONNSESSION, pool de 15), e as últimas do estouro eram sempre as
+    // conquistas — que então "sumiam da tela" pelo catch. A segunda onda
+    // ainda reaproveita a ofensiva lida na primeira.
     const [ofensiva, licoes7d, objetivos, imagens] = await Promise.all([
       lerOfensiva(userId).catch(() => null),
       db.progressoLicao
@@ -86,6 +95,19 @@ export async function GET() {
       db.imagemUsuario
         .findMany({ where: { userId }, select: { tipo: true } })
         .catch(() => [] as { tipo: string }[]),
+    ])
+
+    const [missoes, conquistas] = await Promise.all([
+      estadoDasMissoes(userId).catch((e) => {
+        // Acessório falha em ausência, mas nunca em silêncio: sem o log, um
+        // erro aqui vira "sumiu da tela" sem pista nenhuma.
+        console.warn("[perfil] missões:", (e as Error)?.message)
+        return []
+      }),
+      conquistasDe(userId, ofensiva ?? undefined).catch((e) => {
+        console.warn("[perfil] conquistas:", (e as Error)?.message)
+        return []
+      }),
     ])
     const somaAcertos = licoes7d.reduce((s, l) => s + l.acertos, 0)
     const somaQuiz = licoes7d.reduce((s, l) => s + l.totalQuiz, 0)
@@ -110,6 +132,10 @@ export async function GET() {
       precisaoSemana: somaQuiz > 0 ? Math.round((somaAcertos / somaQuiz) * 100) : null,
       temFoto: imagens.some((i) => i.tipo === "foto"),
       temBanner: imagens.some((i) => i.tipo === "banner"),
+      recorde: ofensiva?.recorde ?? 0,
+      avatarFin: user?.avatarFin ?? null,
+      missoes,
+      conquistas,
       objetivos:
         objetivos.length > 0
           ? {

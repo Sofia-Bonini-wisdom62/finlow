@@ -350,9 +350,11 @@ sem nenhum componente saber. Sempre navy, nos dois modos.
 - **Nível e conquistas**: funções puras de leitura (`lib/nivel.ts`,
   `lib/conquistas.ts`) — nada a dessincronizar.
 - Superfícies: `/trilha` (mapa com unidades coloridas, baú, pop-up diário,
-  intro), `/trilha/[moduloId]` (player com Fin), `/trilha/perfil`,
-  `/trilha/loja`, `/ranking` (Liga — mecânica intacta). Rotas de escrita em
-  `/api/jogo/*`. Bateria: `scripts/testar-jogo.mts` (react-server).
+  intro), `/trilha/[moduloId]` (player com Fin), `/trilha/loja`, `/ranking`
+  (Liga — mecânica intacta). O perfil do jogador foi UNIFICADO no `/perfil`
+  em 15/08/2026 (missões, conquistas e recorde moram lá; `/trilha/perfil` é
+  redirect). Rotas de escrita em `/api/jogo/*`. Bateria:
+  `scripts/testar-jogo.mts` (react-server).
 
 ### 2.17 Operação
 
