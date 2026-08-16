@@ -50,14 +50,15 @@ export default function TrilhaHeader({
         </span>
 
         <div className="flex items-center gap-3.5">
-          <div
+          <Link
+            href="/trilha/ofensiva"
             className={`flex items-center gap-1 font-extrabold tabular-nums ${indicadorTexto}`}
             style={{ color: "var(--fin-combo, var(--finlow-warn))" }}
-            aria-label={`Sequência de ${usuario.sequencia} dias`}
+            aria-label={`Sequência de ${usuario.sequencia} dias, ver ofensiva`}
           >
             <Flame size={indicadorIcone} aria-hidden="true" />
             {usuario.sequencia}
-          </div>
+          </Link>
 
           {/* Energia: quem tem gate vê o saldo; isento vê ∞ (Redesign Fin). */}
           <div
