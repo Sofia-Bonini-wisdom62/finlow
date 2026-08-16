@@ -107,19 +107,15 @@ export const SEM_REF = "-"
  * feedback corrigiu, o que já é a aula acontecendo.
  */
 /**
- * Quanto vale estudar FORA da própria trilha.
+ * Quanto vale estudar FORA da própria trilha: METADE (decisão da fundadora,
+ * 16/08/2026 — "era pra dar metade do xp normal").
  *
- * O NÚMERO SAIU DE UMA CONTA, não do gosto. Medindo o TETO de cada trilha
- * (módulo fechado com acerto perfeito, mais as 4 lições dele):
- *
- *   trilha adulta      2.400
- *   escolar sem peso   6.270   → 2,6× a adulta
- *   escolar com 1/4    1.482   → 0,6× a adulta
- *
- * São 107 aulas contra 43. Sem peso, quem varresse o conteúdo de 1º ao 9º ano
- * passaria na frente de quem concluiu tudo que o produto recomenda, e o ranking
- * deixaria de comparar pessoas que fizeram o mesmo percurso. Com 1/4, estudar o
- * escolar continua valendo a pena e ainda assim não domina.
+ * Era 1/4, saído de uma conta de teto: escolar com 1/4 dava 0,6× o teto
+ * adulto e a varredura do 1º ao 9º ano não dominava o ranking. Mas 1/4 do
+ * piso de uma lição arredondava para 1 ponto, e a aula explorada parecia não
+ * pagar NADA — foi reportado como bug. Com 1/2 o teto escolar vai a ~1,2× o
+ * adulto: quem varrer tudo fora da trilha pode passar quem fez só o próprio
+ * percurso — custo aceito na decisão.
  *
  * O peso vale para os DOIS créditos — lição e módulo. Reduzir só o fechamento
  * do módulo deixaria as 4 lições pagando cheio, e é nelas que está a maior
@@ -128,7 +124,7 @@ export const SEM_REF = "-"
  * É uma constante só justamente para poder ser afinada quando houver dado de
  * uso real — mexa aqui, não espalhe multiplicador pelas rotas.
  */
-export const PESO_FORA_DA_TRILHA = 0.25
+export const PESO_FORA_DA_TRILHA = 0.5
 
 /**
  * Ajusta o valor de uma aula conforme ela seja ou não da trilha da pessoa.

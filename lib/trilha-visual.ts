@@ -98,6 +98,9 @@ export interface Usuario {
   precisaoSemana: number | null
   /** Avatar equipado (itemId da loja); null = inicial do nome. */
   avatarFin: string | null
+  /** A pessoa tem foto de perfil? O chip mostra a foto no lugar da inicial
+   *  quando não há skin equipado (pedido da fundadora, 15/08/2026). */
+  temFoto: boolean
 }
 
 /** Sem bloco gravado, tudo cai num bloco só — é o caso da trilha adulta. */
@@ -160,6 +163,10 @@ export async function montarTrilhaVisual(userId: string): Promise<{
         select: { acertos: true, totalQuiz: true },
       }),
     ])
+
+  const foto = await db.imagemUsuario
+    .findUnique({ where: { userId_tipo: { userId, tipo: "foto" } }, select: { id: true } })
+    .catch(() => null)
 
   const somaAcertos = licoesDaSemana.reduce((s, l) => s + l.acertos, 0)
   const somaQuiz = licoesDaSemana.reduce((s, l) => s + l.totalQuiz, 0)
@@ -251,6 +258,7 @@ export async function montarTrilhaVisual(userId: string): Promise<{
       hoje: ofensiva.hoje,
       precisaoSemana,
       avatarFin: user?.avatarFin ?? null,
+      temFoto: !!foto,
     },
   }
 }

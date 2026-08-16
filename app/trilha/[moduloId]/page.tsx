@@ -10,16 +10,114 @@ import { POSE } from "@/lib/fin"
 import type { ModuloData } from "@/types/trilha"
 
 /**
- * Player de UMA lição.
+ * Player do módulo, em SEQUÊNCIA ÚNICA (pedido da fundadora, 16/08/2026).
  *
- * Com o corredor (05/08/2026) o módulo virou 4 lições em sequência, e esta
- * página joga uma delas por vez: `?licao=N`, ou a próxima que a pessoa tem
- * para fazer quando o parâmetro não vem.
+ * Com o corredor (05/08/2026) o módulo virou 4 lições; a página joga uma por
+ * vez (`?licao=N`), mas desde 16/08 as lições EMENDAM: concluir uma navega
+ * direto pra próxima, sem a tela de concluído no meio. A tela de fim aparece
+ * UMA vez, no fechamento do módulo, com os números da sentada inteira
+ * somados. O servidor continua cobrando e creditando POR LIÇÃO — energia,
+ * XP, combo e revanche não mudaram de mecânica, só a costura visual.
+ *
+ * O acumulado da sentada vive em sessionStorage (a navegação entre lições
+ * remonta o componente): expira em 2h pra sentada abandonada não somar com a
+ * próxima, e é limpo quando a tela de fim aparece.
  *
  * Quem decide se pode abrir é o SERVIDOR — a rota devolve 403 com o motivo. A
  * tela só desenha a recusa; se a decisão morasse aqui, trocar o número na URL
  * bastaria para furar a fila.
  */
+
+interface Corrida {
+  quando: number
+  acertos: number
+  quizzes: number
+  segundos: number
+  xpLicoes: number
+  algumCredito: boolean
+  comboMax: number
+  comboBonus: number
+  energiaDevolvida: number
+  pocaoAplicada: boolean
+}
+
+const chaveCorrida = (moduloId: string) => `fin-corrida:${moduloId}`
+
+function lerCorrida(moduloId: string): Corrida | null {
+  try {
+    const c = JSON.parse(sessionStorage.getItem(chaveCorrida(moduloId)) ?? "null") as Corrida | null
+    // Sentada abandonada não soma com a de amanhã.
+    if (c && Date.now() - c.quando < 2 * 60 * 60 * 1000) return c
+  } catch {}
+  return null
+}
+
+function somarCorrida(moduloId: string, parcial: Omit<Corrida, "quando">) {
+  const antes = lerCorrida(moduloId)
+  const soma: Corrida = {
+    quando: Date.now(),
+    acertos: (antes?.acertos ?? 0) + parcial.acertos,
+    quizzes: (antes?.quizzes ?? 0) + parcial.quizzes,
+    segundos: (antes?.segundos ?? 0) + parcial.segundos,
+    xpLicoes: (antes?.xpLicoes ?? 0) + parcial.xpLicoes,
+    algumCredito: (antes?.algumCredito ?? false) || parcial.algumCredito,
+    comboMax: Math.max(antes?.comboMax ?? 0, parcial.comboMax),
+    comboBonus: (antes?.comboBonus ?? 0) + parcial.comboBonus,
+    energiaDevolvida: (antes?.energiaDevolvida ?? 0) + parcial.energiaDevolvida,
+    pocaoAplicada: (antes?.pocaoAplicada ?? false) || parcial.pocaoAplicada,
+  }
+  try {
+    sessionStorage.setItem(chaveCorrida(moduloId), JSON.stringify(soma))
+  } catch {}
+}
+
+function limparCorrida(moduloId: string) {
+  try {
+    sessionStorage.removeItem(chaveCorrida(moduloId))
+  } catch {}
+}
+
+/**
+ * Comprar a recarga direto de onde ela faz falta (pedido da fundadora,
+ * 16/08). Sucesso recarrega a página: o GET cobra a lição de novo, agora
+ * com energia — é o fluxo normal, não um caso especial.
+ */
+function BotaoRecarga() {
+  const [ocupado, setOcupado] = useState(false)
+  const [erro, setErro] = useState<string | null>(null)
+
+  async function comprar() {
+    setOcupado(true)
+    setErro(null)
+    try {
+      const r = await fetch("/api/jogo/energia", { method: "POST" })
+      const d = await r.json().catch(() => ({}))
+      if (!r.ok || !d.ok) {
+        setErro(d.erro ?? "Não deu certo. Tenta de novo?")
+        setOcupado(false)
+        return
+      }
+      window.location.reload()
+    } catch {
+      setErro("Sem conexão. Tenta de novo?")
+      setOcupado(false)
+    }
+  }
+
+  return (
+    <div className="w-full max-w-xs">
+      <button
+        onClick={comprar}
+        disabled={ocupado}
+        className="fin-btn-3d w-full rounded-2xl py-3.5 text-sm font-extrabold disabled:opacity-60"
+        style={{ background: "var(--fin-accent)", color: "var(--fin-bg)" }}
+      >
+        {ocupado ? "Recarregando…" : "Recarga cheia · 10 moedas"}
+      </button>
+      {erro && <p className="mt-2 text-xs" style={{ color: "var(--fin-erro)" }}>{erro}</p>}
+    </div>
+  )
+}
 
 interface LicaoDoModulo {
   numero: number
@@ -125,6 +223,7 @@ export default function ModuloPage() {
           Ela volta sozinha: <strong style={{ color: "var(--fin-energia)" }}>+1 a cada hora</strong>.
           Próxima recarga em <strong className="text-white">{semEnergia.minutos} min</strong>.
         </p>
+        <BotaoRecarga />
         <Link
           href="/premium"
           className="flex w-full max-w-xs items-center gap-3 rounded-2xl px-4 py-3 text-left"
@@ -252,24 +351,56 @@ export default function ModuloPage() {
         })
           .then((r) => r.json())
           .then((d) => {
+            const proxima = (dados.licoesDoModulo ?? []).find(
+              (l) => l.numero > licao.numero && !l.concluida
+            )
+
+            // As lições EMENDAM: com módulo aberto e próxima na fila, soma a
+            // parcial e navega direto — sem tela de concluído no meio.
+            if (!d.moduloConcluido && proxima) {
+              somarCorrida(modulo.id, {
+                acertos: d.acertos ?? 0,
+                quizzes: d.quizzes ?? 0,
+                segundos: d.segundos ?? segundos,
+                xpLicoes: d.pontos?.pontos ?? 0,
+                algumCredito: !!d.pontos?.creditado,
+                comboMax: d.comboMax ?? 0,
+                comboBonus: d.comboBonus ?? 0,
+                energiaDevolvida: d.energiaDevolvida ?? 0,
+                pocaoAplicada: !!d.pocaoAplicada,
+              })
+              router.push(`/trilha/${chave}?licao=${proxima.numero}`)
+              return
+            }
+
+            // Fim da sentada: a tela de fim mostra o TOTAL do que foi jogado
+            // agora — as parciais acumuladas mais esta última lição.
+            const antes = lerCorrida(modulo.id)
+            limparCorrida(modulo.id)
+            const acertos = (antes?.acertos ?? 0) + (d.acertos ?? 0)
+            const quizzes = (antes?.quizzes ?? 0) + (d.quizzes ?? 0)
             setResultado({
               nome: d.nome ?? licao.nome,
-              acertos: d.acertos ?? 0,
-              quizzes: d.quizzes ?? 0,
-              segundos: d.segundos ?? segundos,
-              pontos: d.pontos ?? null,
+              acertos,
+              quizzes,
+              segundos: (antes?.segundos ?? 0) + (d.segundos ?? segundos),
+              pontos: {
+                creditado: (antes?.algumCredito ?? false) || !!d.pontos?.creditado,
+                pontos: (antes?.xpLicoes ?? 0) + (d.pontos?.pontos ?? 0),
+              },
               moduloConcluido: !!d.moduloConcluido,
               pontosModulo: d.pontosModulo ?? null,
               licoesConcluidas: d.licoesConcluidas ?? 0,
               licoesTotal: d.licoesTotal ?? licao.total,
               conceito: d.moduloConcluido ? conceitoDoFecho() : null,
               // --- a camada de jogo (Redesign Fin) ---
-              comboMax: d.comboMax ?? 0,
-              comboBonus: d.comboBonus ?? 0,
+              comboMax: Math.max(antes?.comboMax ?? 0, d.comboMax ?? 0),
+              comboBonus: (antes?.comboBonus ?? 0) + (d.comboBonus ?? 0),
               coins: d.coins ?? null,
-              energiaDevolvida: d.energiaDevolvida ?? null,
-              pocaoAplicada: !!d.pocaoAplicada,
-              precisao: d.precisao ?? null,
+              energiaDevolvida:
+                (antes?.energiaDevolvida ?? 0) + (d.energiaDevolvida ?? 0) || null,
+              pocaoAplicada: (antes?.pocaoAplicada ?? false) || !!d.pocaoAplicada,
+              precisao: quizzes > 0 ? Math.round((acertos / quizzes) * 100) : null,
               sequencia: d.sequencia ?? 0,
               bauDisponivel: d.bauDisponivel ?? null,
             })

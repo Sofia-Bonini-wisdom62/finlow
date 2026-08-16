@@ -45,7 +45,7 @@ const NOME_ESCOPO: Record<RankEscolar["escopo"], string> = {
 /** Medalhas do pódio; do 4º em diante, o número em cinza. */
 const MEDALHA = ["#E9A63C", "#B8C4C9", "#C98B5F"]
 
-function LinhaLiga({ l }: { l: Linha }) {
+function LinhaLiga({ l, minhaFoto }: { l: Linha; minhaFoto?: boolean }) {
   const medalha = l.posicao <= 3 ? MEDALHA[l.posicao - 1] : null
   return (
     <li
@@ -69,12 +69,19 @@ function LinhaLiga({ l }: { l: Linha }) {
       >
         {l.posicao}
       </span>
+      {/* Foto SÓ na própria linha (pedido da fundadora, 16/08): a rota da
+          imagem serve só o dono, e o rank continua sem expor foto de colega. */}
       <span
-        className="grid size-9 shrink-0 place-items-center rounded-full text-[14px] font-black"
+        className="grid size-9 shrink-0 place-items-center overflow-hidden rounded-full text-[14px] font-black"
         style={{ background: "var(--fin-border-2)", color: "var(--fin-text)" }}
         aria-hidden="true"
       >
-        {l.apelido.charAt(0).toUpperCase()}
+        {l.euMesmo && minhaFoto ? (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img src="/api/imagem/foto" alt="" className="h-full w-full object-cover" />
+        ) : (
+          l.apelido.charAt(0).toUpperCase()
+        )}
       </span>
       <span
         className={`min-w-0 flex-1 truncate text-[14.5px] ${l.euMesmo ? "font-black" : "font-bold"}`}
@@ -127,6 +134,7 @@ export default function RankingPage() {
   const [rascunho, setRascunho] = useState("")
   const [salvando, setSalvando] = useState(false)
   const [erro, setErro] = useState<string | null>(null)
+  const [minhaFoto, setMinhaFoto] = useState(false)
 
   const carregar = useCallback(async () => {
     setCarregando(true)
@@ -144,6 +152,14 @@ export default function RankingPage() {
     } finally {
       setCarregando(false)
     }
+  }, [])
+
+  // A foto pra linha própria; falha vira inicial, como sempre foi.
+  useEffect(() => {
+    fetch("/api/conta")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => setMinhaFoto(!!d?.temFoto))
+      .catch(() => {})
   }, [])
 
   useEffect(() => { carregar() }, [carregar])
@@ -218,7 +234,7 @@ export default function RankingPage() {
             >
               <ul className="divide-y" style={{ borderColor: "var(--fin-border)" }}>
                 {escolar.linhas.map((l) => (
-                  <LinhaLiga key={`sala-${l.posicao}-${l.apelido}`} l={l} />
+                  <LinhaLiga key={`sala-${l.posicao}-${l.apelido}`} l={l} minhaFoto={minhaFoto} />
                 ))}
               </ul>
               {escolar.linhas.length === 0 && (
@@ -314,7 +330,7 @@ export default function RankingPage() {
             >
               <ul className="divide-y" style={{ borderColor: "var(--fin-border)" }}>
                 {linhas.map((l) => (
-                  <LinhaLiga key={`${l.posicao}-${l.apelido}`} l={l} />
+                  <LinhaLiga key={`${l.posicao}-${l.apelido}`} l={l} minhaFoto={minhaFoto} />
                 ))}
               </ul>
               {linhas.length === 0 && (

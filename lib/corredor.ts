@@ -284,7 +284,7 @@ export async function podeAbrir(
       }),
     ])
     // Simétrico desde 11/08/2026: para o aluno de escola, é a aula ADULTA que
-    // cai neste ramo — explorável, na lição que ele quiser, valendo 1/4.
+    // cai neste ramo — explorável, na lição que ele quiser, valendo metade.
     if (outro && ehDeOutroPublico(outro.publico, publico)) return { ok: true }
     return { ok: false, motivo: "Módulo não encontrado." }
   }

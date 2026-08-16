@@ -44,6 +44,11 @@ export const LOGO_FIN = "/fin/logo-mark.png"
  * Mora AQUI e não na loja porque componentes de cliente precisam resolver a
  * imagem do avatar equipado — e lib/loja.ts importa o banco.
  */
+/** Espelho CLIENTE de PRECO_RECARGA_MOEDAS (lib/energia.ts importa o banco e
+ *  não entra em client component — a mesma razão de AVATAR_POSE morar aqui).
+ *  Quem cobra é o servidor; este número é só o rótulo do botão. */
+export const PRECO_RECARGA_MOEDAS_CLIENTE = 10
+
 export const AVATAR_POSE: Record<string, string> = {
   "avatar-flex": POSE.flex,
   "avatar-fire": POSE.fire,

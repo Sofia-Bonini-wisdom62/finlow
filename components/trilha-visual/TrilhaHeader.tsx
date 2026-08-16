@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Flame, Zap } from "lucide-react"
 import type { Usuario } from "@/lib/trilha-visual"
 import { AVATAR_POSE } from "@/lib/fin"
+import { ModalEnergia } from "./fin/ModalEnergia"
 
 interface TrilhaHeaderProps {
   usuario: Usuario
@@ -18,6 +19,7 @@ export default function TrilhaHeader({
   intensidade,
 }: TrilhaHeaderProps) {
   const [rolou, setRolou] = useState(false)
+  const [energiaAberta, setEnergiaAberta] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setRolou(window.scrollY > 4)
@@ -60,19 +62,28 @@ export default function TrilhaHeader({
             {usuario.sequencia}
           </Link>
 
-          {/* Energia: quem tem gate vê o saldo; isento vê ∞ (Redesign Fin). */}
-          <div
-            className={`flex items-center gap-1 font-extrabold tabular-nums ${indicadorTexto}`}
-            style={{ color: "var(--fin-energia, #55C7EA)" }}
-            aria-label={
-              usuario.energia
-                ? `${usuario.energia.atual} de ${usuario.energia.max} de energia`
-                : "Energia infinita"
-            }
-          >
-            <Zap size={indicadorIcone} aria-hidden="true" />
-            {usuario.energia ? usuario.energia.atual : "∞"}
-          </div>
+          {/* Energia: quem tem gate vê o saldo e TOCA pra recarregar (pedido
+              da fundadora, 16/08); isento vê ∞ e nada a comprar. */}
+          {usuario.energia ? (
+            <button
+              onClick={() => setEnergiaAberta(true)}
+              className={`flex items-center gap-1 font-extrabold tabular-nums ${indicadorTexto}`}
+              style={{ color: "var(--fin-energia, #55C7EA)" }}
+              aria-label={`${usuario.energia.atual} de ${usuario.energia.max} de energia. Toque para recarregar`}
+            >
+              <Zap size={indicadorIcone} aria-hidden="true" />
+              {usuario.energia.atual}
+            </button>
+          ) : (
+            <div
+              className={`flex items-center gap-1 font-extrabold tabular-nums ${indicadorTexto}`}
+              style={{ color: "var(--fin-energia, #55C7EA)" }}
+              aria-label="Energia infinita"
+            >
+              <Zap size={indicadorIcone} aria-hidden="true" />
+              ∞
+            </div>
+          )}
 
           {/* Coins → Loja do Fin */}
           <Link
@@ -92,26 +103,41 @@ export default function TrilhaHeader({
             {usuario.coins.toLocaleString("pt-BR")}
           </Link>
 
-          {/* Avatar → perfil do jogador */}
+          {/* Avatar → perfil unificado. O skin equipado da loja vence (a
+              pessoa pagou pra usar); sem skin, a FOTO dela; sem foto, a
+              inicial (pedido da fundadora, 15/08: foto onde havia inicial). */}
           <Link
-            href="/trilha/perfil"
+            href="/perfil"
             className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full text-sm font-extrabold"
             style={{
               backgroundColor: "var(--finlow-accent)",
               color: "var(--finlow-bg)",
               boxShadow: "0 3px 0 var(--fin-accent-sombra, #B97F22)",
             }}
-            aria-label={`Perfil do jogador de ${usuario.nome}`}
+            aria-label={`Perfil de ${usuario.nome}`}
           >
             {usuario.avatarFin && AVATAR_POSE[usuario.avatarFin] ? (
               /* eslint-disable-next-line @next/next/no-img-element */
               <img src={AVATAR_POSE[usuario.avatarFin]} alt="" className="h-full w-full object-cover" />
+            ) : usuario.temFoto ? (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img src="/api/imagem/foto" alt="" className="h-full w-full object-cover" />
             ) : (
               usuario.inicial
             )}
           </Link>
         </div>
       </div>
+
+      {usuario.energia && (
+        <ModalEnergia
+          aberto={energiaAberta}
+          atual={usuario.energia.atual}
+          max={usuario.energia.max}
+          coins={usuario.coins}
+          onFechar={() => setEnergiaAberta(false)}
+        />
+      )}
 
       <div
         className="h-0.5 w-full"

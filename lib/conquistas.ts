@@ -1,5 +1,5 @@
 import { db } from "@/lib/db"
-import { lerOfensiva } from "@/lib/ofensiva"
+import { lerOfensiva, type Ofensiva } from "@/lib/ofensiva"
 import { nivelDoTotal } from "@/lib/nivel"
 
 /**
@@ -16,7 +16,13 @@ export interface Conquista {
   conquistada: boolean
 }
 
-export async function conquistasDe(userId: string): Promise<Conquista[]> {
+export async function conquistasDe(
+  userId: string,
+  /** A ofensiva já lida pelo chamador, quando ele tem. Evita reler DiaAtivo
+   *  numa rota que já leu: foi uma releitura dessas que estourou o pool de
+   *  sessões do pooler (EMAXCONNSESSION) no perfil unificado. */
+  ofensivaJaLida?: Ofensiva
+): Promise<Conquista[]> {
   const [primeiraLicao, modulosFeitos, licaoCheia, ofensiva, u] = await Promise.all([
     db.progressoLicao.findFirst({ where: { userId, concluido: true }, select: { id: true } }),
     db.progressoModulo.count({ where: { userId, concluido: true } }),
@@ -25,7 +31,7 @@ export async function conquistasDe(userId: string): Promise<Conquista[]> {
       select: { acertos: true, totalQuiz: true },
       orderBy: { acertos: "desc" },
     }),
-    lerOfensiva(userId),
+    ofensivaJaLida ? Promise.resolve(ofensivaJaLida) : lerOfensiva(userId),
     db.user.findUnique({ where: { id: userId }, select: { pontos: true, comboRecorde: true } }),
   ])
 

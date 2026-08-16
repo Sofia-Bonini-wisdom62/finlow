@@ -78,7 +78,7 @@ export default async function OfensivaPage() {
               ? "Complete uma lição hoje para acender."
               : usouHoje
                 ? "Já garantiu o dia de hoje. Manda ver!"
-                : "Você ainda não estudou hoje — não perca a sequência!"}
+                : "Você ainda não estudou hoje. Não perca a sequência!"}
           </p>
         </div>
 
@@ -114,7 +114,7 @@ export default async function OfensivaPage() {
                 <strong style={{ color: "var(--fin-text)" }}>
                   {premios} {premios === 1 ? "prêmio" : "prêmios"}
                 </strong>{" "}
-                nessa sequência — faltam {ateProximoPremio} para o próximo.
+                nessa sequência, faltam {ateProximoPremio} para o próximo.
               </>
             ) : (
               <>

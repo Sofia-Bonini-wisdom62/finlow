@@ -69,7 +69,7 @@ export async function creditarCoins(
   }
 }
 
-export type MotivoGasto = "compra_pocao" | "compra_item"
+export type MotivoGasto = "compra_pocao" | "compra_item" | "compra_energia"
 
 /**
  * Debita, se houver saldo — o `updateMany` condicionado é quem decide, então

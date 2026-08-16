@@ -73,12 +73,17 @@ function Secao({
   aulas,
   corredor,
   publico,
+  concluidosForaDoCorredor,
 }: {
   titulo: string
   aulas: AulaCard[]
   corredor: Awaited<ReturnType<typeof montarCorredor>>
   /** O público da PESSOA — decide o que é "de outra trilha" para ela. */
   publico: Publico
+  /** Módulos concluídos que o corredor NÃO conhece (aula de outro público).
+   *  Sem isto, aula explorada e terminada aparecia "liberada" pra sempre —
+   *  foi o "não marca como concluído" do bug de 16/08/2026. */
+  concluidosForaDoCorredor: Set<string>
 }) {
   return (
     <section className="mb-8">
@@ -92,7 +97,11 @@ function Secao({
         {aulas.map((m) => {
           const deOutraTrilha = ehDeOutroPublico(m.publico, publico)
           const no = corredor.modulos.get(m.id)
-          const estado = deOutraTrilha ? "liberado" : no?.estado ?? "trancado"
+          const estado = deOutraTrilha
+            ? concluidosForaDoCorredor.has(m.id)
+              ? "concluido"
+              : "liberado"
+            : no?.estado ?? "trancado"
           const trancado = estado === "trancado"
           const concluido = estado === "concluido"
 
@@ -197,7 +206,7 @@ export default async function BibliotecaPage() {
   }
 
   const publico = await publicoDoUsuario(userId)
-  const [modulos, corredor] = await Promise.all([
+  const [modulos, corredor, fechados] = await Promise.all([
     db.modulo.findMany({
       where: filtroExploravel(),
       select: {
@@ -215,7 +224,14 @@ export default async function BibliotecaPage() {
       orderBy: [{ ordem: "asc" }],
     }),
     montarCorredor(userId),
+    // A conclusão de aula de OUTRO público vive só em ProgressoModulo: o
+    // corredor não a conhece, e a biblioteca precisa dela pro check verde.
+    db.progressoModulo.findMany({
+      where: { userId, concluido: true },
+      select: { moduloId: true },
+    }),
   ])
+  const concluidosForaDoCorredor = new Set(fechados.map((f) => f.moduloId))
 
   /**
    * Agrupamento por bloco, com o nível de reserva.
@@ -295,7 +311,7 @@ export default async function BibliotecaPage() {
         </p>
 
         {[...grupos].map(([titulo, doGrupo]) => (
-          <Secao key={titulo} titulo={titulo} aulas={doGrupo} corredor={corredor} publico={publico} />
+          <Secao key={titulo} titulo={titulo} aulas={doGrupo} corredor={corredor} publico={publico} concluidosForaDoCorredor={concluidosForaDoCorredor} />
         ))}
 
         {porSegmento.length > 0 && (
@@ -315,7 +331,7 @@ export default async function BibliotecaPage() {
                 : "Aulas de fora da sua trilha. Você pode explorar qualquer uma, na ordem que quiser. Elas valem menos pontos, porque o seu caminho continua sendo o da turma."}
             </p>
             {porSegmento.map((s) => (
-              <Secao key={s.id} titulo={s.nome} aulas={s.aulas} corredor={corredor} publico={publico} />
+              <Secao key={s.id} titulo={s.nome} aulas={s.aulas} corredor={corredor} publico={publico} concluidosForaDoCorredor={concluidosForaDoCorredor} />
             ))}
           </div>
         )}

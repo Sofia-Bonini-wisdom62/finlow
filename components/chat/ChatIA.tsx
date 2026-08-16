@@ -567,7 +567,7 @@ export function ChatIA({
               ref={inputArquivo}
               type="file"
               multiple
-              accept="image/*,application/pdf,.csv,.ofx"
+              accept="image/*,application/pdf,.csv,.ofx,.qif,.txt"
               onChange={escolherArquivos}
               className="hidden"
             />
