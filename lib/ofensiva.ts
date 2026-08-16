@@ -97,6 +97,49 @@ export async function lerOfensiva(userId: string, agora: Date = new Date()): Pro
   return contarOfensiva(linhas.map((l) => l.dia), agora)
 }
 
+export interface HistoricoOfensiva extends Ofensiva {
+  /**
+   * Cada dia ativo como "YYYY-MM-DD". A tela de histórico desenha o calendário
+   * a partir daqui; a chave de data (e não o Date cru) evita o descasamento de
+   * fuso entre o `@db.Date` (volta à meia-noite UTC) e a meia-noite de SP.
+   */
+  chaves: string[]
+  /** Quantos dias distintos a pessoa esteve ativa dentro da janela. */
+  total: number
+  /** Dias que faltam para fechar o próximo bloco de 7 (o prêmio da semana). */
+  ateProximoPremio: number
+  /** Quantos prêmios de semana a ofensiva atual já rendeu. */
+  premios: number
+}
+
+/**
+ * A ofensiva mais o histórico de dias, para a tela dedicada.
+ *
+ * Usa a MESMA janela e a MESMA contagem de `lerOfensiva` — só acrescenta a
+ * lista de dias e os números derivados do prêmio, sem uma segunda consulta.
+ */
+export async function lerHistoricoOfensiva(
+  userId: string,
+  agora: Date = new Date()
+): Promise<HistoricoOfensiva> {
+  const corte = new Date(diaDeHoje(agora).getTime() - JANELA_DIAS * 86_400_000)
+  const linhas = await db.diaAtivo.findMany({
+    where: { userId, dia: { gte: corte } },
+    select: { dia: true },
+    orderBy: { dia: "desc" },
+  })
+  const ofensiva = contarOfensiva(linhas.map((l) => l.dia), agora)
+  const chaves = [...new Set(linhas.map((l) => l.dia.toISOString().slice(0, 10)))]
+  const resto = ofensiva.atual % DIAS_POR_PREMIO
+  return {
+    ...ofensiva,
+    chaves,
+    total: chaves.length,
+    ateProximoPremio: resto === 0 ? DIAS_POR_PREMIO : DIAS_POR_PREMIO - resto,
+    premios: Math.floor(ofensiva.atual / DIAS_POR_PREMIO),
+  }
+}
+
 /**
  * Marca que a pessoa usou o app hoje e devolve a ofensiva já atualizada.
  *
