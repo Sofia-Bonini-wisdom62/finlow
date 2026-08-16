@@ -23,6 +23,7 @@ const { calcularCombo } = await import("../lib/combo.js")
 const { nivelDoTotal } = await import("../lib/nivel.js")
 const { creditarCoins, debitarCoins } = await import("../lib/coins.js")
 const { resgatarMissao, MISSOES } = await import("../lib/missoes.js")
+const { converterXpEmMoedas } = await import("../lib/conversao.js")
 const { comprarItem } = await import("../lib/loja.js")
 
 let falhas = 0
@@ -137,7 +138,7 @@ try {
   const deNovo = await debitarCoins(userId, "compra_item", "avatar-x", 15)
   checar("comprar o MESMO item de novo é barrado e devolve o dinheiro", !deNovo.ok && deNovo.motivo === "repetido" && deNovo.total === gasto.total)
 
-  console.log("\nMISSÕES — resgate reconferido (banco)")
+  console.log("\nMISSÕES — resgate reconferido, pago em XP (banco)")
   const cedo = await resgatarMissao(userId, MISSOES[0].id)
   checar("resgatar sem completar é recusado", !cedo.ok && cedo.motivo === "incompleta")
 
@@ -148,10 +149,35 @@ try {
   await db.progressoLicao.create({
     data: { userId, moduloId: moduloReal.id, licao: 1, concluido: true, concluidoEm: new Date(), telaAtual: 5 },
   })
+  const pontosAntes = (await db.user.findUnique({ where: { id: userId }, select: { pontos: true } }))?.pontos ?? 0
   const r1 = await resgatarMissao(userId, MISSOES[0].id)
   const r2 = await resgatarMissao(userId, MISSOES[0].id)
-  checar("missão completa resgata uma vez", r1.ok)
+  checar("missão completa resgata uma vez, em XP", r1.ok && r1.xp === MISSOES[0].xp)
+  checar("o XP entrou no total", r1.ok && r1.total === pontosAntes + MISSOES[0].xp)
   checar("segunda tentativa no mesmo dia é barrada", !r2.ok && r2.motivo === "ja_resgatada")
+  const moedasDeMissao = await db.eventoCoins.count({ where: { userId, motivo: "missao", refId: { not: "2026-01-01:teste" } } })
+  checar("missão não gravou moeda nenhuma", moedasDeMissao === 0)
+
+  console.log("\nCONVERSÃO — a única origem de moeda (banco)")
+  await db.user.update({ where: { id: userId }, data: { pontos: 30 } })
+  const coinsAntes = (await db.user.findUnique({ where: { id: userId }, select: { coins: true } }))?.coins ?? 0
+  const conv = await converterXpEmMoedas(userId, "p20")
+  checar("converter 20 XP entrega 10 moedas", conv.ok && conv.moedas === 10 && conv.coinsTotal === coinsAntes + 10)
+  checar("o XP desceu junto (ranking sente)", conv.ok && conv.pontosTotal === 10)
+  const semXp = await converterXpEmMoedas(userId, "p100")
+  checar("sem XP suficiente, recusa", !semXp.ok && semXp.motivo === "sem_xp")
+  const aposRecusa = await db.user.findUnique({ where: { id: userId }, select: { pontos: true, coins: true } })
+  checar("a recusa não move nenhum dos dois saldos", aposRecusa?.pontos === 10 && aposRecusa?.coins === coinsAntes + 10)
+  const pacoteFalso = await converterXpEmMoedas(userId, "p999")
+  checar("pacote inexistente é recusado", !pacoteFalso.ok && pacoteFalso.motivo === "pacote")
+  // As duas pernas da conversão carregam o MESMO refId: é o que liga débito
+  // de XP e crédito de moeda no extrato.
+  const perna1 = await db.eventoPontuacao.findFirst({ where: { userId, motivo: "compra_moedas" } })
+  const perna2 = await db.eventoCoins.findFirst({ where: { userId, motivo: "conversao" } })
+  checar(
+    "débito de XP e crédito de moeda entram pareados pelo refId",
+    perna1?.pontos === -20 && perna2?.moedas === 10 && perna1?.refId === perna2?.refId
+  )
 
   console.log("\nPOÇÃO — uma por vez (banco)")
   await db.user.update({ where: { id: userId }, data: { coins: 100 } })

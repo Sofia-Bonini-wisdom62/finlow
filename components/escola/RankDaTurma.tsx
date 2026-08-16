@@ -89,7 +89,7 @@ export function RankDaTurma({
           </div>
           {!temSerie && (
             <p className="mt-1.5 text-xs text-fl-ink/50">
-              Turma sem série não entra no rank do ano — defina a série da turma para isso.
+              Turma sem série não entra no rank do ano: defina a série da turma para isso.
             </p>
           )}
           <p className="mt-1.5 text-xs text-fl-ink/50">

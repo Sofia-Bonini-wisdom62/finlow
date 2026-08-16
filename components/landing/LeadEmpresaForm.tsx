@@ -57,7 +57,7 @@ export function LeadEmpresaForm() {
         <Check className="mx-auto size-8 text-fl-500" />
         <p className="mt-3 text-[15px] font-bold text-fl-ink">Recebido!</p>
         <p className="mt-1 text-sm leading-relaxed text-fl-ink-2">
-          A gente te escreve em {email} pra marcar uma conversa. Sem spam — é um
+          A gente te escreve em {email} pra marcar uma conversa. Sem spam: é um
           e-mail de gente, não de robô.
         </p>
       </div>

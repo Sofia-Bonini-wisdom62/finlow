@@ -80,12 +80,12 @@ export type TabelaFinanceira = (typeof TABELAS_FINANCEIRAS)[number]
  */
 export const TABELAS_NAO_FINANCEIRAS: Record<string, string> = {
   // --- assistente: tem os próprios botões em Ajustes ---
-  memoriaUsuario: "Memória do assistente — apagada em Menu > Apagar a memória do assistente.",
-  conversa: "Histórico de conversa — sai junto com a memória, não com o dinheiro.",
-  onboarding: "Primeira conversa — refeita em Menu > Refazer a primeira conversa.",
+  memoriaUsuario: "Memória do assistente, apagada em Menu > Apagar a memória do assistente.",
+  conversa: "Histórico de conversa, sai junto com a memória, não com o dinheiro.",
+  onboarding: "Primeira conversa, refeita em Menu > Refazer a primeira conversa.",
 
   // --- aprendizado e ofensiva: apagar aqui zeraria progresso que ninguém pediu ---
-  perfil: "Tipo de perfil e respostas do quiz — é o que escolhe as categorias padrão na reativação.",
+  perfil: "Tipo de perfil e respostas do quiz, é o que escolhe as categorias padrão na reativação.",
   recomendacaoTrilha: "Ordem das aulas recomendadas. Ver a ressalva sobre `motivo` abaixo.",
   progressoModulo: "Progresso na Trilha.",
   progressoLicao: "Progresso dentro da lição.",
@@ -95,7 +95,7 @@ export const TABELAS_NAO_FINANCEIRAS: Record<string, string> = {
   // --- a camada de jogo (Redesign Fin) ---
   eventoCoins:
     "Ledger de Finlo Coins. É moeda de JOGO, ganha por uso e gasta em " +
-    "cosmético — não se compra com dinheiro real, e nenhuma rota de pagamento " +
+    "cosmético. Não se compra com dinheiro real, e nenhuma rota de pagamento " +
     "a toca. Mesmo lugar de eventoPontuacao: apagar aqui zeraria progresso " +
     "que este botão não promete tocar.",
 
@@ -114,19 +114,19 @@ export const TABELAS_NAO_FINANCEIRAS: Record<string, string> = {
   // número, e nas duas apagar seria pior que manter:
   assinatura:
     "Assinatura na Stripe (status, valor cobrado, próxima cobrança). Guarda " +
-    "dinheiro, mas é o que o FINLOW cobra dela, não o que ela ganha e gasta — " +
+    "dinheiro, mas é o que o FINLOW cobra dela, não o que ela ganha e gasta, " +
     "e a Stripe continuaria cobrando com ou sem esta linha. Apagar aqui " +
     "derrubaria o acesso de quem está pagando, num botão que não promete nada " +
     "disso. Quem cancela usa /premium; quem sai de vez apaga a conta.",
   usoMensalIA:
-    "Tokens de IA gastos no mês. É medidor de cota, não finança da pessoa — e " +
+    "Tokens de IA gastos no mês. É medidor de cota, não finança da pessoa, e " +
     "apagar zeraria o contador, o que transformaria este botão num jeito de " +
     "ganhar cota grátis todo mês.",
 
   // --- escola: vínculo e progresso, não dinheiro (Finlow para Escolas, 11/08) ---
   membroEscola:
     "Vínculo com a escola. Apagar tiraria o premium que vem dela e o segmento " +
-    "da trilha — perda de acesso, não de dado financeiro.",
+    "da trilha: perda de acesso, não de dado financeiro.",
   membroTurma: "Vínculo com a turma. Mesma razão: é matrícula, é aprendizado.",
   competenciaProfessor:
     "O que o adm liberou para aquele professor enxergar e gerenciar. É " +

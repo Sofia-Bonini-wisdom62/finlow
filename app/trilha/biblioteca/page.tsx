@@ -290,7 +290,7 @@ export default async function BibliotecaPage() {
           style={{ color: "var(--finlow-muted)" }}
         >
           {publico === PUBLICO_ATUAL
-            ? "Tudo que existe na trilha. As aulas que ainda não abriram aparecem com o motivo — a ordem quem monta é a IA, a partir dos seus números."
+            ? "Tudo que existe na trilha. As aulas que ainda não abriram aparecem com o motivo. A ordem quem monta é a IA, a partir dos seus números."
             : "Tudo que existe na sua trilha, na ordem da turma, bloco a bloco. As aulas que ainda não abriram aparecem com o motivo."}
         </p>
 
@@ -311,8 +311,8 @@ export default async function BibliotecaPage() {
               style={{ color: "var(--finlow-muted)" }}
             >
               {publico === PUBLICO_ATUAL
-                ? "Do 1º ano do fundamental ao Ensino Médio, cobrindo a matriz de letramento financeiro do Banco Central. Você pode fazer qualquer uma, na ordem que quiser — elas não entram no seu caminho e valem menos pontos, porque o percurso que a IA montou para você continua sendo o da sua trilha."
-                : "Aulas de fora da sua trilha. Você pode explorar qualquer uma, na ordem que quiser — elas valem menos pontos, porque o seu caminho continua sendo o da turma."}
+                ? "Do 1º ano do fundamental ao Ensino Médio, cobrindo a matriz de letramento financeiro do Banco Central. Você pode fazer qualquer uma, na ordem que quiser. Elas não entram no seu caminho e valem menos pontos, porque o percurso que a IA montou para você continua sendo o da sua trilha."
+                : "Aulas de fora da sua trilha. Você pode explorar qualquer uma, na ordem que quiser. Elas valem menos pontos, porque o seu caminho continua sendo o da turma."}
             </p>
             {porSegmento.map((s) => (
               <Secao key={s.id} titulo={s.nome} aulas={s.aulas} corredor={corredor} publico={publico} />

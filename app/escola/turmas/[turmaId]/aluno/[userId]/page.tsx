@@ -17,7 +17,7 @@ import { POSE } from "@/lib/fin"
  */
 
 function dataCurta(d: Date | null): string {
-  if (!d) return "—"
+  if (!d) return "-"
   const hoje = new Date()
   const dia = new Date(d)
   const diff = Math.floor((hoje.setHours(0, 0, 0, 0) - new Date(dia).setHours(0, 0, 0, 0)) / 86_400_000)
@@ -79,7 +79,7 @@ export default async function AlunoPage({
         </div>
         <div className="rounded-[13px] bg-fl-card px-1 py-2.5 text-center">
           <div className="text-sm font-black text-fl-success">
-            {somaQuiz > 0 ? `${Math.round((somaAcertos / somaQuiz) * 100)}%` : "—"}
+            {somaQuiz > 0 ? `${Math.round((somaAcertos / somaQuiz) * 100)}%` : "-"}
           </div>
           <div className="text-[9.5px] font-extrabold text-fl-ink-3">ACERTO</div>
         </div>
@@ -130,7 +130,7 @@ export default async function AlunoPage({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={POSE.teach} alt="" className="size-[38px] shrink-0 object-contain" />
             <p className="text-xs leading-snug text-fl-ink-2">
-              A 2ª rodada não vale XP nem infla a média — os dois números ficam separados.
+              A 2ª rodada não vale XP nem infla a média: os dois números ficam separados.
             </p>
           </div>
         </section>
@@ -156,11 +156,11 @@ export default async function AlunoPage({
                     {m.licoesConcluidas}/{licoesPorModulo.get(m.moduloId) ?? "?"}
                   </td>
                   <td className="py-2 pr-3 tabular-nums text-fl-ink">
-                    {m.totalQuiz > 0 ? `${Math.round((m.acertos / m.totalQuiz) * 100)}%` : "—"}
+                    {m.totalQuiz > 0 ? `${Math.round((m.acertos / m.totalQuiz) * 100)}%` : "-"}
                   </td>
                   <td className="py-2 pr-3 tabular-nums text-fl-ink">{m.minutos} min</td>
                   <td className="py-2 text-fl-ink/70">
-                    {m.concluidoEm ? new Date(m.concluidoEm).toLocaleDateString("pt-BR") : "—"}
+                    {m.concluidoEm ? new Date(m.concluidoEm).toLocaleDateString("pt-BR") : "-"}
                   </td>
                 </tr>
               ))}

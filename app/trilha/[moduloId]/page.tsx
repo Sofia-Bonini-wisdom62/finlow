@@ -139,7 +139,7 @@ export default function ModuloPage() {
           <span>
             <span className="block text-[13.5px] font-black text-white">Finlow+ tem energia infinita</span>
             <span className="block text-[11.5px]" style={{ color: "var(--fin-dim)" }}>
-              Se fizer sentido pra você — sem pressa.
+              Se fizer sentido pra você, sem pressa.
             </span>
           </span>
         </Link>

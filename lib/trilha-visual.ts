@@ -142,10 +142,19 @@ export async function montarTrilhaVisual(userId: string): Promise<{
       }),
       lerOfensiva(userId),
       estadoDaEnergia(userId),
-      db.eventoCoins.findMany({
-        where: { userId, motivo: "bau" },
-        select: { refId: true },
-      }),
+      // Baús abertos nas DUAS eras: os da economia por XP (ledger de pontos,
+      // desde 15/08/2026) e os da era das moedas (ledger de coins) — sem o
+      // legado, todo baú antigo voltaria fechado no mapa.
+      Promise.all([
+        db.eventoPontuacao.findMany({
+          where: { userId, motivo: "bau" },
+          select: { refId: true },
+        }),
+        db.eventoCoins.findMany({
+          where: { userId, motivo: "bau" },
+          select: { refId: true },
+        }),
+      ]).then(([a, b]) => [...a, ...b]),
       db.progressoLicao.findMany({
         where: { userId, concluido: true, totalQuiz: { gt: 0 }, concluidoEm: { gte: seteDias } },
         select: { acertos: true, totalQuiz: true },

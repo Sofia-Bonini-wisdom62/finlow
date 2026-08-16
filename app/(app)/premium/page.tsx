@@ -55,7 +55,7 @@ const VANTAGENS = [
 ]
 
 function dia(iso: string | null): string {
-  if (!iso) return "—"
+  if (!iso) return "-"
   return new Date(iso).toLocaleDateString("pt-BR", { day: "2-digit", month: "long", year: "numeric" })
 }
 
@@ -117,7 +117,7 @@ function UsoDoMes({ cota, premium }: { cota: Estado["cota"]; premium: boolean })
 
       {/* O jargão explicado, e só aqui. */}
       <p className="mt-3 text-xs text-fl-ink/50">
-        A conta é em <em>tokens</em> — pedaços de palavra que o assistente lê e escreve. Uma
+        A conta é em <em>tokens</em>, pedaços de palavra que o assistente lê e escreve. Uma
         conversa curta gasta pouco; mandar um extrato inteiro gasta bem mais.
         {premium && " Cobramos por assinatura, não por uso."}
       </p>
@@ -232,7 +232,7 @@ export default function PremiumPage() {
                 Seu acesso vem da {estado?.escolaNome ?? "sua escola"}
               </p>
               <p className="mt-4 text-sm text-fl-ink/70">
-                Enquanto sua escola estiver com o Finlow, você usa o app completo — sem
+                Enquanto sua escola estiver com o Finlow, você usa o app completo, sem
                 cobrança no seu cartão e sem nada para cancelar aqui.
               </p>
             </div>
@@ -364,7 +364,7 @@ export default function PremiumPage() {
                     Não consegui carregar o valor agora.
                   </p>
                   <p className="mt-2 text-sm text-fl-ink/70">
-                    O preço aparece na tela de pagamento, antes de qualquer cobrança — nada é
+                    O preço aparece na tela de pagamento, antes de qualquer cobrança. Nada é
                     cobrado sem você confirmar lá.
                   </p>
                   <button

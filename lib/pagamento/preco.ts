@@ -119,7 +119,7 @@ export async function precoDoPlano(agora = Date.now()): Promise<PrecoDoPlano | n
   if (!id) {
     // Não é console.error: máquina de desenvolvimento sem Stripe é o caso comum,
     // e um erro vermelho por visita treina todo mundo a ignorar o log.
-    console.warn("[preco] STRIPE_PRICE_ID não configurada — /premium não vai mostrar o valor")
+    console.warn("[preco] STRIPE_PRICE_ID não configurada: /premium não vai mostrar o valor")
     return guardar(null)
   }
 
@@ -127,7 +127,7 @@ export async function precoDoPlano(agora = Date.now()): Promise<PrecoDoPlano | n
     const preco = lerPrecoDaStripe(await getStripe().prices.retrieve(id))
     if (!preco) {
       console.error(
-        `[preco] STRIPE_PRICE_ID=${id} não é um preço recorrente, ativo e de valor único — ` +
+        `[preco] STRIPE_PRICE_ID=${id} não é um preço recorrente, ativo e de valor único. ` +
           "a tela de assinatura fica sem o valor. Confira o preço no painel da Stripe."
       )
     }

@@ -168,7 +168,7 @@ export default function CadastroPage() {
               color: "var(--fin-text)",
             }}
           >
-            Seu convite da {convite.escolaNome} não vale mais — pede um novo. Dá pra criar a
+            Seu convite da {convite.escolaNome} não vale mais, pede um novo. Dá pra criar a
             conta mesmo assim.
           </div>
         )}
@@ -203,7 +203,7 @@ export default function CadastroPage() {
             type="tel"
             inputMode="tel"
             autoComplete="tel"
-            placeholder="Celular com DDD — (11) 99999-9999"
+            placeholder="Celular com DDD: (11) 99999-9999"
             aria-label="Celular com DDD (opcional)"
             value={celular}
             onChange={(e) => setCelular(maskCelular(e.target.value))}
@@ -227,7 +227,7 @@ export default function CadastroPage() {
               className={inputClass}
             />
             <p className="text-[11.5px] leading-snug" style={{ color: "var(--fin-dim)" }}>
-              Usamos pra adequar o conteúdo à sua idade — e garantir que menores nunca vejam anúncio.
+              Usamos pra adequar o conteúdo à sua idade, e garantir que menores nunca vejam anúncio.
             </p>
           </div>
 

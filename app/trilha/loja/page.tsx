@@ -53,7 +53,7 @@ export default async function LojaPage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={POSE.teach} alt="" className="size-10 shrink-0 object-contain" />
           <p className="text-[12.5px] leading-snug" style={{ color: "var(--fin-muted)" }}>
-            Coins vêm de lições, missões e baús. Gaste com calma — elas não expiram!
+            Moeda nasce do seu XP: estude, junte, troque aqui embaixo. Ela não expira!
           </p>
         </div>
 
@@ -61,6 +61,7 @@ export default async function LojaPage() {
           <LojaFin
             itens={[...CATALOGO]}
             coins={estado.coins}
+            pontos={estado.pontos}
             pocaoAtiva={estado.pocaoAtiva}
             avatarFin={estado.avatarFin}
             possuidos={[...estado.possuidos]}

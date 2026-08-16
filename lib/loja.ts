@@ -122,7 +122,10 @@ export async function equiparAvatar(userId: string, itemId: string | null): Prom
 /** O que a pessoa possui + estado da poção, para a tela da loja. */
 export async function estadoDaLoja(userId: string) {
   const [u, compras] = await Promise.all([
-    db.user.findUnique({ where: { id: userId }, select: { coins: true, pocaoAtiva: true, avatarFin: true } }),
+    db.user.findUnique({
+      where: { id: userId },
+      select: { coins: true, pontos: true, pocaoAtiva: true, avatarFin: true },
+    }),
     db.eventoCoins.findMany({
       where: { userId, motivo: "compra_item" },
       select: { refId: true },
@@ -130,6 +133,8 @@ export async function estadoDaLoja(userId: string) {
   ])
   return {
     coins: u?.coins ?? 0,
+    // A banca de câmbio precisa saber quanto XP há pra trocar (15/08/2026).
+    pontos: u?.pontos ?? 0,
     pocaoAtiva: u?.pocaoAtiva ?? false,
     avatarFin: u?.avatarFin ?? null,
     possuidos: new Set(compras.map((c) => c.refId)),

@@ -6,19 +6,25 @@ export const CHAVE_TEMA = "finlow:tema"
 export const CHAVE_PALETA = "finlow:paleta"
 
 /**
- * Cor de destaque. Só a rampa de destaque muda entre elas; fundo, texto e
- * superfícies são as mesmas. Trocar tudo daria três apps diferentes.
+ * Cor de destaque. Só o acento muda entre elas; fundo, texto e superfícies
+ * são os mesmos. Trocar tudo daria quatro apps diferentes.
+ *
+ * NOTA DE ARQUEOLOGIA: o valor "teal" é o PADRÃO e hoje significa o dourado
+ * do tema Fin. O nome ficou porque é a chave que vive no localStorage de quem
+ * escolheu antes do redesign; renomear apagaria a preferência salva de todo
+ * mundo em troca de um identificador mais bonito.
  */
-export type Paleta = "teal" | "terracota" | "indigo"
+export type Paleta = "teal" | "terracota" | "indigo" | "verde"
 
 export const PALETAS: { valor: Paleta; rotulo: string; amostraClaro: string; amostraEscuro: string }[] = [
-  { valor: "teal", rotulo: "Verde-petróleo", amostraClaro: "#2B6D70", amostraEscuro: "#5FA7A9" },
-  { valor: "terracota", rotulo: "Terracota", amostraClaro: "#9F4B31", amostraEscuro: "#C58F7E" },
-  { valor: "indigo", rotulo: "Índigo", amostraClaro: "#5E4ED4", amostraEscuro: "#9B94D7" },
+  { valor: "teal", rotulo: "Dourado (padrão)", amostraClaro: "#E9A63C", amostraEscuro: "#E9A63C" },
+  { valor: "terracota", rotulo: "Terracota", amostraClaro: "#E8825A", amostraEscuro: "#E8825A" },
+  { valor: "indigo", rotulo: "Lilás", amostraClaro: "#A78BFA", amostraEscuro: "#A78BFA" },
+  { valor: "verde", rotulo: "Verde-água", amostraClaro: "#45C4A3", amostraEscuro: "#45C4A3" },
 ]
 
 export function paletaValida(v: unknown): Paleta {
-  return v === "terracota" || v === "indigo" ? v : "teal"
+  return v === "terracota" || v === "indigo" || v === "verde" ? v : "teal"
 }
 
 export function lerPaleta(): Paleta {
@@ -93,4 +99,4 @@ export function salvarTema(tema: Tema) {
  * Sem ele, quem escolheu escuro vê um flash branco em cada carregamento —
  * o React só hidrata depois de o HTML já estar na tela.
  */
-export const SCRIPT_ANTI_FLASH = `(function(){try{var d=document.documentElement;var t=localStorage.getItem("${CHAVE_TEMA}");var e=t==="escuro"||(t!=="claro"&&window.matchMedia("(prefers-color-scheme: dark)").matches);if(e)d.classList.add("dark");var p=localStorage.getItem("${CHAVE_PALETA}");if(p==="terracota"||p==="indigo")d.setAttribute("data-paleta",p)}catch(_){}})()`
+export const SCRIPT_ANTI_FLASH = `(function(){try{var d=document.documentElement;var t=localStorage.getItem("${CHAVE_TEMA}");var e=t==="escuro"||(t!=="claro"&&window.matchMedia("(prefers-color-scheme: dark)").matches);if(e)d.classList.add("dark");var p=localStorage.getItem("${CHAVE_PALETA}");if(p==="terracota"||p==="indigo"||p==="verde")d.setAttribute("data-paleta",p)}catch(_){}})()`

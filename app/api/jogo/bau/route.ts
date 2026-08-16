@@ -22,5 +22,5 @@ export async function POST(req: NextRequest) {
     const msg = MENSAGENS[r.motivo]
     return NextResponse.json({ ok: false, motivo: r.motivo, erro: msg, error: msg }, { status: 409 })
   }
-  return NextResponse.json({ ok: true, moedas: r.moedas, total: r.total })
+  return NextResponse.json({ ok: true, xp: r.xp, total: r.total })
 }

@@ -130,7 +130,7 @@ export default async function TurmaPage({ params }: { params: Promise<{ turmaId:
       <section className="rounded-2xl border border-fl-sand bg-fl-card p-5">
         <h3 className="text-base font-semibold text-fl-ink">Rank da sala</h3>
         <p className="mt-1 text-sm text-fl-ink/60">
-          Uma lista de apelido e pontos entre os alunos — você decide se existe e quem entra
+          Uma lista de apelido e pontos entre os alunos. Você decide se existe e quem entra
           na comparação.
         </p>
         <div className="mt-3">
@@ -161,7 +161,7 @@ export default async function TurmaPage({ params }: { params: Promise<{ turmaId:
         </h3>
         {turma.membros.length === 0 ? (
           <p className="mt-2 text-sm text-fl-ink/60">
-            Ninguém ainda — passa o link do convite para a turma.
+            Ninguém ainda. Passa o link do convite para a turma.
           </p>
         ) : desempenho ? (
           <div className="mt-3 overflow-x-auto">
@@ -191,7 +191,7 @@ export default async function TurmaPage({ params }: { params: Promise<{ turmaId:
                       {a.modulosConcluidos}/{a.modulosTotal}
                     </td>
                     <td className="py-2 pr-3 tabular-nums text-fl-ink">
-                      {a.acertoPct === null ? "—" : `${a.acertoPct}%`}
+                      {a.acertoPct === null ? "-" : `${a.acertoPct}%`}
                     </td>
                     <td className="py-2 pr-3 tabular-nums text-fl-ink">{a.minutos} min</td>
                     <td className="py-2 text-fl-ink/70">

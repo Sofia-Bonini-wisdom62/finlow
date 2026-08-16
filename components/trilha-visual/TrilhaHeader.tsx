@@ -78,7 +78,7 @@ export default function TrilhaHeader({
             href="/trilha/loja"
             className={`flex items-center gap-1 font-extrabold tabular-nums ${indicadorTexto}`}
             style={{ color: "var(--finlow-accent)" }}
-            aria-label={`${usuario.coins} Finlo Coins — abrir a loja`}
+            aria-label={`${usuario.coins} Finlo Coins, abrir a loja`}
           >
             <span
               className="inline-block size-[13px] rounded-full"

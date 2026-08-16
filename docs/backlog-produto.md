@@ -292,6 +292,19 @@ personalização do perfil:**
   Pendência herdada: SVG recusado de propósito (XML executável); HEIC do
   iPhone não abre no canvas — a mensagem de erro aponta JPG/PNG.
 
+## Pedidos da fundadora de 15/08/2026 (pós-deploy do redesign)
+
+Sete pedidos chegaram juntos; seis viraram código no mesmo dia (paleta de
+acento de volta, dia 1 a 31 nas contas fixas, FINLOW+ DISPONÍVEL explícito,
+economia por XP, segunda chance no quiz, roteador de consultas da IA) e a
+regra global de copy virou guard, ver `estado-do-produto.md`. O que fica de
+fila:
+
+- **Questionários com no mínimo 8 perguntas** — conteúdo, não código: a
+  fundadora vai reelaborar as trilhas. O player já suporta qualquer
+  quantidade de quiz por lição, e a segunda chance re-enfileira as erradas
+  independente de quantas sejam.
+
 ## Finlow para Escolas — em desenvolvimento (11/08/2026)
 
 Decisão da fundadora, desenhada em quadro branco: o canal escolar reabre como

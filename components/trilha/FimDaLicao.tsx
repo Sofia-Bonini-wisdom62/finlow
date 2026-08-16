@@ -112,7 +112,7 @@ export function FimDaLicao({
       })
       const d = await resp.json()
       if (resp.ok && d.ok) {
-        setBauAberto(d.moedas)
+        setBauAberto(d.xp)
         setBau(null)
       } else {
         setBau(null) // já aberto/indisponível: o botão some em vez de mentir
@@ -164,7 +164,7 @@ export function FimDaLicao({
         <div className="mt-6 grid grid-cols-3 gap-2.5">
           <div className="rounded-2xl px-3 py-3.5 text-center" style={{ background: "var(--fin-surface)" }}>
             <div className="text-[19px] font-black tabular-nums" style={{ color: "var(--fin-accent)" }}>
-              {refazendo ? "—" : `+${ganhou}`}
+              {refazendo ? "-" : `+${ganhou}`}
             </div>
             <div className="text-[10.5px] font-extrabold tracking-wide" style={{ color: "var(--fin-dim)" }}>
               {refazendo ? "REVISÃO" : "GANHOS"}
@@ -173,7 +173,7 @@ export function FimDaLicao({
 
           <div className="rounded-2xl px-3 py-3.5 text-center" style={{ background: "var(--fin-surface)" }}>
             <div className="text-[19px] font-black tabular-nums" style={{ color: "var(--fin-combo)" }}>
-              {r.comboMax && r.comboMax > 1 ? `×${r.comboMax}` : "—"}
+              {r.comboMax && r.comboMax > 1 ? `×${r.comboMax}` : "-"}
             </div>
             <div className="text-[10.5px] font-extrabold tracking-wide" style={{ color: "var(--fin-dim)" }}>
               MAIOR COMBO
@@ -261,7 +261,7 @@ export function FimDaLicao({
             className="fin-wob mt-4 flex w-full items-center justify-center gap-2.5 rounded-2xl py-3.5 text-[15px] font-black fin-btn-3d disabled:opacity-60"
             style={{ background: "var(--fin-accent)", color: "var(--fin-bg)" }}
           >
-            🎁 {abrindo ? "Abrindo…" : `Abrir o baú — ${bau.rotulo}`}
+            🎁 {abrindo ? "Abrindo…" : `Abrir o baú: ${bau.rotulo}`}
           </button>
         )}
         {bauAberto !== null && (
@@ -273,10 +273,10 @@ export function FimDaLicao({
             }}
           >
             <div className="text-[17px] font-black" style={{ color: "var(--fin-accent)" }}>
-              +{bauAberto} Finlo Coins!
+              +{bauAberto} XP!
             </div>
             <div className="text-xs" style={{ color: "var(--fin-muted)" }}>
-              Já foram pra sua carteira. Gaste na Loja do Fin.
+              Entrou no seu total. Na Loja do Fin dá pra trocar XP por moedas.
             </div>
           </div>
         )}

@@ -114,7 +114,7 @@ export default function ObjetivosPage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={POSE.point} alt="" className="size-[34px] shrink-0 object-contain" />
           <p className="text-xs leading-snug text-fl-ink-2">
-            Guardar pra objetivo fica <strong className="font-bold text-fl-ink">fora das suas saídas</strong> —
+            Guardar pra objetivo fica <strong className="font-bold text-fl-ink">fora das suas saídas</strong>:
             cofrinho é bolso seu, não gasto.
           </p>
         </div>
@@ -139,7 +139,7 @@ export default function ObjetivosPage() {
           <div className="mt-4 flex flex-col gap-2.5">
             {objetivos.length === 0 && !criando && (
               <p className="px-1 py-4 text-center text-sm leading-relaxed text-fl-ink-2">
-                Nenhum objetivo ainda. Reserva, viagem, aquele fone — dá nome ao que você quer juntar
+                Nenhum objetivo ainda. Reserva, viagem, aquele fone: dá nome ao que você quer juntar
                 e acompanha a barra encher.
               </p>
             )}

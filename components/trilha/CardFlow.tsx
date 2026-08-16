@@ -41,6 +41,15 @@ export function CardFlow({ modulo, licao, telaInicial = 0, comboInicial = 0, ses
   const [sessao, setSessao] = useState<SessaoFluxo>(sessaoInicial ?? {})
   // letra escolhida por tela de quiz — permite voltar e reexibir a resposta
   const [respostasQuiz, setRespostasQuiz] = useState<Record<string, string>>({})
+  /**
+   * Segunda chance (pedido da fundadora, 15/08/2026): pergunta errada volta
+   * ao FIM da mesma lição, como oportunidade de acertar. A nota e o XP são
+   * da PRIMEIRA tentativa, sempre: as respostas da revanche ficam num mapa
+   * separado que nunca viaja pro servidor, então não há como a segunda
+   * rodada inflar nada. Errar de novo só segue em frente: a chance é uma.
+   */
+  const [revanche, setRevanche] = useState<string[]>([])
+  const [respostasRevanche, setRespostasRevanche] = useState<Record<string, string>>({})
   const [combo, setCombo] = useState(Math.max(0, comboInicial))
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
@@ -58,12 +67,22 @@ export function CardFlow({ modulo, licao, telaInicial = 0, comboInicial = 0, ses
     inicioRef.current = Date.now()
   }, [licao?.numero, modulo.id])
 
-  const tela = modulo.telas[atual]
-  const ehUltima = atual === modulo.telas.length - 1
+  // A sequência real mais a fila de revanche, como extensão virtual: os
+  // índices além de telas.length reapresentam os quizzes errados, na ordem
+  // em que foram errados.
+  const totalReal = modulo.telas.length
+  const emRevanche = atual >= totalReal
+  const tela = emRevanche
+    ? modulo.telas.find((t) => t.id === revanche[atual - totalReal]) ?? modulo.telas[totalReal - 1]
+    : modulo.telas[atual]
+  const totalVirtual = totalReal + revanche.length
+  const ehUltima = atual === totalVirtual - 1
 
   function podeAvancar(): boolean {
     // quiz: basta ter respondido (certo ou errado — o feedback já ensinou)
-    if (tela.tipo === "quiz") return respostasQuiz[tela.id] !== undefined
+    if (tela.tipo === "quiz") {
+      return (emRevanche ? respostasRevanche : respostasQuiz)[tela.id] !== undefined
+    }
     if (tela.tipo === "input") {
       const conteudo = tela.conteudo as { campos: { id: string }[] }
       return conteudo.campos.every((c) => (sessao[c.id] ?? "").trim().length > 0)
@@ -80,9 +99,13 @@ export function CardFlow({ modulo, licao, telaInicial = 0, comboInicial = 0, ses
     }
     const next = atual + 1
     setAtual(next)
-    // debounce pra não spammar o servidor ao passar rápido
-    if (debounceRef.current) clearTimeout(debounceRef.current)
-    debounceRef.current = setTimeout(() => onAvancarTela(next), 500)
+    // O retomar-onde-parou só conhece as telas reais: índice de revanche não
+    // vira telaAtual no servidor.
+    if (next < totalReal) {
+      // debounce pra não spammar o servidor ao passar rápido
+      if (debounceRef.current) clearTimeout(debounceRef.current)
+      debounceRef.current = setTimeout(() => onAvancarTela(next), 500)
+    }
   }
 
   function anterior() {
@@ -94,12 +117,23 @@ export function CardFlow({ modulo, licao, telaInicial = 0, comboInicial = 0, ses
    * O chip acompanha as respostas na hora: acertou soma, errou zera. Cada
    * tela de quiz só entra uma vez na conta — o guard de resposta única do
    * TelaQuiz garante que este handler roda uma vez por tela.
+   *
+   * Errou? A tela entra UMA vez na fila de revanche do fim da lição. Na
+   * revanche, a resposta vai pro mapa separado: não mexe no combo, não muda
+   * a nota, não gera fila nova — é só a chance de acertar.
    */
   function registrarResposta(letra: string) {
+    if (emRevanche) {
+      setRespostasRevanche((prev) => ({ ...prev, [tela.id]: letra }))
+      return
+    }
     setRespostasQuiz((prev) => ({ ...prev, [tela.id]: letra }))
     if (tela.tipo === "quiz") {
       const acertou = !!(tela.conteudo as ConteudoQuiz).opcoes.find((o) => o.letra === letra)?.correta
       setCombo((c) => (acertou ? c + 1 : 0))
+      if (!acertou) {
+        setRevanche((fila) => (fila.includes(tela.id) ? fila : [...fila, tela.id]))
+      }
     }
   }
 
@@ -132,11 +166,24 @@ export function CardFlow({ modulo, licao, telaInicial = 0, comboInicial = 0, ses
         </div>
         <span className="text-xs text-[var(--fin-muted)]">
           {licao ? `lição ${licao.indice}/${licao.total} · ` : ""}
-          {atual + 1}/{modulo.telas.length}
+          {atual + 1}/{totalVirtual}
         </span>
       </div>
 
-      <ProgressSegments total={modulo.telas.length} atual={atual} />
+      <ProgressSegments total={totalVirtual} atual={atual} />
+
+      {emRevanche && (
+        <div
+          className="fin-pop mx-auto mt-2 flex items-center gap-1.5 rounded-full border px-3.5 py-1 text-[12.5px] font-black"
+          style={{
+            borderColor: "var(--fin-energia)",
+            background: "color-mix(in srgb, var(--fin-energia) 13%, transparent)",
+            color: "var(--fin-energia)",
+          }}
+        >
+          Segunda chance: sem XP, valendo o aprendizado
+        </div>
+      )}
 
       {combo >= 2 && (
         <div
@@ -154,10 +201,10 @@ export function CardFlow({ modulo, licao, telaInicial = 0, comboInicial = 0, ses
 
       <div className="flex-1 overflow-hidden">
         <TelaRenderer
-          key={tela.id}
+          key={emRevanche ? `revanche-${tela.id}` : tela.id}
           tela={tela}
           sessao={sessao}
-          quizSelecionada={respostasQuiz[tela.id] ?? null}
+          quizSelecionada={(emRevanche ? respostasRevanche : respostasQuiz)[tela.id] ?? null}
           onQuizSelecionar={registrarResposta}
           onInputMudou={setSessao}
           licao={licao?.numero}

@@ -301,7 +301,7 @@ export default function LandingPage() {
             Ele percebe o que você não teria tempo de notar
           </h2>
           <p className="mb-7 max-w-[520px] text-[16px] leading-relaxed sm:text-[17.5px]" style={{ color: "var(--fin-muted)" }}>
-            Enquanto você vive sua vida, a IA cruza cada transação e faz emergir os padrões silenciosos —
+            Enquanto você vive sua vida, a IA cruza cada transação e faz emergir os padrões silenciosos:
             a assinatura esquecida, o gasto que dobrou, o mês em que sempre estoura.
           </p>
           <div className="grid gap-3.5 sm:grid-cols-2">
@@ -376,7 +376,7 @@ export default function LandingPage() {
             <p className="text-[14.5px] leading-relaxed" style={{ color: "var(--fin-muted)" }}>
               <strong className="font-bold" style={{ color: "var(--fin-text)" }}>E a conexão automática com o banco?</strong>{" "}
               Está no plano (Open Finance), mas ainda não existe. Hoje a entrada de dados é o
-              extrato que você exporta — e é ele que alimenta tudo que você viu acima.
+              extrato que você exporta, e é ele que alimenta tudo que você viu acima.
             </p>
           </Reveal>
         </div>

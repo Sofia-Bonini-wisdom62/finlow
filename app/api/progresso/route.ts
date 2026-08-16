@@ -6,7 +6,6 @@ import { montarLicoes, licoesExistentes } from "@/lib/licoes"
 import { podeAbrir } from "@/lib/corredor"
 import { filtroExploravel, publicoDoUsuario, PUBLICO_ATUAL } from "@/lib/publico"
 import { calcularCombo } from "@/lib/combo"
-import { creditarCoins } from "@/lib/coins"
 import { devolverPorAcertos, isentoDeEnergia } from "@/lib/energia"
 import { bauDaConclusao } from "@/lib/bau"
 import { lerOfensiva } from "@/lib/ofensiva"
@@ -209,7 +208,9 @@ export async function POST(req: NextRequest) {
      */
     let comboMax = 0
     let comboBonus = 0
-    let coinsGanhos: number | null = null
+    // Sempre nulo desde a economia por XP (15/08/2026); a chave fica na
+    // resposta para o cliente antigo não quebrar lendo undefined.
+    const coinsGanhos: number | null = null
     let energiaDevolvida: number | null = null
     let pocaoAplicada = false
     if (creditoLicao.creditado) {
@@ -252,8 +253,9 @@ export async function POST(req: NextRequest) {
         }
       }
 
-      const cc = await creditarCoins(userId, "licao", `${moduloId}:${numero}`)
-      if (cc.creditado) coinsGanhos = cc.moedas
+      // Lição NÃO paga mais moeda (economia por XP, 15/08/2026): moeda nasce
+      // só da conversão na loja. O campo `coins` da resposta fica nulo e o
+      // chip da tela de fim some sozinho.
 
       if (!(await isentoDeEnergia(userId))) {
         energiaDevolvida = await devolverPorAcertos(userId, acertos, quizzes.length)

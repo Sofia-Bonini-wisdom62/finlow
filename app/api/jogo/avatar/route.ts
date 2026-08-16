@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic"
 
 const MENSAGENS: Record<string, string> = {
   desconhecido: "Esse avatar não existe.",
-  nao_tem: "Você ainda não tem esse avatar — ele está na loja.",
+  nao_tem: "Você ainda não tem esse avatar. Ele está na loja.",
 }
 
 /** PATCH /api/jogo/avatar { itemId | null } — equipa ou tira o avatar do Fin. */

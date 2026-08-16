@@ -531,8 +531,8 @@ model EventoPontuacao {
   id       String   @id @default(cuid())
   userId   String
   user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  motivo   String // "onboarding"|"modulo_concluido"|"quiz_acerto"|"lancamento_confirmado"|"streak_semana"
-  pontos   Int
+  motivo   String // ver PONTOS_POR_MOTIVO em lib/pontos.ts; "compra_moedas" (negativo) é o débito da conversão XP→moeda em lib/conversao.ts
+  pontos   Int // negativo = gasto (conversão em moedas); o total do usuário é a soma
   refId    String   @default("-") // id do módulo/lançamento que gerou, ou "-"
   criadoEm DateTime @default(now())
 

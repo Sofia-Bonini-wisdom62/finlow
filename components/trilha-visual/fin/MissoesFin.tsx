@@ -73,11 +73,11 @@ export function MissoesFin({ missoes }: { missoes: EstadoMissao[] }) {
               className="fin-wob fin-btn-3d shrink-0 rounded-xl px-3 py-2 text-xs font-black disabled:opacity-60"
               style={{ background: "var(--fin-accent)", color: "var(--fin-bg)" }}
             >
-              +{m.coins} coins
+              +{m.xp} XP
             </button>
           ) : (
             <span className="shrink-0 text-xs font-black tabular-nums" style={{ color: "var(--fin-dim)" }}>
-              +{m.coins}
+              +{m.xp}
             </span>
           )}
         </div>

@@ -63,7 +63,7 @@ export function WaitlistForm() {
           <a href="/cadastro" className="font-extrabold underline underline-offset-4" style={{ color: "var(--fin-accent, var(--fl-500))" }}>
             criar sua conta
           </a>{" "}
-          — é grátis.
+          e é grátis.
         </div>
       </div>
     )

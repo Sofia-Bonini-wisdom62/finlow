@@ -75,10 +75,10 @@ export default async function EscolaHome() {
                     </td>
                     <td className="py-2 pr-3 tabular-nums text-fl-ink">{t.alunos}</td>
                     <td className="py-2 pr-3 tabular-nums text-fl-ink">
-                      {t.conclusaoMediaPct === null ? "—" : `${t.conclusaoMediaPct}%`}
+                      {t.conclusaoMediaPct === null ? "-" : `${t.conclusaoMediaPct}%`}
                     </td>
                     <td className="py-2 tabular-nums text-fl-ink">
-                      {t.acertoPct === null ? "—" : `${t.acertoPct}%`}
+                      {t.acertoPct === null ? "-" : `${t.acertoPct}%`}
                     </td>
                   </tr>
                 ))}
@@ -95,10 +95,10 @@ export default async function EscolaHome() {
             <Link href="/escola/turmas" className="font-medium" style={{ color: "var(--fl-500)" }}>
               Criar uma turma
             </Link>{" "}
-            — cada turma tem um segmento (do 1º ano ao Ensino Médio) que define a trilha dos alunos.
+            (o segmento dela, do 1º ano ao Ensino Médio, define a trilha dos alunos).
           </li>
           <li>
-            Gerar o convite da turma e passar o código para os alunos — cada um cria a própria
+            Gerar o convite da turma e passar o código para os alunos: cada um cria a própria
             conta e já cai no lugar certo.
           </li>
           {v.papel === "adm" && (
@@ -106,7 +106,7 @@ export default async function EscolaHome() {
               <Link href="/escola/professores" className="font-medium" style={{ color: "var(--fl-500)" }}>
                 Convidar professores
               </Link>{" "}
-              — eles criam as próprias turmas e acompanham o desempenho.
+              (eles criam as próprias turmas e acompanham o desempenho).
             </li>
           )}
         </ul>

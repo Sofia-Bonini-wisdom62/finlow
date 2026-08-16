@@ -155,6 +155,18 @@ export interface OpcoesResposta {
    * personalização, não a resposta.
    */
   personalidade?: { id: string; detalhe?: string }
+  /**
+   * Linha compacta do progresso na trilha (lib/consultas-trilha.ts). Entra em
+   * toda conversa: o assistente sempre sabe quantas aulas a pessoa fez e
+   * quais foram as últimas, sem ninguém pedir.
+   */
+  progressoTrilha?: string
+  /**
+   * Consulta roteada (lib/roteador-ia.ts): quando a última mensagem casa com
+   * um detector, o dado chega do banco JÁ PRONTO, com a instrução do
+   * especialista. O modelo nunca decide sozinho quando consultar.
+   */
+  consulta?: { id: string; instrucao: string; bloco: string }
 }
 
 export interface RespostaIA {

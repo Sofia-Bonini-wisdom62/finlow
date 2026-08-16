@@ -8,6 +8,8 @@ import { guardarTurno } from "@/lib/conversa-repo"
 import { guardarRecomendacaoDoChat } from "@/lib/recomendacao"
 import { montarContexto } from "@/lib/contexto-financeiro"
 import { lerPersonalidade } from "@/lib/personalidade-repo"
+import { progressoDaTrilha, linhaDoProgresso } from "@/lib/consultas-trilha"
+import { rotearConsulta } from "@/lib/roteador-ia"
 import { slugDaCategoria } from "@/lib/extrato/categorias"
 import { filtroDeModulo, publicoDoUsuario } from "@/lib/publico"
 import { cotaDoMes } from "@/lib/pagamento/tokens"
@@ -27,11 +29,20 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Nenhuma mensagem enviada" }, { status: 400 })
     }
 
-    const [contexto, ligada, usuario, personalidade] = await Promise.all([
+    // A última fala da pessoa decide o roteamento de consulta. Vem antes do
+    // Promise.all porque duas das pernas dependem dela.
+    const ultimaDaPessoa =
+      (mensagens as MensagemChat[]).filter((m) => m.papel === "usuario").pop()?.texto ?? ""
+
+    const [contexto, ligada, usuario, personalidade, progresso, consulta] = await Promise.all([
       montarContexto(userId),
       memoriaLigada(userId),
       db.user.findUnique({ where: { id: userId }, select: { consentimentoPainelEm: true } }),
       lerPersonalidade(userId),
+      // O assistente sempre sabe onde a pessoa está na trilha; falha vira
+      // ausência, nunca derruba a conversa.
+      progressoDaTrilha(userId).catch(() => null),
+      rotearConsulta(userId, ultimaDaPessoa).catch(() => null),
     ])
     // Sem consentimento do Painel não há onde gravar. Melhor o modelo saber
     // disso e nem propor do que a tela mostrar um botão que dá 403.
@@ -64,7 +75,7 @@ export async function POST(req: NextRequest) {
         {
           error: "cota_esgotada",
           mensagem:
-            "Suas conversas gratuitas deste mês acabaram. Assine para continuar — " +
+            "Suas conversas gratuitas deste mês acabaram. Assine para continuar, " +
             "ou volte no dia 1º, que a cota renova.",
           cota: { usados: cota.usados, teto: cota.teto },
         },
@@ -76,7 +87,14 @@ export async function POST(req: NextRequest) {
       mensagens as MensagemChat[],
       contexto,
       { ligada, conhecidas },
-      { podeLancar, modulos, userId, personalidade }
+      {
+        podeLancar,
+        modulos,
+        userId,
+        personalidade,
+        progressoTrilha: progresso ? linhaDoProgresso(progresso) : undefined,
+        consulta: consulta ?? undefined,
+      }
     )
 
     // A aula que o assistente citou entra na trilha da pessoa.
@@ -127,9 +145,8 @@ export async function POST(req: NextRequest) {
      */
     let idConversa: string | null = conversaId ?? null
     try {
-      const ultima = (mensagens as MensagemChat[]).filter((m) => m.papel === "usuario").pop()
-      if (ultima?.texto) {
-        idConversa = await guardarTurno(userId, idConversa, ultima.texto, {
+      if (ultimaDaPessoa) {
+        idConversa = await guardarTurno(userId, idConversa, ultimaDaPessoa, {
           texto: resposta.texto,
           cards: resposta.cards,
         })

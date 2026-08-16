@@ -386,7 +386,7 @@ export default function Caminho({
                   ? "Baú da unidade, já aberto"
                   : e.estado === "disponivel"
                     ? "Abrir o baú da unidade"
-                    : "Baú da unidade — complete a unidade para abrir"
+                    : "Baú da unidade: complete a unidade para abrir"
               }
               className={`grid size-14 place-items-center rounded-2xl text-2xl ${
                 e.estado === "disponivel" ? "fin-wob cursor-pointer" : "cursor-default"

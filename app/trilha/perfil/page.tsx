@@ -159,7 +159,7 @@ export default async function PerfilJogadorPage() {
           <div className="rounded-2xl px-2 py-3.5 text-center" style={{ background: "var(--fin-surface)" }}>
             <Target className="mx-auto size-4" style={{ color: "var(--fin-acerto)" }} />
             <div className="mt-1 text-[18px] font-black tabular-nums" style={{ color: "var(--fin-text)" }}>
-              {precisao === null ? "—" : `${precisao}%`}
+              {precisao === null ? "-" : `${precisao}%`}
             </div>
             <div className="text-[10px] font-extrabold tracking-wide" style={{ color: "var(--fin-dim)" }}>
               PRECISÃO
@@ -205,7 +205,7 @@ export default async function PerfilJogadorPage() {
                   {ofensiva.recorde} {ofensiva.recorde === 1 ? "dia" : "dias"}
                 </strong>
                 {ofensiva.atual >= ofensiva.recorde && ofensiva.recorde > 1
-                  ? " — e você está nele agora. Segura!"
+                  ? ", e você está nele agora. Segura!"
                   : ". Que tal quebrar essa marca?"}
               </>
             ) : (

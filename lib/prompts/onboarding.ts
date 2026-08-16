@@ -29,7 +29,7 @@ const PERFIS = `  "lancador"   chame de "Fluxo de caixa". O dinheiro entra e som
                "queria juntar pra", muita vontade e nenhum número.`
 
 export function promptOnboarding(nome: string, turno: number): string {
-  return `— ESTA É A PRIMEIRA CONVERSA —
+  return `ESTA É A PRIMEIRA CONVERSA
 
 Você está recebendo ${nome || "uma pessoa"} pela primeira vez. Este é o
 onboarding: no fim dele você precisa ter entendido por que ela baixou o app,

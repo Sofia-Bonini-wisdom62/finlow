@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
       )
     }
     if (!FORMATO.test(dados)) {
-      return NextResponse.json({ error: "Formato inválido — só JPEG, PNG ou WebP" }, { status: 400 })
+      return NextResponse.json({ error: "Formato inválido: só JPEG, PNG ou WebP" }, { status: 400 })
     }
 
     await db.imagemUsuario.upsert({

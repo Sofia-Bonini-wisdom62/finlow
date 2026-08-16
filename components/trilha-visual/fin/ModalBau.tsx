@@ -35,7 +35,7 @@ export function ModalBau({
       })
       const d = await r.json()
       if (r.ok && d.ok) {
-        setGanho(d.moedas)
+        setGanho(d.xp)
         router.refresh()
       } else {
         setErro(d.erro ?? "Não deu certo. Tenta de novo?")
@@ -77,9 +77,9 @@ export function ModalBau({
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={POSE.proud} alt="" className="fin-pop mx-auto h-[110px] object-contain" />
-          <h3 className="mt-2 text-[21px] font-black tracking-tight">+{ganho} Finlo Coins!</h3>
+          <h3 className="mt-2 text-[21px] font-black tracking-tight">+{ganho} XP!</h3>
           <p className="mx-auto mt-1 max-w-[280px] text-[13.5px] leading-relaxed" style={{ color: "var(--fin-muted)" }}>
-            Já foram pra sua carteira. Gaste na Loja do Fin — a poção de XP é uma boa.
+            Entrou direto no seu total. Na Loja do Fin dá pra trocar XP por moedas quando quiser.
           </p>
         </>
       )}
