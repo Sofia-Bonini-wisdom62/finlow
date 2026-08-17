@@ -167,6 +167,20 @@ export interface OpcoesResposta {
    * especialista. O modelo nunca decide sozinho quando consultar.
    */
   consulta?: { id: string; instrucao: string; bloco: string }
+  /**
+   * Chamado a cada pedaço novo do campo `texto`, ENQUANTO o modelo escreve.
+   *
+   * Passar isto é o que liga o jorro: sem ele a chamada continua sendo uma ida
+   * e volta só, como sempre foi, e quem não pediu jorro não muda de
+   * comportamento. Com ele, `responderIA` usa `generateContentStream` e vai
+   * entregando o texto legível por `lib/resposta-parcial.ts`.
+   *
+   * O que NÃO muda: cards, lançamentos, tetos e memórias continuam saindo só no
+   * fim, validados pelas mesmas funções. Card com slug inventado ou lançamento
+   * com data de 2019 não têm versão parcial — ou passam pela validação inteira,
+   * ou não existem.
+   */
+  aoTexto?: (pedaco: string) => void
 }
 
 export interface RespostaIA {
@@ -440,6 +454,12 @@ function cardsValidos(bruto: unknown, slugsReais?: Set<string>): CardIA[] {
  *  - Falha do provedor NÃO vira IANaoConfigurada. Esse erro significa "não
  *    está ligado" e a UI mostra um aviso definitivo; um timeout da Vertex é
  *    temporário e merece "tenta de novo".
+ *  - O jorro (`opcoes.aoTexto`) entrega o texto enquanto o modelo escreve, mas
+ *    NÃO adianta nada além dele. O valor de retorno continua sendo a única
+ *    fonte do que a tela guarda e do que vai para o banco: o que foi mostrado
+ *    em pedaços é substituído pelo texto validado quando o turno fecha. Assim a
+ *    trava de conteúdo, a validação de card e a de lançamento continuam valendo
+ *    exatamente como valiam antes de existir jorro nenhum.
  */
 export async function responderIA(
   mensagens: MensagemChat[],
@@ -474,7 +494,7 @@ export async function responderIA(
 
   if (contents.length === 0) return { texto: "Não recebi sua pergunta. Escreve de novo?" }
 
-  const resposta = await vertex.models.generateContent({
+  const pedido = {
     model: MODELO_CHAT,
     contents,
     config: {
@@ -485,7 +505,44 @@ export async function responderIA(
       responseMimeType: "application/json",
       maxOutputTokens: 3072,
     },
-  })
+  }
+
+  /**
+   * Duas formas de pedir a MESMA resposta.
+   *
+   * O jorro não é outro modelo nem outro prompt: é a mesma chamada entregue em
+   * pedaços. Por isso o que sai daqui é sempre o mesmo par — o JSON bruto
+   * inteiro e a última resposta do provedor (que é quem carrega `usageMetadata`
+   * e `finishReason`). Tudo o que vem depois — validação, trava de conteúdo,
+   * cota — é um caminho só, para os dois modos.
+   */
+  let bruto: string
+  let resposta: Awaited<ReturnType<typeof vertex.models.generateContent>>
+
+  if (opcoes?.aoTexto) {
+    const { FluxoDeTexto } = await import("@/lib/resposta-parcial")
+    const fluxo = new FluxoDeTexto(contemConteudoProibido)
+    const jorro = await vertex.models.generateContentStream(pedido)
+
+    let acumulado = ""
+    let ultima: typeof resposta | undefined
+    for await (const pedaco of jorro) {
+      // O último pedaço com metadado é o que vale: o provedor manda a conta do
+      // uso no fecho, e um pedaço de texto no meio vem sem ela.
+      if (pedaco.usageMetadata || !ultima) ultima = pedaco
+      const t = pedaco.text ?? ""
+      if (!t) continue
+      acumulado += t
+      const novo = fluxo.avancar(acumulado)
+      if (novo) opcoes.aoTexto(novo)
+    }
+    if (fluxo.barrado) console.warn("[ia] jorro interrompido pela trava de conteúdo")
+    bruto = acumulado.trim()
+    resposta = ultima ?? ({ text: acumulado } as typeof resposta)
+  } else {
+    resposta = await vertex.models.generateContent(pedido)
+    bruto = (resposta.text ?? "").trim()
+  }
 
   const origem = opcoes?.onboarding ? "onboarding" : "chat"
   const uso = registrarUso(origem, MODELO_CHAT, resposta)
@@ -508,7 +565,6 @@ export async function responderIA(
     console.warn(`[uso-ia] chamada de ${origem} sem userId: não entrou em cota nenhuma`)
   }
 
-  const bruto = (resposta.text ?? "").trim()
   if (!bruto) {
     throw new Error(`resposta vazia do modelo (finishReason=${resposta.candidates?.[0]?.finishReason})`)
   }

@@ -531,10 +531,64 @@ Lista do mais crítico ao mais simples; cada item é um trabalho independente.
    `/placeholder.svg` fantasma saiu do caminho. Thumbnails reais seguem
    sendo conteúdo a produzir.
 
-6. **🟠 Chat sem streaming.** A resposta chega inteira depois de segundos de
-   pontinhos (`components/chat/ChatIA.tsx`). A régua do público é ChatGPT:
-   texto aparecendo em ~1s. Bônus: o placeholder diz "solte o extrato aqui",
-   mas não há handler de drag-and-drop — o gesto sugerido não funciona.
+6. ~~**🟠 Chat sem streaming.**~~ ✅ **17/08/2026.** A resposta chegava inteira
+   depois de segundos de pontinhos (`components/chat/ChatIA.tsx`). A régua do
+   público é ChatGPT: texto aparecendo em ~1s. Bônus: o placeholder dizia "solte
+   o extrato aqui", mas não havia handler de drag-and-drop — o gesto sugerido
+   não funcionava.
+
+   > **O obstáculo era o formato, e é ele que explica o desenho.** O assistente
+   > responde em JSON (`{"texto": ..., "cards": [...]}`) porque a tela precisa
+   > separar texto de card, de lançamento e de proposta de teto. JSON não é
+   > legível pela metade: enquanto o modelo escreve, o que trafega é
+   > `{"texto": "Você gastou R$ 4` — e `JSON.parse` disso é erro de sintaxe até
+   > o último byte. Por isso o jorro não é "ligar uma flag": é
+   > [`lib/resposta-parcial.ts`](../lib/resposta-parcial.ts), que lê o pedaço já
+   > chegado e devolve **só o que dá para afirmar**.
+   >
+   > **Ele se recusa a adivinhar, e cada recusa tem um caso concreto.** Escape
+   > cortado no meio (`"caf\u00e`) espera o resto, senão a bolha mostra `\u00e`
+   > cru; meio par substituto de emoji espera o par, senão vira o losango de
+   > interrogação; e o varredor conta chaves para só aceitar `texto` no nível de
+   > cima — **o card de recomendação e o de lembrete têm um campo chamado
+   > `texto`**, e a ordem das chaves é do modelo, não nossa. Uma busca ingênua
+   > mostraria o texto do card na bolha da resposta.
+   >
+   > **O que NÃO foi adiantado:** card, lançamento e teto continuam saindo só no
+   > fim, pelas mesmas validações. Proposta de lançamento pela metade seria
+   > proposta errada, e ela leva a gravar dinheiro no Painel de alguém.
+   >
+   > **A trava de conteúdo continua de pé, e essa era a pergunta de verdade.**
+   > Ela roda a cada pedaço, no texto acumulado JÁ COM o acréscimo — então um
+   > termo proibido que se completa no meio do caminho trava o fluxo **antes** de
+   > o pedaço sair. E o texto validado do fecho SUBSTITUI o que apareceu em
+   > pedaços, em vez de somar com ele: se a resposta for barrada, o que fica na
+   > tela é a recusa, não o que já tinha começado a aparecer.
+   >
+   > **Um fecho de turno só.** Memória gravada, recomendação que entra na trilha,
+   > histórico da conversa e cota são o mesmo código para os dois modos de
+   > entrega — duas cópias divergiriam no primeiro campo acrescentado de um lado
+   > e esquecido do outro, e quem usasse o chat pelo caminho novo simplesmente
+   > deixaria de ter a conversa guardada, sem erro nenhum.
+   >
+   > **O que a rede pode estragar, está dito no cabeçalho:** `no-transform` e
+   > `X-Accel-Buffering: no`, senão um proxy junta os pedaços "para otimizar" e
+   > devolve tudo no fim — exatamente o defeito que se está corrigindo, agora sem
+   > ninguém ver por quê. Se mesmo assim o jorro não passar, a tela lê o corpo
+   > como JSON e mostra a resposta inteira, como antes.
+   >
+   > **O gesto sugerido passou a funcionar.** `onDragOver` com `preventDefault`
+   > (é ele que permite o drop — sem ele o navegador ABRE o arquivo numa aba e a
+   > conversa vai embora), aviso "Solta aqui que eu leio" enquanto o arquivo
+   > paira, e clipe e arrastar caindo no mesmo caminho de leitura.
+   >
+   > **Guardado por `scripts/testar-jorro.mts`** (sem banco, sem build, sem
+   > chamar a Vertex): 34 casos, conferidos contra o código mutilado — tirar a
+   > contagem de chaves, o corte do meio-emoji ou a ordem da trava faz o teste
+   > acusar. Metade dele olha o CÓDIGO das duas pontas, porque streaming é
+   > contrato entre dois arquivos que ninguém compila junto: se a tela parar de
+   > pedir jorro ou a rota parar de responder em SSE, o chat volta calado para os
+   > pontinhos e tudo continua "funcionando".
 
 7. **🟡 Botão "Enviar para a IA reordenar" promete o que não faz.** Ele só
    abre o chat com a mensagem pronta (`components/trilha-visual/DrawerModulo.tsx:394`).

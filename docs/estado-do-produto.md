@@ -7,16 +7,23 @@ um app para adolescentes que já não existia).
 
 Legenda: ✅ pronto · 🔧 em desenvolvimento · 📋 planejado · 🚫 fora deste repo
 
-Última revisão: 17/08/2026 — passada de correção: a pendência de
+Última revisão: 17/08/2026 — a resposta do chat deixou de chegar só no fim
+(jorro em SSE), e o "solte o extrato aqui" do campo de escrever virou gesto de
+verdade. Na mesma data, uma passada de correção nos documentos: a pendência de
 `/api/ops/metrics` descrevia um guard que já existe (falta só a variável na
 Vercel) e o ✅ de exportar dados ganhou a ressalva que o próprio arquivo já
-cobrava. As entregas registradas vão até 16/08 (B1–B4 do redesign).
+cobrava. Antes disso: o assistente deixou de ter uma voz só (seção
+*Personalidade do assistente* abaixo). A trilha de Ensino Médio segue portada e
+semeada atrás do gate de público, e as cinco fases do script do Plano 2026–2029
+seguem entregues.
 
 ## Núcleo
 
 | Promessa | Status | Onde |
 |---|---|---|
 | Chat com IA sobre os números reais da pessoa | ✅ | `app/api/chat`, `lib/ia.ts` |
+| Resposta aparecendo enquanto é escrita (SSE), com card e proposta só no fim | ✅ 17/08/2026 | `lib/resposta-parcial.ts`, `app/api/chat`, `scripts/testar-jorro.mts` |
+| Arrastar extrato ou comprovante para dentro da conversa | ✅ 17/08/2026 | `components/chat/ChatIA.tsx` |
 | Leitura de extrato PDF/CSV/OFX no navegador | ✅ | `app/(app)/extrato`, `lib/extrato/` |
 | Validação aritmética do extrato (saldos diários) | ✅ | `lib/extrato/saldos-diarios.ts` |
 | Nada entra confirmado sem toque da pessoa | ✅ | `Transacao.confirmado @default(false)` |

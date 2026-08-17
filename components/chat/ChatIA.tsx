@@ -71,6 +71,59 @@ const MAX_ANEXO_MB = 8
 /** Extrato tem limite próprio, igual ao da tela de extrato. */
 const MAX_EXTRATO_MB = 10
 
+/** O corpo que /api/chat devolve no fim do turno — com jorro ou sem. */
+interface CorpoResposta {
+  texto?: string
+  cards?: CardIATipo[]
+  lancamentos?: LancamentoProposto[]
+  orcamento?: TetoProposto[]
+  gastoAtual?: Record<string, number>
+  conversaId?: string | null
+  mensagem?: string
+  error?: string
+}
+
+/**
+ * Lê o corpo SSE de /api/chat e entrega um evento por vez.
+ *
+ * O corte é no `\n\n` porque é assim que o protocolo separa eventos, e o
+ * pedaço que chega da rede não respeita fronteira nenhuma: um evento pode vir
+ * partido em dois `read()`, e dois eventos podem vir no mesmo. Guardar a sobra
+ * entre as leituras é o que impede a bolha de receber meio JSON.
+ */
+async function lerEventos(
+  corpo: ReadableStream<Uint8Array>,
+  aoEvento: (nome: string, dado: unknown) => void
+) {
+  const leitor = corpo.getReader()
+  const decodificador = new TextDecoder()
+  let sobra = ""
+  for (;;) {
+    const { value, done } = await leitor.read()
+    if (done) break
+    sobra += decodificador.decode(value, { stream: true })
+    let corte = sobra.indexOf("\n\n")
+    while (corte !== -1) {
+      const bloco = sobra.slice(0, corte)
+      sobra = sobra.slice(corte + 2)
+      let nome = "message"
+      let dado = ""
+      for (const linha of bloco.split("\n")) {
+        if (linha.startsWith("event:")) nome = linha.slice(6).trim()
+        else if (linha.startsWith("data:")) dado += linha.slice(5).trim()
+      }
+      if (dado) {
+        try {
+          aoEvento(nome, JSON.parse(dado))
+        } catch {
+          // Evento ilegível não derruba a conversa: o texto final vem no fecho.
+        }
+      }
+      corte = sobra.indexOf("\n\n")
+    }
+  }
+}
+
 export function ChatIA({
   nome,
   sequencia = 0,
@@ -95,6 +148,18 @@ export function ChatIA({
   const [rascunho, setRascunho] = useState(() => busca.get("pergunta") ?? "")
   const [anexos, setAnexos] = useState<AnexoChat[]>([])
   const [enviando, setEnviando] = useState(false)
+  /**
+   * A resposta que está chegando, letra a letra. `null` = não há jorro agora.
+   *
+   * Vive fora de `mensagens` de propósito: enquanto está aqui, é texto em
+   * trânsito, sem card e sem proposta. Ela só vira mensagem de verdade quando o
+   * servidor fecha o turno — e o texto que entra na lista é o VALIDADO, não a
+   * soma dos pedaços. Se a trava de conteúdo barrar a resposta no meio, o que
+   * fica na tela é a recusa, não o que já tinha aparecido.
+   */
+  const [parcial, setParcial] = useState<string | null>(null)
+  /** Arquivo sendo arrastado por cima da conversa. */
+  const [arrastando, setArrastando] = useState(false)
   const [erro, setErro] = useState<string | null>(null)
   /** Separado de `erro` de propósito: fim de cota não é falha, é porta. */
   const [cotaEsgotada, setCotaEsgotada] = useState<string | null>(null)
@@ -183,7 +248,7 @@ export function ChatIA({
 
   useEffect(() => {
     fimRef.current?.scrollIntoView({ behavior: "smooth" })
-  }, [mensagens, enviando])
+  }, [mensagens, enviando, parcial])
 
   function alternarVoz() {
     if (ouvindo) {
@@ -276,6 +341,19 @@ export function ChatIA({
   async function escolherArquivos(e: React.ChangeEvent<HTMLInputElement>) {
     const arquivos = Array.from(e.target.files ?? [])
     e.target.value = ""
+    await receberArquivos(arquivos)
+  }
+
+  /**
+   * Um caminho só para o clipe e para o arrastar-e-soltar.
+   *
+   * O composer sempre disse "solte o extrato do banco aqui" e não havia handler
+   * de drop: o navegador fazia o padrão dele, que é ABRIR o arquivo numa aba e
+   * jogar a conversa fora. Gesto sugerido que não funciona é pior que gesto
+   * não sugerido — a pessoa conclui que o app está quebrado, não que leu errado.
+   */
+  async function receberArquivos(arquivos: File[]) {
+    if (!arquivos.length) return
     setErro(null)
 
     for (const f of arquivos) {
@@ -310,41 +388,22 @@ export function ChatIA({
     setAnexos([])
     setEnviando(true)
     setErro(null)
+    setParcial(null)
 
-    try {
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          mensagens: historico.map((m, i) => ({
-            papel: m.papel,
-            texto: m.texto,
-            ...(i === historico.length - 1 && anexosEnvio.length > 0 ? { anexos: anexosEnvio } : {}),
-          })),
-          conversaId,
-        }),
-      })
+    /** O que já apareceu na bolha desta resposta. */
+    let emCurso = ""
 
-      const dados = await res.json().catch(() => ({}))
-
-      if (!res.ok) {
-        // Cota grátis no fim: não é erro, é uma porta. Vira aviso com caminho
-        // em vez de texto vermelho — "não consegui responder" faria a pessoa
-        // achar que o app quebrou e tentar de novo até desistir.
-        if (res.status === 402) {
-          setCotaEsgotada(dados.mensagem ?? "Suas conversas gratuitas deste mês acabaram.")
-          return
-        }
-        setErro(
-          dados.error === "ia_nao_configurada"
-            ? "O assistente ainda não está ligado nesta instalação. Suas Análises e seu Perfil continuam funcionando normalmente."
-            : (dados.mensagem ?? "Não consegui responder agora. Tenta de novo?")
-        )
-        return
-      }
-
+    /**
+     * Fecha o turno com o corpo que o servidor devolveu.
+     *
+     * O texto daqui SUBSTITUI o que apareceu em pedaços — não soma com ele. É a
+     * mesma resposta, mas esta passou pela validação e pela trava de conteúdo,
+     * e é esta que ficou gravada na conversa.
+     */
+    const fechar = (dados: CorpoResposta) => {
+      emCurso = ""
+      setParcial(null)
       if (dados.conversaId) setConversaId(dados.conversaId)
-
       setMensagens((m) => [
         ...m,
         {
@@ -360,10 +419,95 @@ export function ChatIA({
           gastoAtual: dados.gastoAtual,
         },
       ])
+    }
+
+    /**
+     * Metade de resposta na tela vale mais que tela limpa.
+     *
+     * Se a conexão morre no meio, o que já chegou é resposta de verdade — vira
+     * mensagem, e o aviso de erro aparece embaixo dela. Apagar tudo faria a
+     * pessoa perder o que já estava lendo por causa do que faltou.
+     */
+    const salvarParcial = () => {
+      if (!emCurso) return
+      const texto = emCurso
+      emCurso = ""
+      setParcial(null)
+      setMensagens((m) => [...m, { papel: "ia", texto }])
+    }
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          mensagens: historico.map((m, i) => ({
+            papel: m.papel,
+            texto: m.texto,
+            ...(i === historico.length - 1 && anexosEnvio.length > 0 ? { anexos: anexosEnvio } : {}),
+          })),
+          conversaId,
+          // Pede a resposta em pedaços. O servidor decide se consegue: falta de
+          // IA configurada continua vindo como JSON com status próprio, e a
+          // tela trata os dois formatos.
+          stream: true,
+        }),
+      })
+
+      if (!res.ok) {
+        const dados = (await res.json().catch(() => ({}))) as CorpoResposta
+        // Cota grátis no fim: não é erro, é uma porta. Vira aviso com caminho
+        // em vez de texto vermelho — "não consegui responder" faria a pessoa
+        // achar que o app quebrou e tentar de novo até desistir.
+        if (res.status === 402) {
+          setCotaEsgotada(dados.mensagem ?? "Suas conversas gratuitas deste mês acabaram.")
+          return
+        }
+        setErro(
+          dados.error === "ia_nao_configurada"
+            ? "O assistente ainda não está ligado nesta instalação. Suas Análises e seu Perfil continuam funcionando normalmente."
+            : (dados.mensagem ?? "Não consegui responder agora. Tenta de novo?")
+        )
+        return
+      }
+
+      const ehJorro = (res.headers.get("content-type") ?? "").includes("text/event-stream")
+      if (!ehJorro || !res.body) {
+        // Resposta inteira de uma vez. Continua sendo um caminho válido — e é
+        // o que sobra se um proxy pelo meio não deixar o jorro passar.
+        fechar((await res.json().catch(() => ({}))) as CorpoResposta)
+        return
+      }
+
+      let fechou = false
+      await lerEventos(res.body, (nome, dado) => {
+        const corpo = (dado ?? {}) as CorpoResposta & { delta?: string }
+        if (nome === "texto") {
+          emCurso += corpo.delta ?? ""
+          setParcial(emCurso)
+        } else if (nome === "fim") {
+          fechou = true
+          fechar(corpo)
+        } else if (nome === "erro") {
+          fechou = true
+          salvarParcial()
+          setErro(corpo.mensagem ?? "Não consegui responder agora. Tenta de novo?")
+        }
+      })
+
+      // O jorro acabou sem fecho: a função do servidor caiu, ou a conexão
+      // morreu. Sem isto a bolha ficaria congelada no meio da frase, com os
+      // pontinhos parados, e a pessoa não saberia se ainda vem mais.
+      if (!fechou) {
+        salvarParcial()
+        setErro("A resposta parou no meio do caminho. Tenta de novo?")
+      }
     } catch {
+      salvarParcial()
       setErro("Sem conexão. Tenta de novo?")
     } finally {
       setEnviando(false)
+      setParcial(null)
     }
   }
 
@@ -399,7 +543,46 @@ export function ChatIA({
   }
 
   return (
-    <div className="flex h-dvh flex-col bg-fl-page lg:pl-56">
+    <div
+      className="relative flex h-dvh flex-col bg-fl-page lg:pl-56"
+      /**
+       * O `preventDefault` do dragOver É o handler.
+       *
+       * Sem ele o navegador mantém o comportamento padrão — abrir o arquivo
+       * numa aba, saindo do app — e o `onDrop` nem chega a ser chamado. Era
+       * exatamente o que acontecia com o "solte o extrato do banco aqui" do
+       * campo de escrever.
+       */
+      onDragOver={(e) => {
+        if (!e.dataTransfer.types.includes("Files")) return
+        e.preventDefault()
+        setArrastando(true)
+      }}
+      onDragLeave={(e) => {
+        // Sair de um filho para outro dispara dragLeave; sem esta guarda o
+        // aviso pisca enquanto a pessoa atravessa a tela.
+        if (e.currentTarget.contains(e.relatedTarget as Node | null)) return
+        setArrastando(false)
+      }}
+      onDrop={(e) => {
+        if (!e.dataTransfer.types.includes("Files")) return
+        e.preventDefault()
+        setArrastando(false)
+        void receberArquivos(Array.from(e.dataTransfer.files))
+      }}
+    >
+      {arrastando && (
+        <div className="pointer-events-none absolute inset-3 z-30 flex items-center justify-center rounded-[24px] border-2 border-dashed border-fl-500 bg-fl-page/85">
+          <div className="flex flex-col items-center gap-2 text-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={POSE.hi} alt="" className="size-14 object-contain" />
+            <p className="text-[15px] font-bold text-fl-ink">Solta aqui que eu leio</p>
+            <p className="text-[12.5px] text-fl-ink-2">
+              Extrato em PDF, CSV, OFX, QIF ou TXT · comprovante em imagem
+            </p>
+          </div>
+        </div>
+      )}
       {/* Cabeçalho do Fin (protótipo v2): quem responde tem cara e nome. A
           chama e o histórico dividem a ponta direita. */}
       <div className="flex items-center gap-2.5 border-b-2 border-fl-divider px-4 pb-3 pt-3 sm:px-5">
@@ -499,7 +682,26 @@ export function ChatIA({
             )
           )}
 
-          {enviando && (
+          {/* A resposta enquanto ela chega. Mesma bolha da mensagem pronta,
+              com o cursor piscando no fim — o que muda é só que ela ainda não
+              tem card nem proposta. */}
+          {parcial !== null && (
+            <div className="flex max-w-[92%] items-end gap-2 self-start">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={POSE.point} alt="" className="size-[30px] shrink-0 object-contain" />
+              <div className="rounded-[16px_16px_16px_4px] border-[1.5px] border-fl-border bg-fl-card px-4 py-3 text-[14.5px] leading-relaxed text-fl-ink">
+                {parcial}
+                <span
+                  aria-hidden
+                  className="ml-0.5 inline-block h-[0.95em] w-[2px] translate-y-[1px] rounded-full bg-fl-500 align-middle [animation:pulseDot_1s_infinite]"
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Os pontinhos são a espera ANTES da primeira letra. Depois que o
+              texto começa, quem mostra que ainda vem mais é o cursor. */}
+          {enviando && parcial === null && (
             <div className="flex items-center gap-2 self-start rounded-full border border-fl-border bg-fl-card px-4 py-2.5">
               {[0, 150, 300].map((atraso) => (
                 <span
