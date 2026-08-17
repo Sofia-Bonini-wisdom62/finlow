@@ -228,7 +228,10 @@ chegarem, é troca de arquivo, não de código.
   FREE/FINLOW+ via `/api/conta`). A seção **Aparência saiu**: o escopo
   `.tema-fin` ignora o toggle claro/escuro e a paleta, e controle que não
   muda nada é pior que controle nenhum — `SeletorTema`/`SeletorPaleta`
-  seguem no repositório, sem uso.
+  ficaram no repositório, sem uso. ⚠️ A parte da paleta foi SUPERADA em
+  15/08: o pedido da fundadora trouxe a paleta de acento de volta e o
+  `SeletorPaleta` voltou ao Ajustes (`app/(app)/ajustes/page.tsx`); só o
+  `SeletorTema` segue sem uso.
 - ~~**Painel**~~ ✅ 14/08 — o toggle Controle/Análises virou **navegação
   entre as duas páginas** (antes era aba interna do Painel que duplicava
   /analises em miniatura); CTA "Subir extrato do banco" 3D no fim do

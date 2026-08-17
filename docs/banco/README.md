@@ -16,7 +16,7 @@ da verdade, que é o problema que esta pasta existe para não ter.
 
 | Arquivo | O que é |
 |---|---|
-| `01-esquema.sql` | `CREATE TABLE` das 26 tabelas, com índices e chaves estrangeiras |
+| `01-esquema.sql` | `CREATE TABLE` de todas as tabelas do schema, com índices e chaves estrangeiras — a contagem exata está no cabeçalho do próprio arquivo, que se regenera junto |
 | `02-rls.sql` | Cópia de `prisma/seguranca-rls.sql` — liga RLS e fecha o acesso do papel `anon` |
 | `03-dados-de-sistema.sql` | Os módulos da trilha, as telas de cada um e a tabela de indicadores |
 
@@ -24,8 +24,10 @@ da verdade, que é o problema que esta pasta existe para não ter.
 
 Nenhuma linha de usuário: nem transação, nem conta fixa, nem orçamento, nem
 memória do assistente, nem investimento, nem diagnóstico, nem e-mail de
-waitlist ou de lead. São 23 das 26 tabelas, e a ausência é decisão registrada
-em `scripts/exportar-banco.mts`, não esquecimento.
+waitlist ou de lead. Do schema inteiro, só as três tabelas de conteúdo de
+sistema (`Modulo`, `Tela`, `Indicador`) têm dados no retrato; todo o resto é
+dado de gente e fica fora, decisão registrada em
+`scripts/exportar-banco.mts`, não esquecimento.
 
 Dois motivos que se somam. Os campos financeiros são cifrados com a
 `ENCRYPTION_KEY`, então o que sairia num dump seria `"v1.…"` — inútil como

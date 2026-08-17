@@ -39,6 +39,6 @@ e ler no código com `Buffer.from(process.env.X, "base64").toString()`.
 - Se uma chave for exposta, **rotacionar é obrigatório**. Apagar o arquivo e
   refazer o commit não resolve: quem já clonou continua com ela, e o histórico
   do git guarda tudo.
-- A `ENCRYPTION_KEY` (dados financeiros) vive no `.env` e na Vercel, não aqui.
+- A `ENCRYPTION_KEY` (dados financeiros) vive no `.env.local` e na Vercel, não aqui.
   Perder essa chave é perder os dados — vale ter uma cópia num gerenciador de
   senhas, fora do repositório e fora da Vercel.

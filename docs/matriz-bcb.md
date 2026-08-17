@@ -22,6 +22,12 @@ construída pelo regulador, com autoridade pública, que responde à pergunta "o
 precisa saber sobre dinheiro no Brasil". A faixa `EM13LF` (39 competências) é a mais próxima
 do adulto e é de onde vale puxar tema.
 
+> ⚠️ Os números daqui e da tabela abaixo vêm do JSON, que perdeu 31 entradas na
+> extração do PDF (aviso completo em [`README.md`](README.md)): a matriz real tem
+> 230 competências e a EM13LF tem 47, não 39 — 47 é o número que
+> [`estado-do-produto.md`](estado-do-produto.md) usa. Leia como ordem de
+> grandeza, não como veredito.
+
 ---
 
 ## As 8 unidades temáticas
@@ -39,9 +45,15 @@ do adulto e é de onde vale puxar tema.
 
 ---
 
-## Onde o Finlow está hoje
+## Onde o Finlow estava em julho/2026
 
-Os 16 módulos atuais (104 telas) mapeados nas unidades da matriz:
+> **HISTÓRICO (retrato de julho/2026, pré-T2).** O mapa e as lacunas abaixo
+> descrevem a T1 de 16 módulos e ficam como registro: foi essa lista que guiou
+> a Temporada 2. Hoje são 43 módulos adultos (16 da T1 reformada + 27 da T2,
+> `prisma/modulos-t2.ts`), cobrindo justamente o que aqui aparece zerado —
+> rotativo do cartão, negativação, golpes, inflação, investir do zero.
+
+Os 16 módulos de então (104 telas) mapeados nas unidades da matriz:
 
 | Unidade da matriz | Módulos Finlow | Cobertura |
 |---|---|---|
@@ -54,9 +66,9 @@ Os 16 módulos atuais (104 telas) mapeados nas unidades da matriz:
 | **Renda e empreendedorismo** | — | **Zero** |
 | **Cenário financeiro e cidadania** | — | **Zero** |
 
-O Finlow cobre 3 das 8 unidades, e concentra 6 módulos numa unidade que é a **menor** da
-matriz (12 competências, nenhuma no ensino médio). As cinco unidades vazias incluem
-exatamente as que mais pesam na vida de um adulto brasileiro.
+O Finlow de então cobria 3 das 8 unidades, e concentrava 6 módulos numa unidade que é a
+**menor** da matriz (12 competências, nenhuma no ensino médio). As cinco unidades vazias
+incluíam exatamente as que mais pesam na vida de um adulto brasileiro.
 
 ---
 
@@ -66,7 +78,7 @@ O critério não é "quantas competências a matriz tem", é **quanto dinheiro o
 hoje por não saber isso**.
 
 ### 1. Crédito e dívida — a lacuna mais cara
-Rotativo do cartão passa de 400% ao ano no Brasil. Nenhum dos 16 módulos toca no assunto.
+Rotativo do cartão passa de 400% ao ano no Brasil. Nenhum dos 16 módulos tocava no assunto.
 Competências-âncora: `EM13LF26` (comparar empréstimos pelo **CET**, não pela parcela),
 `EM13LF27` (calcular juros e multa, propor renegociação), `EM13LF28` (consequências do
 endividamento excessivo), `EM13LF29` (cadastro positivo).
@@ -81,9 +93,9 @@ prevenção). Pix tornou isso rotina, e o BC incluiu na revisão de 2024 justame
 usuário — falta ensinar o usuário a ler os dele.
 
 ### 4. Investimento de verdade
-Hoje há um módulo ("Dinheiro parado encolhe"). A matriz pede `EM13LF17` (risco ×
+Na T1 havia um módulo ("Dinheiro parado encolhe"). A matriz pede `EM13LF17` (risco ×
 rentabilidade × liquidez), `EM13LF20` (plano com revisão periódica), `EM13LF15`/`EM13LF16`
-(aposentadoria e previdência) — nada disso existe.
+(aposentadoria e previdência) — nada disso existia.
 
 ### 5. Inflação e o cenário que mexe no bolso
 `EM13LF10` (efeito da inflação por grupo socioeconômico) e `EM13LF44` (Selic, inflação,
@@ -91,7 +103,7 @@ desemprego, PIB ligados à vida do indivíduo). Explica por que a reserva "parad
 dá base ao módulo de investimento em vez de deixá-lo solto.
 
 ### 6. Renda — o lado que o Finlow ignora
-Todos os 16 módulos tratam do que sai. `EM13LF30` (determinantes da renda) e `EM13LF31`
+Todos os 16 módulos tratavam do que sai. `EM13LF30` (determinantes da renda) e `EM13LF31`
 (informalidade e precarização) tratam do que entra. Relevante para quem é autônomo, MEI ou
 trabalha por app.
 

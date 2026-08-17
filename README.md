@@ -27,7 +27,7 @@ não são o produto principal.
 | Auth | NextAuth.js v5 (credenciais + Google) |
 | IA | Vertex AI (Gemini) via `lib/vertex.ts`, costura única em `lib/ia.ts` |
 | Cifra | AES-256-GCM (`lib/cripto.ts`) nos campos financeiros |
-| Deploy | Vercel, push direto na `main` (só se testa em produção) |
+| Deploy | Vercel, push direto na `main` — produção: https://finlow-xi.vercel.app |
 
 ## Como rodar
 
@@ -37,8 +37,10 @@ cp .env.example .env.local   # preencher — ver comentários no próprio arquiv
 pnpm db:push                 # prisma db push + RLS (scripts/aplicar-rls.mjs)
 npx tsx prisma/seed.ts       # módulos da Temporada 1
 npx tsx scripts/classificar-t1.mts --aplicar   # nível e situações da T1
-npx tsx scripts/semear-indicadores.mts --aplicar
+npx tsx scripts/semear-indicadores.mts         # grava direto, sem flag
 npx tsx scripts/semear-t2.mts --aplicar
+npx tsx scripts/semear-ef.mts --aplicar        # trilha escolar de EF (sem a flag, só simula)
+npx tsx scripts/semear-em.mts --aplicar        # trilha de EM (idem)
 pnpm dev
 ```
 
@@ -59,6 +61,8 @@ app/
   (auth)/         login e cadastro
   (app)/          telas logadas: chat, perfil, análises, painel, ajustes…
   trilha/         biblioteca de aulas + player do card flow
+  escola/         painel escolar: turmas, professores, desempenho por aluno
+  convite/        convite de escola por código (rota + tela de aceite)
   api/            rotas — chat, extrato, painel, trilha, ranking, ops…
 lib/              domínio: financas, ia, pontos, recomendacao, cripto, repos
 components/       UI por área (chat/, trilha/, analises/, painel/)

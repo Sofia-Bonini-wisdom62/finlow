@@ -1,5 +1,5 @@
--- Arquitetura das tabelas do Finlow — 37 tabelas.
--- GERADO por scripts/exportar-banco.mts em 2026-08-11. Não edite à mão:
+-- Arquitetura das tabelas do Finlow — 40 tabelas.
+-- GERADO por scripts/exportar-banco.mts em 2026-08-17. Não edite à mão:
 -- a fonte é prisma/schema.prisma, e é lá que os comentários explicam o PORQUÊ
 -- de cada decisão (cifra, cascade, campos em claro).
 --
@@ -11,11 +11,14 @@ CREATE TABLE "User" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "nome" TEXT,
+    "celular" TEXT,
     "dataNascimento" TIMESTAMP(3),
     "senha" TEXT,
     "consentimentoLGPD" TIMESTAMP(3),
     "consentimentoPainelEm" TIMESTAMP(3),
     "memoriaAtiva" BOOLEAN NOT NULL DEFAULT false,
+    "personalidadeIA" TEXT NOT NULL DEFAULT 'equilibrado',
+    "personalidadeDetalhe" TEXT,
     "onboardingEm" TIMESTAMP(3),
     "nivel" TEXT NOT NULL DEFAULT 'iniciante',
     "tendencia" TEXT,
@@ -25,6 +28,13 @@ CREATE TABLE "User" (
     "codigoIndicacao" TEXT,
     "moduloAvancado" BOOLEAN NOT NULL DEFAULT false,
     "publico" TEXT NOT NULL DEFAULT 'adulto',
+    "coins" INTEGER NOT NULL DEFAULT 0,
+    "energia" INTEGER NOT NULL DEFAULT 24,
+    "energiaEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "pocaoAtiva" BOOLEAN NOT NULL DEFAULT false,
+    "avatarFin" TEXT,
+    "comboAtual" INTEGER NOT NULL DEFAULT 0,
+    "comboRecorde" INTEGER NOT NULL DEFAULT 0,
     "emailVerified" TIMESTAMP(3),
     "image" TEXT,
     "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -44,6 +54,31 @@ CREATE TABLE "Investimento" (
     "atualizadoEm" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Investimento_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "ImagemUsuario" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "tipo" TEXT NOT NULL,
+    "dados" TEXT NOT NULL,
+    "atualizadoEm" TIMESTAMP(3) NOT NULL,
+    "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "ImagemUsuario_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Objetivo" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "nome" TEXT NOT NULL,
+    "meta" TEXT NOT NULL,
+    "guardado" TEXT NOT NULL,
+    "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "atualizadoEm" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Objetivo_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -377,6 +412,8 @@ CREATE TABLE "ProgressoLicao" (
     "telaAtual" INTEGER NOT NULL DEFAULT 0,
     "acertos" INTEGER NOT NULL DEFAULT 0,
     "totalQuiz" INTEGER NOT NULL DEFAULT 0,
+    "acertosRevisao" INTEGER,
+    "totalQuizRevisao" INTEGER,
     "segundos" INTEGER NOT NULL DEFAULT 0,
     "concluidoEm" TIMESTAMP(3),
     "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -509,6 +546,18 @@ CREATE TABLE "CompetenciaProfessor" (
 );
 
 -- CreateTable
+CREATE TABLE "EventoCoins" (
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "motivo" TEXT NOT NULL,
+    "moedas" INTEGER NOT NULL,
+    "refId" TEXT NOT NULL DEFAULT '-',
+    "criadoEm" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "EventoCoins_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "AcessoTrilhaTurma" (
     "id" TEXT NOT NULL,
     "turmaId" TEXT NOT NULL,
@@ -531,6 +580,12 @@ CREATE UNIQUE INDEX "User_codigoIndicacao_key" ON "User"("codigoIndicacao");
 
 -- CreateIndex
 CREATE INDEX "Investimento_userId_idx" ON "Investimento"("userId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "ImagemUsuario_userId_tipo_key" ON "ImagemUsuario"("userId", "tipo");
+
+-- CreateIndex
+CREATE INDEX "Objetivo_userId_idx" ON "Objetivo"("userId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "DiagnosticoVazamento_userId_key" ON "DiagnosticoVazamento"("userId");
@@ -668,10 +723,22 @@ CREATE INDEX "CompetenciaProfessor_escolaId_idx" ON "CompetenciaProfessor"("esco
 CREATE UNIQUE INDEX "CompetenciaProfessor_userId_escolaId_segmento_key" ON "CompetenciaProfessor"("userId", "escolaId", "segmento");
 
 -- CreateIndex
+CREATE INDEX "EventoCoins_userId_criadoEm_idx" ON "EventoCoins"("userId", "criadoEm");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "EventoCoins_userId_motivo_refId_key" ON "EventoCoins"("userId", "motivo", "refId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "AcessoTrilhaTurma_turmaId_tipo_refId_key" ON "AcessoTrilhaTurma"("turmaId", "tipo", "refId");
 
 -- AddForeignKey
 ALTER TABLE "Investimento" ADD CONSTRAINT "Investimento_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ImagemUsuario" ADD CONSTRAINT "ImagemUsuario_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Objetivo" ADD CONSTRAINT "Objetivo_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "DiagnosticoVazamento" ADD CONSTRAINT "DiagnosticoVazamento_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -795,6 +862,9 @@ ALTER TABLE "CompetenciaProfessor" ADD CONSTRAINT "CompetenciaProfessor_userId_f
 
 -- AddForeignKey
 ALTER TABLE "CompetenciaProfessor" ADD CONSTRAINT "CompetenciaProfessor_escolaId_fkey" FOREIGN KEY ("escolaId") REFERENCES "Escola"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "EventoCoins" ADD CONSTRAINT "EventoCoins_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "AcessoTrilhaTurma" ADD CONSTRAINT "AcessoTrilhaTurma_turmaId_fkey" FOREIGN KEY ("turmaId") REFERENCES "Turma"("id") ON DELETE CASCADE ON UPDATE CASCADE;

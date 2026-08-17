@@ -7,10 +7,10 @@ um app para adolescentes que já não existia).
 
 Legenda: ✅ pronto · 🔧 em desenvolvimento · 📋 planejado · 🚫 fora deste repo
 
-Última revisão: 08/08/2026 — o assistente deixou de ter uma voz só (seção
-*Personalidade do assistente* abaixo). A trilha de Ensino Médio segue portada e
-semeada atrás do gate de público, e as cinco fases do script do Plano 2026–2029
-seguem entregues.
+Última revisão: 17/08/2026 — passada de correção: a pendência de
+`/api/ops/metrics` descrevia um guard que já existe (falta só a variável na
+Vercel) e o ✅ de exportar dados ganhou a ressalva que o próprio arquivo já
+cobrava. As entregas registradas vão até 16/08 (B1–B4 do redesign).
 
 ## Núcleo
 
@@ -34,7 +34,7 @@ seguem entregues.
 | Ranking opt-in (apelido e pontos, nada mais) | ✅ | `app/api/ranking` |
 | Login com Google | ✅ | botão pronto; falta chave OAuth na Vercel |
 | Trava de conteúdo impróprio (saída + registros) | ✅ | `lib/conteudo-proibido.ts` |
-| Exportar dados (LGPD) + apagar conta em cascade | ✅ | `/api/exportar`, `/api/conta` |
+| Exportar dados (LGPD) + apagar conta em cascade | ✅ | `/api/exportar`, `/api/conta` — a exportação ainda não cobre tudo, ver Pendências conhecidas |
 | Apagar dados financeiros, com a lista conferida contra o schema | ✅ 10/08/2026 | `lib/dados-financeiros.ts`, `lib/apagar-financeiro.ts` |
 | Cifra AES-256-GCM + RLS em todas as tabelas | ✅ | `lib/cripto.ts`, `prisma/seguranca-rls.sql` |
 
@@ -221,10 +221,10 @@ colunas herdam a política que já protege `User`. Se o código subir primeiro, 
 leitura cai no tom padrão e loga o motivo, em vez de derrubar o chat — mas isso
 é rede de proteção, não a ordem certa.
 
-**O arquivo do banco ficou uma regeneração atrás.** `docs/banco/01-esquema.sql`
-não tem as duas colunas novas. Ele não se edita à mão (ver o README da pasta):
-para atualizar, rode `node --import tsx scripts/exportar-banco.mts` com acesso
-ao banco.
+**O arquivo do banco está em dia.** `docs/banco/` foi regenerado em 17/08/2026
+(40 tabelas, 150 módulos, 801 telas, 33 indicadores, prova de restauro
+passando). Ele não se edita à mão (ver o README da pasta): para atualizar, rode
+`node --import tsx scripts/exportar-banco.mts` com acesso ao banco.
 
 ## Limpeza do pré-pivô (07/08/2026)
 
@@ -296,13 +296,16 @@ silenciosa. Estão descritos em `lib/pagamento/stripe.ts`, com teste para cada u
 
 ## Pendências conhecidas
 
-- **`/api/ops/metrics` não tem autenticação nenhuma.** É a única rota logada
-  sem porta: qualquer um que saiba a URL lê o id do projeto GCP, o consumo de
-  Vertex das últimas 24h e as contagens de produto (indicações, leads B2B).
-  Não há dado pessoal ali, e é por isso que não é urgência — mas é métrica de
-  negócio na rua, e a correção é uma linha (um segredo em env conferido no
-  topo da rota). Fica como decisão, não como conserto silencioso: quem chama
-  essa rota hoje precisa saber que vai passar a mandar o segredo.
+- **`/api/ops/metrics` está aberta em produção porque `OPS_METRICS_TOKEN` não
+  existe na Vercel.** O guard já existe desde 31/07: o topo do `GET` em
+  `app/api/ops/metrics/route.ts` confere `?token=` contra a variável e devolve
+  401 — mas só arma quando a variável está definida. Sem ela, qualquer um que
+  saiba a URL lê o id do projeto GCP, o consumo de Vertex das últimas 24h e as
+  contagens de produto (indicações, leads B2B). Não há dado pessoal ali, e é
+  por isso que não é urgência — mas é métrica de negócio na rua, e o conserto
+  é definir a variável na Vercel. Fica como decisão, não como conserto
+  silencioso: quem chama essa rota hoje precisa saber que vai passar a mandar
+  o token.
 - **Chat e extrato continuam sem limite de TAXA** — o que entrou em 10/08 foi um
   teto de VOLUME mensal (tokens), que é coisa diferente. O teto limita a conta do
   mês; não impede alguém de gastar a cota inteira em dois minutos, nem protege o

@@ -1,8 +1,9 @@
 # Backlog de módulos da Trilha — Temporada 2+
 
-**Status: TRAVADO.** Nenhuma produção de módulo novo começa até o loop chat↔dash
-mostrar retenção medida. Este documento é especificação do que será construído
-quando o portão abrir, não escopo de construção imediata.
+**Status: ENTREGUE.** Os 27 módulos da T2 estão no ar (`prisma/modulos-t2.ts`;
+ver `estado-do-produto.md`). Este documento fica como especificação de origem:
+registra a triagem, as evidências e o porquê de cada módulo, e é a referência
+na hora de escrever ou revisar aula.
 
 Recebido em 02/08/2026. Público: adulto brasileiro de 25 a 40 anos.
 
@@ -376,11 +377,22 @@ Selic ou de IPCA não exija reescrever módulo.
 | `{{teto_rotativo}}` | 100% da dívida original | Lei 14.690/2023 |
 | `{{isencao_ir}}` | R$ 5.000/mês | Lei 15.270/2025 |
 
-**Esta tabela ainda não existe no banco.**
+**Construída:** hoje ela vive no banco como `Indicador` (`prisma/schema.prisma`),
+com 33 chaves em `lib/indicadores.ts` e seed em `scripts/semear-indicadores.mts`.
+Os valores acima são o retrato de ago/2026; a fonte de verdade é o banco, e
+atualizar é UPDATE, não deploy.
 
 ---
 
-## Recomendações do documento
+## Recomendações do documento — HISTÓRICO
+
+> ⚠️ **Estas recomendações eram para um portão que já abriu.** Os 27 módulos
+> foram construídos e estão no ar, e a T1 foi reformada no mesmo schema. Ficam
+> registradas porque documentam a ordem e os critérios que guiaram a produção.
+> O que segue vivo: o item 5 (simulador é backlog de produto, não de conteúdo),
+> o item 6 (revisão anual em dez/jan) e a pendência do texto jurídico do R1
+> (ver `backlog-produto.md`). Para o estado real,
+> [`estado-do-produto.md`](estado-do-produto.md).
 
 1. **Não desbloquear nada até o portão abrir.** Sem retenção medida (coorte D30
    acima do limiar acordado), produzir módulo novo é otimização prematura.
@@ -414,5 +426,8 @@ Selic ou de IPCA não exija reescrever módulo.
 - **O custo agregado das bets ao país (R$ 38,8 bi/ano) é estimativa disputada.**
   M07 usa gasto médio e impacto na inadimplência, que são mais sólidos, não a
   estimativa de dano agregado.
-- **Isto é backlog, não conteúdo pronto.** Os card flows são especificação; o
-  texto de cada tela ainda precisa ser redigido e revisado juridicamente.
+- **Isto nasceu como backlog, não como conteúdo pronto.** Os card flows daqui
+  eram especificação; o texto que foi ao ar foi redigido na produção da T2 e a
+  verdade dele é o banco (`docs/banco/03-dados-de-sistema.sql`). A revisão
+  jurídica dos módulos que tocam investimento segue pendência registrada em
+  `estado-do-produto.md`.

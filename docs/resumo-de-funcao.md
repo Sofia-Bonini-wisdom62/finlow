@@ -3,7 +3,7 @@
 O que o produto **faz** hoje, função por função, e onde a **promessa** ainda
 não encontrou a entrega.
 
-Levantado direto do código em 05/08/2026 e revisto em 07/08/2026, na varredura
+Levantado direto do código em 05/08/2026 e revisto em 17/08/2026, na varredura
 de resto do pré-pivô (ver a seção *Limpeza* de `docs/estado-do-produto.md`).
 Complementa aquele arquivo: lá está a matriz promessa-do-plano × código; aqui,
 o **comportamento** de cada peça.
@@ -38,8 +38,10 @@ Avançado, atrás de flag).
 
 - Cadastro por e-mail + senha (bcrypt) e Google (NextAuth v5).
 - Data de nascimento é informativa — **não há validação de idade**.
-- Ajustes concentra: dados da conta, tema (sistema/claro/escuro), paleta
-  (teal/terracota/indigo), convite de amigos, exportar dados, apagar conta.
+- Ajustes concentra: dados da conta, cor de destaque (Dourado padrão,
+  Terracota, Lilás, Verde-água — só o acento muda dentro do navy; o seletor
+  claro/escuro saiu em 14/08/2026, o tema Fin tem uma cara só), convite de
+  amigos, exportar dados, apagar conta.
 - **Convite de escola** (11/08/2026, Finlow para Escolas): `/convite/{codigo}`
   planta cookie e leva ao cadastro (banner "você está entrando na Escola X")
   ou, logado, a `/convite/aceitar` — vincular conta existente é botão, nunca
@@ -383,8 +385,8 @@ BRL (`lib/custo.ts`), uso registrado por origem (`lib/uso-ia.ts`).
 
 | # | Promessa | Onde está escrita | Estado real |
 |---|---|---|---|
-| 1 | "**Conecte suas contas.** Suas transações entram sozinhas, nada de digitar CSV" | Landing, passo 1 de *Como funciona* | **Ainda não existe.** Hoje é upload manual de extrato. Desde 05/08/2026 o conector Open Finance está no [backlog deste repo](backlog-produto.md) — deixou de ser "outra frente", mas continua não construído. É a divergência mais visível: é o primeiro passo do fluxo prometido na home. |
-| 2 | "**Metas**, orçamentos e **alertas calmos, que avisam antes**" | Landing, *Recursos* | Orçamento existe (teto por categoria ou do mês). **Meta não existe** como objeto no schema. **Alerta que avisa antes não existe** — não há push, e-mail nem job; o insight só aparece quando a pessoa abre a tela. |
+| ~~1~~ | ~~"**Conecte suas contas.** Suas transações entram sozinhas, nada de digitar CSV"~~ | ~~Landing, passo 1 de *Como funciona*~~ | ✅ **Fechada em 13/08/2026.** O passo 1 virou "Suba seu extrato" (`app/page.tsx`): a home passou a vender o caminho real, e um bloco abaixo dos três passos diz que a conexão automática está no plano e ainda não existe. O que fechou foi a promessa, não o recurso — o conector Open Finance segue no [backlog deste repo](backlog-produto.md). Guardado por `scripts/testar-landing.mts`. |
+| 2 | "**Metas**, orçamentos e **alertas calmos, que avisam antes**" | Landing, *Recursos* | Orçamento existe (teto por categoria ou do mês). Meta existe desde 14/08/2026: model `Objetivo` no schema (cifrado) com a tela `/objetivos`. **Alerta que avisa antes não existe** — não há push, e-mail nem job; o insight só aparece quando a pessoa abre a tela. |
 | 3 | "Enquanto você vive sua vida, a IA cruza cada transação" | Landing, *Insights automáticos* | Geração é **sob demanda**, na abertura da tela. Não há processamento em segundo plano. |
 | ~~4~~ | ~~"O Finlow já está disponível? **Ainda não.**"~~ | ~~FAQ da landing~~ | ✅ **Fechada em 12/08/2026.** O FAQ responde "Sim" e descreve o que dá para fazer hoje; a landing ganhou as portas que não tinha (`Entrar` → `/login` e `Criar conta` → `/cadastro` no cabeçalho, no hero e no rodapé). A captura de e-mail deixou de ser lista de espera — a tabela `Waitlist` e `/api/waitlist` continuam iguais, só a promessa mudou. Guardado por `scripts/testar-landing.mts`, que roda sem banco. |
 | 5 | Login com Google | Botão na tela de login | Código pronto; **falta a chave OAuth na Vercel** para aparecer em produção. |
@@ -392,9 +394,9 @@ BRL (`lib/custo.ts`), uso registrado por origem (`lib/uso-ia.ts`).
 | 7 | Política escrita de retenção e privacidade (R1) | `docs/estado-do-produto.md` | Engenharia pronta (consentimento separado, cifra, RLS, exclusão, exportação). **Falta o texto jurídico**: base legal, finalidade, prazo de retenção. |
 | 8 | Revisão jurídica CVM/LGPD do conteúdo | `docs/estado-do-produto.md` | Pendente nos módulos que tocam investimento (M09, M10, M22–M25) e no M07 (bets). |
 | 9 | Proteção de custo por abuso | — | Rate limit existe **só** na rota de lead B2B. **Chat e extrato — as chamadas que custam dinheiro — não têm limite.** |
+| 10 | "Condições especiais para quem entrar cedo" / planos | FAQ da landing | Parcialmente fechada. O paywall existe desde 10/08/2026 (`lib/pagamento/`, `/premium`), então a resposta do FAQ deixou de dizer que planos "serão definidos" e passou a descrever o que há: uso grátis com limite mensal de IA e um premium opcional. A `/premium` mostra o valor para quem ainda não assina desde 14/08/2026 (item 3 da avaliação UX): `lib/pagamento/preco.ts` lê o preço do mesmo `STRIPE_PRICE_ID` que o checkout cobra, e `/api/pagamento/assinatura` devolve o `plano` cozido para a tela. **Segue não fechada:** a cobrança está em `sk_test` e nunca cobrou ninguém. "Condições especiais" continua sendo promessa comercial, sem nada no código que a sustente. |
 | 11 | "userId sempre da sessão — nunca do client" | `lib/painel.ts`, regra de segurança do Painel | Verdade em todas as rotas de dinheiro, e era **mentira em três da trilha** até 07/08/2026: `/api/progresso` aceitava o header `x-user-id` (e criava a conta correspondente), `/api/trilha` e `/api/trilha/[moduloId]` aceitavam `?userId=`. Fechado — ver *Limpeza* em `estado-do-produto.md`. |
-| 12 | Rota de operação só para quem opera | — | **`/api/ops/metrics` não tem autenticação.** Devolve id do projeto GCP, consumo de Vertex de 24h e as contagens de indicação e lead B2B para qualquer um que saiba a URL. |
-| 10 | "Condições especiais para quem entrar cedo" / planos | FAQ da landing | Parcialmente fechada. O paywall existe desde 10/08/2026 (`lib/pagamento/`, `/premium`), então a resposta do FAQ deixou de dizer que planos "serão definidos" e passou a descrever o que há: uso grátis com limite mensal de IA e um premium opcional. **Duas coisas seguem não fechadas:** a cobrança está em `sk_test` e nunca cobrou ninguém, e a `/premium` não mostra o valor para quem ainda não assina (item 3 da avaliação UX). Por isso o FAQ não promete que o preço está visível. "Condições especiais" continua sendo promessa comercial, sem nada no código que a sustente. |
+| 12 | Rota de operação só para quem opera | — | Parcialmente fechada. O guard existe desde 31/07/2026: com `OPS_METRICS_TOKEN` definida, `/api/ops/metrics` exige `?token=` e devolve 401 para o resto. **Falta definir a variável na Vercel** — sem ela o guard não tranca e a produção segue respondendo (id do projeto GCP, consumo de Vertex de 24h, contagens de indicação e lead B2B) para qualquer um que saiba a URL. |
 
 **Nota sobre `docs/backlog-trilha-t2.md`:** a seção "verificação contra o
 código" é de 02/08 e **já está vencida**. Os quatro pré-requisitos que ela
@@ -407,17 +409,16 @@ chat, e a T1 ganhou tags via `prisma/classificacao-t1.ts`.
 ## 5. Leitura rápida do risco
 
 O que está entregue é coerente e defensável: o produto faz o que diz **dentro do
-app**. As três divergências que importam estão todas **fora dele**:
+app** — e, desde 13/08/2026, a home também: a landing deixou de vender Open
+Finance e o passo 1 virou "Suba seu extrato", o caminho real (divergência 1,
+fechada). As duas divergências que importam estão **fora dele**:
 
-- **A landing vende Open Finance** ("transações entram sozinhas") para um
-  produto cujo caminho real é upload de extrato. Quem entra pela home espera uma
-  coisa e encontra outra. O conector entrou no backlog em 05/08/2026, o que
-  fecha a divergência no futuro — mas não fecha hoje, e a home segue prometendo
-  no presente.
 - **A exportação LGPD não exporta tudo** — e o que falta (conversas e memórias)
   é justamente o mais sensível.
 - **Chat e extrato não têm rate limit.** Uma conta abusiva vira conta de Vertex.
 
-Dentro do app sobrou uma só, e é de operação, não de usuário: **`/api/ops/metrics`
-responde sem login**. As portas do pré-login que davam para escrever na conta
-alheia foram fechadas em 07/08/2026.
+Dentro do app sobrou uma só, e é de operação, não de usuário: o guard de
+**`/api/ops/metrics`** existe desde 31/07/2026 (`OPS_METRICS_TOKEN`, 401 sem o
+token), mas **a variável ainda não está definida na Vercel** — sem ela a rota
+segue respondendo aberta em produção. As portas do pré-login que davam para
+escrever na conta alheia foram fechadas em 07/08/2026.

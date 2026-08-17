@@ -19,6 +19,8 @@ para quem chega de fora. Ele é a porta; esta pasta é a casa.
 | [`backlog-trilha-t2.md`](backlog-trilha-t2.md) | Especificação dos módulos da Trilha (Temporada 2+) | Ao escrever conteúdo de aula |
 | [`matriz-bcb.md`](matriz-bcb.md) | A Matriz de Competências do Banco Central, lida e mapeada | Ao escrever ou revisar aula da trilha de Ensino Médio |
 | [`matriz-bcb-competencias.json`](matriz-bcb-competencias.json) | A matriz em dado estruturado — **incompleta, ver aviso abaixo** | Nunca sozinha: rode `scripts/testar-matriz.mts` |
+| [`pagamento-antes-de-cobrar.md`](pagamento-antes-de-cobrar.md) | O que falta para sair do modo de teste e cobrar de verdade — quase tudo passo no painel da Stripe ou na Vercel | **Antes de trocar `sk_test` por `sk_live`** |
+| [`banco/`](banco/README.md) | O banco em SQL: arquitetura das tabelas, RLS e os dados de sistema (módulos, telas, indicadores) | Ao consultar o esquema sem abrir o Supabase, ou ao recriar o banco do zero |
 
 > ⚠️ **`matriz-bcb-competencias.json` perdeu 31 entradas na extração do PDF.**
 > Tem 199 chaves, mas as sequências de cada faixa vão até 230 no total — faltam
@@ -33,8 +35,6 @@ para quem chega de fora. Ele é a porta; esta pasta é a casa.
 > cobrem **todos** os 199 códigos que o JSON conhece. Os 31 restantes batem
 > exatamente com os buracos do JSON — indício forte de que a cobertura é
 > integral e o defeito é do arquivo, não do conteúdo.
-| [`pagamento-antes-de-cobrar.md`](pagamento-antes-de-cobrar.md) | O que falta para sair do modo de teste e cobrar de verdade — quase tudo passo no painel da Stripe ou na Vercel | **Antes de trocar `sk_test` por `sk_live`** |
-| [`banco/`](banco/README.md) | O banco em SQL: arquitetura das tabelas, RLS e os dados de sistema (módulos, telas, indicadores) | Ao consultar o esquema sem abrir o Supabase, ou ao recriar o banco do zero |
 
 ## A regra que sustenta a pasta
 
@@ -57,16 +57,16 @@ Daí decorre o resto:
    tem um aviso ⚠️: ela inverte uma decisão registrada, e a documentação que
    ela contraria precisa cair no mesmo commit em que o trabalho começar. Foi o
    que aconteceu com a trilha em corredor (06/08/2026) — o aviso serviu para
-   pôr o custo à mesa antes da decisão, não para impedi-la. Open Finance é o
-   que ainda está de pé com ⚠️.
+   pôr o custo à mesa antes da decisão, não para impedi-la. Hoje nenhum item
+   está de pé com ⚠️: o do Open Finance caiu em 11/08/2026, quando o último
+   resto de documentação contrariada saiu do repo.
 
 ## O que NÃO mora aqui
 
 - **`CLAUDE.md`** — está fora do repositório, na pasta acima
   (`2026/Claude/CLAUDE.md`), porque é o arquivo de contexto que a ferramenta lê
-  a partir do diretório de trabalho. Atenção: ele ainda descreve o produto
-  **anterior ao pivô** (público de 13–18 anos, diagnóstico de 4 perguntas,
-  identidade visual navy/verde). Stack, regras de LGPD e a regra R8 do Painel
-  seguem válidas; o resto é histórico.
+  a partir do diretório de trabalho. Foi reescrito depois do pivô: hoje descreve
+  o produto atual em versão curta e aponta para esta pasta como fonte de
+  verdade. Quem clona o repositório não o recebe, e não perde nada por isso.
 - **`secrets/README.md`** — nota operacional que precisa estar ao lado dos
   segredos que ela descreve, não num índice.
