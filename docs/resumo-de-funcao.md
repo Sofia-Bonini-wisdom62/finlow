@@ -71,12 +71,22 @@ banco (slug inventado viraria card com 404).
 
 **O que ele devolve:**
 
-- Resposta em texto, no tom do produto (sem jargão sem explicação, sem culpa).
+- Resposta em texto, no tom do produto (sem jargão sem explicação, sem culpa),
+  **aparecendo enquanto é escrita** (17/08/2026). A rota responde em SSE quando a
+  tela pede (`stream: true`), e `lib/resposta-parcial.ts` lê o campo `texto` do
+  JSON que ainda está chegando sem adivinhar nada — escape cortado, meio emoji e
+  campo `texto` de card ficam de fora. Card, lançamento e teto continuam saindo
+  **só no fim**, validados como sempre: proposta pela metade seria proposta
+  errada. O texto validado do fecho substitui o que foi mostrado em pedaços, e a
+  trava de conteúdo roda ANTES de cada pedaço sair.
 - **Cards informativos:** `resumo`, `grafico`, `recomendacao` (aula), `lembrete`,
   `caminho` (atalho para uma tela do app com os toques à vista).
 - **Propostas, nunca registros:** lançamento, teto de orçamento e memória voltam
   como proposta com valor e data à vista — só o toque da pessoa grava.
-- Extrato pode ser processado **dentro do chat**.
+- Extrato pode ser processado **dentro do chat**, pelo clipe ou **arrastando o
+  arquivo para cima da conversa** (17/08/2026 — o campo de escrever já convidava
+  a soltar o arquivo ali, e não havia handler: o navegador abria o arquivo numa
+  aba e a conversa ia embora).
 - Histórico de conversas reabrível (título e mensagens cifrados). Propostas de
   ação **não** voltam ao reabrir — evita registrar o mesmo gasto duas vezes.
 - Aula citada num card **entra na trilha** da pessoa (`origem: lacuna_chat`) e
