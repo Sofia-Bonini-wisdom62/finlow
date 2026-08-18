@@ -131,10 +131,19 @@ arquivo que prova.
 | 6 | Concessão de acesso professor → turma → trilha/bloco/módulo | ✅ 11/08 | `lib/escola-acesso.ts` (turma sem linha = trilha completa; união entre turmas), corredor intersecta e `podeAbrir` recusa no servidor, toggles na página da turma (EF por bloco; EM, sem blocos, por módulo), `/api/escola/turmas/[id]/acessos` com competência conferida. Provado no preview: 2 aulas concedidas → 22 travadas com "Sua turma ainda não liberou esta parte" e POST de progresso recusado com 403 |
 | 7 | Ranks escopados (sala/ano/escola) | ✅ 11/08 | `rankingEscolar` (`lib/pontos.ts` — apelido+pontos, mesma disciplina do global; professor liga por turma via `PATCH /api/escola/turmas/[id]`, régua de consentimento própria documentada na função), seção "minha sala" em `/ranking` independente do opt-in global. Pendência LGPD de menores registrada no backlog. Provado no preview: aluno vê a sala, e aluno tentando ligar o rank leva `PAPEL_INSUFICIENTE` |
 | 8 | Dashboards de desempenho (professor e adm) | ✅ 11/08 | `lib/escola-desempenho.ts` (só leitura de `ProgressoLicao`/`ProgressoModulo`; denominador = trilha do segmento — aula adulta explorada não conta), tabela na página da turma, detalhe por aluno em `turmas/[id]/aluno/[userId]`, visão geral por turma na home do adm. Nome real nessas telas: superfície interna da escola |
+| 9 | Superfície da operação (`/ops`): criar e suspender escola pela tela, gerir membros, revogar convite, contas de aluno em lote | ✅ 18/08 | `lib/ops.ts` + `lib/ops-lista.ts` (allowlist `OPS_EMAILS`, falha fechada, 404 para quem não está), `lib/ops-escola.ts` (regra compartilhada com `scripts/criar-escola.mts`), `app/ops/*`, `app/api/ops/{escolas,convites}/*`, `scripts/testar-ops.mts` (37 conferências). Fecha quatro buracos que só o Prisma Studio resolvia: trocar papel, remover membro, designar professor de turma e escrever `revogadoEm`. Detalhe em `resumo-de-funcao.md` §2.17 |
 
 Nenhum código lê os campos novos ainda — os defaults (`publico: "adulto"`,
 `habilidades: []`) reproduzem o comportamento de antes da coluna existir, que
 é o que torna a etapa 1 segura de aplicar antes do resto.
+
+> ⚠️ **A etapa 9 traz uma exceção com risco assumido.** A criação de contas de
+> aluno em lote (nome vira login `@dominio.invalid` + senha temporária) foi
+> pedida pela fundadora em 18/08/2026 para o Fundamental 1, onde a criança não
+> tem e-mail. Ela **não resolve** a pendência de LGPD de menores registrada no
+> backlog: resolve o bloqueio operacional e aumenta a dívida jurídica, porque o
+> Finlow passa a guardar nome de criança e a escola passa a conhecer a senha
+> inicial de cada aluno. Validar com advogado antes de escola real.
 
 ## Redesign Fin (13/08/2026, em construção)
 

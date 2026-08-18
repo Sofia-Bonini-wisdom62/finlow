@@ -299,8 +299,10 @@ Stripe continuaria cobrando um cartão de alguém que já não consegue entrar.
 A escola é uma **camada de vínculo e leitura** por cima do produto: nenhuma
 tabela de conteúdo ou progresso mudou de dono. As peças, na ordem do fluxo:
 
-- **Escola nasce por script** (`scripts/criar-escola.mts`, simulação por
-  default) — sem UI de signup B2B e sem cobrança B2B neste repo.
+- **Escola nasce pela operação**, nunca por signup: tela em `/ops/escolas` ou
+  `scripts/criar-escola.mts` (simulação por default), os dois chamando
+  `criarEscolaComAdm` (`lib/ops-escola.ts`). Segue sem UI de signup B2B e sem
+  cobrança B2B neste repo. Detalhe da superfície em §2.17.
 - **Papéis** ("adm" | "professor" | "aluno") moram em `MembroEscola` (uma
   escola por conta, `@unique`); guard de rota é `exigirPapel`
   (`lib/escola.ts`), lido do banco a cada request, nada no JWT.
@@ -368,12 +370,47 @@ sem nenhum componente saber. Sempre navy, nos dois modos.
   redirect). Rotas de escrita em `/api/jogo/*`. Bateria:
   `scripts/testar-jogo.mts` (react-server).
 
-### 2.17 Operação
+### 2.17 Operação (`/ops`, 18/08/2026)
+
+A **terceira superfície** do app, acima de qualquer escola. As três não são
+abas uma da outra: `/(app)` é o produto, `/escola` é uma escola, `/ops` é
+quem opera o Finlow.
+
+- **Quem entra**: lista de e-mails em `OPS_EMAILS` (`lib/ops-lista.ts`), lida
+  do ambiente a cada request e **falha fechada** — variável ausente recusa
+  todo mundo. Não há coluna no banco: tirar acesso é editar a variável, e
+  nenhum bug de escrita concede o papel. Guard em `exigirOps`
+  (`lib/ops.ts`), que responde **404** a quem não está na lista, porque 403
+  confirmaria que a página existe.
+- **Números** (`/ops`): contas, novas em 30 dias, assinaturas ativas e
+  inadimplentes, escolas por status, turmas, alunos, professores, indicações
+  e leads. Só agregados, nenhum nome. A telemetria da Vertex continua em
+  `/api/ops/metrics` (abaixo), que serve máquina.
+- **Escolas** (`/ops/escolas`): criar escola com a conta do adm junto (senha
+  temporária mostrada uma vez), suspender e reativar, mudar a vigência.
+- **Gente** (`/ops/escolas/[id]`): trocar papel, tirar da escola sem apagar a
+  conta, designar professor de turma. Eram as quatro operações que só
+  existiam no Prisma Studio: `MembroEscola` nascia por resgate de convite e
+  nunca mudava, e `Turma.professorId` não tinha rota que o escrevesse.
+- **Revogar convite**: `ConviteEscola.revogadoEm` era lido em quatro lugares
+  e nunca escrito; um código vazado só morria por expirar ou esgotar os usos.
+- ⚠️ **Contas de aluno em lote**: cola a lista de nomes, sai login e senha
+  por aluno. Exceção para o Fundamental 1, onde a criança não tem e-mail para
+  receber convite. O login vive em `User.email` (é onde o provider de
+  credenciais procura) com domínio `.invalid`, reservado pela RFC 2606 para
+  nunca resolver. Só o nome é coletado. **A pendência de LGPD de menores
+  segue aberta**; ver `backlog-produto.md`.
 
 `/api/ops/metrics` devolve uso da Vertex nas últimas 24h (invocações, tokens,
 caracteres, latências) e um bloco de produto (indicações totais / 30 dias /
-ativadas, leads B2B). Cada bloco falha sozinho. Custo por chamada estimado em
-BRL (`lib/custo.ts`), uso registrado por origem (`lib/uso-ia.ts`).
+ativadas, leads B2B). Cada bloco falha sozinho. Guard próprio, por token no
+cabeçalho (`OPS_METRICS_TOKEN`), porque serve máquina e não sessão. Custo por
+chamada estimado em BRL (`lib/custo.ts`), uso registrado por origem
+(`lib/uso-ia.ts`).
+
+`scripts/testar-ops.mts` cobre a lista de acesso, a vigência, a geração de
+login e senha, e varre `app/api/ops/**` exigindo que **toda** rota escolha um
+dos dois guards.
 
 ---
 

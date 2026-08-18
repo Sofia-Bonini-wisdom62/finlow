@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { auth } from "@/lib/auth"
 import { db } from "@/lib/db"
 import { decidirAcessoEscolar } from "@/lib/pagamento/acesso"
+import { ehPapel, type PapelEscola } from "@/lib/escola-papeis"
 
 /**
  * Papel e vínculo escolar (Finlow para Escolas).
@@ -12,16 +13,16 @@ import { decidirAcessoEscolar } from "@/lib/pagamento/acesso"
  * fazem. Um aluno removido da escola perde o acesso na request seguinte, não
  * no próximo login.
  *
- * O vocabulário dos papéis mora aqui; o banco guarda string
- * (MembroEscola.papel) e é este arquivo que dá sentido a ela.
+ * O vocabulário dos papéis mora em lib/escola-papeis.ts, que é FOLHA: quem só
+ * precisa saber se "professor" é papel válido não pode ser obrigado a carregar
+ * o next-auth junto (é o caso de lib/ops-escola.ts, que o script de linha de
+ * comando importa). Reexportado abaixo para nenhum import antigo mudar de
+ * lugar; o banco guarda string (MembroEscola.papel) e continua sendo este
+ * conjunto que dá sentido a ela.
  */
 
-export const PAPEIS = ["adm", "professor", "aluno"] as const
-export type PapelEscola = (typeof PAPEIS)[number]
-
-export function ehPapel(v: string): v is PapelEscola {
-  return (PAPEIS as readonly string[]).includes(v)
-}
+export { PAPEIS, ehPapel, rotuloDePapel } from "@/lib/escola-papeis"
+export type { PapelEscola } from "@/lib/escola-papeis"
 
 /** Os estados de uma escola. Quem interpreta é decidirAcessoEscolar. */
 export const STATUS_ESCOLA = ["ativa", "suspensa"] as const

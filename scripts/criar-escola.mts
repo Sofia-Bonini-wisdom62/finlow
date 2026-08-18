@@ -1,7 +1,14 @@
 /**
- * Cria uma escola e a conta do adm dela. É a ÚNICA porta de entrada de escola
- * — não existe UI de signup B2B, e isso é decisão: a venda é manual e a
- * cobrança B2B fica fora deste repo por enquanto (docs/backlog-produto.md).
+ * Cria uma escola e a conta do adm dela, pela linha de comando.
+ *
+ * DEIXOU DE SER A ÚNICA PORTA em 18/08/2026: a mesma operação agora tem tela
+ * em /ops (superfície da fundadora). As duas chamam `criarEscolaComAdm` de
+ * lib/ops-escola.ts, e a regra vive lá justamente para não existirem duas
+ * versões da mesma transação divergindo no primeiro ajuste.
+ *
+ * O script continua porque a tela depende de sessão e de `OPS_EMAILS`
+ * configurada, e criar a PRIMEIRA escola de um ambiente novo (ou consertar um
+ * acesso perdido) não pode depender de já se ter acesso.
  *
  * Roda em SIMULAÇÃO por padrão. Grava só com `--aplicar`, e isso não é
  * cerimônia: o banco deste projeto é o de produção.
@@ -14,18 +21,15 @@
  * lib/pagamento/acesso.ts (decidirAcessoEscolar).
  *
  * Se o e-mail já tem conta, ela vira o adm (recusa se já for membro de outra
- * escola — o @unique de MembroEscola.userId pegaria de qualquer jeito, mas a
- * mensagem daqui explica em vez de estourar). Se não tem, a conta nasce com
- * senha temporária de 12 caracteres IMPRESSA UMA ÚNICA VEZ no console — o
- * banco guarda só o hash, e a pessoa troca em Ajustes.
+ * escola). Se não tem, a conta nasce com senha temporária de 12 caracteres
+ * IMPRESSA UMA ÚNICA VEZ no console — o banco guarda só o hash, e a pessoa
+ * troca em Ajustes.
  */
 import { config } from "dotenv"
 config({ path: ".env.local" }); config({ path: ".env" })
 
-import { randomBytes } from "node:crypto"
-import bcrypt from "bcryptjs"
-
 const { db } = await import("../lib/db.js")
+const { criarEscolaComAdm, fimDoDiaEmSaoPaulo } = await import("../lib/ops-escola.js")
 
 function arg(nome: string): string | null {
   const i = process.argv.indexOf(`--${nome}`)
@@ -48,31 +52,24 @@ function falhar(msg: string): never {
 }
 
 if (!nome) falhar("--nome é obrigatório e não pode ser vazio.")
-if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(admEmail)) falhar(`--adm-email inválido: "${admEmail}"`)
 
 let ativaAte: Date | null = null
 if (ativaAteBruto) {
-  ativaAte = new Date(`${ativaAteBruto}T23:59:59-03:00`)
-  if (Number.isNaN(ativaAte.getTime())) falhar(`--ativa-ate ilegível: "${ativaAteBruto}" (use AAAA-MM-DD)`)
-  if (ativaAte <= new Date()) falhar(`--ativa-ate já passou: ${ativaAteBruto}. Vigência nova no passado é suspensão disfarçada — use o status.`)
+  ativaAte = fimDoDiaEmSaoPaulo(ativaAteBruto)
+  if (!ativaAte) falhar(`--ativa-ate ilegível: "${ativaAteBruto}" (use AAAA-MM-DD)`)
 }
 
+// A simulação precisa saber se a conta já existe para dizer o que vai
+// acontecer. É leitura, e a validação de verdade (formato do e-mail, vigência
+// no passado, conta já vinculada) acontece dentro de criarEscolaComAdm — aqui
+// só antecipamos a recusa para não fingir que a simulação passou.
 const existente = await db.user.findUnique({
   where: { email: admEmail },
-  select: { id: true, nome: true, membroEscola: { select: { papel: true, escola: { select: { nome: true } } } } },
+  select: { nome: true, membroEscola: { select: { papel: true, escola: { select: { nome: true } } } } },
 })
 
-if (existente?.membroEscola) {
-  console.log(
-    `✗ ${admEmail} já é ${existente.membroEscola.papel} da escola "${existente.membroEscola.escola.nome}".`
-  )
-  console.log("  Uma conta pertence a UMA escola (MembroEscola.userId @unique). Use outro e-mail.")
-  await db.$disconnect()
-  process.exit(1)
-}
-
 console.log(`${aplicar ? "" : "[simulação] "}Escola "${nome}"`)
-console.log(`  status ativa · vigência ${ativaAte ? `até ${ativaAteBruto}` : "sem prazo (piloto)"}`)
+console.log(`  status ativa · vigência ${ativaAteBruto ? `até ${ativaAteBruto}` : "sem prazo (piloto)"}`)
 console.log(
   existente
     ? `  adm: conta existente ${admEmail} (${existente.nome ?? "sem nome"}) vira adm`
@@ -80,33 +77,28 @@ console.log(
 )
 
 if (!aplicar) {
+  if (existente?.membroEscola) {
+    console.log(
+      `\n✗ ${admEmail} já é ${existente.membroEscola.papel} da escola "${existente.membroEscola.escola.nome}".`
+    )
+    console.log("  Uma conta pertence a UMA escola (MembroEscola.userId @unique). Use outro e-mail.")
+  }
   console.log("\nNada gravado. Rode com --aplicar para criar de verdade.")
   await db.$disconnect()
-  process.exit(0)
+  process.exit(existente?.membroEscola ? 1 : 0)
 }
 
-const senhaTemporaria = existente ? null : randomBytes(9).toString("base64url")
+const r = await criarEscolaComAdm({ nome, admEmail, ativaAte })
 
-await db.$transaction(async (tx) => {
-  const escola = await tx.escola.create({
-    data: { nome, status: "ativa", ativaAte },
-  })
-  const userId =
-    existente?.id ??
-    (
-      await tx.user.create({
-        data: { email: admEmail, senha: await bcrypt.hash(senhaTemporaria!, 10) },
-        select: { id: true },
-      })
-    ).id
-  await tx.membroEscola.create({
-    data: { userId, escolaId: escola.id, papel: "adm" },
-  })
-})
+if (!r.ok) {
+  console.log(`\n✗ ${r.detalhe}`)
+  await db.$disconnect()
+  process.exit(1)
+}
 
 console.log(`\n✓ Escola "${nome}" criada, ${admEmail} é o adm.`)
-if (senhaTemporaria) {
-  console.log(`\n  SENHA TEMPORÁRIA (não aparece de novo): ${senhaTemporaria}`)
+if (r.senhaTemporaria) {
+  console.log(`\n  SENHA TEMPORÁRIA (não aparece de novo): ${r.senhaTemporaria}`)
   console.log("  Peça para a pessoa trocar em Ajustes no primeiro acesso.")
 }
 

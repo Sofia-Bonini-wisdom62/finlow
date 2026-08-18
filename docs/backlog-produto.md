@@ -369,9 +369,10 @@ Decisão da fundadora, desenhada em quadro branco: o canal escolar reabre como
 - Escopo: o quadro completo, construído em etapas — cada etapa um commit
   deployável.
 - Alunos e professores entram por **convite com código** (multiuso, por
-  turma); a escola e a conta do adm nascem por **script manual**
-  (`scripts/criar-escola.mts`) — sem UI de signup B2B e sem cobrança B2B
-  neste repo por enquanto.
+  turma); a escola e a conta do adm nascem pela **operação do Finlow**, nunca
+  por signup — sem UI de signup B2B e sem cobrança B2B neste repo por
+  enquanto. *(Atualizado em 18/08/2026: eram só `scripts/criar-escola.mts`;
+  agora há também `/ops/escolas`, e os dois caminhos chamam a mesma função.)*
 - Membro de escola ativa conta como **premium** (quem decide continua sendo
   só `lib/pagamento/acesso.ts`).
 
@@ -382,6 +383,19 @@ venda):**
   idade; consentimento de responsável (`consentimentoLGPD`, reservado no
   schema) precisa de texto jurídico antes de escola real com menores.
   Relaciona-se com a pendência R1 (política de retenção).
+
+  **Cresceu em 18/08/2026, por decisão consciente da fundadora.** A criação
+  de contas de aluno em lote (`/ops`, `criarAlunosEmLote`) foi pedida e
+  construída sabendo que a pendência estava aberta, porque o bloqueio
+  operacional era real: no Fundamental 1 a criança não tem e-mail para
+  receber convite, e sem isso não há piloto. O que a decisão adiciona à
+  dívida: o Finlow passa a **guardar nome de criança** sem nenhum
+  consentimento coletado no produto, e a escola passa a **conhecer a senha
+  inicial** de cada aluno. O que foi feito para a dívida não crescer sozinha:
+  a rota pede **só o nome** (nada de data de nascimento, e-mail, telefone ou
+  responsável), o login vive num domínio `.invalid` que nunca recebe
+  mensagem, e a tela avisa o risco antes de abrir o formulário. **Continua
+  valendo: validar com advogado antes de escola real com menores.**
 - **Cota de IA por aluno** — premium por escola ganha teto próprio
   (`TETO_ESCOLA_TOKENS`) em vez do Infinity do assinante; o número é
   afinável e a fundadora pode derrubar o teto quando quiser.
