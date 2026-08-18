@@ -1,5 +1,7 @@
 /**
- * Testa a PORTA DE ENTRADA da landing (app/page.tsx, components/landing/*).
+ * Testa a PORTA DE ENTRADA do produto: a landing (app/page.tsx,
+ * components/landing/*) e as duas telas em que ela desemboca, /login e
+ * /cadastro.
  *
  * RODA SEM BANCO E SEM BUILD — lê o fonte e confere o que ele promete.
  *
@@ -17,6 +19,12 @@
  * O teste confere também que cada rota interna citada na landing EXISTE como
  * arquivo de rota — link de entrada que aponta para 404 é pior que link nenhum,
  * porque parece resolvido.
+ *
+ * E confere o outro lado da porta, pelo mesmo motivo que o resto: /cadastro
+ * abria dizendo "pra salvar seu perfil e seu progresso na trilha", palavra que
+ * só significa alguma coisa DEPOIS de entrar, na primeira tela em que a pessoa
+ * decide se entra. Jargão de dentro do app na tela de fora não quebra build nem
+ * lint; volta na próxima vez que alguém reescrever a frase.
  *
  *   node --import tsx scripts/testar-landing.mts
  */
@@ -234,6 +242,96 @@ checar(
   "a rota que grava o e-mail continua a mesma (nada de dado perdido)",
   formEmail.includes('fetch("/api/waitlist"') && existsSync(join(raiz, "app/api/waitlist/route.ts"))
 )
+
+// ------------------------------------- o outro lado da porta (auth) ---
+console.log("\nlogin e cadastro falam a língua de quem ainda não entrou")
+
+const cadastro = ler("app/(auth)/cadastro/page.tsx")
+const login = ler("app/(auth)/login/page.tsx")
+const botaoGoogle = ler("components/auth/BotaoGoogle.tsx")
+
+/**
+ * A COPY das telas de auth: o que sobra depois de tirar comentário, classe,
+ * estilo e rota. Sem esse corte a checagem acusaria `router.push("/trilha")`
+ * como jargão de tela — e guard que acusa o que ninguém lê treina quem vier
+ * depois a desligá-lo.
+ */
+function copyDaTela(fonte: string): string {
+  return semComentarios(fonte)
+    .replace(/(className|style|href|id|htmlFor|type|inputMode|autoComplete|name|src|alt)=\{?["'][^"']*["']\}?/g, " ")
+    .replace(/(["'])\/[^"']*\1/g, " ")
+}
+
+/**
+ * Palavras que só existem depois de entrar. Não são palavras proibidas no app:
+ * são palavras que a tela de fora não pode usar antes de explicar, porque quem
+ * está lendo ainda não viu nenhuma delas.
+ */
+const JARGAO: [string, RegExp][] = [
+  ["trilha", /\btrilhas?\b/i],
+  ["liga", /\bliga\b/i],
+  ["XP", /\bXP\b/],
+  ["ofensiva", /\bofensivas?\b/i],
+  ["combo", /\bcombos?\b/i],
+  ["baú", /\bba[uú]\b/i],
+  ["corredor", /\bcorredor\b/i],
+  ["missão", /\bmiss(ão|ões|ao|oes)\b/i],
+  ["módulo", /\bm[oó]dulos?\b/i],
+  ["bloco", /\bblocos?\b/i],
+  ["Finlo Coins", /\bfinlo\b|\bcoins?\b/i],
+]
+
+for (const [tela, fonte] of [["cadastro", cadastro], ["login", login]] as const) {
+  const copy = copyDaTela(fonte)
+  for (const [palavra, expressao] of JARGAO) {
+    checar(`o ${tela} não usa "${palavra}" antes de a pessoa entrar`, !expressao.test(copy))
+  }
+}
+
+// a própria checagem precisa poder falhar
+checar(
+  "a checagem de jargão reprova a frase antiga",
+  JARGAO.some(([, e]) => e.test("Pra salvar seu perfil e seu progresso na trilha."))
+)
+
+// O porquê da data de nascimento (metade já entregue do item 4 da avaliação
+// UX): campo sensível pedido sem motivo é fricção, e o motivo é curto.
+checar(
+  "a data de nascimento continua com o porquê na tela",
+  /adequar o conteúdo/i.test(cadastro) && /menores/i.test(cadastro)
+)
+
+// Fricção: o que não é essencial não pode virar obrigatório sem decisão.
+const campos = [...cadastro.matchAll(/<input\b[\s\S]*?\/>/g)].map((m) => m[0])
+checar("achei os campos do cadastro", campos.length >= 6, `(${campos.length})`)
+function campo(marca: string): string | undefined {
+  return campos.find((c) => c.includes(marca))
+}
+for (const [nome, marca] of [["celular", 'type="tel"'], ["apelido", 'id="apelido"']] as const) {
+  const c = campo(marca)
+  checar(`o campo ${nome} existe`, !!c)
+  checar(`o campo ${nome} continua opcional`, !!c && !/\brequired\b/.test(c))
+}
+for (const [nome, marca] of [["e-mail", 'type="email"'], ["senha", 'type="password"'], ["data de nascimento", 'id="dataNascimento"']] as const) {
+  const c = campo(marca)
+  checar(`o campo ${nome} continua obrigatório`, !!c && /\brequired\b/.test(c))
+}
+
+// As duas telas se apontam: quem errou a porta não precisa voltar para a home.
+checar("o cadastro oferece o caminho de quem já tem conta", hrefs(cadastro).includes("/login"))
+checar("o login oferece o caminho de quem ainda não tem", hrefs(login).includes("/cadastro"))
+
+/**
+ * O botão do Google se esconde sozinho quando as chaves OAuth não estão na
+ * Vercel (pendência registrada em estado-do-produto.md). Botão fixo no HTML
+ * apareceria sem as chaves e levaria a uma tela de erro do NextAuth: a pessoa
+ * conclui que a conta DELA tem problema. É por isso que ele pergunta ao
+ * servidor quem está ligado, e é isso que esta checagem guarda.
+ */
+checar("as duas telas usam o botão do Google que se esconde sozinho",
+  /BotaoGoogle/.test(cadastro) && /BotaoGoogle/.test(login))
+checar("o botão pergunta ao servidor se o Google está ligado", /getProviders\(\)/.test(botaoGoogle))
+checar("e some quando não está", /if \(!disponivel\) return null/.test(botaoGoogle))
 
 // ------------------------------------------------------------ metadados ---
 console.log("\nmetadados e selo da página")

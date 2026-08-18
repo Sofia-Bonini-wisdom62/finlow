@@ -534,11 +534,43 @@ Lista do mais crítico ao mais simples; cada item é um trabalho independente.
    > sem citar valor. Publicar o número na home é escolha comercial, não
    > conserto de defeito, e não entrou aqui por isso.
 
-4. **🟠 Cadastro com fricção** (revisado 16/08: metade caiu). A data de
-   nascimento GANHOU o porquê na tela ("adequar o conteúdo à idade e menores
-   nunca verem anúncio", V2-1). Segue pendente: as chaves OAuth do Google na
-   Vercel (o botão se esconde sem elas) e o subtítulo que fala "trilha" antes
-   de a pessoa saber o que é.
+4. **🟠 Cadastro com fricção** (revisado 16/08: metade caiu; a metade de código
+   fechou em 18/08). A data de nascimento GANHOU o porquê na tela ("adequar o
+   conteúdo à idade e menores nunca verem anúncio", V2-1). ~~O subtítulo que
+   fala "trilha" antes de a pessoa saber o que é~~ ✅ **18/08/2026.** Segue
+   pendente só o que não é código: as chaves OAuth do Google na Vercel (o botão
+   se esconde sem elas).
+
+   > **O defeito era de ordem, não de palavra.** A pessoa chega da home tendo
+   > lido "extrato", "painel" e "IA", e a primeira tela em que ela decide se
+   > entra descrevia a conta com a única palavra que ela ainda não podia
+   > conhecer. O subtítulo passou a dizer o que a conta guarda, no vocabulário
+   > que ela acabou de ler: *"Pra guardar seu painel, suas metas e as conversas
+   > com a IA. Criar conta é de graça."* O "de graça" já estava no CTA da home
+   > e sumia justo na hora de decidir.
+   >
+   > **O rótulo do apelido tinha o mesmo defeito e caiu junto**: "Como você
+   > quer aparecer **na liga**?" virou "no ranking", que é o que a versão de
+   > quem chega por convite já dizia ("ranking da sala"). O campo é o mesmo,
+   > opcional e sempre visível, como a decisão de 14/08 registrou; mudou só a
+   > palavra que ninguém de fora entende.
+   >
+   > **Guardado por `scripts/testar-landing.mts`** (sem banco, sem build), que
+   > passou a cobrir o outro lado da porta: recusa jargão de dentro do app na
+   > copy de `/login` e `/cadastro` (trilha, liga, XP, ofensiva, combo, baú,
+   > corredor, missão, módulo, bloco, Finlo Coins), confere que **celular e
+   > apelido continuam opcionais** (fricção só volta com decisão registrada),
+   > que a data de nascimento continua com o porquê à vista e que o botão do
+   > Google segue perguntando ao servidor se está ligado. A varredura ignora
+   > classe, estilo e rota: guard que acusasse `router.push("/trilha")` como
+   > jargão de tela treinaria quem viesse depois a desligá-lo. Conferido contra
+   > o código mutilado.
+   >
+   > **A metade que sobrou é passo de painel, não de código.** Sem
+   > `GOOGLE_CLIENT_ID`/`GOOGLE_CLIENT_SECRET` na Vercel o provider não é
+   > registrado, e o botão some em vez de levar a uma tela de erro do NextAuth
+   > (a pessoa concluiria que a conta dela é que tem problema). No dia em que
+   > as chaves entrarem, ele aparece sozinho.
 
 5. ~~**🟠 Imagem quebrada em toda ficha de módulo.**~~ ✅ **13/08/2026** (Fin
    1): o fallback virou o Fin professor num bloco surface — o
