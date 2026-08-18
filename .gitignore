@@ -9,9 +9,10 @@
 /build
 
 # env files
-.env
-.env.local
-.env*.local
+# .env* cobre qualquer variante, inclusive as que um `vercel env pull` cria
+# (.env.production, .env.vercel). O exemplo, que nao tem segredo, fica de fora.
+.env*
+!.env.example
 
 # misc
 .DS_Store
