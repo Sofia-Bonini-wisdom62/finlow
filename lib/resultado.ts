@@ -1,4 +1,5 @@
 import type { SessaoFluxo, FaixaResultado } from "@/types/trilha"
+import { escaparHtml } from "./escapar-html"
 
 // "120,50" | "120.50" | "120" -> número; vazio/inválido -> 0
 function num(v: string | undefined): number {
@@ -455,14 +456,18 @@ export function interpolar(texto: string, d: Derivados, sessao: SessaoFluxo): st
        * Quem escreve a aula escolhe a chave conforme a unidade da pergunta.
        */
       case "valorCru":
-        return sessao.valor ?? ""
+        // Escapado porque o retorno de interpolar() vai para dangerouslySetInnerHTML
+        // em TelaResultado. O HTML que o autor da aula escreveu no template segue
+        // valendo: quem é escapado aqui é só o pedaço que a pessoa digitou.
+        return escaparHtml(sessao.valor ?? "")
       case "entrou":
       case "saiu":
       case "sobrou":
       case "valor":
         return formatBRL(d[chave as "entrou" | "saiu" | "sobrou" | "valor"])
       default:
-        return sessao[chave] ?? ""
+        // Mesma razão do valorCru: chave livre da aula lendo campo cru da sessão.
+        return escaparHtml(sessao[chave] ?? "")
     }
   })
 }

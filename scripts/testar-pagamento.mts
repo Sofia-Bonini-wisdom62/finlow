@@ -180,6 +180,31 @@ conferir(
   false
 )
 
+// A chave RESTRITA (rk_) move dinheiro igual à secreta dentro das permissões
+// que recebeu, e criar Checkout Session é justamente o recorte que este app
+// pediria. Reconhecer só a sk_ deixava passar a chave de quem seguiu menor
+// privilégio, que é o contrário do que a trava quer.
+conferir(
+  "rk_live em máquina local é BARRADO",
+  ok(conferirAmbiente("rk_live_123", undefined, "http://localhost:3000")),
+  false
+)
+conferir(
+  "rk_live em preview é BARRADO",
+  ok(conferirAmbiente("rk_live_123", "preview", "https://finlow-xi-git-x.vercel.app")),
+  false
+)
+conferir(
+  "rk_live em produção com URL certa passa",
+  ok(conferirAmbiente("rk_live_123", "production", "https://finlow-xi.vercel.app")),
+  true
+)
+conferir(
+  "rk_test em máquina local passa (é chave de teste)",
+  ok(conferirAmbiente("rk_test_123", undefined, "http://localhost:3000")),
+  true
+)
+
 // ------------------------------------------------- o preço para quem não paga ---
 // A tela de /premium mostrava o valor SÓ para quem já assinava. Quem não assina
 // via vantagens, um "Assinar" e nenhum número — e o preço só aparecia depois do

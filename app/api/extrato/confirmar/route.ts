@@ -65,7 +65,10 @@ export async function PATCH(req: NextRequest) {
         extratoImportId,
       })
       ajusteCriado = { descricao, valor: criada.valor }
-      console.log(`[extrato/confirmar] ajuste ${descricao} de ${ajuste.valor}`)
+      // O VALOR NAO ENTRA NO LOG. Ele acabou de ser cifrado por criarTransacao,
+      // e imprimi-lo aqui o devolveria em claro para o log de runtime da Vercel,
+      // que é lido por quem tem acesso ao projeto. O id basta para rastrear.
+      console.log(`[extrato/confirmar] ajuste ${ajuste.tipo} aplicado (transacao ${criada.id})`)
     }
 
     await db.extratoImport.update({

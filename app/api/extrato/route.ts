@@ -80,7 +80,6 @@ export async function POST(req: NextRequest) {
       {
         codigo: "INDISPONIVEL",
         erro: "Não consegui nem começar. Tenta de novo em alguns segundos.",
-        motivo: (e as Error)?.message?.slice(0, 200),
       },
       { status: 503 }
     )
@@ -137,7 +136,6 @@ export async function POST(req: NextRequest) {
       {
         codigo: "BANCO_INDISPONIVEL",
         erro: "Não consegui nem começar a leitura porque o banco de dados não respondeu. Tenta de novo em alguns segundos.",
-        motivo: (e as Error)?.message?.slice(0, 200),
       },
       { status: 503 }
     )

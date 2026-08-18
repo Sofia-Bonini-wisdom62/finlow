@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { MetricServiceClient, protos } from "@google-cloud/monitoring"
+import { createHash, timingSafeEqual } from "node:crypto"
 
 type ITimeSeries = protos.google.monitoring.v3.ITimeSeries
 type IPoint = protos.google.monitoring.v3.IPoint
@@ -163,12 +164,30 @@ async function metricasProduto() {
 }
 
 export async function GET(request: Request) {
-  const expected = process.env.OPS_METRICS_TOKEN
-  if (expected) {
-    const supplied = new URL(request.url).searchParams.get("token")
-    if (supplied !== expected) {
-      return NextResponse.json({ error: "unauthorized" }, { status: 401 })
-    }
+  /**
+   * FALHA FECHADA, e isto é o conserto de um guard que não guardava.
+   *
+   * Antes o teste era "se a variável existe, confira". Sem ela definida o bloco
+   * inteiro era pulado e a rota respondia a qualquer um, com a aparência de
+   * protegida. Rota de operação sem segredo configurado não serve: recusa.
+   */
+  const esperado = process.env.OPS_METRICS_TOKEN
+  if (!esperado) {
+    console.error("[ops/metrics] OPS_METRICS_TOKEN nao definida, recusando")
+    return NextResponse.json({ error: "config_incompleta" }, { status: 503 })
+  }
+
+  /**
+   * O segredo vem por CABEÇALHO, não por query.
+   *
+   * Token em query string entra inteiro no log de acesso da Vercel, e segredo
+   * que vive no log deixou de ser segredo: quem tem leitura no projeto (ou um
+   * comprador com acesso concedido numa due diligence) o lê e recupera a rota.
+   */
+  const enviado = request.headers.get("x-ops-token") ?? ""
+  const digerir = (v: string) => createHash("sha256").update(v).digest()
+  if (!timingSafeEqual(digerir(enviado), digerir(esperado))) {
+    return NextResponse.json({ error: "unauthorized" }, { status: 401 })
   }
 
   const produto = await metricasProduto()

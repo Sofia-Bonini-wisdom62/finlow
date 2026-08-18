@@ -6,6 +6,14 @@ import { getStripe, idDaAssinaturaNaFatura, fimDoPeriodo } from "@/lib/pagamento
 export const dynamic = "force-dynamic"
 
 /**
+ * Os dois estados em que a Stripe considera a assinatura valendo.
+ *
+ * `incomplete` e `past_due` NAO entram: a primeira é boleto gerado e não pago,
+ * a segunda é cobrança recusada. Nenhuma das duas é dinheiro que entrou.
+ */
+const STATUS_PAGOS = new Set(["active", "trialing"])
+
+/**
  * Webhook da Stripe. É QUEM decide que alguém passou a ser premium — o retorno
  * do navegador não decide nada.
  *
@@ -95,6 +103,22 @@ async function aoConcluirCheckout(sessao: Stripe.Checkout.Session) {
   const assinatura = await getStripe().subscriptions.retrieve(idAssinatura)
   const fim = fimDoPeriodo(assinatura)
 
+  /**
+   * `checkout.session.completed` NAO quer dizer pago.
+   *
+   * Com boleto, transferência ou qualquer método de notificação atrasada a
+   * sessão chega com `payment_status: "unpaid"` e a assinatura nasce
+   * `incomplete`. Promover aqui daria premium a quem só gerou o boleto, e o
+   * acesso duraria o período inteiro que nunca foi pago. Quem confirma que o
+   * dinheiro entrou é o `invoice.paid`, que chega depois e trata este caso.
+   */
+  if (sessao.payment_status === "unpaid" || !STATUS_PAGOS.has(assinatura.status)) {
+    console.warn(
+      `[webhook] checkout ${sessao.id} ainda nao pago (pagamento=${sessao.payment_status}, assinatura=${assinatura.status}), sem promover`
+    )
+    return
+  }
+
   await db.assinatura.upsert({
     where: { userId },
     create: {
@@ -138,6 +162,20 @@ async function aoPagarFatura(fatura: Stripe.Invoice) {
 
   const assinatura = await getStripe().subscriptions.retrieve(idAssinatura)
   const fim = fimDoPeriodo(assinatura)
+
+  /**
+   * A Stripe entrega fora de ordem e reentrega por dias o evento que tomou 5xx.
+   * Sem olhar o estado de agora, um `invoice.paid` atrasado ressuscitaria uma
+   * assinatura já cancelada por estorno ou disputa: o `updateMany` casa só por
+   * `externalId` e cravaria "ativa" por cima do estado terminal. A verdade é o
+   * objeto que acabou de vir da Stripe, não a ordem em que o evento chegou.
+   */
+  if (!STATUS_PAGOS.has(assinatura.status)) {
+    console.warn(
+      `[webhook] invoice.paid de ${idAssinatura} com assinatura em ${assinatura.status}, sem reativar`
+    )
+    return
+  }
 
   const { count } = await db.assinatura.updateMany({
     where: { externalId: idAssinatura },

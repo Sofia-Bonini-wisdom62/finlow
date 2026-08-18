@@ -9,10 +9,12 @@ Legenda: ✅ pronto · 🔧 em desenvolvimento · 📋 planejado · 🚫 fora de
 
 Última revisão: 17/08/2026 — a resposta do chat deixou de chegar só no fim
 (jorro em SSE), e o "solte o extrato aqui" do campo de escrever virou gesto de
-verdade. Na mesma data, uma passada de correção nos documentos: a pendência de
-`/api/ops/metrics` descrevia um guard que já existe (falta só a variável na
-Vercel) e o ✅ de exportar dados ganhou a ressalva que o próprio arquivo já
-cobrava. Antes disso: o assistente deixou de ter uma voz só (seção
+verdade. Na mesma data, uma passada de segurança: as dependências com CVE no
+caminho de produção subiram (pdfjs-dist, next-auth, next), o webhook da Stripe
+parou de dar premium a boleto não pago, o texto que a pessoa digita passou a ser
+escapado antes de virar HTML na trilha, o app ganhou cabeçalhos de segurança, e
+o guard de `/api/ops/metrics` passou a falhar fechado. O ✅ de exportar dados
+ganhou a ressalva que o próprio arquivo já cobrava. Antes disso: o assistente deixou de ter uma voz só (seção
 *Personalidade do assistente* abaixo). A trilha de Ensino Médio segue portada e
 semeada atrás do gate de público, e as cinco fases do script do Plano 2026–2029
 seguem entregues.
@@ -303,16 +305,17 @@ silenciosa. Estão descritos em `lib/pagamento/stripe.ts`, com teste para cada u
 
 ## Pendências conhecidas
 
-- **`/api/ops/metrics` está aberta em produção porque `OPS_METRICS_TOKEN` não
-  existe na Vercel.** O guard já existe desde 31/07: o topo do `GET` em
-  `app/api/ops/metrics/route.ts` confere `?token=` contra a variável e devolve
-  401 — mas só arma quando a variável está definida. Sem ela, qualquer um que
-  saiba a URL lê o id do projeto GCP, o consumo de Vertex das últimas 24h e as
-  contagens de produto (indicações, leads B2B). Não há dado pessoal ali, e é
-  por isso que não é urgência — mas é métrica de negócio na rua, e o conserto
-  é definir a variável na Vercel. Fica como decisão, não como conserto
-  silencioso: quem chama essa rota hoje precisa saber que vai passar a mandar
-  o token.
+- **`/api/ops/metrics` agora falha FECHADA, e por isso está fora do ar até
+  `OPS_METRICS_TOKEN` existir na Vercel** (17/08/2026). O guard de 31/07 tinha
+  o defeito de só armar quando a variável estava definida: sem ela o bloco
+  inteiro era pulado e a rota respondia a qualquer um, com aparência de
+  protegida. Hoje, sem a variável, ela devolve 503; com ela, exige o segredo no
+  cabeçalho `x-ops-token` (não mais em `?token=`, que entrava inteiro no log de
+  acesso da Vercel e transformava o segredo em coisa lida por quem tem o
+  projeto) e compara em tempo constante. **Para voltar a usar:** definir
+  `OPS_METRICS_TOKEN` na Vercel e mandar o cabeçalho. Enquanto isso, o que
+  estava exposto (id do projeto GCP, consumo de Vertex de 24h, contagens de
+  indicação e lead B2B) deixou de estar.
 - **Chat e extrato continuam sem limite de TAXA** — o que entrou em 10/08 foi um
   teto de VOLUME mensal (tokens), que é coisa diferente. O teto limita a conta do
   mês; não impede alguém de gastar a cota inteira em dois minutos, nem protege o

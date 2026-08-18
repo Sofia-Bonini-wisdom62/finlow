@@ -406,7 +406,7 @@ BRL (`lib/custo.ts`), uso registrado por origem (`lib/uso-ia.ts`).
 | 9 | Proteção de custo por abuso | — | Rate limit existe **só** na rota de lead B2B. **Chat e extrato — as chamadas que custam dinheiro — não têm limite.** |
 | 10 | "Condições especiais para quem entrar cedo" / planos | FAQ da landing | Parcialmente fechada. O paywall existe desde 10/08/2026 (`lib/pagamento/`, `/premium`), então a resposta do FAQ deixou de dizer que planos "serão definidos" e passou a descrever o que há: uso grátis com limite mensal de IA e um premium opcional. A `/premium` mostra o valor para quem ainda não assina desde 14/08/2026 (item 3 da avaliação UX): `lib/pagamento/preco.ts` lê o preço do mesmo `STRIPE_PRICE_ID` que o checkout cobra, e `/api/pagamento/assinatura` devolve o `plano` cozido para a tela. **Segue não fechada:** a cobrança está em `sk_test` e nunca cobrou ninguém. "Condições especiais" continua sendo promessa comercial, sem nada no código que a sustente. |
 | 11 | "userId sempre da sessão — nunca do client" | `lib/painel.ts`, regra de segurança do Painel | Verdade em todas as rotas de dinheiro, e era **mentira em três da trilha** até 07/08/2026: `/api/progresso` aceitava o header `x-user-id` (e criava a conta correspondente), `/api/trilha` e `/api/trilha/[moduloId]` aceitavam `?userId=`. Fechado — ver *Limpeza* em `estado-do-produto.md`. |
-| 12 | Rota de operação só para quem opera | — | Parcialmente fechada. O guard existe desde 31/07/2026: com `OPS_METRICS_TOKEN` definida, `/api/ops/metrics` exige `?token=` e devolve 401 para o resto. **Falta definir a variável na Vercel** — sem ela o guard não tranca e a produção segue respondendo (id do projeto GCP, consumo de Vertex de 24h, contagens de indicação e lead B2B) para qualquer um que saiba a URL. |
+| ~~12~~ | ~~Rota de operação só para quem opera~~ | — | ✅ **Fechada em 17/08/2026.** O guard de 31/07 não guardava: só armava se `OPS_METRICS_TOKEN` existisse, e sem ela a rota respondia a qualquer um. Agora falha fechada (503 sem a variável), lê o segredo do cabeçalho `x-ops-token` em vez da query (token em URL vira linha de log) e compara em tempo constante. Custo da mudança: a rota fica 503 até a variável ser definida na Vercel, e quem a chama passa a mandar o cabeçalho. |
 
 **Nota sobre `docs/backlog-trilha-t2.md`:** a seção "verificação contra o
 código" é de 02/08 e **já está vencida**. Os quatro pré-requisitos que ela
@@ -427,8 +427,6 @@ fechada). As duas divergências que importam estão **fora dele**:
   é justamente o mais sensível.
 - **Chat e extrato não têm rate limit.** Uma conta abusiva vira conta de Vertex.
 
-Dentro do app sobrou uma só, e é de operação, não de usuário: o guard de
-**`/api/ops/metrics`** existe desde 31/07/2026 (`OPS_METRICS_TOKEN`, 401 sem o
-token), mas **a variável ainda não está definida na Vercel** — sem ela a rota
-segue respondendo aberta em produção. As portas do pré-login que davam para
+Dentro do app, a de operação fechou em 17/08/2026: **`/api/ops/metrics`** falha
+fechada e lê o segredo do cabeçalho. As portas do pré-login que davam para
 escrever na conta alheia foram fechadas em 07/08/2026.

@@ -78,14 +78,18 @@ export function conferirAmbiente(
   vercelEnv: string | undefined,
   appUrl: string | undefined
 ): { ok: true } | { ok: false; motivo: string } {
-  if (!chave.startsWith("sk_live_")) return { ok: true }
+  // sk_live_ e rk_live_ movimentam dinheiro igual. A restrita (rk_) é o que
+  // alguém cria justamente ao seguir menor privilégio, e criar Checkout Session
+  // é a permissão que este app pediria: reconhecer só a secreta deixaria passar
+  // exatamente a chave de quem foi mais cuidadoso.
+  if (!/^(sk|rk)_live_/.test(chave)) return { ok: true }
 
   const ambiente = vercelEnv ?? "local"
   if (ambiente !== "production") {
     return {
       ok: false,
       motivo:
-        `STRIPE_SECRET_KEY é sk_live_ mas o ambiente é "${ambiente}". ` +
+        `STRIPE_SECRET_KEY é chave live mas o ambiente é "${ambiente}". ` +
         "Chave de produção fora de produção cobra cartão de verdade num teste. " +
         "Use sk_test_ aqui, e deixe a live só em Production na Vercel.",
     }
@@ -97,7 +101,7 @@ export function conferirAmbiente(
     return {
       ok: false,
       motivo:
-        `STRIPE_SECRET_KEY é sk_live_ mas NEXT_PUBLIC_APP_URL aponta para ${appUrl}. ` +
+        `STRIPE_SECRET_KEY é chave live mas NEXT_PUBLIC_APP_URL aponta para ${appUrl}. ` +
         "O checkout cobraria de verdade e devolveria a pessoa para uma URL que não existe.",
     }
   }
