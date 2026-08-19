@@ -11,6 +11,7 @@ import {
   type Publico,
 } from "@/lib/publico"
 import { montarCorredor } from "@/lib/corredor"
+import { estadoDaAula } from "@/lib/biblioteca"
 import { BottomNav } from "@/components/bottom-nav"
 
 /**
@@ -53,6 +54,7 @@ interface AulaCard {
   duracaoMin: number
   _count: { telas: number }
 }
+
 
 /**
  * Uma seção da biblioteca.
@@ -97,11 +99,7 @@ function Secao({
         {aulas.map((m) => {
           const deOutraTrilha = ehDeOutroPublico(m.publico, publico)
           const no = corredor.modulos.get(m.id)
-          const estado = deOutraTrilha
-            ? concluidosForaDoCorredor.has(m.id)
-              ? "concluido"
-              : "liberado"
-            : no?.estado ?? "trancado"
+          const estado = estadoDaAula(m, publico, corredor, concluidosForaDoCorredor)
           const trancado = estado === "trancado"
           const concluido = estado === "concluido"
 
@@ -264,8 +262,17 @@ export default async function BibliotecaPage() {
     .map((s) => ({ ...s, aulas: deOutras.filter((m) => m.publico === s.id) }))
     .filter((s) => s.aulas.length > 0)
 
-  const concluidos = daPessoa.filter(
-    (m) => corredor.modulos.get(m.id)?.estado === "concluido"
+  /**
+   * O contador do cabeçalho, sobre TODAS as aulas.
+   *
+   * Era `daPessoa.filter(...)`, e o denominador ao lado dele sempre foi
+   * `modulos.length`, que inclui as aulas de outros públicos: "150 aulas · 3
+   * concluídas" contava o numerador numa régua e o denominador em outra. O
+   * adulto que terminava uma aula escolar via o check verde aparecer no card e
+   * o número do topo não sair do lugar.
+   */
+  const concluidos = modulos.filter(
+    (m) => estadoDaAula(m, publico, corredor, concluidosForaDoCorredor) === "concluido"
   ).length
 
   return (
