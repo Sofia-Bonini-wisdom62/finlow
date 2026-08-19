@@ -174,7 +174,12 @@ percentuais moram em Análises de propósito.
   achar uma aula trancada e não poder abri-la é pior que não achar. Quem chega
   com dúvida específica vai ao Chat — e o botão "Preciso disso agora" do módulo
   travado leva para lá com o assunto escrito, porque o assistente consegue
-  ADIANTAR a aula na trilha.
+  ADIANTAR a aula na trilha. O botão que fecha esse mini-diálogo diz o que o
+  toque faz, não o que a resposta vai ser: "Pedir pro assistente", com "Abre o
+  chat com essa pergunta pronta" embaixo (19/08/2026, item 7 da avaliação de
+  UX). Antes dizia "Enviar para a IA reordenar", e um "não dá" do assistente
+  fazia dele um botão de mentira. Guardado por `scripts/testar-copy.mts`, que
+  só exige o rótulo honesto **enquanto** o toque for navegação para o chat.
 - Valores digitados nas telas de input **nunca persistem** — só sessão local.
 - Números macro (Selic, IPCA, rotativo) entram por `{{variável}}` da tabela
   `Indicador`, com fonte e data de apuração. O texto da aula nunca crava o

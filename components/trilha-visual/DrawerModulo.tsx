@@ -408,6 +408,13 @@ export default function DrawerModulo({
                           }}
                         />
                       </div>
+                      {/* O rótulo diz o que o toque FAZ, não o que a resposta
+                          vai ser. `confirmarNecessidade` abre o chat com a
+                          pergunta pronta, e quem decide se dá para adiantar é
+                          o assistente, no que ele responder. "Enviar para a IA
+                          reordenar" prometia a reordenação como consequência do
+                          clique: se a resposta fosse "não dá", o botão virava
+                          mentira, e a mecânica dele estava certa. */}
                       <button
                         type="button"
                         disabled={!motivoSel && !motivoLivre.trim()}
@@ -418,8 +425,14 @@ export default function DrawerModulo({
                           color: "var(--finlow-bg)",
                         }}
                       >
-                        Enviar para a IA reordenar
+                        Pedir pro assistente
                       </button>
+                      <p
+                        className="mt-1.5 text-center text-[11px]"
+                        style={{ color: "var(--finlow-muted)" }}
+                      >
+                        Abre o chat com essa pergunta pronta.
+                      </p>
                     </div>
                   </motion.div>
                 )}

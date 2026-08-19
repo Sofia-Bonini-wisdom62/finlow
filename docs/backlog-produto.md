@@ -636,18 +636,42 @@ Lista do mais crítico ao mais simples; cada item é um trabalho independente.
    > pedir jorro ou a rota parar de responder em SSE, o chat volta calado para os
    > pontinhos e tudo continua "funcionando".
 
-7. **🟡 Botão "Enviar para a IA reordenar" promete o que não faz.** Ele só
-   abre o chat com a mensagem pronta (`components/trilha-visual/DrawerModulo.tsx:394`).
-   Se a IA responder "não dá", vira botão de mentira. Renomear para algo como
-   "Pedir pro assistente" resolve — o problema é a promessa, não a mecânica.
+7. ~~**🟡 Botão "Enviar para a IA reordenar" promete o que não faz.**~~
+   ✅ **19/08/2026.** Ele só abre o chat com a mensagem pronta
+   (`components/trilha-visual/DrawerModulo.tsx`). Se a IA responder "não dá",
+   virava botão de mentira. O problema era a promessa, não a mecânica.
+
+   > **O rótulo passou a dizer o que o toque faz:** "Pedir pro assistente", com
+   > uma linha embaixo, "Abre o chat com essa pergunta pronta". Quem decide se
+   > dá para adiantar continua sendo a resposta do assistente, e agora a tela
+   > não decide isso antes dele.
+   >
+   > **Nada da mecânica mudou** e isso é a escolha: `confirmarNecessidade`
+   > continua montando a pergunta com o motivo escolhido e navegando para
+   > `/chat`. Construir a reordenação de verdade era o outro caminho, e não é
+   > correção de defeito — é frente nova, com decisão de produto por trás
+   > (quem pode furar o corredor, e sob qual critério).
+   >
+   > **Guardado por `scripts/testar-copy.mts`**, e a checagem é amarrada à
+   > mecânica, não à data: ela só exige o rótulo honesto **enquanto** o toque
+   > for navegação para o chat. No dia em que existir rota que reordena, ela
+   > afrouxa sozinha em vez de virar teste mentiroso pedindo para ser apagado.
 
 8. **🟡 Cheiro de beta + sem experiência de app** (revisado 16/08: metade
    caiu). O manifest/PWA EXISTE desde 13/08 (`app/manifest.ts`, Fin 1); e os
    "em breve" do Menu caíram de seis pra quatro (foto e personalidade
    viraram recurso de verdade). Push notification segue sem existir.
 
-9. **🟢 Deslizes pequenos** (revisado 16/08). (a) "Prefiro olhar o app
-   sozinha" com flexão feminina fixa — segue; (b) ~~accept do chat sem
+9. **🟢 Deslizes pequenos** (revisado 19/08). (a) ~~"Prefiro olhar o app
+   sozinha" com flexão feminina fixa~~ ✅ 19/08: virou "Prefiro olhar o app
+   **por conta própria**", que diz o mesmo sem flexionar e sem precisar de
+   "(a)". A varredura achou o espelho do deslize na landing ("Gráficos que você
+   precisa interpretar **sozinho**", masculino fixo), e ele caiu no mesmo
+   commit — eram os dois únicos casos em `app/` e `components/`. Guardado por
+   `scripts/testar-copy.mts`, que pega a palavra flexionada **só** quando a
+   pessoa é o sujeito: "a energia volta sozinha" passa, porque ali a
+   concordância está certa e guard que acusa frase correta só ensina a
+   desligá-lo; (b) ~~accept do chat sem
    `.qif`/`.txt`~~ ✅ 16/08, uma linha; (c) a cota em tokens continua sendo
    conta de padaria, a pessoa quer "quantas perguntas ainda tenho" — segue;
    (d) ~~Menu × Ajustes~~ ✅ com o redesign, a tela diz "Menu" como a aba.
