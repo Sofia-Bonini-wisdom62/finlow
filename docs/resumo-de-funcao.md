@@ -134,6 +134,12 @@ Retrato de um minuto: rosca do último mês **com movimento** (não o corrente),
 leituras em português, pontos e quatro portas para o resto do app. Os
 percentuais moram em Análises de propósito.
 
+Foto e capa se trocam por **um menu só** (`MenuDoPerfil`, 18/08/2026), atrás
+de um botão no cabeçalho: um bottom sheet com trocar e remover cada uma.
+Antes eram cinco botões soltos competindo com o conteúdo, e a lixeira ficava a
+um toque no lugar em que o dedo rola a página, então remover passou a pedir
+confirmação. Só o dono vê as imagens (a rota exige a sessão dele).
+
 ### 2.9 Trilha
 
 - **Corredor** (decisão da fundadora, 05/08/2026): cada módulo tem **4 lições**

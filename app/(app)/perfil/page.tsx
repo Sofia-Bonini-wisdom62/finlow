@@ -12,7 +12,7 @@ import type { Conquista } from "@/lib/conquistas"
 import { nivelDoTotal } from "@/lib/nivel"
 import { AVATAR_POSE, POSE } from "@/lib/fin"
 import { brl } from "@/lib/formato"
-import { TrocarImagem } from "@/components/perfil/TrocarImagem"
+import { MenuDoPerfil } from "@/components/perfil/MenuDoPerfil"
 
 /** O mesmo card do antigo perfil do jogador, agora morando na tela única. */
 const ICONE_CONQUISTA = {
@@ -215,12 +215,6 @@ export default function PerfilPage() {
             className="pointer-events-none absolute inset-0"
             style={{ background: "linear-gradient(to bottom, transparent 55%, var(--fl-page))" }}
           />
-          <TrocarImagem
-            tipo="banner"
-            temImagem
-            onMudou={(tem) => { setTemBanner(tem); setVersaoImg(Date.now()) }}
-            className="absolute right-4 top-3"
-          />
         </div>
       )}
 
@@ -241,12 +235,6 @@ export default function PerfilPage() {
                 {inicial}
               </div>
             )}
-            <TrocarImagem
-              tipo="foto"
-              temImagem={temFoto}
-              onMudou={(tem) => { setTemFoto(tem); setVersaoImg(Date.now()) }}
-              className="absolute -bottom-1 -right-1"
-            />
           </div>
           <div className={`min-w-0 flex-1 ${temBanner ? "pt-10 sm:pt-12" : ""}`}>
             <h1 className="truncate text-xl font-black tracking-tight text-fl-ink">{perfil.nome}</h1>
@@ -260,19 +248,21 @@ export default function PerfilPage() {
               {perfil.pontos} XP · faltam {jogo.paraProximo} pro nível {jogo.nivel + 1}
             </p>
           </div>
-        </header>
-
-        {/* Sem capa ainda: o convite fica pequeno e fora do caminho. */}
-        {!temBanner && (
-          <div className="mt-3 flex items-center gap-2">
-            <TrocarImagem
-              tipo="banner"
-              temImagem={false}
-              onMudou={(tem) => { setTemBanner(tem); setVersaoImg(Date.now()) }}
+          {/* O único controle de manutenção que sobrou na tela (18/08/2026).
+              Alinhado ao topo, com o mesmo respiro do bloco do nome, para
+              ficar na altura do h1 tanto com capa quanto sem. */}
+          <div className={`shrink-0 self-start ${temBanner ? "pt-10 sm:pt-12" : ""}`}>
+            <MenuDoPerfil
+              temFoto={temFoto}
+              temBanner={temBanner}
+              onMudou={(tipo, tem) => {
+                if (tipo === "foto") setTemFoto(tem)
+                else setTemBanner(tem)
+                setVersaoImg(Date.now())
+              }}
             />
-            <span className="text-[11.5px] font-bold text-fl-ink-3">Adicionar uma capa</span>
           </div>
-        )}
+        </header>
 
         {/* Os três tiles do desenho. Precisão só com quiz na semana — zero
             inventado diria "você errou tudo" para quem só não estudou. */}
