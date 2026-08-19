@@ -388,10 +388,22 @@ quem opera o Finlow.
   `/api/ops/metrics` (abaixo), que serve máquina.
 - **Escolas** (`/ops/escolas`): criar escola com a conta do adm junto (senha
   temporária mostrada uma vez), suspender e reativar, mudar a vigência.
-- **Gente** (`/ops/escolas/[id]`): trocar papel, tirar da escola sem apagar a
-  conta, designar professor de turma. Eram as quatro operações que só
-  existiam no Prisma Studio: `MembroEscola` nascia por resgate de convite e
-  nunca mudava, e `Turma.professorId` não tinha rota que o escrevesse.
+- **Gente** (`/ops/escolas/[id]`): adicionar uma pessoa (professor ou aluno)
+  sem convite, editar nome, login e turma, sortear senha nova, trocar papel,
+  tirar da escola sem apagar a conta, e designar professor de turma. Eram
+  operações que só existiam no Prisma Studio: `MembroEscola` nascia por
+  resgate de convite e nunca mudava, e `Turma.professorId` não tinha rota que
+  o escrevesse. Regras que a tela aplica: professor **precisa** de e-mail (é
+  por ele que a conta é recuperada) e aluno não; conta que já existe no
+  Finlow é **vinculada**, não recriada, e mantém a senha dela; trocar de
+  turma **move** o aluno (o N:N de `MembroTurma` continua servido pelo
+  convite, que soma); e campo não enviado não é tocado, para abrir um
+  formulário e fechar não apagar nome de ninguém.
+- **Sortear senha nova** existe porque o "esqueci a senha" não alcança quem
+  entrou pelo lote: o endereço `.invalid` não recebe mensagem. Sem ela, a
+  criança que esquece a senha perde a conta e o progresso junto. Seis
+  caracteres legíveis para aluno, doze para adulto. Conta que só entrava pelo
+  Google ganha senha própria e passa a ter os dois caminhos.
 - **Revogar convite**: `ConviteEscola.revogadoEm` era lido em quatro lugares
   e nunca escrito; um código vazado só morria por expirar ou esgotar os usos.
 - ⚠️ **Contas de aluno em lote**: cola a lista de nomes, sai login e senha

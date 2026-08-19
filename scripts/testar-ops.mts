@@ -147,6 +147,30 @@ conferir(
 )
 conferir("não sai sempre igual", new Set(amostra).size > 190, true)
 
+// -------------------------------------------------- nome de gente e login ---
+const { normalizarNome, FORMATO_EMAIL } = await import("../lib/ops-escola.js")
+
+console.log("\nnormalizarNome — a MESMA régua no cadastro e na edição")
+
+conferir("tira espaço da ponta", normalizarNome("  Ana Souza  "), { ok: true, nome: "Ana Souza" })
+conferir("espaço repetido vira um", normalizarNome("Ana    Souza"), { ok: true, nome: "Ana Souza" })
+conferir("uma letra não passa", normalizarNome("A").ok, false)
+conferir("vazio não passa", normalizarNome("   ").ok, false)
+conferir("81 caracteres não passa", normalizarNome("a".repeat(81)).ok, false)
+conferir("80 caracteres passa", normalizarNome("a".repeat(80)).ok, true)
+// Acento e hífen são nome de gente de verdade, e recusá-los mandaria a
+// operadora "consertar" o nome da criança para caber no formulário.
+conferir("acento sobrevive", normalizarNome("José Gonçalves"), { ok: true, nome: "José Gonçalves" })
+conferir("hífen sobrevive", normalizarNome("Ana-Clara D'Ávila"), { ok: true, nome: "Ana-Clara D'Ávila" })
+
+console.log("\nFORMATO_EMAIL — o que a edição de login aceita")
+
+conferir("e-mail comum passa", FORMATO_EMAIL.test("ana@colegio.com.br"), true)
+conferir("login .invalid do lote passa", FORMATO_EMAIL.test("ana.souza@colegio.x.invalid"), true)
+conferir("sem arroba não passa", FORMATO_EMAIL.test("ana.colegio.com"), false)
+conferir("sem ponto no domínio não passa", FORMATO_EMAIL.test("ana@colegio"), false)
+conferir("com espaço não passa", FORMATO_EMAIL.test("ana souza@colegio.com"), false)
+
 // --------------------------------------------- rotas sem guard escolhido ---
 console.log("\nrotas de /api/ops — toda rota escolheu um guard?")
 

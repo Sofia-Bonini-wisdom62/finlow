@@ -25,7 +25,20 @@ export default async function OpsEscola(ctx: { params: Promise<{ escolaId: strin
         select: {
           papel: true,
           criadoEm: true,
-          user: { select: { id: true, nome: true, email: true } },
+          user: {
+            select: {
+              id: true,
+              nome: true,
+              email: true,
+              // A turma do aluno NESTA escola. O filtro importa: sem ele, um
+              // aluno que trocou de escola traria a turma antiga junto.
+              turmas: {
+                where: { turma: { escolaId } },
+                select: { turmaId: true },
+                take: 1,
+              },
+            },
+          },
         },
         orderBy: { criadoEm: "asc" },
       },
@@ -67,6 +80,7 @@ export default async function OpsEscola(ctx: { params: Promise<{ escolaId: strin
       nome: m.user.nome,
       email: m.user.email,
       papel: m.papel as "adm" | "professor" | "aluno",
+      turmaId: m.user.turmas[0]?.turmaId ?? null,
     }))
 
   const podemLecionar = membros
@@ -98,7 +112,11 @@ export default async function OpsEscola(ctx: { params: Promise<{ escolaId: strin
         ativaAte={escola.ativaAte ? escola.ativaAte.toISOString().slice(0, 10) : null}
       />
 
-      <ListaDeMembros escolaId={escola.id} membros={membros} />
+      <ListaDeMembros
+        escolaId={escola.id}
+        membros={membros}
+        turmas={turmas.map((t) => ({ id: t.id, nome: t.nome }))}
+      />
 
       <TurmasDaEscola escolaId={escola.id} turmas={turmas} professores={podemLecionar} />
 

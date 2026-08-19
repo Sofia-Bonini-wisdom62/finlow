@@ -1,5 +1,6 @@
 import { randomBytes, randomInt } from "node:crypto"
 import bcrypt from "bcryptjs"
+import { Prisma } from "@prisma/client"
 import { db } from "@/lib/db"
 import { ehPublico, PUBLICO_ATUAL } from "@/lib/publico"
 import { ehPapel } from "@/lib/escola-papeis"
@@ -487,20 +488,13 @@ export async function criarAlunosEmLote(opts: {
     const senha = senhaDeAluno()
     const hash = await bcrypt.hash(senha, 10)
     try {
-      await db.$transaction(async (tx) => {
-        const u = await tx.user.create({
-          data: {
-            nome,
-            email: login,
-            senha: hash,
-            publico: ehPublico(turma.segmento) ? turma.segmento : PUBLICO_ATUAL,
-          },
-          select: { id: true },
-        })
-        await tx.membroEscola.create({
-          data: { userId: u.id, escolaId: opts.escolaId, papel: "aluno" },
-        })
-        await tx.membroTurma.create({ data: { turmaId: turma.id, userId: u.id } })
+      await gravarAluno({
+        escolaId: opts.escolaId,
+        turmaId: turma.id,
+        segmento: turma.segmento,
+        nome,
+        login,
+        hash,
       })
       criados.push({ nome, login, senha })
     } catch (e) {
@@ -515,4 +509,317 @@ export async function criarAlunosEmLote(opts: {
     return { ok: false, detalhe: "Nenhuma conta foi criada. Confere a lista e tenta de novo." }
   }
   return { ok: true, criados, ignoradas }
+}
+
+/**
+ * As TRÊS escritas que fazem um aluno existir, num lugar só.
+ *
+ * São exatamente as de `resgatarConvite`: vínculo com a escola, vínculo com a
+ * turma e `publico` apontando para o segmento dela. Viraram função quando o
+ * cadastro individual nasceu ao lado do lote, porque duas cópias da mesma
+ * transação divergem no primeiro ajuste, e o ajuste que mais dói é o do
+ * `publico`: esquecer dele num dos caminhos cria aluno de 5º ano olhando a
+ * trilha adulta, sem erro nenhum na tela.
+ */
+async function gravarAluno(opts: {
+  escolaId: string
+  turmaId: string
+  segmento: string
+  nome: string
+  login: string
+  hash: string
+}): Promise<string> {
+  return db.$transaction(async (tx) => {
+    const u = await tx.user.create({
+      data: {
+        nome: opts.nome,
+        email: opts.login,
+        senha: opts.hash,
+        publico: ehPublico(opts.segmento) ? opts.segmento : PUBLICO_ATUAL,
+      },
+      select: { id: true },
+    })
+    await tx.membroEscola.create({
+      data: { userId: u.id, escolaId: opts.escolaId, papel: "aluno" },
+    })
+    await tx.membroTurma.create({ data: { turmaId: opts.turmaId, userId: u.id } })
+    return u.id
+  })
+}
+
+/** Senha temporária de adulto: 12 caracteres, a mesma do adm da escola. */
+function senhaTemporariaDeAdulto(): string {
+  return randomBytes(9).toString("base64url")
+}
+
+/**
+ * O nome, limpo e conferido. Pura, e por isso testável.
+ *
+ * Vive fora de `adicionarPessoa` e `editarMembro` porque as duas precisam da
+ * MESMA régua: um nome que entra no cadastro e é recusado na edição obrigaria
+ * a operadora a descobrir a diferença por tentativa.
+ */
+export function normalizarNome(bruto: string): { ok: true; nome: string } | { ok: false; detalhe: string } {
+  const nome = bruto.trim().replace(/\s+/g, " ")
+  if (nome.length < 2) return { ok: false, detalhe: "O nome não pode ser vazio." }
+  if (nome.length > 80) return { ok: false, detalhe: "Esse nome é longo demais." }
+  return { ok: true, nome }
+}
+
+// -------------------------------------------------- adicionar uma pessoa ---
+
+export interface PessoaCriada {
+  /** O que a pessoa digita para entrar: e-mail de verdade ou login .invalid. */
+  login: string
+  /** Só quando a conta NASCEU aqui. null = conta já existia, senha é a dela. */
+  senha: string | null
+  contaNova: boolean
+}
+
+export type ResultadoPessoa = ({ ok: true } & PessoaCriada) | { ok: false; detalhe: string }
+
+/**
+ * Adiciona UMA pessoa à escola, já com papel, sem passar por convite.
+ *
+ * O convite continua sendo o caminho normal, e a diferença entre os dois não é
+ * de conveniência: no convite a pessoa escolhe a própria senha e a escola
+ * nunca a conhece. Aqui a escola conhece, porque foi ela quem criou. Vale a
+ * mesma ressalva do lote, e por isso este caminho existe para quando a lista
+ * chega pronta no papel, não como preferência.
+ *
+ * Se o e-mail já tem conta no Finlow, ela é VINCULADA em vez de recriada, e a
+ * senha continua sendo a que a pessoa já usava. Mesmo desenho de
+ * `criarEscolaComAdm`, pela mesma razão: recusar quem já existe faria a
+ * operadora inventar um segundo e-mail para a mesma pessoa.
+ */
+export async function adicionarPessoa(opts: {
+  escolaId: string
+  papel: "professor" | "aluno"
+  nome: string
+  /** Opcional para aluno (vira login .invalid); obrigatório para professor. */
+  email?: string | null
+  /** Obrigatório para aluno. */
+  turmaId?: string | null
+}): Promise<ResultadoPessoa> {
+  const v = normalizarNome(opts.nome)
+  if (!v.ok) return v
+  const nome = v.nome
+
+  const emailBruto = opts.email?.trim().toLowerCase() ?? ""
+
+  // Professor sem e-mail não teria como recuperar a conta: o login .invalid é
+  // concessão feita à criança que não tem endereço, e esticá-la para adulto
+  // criaria conta que ninguém consegue destravar.
+  if (opts.papel === "professor" && !emailBruto) {
+    return { ok: false, detalhe: "Professor precisa de e-mail: é por ele que a conta é recuperada." }
+  }
+  if (emailBruto && !FORMATO_EMAIL.test(emailBruto)) {
+    return { ok: false, detalhe: `E-mail inválido: ${emailBruto}` }
+  }
+
+  if (emailBruto) {
+    const existente = await db.user.findUnique({
+      where: { email: emailBruto },
+      select: {
+        id: true,
+        membroEscola: { select: { papel: true, escola: { select: { nome: true } } } },
+      },
+    })
+    if (existente?.membroEscola) {
+      return {
+        ok: false,
+        detalhe: `${emailBruto} já é ${existente.membroEscola.papel} da escola "${existente.membroEscola.escola.nome}". Uma conta pertence a uma escola só.`,
+      }
+    }
+    if (existente) {
+      const r = await vincularContaExistente(existente.id, opts)
+      return r.ok ? { ok: true, login: emailBruto, senha: null, contaNova: false } : r
+    }
+  }
+
+  if (opts.papel === "professor") {
+    const senha = senhaTemporariaDeAdulto()
+    const hash = await bcrypt.hash(senha, 10)
+    await db.$transaction(async (tx) => {
+      const u = await tx.user.create({
+        data: { nome, email: emailBruto, senha: hash },
+        select: { id: true },
+      })
+      await tx.membroEscola.create({
+        data: { userId: u.id, escolaId: opts.escolaId, papel: "professor" },
+      })
+    })
+    return { ok: true, login: emailBruto, senha, contaNova: true }
+  }
+
+  // Aluno: precisa de turma, porque é dela que sai a trilha dele.
+  if (!opts.turmaId) return { ok: false, detalhe: "Escolhe a turma do aluno." }
+  const turma = await db.turma.findFirst({
+    where: { id: opts.turmaId, escolaId: opts.escolaId },
+    select: { id: true, segmento: true, escola: { select: { nome: true } } },
+  })
+  if (!turma) return { ok: false, detalhe: "Turma não encontrada nesta escola." }
+
+  let login = emailBruto
+  if (!login) {
+    const dominio = dominioDaEscola(turma.escola.nome)
+    const jaExistem = await db.user.findMany({
+      where: { email: { endsWith: `@${dominio}.invalid` } },
+      select: { email: true },
+    })
+    login = loginDeAluno(nome, dominio, new Set(jaExistem.map((u) => u.email)))
+  }
+
+  const senha = senhaDeAluno()
+  try {
+    await gravarAluno({
+      escolaId: opts.escolaId,
+      turmaId: turma.id,
+      segmento: turma.segmento,
+      nome,
+      login,
+      hash: await bcrypt.hash(senha, 10),
+    })
+  } catch (e) {
+    if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === "P2002") {
+      return { ok: false, detalhe: "Já existe conta com esse login. Tenta de novo." }
+    }
+    throw e
+  }
+  return { ok: true, login, senha, contaNova: true }
+}
+
+/** Conta que já existe no Finlow entrando numa escola pela primeira vez. */
+async function vincularContaExistente(
+  userId: string,
+  opts: { escolaId: string; papel: "professor" | "aluno"; turmaId?: string | null }
+): Promise<ResultadoSimples> {
+  if (opts.papel === "professor") {
+    await db.membroEscola.create({
+      data: { userId, escolaId: opts.escolaId, papel: "professor" },
+    })
+    return { ok: true }
+  }
+  if (!opts.turmaId) return { ok: false, detalhe: "Escolhe a turma do aluno." }
+  const turma = await db.turma.findFirst({
+    where: { id: opts.turmaId, escolaId: opts.escolaId },
+    select: { id: true, segmento: true },
+  })
+  if (!turma) return { ok: false, detalhe: "Turma não encontrada nesta escola." }
+
+  await db.$transaction(async (tx) => {
+    await tx.membroEscola.create({ data: { userId, escolaId: opts.escolaId, papel: "aluno" } })
+    await tx.membroTurma.create({ data: { turmaId: turma.id, userId } })
+    if (ehPublico(turma.segmento)) {
+      await tx.user.update({ where: { id: userId }, data: { publico: turma.segmento } })
+    }
+  })
+  return { ok: true }
+}
+
+// ----------------------------------------------------- editar uma pessoa ---
+
+/**
+ * Muda o que a escola sabe sobre a pessoa: nome, login e turma.
+ *
+ * Campo AUSENTE não é mexido, que é diferente de mandar vazio. É o que deixa a
+ * tela enviar só o que a operadora tocou, e o que impede abrir um formulário e
+ * fechar sem editar de apagar o nome de alguém.
+ *
+ * TROCAR DE TURMA aqui MOVE o aluno: ele sai das turmas que tinha NESTA escola
+ * e entra na escolhida. O schema permite N:N de propósito (o mesmo aluno na
+ * sala e no clube de reforço), e esta tela não serve esse caso: serve o comum,
+ * que é "entrou na turma errada". Quem precisa de duas turmas usa o convite da
+ * segunda, que soma em vez de mover.
+ */
+export async function editarMembro(opts: {
+  escolaId: string
+  userId: string
+  nome?: string
+  email?: string
+  turmaId?: string
+}): Promise<ResultadoSimples> {
+  const membro = await db.membroEscola.findFirst({
+    where: { escolaId: opts.escolaId, userId: opts.userId },
+    select: { papel: true },
+  })
+  if (!membro) return { ok: false, detalhe: "Essa pessoa não está nesta escola." }
+
+  const dados: { nome?: string; email?: string; publico?: string } = {}
+
+  if (opts.nome !== undefined) {
+    const v = normalizarNome(opts.nome)
+    if (!v.ok) return v
+    dados.nome = v.nome
+  }
+
+  if (opts.email !== undefined) {
+    const email = opts.email.trim().toLowerCase()
+    if (!FORMATO_EMAIL.test(email)) return { ok: false, detalhe: `E-mail inválido: ${email}` }
+    dados.email = email
+  }
+
+  let turma: { id: string; segmento: string } | null = null
+  if (opts.turmaId !== undefined) {
+    if (membro.papel !== "aluno") {
+      return { ok: false, detalhe: "Só aluno fica em turma. Para professor, use a lista de turmas." }
+    }
+    turma = await db.turma.findFirst({
+      where: { id: opts.turmaId, escolaId: opts.escolaId },
+      select: { id: true, segmento: true },
+    })
+    if (!turma) return { ok: false, detalhe: "Turma não encontrada nesta escola." }
+    // A turma nova manda na trilha, como manda no resgate do convite.
+    if (ehPublico(turma.segmento)) dados.publico = turma.segmento
+  }
+
+  try {
+    await db.$transaction(async (tx) => {
+      if (Object.keys(dados).length > 0) {
+        await tx.user.update({ where: { id: opts.userId }, data: dados })
+      }
+      if (turma) {
+        await tx.membroTurma.deleteMany({
+          where: { userId: opts.userId, turma: { escolaId: opts.escolaId } },
+        })
+        await tx.membroTurma.create({ data: { turmaId: turma.id, userId: opts.userId } })
+      }
+    })
+  } catch (e) {
+    if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === "P2002") {
+      return { ok: false, detalhe: "Já existe outra conta com esse e-mail." }
+    }
+    throw e
+  }
+  return { ok: true }
+}
+
+export type ResultadoSenha = { ok: true; senha: string } | { ok: false; detalhe: string }
+
+/**
+ * Sorteia uma senha nova e devolve UMA vez.
+ *
+ * Existe porque o "esqueci a senha" não alcança quem entrou pelo lote: o
+ * endereço `.invalid` não recebe mensagem nenhuma, de propósito. Sem esta
+ * função, uma criança de 8 anos que esquece a senha perde a conta e o
+ * progresso junto, e a operadora não teria o que fazer além de criar outra.
+ *
+ * O tamanho muda com o papel: seis caracteres legíveis para o aluno, que
+ * digita de um papel impresso, e doze para adulto, que tem gerenciador ou pelo
+ * menos teclado.
+ *
+ * ⚠️ Conta que só entrava pelo Google ganha senha própria aqui, e passa a
+ * poder entrar pelos dois caminhos. É efeito colateral aceito: sem ele, a
+ * operadora clicaria num botão que não faz nada visível.
+ */
+export async function redefinirSenha(escolaId: string, userId: string): Promise<ResultadoSenha> {
+  const membro = await db.membroEscola.findFirst({
+    where: { escolaId, userId },
+    select: { papel: true },
+  })
+  if (!membro) return { ok: false, detalhe: "Essa pessoa não está nesta escola." }
+
+  const senha = membro.papel === "aluno" ? senhaDeAluno() : senhaTemporariaDeAdulto()
+  await db.user.update({ where: { id: userId }, data: { senha: await bcrypt.hash(senha, 10) } })
+  return { ok: true, senha }
 }
