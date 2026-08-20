@@ -311,6 +311,20 @@ O guard roda **antes** da chamada ao Vertex e devolve **402**; a soma acontece
 dentro de `responderIA` a partir do `userId` em `OpcoesResposta`, para que rota
 nova não esqueça de contar. O onboarding **conta mas não é bloqueado**.
 
+**A tela conta em PERGUNTAS; a máquina continua contando em token** (20/08/2026,
+item 9c da avaliação UX). O que mudou é só apresentação: `/premium` mostrava
+"94.300 de 120.000", que é conta de padaria — quem lê quer saber se dá para
+conversar amanhã. `lib/pagamento/perguntas.ts` divide o que sobrou por
+`TOKENS_POR_PERGUNTA` (8 mil, a ponta **alta** da faixa de custo de um turno, de
+propósito: a estimativa erra para menos, nunca promete conversa que a cota não
+paga), e 120.000 / 8.000 dá exatamente as 15 mensagens da régua original do
+plano. O módulo é puro e **sem `server-only`**, porque quem mostra o número é
+tela de cliente. Dois cuidados que o teste guarda: enquanto `podeUsar` for
+verdadeiro o resultado tem piso de 1, já que a próxima resposta vem inteira
+mesmo estourando o teto (dizer "0 perguntas" com o chat respondendo seria
+mentira nova no lugar da antiga), e a conta em token **não sumiu** da tela, só
+deixou de ser a manchete. `scripts/testar-pagamento.mts` cobre os dois.
+
 Apagar a conta **cancela a assinatura na Stripe antes** do delete, e falha aí
 aborta o apagamento: `Assinatura` cascateia no nosso banco, mas o objeto na
 Stripe continuaria cobrando um cartão de alguém que já não consegue entrar.

@@ -681,9 +681,38 @@ Lista do mais crítico ao mais simples; cada item é um trabalho independente.
    pessoa é o sujeito: "a energia volta sozinha" passa, porque ali a
    concordância está certa e guard que acusa frase correta só ensina a
    desligá-lo; (b) ~~accept do chat sem
-   `.qif`/`.txt`~~ ✅ 16/08, uma linha; (c) a cota em tokens continua sendo
-   conta de padaria, a pessoa quer "quantas perguntas ainda tenho" — segue;
-   (d) ~~Menu × Ajustes~~ ✅ com o redesign, a tela diz "Menu" como a aba.
+   `.qif`/`.txt`~~ ✅ 16/08, uma linha; (c) ~~a cota em tokens é conta de
+   padaria, a pessoa quer "quantas perguntas ainda tenho"~~ ✅ **20/08**: o
+   destaque de `/premium` virou "Dá para mais umas 12 perguntas de cerca de
+   15", e a conta em token continua logo abaixo, inteira; (d) ~~Menu ×
+   Ajustes~~ ✅ com o redesign, a tela diz "Menu" como a aba.
+
+   > **A contagem NÃO mudou de moeda, e isso é o ponto.** Contar em token é
+   > decisão registrada da fundadora (mensagem não mede nada: três palavras e
+   > vinte turnos sobre o extrato inteiro contam igual, e é o segundo que
+   > custa). O guard, a soma e o teto seguem em token; quem mudou foi a tela,
+   > que dividia mal a informação e não dividia o número.
+   >
+   > A divisão mora em `lib/pagamento/perguntas.ts`, puro e sem `server-only`
+   > (a tela que mostra é de cliente). `TOKENS_POR_PERGUNTA` é 8 mil, a ponta
+   > **alta** da faixa de custo de um turno: a estimativa erra para menos, e
+   > quem lê "cerca de 12" costuma conseguir mais. Errar para mais seria
+   > prometer conversa que a cota não paga. A conta fecha com a régua original
+   > do plano: 120.000 / 8.000 = 15 mensagens.
+   >
+   > **O piso de 1 pergunta é regra, não arredondamento.** O guard roda antes
+   > da chamada, então quem tem qualquer sobra ganha a próxima resposta
+   > inteira, mesmo estourando o teto (está escrito em `lib/pagamento/tokens.ts`
+   > e é de propósito). Uma tela dizendo "restam 0 perguntas" com o chat ainda
+   > respondendo trocaria a conta de padaria por uma mentira, que é pior.
+   >
+   > **Guardado em `scripts/testar-pagamento.mts`** (sem banco, com
+   > `--conditions react-server`): 79 casos, 13 novos, conferidos contra o
+   > código mutilado — tirar o piso faz dois deles acusarem. Dois olham o
+   > CÓDIGO da tela: que ela use o módulo em vez de repetir a divisão (duas
+   > cópias discordariam no primeiro ajuste do número) e que o total em token
+   > continue visível, para "consertar o item 9c" nunca virar "esconder o
+   > número".
 
 **O que segurou o usuário (não mexer):** onboarding pulável com aceites
 explicados, "nada entra sem confirmar", tom sem culpa, tema escuro + paleta,
