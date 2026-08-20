@@ -534,11 +534,37 @@ Lista do mais crítico ao mais simples; cada item é um trabalho independente.
    > sem citar valor. Publicar o número na home é escolha comercial, não
    > conserto de defeito, e não entrou aqui por isso.
 
-4. **🟠 Cadastro com fricção** (revisado 16/08: metade caiu). A data de
-   nascimento GANHOU o porquê na tela ("adequar o conteúdo à idade e menores
-   nunca verem anúncio", V2-1). Segue pendente: as chaves OAuth do Google na
-   Vercel (o botão se esconde sem elas) e o subtítulo que fala "trilha" antes
-   de a pessoa saber o que é.
+4. **🟠 Cadastro com fricção** (revisado 16/08 e 20/08: só a metade que não é
+   código segue de pé). A data de nascimento GANHOU o porquê na tela ("adequar
+   o conteúdo à idade e menores nunca verem anúncio", V2-1), e a **copy que
+   falava a língua de dentro caiu em 20/08/2026**. Segue pendente, e não é
+   trabalho de repositório: as chaves OAuth do Google na Vercel (o botão se
+   esconde sozinho sem elas, de propósito — ver `components/auth/BotaoGoogle.tsx`).
+
+   > **O que mudou:** o subtítulo dizia *"Pra salvar seu perfil e seu progresso
+   > na trilha"*. "Trilha" é o nome que as aulas ganham **depois** do cadastro;
+   > a landing que trouxe a pessoa até ali não usa a palavra nenhuma vez. A
+   > primeira frase do produto explicava o produto com uma palavra que só existe
+   > do outro lado da porta. Agora ela continua a linha da landing: *"É grátis e
+   > leva menos de um minuto. A conta guarda seus números, suas conversas com a
+   > IA e o que você aprender por aqui"* — as mesmas três coisas que a frase
+   > velha prometia, sem exigir vocabulário.
+   >
+   > **O rótulo do apelido veio junto, e é o mesmo defeito.** Perguntava "Como
+   > você quer aparecer na **liga**?" para quem ainda não sabe que existe uma;
+   > virou "no ranking". A tela continua se chamando Liga lá dentro, e quem
+   > chega por convite de escola segue lendo "ranking da sala", como já era.
+   >
+   > **Guardado por `scripts/testar-landing.mts`** (sem banco, sem build): a
+   > checagem varre a copy das duas telas de antes da conta (cadastro e login)
+   > atrás de palavra de dentro do app — trilha, liga, ofensiva, XP, combo,
+   > Finlo Coins, baú — e olha **só o que vira texto na tela**, nunca comentário
+   > nem nome de variável, porque os comentários dessas telas citam de propósito
+   > a palavra corrigida. Conferido contra o código mutilado: devolver qualquer
+   > uma das duas frases antigas faz o teste acusar. A primeira versão do guard
+   > passava verde com a copy velha (exigia texto e delimitador na mesma linha,
+   > e o Prettier quebra a frase em duas) — está anotado na função, senão alguém
+   > "simplifica" de volta.
 
 5. ~~**🟠 Imagem quebrada em toda ficha de módulo.**~~ ✅ **13/08/2026** (Fin
    1): o fallback virou o Fin professor num bloco surface — o

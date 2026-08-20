@@ -247,6 +247,77 @@ checar(
   !/vagas de acesso antecipado/i.test(landing)
 )
 
+// ------------------------------------ a porta seguinte: /cadastro e /login ---
+console.log("\nas telas de entrada falam a língua de quem ainda não entrou")
+
+/**
+ * Item 4 da avaliação de UX: o subtítulo do cadastro dizia "Pra salvar seu
+ * perfil e seu progresso na TRILHA". Trilha é o nome que as aulas têm DEPOIS
+ * do cadastro. Quem lê essa frase está a um clique da landing, onde a palavra
+ * não aparece nenhuma vez, e a primeira coisa que o produto faz é explicar a
+ * si mesmo com uma palavra que só existe do outro lado da porta.
+ *
+ * O guard vale para as duas telas de antes da conta, e olha só a COPY: string
+ * entre aspas e texto de JSX, nunca comentário nem nome de variável. Os
+ * comentários dessas telas citam de propósito a palavra corrigida, para que
+ * ninguém a reescreva sem saber, e um guard que lesse comentário acusaria
+ * justamente o aviso que protege a correção.
+ */
+const JARGAO_DE_DENTRO = [
+  ["trilha", "as aulas só se chamam assim depois que a pessoa entra"],
+  ["liga", "é o nome da tela do ranking, aprendido lá dentro"],
+  ["ofensiva", "dias seguidos, e a palavra é do jogo"],
+  ["XP", "ninguém sabe que existe ponto de experiência antes de ver um"],
+  ["combo", "mecânica de lição"],
+  ["Finlo Coins", "moeda da loja"],
+  ["baú", "recompensa de unidade"],
+] as const
+
+/**
+ * Só o que vira texto na tela: string entre aspas e texto solto de JSX.
+ *
+ * O texto de JSX ATRAVESSA linha de propósito. A primeira versão desta função
+ * exigia texto e delimitadores na mesma linha, e por isso não enxergava
+ * justamente a frase do item 4 — que o Prettier quebra em duas linhas assim
+ * que passa da margem. O guard passava verde com a copy velha no lugar.
+ * `[^<>{}]` já casa quebra de linha; é o `<` do fim que impede a expressão de
+ * confundir código com texto.
+ */
+function copyVisivel(fonte: string): string {
+  const limpo = semComentarios(fonte)
+  const aspas = [...limpo.matchAll(/"([^"\n]*)"/g)].map((m) => m[1])
+  const textoJsx = [...limpo.matchAll(/>([^<>{}]+)</g)].map((m) => m[1])
+  return [...aspas, ...textoJsx].join("\n")
+}
+
+function jargaoEm(copy: string): string[] {
+  return JARGAO_DE_DENTRO
+    .filter(([palavra]) => new RegExp(`\\b${palavra}\\b`, "i").test(copy))
+    .map(([palavra]) => palavra)
+}
+
+for (const tela of ["app/(auth)/cadastro/page.tsx", "app/(auth)/login/page.tsx"]) {
+  const copy = copyVisivel(ler(tela))
+  checar(`achei a copy de ${tela}`, copy.length > 0)
+  const achados = jargaoEm(copy)
+  checar(
+    `${tela} não usa palavra de dentro do app`,
+    achados.length === 0,
+    achados.length ? `→ ${achados.join(", ")}` : ""
+  )
+}
+
+// O guard tem de reprovar a frase que motivou o item, senão não guarda nada.
+checar(
+  "a checagem reprova o subtítulo antigo",
+  jargaoEm("Pra salvar seu perfil e seu progresso na trilha.").includes("trilha")
+)
+// E não pode acusar copy que apenas PARECE jargão ("ligado", "obrigada").
+checar(
+  "a checagem não confunde palavra parecida",
+  jargaoEm("Deixa o celular ligado, obrigada.").length === 0
+)
+
 // --------------------------------------------------------------- fim ---
 console.log(falhas === 0 ? "\n✅ landing com porta de entrada, e coerente com o que o app é hoje\n" : `\n❌ ${falhas} falha(s)\n`)
 process.exit(falhas === 0 ? 0 : 1)
