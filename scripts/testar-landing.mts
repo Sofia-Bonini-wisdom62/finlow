@@ -290,10 +290,20 @@ function copyVisivel(fonte: string): string {
   return [...aspas, ...textoJsx].join("\n")
 }
 
+/**
+ * Devolve o jargão achado, cada um com o motivo de não caber aqui.
+ *
+ * A borda de palavra é `\p{L}\p{N}`, não `\b`. `\b` é ASCII: depois do "ú" de
+ * "baú" ele não vê fronteira nenhuma (acento não é caractere de palavra para
+ * ele), e a checagem de "baú" nascia sempre verde — guard que não acusa é pior
+ * que guard nenhum, porque parece resolvido. O caso está nos testes abaixo.
+ */
 function jargaoEm(copy: string): string[] {
   return JARGAO_DE_DENTRO
-    .filter(([palavra]) => new RegExp(`\\b${palavra}\\b`, "i").test(copy))
-    .map(([palavra]) => palavra)
+    .filter(([palavra]) =>
+      new RegExp(`(?<![\\p{L}\\p{N}])${palavra}(?![\\p{L}\\p{N}])`, "iu").test(copy)
+    )
+    .map(([palavra, motivo]) => `${palavra} (${motivo})`)
 }
 
 for (const tela of ["app/(auth)/cadastro/page.tsx", "app/(auth)/login/page.tsx"]) {
@@ -310,12 +320,21 @@ for (const tela of ["app/(auth)/cadastro/page.tsx", "app/(auth)/login/page.tsx"]
 // O guard tem de reprovar a frase que motivou o item, senão não guarda nada.
 checar(
   "a checagem reprova o subtítulo antigo",
-  jargaoEm("Pra salvar seu perfil e seu progresso na trilha.").includes("trilha")
+  jargaoEm("Pra salvar seu perfil e seu progresso na trilha.").length === 1
+)
+checar(
+  "a checagem reprova o rótulo antigo do apelido",
+  jargaoEm("Como você quer aparecer na liga? (opcional)").length === 1
+)
+// Palavra acentuada: com \b do ASCII esta linha passava verde.
+checar(
+  "a checagem enxerga jargão com acento",
+  jargaoEm("Abra o baú da unidade").length === 1
 )
 // E não pode acusar copy que apenas PARECE jargão ("ligado", "obrigada").
 checar(
   "a checagem não confunde palavra parecida",
-  jargaoEm("Deixa o celular ligado, obrigada.").length === 0
+  jargaoEm("Deixa o celular ligado, obrigada. Nada de ligações.").length === 0
 )
 
 // --------------------------------------------------------------- fim ---

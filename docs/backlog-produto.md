@@ -561,10 +561,15 @@ Lista do mais crítico ao mais simples; cada item é um trabalho independente.
    > Finlo Coins, baú — e olha **só o que vira texto na tela**, nunca comentário
    > nem nome de variável, porque os comentários dessas telas citam de propósito
    > a palavra corrigida. Conferido contra o código mutilado: devolver qualquer
-   > uma das duas frases antigas faz o teste acusar. A primeira versão do guard
-   > passava verde com a copy velha (exigia texto e delimitador na mesma linha,
-   > e o Prettier quebra a frase em duas) — está anotado na função, senão alguém
-   > "simplifica" de volta.
+   > uma das duas frases antigas faz o teste acusar.
+   >
+   > **Duas armadilhas do próprio guard, anotadas nele para ninguém
+   > "simplificar" de volta:** a primeira versão passava verde com a copy velha
+   > no lugar, porque exigia o texto e os delimitadores na mesma linha e o
+   > Prettier quebra a frase em duas; e a borda de palavra é `\p{L}\p{N}`, não
+   > `\b`, porque `\b` é ASCII e não vê fronteira depois do "ú" de "baú" — a
+   > checagem dessa palavra nascia sempre verde. Guard que não acusa é pior que
+   > guard nenhum, porque parece resolvido.
 
 5. ~~**🟠 Imagem quebrada em toda ficha de módulo.**~~ ✅ **13/08/2026** (Fin
    1): o fallback virou o Fin professor num bloco surface — o
