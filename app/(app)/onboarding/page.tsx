@@ -275,8 +275,12 @@ export default function OnboardingPage() {
         >
           Combinado, vamos
         </button>
+        {/* "sozinha" flexionava em feminino para todo mundo: quem não é mulher
+            lia uma frase escrita para outra pessoa, na primeira tela em que o
+            assistente fala em nome do produto. "Por conta própria" diz o mesmo
+            sem flexionar, e não precisa de "(a)". */}
         <Link href="/chat" className="mt-3 text-center text-[13.5px] font-medium text-fl-ink-3">
-          Prefiro olhar o app sozinha
+          Prefiro olhar o app por conta própria
         </Link>
       </main>
     )

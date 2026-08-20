@@ -1,5 +1,7 @@
 /**
- * Testa a PORTA DE ENTRADA da landing (app/page.tsx, components/landing/*).
+ * Testa a PORTA DE ENTRADA do produto: a landing (app/page.tsx,
+ * components/landing/*) e as duas telas em que ela desemboca, /login e
+ * /cadastro.
  *
  * RODA SEM BANCO E SEM BUILD — lê o fonte e confere o que ele promete.
  *
@@ -17,6 +19,12 @@
  * O teste confere também que cada rota interna citada na landing EXISTE como
  * arquivo de rota — link de entrada que aponta para 404 é pior que link nenhum,
  * porque parece resolvido.
+ *
+ * E confere o outro lado da porta, pelo mesmo motivo que o resto: /cadastro
+ * abria dizendo "pra salvar seu perfil e seu progresso na trilha", palavra que
+ * só significa alguma coisa DEPOIS de entrar, na primeira tela em que a pessoa
+ * decide se entra. Jargão de dentro do app na tela de fora não quebra build nem
+ * lint; volta na próxima vez que alguém reescrever a frase.
  *
  *   node --import tsx scripts/testar-landing.mts
  */
@@ -235,6 +243,125 @@ checar(
   formEmail.includes('fetch("/api/waitlist"') && existsSync(join(raiz, "app/api/waitlist/route.ts"))
 )
 
+// ------------------------------------- o outro lado da porta (auth) ---
+console.log("\nlogin e cadastro falam a língua de quem ainda não entrou")
+
+const cadastro = ler("app/(auth)/cadastro/page.tsx")
+const login = ler("app/(auth)/login/page.tsx")
+const botaoGoogle = ler("components/auth/BotaoGoogle.tsx")
+
+/**
+ * A COPY das telas de auth: o que sobra depois de tirar comentário, classe,
+ * estilo e rota. Sem esse corte a checagem acusaria `router.push("/trilha")`
+ * como jargão de tela — e guard que acusa o que ninguém lê treina quem vier
+ * depois a desligá-lo.
+ */
+function copyDaTela(fonte: string): string {
+  return semComentarios(fonte)
+    .replace(/(className|style|href|id|htmlFor|type|inputMode|autoComplete|name|src|alt)=\{?["'][^"']*["']\}?/g, " ")
+    .replace(/(["'])\/[^"']*\1/g, " ")
+}
+
+/**
+ * Palavras que só existem depois de entrar. Não são palavras proibidas no app:
+ * são palavras que a tela de fora não pode usar antes de explicar, porque quem
+ * está lendo ainda não viu nenhuma delas.
+ */
+/**
+ * Borda de palavra em português, e não `\b`.
+ *
+ * `\b` é ASCII, e nas duas pontas ele erra com acento. Depois do "ú" de "baú"
+ * ele não vê fronteira nenhuma, então `/\bba[uú]\b/` casava "bau" e NUNCA
+ * "baú": a checagem dessa palavra nascia sempre verde. E antes do "ç" de
+ * "ligações" ele vê uma fronteira que não existe, então `/\bliga\b/` acusava
+ * "ligações" como se fosse a Liga. Guard que não acusa parece resolvido; guard
+ * que acusa o que ninguém escreveu treina quem vier depois a desligá-lo.
+ *
+ * `\p{L}\p{N}` conhece letra acentuada, e os dois casos estão nos testes.
+ */
+const borda = (corpo: string) =>
+  new RegExp(`(?<![\\p{L}\\p{N}])(?:${corpo})(?![\\p{L}\\p{N}])`, "iu")
+
+const JARGAO: [string, RegExp][] = [
+  ["trilha", borda("trilhas?")],
+  ["liga", borda("liga")],
+  ["XP", new RegExp("(?<![\\p{L}\\p{N}])XP(?![\\p{L}\\p{N}])", "u")],
+  ["ofensiva", borda("ofensivas?")],
+  ["combo", borda("combos?")],
+  ["baú", borda("ba[uú]s?")],
+  ["corredor", borda("corredor")],
+  ["missão", borda("miss(ão|ões|ao|oes)")],
+  ["módulo", borda("m[oó]dulos?")],
+  ["bloco", borda("blocos?")],
+  ["Finlo Coins", borda("finlo|coins?")],
+]
+
+for (const [tela, fonte] of [["cadastro", cadastro], ["login", login]] as const) {
+  const copy = copyDaTela(fonte)
+  for (const [palavra, expressao] of JARGAO) {
+    checar(`o ${tela} não usa "${palavra}" antes de a pessoa entrar`, !expressao.test(copy))
+  }
+}
+
+// a própria checagem precisa poder falhar
+checar(
+  "a checagem de jargão reprova a frase antiga",
+  JARGAO.some(([, e]) => e.test("Pra salvar seu perfil e seu progresso na trilha."))
+)
+checar(
+  "a checagem de jargão reprova o rótulo antigo do apelido",
+  JARGAO.some(([, e]) => e.test("Como você quer aparecer na liga? (opcional)"))
+)
+// Palavra acentuada: com \b do ASCII esta linha passava verde.
+checar(
+  "a checagem de jargão enxerga palavra com acento",
+  JARGAO.some(([, e]) => e.test("Abra o baú da unidade"))
+)
+// E não pode acusar palavra que apenas PARECE jargão.
+checar(
+  "a checagem de jargão não confunde palavra parecida",
+  !JARGAO.some(([, e]) => e.test("Deixa o celular ligado, obrigada. Nada de ligações."))
+)
+
+// O porquê da data de nascimento (metade já entregue do item 4 da avaliação
+// UX): campo sensível pedido sem motivo é fricção, e o motivo é curto.
+checar(
+  "a data de nascimento continua com o porquê na tela",
+  /adequar o conteúdo/i.test(cadastro) && /menores/i.test(cadastro)
+)
+
+// Fricção: o que não é essencial não pode virar obrigatório sem decisão.
+const campos = [...cadastro.matchAll(/<input\b[\s\S]*?\/>/g)].map((m) => m[0])
+checar("achei os campos do cadastro", campos.length >= 6, `(${campos.length})`)
+function campo(marca: string): string | undefined {
+  return campos.find((c) => c.includes(marca))
+}
+for (const [nome, marca] of [["celular", 'type="tel"'], ["apelido", 'id="apelido"']] as const) {
+  const c = campo(marca)
+  checar(`o campo ${nome} existe`, !!c)
+  checar(`o campo ${nome} continua opcional`, !!c && !/\brequired\b/.test(c))
+}
+for (const [nome, marca] of [["e-mail", 'type="email"'], ["senha", 'type="password"'], ["data de nascimento", 'id="dataNascimento"']] as const) {
+  const c = campo(marca)
+  checar(`o campo ${nome} continua obrigatório`, !!c && /\brequired\b/.test(c))
+}
+
+// As duas telas se apontam: quem errou a porta não precisa voltar para a home.
+checar("o cadastro oferece o caminho de quem já tem conta", hrefs(cadastro).includes("/login"))
+checar("o login oferece o caminho de quem ainda não tem", hrefs(login).includes("/cadastro"))
+
+/**
+ * O botão do Google se esconde sozinho quando as chaves OAuth não estão na
+ * Vercel (pendência registrada em estado-do-produto.md). Botão fixo no HTML
+ * apareceria sem as chaves e levaria a uma tela de erro do NextAuth: a pessoa
+ * conclui que a conta DELA tem problema. É por isso que ele pergunta ao
+ * servidor quem está ligado, e é isso que esta checagem guarda.
+ */
+checar("as duas telas usam o botão do Google que se esconde sozinho",
+  /BotaoGoogle/.test(cadastro) && /BotaoGoogle/.test(login))
+checar("o botão pergunta ao servidor se o Google está ligado", /getProviders\(\)/.test(botaoGoogle))
+checar("e some quando não está", /if \(!disponivel\) return null/.test(botaoGoogle))
+
 // ------------------------------------------------------------ metadados ---
 console.log("\nmetadados e selo da página")
 
@@ -245,96 +372,6 @@ checar(
 checar(
   "o selo do hero não diz que o produto ainda não abriu",
   !/vagas de acesso antecipado/i.test(landing)
-)
-
-// ------------------------------------ a porta seguinte: /cadastro e /login ---
-console.log("\nas telas de entrada falam a língua de quem ainda não entrou")
-
-/**
- * Item 4 da avaliação de UX: o subtítulo do cadastro dizia "Pra salvar seu
- * perfil e seu progresso na TRILHA". Trilha é o nome que as aulas têm DEPOIS
- * do cadastro. Quem lê essa frase está a um clique da landing, onde a palavra
- * não aparece nenhuma vez, e a primeira coisa que o produto faz é explicar a
- * si mesmo com uma palavra que só existe do outro lado da porta.
- *
- * O guard vale para as duas telas de antes da conta, e olha só a COPY: string
- * entre aspas e texto de JSX, nunca comentário nem nome de variável. Os
- * comentários dessas telas citam de propósito a palavra corrigida, para que
- * ninguém a reescreva sem saber, e um guard que lesse comentário acusaria
- * justamente o aviso que protege a correção.
- */
-const JARGAO_DE_DENTRO = [
-  ["trilha", "as aulas só se chamam assim depois que a pessoa entra"],
-  ["liga", "é o nome da tela do ranking, aprendido lá dentro"],
-  ["ofensiva", "dias seguidos, e a palavra é do jogo"],
-  ["XP", "ninguém sabe que existe ponto de experiência antes de ver um"],
-  ["combo", "mecânica de lição"],
-  ["Finlo Coins", "moeda da loja"],
-  ["baú", "recompensa de unidade"],
-] as const
-
-/**
- * Só o que vira texto na tela: string entre aspas e texto solto de JSX.
- *
- * O texto de JSX ATRAVESSA linha de propósito. A primeira versão desta função
- * exigia texto e delimitadores na mesma linha, e por isso não enxergava
- * justamente a frase do item 4 — que o Prettier quebra em duas linhas assim
- * que passa da margem. O guard passava verde com a copy velha no lugar.
- * `[^<>{}]` já casa quebra de linha; é o `<` do fim que impede a expressão de
- * confundir código com texto.
- */
-function copyVisivel(fonte: string): string {
-  const limpo = semComentarios(fonte)
-  const aspas = [...limpo.matchAll(/"([^"\n]*)"/g)].map((m) => m[1])
-  const textoJsx = [...limpo.matchAll(/>([^<>{}]+)</g)].map((m) => m[1])
-  return [...aspas, ...textoJsx].join("\n")
-}
-
-/**
- * Devolve o jargão achado, cada um com o motivo de não caber aqui.
- *
- * A borda de palavra é `\p{L}\p{N}`, não `\b`. `\b` é ASCII: depois do "ú" de
- * "baú" ele não vê fronteira nenhuma (acento não é caractere de palavra para
- * ele), e a checagem de "baú" nascia sempre verde — guard que não acusa é pior
- * que guard nenhum, porque parece resolvido. O caso está nos testes abaixo.
- */
-function jargaoEm(copy: string): string[] {
-  return JARGAO_DE_DENTRO
-    .filter(([palavra]) =>
-      new RegExp(`(?<![\\p{L}\\p{N}])${palavra}(?![\\p{L}\\p{N}])`, "iu").test(copy)
-    )
-    .map(([palavra, motivo]) => `${palavra} (${motivo})`)
-}
-
-for (const tela of ["app/(auth)/cadastro/page.tsx", "app/(auth)/login/page.tsx"]) {
-  const copy = copyVisivel(ler(tela))
-  checar(`achei a copy de ${tela}`, copy.length > 0)
-  const achados = jargaoEm(copy)
-  checar(
-    `${tela} não usa palavra de dentro do app`,
-    achados.length === 0,
-    achados.length ? `→ ${achados.join(", ")}` : ""
-  )
-}
-
-// O guard tem de reprovar a frase que motivou o item, senão não guarda nada.
-checar(
-  "a checagem reprova o subtítulo antigo",
-  jargaoEm("Pra salvar seu perfil e seu progresso na trilha.").length === 1
-)
-checar(
-  "a checagem reprova o rótulo antigo do apelido",
-  jargaoEm("Como você quer aparecer na liga? (opcional)").length === 1
-)
-// Palavra acentuada: com \b do ASCII esta linha passava verde.
-checar(
-  "a checagem enxerga jargão com acento",
-  jargaoEm("Abra o baú da unidade").length === 1
-)
-// E não pode acusar copy que apenas PARECE jargão ("ligado", "obrigada").
-checar(
-  "a checagem não confunde palavra parecida",
-  jargaoEm("Deixa o celular ligado, obrigada. Nada de ligações.").length === 0
 )
 
 // --------------------------------------------------------------- fim ---

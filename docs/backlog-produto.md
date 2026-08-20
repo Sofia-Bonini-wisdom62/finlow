@@ -534,42 +534,52 @@ Lista do mais crítico ao mais simples; cada item é um trabalho independente.
    > sem citar valor. Publicar o número na home é escolha comercial, não
    > conserto de defeito, e não entrou aqui por isso.
 
-4. **🟠 Cadastro com fricção** (revisado 16/08 e 20/08: só a metade que não é
-   código segue de pé). A data de nascimento GANHOU o porquê na tela ("adequar
-   o conteúdo à idade e menores nunca verem anúncio", V2-1), e a **copy que
-   falava a língua de dentro caiu em 20/08/2026**. Segue pendente, e não é
-   trabalho de repositório: as chaves OAuth do Google na Vercel (o botão se
-   esconde sozinho sem elas, de propósito — ver `components/auth/BotaoGoogle.tsx`).
+4. **🟠 Cadastro com fricção** (revisado 16/08: metade caiu; a metade de código
+   fechou em 18/08). A data de nascimento GANHOU o porquê na tela ("adequar o
+   conteúdo à idade e menores nunca verem anúncio", V2-1). ~~O subtítulo que
+   fala "trilha" antes de a pessoa saber o que é~~ ✅ **18/08/2026.** Segue
+   pendente só o que não é código: as chaves OAuth do Google na Vercel (o botão
+   se esconde sem elas).
 
-   > **O que mudou:** o subtítulo dizia *"Pra salvar seu perfil e seu progresso
-   > na trilha"*. "Trilha" é o nome que as aulas ganham **depois** do cadastro;
-   > a landing que trouxe a pessoa até ali não usa a palavra nenhuma vez. A
-   > primeira frase do produto explicava o produto com uma palavra que só existe
-   > do outro lado da porta. Agora ela continua a linha da landing: *"É grátis e
-   > leva menos de um minuto. A conta guarda seus números, suas conversas com a
-   > IA e o que você aprender por aqui"* — as mesmas três coisas que a frase
-   > velha prometia, sem exigir vocabulário.
+   > **O defeito era de ordem, não de palavra.** A pessoa chega da home tendo
+   > lido "extrato", "painel" e "IA", e a primeira tela em que ela decide se
+   > entra descrevia a conta com a única palavra que ela ainda não podia
+   > conhecer. O subtítulo passou a dizer o que a conta guarda, no vocabulário
+   > que ela acabou de ler: *"Pra guardar seu painel, suas metas e as conversas
+   > com a IA. Criar conta é de graça."* O "de graça" já estava no CTA da home
+   > e sumia justo na hora de decidir.
    >
-   > **O rótulo do apelido veio junto, e é o mesmo defeito.** Perguntava "Como
-   > você quer aparecer na **liga**?" para quem ainda não sabe que existe uma;
-   > virou "no ranking". A tela continua se chamando Liga lá dentro, e quem
-   > chega por convite de escola segue lendo "ranking da sala", como já era.
+   > **O rótulo do apelido tinha o mesmo defeito e caiu junto**: "Como você
+   > quer aparecer **na liga**?" virou "no ranking", que é o que a versão de
+   > quem chega por convite já dizia ("ranking da sala"). O campo é o mesmo,
+   > opcional e sempre visível, como a decisão de 14/08 registrou; mudou só a
+   > palavra que ninguém de fora entende.
    >
-   > **Guardado por `scripts/testar-landing.mts`** (sem banco, sem build): a
-   > checagem varre a copy das duas telas de antes da conta (cadastro e login)
-   > atrás de palavra de dentro do app — trilha, liga, ofensiva, XP, combo,
-   > Finlo Coins, baú — e olha **só o que vira texto na tela**, nunca comentário
-   > nem nome de variável, porque os comentários dessas telas citam de propósito
-   > a palavra corrigida. Conferido contra o código mutilado: devolver qualquer
-   > uma das duas frases antigas faz o teste acusar.
+   > **Guardado por `scripts/testar-landing.mts`** (sem banco, sem build), que
+   > passou a cobrir o outro lado da porta: recusa jargão de dentro do app na
+   > copy de `/login` e `/cadastro` (trilha, liga, XP, ofensiva, combo, baú,
+   > corredor, missão, módulo, bloco, Finlo Coins), confere que **celular e
+   > apelido continuam opcionais** (fricção só volta com decisão registrada),
+   > que a data de nascimento continua com o porquê à vista e que o botão do
+   > Google segue perguntando ao servidor se está ligado. A varredura ignora
+   > classe, estilo e rota: guard que acusasse `router.push("/trilha")` como
+   > jargão de tela treinaria quem viesse depois a desligá-lo. Conferido contra
+   > o código mutilado.
    >
-   > **Duas armadilhas do próprio guard, anotadas nele para ninguém
-   > "simplificar" de volta:** a primeira versão passava verde com a copy velha
-   > no lugar, porque exigia o texto e os delimitadores na mesma linha e o
-   > Prettier quebra a frase em duas; e a borda de palavra é `\p{L}\p{N}`, não
-   > `\b`, porque `\b` é ASCII e não vê fronteira depois do "ú" de "baú" — a
-   > checagem dessa palavra nascia sempre verde. Guard que não acusa é pior que
-   > guard nenhum, porque parece resolvido.
+   > **Correção de 20/08/2026, no próprio guard.** A borda de palavra era `\b`,
+   > que é ASCII e erra dos dois lados quando há acento: depois do "ú" de "baú"
+   > ele não vê fronteira nenhuma (a checagem dessa palavra nascia **sempre
+   > verde**), e antes do "ç" de "ligações" ele vê uma que não existe (a Liga
+   > seria acusada numa frase que não fala dela). As onze expressões passaram a
+   > sair de um helper com `\p{L}\p{N}`, e os dois casos viraram teste. Guard
+   > que não acusa parece resolvido; guard que acusa o que ninguém escreveu
+   > ensina a desligá-lo.
+   >
+   > **A metade que sobrou é passo de painel, não de código.** Sem
+   > `GOOGLE_CLIENT_ID`/`GOOGLE_CLIENT_SECRET` na Vercel o provider não é
+   > registrado, e o botão some em vez de levar a uma tela de erro do NextAuth
+   > (a pessoa concluiria que a conta dela é que tem problema). No dia em que
+   > as chaves entrarem, ele aparece sozinho.
 
 5. ~~**🟠 Imagem quebrada em toda ficha de módulo.**~~ ✅ **13/08/2026** (Fin
    1): o fallback virou o Fin professor num bloco surface — o
@@ -635,18 +645,42 @@ Lista do mais crítico ao mais simples; cada item é um trabalho independente.
    > pedir jorro ou a rota parar de responder em SSE, o chat volta calado para os
    > pontinhos e tudo continua "funcionando".
 
-7. **🟡 Botão "Enviar para a IA reordenar" promete o que não faz.** Ele só
-   abre o chat com a mensagem pronta (`components/trilha-visual/DrawerModulo.tsx:394`).
-   Se a IA responder "não dá", vira botão de mentira. Renomear para algo como
-   "Pedir pro assistente" resolve — o problema é a promessa, não a mecânica.
+7. ~~**🟡 Botão "Enviar para a IA reordenar" promete o que não faz.**~~
+   ✅ **19/08/2026.** Ele só abre o chat com a mensagem pronta
+   (`components/trilha-visual/DrawerModulo.tsx`). Se a IA responder "não dá",
+   virava botão de mentira. O problema era a promessa, não a mecânica.
+
+   > **O rótulo passou a dizer o que o toque faz:** "Pedir pro assistente", com
+   > uma linha embaixo, "Abre o chat com essa pergunta pronta". Quem decide se
+   > dá para adiantar continua sendo a resposta do assistente, e agora a tela
+   > não decide isso antes dele.
+   >
+   > **Nada da mecânica mudou** e isso é a escolha: `confirmarNecessidade`
+   > continua montando a pergunta com o motivo escolhido e navegando para
+   > `/chat`. Construir a reordenação de verdade era o outro caminho, e não é
+   > correção de defeito — é frente nova, com decisão de produto por trás
+   > (quem pode furar o corredor, e sob qual critério).
+   >
+   > **Guardado por `scripts/testar-copy.mts`**, e a checagem é amarrada à
+   > mecânica, não à data: ela só exige o rótulo honesto **enquanto** o toque
+   > for navegação para o chat. No dia em que existir rota que reordena, ela
+   > afrouxa sozinha em vez de virar teste mentiroso pedindo para ser apagado.
 
 8. **🟡 Cheiro de beta + sem experiência de app** (revisado 16/08: metade
    caiu). O manifest/PWA EXISTE desde 13/08 (`app/manifest.ts`, Fin 1); e os
    "em breve" do Menu caíram de seis pra quatro (foto e personalidade
    viraram recurso de verdade). Push notification segue sem existir.
 
-9. **🟢 Deslizes pequenos** (revisado 16/08). (a) "Prefiro olhar o app
-   sozinha" com flexão feminina fixa — segue; (b) ~~accept do chat sem
+9. **🟢 Deslizes pequenos** (revisado 19/08). (a) ~~"Prefiro olhar o app
+   sozinha" com flexão feminina fixa~~ ✅ 19/08: virou "Prefiro olhar o app
+   **por conta própria**", que diz o mesmo sem flexionar e sem precisar de
+   "(a)". A varredura achou o espelho do deslize na landing ("Gráficos que você
+   precisa interpretar **sozinho**", masculino fixo), e ele caiu no mesmo
+   commit — eram os dois únicos casos em `app/` e `components/`. Guardado por
+   `scripts/testar-copy.mts`, que pega a palavra flexionada **só** quando a
+   pessoa é o sujeito: "a energia volta sozinha" passa, porque ali a
+   concordância está certa e guard que acusa frase correta só ensina a
+   desligá-lo; (b) ~~accept do chat sem
    `.qif`/`.txt`~~ ✅ 16/08, uma linha; (c) a cota em tokens continua sendo
    conta de padaria, a pessoa quer "quantas perguntas ainda tenho" — segue;
    (d) ~~Menu × Ajustes~~ ✅ com o redesign, a tela diz "Menu" como a aba.

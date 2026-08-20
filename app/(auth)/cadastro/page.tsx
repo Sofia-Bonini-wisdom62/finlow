@@ -138,17 +138,14 @@ export default function CadastroPage() {
         </Link>
 
         <h1 className="mt-6 text-2xl font-black" style={{ color: "var(--fin-text)" }}>Cria sua conta</h1>
-        {/*
-          SEM PALAVRA DE DENTRO DO APP AQUI (item 4 da avaliação de UX).
-          Dizia "Pra salvar seu perfil e seu progresso na trilha": "trilha" é o
-          nome que a gente dá às aulas DEPOIS que a pessoa entra, e quem está
-          nesta tela nunca viu essa palavra. A landing que trouxe ela até aqui
-          fala em conta grátis, extrato e IA, e é essa a linha que continua.
-          Guardado por scripts/testar-landing.mts.
-        */}
+        {/* A pessoa acabou de sair da home, onde leu "extrato", "painel" e "IA".
+            O subtítulo falava do "progresso na trilha": palavra que só faz
+            sentido depois de entrar, na primeira tela em que ela decide se
+            entra. Aqui a conta é descrita pelo que ela guarda, no vocabulário
+            que a home usou, e o "de graça" que estava no CTA da home continua
+            valendo do lado de cá. Guardado em scripts/testar-landing.mts. */}
         <p className="mt-1 text-sm" style={{ color: "var(--fin-muted)" }}>
-          É grátis e leva menos de um minuto. A conta guarda seus números, suas conversas
-          com a IA e o que você aprender por aqui.
+          Pra guardar seu painel, suas metas e as conversas com a IA. Criar conta é de graça.
         </p>
 
         {convite && !convite.recusa && (
@@ -243,10 +240,10 @@ export default function CadastroPage() {
           {/* Sempre visível desde o protótipo v2 — o apelido alimenta a Liga
               (e o rank da sala, para quem chega por convite).
 
-              O rótulo diz "ranking", não "liga", pelo mesmo motivo do subtítulo
-              acima: "Liga" é o nome da tela, aprendido lá dentro. Quem está
-              criando conta ainda não tem como saber que existe uma. A tela em si
-              continua se chamando Liga. */}
+              O campo continua o mesmo; o rótulo é que deixou de dizer "na
+              liga". Quem ainda não entrou não sabe o que é a Liga, e a versão
+              de quem vem por convite já dizia "ranking da sala": as duas
+              perguntas agora são a mesma pergunta. */}
           <div className="flex flex-col gap-1.5">
             <label htmlFor="apelido" className="text-sm font-bold" style={{ color: "var(--fin-muted)" }}>
               {convite?.papel === "aluno" && !convite.recusa
