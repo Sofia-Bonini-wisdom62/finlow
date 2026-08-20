@@ -405,20 +405,48 @@ venda):**
 - **`preRequisitoSlug` segue inerte** — o corredor escolar usa a ordem
   linear dos blocos, que na prática cobre o grafo de pré-requisitos; ligar o
   grafo de verdade é projeto próprio.
-- **Nova base de lições (20/08/2026), ainda não integrada.** Chegou o material
-  completo dos 7 segmentos (`ef12` a `em3`): 107 conceitos, 321 lições (3
-  encontros cada), ~5.268 itens, cobrindo a matriz do BC inteira. Está em
-  `prisma/seeds/licoes/` (+ `prisma/seeds/dados/` com os metadados de módulo e
-  conceito, e `lib/licao/` com o validador), validado por
-  `scripts/validar-tudo.ts` (321 válidas, 0 problema). **Decisão da
-  fundadora: esse material substitui a trilha escolar atual** (os 24 módulos
-  de EM e o pacote de EF já seedados, no formato `conceito/cenario/quiz/
-  input/resultado`). O que falta, e é trabalho de verdade, não upload: o
-  formato é por item (`binaria`, `escolha3`, `fecho`, `ordenar`,
-  `classificar`, `estimativa`) — diferente do que `Modulo`/`Tela` guardam
-  hoje — então precisa de schema/seed novos e de telas novas no player para
-  os 6 formatos antes de virar aula em produção. Nada disso foi feito ainda;
-  o conteúdo só está guardado e validado.
+- **Nova base de lições (20/08/2026), ainda não integrada.** Conteúdo chegou
+  e está guardado e validado; a integração é tarefa própria, ver
+  "Nova base de lições, integrar de vez" logo abaixo.
+
+---
+
+## Nova base de lições, integrar de vez (20/08/2026)
+
+Chegou o material completo dos 7 segmentos (`ef12` a `em3`): 107 conceitos,
+321 lições (3 encontros cada), ~5.268 itens, cobrindo a matriz de
+competências do Banco Central inteira. Por decisão da fundadora, **esse
+material substitui a trilha escolar atual** (os 24 módulos de EM e o pacote
+de EF já seedados, no formato `conceito/cenario/quiz/input/resultado`).
+
+O conteúdo em si já está pronto: `prisma/seeds/licoes/` (321 arquivos) +
+`prisma/seeds/dados/` (`modulos.json`, `conceitos.json`, metadados) +
+`lib/licao/` (validador) + `scripts/validar-tudo.ts`, que roda limpo (321
+válidas, 0 problema, não toca banco). **O que falta é código de produto**,
+em três frentes que se encadeiam:
+
+1. **Reestruturar as telas.** O formato novo é por item —
+   `binaria`, `escolha3`, `fecho`, `ordenar`, `classificar`, `estimativa` —
+   e nenhum deles existe hoje no player, que só sabe renderizar os cinco
+   tipos antigos (`conceito`, `cenario`, `quiz`, `input`, `resultado`).
+   Precisa desenhar e construir os componentes de tela dos 6 formatos novos
+   (card binário, escolha de 3, ordenar, classificar em 2 caixas, estimativa
+   com tolerância) mais o motor que calcula `verificacao.expressao` no
+   cliente.
+2. **Montar tudo junto.** Ligar `prisma/seeds/dados/` (conceito → módulo →
+   3 lições → telas na composição do lote) ao schema real: decidir se
+   `Modulo`/`Tela` absorve o formato novo (campo `formato` em `Tela`,
+   `conteudo` guardando o item) ou se nasce um modelo próprio para os itens
+   de exercício, e escrever a transformação de `prisma/seeds/licoes/*.json`
+   para linhas do banco.
+3. **Plantar o seed.** Com a transformação pronta, rodar o seed em produção
+   trocando os 24 módulos de EM e o pacote de EF pelo material novo —
+   inclui decidir o que acontece com `ProgressoModulo`/`ProgressoLicao` de
+   quem já está em andamento na trilha antiga, e seguir a ordem de migração
+   do `CLAUDE.md` (código primeiro, banco depois; coluna nova é exceção).
+
+Nenhuma das três frentes foi começada. É trabalho de arquitetura de
+produto, não upload de arquivo.
 
 ---
 
