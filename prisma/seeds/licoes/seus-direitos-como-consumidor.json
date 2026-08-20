@@ -1,0 +1,250 @@
+{
+ "slug": "seus-direitos-como-consumidor",
+ "segmento": "ef67",
+ "conceitoPrincipal": "seus-direitos-como-consumidor",
+ "fraseConceito": "Seus direitos como consumidor protegem você nas compras — e cada tipo de problema tem um canal certo pra resolver.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "direito-como-protecao",
+   "criterio": "É um direito garantido do consumidor?",
+   "enunciado": "Trocar um produto com defeito, sem pagar nada a mais",
+   "resposta": true,
+   "ancora": "Defeito de fábrica é risco da empresa, não do comprador.",
+   "feedbackErro": "Pode parecer um favor da loja, mas trocar produto com defeito é um direito garantido, não uma gentileza."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "direitos-e-deveres",
+   "criterio": "É um direito garantido do consumidor?",
+   "enunciado": "Ser atendido primeiro só porque reclamou alto",
+   "resposta": false,
+   "ancora": "Reclamar alto não é um direito — é só um comportamento.",
+   "feedbackErro": "Reclamar alto às vezes funciona na prática, mas não é um direito — não está garantido em lugar nenhum."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "direitos-e-deveres",
+   "criterio": "É um direito garantido do consumidor?",
+   "enunciado": "Receber a nota fiscal da compra",
+   "resposta": true,
+   "ancora": "Nota fiscal é obrigação da empresa, direito de quem compra.",
+   "feedbackErro": "Parece só um papel a mais, mas a nota fiscal é obrigatória e prova a compra para trocas e garantias."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "direito-como-protecao",
+   "dificuldade": 1,
+   "pergunta": "Bruno comprou um fone pela internet e quer devolver, sem defeito, em 5 dias. Ele pode?",
+   "ancora": "Compra online tem direito de arrependimento em até 7 dias.",
+   "alternativas": [
+    {
+     "texto": "Não, só dá pra devolver se tiver defeito",
+     "correta": false,
+     "feedbackErro": "Compra pela internet tem uma regra a mais: o direito de arrependimento, mesmo sem defeito."
+    },
+    {
+     "texto": "Sim, tem até 7 dias pra desistir de compra online",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só se a loja quiser aceitar, por educação",
+     "correta": false,
+     "feedbackErro": "Não é favor da loja: é um direito garantido em compras feitas fora da loja física."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "canais-de-protecao",
+   "dificuldade": 1,
+   "pergunta": "Uma compra deu problema e a loja não resolve. Qual é o canal certo pra reclamar formalmente?",
+   "ancora": "Procon e Consumidor.gov.br cobram a empresa oficialmente.",
+   "alternativas": [
+    {
+     "texto": "Postar só nas redes sociais e esperar",
+     "correta": false,
+     "feedbackErro": "Postar pode chamar atenção, mas não abre um processo formal de cobrança pra empresa responder."
+    },
+    {
+     "texto": "Procon ou Consumidor.gov.br",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ligar pra um amigo que trabalha na área",
+     "correta": false,
+     "feedbackErro": "Um amigo pode dar conselho, mas não tem poder de cobrar a empresa oficialmente."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "canais-de-protecao",
+   "criterio": "É canal oficial de proteção?",
+   "enunciado": "Procon",
+   "resposta": true,
+   "ancora": "Procon é o órgão público que recebe e cobra essas reclamações.",
+   "feedbackErro": "O Procon existe justamente pra isso: receber a reclamação e cobrar a empresa em nome do consumidor."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "direitos-e-deveres",
+   "instrucao": "Classifique: é direito do consumidor ou não?",
+   "ancora": "Direito é o que está garantido; o resto é sorte ou favor.",
+   "feedbackErro": "É fácil confundir sorte ou boa vontade da empresa com direito — direito é o que está garantido pra todo mundo.",
+   "caixas": [
+    { "id": "direito", "rotulo": "É direito" },
+    { "id": "nao", "rotulo": "Não é direito" }
+   ],
+   "itens": [
+    { "texto": "Trocar produto com defeito de fábrica", "caixaCorreta": "direito" },
+    { "texto": "Ser atendido antes dos outros por reclamar alto", "caixaCorreta": "nao" },
+    { "texto": "Receber informação clara sobre o produto antes de comprar", "caixaCorreta": "direito" },
+    { "texto": "Ganhar desconto só por pedir educadamente", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "direitos-e-deveres",
+   "criterio": "É responsabilidade da empresa?",
+   "enunciado": "Informar o preço total antes da compra, sem taxas escondidas",
+   "resposta": true,
+   "ancora": "Esconder taxa depois da compra fechada fere o direito à informação.",
+   "feedbackErro": "Parece detalhe de letra miúda, mas informar o preço total antes é obrigação da empresa, não um extra."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "direito-como-protecao",
+   "dificuldade": 1,
+   "pergunta": "Um produto de R$ 150 tem defeito de fábrica. Qual é o direito do consumidor?",
+   "ancora": "Troca, conserto ou devolução do dinheiro são as opções garantidas.",
+   "alternativas": [
+    {
+     "texto": "Nenhum, o risco é de quem compra",
+     "correta": false,
+     "feedbackErro": "Defeito de fábrica é risco de quem fabrica ou vende, não de quem compra."
+    },
+    {
+     "texto": "Troca, conserto ou devolução do dinheiro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só desconto na próxima compra",
+     "correta": false,
+     "feedbackErro": "Desconto futuro não resolve o problema atual — o direito cobre o produto já comprado com defeito."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "direito-como-protecao",
+   "criterio": "É um direito garantido do consumidor?",
+   "enunciado": "Receber o produto igual ao anunciado na propaganda",
+   "resposta": true,
+   "ancora": "Propaganda enganosa fere o direito à informação correta.",
+   "feedbackErro": "Parece só marketing exagerado, mas o produto precisa corresponder ao que foi anunciado — isso é direito."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "canais-de-protecao",
+   "criterio": "Esse canal resolve esse problema?",
+   "enunciado": "Usar o Banco Central pra reclamar de tarifa bancária cobrada errada",
+   "resposta": true,
+   "ancora": "Banco Central regula bancos e recebe reclamações sobre eles.",
+   "feedbackErro": "Parece que só o Procon resolve tudo, mas problemas com banco têm um canal específico: o Banco Central."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "seus-direitos-como-consumidor",
+   "dificuldade": 1,
+   "pergunta": "Qual frase resume seus direitos como consumidor?",
+   "alternativas": [
+    {
+     "texto": "Dependem da boa vontade de quem vende.",
+     "correta": false,
+     "feedbackErro": "Direito não depende de boa vontade — está garantido, e dá pra cobrar quando é ignorado."
+    },
+    {
+     "texto": "São garantias fixas, com canais certos pra cobrar cada uma.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só existem para compras feitas em loja física.",
+     "correta": false,
+     "feedbackErro": "Compras online têm direitos próprios, como o de arrependimento em 7 dias — não é exclusivo da loja física."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "canais-de-protecao",
+   "instrucao": "Ordene os passos pra resolver um problema de compra.",
+   "ancora": "Primeiro a empresa, depois o canal oficial se ela não resolver.",
+   "feedbackErro": "É tentador ir direto ao Procon, mas o primeiro passo é sempre tentar resolver com a própria empresa.",
+   "itens": [
+    { "texto": "Reclamar diretamente com a empresa", "posicaoCorreta": 1 },
+    { "texto": "Guardar prints, notas e protocolos", "posicaoCorreta": 2 },
+    { "texto": "Acionar Procon ou Consumidor.gov.br", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "direito-como-protecao",
+   "pergunta": "Compra de R$ 240 com defeito. A loja troca por outro de R$ 240. Qual o prejuízo do consumidor?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 240,
+   "gabarito": 0,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto do direito à troca sem custo",
+   "verificacao": { "expressao": "240-240", "esperado": 0 },
+   "feedbackPerto": "Isso mesmo — a troca sem custo zera o prejuízo do consumidor.",
+   "feedbackLonge": "R$ 0. O direito à troca por defeito existe justamente pra não sobrar prejuízo pra quem comprou."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "direitos-e-deveres",
+   "dificuldade": 1,
+   "pergunta": "Quem tem a responsabilidade de garantir informação clara sobre um produto?",
+   "ancora": "Informar com clareza é dever de quem vende, não escolha.",
+   "alternativas": [
+    {
+     "texto": "A empresa que vende o produto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só o consumidor, pesquisando por conta própria",
+     "correta": false,
+     "feedbackErro": "Pesquisar ajuda, mas a responsabilidade de informar com clareza é de quem vende, não só de quem compra."
+    },
+    {
+     "texto": "Nenhum dos dois, é sempre por conta e risco",
+     "correta": false,
+     "feedbackErro": "Existe responsabilidade definida: informar com clareza é dever da empresa, garantido por lei."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,267 @@
+{
+ "slug": "do-sal-ao-pix-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "do-sal-ao-pix",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "formas-do-dinheiro",
+   "criterio": "Lembra: isso serviria de dinheiro?",
+   "enunciado": "Barras de sabão, usadas como troca em prisões",
+   "resposta": true,
+   "ancora": "Sabão dura, é útil e vira padrão de troca sem moeda.",
+   "feedbackErro": "Parece só item de higiene, mas nesses contextos ele reúne os três critérios: durabilidade, utilidade reconhecida por todos e escassez controlada."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "formas-do-dinheiro",
+   "criterio": "Lembra: isso serviria de dinheiro?",
+   "enunciado": "Uma pedra comum, achada em qualquer rio",
+   "resposta": false,
+   "ancora": "Falta o critério da raridade — pedra comum não tem escassez nenhuma.",
+   "feedbackErro": "Pedra é durável, é verdade. Mas sobra em qualquer lugar: sem raridade, ninguém aceita trocar algo valioso por ela."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "formas-do-dinheiro",
+   "criterio": "Lembra: isso serviria de dinheiro?",
+   "enunciado": "Uma cédula de real com o número de série ilegível",
+   "resposta": true,
+   "ancora": "O que garante o valor é o Banco Central, não o nº de série.",
+   "feedbackErro": "O número apagado assusta, mas não invalida a nota — o valor vem de quem emite e garante, e isso continua de pé."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "formas-do-dinheiro",
+   "dificuldade": 2,
+   "pergunta": "Gado, sal e conchas foram dinheiro em lugares diferentes. Qual critério decidia isso, e não outro?",
+   "ancora": "O critério de sempre: raro, durável, aceito por todos.",
+   "alternativas": [
+    {
+     "texto": "O peso do objeto",
+     "correta": false,
+     "feedbackErro": "Peso nunca foi o critério — conchas leves e gado pesado serviram do mesmo jeito, contanto que fossem raros e aceitos."
+    },
+    {
+     "texto": "Ser raro, durar e ser aceito por todos ali",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ter sido usado primeiro por um governo",
+     "correta": false,
+     "feedbackErro": "Esses três exemplos surgiram do costume popular, sem nenhum governo decretando — o critério é raridade, durabilidade e aceitação, não origem estatal."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "formas-do-dinheiro",
+   "dificuldade": 2,
+   "pergunta": "Cartão de crédito e Pix são bem diferentes na forma. O que os dois preservam do dinheiro?",
+   "ancora": "Formas mudam rápido; a aceitação ampla é o teste.",
+   "alternativas": [
+    {
+     "texto": "Ser aceito amplamente como forma de pagar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Precisar de papel-moeda por trás de cada operação",
+     "correta": false,
+     "feedbackErro": "Nem cartão nem Pix dependem de papel-moeda física circulando por trás — o valor é registrado, não trocado em cédulas."
+    },
+    {
+     "texto": "Ter validade de apenas 30 dias",
+     "correta": false,
+     "feedbackErro": "Nenhum dos dois expira assim — isso não existe nem no cartão nem no Pix. O que os liga ao dinheiro é a aceitação ampla."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "formas-do-dinheiro",
+   "criterio": "Isso muda forma, não função?",
+   "enunciado": "Passar a pagar o ônibus com cartão em vez de moeda física",
+   "resposta": true,
+   "ancora": "A função de pagar é igual; só o objeto mudou.",
+   "feedbackErro": "Dá pra achar que mudou algo essencial, mas a função de pagar a tarifa continua igual — só a forma física do pagamento é diferente."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "formas-do-dinheiro",
+   "instrucao": "Esse meio de pagamento depende de eletricidade pra funcionar?",
+   "ancora": "Papel e metal não pedem energia; Pix e cartão pedem.",
+   "feedbackErro": "O critério aqui não é 'antigo x novo', é depender ou não de eletricidade para a transação acontecer.",
+   "caixas": [
+    {
+     "id": "sem",
+     "rotulo": "Sem eletricidade"
+    },
+    {
+     "id": "com",
+     "rotulo": "Depende de eletricidade"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Moedas de metal",
+     "caixaCorreta": "sem"
+    },
+    {
+     "texto": "Pix",
+     "caixaCorreta": "com"
+    },
+    {
+     "texto": "Cédulas de papel",
+     "caixaCorreta": "sem"
+    },
+    {
+     "texto": "Cartão de débito",
+     "caixaCorreta": "com"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "preco-e-contexto",
+   "criterio": "O contexto explica mais que o custo?",
+   "enunciado": "Uma garrafa de água custar mais dentro do estádio do que no mercado da esquina",
+   "resposta": true,
+   "ancora": "A água na fábrica é a mesma; sobe o contexto do estádio.",
+   "feedbackErro": "O preço da água na fábrica não muda. O que sobe é o contexto: dentro do estádio, você não tem outra opção de comprar."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "preco-e-contexto",
+   "dificuldade": 2,
+   "pergunta": "Uma passagem aérea pro mesmo destino custa mais em dezembro do que em março. Por quê?",
+   "ancora": "Mesmo trajeto, mesma aeronave — o preço sobe onde a procura sobe.",
+   "alternativas": [
+    {
+     "texto": "Porque o avião gasta mais combustível em dezembro",
+     "correta": false,
+     "feedbackErro": "O consumo de combustível não muda por causa do calendário — o que muda é quantas pessoas querem viajar naquele mês."
+    },
+    {
+     "texto": "Porque a procura por viagens sobe nas férias de fim de ano",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque a distância do voo aumenta no fim do ano",
+     "correta": false,
+     "feedbackErro": "A rota e a distância são as mesmas o ano inteiro. O que varia é a procura de passageiros em cada período."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "formas-do-dinheiro",
+   "criterio": "É permanência de função, com forma nova?",
+   "enunciado": "Pagar o aluguel por Pix em vez de cheque",
+   "resposta": true,
+   "ancora": "Quitar o aluguel é a função; a forma mudou pra Pix.",
+   "feedbackErro": "Pagar por Pix parece 'menos formal' que cheque, mas cumpre a mesma função — quitar o aluguel. Só a forma de transferir o valor mudou."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "preco-e-contexto",
+   "criterio": "O contexto explica o preço maior?",
+   "enunciado": "Um mesmo modelo de tênis custar mais numa loja de shopping do que num camelô",
+   "resposta": true,
+   "ancora": "O contexto — local, atendimento, garantia — soma ao preço.",
+   "feedbackErro": "O tênis que sai da fábrica é idêntico nos dois lugares. O que separa o preço é o contexto: aluguel do shopping, atendimento, garantia."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "formas-do-dinheiro",
+   "pergunta": "Depois desses exemplos, qual frase está certa?",
+   "alternativas": [
+    {
+     "texto": "Só viram dinheiro objetos feitos de metal ou papel",
+     "correta": false,
+     "feedbackErro": "Sal, cacau e Pix mostram o contrário — nenhum dos três é metal nem papel, e todos já serviram como dinheiro."
+    },
+    {
+     "texto": "Serve de dinheiro o raro, durável e aceito — a forma muda, o critério não",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O preço de um produto nunca muda fora do custo de fabricá-lo",
+     "correta": false,
+     "feedbackErro": "A passagem aérea de dezembro mostra o oposto: mesmo trajeto, mesmo avião, preço maior só pela procura."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "preco-e-contexto",
+   "pergunta": "Uma bebida custa R$4 no mercado. Dentro do show, sobe 150%. Qual o novo preço?",
+   "campo": "moeda",
+   "min": 4,
+   "max": 15,
+   "gabarito": 10,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto sobre o valor de mercado",
+   "verificacao": {
+    "expressao": "4*2.5",
+    "esperado": 10
+   },
+   "feedbackPerto": "Isso mesmo: R$ 4 + 150% de R$ 4 = R$ 10. O contexto do show justifica esse salto pro vendedor, não o custo da bebida.",
+   "feedbackLonge": "O valor é R$ 10: R$ 4 mais 150% de R$ 4 (que são R$ 6). É fácil errar somando só 150 centavos ou dobrando sem completar a conta."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "formas-do-dinheiro",
+   "instrucao": "Ordene da forma mais dependente de tecnologia à menos.",
+   "ancora": "Pix pede internet; moeda de metal não pede nada.",
+   "feedbackErro": "O critério é dependência tecnológica, não valor ou idade: Pix é o mais dependente, moeda de metal o menos.",
+   "itens": [
+    {
+     "texto": "Pix",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Cartão de débito",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Cédula de papel",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Moeda de metal",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "preco-e-contexto",
+   "criterio": "O contexto explica o preço maior?",
+   "enunciado": "Um par idêntico de óculos de sol custar mais dentro do aeroporto do que fora",
+   "resposta": true,
+   "ancora": "Sem opção por perto, o contexto sobe o preço, não o objeto.",
+   "feedbackErro": "O óculos que sai da fábrica é o mesmo dos dois lados. O que muda é o contexto: dentro do aeroporto, a falta de opção sobe o preço."
+  }
+ ]
+}

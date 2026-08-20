@@ -1,0 +1,290 @@
+{
+ "slug": "escolha-que-respinga-nos-outros-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "escolha-que-respinga-nos-outros",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "escolha-com-impacto",
+   "criterio": "Isso afeta outras pessoas ou o ambiente?",
+   "enunciado": "Comprar um produto sabendo que a fábrica joga lixo no rio",
+   "resposta": true,
+   "ancora": "Comprar de quem polui sustenta esse prejuízo pro rio de todos.",
+   "feedbackErro": "Parece que a escolha é só sobre o produto em si. Mas comprar de quem polui ajuda a sustentar esse prejuízo pro rio, que é de todo mundo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "escolha-com-impacto",
+   "criterio": "Isso afeta outras pessoas ou o ambiente?",
+   "enunciado": "Escolher entre dois cadernos da mesma cor, sem diferença de preço",
+   "resposta": false,
+   "ancora": "Sem diferença real, essa escolha não afeta mais ninguém.",
+   "feedbackErro": "Parece que toda decisão de compra tem algum peso maior. Mas sem diferença real de preço ou impacto, é só preferência pessoal."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "conflito-de-consumo",
+   "criterio": "Isso pode virar um conflito de consumo?",
+   "enunciado": "Um grupo de amigos dividir uma pizza sem combinar quem paga o quê",
+   "resposta": true,
+   "ancora": "Sem combinar antes, alguém pode pagar mais do que devia.",
+   "feedbackErro": "Parece que no fim vai dar tudo certo, sem precisar combinar. Mas sem combinar antes, é comum alguém pagar mais do que devia."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "escolha-com-impacto",
+   "dificuldade": 2,
+   "pergunta": "Uma escola troca copos descartáveis por canecas reutilizáveis. Quem mais sente esse efeito, além dos alunos?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "O ambiente ao redor, com menos lixo produzido",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só a diretoria, que decidiu a troca",
+     "correta": false,
+     "feedbackErro": "A decisão veio da diretoria, mas quem sente o efeito de menos lixo é o ambiente inteiro ao redor."
+    },
+    {
+     "texto": "Ninguém, porque copo descartável não gera efeito nenhum",
+     "correta": false,
+     "feedbackErro": "Copo descartável vira lixo que precisa de descarte. Reduzir esse volume tem efeito real fora da escola."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "conflito-de-consumo",
+   "dificuldade": 2,
+   "pergunta": "Três amigos dividem igual o custo de um presente, mas um paga menos, dizendo que completa depois. O que isso cria?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "Conflito, pela diferença entre o combinado e o pago",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada, porque no fim o valor total ainda estava certo",
+     "correta": false,
+     "feedbackErro": "O total pode até fechar depois, mas enquanto isso os outros dois pagaram mais que o combinado."
+    },
+    {
+     "texto": "Um problema só do amigo que pagou menos",
+     "correta": false,
+     "feedbackErro": "Pagar menos que o combinado afeta os outros dois, que cobriram a diferença. O conflito é entre os três."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "conflito-de-consumo",
+   "criterio": "Reduz o risco de conflito em grupo?",
+   "enunciado": "Anotar quanto cada um pagou, antes de gastar o dinheiro",
+   "resposta": true,
+   "ancora": "Registrar evita dúvida sobre quem pagou o quê depois.",
+   "feedbackErro": "Parece um cuidado exagerado pra uma compra simples. Mas anotar quanto cada um pagou evita dúvida e discussão depois."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "escolha-com-impacto",
+   "instrucao": "Isso afeta o ambiente, além do bolso?",
+   "ancora": "O que consome recurso ou gera lixo afeta o ambiente.",
+   "feedbackErro": "Parece que só grandes decisões afetam o ambiente. Mas hábitos pequenos, como luz acesa à toa, também pesam no consumo de todos.",
+   "caixas": [
+    {
+     "id": "afeta",
+     "rotulo": "Afeta"
+    },
+    {
+     "id": "naoafeta",
+     "rotulo": "Não afeta"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Deixar a luz acesa em um cômodo vazio",
+     "caixaCorreta": "afeta"
+    },
+    {
+     "texto": "Escolher a cor da mochila nova",
+     "caixaCorreta": "naoafeta"
+    },
+    {
+     "texto": "Separar o lixo reciclável do orgânico",
+     "caixaCorreta": "afeta"
+    },
+    {
+     "texto": "Escolher qual sobremesa comer no almoço",
+     "caixaCorreta": "naoafeta"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "conflito-de-consumo",
+   "criterio": "Costuma gerar conflito de consumo?",
+   "enunciado": "Usar algo emprestado do grupo sem avisar ninguém",
+   "resposta": true,
+   "ancora": "Usar sem avisar tira dos outros a escolha sobre o próprio recurso.",
+   "feedbackErro": "Parece um gesto pequeno, sem problema. Mas usar sem avisar tira dos outros a chance de decidir sobre um recurso que também é deles."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "escolha-com-impacto",
+   "dificuldade": 2,
+   "pergunta": "Uma vizinhança combina economizar água numa seca. Uma casa lava o carro todo dia igual. O que isso causa pro bairro?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "Menos água sobrando pra quem está economizando de verdade",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada, porque água de uma casa não afeta as outras",
+     "correta": false,
+     "feedbackErro": "Numa seca, a água é recurso limitado e compartilhado — o gasto de uma casa reduz o que sobra pras outras."
+    },
+    {
+     "texto": "Só aumenta a conta de água dessa casa, sem afetar o bairro",
+     "correta": false,
+     "feedbackErro": "A conta sobe pra essa casa, mas numa seca o efeito passa disso: reduz o que sobra pro bairro todo."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "conflito-de-consumo",
+   "criterio": "É jeito justo de resolver um conflito?",
+   "enunciado": "Ouvir todo mundo antes de decidir como vai ser gasto o dinheiro comum",
+   "resposta": true,
+   "ancora": "Ouvir antes de decidir reduz a chance de alguém se sentir prejudicado.",
+   "feedbackErro": "Parece que demora demais ouvir todo mundo antes. Mas isso reduz bastante a chance de alguém se sentir prejudicado."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "escolha-com-impacto",
+   "criterio": "Mostra que pensou no efeito nos outros?",
+   "enunciado": "Perguntar antes se a escolha afeta alguém, mesmo sem ser óbvio",
+   "resposta": true,
+   "ancora": "Perguntar antes revela efeitos que não são óbvios de cara.",
+   "feedbackErro": "Parece desnecessário perguntar quando o efeito não é óbvio. Mas é aí que perguntar antes revela consequências que passariam despercebidas."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "escolha-com-impacto",
+   "dificuldade": 3,
+   "pergunta": "Qual frase resume melhor o que você viu hoje?",
+   "alternativas": [
+    {
+     "texto": "Só decisões grandes afetam outras pessoas ou o ambiente",
+     "correta": false,
+     "feedbackErro": "Hábitos pequenos, como deixar luz acesa ou gastar água à toa, também afetam quem divide esses recursos."
+    },
+    {
+     "texto": "Combinar antes e pensar no efeito nos outros evita boa parte dos conflitos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Conflito de consumo só surge quando alguém rouba dinheiro",
+     "correta": false,
+     "feedbackErro": "Conflito também nasce de gastar mais que o combinado ou usar recurso comum sem avisar."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "escolha-com-impacto",
+   "instrucao": "Ordene do que afeta menos gente pro que afeta mais.",
+   "ancora": "Quanto mais escasso e compartilhado o recurso, mais gente sente.",
+   "feedbackErro": "Parece que o contexto não muda nada. Mas numa seca, o mesmo desperdício de água afeta muito mais gente do que numa época normal.",
+   "itens": [
+    {
+     "texto": "Escolher a cor do estojo",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Gastar a mesada combinada com a família",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Desperdiçar água durante uma seca no bairro",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "conflito-de-consumo",
+   "instrucao": "Isso previne ou provoca conflito de consumo?",
+   "ancora": "Registrar e perguntar previne; usar ou pagar sem avisar provoca.",
+   "feedbackErro": "Parece que o problema só aparece quando alguém erra feio. Mas até um gesto pequeno, como não avisar, já provoca conflito.",
+   "caixas": [
+    {
+     "id": "previne",
+     "rotulo": "Previne"
+    },
+    {
+     "id": "provoca",
+     "rotulo": "Provoca"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Anotar quem pagou quanto numa compra em grupo",
+     "caixaCorreta": "previne"
+    },
+    {
+     "texto": "Usar o que é do grupo sem perguntar",
+     "caixaCorreta": "provoca"
+    },
+    {
+     "texto": "Perguntar antes de gastar o dinheiro comum",
+     "caixaCorreta": "previne"
+    },
+    {
+     "texto": "Pagar menos que o combinado, sem avisar",
+     "caixaCorreta": "provoca"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "escolha-com-impacto",
+   "pergunta": "Turma de 5 gastou R$ 150 a mais reimprimindo trabalhos. Dividido igual, quanto cada um paga?",
+   "campo": "moeda",
+   "min": 5,
+   "max": 80,
+   "gabarito": 30,
+   "toleranciaPct": 20,
+   "fonte": "conta direta: valor total dividido pelo número de pessoas",
+   "feedbackPerto": "Isso mesmo — R$ 30 cada. Um erro coletivo dividido mostra o efeito de cada um.",
+   "feedbackLonge": "R$ 150 dividido por 5 pessoas dá R$ 30. É só dividir o gasto extra pelo número de quem divide a conta.",
+   "verificacao": {
+    "expressao": "150/5",
+    "esperado": 30
+   }
+  }
+ ]
+}

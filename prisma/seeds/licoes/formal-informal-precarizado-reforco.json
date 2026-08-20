@@ -1,0 +1,343 @@
+{
+ "slug": "formal-informal-precarizado-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "formal-informal-precarizado",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "direitos-formais",
+   "criterio": "Ainda é trabalho formal?",
+   "enunciado": "Contrato de experiência de 45 dias, com carteira assinada",
+   "resposta": true,
+   "ancora": "Mesmo temporário, tem carteira assinada — direitos valem no período.",
+   "feedbackErro": "Prazo curto passa a ideia de algo provisório e sem direito. Mas com carteira assinada, os direitos valem durante todo o contrato."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "direitos-formais",
+   "criterio": "Ainda é trabalho formal?",
+   "enunciado": "Bico de fim de semana, combinado só de boca",
+   "resposta": false,
+   "ancora": "Sem registro, o combinado verbal não gera direitos trabalhistas.",
+   "feedbackErro": "Ter um combinado, mesmo que verbal, parece já formalizar algo. Mas sem carteira assinada, não existe nenhum direito trabalhista garantido."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "direitos-formais",
+   "criterio": "Ainda é trabalho formal?",
+   "enunciado": "MEI prestando serviço para uma empresa, sem carteira assinada",
+   "resposta": false,
+   "ancora": "MEI é negócio formalizado, mas sem carteira não dá direito de CLT.",
+   "feedbackErro": "MEI tem CNPJ e paga imposto, e isso soa formal. Mas sem carteira assinada, o vínculo não gera FGTS, férias nem os direitos da CLT."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "direitos-formais",
+   "dificuldade": 2,
+   "pergunta": "Diego ganha R$ 2.350 registrado. Quanto o INSS desconta dele, a uma alíquota efetiva de 9%?",
+   "ancora": "9% de R$ 2.350 = R$ 211,50. É desconto sobre o salário bruto.",
+   "verificacao": {
+    "expressao": "2350*0.09",
+    "esperado": 211.5
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 21,15",
+     "correta": false,
+     "feedbackErro": "Você calculou 0,9%, não 9%. Para achar 9%, divida por 100 e multiplique por 9: dá R$ 211,50."
+    },
+    {
+     "texto": "R$ 211,50",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 235,00",
+     "correta": false,
+     "feedbackErro": "R$ 235 seria 10%. A alíquota do exemplo é 9%: 9 para cada 100 de R$ 2.350 dá R$ 211,50."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "precarizacao-trabalho",
+   "dificuldade": 2,
+   "pergunta": "Um MEI fatura R$ 2.400 por mês e paga cerca de R$ 71 fixos de DAS. Isso substitui o quê da CLT?",
+   "ancora": "DAS cobre parte da Previdência e imposto, mas não gera FGTS.",
+   "alternativas": [
+    {
+     "texto": "Todos os direitos da CLT, incluindo FGTS",
+     "correta": false,
+     "feedbackErro": "O DAS cobre Previdência e imposto sobre o negócio, mas não gera FGTS nem férias remuneradas."
+    },
+    {
+     "texto": "Parte da Previdência e do imposto, sem gerar FGTS nem férias",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada — MEI não recolhe nenhum imposto",
+     "correta": false,
+     "feedbackErro": "MEI recolhe sim, todo mês, o DAS fixo — só que ele não cria os mesmos direitos da carteira assinada."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "direitos-formais",
+   "criterio": "Ainda é trabalho formal?",
+   "enunciado": "Trabalho intermitente registrado, pago só nos dias chamados",
+   "resposta": true,
+   "ancora": "Intermitente tem carteira e direitos conforme os dias trabalhados.",
+   "feedbackErro": "Receber só nos dias chamados parece informal por não ter rotina fixa. Mas com registro em carteira, os direitos existem, proporcionais aos dias."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "direitos-formais",
+   "instrucao": "Isso é exclusivo do trabalho formal? Arraste.",
+   "ancora": "Exclusivo é o que só existe com carteira assinada e vínculo formal.",
+   "feedbackErro": "13º e FGTS só existem com carteira assinada; trabalhar por conta própria e pagar imposto acontecem nos dois regimes.",
+   "caixas": [
+    {
+     "id": "exclusivo",
+     "rotulo": "Só no formal"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Nos dois"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "13º salário",
+     "caixaCorreta": "exclusivo"
+    },
+    {
+     "texto": "Poder trabalhar por conta própria",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "FGTS depositado pelo empregador",
+     "caixaCorreta": "exclusivo"
+    },
+    {
+     "texto": "Pagar imposto sobre o que ganha",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "precarizacao-trabalho",
+   "criterio": "É sinal de precarização?",
+   "enunciado": "Receber por produtividade, com meta que sobe todo mês sem aviso",
+   "resposta": true,
+   "ancora": "Meta que sobe sem combinar antes é pressão, não acordo justo.",
+   "feedbackErro": "Meta por produtividade em si é comum e não é o problema. O que precariza é ela subir sem aviso, sem negociação nenhuma."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "precarizacao-trabalho",
+   "criterio": "É sinal de precarização?",
+   "enunciado": "Ter carga horária fixa definida em contrato",
+   "resposta": false,
+   "ancora": "Carga fixa e combinada é o oposto da jornada sem limite.",
+   "feedbackErro": "Parece rígido demais pra ser um benefício. Mas horário fixo e definido é justamente o que falta no trabalho precarizado."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "precarizacao-trabalho",
+   "pergunta": "Camila é MEI e fatura R$ 2.800 por mês. Paga R$ 71 de DAS. Que % da receita isso representa?",
+   "campo": "percentual",
+   "min": 1,
+   "max": 10,
+   "gabarito": 2.54,
+   "toleranciaPct": 20,
+   "fonte": "valor fixo do DAS-MEI, ~R$ 71 por mês (Receita Federal)",
+   "verificacao": {
+    "expressao": "71/2800*100",
+    "esperado": 2.54,
+    "tolerancia": 1
+   },
+   "feedbackPerto": "Isso mesmo — cerca de 2,5%. Pequeno na conta, mas soma todo mês, ano após ano.",
+   "feedbackLonge": "Dá cerca de 2,5%. Parece pouco isolado, mas é fixo mesmo quando o faturamento cai — o peso relativo cresce nos meses fracos."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "precarizacao-trabalho",
+   "dificuldade": 2,
+   "pergunta": "Um motoboy recebe por entrega, sem piso mínimo por hora, e sem reajuste há 2 anos. O que isso indica?",
+   "ancora": "Mesmo trabalho, mesmo tanto de horas, comprando cada vez menos.",
+   "alternativas": [
+    {
+     "texto": "Perda real de poder de compra, mesmo trabalhando igual.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nenhum problema, já que o valor por entrega não mudou",
+     "correta": false,
+     "feedbackErro": "O valor nominal ficou igual, mas os preços ao redor subiram — por isso o poder de compra caiu."
+    },
+    {
+     "texto": "Um ganho, porque ele evita risco de perder o emprego",
+     "correta": false,
+     "feedbackErro": "Não ter reajuste não protege de nada — o risco de renda cai mesmo sem demissão nenhuma."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "direitos-formais",
+   "dificuldade": 2,
+   "pergunta": "Larissa foi promovida informalmente, sem alteração no registro em carteira. O que muda nos direitos dela?",
+   "ancora": "O registro formal é o que vale para efeito de direito trabalhista.",
+   "alternativas": [
+    {
+     "texto": "Nada muda no direito, porque o registro formal é o que conta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O salário sobe automaticamente junto com a promoção",
+     "correta": false,
+     "feedbackErro": "Sem alterar o contrato registrado, não há aumento automático — a promoção 'de boca' não gera esse direito."
+    },
+    {
+     "texto": "Ela passa a ter direito a férias em dobro",
+     "correta": false,
+     "feedbackErro": "Férias em dobro não tem relação com promoção — e sem registro, nem a promoção em si é reconhecida."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "direitos-formais",
+   "criterio": "Ainda é trabalho formal?",
+   "enunciado": "Meio período registrado, 20 horas semanais, com carteira",
+   "resposta": true,
+   "ancora": "Carga menor não tira o vínculo — carteira assinada é o que garante.",
+   "feedbackErro": "20 horas parece pouco pra 'valer' como emprego formal. Mas o que garante os direitos é o registro em carteira, não a carga horária."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "precarizacao-trabalho",
+   "criterio": "É sinal de precarização?",
+   "enunciado": "Não ter previsão de quantas horas vai trabalhar na semana",
+   "resposta": true,
+   "ancora": "Sem previsão de horas, também não há previsão de quanto vai sobrar.",
+   "feedbackErro": "Pode parecer flexibilidade a favor do trabalhador. Mas sem previsão nenhuma, a renda do mês vira incerteza constante."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "direitos-formais",
+   "pergunta": "Qual frase resume o que você reforçou hoje?",
+   "ancora": "O registro em carteira é o que separa formal de informal, sempre.",
+   "alternativas": [
+    {
+     "texto": "Formal é definido pelo tipo de trabalho, nunca pelo registro.",
+     "correta": false,
+     "feedbackErro": "O tipo de trabalho não define nada — o que define é ter carteira e contrato registrados."
+    },
+    {
+     "texto": "Formal não é sobre o tipo de trabalho, é sobre carteira e contrato registrados.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "MEI tem os mesmos direitos trabalhistas de quem tem carteira assinada.",
+     "correta": false,
+     "feedbackErro": "MEI paga imposto de negócio, mas não gera FGTS nem férias como a carteira assinada."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "precarizacao-trabalho",
+   "dificuldade": 2,
+   "pergunta": "Uma empresa troca funcionários registrados por 'parceiros' MEI, pagando o mesmo valor. Ganha quem?",
+   "ancora": "A empresa deixa de pagar FGTS; o trabalhador assume o risco.",
+   "alternativas": [
+    {
+     "texto": "A empresa, que deixa de pagar FGTS e encargos trabalhistas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O trabalhador, que agora é 'dono do próprio negócio'",
+     "correta": false,
+     "feedbackErro": "Virar MEI de fachada não muda a rotina de trabalho — só tira dele a rede de proteção que tinha antes."
+    },
+    {
+     "texto": "Os dois lados ganham igualmente com a mudança",
+     "correta": false,
+     "feedbackErro": "Quando o valor pago fica igual e a proteção diminui, o ganho é desigual — pesa mais pra empresa."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "direitos-formais",
+   "criterio": "É direito do trabalho formal?",
+   "enunciado": "Décimo terceiro salário pago em duas parcelas",
+   "resposta": true,
+   "ancora": "13º é direito de quem tem carteira, pago normalmente em duas vezes.",
+   "feedbackErro": "O pagamento em duas parcelas confunde, parece um bônus qualquer. Mas é direito garantido por lei a quem tem carteira assinada."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "precarizacao-trabalho",
+   "instrucao": "Isso aumenta a precarização? Arraste.",
+   "ancora": "Precariza o que tira previsibilidade de renda e de proteção.",
+   "feedbackErro": "O que precariza tira previsão de renda ou de proteção; carga horária combinada e reajuste justo vão na direção contrária.",
+   "caixas": [
+    {
+     "id": "aumenta",
+     "rotulo": "Aumenta"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não aumenta"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Meta que muda sem aviso prévio",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "Carga horária combinada em contrato",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Pagamento sem piso mínimo por hora",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "Reajuste anual combinado antecipadamente",
+     "caixaCorreta": "nao"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,328 @@
+{
+ "slug": "risco-rendimento-e-liquidez",
+ "segmento": "ef89",
+ "conceitoPrincipal": "risco-rendimento-e-liquidez",
+ "fraseConceito": "Investimento troca segurança por retorno: quanto mais rende, maior o risco; e checar se é confiável vem antes de qualquer promessa de lucro.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-retorno-liquidez",
+   "criterio": "Rende mais que a poupança?",
+   "enunciado": "Guardar dinheiro no Tesouro Direto",
+   "resposta": true,
+   "ancora": "Tesouro paga mais que a poupança, com risco bem menor.",
+   "feedbackErro": "Poupança parece o padrão seguro, e por isso confunde. Mas o Tesouro Direto, garantido pelo governo, costuma render mais do que ela."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-retorno-liquidez",
+   "criterio": "Rende mais que a poupança?",
+   "enunciado": "Deixar dinheiro parado na carteira",
+   "resposta": false,
+   "ancora": "Dinheiro parado não rende nada — nem poupança.",
+   "feedbackErro": "Pode parecer 'seguro' porque está à mão, mas dinheiro parado não rende — não bate nem a poupança, que já rende pouco."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-retorno-liquidez",
+   "criterio": "Rende mais que a poupança?",
+   "enunciado": "Comprar uma ação de uma empresa na bolsa",
+   "resposta": true,
+   "ancora": "Ação pode render bem mais — com risco de perder valor também.",
+   "feedbackErro": "Ação parece arriscada demais para comparar com poupança, mas no histórico de longo prazo ela costuma render mais — o preço é aceitar que o valor oscila."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-retorno-liquidez",
+   "dificuldade": 1,
+   "pergunta": "Por que a poupança rende menos que muitos outros investimentos?",
+   "ancora": "Menos risco de perder = menos prêmio pago a quem investe.",
+   "alternativas": [
+    {
+     "texto": "Porque ela é mais segura, e segurança rende menos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque poucas pessoas usam poupança hoje em dia",
+     "correta": false,
+     "feedbackErro": "Muita gente ainda usa poupança, e isso não decide o rendimento. O que define a taxa é o risco: quanto mais segura a aplicação, menor o prêmio pago."
+    },
+    {
+     "texto": "Porque o dinheiro fica preso por muitos anos",
+     "correta": false,
+     "feedbackErro": "Na poupança o dinheiro é bem líquido, pode sacar quase a qualquer hora. O rendimento baixo vem da segurança, não da demora para resgatar."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "confiabilidade-investimento",
+   "dificuldade": 1,
+   "pergunta": "Um grupo promete triplicar seu dinheiro em 1 mês, 'sem risco'. O que isso deveria acender?",
+   "ancora": "Retorno alto e garantido juntos não existem no mercado real.",
+   "alternativas": [
+    {
+     "texto": "Um alerta de golpe: retorno alto nunca é sem risco",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Uma boa oportunidade para quem chegar primeiro",
+     "correta": false,
+     "feedbackErro": "A pressa de 'chegar primeiro' é técnica clássica de golpe. Retorno alto sempre embute risco — 'sem risco' junto com esse ganho não bate."
+    },
+    {
+     "texto": "Prova de que a empresa tem um produto muito bom",
+     "correta": false,
+     "feedbackErro": "Produto bom explica lucro alto para a empresa, não para quem só deposita e recebe de volta triplicado sem trabalhar por isso — isso é golpe."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-investimento",
+   "criterio": "É sinal de confiabilidade?",
+   "enunciado": "A instituição é registrada na CVM ou no Banco Central",
+   "resposta": true,
+   "ancora": "Registro no órgão regulador é o primeiro filtro de confiança.",
+   "feedbackErro": "Pode parecer burocracia sem importância, mas o registro em CVM ou Banco Central é o que garante fiscalização — sem ele, não há a quem recorrer."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "risco-retorno-liquidez",
+   "instrucao": "Toque na ordem: do investimento mais seguro ao mais arriscado.",
+   "ancora": "Quanto mais concentrado e variável, maior o risco.",
+   "feedbackErro": "É tentador achar que fundo e ação individual empatam. Mas o fundo reparte o risco entre várias empresas; uma ação sozinha pode cair muito mais.",
+   "itens": [
+    {
+     "texto": "Poupança",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Tesouro Direto",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Fundo de ações",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Ação de uma única empresa",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "risco-retorno-liquidez",
+   "criterio": "É fácil resgatar sem perder valor?",
+   "enunciado": "Vender um imóvel no mês seguinte à compra",
+   "resposta": false,
+   "ancora": "Imóvel demora meses para vender pelo preço justo.",
+   "feedbackErro": "Parece só uma questão de anunciar e vender, mas imóvel costuma levar meses para achar comprador pelo preço justo — baixa liquidez."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "risco-retorno-liquidez",
+   "criterio": "É fácil resgatar sem perder valor?",
+   "enunciado": "Resgatar o Tesouro Selic antes do prazo",
+   "resposta": true,
+   "ancora": "Tesouro Selic tem liquidez quase diária, como a poupança.",
+   "feedbackErro": "Título público parece 'preso' até o vencimento, mas o Tesouro Selic pode ser resgatado quase todo dia útil, sem grande perda."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "risco-retorno-liquidez",
+   "pergunta": "Com a Selic em torno de 15% ao ano, quanto rendem R$ 1.000 no Tesouro Selic em 1 ano (aprox.)?",
+   "campo": "moeda",
+   "min": 1000,
+   "max": 1300,
+   "gabarito": 1150,
+   "toleranciaPct": 20,
+   "fonte": "Selic, ~15% ao ano (Banco Central)",
+   "feedbackPerto": "Boa estimativa: por volta de R$ 1.150, acompanhando a Selic do período.",
+   "feedbackLonge": "Dá cerca de R$ 1.150. O Tesouro Selic rende perto da taxa básica de juros — aqui, 15% sobre os R$ 1.000.",
+   "verificacao": {
+    "expressao": "1000*1.15",
+    "esperado": 1150
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "confiabilidade-investimento",
+   "dificuldade": 1,
+   "pergunta": "Antes de investir numa empresa desconhecida, qual é o primeiro passo?",
+   "ancora": "Checar registro oficial vem antes de qualquer promessa de lucro.",
+   "alternativas": [
+    {
+     "texto": "Verificar se ela é registrada nos órgãos reguladores",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Perguntar a quem já investiu e ganhou dinheiro",
+     "correta": false,
+     "feedbackErro": "Ouvir quem ganhou parece prova, mas pirâmides pagam os primeiros justamente para atrair mais gente — depoimento não substitui checagem oficial."
+    },
+    {
+     "texto": "Olhar se o site é bonito e profissional",
+     "correta": false,
+     "feedbackErro": "Site bonito é fácil de fazer e não garante nada sobre a empresa. Registro em órgão regulador é o que garante fiscalização de verdade."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "risco-retorno-liquidez",
+   "dificuldade": 1,
+   "pergunta": "Você vai precisar do dinheiro em 2 meses, para uma emergência. Qual critério pesa mais na escolha?",
+   "ancora": "Prazo curto pede liquidez alta — resgate rápido, sem perda.",
+   "alternativas": [
+    {
+     "texto": "A liquidez: resgatar rápido, sem perder valor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O rendimento mais alto, mesmo que trave o dinheiro",
+     "correta": false,
+     "feedbackErro": "Rendimento alto atrai, mas se travar o dinheiro por mais de 2 meses, ele não serve para essa emergência — o prazo manda aqui."
+    },
+    {
+     "texto": "O que os amigos estão investindo agora",
+     "correta": false,
+     "feedbackErro": "O que os outros fazem não muda o seu prazo. A pergunta certa é: dá para resgatar em 2 meses sem perder valor?"
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "risco-retorno-liquidez",
+   "criterio": "Rende mais que a poupança?",
+   "enunciado": "Ação de empresa sólida, mantida por 10 anos",
+   "resposta": true,
+   "ancora": "Histórico de longo prazo tende a superar a poupança.",
+   "feedbackErro": "Ação assusta pelo curto prazo, mas mantida por anos, o histórico do mercado de ações costuma superar a poupança."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-investimento",
+   "criterio": "É sinal de confiabilidade?",
+   "enunciado": "Prometer rendimento fixo de 20% ao mês",
+   "resposta": false,
+   "ancora": "Rendimento fixo e alto demais é bandeira vermelha de golpe.",
+   "feedbackErro": "Um número fixo e alto passa segurança, e é isso que engana. Nenhum investimento legítimo garante 20% ao mês — isso é padrão de pirâmide."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "risco-retorno-liquidez",
+   "pergunta": "Qual frase resume a lição?",
+   "alternativas": [
+    {
+     "texto": "Mais retorno pede mais risco ou menos liquidez; confira sempre o registro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quanto mais bonito o anúncio, mais confiável é o investimento",
+     "correta": false,
+     "feedbackErro": "Aparência não garante nada. O que garante é o registro em CVM ou Banco Central."
+    },
+    {
+     "texto": "Poupança é sempre a melhor opção porque nunca tem risco",
+     "correta": false,
+     "feedbackErro": "Poupança tem baixo risco, mas 'melhor' depende do prazo e do objetivo — nem sempre é a opção que mais atende."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "risco-retorno-liquidez",
+   "instrucao": "Alta ou baixa liquidez?",
+   "ancora": "Liquidez é a velocidade de virar dinheiro sem perder valor.",
+   "feedbackErro": "Bens físicos e consórcios não contemplados demoram para virar dinheiro. Poupança e Tesouro Selic resgatam quase na hora.",
+   "caixas": [
+    {
+     "id": "alta",
+     "rotulo": "Alta liquidez"
+    },
+    {
+     "id": "baixa",
+     "rotulo": "Baixa liquidez"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Dinheiro na poupança",
+     "caixaCorreta": "alta"
+    },
+    {
+     "texto": "Imóvel comprado para alugar",
+     "caixaCorreta": "baixa"
+    },
+    {
+     "texto": "Tesouro Selic",
+     "caixaCorreta": "alta"
+    },
+    {
+     "texto": "Cota de consórcio ainda não contemplado",
+     "caixaCorreta": "baixa"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "confiabilidade-investimento",
+   "dificuldade": 2,
+   "pergunta": "Alguém te chama para 'investir' e pede que você recrute mais gente para ganhar comissão. O que é isso?",
+   "ancora": "Ganhar por trazer gente nova, não pelo negócio, é pirâmide.",
+   "alternativas": [
+    {
+     "texto": "Uma estrutura de pirâmide financeira",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Um investimento em rede de vendas legítimo",
+     "correta": false,
+     "feedbackErro": "Venda direta legítima lucra com produto vendido a clientes reais. Se o lucro vem de recrutar gente para pagar quem entrou antes, é pirâmide."
+    },
+    {
+     "texto": "Um fundo de investimento comum",
+     "correta": false,
+     "feedbackErro": "Fundo de investimento não paga comissão por trazer novos investidores — o retorno vem dos ativos do fundo, não de recrutamento."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "risco-retorno-liquidez",
+   "criterio": "Rende mais que a poupança?",
+   "enunciado": "Fundo de ações de empresas de tecnologia",
+   "resposta": true,
+   "ancora": "Fundos de ações tendem a superar a poupança no longo prazo, com risco maior.",
+   "feedbackErro": "Parece arriscado demais para vencer a poupança, mas no histórico de anos, fundos de ações tendem a render mais — a troca é aceitar oscilação no caminho."
+  }
+ ]
+}

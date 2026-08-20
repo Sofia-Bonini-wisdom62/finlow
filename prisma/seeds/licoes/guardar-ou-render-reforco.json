@@ -1,0 +1,283 @@
+{
+ "slug": "guardar-ou-render-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "guardar-ou-render",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-investir",
+   "criterio": "Lembra: isso é investir, rende sozinho?",
+   "enunciado": "Um valor aplicado que cresce todo mês, mesmo sem você mexer nele",
+   "resposta": true,
+   "ancora": "Crescer sozinho, sem ação nova, é a marca de investir.",
+   "feedbackErro": "Pode parecer que só 'ter dinheiro guardado' basta, mas o que caracteriza investir é justamente crescer sozinho, sem nenhuma ação nova."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-investir",
+   "criterio": "Lembra: isso é investir, rende sozinho?",
+   "enunciado": "Uma quantia trancada num cofre de casa, do mesmo tamanho todo mês",
+   "resposta": false,
+   "ancora": "Sem crescer sozinho, é só poupar — por mais seguro que o cofre pareça.",
+   "feedbackErro": "O cofre protege contra roubo e perda, isso é real. Mas sem juros, o valor guardado nele não aumenta — segue sendo poupar, não investir."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-investir",
+   "criterio": "Lembra: isso é investir, rende sozinho?",
+   "enunciado": "R$300 guardados na poupança, virando R$301,50 depois de um mês",
+   "resposta": true,
+   "ancora": "Cresceu sozinho, mesmo pouco — isso é investir.",
+   "feedbackErro": "R$1,50 parece pouco pra notar, mas é rendimento de verdade — e é isso que separa poupar de investir."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "poupar-vs-investir",
+   "dificuldade": 2,
+   "pergunta": "R$1.850 aplicados na poupança por um mês, a 0,5% ao mês. Qual foi o valor final?",
+   "ancora": "R$1.850 × 1,005 = R$1.859,25, valor mais o rendimento.",
+   "verificacao": {
+    "expressao": "1850*1.005",
+    "esperado": 1859.25
+   },
+   "alternativas": [
+    {
+     "texto": "R$1.859,25",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$1.925",
+     "correta": false,
+     "feedbackErro": "Esse valor usaria uma taxa bem maior que 0,5%. Confira a conta: 1.850 × 1,005."
+    },
+    {
+     "texto": "R$1.850,50",
+     "correta": false,
+     "feedbackErro": "Isso seria só R$0,50 de rendimento, quase nada. A conta certa é 0,5% sobre R$1.850, não sobre R$1."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "reserva-para-imprevistos",
+   "dificuldade": 2,
+   "pergunta": "Qual é o critério que separa um bom motivo pra usar a reserva de um mau motivo?",
+   "ancora": "O filtro é sempre: inesperado + essencial. Sem os dois, não é motivo.",
+   "alternativas": [
+    {
+     "texto": "Se o valor da compra é alto ou baixo",
+     "correta": false,
+     "feedbackErro": "O valor sozinho não decide nada — uma compra cara e planejada não vira emergência só por ser cara."
+    },
+    {
+     "texto": "Se é imprevisto e ameaça algo essencial",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se a pessoa está com vontade forte de comprar",
+     "correta": false,
+     "feedbackErro": "Vontade forte é sinal de desejo, não de emergência — a reserva não é pra isso, mesmo quando a vontade é grande."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-investir",
+   "criterio": "Isso caracteriza investir?",
+   "enunciado": "Uma quantia aplicada que rende R$4,25 num mês sobre R$850 guardados",
+   "resposta": true,
+   "verificacao": {
+    "expressao": "850*0.005",
+    "esperado": 4.25
+   },
+   "ancora": "850 × 0,5% = 4,25 — rendeu, então é investir.",
+   "feedbackErro": "O valor rendido é pequeno, e é fácil achar que 'não conta'. Mas qualquer crescimento sozinho sobre o valor guardado já caracteriza investir."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "reserva-para-imprevistos",
+   "instrucao": "Isso justifica usar a reserva de emergência, ou não?",
+   "ancora": "Urgência real tem limite concreto; artificial é criada pra apressar.",
+   "feedbackErro": "Prazo curto pra decidir não é a mesma coisa que emergência — o critério continua sendo inesperado + essencial, não 'até quando dá pra decidir'.",
+   "caixas": [
+    {
+     "id": "sim",
+     "rotulo": "Justifica"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não justifica"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Consulta médica urgente, sem previsão no orçamento",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Um lançamento de tênis que só vai vender por uma semana",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Conserto emergencial do telhado depois de um temporal",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Convite de última hora pra uma viagem de fim de semana",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "reserva-para-imprevistos",
+   "criterio": "Reserva cumprindo seu papel aqui?",
+   "enunciado": "Usar a reserva pra cobrir 2 meses de aluguel depois de ficar sem renda",
+   "resposta": true,
+   "ancora": "Reserva cobrindo meses sem renda é pra isso que ela existe.",
+   "feedbackErro": "Pode parecer 'gasto grande demais pra reserva', mas cobrir o essencial durante a falta de renda é justamente o papel dela."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "poupar-vs-investir",
+   "dificuldade": 2,
+   "pergunta": "Duas pessoas guardam R$600 por 6 meses: cofrinho vs poupança a 0,5% ao mês. O que diferencia o resultado?",
+   "ancora": "Em 6 meses a 0,5% ao mês, R$600 viram ~R$618 na poupança.",
+   "verificacao": {
+    "expressao": "600*1.005^6",
+    "esperado": 618.23
+   },
+   "alternativas": [
+    {
+     "texto": "Nada, os dois guardam o mesmo valor no fim",
+     "correta": false,
+     "feedbackErro": "Faz sentido pensar assim no início. Mas em 6 meses os juros da poupança criam diferença, mesmo pequena."
+    },
+    {
+     "texto": "A da poupança fica com um pouco mais, por causa dos juros",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A do cofrinho termina com mais, porque não tem taxas",
+     "correta": false,
+     "feedbackErro": "É o oposto: sem juros, o cofrinho fica estático. Quem cresce, mesmo devagar, é a poupança."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "reserva-para-imprevistos",
+   "criterio": "Reserva evita dívida mais cara?",
+   "enunciado": "Pagar o conserto do carro com a reserva, em vez de parcelar no cartão a 12% ao mês",
+   "resposta": true,
+   "ancora": "Reserva a custo zero vs parcelamento a 12% ao mês.",
+   "feedbackErro": "Pode parecer indiferente 'de onde sai o dinheiro', mas usar a reserva evita pagar os 12% ao mês do parcelamento no cartão."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-investir",
+   "criterio": "Caracteriza investir, não poupar?",
+   "enunciado": "R$920 guardados rendendo R$4,60 no mês",
+   "resposta": true,
+   "verificacao": {
+    "expressao": "920*0.005",
+    "esperado": 4.6
+   },
+   "ancora": "920 × 0,5% = 4,60 — rendeu, então caracteriza investir.",
+   "feedbackErro": "R$4,60 parece pouco pra reparar, mas é rendimento — e rendimento, por menor que seja, é o que define investir."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "poupar-vs-investir",
+   "pergunta": "Depois desses exemplos, qual frase é mais precisa?",
+   "alternativas": [
+    {
+     "texto": "Rende sozinho é investir; fica igual é poupar; reserva é pro essencial",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cofre e poupança guardam do mesmo jeito, só muda o lugar",
+     "correta": false,
+     "feedbackErro": "Cofre não paga juro nenhum; poupança rende todo mês — o lugar muda o resultado, sim."
+    },
+    {
+     "texto": "Qualquer prazo curto pra decidir já é motivo de emergência",
+     "correta": false,
+     "feedbackErro": "Prazo curto pressiona a decisão, mas não transforma desejo de consumo em emergência — o critério continua sendo essencial e inesperado."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "poupar-vs-investir",
+   "pergunta": "R$1.400 guardados na poupança por 1 mês, a 0,5% ao mês. Qual o valor final?",
+   "campo": "moeda",
+   "min": 1400,
+   "max": 1450,
+   "gabarito": 1407,
+   "toleranciaPct": 5,
+   "fonte": "taxa média da poupança, ~0,5% ao mês",
+   "verificacao": {
+    "expressao": "1400*1.005",
+    "esperado": 1407
+   },
+   "feedbackPerto": "Isso mesmo: R$1.400 × 1,005 = R$1.407. O rendimento de R$7 é pequeno, mas é rendimento.",
+   "feedbackLonge": "O valor final é R$1.407. É fácil esquecer de somar o rendimento ao valor original, ou calcular a taxa errada."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "reserva-para-imprevistos",
+   "instrucao": "Ordene da situação mais previsível à mais imprevista.",
+   "ancora": "A previsibilidade cai quanto mais difícil for antecipar.",
+   "feedbackErro": "O critério é o quanto dava pra prever aquilo. Promoção e conta sazonal são esperadas; vazamento e demissão pegam de surpresa.",
+   "itens": [
+    {
+     "texto": "Uma promoção de fim de ano anunciada com semanas de antecedência",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "O aumento normal da conta de luz no verão",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Um vazamento que estraga o piso da cozinha",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "A demissão inesperada de quem sustenta a casa",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-investir",
+   "criterio": "Caracteriza poupar, sem virar investir?",
+   "enunciado": "Uma quantia trocada por moeda estrangeira e guardada numa gaveta, sem gerar juro",
+   "resposta": true,
+   "ancora": "Sem juro nem rendimento, é poupar — mesmo trocada de moeda.",
+   "feedbackErro": "Trocar de moeda muda com o câmbio, mas isso não é juro programado — sem aplicação que pague juros, é só poupar."
+  }
+ ]
+}

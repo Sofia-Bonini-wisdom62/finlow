@@ -1,0 +1,299 @@
+{
+ "slug": "fazendo-o-orcamento-fechar",
+ "segmento": "ef35",
+ "conceitoPrincipal": "fazendo-o-orcamento-fechar",
+ "fraseConceito": "Orçamento fecha quando as despesas somam menos que as receitas — e sobra o que sobra pra guardar.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "receita-maior-que-despesa",
+   "criterio": "Isso deixa o orçamento no positivo?",
+   "enunciado": "Gastar R$ 80 tendo R$ 100 de mesada no mês",
+   "resposta": true,
+   "ancora": "Sobra R$ 20 — despesa menor que receita fecha no positivo.",
+   "feedbackErro": "Parece que qualquer gasto dentro da mesada já é igual. Mas gastar menos do que recebe é o que deixa sobra no fim do mês."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "receita-maior-que-despesa",
+   "criterio": "Isso deixa o orçamento no positivo?",
+   "enunciado": "Gastar R$ 120 tendo R$ 100 de mesada no mês",
+   "resposta": false,
+   "ancora": "Faltam R$ 20 — despesa maior que receita fecha no negativo.",
+   "feedbackErro": "Pode parecer só um valor um pouco maior, sem problema. Mas gastar mais do que recebe deixa falta de R$ 20 no fim do mês."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "receita-maior-que-despesa",
+   "criterio": "Isso deixa o orçamento no positivo?",
+   "enunciado": "Gastar exatamente os R$ 100 da mesada, sem sobrar nem faltar nada",
+   "resposta": true,
+   "ancora": "Sem sobra nem falta, o orçamento ainda fecha — no zero a zero.",
+   "feedbackErro": "Parece que só sobrando dinheiro o orçamento fecha bem. Mas gastar exatamente o que recebe também fecha — só não deixa nada guardado."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "receita-maior-que-despesa",
+   "dificuldade": 1,
+   "pergunta": "Camila recebe R$ 60 de mesada e gastou R$ 45. O orçamento dela fechou como?",
+   "ancora": "60 menos 45 é 15 — a sobra do mês.",
+   "alternativas": [
+    {
+     "texto": "Positivo, com R$ 15 de sobra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Negativo, porque ela gastou dinheiro demais",
+     "correta": false,
+     "feedbackErro": "Gastar dinheiro não é o problema — seria gastar mais do que recebeu. Aqui sobrou R$ 15, então é positivo."
+    },
+    {
+     "texto": "Zero, porque ela gastou quase tudo",
+     "correta": false,
+     "feedbackErro": "Zero seria gastar exatamente os R$ 60. Como sobrou R$ 15, o saldo é positivo, não zero."
+    }
+   ],
+   "verificacao": {
+    "expressao": "60-45",
+    "esperado": 15
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "montar-orcamento",
+   "dificuldade": 1,
+   "pergunta": "Pra montar o orçamento de uma festa, qual é o primeiro passo?",
+   "ancora": "Listar antes é a base de qualquer orçamento.",
+   "alternativas": [
+    {
+     "texto": "Listar tudo que vai custar, antes de decidir gastar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Comprar tudo que parecer legal e ver quanto deu depois",
+     "correta": false,
+     "feedbackErro": "Comprar primeiro e ver depois é o caminho contrário. Orçamento serve pra planejar antes, não conferir o estrago."
+    },
+    {
+     "texto": "Perguntar pros outros quanto eles vão gastar",
+     "correta": false,
+     "feedbackErro": "Saber o gasto alheio não ajuda a planejar seu evento. O primeiro passo é listar o que a festa vai precisar."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "montar-orcamento",
+   "criterio": "Faz parte de montar um orçamento?",
+   "enunciado": "Listar cada gasto previsto antes do evento acontecer",
+   "resposta": true,
+   "ancora": "Listar antes é a base de qualquer orçamento.",
+   "feedbackErro": "Parece um passo burocrático demais pra uma festa simples. Mas listar os gastos antes é o que define um orçamento."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "gasto-individual-x-grupo",
+   "instrucao": "É gasto individual ou do grupo?",
+   "ancora": "Individual é só seu; grupo é dividido entre várias pessoas.",
+   "feedbackErro": "Parece que todo gasto numa festa é do grupo. Mas o que só uma pessoa vai usar continua sendo individual.",
+   "caixas": [
+    {
+     "id": "individual",
+     "rotulo": "Individual"
+    },
+    {
+     "id": "grupo",
+     "rotulo": "Grupo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "O lanche que só você vai comer",
+     "caixaCorreta": "individual"
+    },
+    {
+     "texto": "O bolo comprado pra festa da turma toda",
+     "caixaCorreta": "grupo"
+    },
+    {
+     "texto": "A roupa nova só sua",
+     "caixaCorreta": "individual"
+    },
+    {
+     "texto": "O presente que a turma inteira vai dar junta",
+     "caixaCorreta": "grupo"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "gasto-individual-x-grupo",
+   "criterio": "É gasto do grupo, não individual?",
+   "enunciado": "A decoração da sala, paga junto por todos os alunos",
+   "resposta": true,
+   "ancora": "Pago por todos e usado por todos: é gasto do grupo.",
+   "feedbackErro": "Parece que só quem comprou fisicamente é responsável. Mas quando o custo é dividido e o uso é de todos, o gasto é do grupo."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "receita-maior-que-despesa",
+   "dificuldade": 1,
+   "pergunta": "Vinícius recebe R$ 90 por mês e sempre gasta certinho. Um mês, ele gasta R$ 100. O que aconteceu com o orçamento?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "Ficou negativo, faltando R$ 10",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Continuou igual, porque ele sempre gasta tudo",
+     "correta": false,
+     "feedbackErro": "Gastar tudo não é o mesmo que gastar a mais. Esse mês ele gastou R$ 10 além do que recebeu."
+    },
+    {
+     "texto": "Ficou positivo, porque comprar mais é sempre bom",
+     "correta": false,
+     "feedbackErro": "Comprar mais coisas não deixa o orçamento positivo — gastar além da receita é o que deixa faltando dinheiro."
+    }
+   ],
+   "verificacao": {
+    "expressao": "90-100",
+    "esperado": -10
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "montar-orcamento",
+   "criterio": "Ajuda o orçamento a fechar no fim?",
+   "enunciado": "Anotar os gastos conforme eles acontecem, não só de memória",
+   "resposta": true,
+   "ancora": "Anotar evita esquecer gastos e perder o controle do total.",
+   "feedbackErro": "Parece um trabalho extra desnecessário. Mas anotar os gastos evita esquecer algum deles."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "gasto-individual-x-grupo",
+   "criterio": "Evita confundir individual e grupo?",
+   "enunciado": "Separar, numa lista, o que é de cada um do que é de todos",
+   "resposta": true,
+   "ancora": "Separar evita que alguém pague mais do que devia.",
+   "feedbackErro": "Parece que juntar tudo numa lista só já resolve. Mas separar o que é individual do que é de grupo evita erro."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "receita-maior-que-despesa",
+   "dificuldade": 3,
+   "pergunta": "Qual frase resume o que você viu?",
+   "alternativas": [
+    {
+     "texto": "O orçamento fecha bem quando se gasta tudo que se recebe",
+     "correta": false,
+     "feedbackErro": "Gastar tudo até fecha o orçamento, mas no zero a zero — sem sobrar nada pra guardar."
+    },
+    {
+     "texto": "O orçamento fecha quando a despesa é igual ou menor que a receita",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Gasto individual e gasto de grupo são sempre a mesma coisa",
+     "correta": false,
+     "feedbackErro": "Individual é só seu; de grupo é dividido — misturar pode deixar alguém pagando mais do que devia."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "receita-maior-que-despesa",
+   "instrucao": "Ordene do orçamento mais apertado pro mais folgado.",
+   "ancora": "Quanto menor a despesa perto da receita, mais folga sobra.",
+   "feedbackErro": "Parece que só importa não ficar negativo. Mas quanto menor a despesa comparada à receita, mais sobra no fim.",
+   "itens": [
+    {
+     "texto": "Receita R$ 100, despesa R$ 100",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Receita R$ 100, despesa R$ 70",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Receita R$ 100, despesa R$ 40",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "gasto-individual-x-grupo",
+   "instrucao": "É gasto individual ou de grupo?",
+   "ancora": "O que só uma pessoa usa é individual; o que é dividido é do grupo.",
+   "feedbackErro": "Parece que basta acontecer junto com outros pra virar gasto de grupo. Mas o que importa é se o custo é compartilhado.",
+   "caixas": [
+    {
+     "id": "individual",
+     "rotulo": "Individual"
+    },
+    {
+     "id": "grupo",
+     "rotulo": "Grupo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "O tênis novo que só você usa",
+     "caixaCorreta": "individual"
+    },
+    {
+     "texto": "O aluguel do salão pra festa de todos",
+     "caixaCorreta": "grupo"
+    },
+    {
+     "texto": "O lanche que você escolheu sozinho",
+     "caixaCorreta": "individual"
+    },
+    {
+     "texto": "O presente comprado junto pra outra pessoa",
+     "caixaCorreta": "grupo"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "receita-maior-que-despesa",
+   "pergunta": "Larissa recebe R$ 120 e planeja gastar R$ 95. Quanto deveria sobrar?",
+   "campo": "moeda",
+   "min": 5,
+   "max": 60,
+   "gabarito": 25,
+   "toleranciaPct": 20,
+   "fonte": "conta direta: receita menos despesa planejada",
+   "feedbackPerto": "Isso mesmo — R$ 25 de sobra. É a receita menos a despesa planejada.",
+   "feedbackLonge": "R$ 120 menos R$ 95 dá R$ 25. É só subtrair a despesa planejada da receita.",
+   "verificacao": {
+    "expressao": "120-95",
+    "esperado": 25
+   }
+  }
+ ]
+}

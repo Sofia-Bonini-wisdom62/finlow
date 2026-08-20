@@ -1,0 +1,295 @@
+{
+ "slug": "dinheiro-como-poder-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "dinheiro-como-poder",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-status",
+   "criterio": "O dinheiro está dando poder aqui?",
+   "enunciado": "Escolher a mesa do restaurante porque é quem vai pagar a conta",
+   "resposta": true,
+   "ancora": "Quem paga, decide — o critério continua o mesmo.",
+   "feedbackErro": "O contexto mudou, mas o critério é o de sempre: pagar dá o direito de escolher."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-status",
+   "criterio": "O dinheiro está dando poder aqui?",
+   "enunciado": "Pagar o boleto da internet de casa no débito automático",
+   "resposta": false,
+   "ancora": "Pagar uma conta fixa não muda quem decide nada.",
+   "feedbackErro": "É pagamento, mas automático e sem ninguém em jogo para controlar. Sem decisão de outra pessoa em disputa, não há poder envolvido."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-status",
+   "criterio": "O dinheiro está dando poder aqui?",
+   "enunciado": "Um patrocinador exigir que o atleta só use a marca dele em jogos",
+   "resposta": true,
+   "ancora": "Quem paga o patrocínio impõe a regra — poder pelo contrato.",
+   "feedbackErro": "Parece só uma cláusula chata do contrato, mas é exatamente isso: quem paga usa o dinheiro para controlar a escolha do atleta."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "formacao-de-preco",
+   "dificuldade": 2,
+   "pergunta": "Um perfume de grife custa R$300; uma fórmula parecida sem marca custa R$60. Isso prova o quê?",
+   "ancora": "R$240 de diferença é sobretudo marca, não fórmula.",
+   "verificacao": { "expressao": "300-60", "esperado": 240 },
+   "alternativas": [
+    {
+     "texto": "Que a fórmula de R$300 usa ingredientes 5 vezes melhores",
+     "correta": false,
+     "feedbackErro": "É a explicação mais intuitiva, mas a diferença de preço em perfumes de grife vem majoritariamente da marca e da publicidade, não da matéria-prima."
+    },
+    {
+     "texto": "Que boa parte do preço é marca, publicidade e status",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que perfumes sem marca são sempre falsificados",
+     "correta": false,
+     "feedbackErro": "Sem marca não significa falsificado — pode ser um produto legítimo, só sem o investimento em publicidade que encarece o de grife."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "dinheiro-e-status",
+   "dificuldade": 2,
+   "pergunta": "Numa banda escolar, quem comprou os instrumentos costuma decidir o repertório. Por quê?",
+   "ancora": "Quem bancou o instrumento tem mais peso na decisão.",
+   "alternativas": [
+    {
+     "texto": "Porque ele é sempre o melhor músico do grupo",
+     "correta": false,
+     "feedbackErro": "Tocar bem ajuda a ganhar respeito, mas o que dá voz na decisão aqui é ter pago pelo instrumento, não a habilidade."
+    },
+    {
+     "texto": "Porque quem paga tem mais peso para impor sua vontade",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque existe uma regra da escola sobre isso",
+     "correta": false,
+     "feedbackErro": "Não é uma regra escrita — é o mesmo padrão social de sempre: quem investe dinheiro ganha influência sobre a decisão."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "formacao-de-preco",
+   "criterio": "Isso muda o preço por causa da demanda?",
+   "enunciado": "Uma quebra na safra de café empurrar o preço do pacote para cima",
+   "resposta": false,
+   "ancora": "Aqui a causa foi a oferta menor, não a demanda maior.",
+   "feedbackErro": "O preço subiu de fato, mas ninguém passou a querer mais café — a safra menor reduziu a oferta. É oferta, não demanda."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "dinheiro-e-status",
+   "instrucao": "Ordene por quantas pessoas a decisão de gastar afeta",
+   "ancora": "O critério: alcance da decisão, não o valor gasto.",
+   "feedbackErro": "De novo, o valor em reais engana. Uma decisão pequena em dinheiro pode afetar muito mais gente que uma cara — o critério é o alcance da decisão.",
+   "itens": [
+    { "texto": "Prefeitura decide o valor da tarifa do ônibus da cidade", "posicaoCorreta": 1 },
+    { "texto": "Diretor da escola decide o valor da mensalidade", "posicaoCorreta": 2 },
+    { "texto": "Professor decide o valor da lista de material da turma", "posicaoCorreta": 3 },
+    { "texto": "Aluno decide quanto vai gastar no lanche hoje", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-status",
+   "criterio": "Isso é dinheiro controlando uma escolha?",
+   "enunciado": "Um chefe pagar hora extra só para quem aceitar trocar de turno",
+   "resposta": true,
+   "ancora": "O pagamento extra é a moeda de troca da escolha.",
+   "feedbackErro": "Parece só um benefício, mas condicionar o pagamento à troca de turno é usar dinheiro para induzir uma decisão que a pessoa talvez não tomasse de graça."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-status",
+   "criterio": "Isso é dinheiro controlando uma escolha?",
+   "enunciado": "Guardar parte do salário todo mês numa poupança",
+   "resposta": false,
+   "ancora": "Guardar dinheiro para si não controla a escolha de ninguém.",
+   "feedbackErro": "Envolve dinheiro e decisão, mas a decisão é só sobre o próprio futuro — não há outra pessoa sendo influenciada."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "formacao-de-preco",
+   "pergunta": "Uma camiseta básica custa R$25 para produzir. Com estampa de marca famosa, vira quanto na loja?",
+   "campo": "moeda",
+   "min": 25,
+   "max": 250,
+   "gabarito": 125,
+   "toleranciaPct": 20,
+   "fonte": "margem média de marcas de moda sobre o custo, ordem de grandeza (varejo)",
+   "verificacao": { "expressao": "25*5", "esperado": 125 },
+   "feedbackPerto": "Isso mesmo, por volta de R$125 — a marca também multiplica aqui por cerca de 5 vezes.",
+   "feedbackLonge": "Fica perto de R$125. O padrão se repete: a marca não soma um valor fixo, ela multiplica o preço pelo status."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "dinheiro-e-status",
+   "dificuldade": 2,
+   "pergunta": "Uma empresa paga Rafael para testar o produto e postar sincero. Por que vale mais que um anúncio comum?",
+   "ancora": "Sinceridade de quem parece neutro custa mais caro.",
+   "alternativas": [
+    {
+     "texto": "Porque parece mais confiável que um anúncio tradicional",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque anúncios tradicionais são proibidos por lei",
+     "correta": false,
+     "feedbackErro": "Anúncio comum continua legal e é usado o tempo todo. O que muda aqui é a confiança extra de uma opinião que parece sincera."
+    },
+    {
+     "texto": "Porque o produto testado é sempre mais barato",
+     "correta": false,
+     "feedbackErro": "O preço do produto não muda por causa do teste. O que tem valor comercial é a credibilidade da opinião parecendo sincera."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "formacao-de-preco",
+   "dificuldade": 2,
+   "pergunta": "Um app de corrida cobra o dobro num dia de chuva forte. O que explica isso?",
+   "ancora": "Chuva reduz motoristas disponíveis e aumenta pedidos.",
+   "alternativas": [
+    {
+     "texto": "Mais gente pedindo corrida e menos motorista disponível",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O combustível fica mais caro só em dias de chuva",
+     "correta": false,
+     "feedbackErro": "O preço do combustível não muda com o clima do dia. O que muda é o equilíbrio entre pedidos e motoristas disponíveis."
+    },
+    {
+     "texto": "É uma taxa fixa que o app cobra todo mês",
+     "correta": false,
+     "feedbackErro": "Se fosse fixa, valeria todo dia. O aumento aparece só quando a demanda sobe e a oferta de motoristas cai — como na chuva."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "formacao-de-preco",
+   "criterio": "O preço mudou por oferta ou demanda?",
+   "enunciado": "Preço da passagem aérea subir na véspera de um feriado",
+   "resposta": true,
+   "ancora": "Mais gente viajando na mesma data empurra o preço para cima.",
+   "feedbackErro": "Parece só ganância da companhia aérea, mas o motivo clássico é esse: muita gente querendo o mesmo voo, na mesma data, empurra o preço."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "formacao-de-preco",
+   "criterio": "O preço mudou por oferta ou demanda?",
+   "enunciado": "Preço do refrigerante subir por causa de um novo imposto sobre açúcar",
+   "resposta": false,
+   "ancora": "A causa foi tributária, não uma mudança de oferta ou demanda.",
+   "feedbackErro": "O preço subiu, e por isso confunde. Mas quem mudou o valor foi um imposto novo — ninguém passou a querer mais ou menos refrigerante."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "dinheiro-e-status",
+   "pergunta": "Depois desses exemplos, qual frase captura melhor o padrão?",
+   "alternativas": [
+    {
+     "texto": "Quem paga sempre tem razão nas decisões do grupo",
+     "correta": false,
+     "feedbackErro": "Pagar dá influência, mas não torna a pessoa certa — é poder social, não verdade."
+    },
+    {
+     "texto": "Pagar dá voz nas decisões, e o preço sobe quando a demanda aperta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O preço de tudo sobe e desce só por causa de impostos",
+     "correta": false,
+     "feedbackErro": "Impostos pesam, mas vimos oferta e demanda mudando o preço com muito mais frequência no dia a dia."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "dinheiro-e-status",
+   "instrucao": "Isso é poder social ou é oferta e demanda?",
+   "ancora": "Poder é sobre controlar escolhas; oferta e demanda ajusta preço.",
+   "feedbackErro": "Os dois mudam comportamento, mas por vias diferentes: poder social controla uma pessoa; oferta e demanda ajusta um preço no mercado.",
+   "caixas": [
+    { "id": "poder", "rotulo": "Poder social" },
+    { "id": "mercado", "rotulo": "Oferta e demanda" }
+   ],
+   "itens": [
+    { "texto": "Técnico só escala quem treina todos os dias", "caixaCorreta": "poder" },
+    { "texto": "Preço do abacaxi cair na safra, quando tem fruta sobrando", "caixaCorreta": "mercado" },
+    { "texto": "Namorado só sai se o outro pagar sempre o cinema", "caixaCorreta": "poder" },
+    { "texto": "Hotel fica mais caro em época de Carnaval", "caixaCorreta": "mercado" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-status",
+   "criterio": "Isso é dinheiro comprando status?",
+   "enunciado": "Trocar de celular todo ano só para postar o lançamento",
+   "resposta": true,
+   "ancora": "O objeto novo comunica status antes de qualquer uso prático.",
+   "feedbackErro": "Parece sobre tecnologia, mas trocar por causa do lançamento — não da necessidade — é comprar a imagem de estar por dentro, ou seja, status."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "formacao-de-preco",
+   "dificuldade": 2,
+   "pergunta": "Por que roupas de coleção limitada custam mais que roupas parecidas de estoque normal?",
+   "ancora": "Pouca oferta e muita procura elevam o preço da edição.",
+   "alternativas": [
+    {
+     "texto": "Porque são fabricadas com tecido mais resistente",
+     "correta": false,
+     "feedbackErro": "O tecido costuma ser o mesmo. O que sobe o preço é a escassez combinada com a procura alta."
+    },
+    {
+     "texto": "Porque a oferta é baixa e a procura é alta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque o governo cobra imposto extra em edições limitadas",
+     "correta": false,
+     "feedbackErro": "Não existe imposto diferente para edição limitada. O preço sobe pela combinação de pouca oferta e muita procura."
+    }
+   ]
+  }
+ ]
+}

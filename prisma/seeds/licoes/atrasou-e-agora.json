@@ -1,0 +1,337 @@
+{
+ "slug": "atrasou-e-agora",
+ "segmento": "ef89",
+ "conceitoPrincipal": "atrasou-e-agora",
+ "fraseConceito": "Atrasar uma conta gera multa e juros; ignorar por muito tempo pode levar o nome a um cadastro de inadimplentes.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "consequencias-do-atraso",
+   "criterio": "Isso acontece quando atrasa uma conta?",
+   "enunciado": "O nome pode ir para um cadastro de inadimplentes",
+   "resposta": true,
+   "ancora": "Atraso prolongado pode levar o nome a cadastros como SPC e Serasa.",
+   "feedbackErro": "Parece que só o credor sabe do atraso, sem mais ninguém envolvido. Mas contas não pagas podem virar registro público em cadastros que outras empresas consultam."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "consequencias-do-atraso",
+   "criterio": "Isso acontece quando atrasa uma conta?",
+   "enunciado": "A dívida desaparece sozinha depois de alguns meses sem cobrança",
+   "resposta": false,
+   "ancora": "Sem contato do credor não significa dívida quitada — ela continua.",
+   "feedbackErro": "O silêncio do credor parece um alívio, como se o problema tivesse sumido. Mas a dívida continua existindo e pode voltar a ser cobrada mais tarde."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "endividamento-vira-problema",
+   "criterio": "É sinal de dívida virar problema?",
+   "enunciado": "Usar um cartão para pagar a fatura de outro cartão",
+   "resposta": true,
+   "ancora": "Pagar dívida com dívida é sinal do ciclo fora de controle.",
+   "feedbackErro": "Pode parecer só um jeito de ganhar tempo. Mas trocar uma dívida por outra, sem resolver a causa, é sinal de que o endividamento já passou do ponto de controle."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "consequencias-do-atraso",
+   "dificuldade": 1,
+   "pergunta": "Uma conta de R$ 300 venceu e não foi paga. O que passa a incidir sobre ela enquanto ficar em aberto?",
+   "ancora": "Multa (uma vez) e juros de mora (todo mês) somam ao valor original.",
+   "alternativas": [
+    {
+     "texto": "Multa por atraso e juros de mora todo mês",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada além do valor original, até ser cobrada",
+     "correta": false,
+     "feedbackErro": "O valor não fica parado: a maioria dos contratos prevê multa e juros de mora que começam a contar assim que passa o vencimento."
+    },
+    {
+     "texto": "Só um aviso, sem nenhum valor extra",
+     "correta": false,
+     "feedbackErro": "O aviso pode até demorar a chegar, mas o custo financeiro começa antes disso: multa e juros já incidem desde o dia seguinte ao vencimento."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "estrategias-de-saida",
+   "dificuldade": 1,
+   "pergunta": "Alguém percebe que não vai conseguir pagar uma conta no prazo. Qual é o primeiro passo mais eficaz?",
+   "ancora": "Avisar o credor antes do vencimento abre espaço para negociar.",
+   "alternativas": [
+    {
+     "texto": "Avisar o credor antes do vencimento e tentar negociar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não fazer nada e esperar a cobrança chegar",
+     "correta": false,
+     "feedbackErro": "Esperar em silêncio só deixa multa e juros correrem sem necessidade. Avisar antes costuma abrir mais opções de negociação."
+    },
+    {
+     "texto": "Pedir dinheiro emprestado a juros altos sem comparar opções",
+     "correta": false,
+     "feedbackErro": "Trocar de credor sem comparar taxas pode piorar a dívida, não resolver. Primeiro vale tentar negociar com quem já é credor."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "endividamento-vira-problema",
+   "criterio": "É sinal de dívida virando problema?",
+   "enunciado": "Repensar todos os planos futuros só por causa das dívidas",
+   "resposta": true,
+   "ancora": "Quando a dívida domina decisões de vida, deixa de ser só uma conta.",
+   "feedbackErro": "Preocupar-se com dívida é comum e nem sempre é grave. Mas quando ela passa a decidir planos inteiros de vida, o problema já é maior que uma conta em atraso."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "consequencias-do-atraso",
+   "instrucao": "Toque na ordem: do que acontece primeiro ao que acontece por último.",
+   "ancora": "A sequência segue o tempo: vencimento, juros, cobrança, cadastro.",
+   "feedbackErro": "A ordem segue o calendário: vencimento, depois juro, depois cobrança e, por fim, cadastro.",
+   "itens": [
+    {
+     "texto": "A conta vence sem ser paga",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Multa e juros de mora começam a contar",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "O credor entra em contato para cobrar",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "O nome pode ir para um cadastro de inadimplentes",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "estrategias-de-saida",
+   "criterio": "É uma estratégia útil?",
+   "enunciado": "Listar todas as dívidas com valor e taxa antes de decidir o que pagar primeiro",
+   "resposta": true,
+   "ancora": "Ver o total organizado é o primeiro passo para decidir com clareza.",
+   "feedbackErro": "Parece só burocracia antes de agir de verdade. Mas sem enxergar o tamanho real de cada dívida, é fácil pagar a errada primeiro e perder tempo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "consequencias-do-atraso",
+   "criterio": "É verdade?",
+   "enunciado": "R$ 500 em atraso com multa de 2% e mora de 1% ao mês, após 2 meses, viram R$ 520",
+   "resposta": true,
+   "ancora": "500×1,02 + 500×0,01×2 = 510+10 = 520. Multa uma vez, mora por mês.",
+   "feedbackErro": "Fecha: multa de 2% entra uma vez (R$ 10), e a mora de 1% ao mês por 2 meses soma outros R$ 10 — total R$ 520.",
+   "verificacao": {
+    "expressao": "500*1.02 + 500*0.01*2",
+    "esperado": 520
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "consequencias-do-atraso",
+   "pergunta": "Uma dívida de R$ 1.000 fica 6 meses no rotativo do cartão, a 14% ao mês. Quanto ela vira?",
+   "campo": "moeda",
+   "min": 1000,
+   "max": 3000,
+   "gabarito": 2195,
+   "toleranciaPct": 20,
+   "fonte": "taxa média do rotativo, ~14% ao mês (Banco Central)",
+   "feedbackPerto": "Na faixa: cerca de R$ 2.195. Em 6 meses, mais que dobrou sem nenhuma compra.",
+   "feedbackLonge": "Dá R$ 2.195. Juro composto multiplica, não soma: 14% seis vezes viram 120%, não 84%.",
+   "verificacao": {
+    "expressao": "1000*1.14^6",
+    "esperado": 2195.3,
+    "tolerancia": 1
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "estrategias-de-saida",
+   "dificuldade": 1,
+   "pergunta": "Wesley tem 3 dívidas pequenas e 1 grande, todas com taxas parecidas. Por onde é mais eficaz começar a quitar?",
+   "ancora": "Quitar a pequena primeiro elimina uma cobrança inteira e dá fôlego.",
+   "alternativas": [
+    {
+     "texto": "Pela menor delas, para eliminar uma cobrança inteira",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pela maior, porque é a que mais assusta",
+     "correta": false,
+     "feedbackErro": "A maior pesa mais na cabeça, mas com taxas parecidas, quitar as pequenas primeiro reduz o número de cobranças mais rápido."
+    },
+    {
+     "texto": "Um pouco em cada uma, ao mesmo tempo",
+     "correta": false,
+     "feedbackErro": "Dividir em partes iguais parece justo, mas não elimina nenhuma cobrança — Wesley continuaria com 4 dívidas ativas em vez de 3."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "endividamento-vira-problema",
+   "dificuldade": 1,
+   "pergunta": "Uma pessoa deixa de comprar remédio para conseguir pagar a fatura do cartão em dia. Isso indica que...",
+   "ancora": "Sacrificar o básico mostra que a dívida virou problema maior.",
+   "alternativas": [
+    {
+     "texto": "O endividamento já afeta o básico — sinal de alerta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ela está sendo responsável e organizada com o dinheiro",
+     "correta": false,
+     "feedbackErro": "Pagar em dia é bom, mas não à custa de necessidades básicas. Esse tipo de escolha é sinal de que a dívida passou do ponto saudável."
+    },
+    {
+     "texto": "Isso não tem relação nenhuma com o tamanho da dívida",
+     "correta": false,
+     "feedbackErro": "Tem relação direta: quando pagar uma conta exige abrir mão de algo essencial, é sinal claro de que a dívida está grande demais para a renda."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "consequencias-do-atraso",
+   "criterio": "Verdadeiro?",
+   "enunciado": "Uma dívida esquecida sem pagamento pode voltar a ser cobrada anos depois",
+   "resposta": true,
+   "ancora": "Sem cobrança recente, a dívida não some — continua existindo.",
+   "feedbackErro": "O silêncio prolongado do credor confunde. Mas a dívida continua válida por um bom tempo, e pode voltar a ser cobrada mesmo depois de meses sem contato."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "estrategias-de-saida",
+   "criterio": "Verdadeiro?",
+   "enunciado": "Avisar o credor antes de atrasar é sempre pior do que simplesmente atrasar em silêncio",
+   "resposta": false,
+   "ancora": "É o contrário: avisar antes costuma abrir espaço para negociar.",
+   "feedbackErro": "Parece mais fácil evitar a conversa difícil. Mas avisar antes do atraso costuma abrir mais opções de negociação do que deixar o credor descobrir sozinho."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "consequencias-do-atraso",
+   "pergunta": "Qual frase resume esta lição?",
+   "alternativas": [
+    {
+     "texto": "Atraso gera multa e juros, e pode virar cadastro negativo se ignorado.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Uma dívida esquecida desaparece com o tempo.",
+     "correta": false,
+     "feedbackErro": "Sem pagamento, a dívida continua existindo e pode voltar a ser cobrada."
+    },
+    {
+     "texto": "O tamanho da dívida é o único sinal de que virou problema.",
+     "correta": false,
+     "feedbackErro": "Sacrificar necessidades básicas para pagar também é sinal de problema, além do valor."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "consequencias-do-atraso",
+   "instrucao": "Acontece com uma conta em atraso? Arraste cada item.",
+   "ancora": "Multa, juros e cadastro negativo vêm do atraso não resolvido.",
+   "feedbackErro": "Multa, juros de mora e cadastro negativo são efeitos reais do atraso. A dívida sumir sozinha e virar isenção de imposto não acontecem.",
+   "caixas": [
+    {
+     "id": "acontece",
+     "rotulo": "Acontece"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não acontece"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Cobrança de multa por atraso",
+     "caixaCorreta": "acontece"
+    },
+    {
+     "texto": "A dívida sumir sozinha em poucos dias",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Nome entrar em cadastro de inadimplentes",
+     "caixaCorreta": "acontece"
+    },
+    {
+     "texto": "Isenção automática de futuros impostos",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "estrategias-de-saida",
+   "dificuldade": 2,
+   "pergunta": "Duas dívidas de R$ 400 cada, uma a 3% e outra a 10% ao mês. Sobrou R$ 400. Qual quitar primeiro?",
+   "ancora": "A de 10% cresce R$ 40/mês; a de 3%, R$ 12. Ataque a mais cara.",
+   "alternativas": [
+    {
+     "texto": "A de 10% ao mês, que cresce mais rápido",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A de 3% ao mês, porque é mais fácil de quitar",
+     "correta": false,
+     "feedbackErro": "As duas custam R$ 400 para quitar — a facilidade é igual. O que diferencia é a taxa: 10% cresce bem mais rápido que 3%."
+    },
+    {
+     "texto": "Tanto faz, já que os valores são iguais",
+     "correta": false,
+     "feedbackErro": "O valor é igual, mas o custo de deixar cada uma correr não é: a de 10% ao mês soma R$ 40 por mês, a de 3% só R$ 12."
+    }
+   ],
+   "verificacao": {
+    "expressao": "400*0.10 - 400*0.03",
+    "esperado": 28
+   }
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "endividamento-vira-problema",
+   "criterio": "É verdade?",
+   "enunciado": "Só quem ganha pouco pode ter o endividamento virando um problema sério",
+   "resposta": false,
+   "ancora": "Renda alta com gasto maior ainda pode virar dívida fora de controle.",
+   "feedbackErro": "Renda alta não protege sozinha: se os gastos crescem junto, o endividamento pode ficar fora de controle em qualquer faixa de renda."
+  }
+ ]
+}

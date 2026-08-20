@@ -1,0 +1,295 @@
+{
+ "slug": "vender-e-crescer-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "vender-e-crescer",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "marketing-que-vende",
+   "criterio": "Ainda conta como marketing?",
+   "enunciado": "Anúncio pago que ninguém viu por erro de configuração",
+   "resposta": true,
+   "ancora": "É marketing mesmo sem resultado — conta a intenção, não o sucesso.",
+   "feedbackErro": "Parece que sem resultado não conta. Mas o critério de marketing é buscar cliente novo — o erro técnico não muda a intenção da ação."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "credito-para-o-negocio",
+   "criterio": "Ainda é crédito para o negócio?",
+   "enunciado": "Pedir R$ 500 emprestados a um amigo, sem juro, pra comprar insumo",
+   "resposta": true,
+   "ancora": "Crédito é dinheiro emprestado a devolver — juro é opcional.",
+   "feedbackErro": "Sem juro parece que não é crédito de verdade. Mas o critério é devolver o que pegou emprestado — o juro é só o preço, não a definição."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "credito-para-o-negocio",
+   "criterio": "Ainda é crédito para o negócio?",
+   "enunciado": "Usar a reserva do próprio negócio pra comprar insumo",
+   "resposta": false,
+   "ancora": "Dinheiro próprio não é crédito: não há devolução a ninguém.",
+   "feedbackErro": "Parece igual a um empréstimo, porque o dinheiro sai do caixa do mesmo jeito. Mas crédito exige alguém de fora emprestando — aqui não há devolução a ninguém."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "marketing-que-vende",
+   "dificuldade": 3,
+   "pergunta": "O negócio dobrou o investimento em anúncio, mas as vendas não dobraram. O marketing parou de funcionar?",
+   "ancora": "Retorno pode cair aos poucos sem sumir — não é o mesmo que falhar.",
+   "alternativas": [
+    {
+     "texto": "Não necessariamente: o retorno pode estar diminuindo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim: gasto dobrado sem venda dobrada prova que não funciona",
+     "correta": false,
+     "feedbackErro": "A lógica parece direta, mas o retorno de marketing tende a cair aos poucos com mais gasto — pode estar funcionando, só que menos por real."
+    },
+    {
+     "texto": "Sim, porque marketing deveria manter a mesma proporção",
+     "correta": false,
+     "feedbackErro": "Não existe proporção fixa garantida: o público que ainda não viu o anúncio encolhe, e o retorno por real tende a cair com o tempo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "credito-para-o-negocio",
+   "dificuldade": 3,
+   "pergunta": "R$ 2.200 a 2,5% ao mês por 6 meses (Banco A) ou R$ 2.200 a 3% ao mês por 4 meses (Banco B). Qual gera menos juro total?",
+   "ancora": "Banco A soma R$ 330 de juro; Banco B, R$ 264 — prazo pesou mais.",
+   "verificacao": { "expressao": "2200*0.025*6 - 2200*0.03*4", "esperado": 66 },
+   "alternativas": [
+    {
+     "texto": "Banco B: o prazo menor pesa mais que a taxa maior",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Banco A, porque a taxa mensal é menor",
+     "correta": false,
+     "feedbackErro": "A taxa menor ajuda por mês, mas o Banco A cobra por 6 meses contra 4 do Banco B — o total fica maior mesmo com taxa menor."
+    },
+    {
+     "texto": "Os dois custam o mesmo, porque o valor emprestado é igual",
+     "correta": false,
+     "feedbackErro": "O valor pego é igual, mas taxa e prazo diferentes mudam o juro total: R$ 330 contra R$ 264, uma diferença de R$ 66."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "credito-para-o-negocio",
+   "criterio": "Isso é verdade?",
+   "enunciado": "A taxa mais baixa é sempre a melhor escolha de crédito pro negócio",
+   "resposta": false,
+   "ancora": "Taxa menor ajuda, mas prazo e capacidade de pagar também decidem.",
+   "feedbackErro": "Taxa baixa parece sempre vencer, e costuma pesar bastante. Mas prazo mais longo pode gerar mais juro total, mesmo com taxa menor."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "credito-para-o-negocio",
+   "instrucao": "Caixa apertado no mês. Toque na ordem de prioridade dos gastos.",
+   "ancora": "Parcela em dia primeiro; marketing só com o que sobra depois.",
+   "feedbackErro": "Investir em marketing parece o caminho pra vender mais e resolver o aperto. Mas com caixa curto, parcela e custo fixo vêm antes — marketing espera a sobra.",
+   "itens": [
+    { "texto": "Pagar a parcela do crédito em dia", "posicaoCorreta": 1 },
+    { "texto": "Cobrir os custos fixos essenciais", "posicaoCorreta": 2 },
+    { "texto": "Guardar uma reserva pro mês seguinte", "posicaoCorreta": 3 },
+    { "texto": "Investir o que sobrar em marketing", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "credito-para-o-negocio",
+   "criterio": "Ainda vale o critério de sempre?",
+   "enunciado": "Comparar taxas entre bancos, mesmo quando o empréstimo é pequeno",
+   "resposta": true,
+   "ancora": "A proporção do juro continua valendo, seja o valor grande ou pequeno.",
+   "feedbackErro": "Parece que só vale a pena comparar em empréstimos grandes. Mas a diferença de taxa pesa na mesma proporção — vale comparar em qualquer valor."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "marketing-que-vende",
+   "criterio": "Ainda vale o critério de sempre?",
+   "enunciado": "Investir mais em marketing com o negócio lotado de pedidos",
+   "resposta": false,
+   "ancora": "Marketing atrai cliente; sem dar conta, atrair mais piora tudo.",
+   "feedbackErro": "Mais marketing costuma ser bom, e por isso parece sempre certo. Mas se o negócio já está lotado, atrair mais gente só aumenta a fila e a insatisfação."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "credito-para-o-negocio",
+   "pergunta": "Empréstimo de R$ 2.200 a 2,5% ao mês, juros compostos, quitado só em 6 meses. Quanto vira a dívida?",
+   "campo": "moeda",
+   "min": 2200,
+   "max": 4000,
+   "gabarito": 2551,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: juros compostos de 2,5% ao mês sobre R$ 2.200",
+   "verificacao": { "expressao": "2200*1.025^6", "esperado": 2551.33, "tolerancia": 1 },
+   "feedbackPerto": "Perto: cerca de R$ 2.551. Em 6 meses, a dívida cresceu quase 16%.",
+   "feedbackLonge": "Dá R$ 2.551. Juro composto cobra sobre o saldo já maior — passa dos 2,5% × 6 (15%) da conta simples."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "marketing-que-vende",
+   "dificuldade": 3,
+   "pergunta": "O negócio anunciou bem, mas a demanda da região caiu por causa da economia, e as vendas caíram. O marketing falhou?",
+   "ancora": "Fatores externos também afetam vendas, mesmo com bom marketing.",
+   "alternativas": [
+    {
+     "texto": "Não necessariamente: fatores externos também afetam vendas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim: se investiu e vendas caíram, o marketing não funcionou",
+     "correta": false,
+     "feedbackErro": "Investir e vendas caírem juntos não provam falha — a economia da região pode ter derrubado a demanda por conta própria."
+    },
+    {
+     "texto": "Sim, marketing deveria neutralizar qualquer queda econômica",
+     "correta": false,
+     "feedbackErro": "Marketing atrai atenção pro produto, mas não controla o quanto as pessoas têm pra gastar — isso está fora do alcance dele."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "credito-para-o-negocio",
+   "dificuldade": 3,
+   "pergunta": "Negócio endividado tenta pegar mais um empréstimo só pra pagar o juro do anterior. Isso resolve o problema?",
+   "ancora": "A dívida cresce sem entrar receita nova — o problema só se adia.",
+   "alternativas": [
+    {
+     "texto": "Não: aumenta a dívida sem gerar nenhuma receita nova",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque adia o vencimento do problema",
+     "correta": false,
+     "feedbackErro": "Adiar não é resolver: o valor total devido cresce, e a mesma cobrança volta depois, maior."
+    },
+    {
+     "texto": "Sim, desde que a taxa do novo empréstimo seja menor",
+     "correta": false,
+     "feedbackErro": "Taxa menor reduz o ritmo do problema, mas não resolve a causa: pegar crédito pra pagar juro, sem receita nova, ainda aumenta a dívida."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "marketing-que-vende",
+   "criterio": "Isso é sempre a decisão certa?",
+   "enunciado": "Cortar todo o marketing assim que o caixa aperta, sem exceção",
+   "resposta": false,
+   "ancora": "Cortar tudo corta a fonte de cliente justo quando mais precisa dela.",
+   "feedbackErro": "Reduzir gasto parece a resposta certa pro aperto. Mas cortar todo o marketing corta a fonte de clientes novos exatamente quando o negócio mais precisa vender."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "credito-para-o-negocio",
+   "criterio": "Isso é sempre a decisão certa?",
+   "enunciado": "Usar crédito pra cobrir o mesmo prejuízo, mês após mês",
+   "resposta": false,
+   "ancora": "Crédito recorrente sem mudar a causa só empurra o problema pra frente.",
+   "feedbackErro": "Um empréstimo pontual pode salvar um mês difícil. Mas repetir todo mês sem resolver a causa do prejuízo só acumula dívida sobre dívida."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "marketing-que-vende",
+   "pergunta": "Qual frase resume os três encontros?",
+   "alternativas": [
+    {
+     "texto": "Marketing e crédito são ferramentas: funcionam bem usados, e cada um tem limite",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Mais marketing e mais crédito sempre aceleram o crescimento",
+     "correta": false,
+     "feedbackErro": "Marketing sem capacidade de atender e crédito sem plano de pagar viram problema, não crescimento."
+    },
+    {
+     "texto": "Se a taxa de juro é baixa, o crédito nunca é um risco",
+     "correta": false,
+     "feedbackErro": "Taxa baixa reduz o custo, mas não elimina o risco: prazo, capacidade de pagar e o motivo do empréstimo continuam pesando."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "credito-para-o-negocio",
+   "instrucao": "É uso saudável do crédito ou sinal de alerta? Arraste.",
+   "ancora": "Crédito saudável financia crescimento; alerta é usar pra tapar buraco.",
+   "feedbackErro": "Comprar equipamento com plano de retorno é uso saudável. Pegar empréstimo pra pagar outro empréstimo é sinal de que o problema não foi resolvido.",
+   "caixas": [
+    { "id": "saudavel", "rotulo": "Uso saudável" },
+    { "id": "alerta", "rotulo": "Sinal de alerta" }
+   ],
+   "itens": [
+    { "texto": "Financiar equipamento que aumenta a produção", "caixaCorreta": "saudavel" },
+    { "texto": "Pegar empréstimo novo pra pagar o juro do antigo", "caixaCorreta": "alerta" },
+    { "texto": "Comparar taxas de dois bancos antes de assinar", "caixaCorreta": "saudavel" },
+    { "texto": "Usar crédito todo mês pra cobrir o mesmo prejuízo", "caixaCorreta": "alerta" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "marketing-que-vende",
+   "dificuldade": 3,
+   "pergunta": "O negócio testou dois anúncios com o mesmo gasto: um trouxe 5 vendas, outro trouxe 15. O que fazer com essa informação?",
+   "ancora": "Mesma verba, resultados diferentes — vale seguir o que funciona.",
+   "alternativas": [
+    {
+     "texto": "Direcionar mais verba pro anúncio que trouxe mais vendas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Manter a verba igual nos dois, pra não arriscar",
+     "correta": false,
+     "feedbackErro": "Manter igual ignora um dado já testado: um anúncio rendeu o triplo do outro com o mesmo gasto — vale usar essa informação."
+    },
+    {
+     "texto": "Parar os dois, porque nenhum trouxe muitas vendas",
+     "correta": false,
+     "feedbackErro": "Os dois trouxeram venda real, e um se destacou bem mais. Parar os dois joga fora um resultado que já funcionou."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "credito-para-o-negocio",
+   "criterio": "É verdade?",
+   "enunciado": "Empréstimo sem juro, entre amigos, pede prazo combinado por escrito",
+   "resposta": true,
+   "ancora": "Sem juro o valor não cresce, mas a combinação ainda precisa existir.",
+   "feedbackErro": "Sem juro parece que não precisa de formalidade. Mas combinar prazo e valor por escrito evita mal-entendido, mesmo entre amigos."
+  }
+ ]
+}

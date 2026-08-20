@@ -1,0 +1,335 @@
+{
+ "slug": "quando-a-divida-vira-problema-consolida",
+ "segmento": "em3",
+ "conceitoPrincipal": "divida-que-cresce-sozinha",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prioridade-por-taxa",
+   "criterio": "Decisão coerente com a taxa?",
+   "enunciado": "Pagar o rotativo antes do aluguel que vence hoje",
+   "resposta": false,
+   "ancora": "Essencial primeiro: a regra da taxa ordena dívidas, não a moradia.",
+   "feedbackErro": "A taxa do rotativo grita mais alto, e a regra parece mandar ali. Mas ela ordena dívidas entre si — teto, comida e luz vêm antes de qualquer juro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prioridade-por-taxa",
+   "criterio": "Decisão coerente com a taxa?",
+   "enunciado": "Trocar o saldo do cheque especial por consignado mais barato",
+   "resposta": true,
+   "ancora": "Mesma dívida, preço menor: 8% ao mês virando 1,8% corta o incêndio.",
+   "feedbackErro": "Assumir um empréstimo novo soa como afundar mais. Mas o consignado quita o cheque especial: o que muda é o preço do mesmo saldo, de 8% para 1,8%."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prioridade-por-taxa",
+   "criterio": "Decisão coerente com a taxa?",
+   "enunciado": "Antecipar o parcelado sem juros enquanto o rotativo corre",
+   "resposta": false,
+   "ancora": "Taxa zero espera parada. Todo real livre pertence ao juro alto.",
+   "feedbackErro": "Antecipar dá sensação de progresso. Mas o parcelado sem juros não cresce esperando — cada real usado nele deixou de matar 14% ao mês no rotativo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "dificuldade": 3,
+   "pergunta": "Trocar R$ 1.200 do rotativo (14% a.m.) por consignado (1,8% a.m.) muda o quê já no primeiro mês?",
+   "ancora": "Juros do mês: R$ 168 no rotativo contra R$ 21,60 no consignado.",
+   "verificacao": {
+    "expressao": "1200*0.14 - 1200*0.018",
+    "esperado": 146.4
+   },
+   "alternativas": [
+    {
+     "texto": "Os juros do mês caem de R$ 168 para cerca de R$ 22",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: você continua devendo os R$ 1.200",
+     "correta": false,
+     "feedbackErro": "O principal é o mesmo, e é isso que engana. O que muda é quanto ele custa por mês: R$ 146 a menos de juros — e é o juro que faz a bola crescer."
+    },
+    {
+     "texto": "Você passa a dever para dois credores",
+     "correta": false,
+     "feedbackErro": "O consignado quita o rotativo na largada: a dívida troca de dono e de preço, não se duplica. Duplicar seria pegar o novo sem matar o velho."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "renegociacao",
+   "dificuldade": 3,
+   "pergunta": "Oferta A: quitar dívida de R$ 3.000 com 30% de desconto hoje. Oferta B: 12x de R$ 240. Qual custa menos?",
+   "ancora": "A: R$ 2.100 à vista. B: R$ 2.880 no total. Diferença de R$ 780.",
+   "verificacao": {
+    "expressao": "240*12 - 3000*0.7",
+    "esperado": 780
+   },
+   "alternativas": [
+    {
+     "texto": "A: R$ 2.100 contra R$ 2.880 — se o dinheiro existir",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "B: R$ 240 por mês é muito mais leve",
+     "correta": false,
+     "feedbackErro": "Leve no mês, pesada no total: as 12 parcelas somam R$ 2.880. A leveza custa R$ 780 — vale só se os R$ 2.100 à vista não existirem."
+    },
+    {
+     "texto": "Tanto faz: as duas quitam a mesma dívida",
+     "correta": false,
+     "feedbackErro": "Quitam a mesma dívida por preços diferentes: R$ 2.100 numa, R$ 2.880 na outra. Ignorar os R$ 780 de diferença é pagar por não fazer a conta."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "criterio": "Endividamento virou problema aqui?",
+   "enunciado": "Financiamento a 1% ao mês ocupando 20% da renda, em dia",
+   "resposta": false,
+   "ancora": "Ter dívida não é o problema. Taxa alta ou renda sufocada é.",
+   "feedbackErro": "Toda dívida parece problema por definição. Mas juro baixo, parcela que cabe com folga e pagamento em dia é crédito funcionando — não bola de neve."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "prioridade-por-taxa",
+   "instrucao": "Mês apertado: toque na ordem do que pagar primeiro.",
+   "ancora": "Casa de pé primeiro; depois as dívidas, da taxa maior à menor.",
+   "feedbackErro": "O critério tem dois andares: primeiro o essencial que mantém a casa funcionando; entre as dívidas, manda a taxa. Sem juros vai por último — parada, não cresce.",
+   "itens": [
+    {
+     "texto": "Água e luz do mês",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Rotativo do cartão a 14% ao mês",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Empréstimo pessoal a 4% ao mês",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Parcelado sem juros, em dia",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "prioridade-por-taxa",
+   "criterio": "Exceção justificada à regra da taxa?",
+   "enunciado": "Quitar primeiro a dívida pequena para encerrar uma cobrança",
+   "resposta": true,
+   "ancora": "Fechar uma dívida inteira libera caixa e cabeça — exceção válida.",
+   "feedbackErro": "Pela taxa pura, nem sempre é a escolha ótima. Mas encerrar uma cobrança inteira reduz o número de frentes e mantém você no plano — plano que se sustenta vence."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "prioridade-por-taxa",
+   "criterio": "Exceção justificada à regra da taxa?",
+   "enunciado": "Ignorar a dívida de juro baixo até o nome caducar",
+   "resposta": false,
+   "ancora": "Juro baixo espera na fila — abandonada, nenhuma dívida melhora.",
+   "feedbackErro": "Deixar por último é a regra; abandonar é outra coisa. Sem pagar nada, vêm multa, mora e cobrança judicial — e a dívida não some com o cadastro."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "pergunta": "Dívida de R$ 1.500 a 14% ao mês. Você paga R$ 210 todo mês. Quanto deve após 1 ano?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 6000,
+   "gabarito": 1500,
+   "toleranciaPct": 20,
+   "fonte": "derivado da própria conta: 14% de R$ 1.500 são exatamente R$ 210 por mês",
+   "verificacao": {
+    "expressao": "1500*1.14 - 210",
+    "esperado": 1500
+   },
+   "feedbackPerto": "Os mesmos R$ 1.500. R$ 210 é exatamente o juro do mês: você paga R$ 2.520 no ano e a dívida não anda um centavo.",
+   "feedbackLonge": "Continua em R$ 1.500. O viés é achar que pagar todo mês sempre reduz o saldo — se o pagamento só cobre o juro, o principal fica intacto."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "renegociacao",
+   "dificuldade": 3,
+   "pergunta": "O banco liga com um 'acordo imperdível que vence hoje'. Qual é a resposta de quem sabe negociar?",
+   "ancora": "Acordo bom aguenta virar papel. Urgência é técnica de venda.",
+   "alternativas": [
+    {
+     "texto": "Pedir tudo por escrito e conferir contra o saldo real",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Aceitar na hora: prazo curto prova desconto real",
+     "correta": false,
+     "feedbackErro": "A pressa é fabricada para impedir a conta. Desconto verdadeiro continua de pé amanhã, por escrito — e ofertas 'de hoje' costumam voltar maiores."
+    },
+    {
+     "texto": "Desligar: renegociar por telefone nunca vale",
+     "correta": false,
+     "feedbackErro": "O canal não é o problema — a ligação pode abrir um bom acordo. O erro seria fechar sem ver os números por escrito; ouvir e conferir custa nada."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "dificuldade": 3,
+   "pergunta": "Quando contratar uma dívida nova é decisão financeiramente defensável?",
+   "ancora": "Dívida boa troca custo por menor ou compra retorno maior que o juro.",
+   "alternativas": [
+    {
+     "texto": "Quando ela troca dívida mais cara ou rende mais que custa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nunca: dívida é sempre um erro",
+     "correta": false,
+     "feedbackErro": "Recusar crédito barato também tem preço: um curso ou equipamento financiado a juro baixo pode aumentar a renda acima do custo. O critério é a comparação."
+    },
+    {
+     "texto": "Sempre que a parcela couber no mês",
+     "correta": false,
+     "feedbackErro": "Caber no mês é o filtro mínimo, não o veredito. Parcela confortável a taxa alta ainda transfere renda sua para o credor sem necessidade."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "renegociacao",
+   "criterio": "Leitura correta do caso?",
+   "enunciado": "Acordo que não cabe mais pode ser renegociado de novo",
+   "resposta": true,
+   "ancora": "Refazer o acordo antes de estourar preserva nome e desconto.",
+   "feedbackErro": "Parece que renegociação é chance única. Não é: credor prefere refazer o acordo a ver o atraso voltar — procure antes da primeira parcela falhar."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "criterio": "Leitura correta do caso?",
+   "enunciado": "Dívida da família é assunto só de quem assinou",
+   "resposta": false,
+   "ancora": "O nome é de um; o orçamento apertado é de todos da casa.",
+   "feedbackErro": "Juridicamente a dívida é de quem assinou. Na prática, ela come o orçamento comum — esconder o problema em casa costuma ser o que o torna maior."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "pergunta": "Fechando o conceito: qual leitura você leva para as próximas decisões?",
+   "alternativas": [
+    {
+     "texto": "Dívida se administra por taxa e custo total — e o essencial vem antes.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A melhor dívida é a que não existe, a qualquer preço.",
+     "correta": false,
+     "feedbackErro": "Crédito barato que gera retorno maior que o juro é ferramenta, não erro."
+    },
+    {
+     "texto": "Se a parcela cabe no mês, a dívida está sob controle.",
+     "correta": false,
+     "feedbackErro": "Cabe é o filtro mínimo: R$ 210 por mês cabiam — e deixavam os R$ 1.500 parados para sempre."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "prioridade-por-taxa",
+   "instrucao": "A regra 'ataque a maior taxa' decide o caso?",
+   "ancora": "A regra ordena dívidas com juros entre si — só isso.",
+   "feedbackErro": "A regra compara juros correndo. Contra o essencial da casa ela não vale; entre parcelas sem juros também não — ali a taxa empata em zero.",
+   "caixas": [
+    {
+     "id": "decide",
+     "rotulo": "Decide"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não decide"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Duas dívidas com juros e taxas diferentes",
+     "caixaCorreta": "decide"
+    },
+    {
+     "texto": "Dívida atrasada x aluguel prestes a vencer",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Rotativo x financiamento do carro",
+     "caixaCorreta": "decide"
+    },
+    {
+     "texto": "Duas parcelas sem juros, valores diferentes",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "renegociacao",
+   "dificuldade": 3,
+   "pergunta": "Seis meses pagando o acordo, a renda caiu e a parcela não cabe mais. Melhor movimento?",
+   "ancora": "Credor prefere ajustar acordo vivo a cobrar acordo morto.",
+   "alternativas": [
+    {
+     "texto": "Procurar o credor antes de atrasar e propor novo valor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Deixar atrasar e esperar o credor ligar",
+     "correta": false,
+     "feedbackErro": "O atraso derruba o acordo, devolve encargos e suja o nome de novo. Quem chega antes negocia com desconto; quem espera negocia com multa."
+    },
+    {
+     "texto": "Cobrir a parcela com o rotativo do cartão",
+     "correta": false,
+     "feedbackErro": "Resolve um mês criando uma dívida a 14% ao mês para pagar outra mais barata — é apagar fogo com gasolina. Ajustar o acordo custa menos."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "criterio": "Isso é verdade?",
+   "enunciado": "A multa de atraso em contas de consumo pode passar de 2%",
+   "resposta": false,
+   "ancora": "O Código de Defesa do Consumidor limita a multa a 2%.",
+   "feedbackErro": "Boleto de consumo tem teto legal: multa de até 2% e mora de 1% ao mês. Cobrança acima disso é indevida — e dá direito a contestação."
+  }
+ ]
+}

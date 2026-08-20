@@ -1,0 +1,342 @@
+{
+ "slug": "escolher-e-abrir-mao",
+ "segmento": "em1",
+ "conceitoPrincipal": "escolher-e-abrir-mao",
+ "fraseConceito": "Toda escolha tem um preço invisível: a melhor alternativa que ficou para trás quando você disse sim.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Abre mão de algo ao escolher?",
+   "enunciado": "Gastar a mesada inteira em lanche na semana",
+   "resposta": true,
+   "ancora": "O custo real é o que esses reais fariam em outro lugar.",
+   "feedbackErro": "Parece só um gasto comum, sem escolha. Mas cada real no lanche é um real que não vai para o fone, o rolê ou a reserva — a troca está lá, invisível."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Abre mão de algo ao escolher?",
+   "enunciado": "Passar a tarde de sábado inteira jogando",
+   "resposta": true,
+   "ancora": "Tempo também é recurso: a tarde usada num lugar some dos outros.",
+   "feedbackErro": "Jogar não custa dinheiro, e isso esconde a troca. Mas a tarde é uma só: o treino, o trabalho ou o encontro que não aconteceram são o preço dela."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Abre mão de algo ao escolher?",
+   "enunciado": "Receber um presente que você não pediu",
+   "resposta": false,
+   "ancora": "Sem decisão sua, não há custo de oportunidade. Ele nasce da escolha.",
+   "feedbackErro": "Todo ganho parece envolver troca, mas aqui quem decidiu foi outra pessoa. O custo de oportunidade só existe quando é você quem escolhe entre alternativas."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-de-oportunidade",
+   "dificuldade": 1,
+   "pergunta": "Você tinha R$ 60 para o cinema ou para um fone novo. Foi ao cinema. Qual foi o custo de oportunidade?",
+   "ancora": "Custo de oportunidade = a melhor alternativa que você recusou.",
+   "alternativas": [
+    {
+     "texto": "O fone que ficou para trás",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Os R$ 60 pagos no ingresso e na pipoca",
+     "correta": false,
+     "feedbackErro": "Os R$ 60 são o preço visível, o da etiqueta. O custo de oportunidade é outro: aquilo que esses mesmos R$ 60 comprariam — o fone."
+    },
+    {
+     "texto": "Nada, porque cinema também vale a pena",
+     "correta": false,
+     "feedbackErro": "Valer a pena não zera a troca: escolher bem é justamente aceitar que algo bom ficou de fora. Custo de oportunidade existe até nas boas escolhas."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-de-oportunidade",
+   "dificuldade": 1,
+   "pergunta": "Por que 'não decidir nada' com o dinheiro também é uma escolha com custo?",
+   "ancora": "Deixar parado é escolher: a inflação e o rendimento perdido cobram.",
+   "alternativas": [
+    {
+     "texto": "Parado, ele perde para a inflação e deixa de render",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque guardar dinheiro é sempre um erro",
+     "correta": false,
+     "feedbackErro": "Guardar com destino é ótimo. O problema é o dinheiro esquecido, sem plano: esse paga o custo da inflação sem ganhar nada em troca."
+    },
+    {
+     "texto": "Porque o banco cobra multa de conta parada",
+     "correta": false,
+     "feedbackErro": "Não há multa por deixar dinheiro quieto. O custo é silencioso: o que ele renderia e o que a inflação come — ninguém manda boleto disso."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "É o custo de oportunidade?",
+   "enunciado": "O preço pago na etiqueta do produto",
+   "resposta": false,
+   "ancora": "Etiqueta é custo visível. O de oportunidade é a alternativa perdida.",
+   "feedbackErro": "É a confusão mais comum: preço e custo de oportunidade andam juntos, mas não são a mesma coisa. A etiqueta mostra o que você paga; a alternativa, o que perde."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "custo-de-oportunidade",
+   "instrucao": "Custo visível ou custo de oportunidade?",
+   "ancora": "Visível sai do bolso; de oportunidade sai das possibilidades.",
+   "feedbackErro": "O critério: se aparece em nota, recibo ou boleto, é custo visível. Se é algo que deixou de acontecer por causa da escolha, é custo de oportunidade.",
+   "caixas": [
+    {
+     "id": "visivel",
+     "rotulo": "Custo visível"
+    },
+    {
+     "id": "oportunidade",
+     "rotulo": "Custo de oportunidade"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Os R$ 40 pagos no ingresso",
+     "caixaCorreta": "visivel"
+    },
+    {
+     "texto": "O jogo que os mesmos R$ 40 comprariam",
+     "caixaCorreta": "oportunidade"
+    },
+    {
+     "texto": "A taxa de entrega do lanche",
+     "caixaCorreta": "visivel"
+    },
+    {
+     "texto": "A vaga do curso que fechou enquanto você adiava",
+     "caixaCorreta": "oportunidade"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "É um recurso escasso?",
+   "enunciado": "Seu tempo livre depois da aula",
+   "resposta": true,
+   "ancora": "Horas são finitas: usar aqui é tirar dali. Igual ao dinheiro.",
+   "feedbackErro": "Tempo livre parece sobrar, mas tem teto: o dia acaba. É exatamente por ser limitado que cada uso dele exclui outro — a definição de escasso."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "É um recurso escasso?",
+   "enunciado": "As vontades e desejos que você tem",
+   "resposta": false,
+   "ancora": "Vontade é infinita; tempo e dinheiro, não. Daí nasce a escolha.",
+   "feedbackErro": "Vontades acabam? Não: sempre cabe mais uma. Escassos são os meios de realizá-las — e é por isso que escolher é inevitável."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "escolha-no-tempo",
+   "pergunta": "Um lanche de R$ 30 por semana, todas as 52 semanas do ano. Quanto isso soma?",
+   "campo": "moeda",
+   "min": 300,
+   "max": 5000,
+   "gabarito": 1560,
+   "toleranciaPct": 20,
+   "fonte": "conta: R$ 30 × 52 semanas",
+   "verificacao": {
+    "expressao": "30*52",
+    "esperado": 1560
+   },
+   "feedbackPerto": "R$ 1.560 — dá um celular. A questão não é 'pare de lanchar': é saber o tamanho real do que você está trocando.",
+   "feedbackLonge": "R$ 1.560 no ano. O viés é ancorar no gasto pequeno da semana e nunca somar o ano inteiro — pequenas escolhas repetidas viram números grandes."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "escolha-no-tempo",
+   "dificuldade": 1,
+   "pergunta": "Caio junta R$ 150 por mês para um violão de R$ 900. Um jogo de R$ 300 agora adia o plano em quanto tempo?",
+   "ancora": "R$ 300 = dois depósitos de R$ 150. O jogo custa dois meses de violão.",
+   "verificacao": {
+    "expressao": "300/150",
+    "esperado": 2
+   },
+   "alternativas": [
+    {
+     "texto": "Dois meses",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Um mês",
+     "correta": false,
+     "feedbackErro": "R$ 300 engolem duas parcelas de R$ 150, não uma. O plano anda para trás o dobro do que parece à primeira vista."
+    },
+    {
+     "texto": "Nada, se ele quiser muito o jogo",
+     "correta": false,
+     "feedbackErro": "Querer muito é um bom motivo para comprar — mas não altera a aritmética. A escolha pode valer a pena e ainda assim custar dois meses."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "sazonalidade",
+   "dificuldade": 1,
+   "pergunta": "Sorvete encarece no verão; agasalho, no inverno. O que explica essa dança dos preços?",
+   "ancora": "Sazonalidade: procura concentrada na estação empurra o preço.",
+   "alternativas": [
+    {
+     "texto": "Procura concentrada na estação puxa o preço para cima",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "As fábricas produzem menos de propósito",
+     "correta": false,
+     "feedbackErro": "A produção até se ajusta, mas o motor é outro: todo mundo querendo ao mesmo tempo. Com procura alta, o preço sobe sem ninguém combinar nada."
+    },
+    {
+     "texto": "O governo tabela os preços por estação",
+     "correta": false,
+     "feedbackErro": "Não existe tabela oficial de estação. É o mercado reagindo à procura — e quem entende o ciclo compra fora dele, mais barato."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "escolha-no-tempo",
+   "criterio": "Troca entre agora e depois?",
+   "enunciado": "Guardar parte da mesada para o show do fim do ano",
+   "resposta": true,
+   "ancora": "Escolha intertemporal: abrir mão hoje para ter mais adiante.",
+   "feedbackErro": "Parece só disciplina, mas é uma troca no tempo: menos lanche agora, ingresso garantido depois. É a decisão financeira mais poderosa que existe."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "escolha-no-tempo",
+   "criterio": "Troca entre agora e depois?",
+   "enunciado": "Escolher entre dois sabores de pizza hoje",
+   "resposta": false,
+   "ancora": "Troca entre iguais no presente: o tempo não entra na conta.",
+   "feedbackErro": "Há escolha e há custo de oportunidade (o sabor recusado), mas tudo acontece agora. Intertemporal é quando o hoje negocia com o depois."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "custo-de-oportunidade",
+   "pergunta": "Qual destas frases resume a lição?",
+   "alternativas": [
+    {
+     "texto": "Escolher é abrir mão: o custo real é a melhor alternativa que ficou para trás.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se a escolha foi boa, não houve custo nenhum.",
+     "correta": false,
+     "feedbackErro": "Boa escolha é a que compensa o custo — não a que não tem custo. Ele existe sempre."
+    },
+    {
+     "texto": "Custo de oportunidade é o preço pago na etiqueta.",
+     "correta": false,
+     "feedbackErro": "Etiqueta é o custo visível. O de oportunidade é o que os mesmos recursos fariam em outro lugar."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "custo-de-oportunidade",
+   "dificuldade": 2,
+   "pergunta": "Estágio remunerado à tarde ou curso técnico gratuito no mesmo horário. O custo de escolher o estágio?",
+   "ancora": "Grátis no preço não é grátis na escolha: o curso custa o estágio, e vice-versa.",
+   "alternativas": [
+    {
+     "texto": "O curso e as portas que ele abriria depois",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O salário que o estágio paga",
+     "correta": false,
+     "feedbackErro": "O salário é o ganho da escolha, não o custo dela. O custo é o que ficou do outro lado da balança: o curso recusado."
+    },
+    {
+     "texto": "Zero, porque estágio paga e curso não",
+     "correta": false,
+     "feedbackErro": "O curso não cobra mensalidade, mas tem valor: o que ele renderia na sua vida. Custo de oportunidade não olha etiqueta — olha alternativa."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Tem custo de oportunidade?",
+   "enunciado": "Dormir até tarde no dia da excursão gratuita",
+   "resposta": true,
+   "ancora": "Até o sono tem preço quando exclui outra coisa que você queria.",
+   "feedbackErro": "Não saiu dinheiro do bolso, e é isso que despista. Mas a excursão perdida era a alternativa — dormir custou exatamente ela."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "sazonalidade",
+   "instrucao": "Onde a estação mexe no preço?",
+   "ancora": "Preço sazonal segue o calendário; item de rotina quase não sente.",
+   "feedbackErro": "O critério é a procura concentrada: viagem em julho e chocolate na Páscoa têm pico de demanda; arroz e sabonete vendem parecido o ano todo.",
+   "caixas": [
+    {
+     "id": "sazonal",
+     "rotulo": "Preço sazonal"
+    },
+    {
+     "id": "estavel",
+     "rotulo": "Estável no ano"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Passagem aérea em julho",
+     "caixaCorreta": "sazonal"
+    },
+    {
+     "texto": "Chocolate na semana da Páscoa",
+     "caixaCorreta": "sazonal"
+    },
+    {
+     "texto": "Arroz no mercado",
+     "caixaCorreta": "estavel"
+    },
+    {
+     "texto": "Sabonete",
+     "caixaCorreta": "estavel"
+    }
+   ]
+  }
+ ]
+}

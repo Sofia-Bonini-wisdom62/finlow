@@ -1,0 +1,185 @@
+{
+ "slug": "juntar-da-certo",
+ "segmento": "ef12",
+ "conceitoPrincipal": "juntar-da-certo",
+ "fraseConceito": "Guardar dinheiro aos poucos no cofrinho é poupar — e é assim que se consegue o que se quer.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar",
+   "criterio": "Isso é poupar?",
+   "enunciado": "Guardar uma moeda todo dia no cofrinho",
+   "resposta": true,
+   "ancora": "Guardar aos poucos é exatamente poupar.",
+   "feedbackErro": "Pode parecer pouco pra contar, mas guardar mesmo um pouquinho, sempre, já é poupar."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar",
+   "criterio": "Isso é poupar?",
+   "enunciado": "Gastar toda a mesada no mesmo dia em que recebe",
+   "resposta": false,
+   "ancora": "Gastar tudo não guarda nada — não é poupar.",
+   "feedbackErro": "Gastar dá alegria na hora, mas sem guardar nada, não sobra pra depois — isso não é poupar."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "cofrinho",
+   "criterio": "O cofrinho ajuda a poupar aqui?",
+   "enunciado": "Colocar as moedas que sobram no cofrinho, em vez de gastar",
+   "resposta": true,
+   "ancora": "O cofrinho guarda o que sobra — ajuda a poupar.",
+   "feedbackErro": "Pode parecer só um brinquedo, mas o cofrinho é o lugar que guarda o dinheiro até juntar o suficiente."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "juntar-para-conseguir",
+   "criterio": "Juntar ajuda a conseguir o que quer?",
+   "enunciado": "Guardar moedas toda semana pra comprar um brinquedo",
+   "resposta": true,
+   "ancora": "Juntar aos poucos é como se consegue o brinquedo.",
+   "feedbackErro": "Parece demorado demais pra funcionar, mas guardar toda semana é exatamente o caminho pra conseguir o brinquedo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "poupar",
+   "instrucao": "É poupar ou é gastar tudo?",
+   "ancora": "Poupar é guardar; gastar tudo não deixa nada guardado.",
+   "feedbackErro": "Guardar parte do dinheiro é poupar. Gastar tudo na hora não deixa nada pra depois.",
+   "caixas": [
+    {
+     "id": "poupar",
+     "rotulo": "Poupar"
+    },
+    {
+     "id": "gastar",
+     "rotulo": "Gastar tudo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Guardar parte do dinheiro no cofrinho",
+     "caixaCorreta": "poupar"
+    },
+    {
+     "texto": "Comprar doce assim que ganha uma moeda",
+     "caixaCorreta": "gastar"
+    },
+    {
+     "texto": "Separar dinheiro toda semana pra um objetivo",
+     "caixaCorreta": "poupar"
+    },
+    {
+     "texto": "Gastar tudo o que tem no bolso",
+     "caixaCorreta": "gastar"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "cofrinho",
+   "criterio": "O cofrinho está sendo bem usado?",
+   "enunciado": "Quebrar o cofrinho toda semana pra comprar besteira",
+   "resposta": false,
+   "ancora": "Quebrar toda semana não deixa o dinheiro juntar.",
+   "feedbackErro": "Usar o cofrinho parece certo à primeira vista, mas quebrar toda semana não deixa o dinheiro se juntar."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "juntar-para-conseguir",
+   "criterio": "Isso ajuda a conseguir o que quer?",
+   "enunciado": "Guardar um pouco todo mês pra comprar uma bicicleta",
+   "resposta": true,
+   "ancora": "Guardar todo mês é o caminho pra juntar o valor da bicicleta.",
+   "feedbackErro": "Um pouco por mês parece não fazer diferença, mas repetido, é assim que se junta o valor todo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "juntar-da-certo",
+   "pergunta": "O que faz juntar dinheiro dar certo?",
+   "alternativas": [
+    {
+     "texto": "Gastar tudo assim que recebe",
+     "correta": false,
+     "feedbackErro": "Gastar tudo não deixa nada guardado — não é assim que se junta dinheiro."
+    },
+    {
+     "texto": "Guardar aos poucos, sempre, com um objetivo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Esperar alguém dar o dinheiro pronto",
+     "correta": false,
+     "feedbackErro": "Esperar não junta nada — juntar é guardar aos poucos, por conta própria."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "poupar",
+   "criterio": "Isso é poupar?",
+   "enunciado": "Guardar metade da mesada e gastar a outra metade",
+   "resposta": true,
+   "ancora": "Guardar mesmo que só uma parte já é poupar.",
+   "feedbackErro": "Gastar uma parte não anula a outra: guardar mesmo uma parte da mesada já conta como poupar."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "cofrinho",
+   "instrucao": "O cofrinho está ajudando ou atrapalhando?",
+   "ancora": "O cofrinho ajuda quando guarda; atrapalha quando é aberto cedo demais.",
+   "feedbackErro": "Guardar e deixar fechado até juntar o suficiente é o que faz o cofrinho funcionar.",
+   "caixas": [
+    {
+     "id": "ajuda",
+     "rotulo": "Ajuda"
+    },
+    {
+     "id": "atrapalha",
+     "rotulo": "Atrapalha"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Guardar moeda por moeda no cofrinho",
+     "caixaCorreta": "ajuda"
+    },
+    {
+     "texto": "Quebrar o cofrinho assim que junta um pouco",
+     "caixaCorreta": "atrapalha"
+    },
+    {
+     "texto": "Deixar o cofrinho fechado até juntar bastante",
+     "caixaCorreta": "ajuda"
+    },
+    {
+     "texto": "Esquecer o cofrinho e gastar tudo no bolso",
+     "caixaCorreta": "atrapalha"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "juntar-para-conseguir",
+   "criterio": "Juntar dinheiro ajuda a conseguir algo?",
+   "enunciado": "Guardar moedas o ano todo pra comprar um presente grande",
+   "resposta": true,
+   "ancora": "Juntar por muito tempo é como se consegue coisas mais caras.",
+   "feedbackErro": "Um ano parece muito tempo de espera, mas é exatamente esse tempo que permite juntar o valor de algo mais caro."
+  }
+ ]
+}

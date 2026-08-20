@@ -1,0 +1,274 @@
+{
+ "slug": "parcelou-comprometeu-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "parcelou-comprometeu",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "criterio": "Compromete os próximos meses?",
+   "enunciado": "Trocar de plano de celular pra um com mensalidade mais alta",
+   "resposta": true,
+   "ancora": "Lembra o critério: mensalidade nova também reserva renda futura.",
+   "feedbackErro": "Não parece parcela de compra, mas o efeito é o mesmo: a mensalidade mais alta reserva parte da renda de todos os meses seguintes."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "criterio": "Compromete os próximos meses?",
+   "enunciado": "Quitar uma parcela que já estava em aberto há meses",
+   "resposta": false,
+   "ancora": "Quitar reduz compromisso; não cria um novo.",
+   "feedbackErro": "Lembra o critério: comprometer é reservar renda futura nova. Quitar faz o oposto, libera renda que já estava presa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "estilos-de-vida-com-dinheiro",
+   "criterio": "Mostra controle sobre o dinheiro?",
+   "enunciado": "Parcelar uma compra só depois de checar quanto já está comprometido",
+   "resposta": true,
+   "ancora": "Checar antes de parcelar é o hábito que evita passar do limite.",
+   "feedbackErro": "Lembra o critério: controle não é nunca parcelar, é parcelar sabendo o que sobra. Checar antes mostra esse cuidado."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "dificuldade": 2,
+   "pergunta": "Fernanda parcelou um sofá em 8x de R$ 187,50. Quanto do orçamento ela reservou até o fim?",
+   "ancora": "R$ 187,50 por 8 meses somam R$ 1.500 comprometidos.",
+   "verificacao": {
+    "expressao": "187.5*8",
+    "esperado": 1500
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 1.500, somando as 8 parcelas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 187,50, só no mês em que ela comprou",
+     "correta": false,
+     "feedbackErro": "R$ 187,50 é o valor de cada parcela isolada. O compromisso total soma as 8 parcelas, não só a primeira."
+    },
+    {
+     "texto": "R$ 1.000, arredondando pra baixo o valor da parcela",
+     "correta": false,
+     "feedbackErro": "Arredondar o valor da parcela erra a conta. R$ 187,50 vezes 8 parcelas dá R$ 1.500, não R$ 1.000."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "estilos-de-vida-com-dinheiro",
+   "dificuldade": 2,
+   "pergunta": "Leandro parcela quase toda compra, mesmo as pequenas, achando que 'não pesa'. Onde está o erro desse raciocínio?",
+   "ancora": "Parcelas pequenas somadas viram um compromisso grande no fim.",
+   "alternativas": [
+    {
+     "texto": "Ele ignora que várias parcelas pequenas somam um valor alto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ele deveria parcelar em menos vezes cada compra pequena",
+     "correta": false,
+     "feedbackErro": "Reduzir o número de vezes de cada parcela não resolve: o problema é a soma de várias compras parceladas ao mesmo tempo."
+    },
+    {
+     "texto": "Ele não pode nunca mais parcelar compra nenhuma",
+     "correta": false,
+     "feedbackErro": "Parcelar não é proibido nem sempre errado. O erro é não somar o total comprometido antes de assumir mais uma parcela."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "criterio": "Compromete os próximos meses?",
+   "enunciado": "Assinar um streaming novo, além dos dois que já tinha",
+   "resposta": true,
+   "ancora": "Mais uma mensalidade fixa reserva mais renda todo mês.",
+   "feedbackErro": "Não parece parcela de loja, mas o efeito é igual: mais uma mensalidade fixa passa a reservar renda de todo mês seguinte."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "estilos-de-vida-com-dinheiro",
+   "instrucao": "Esse hábito aumenta o compromisso futuro, ou reduz?",
+   "ancora": "Assumir mensalidade ou parcela nova aumenta; quitar ou guardar reduz.",
+   "feedbackErro": "O que aumenta é assumir gasto fixo novo; o que reduz é encerrar dívida ou guardar antes de gastar.",
+   "caixas": [
+    {
+     "id": "aumenta",
+     "rotulo": "Aumenta compromisso"
+    },
+    {
+     "id": "reduz",
+     "rotulo": "Reduz compromisso"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Assinar mais um serviço por mensalidade",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "Quitar à vista uma parcela que ainda faltava",
+     "caixaCorreta": "reduz"
+    },
+    {
+     "texto": "Trocar de plano pra um com mensalidade mais alta",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "Cancelar uma assinatura que quase não usa",
+     "caixaCorreta": "reduz"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "criterio": "Compromete os próximos meses?",
+   "enunciado": "Cancelar uma assinatura de streaming que não é mais usada",
+   "resposta": false,
+   "ancora": "Cancelar libera renda; não cria compromisso novo.",
+   "feedbackErro": "Cancelar é o oposto de assumir gasto: em vez de reservar renda futura, ele libera a renda que já estava reservada nela."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "estilos-de-vida-com-dinheiro",
+   "dificuldade": 2,
+   "pergunta": "Por que parcelar sem checar o total comprometido é mais arriscado do que parcelar checando?",
+   "ancora": "Sem checar, dá pra passar do limite da renda sem perceber.",
+   "alternativas": [
+    {
+     "texto": "Porque sem checar, o total comprometido pode passar da renda",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque a loja cobra juros maiores de quem não confere nada",
+     "correta": false,
+     "feedbackErro": "A loja não muda o juro conforme a pessoa confere ou não seu orçamento. O risco é comprometer mais renda do que sobra."
+    },
+    {
+     "texto": "Porque parcelar sempre é pior do que pagar à vista",
+     "correta": false,
+     "feedbackErro": "Parcelar não é sempre pior, desde que caiba no que sobra de renda. O problema é fazer isso sem checar o total já comprometido."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "criterio": "Compromete os próximos meses?",
+   "enunciado": "Renovar automaticamente um plano de academia por mais 12 meses",
+   "resposta": true,
+   "ancora": "Renovar reserva renda de mais 12 meses, mesmo sem uma compra nova.",
+   "feedbackErro": "Não é uma compra parcelada, mas o efeito é o mesmo: renovar reserva a renda dos próximos 12 meses para esse gasto."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "estilos-de-vida-com-dinheiro",
+   "criterio": "Mostra controle sobre o dinheiro?",
+   "enunciado": "Somar todas as parcelas em aberto antes de decidir assumir mais uma",
+   "resposta": true,
+   "ancora": "Somar antes é o que evita ultrapassar o que a renda comporta.",
+   "feedbackErro": "Pode parecer trabalho demais pra uma decisão rápida. Mas somar antes é o que evita comprometer mais renda do que existe."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "parcelou-comprometeu",
+   "pergunta": "Qual afirmação é mais precisa sobre compromisso futuro?",
+   "alternativas": [
+    {
+     "texto": "Só parcela de loja compromete a renda dos próximos meses",
+     "correta": false,
+     "feedbackErro": "Mensalidades, assinaturas e planos renovados também reservam renda futura, mesmo sem ser parcela de loja."
+    },
+    {
+     "texto": "Qualquer gasto fixo novo reserva renda dos meses seguintes",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cancelar um serviço nunca muda o quanto está comprometido",
+     "correta": false,
+     "feedbackErro": "Cancelar libera exatamente a parte da renda que estava reservada para aquele serviço nos meses seguintes."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "instrucao": "Ordene do que MAIS libera renda futura ao que MENOS libera.",
+   "ancora": "Quitar dívida cara libera mais do que cancelar um gasto pequeno.",
+   "feedbackErro": "O que mais libera renda futura é encerrar o compromisso de maior valor mensal.",
+   "itens": [
+    {
+     "texto": "Quitar uma parcela grande que ainda faltava",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Cancelar uma assinatura de streaming pouco usada",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Trocar de plano de celular por um mais barato",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "estilos-de-vida-com-dinheiro",
+   "dificuldade": 2,
+   "pergunta": "Duas pessoas parcelam o mesmo valor, mas uma confere o total comprometido antes. Qual a vantagem de quem confere?",
+   "ancora": "Conferir evita assumir mais compromisso do que a renda aguenta.",
+   "alternativas": [
+    {
+     "texto": "Ela evita comprometer mais do que a renda permite",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ela paga uma taxa de juros mais baixa por conferir",
+     "correta": false,
+     "feedbackErro": "Conferir o orçamento não muda a taxa de juros cobrada pela loja. A vantagem é evitar comprometer renda além do que sobra."
+    },
+    {
+     "texto": "Ela recebe o produto mais rápido do que a outra",
+     "correta": false,
+     "feedbackErro": "O prazo de entrega não depende de conferir o orçamento. A vantagem real é não comprometer mais renda do que existe."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "criterio": "Compromete os próximos meses?",
+   "enunciado": "Comprar um livro à vista, no dinheiro que sobrou do mês",
+   "resposta": false,
+   "ancora": "À vista com sobra do mês, o gasto termina ali mesmo.",
+   "feedbackErro": "Foi um gasto real, mas encerrado na hora. Sem parcela nem mensalidade, ele não reserva renda de nenhum mês seguinte."
+  }
+ ]
+}

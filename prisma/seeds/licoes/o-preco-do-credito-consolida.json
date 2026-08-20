@@ -1,0 +1,337 @@
+{
+ "slug": "o-preco-do-credito-consolida",
+ "segmento": "em3",
+ "conceitoPrincipal": "o-preco-do-credito",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cet",
+   "criterio": "O CET decide sozinho?",
+   "enunciado": "Entre dois consignados de mesmo prazo e valor",
+   "resposta": true,
+   "ancora": "Mesmo produto, prazo e valor: aí o menor CET vence direto.",
+   "feedbackErro": "Depois de tantas ressalvas, parece pegadinha. Não é: quando prazo, valor e produto empatam, o CET é a única diferença — e decide sozinho."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prazo-e-total",
+   "criterio": "O CET decide sozinho?",
+   "enunciado": "Entre um crédito de 12 meses e um de 48",
+   "resposta": false,
+   "ancora": "Prazos muito diferentes: olhe também o total pago e o risco.",
+   "feedbackErro": "O CET ajuda por ser anualizado, mas não fecha a questão: 48 meses somam muito mais juros no total — e mais tempo exposto a imprevistos."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "capacidade-pagamento",
+   "criterio": "O CET decide sozinho?",
+   "enunciado": "Quando a parcela não cabe na sua renda",
+   "resposta": false,
+   "ancora": "Se não cabe, nem o menor CET salva: capacidade vem antes.",
+   "feedbackErro": "O melhor CET do mercado parece imbatível. Mas parcela que não cabe vira atraso, e atraso joga você em multa, mora e rotativo — a renda filtra primeiro."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "capacidade-pagamento",
+   "dificuldade": 3,
+   "pergunta": "Dívida no rotativo a 14% a.m. e oferta de consignado a 1,8% a.m. para quitá-la. O que checar antes de migrar?",
+   "ancora": "A direção é certa; o risco é a parcela nova não caber até o fim.",
+   "alternativas": [
+    {
+     "texto": "Se a parcela nova cabe na renda até o fim do prazo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: taxa menor é migração automática",
+     "correta": false,
+     "feedbackErro": "Trocar 14% por 1,8% é o movimento certo — isso você acertou. Mas consignado desconta da folha antes de tudo: parcela grande demais aperta o resto."
+    },
+    {
+     "texto": "Se o banco novo é o mesmo do cartão",
+     "correta": false,
+     "feedbackErro": "Irrelevante: portabilidade e quitação funcionam entre bancos diferentes. O que muda sua vida é a parcela caber — não o logotipo do credor."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "cet",
+   "dificuldade": 3,
+   "pergunta": "Um crediário anuncia 'só 3,5% ao mês'. Sobre R$ 1.000, quanto isso rende de juros em um ano?",
+   "ancora": "1,035 elevado a 12 dá 1,51: 3,5% ao mês passa de 51% ao ano.",
+   "verificacao": {
+    "expressao": "1000*1.035^12-1000",
+    "esperado": 511.07,
+    "tolerancia": 1
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 511: composto, passa de 51% ao ano",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 420: é só multiplicar 3,5 por 12",
+     "correta": false,
+     "feedbackErro": "A soma simples daria isso — e é o erro que o anúncio espera. Juro compõe: cada mês cobra sobre o saldo já crescido, e 42% viram 51%."
+    },
+    {
+     "texto": "R$ 35: a taxa é de 3,5%",
+     "correta": false,
+     "feedbackErro": "3,5% é a mordida de UM mês (R$ 35). Em doze meses compostos, as mordidas se acumulam sobre saldos cada vez maiores: R$ 511 no ano."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "cet",
+   "criterio": "A regra se transfere?",
+   "enunciado": "Cartão, crediário e financiamento também têm CET",
+   "resposta": true,
+   "ancora": "Todo contrato de crédito tem CET — e a lei manda informar.",
+   "feedbackErro": "CET parece coisa de empréstimo de banco. Mas qualquer crédito — cartão, crediário de loja, financiamento — tem custo efetivo total a ser informado."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "prazo-e-total",
+   "instrucao": "Mesmos R$ 3.000. Toque na ordem do menor ao maior custo total.",
+   "ancora": "Totais: R$ 3.240, R$ 3.480, R$ 3.840, R$ 4.392.",
+   "verificacao": {
+    "expressao": "36*122-6*540",
+    "esperado": 1152
+   },
+   "feedbackErro": "Multiplique parcela × prazo: 6×540=3.240; 12×290=3.480; 24×160=3.840; 36×122=4.392. A parcela cai enquanto o total sobe — o prazo cobra.",
+   "itens": [
+    {
+     "texto": "6 parcelas de R$ 540",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "12 parcelas de R$ 290",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "24 parcelas de R$ 160",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "36 parcelas de R$ 122",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "capacidade-pagamento",
+   "criterio": "É bom uso do crédito?",
+   "enunciado": "Parcelar um lazer que se repete todo mês",
+   "resposta": false,
+   "ancora": "Despesa que volta todo mês não se financia: se ajusta.",
+   "feedbackErro": "Uma vez, tudo bem — o problema é o padrão: parcelar o recorrente empilha parcelas sobre a mesma renda até o mês não fechar. Crédito serve ao pontual."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "capacidade-pagamento",
+   "criterio": "É bom uso do crédito?",
+   "enunciado": "Financiar a ferramenta que aumenta sua renda",
+   "resposta": true,
+   "ancora": "Se o ganho supera o CET, o crédito pode se pagar sozinho.",
+   "feedbackErro": "'Dívida é sempre ruim' é regra decorada. Crédito que gera renda acima do próprio custo é investimento — desde que a parcela caiba até o retorno vir."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "cet",
+   "pergunta": "Trocar R$ 2.000 do rotativo (14% a.m.) por consignado (1,8% a.m.) poupa quanto de juros no 1º mês?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 500,
+   "gabarito": 244,
+   "toleranciaPct": 20,
+   "fonte": "taxas médias: rotativo ~14% a.m. e consignado ~1,8% a.m. (Banco Central)",
+   "verificacao": {
+    "expressao": "2000*0.14-2000*0.018",
+    "esperado": 244
+   },
+   "feedbackPerto": "R$ 244 já no primeiro mês: R$ 280 de rotativo contra R$ 36 de consignado. A troca de dívida é a economia mais rápida que existe.",
+   "feedbackLonge": "R$ 280 − R$ 36 = R$ 244 num único mês. Quem chuta baixo subestima o abismo entre as taxas: 14% não é 'um pouco' mais que 1,8% — é quase 8 vezes."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "capacidade-pagamento",
+   "dificuldade": 3,
+   "pergunta": "Otávio pode pagar a compra à vista usando a reserva de emergência, ou financiar a 2,9% a.m. O que pesa?",
+   "ancora": "Compare o CET com o custo de ficar desprotegido — é conta, não regra.",
+   "alternativas": [
+    {
+     "texto": "O custo do crédito contra o risco de ficar sem reserva",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "À vista sempre: crédito nunca compensa",
+     "correta": false,
+     "feedbackErro": "Evitar juros é bom instinto. Mas zerar a reserva tem preço: o próximo imprevisto cai no rotativo a 14% — bem pior que os 2,9% recusados."
+    },
+    {
+     "texto": "Financiar sempre: em reserva não se mexe",
+     "correta": false,
+     "feedbackErro": "Proteger a reserva importa, mas virou regra cega: se o CET é alto e a reserva se recompõe rápido, pagar à vista sai mais barato. É conta, não mandamento."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "cadastro-positivo",
+   "dificuldade": 3,
+   "pergunta": "Anos de contas em dia no cadastro positivo. O que esse histórico garante de fato na hora de contratar?",
+   "ancora": "Histórico habilita negociar; a taxa final ainda é do contrato.",
+   "alternativas": [
+    {
+     "texto": "Poder de barganha — a taxa final se negocia",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Taxa mínima automática, por lei",
+     "correta": false,
+     "feedbackErro": "Não existe tabela legal de taxa por pontuação. O histórico muda sua posição na conversa — mas a proposta continua sendo do banco, e se negocia."
+    },
+    {
+     "texto": "Aprovação em qualquer valor pedido",
+     "correta": false,
+     "feedbackErro": "Bom pagador não é pagador infinito: a capacidade de pagamento segue limitando o valor. O histórico reduz o preço do risco, não o tamanho da renda."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "capacidade-pagamento",
+   "criterio": "Fecha a conta?",
+   "enunciado": "Juro baixo compensa parcela que não cabe",
+   "resposta": false,
+   "ancora": "Parcela impagável gera atraso — e atraso devora o juro baixo.",
+   "feedbackErro": "O juro baixo parece absorver qualquer aperto. Não absorve: a primeira parcela atrasada traz multa, mora e nome sujo — o contrato barato fica caro."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "prazo-e-total",
+   "criterio": "Fecha a conta?",
+   "enunciado": "Cabe na renda e tem o menor total no prazo",
+   "resposta": true,
+   "ancora": "Os dois filtros juntos: capacidade primeiro, custo depois.",
+   "feedbackErro": "Parece simples demais para ser a resposta. Mas é o método inteiro: passa no filtro da renda e vence no custo total — não sobra critério pendente."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-preco-do-credito",
+   "dificuldade": 3,
+   "pergunta": "Qual frase leva os três encontros para a vida real?",
+   "alternativas": [
+    {
+     "texto": "Capacidade primeiro, CET e total depois — e histórico bom para negociar.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A taxa do anúncio decide tudo.",
+     "correta": false,
+     "feedbackErro": "Ela é só a vitrine: tarifas, seguro e prazo ficam de fora."
+    },
+    {
+     "texto": "Crédito é um erro em qualquer situação.",
+     "correta": false,
+     "feedbackErro": "Crédito caro para consumo, sim. Barato e gerando renda, pode se pagar."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "cet",
+   "instrucao": "Arraste: sinal de alerta ou bom sinal na oferta de crédito?",
+   "ancora": "Transparência é bom sinal; pressa e amarras são alerta.",
+   "feedbackErro": "O critério é a transparência: quem mostra CET e total no papel joga limpo; quem promete aprovação instantânea ou amarra produto esconde o preço.",
+   "caixas": [
+    {
+     "id": "alerta",
+     "rotulo": "Sinal de alerta"
+    },
+    {
+     "id": "bom",
+     "rotulo": "Bom sinal"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "'Aprovação na hora, sem consulta'",
+     "caixaCorreta": "alerta"
+    },
+    {
+     "texto": "Seguro obrigatório para liberar",
+     "caixaCorreta": "alerta"
+    },
+    {
+     "texto": "CET informado antes da assinatura",
+     "caixaCorreta": "bom"
+    },
+    {
+     "texto": "Simulação com o total pago no papel",
+     "caixaCorreta": "bom"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "cet",
+   "dificuldade": 3,
+   "pergunta": "Por que o CET é expresso ao ano mesmo quando as parcelas são mensais?",
+   "ancora": "Padronizar a unidade é o que permite comparar produtos diferentes.",
+   "alternativas": [
+    {
+     "texto": "Para padronizar: só se compara na mesma unidade",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Para esconder o custo mensal do cliente",
+     "correta": false,
+     "feedbackErro": "A desconfiança é saudável, mas aqui erra o alvo: o mensal segue no contrato. O anual existe para comparar ofertas de prazos e produtos diferentes."
+    },
+    {
+     "texto": "Porque os juros só vencem em dezembro",
+     "correta": false,
+     "feedbackErro": "Juros correm e são cobrados mês a mês. O 'ao ano' é unidade de medida, como km/h — não o calendário do pagamento."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "cet",
+   "criterio": "É direito seu?",
+   "enunciado": "Desistir em 7 dias do crédito fechado a distância",
+   "resposta": true,
+   "ancora": "Contratou online ou por telefone? O CDC dá 7 dias para desistir.",
+   "feedbackErro": "Assinou, acabou — parece irreversível. Contratação a distância tem 7 dias de arrependimento pelo CDC: devolve o valor e desfaz o contrato."
+  }
+ ]
+}

@@ -1,0 +1,250 @@
+{
+ "slug": "proteger-o-que-e-seu",
+ "segmento": "ef67",
+ "conceitoPrincipal": "proteger-o-que-e-seu",
+ "fraseConceito": "Proteger o que é seu é combinar cuidado no dia a dia, reserva de emergência e seguro para os riscos maiores.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cuidado-cotidiano",
+   "criterio": "Isso protege o que é seu?",
+   "enunciado": "Guardar o celular na mochila fechada, não solto no bolso",
+   "resposta": true,
+   "ancora": "Cuidado simples evita perda antes de precisar de seguro.",
+   "feedbackErro": "Parece pouco, mas reduzir o risco no dia a dia é a primeira camada de proteção — antes de qualquer seguro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "reserva-de-emergencia",
+   "criterio": "Isso protege o que é seu?",
+   "enunciado": "Ter uma reserva de dinheiro guardada para imprevistos",
+   "resposta": true,
+   "ancora": "Reserva paga o imprevisto sem virar dívida.",
+   "feedbackErro": "É fácil achar que só seguro protege, mas a reserva cobre imprevistos menores sem te endividar."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cuidado-cotidiano",
+   "criterio": "Isso protege o que é seu?",
+   "enunciado": "Deixar a bicicleta destrancada 'só um minutinho'",
+   "resposta": false,
+   "ancora": "Um minuto destrancada é tempo suficiente pra sumir.",
+   "feedbackErro": "Parece rápido demais pra dar problema, mas é exatamente esse hábito que mais causa furtos."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "cuidado-cotidiano",
+   "dificuldade": 1,
+   "pergunta": "Beatriz tem um relógio novo. O que mais reduz o risco de perdê-lo no dia a dia?",
+   "ancora": "Guardar em lugar seguro reduz a chance de perder ou ser furtado.",
+   "alternativas": [
+    {
+     "texto": "Contratar um seguro caro pra ele",
+     "correta": false,
+     "feedbackErro": "Seguro cobre prejuízo, mas não evita o risco no dia a dia — isso é cuidado, não seguro."
+    },
+    {
+     "texto": "Guardar em lugar seguro quando não está usando",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Usar sempre, em qualquer situação",
+     "correta": false,
+     "feedbackErro": "Usar sempre aumenta a exposição ao risco, não reduz — o contrário do que protege."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "seguro-cobre-o-que",
+   "dificuldade": 1,
+   "pergunta": "Qual desses riscos faz mais sentido cobrir com seguro, e não só com reserva?",
+   "ancora": "Seguro é para prejuízo grande e raro, não para gastos pequenos.",
+   "alternativas": [
+    {
+     "texto": "Trocar o carregador que quebrou",
+     "correta": false,
+     "feedbackErro": "É um gasto pequeno — a reserva resolve sem precisar de seguro."
+    },
+    {
+     "texto": "Um incêndio que destrói a casa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Comprar um lanche esquecido em casa",
+     "correta": false,
+     "feedbackErro": "É um gasto do dia a dia, não um risco grande — não precisa nem de reserva."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "seguro-cobre-o-que",
+   "criterio": "É papel do seguro cobrir isso?",
+   "enunciado": "O prejuízo de um roubo de carro",
+   "resposta": true,
+   "ancora": "Prejuízo grande e raro é o que o seguro cobre.",
+   "feedbackErro": "Prejuízos grandes e raros são exatamente o que o seguro existe pra cobrir — diferente dos gastos pequenos do dia a dia."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "cuidado-cotidiano",
+   "instrucao": "Classifique: cuidado no dia a dia ou reserva/seguro?",
+   "ancora": "Cuidado evita o risco; reserva e seguro cobrem o prejuízo.",
+   "feedbackErro": "Cuidado no dia a dia reduz a chance de acontecer; reserva e seguro entram depois, cobrindo o prejuízo.",
+   "caixas": [
+    { "id": "cotidiano", "rotulo": "Cuidado no dia a dia" },
+    { "id": "financeiro", "rotulo": "Reserva ou seguro" }
+   ],
+   "itens": [
+    { "texto": "Trancar a bike com cadeado", "caixaCorreta": "cotidiano" },
+    { "texto": "Guardar 3 meses de gastos numa reserva", "caixaCorreta": "financeiro" },
+    { "texto": "Não deixar o celular à vista no carro", "caixaCorreta": "cotidiano" },
+    { "texto": "Contratar seguro contra incêndio", "caixaCorreta": "financeiro" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "cuidado-cotidiano",
+   "criterio": "Isso é cuidado cotidiano?",
+   "enunciado": "Anotar o número de série dos aparelhos eletrônicos",
+   "resposta": true,
+   "ancora": "Facilita recuperar ou provar posse em caso de furto.",
+   "feedbackErro": "Não impede o furto diretamente, mas ajuda a recuperar ou provar que o bem é seu — por isso conta como cuidado."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "reserva-de-emergencia",
+   "dificuldade": 1,
+   "pergunta": "Sem reserva, um conserto de R$ 300 aparece de surpresa. O que costuma acontecer?",
+   "ancora": "Sem reserva, o imprevisto vira dívida com juros.",
+   "alternativas": [
+    {
+     "texto": "A pessoa paga na hora, sem problema",
+     "correta": false,
+     "feedbackErro": "Sem reserva, o mais comum é faltar o dinheiro na hora — não é o cenário mais provável."
+    },
+    {
+     "texto": "A pessoa recorre ao cartão ou empréstimo, que cobra juros",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O conserto simplesmente não precisa ser pago",
+     "correta": false,
+     "feedbackErro": "O conserto continua custando R$ 300 — não pagar não é uma opção real."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "cuidado-cotidiano",
+   "criterio": "Isso reduz o risco de furto?",
+   "enunciado": "Deixar as janelas destravadas à noite",
+   "resposta": false,
+   "ancora": "Janela destravada é convite — reduz zero o risco.",
+   "feedbackErro": "Parece um detalhe pequeno, mas é exatamente esse tipo de descuido que facilita a entrada."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "reserva-de-emergencia",
+   "criterio": "É proteger o que é seu?",
+   "enunciado": "Guardar 3 meses de despesas separados, sem mexer",
+   "resposta": true,
+   "ancora": "Isso é reserva de emergência: cobre imprevistos sem dívida.",
+   "feedbackErro": "Parece só dinheiro parado, mas é exatamente essa reserva que evita recorrer a dívida cara num imprevisto."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "proteger-o-que-e-seu",
+   "dificuldade": 1,
+   "pergunta": "Qual frase resume proteger o que é seu?",
+   "alternativas": [
+    {
+     "texto": "É só contratar seguro para tudo.",
+     "correta": false,
+     "feedbackErro": "Seguro cobre riscos grandes, mas cuidado cotidiano e reserva também fazem parte da proteção."
+    },
+    {
+     "texto": "É combinar cuidado no dia a dia, reserva e seguro conforme o risco.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "É nunca correr nenhum risco, mesmo pequeno.",
+     "correta": false,
+     "feedbackErro": "Eliminar todo risco pequeno custa mais do que vale — proteção é sobre os riscos que pesam."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "proteger-o-que-e-seu",
+   "instrucao": "Ordene da proteção mais barata pra mais cara.",
+   "ancora": "Cuidado é grátis; reserva exige guardar; seguro tem custo fixo.",
+   "feedbackErro": "É tentador achar que seguro vem primeiro, mas cuidado no dia a dia não custa nada — é sempre o primeiro passo.",
+   "itens": [
+    { "texto": "Trancar a porta ao sair", "posicaoCorreta": 1 },
+    { "texto": "Guardar uma reserva de emergência", "posicaoCorreta": 2 },
+    { "texto": "Contratar um seguro", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "reserva-de-emergencia",
+   "pergunta": "Reserva recomendada cobre 3 a 6 meses de gastos. Com R$ 900/mês, qual a reserva mínima?",
+   "campo": "moeda",
+   "min": 500,
+   "max": 4000,
+   "gabarito": 2700,
+   "toleranciaPct": 20,
+   "fonte": "regra geral de reserva de emergência (3 a 6 meses de gastos)",
+   "verificacao": { "expressao": "900*3", "esperado": 2700 },
+   "feedbackPerto": "Isso mesmo — R$ 900 × 3 meses = R$ 2.700.",
+   "feedbackLonge": "R$ 2.700. A reserva mínima costuma ser o gasto mensal multiplicado pelos meses de cobertura."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "seguro-cobre-o-que",
+   "dificuldade": 1,
+   "pergunta": "Qual desses é o papel principal do seguro?",
+   "ancora": "Seguro cobre o prejuízo depois que o risco acontece.",
+   "alternativas": [
+    {
+     "texto": "Evitar que o risco aconteça",
+     "correta": false,
+     "feedbackErro": "Seguro não evita o risco — quem reduz a chance é o cuidado no dia a dia."
+    },
+    {
+     "texto": "Cobrir o prejuízo caso o risco aconteça",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Substituir a necessidade de reserva",
+     "correta": false,
+     "feedbackErro": "Seguro não cobre tudo — pequenos imprevistos continuam sendo função da reserva."
+    }
+   ]
+  }
+ ]
+}

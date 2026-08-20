@@ -1,0 +1,332 @@
+{
+ "slug": "seu-dinheiro-sua-responsabilidade-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "seu-dinheiro-sua-responsabilidade",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "planejar-e-decidir",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Guardar dinheiro é sempre a decisão mais responsável, mesmo com dívida cara em aberto",
+   "resposta": false,
+   "ancora": "Quitar dívida cara antes costuma valer mais que guardar.",
+   "feedbackErro": "Guardar parece sempre a atitude madura, mas se há uma dívida cobrando juro alto, ela cresce mais rápido do que qualquer rendimento — quitar vem primeiro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "aceitar-ou-recusar",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Recusar toda oferta de crédito é sempre a escolha mais responsável",
+   "resposta": false,
+   "ancora": "Crédito bem planejado pode viabilizar um objetivo do plano.",
+   "feedbackErro": "Recusar parece sempre seguro, mas um crédito com taxa baixa e prazo planejado pode viabilizar algo que o plano já previa — depende do encaixe."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "planejar-e-decidir",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Um plano financeiro rígido é sempre melhor que um flexível",
+   "resposta": false,
+   "ancora": "Rigidez demais quebra o plano no primeiro imprevisto real.",
+   "feedbackErro": "Rigidez parece garantir disciplina, mas um plano sem margem para ajuste tende a ser abandonado no primeiro imprevisto — flexibilidade é parte do planejamento."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "planejar-e-decidir",
+   "dificuldade": 3,
+   "pergunta": "Marina tem dívida no rotativo a 14% a.m. e guarda dinheiro numa poupança a 0,5% a.m. O plano dela está bem montado?",
+   "ancora": "14% de dívida supera muito o 0,5% guardado.",
+   "alternativas": [
+    {
+     "texto": "Não — a dívida cresce muito mais rápido que a poupança",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim — ter reserva guardada é sempre prioridade",
+     "correta": false,
+     "feedbackErro": "Ter reserva é importante, mas não quando o custo da dívida (14% a.m.) supera de longe o rendimento guardado (0,5% a.m.) — priorizar quitar economiza mais."
+    },
+    {
+     "texto": "Sim — poupança e dívida são contas separadas",
+     "correta": false,
+     "feedbackErro": "As duas afetam o mesmo bolso: enquanto a poupança rende pouco, a dívida corrói mais rápido. Tratar como separadas ignora o efeito líquido no plano."
+    }
+   ],
+   "verificacao": {
+    "expressao": "14-0.5",
+    "esperado": 13.5
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "aceitar-ou-recusar",
+   "dificuldade": 3,
+   "pergunta": "Um curso custa 3 meses de economia, mas pode aumentar a renda depois. Recusar por 'não caber agora' é sempre certo?",
+   "ancora": "Depende de comparar o custo agora com o ganho de renda esperado.",
+   "alternativas": [
+    {
+     "texto": "Não sempre — depende do retorno esperado em renda futura",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, sempre — gasto que consome a reserva não vale",
+     "correta": false,
+     "feedbackErro": "Consumir parte da reserva parece sempre arriscado, mas se o curso aumenta a renda de forma consistente, pode valer o investimento — não é recusa automática."
+    },
+    {
+     "texto": "Não, nunca — todo curso profissionalizante compensa",
+     "correta": false,
+     "feedbackErro": "Nem todo curso entrega o retorno esperado. A decisão exige comparar o custo real com o ganho de renda provável, não aceitar por princípio."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "planejar-e-decidir",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Reserva de emergência deve ficar intocável mesmo diante de dívida cara e urgente",
+   "resposta": false,
+   "ancora": "Usar parte da reserva para quitar dívida cara pode economizar mais.",
+   "feedbackErro": "A regra 'reserva intocável' protege quase sempre, mas com dívida a juro bem acima do rendimento da reserva, usar parte dela para quitar poupa mais."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "planejar-e-decidir",
+   "instrucao": "Ordene as prioridades de quem tem dívida cara e sonhos.",
+   "ancora": "Primeiro para de sangrar, depois protege, depois avança.",
+   "feedbackErro": "É comum querer guardar para o sonho antes de tudo, mas enquanto a dívida cara corre, ela consome mais do que qualquer meta consegue construir ao mesmo tempo.",
+   "itens": [
+    {
+     "texto": "Quitar a dívida com juro mais alto",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Montar uma reserva mínima de emergência",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Guardar para o objetivo de médio prazo",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Investir o excedente buscando mais rendimento",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "aceitar-ou-recusar",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Recusar toda oferta de parcelamento é sempre a decisão mais protegida",
+   "resposta": false,
+   "ancora": "Parcelar sem juro, dentro do planejado, pode até ajudar o fluxo.",
+   "feedbackErro": "Recusar parece mais seguro, mas parcelar sem juro, dentro do que já cabia à vista, não piora nada — pode ajudar a manter dinheiro para outra prioridade."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "planejar-e-decidir",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Quem ganha pouco não consegue planejar, então não vale a pena tentar",
+   "resposta": false,
+   "ancora": "Planejamento ajuda ainda mais quando a margem é pequena.",
+   "feedbackErro": "Renda baixa parece deixar o planejamento inútil, mas é quando a margem é menor que cada decisão pesa mais — planejar ajuda a não perder o pouco que sobra."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "planejar-e-decidir",
+   "pergunta": "Uma dívida de R$ 1.000 no rotativo a 14% a.m. cresce por 3 meses sem pagamento. Quanto fica devendo?",
+   "campo": "moeda",
+   "min": 1000,
+   "max": 1700,
+   "gabarito": 1482,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: juros compostos de 14% a.m. (Banco Central)",
+   "feedbackPerto": "Perto: cerca de R$ 1.482, quase 50% a mais em só 3 meses.",
+   "feedbackLonge": "Dá R$ 1.482. Juro composto multiplica, não soma: 1.000×1,14×1,14×1,14, não 1.000×1,42.",
+   "verificacao": {
+    "expressao": "1000*1.14^3",
+    "esperado": 1481.5,
+    "tolerancia": 1
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "aceitar-ou-recusar",
+   "dificuldade": 3,
+   "pergunta": "Rafael tem dívida cara em aberto e recebe cartão com cashback de 2%. Vale usá-lo para acumular cashback agora?",
+   "ancora": "2% de cashback não compete com 14% de juro do rotativo em aberto.",
+   "alternativas": [
+    {
+     "texto": "Não — o foco deveria ser quitar a dívida cara",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim — cashback é dinheiro de volta, sempre vale a pena",
+     "correta": false,
+     "feedbackErro": "Cashback de 2% parece ganho garantido, mas comparado a uma dívida cobrando 14% ao mês, focar em acumular pontos ignora o que está sangrando mais rápido."
+    },
+    {
+     "texto": "Sim — quanto mais cartões usados, melhor o histórico",
+     "correta": false,
+     "feedbackErro": "Histórico de crédito importa depois. Com dívida cara em aberto, o que mais afeta o plano agora é quitá-la, não abrir espaço para mais gasto."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "planejar-e-decidir",
+   "dificuldade": 3,
+   "pergunta": "Beatriz perdeu parte da renda por 2 meses. O plano dela previa reserva para 4 meses de gastos. O que fazer?",
+   "ancora": "A reserva existe exatamente para absorver esse imprevisto.",
+   "alternativas": [
+    {
+     "texto": "Usar a reserva conforme planejado e depois reconstruí-la",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ignorar o plano inteiro, já que ele 'falhou'",
+     "correta": false,
+     "feedbackErro": "O plano não falhou — ele previu esse cenário ao montar a reserva. Abandoná-lo joga fora justamente a parte que estava funcionando."
+    },
+    {
+     "texto": "Tomar um empréstimo novo para não tocar na reserva",
+     "correta": false,
+     "feedbackErro": "Tomar empréstimo quando existe reserva feita exatamente para isso troca um recurso já guardado, sem custo, por uma dívida com juro."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "planejar-e-decidir",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Gastar exatamente o que planejou é sempre a melhor execução do plano",
+   "resposta": false,
+   "ancora": "Um plano bom permite ajustar quando a realidade pede.",
+   "feedbackErro": "Seguir o número exato parece disciplina perfeita, mas o objetivo do plano é o resultado — não seguir o número à risca mesmo quando a realidade pede ajuste."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "aceitar-ou-recusar",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Recusar uma oferta boa só porque o vendedor foi insistente é sempre acertado",
+   "resposta": false,
+   "ancora": "A insistência do vendedor não muda se a oferta cabe no plano.",
+   "feedbackErro": "A insistência incomoda, e recusar por isso é compreensível. Mas a pergunta certa continua sendo se a oferta cabe no plano — não quem ou como ela foi oferecida."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "planejar-e-decidir",
+   "pergunta": "Qual frase fecha os três encontros sobre planejamento e responsabilidade financeira?",
+   "alternativas": [
+    {
+     "texto": "Planejar é decidir com prioridade — mesmo regras boas têm exceção",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Reserva de emergência nunca deve ser usada, em hipótese alguma",
+     "correta": false,
+     "feedbackErro": "A reserva existe para ser usada em imprevistos reais — o plano previu justamente essa situação."
+    },
+    {
+     "texto": "Quem ganha pouco não tem motivo para planejar o dinheiro",
+     "correta": false,
+     "feedbackErro": "Renda menor é exatamente quando cada decisão pesa mais — planejar ajuda a não perder o pouco que sobra."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "planejar-e-decidir",
+   "instrucao": "Nesse caso-limite, prioriza dívida ou reserva primeiro?",
+   "ancora": "Sem dívida cara, o foco vai para reserva; com dívida cara, ela vem antes.",
+   "feedbackErro": "A regra muda conforme o cenário: dívida com juro alto sempre concorre com a reserva e tende a vencer a prioridade, porque cresce mais rápido do que qualquer reserva rende.",
+   "caixas": [
+    {
+     "id": "divida",
+     "rotulo": "Dívida primeiro"
+    },
+    {
+     "id": "reserva",
+     "rotulo": "Reserva primeiro"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Rotativo do cartão a 14% ao mês",
+     "caixaCorreta": "divida"
+    },
+    {
+     "texto": "Sem nenhuma dívida, reserva ainda inexistente",
+     "caixaCorreta": "reserva"
+    },
+    {
+     "texto": "Cheque especial a 8% ao mês",
+     "caixaCorreta": "divida"
+    },
+    {
+     "texto": "Reserva já completa, sem dívida cara",
+     "caixaCorreta": "reserva"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "planejar-e-decidir",
+   "dificuldade": 3,
+   "pergunta": "Um plano previa guardar R$ 300/mês, mas a renda caiu e só sobram R$ 150. O que fazer com o plano?",
+   "ancora": "Ajustar o número mantém o hábito vivo, em vez de abandoná-lo.",
+   "alternativas": [
+    {
+     "texto": "Ajustar a meta para R$ 150 e manter o hábito",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Abandonar o plano até a renda voltar ao normal",
+     "correta": false,
+     "feedbackErro": "Abandonar interrompe o hábito construído. Ajustar o número mantém o plano funcionando, mesmo em ritmo menor, até a renda melhorar."
+    },
+    {
+     "texto": "Manter os R$ 300 usando o cartão para completar",
+     "correta": false,
+     "feedbackErro": "Completar a meta com cartão troca economia por dívida — isso vai contra o próprio objetivo de guardar dinheiro, não a favor dele."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "planejar-e-decidir",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Nunca vale a pena revisar um plano antes de completar um ano dele",
+   "resposta": false,
+   "ancora": "Revisar antes do prazo faz sentido quando a realidade muda.",
+   "feedbackErro": "Esperar um ano parece dar tempo ao plano provar seu valor, mas se a renda ou os gastos mudam antes disso, esperar só atrasa a correção necessária."
+  }
+ ]
+}

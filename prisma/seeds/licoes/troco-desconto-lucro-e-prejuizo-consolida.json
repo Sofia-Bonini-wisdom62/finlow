@@ -1,0 +1,316 @@
+{
+ "slug": "troco-desconto-lucro-e-prejuizo-consolida",
+ "segmento": "ef35",
+ "conceitoPrincipal": "troco-desconto-lucro-e-prejuizo",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "troco",
+   "criterio": "Ainda é troco, mesmo pagando via Pix?",
+   "enunciado": "Cliente paga R$50 via Pix por uma compra de R$50, sem sobra",
+   "resposta": false,
+   "ancora": "Pago o valor exato, não há troco a devolver.",
+   "feedbackErro": "Pix também pode gerar sobra em outras compras, e isso confunde. Aqui, pagando o valor exato, não há diferença — não existe troco."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "desconto",
+   "criterio": "Desconto sem porcentagem anunciada?",
+   "enunciado": "Vendedor tira R$8 do preço de R$60 numa negociação direta",
+   "resposta": true,
+   "ancora": "Qualquer redução do preço original é desconto, com ou sem cartaz.",
+   "feedbackErro": "Sem placa de promoção, parece só um combinado informal. Mas reduzir o preço original é desconto, do mesmo jeito.",
+   "verificacao": {
+    "expressao": "60-8",
+    "esperado": 52
+   }
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "lucro-e-prejuizo",
+   "criterio": "O desconto foi de mais de 20%?",
+   "enunciado": "Um celular de R$800 passa a custar R$680",
+   "resposta": false,
+   "ancora": "A queda de R$120 é 15% de R$800 — menos de 20%.",
+   "feedbackErro": "R$120 parece um desconto grande em valor absoluto, e isso confunde. Sobre R$800, isso é 15%, abaixo dos 20%.",
+   "verificacao": {
+    "expressao": "(800-680)/800*100",
+    "esperado": 15
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "lucro-e-prejuizo",
+   "dificuldade": 3,
+   "pergunta": "Comprou 10 camisetas por R$150 no total e vendeu todas por R$18 cada. Deu lucro ou prejuízo?",
+   "ancora": "10 × R$18 = R$180. R$180 − R$150 = R$30 de lucro.",
+   "alternativas": [
+    {
+     "texto": "Lucro de R$30",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Prejuízo de R$30",
+     "correta": false,
+     "feedbackErro": "O sinal está invertido: a venda total (R$180) foi maior que o custo (R$150), então é lucro."
+    },
+    {
+     "texto": "Nem lucro nem prejuízo, porque vendeu tudo",
+     "correta": false,
+     "feedbackErro": "Vender tudo não decide nada — o que decide é comparar o total recebido com o total gasto: R$180 contra R$150, lucro de R$30."
+    }
+   ],
+   "verificacao": {
+    "expressao": "10*18-150",
+    "esperado": 30
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "lucro-e-prejuizo",
+   "criterio": "Ainda é lucro, contando a devolução?",
+   "enunciado": "Vendeu 5 bolsas por R$40 cada, mas 1 cliente devolveu e teve o dinheiro estornado; custo total foi R$170",
+   "resposta": false,
+   "ancora": "Só 4 vendas valem: 4×R$40=R$160. R$160−R$170=−R$10, prejuízo.",
+   "feedbackErro": "Contar as 5 vendas originais esconde a devolução. Com ela, só restam 4 vendas — R$160 contra um custo de R$170: prejuízo de R$10.",
+   "verificacao": {
+    "expressao": "4*40-170",
+    "esperado": -10
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "troco",
+   "dificuldade": 3,
+   "pergunta": "Cliente pagou R$100 e usou um cupom de R$15 antes do troco numa compra de R$68. Qual o troco final?",
+   "ancora": "Preço com cupom: R$68 − R$15 = R$53. Troco: R$100 − R$53 = R$47.",
+   "alternativas": [
+    {
+     "texto": "R$47",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$32",
+     "correta": false,
+     "feedbackErro": "R$32 seria o troco sem aplicar o cupom (R$100 − R$68). O cupom reduz o preço para R$53 antes do troco, dando R$47."
+    },
+    {
+     "texto": "R$17",
+     "correta": false,
+     "feedbackErro": "R$17 ignora o valor pago. Primeiro aplica o cupom (R$68 − R$15 = R$53), depois calcula o troco: R$100 − R$53 = R$47."
+    }
+   ],
+   "verificacao": {
+    "expressao": "100-(68-15)",
+    "esperado": 47
+   }
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "lucro-e-prejuizo",
+   "instrucao": "Com custo, vendas e devolução, é lucro ou prejuízo?",
+   "ancora": "Ajuste a venda total com devoluções antes de comparar com o custo.",
+   "feedbackErro": "Parar no primeiro número de vendas engana — devoluções mudam o resultado final antes da comparação com o custo.",
+   "caixas": [
+    {
+     "id": "lucro",
+     "rotulo": "Lucro"
+    },
+    {
+     "id": "prejuizo",
+     "rotulo": "Prejuízo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Custo R$220, vendas totais R$195",
+     "caixaCorreta": "prejuizo"
+    },
+    {
+     "texto": "Custo R$80, vendas R$95, devolução de R$5",
+     "caixaCorreta": "lucro"
+    },
+    {
+     "texto": "Custo R$300, vendas R$260, mais R$50 de uma venda extra",
+     "caixaCorreta": "lucro"
+    },
+    {
+     "texto": "Custo R$60, vendas R$70, devolução de R$15",
+     "caixaCorreta": "prejuizo"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "desconto",
+   "criterio": "Existe troco no parcelado?",
+   "enunciado": "Cliente parcela uma compra de R$300 em 3x de R$100 no cartão, sem pagar em dinheiro",
+   "resposta": false,
+   "ancora": "Sem pagamento em espécie acima do valor, não há troco a devolver.",
+   "feedbackErro": "Parcelar lembra o mecanismo do troco, mas troco só existe quando se paga a mais em dinheiro na hora. No cartão parcelado, não há essa sobra."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "lucro-e-prejuizo",
+   "dificuldade": 3,
+   "pergunta": "Comprou 20 unidades por R$4, vendeu 18 por R$7 e 2 estragaram e foram jogadas fora. Qual o resultado?",
+   "ancora": "Custo: 20×R$4=R$80. Venda: 18×R$7=R$126. R$126−R$80=R$46 de lucro.",
+   "alternativas": [
+    {
+     "texto": "Lucro de R$46",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Prejuízo, porque 2 unidades foram perdidas",
+     "correta": false,
+     "feedbackErro": "As 2 unidades perdidas já entram no custo total das 20 compradas — mesmo assim, sobrou R$46 de lucro."
+    },
+    {
+     "texto": "Lucro de R$126, o valor total vendido",
+     "correta": false,
+     "feedbackErro": "R$126 é só a receita, sem descontar o custo. O lucro é a diferença: R$126 − R$80 = R$46."
+    }
+   ],
+   "verificacao": {
+    "expressao": "18*7-20*4",
+    "esperado": 46
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "desconto",
+   "criterio": "É desconto, mesmo sendo brinde?",
+   "enunciado": "Loja não reduz o preço da calça, mas dá uma meia grátis na compra",
+   "resposta": false,
+   "ancora": "Brinde não reduz o preço do item — não é desconto, é bônus.",
+   "feedbackErro": "Ganhar algo a mais parece vantagem parecida com desconto. Mas o preço da calça continua o mesmo — isso é brinde, não desconto."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "lucro-e-prejuizo",
+   "criterio": "É lucro, considerando o tempo gasto?",
+   "enunciado": "Gastou 1 hora fazendo um doce que custou R$5 em ingredientes e vendeu por R$6",
+   "resposta": true,
+   "ancora": "Vendeu por R$1 a mais que o custo — é lucro, mesmo pequeno.",
+   "feedbackErro": "R$1 de diferença parece pouco perto de 1 hora de trabalho, e isso confunde valor com tempo. Olhando só o dinheiro, vendeu acima do custo: é lucro.",
+   "verificacao": {
+    "expressao": "6-5",
+    "esperado": 1
+   }
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "troco-desconto-lucro-e-prejuizo",
+   "pergunta": "Em qual situação NÃO existe troco a devolver?",
+   "alternativas": [
+    {
+     "texto": "Pagamento em dinheiro maior que o preço da compra",
+     "correta": false,
+     "feedbackErro": "Nessa situação existe troco: a diferença entre o valor pago e o preço deve voltar ao cliente."
+    },
+    {
+     "texto": "Pagamento parcelado no cartão, sem valor pago a mais em dinheiro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pagamento com nota maior, numa compra com desconto aplicado",
+     "correta": false,
+     "feedbackErro": "Mesmo com desconto, se pagou com nota maior que o preço final, ainda existe troco a devolver."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "troco",
+   "dificuldade": 3,
+   "pergunta": "Cliente paga R$50 e usa um cupom de R$5 numa compra de R$42. Qual o troco final?",
+   "ancora": "Preço com cupom: R$42−R$5=R$37. Troco: R$50−R$37=R$13.",
+   "alternativas": [
+    {
+     "texto": "R$13",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$8",
+     "correta": false,
+     "feedbackErro": "R$8 seria o troco sem aplicar o cupom. Primeiro tira o cupom do preço (R$42−R$5=R$37), depois calcula: R$50−R$37=R$13."
+    },
+    {
+     "texto": "R$3",
+     "correta": false,
+     "feedbackErro": "R$3 ignora o valor pago. O troco é sempre pagamento menos preço final: R$50−R$37=R$13."
+    }
+   ],
+   "verificacao": {
+    "expressao": "50-(42-5)",
+    "esperado": 13
+   }
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "desconto",
+   "criterio": "Isso é desconto, mesmo parcelado?",
+   "enunciado": "Loja reduz o preço à vista, mas cobra o valor cheio no parcelado",
+   "resposta": true,
+   "ancora": "O desconto vale para a condição à vista — continua sendo desconto.",
+   "feedbackErro": "Cobrar cheio no parcelado parece anular a promoção. Mas na condição à vista o preço caiu de verdade — é desconto condicional."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "lucro-e-prejuizo",
+   "instrucao": "Considerando devoluções, deu lucro ou prejuízo?",
+   "ancora": "Sempre subtraia as devoluções da venda antes de comparar com o custo.",
+   "feedbackErro": "Parar no valor total vendido, sem tirar a devolução, dá um resultado errado.",
+   "caixas": [
+    {
+     "id": "lucro",
+     "rotulo": "Lucro"
+    },
+    {
+     "id": "prejuizo",
+     "rotulo": "Prejuízo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Custo R$90, vendas R$130, devolução de R$50",
+     "caixaCorreta": "prejuizo"
+    },
+    {
+     "texto": "Custo R$40, vendas R$55, devolução de R$5",
+     "caixaCorreta": "lucro"
+    },
+    {
+     "texto": "Custo R$120, vendas R$150, devolução de R$20",
+     "caixaCorreta": "lucro"
+    },
+    {
+     "texto": "Custo R$70, vendas R$85, devolução de R$25",
+     "caixaCorreta": "prejuizo"
+    }
+   ]
+  }
+ ]
+}

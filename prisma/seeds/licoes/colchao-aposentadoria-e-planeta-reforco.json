@@ -1,0 +1,297 @@
+{
+ "slug": "colchao-aposentadoria-e-planeta-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "colchao-aposentadoria-e-planeta",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "colchao-de-emergencia",
+   "criterio": "Funciona bem como colchão?",
+   "enunciado": "R$ 3.200 líquidos, mas misturados com a reserva da faculdade",
+   "resposta": false,
+   "ancora": "Misturar destinos tira a função do colchão.",
+   "feedbackErro": "O dinheiro está lá e é líquido, e por isso parece certo. Mas sem separar os destinos, fica difícil saber quanto é colchão de verdade."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "colchao-de-emergencia",
+   "criterio": "Funciona bem como colchão?",
+   "enunciado": "R$ 4.500 aplicados num CDB com resgate em 90 dias",
+   "resposta": false,
+   "ancora": "90 dias de espera é tempo demais pra um imprevisto urgente.",
+   "feedbackErro": "Rende mais que a poupança, e por isso parece melhor. Mas carência de 90 dias não serve pra uma emergência que precisa do dinheiro já."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "colchao-de-emergencia",
+   "criterio": "Funciona bem como colchão?",
+   "enunciado": "R$ 2.000 na poupança, separados e sem outro destino",
+   "resposta": true,
+   "ancora": "Líquido, separado e sem outro destino — função completa.",
+   "feedbackErro": "A poupança rende pouco, e é fácil achar que isso desqualifica. Mas pra colchão, o que importa é liquidez e destino exclusivo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "colchao-de-emergencia",
+   "dificuldade": 2,
+   "pergunta": "Qual critério faz um valor guardado funcionar como colchão de emergência de verdade?",
+   "ancora": "Liquidez, separação e sem outro destino — os três juntos.",
+   "alternativas": [
+    {
+     "texto": "Render o máximo possível",
+     "correta": false,
+     "feedbackErro": "Colchão prioriza acesso rápido, não o maior rendimento."
+    },
+    {
+     "texto": "Ser líquido, separado e sem outro destino",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Estar guardado há muito tempo",
+     "correta": false,
+     "feedbackErro": "Tempo guardado não garante liquidez nem separação de destino."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "aposentadoria",
+   "dificuldade": 2,
+   "pergunta": "Elisa guarda R$ 150 por mês, a 0,5% ao mês, por 35 anos. Cerca de quanto ela acumula?",
+   "ancora": "R$ 150 por mês por 35 anos somam cerca de R$ 214 mil.",
+   "verificacao": { "expressao": "150*((1.005^420-1)/0.005)", "esperado": 213706.54, "tolerancia": 1000 },
+   "alternativas": [
+    {
+     "texto": "Cerca de R$ 214 mil",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cerca de R$ 63 mil",
+     "correta": false,
+     "feedbackErro": "Esse é só o total guardado, sem contar o rendimento dos juros compostos."
+    },
+    {
+     "texto": "Cerca de R$ 1 milhão",
+     "correta": false,
+     "feedbackErro": "Esse valor está muito acima do que uma taxa de 0,5% ao mês gera nesse prazo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "investimento-sustentavel",
+   "criterio": "É sinal confiável de sustentabilidade?",
+   "enunciado": "O fundo se chama 'verde', mas não publica onde investe",
+   "resposta": false,
+   "ancora": "Nome sem transparência não garante critério ambiental real.",
+   "feedbackErro": "O nome passa a ideia certa, e é fácil confiar nisso. Mas sem transparência sobre onde o dinheiro vai, pode ser só marketing."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "colchao-de-emergencia",
+   "instrucao": "Ordene de quem serve melhor pra emergência real pro que serve pior.",
+   "ancora": "O que serve melhor combina liquidez com destino exclusivo.",
+   "feedbackErro": "Rendimento maior parece sempre melhor. Mas quanto mais restrito o acesso, pior serve pra uma emergência real.",
+   "itens": [
+    { "texto": "Poupança, líquida, sem outro destino", "posicaoCorreta": 1 },
+    { "texto": "Conta que rende mais, com aviso de 24h pra sacar", "posicaoCorreta": 2 },
+    { "texto": "CDB com carência de resgate de 90 dias", "posicaoCorreta": 3 },
+    { "texto": "Previdência privada de longo prazo", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "colchao-de-emergencia",
+   "criterio": "É o critério certo pra decidir?",
+   "enunciado": "Comparar o tempo de resgate com a urgência do imprevisto",
+   "resposta": true,
+   "ancora": "O tempo de resgate precisa ser menor que o tempo que você tem.",
+   "feedbackErro": "Parece um detalhe técnico do produto. Mas é esse prazo que decide se o dinheiro chega a tempo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "aposentadoria",
+   "criterio": "É o critério certo pra decidir?",
+   "enunciado": "Esperar ganhar mais no futuro pra só então começar a guardar",
+   "resposta": false,
+   "ancora": "Esperar corta anos de juros compostos rendendo.",
+   "feedbackErro": "Parece razoável esperar ganhar mais primeiro. Mas cada ano de espera é um ano a menos de juros trabalhando."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "colchao-de-emergencia",
+   "pergunta": "Despesas mensais de R$ 1.450. Qual o valor de um colchão de 4 meses?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 8000,
+   "gabarito": 5800,
+   "toleranciaPct": 20,
+   "fonte": "referência comum de 3 a 6 meses de despesas para reserva de emergência",
+   "verificacao": { "expressao": "1450*4", "esperado": 5800 },
+   "feedbackPerto": "Isso mesmo — R$ 5.800 cobrem 4 meses de despesas.",
+   "feedbackLonge": "O colchão de 4 meses é R$ 5.800 (4 × R$ 1.450)."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "aposentadoria",
+   "dificuldade": 2,
+   "pergunta": "Mesmo total investido, R$ 90 mil: R$ 300/mês por 25 anos, ou R$ 500/mês nos últimos 15. Qual acumula mais?",
+   "ancora": "O plano de 25 anos acumula cerca de R$ 62 mil a mais.",
+   "verificacao": { "expressao": "300*((1.005^300-1)/0.005) - 500*((1.005^180-1)/0.005)", "esperado": 62488.83, "tolerancia": 1000 },
+   "alternativas": [
+    {
+     "texto": "O de R$ 300/mês, porque o tempo extra rende mais",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O de R$ 500/mês, porque o valor mensal é maior",
+     "correta": false,
+     "feedbackErro": "Valor mensal maior não compensa ter dez anos a menos de juros compostos."
+    },
+    {
+     "texto": "Os dois acumulam o mesmo, já que o total investido é igual",
+     "correta": false,
+     "feedbackErro": "Total investido igual não significa resultado igual — o tempo muda tudo."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "investimento-sustentavel",
+   "dificuldade": 2,
+   "pergunta": "Dois fundos rendem igual; um investe em empresas poluidoras, o outro é sustentável e transparente. Qual escolher?",
+   "ancora": "Com retorno igual, o critério ambiental soma a favor do sustentável.",
+   "alternativas": [
+    {
+     "texto": "O poluidor, porque rendimento é a única coisa que importa",
+     "correta": false,
+     "feedbackErro": "Com rendimento igual, o critério ambiental também entra na decisão."
+    },
+    {
+     "texto": "O sustentável, já que rende igual e soma critério ambiental",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Tanto faz, já que os dois rendem igual",
+     "correta": false,
+     "feedbackErro": "Render igual não significa escolha indiferente — o critério ambiental desempata."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "colchao-de-emergencia",
+   "criterio": "É sinal de colchão bem montado?",
+   "enunciado": "Reserva líquida, separada, do tamanho certo pras suas despesas",
+   "resposta": true,
+   "ancora": "Liquidez, separação e tamanho certo fazem o colchão funcionar.",
+   "feedbackErro": "Cada característica sozinha parece suficiente. Mas é a combinação das três que faz o colchão funcionar de verdade."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "aposentadoria",
+   "criterio": "Ajuda a acumular mais na aposentadoria?",
+   "enunciado": "Trocar uma aplicação com taxa maior por uma com taxa menor, sem outro motivo",
+   "resposta": false,
+   "ancora": "Taxa menor, sem outro motivo, reduz o total acumulado no fim.",
+   "feedbackErro": "Pode parecer um detalhe irrelevante. Mas taxa menor por décadas de juros compostos reduz bastante o total."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "colchao-aposentadoria-e-planeta",
+   "pergunta": "Depois de revisar, qual frase está mais certa?",
+   "alternativas": [
+    {
+     "texto": "Qualquer reserva líquida já é um bom colchão de emergência.",
+     "correta": false,
+     "feedbackErro": "Precisa também estar separada e sem outro destino, não só ser líquida."
+    },
+    {
+     "texto": "Colchão montado, tempo na aposentadoria e critério ambiental no desempate.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Fundo sustentável só vale a pena se render mais que todos os outros.",
+     "correta": false,
+     "feedbackErro": "Precisa só ser competitivo — o critério ambiental é quem desempata."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "colchao-de-emergencia",
+   "instrucao": "Serve bem pra colchão de emergência?",
+   "ancora": "Serve quem combina liquidez rápida com destino exclusivo.",
+   "feedbackErro": "Render bem não substitui liquidez rápida e destino exclusivo — as duas coisas juntas fazem funcionar.",
+   "caixas": [
+    { "id": "serve", "rotulo": "Serve" },
+    { "id": "naoserve", "rotulo": "Não serve" }
+   ],
+   "itens": [
+    { "texto": "Poupança separada, sem outro destino", "caixaCorreta": "serve" },
+    { "texto": "CDB com carência de 90 dias", "caixaCorreta": "naoserve" },
+    { "texto": "Conta com aviso de 24h pra sacar, sem outro destino", "caixaCorreta": "serve" },
+    { "texto": "Reserva misturada com dinheiro de outra meta", "caixaCorreta": "naoserve" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "aposentadoria",
+   "dificuldade": 3,
+   "pergunta": "R$ 250 por mês a 0,5% ao mês por 20 anos. Cerca de quanto acumula?",
+   "ancora": "R$ 250 por mês por 20 anos somam cerca de R$ 116 mil.",
+   "verificacao": { "expressao": "250*((1.005^240-1)/0.005)", "esperado": 115510.22, "tolerancia": 1000 },
+   "alternativas": [
+    {
+     "texto": "Cerca de R$ 116 mil",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cerca de R$ 60 mil",
+     "correta": false,
+     "feedbackErro": "Esse é só o total guardado, sem o rendimento dos juros compostos."
+    },
+    {
+     "texto": "Cerca de R$ 250 mil",
+     "correta": false,
+     "feedbackErro": "Esse valor está alto demais pra uma taxa de 0,5% ao mês nesse prazo."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "investimento-sustentavel",
+   "criterio": "É verdade?",
+   "enunciado": "Basta o fundo se chamar 'sustentável' pra garantir critério ambiental real",
+   "resposta": false,
+   "ancora": "Nome não garante nada — vale checar onde o dinheiro é investido.",
+   "feedbackErro": "O nome ajuda a vender a ideia, mas não garante nada por si só — vale checar a composição real do fundo."
+  }
+ ]
+}

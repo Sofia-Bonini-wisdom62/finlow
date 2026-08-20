@@ -1,0 +1,270 @@
+{
+ "slug": "onde-anotar-o-orcamento-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "onde-anotar-o-orcamento",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "ferramentas-de-orcamento",
+   "criterio": "Serve pra anotar orçamento?",
+   "enunciado": "Um app de orçamento que a pessoa baixou, mas nunca abriu de novo",
+   "resposta": false,
+   "ancora": "Ferramenta parada não organiza nada — o que importa é usar.",
+   "feedbackErro": "Ter o app instalado não organiza o dinheiro sozinho. O que faz virar orçamento é o uso constante, não a instalação."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "tipos-de-renda",
+   "criterio": "Isso é renda formal?",
+   "enunciado": "Um MEI que parou de emitir nota há 6 meses, mas continua vendendo",
+   "resposta": false,
+   "ancora": "Sem emitir nota, essa venda deixa de ser registrada como formal.",
+   "feedbackErro": "Ter aberto o MEI não garante formalidade permanente. Sem emitir nota das vendas atuais, essa renda passa a ser informal na prática."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "ferramentas-de-orcamento",
+   "criterio": "Serve pra anotar orçamento?",
+   "enunciado": "Uma planilha eletrônica que ninguém da casa sabe usar direito",
+   "resposta": false,
+   "ancora": "Ferramenta que ninguém sabe usar não vira registro de verdade.",
+   "feedbackErro": "A planilha tem potencial, mas se ninguém consegue usá-la direito, ela não cumpre a função de organizar o orçamento na prática."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "ferramentas-de-orcamento",
+   "dificuldade": 3,
+   "pergunta": "Uma família troca de caderno para app, mas continua sem anotar os gastos em dia. O que resolve o problema real dela?",
+   "ancora": "O problema é constância, não a ferramenta — trocar de app não resolve.",
+   "alternativas": [
+    {
+     "texto": "Trocar de app de novo, até achar um mais bonito",
+     "correta": false,
+     "feedbackErro": "Trocar de ferramenta não resolve um problema de constância. O app novo também vai falhar se ninguém anotar em dia."
+    },
+    {
+     "texto": "Criar o hábito de anotar os gastos assim que acontecem",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Desistir de controlar o orçamento, já que nada funciona",
+     "correta": false,
+     "feedbackErro": "Desistir não resolve nada, só deixa o controle pior. O que falta não é a ferramenta certa, é o hábito de usar."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "tipos-de-renda",
+   "dificuldade": 3,
+   "pergunta": "Thiago tem salário fixo, mas a empresa está devendo o pagamento há 2 meses. Isso muda o tipo de renda dele?",
+   "ancora": "Continua formal, tem registro; o problema é a irregularidade.",
+   "alternativas": [
+    {
+     "texto": "Sim, vira renda informal por causa do atraso",
+     "correta": false,
+     "feedbackErro": "O registro em carteira continua existindo mesmo com atraso no pagamento. O tipo de renda não muda, o que muda é a regularidade do recebimento."
+    },
+    {
+     "texto": "Não, continua formal; o problema agora é a irregularidade",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, vira renda esporádica, já que não está sendo paga",
+     "correta": false,
+     "feedbackErro": "Esporádica é sobre a natureza do trabalho, não sobre atraso pontual. O salário continua sendo renda fixa formal, só atrasada."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "ferramentas-de-orcamento",
+   "criterio": "Serve pra anotar orçamento?",
+   "enunciado": "Um caderno atualizado todo dia, mesmo sem nenhuma fórmula ou app",
+   "resposta": true,
+   "ancora": "Constância no registro importa mais do que a tecnologia usada.",
+   "feedbackErro": "Não é sobre ter fórmula ou app: um caderno atualizado com constância cumpre a função de orçamento tão bem quanto qualquer app."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "tipos-de-renda",
+   "instrucao": "É uma base confiável para os gastos fixos, ou não é?",
+   "ancora": "Base confiável é o que se repete com regularidade e tem registro.",
+   "feedbackErro": "Só é base confiável a renda que se repete com regularidade — o resto deve ser tratado como reforço, não como base.",
+   "caixas": [
+    {
+     "id": "confiavel",
+     "rotulo": "Base confiável"
+    },
+    {
+     "id": "naoconfiavel",
+     "rotulo": "Não é base confiável"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Salário registrado, pago todo mês no mesmo dia",
+     "caixaCorreta": "confiavel"
+    },
+    {
+     "texto": "Bico de fim de semana que só aparece às vezes",
+     "caixaCorreta": "naoconfiavel"
+    },
+    {
+     "texto": "Pensão com valor e data fixados por acordo",
+     "caixaCorreta": "confiavel"
+    },
+    {
+     "texto": "Venda ocasional de itens usados pela internet",
+     "caixaCorreta": "naoconfiavel"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "ferramentas-de-orcamento",
+   "criterio": "Serve pra anotar orçamento?",
+   "enunciado": "Um app compartilhado onde só uma pessoa da casa realmente anota os gastos",
+   "resposta": true,
+   "ancora": "Mesmo com uso desigual, o registro segue existindo e sendo válido.",
+   "feedbackErro": "Uso desigual entre os moradores é um problema de organização da casa, mas não invalida o registro: o app continua servindo de orçamento."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "tipos-de-renda",
+   "dificuldade": 3,
+   "pergunta": "Priscila tem salário formal fixo e dá aulas particulares toda semana, sem registro. Como tratar a renda das aulas?",
+   "ancora": "Frequente, mesmo informal, pode entrar no planejamento, com cautela.",
+   "alternativas": [
+    {
+     "texto": "Ignorar totalmente, porque renda informal não conta",
+     "correta": false,
+     "feedbackErro": "Ignorar joga fora dinheiro real e regular. O problema da informalidade é a falta de registro, não o valor deixar de existir."
+    },
+    {
+     "texto": "Incluir no planejamento, já que ela é regular",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Tratar como se fosse tão garantida quanto o salário formal",
+     "correta": false,
+     "feedbackErro": "Mesmo sendo frequente, renda informal tem menos garantia legal que a formal — pode faltar aluno, por exemplo. Vale planejar com cautela."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "ferramentas-de-orcamento",
+   "criterio": "Serve pra anotar orçamento?",
+   "enunciado": "Uma planilha que calcula sozinha, mas ninguém confere se os dados batem com a realidade",
+   "resposta": false,
+   "ancora": "Cálculo automático não substitui conferir se os dados são reais.",
+   "feedbackErro": "A fórmula funciona, mas se os dados digitados estão errados e ninguém confere, o resultado também sai errado — não serve de controle real."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "tipos-de-renda",
+   "criterio": "Isso é renda formal?",
+   "enunciado": "Um MEI que emite nota de todas as vendas, mas trabalha sozinho, sem funcionário",
+   "resposta": true,
+   "ancora": "Ter funcionário não é exigência; emitir nota já garante isso.",
+   "feedbackErro": "Não é preciso ter funcionário pra ser formal. Emitir nota como MEI, mesmo trabalhando sozinho, já garante o registro formal."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "onde-anotar-o-orcamento",
+   "pergunta": "Qual frase resume melhor o caso completo?",
+   "alternativas": [
+    {
+     "texto": "A ferramenta certa resolve tudo, mesmo sem hábito de anotar",
+     "correta": false,
+     "feedbackErro": "Sem constância, nenhuma ferramenta funciona sozinha. O hábito de registrar pesa mais que a tecnologia escolhida."
+    },
+    {
+     "texto": "Registro constante importa mais que a ferramenta escolhida",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Renda informal frequente nunca deve entrar no planejamento",
+     "correta": false,
+     "feedbackErro": "Renda informal frequente pode, sim, entrar no planejamento — só exige mais cautela do que a renda formal garantida."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "tipos-de-renda",
+   "instrucao": "Ordene da renda mais confiável como base à menos confiável.",
+   "ancora": "Formal e frequente é a mais confiável; informal e esporádica, a menos.",
+   "feedbackErro": "O que mais garante confiabilidade é ter registro formal e se repetir com frequência, nessa ordem de peso.",
+   "itens": [
+    {
+     "texto": "Salário registrado, pago todo mês",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Trabalho informal, mas feito toda semana",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Venda esporádica de itens usados",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "ferramentas-de-orcamento",
+   "dificuldade": 3,
+   "pergunta": "Uma pessoa anota tudo certinho num app, mas nunca revisa o resumo do mês. O que falta pra virar controle de verdade?",
+   "ancora": "Anotar sem revisar não muda decisão nenhuma — falta olhar o resultado.",
+   "alternativas": [
+    {
+     "texto": "Revisar o resumo pra decidir o que ajustar no mês seguinte",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Trocar de app, já que esse não está ajudando",
+     "correta": false,
+     "feedbackErro": "O app está registrando direito; o que falta não é trocar de ferramenta, é usar o resumo pra ajustar decisões."
+    },
+    {
+     "texto": "Parar de anotar, já que revisar dá muito trabalho",
+     "correta": false,
+     "feedbackErro": "Parar de anotar joga fora o que já foi construído. O ajuste necessário é revisar, não desistir de registrar."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "tipos-de-renda",
+   "criterio": "Isso é renda formal?",
+   "enunciado": "Um estágio registrado, com carteira de estágio e bolsa mensal fixa",
+   "resposta": true,
+   "ancora": "Estágio registrado com bolsa fixa também é uma forma de renda formal.",
+   "feedbackErro": "Estágio não é o mesmo que emprego CLT, mas quando é registrado com bolsa fixa mensal, também conta como renda formal."
+  }
+ ]
+}

@@ -1,0 +1,298 @@
+{
+ "slug": "vender-e-crescer-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "vender-e-crescer",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "marketing-que-vende",
+   "criterio": "É ação de marketing?",
+   "enunciado": "Trocar a embalagem pra deixar a marca mais bonita",
+   "resposta": true,
+   "ancora": "Embalagem que destaca a marca também busca atenção — é marketing.",
+   "feedbackErro": "Parece só estética do produto. Mas embalagem que reforça a marca ajuda a ser lembrado e escolhido — isso é marketing."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "marketing-que-vende",
+   "criterio": "É ação de marketing?",
+   "enunciado": "Contratar um entregador pra dar conta da demanda",
+   "resposta": false,
+   "ancora": "Contratar entregador resolve entrega, não busca cliente novo.",
+   "feedbackErro": "Parece decisão de crescimento, e é. Mas contratar entregador resolve a operação — quem busca cliente novo é o marketing, não isso."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "credito-para-o-negocio",
+   "criterio": "É crédito para o negócio?",
+   "enunciado": "Usar o limite do cheque especial da empresa pra comprar carne",
+   "resposta": true,
+   "ancora": "Cheque especial é crédito automático, com juro entre os mais altos.",
+   "feedbackErro": "Como já está na conta, parece dinheiro próprio. Mas usar o limite é pegar emprestado do banco, com juro entre os mais altos."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "marketing-que-vende",
+   "dificuldade": 2,
+   "pergunta": "Tiago gastou R$ 150 em anúncio e vendeu R$ 300 a mais. Qual foi o retorno sobre o gasto?",
+   "ancora": "R$ 300 dividido por R$ 150 dá 2 — o dobro do valor investido.",
+   "verificacao": { "expressao": "300/150", "esperado": 2 },
+   "alternativas": [
+    {
+     "texto": "2 vezes o valor gasto (retorno de 200%)",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "150%, porque sobrou R$ 150 de lucro",
+     "correta": false,
+     "feedbackErro": "O que sobrou é o lucro em reais, não o retorno percentual. Divida o total vendido pelo gasto: 300 ÷ 150 = 2, ou seja, 200%."
+    },
+    {
+     "texto": "Não dá pra comparar sem saber o lucro do produto",
+     "correta": false,
+     "feedbackErro": "Pra medir o retorno do anúncio em si, comparar gasto e venda extra já basta — o lucro do produto é outra conta, separada."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "credito-para-o-negocio",
+   "dificuldade": 2,
+   "pergunta": "Empréstimo de R$ 1.500 a 3% ao mês. Sem pagar nada, quanto de juro só no primeiro mês?",
+   "ancora": "3% de R$ 1.500: divida por 100 e multiplique por 3 — dá R$ 45.",
+   "verificacao": { "expressao": "1500*0.03", "esperado": 45 },
+   "alternativas": [
+    {
+     "texto": "R$ 45",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 4,50",
+     "correta": false,
+     "feedbackErro": "Você tratou 3% como R$ 3 a cada 1.000. É percentual sobre o total: 1.500 ÷ 100 × 3 = 45."
+    },
+    {
+     "texto": "R$ 450",
+     "correta": false,
+     "feedbackErro": "R$ 450 seria 30%. O símbolo % engana: 3% é 3 para cada 100, então R$ 45 em R$ 1.500."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "marketing-que-vende",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Postar bastante nas redes já garante mais vendas",
+   "resposta": false,
+   "ancora": "Postar sem preço claro e sem resposta rápida não fecha venda.",
+   "feedbackErro": "Postar bastante parece garantia de resultado. Mas sem preço claro e atendimento rápido, o volume de post sozinho não fecha venda."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "marketing-que-vende",
+   "instrucao": "Isso ajuda a decidir se vale investir? Arraste.",
+   "ancora": "O que mede venda real ajuda a decidir; curtida sozinha, não.",
+   "feedbackErro": "Curtida e concorrência distraem da decisão. O que ajuda de verdade é medir venda gerada e se a parcela cabe no que o negócio já vende.",
+   "caixas": [
+    { "id": "ajuda", "rotulo": "Ajuda a decidir" },
+    { "id": "nao", "rotulo": "Não ajuda" }
+   ],
+   "itens": [
+    { "texto": "Quanto o anúncio trouxe de venda extra", "caixaCorreta": "ajuda" },
+    { "texto": "Quantos likes o post recebeu", "caixaCorreta": "nao" },
+    { "texto": "Se a parcela cabe no que o negócio vende", "caixaCorreta": "ajuda" },
+    { "texto": "Se a concorrência também pegou empréstimo", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "credito-para-o-negocio",
+   "criterio": "Antes de pegar o crédito, já checou?",
+   "enunciado": "Comparar a taxa desse banco com a de outro antes de assinar",
+   "resposta": true,
+   "ancora": "Comparar taxas evita pagar mais caro sem necessidade.",
+   "feedbackErro": "Parece perda de tempo quando o dinheiro é urgente. Mas comparar taxas entre bancos pode significar juro bem menor no mesmo empréstimo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "marketing-que-vende",
+   "criterio": "Antes de investir, já checou?",
+   "enunciado": "Se o público que vê o anúncio é quem realmente compra o produto",
+   "resposta": true,
+   "ancora": "Anúncio pro público errado gasta sem gerar venda.",
+   "feedbackErro": "Parece que qualquer alcance ajuda. Mas anúncio visto por quem não compra o produto gasta dinheiro sem gerar retorno."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "credito-para-o-negocio",
+   "pergunta": "Empréstimo de R$ 1.500 a 3% ao mês pra comprar equipamento. Sem pagar nada, quanto vira em 5 meses?",
+   "campo": "moeda",
+   "min": 1500,
+   "max": 3000,
+   "gabarito": 1739,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: juros compostos de 3% ao mês sobre R$ 1.500",
+   "verificacao": { "expressao": "1500*1.03^5", "esperado": 1738.91, "tolerancia": 1 },
+   "feedbackPerto": "Perto: cerca de R$ 1.739. Em 5 meses, a dívida cresceu quase 16%.",
+   "feedbackLonge": "Dá R$ 1.739. Juro composto cobra sobre o saldo já maior — passa dos 3% × 5 (15%) da conta simples."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "marketing-que-vende",
+   "dificuldade": 2,
+   "pergunta": "Metade de quem clicou no anúncio de Tiago não comprou nada. O que isso pode significar?",
+   "ancora": "Clique é atenção conquistada; a compra depende de outros fatores.",
+   "alternativas": [
+    {
+     "texto": "O anúncio atraiu clique, mas não convenceu a comprar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O anúncio não funcionou e deve ser cortado",
+     "correta": false,
+     "feedbackErro": "O clique já é atenção conquistada — parar de anunciar corta isso também. O problema pode estar depois do clique, não no anúncio."
+    },
+    {
+     "texto": "Todo clique deveria virar venda, então o produto está errado",
+     "correta": false,
+     "feedbackErro": "Nem todo clique vira venda, isso é normal em qualquer anúncio. Não dá pra concluir que o produto tem problema só por isso."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "credito-para-o-negocio",
+   "dificuldade": 2,
+   "pergunta": "Empréstimo de R$ 1.500 custa R$ 45 de juro por mês, e o equipamento rende R$ 90 extras. Vale continuar?",
+   "ancora": "R$ 90 de ganho menos R$ 45 de juro ainda deixam R$ 45 de sobra.",
+   "verificacao": { "expressao": "90-45", "esperado": 45 },
+   "alternativas": [
+    {
+     "texto": "Vale: o ganho de R$ 90 cobre o juro e ainda sobra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não vale: R$ 45 de juro é alto demais",
+     "correta": false,
+     "feedbackErro": "R$ 45 é o custo, e parece alto isolado. Mas comparado aos R$ 90 de ganho mensal, ainda sobra saldo positivo."
+    },
+    {
+     "texto": "Só vale se a taxa cair a zero",
+     "correta": false,
+     "feedbackErro": "Não precisa de taxa zero — precisa que o ganho supere o juro. Aqui R$ 90 já é maior que R$ 45."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "marketing-que-vende",
+   "criterio": "Ajuda a vender mais?",
+   "enunciado": "Copiar a legenda de um concorrente sem adaptar pro seu produto",
+   "resposta": false,
+   "ancora": "Legenda copiada não fala do seu produto nem do seu cliente.",
+   "feedbackErro": "Copiar parece um atalho que funciona pro concorrente. Mas a legenda foi pensada pro produto dele, não pro seu — ela não convence do mesmo jeito."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "credito-para-o-negocio",
+   "criterio": "Ajuda o negócio crescer?",
+   "enunciado": "Comparar taxas antes de fechar o contrato de empréstimo",
+   "resposta": true,
+   "ancora": "Comparar taxas reduz o custo do crédito sem mudar o valor pego.",
+   "feedbackErro": "Parece um passo a mais quando o dinheiro já é urgente. Mas comparar taxas pode significar pagar bem menos de juro pelo mesmo empréstimo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "credito-para-o-negocio",
+   "pergunta": "Qual ideia fecha este encontro?",
+   "alternativas": [
+    {
+     "texto": "Marketing sem estratégia e crédito sem plano custam caro pro negócio",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Postar bastante sempre traz mais vendas",
+     "correta": false,
+     "feedbackErro": "Postar sem preço claro e sem resposta rápida não converte em venda sozinho."
+    },
+    {
+     "texto": "Juro baixo dispensa comparar taxas entre bancos",
+     "correta": false,
+     "feedbackErro": "Mesmo taxa baixa vale comparar — outro banco pode oferecer ainda menos juro pelo mesmo valor."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "credito-para-o-negocio",
+   "instrucao": "Toque na ordem antes de pegar um empréstimo pro negócio.",
+   "ancora": "Checar se cabe, comparar taxas, calcular o total — nessa ordem.",
+   "feedbackErro": "É tentador assinar direto quando o dinheiro é urgente. Mas checar, comparar e calcular antes evita um contrato mais caro que o necessário.",
+   "itens": [
+    { "texto": "Ver se o negócio vende o bastante pra pagar a parcela", "posicaoCorreta": 1 },
+    { "texto": "Comparar taxas entre bancos diferentes", "posicaoCorreta": 2 },
+    { "texto": "Calcular o total a devolver, com os juros", "posicaoCorreta": 3 },
+    { "texto": "Assinar o contrato", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "credito-para-o-negocio",
+   "dificuldade": 3,
+   "pergunta": "Negócio pegou R$ 800 a 4% ao mês, e o equipamento rende só R$ 20 extras por mês. Vale a pena?",
+   "ancora": "R$ 32 de juro por mês contra R$ 20 de ganho — a conta fica negativa.",
+   "verificacao": { "expressao": "800*0.04", "esperado": 32 },
+   "alternativas": [
+    {
+     "texto": "Não vale: o juro mensal é maior que o ganho",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Vale: qualquer equipamento novo ajuda o negócio",
+     "correta": false,
+     "feedbackErro": "O equipamento pode ajudar em outras coisas, mas nessa conta específica o juro de R$ 32 come mais do que os R$ 20 de ganho."
+    },
+    {
+     "texto": "Vale, desde que a parcela caiba no orçamento",
+     "correta": false,
+     "feedbackErro": "Caber no orçamento não muda o resultado da conta: mesmo cabendo, o negócio perde R$ 12 por mês com esse empréstimo."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "marketing-que-vende",
+   "criterio": "É verdade?",
+   "enunciado": "Negócio sem nenhuma ação de marketing cresce do mesmo jeito",
+   "resposta": false,
+   "ancora": "Sem ser visto, o negócio depende só de quem já conhece.",
+   "feedbackErro": "Boca a boca existe e ajuda, mas sozinho é lento. Sem nenhuma ação de marketing, o negócio fica limitado a quem já conhece."
+  }
+ ]
+}

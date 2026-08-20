@@ -1,0 +1,251 @@
+{
+ "slug": "proteger-o-que-e-seu-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "proteger-o-que-e-seu",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "seguro-cobre-o-que",
+   "criterio": "Isso protege o que é seu?",
+   "enunciado": "Ter seguro do aparelho e por isso parar de cuidar dele no dia a dia",
+   "resposta": false,
+   "ancora": "Seguro cobre o prejuízo, mas não substitui o cuidado.",
+   "feedbackErro": "Ter seguro tranquiliza, mas parar de cuidar aumenta a chance de precisar dele — as duas camadas continuam necessárias."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "reserva-de-emergencia",
+   "criterio": "Isso protege o que é seu?",
+   "enunciado": "Usar a reserva de emergência pra comprar algo que só queria, não precisava",
+   "resposta": false,
+   "ancora": "Reserva é pra imprevisto, não para desejo — isso a esvazia.",
+   "feedbackErro": "Parece só antecipar uma compra, mas usar a reserva fora de emergência deixa você desprotegido no próximo imprevisto real."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "reserva-de-emergencia",
+   "criterio": "Isso protege o que é seu?",
+   "enunciado": "Deixar a reserva aplicada em algo que não pode resgatar rápido",
+   "resposta": false,
+   "ancora": "Reserva sem liquidez não cobre o imprevisto na hora certa.",
+   "feedbackErro": "O valor existe, mas se não pode ser resgatado rápido, não cumpre o papel de reserva quando o imprevisto aparece agora."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "cuidado-cotidiano",
+   "dificuldade": 3,
+   "pergunta": "Vinícius tem seguro do notebook, mas ele foi furtado por ficar visível no banco do carro. O que falhou?",
+   "ancora": "O seguro cobre o prejuízo; o cuidado deveria evitar a exposição.",
+   "alternativas": [
+    {
+     "texto": "O seguro, porque deveria ter evitado o furto",
+     "correta": false,
+     "feedbackErro": "Seguro nunca evita o furto — ele cobre o prejuízo depois. O que falhou foi o cuidado no dia a dia."
+    },
+    {
+     "texto": "O cuidado cotidiano, que deveria ter evitado a exposição",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada falhou, o seguro resolve tudo sozinho",
+     "correta": false,
+     "feedbackErro": "O seguro ajuda a repor o prejuízo, mas não apaga o transtorno — cuidado e seguro trabalham juntos."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "seguro-cobre-o-que",
+   "dificuldade": 3,
+   "pergunta": "Reserva de 6 meses, sem seguro residencial. Um incêndio destrói a casa. O que a reserva sozinha não resolve?",
+   "ancora": "Reserva tem limite — reconstrução custa muito mais que 6 meses.",
+   "alternativas": [
+    {
+     "texto": "Nada, a reserva cobre qualquer valor",
+     "correta": false,
+     "feedbackErro": "Reserva tem limite — um incêndio que destrói a casa costuma custar muito mais do que 6 meses de gastos."
+    },
+    {
+     "texto": "Reconstruir a casa inteira, que exige um valor bem maior",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pagar as contas do mês seguinte",
+     "correta": false,
+     "feedbackErro": "Isso a reserva resolve — o problema é o prejuízo grande, que ultrapassa o que ela cobre."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "cuidado-cotidiano",
+   "criterio": "Isso ainda é cuidado suficiente?",
+   "enunciado": "Trancar a bike com cadeado, mas sempre no mesmo poste e horário, visível",
+   "resposta": false,
+   "ancora": "Padrão previsível reduz o efeito do próprio cuidado.",
+   "feedbackErro": "O cadeado ajuda, mas repetir sempre o mesmo lugar e horário cria um padrão fácil de explorar."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "proteger-o-que-e-seu",
+   "instrucao": "Isso protege, ou é uma falha disfarçada de cuidado?",
+   "ancora": "Proteção falha quando uma camada substitui a outra.",
+   "feedbackErro": "O erro comum é achar que uma camada dispensa a outra — cuidado, reserva e seguro somam, não se substituem.",
+   "caixas": [
+    { "id": "protege", "rotulo": "Protege" },
+    { "id": "falha", "rotulo": "Falha disfarçada" }
+   ],
+   "itens": [
+    { "texto": "Ter seguro e parar de trancar a porta", "caixaCorreta": "falha" },
+    { "texto": "Não mexer na reserva nem numa emergência real", "caixaCorreta": "falha" },
+    { "texto": "Revisar o seguro quando o valor do bem muda", "caixaCorreta": "protege" },
+    { "texto": "Usar parte da reserva numa emergência real e repor depois", "caixaCorreta": "protege" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "cuidado-cotidiano",
+   "criterio": "Isso ainda é cuidado cotidiano?",
+   "enunciado": "Anotar o número de série, mas guardar a anotação só no celular que pode ser furtado junto",
+   "resposta": false,
+   "ancora": "Guardar a prova junto do bem anula a proteção dela.",
+   "feedbackErro": "A ideia é boa, mas se a prova some junto com o bem furtado, ela deixa de servir — precisa estar em outro lugar."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "reserva-de-emergencia",
+   "dificuldade": 3,
+   "pergunta": "Reserva de R$ 3.600 cobria 4 meses a R$ 900. Os gastos sobem pra R$ 1.200/mês. Quantos meses cobre agora?",
+   "ancora": "R$ 3.600 ÷ R$ 1.200 = 3 meses de cobertura.",
+   "verificacao": { "expressao": "3600/1200", "esperado": 3 },
+   "alternativas": [
+    {
+     "texto": "Ainda 4 meses, porque o valor guardado não mudou",
+     "correta": false,
+     "feedbackErro": "O valor guardado é o mesmo, mas ele rende menos meses porque o gasto mensal aumentou."
+    },
+    {
+     "texto": "3 meses",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "5 meses",
+     "correta": false,
+     "feedbackErro": "Gasto maior encolhe a cobertura, não aumenta — R$ 3.600 ÷ R$ 1.200 dá 3 meses, não 5."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "seguro-cobre-o-que",
+   "criterio": "O seguro cobre o prejuízo inteiro?",
+   "enunciado": "Seguro que cobre até R$ 2.000, notebook furtado avaliado em R$ 2.800",
+   "resposta": false,
+   "ancora": "Faltam R$ 800 que o seguro não cobre.",
+   "verificacao": { "expressao": "2800-2000", "esperado": 800 },
+   "feedbackErro": "O seguro cobre até o limite contratado; os R$ 800 que passam disso não são cobertos automaticamente."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "proteger-o-que-e-seu",
+   "criterio": "É proteger o que é seu?",
+   "enunciado": "Ter cuidado, reserva e seguro, mas nunca revisar se ainda cobrem o valor atual dos bens",
+   "resposta": false,
+   "ancora": "Proteção desatualizada some quando o valor dos bens muda.",
+   "feedbackErro": "Ter as três camadas ajuda, mas se elas não acompanham o valor atual dos bens, a proteção real fica menor do que parece."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "proteger-o-que-e-seu",
+   "dificuldade": 3,
+   "pergunta": "Depois dos casos-limite, qual é o erro mais comum ao proteger o que é seu?",
+   "alternativas": [
+    {
+     "texto": "Achar que uma camada substitui as outras",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ter cuidado, reserva e seguro ao mesmo tempo",
+     "correta": false,
+     "feedbackErro": "Ter as três juntas não é erro — é exatamente a combinação que funciona melhor."
+    },
+    {
+     "texto": "Revisar os valores cobertos de tempos em tempos",
+     "correta": false,
+     "feedbackErro": "Revisar é o acerto, não o erro — evita que a proteção fique desatualizada."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "proteger-o-que-e-seu",
+   "instrucao": "Ordene da falha mais grave pra menos grave.",
+   "ancora": "Faltar tudo pesa mais do que ter algo desatualizado.",
+   "feedbackErro": "É fácil achar que desatualizado é tão ruim quanto não ter nada — mas ter algo, mesmo defasado, ainda cobre parte do risco.",
+   "itens": [
+    { "texto": "Não ter nenhuma das três camadas", "posicaoCorreta": 1 },
+    { "texto": "Ter reserva e seguro, mas nenhum cuidado cotidiano", "posicaoCorreta": 2 },
+    { "texto": "Ter as três, mas desatualizadas", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "seguro-cobre-o-que",
+   "pergunta": "Notebook de R$ 3.200, seguro cobre 70% do valor. Quanto o seguro paga?",
+   "campo": "moeda",
+   "min": 1000,
+   "max": 3200,
+   "gabarito": 2240,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto de cobertura percentual do seguro",
+   "verificacao": { "expressao": "3200*0.7", "esperado": 2240 },
+   "feedbackPerto": "Isso mesmo — R$ 3.200 × 70% = R$ 2.240.",
+   "feedbackLonge": "R$ 2.240. Multiplique o valor do bem pelo percentual de cobertura contratado."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "seguro-cobre-o-que",
+   "dificuldade": 3,
+   "pergunta": "Quando o cuidado cotidiano sozinho NÃO basta?",
+   "ancora": "Quando o risco é raro, mas o prejuízo é muito alto.",
+   "alternativas": [
+    {
+     "texto": "Quando o risco é raro, mas o prejuízo é muito alto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sempre, cuidado nunca é suficiente",
+     "correta": false,
+     "feedbackErro": "Cuidado resolve boa parte dos riscos comuns — dizer que nunca basta ignora o que ele já cobre."
+    },
+    {
+     "texto": "Nunca, cuidado sempre resolve tudo sozinho",
+     "correta": false,
+     "feedbackErro": "Cuidado reduz a chance de acontecer, mas não cobre o prejuízo quando o risco é grande e raro."
+    }
+   ]
+  }
+ ]
+}

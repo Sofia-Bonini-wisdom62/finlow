@@ -1,0 +1,347 @@
+{
+ "slug": "o-termometro-da-economia-consolida",
+ "segmento": "em3",
+ "conceitoPrincipal": "indicadores-e-vida-real",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "indicadores-e-vida-real",
+   "criterio": "O termômetro se aplica aqui?",
+   "enunciado": "Inflação baixa demais também pode ser sinal de problema",
+   "resposta": true,
+   "ancora": "Preços parados podem indicar economia fraca, sem consumo.",
+   "feedbackErro": "Parece que quanto menor a inflação, melhor — até certo ponto. Inflação perto de zero pode significar demanda fraca: ninguém compra, ninguém contrata."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "indicadores-e-vida-real",
+   "criterio": "O termômetro se aplica aqui?",
+   "enunciado": "PIB crescendo garante que a sua renda cresceu",
+   "resposta": false,
+   "ancora": "PIB é média do país. Pode crescer com a renda mal distribuída.",
+   "feedbackErro": "O PIB pode subir puxado por poucos setores enquanto a maioria não vê diferença. Crescimento é condição para melhorar, não garantia — a distribuição decide."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "indicadores-e-vida-real",
+   "criterio": "O termômetro se aplica aqui?",
+   "enunciado": "Um mês de IPCA alto já define a tendência da inflação",
+   "resposta": false,
+   "ancora": "Um mês pode ser choque pontual: tendência exige meses seguidos.",
+   "feedbackErro": "Um mês pode ser geada no tomate ou alta pontual da gasolina. O termômetro confiável é a sequência: três, seis, doze meses apontando na mesma direção."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "indicadores-e-vida-real",
+   "dificuldade": 3,
+   "pergunta": "Selic a 15%, inflação a 5%. Quanto rende de verdade, por ano, quem aplica atrelado à Selic?",
+   "ancora": "Juro real: desconte a inflação. 1,15 ÷ 1,05 ≈ 9,5% de ganho real.",
+   "verificacao": {
+    "expressao": "1.15/1.05",
+    "esperado": 1.0952,
+    "tolerancia": 0.001
+   },
+   "alternativas": [
+    {
+     "texto": "Uns 9,5%: desconte a inflação do juro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Os 15% cheios: é o que a taxa promete",
+     "correta": false,
+     "feedbackErro": "15% é o rendimento nominal. Se a cesta subiu 5%, parte do ganho só repõe preços. O que aumenta seu poder de compra é a diferença: ~9,5%."
+    },
+    {
+     "texto": "Nada: a inflação engole todo o juro",
+     "correta": false,
+     "feedbackErro": "Engoliria se fosse maior que a taxa. Com juro de 15% e inflação de 5%, sobra ganho real — a conta é 1,15 ÷ 1,05, cerca de 9,5%."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "cambio-poder-de-compra",
+   "dificuldade": 3,
+   "pergunta": "O dólar caiu 15%. Para qual grupo brasileiro essa queda é uma má notícia?",
+   "ancora": "Exportador recebe em dólar: câmbio baixo encolhe a receita em reais.",
+   "alternativas": [
+    {
+     "texto": "Exportadores, que passam a receber menos em reais",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Turistas brasileiros indo para o exterior",
+     "correta": false,
+     "feedbackErro": "Para eles é boa notícia: cada real compra mais dólares, e a viagem fica mais barata. O prejudicado é quem recebe em dólar."
+    },
+    {
+     "texto": "Quem compra eletrônicos importados",
+     "correta": false,
+     "feedbackErro": "Importado tende a baratear com o dólar em queda. Quem sofre é o outro lado do balcão: quem vende para fora e recebe em moeda estrangeira."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "indicadores-e-vida-real",
+   "criterio": "Vale como regra geral?",
+   "enunciado": "Juro alto sempre significa que o país vai mal",
+   "resposta": false,
+   "ancora": "Pode ser remédio em ação: o BC freando a inflação. Contexto decide.",
+   "feedbackErro": "Juro alto tem custo, mas às vezes é tratamento: o BC sobe a Selic justamente para evitar mal maior. O indicador sozinho não diz se é doença ou remédio."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "comparar-paises",
+   "instrucao": "Ordene: da crise lá fora ao emprego aqui dentro.",
+   "ancora": "Economias conectadas: a queda lá vira demissão aqui.",
+   "feedbackErro": "A corrente é externa→interna: a crise reduz a compra lá fora, o exportador brasileiro perde vendas e o corte de vagas chega por aqui. Comércio conecta países.",
+   "itens": [
+    {
+     "texto": "Uma crise derruba grandes economias",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Elas passam a importar menos do Brasil",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Exportadoras brasileiras vendem menos",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Vagas são cortadas por aqui",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "indicadores-e-vida-real",
+   "criterio": "É juro real positivo?",
+   "enunciado": "Aplicação rendendo 6% com inflação de 9%",
+   "resposta": false,
+   "ancora": "6% nominal com 9% de inflação = perda real de quase 3%.",
+   "verificacao": {
+    "expressao": "1.06/1.09",
+    "esperado": 0.9725,
+    "tolerancia": 0.001
+   },
+   "feedbackErro": "O extrato mostra ganho de 6%, mas a cesta subiu 9%: você compra menos que antes. Rendimento abaixo da inflação é perda disfarçada de lucro."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "indicadores-e-vida-real",
+   "criterio": "É juro real positivo?",
+   "enunciado": "Poupança a 0,5% ao mês com inflação de 0,4% ao mês",
+   "resposta": true,
+   "ancora": "0,5% contra 0,4%: ganho real mínimo, mas positivo.",
+   "verificacao": {
+    "expressao": "1.005/1.004",
+    "esperado": 1.001,
+    "tolerancia": 0.001
+   },
+   "feedbackErro": "Por pouco, mas é: rende acima da inflação do mês. O alerta é a margem — qualquer alta de preços vira o sinal e a poupança passa a perder."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "indicadores-e-vida-real",
+   "pergunta": "Inflação de 5% ao ano por 10 anos: quanto custará a cesta que hoje sai por R$ 100?",
+   "campo": "moeda",
+   "min": 100,
+   "max": 300,
+   "gabarito": 163,
+   "toleranciaPct": 20,
+   "fonte": "IPCA, ~4-5% ao ano (IBGE)",
+   "verificacao": {
+    "expressao": "100*1.05^10",
+    "esperado": 162.89,
+    "tolerancia": 0.1
+   },
+   "feedbackPerto": "R$ 163: 5% compostos por 10 anos somam 63%, não 50%. Juro composto vale para preços também.",
+   "feedbackLonge": "R$ 163. O viés é somar 5% dez vezes e chutar 150. Inflação compõe: cada alta incide sobre preços já mais altos."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "comparar-paises",
+   "dificuldade": 3,
+   "pergunta": "Dois países têm o mesmo PIB per capita. O que Íris ainda precisa checar para comparar a vida real neles?",
+   "ancora": "Média igual esconde distribuições diferentes. Veja quem tem o quê.",
+   "alternativas": [
+    {
+     "texto": "Como a renda se distribui e o que ela compra lá",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: PIB per capita igual, vida igual",
+     "correta": false,
+     "feedbackErro": "Per capita é média: um país onde poucos concentram quase tudo empata com outro de renda bem espalhada. A média esconde a distribuição."
+    },
+    {
+     "texto": "Apenas o tamanho da população de cada um",
+     "correta": false,
+     "feedbackErro": "A população já entrou na conta do per capita. O que falta é distribuição e custo de vida: a mesma renda média compra vidas muito diferentes."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "indicadores-e-vida-real",
+   "dificuldade": 3,
+   "pergunta": "Notícia: 'BC corta a Selic pela quarta vez seguida'. O que provavelmente aconteceu antes?",
+   "ancora": "O BC corta juro quando a inflação cede e a economia precisa de gás.",
+   "alternativas": [
+    {
+     "texto": "A inflação deu sinais firmes de queda",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Os preços dispararam nos últimos meses",
+     "correta": false,
+     "feedbackErro": "Com preços disparando, o movimento seria o oposto: subir a Selic para frear. Corte de juro pressupõe inflação sob controle."
+    },
+    {
+     "texto": "O governo quitou toda a dívida pública",
+     "correta": false,
+     "feedbackErro": "Dívida zerada não existe em economia moderna e não é o gatilho. O BC olha principalmente a inflação frente à meta para decidir a Selic."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "cambio-poder-de-compra",
+   "criterio": "É exceção à regra?",
+   "enunciado": "Dólar alto ajudando o caixa de quem exporta",
+   "resposta": true,
+   "ancora": "A regra 'dólar alto encarece' tem exceção: quem recebe em dólar.",
+   "feedbackErro": "É a exceção clássica: para o consumidor, câmbio alto é custo; para o exportador, é receita. Todo indicador tem dois lados — veja quem paga e quem recebe."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "indicadores-e-vida-real",
+   "criterio": "É exceção à regra?",
+   "enunciado": "Inflação zero por anos como sinal de saúde garantida",
+   "resposta": false,
+   "ancora": "Preço parado demais pode ser consumo travado. Meta não é zero.",
+   "feedbackErro": "A meta dos bancos centrais não é zero: um pouco de inflação indica economia girando. Zero prolongado costuma vir com desemprego e demanda fraca."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "indicadores-e-vida-real",
+   "pergunta": "Fechando a trilha: qual leitura de indicador está correta?",
+   "alternativas": [
+    {
+     "texto": "Indicador se lê em contexto: tendência e dois lados, não número solto.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Basta um número do mês para saber o rumo do país.",
+     "correta": false,
+     "feedbackErro": "Um mês pode ser choque pontual. Tendência se confirma em sequência de meses."
+    },
+    {
+     "texto": "Juro de 15% rende 15% de poder de compra.",
+     "correta": false,
+     "feedbackErro": "Desconte a inflação: com 5% de alta nos preços, o ganho real fica perto de 9,5%."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "indicadores-e-vida-real",
+   "instrucao": "Juro real: separe ganho de perda.",
+   "ancora": "Compare sempre o rendimento com a inflação do mesmo período.",
+   "feedbackErro": "O critério é a diferença: rendimento acima da inflação preserva e amplia poder de compra; abaixo, perde mesmo com número positivo no extrato.",
+   "caixas": [
+    {
+     "id": "ganha",
+     "rotulo": "Ganho real"
+    },
+    {
+     "id": "perde",
+     "rotulo": "Perda real"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Rende 12% com inflação de 4%",
+     "caixaCorreta": "ganha"
+    },
+    {
+     "texto": "Rende 5% com inflação de 8%",
+     "caixaCorreta": "perde"
+    },
+    {
+     "texto": "Rende 10% com inflação de 10,5%",
+     "caixaCorreta": "perde"
+    },
+    {
+     "texto": "Rende 0,9% ao mês com IPCA de 0,3% ao mês",
+     "caixaCorreta": "ganha"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "indicadores-e-vida-real",
+   "dificuldade": 3,
+   "pergunta": "Um país congela todos os preços por lei para 'acabar com a inflação'. Qual o risco clássico?",
+   "ancora": "Preço travado com custo subindo gera desabastecimento.",
+   "alternativas": [
+    {
+     "texto": "Produtos somem das prateleiras",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A inflação desaparece para sempre",
+     "correta": false,
+     "feedbackErro": "Congelamento segura o sintoma, não a causa. Quando o preço trava abaixo do custo, produzir vira prejuízo — e o produto some."
+    },
+    {
+     "texto": "Os salários dobram de valor",
+     "correta": false,
+     "feedbackErro": "Salário não ganha poder de compra por decreto. Sem produto na prateleira, a renda vale menos, não mais — o Brasil viveu isso nos anos 80."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "cambio-poder-de-compra",
+   "criterio": "A conta está certa?",
+   "enunciado": "Dólar de R$ 5,00 para R$ 5,50 é alta de 10%",
+   "resposta": true,
+   "ancora": "Variação = diferença ÷ valor inicial: 0,50 ÷ 5,00 = 10%.",
+   "verificacao": {
+    "expressao": "(5.5-5)/5",
+    "esperado": 0.1
+   },
+   "feedbackErro": "A conta fecha: 0,50 de alta sobre 5,00 é 10%. O erro comum é dividir pelo valor final e achar 9% — a base é sempre o ponto de partida."
+  }
+ ]
+}

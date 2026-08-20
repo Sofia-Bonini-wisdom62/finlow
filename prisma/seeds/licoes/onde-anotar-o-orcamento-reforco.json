@@ -1,0 +1,270 @@
+{
+ "slug": "onde-anotar-o-orcamento-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "onde-anotar-o-orcamento",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "ferramentas-de-orcamento",
+   "criterio": "Serve pra anotar orçamento?",
+   "enunciado": "Um bloco de notas do celular com os gastos digitados um a um",
+   "resposta": true,
+   "ancora": "Lembra o critério: se registra entrada e saída, é ferramenta.",
+   "feedbackErro": "Não precisa ser um app específico. Qualquer registro organizado de gasto e ganho, mesmo num bloco de notas simples, serve."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "ferramentas-de-orcamento",
+   "criterio": "Serve pra anotar orçamento?",
+   "enunciado": "Lembrar de cabeça quanto gastou no mês",
+   "resposta": false,
+   "ancora": "Sem registro escrito, não há como conferir depois — falta anotação.",
+   "feedbackErro": "A memória falha e não deixa rastro pra conferir depois. Orçamento pede um registro anotado, não só lembrança."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "tipos-de-renda",
+   "criterio": "Isso é renda formal?",
+   "enunciado": "Trabalhar de carteira assinada meio período, com registro na empresa",
+   "resposta": true,
+   "ancora": "Lembra o critério: o que define é o registro, não a carga horária.",
+   "feedbackErro": "Carga horária menor não muda o critério. O que torna a renda formal é o registro em carteira, mesmo em meio período."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "ferramentas-de-orcamento",
+   "dificuldade": 2,
+   "pergunta": "Um caderno de orçamento some da mochila e nenhum backup foi feito. Qual é a maior desvantagem do caderno nesse caso?",
+   "ancora": "Perdeu o papel, perdeu o histórico — não tinha cópia digital.",
+   "alternativas": [
+    {
+     "texto": "O histórico inteiro se perde, sem cópia salva em outro lugar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ele nunca deveria ter sido usado desde o início",
+     "correta": false,
+     "feedbackErro": "Caderno funciona bem no dia a dia. O problema aqui é específico: não ter feito nenhuma cópia do que estava anotado."
+    },
+    {
+     "texto": "Ele soma os valores errado com frequência",
+     "correta": false,
+     "feedbackErro": "A conta feita à mão pode ter erro humano, mas isso não é o problema deste caso. O problema é a perda total do registro."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "tipos-de-renda",
+   "dificuldade": 2,
+   "pergunta": "Camila tem salário registrado e faz freelas sem contrato, de vez em quando. Como tratar as duas rendas?",
+   "ancora": "O salário sustenta os gastos fixos; o freela é extra, não base.",
+   "alternativas": [
+    {
+     "texto": "Basear os fixos no salário, tratando o freela como extra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Somar os dois como se fossem igualmente garantidos todo mês",
+     "correta": false,
+     "feedbackErro": "Tratar como igualmente garantidos ignora que o freela é irregular. Isso pode fazer faltar dinheiro num mês sem freela."
+    },
+    {
+     "texto": "Descartar o freela do orçamento por não ser formal",
+     "correta": false,
+     "feedbackErro": "Descartar joga fora dinheiro real que entra. O certo é registrar o freela, só sem contar com ele como garantido."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "ferramentas-de-orcamento",
+   "criterio": "Serve pra anotar orçamento?",
+   "enunciado": "Uma planilha compartilhada entre os moradores da casa",
+   "resposta": true,
+   "ancora": "Planilha compartilhada organiza entrada e saída da casa toda.",
+   "feedbackErro": "Ser compartilhada não muda a função dela. Continua sendo um registro organizado de entrada e saída, agora da casa toda."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "tipos-de-renda",
+   "instrucao": "Isso é renda formal, ou é renda informal?",
+   "ancora": "Formal tem registro (carteira, MEI, nota); informal não tem.",
+   "feedbackErro": "O que separa os dois é o registro: com carteira, MEI ou nota fiscal é formal; sem nenhum registro é informal.",
+   "caixas": [
+    {
+     "id": "formal",
+     "rotulo": "Formal"
+    },
+    {
+     "id": "informal",
+     "rotulo": "Informal"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Trabalhar registrado como MEI, emitindo nota",
+     "caixaCorreta": "formal"
+    },
+    {
+     "texto": "Cuidar de crianças da vizinhança sem contrato",
+     "caixaCorreta": "informal"
+    },
+    {
+     "texto": "Ter carteira assinada numa loja",
+     "caixaCorreta": "formal"
+    },
+    {
+     "texto": "Vender comida na rua sem registro nenhum",
+     "caixaCorreta": "informal"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "ferramentas-de-orcamento",
+   "criterio": "Serve pra anotar orçamento?",
+   "enunciado": "Fotografar os recibos e guardar as fotos sem organizar por categoria",
+   "resposta": false,
+   "ancora": "Fotos soltas sem categoria não ajudam a somar nem comparar gastos.",
+   "feedbackErro": "Fotografar parece um registro, mas sem organizar por categoria, fica difícil somar ou comparar — falta a estrutura de orçamento."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "tipos-de-renda",
+   "dificuldade": 2,
+   "pergunta": "Por que é arriscado planejar os gastos fixos do mês contando com uma renda esporádica?",
+   "ancora": "Se ela não aparecer naquele mês, os gastos fixos ficam sem cobertura.",
+   "alternativas": [
+    {
+     "texto": "Porque renda esporádica pode não aparecer naquele mês",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque renda esporádica é sempre menor que a fixa",
+     "correta": false,
+     "feedbackErro": "O valor não é o problema — às vezes um bico paga bem. O risco é a irregularidade: pode simplesmente não aparecer."
+    },
+    {
+     "texto": "Porque renda esporádica não pode ser gasta de jeito nenhum",
+     "correta": false,
+     "feedbackErro": "Ela pode, sim, ser usada — só não deve ser a base dos gastos fixos, porque não tem garantia de se repetir."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "ferramentas-de-orcamento",
+   "criterio": "Serve pra anotar orçamento?",
+   "enunciado": "Um app que envia lembrete quando o gasto do mês passa do limite",
+   "resposta": true,
+   "ancora": "Comparar gasto com limite é uma forma de organizar o orçamento.",
+   "feedbackErro": "Não é só sobre anotar: comparar o gasto com um limite definido também é organizar o orçamento, e o app faz isso."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "tipos-de-renda",
+   "criterio": "Isso é renda formal?",
+   "enunciado": "Dar aula particular combinada de boca, sem contrato nem nota",
+   "resposta": false,
+   "ancora": "Sem contrato nem nota, essa renda é informal.",
+   "feedbackErro": "É um trabalho de verdade, remunerado. Mas sem contrato nem nota fiscal, ela é classificada como renda informal."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "onde-anotar-o-orcamento",
+   "pergunta": "Qual afirmação é mais precisa sobre ferramentas e tipos de renda?",
+   "alternativas": [
+    {
+     "texto": "A ferramenta ideal é sempre a mais tecnológica disponível",
+     "correta": false,
+     "feedbackErro": "A melhor ferramenta é a que a pessoa realmente usa com constância — pode ser um caderno, se for mantido em dia."
+    },
+    {
+     "texto": "Renda fixa sustenta os gastos fixos; a esporádica é reforço",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Renda informal deve ser escondida do orçamento",
+     "correta": false,
+     "feedbackErro": "Renda informal também é dinheiro real e deve entrar no orçamento normalmente, sem ser escondida."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "ferramentas-de-orcamento",
+   "instrucao": "Ordene da ferramenta mais fácil de perder à mais difícil de perder.",
+   "ancora": "Papel físico se perde com facilidade; nuvem fica salva em backup.",
+   "feedbackErro": "O que muda o risco de perda é onde o registro fica guardado: papel avulso, aparelho, ou nuvem com backup.",
+   "itens": [
+    {
+     "texto": "Um papel avulso com contas anotadas",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Um caderno guardado numa gaveta",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Um app com backup automático na nuvem",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "tipos-de-renda",
+   "dificuldade": 2,
+   "pergunta": "Um motorista de aplicativo trabalha todo dia, mas sem carteira assinada. Que tipo de renda é essa?",
+   "ancora": "É frequente (acontece sempre) e informal (sem registro em carteira).",
+   "alternativas": [
+    {
+     "texto": "Renda frequente e informal",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Renda esporádica e formal",
+     "correta": false,
+     "feedbackErro": "Trabalhar todo dia não é esporádico, é frequente. E sem carteira assinada nem registro, ela é informal, não formal."
+    },
+    {
+     "texto": "Renda frequente e formal",
+     "correta": false,
+     "feedbackErro": "A frequência está certa, mas falta o registro em carteira ou MEI para essa renda ser considerada formal."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "ferramentas-de-orcamento",
+   "criterio": "Serve pra anotar orçamento?",
+   "enunciado": "Um extrato bancário guardado sem nenhuma anotação sobre os gastos",
+   "resposta": false,
+   "ancora": "Extrato sozinho mostra movimentação, mas não organiza por categoria.",
+   "feedbackErro": "O extrato mostra o que entrou e saiu, mas sem anotar categorias ou finalidade, ele ainda não vira um orçamento organizado."
+  }
+ ]
+}

@@ -1,0 +1,328 @@
+{
+ "slug": "pensar-como-quem-empreende-reforco",
+ "segmento": "em3",
+ "conceitoPrincipal": "custo-e-preco",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-e-preco",
+   "criterio": "Passa no teste do empreendedor?",
+   "enunciado": "Aceitar encomenda grande sem saber o custo por unidade",
+   "resposta": false,
+   "ancora": "Pedido grande com conta errada é prejuízo grande garantido.",
+   "feedbackErro": "Encomenda grande parece a chance da vida — por isso derruba tanta gente. Sem o custo unitário, você pode estar fechando o maior prejuízo do ano."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-e-preco",
+   "criterio": "Passa no teste do empreendedor?",
+   "enunciado": "Refazer o preço quando o insumo sobe",
+   "resposta": true,
+   "ancora": "Custo subiu e preço parou = lucro encolhendo em silêncio.",
+   "feedbackErro": "Reajustar dá medo de perder cliente, e o medo trava. Mas quem segura o preço com custo subindo transfere o aumento do fornecedor para o próprio bolso."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "testar-antes-de-investir",
+   "criterio": "Passa no teste do empreendedor?",
+   "enunciado": "Ampliar a produção antes da primeira venda",
+   "resposta": false,
+   "ancora": "Escalar antes de validar é apostar o estoque num palpite.",
+   "feedbackErro": "Produzir muito parece adiantar o sucesso. Mas sem a primeira venda você ainda não sabe se alguém paga — o critério era testar pequeno primeiro."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-e-preco",
+   "dificuldade": 2,
+   "pergunta": "Lívia vende marmita a R$ 18. Gasta R$ 9,50 de insumos, R$ 1,30 de embalagem e R$ 2,20 de entrega. Lucro por marmita?",
+   "ancora": "R$ 18 − (9,50 + 1,30 + 2,20) = R$ 5,00 por unidade.",
+   "verificacao": {
+    "expressao": "18 - (9.5 + 1.3 + 2.2)",
+    "esperado": 5
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 5,00",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 8,50",
+     "correta": false,
+     "feedbackErro": "Você descontou só os insumos. Embalagem e entrega também saem do caixa a cada marmita — R$ 3,50 que somem se ficarem fora da conta."
+    },
+    {
+     "texto": "R$ 7,20",
+     "correta": false,
+     "feedbackErro": "Faltou a entrega: R$ 2,20 por marmita. Custo invisível é o que mais engana — se sai do caixa por causa da venda, entra na conta."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-e-preco",
+   "dificuldade": 2,
+   "pergunta": "Custo total de R$ 6,40 por unidade. Para lucrar R$ 3,60 em cada uma, o preço deve ser:",
+   "ancora": "Preço = custo + lucro desejado: 6,40 + 3,60 = R$ 10,00.",
+   "verificacao": {
+    "expressao": "6.4 + 3.6",
+    "esperado": 10
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 10,00",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 7,68",
+     "correta": false,
+     "feedbackErro": "Isso é custo + 20%, a 'margem redonda' de sempre. Ela deixa só R$ 1,28 de lucro. A margem se calcula da meta para trás, não de um número bonito."
+    },
+    {
+     "texto": "R$ 3,60",
+     "correta": false,
+     "feedbackErro": "R$ 3,60 é o lucro que você quer. O preço precisa cobrir o custo E conter esse lucro — vender a R$ 3,60 seria pagar R$ 2,80 para o cliente levar."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-e-preco",
+   "criterio": "É custo fixo?",
+   "enunciado": "O aluguel da barraca na feira, venda ou não venda",
+   "resposta": true,
+   "ancora": "Custo fixo existe mesmo com zero venda — por isso ele pesa.",
+   "feedbackErro": "Como não muda com a quantidade, ele parece 'fora' do negócio. É o contrário: o fixo cobra presença todo mês, e as vendas precisam cobri-lo primeiro."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "testar-antes-de-investir",
+   "instrucao": "Classifique cada movimento do negócio que começa.",
+   "ancora": "Teste barato erra pequeno; aposta cara erra com dívida.",
+   "feedbackErro": "O critério é o tamanho do erro possível: encomenda e enquete custam pouco se falharem; contrato longo e máquina cara cobram mesmo sem cliente.",
+   "caixas": [
+    {
+     "id": "teste",
+     "rotulo": "Teste barato"
+    },
+    {
+     "id": "aposta",
+     "rotulo": "Aposta cara"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Vender 20 unidades por encomenda, sem estoque",
+     "caixaCorreta": "teste"
+    },
+    {
+     "texto": "Alugar loja com contrato de 1 ano na 1ª semana",
+     "caixaCorreta": "aposta"
+    },
+    {
+     "texto": "Fazer enquete de preço com os seguidores",
+     "caixaCorreta": "teste"
+    },
+    {
+     "texto": "Comprar máquina profissional antes do 1º cliente",
+     "caixaCorreta": "aposta"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "risco-e-oportunidade",
+   "criterio": "Sinal para escalar o negócio?",
+   "enunciado": "Clientes voltando e encomendando de novo",
+   "resposta": true,
+   "ancora": "Recompra é a validação mais forte: pagou, gostou, pagou de novo.",
+   "feedbackErro": "Crescer devagar parece perder momento. Mas recompra é o dado que sustenta escala: quem volta prova que o produto vale o preço — sem desconto de estreia."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "risco-e-oportunidade",
+   "criterio": "Sinal para escalar o negócio?",
+   "enunciado": "Muitas curtidas no perfil, nenhum pedido fechado",
+   "resposta": false,
+   "ancora": "Curtida é grátis; validação é gente pagando.",
+   "feedbackErro": "Audiência parece demanda, e a confusão é cara. Curtir não custa nada a quem curte — o teste real é quantos transformam interesse em pagamento."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-e-preco",
+   "pergunta": "A barraca custa R$ 80 por feira. Cada copo de suco deixa R$ 2,50 de lucro. Quantos copos para empatar?",
+   "campo": "numero",
+   "min": 5,
+   "max": 100,
+   "gabarito": 32,
+   "toleranciaPct": 20,
+   "fonte": "derivado da própria conta: custo fixo dividido pelo lucro por copo",
+   "verificacao": {
+    "expressao": "80/2.5",
+    "esperado": 32
+   },
+   "feedbackPerto": "32 copos: 80 ÷ 2,50. Antes do copo 33, a feira ainda está pagando a si mesma — lucro de verdade começa depois do empate.",
+   "feedbackLonge": "São 32. O viés é esquecer o custo fixo e achar que o 1º copo já é lucro: os R$ 80 da barraca comem os primeiros 32 lucros de R$ 2,50."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "risco-e-oportunidade",
+   "dificuldade": 2,
+   "pergunta": "Um coletivo quer cobrar ingresso num sarau que sempre foi gratuito. Qual risco só o teste revela?",
+   "ancora": "Público de graça não garante público pagante — só cobrando se sabe.",
+   "alternativas": [
+    {
+     "texto": "Se o público paga: cobrar pode derrubar a presença",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Perder o apoio da casa que empresta o espaço",
+     "correta": false,
+     "feedbackErro": "Risco real, mas se resolve conversando antes do evento. O que nenhuma conversa antecipa é a disposição do público a pagar — isso só o teste mostra."
+    },
+    {
+     "texto": "Nenhum: evento cultural cheio sempre se sustenta",
+     "correta": false,
+     "feedbackErro": "Casa cheia de graça mede interesse, não disposição a pagar. Muitos projetos culturais esvaziam na primeira cobrança — por isso se testa com valor baixo."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "testar-antes-de-investir",
+   "dificuldade": 2,
+   "pergunta": "O teste com 30 capinhas vendeu 28 em uma semana. O que esse resultado autoriza?",
+   "ancora": "Teste bom autoriza o próximo degrau — não o pulo para o topo.",
+   "alternativas": [
+    {
+     "texto": "Repetir numa escala um pouco maior e medir de novo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pedir empréstimo e encomendar 3.000 de uma vez",
+     "correta": false,
+     "feedbackErro": "Um teste bom reduz o risco, não o elimina: 28 vendas podem ser o círculo próximo comprando por apoio. Escale em degraus — 100, depois 300."
+    },
+    {
+     "texto": "Nada: uma semana boa pode ser só sorte",
+     "correta": false,
+     "feedbackErro": "Pode ser sorte — e é por isso que se repete o teste. Mas 28 de 30 é sinal forte demais para ignorar: descartar dado bom também é erro de conta."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-e-preco",
+   "criterio": "Hábito de quem empreende?",
+   "enunciado": "Definir uma retirada fixa por mês para si mesmo",
+   "resposta": true,
+   "ancora": "Retirada fixa protege o caixa e revela o lucro verdadeiro.",
+   "feedbackErro": "Tirar 'quando precisa' parece flexível, mas esvazia o caixa sem registro. Com retirada fixa, o que sobra no negócio é lucro visível e planejável."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-e-preco",
+   "criterio": "Hábito de quem empreende?",
+   "enunciado": "Aceitar todo pedido, mesmo abaixo do custo",
+   "resposta": false,
+   "ancora": "Vender abaixo do custo é pagar para trabalhar — volume só piora.",
+   "feedbackErro": "Recusar pedido parece perder dinheiro. Mas cada venda abaixo do custo É perder dinheiro: quanto mais volume com margem negativa, maior o buraco."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "custo-e-preco",
+   "pergunta": "Qual ideia deste encontro guia seu próximo passo?",
+   "alternativas": [
+    {
+     "texto": "Preço cobre todos os custos; teste barato vem antes de aposta cara.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Uma margem de 20% sobre o custo resolve qualquer negócio.",
+     "correta": false,
+     "feedbackErro": "Margem redonda deu R$ 1,28 quando a meta era R$ 3,60. Calcule da meta para trás."
+    },
+    {
+     "texto": "Se vendeu bem uma semana, é hora de estocar grande.",
+     "correta": false,
+     "feedbackErro": "Uma semana boa autoriza o próximo degrau do teste, não o pulo — escala vem em etapas."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "custo-e-preco",
+   "instrucao": "Ordene os passos: do custo ao preço final.",
+   "ancora": "Custos primeiro, lucro depois, mercado por último — nessa ordem.",
+   "feedbackErro": "Quem começa pelo preço do concorrente pula a própria conta. Primeiro o que cada unidade custa (variável + fatia do fixo), depois o lucro, então o mercado.",
+   "itens": [
+    {
+     "texto": "Somar insumos e embalagem de uma unidade",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Ratear o custo fixo pelas vendas do mês",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Somar o lucro desejado por unidade",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Comparar o preço final com o do mercado",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "custo-e-preco",
+   "pergunta": "Custo total de R$ 120, sendo R$ 80 de um insumo que subiu 10%. Qual o novo custo total?",
+   "campo": "moeda",
+   "min": 100,
+   "max": 160,
+   "gabarito": 128,
+   "toleranciaPct": 20,
+   "fonte": "derivado da própria conta: 80 × 1,10 + 40",
+   "verificacao": {
+    "expressao": "80*1.1 + 40",
+    "esperado": 128
+   },
+   "feedbackPerto": "R$ 128: só a parte do insumo sobe (80 → 88); os outros R$ 40 ficam. Aumento de custo se calcula por parte, não no total.",
+   "feedbackLonge": "R$ 128. O viés é aplicar os 10% sobre os R$ 120 inteiros (daria R$ 132): o aumento atinge só o insumo que subiu, R$ 80."
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "risco-e-oportunidade",
+   "criterio": "Desafio típico de negócio cultural?",
+   "enunciado": "Depender de patrocínio que pode não se renovar",
+   "resposta": true,
+   "ancora": "Patrocínio é receita com prazo — o projeto precisa de um plano B.",
+   "feedbackErro": "Patrocínio garantido parece resolver o negócio. Mas é receita de fonte única e com prazo: quando sai, leva o caixa junto se não houver outra entrada."
+  }
+ ]
+}

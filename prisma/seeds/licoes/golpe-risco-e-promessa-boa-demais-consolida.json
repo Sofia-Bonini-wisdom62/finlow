@@ -1,0 +1,300 @@
+{
+ "slug": "golpe-risco-e-promessa-boa-demais-consolida",
+ "segmento": "em2",
+ "conceitoPrincipal": "golpe-risco-e-promessa-boa-demais",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-vs-golpe",
+   "criterio": "É golpe mesmo?",
+   "enunciado": "Desconto de 40% na promoção de uma loja conhecida",
+   "resposta": false,
+   "ancora": "Oferta agressiva não é fraude — desde que no site oficial da loja.",
+   "feedbackErro": "Depois de treinar desconfiança, tudo vira 'golpe' — calibre: liquidação de 40% é comum. O perigo seria o site clonado, não o desconto em si."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "seguranca-digital",
+   "criterio": "É golpe mesmo?",
+   "enunciado": "'Prêmio' de cripto que pede a chave da sua carteira",
+   "resposta": true,
+   "ancora": "Chave privada é a senha-mestra da carteira: quem pede, rouba.",
+   "feedbackErro": "Parece etapa técnica do resgate do prêmio. Mas a chave privada dá controle total da carteira — entregar a chave é entregar o cofre; prêmio nenhum exige isso."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-vs-golpe",
+   "criterio": "É golpe mesmo?",
+   "enunciado": "Fundo sério que rendeu acima da Selic no ano",
+   "resposta": false,
+   "ancora": "Render acima é possível — o impossível é GARANTIR isso sempre.",
+   "feedbackErro": "'Acima da Selic' soou como a promessa proibida — reveja: o proibido é a garantia. Resultado passado acima do juro básico acontece; jurar que se repete, não."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "golpes-comuns",
+   "dificuldade": 3,
+   "pergunta": "Site igual ao da loja, preço 30% menor, só aceita Pix e o endereço é estranho. O que pesa mais?",
+   "ancora": "Nenhum sinal condena sozinho — o conjunto deles condena.",
+   "alternativas": [
+    {
+     "texto": "O conjunto: pagamento sem volta + endereço falso",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O preço: 30% de desconto já prova fraude",
+     "correta": false,
+     "feedbackErro": "Desconto sozinho não condena — liquidações reais chegam aí. Ele só vira indício quando se soma ao resto: domínio estranho e pagamento irreversível."
+    },
+    {
+     "texto": "Nada: site bem-feito é site confiável",
+     "correta": false,
+     "feedbackErro": "Clonar visual é o trabalho mais fácil do golpista: copia-se em horas. Beleza não autentica nada; endereço oficial e forma de pagamento contam a verdade."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-vs-golpe",
+   "dificuldade": 3,
+   "pergunta": "Um amigo dobrou o dinheiro em cripto e te chamou. O que o resultado dele prova?",
+   "ancora": "Um caso não é estatística — sorte de um não é garantia de outro.",
+   "alternativas": [
+    {
+     "texto": "Nada sobre o seu risco: um caso não é padrão",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que funciona: prova viva vale mais que teoria",
+     "correta": false,
+     "feedbackErro": "Prova viva é o dado com a amostra mais viciada que existe: quem perdeu não conta vantagem. Para cada dobro exibido há quedas caladas — você só vê o vencedor."
+    },
+    {
+     "texto": "Que é golpe: ninguém dobra dinheiro honesto",
+     "correta": false,
+     "feedbackErro": "Dobrar é possível em ativo volátil — para os dois lados: cair pela metade também. O erro não é achar que houve; é achar que se repete para você, garantido."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "checagem",
+   "criterio": "Desconfiança bem calibrada?",
+   "enunciado": "Recusar qualquer aplicação que não seja a poupança",
+   "resposta": false,
+   "ancora": "Medo total também custa: o critério é checar, não fugir de tudo.",
+   "feedbackErro": "Parece o extremo seguro — mas pagou caro: a poupança rende ~0,5% ao mês e perde de opções igualmente seguras e registradas. Checagem substitui o medo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "risco-vs-golpe",
+   "instrucao": "Ordene do menor para o maior risco de perda.",
+   "ancora": "Regulado e garantido < volátil declarado < 'infalível' sem registro.",
+   "feedbackErro": "Título público é o piso do risco; ações reguladas oscilam; cripto despenca e sobe sem aviso; e o 'infalível' sem registro tem perda quase certa: é golpe.",
+   "itens": [
+    { "texto": "Tesouro Selic (título público)", "posicaoCorreta": 1 },
+    { "texto": "Fundo de ações regulado", "posicaoCorreta": 2 },
+    { "texto": "Cripto em corretora registrada", "posicaoCorreta": 3 },
+    { "texto": "'Robô infalível' sem registro", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "checagem",
+   "criterio": "A checagem encerra a análise?",
+   "enunciado": "Achou o registro na CVM: então o ganho é certo",
+   "resposta": false,
+   "ancora": "Registro elimina a fraude de fachada — não elimina o risco.",
+   "feedbackErro": "Meio caminho, não o fim: registro garante que a empresa existe e responde a regras. O produto pode seguir arriscado — e legítimo. São camadas diferentes."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "promessa-boa-demais",
+   "criterio": "A checagem encerra a análise?",
+   "enunciado": "A oferta jura ganho certo: já dá para descartar",
+   "resposta": true,
+   "ancora": "Promessa de certeza condena sozinha — o resto nem precisa.",
+   "feedbackErro": "Parece precipitado descartar sem investigar — mas a garantia de ganho alto é impossível por definição. Quando a premissa é falsa, o resto da conversa é enfeite."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "promessa-boa-demais",
+   "pergunta": "Robô promete 3% AO DIA. SE fosse real, R$ 500 virariam quanto em 30 dias?",
+   "campo": "moeda",
+   "min": 500,
+   "max": 5000,
+   "gabarito": 1214,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 500 × 1,03^30",
+   "verificacao": { "expressao": "500*1.03^30", "esperado": 1213.63, "tolerancia": 0.1 },
+   "feedbackPerto": "R$ 1.214 — 143% em um mês. Nenhum fundo do planeta entrega isso constante; quem promete está vendendo outra coisa: a sua entrada.",
+   "feedbackLonge": "R$ 1.214: 1,03 multiplicado 30 vezes. O viés é a linearidade — 3%×30=90% — que faz o absurdo parecer só 'otimista'. Composto explode mais rápido."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "risco-vs-golpe",
+   "dificuldade": 3,
+   "pergunta": "Tainá investiu em cripto ciente do risco e perdeu 35%. Ela foi vítima de golpe?",
+   "ancora": "Golpe se define antes, na promessa — não depois, no prejuízo.",
+   "alternativas": [
+    {
+     "texto": "Não: era risco declarado — perda não prova fraude",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim: perda desse tamanho é sempre fraude",
+     "correta": false,
+     "feedbackErro": "Queda de 35% é rotina em cripto — e estava declarada. Chamar toda perda de fraude embaralha as defesas: contra risco, dose; contra golpe, checagem."
+    },
+    {
+     "texto": "Impossível saber: perda e golpe se confundem",
+     "correta": false,
+     "feedbackErro": "Dá para saber, olhando para TRÁS da perda: houve promessa de certeza? Registro existia? Risco estava declarado? As respostas separam os casos com clareza."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "golpes-comuns",
+   "dificuldade": 3,
+   "pergunta": "Quando a regra 'bom demais para ser verdade' NÃO basta?",
+   "ancora": "Há golpe sem promessa de lucro: falsa central, boleto trocado.",
+   "alternativas": [
+    {
+     "texto": "Nos golpes sem promessa: falsa central, boleto falso",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nunca falha: todo golpe promete lucro",
+     "correta": false,
+     "feedbackErro": "Muitos golpes não oferecem nada: roubam pelo medo ('sua conta foi invadida') ou pela rotina (boleto trocado). Para esses, a defesa é o canal oficial."
+    },
+    {
+     "texto": "Quando o valor é pequeno demais",
+     "correta": false,
+     "feedbackErro": "Valor pequeno é estratégia: passa despercebido e escala — milhares de vítimas de R$ 50. O filtro nunca foi o tamanho; é a promessa, o canal e o registro."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "risco-vs-golpe",
+   "criterio": "Leu o risco do jeito certo?",
+   "enunciado": "Tratar alto risco regulado e fraude como a mesma coisa",
+   "resposta": false,
+   "ancora": "Confundir os dois erra as duas defesas: dose e checagem.",
+   "feedbackErro": "Juntar tudo no saco 'perigoso' desarma você: risco regulado se administra com dose e prazo; fraude se evita com checagem. Remédios diferentes."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "risco-vs-golpe",
+   "criterio": "Leu o risco do jeito certo?",
+   "enunciado": "Só arriscar o valor que pode perder sem quebrar",
+   "resposta": true,
+   "ancora": "Dose certa: o risco alto entra na conta, nunca no essencial.",
+   "feedbackErro": "Parece covardia para quem quer 'multiplicar logo'. É o oposto: quem dosa sobrevive à queda e segue no jogo; quem aposta o aluguel sai no primeiro tombo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "golpe-risco-e-promessa-boa-demais",
+   "dificuldade": 3,
+   "pergunta": "Qual resumo separa risco de golpe de uma vez?",
+   "alternativas": [
+    {
+     "texto": "Golpe se revela antes, na promessa; risco se revela depois, no resultado.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quem perdeu dinheiro foi vítima de golpe.",
+     "correta": false,
+     "feedbackErro": "Perda também é o risco legítimo se realizando. A pergunta que separa: o que foi prometido antes — e por quem?"
+    },
+    {
+     "texto": "Quem checa registro nunca perde dinheiro.",
+     "correta": false,
+     "feedbackErro": "Checar elimina a fraude, não a oscilação: produto registrado cai também. A checagem protege do golpe; a dose protege do risco."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "checagem",
+   "instrucao": "Checagem que ajuda ou falsa segurança?",
+   "ancora": "Ajuda o que é verificável fora do vendedor; o resto é cenário.",
+   "feedbackErro": "Registro e reclamações vêm de fontes independentes. Cadeado só criptografa a conexão — golpista também tem. Seguidores se compram por quilo.",
+   "caixas": [
+    { "id": "ajuda", "rotulo": "Ajuda de verdade" },
+    { "id": "falsa", "rotulo": "Falsa segurança" }
+   ],
+   "itens": [
+    { "texto": "Consultar o registro na CVM", "caixaCorreta": "ajuda" },
+    { "texto": "Cadeado (https) na barra do site", "caixaCorreta": "falsa" },
+    { "texto": "Ler reclamações em vários canais", "caixaCorreta": "ajuda" },
+    { "texto": "Perfil com muitos seguidores", "caixaCorreta": "falsa" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "risco-vs-golpe",
+   "pergunta": "Um ativo caiu 50%. Quantos % precisa subir para voltar ao valor inicial?",
+   "campo": "percentual",
+   "min": 10,
+   "max": 300,
+   "gabarito": 100,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: (1 ÷ 0,5 − 1) × 100",
+   "verificacao": { "expressao": "(1/0.5-1)*100", "esperado": 100 },
+   "feedbackPerto": "100%: precisa dobrar. A queda e a recuperação são assimétricas — por isso 'dose' importa tanto em ativo volátil.",
+   "feedbackLonge": "100%, não 50%: de 50 para 100 o caminho é dobrar. O viés é a simetria — achar que a mesma porcentagem desfaz a queda. Ela não desfaz."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "piramide",
+   "dificuldade": 3,
+   "pergunta": "Por que a pirâmide quebra mesmo 'pagando todo mundo em dia'?",
+   "ancora": "A conta exige entradas crescentes para sempre — e gente acaba.",
+   "alternativas": [
+    {
+     "texto": "Precisa de entradas crescentes para sempre",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque a polícia sempre descobre cedo",
+     "correta": false,
+     "feedbackErro": "Muitas rodam anos antes de qualquer investigação. A morte da pirâmide é matemática, não policial: quando o recrutamento desacelera, o caixa não fecha."
+    },
+    {
+     "texto": "Não quebra se todos reinvestirem",
+     "correta": false,
+     "feedbackErro": "Reinvestir só adia: o esquema não gera valor, apenas move dinheiro de mão. Sem entrada nova crescendo, qualquer onda de saques derruba o castelo."
+    }
+   ]
+  }
+ ]
+}

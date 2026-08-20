@@ -1,0 +1,336 @@
+{
+ "slug": "a-conta-do-negocio-em3",
+ "segmento": "em3",
+ "conceitoPrincipal": "a-conta-do-negocio-em3",
+ "fraseConceito": "Lucro é o que sobra da receita depois de todos os custos. Melhorar o orçamento é mexer nessa conta sem derrubar o que gera a venda.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "receita-custo-lucro",
+   "criterio": "Entra na conta do lucro?",
+   "enunciado": "O aluguel do ponto onde o negócio funciona",
+   "resposta": true,
+   "ancora": "Lucro = receita − todos os custos. Aluguel é custo, entra.",
+   "feedbackErro": "O aluguel não some quando a venda vai bem — ele consome parte dela. Todo custo entra na conta; esquecer um deles infla um lucro que não existe."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "receita-custo-lucro",
+   "criterio": "Entra na conta do lucro?",
+   "enunciado": "O dinheiro que entra com as vendas do mês",
+   "resposta": true,
+   "ancora": "É a receita: o lado de cima da conta do lucro.",
+   "feedbackErro": "Entra, e é o ponto de partida: sem registrar a receita, não há de onde descontar os custos. O que a venda traz é a matéria-prima do lucro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "receita-custo-lucro",
+   "criterio": "Entra na conta do lucro?",
+   "enunciado": "A mensalidade da academia do dono do negócio",
+   "resposta": false,
+   "ancora": "Gasto pessoal não é custo do negócio: são caixas separados.",
+   "feedbackErro": "Sai do mesmo bolso, e é aí que mora a confusão. Misturar caixa pessoal e caixa do negócio esconde o lucro real — a academia é conta do dono, não da empresa."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "receita-custo-lucro",
+   "dificuldade": 1,
+   "pergunta": "Luana vende doces: R$ 900 de receita no mês e R$ 700 de custos com insumos e taxas. Qual é o lucro?",
+   "ancora": "Lucro é a sobra: 900 − 700 = R$ 200.",
+   "verificacao": {
+    "expressao": "900-700",
+    "esperado": 200
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 900",
+     "correta": false,
+     "feedbackErro": "Esses são os que entraram — a receita. Antes de virar lucro, ela ainda paga R$ 700 de custos. Confundir os dois é o erro que quebra negócio pequeno."
+    },
+    {
+     "texto": "R$ 200",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 700",
+     "correta": false,
+     "feedbackErro": "Esse é o valor dos custos, o que a operação consumiu. O lucro é o que resta depois deles: a diferença entre entrar e gastar."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "receita-custo-lucro",
+   "dificuldade": 1,
+   "pergunta": "Um negócio fatura alto todo mês e mesmo assim vive no vermelho. O que explica isso?",
+   "ancora": "Faturamento é entrada; lucro é sobra. Custos comem a diferença.",
+   "alternativas": [
+    {
+     "texto": "Impossível: faturar alto garante lucro",
+     "correta": false,
+     "feedbackErro": "É a ilusão mais comum do empreendedor iniciante. Faturamento mede movimento, não resultado: se os custos passam da receita, o alto vira vermelho."
+    },
+    {
+     "texto": "Os custos podem crescer mais que a receita",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O banco deve estar cobrando tarifas erradas",
+     "correta": false,
+     "feedbackErro": "Tarifa é um custo entre muitos — raramente o vilão sozinho. A explicação estrutural é a soma de todos os custos ultrapassando a receita."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "receita-custo-lucro",
+   "criterio": "Aumenta o lucro?",
+   "enunciado": "Vender cada unidade por menos do que ela custa",
+   "resposta": false,
+   "ancora": "Prejuízo por unidade cresce com o volume: vender mais piora.",
+   "feedbackErro": "Vender muito dá sensação de sucesso, mas se cada venda perde dinheiro, o volume multiplica a perda. Antes de acelerar, a conta por unidade precisa fechar."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "receita-custo-lucro",
+   "instrucao": "Ordene os passos para descobrir o lucro do mês.",
+   "ancora": "Primeiro medir os dois lados; a subtração vem por último.",
+   "feedbackErro": "Sem os totais na mão, a subtração vira chute. A ordem é: somar o que entrou, somar o que saiu e só então subtrair um do outro.",
+   "itens": [
+    {
+     "texto": "Somar toda a receita do mês",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Somar todos os custos, fixos e por venda",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Subtrair os custos da receita",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "receita-custo-lucro",
+   "criterio": "É custo do negócio?",
+   "enunciado": "A embalagem usada em cada pedido",
+   "resposta": true,
+   "ancora": "Cada pedido consome uma: custo ligado direto à venda.",
+   "feedbackErro": "É pequena e passa despercebida, mas multiplicada pelos pedidos do mês vira número de verdade. Custo miúdo e frequente também entra na conta."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "receita-custo-lucro",
+   "criterio": "É custo do negócio?",
+   "enunciado": "O lanche que o dono paga para si no shopping",
+   "resposta": false,
+   "ancora": "Consumo pessoal fica na conta pessoal — sempre.",
+   "feedbackErro": "Se sai do caixa do negócio, parece custo do negócio — e é assim que o lucro some sem explicação. Despesa do dono se paga com o pró-labore, a retirada dele."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "receita-custo-lucro",
+   "pergunta": "Lanchonete: 500 lanches a R$ 12 no mês e R$ 4.800 de custos totais. Qual o lucro?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 6000,
+   "gabarito": 1200,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 500 × 12 − 4.800",
+   "verificacao": {
+    "expressao": "500*12-4800",
+    "esperado": 1200
+   },
+   "feedbackPerto": "R$ 1.200: de R$ 6.000 vendidos, 80% viram custo. A sobra é o lucro — e é dela que o negócio vive.",
+   "feedbackLonge": "R$ 1.200. O olho gruda nos R$ 6.000 da venda, mas R$ 4.800 saem em custos. Julgar pelo faturamento é o viés que engana o dono."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "sustentavel-que-da-lucro",
+   "dificuldade": 1,
+   "pergunta": "A lanchonete passou a vender o óleo usado para reciclagem. O que muda no orçamento?",
+   "ancora": "Resíduo que custava descarte virou linha de receita.",
+   "alternativas": [
+    {
+     "texto": "Nada: sustentabilidade é só imagem",
+     "correta": false,
+     "feedbackErro": "Imagem também vale, mas aqui o efeito é contábil: o descarte era custo e a venda do óleo é receita. Sustentável, nesse caso, é dinheiro entrando."
+    },
+    {
+     "texto": "Um custo de descarte virou receita nova",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Piora: separar óleo dá trabalho e não paga",
+     "correta": false,
+     "feedbackErro": "O trabalho existe, mas é pequeno diante da troca: sai um custo, entra uma receita. Quando o resíduo tem comprador, o orçamento agradece duas vezes."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "corte-inteligente",
+   "dificuldade": 1,
+   "pergunta": "Qual é o primeiro passo para aumentar o lucro de um negócio pequeno?",
+   "ancora": "Não se melhora a conta que não se mede.",
+   "alternativas": [
+    {
+     "texto": "Subir todos os preços de uma vez",
+     "correta": false,
+     "feedbackErro": "Sem medir, o aumento é tiro no escuro: pode espantar cliente e derrubar receita. Preço se ajusta depois de entender a conta, não antes."
+    },
+    {
+     "texto": "Medir receita e custos para achar onde a conta vaza",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cortar o maior custo da lista imediatamente",
+     "correta": false,
+     "feedbackErro": "O maior custo pode ser justamente o que sustenta a venda — o ponto bom, a equipe que atende. Corte sem medir ataca tamanho, não desperdício."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "corte-inteligente",
+   "criterio": "Melhora o orçamento?",
+   "enunciado": "Reduzir o desperdício de insumos na produção",
+   "resposta": true,
+   "ancora": "Desperdício é custo sem venda: cortá-lo é lucro limpo.",
+   "feedbackErro": "Parece detalhe operacional, mas é o melhor corte que existe: nada do que o cliente recebe muda, e cada real não jogado fora cai direto na sobra do mês."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "receita-custo-lucro",
+   "criterio": "Melhora o orçamento?",
+   "enunciado": "Misturar o caixa do negócio com o dinheiro pessoal",
+   "resposta": false,
+   "ancora": "Caixa misturado esconde o lucro e adia decisão certa.",
+   "feedbackErro": "No dia a dia parece prático — é um bolso só. Mas sem separar, você nunca sabe se o negócio dá lucro ou se está comendo o seu salário por dentro."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "receita-custo-lucro",
+   "pergunta": "Qual frase resume a conta do negócio?",
+   "alternativas": [
+    {
+     "texto": "Lucro é receita menos todos os custos — e melhorar começa por medir a conta.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Faturar muito é a mesma coisa que lucrar muito.",
+     "correta": false,
+     "feedbackErro": "Faturamento é entrada bruta; lucro é o que sobra depois dos custos. Negócio quebra faturando alto."
+    },
+    {
+     "texto": "Sustentabilidade no negócio é só marketing.",
+     "correta": false,
+     "feedbackErro": "O óleo reciclado virou receita e o desperdício cortado virou lucro: a conta mostra o contrário."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "receita-custo-lucro",
+   "instrucao": "De qual caixa sai cada despesa?",
+   "ancora": "Negócio paga o que gera venda; o dono paga a vida do dono.",
+   "feedbackErro": "O critério é a função, não o bolso de onde saiu: se a despesa serve à operação, é do negócio; se serve à vida pessoal, é retirada do dono.",
+   "caixas": [
+    {
+     "id": "negocio",
+     "rotulo": "Caixa do negócio"
+    },
+    {
+     "id": "pessoal",
+     "rotulo": "Caixa pessoal"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Taxa da maquininha de cartão",
+     "caixaCorreta": "negocio"
+    },
+    {
+     "texto": "Streaming da família",
+     "caixaCorreta": "pessoal"
+    },
+    {
+     "texto": "Insumo que estragou no estoque",
+     "caixaCorreta": "negocio"
+    },
+    {
+     "texto": "Presente para o primo",
+     "caixaCorreta": "pessoal"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "receita-custo-lucro",
+   "dificuldade": 1,
+   "pergunta": "Por que separar o caixa do negócio do dinheiro pessoal desde o primeiro mês?",
+   "ancora": "Só a conta separada revela se o negócio se sustenta.",
+   "alternativas": [
+    {
+     "texto": "Para saber se o negócio dá lucro de verdade",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque é exigência legal com multa",
+     "correta": false,
+     "feedbackErro": "Para negócio informal não há multa — e mesmo assim a separação vale. O motivo é gerencial: enxergar o resultado real, não atender fiscal."
+    },
+    {
+     "texto": "Para impressionar investidores no futuro",
+     "correta": false,
+     "feedbackErro": "Pode até ajudar lá na frente, mas o benefício é imediato e diário: sem separar, nem o dono sabe se a operação para em pé."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "receita-custo-lucro",
+   "pergunta": "Feira: 200 marmitas vendidas a R$ 15, com custo total de R$ 2.100. Qual o lucro?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 3000,
+   "gabarito": 900,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 200 × 15 − 2.100",
+   "verificacao": {
+    "expressao": "200*15-2100",
+    "esperado": 900
+   },
+   "feedbackPerto": "R$ 900: a receita de R$ 3.000 paga R$ 2.100 de custos antes de sobrar algo.",
+   "feedbackLonge": "R$ 900. Quem responde R$ 3.000 parou na receita: o viés de ver só o que entra. A marmita ainda precisa pagar insumo, transporte e taxa."
+  }
+ ]
+}

@@ -1,0 +1,290 @@
+{
+ "slug": "de-graca-nao-e-de-graca",
+ "segmento": "ef67",
+ "conceitoPrincipal": "de-graca-nao-e-de-graca",
+ "fraseConceito": "Nada é realmente grátis: alguém sempre paga — em dinheiro, dados ou impacto na natureza.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "criterio": "Isso é realmente grátis?",
+   "enunciado": "Um aplicativo 'gratuito' que vende os dados de quem usa",
+   "resposta": false,
+   "ancora": "Você paga com seus dados, mesmo sem tirar dinheiro do bolso.",
+   "feedbackErro": "Sem cobrar dinheiro, parece mesmo grátis. Mas o app ganha vendendo dados de quem usa — esse é o pagamento, só que diferente."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "criterio": "Isso é realmente grátis?",
+   "enunciado": "A amostra grátis de perfume oferecida na loja",
+   "resposta": false,
+   "ancora": "O custo da amostra está embutido no preço de outros produtos.",
+   "feedbackErro": "Amostra parece um presente puro. Mas o custo dela está diluído no preço do que a loja vende."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "criterio": "Isso é realmente grátis?",
+   "enunciado": "Uma informação pública, disponível pra qualquer um sem cadastro",
+   "resposta": true,
+   "ancora": "Informação pública não tem ninguém pagando por trás.",
+   "feedbackErro": "Depois de ver exemplos com pegadinha, dá pra desconfiar de tudo. Mas informação pública de verdade não tem ninguém pagando escondido."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "dificuldade": 1,
+   "pergunta": "Uma rede social não cobra nada pra usar. De onde vem o dinheiro que sustenta a empresa?",
+   "ancora": "Anúncios pagam a conta do 'gratuito' — você é o produto mostrado.",
+   "alternativas": [
+    {
+     "texto": "De anúncios pagos por empresas que querem os usuários",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não vem de lugar nenhum, é mantida de graça",
+     "correta": false,
+     "feedbackErro": "Servidor e equipe custam dinheiro de verdade — precisa vir de algum lugar."
+    },
+    {
+     "texto": "Do governo, que paga pra manter redes sociais",
+     "correta": false,
+     "feedbackErro": "Redes sociais privadas não são mantidas pelo governo — o dinheiro vem majoritariamente de anúncios."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "dificuldade": 1,
+   "pergunta": "Uma promoção anuncia 'compre 1, leve 2'. O que geralmente sustenta esse tipo de oferta?",
+   "ancora": "O preço da promoção já embute o custo do 'brinde'.",
+   "alternativas": [
+    {
+     "texto": "O preço já embutir uma margem que cobre o segundo item",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A loja está tendo prejuízo de propósito, sem motivo",
+     "correta": false,
+     "feedbackErro": "Loja não opera no prejuízo por bondade — o preço já é calculado pra cobrir os dois itens."
+    },
+    {
+     "texto": "O segundo item é sempre de qualidade pior",
+     "correta": false,
+     "feedbackErro": "Qualidade não é a explicação — o que explica é o preço calculado pra cobrir os dois."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "criterio": "Tem custo escondido na oferta 'grátis'?",
+   "enunciado": "Um cartão de fidelidade que dá pontos em cada compra",
+   "resposta": true,
+   "ancora": "O programa de pontos é pago com preço mais alto embutido nos produtos.",
+   "feedbackErro": "Pontos parecem um presente da loja. Mas o custo de gerar esses pontos entra no preço dos produtos."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "instrucao": "Isso tem um custo escondido por trás?",
+   "ancora": "Pergunte sempre: quem está pagando, se não sou eu?",
+   "feedbackErro": "Custo escondido aparece quando alguém paga por trás da cena. Bens públicos de verdade não têm esse alguém.",
+   "caixas": [
+    {
+     "id": "tem",
+     "rotulo": "Tem custo escondido"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não tem"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "App gratuito que mostra anúncios o tempo todo",
+     "caixaCorreta": "tem"
+    },
+    {
+     "texto": "Livro de domínio público disponível online",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Amostra grátis distribuída numa loja",
+     "caixaCorreta": "tem"
+    },
+    {
+     "texto": "Informação do governo sobre direitos do consumidor",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "criterio": "Isso impacta a natureza, mesmo 'barato'?",
+   "enunciado": "Uma roupa muito barata, fabricada em grande quantidade",
+   "resposta": true,
+   "ancora": "Preço baixo pode vir de produção em massa com mais impacto ambiental.",
+   "feedbackErro": "Preço baixo parece bom só pro bolso. Mas produzir muita roupa barata rápido costuma gerar mais impacto ambiental."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "dificuldade": 1,
+   "pergunta": "Enzo baixou um jogo 'grátis' que depois cobra pra continuar jogando sem interrupção. Que estratégia é essa?",
+   "ancora": "Grátis no começo, pago depois de criar hábito: modelo comum.",
+   "alternativas": [
+    {
+     "texto": "Atrair de graça, depois cobrar pra manter o interesse",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Um erro do aplicativo que será corrigido",
+     "correta": false,
+     "feedbackErro": "Não é erro — é um modelo de negócio comum: atrair grátis, cobrar depois de criar o hábito."
+    },
+    {
+     "texto": "Uma obrigação legal de todo aplicativo",
+     "correta": false,
+     "feedbackErro": "Não existe essa obrigação — é uma escolha da empresa pra transformar interesse em pagamento."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "criterio": "Isso é um custo psicológico da promoção?",
+   "enunciado": "A pressa de decidir porque a oferta 'acaba em 10 minutos'",
+   "resposta": true,
+   "ancora": "Pressão de tempo é usada pra você decidir sem pensar direito.",
+   "feedbackErro": "Parece só uma informação sobre prazo. Mas o cronômetro é desenhado pra apressar a decisão."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "criterio": "Isso ajuda a achar oferta 'grátis'?",
+   "enunciado": "Perguntar 'quem está pagando por isso, se não sou eu?'",
+   "resposta": true,
+   "ancora": "Essa pergunta simples revela quase todo custo escondido.",
+   "feedbackErro": "Parece pergunta boba demais pra funcionar. Mas ela obriga a procurar quem sustenta a oferta."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "pergunta": "Qual frase resume por que 'de graça' quase nunca é de graça?",
+   "alternativas": [
+    {
+     "texto": "Alguém sempre paga: em dinheiro, dados, atenção ou impacto ambiental",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só promoções com desconto em dinheiro têm custo escondido",
+     "correta": false,
+     "feedbackErro": "Custo escondido aparece até sem desconto em dinheiro — dados e atenção também são pagamento."
+    },
+    {
+     "texto": "Ofertas gratuitas são sempre um golpe",
+     "correta": false,
+     "feedbackErro": "Nem toda oferta grátis é golpe — bens públicos de verdade existem."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "instrucao": "Alguém paga escondido por isso?",
+   "ancora": "Anúncio ao redor geralmente denuncia quem está pagando a conta.",
+   "feedbackErro": "Anúncio por perto é sinal de que alguém pagou pra estar ali — e você é quem vê.",
+   "caixas": [
+    {
+     "id": "sim",
+     "rotulo": "Sim"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Wi-fi grátis num shopping cheio de anúncios",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Playlist de música com licença livre, sem anúncio",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Revista distribuída de graça, cheia de publicidade",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Manual técnico de domínio público",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "instrucao": "Ordene do custo mais visível pro mais escondido.",
+   "ancora": "Quanto menos dinheiro sai do bolso, mais escondido fica o pagamento.",
+   "feedbackErro": "O custo não desaparece quando o preço cai a zero — ele só fica mais difícil de enxergar.",
+   "itens": [
+    {
+     "texto": "Pagar o preço cheio, sem promoção",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Pagar com desconto, mas cadastro obrigatório",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Usar de graça, mas ver anúncios o tempo todo",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "pergunta": "Uma calça custa R$ 60 em produção de massa. Reduzindo a produção pela metade, o custo por peça dobra. Qual o novo custo?",
+   "campo": "moeda",
+   "min": 60,
+   "max": 200,
+   "gabarito": 120,
+   "toleranciaPct": 20,
+   "fonte": "dobro do custo por peça ao reduzir a produção em massa",
+   "feedbackPerto": "Isso mesmo — dobrar o cuidado por peça também dobra o custo dela, R$ 120.",
+   "feedbackLonge": "R$ 120: se o custo por peça dobra, multiplique o valor original por 2.",
+   "verificacao": {
+    "expressao": "60*2",
+    "esperado": 120
+   }
+  }
+ ]
+}

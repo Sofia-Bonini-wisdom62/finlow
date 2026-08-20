@@ -1,0 +1,342 @@
+{
+ "slug": "golpe-nao-e-azar-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "golpe-nao-e-azar",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "padrao-do-golpe",
+   "criterio": "É golpe, mesmo parecendo legítimo?",
+   "enunciado": "Uma cobrança judicial real, com prazo de 15 dias úteis",
+   "resposta": false,
+   "ancora": "Prazo formal de dias é processo real; minutos é golpe.",
+   "feedbackErro": "Cobrança judicial assusta pelo peso da palavra 'processo'. Mas prazo de dias úteis, formal e documentado, é como cobrança real funciona."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "protecao-de-dados",
+   "criterio": "É golpe, mesmo parecendo legítimo?",
+   "enunciado": "Um caixa eletrônico pedindo pra reinserir a senha após um erro",
+   "resposta": false,
+   "ancora": "Reinserir senha no próprio caixa é comportamento normal do sistema.",
+   "feedbackErro": "Pedir a senha de novo soa suspeito à primeira vista. Mas fazer isso no próprio caixa eletrônico, após erro, é falha comum do sistema."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "padrao-do-golpe",
+   "criterio": "É golpe, mesmo parecendo legítimo?",
+   "enunciado": "Um 'gerente' chamando no WhatsApp pessoal, fora do canal oficial",
+   "resposta": true,
+   "ancora": "Banco fala pelos canais oficiais, não pelo WhatsApp pessoal de alguém.",
+   "feedbackErro": "Ele sabe seu nome e fala como se já te conhecesse, e isso convence. Mas banco de verdade não atende por WhatsApp pessoal de funcionário."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "padrao-do-golpe",
+   "dificuldade": 3,
+   "pergunta": "Golpe de acesso remoto fez a vítima autorizar 2 Pix de R$ 250, em 3 dias seguidos. Quanto saiu no total?",
+   "ancora": "2 Pix por dia, 3 dias: 2 × 250 × 3 = R$ 1.500.",
+   "verificacao": {
+    "expressao": "250*2*3",
+    "esperado": 1500
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 500",
+     "correta": false,
+     "feedbackErro": "R$ 500 seria só um dia (2 × 250). Foram 3 dias seguidos: 2 × 250 × 3 = R$ 1.500."
+    },
+    {
+     "texto": "R$ 750",
+     "correta": false,
+     "feedbackErro": "R$ 750 ignora que são 2 Pix por dia. O certo é 2 × 250 × 3 dias = R$ 1.500."
+    },
+    {
+     "texto": "R$ 1.500",
+     "correta": true,
+     "feedbackErro": null
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "protecao-de-dados",
+   "dificuldade": 3,
+   "pergunta": "Em qual situação pedir confirmação por outro canal NÃO é necessário?",
+   "ancora": "Se você iniciou o contato pelo canal oficial, não há o que confirmar.",
+   "alternativas": [
+    {
+     "texto": "Quando você iniciou o contato pelo número oficial salvo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando quem liga se identifica com nome e cargo",
+     "correta": false,
+     "feedbackErro": "Nome e cargo são fáceis de inventar — isso sozinho não substitui confirmar por canal oficial."
+    },
+    {
+     "texto": "Quando a ligação parece urgente e importante",
+     "correta": false,
+     "feedbackErro": "Urgência é justamente o que mais pede confirmação por outro canal, não o contrário."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "padrao-do-golpe",
+   "criterio": "É golpe, mesmo parecendo legítimo?",
+   "enunciado": "Um desconto real de loja, com regulamento e CNPJ visíveis",
+   "resposta": false,
+   "ancora": "Regulamento e CNPJ checáveis são sinal de oferta real.",
+   "feedbackErro": "Desconto grande sempre levanta desconfiança primeiro. Mas regulamento claro e CNPJ visível são justamente o que falta no golpe."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "padrao-do-golpe",
+   "instrucao": "Isso ainda é golpe, mesmo com aparência legítima? Arraste.",
+   "ancora": "Legítimo mostra como checar; golpe evita qualquer canal oficial.",
+   "feedbackErro": "Processo com prazo formal e empresa com CNPJ dão o que checar; contato só pelo pessoal e pedido de instalar app fogem do canal oficial.",
+   "caixas": [
+    {
+     "id": "golpe",
+     "rotulo": "É golpe"
+    },
+    {
+     "id": "legitimo",
+     "rotulo": "É legítimo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Cobrança judicial com prazo de dias e nº do processo",
+     "caixaCorreta": "legitimo"
+    },
+    {
+     "texto": "'Gerente' que só fala pelo WhatsApp pessoal",
+     "caixaCorreta": "golpe"
+    },
+    {
+     "texto": "Loja com CNPJ, regulamento e telefone de atendimento",
+     "caixaCorreta": "legitimo"
+    },
+    {
+     "texto": "Suporte pedindo pra instalar app de acesso remoto",
+     "caixaCorreta": "golpe"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "protecao-de-dados",
+   "criterio": "É caso-limite de golpe?",
+   "enunciado": "Vendedor de loja física pedindo dados pra emitir a nota fiscal",
+   "resposta": false,
+   "ancora": "Nota fiscal exige dado básico — isso é rotina de venda comum.",
+   "feedbackErro": "Pedir dado sempre gera um pé atrás. Mas nome e CPF pra nota fiscal, numa compra presencial, é exigência fiscal normal."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "protecao-de-dados",
+   "criterio": "É caso-limite de golpe?",
+   "enunciado": "'Vendedor' pedindo o código do cartão por fora do totem de pagamento",
+   "resposta": true,
+   "ancora": "Pagamento real passa pelo totem — pedir código à parte é fraude.",
+   "feedbackErro": "Parece só um jeito de 'agilizar' o pagamento. Mas o código do cartão só deve passar pelo totem — pedir fora dele é fraude."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "padrao-do-golpe",
+   "pergunta": "Convênio falso cobrou R$ 65 de 'adesão' de 6 pessoas da família. Quanto arrecadou?",
+   "campo": "moeda",
+   "min": 100,
+   "max": 2000,
+   "gabarito": 390,
+   "toleranciaPct": 20,
+   "fonte": "cálculo simples sobre o valor coletado do golpe",
+   "verificacao": {
+    "expressao": "65*6",
+    "esperado": 390
+   },
+   "feedbackPerto": "Isso mesmo — R$ 390. Atingir várias pessoas da mesma família multiplica o ganho do golpista.",
+   "feedbackLonge": "Dá R$ 390. Um valor pequeno por pessoa vira relevante quando o golpe atinge a família toda de uma vez."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "padrao-do-golpe",
+   "dificuldade": 3,
+   "pergunta": "Alguém reconhece o padrão de golpe, mas quase caiu por cansaço, no fim do dia. O que isso ensina?",
+   "ancora": "Golpe explora justamente os momentos de menos atenção.",
+   "alternativas": [
+    {
+     "texto": "Reconhecer o padrão exige atenção mesmo cansado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que reconhecer o padrão só funciona de manhã, descansado",
+     "correta": false,
+     "feedbackErro": "O padrão vale em qualquer horário — o risco maior é justamente relaxar a atenção quando se está cansado."
+    },
+    {
+     "texto": "Que cansaço não tem nenhuma relação com cair em golpe",
+     "correta": false,
+     "feedbackErro": "Tem relação direta: cansaço reduz a atenção, e é exatamente esse momento que o golpe explora."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "protecao-de-dados",
+   "dificuldade": 3,
+   "pergunta": "Em qual situação compartilhar o CPF é necessário e seguro?",
+   "ancora": "Cadastro oficial, em canal identificado, iniciado por você, é seguro.",
+   "alternativas": [
+    {
+     "texto": "Cadastro oficial, em canal identificado, por você iniciado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sempre que alguém pedir, pra evitar parecer desconfiado",
+     "correta": false,
+     "feedbackErro": "Parecer desconfiado é bem menos custoso do que entregar CPF pra quem pediu sem motivo claro."
+    },
+    {
+     "texto": "Nunca, em nenhuma hipótese, é seguro compartilhar o CPF",
+     "correta": false,
+     "feedbackErro": "CPF é necessário em cadastros reais — o cuidado é com quem pede e por qual canal, não a proibição total."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "padrao-do-golpe",
+   "criterio": "É golpe, mesmo parecendo legítimo?",
+   "enunciado": "Uma promoção de loja pedindo e-mail pra cupom, sem pedir senha",
+   "resposta": false,
+   "ancora": "Pedir e-mail pra cupom, sem senha nem dado sensível, é comum.",
+   "feedbackErro": "Pedir dado sempre gera desconfiança automática. Mas e-mail pra cupom, sem senha nem dado sensível, é prática comercial comum."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "protecao-de-dados",
+   "criterio": "É caso-limite de golpe?",
+   "enunciado": "App pedindo confirmação por biometria antes de qualquer transferência",
+   "resposta": false,
+   "ancora": "Biometria antes de transferir é camada extra de segurança real.",
+   "feedbackErro": "Pedir biometria toda hora pode incomodar no uso diário. Mas essa confirmação extra protege exatamente contra transferência não autorizada."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "padrao-do-golpe",
+   "pergunta": "Qual frase resume a lição de hoje?",
+   "ancora": "A aparência muda; o pedido por trás do golpe se repete sempre.",
+   "alternativas": [
+    {
+     "texto": "Se a aparência é profissional, não pode ser golpe.",
+     "correta": false,
+     "feedbackErro": "Aparência profissional não garante nada — o padrão está no pedido, não na aparência."
+    },
+    {
+     "texto": "O padrão se repete mesmo quando a aparência muda — atenção ao pedido.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só é golpe quando pedem dinheiro na hora.",
+     "correta": false,
+     "feedbackErro": "Pedido de dado sensível, sem pedir dinheiro na hora, também é golpe em andamento."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "protecao-de-dados",
+   "instrucao": "É pedido de dado seguro? Arraste.",
+   "ancora": "Seguro é o pedido proporcional, feito por canal que você escolheu.",
+   "feedbackErro": "Pedir CPF pra nota fiscal presencial é proporcional; pedir senha ou código por mensagem nunca é seguro.",
+   "caixas": [
+    {
+     "id": "seguro",
+     "rotulo": "Seguro"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "CPF pedido na nota fiscal de uma compra presencial",
+     "caixaCorreta": "seguro"
+    },
+    {
+     "texto": "Senha pedida por mensagem de texto",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Biometria pedida antes de uma transferência",
+     "caixaCorreta": "seguro"
+    },
+    {
+     "texto": "Código do cartão pedido fora do totem de pagamento",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "padrao-do-golpe",
+   "dificuldade": 3,
+   "pergunta": "Uma cobrança de condomínio muda o número da conta de repente, sem aviso formal por escrito. O que fazer?",
+   "ancora": "Mudar a conta sem aviso formal exige confirmar com o síndico.",
+   "alternativas": [
+    {
+     "texto": "Confirmar a mudança direto com o síndico, por outro canal",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pagar na nova conta, já que o valor cobrado é o mesmo",
+     "correta": false,
+     "feedbackErro": "O valor igual não garante nada — trocar a conta de destino é justamente o golpe do boleto adulterado."
+    },
+    {
+     "texto": "Ignorar a cobrança até o mês seguinte",
+     "correta": false,
+     "feedbackErro": "Ignorar pode gerar atraso real — o certo é confirmar a mudança, não deixar de pagar."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "padrao-do-golpe",
+   "criterio": "É golpe, mesmo parecendo legítimo?",
+   "enunciado": "Um anúncio de emprego que detalha função, salário e local antes de qualquer contato",
+   "resposta": false,
+   "ancora": "Detalhes claros antes do contato são sinal de processo real.",
+   "feedbackErro": "Detalhar tanto antes de falar com ninguém pode soar exagerado. Mas transparência logo no anúncio é o oposto do golpe, que some com detalhes."
+  }
+ ]
+}

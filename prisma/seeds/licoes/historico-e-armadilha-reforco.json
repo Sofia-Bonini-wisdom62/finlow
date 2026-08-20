@@ -1,0 +1,271 @@
+{
+ "slug": "historico-e-armadilha-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "historico-e-armadilha",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cadastro-positivo",
+   "criterio": "Lembra: isso entra no cadastro?",
+   "enunciado": "Quitar um financiamento de celular em 10 parcelas, todas em dia",
+   "resposta": true,
+   "ancora": "Cada parcela paga em dia soma ao histórico positivo registrado.",
+   "feedbackErro": "Pode parecer que só contas de consumo (água, luz) entram no histórico, mas qualquer pagamento parcelado registrado, como um financiamento, também conta."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cadastro-positivo",
+   "criterio": "Lembra: isso entra no cadastro?",
+   "enunciado": "O número de vezes que a pessoa trocou de operadora de celular",
+   "resposta": false,
+   "ancora": "Trocar de operadora não tem relação com pagamento.",
+   "feedbackErro": "Trocar de operadora é uma decisão de serviço, sem relação com pagamento de dívida — não é isso que o cadastro positivo registra."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cadastro-positivo",
+   "criterio": "Lembra: isso entra no cadastro?",
+   "enunciado": "Um empréstimo consignado pago rigorosamente em dia por 2 anos",
+   "resposta": true,
+   "ancora": "Longo histórico em dia reforça o cadastro positivo.",
+   "feedbackErro": "Dois anos de pagamento em dia formam um histórico consistente — é justamente esse tipo de comportamento que o cadastro positivo existe pra registrar."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "cadastro-positivo",
+   "dificuldade": 2,
+   "pergunta": "Alguém pagou um financiamento em dia por 2 anos, mas atrasou uma fatura há 6 meses. O que isso significa pro histórico?",
+   "ancora": "O cadastro registra o conjunto: o atraso não some, nem apaga o resto.",
+   "alternativas": [
+    {
+     "texto": "O histórico fica todo negativo, apagando os 2 anos em dia",
+     "correta": false,
+     "feedbackErro": "Um atraso isolado não apaga o histórico bom acumulado — o cadastro registra o conjunto, não zera tudo por causa de um evento."
+    },
+    {
+     "texto": "Registra o padrão bom predominante e o atraso pontual",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O atraso não conta, é produto diferente do financiamento",
+     "correta": false,
+     "feedbackErro": "Todo tipo de pagamento em atraso entra no histórico, seja cartão, financiamento ou conta — o cadastro não separa por produto pra ignorar atraso."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "armadilha-publicitaria",
+   "dificuldade": 2,
+   "pergunta": "Um anúncio de 'frete grátis' tem preço maior que o de outras lojas com frete pago. O que isso revela?",
+   "ancora": "Grátis num lugar, mais caro no total: custo embutido em outro ponto.",
+   "alternativas": [
+    {
+     "texto": "Que o frete grátis sempre compensa, não importa o preço",
+     "correta": false,
+     "feedbackErro": "Frete grátis não é vantagem garantida — se o preço do produto embute esse custo e ainda fica mais caro que a concorrência, a 'vantagem' é só aparente."
+    },
+    {
+     "texto": "Que o custo do frete pode estar embutido no preço",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que frete grátis é sempre proibido por lei em outras lojas",
+     "correta": false,
+     "feedbackErro": "Não existe essa proibição — frete pago é uma opção normal de venda. O ponto é comparar o preço total, não o rótulo 'grátis'."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "cadastro-positivo",
+   "criterio": "Reduz o risco visto pelo banco?",
+   "enunciado": "Um histórico de 3 anos sem nenhum atraso registrado",
+   "resposta": true,
+   "ancora": "Anos sem atraso reduzem o risco percebido pelo banco.",
+   "feedbackErro": "Pode parecer que só o valor da renda importa na análise, mas um histórico longo sem atraso pesa bastante na redução do risco visto pelo banco."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "armadilha-publicitaria",
+   "instrucao": "Isso é sinal de urgência real, ou de pressão artificial pra vender?",
+   "ancora": "Urgência real tem limite concreto; artificial é repetida à toa.",
+   "feedbackErro": "O critério é se existe mesmo um limite físico ou de tempo, ou se é só uma frase repetida pra fazer parecer urgente.",
+   "caixas": [
+    {
+     "id": "real",
+     "rotulo": "Urgência real"
+    },
+    {
+     "id": "artificial",
+     "rotulo": "Pressão artificial"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Promoção que muda de preço a cada minuto na tela",
+     "caixaCorreta": "artificial"
+    },
+    {
+     "texto": "Um produto perecível que vence em 2 dias",
+     "caixaCorreta": "real"
+    },
+    {
+     "texto": "'Última chance', repetido em todo anúncio da loja",
+     "caixaCorreta": "artificial"
+    },
+    {
+     "texto": "Vaga limitada num curso presencial com número de cadeiras físicas",
+     "caixaCorreta": "real"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "armadilha-publicitaria",
+   "criterio": "Ajuda a identificar armadilha?",
+   "enunciado": "Procurar a mesma marca e modelo em pelo menos duas lojas antes de comprar",
+   "resposta": true,
+   "ancora": "Comparar em outra loja revela se o preço é competitivo.",
+   "feedbackErro": "Pode parecer um passo chato e demorado, mas é justamente comparar em outra loja que revela se o preço anunciado é bom de verdade."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "cadastro-positivo",
+   "dificuldade": 2,
+   "pergunta": "Banco cobra 1,8% pra bom histórico e 3,4% pra atrasos. Em R$5.000 por 1 mês, qual a diferença de juros?",
+   "ancora": "5.000×3,4% − 5.000×1,8% = R$170 − R$90 = R$80 de diferença no mês.",
+   "verificacao": {
+    "expressao": "5000*0.034 - 5000*0.018",
+    "esperado": 80
+   },
+   "alternativas": [
+    {
+     "texto": "R$80",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$16",
+     "correta": false,
+     "feedbackErro": "Esse valor é só uma das duas taxas aplicadas isoladamente, sem comparar as duas."
+    },
+    {
+     "texto": "R$260",
+     "correta": false,
+     "feedbackErro": "Esse valor soma as duas taxas em vez de calcular a diferença entre elas."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "armadilha-publicitaria",
+   "criterio": "Comparar preços evita a armadilha?",
+   "enunciado": "Pesquisar o preço do mesmo produto em 3 lojas antes de comprar por impulso",
+   "resposta": true,
+   "ancora": "Pesquisar antes revela se a oferta é melhor de verdade.",
+   "feedbackErro": "Pode parecer perda de tempo diante de uma promoção chamativa, mas pesquisar antes é exatamente o que revela se o preço é bom ou só parece bom."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "cadastro-positivo",
+   "criterio": "Mostra o cadastro no crédito?",
+   "enunciado": "Uma taxa de juros mais baixa oferecida por causa do histórico de pagamentos em dia",
+   "resposta": true,
+   "ancora": "Taxa menor por bom histórico é o cadastro em ação.",
+   "feedbackErro": "Pode parecer que a taxa foi só sorte ou negociação, mas é o histórico de pagamento em dia que costuma pesar diretamente nessa taxa oferecida."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "cadastro-positivo",
+   "pergunta": "Qual frase captura melhor esses exemplos?",
+   "alternativas": [
+    {
+     "texto": "Histórico pesa na taxa; 'grátis' merece comparação antes de acreditar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Um único atraso apaga anos de bom histórico no cadastro",
+     "correta": false,
+     "feedbackErro": "Um atraso pontual entra no registro, mas não apaga anos de histórico bom — o cadastro guarda o conjunto todo."
+    },
+    {
+     "texto": "Toda promoção com prazo é uma pressão artificial, sem exceção",
+     "correta": false,
+     "feedbackErro": "Existem casos de urgência real, como estoque físico limitado — nem toda pressa anunciada é artificial, mas vale sempre checar."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "cadastro-positivo",
+   "pergunta": "Empréstimo de R$3.000: 2% ao mês pra bom histórico, 3,5% pra quem tem atrasos. Qual a diferença de juros no mês?",
+   "campo": "moeda",
+   "min": 20,
+   "max": 80,
+   "gabarito": 45,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto sobre as duas taxas informadas",
+   "verificacao": {
+    "expressao": "3000*0.035 - 3000*0.02",
+    "esperado": 45
+   },
+   "feedbackPerto": "Isso mesmo: 3.000×3,5% − 3.000×2% = R$105 − R$60 = R$45 de diferença no mês.",
+   "feedbackLonge": "A diferença é R$45. É fácil errar somando as duas taxas aplicadas, em vez de calcular a diferença entre elas."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "armadilha-publicitaria",
+   "instrucao": "Ordene do sinal menos suspeito de armadilha ao mais suspeito.",
+   "ancora": "Quanto mais a peça esconde ou apressa, mais suspeita ela fica.",
+   "feedbackErro": "O critério é o quanto a peça publicitária tenta esconder o preço real ou forçar uma decisão rápida sem base real.",
+   "itens": [
+    {
+     "texto": "Preço total e parcelado mostrados lado a lado",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Desconto real, comparável com o preço de outras lojas",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Contador regressivo genérico, sem limite real de estoque",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Frase 'só hoje' repetida todo santo dia na mesma loja",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "cadastro-positivo",
+   "criterio": "É consequência positiva do histórico?",
+   "enunciado": "Conseguir aumentar o limite do cartão sem pedir, por bom comportamento de pagamento",
+   "resposta": true,
+   "ancora": "Bancos recompensam bom histórico com limite maior.",
+   "feedbackErro": "Pode parecer aleatório receber um limite maior sem pedir, mas é comum bancos ajustarem isso automaticamente pra quem tem histórico de pagamento consistente."
+  }
+ ]
+}

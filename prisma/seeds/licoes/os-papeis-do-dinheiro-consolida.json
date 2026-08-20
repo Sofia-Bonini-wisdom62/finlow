@@ -1,0 +1,250 @@
+{
+ "slug": "os-papeis-do-dinheiro-consolida",
+ "segmento": "ef35",
+ "conceitoPrincipal": "os-papeis-do-dinheiro",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "tipo-de-documento",
+   "criterio": "Ainda é comprovante válido?",
+   "enunciado": "Um recibo escrito à mão, assinado, mas sem carimbo de loja",
+   "resposta": true,
+   "ancora": "Assinatura já vale como comprovante — carimbo não é obrigatório.",
+   "feedbackErro": "Parece que falta algo oficial sem o carimbo. Mas a assinatura de quem recebeu já torna o recibo válido como comprovante."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "info-no-documento",
+   "criterio": "Essa informação ainda conta?",
+   "enunciado": "O valor original do boleto, sem a multa por atraso",
+   "resposta": true,
+   "ancora": "O boleto sempre mostra o valor original, além da multa somada depois.",
+   "feedbackErro": "Parece que só o valor com multa é o que importa. Mas o boleto continua mostrando o valor original, separado da multa por atraso."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "tipo-de-documento",
+   "criterio": "Ainda é fatura, mesmo zerada?",
+   "enunciado": "A fatura do mês em que você não usou o cartão nenhuma vez",
+   "resposta": true,
+   "ancora": "Fatura existe mesmo sem compras — só que com valor zero.",
+   "feedbackErro": "Parece que sem compra não existe fatura. Mas ela é gerada todo mês do mesmo jeito, só que com o valor zerado."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "tipo-de-documento",
+   "dificuldade": 3,
+   "pergunta": "Você pagou um boleto, mas o comprovante do banco sumiu. O que ainda prova o pagamento?",
+   "ancora": "Sem o comprovante, o extrato da conta ainda mostra a saída do valor.",
+   "alternativas": [
+    {
+     "texto": "O extrato da conta, mostrando a saída do valor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada mais prova, sem o comprovante original",
+     "correta": false,
+     "feedbackErro": "O comprovante ajuda, mas não é a única prova. O extrato da conta, mostrando a saída do valor no dia certo, também serve."
+    },
+    {
+     "texto": "O próprio boleto, do jeito que chegou antes de pagar",
+     "correta": false,
+     "feedbackErro": "O boleto original mostra só o pedido de pagamento, sem indicar se foi pago. Quem mostra o pagamento é o extrato da conta."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "info-no-documento",
+   "dificuldade": 3,
+   "pergunta": "Um boleto pago com 5 dias de atraso mostra multa e mora somadas ao valor. Qual informação NÃO muda com o atraso?",
+   "ancora": "O valor original é fixo; total e mora mudam conforme o atraso.",
+   "alternativas": [
+    {
+     "texto": "O valor original do boleto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O total a pagar",
+     "correta": false,
+     "feedbackErro": "O total muda sim, porque soma multa e mora ao valor original quando há atraso."
+    },
+    {
+     "texto": "O valor da mora acumulada",
+     "correta": false,
+     "feedbackErro": "A mora muda com o atraso — ela cresce a cada dia que passa do vencimento."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "tipo-de-documento",
+   "criterio": "Ainda vale como promissória?",
+   "enunciado": "Uma promessa de pagamento assinada, sem mencionar juros por atraso",
+   "resposta": true,
+   "ancora": "Nota promissória vale pela promessa assinada; juros são opcionais.",
+   "feedbackErro": "Parece incompleta sem falar de juros. Mas o que torna o documento válido é a promessa assinada, com valor e data — juros são um detalhe à parte."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "info-no-documento",
+   "instrucao": "Muda com o atraso ou é sempre o mesmo? Arraste.",
+   "ancora": "O que descreve o boleto não muda; o que soma com o tempo, muda.",
+   "feedbackErro": "Tudo parece ligado ao valor final, e por isso confunde. O que não muda descreve o boleto original; o que muda é o que se acumula com o atraso.",
+   "caixas": [
+    { "id": "muda", "rotulo": "Muda com atraso" },
+    { "id": "mesmo", "rotulo": "Sempre o mesmo" }
+   ],
+   "itens": [
+    { "texto": "Valor original do boleto", "caixaCorreta": "mesmo" },
+    { "texto": "Total a pagar, com multa e mora", "caixaCorreta": "muda" },
+    { "texto": "Nome de quem emitiu o boleto", "caixaCorreta": "mesmo" },
+    { "texto": "Valor da mora acumulada", "caixaCorreta": "muda" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "info-no-documento",
+   "criterio": "Ainda importa, mesmo zerada?",
+   "enunciado": "A data de vencimento, mesmo numa fatura sem nenhuma compra",
+   "resposta": true,
+   "ancora": "A data de vencimento aparece sempre, mesmo sem valor a pagar.",
+   "feedbackErro": "Parece dispensável numa fatura zerada. Mas a data de vencimento continua sendo informada, mesmo quando não há nada pra pagar."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "tipo-de-documento",
+   "dificuldade": 3,
+   "pergunta": "Um boleto de R$ 120 venceu há 10 dias. Multa de R$ 2,40 (2%) e mora de R$ 0,40 por dia. Quanto fica o total?",
+   "ancora": "120 + 2,40 de multa + 4,00 de mora (10 dias) é 126,40.",
+   "verificacao": { "expressao": "120 + 2.40 + 0.40*10", "esperado": 126.4 },
+   "alternativas": [
+    {
+     "texto": "R$ 126,40",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 124,40",
+     "correta": false,
+     "feedbackErro": "Esse valor esqueceu a multa fixa de R$ 2,40. Somando multa e os 10 dias de mora (R$ 4), o total fica em 126,40."
+    },
+    {
+     "texto": "R$ 122,40",
+     "correta": false,
+     "feedbackErro": "Esse valor conta só a multa, sem os 10 dias de mora. Somando os R$ 4 de mora, o total sobe pra 126,40."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "info-no-documento",
+   "criterio": "Ainda ajuda, comparando meses?",
+   "enunciado": "Comparar o total da fatura deste mês com o do mês passado, mesmo os dois parecendo iguais",
+   "resposta": true,
+   "ancora": "Valores parecidos podem esconder uma cobrança indevida.",
+   "feedbackErro": "Parece desnecessário comparar quando os totais são parecidos. Mas uma cobrança indevida pode se disfarçar com um valor próximo do normal."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "tipo-de-documento",
+   "criterio": "Ainda ajuda, com vários documentos?",
+   "enunciado": "Guardar recibo, cupom e extrato juntos, organizados por mês",
+   "resposta": true,
+   "ancora": "Organizar por mês facilita cruzar as informações depois.",
+   "feedbackErro": "Parece trabalho grande demais pra manter. Mas organizar por mês é o que facilita cruzar recibo, cupom e extrato quando precisar conferir algo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "tipo-de-documento",
+   "pergunta": "Qual frase resume os três encontros sobre os papéis do dinheiro?",
+   "alternativas": [
+    {
+     "texto": "Cada documento guarda sua função certa, mesmo em casos difíceis",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sem o comprovante original, nada mais prova um pagamento",
+     "correta": false,
+     "feedbackErro": "O extrato da conta também prova pagamento, mostrando a saída do valor, mesmo sem o comprovante original."
+    },
+    {
+     "texto": "Boleto atrasado muda até o valor original registrado nele",
+     "correta": false,
+     "feedbackErro": "O valor original não muda com o atraso — o que muda é o total, que soma multa e mora ao valor original fixo."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "info-no-documento",
+   "dificuldade": 3,
+   "pergunta": "Um boleto de R$ 200 venceu há 4 dias. Multa de R$ 4 (2%) e mora de R$ 0,50 por dia. Total a pagar?",
+   "ancora": "200 + 4 de multa + 2,00 de mora (4 dias) é 206.",
+   "verificacao": { "expressao": "200 + 4 + 0.50*4", "esperado": 206 },
+   "alternativas": [
+    {
+     "texto": "R$ 206",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 204",
+     "correta": false,
+     "feedbackErro": "Esse valor esqueceu os 4 dias de mora. Somando multa (4) e mora (2), o total fica em 206."
+    },
+    {
+     "texto": "R$ 210",
+     "correta": false,
+     "feedbackErro": "Esse valor soma mora a mais do que os 4 dias reais. Multa de 4 mais mora de 2 (0,50 x 4 dias) dá 206."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "tipo-de-documento",
+   "criterio": "Ainda prova o pagamento?",
+   "enunciado": "Um print da tela do banco mostrando o pagamento feito",
+   "resposta": true,
+   "ancora": "Registro digital do banco também serve como comprovante.",
+   "feedbackErro": "Parece que só o papel físico vale como prova. Mas um registro digital do próprio banco, mostrando o pagamento, também serve como comprovante."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "info-no-documento",
+   "instrucao": "Essa informação é fixa ou muda com o tempo? Arraste.",
+   "ancora": "O que descreve o documento é fixo; o que se acumula, muda.",
+   "feedbackErro": "Tudo envolve valores, e por isso parece igual. O que descreve o documento original é fixo; o que se soma com o atraso é o que muda.",
+   "caixas": [
+    { "id": "fixa", "rotulo": "Fixa" },
+    { "id": "muda", "rotulo": "Muda com o tempo" }
+   ],
+   "itens": [
+    { "texto": "Valor original do boleto", "caixaCorreta": "fixa" },
+    { "texto": "Mora acumulada por atraso", "caixaCorreta": "muda" },
+    { "texto": "Nome de quem emitiu o documento", "caixaCorreta": "fixa" },
+    { "texto": "Total a pagar, somando encargos", "caixaCorreta": "muda" }
+   ]
+  }
+ ]
+}

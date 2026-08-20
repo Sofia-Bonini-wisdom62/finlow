@@ -1,0 +1,340 @@
+{
+ "slug": "atrasou-e-agora-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "atrasou-e-agora",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "consequencias-do-atraso",
+   "criterio": "Isso é consequência real do atraso?",
+   "enunciado": "Perder a chance de parcelar compras em outras lojas",
+   "resposta": true,
+   "ancora": "Nome negativado costuma travar crédito e parcelamento em geral.",
+   "feedbackErro": "Parece exagero ligar uma conta em atraso a outra loja qualquer. Mas o cadastro negativo é consultado por muitas empresas — travar crédito é efeito comum."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "estrategias-de-saida",
+   "criterio": "Ajuda a sair da dívida?",
+   "enunciado": "Somar todas as dívidas antes de decidir qualquer coisa",
+   "resposta": true,
+   "ancora": "Ver o total real evita decisões erradas por falta de informação.",
+   "feedbackErro": "Somar tudo pode parecer só piorar o susto. Mas decidir sem saber o total real é o que mais leva a escolher errado o que pagar primeiro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "endividamento-vira-problema",
+   "criterio": "É sinal de problema maior?",
+   "enunciado": "Não conseguir dormir direito por causa das contas em atraso",
+   "resposta": true,
+   "ancora": "Impacto na saúde e no sono é sinal de que a dívida passou do razoável.",
+   "feedbackErro": "Parece só uma reação emocional passageira, sem relação com o valor da dívida. Mas o impacto na saúde e no sono é um sinal real de que o problema já é maior."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "consequencias-do-atraso",
+   "dificuldade": 2,
+   "pergunta": "Uma dívida de R$ 1.000 fica 3 meses sem pagamento, com multa de 2% e mora de 1,5% ao mês. Quanto ela soma?",
+   "ancora": "1.000×1,02 + 1.000×0,015×3 = 1.020+45 = 1.065.",
+   "alternativas": [
+    {
+     "texto": "R$ 1.065",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 1.045",
+     "correta": false,
+     "feedbackErro": "Você esqueceu a multa de 2%. Ela entra uma vez (R$ 20), e a mora de 1,5% por 3 meses soma outros R$ 45."
+    },
+    {
+     "texto": "R$ 1.150",
+     "correta": false,
+     "feedbackErro": "Esse valor cobraria a multa de 2% todos os meses. Multa é uma vez só; o que se repete é a mora de 1,5%."
+    }
+   ],
+   "verificacao": {
+    "expressao": "1000*1.02 + 1000*0.015*3",
+    "esperado": 1065
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "estrategias-de-saida",
+   "dificuldade": 2,
+   "pergunta": "Alguém tem R$ 3.000 em dívidas e R$ 300 sobrando no mês. O que rende mais no longo prazo?",
+   "ancora": "Focar a menor dívida elimina uma cobrança e libera fôlego mais rápido.",
+   "alternativas": [
+    {
+     "texto": "Focar a dívida mais cara ou menor primeiro, e não espalhar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Dividir os R$ 300 em partes iguais entre todas as dívidas",
+     "correta": false,
+     "feedbackErro": "Dividir em partes iguais parece justo, mas espalha o pouco dinheiro sem quitar nenhuma cobrança inteira — nenhuma dívida some da lista."
+    },
+    {
+     "texto": "Guardar os R$ 300 até juntar o valor de uma dívida inteira",
+     "correta": false,
+     "feedbackErro": "Guardar parado enquanto a dívida corre juro todo mês custa mais do que abater aos poucos — o dinheiro parado não reduz o que já está crescendo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "endividamento-vira-problema",
+   "criterio": "É verdade sobre o problema?",
+   "enunciado": "Uma dívida grande, mas que cabe no orçamento sem sacrifício, já é motivo de alarme",
+   "resposta": false,
+   "ancora": "Dívida que cabe no orçamento sem sacrificar o essencial não é alarme.",
+   "feedbackErro": "O valor grande assusta, e é natural. Mas o que define alarme não é o tamanho — é caber ou não no orçamento sem sacrificar o essencial."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "consequencias-do-atraso",
+   "instrucao": "É consequência direta do atraso? Arraste cada item.",
+   "ancora": "Multa, juros e cadastro vêm do atraso; sorteio e bônus, não.",
+   "feedbackErro": "Multa, juros de mora e cadastro negativo nascem do atraso. Prêmio e bônus de fidelidade não têm relação nenhuma com dívida em aberto.",
+   "caixas": [
+    {
+     "id": "sim",
+     "rotulo": "É consequência"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Cobrança de juros de mora todo mês",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Ganhar um bônus de fidelidade da loja",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Nome negativado em cadastro de crédito",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Sortear um prêmio por ser cliente antigo",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "estrategias-de-saida",
+   "criterio": "É verdade?",
+   "enunciado": "Negociar um desconto para pagamento à vista costuma reduzir mais a dívida do que parcelar",
+   "resposta": true,
+   "ancora": "À vista tira o juro do parcelamento futuro — o desconto some com ele.",
+   "feedbackErro": "Parcelar parece mais fácil por dividir o peso no tempo. Mas o desconto à vista costuma valer mais do que a soma dos juros que o parcelamento embutiria."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "consequencias-do-atraso",
+   "criterio": "A conta está certa?",
+   "enunciado": "R$ 400 em atraso, multa de 3% e mora de 2% ao mês, após 3 meses viram R$ 436",
+   "resposta": true,
+   "ancora": "400×1,03 + 400×0,02×3 = 412+24 = 436. Multa uma vez, mora por mês.",
+   "feedbackErro": "Fecha: a multa de 3% entra uma vez (R$ 12), e a mora de 2% ao mês por 3 meses soma outros R$ 24 — total R$ 436.",
+   "verificacao": {
+    "expressao": "400*1.03 + 400*0.02*3",
+    "esperado": 436
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "consequencias-do-atraso",
+   "pergunta": "Dívida de R$ 800 no cheque especial, esquecida por 4 meses, a 8% ao mês. Quanto ela vira?",
+   "campo": "moeda",
+   "min": 800,
+   "max": 1600,
+   "gabarito": 1088,
+   "toleranciaPct": 20,
+   "fonte": "taxa média do cheque especial, ~8% ao mês (Banco Central)",
+   "feedbackPerto": "Perto: R$ 1.088. Em 4 meses, o saldo cresceu 36%.",
+   "feedbackLonge": "Dá R$ 1.088. Juro composto multiplica sobre o saldo já maior a cada mês, não soma 8% quatro vezes.",
+   "verificacao": {
+    "expressao": "800*1.08^4",
+    "esperado": 1088.4,
+    "tolerancia": 1
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "estrategias-de-saida",
+   "dificuldade": 2,
+   "pergunta": "Renata tem dívida de R$ 2.000: 30% de desconto à vista, ou 10x sem desconto. O que checar primeiro?",
+   "ancora": "Comparar o valor com desconto ao total das 10 parcelas.",
+   "alternativas": [
+    {
+     "texto": "O custo total das 10 parcelas contra o valor com desconto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se as parcelas cabem no salário do mês",
+     "correta": false,
+     "feedbackErro": "Caber no salário é importante, mas não decide sozinho: a parcela pode caber e ainda assim custar bem mais no total do que o desconto à vista."
+    },
+    {
+     "texto": "Se o credor aceita cartão de crédito para pagar",
+     "correta": false,
+     "feedbackErro": "A forma de pagamento não muda o valor final devido. O que decide entre as opções é o custo total de cada uma, não o meio de pagar."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "endividamento-vira-problema",
+   "dificuldade": 2,
+   "pergunta": "Uma família paga só o mínimo de três cartões há 8 meses e não sabe o total que deve. O que isso indica?",
+   "ancora": "Perder o controle do total devido é sinal claro de problema maior.",
+   "alternativas": [
+    {
+     "texto": "Perda de controle sobre o tamanho real da dívida",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que a situação está sob controle, já que paga em dia",
+     "correta": false,
+     "feedbackErro": "Pagar o mínimo em dia evita multa, mas não impede o rotativo de crescer. Não saber o total real é sinal de perda de controle, não de organização."
+    },
+    {
+     "texto": "Que os cartões têm taxa de juro muito baixa",
+     "correta": false,
+     "feedbackErro": "O comportamento descrito não diz nada sobre a taxa — cartão costuma ter juro alto no rotativo. O sinal de alerta é não saber o total devido."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "consequencias-do-atraso",
+   "criterio": "Verdadeiro?",
+   "enunciado": "Cadastro negativo em SPC ou Serasa afeta só a compra que gerou a dívida",
+   "resposta": false,
+   "ancora": "Outras empresas, além da credora, também consultam o cadastro.",
+   "feedbackErro": "Parece que o efeito fica restrito àquele contrato específico. Mas o cadastro negativo é público entre empresas — outras lojas e bancos também consultam."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "estrategias-de-saida",
+   "criterio": "Verdadeiro?",
+   "enunciado": "Priorizar a dívida com maior taxa de juro é sempre a estratégia mais eficiente",
+   "resposta": true,
+   "ancora": "Atacar a taxa maior reduz mais rápido o quanto a dívida total cresce.",
+   "feedbackErro": "Priorizar por tamanho é o instinto mais comum. Mas o que faz a dívida crescer é a taxa — atacar a mais cara primeiro reduz o crescimento total mais rápido."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "consequencias-do-atraso",
+   "pergunta": "Qual ideia fecha este encontro?",
+   "alternativas": [
+    {
+     "texto": "Negociar cedo e priorizar por taxa evita que o atraso vire um problema maior.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pagar o mínimo em dia já resolve o problema da dívida.",
+     "correta": false,
+     "feedbackErro": "Pagar o mínimo evita multa, mas mantém o saldo no rotativo crescendo."
+    },
+    {
+     "texto": "O cadastro negativo afeta só quem gerou a dívida original.",
+     "correta": false,
+     "feedbackErro": "Outras empresas consultam o mesmo cadastro — o efeito se espalha além do credor original."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "estrategias-de-saida",
+   "instrucao": "Sobrou dinheiro. Ordene do primeiro ao último critério de prioridade.",
+   "ancora": "Taxa de juro decide antes de qualquer outro fator na fila.",
+   "feedbackErro": "A ordem certa começa pela taxa de juro, depois considera valor pequeno, depois prazo de vencimento e por último preferência pessoal.",
+   "itens": [
+    {
+     "texto": "Dívida com a maior taxa de juro",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Dívida pequena que quita inteira",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Dívida com vencimento mais próximo",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Dívida que incomoda mais emocionalmente",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "consequencias-do-atraso",
+   "dificuldade": 2,
+   "pergunta": "Conta de R$ 600 vencida, multa de 3% e mora de 1% ao mês, em aberto há 2 meses. Total devido?",
+   "ancora": "600×1,03 + 600×0,01×2 = 618+12 = 630.",
+   "alternativas": [
+    {
+     "texto": "R$ 630",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 612",
+     "correta": false,
+     "feedbackErro": "Você esqueceu a mora de dois meses. A multa de 3% dá R$ 18, e faltam mais R$ 12 dos dois meses de mora."
+    },
+    {
+     "texto": "R$ 636",
+     "correta": false,
+     "feedbackErro": "Esse valor cobraria a multa duas vezes. A multa de 3% entra uma vez só (R$ 18); o que se repete por mês é a mora."
+    }
+   ],
+   "verificacao": {
+    "expressao": "600*1.03 + 600*0.01*2",
+    "esperado": 630
+   }
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "endividamento-vira-problema",
+   "criterio": "É verdade?",
+   "enunciado": "Deixar de pagar contas para manter um padrão de consumo é sinal de alerta",
+   "resposta": true,
+   "ancora": "Sacrificar contas básicas para manter consumo é sinal claro de alerta.",
+   "feedbackErro": "Parece só prioridade pessoal. Mas deixar contas essenciais vencerem para manter outro consumo é sinal de que o orçamento perdeu o controle."
+  }
+ ]
+}

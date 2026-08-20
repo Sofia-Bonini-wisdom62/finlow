@@ -405,6 +405,20 @@ venda):**
 - **`preRequisitoSlug` segue inerte** — o corredor escolar usa a ordem
   linear dos blocos, que na prática cobre o grafo de pré-requisitos; ligar o
   grafo de verdade é projeto próprio.
+- **Nova base de lições (20/08/2026), ainda não integrada.** Chegou o material
+  completo dos 7 segmentos (`ef12` a `em3`): 107 conceitos, 321 lições (3
+  encontros cada), ~5.268 itens, cobrindo a matriz do BC inteira. Está em
+  `prisma/seeds/licoes/` (+ `prisma/seeds/dados/` com os metadados de módulo e
+  conceito, e `lib/licao/` com o validador), validado por
+  `scripts/validar-tudo.ts` (321 válidas, 0 problema). **Decisão da
+  fundadora: esse material substitui a trilha escolar atual** (os 24 módulos
+  de EM e o pacote de EF já seedados, no formato `conceito/cenario/quiz/
+  input/resultado`). O que falta, e é trabalho de verdade, não upload: o
+  formato é por item (`binaria`, `escolha3`, `fecho`, `ordenar`,
+  `classificar`, `estimativa`) — diferente do que `Modulo`/`Tela` guardam
+  hoje — então precisa de schema/seed novos e de telas novas no player para
+  os 6 formatos antes de virar aula em produção. Nada disso foi feito ainda;
+  o conteúdo só está guardado e validado.
 
 ---
 

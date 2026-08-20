@@ -1,0 +1,290 @@
+{
+ "slug": "dinheiro-com-impacto-esg",
+ "segmento": "em2",
+ "conceitoPrincipal": "dinheiro-com-impacto-esg",
+ "fraseConceito": "ESG são três lentes — ambiental, social e de governança — para escolher onde seu dinheiro entra: no consumo, no crédito e no investimento.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-vota",
+   "criterio": "Seu dinheiro participa disso?",
+   "enunciado": "Comprar de uma marca financia o jeito dela de operar",
+   "resposta": true,
+   "ancora": "Cada compra banca as práticas de quem vendeu — boas ou ruins.",
+   "feedbackErro": "Parece só uma troca: produto por dinheiro. Mas o caixa da empresa paga fornecedor, salário e método de produção — a compra sustenta o conjunto inteiro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-vota",
+   "criterio": "Seu dinheiro participa disso?",
+   "enunciado": "Investir numa empresa te torna sócio das práticas dela",
+   "resposta": true,
+   "ancora": "Ação é pedaço da empresa: o sócio leva o lucro e o método junto.",
+   "feedbackErro": "A distância engana: um app, uns números na tela. Mas investir é ser dono de um pedaço — do resultado e do jeito como ele é produzido."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-vota",
+   "criterio": "Seu dinheiro participa disso?",
+   "enunciado": "Deixar o dinheiro no banco não sustenta nada",
+   "resposta": false,
+   "ancora": "O banco empresta seu depósito: financia projetos com ele.",
+   "feedbackErro": "Dinheiro parado na conta não fica parado no banco: ele vira empréstimo para empresas e projetos. Até a escolha do banco é uma escolha de impacto."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "tres-letras",
+   "dificuldade": 1,
+   "pergunta": "O que a letra G, de governança, avalia numa empresa?",
+   "ancora": "G é o como se decide: conselho, transparência, ética nas contas.",
+   "alternativas": [
+    {
+     "texto": "Como ela é dirigida: transparência e ética",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O governo do país onde ela opera",
+     "correta": false,
+     "feedbackErro": "A palavra lembra governo, e a pegadinha mora aí. Governança é interna: quem decide, como presta contas, se as regras valem para os donos também."
+    },
+    {
+     "texto": "O quanto ela lucra por ano",
+     "correta": false,
+     "feedbackErro": "Lucro importa, mas é outra régua. O G pergunta COMO se ganha: contas transparentes, conselho sério, sem fraude — dá para lucrar muito e ser mal governada."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "tres-letras",
+   "dificuldade": 1,
+   "pergunta": "Uma fábrica despeja resíduo no rio da cidade. Em qual letra ela falha?",
+   "ancora": "E de ambiental: água, ar, resíduo e clima entram nessa lente.",
+   "alternativas": [
+    {
+     "texto": "No E: o dano é ao ambiente",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "No S: o rio é da comunidade",
+     "correta": false,
+     "feedbackErro": "A comunidade sofre junto — as lentes se tocam. Mas o S mede relações com pessoas: trabalho, consumidor, comunidade. Dano direto à natureza é o E."
+    },
+    {
+     "texto": "No G: faltou alguém decidir direito",
+     "correta": false,
+     "feedbackErro": "Pode até haver falha de gestão por trás. Mas a letra classifica o dano em si — e resíduo no rio é dano ambiental. O G entraria se escondessem isso do público."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "tres-letras",
+   "criterio": "Isso é a letra S, de social?",
+   "enunciado": "Como a empresa trata quem trabalha nela",
+   "resposta": true,
+   "ancora": "S cobre pessoas: funcionários, fornecedores, clientes, comunidade.",
+   "feedbackErro": "Salário, segurança e respeito parecem 'assunto interno' — mas são o coração do S. A lente social mede como a empresa trata cada pessoa que ela toca."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "tres-letras",
+   "instrucao": "E ou S? Classifique cada prática.",
+   "ancora": "E é a natureza; S são as pessoas.",
+   "feedbackErro": "Pergunte quem sofre o efeito direto: ar, água e clima apontam para o E; trabalhador, cliente e comunidade apontam para o S.",
+   "caixas": [
+    { "id": "e", "rotulo": "E (ambiental)" },
+    { "id": "s", "rotulo": "S (social)" }
+   ],
+   "itens": [
+    { "texto": "Emissão de carbono da produção", "caixaCorreta": "e" },
+    { "texto": "Segurança de quem opera as máquinas", "caixaCorreta": "s" },
+    { "texto": "Uso de água em região de seca", "caixaCorreta": "e" },
+    { "texto": "Trabalho infantil num fornecedor", "caixaCorreta": "s" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "tres-letras",
+   "criterio": "Falha de governança (o G)?",
+   "enunciado": "Diretoria que esconde prejuízo dos sócios",
+   "resposta": true,
+   "ancora": "Esconder número é fraude de transparência: G puro.",
+   "feedbackErro": "Parece 'assunto de contabilidade', longe do ESG — mas é o exemplo clássico do G. Quem mente para o sócio hoje mente para o cliente e o fiscal amanhã."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "tres-letras",
+   "criterio": "Falha de governança (o G)?",
+   "enunciado": "Embalagem plástica difícil de reciclar",
+   "resposta": false,
+   "ancora": "Resíduo e material são lente E — governança é sobre decisão.",
+   "feedbackErro": "Toda falha parece 'má decisão', e má decisão parece G. Mas o G trata da estrutura de decidir e prestar contas; o efeito no lixo e no clima é medido pelo E."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "impacto-no-consumo",
+   "pergunta": "Uma marca repassa 2% de cada venda a projetos sociais. Numa compra de R$ 150, quanto vai?",
+   "campo": "moeda",
+   "min": 1,
+   "max": 30,
+   "gabarito": 3,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 2% de 150",
+   "verificacao": { "expressao": "150*0.02", "esperado": 3 },
+   "feedbackPerto": "R$ 3. Pouco por compra — o impacto real está na escala: milhões de vendas. Por isso a prática importa mais que o gesto.",
+   "feedbackLonge": "R$ 3: 2% de R$ 150. O viés é superestimar o gesto — marketing adora % pequeno que soa grande. Fazer a conta protege da propaganda."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "criterio-nao-rotulo",
+   "dificuldade": 1,
+   "pergunta": "Caio quer investir alinhado ao que defende. Qual é o primeiro passo?",
+   "ancora": "Prática se vê no que a empresa faz, não no nome do produto.",
+   "alternativas": [
+    {
+     "texto": "Olhar o que a empresa faz, além do quanto rende",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Escolher pelo nome: fundo 'verde' garante",
+     "correta": false,
+     "feedbackErro": "O nome é a embalagem. Há fundos 'verdes' cheios de empresas comuns — o que vale é a carteira: a lista do que o fundo realmente compra."
+    },
+    {
+     "texto": "Aceitar render menos: impacto exige perder",
+     "correta": false,
+     "feedbackErro": "Não é pedágio obrigatório: há empresas bem geridas nas três lentes que rendem bem. O critério ESG soma à análise — não substitui o retorno nem o risco."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "risco-esg",
+   "dificuldade": 1,
+   "pergunta": "Uma empresa coleciona multas ambientais. O que isso embute para quem investe nela?",
+   "ancora": "Multa reincidente antecipa prejuízo: processo e cliente indo embora.",
+   "alternativas": [
+    {
+     "texto": "Risco financeiro: multa e cliente custam caro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: multa é problema do governo",
+     "correta": false,
+     "feedbackErro": "Quem paga a multa é o caixa da empresa — o mesmo de onde sairia o seu retorno. E multa reincidente anuncia processo maior à frente. É risco financeiro, sim."
+    },
+    {
+     "texto": "Só imagem: dinheiro mesmo não sai",
+     "correta": false,
+     "feedbackErro": "Imagem também vira número: cliente que troca de marca, banco que encarece o crédito. Mas aqui já há dinheiro direto saindo — multa é caixa, não reputação."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "impacto-no-consumo",
+   "criterio": "Escolha com lente ESG?",
+   "enunciado": "Preferir a marca que comprova a origem do algodão",
+   "resposta": true,
+   "ancora": "Comprovação é a palavra: dado verificável, não slogan.",
+   "feedbackErro": "Parece frescura de rótulo — mas note o verbo: comprova. Escolher quem mostra a cadeia de produção é usar a lente S e E com evidência, não com fé."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "criterio-nao-rotulo",
+   "criterio": "Escolha com lente ESG?",
+   "enunciado": "Decidir tudo só pelo menor preço, sempre",
+   "resposta": false,
+   "ancora": "Preço importa — o 'sempre' é que apaga qualquer outro critério.",
+   "feedbackErro": "Preço é critério legítimo, e às vezes decide mesmo. O problema é o 'sempre': quem só olha preço nunca enxerga o que está bancando com a compra."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "dinheiro-com-impacto-esg",
+   "dificuldade": 1,
+   "pergunta": "Qual frase resume a lente ESG?",
+   "alternativas": [
+    {
+     "texto": "E, S e G avaliam onde seu dinheiro entra — na compra e no investimento.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "ESG é doar parte do lucro para caridade.",
+     "correta": false,
+     "feedbackErro": "Doação é gesto pontual. ESG mede a operação inteira: como se produz, trata gente e presta contas — todo dia, não no fim do ano."
+    },
+    {
+     "texto": "ESG é assunto só de grande investidor.",
+     "correta": false,
+     "feedbackErro": "Toda compra, conta de banco e investimento pequeno passa pelas mesmas lentes. Escala muda o tamanho do voto, não o direito de votar com o dinheiro."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "criterio-nao-rotulo",
+   "instrucao": "Prática de verdade ou só marketing?",
+   "ancora": "Prática tem número, meta e verificação; marketing tem adjetivo.",
+   "feedbackErro": "Procure o dado: relatório auditado e meta com prazo são compromisso checável. 'Somos verdes' sem número é adjetivo — e adjetivo não se fiscaliza.",
+   "caixas": [
+    { "id": "pratica", "rotulo": "Prática" },
+    { "id": "marketing", "rotulo": "Marketing" }
+   ],
+   "itens": [
+    { "texto": "Relatório com números auditados", "caixaCorreta": "pratica" },
+    { "texto": "Anúncio 'somos verdes' sem dado", "caixaCorreta": "marketing" },
+    { "texto": "Meta de emissão com prazo e número", "caixaCorreta": "pratica" },
+    { "texto": "Embalagem que ficou verde no design", "caixaCorreta": "marketing" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "impacto-no-consumo",
+   "pergunta": "Uma lâmpada LED economiza R$ 8 por mês frente à comum. Quanto em um ano?",
+   "campo": "moeda",
+   "min": 20,
+   "max": 500,
+   "gabarito": 96,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 8 × 12",
+   "verificacao": { "expressao": "8*12", "esperado": 96 },
+   "feedbackPerto": "R$ 96 por lâmpada — consumo consciente costuma ser bom para o bolso E para o E de ESG. Os critérios se somam.",
+   "feedbackLonge": "R$ 96: 8 × 12 meses. O viés é ver a economia mensal como 'troco' — pequena repetida vira grande, para o bem e para o mal."
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "tres-letras",
+   "criterio": "Isso é a letra S?",
+   "enunciado": "Programa sério de inclusão de pessoas com deficiência",
+   "resposta": true,
+   "ancora": "Inclusão é relação com pessoas: centro da lente social.",
+   "feedbackErro": "Pode parecer 'RH interno', pequeno demais para ESG. Mas o S mede exatamente isso: como a empresa abre espaço e trata as pessoas que emprega."
+  }
+ ]
+}

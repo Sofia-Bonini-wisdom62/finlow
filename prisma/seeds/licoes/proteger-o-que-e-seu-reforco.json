@@ -1,0 +1,249 @@
+{
+ "slug": "proteger-o-que-e-seu-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "proteger-o-que-e-seu",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cuidado-cotidiano",
+   "criterio": "Isso protege o que é seu?",
+   "enunciado": "Fotografar a nota fiscal dos aparelhos comprados",
+   "resposta": true,
+   "ancora": "Prova de compra ajuda em caso de sinistro ou garantia.",
+   "feedbackErro": "Parece burocracia à toa, mas a nota fiscal é a prova que sustenta um pedido de seguro ou garantia."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cuidado-cotidiano",
+   "criterio": "Isso protege o que é seu?",
+   "enunciado": "Compartilhar a senha do banco com um colega 'de confiança'",
+   "resposta": false,
+   "ancora": "Confiança não substitui segurança — senha é intransferível.",
+   "feedbackErro": "A intenção pode ser boa, mas compartilhar senha tira o controle sobre o que é seu, mesmo com quem se confia."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "reserva-de-emergencia",
+   "criterio": "Isso protege o que é seu?",
+   "enunciado": "Ter R$ 1.100 guardados sem tocar, à parte do salário",
+   "resposta": true,
+   "ancora": "Isso é reserva funcionando como deveria.",
+   "feedbackErro": "Não parece 'proteção' à primeira vista, mas dinheiro parado à parte é exatamente a reserva de emergência."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "cuidado-cotidiano",
+   "dificuldade": 2,
+   "pergunta": "Heitor tem uma bike nova e mora perto da escola. O que mais reduz o risco de furto no trajeto?",
+   "ancora": "Onde e como a bike fica presa é o que reduz o risco.",
+   "alternativas": [
+    {
+     "texto": "Contratar seguro contra roubo",
+     "correta": false,
+     "feedbackErro": "Seguro cobre o prejuízo depois — não reduz a chance de acontecer no trajeto."
+    },
+    {
+     "texto": "Trancar com cadeado em local visível e movimentado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Andar sempre no mesmo horário",
+     "correta": false,
+     "feedbackErro": "Rotina fixa até facilita prever o trajeto — o que reduz risco é onde e como a bike fica presa."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "seguro-cobre-o-que",
+   "dificuldade": 2,
+   "pergunta": "Um vazamento aumenta a conta de água em R$ 40 esse mês. Isso pede seguro ou reserva?",
+   "ancora": "Valor pequeno e comum é papel da reserva, não do seguro.",
+   "alternativas": [
+    {
+     "texto": "Seguro, porque é um imprevisto",
+     "correta": false,
+     "feedbackErro": "É imprevisto, mas o valor é pequeno — seguro é pra prejuízos grandes, não gastos do dia a dia."
+    },
+    {
+     "texto": "Reserva, porque o valor é pequeno e comum",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nenhum dos dois, é só esperar passar",
+     "correta": false,
+     "feedbackErro": "A conta chega de qualquer jeito — o valor precisa vir de algum lugar, e a reserva é feita pra isso."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "seguro-cobre-o-que",
+   "criterio": "É papel do seguro cobrir isso?",
+   "enunciado": "O troco perdido no bolso da calça",
+   "resposta": false,
+   "ancora": "Valor pequeno e comum não é papel do seguro.",
+   "feedbackErro": "É uma perda real, mas pequena e frequente demais — seguro cobre prejuízo grande e raro, não isso."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "cuidado-cotidiano",
+   "instrucao": "Classifique: cuidado no dia a dia ou reserva/seguro?",
+   "ancora": "Cuidado reduz a chance; reserva e seguro pagam o estrago.",
+   "feedbackErro": "É comum confundir prevenção com cobertura — cuidado reduz a chance, reserva e seguro pagam o estrago.",
+   "caixas": [
+    { "id": "cotidiano", "rotulo": "Cuidado no dia a dia" },
+    { "id": "financeiro", "rotulo": "Reserva ou seguro" }
+   ],
+   "itens": [
+    { "texto": "Fazer backup das fotos do celular", "caixaCorreta": "cotidiano" },
+    { "texto": "Ter 4 meses de gastos guardados", "caixaCorreta": "financeiro" },
+    { "texto": "Não postar nas redes que a casa está vazia", "caixaCorreta": "cotidiano" },
+    { "texto": "Contratar seguro residencial", "caixaCorreta": "financeiro" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "cuidado-cotidiano",
+   "criterio": "Isso é cuidado cotidiano?",
+   "enunciado": "Emprestar o cartão do banco pro irmão mais novo 'só dessa vez'",
+   "resposta": false,
+   "ancora": "Cartão emprestado tira o controle sobre o que é seu.",
+   "feedbackErro": "Parece confiança de família, mas emprestar cartão tira justamente o controle que o cuidado deveria manter."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "reserva-de-emergencia",
+   "dificuldade": 2,
+   "pergunta": "Sem reserva, o pneu fura e custa R$ 180. O que costuma acontecer?",
+   "ancora": "Sem reserva, o gasto de surpresa cai em outra fonte, com juros.",
+   "alternativas": [
+    {
+     "texto": "A pessoa paga do bolso sem sentir diferença",
+     "correta": false,
+     "feedbackErro": "Sem reserva, R$ 180 de surpresa costuma pesar — não é o cenário mais provável."
+    },
+    {
+     "texto": "A pessoa usa cartão ou empréstimo, com juros",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O conserto pode esperar indefinidamente",
+     "correta": false,
+     "feedbackErro": "Pneu furado não espera — sem reserva, o custo cai em cima de outra fonte, geralmente com juros."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "cuidado-cotidiano",
+   "criterio": "Isso reduz o risco de furto?",
+   "enunciado": "Postar a localização em tempo real de uma viagem",
+   "resposta": false,
+   "ancora": "Mostrar onde você está revela quando a casa fica vazia.",
+   "feedbackErro": "Parece só uma foto, mas revela padrões de onde você está — e onde a casa fica vazia."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "reserva-de-emergencia",
+   "criterio": "É proteger o que é seu?",
+   "enunciado": "Trocar a senha do celular a cada poucos meses",
+   "resposta": true,
+   "ancora": "Reduz o tempo que uma senha vazada continua útil.",
+   "feedbackErro": "Parece só burocracia, mas trocar a senha limita o estrago se ela vazar sem você saber."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "proteger-o-que-e-seu",
+   "dificuldade": 2,
+   "pergunta": "Depois desses casos, o que diferencia cuidado, reserva e seguro?",
+   "alternativas": [
+    {
+     "texto": "Todos fazem exatamente a mesma coisa",
+     "correta": false,
+     "feedbackErro": "Cada um age num momento diferente: cuidado evita, reserva cobre o pequeno, seguro cobre o grande."
+    },
+    {
+     "texto": "Cuidado evita o risco; reserva cobre imprevisto pequeno; seguro cobre o grande",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só o seguro importa, o resto é enfeite",
+     "correta": false,
+     "feedbackErro": "Seguro não cobre tudo — sem cuidado e reserva, os riscos pequenos e frequentes ficam desprotegidos."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "proteger-o-que-e-seu",
+   "instrucao": "Ordene do imprevisto mais provável pro mais raro.",
+   "ancora": "Frequência é o que separa reserva de seguro.",
+   "feedbackErro": "É fácil achar que o mais caro é o mais raro — mas o que ordena aqui é a frequência, não o valor.",
+   "itens": [
+    { "texto": "Furar um pneu", "posicaoCorreta": 1 },
+    { "texto": "Vazamento pequeno em casa", "posicaoCorreta": 2 },
+    { "texto": "Incêndio que destrói a casa", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "reserva-de-emergencia",
+   "pergunta": "Gastos de R$ 1.200/mês. Para uma reserva de 4 meses, qual valor?",
+   "campo": "moeda",
+   "min": 1000,
+   "max": 8000,
+   "gabarito": 4800,
+   "toleranciaPct": 20,
+   "fonte": "regra geral de reserva de emergência (3 a 6 meses de gastos)",
+   "verificacao": { "expressao": "1200*4", "esperado": 4800 },
+   "feedbackPerto": "Isso mesmo — R$ 1.200 × 4 meses = R$ 4.800.",
+   "feedbackLonge": "R$ 4.800. Multiplique o gasto mensal pelos meses de cobertura desejados."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "seguro-cobre-o-que",
+   "dificuldade": 2,
+   "pergunta": "Por que reserva e seguro não competem entre si?",
+   "ancora": "Cada um cobre uma faixa de risco diferente.",
+   "alternativas": [
+    {
+     "texto": "Porque cobrem faixas de risco diferentes",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque custam exatamente o mesmo",
+     "correta": false,
+     "feedbackErro": "O custo é bem diferente — o que os diferencia é a faixa de risco que cada um cobre."
+    },
+    {
+     "texto": "Porque só um dos dois é realmente necessário",
+     "correta": false,
+     "feedbackErro": "Os dois cobrem lacunas diferentes — abrir mão de um deixa uma faixa de risco descoberta."
+    }
+   ]
+  }
+ ]
+}

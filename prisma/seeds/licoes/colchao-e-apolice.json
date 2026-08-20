@@ -1,0 +1,322 @@
+{
+ "slug": "colchao-e-apolice",
+ "segmento": "em2",
+ "conceitoPrincipal": "colchao-e-apolice",
+ "fraseConceito": "Reserva cobre o imprevisto pequeno e frequente; seguro transfere o prejuízo grande e raro. Proteger é usar cada um no seu tamanho.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "reserva-de-emergencia",
+   "criterio": "Isso protege seu bolso do imprevisto?",
+   "enunciado": "Ter guardado de 3 a 6 meses de gastos",
+   "resposta": true,
+   "ancora": "Reserva é o colchão: paga o susto sem virar dívida.",
+   "feedbackErro": "Parece dinheiro parado 'sem render nada de bom'. Mas a função dele é outra: quando o imprevisto chega, quem não tem reserva paga com rotativo a 14% ao mês."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "reserva-de-emergencia",
+   "criterio": "Isso protege seu bolso do imprevisto?",
+   "enunciado": "Torcer para o imprevisto não acontecer",
+   "resposta": false,
+   "ancora": "Imprevisto não pede licença: proteção é preparo, não torcida.",
+   "feedbackErro": "A maioria dos meses a torcida até funciona — e isso alimenta a ilusão. Mas basta um mês ruim para a conta chegar, e aí a diferença é ter ou não ter colchão."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "seguro-transfere-risco",
+   "criterio": "Isso protege seu bolso do imprevisto?",
+   "enunciado": "Segurar um bem que você não conseguiria repor",
+   "resposta": true,
+   "ancora": "O que quebraria você se perdesse é candidato a seguro.",
+   "feedbackErro": "Pagar por algo que talvez nunca aconteça parece desperdício. Mas o seguro compra exatamente isso: se o raro e caro vier, quem paga o grosso é a seguradora."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "termos-do-seguro",
+   "dificuldade": 1,
+   "pergunta": "O carro segurado de Íris foi roubado e ela acionou o seguro. No contrato, o roubo é chamado de quê?",
+   "ancora": "Sinistro é o evento coberto; indenização é o pagamento que dispara.",
+   "alternativas": [
+    {
+     "texto": "Sinistro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Prêmio",
+     "correta": false,
+     "feedbackErro": "Prêmio soa como o que se ganha — pegadinha clássica do seguro. Prêmio é o valor que a segurada paga todo mês; o evento coberto tem outro nome: sinistro."
+    },
+    {
+     "texto": "Franquia",
+     "correta": false,
+     "feedbackErro": "Franquia é a parte do prejuízo que fica com o segurado em alguns casos. O nome do evento coberto — roubo, batida, incêndio — é sinistro."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "termos-do-seguro",
+   "dificuldade": 1,
+   "pergunta": "No mundo dos seguros, o \"prêmio\" é o quê?",
+   "ancora": "Prêmio = o preço da proteção, pago pelo segurado.",
+   "alternativas": [
+    {
+     "texto": "O valor que o segurado paga pela proteção",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Um bônus que você ganha se nada acontecer",
+     "correta": false,
+     "feedbackErro": "É o que a palavra sugere no dia a dia, e por isso confunde. No seguro, prêmio é o contrário: o preço que você paga para manter a cobertura ativa."
+    },
+    {
+     "texto": "O pagamento recebido depois do sinistro",
+     "correta": false,
+     "feedbackErro": "Esse pagamento existe, mas se chama indenização. O prêmio anda na direção oposta: sai do bolso do segurado para a seguradora."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "reserva-de-emergencia",
+   "criterio": "É papel da reserva?",
+   "enunciado": "Cobrir a troca de um pneu furado",
+   "resposta": true,
+   "ancora": "Gasto pequeno e imprevisto é exatamente o alvo da reserva.",
+   "feedbackErro": "Parece pouco para 'mexer na reserva' — mas ela existe para isso. Gasto pequeno e inesperado sai do colchão; segurar coisa miúda custaria mais que resolver."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "termos-do-seguro",
+   "instrucao": "Toque na ordem em que as coisas acontecem num seguro.",
+   "ancora": "Apólice → prêmio → sinistro → indenização.",
+   "feedbackErro": "A sequência é a lógica do contrato: primeiro se assina a apólice, o prêmio mantém a proteção viva, o sinistro é o evento — e só ele dispara a indenização.",
+   "itens": [
+    {
+     "texto": "Contratar a apólice",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Pagar o prêmio",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Acontecer o sinistro",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Receber a indenização",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "seguro-transfere-risco",
+   "criterio": "É caso de seguro, não de reserva?",
+   "enunciado": "Incêndio que destrói a casa inteira",
+   "resposta": true,
+   "ancora": "Prejuízo grande e raro se transfere: é a praia do seguro.",
+   "feedbackErro": "Nenhuma reserva comum aguenta repor uma casa: anos de poupança somem em horas. Risco desse tamanho não se absorve — se transfere por apólice."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "seguro-transfere-risco",
+   "criterio": "É caso de seguro, não de reserva?",
+   "enunciado": "Conserto de R$ 180 na bicicleta",
+   "resposta": false,
+   "ancora": "Pequeno e frequente sai da reserva; segurar isso custa caro.",
+   "feedbackErro": "Dá para segurar quase tudo — a pergunta é se vale. Prejuízo que a reserva paga sem sentir não justifica prêmio mensal: seguro é para o que você não absorve."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "reserva-de-emergencia",
+   "pergunta": "Uma família gasta R$ 2.500 por mês. Quanto precisa ter para uma reserva de 4 meses?",
+   "campo": "moeda",
+   "min": 2000,
+   "max": 30000,
+   "gabarito": 10000,
+   "toleranciaPct": 20,
+   "fonte": "regra usual de 3 a 6 meses de custo de vida (Banco Central, Cidadania Financeira)",
+   "verificacao": {
+    "expressao": "2500*4",
+    "esperado": 10000
+   },
+   "feedbackPerto": "R$ 10 mil. Parece muito de uma vez — e não é de uma vez: reserva se constrói aos poucos, mês a mês, e fica pronta antes do que parece.",
+   "feedbackLonge": "R$ 10.000: gasto mensal × meses de proteção. O erro comum é ancorar na renda ou num número redondo qualquer — a régua é o custo de vida."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "reserva-de-emergencia",
+   "dificuldade": 1,
+   "pergunta": "Por que quem tem reserva quase nunca cai no rotativo do cartão?",
+   "ancora": "Imprevisto pago à vista não vira dívida de 14% ao mês.",
+   "alternativas": [
+    {
+     "texto": "O imprevisto é pago à vista, sem virar dívida",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A reserva rende mais do que o cartão cobra",
+     "correta": false,
+     "feedbackErro": "Nada acessível rende os 14% ao mês do rotativo — não é por rendimento que a reserva vence. É por evitar que o imprevisto entre no cartão em primeiro lugar."
+    },
+    {
+     "texto": "Quem tem reserva não tem imprevistos",
+     "correta": false,
+     "feedbackErro": "Imprevisto atinge todo mundo igual. A diferença é o que acontece depois: com colchão, ele é um gasto; sem colchão, vira dívida que cresce sozinha."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "termos-do-seguro",
+   "dificuldade": 1,
+   "pergunta": "Seguro com franquia de R$ 2.000. O conserto do sinistro custou R$ 1.400. Quem paga?",
+   "ancora": "Abaixo da franquia, o custo é do segurado; o seguro entra acima dela.",
+   "alternativas": [
+    {
+     "texto": "Você: abaixo da franquia, o seguro não entra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A seguradora paga tudo: é para isso que ela existe",
+     "correta": false,
+     "feedbackErro": "Ela existe para o prejuízo grande — e a franquia marca essa fronteira no contrato. Conserto abaixo dela é responsabilidade do segurado, dali a reserva cuida."
+    },
+    {
+     "texto": "Metade cada um, por justiça",
+     "correta": false,
+     "feedbackErro": "Não há rateio: a regra é objetiva. Até o valor da franquia, o segurado paga; o que passar dela, a seguradora cobre. R$ 1.400 < R$ 2.000, então é seu."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "reserva-de-emergencia",
+   "criterio": "Te deixa mais preparado para o susto?",
+   "enunciado": "Reserva aplicada com resgate imediato",
+   "resposta": true,
+   "ancora": "Emergência não espera: a reserva mora onde o saque é na hora.",
+   "feedbackErro": "Buscar rendimento maior travando o dinheiro parece esperteza — mas reserva travada falha na única função dela: estar disponível no dia em que o susto chegar."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "seguro-transfere-risco",
+   "criterio": "Te deixa mais preparado para o susto?",
+   "enunciado": "Cancelar o seguro da casa para sobrar mais no mês",
+   "resposta": false,
+   "ancora": "Economia pequena agora, buraco irrecuperável se o raro vier.",
+   "feedbackErro": "No orçamento apertado, o prêmio parece o gasto mais cortável — nada acontece há anos. Mas o risco não avisa: cortar a proteção do grande é a economia mais cara."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "colchao-e-apolice",
+   "dificuldade": 1,
+   "pergunta": "Qual frase resume a dupla de proteção?",
+   "alternativas": [
+    {
+     "texto": "Reserva cobre o pequeno e frequente; seguro transfere o grande e raro.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Com seguro de tudo, reserva é desnecessária.",
+     "correta": false,
+     "feedbackErro": "Franquia, exclusões e o tempo até a indenização continuam existindo — e quem paga essa ponta é a reserva."
+    },
+    {
+     "texto": "Reserva grande dispensa qualquer seguro.",
+     "correta": false,
+     "feedbackErro": "Um incêndio consome em horas o que a reserva levou anos para juntar. O grande e raro se transfere."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "colchao-e-apolice",
+   "instrucao": "Reserva ou seguro? Classifique cada situação.",
+   "ancora": "O critério é tamanho × frequência do prejuízo.",
+   "feedbackErro": "Pergunte: a reserva pagaria isso sem quebrar? Se sim, é caso dela. Se o prejuízo levaria anos para repor, é risco que se transfere por apólice.",
+   "caixas": [
+    {
+     "id": "reserva",
+     "rotulo": "Reserva"
+    },
+    {
+     "id": "seguro",
+     "rotulo": "Seguro"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Notebook de trabalho roubado",
+     "caixaCorreta": "seguro"
+    },
+    {
+     "texto": "Remédio fora do plano, R$ 90",
+     "caixaCorreta": "reserva"
+    },
+    {
+     "texto": "Carro batido com perda total",
+     "caixaCorreta": "seguro"
+    },
+    {
+     "texto": "Conserto da máquina de lavar",
+     "caixaCorreta": "reserva"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "termos-do-seguro",
+   "pergunta": "Um seguro custa R$ 90 de prêmio por mês. Quanto ele custa no ano?",
+   "campo": "moeda",
+   "min": 200,
+   "max": 5000,
+   "gabarito": 1080,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 90 × 12 meses",
+   "verificacao": {
+    "expressao": "90*12",
+    "esperado": 1080
+   },
+   "feedbackPerto": "R$ 1.080 por ano. Anualizar o prêmio é o jeito honesto de decidir: compare esse total com o prejuízo que o seguro cobriria.",
+   "feedbackLonge": "R$ 1.080. O viés é avaliar o prêmio pelo tamanho da parcela mensal — 'só R$ 90' — sem enxergar o custo anual inteiro da proteção."
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "seguro-transfere-risco",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Se o sinistro não vier, o prêmio foi jogado fora",
+   "resposta": false,
+   "ancora": "Você comprou proteção o ano inteiro; o risco coberto era real.",
+   "feedbackErro": "A sensação de 'paguei à toa' é comum — e é um erro de régua. O prêmio comprou a tranquilidade de um ano protegido; ninguém lamenta a casa não ter pegado fogo."
+  }
+ ]
+}

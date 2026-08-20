@@ -1,0 +1,328 @@
+{
+ "slug": "formal-informal-precarizado-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "formal-informal-precarizado",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "direitos-formais",
+   "criterio": "Isso sozinho garante proteção?",
+   "enunciado": "Ter CNPJ de MEI",
+   "resposta": false,
+   "ancora": "CNPJ formaliza o negócio, não cria direito trabalhista.",
+   "feedbackErro": "Ter CNPJ parece o auge da formalização. Mas isso formaliza o negócio, não cria FGTS, férias nem nenhum direito trabalhista."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "direitos-formais",
+   "criterio": "Isso sozinho garante proteção?",
+   "enunciado": "Trabalhar com carteira assinada por só 3 meses",
+   "resposta": true,
+   "ancora": "Direito vale proporcional ao tempo trabalhado, mesmo curto.",
+   "feedbackErro": "Três meses parece pouco tempo pra 'valer' alguma coisa. Mas com carteira assinada, os direitos existem proporcionais, mesmo em contrato curto."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "precarizacao-trabalho",
+   "criterio": "Isso sozinho garante proteção?",
+   "enunciado": "Ganhar bem como autônomo",
+   "resposta": false,
+   "ancora": "Renda alta não substitui rede de proteção formal.",
+   "feedbackErro": "Renda boa passa segurança no mês a mês. Mas sem contribuição organizada, falta a rede que cobre doença, acidente ou aposentadoria."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "precarizacao-trabalho",
+   "dificuldade": 3,
+   "pergunta": "Uma empresa demite um CLT e recontrata como PJ pro mesmo cargo e rotina. Isso é...",
+   "ancora": "Pejotização: o contrato muda, a rotina de trabalho continua igual.",
+   "alternativas": [
+    {
+     "texto": "Pejotização: contrato muda, mas o trabalho segue igual",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Uma promoção disfarçada de mudança de contrato",
+     "correta": false,
+     "feedbackErro": "Não há ganho de cargo nem de autonomia — a mesma função com outro contrato tira direitos, não promove."
+    },
+    {
+     "texto": "Uma forma legal de dar mais liberdade ao trabalhador",
+     "correta": false,
+     "feedbackErro": "Se a rotina e a chefia continuam as mesmas, não há liberdade nova — só direitos a menos."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "precarizacao-trabalho",
+   "dificuldade": 3,
+   "pergunta": "Quando o trabalho informal NÃO é sinônimo de precarização?",
+   "ancora": "Escolher autonomia com proteção organizada é diferente.",
+   "alternativas": [
+    {
+     "texto": "Quando escolhe a autonomia e organiza a proteção sozinho",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nunca — todo trabalho informal é precarizado por definição",
+     "correta": false,
+     "feedbackErro": "Definição não é automática: quem escolhe a autonomia e se protege por conta própria não vive a mesma precariedade."
+    },
+    {
+     "texto": "Quando o trabalho é feito só nos fins de semana",
+     "correta": false,
+     "feedbackErro": "A frequência não muda nada sozinha — o que importa é ter escolha real e proteção organizada."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "direitos-formais",
+   "criterio": "Isso sozinho garante proteção?",
+   "enunciado": "Ter um contrato assinado entre as partes, sem registro em carteira",
+   "resposta": false,
+   "ancora": "Contrato sem carteira não substitui o registro formal.",
+   "feedbackErro": "Um papel assinado parece juridicamente sólido. Mas sem o registro em carteira, ele não cria os direitos trabalhistas da CLT."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "precarizacao-trabalho",
+   "instrucao": "Ordene do caso mais formal ao mais precarizado.",
+   "ancora": "A ordem segue o nível de proteção que cada caso tem.",
+   "feedbackErro": "CLT tem proteção automática; MEI organiza sozinho; diarista sem registro perde direitos; jornada sem limite é o extremo da precarização.",
+   "itens": [
+    {
+     "texto": "CLT com carteira, horário e FGTS",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "MEI que organiza sozinho INSS e reserva",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Diarista sem registro, mas com renda estável",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Entregador sem contrato, sem piso, jornada sem limite",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "precarizacao-trabalho",
+   "criterio": "É pejotização disfarçada?",
+   "enunciado": "PJ que só presta serviço pra uma empresa, com horário fixo imposto por ela",
+   "resposta": true,
+   "ancora": "Exclusividade e horário imposto são rotina de CLT com nome de PJ.",
+   "feedbackErro": "PJ soa como sinônimo de autonomia. Mas exclusividade e horário definido pela empresa são rotina de emprego, só com outro nome no papel."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "precarizacao-trabalho",
+   "criterio": "É pejotização disfarçada?",
+   "enunciado": "PJ que atende vários clientes e define o próprio horário",
+   "resposta": false,
+   "ancora": "Múltiplos clientes e horário próprio são autonomia real.",
+   "feedbackErro": "Parece arriscado por não ter patrão fixo. Mas ter vários clientes e definir o próprio horário é autonomia de verdade, não disfarce."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "direitos-formais",
+   "pergunta": "CLT de R$ 3.200 vira PJ; a empresa some com o FGTS de 8%. Quanto isso tira por mês?",
+   "campo": "moeda",
+   "min": 100,
+   "max": 1000,
+   "gabarito": 256,
+   "toleranciaPct": 20,
+   "fonte": "alíquota do FGTS, 8% do salário",
+   "verificacao": {
+    "expressao": "3200*0.08",
+    "esperado": 256.0
+   },
+   "feedbackPerto": "Isso mesmo — R$ 256 por mês. Multiplicado pelos anos de trabalho, é uma reserva enorme que some.",
+   "feedbackLonge": "Dá R$ 256 por mês. Sozinho parece pouco, mas multiplicado pelos anos de carreira vira uma reserva enorme perdida."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "direitos-formais",
+   "dificuldade": 3,
+   "pergunta": "Um CLT vira MEI pro mesmo serviço. O que ele perde de fato, além do nome do contrato?",
+   "ancora": "FGTS, férias e parte da contribuição paga pelo empregador somem.",
+   "alternativas": [
+    {
+     "texto": "FGTS, férias e parte do INSS que o empregador pagava",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada muda de verdade, só o nome do documento",
+     "correta": false,
+     "feedbackErro": "O nome muda pouco, mas o conteúdo muda muito: some FGTS, férias e a parte do INSS que era do empregador."
+    },
+    {
+     "texto": "Ele passa a pagar mais imposto do que pagava antes",
+     "correta": false,
+     "feedbackErro": "O ponto central não é o valor do imposto — é a perda de FGTS, férias e proteção que a empresa dividia antes."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "precarizacao-trabalho",
+   "dificuldade": 3,
+   "pergunta": "Em qual situação virar PJ pode compensar, mesmo perdendo direitos de CLT?",
+   "ancora": "Vale a troca quando o ganho extra cobre a proteção que passa a faltar.",
+   "alternativas": [
+    {
+     "texto": "Quando o valor recebido é maior e cobre a proteção que falta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sempre, porque PJ paga menos imposto que CLT em todo caso",
+     "correta": false,
+     "feedbackErro": "Imposto menor não compensa sozinho — sem FGTS nem férias, quem decide precisa cobrir essa falta por conta própria."
+    },
+    {
+     "texto": "Nunca, perder direitos de CLT não compensa em nenhum caso",
+     "correta": false,
+     "feedbackErro": "Existe caso em que compensa: quando o ganho extra é grande o bastante pra cobrir o que deixou de ter."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "direitos-formais",
+   "criterio": "Isso sozinho garante proteção?",
+   "enunciado": "Assinar um 'termo de parceria' com a empresa",
+   "resposta": false,
+   "ancora": "Nome de parceria não cria direito trabalhista sem registro.",
+   "feedbackErro": "'Parceria' soa como acordo entre iguais, e passa confiança. Mas sem registro em carteira, o nome do papel não cria direito nenhum."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "precarizacao-trabalho",
+   "criterio": "É pejotização disfarçada?",
+   "enunciado": "Trocar carteira assinada por CNPJ, mantendo a mesma função e chefia",
+   "resposta": true,
+   "ancora": "Mesma função e mesma chefia, só o contrato muda de nome.",
+   "feedbackErro": "A troca de contrato parece uma formalidade administrativa. Mas mantendo função e chefia iguais, só os direitos mudam — pra menos."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "precarizacao-trabalho",
+   "pergunta": "Qual frase resume a transferência de hoje?",
+   "ancora": "Rotina igual à de um CLT, com outro nome, é precarização disfarçada.",
+   "alternativas": [
+    {
+     "texto": "O que importa é o nome do contrato: CLT, MEI ou PJ.",
+     "correta": false,
+     "feedbackErro": "O nome não define nada sozinho — o que conta é se a rotina de trabalho segue igual à de um CLT."
+    },
+    {
+     "texto": "O que define proteção é se a rotina de trabalho é a mesma de um CLT disfarçado.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Autonomia e precarização são sempre a mesma coisa.",
+     "correta": false,
+     "feedbackErro": "Autonomia escolhida, com proteção organizada, é diferente de precarização imposta."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "precarizacao-trabalho",
+   "instrucao": "É pejotização disfarçada? Arraste.",
+   "ancora": "Disfarça quando a rotina de CLT continua, só o contrato muda.",
+   "feedbackErro": "O que define disfarce é exclusividade e horário impostos pela empresa; múltiplos clientes e horário próprio são autonomia real.",
+   "caixas": [
+    {
+     "id": "disfarce",
+     "rotulo": "É disfarce"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "PJ exclusivo, com ponto batido igual a CLT",
+     "caixaCorreta": "disfarce"
+    },
+    {
+     "texto": "PJ com vários clientes e horário próprio",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "PJ que só pode atender uma empresa por contrato",
+     "caixaCorreta": "disfarce"
+    },
+    {
+     "texto": "PJ que negocia prazo e valor de cada projeto",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "direitos-formais",
+   "dificuldade": 3,
+   "pergunta": "Uma pessoa trabalha 5 anos como PJ disfarçado. O que ela pode buscar na Justiça do Trabalho?",
+   "ancora": "Provando subordinação e rotina de CLT, cabe pedir o vínculo.",
+   "alternativas": [
+    {
+     "texto": "Reconhecimento do vínculo e os direitos do período todo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada, porque assinou como PJ por vontade própria",
+     "correta": false,
+     "feedbackErro": "A assinatura não anula o direito — se a rotina provar subordinação, o vínculo pode ser reconhecido depois."
+    },
+    {
+     "texto": "Só uma indenização simbólica, sem direito a mais nada",
+     "correta": false,
+     "feedbackErro": "Não é só simbólico: reconhecido o vínculo, cabem FGTS, férias e outros direitos do período todo."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "direitos-formais",
+   "criterio": "Isso sozinho garante proteção?",
+   "enunciado": "Ter um bom relacionamento pessoal com o contratante",
+   "resposta": false,
+   "ancora": "Confiança pessoal não substitui direito escrito em contrato.",
+   "feedbackErro": "Uma boa relação ajuda no dia a dia e passa segurança. Mas sem contrato e registro, ela não garante nenhum direito formal."
+  }
+ ]
+}

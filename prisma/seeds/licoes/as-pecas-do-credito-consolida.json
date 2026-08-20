@@ -1,0 +1,247 @@
+{
+ "slug": "as-pecas-do-credito-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "as-pecas-do-credito",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "elementos-do-credito",
+   "criterio": "Ainda é elemento do crédito?",
+   "enunciado": "A multa cobrada só se você atrasar o pagamento",
+   "resposta": true,
+   "ancora": "Multa é elemento do contrato, mesmo condicional ao atraso.",
+   "feedbackErro": "Parece que só conta o que é cobrado sempre. Mas a multa já está prevista no contrato — é elemento do crédito, mesmo condicional."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-credito",
+   "criterio": "Ainda é crédito de longo prazo?",
+   "enunciado": "Financiamento de 30 anos quitado em 2 anos",
+   "resposta": true,
+   "ancora": "O prazo contratado era 30 anos; quitar antes não muda isso.",
+   "feedbackErro": "Quitar antes parece apagar o prazo original. Mas o contrato nasceu com 30 anos — a antecipação é outra coisa, não muda a classificação."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "elementos-do-credito",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Sem taxa de juros explícita, não existe custo nenhum",
+   "resposta": false,
+   "ancora": "Custo pode estar embutido no preço, mesmo sem taxa visível.",
+   "feedbackErro": "Parece que sem juro no papel não há custo. Mas o preço parcelado pode já embutir o custo, mesmo sem taxa declarada."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "elementos-do-credito",
+   "dificuldade": 3,
+   "pergunta": "Quando parcelamento sem juros pode não significar sem custo nenhum?",
+   "ancora": "Se o preço à vista tem desconto, o parcelado já custa mais.",
+   "alternativas": [
+    {
+     "texto": "Quando o parcelado custa mais que o à vista com desconto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nunca: sem juros é sempre sem custo",
+     "correta": false,
+     "feedbackErro": "A etiqueta sem juros não garante isso. Se existe desconto à vista, o parcelado já sai mais caro na comparação."
+    },
+    {
+     "texto": "Só quando o número de parcelas passa de 12x",
+     "correta": false,
+     "feedbackErro": "O número de parcelas não define isso sozinho. O que revela o custo é comparar com o preço à vista."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "prazo-do-credito",
+   "dificuldade": 3,
+   "pergunta": "Opção A: 2,2% ao mês por 8 meses. Opção B: 1,5% ao mês por 16 meses, mesmo valor. Qual tem menos juro total?",
+   "ancora": "A: R$ 264 de juro. B: R$ 360. O prazo maior superou a taxa menor.",
+   "verificacao": { "expressao": "1500*0.022*8 - 1500*0.015*16", "esperado": -96 },
+   "alternativas": [
+    {
+     "texto": "A opção A, mesmo com taxa maior",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A opção B, porque tem taxa menor",
+     "correta": false,
+     "feedbackErro": "Taxa menor parece garantia de menos custo, mas o dobro do prazo pesou mais — A tem menos juro total."
+    },
+    {
+     "texto": "As duas custam exatamente o mesmo",
+     "correta": false,
+     "feedbackErro": "Os totais são diferentes: R$ 264 contra R$ 360. A taxa menor não compensou o prazo maior."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-credito",
+   "criterio": "Isso é sempre verdade?",
+   "enunciado": "Taxa de juros menor sempre gera menos custo total",
+   "resposta": false,
+   "ancora": "Prazo bem maior pode superar o efeito de uma taxa menor.",
+   "feedbackErro": "Parece regra sem exceção. Mas se o prazo maior dobra o tempo de juro correndo, o total pode ficar maior mesmo com taxa menor."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "prazo-do-credito",
+   "instrucao": "Nessas condições, é curto ou longo prazo? Arraste.",
+   "ancora": "Curto: cheque e cartão. Longo: financiamento e consignado.",
+   "feedbackErro": "O nome do produto ajuda a identificar. Cheque especial e parcelamento curto são de curto prazo; financiamento e consignado longo são de longo prazo.",
+   "caixas": [
+    { "id": "curto", "rotulo": "Curto prazo" },
+    { "id": "longo", "rotulo": "Longo prazo" }
+   ],
+   "itens": [
+    { "texto": "Cheque especial", "caixaCorreta": "curto" },
+    { "texto": "Cartão de crédito parcelado em 3x", "caixaCorreta": "curto" },
+    { "texto": "Financiamento estudantil", "caixaCorreta": "longo" },
+    { "texto": "Empréstimo consignado em 60 meses", "caixaCorreta": "longo" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "elementos-do-credito",
+   "criterio": "Ainda vale essa regra?",
+   "enunciado": "Mesmo em crédito de curto prazo, vale comparar taxas entre bancos",
+   "resposta": true,
+   "ancora": "A proporção do juro pesa igual, seja o prazo curto ou longo.",
+   "feedbackErro": "Parece que só vale comparar em contratos longos. Mas mesmo no curto prazo, taxas diferentes mudam o custo na mesma proporção."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "elementos-do-credito",
+   "dificuldade": 3,
+   "pergunta": "Empréstimo de R$ 3.600 a 0,9% ao mês (consignado). Juro do 1º mês?",
+   "ancora": "0,9% de 3.600: divida por 100 e multiplique por 0,9 — dá 32,40.",
+   "verificacao": { "expressao": "3600*0.009", "esperado": 32.4 },
+   "alternativas": [
+    {
+     "texto": "R$ 32,40",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 9",
+     "correta": false,
+     "feedbackErro": "Você tratou 0,9% como R$ 9 fixos. É percentual sobre 3.600: o resultado é 32,40."
+    },
+    {
+     "texto": "R$ 324",
+     "correta": false,
+     "feedbackErro": "R$ 324 seria 9%. O símbolo % engana: 0,9% de 3.600 são 32,40, não 324."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-credito",
+   "criterio": "Isso ainda se aplica?",
+   "enunciado": "Contrato renovado todo mês, sem data final, ainda é curto prazo",
+   "resposta": true,
+   "ancora": "Mesmo sem data final, o ciclo mensal classifica como curto prazo.",
+   "feedbackErro": "Parece que sem data final o prazo vira longo. Mas o ciclo de renovação mensal, como no cheque especial, ainda é curto prazo."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "elementos-do-credito",
+   "criterio": "Isso resolve o problema de custo alto?",
+   "enunciado": "Trocar de instituição sem comparar taxa e prazo juntos",
+   "resposta": false,
+   "ancora": "Comparar só um dos dois pode esconder um crédito mais caro.",
+   "feedbackErro": "Trocar de banco parece já resolver o problema. Mas sem comparar taxa e prazo juntos, o novo crédito pode custar mais no total."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "elementos-do-credito",
+   "pergunta": "Qual frase resume os três encontros sobre as peças do crédito?",
+   "alternativas": [
+    {
+     "texto": "Taxa, prazo e parcelas se combinam — nenhum sozinho conta a história toda",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Taxa menor sempre vence, não importa o prazo",
+     "correta": false,
+     "feedbackErro": "Prazo bem maior pode superar taxa menor no custo total — comparar só a taxa não basta."
+    },
+    {
+     "texto": "Crédito sem juro explícito nunca tem custo",
+     "correta": false,
+     "feedbackErro": "O custo pode estar embutido no preço, mesmo sem taxa declarada no contrato."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "elementos-do-credito",
+   "dificuldade": 3,
+   "pergunta": "Empréstimo de R$ 700 a 4,5% ao mês. Juro do 1º mês?",
+   "ancora": "4,5% de 700: divida por 100 e multiplique por 4,5 — dá 31,50.",
+   "verificacao": { "expressao": "700*0.045", "esperado": 31.5 },
+   "alternativas": [
+    {
+     "texto": "R$ 31,50",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 4,50",
+     "correta": false,
+     "feedbackErro": "Você tratou 4,5% como R$ 4,50 fixos. É percentual sobre 700: o resultado é 31,50."
+    },
+    {
+     "texto": "R$ 315",
+     "correta": false,
+     "feedbackErro": "R$ 315 seria 45%. O símbolo % engana: 4,5% de 700 são 31,50, não 315."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-credito",
+   "criterio": "É verdade?",
+   "enunciado": "Quitar um financiamento longo antes do fim muda sua classificação",
+   "resposta": false,
+   "ancora": "A classificação vem do prazo contratado, não de quando você quita.",
+   "feedbackErro": "Quitar antes parece apagar o prazo original. Mas o contrato nasceu longo — a classificação não muda com a antecipação."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "elementos-do-credito",
+   "instrucao": "Toque na ordem de prioridade ao comparar dois créditos.",
+   "ancora": "Taxa, prazo, custo total, só depois assinar — nessa ordem.",
+   "feedbackErro": "É tentador olhar só a taxa e assinar. Mas comparar taxa, prazo e custo total antes evita escolher o crédito mais caro.",
+   "itens": [
+    { "texto": "Comparar a taxa de juros", "posicaoCorreta": 1 },
+    { "texto": "Comparar o prazo total", "posicaoCorreta": 2 },
+    { "texto": "Calcular o custo total (taxa vezes prazo)", "posicaoCorreta": 3 },
+    { "texto": "Assinar o contrato", "posicaoCorreta": 4 }
+   ]
+  }
+ ]
+}

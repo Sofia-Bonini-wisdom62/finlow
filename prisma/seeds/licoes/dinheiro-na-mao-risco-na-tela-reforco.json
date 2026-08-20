@@ -1,0 +1,295 @@
+{
+ "slug": "dinheiro-na-mao-risco-na-tela-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "dinheiro-na-mao-risco-na-tela",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-fisico",
+   "criterio": "Isso é um risco do dinheiro físico?",
+   "enunciado": "Deixar o troco da feira solto em cima do painel do carro",
+   "resposta": true,
+   "ancora": "Dinheiro visível de fora do carro é convite a um arrombamento.",
+   "feedbackErro": "O critério é o de sempre: dinheiro exposto e de fácil acesso. Visível pelo vidro, ele vira alvo antes mesmo de você sair do carro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-digital",
+   "criterio": "Isso é um risco de transação digital?",
+   "enunciado": "Receber uma ligação de alguém dizendo ser do banco e pedindo o código do SMS",
+   "resposta": true,
+   "ancora": "Banco de verdade nunca pede o código de confirmação por telefone.",
+   "feedbackErro": "O critério continua o mesmo: pedir uma credencial fora do canal oficial. O código de SMS é a chave de uma transação — dar esse código é abrir a porta."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-fisico",
+   "criterio": "Isso é um risco do dinheiro físico?",
+   "enunciado": "Pagar o pedreiro com transferência bancária combinada por escrito",
+   "resposta": false,
+   "ancora": "Sem dinheiro em espécie envolvido, não há exposição física.",
+   "feedbackErro": "Envolve pagamento, mas a transferência não expõe dinheiro em espécie a furto ou extravio — o risco aqui, se houver, seria de outra natureza."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-digital",
+   "dificuldade": 2,
+   "pergunta": "Um app de investimento promete 30% de lucro ao mês, garantido. Qual o maior sinal de golpe aqui?",
+   "ancora": "Promessa de retorno alto e garantido é a marca clássica do golpe.",
+   "verificacao": { "expressao": "30*12", "esperado": 360 },
+   "alternativas": [
+    {
+     "texto": "O aplicativo ter poucas avaliações na loja",
+     "correta": false,
+     "feedbackErro": "Poucas avaliações é um alerta secundário. O sinal mais grave é outro: nenhum investimento sério garante 30% ao mês sem risco."
+    },
+    {
+     "texto": "Prometer retorno alto e garantido, sem nenhum risco",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O aplicativo pedir o CPF no cadastro",
+     "correta": false,
+     "feedbackErro": "Pedir CPF é comum até em serviços legítimos. O que denuncia o golpe é a promessa impossível de retorno garantido tão alto."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-fisico",
+   "dificuldade": 2,
+   "pergunta": "Por que sacar o salário todo de uma vez, no mesmo dia do pagamento, é mais arriscado que sacar aos poucos?",
+   "ancora": "Sacar tudo de uma vez concentra a perda possível num único ponto.",
+   "alternativas": [
+    {
+     "texto": "Porque o caixa cobra tarifa maior em saques grandes",
+     "correta": false,
+     "feedbackErro": "A tarifa do caixa não muda pelo valor sacado de uma vez. O risco maior está em outro lugar: carregar tudo consigo ao mesmo tempo."
+    },
+    {
+     "texto": "Porque concentra o prejuízo num único furto possível",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque o dinheiro em espécie perde valor com o tempo",
+     "correta": false,
+     "feedbackErro": "O valor do dinheiro não cai por ficar guardado alguns dias. A questão aqui é exposição a furto, não desvalorização."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "risco-digital",
+   "criterio": "Isso protege uma transação digital?",
+   "enunciado": "Baixar o aplicativo do banco só pela loja oficial de aplicativos",
+   "resposta": true,
+   "ancora": "Fora da loja oficial, o app pode ser uma cópia falsa.",
+   "feedbackErro": "Pode parecer indiferente de onde vem o app, mas versões fora da loja oficial costumam ser cópias criadas para capturar login e senha."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "risco-fisico",
+   "instrucao": "Ordene do mais seguro ao menos seguro para receber um pagamento",
+   "ancora": "O critério: quanto mais rastreável, mais seguro.",
+   "feedbackErro": "O instinto é pensar na rapidez do recebimento. O critério real é o quanto o pagamento pode ser rastreado e contestado depois.",
+   "itens": [
+    { "texto": "Transferência bancária com comprovante", "posicaoCorreta": 1 },
+    { "texto": "Pagamento por aproximação com o cartão do cliente", "posicaoCorreta": 2 },
+    { "texto": "Dinheiro em espécie contado na hora, com recibo", "posicaoCorreta": 3 },
+    { "texto": "Dinheiro em espécie deixado num envelope sem conferência", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "risco-digital",
+   "criterio": "Isso protege uma transação digital?",
+   "enunciado": "Ativar a autenticação em duas etapas no aplicativo do banco",
+   "resposta": true,
+   "ancora": "Uma segunda camada dificulta o acesso mesmo com a senha vazada.",
+   "feedbackErro": "Não parece mudar muito no dia a dia, mas essa segunda etapa impede que alguém entre na conta só com a senha roubada."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "risco-fisico",
+   "criterio": "Isso reduz o risco do dinheiro físico?",
+   "enunciado": "Avisar nas redes sociais que vai viajar e vai ficar dias fora de casa",
+   "resposta": false,
+   "ancora": "Avisar publicamente que a casa vai ficar vazia aumenta o risco.",
+   "feedbackErro": "Parece só compartilhar uma novidade, mas divulgar que a casa vai ficar vazia é informação valiosa para quem planeja um furto."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "risco-digital",
+   "pergunta": "Se 100 pessoas recebem um golpe por SMS e 10 caem, quantas o golpista precisa mandar para pegar 50 vítimas?",
+   "campo": "numero",
+   "min": 200,
+   "max": 800,
+   "gabarito": 500,
+   "toleranciaPct": 20,
+   "fonte": "proporção estimada de vítimas por golpe em massa, ordem de grandeza",
+   "verificacao": { "expressao": "50/10*100", "esperado": 500 },
+   "feedbackPerto": "Isso mesmo, cerca de 500 — mantendo a proporção de 10 em 100.",
+   "feedbackLonge": "Fica perto de 500 mensagens. Mantendo 1 vítima a cada 10 mensagens, chegar a 50 vítimas exige mandar 5 vezes mais."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "risco-fisico",
+   "dificuldade": 2,
+   "pergunta": "Luana teve a bolsa furtada com R$300 em espécie e o celular. O que ela consegue reverter primeiro?",
+   "ancora": "O celular pode ser bloqueado remotamente; o dinheiro, não.",
+   "alternativas": [
+    {
+     "texto": "O bloqueio remoto do celular, feito à distância",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Os R$300 em espécie, que o banco pode devolver",
+     "correta": false,
+     "feedbackErro": "Dinheiro em espécie não tem sistema de devolução — uma vez furtado, não há como reaver ou bloquear."
+    },
+    {
+     "texto": "Nenhum dos dois pode ser resolvido rapidamente",
+     "correta": false,
+     "feedbackErro": "O celular tem, sim, uma solução rápida: bloqueio e apagamento remoto por aplicativos de localização."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "risco-digital",
+   "dificuldade": 2,
+   "pergunta": "Uma loja online só aceita pagamento por chave pix pessoal, fora do sistema da loja. O que isso sinaliza?",
+   "ancora": "Pix fora do sistema da loja não tem proteção de compra.",
+   "alternativas": [
+    {
+     "texto": "Que a loja está economizando na taxa do cartão",
+     "correta": false,
+     "feedbackErro": "Economizar taxa é plausível para uma loja de verdade, mas pedir pix pessoal, fora do sistema, tira exatamente a proteção que protegeria o comprador."
+    },
+    {
+     "texto": "Que pode não haver garantia nenhuma de entrega do produto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que o produto vai chegar mais rápido",
+     "correta": false,
+     "feedbackErro": "A forma de pagamento não define o prazo de entrega. O que ela define é se existe alguma proteção caso o produto não chegue."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "risco-fisico",
+   "criterio": "Isso é um risco do dinheiro físico?",
+   "enunciado": "Emprestar a chave de casa para um conhecido guardar um pacote",
+   "resposta": true,
+   "ancora": "Dar acesso à casa expõe qualquer dinheiro guardado nela.",
+   "feedbackErro": "Não parece sobre dinheiro à primeira vista, mas dar acesso à casa expõe tudo que está guardado lá dentro, inclusive dinheiro em espécie."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "risco-digital",
+   "criterio": "Isso é um risco de transação digital?",
+   "enunciado": "Pagar uma conta pelo aplicativo oficial do banco, com biometria",
+   "resposta": false,
+   "ancora": "Canal oficial com biometria é o uso mais seguro do digital.",
+   "feedbackErro": "É uma transação digital, mas feita pelo canal certo e com uma verificação extra — exatamente o padrão que reduz o risco, não que o cria."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "risco-digital",
+   "pergunta": "Depois desses casos, qual frase resume melhor o cuidado necessário?",
+   "alternativas": [
+    {
+     "texto": "Quem usa só dinheiro em espécie está sempre mais seguro",
+     "correta": false,
+     "feedbackErro": "Dinheiro em espécie tem risco próprio de furto e extravio — não é automaticamente mais seguro que o digital."
+    },
+    {
+     "texto": "O canal oficial e a verificação extra reduzem o risco em ambos os casos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Golpe por telefone só engana quem não sabe usar celular",
+     "correta": false,
+     "feedbackErro": "Golpes por telefone usam pressão e urgência, e enganam pessoas de todas as idades e níveis de familiaridade com tecnologia."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "risco-fisico",
+   "instrucao": "É risco do dinheiro físico ou do digital?",
+   "ancora": "Físico envolve o objeto; digital envolve dados e acesso.",
+   "feedbackErro": "O jeito de separar: perder o objeto em si é físico. Alguém acessando seus dados ou senha à distância é digital.",
+   "caixas": [
+    { "id": "fisico", "rotulo": "Físico" },
+    { "id": "digital", "rotulo": "Digital" }
+   ],
+   "itens": [
+    { "texto": "Nota de dinheiro rasgada sem querer na lavanderia", "caixaCorreta": "fisico" },
+    { "texto": "E-mail falso pedindo para atualizar os dados do cartão", "caixaCorreta": "digital" },
+    { "texto": "Moedas caindo de um bolso furado", "caixaCorreta": "fisico" },
+    { "texto": "Wi-fi público aberto capturando senhas digitadas", "caixaCorreta": "digital" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "risco-digital",
+   "criterio": "Isso protege uma transação digital?",
+   "enunciado": "Trocar a senha do banco assim que suspeitar de algo estranho",
+   "resposta": true,
+   "ancora": "Trocar rápido fecha a porta antes que o dano se espalhe.",
+   "feedbackErro": "Parece uma reação tardia, mas trocar a senha assim que há suspeita corta o acesso de quem já pode estar tentando invadir a conta."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "risco-fisico",
+   "dificuldade": 2,
+   "pergunta": "Por que caixas eletrônicos dentro de agências bancárias costumam ser mais seguros que os de rua?",
+   "ancora": "Circulação de funcionários e câmeras reduzem a chance de assalto.",
+   "alternativas": [
+    {
+     "texto": "Porque têm câmeras e mais circulação de pessoas por perto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque cobram uma taxa de saque menor",
+     "correta": false,
+     "feedbackErro": "A taxa de saque não muda por causa da localização do caixa. A diferença de segurança vem do ambiente vigiado."
+    },
+    {
+     "texto": "Porque só funcionam durante o horário comercial",
+     "correta": false,
+     "feedbackErro": "Muitos desses caixas funcionam 24 horas. O que os torna mais seguros é o ambiente monitorado, não o horário."
+    }
+   ]
+  }
+ ]
+}

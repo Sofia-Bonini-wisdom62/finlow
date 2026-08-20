@@ -1,0 +1,247 @@
+{
+ "slug": "conferir-a-conta-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "conferir-a-conta",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "conferir-o-recibo",
+   "criterio": "Isso é um erro na conta?",
+   "enunciado": "Nota fiscal soma R$ 38,70, mas o cartão cobrou R$ 41,70",
+   "resposta": true,
+   "ancora": "A diferença de R$ 3 entre a nota e a cobrança é erro.",
+   "feedbackErro": "Parece uma diferença pequena de arredondamento. Mas R$ 3 fixos entre o que a nota soma e o que foi cobrado é erro real."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "conferir-o-recibo",
+   "criterio": "Isso é um erro na conta?",
+   "enunciado": "Nota mostra o valor total igual ao preço anunciado, sem acréscimo",
+   "resposta": false,
+   "ancora": "Sem acréscimo é o esperado — não é erro nenhum.",
+   "feedbackErro": "Parece estranho não ter nenhuma diferença. Mas cobrar exatamente o preço anunciado é o comportamento correto, não um erro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "ler-noticia-financeira",
+   "criterio": "Isso é uma notícia financeira?",
+   "enunciado": "Artigo de opinião sobre gastos do governo com educação",
+   "resposta": true,
+   "ancora": "Gasto público é tema econômico — conta como notícia financeira.",
+   "feedbackErro": "Parece um tema só de política. Mas gasto do governo é dinheiro público — é conteúdo financeiro, sim."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "conferir-o-recibo",
+   "dificuldade": 2,
+   "pergunta": "Você compra 4 itens de R$ 22 cada. O caixa cobra R$ 120. Qual é a diferença?",
+   "ancora": "4 vezes 22 é 88; R$ 120 tem R$ 32 cobrados a mais.",
+   "verificacao": { "expressao": "120-4*22", "esperado": 32 },
+   "alternativas": [
+    {
+     "texto": "R$ 32 cobrados a mais",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 12 cobrados a mais",
+     "correta": false,
+     "feedbackErro": "R$ 12 não fecha a conta. 4 vezes 22 dá 88; a diferença pra 120 é 32, não 12."
+    },
+    {
+     "texto": "Nenhuma diferença, está certo",
+     "correta": false,
+     "feedbackErro": "A soma real é 88 (4 vezes 22). Cobrar 120 deixa R$ 32 sem explicação."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "ler-noticia-financeira",
+   "dificuldade": 2,
+   "pergunta": "Duas notícias dão números diferentes pra mesma taxa. O que checar antes de acreditar numa?",
+   "ancora": "Data e fonte mostram qual informação está atualizada e confiável.",
+   "alternativas": [
+    {
+     "texto": "Checar a data e a fonte de cada uma",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Acreditar na que veio primeiro",
+     "correta": false,
+     "feedbackErro": "Vir primeiro não garante estar certo. O que importa é checar a data e de onde veio o número."
+    },
+    {
+     "texto": "Ignorar as duas, notícia sempre erra",
+     "correta": false,
+     "feedbackErro": "Descartar tudo não resolve. O caminho é checar data e fonte, não ignorar a informação inteira."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "conferir-o-recibo",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Comprovante de pagamento prova que a compra foi feita",
+   "resposta": true,
+   "ancora": "É pra isso que o comprovante existe: registrar a compra.",
+   "feedbackErro": "Parece um papel qualquer que se joga fora. Mas o comprovante é justamente o que prova que o pagamento aconteceu."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "conferir-o-recibo",
+   "instrucao": "Toque na ordem de quem confere primeiro, no cartão.",
+   "ancora": "Ver antes de aprovar, conferir depois, comparar, guardar.",
+   "feedbackErro": "É tentador só guardar o comprovante sem olhar. Mas conferir o valor antes de aprovar evita erro que depois dá mais trabalho.",
+   "itens": [
+    { "texto": "Ver o valor na maquininha antes de aprovar", "posicaoCorreta": 1 },
+    { "texto": "Conferir o comprovante impresso depois", "posicaoCorreta": 2 },
+    { "texto": "Comparar com o valor que você esperava pagar", "posicaoCorreta": 3 },
+    { "texto": "Guardar o comprovante", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "ler-noticia-financeira",
+   "criterio": "Isso ajuda a entender a notícia?",
+   "enunciado": "Ver se o texto separa fato de opinião do autor",
+   "resposta": true,
+   "ancora": "Fato é dado checável; opinião é o ponto de vista do autor.",
+   "feedbackErro": "Parece um detalhe de estilo do texto. Mas separar fato de opinião ajuda a entender o que é dado e o que é ponto de vista."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "conferir-o-recibo",
+   "dificuldade": 2,
+   "pergunta": "Produto de R$ 80 com 15% de desconto anunciado. Recibo cobra R$ 72. Está certo?",
+   "ancora": "15% de 80 é 12 de desconto — o valor certo é 68, não 72.",
+   "verificacao": { "expressao": "80-80*0.15", "esperado": 68 },
+   "alternativas": [
+    {
+     "texto": "Não, o certo é R$ 68",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, está certo",
+     "correta": false,
+     "feedbackErro": "15% de 80 são 12 de desconto. O valor certo é 68 — 72 ainda tem 4 a mais."
+    },
+    {
+     "texto": "Não, o certo é R$ 65",
+     "correta": false,
+     "feedbackErro": "R$ 65 fica abaixo do valor certo. Com 15% de desconto sobre 80, o certo é 68."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "ler-noticia-financeira",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Notícia patrocinada por uma empresa pode ter viés a favor dela",
+   "resposta": true,
+   "ancora": "Quem paga pelo conteúdo tende a aparecer bem nele.",
+   "feedbackErro": "Parece que toda notícia é neutra por padrão. Mas conteúdo patrocinado tende a favorecer quem pagou por ele."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "conferir-o-recibo",
+   "criterio": "Ajuda a evitar prejuízo?",
+   "enunciado": "Guardar o comprovante até checar a fatura do cartão",
+   "resposta": true,
+   "ancora": "Guardar até checar evita brigar sem prova se houver erro.",
+   "feedbackErro": "Parece um passo extra desnecessário. Mas guardar até checar a fatura é o que permite provar um erro, se ele aparecer."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "ler-noticia-financeira",
+   "pergunta": "Qual ideia fecha este encontro?",
+   "alternativas": [
+    {
+     "texto": "Somar, comparar e checar a fonte evitam pagar ou acreditar errado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Erro de poucos reais na conta não vale reclamar",
+     "correta": false,
+     "feedbackErro": "O valor pode ser pequeno, mas o erro é real — vale apontar mesmo assim."
+    },
+    {
+     "texto": "Notícia patrocinada é tão neutra quanto qualquer outra",
+     "correta": false,
+     "feedbackErro": "Quem paga pelo conteúdo tende a favorecer a si mesmo — vale considerar isso ao ler."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "conferir-o-recibo",
+   "dificuldade": 3,
+   "pergunta": "Compra de R$ 150 com 20% de desconto. Recibo cobra R$ 125. Está certo?",
+   "ancora": "20% de 150 são 30 de desconto — o valor certo é 120, não 125.",
+   "verificacao": { "expressao": "150-150*0.2", "esperado": 120 },
+   "alternativas": [
+    {
+     "texto": "Não, o certo é R$ 120",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, está certo",
+     "correta": false,
+     "feedbackErro": "20% de 150 são 30 de desconto. O valor certo é 120, não 125."
+    },
+    {
+     "texto": "Não, o certo é R$ 130",
+     "correta": false,
+     "feedbackErro": "R$ 130 fica acima do valor certo. Com 20% de desconto sobre 150, o certo é 120."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "ler-noticia-financeira",
+   "criterio": "É verdade?",
+   "enunciado": "Toda reportagem sobre economia tem números exatos e sem erro",
+   "resposta": false,
+   "ancora": "Reportagem pode ter erro ou dado desatualizado, como qualquer texto.",
+   "feedbackErro": "Parece que economia é sempre precisa. Mas reportagem também pode errar número ou usar dado velho, como qualquer texto."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "ler-noticia-financeira",
+   "instrucao": "É fonte confiável de notícia financeira ou não? Arraste.",
+   "ancora": "Fonte oficial e reportagem assinada valem mais que texto anônimo.",
+   "feedbackErro": "Nome e origem contam muito. Site oficial e reportagem assinada com fonte pesam mais que post anônimo ou corrente sem autoria.",
+   "caixas": [
+    { "id": "confiavel", "rotulo": "Confiável" },
+    { "id": "nao", "rotulo": "Não confiável" }
+   ],
+   "itens": [
+    { "texto": "Site oficial do Banco Central", "caixaCorreta": "confiavel" },
+    { "texto": "Post anônimo sem nome do autor", "caixaCorreta": "nao" },
+    { "texto": "Reportagem assinada com fonte citada", "caixaCorreta": "confiavel" },
+    { "texto": "Corrente de mensagem no grupo da família", "caixaCorreta": "nao" }
+   ]
+  }
+ ]
+}

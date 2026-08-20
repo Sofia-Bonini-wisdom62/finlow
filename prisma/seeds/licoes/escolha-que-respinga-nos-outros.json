@@ -1,0 +1,291 @@
+{
+ "slug": "escolha-que-respinga-nos-outros",
+ "segmento": "ef35",
+ "conceitoPrincipal": "escolha-que-respinga-nos-outros",
+ "fraseConceito": "Toda escolha de compra afeta outras pessoas e o ambiente — não só o seu bolso.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "escolha-com-impacto",
+   "criterio": "Isso afeta outras pessoas ou o ambiente?",
+   "enunciado": "Jogar pilha usada no lixo comum, em vez de num ponto de coleta",
+   "resposta": true,
+   "ancora": "Pilha no lixo comum polui o solo e a água de todo mundo.",
+   "feedbackErro": "Parece um problema só seu, de onde jogar o lixo. Mas pilha comum contamina o solo e a água que todo mundo usa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "escolha-com-impacto",
+   "criterio": "Isso afeta outras pessoas ou o ambiente?",
+   "enunciado": "Escolher entre dois sabores de suco pra tomar sozinho",
+   "resposta": false,
+   "ancora": "Sabor de suco pra você mesmo não afeta mais ninguém.",
+   "feedbackErro": "Toda escolha parece que devia ter algum efeito maior. Mas essa é uma preferência pessoal, sem consequência pra outras pessoas."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "escolha-com-impacto",
+   "criterio": "Isso afeta outras pessoas ou o ambiente?",
+   "enunciado": "A família toda gastar além do combinado, faltando dinheiro pro aluguel",
+   "resposta": true,
+   "ancora": "Um gasto de um afeta o que sobra pra todos em casa.",
+   "feedbackErro": "Parece que cada compra é decisão individual de quem gastou. Mas quando o dinheiro é da casa toda, gastar além afeta o que sobra pra todo mundo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "escolha-com-impacto",
+   "dificuldade": 1,
+   "pergunta": "A família de Théo economiza água há meses. Um dia ele deixa a torneira aberta escovando os dentes. Isso afeta só ele?",
+   "ancora": "A conta de água chega pra casa inteira, não só pra quem gastou.",
+   "alternativas": [
+    {
+     "texto": "Não, afeta a conta de água de toda a casa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, só ele vai perceber a diferença",
+     "correta": false,
+     "feedbackErro": "A torneira aberta não é invisível pros outros: a conta chega pra casa inteira, não só pra quem deixou ligada."
+    },
+    {
+     "texto": "Não afeta ninguém, porque água é gratuita",
+     "correta": false,
+     "feedbackErro": "Água não é gratuita — vem numa conta que a família paga. Gastar mais aumenta o valor pra todo mundo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "conflito-de-consumo",
+   "dificuldade": 1,
+   "pergunta": "Duas colegas dividem a mesma mesada, mas uma gasta rápido e pede mais pra outra. O que isso cria?",
+   "ancora": "Discordar sobre o mesmo dinheiro compartilhado gera conflito.",
+   "alternativas": [
+    {
+     "texto": "Um conflito, pois uma depende do dinheiro da outra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada muda, mesada é sempre pra dividir igual",
+     "correta": false,
+     "feedbackErro": "Dividir igual é o combinado, não o que sempre acontece. Quando uma gasta rápido e pede mais, gera desconforto."
+    },
+    {
+     "texto": "Um problema só de quem gastou rápido, sem afetar a outra",
+     "correta": false,
+     "feedbackErro": "Pedir mais dinheiro afeta as duas: quem pede fica devendo, e quem empresta fica sem parte do seu."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "conflito-de-consumo",
+   "criterio": "Isso é conflito de consumo?",
+   "enunciado": "Dois irmãos discordando sobre gastar a mesada em doce ou em brinquedo",
+   "resposta": true,
+   "ancora": "Interesses diferentes sobre o mesmo dinheiro geram conflito.",
+   "feedbackErro": "Parece só uma discussão boba entre irmãos. Mas discordar sobre como usar o mesmo dinheiro é exatamente um conflito de consumo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "escolha-com-impacto",
+   "instrucao": "Afeta só quem decide ou afeta mais gente?",
+   "ancora": "O que envolve dinheiro ou recurso compartilhado afeta mais gente.",
+   "feedbackErro": "Toda escolha parece pessoal à primeira vista. Mas quando envolve dinheiro compartilhado ou recursos de todos, o efeito passa de você.",
+   "caixas": [
+    {
+     "id": "so",
+     "rotulo": "Só quem decide"
+    },
+    {
+     "id": "mais",
+     "rotulo": "Mais gente"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Reciclar as garrafas de plástico de casa",
+     "caixaCorreta": "mais"
+    },
+    {
+     "texto": "Escolher qual roupa vestir pra dormir",
+     "caixaCorreta": "so"
+    },
+    {
+     "texto": "Gastar toda a mesada de uma vez, sem pensar no resto do mês",
+     "caixaCorreta": "mais"
+    },
+    {
+     "texto": "Escolher o sabor da pipoca do lanche",
+     "caixaCorreta": "so"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "conflito-de-consumo",
+   "criterio": "Resolve um conflito de consumo?",
+   "enunciado": "Conversar e combinar como vai ser dividido o gasto",
+   "resposta": true,
+   "ancora": "Combinar antes evita boa parte dos conflitos.",
+   "feedbackErro": "Parece que conflito só se resolve depois que já aconteceu. Mas conversar e combinar antes evita boa parte desses desentendimentos."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "escolha-com-impacto",
+   "dificuldade": 1,
+   "pergunta": "Uma turma decide reduzir o uso de copo descartável na escola. Quem sente esse efeito?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "A escola toda e o ambiente ao redor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só quem teve a ideia",
+     "correta": false,
+     "feedbackErro": "A ideia começou com uma pessoa, mas o efeito de usar menos descartável é sentido pela escola toda."
+    },
+    {
+     "texto": "Ninguém, porque copo descartável não afeta nada",
+     "correta": false,
+     "feedbackErro": "Copo descartável vira lixo que precisa de tratamento. Reduzir o uso muda o volume de lixo da escola inteira."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "conflito-de-consumo",
+   "criterio": "Ajuda a evitar um conflito de consumo?",
+   "enunciado": "Combinar antes quem paga o quê, numa compra em grupo",
+   "resposta": true,
+   "ancora": "Combinar antes deixa claro o papel de cada um.",
+   "feedbackErro": "Parece que combinar antes só atrasa a compra. Mas é isso que deixa claro o papel de cada um e evita briga depois."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "escolha-com-impacto",
+   "criterio": "Ajuda a evitar prejuízo aos outros?",
+   "enunciado": "Pensar no efeito da escolha antes de gastar, não só no próprio bolso",
+   "resposta": true,
+   "ancora": "Pensar além do próprio bolso é o que evita prejuízo maior.",
+   "feedbackErro": "Parece que pensar só no próprio bolso já é o suficiente. Mas considerar o efeito nos outros e no ambiente evita prejuízo maior."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "escolha-com-impacto",
+   "dificuldade": 3,
+   "pergunta": "Qual frase resume o que você viu?",
+   "alternativas": [
+    {
+     "texto": "Cada escolha financeira afeta só quem decide",
+     "correta": false,
+     "feedbackErro": "Muitas escolhas afetam família, colegas ou o ambiente, não só quem decidiu."
+    },
+    {
+     "texto": "Escolhas financeiras podem afetar outras pessoas e o ambiente",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Conflito de consumo só existe entre desconhecidos",
+     "correta": false,
+     "feedbackErro": "Conflitos de consumo acontecem até entre família e amigos, quando o dinheiro é compartilhado."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "escolha-com-impacto",
+   "instrucao": "Ordene do que afeta menos gente pro que afeta mais gente.",
+   "ancora": "Quanto mais o recurso é compartilhado, mais gente sente o efeito.",
+   "feedbackErro": "Parece que o efeito é sempre igual, não importa a escolha. Mas quanto mais o recurso é de todos, mais gente sente o efeito.",
+   "itens": [
+    {
+     "texto": "Escolher qual filme assistir sozinho",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Gastar a mesada combinada com os pais",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Desperdiçar água numa casa com várias pessoas",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "conflito-de-consumo",
+   "instrucao": "Isso evita um conflito de consumo?",
+   "ancora": "Combinar e avisar evita conflito; gastar e esquecer cria.",
+   "feedbackErro": "Parece que só o resultado final importa. Mas o que evita conflito é combinar e avisar antes.",
+   "caixas": [
+    {
+     "id": "evita",
+     "rotulo": "Evita"
+    },
+    {
+     "id": "naoevita",
+     "rotulo": "Não evita"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Combinar as regras antes de gastar em grupo",
+     "caixaCorreta": "evita"
+    },
+    {
+     "texto": "Gastar sem avisar quem divide o dinheiro com você",
+     "caixaCorreta": "naoevita"
+    },
+    {
+     "texto": "Perguntar antes de usar algo que não é só seu",
+     "caixaCorreta": "evita"
+    },
+    {
+     "texto": "Prometer devolver e esquecer",
+     "caixaCorreta": "naoevita"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "escolha-com-impacto",
+   "pergunta": "Família de 4 gastou R$ 200 de água a mais. Dividido igual, quanto cada um paga?",
+   "campo": "moeda",
+   "min": 10,
+   "max": 100,
+   "gabarito": 50,
+   "toleranciaPct": 20,
+   "fonte": "conta direta: valor total dividido pelo número de pessoas",
+   "feedbackPerto": "Isso mesmo — R$ 50 a mais pra cada um. Um gasto de um vira conta de todos.",
+   "feedbackLonge": "R$ 200 dividido por 4 pessoas dá R$ 50 cada. É só dividir o total extra pelas pessoas que dividem a conta.",
+   "verificacao": {
+    "expressao": "200/4",
+    "esperado": 50
+   }
+  }
+ ]
+}

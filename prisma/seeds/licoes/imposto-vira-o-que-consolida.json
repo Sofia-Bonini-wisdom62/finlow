@@ -1,0 +1,332 @@
+{
+ "slug": "imposto-vira-o-que-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "imposto-vira-o-que",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "Arrecadar mais garante isso sozinho?",
+   "enunciado": "Mais posto de saúde funcionando de verdade",
+   "resposta": false,
+   "ancora": "Arrecadação maior não garante gestão eficiente do gasto.",
+   "feedbackErro": "Mais dinheiro parece resolver tudo automaticamente. Mas sem boa gestão, a verba extra pode não virar posto funcionando de verdade."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "participacao-cidada",
+   "criterio": "Arrecadar mais garante isso sozinho?",
+   "enunciado": "Menos fila em repartição pública",
+   "resposta": false,
+   "ancora": "Fila menor depende de organização do serviço, não só de verba.",
+   "feedbackErro": "Parece lógico: mais dinheiro, menos fila. Mas fila também depende de organização e prioridade, não só do valor arrecadado."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "Arrecadar mais garante isso sozinho?",
+   "enunciado": "Mais dinheiro disponível pro governo gastar",
+   "resposta": true,
+   "ancora": "Arrecadação maior aumenta o caixa disponível — isso é direto.",
+   "feedbackErro": "Parece que arrecadação nunca garante nada sozinha. Mas ter mais caixa disponível é consequência direta de arrecadar mais."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "imposto-financia-servico",
+   "dificuldade": 3,
+   "pergunta": "O IPTU de R$ 800 cai pela metade, mas a taxa de lixo de R$ 100 dobra. Qual foi a variação total?",
+   "ancora": "400 + 200 = 600; 800 + 100 = 900. A diferença é uma queda de R$ 300.",
+   "verificacao": {
+    "expressao": "(400+200)-(800+100)",
+    "esperado": -300
+   },
+   "alternativas": [
+    {
+     "texto": "Caiu R$ 300 no total",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ficou igual, porque uma taxa sobe e outra desce",
+     "correta": false,
+     "feedbackErro": "As duas mudanças não se cancelam: a queda do IPTU é bem maior que o aumento da taxa de lixo."
+    },
+    {
+     "texto": "Subiu R$ 100 no total",
+     "correta": false,
+     "feedbackErro": "Você olhou só a taxa de lixo. Somando as duas contas, o total caiu R$ 300, não subiu."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "participacao-cidada",
+   "dificuldade": 3,
+   "pergunta": "Em qual situação participar de audiência pública tem pouco efeito prático?",
+   "ancora": "Se a decisão já foi tomada, a audiência vira só formalidade.",
+   "alternativas": [
+    {
+     "texto": "Quando a decisão já foi tomada, só falta formalidade",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando poucas pessoas comparecem à audiência",
+     "correta": false,
+     "feedbackErro": "Pouca gente reduz a força coletiva, mas não zera o efeito — o que anula de vez é a decisão já fechada antes."
+    },
+    {
+     "texto": "Sempre — audiência pública nunca muda decisão nenhuma",
+     "correta": false,
+     "feedbackErro": "Não é sempre: quando a decisão ainda está aberta, a audiência pode de fato mudar prioridades."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "participacao-cidada",
+   "criterio": "Arrecadar mais garante isso sozinho?",
+   "enunciado": "Prestação de contas mais transparente",
+   "resposta": false,
+   "ancora": "Transparência depende de decisão de governo, não do valor arrecadado.",
+   "feedbackErro": "Poderia parecer que mais recurso vem com mais transparência. Mas prestar contas com clareza é escolha de gestão, não efeito automático da arrecadação."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "participacao-cidada",
+   "instrucao": "Ordene do que mais explica bom serviço público ao que menos explica.",
+   "ancora": "Gestão e fiscalização pesam mais do que o volume bruto arrecadado.",
+   "feedbackErro": "Boa gestão e participação ativa pesam mais no resultado do que só o total arrecadado ou o número de prédios construídos.",
+   "itens": [
+    {
+     "texto": "Gestão eficiente do gasto arrecadado",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Fiscalização e participação cidadã ativa",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Valor total arrecadado em impostos",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Quantidade de prédios públicos construídos",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "É desvio de finalidade?",
+   "enunciado": "Verba de educação usada pra pagar propaganda do governo",
+   "resposta": true,
+   "ancora": "Verba carimbada pra educação não pode virar outra despesa.",
+   "feedbackErro": "Propaganda parece uma despesa comum de qualquer governo. Mas usar verba carimbada de educação pra isso é desvio da finalidade dela."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "É desvio de finalidade?",
+   "enunciado": "Verba de educação usada pra reformar uma escola",
+   "resposta": false,
+   "ancora": "Reformar escola com verba de educação é uso dentro da finalidade.",
+   "feedbackErro": "Reforma parece uma despesa 'extra', fora do combinado. Mas manter e reformar prédio escolar está dentro da finalidade da verba."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "imposto-financia-servico",
+   "pergunta": "Prefeitura arrecada R$ 5 milhões e gasta 60% com folha. Quanto sobra pra outras áreas?",
+   "campo": "moeda",
+   "min": 500000,
+   "max": 3000000,
+   "gabarito": 2000000,
+   "toleranciaPct": 20,
+   "fonte": "proporção ilustrativa de gasto com folha — percentual real varia por município",
+   "verificacao": {
+    "expressao": "5000000*0.4",
+    "esperado": 2000000.0
+   },
+   "feedbackPerto": "Isso mesmo — R$ 2.000.000. Os 40% restantes é que cobrem obra, saúde e o resto do orçamento.",
+   "feedbackLonge": "Dá R$ 2.000.000. Folha de pagamento costuma ser a maior fatia — o que sobra é o que financia o restante dos serviços."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "imposto-financia-servico",
+   "dificuldade": 3,
+   "pergunta": "Duas cidades com a mesma arrecadação por habitante têm resultado bem diferente em educação. Isso prova o quê?",
+   "ancora": "Gestão e prioridade de gasto pesam tanto quanto o valor arrecadado.",
+   "alternativas": [
+    {
+     "texto": "Gestão e prioridade pesam tanto quanto a arrecadação",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que uma das cidades mentiu sobre o valor arrecadado",
+     "correta": false,
+     "feedbackErro": "Não é preciso mentira nenhuma pra explicar — a diferença de resultado vem de como o mesmo valor é gerido e priorizado."
+    },
+    {
+     "texto": "Que educação nunca depende de dinheiro público",
+     "correta": false,
+     "feedbackErro": "Depende, sim — o ponto é que o mesmo valor arrecadado pode virar resultado bem diferente conforme a gestão."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "participacao-cidada",
+   "dificuldade": 3,
+   "pergunta": "Em qual situação cobrar transparência do gasto público não faz diferença nenhuma?",
+   "ancora": "Sem acompanhamento depois do pedido, a transparência não gera efeito.",
+   "alternativas": [
+    {
+     "texto": "Quando ninguém acompanha nem cobra depois de pedir o dado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando o dado pedido já é público por lei",
+     "correta": false,
+     "feedbackErro": "Ser público por lei ajuda o acesso, mas sem cobrar e acompanhar, o dado sozinho não muda nada na prática."
+    },
+    {
+     "texto": "Sempre — cobrar transparência nunca muda nada na prática",
+     "correta": false,
+     "feedbackErro": "Não é sempre: quando há acompanhamento real depois do pedido, a cobrança pode mudar prioridade de gasto."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "Arrecadar mais garante isso sozinho?",
+   "enunciado": "Serviço público de melhor qualidade",
+   "resposta": false,
+   "ancora": "Qualidade depende de gestão, não só do total arrecadado.",
+   "feedbackErro": "Parece intuitivo: mais dinheiro, mais qualidade. Mas sem boa gestão do gasto, o valor extra pode não virar serviço melhor."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "É desvio de finalidade?",
+   "enunciado": "Usar verba de saúde pra comprar carro oficial de outra secretaria",
+   "resposta": true,
+   "ancora": "Verba de saúde só pode ir pra despesa da própria área.",
+   "feedbackErro": "Carro oficial parece despesa administrativa comum de qualquer setor. Mas pagar isso com verba carimbada de saúde é desvio de finalidade."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "imposto-financia-servico",
+   "pergunta": "Qual frase resume a lição de hoje?",
+   "ancora": "Arrecadação, gestão e fiscalização cidadã formam a conta completa.",
+   "alternativas": [
+    {
+     "texto": "Arrecadar mais imposto já garante, por si só, serviço melhor.",
+     "correta": false,
+     "feedbackErro": "Arrecadação sozinha não garante — gestão e fiscalização completam a conta."
+    },
+    {
+     "texto": "Arrecadação alta não garante bom serviço — gestão e fiscalização completam.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Verba pública pode ser usada livremente em qualquer área do governo.",
+     "correta": false,
+     "feedbackErro": "Verba costuma ser carimbada por finalidade — usá-la fora disso é desvio."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "imposto-financia-servico",
+   "instrucao": "É desvio de finalidade? Arraste.",
+   "ancora": "Desvio é usar verba carimbada fora da área a que ela pertence.",
+   "feedbackErro": "Verba de educação em merenda está dentro da finalidade; a mesma verba em propaganda de outra secretaria é desvio.",
+   "caixas": [
+    {
+     "id": "desvio",
+     "rotulo": "É desvio"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Verba de saúde usada em posto de saúde",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Verba de educação usada em evento de outra secretaria",
+     "caixaCorreta": "desvio"
+    },
+    {
+     "texto": "Verba de educação usada em merenda escolar",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Verba de saúde usada em reforma de prédio de outra área",
+     "caixaCorreta": "desvio"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "participacao-cidada",
+   "dificuldade": 3,
+   "pergunta": "Um cidadão pede dado de gasto público, recebe a resposta, mas não faz nada depois. O que faltou?",
+   "ancora": "Pedir o dado é só o primeiro passo — falta cobrar e acompanhar.",
+   "alternativas": [
+    {
+     "texto": "Cobrar e acompanhar o que o dado revelou",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada — pedir o dado já cumpre o papel de cidadão",
+     "correta": false,
+     "feedbackErro": "Pedir é o início; sem cobrar e acompanhar depois, o dado obtido não vira mudança nenhuma."
+    },
+    {
+     "texto": "Repetir o mesmo pedido todo mês, sem analisar a resposta",
+     "correta": false,
+     "feedbackErro": "Repetir sem analisar não avança nada — o que falta é usar o dado pra cobrar algo concreto."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "Arrecadar mais garante isso sozinho?",
+   "enunciado": "Redução automática da corrupção",
+   "resposta": false,
+   "ancora": "Corrupção depende de fiscalização, não do volume arrecadado.",
+   "feedbackErro": "Mais dinheiro em caixa não reduz corrupção sozinho — pode até aumentar a tentação sem fiscalização de peso."
+  }
+ ]
+}

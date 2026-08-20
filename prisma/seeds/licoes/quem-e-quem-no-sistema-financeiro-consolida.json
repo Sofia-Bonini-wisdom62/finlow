@@ -1,0 +1,333 @@
+{
+ "slug": "quem-e-quem-no-sistema-financeiro-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "quem-e-quem-no-sistema-financeiro",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-provedor",
+   "criterio": "Ainda garante proteção ao seu dinheiro?",
+   "enunciado": "Um banco registrado, mas você investe numa ação que ele oferece",
+   "resposta": false,
+   "ancora": "FGC cobre depósito e alguns títulos — não cobre risco de ação.",
+   "feedbackErro": "O banco ser registrado parece garantir tudo, mas o FGC não cobre o risco de mercado de uma ação, só depósitos e alguns títulos."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-provedor",
+   "criterio": "Ainda garante proteção ao seu dinheiro?",
+   "enunciado": "Fintech registrada, oferecendo CDB de banco pequeno também registrado",
+   "resposta": true,
+   "ancora": "Registro nos dois lados mantém a proteção do CDB de pé.",
+   "feedbackErro": "Passar por uma fintech parece tirar a garantia, mas com os dois lados registrados, o CDB continua com a proteção normal."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-provedor",
+   "criterio": "Ainda garante proteção ao seu dinheiro?",
+   "enunciado": "Cooperativa que quebrou sem estar filiada a fundo garantidor",
+   "resposta": false,
+   "ancora": "Sem fundo garantidor, o dinheiro aplicado pode não voltar.",
+   "feedbackErro": "Cooperativa parece ter a mesma proteção de um banco, mas sem estar filiada a um fundo garantidor, o dinheiro aplicado corre risco real."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "confiabilidade-provedor",
+   "dificuldade": 3,
+   "pergunta": "Uma empresa registrada no Banco Central some do mercado e não devolve o dinheiro. O registro garantia o quê?",
+   "ancora": "Regras a seguir e fiscalização — não elimina todo o risco.",
+   "alternativas": [
+    {
+     "texto": "Regras a seguir e fiscalização — não elimina todo risco",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que o dinheiro nunca poderia sumir de jeito nenhum",
+     "correta": false,
+     "feedbackErro": "Nenhum registro garante impossibilidade total de perda. Ele garante regras e fiscalização, o que reduz risco sem eliminar por completo."
+    },
+    {
+     "texto": "Que o Bacen devolve automaticamente qualquer perda",
+     "correta": false,
+     "feedbackErro": "O Banco Central não reembolsa perdas automaticamente. Existem mecanismos específicos, como o FGC, com limites definidos."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "instituicoes-sfn",
+   "dificuldade": 3,
+   "pergunta": "Em qual caso uma instituição registrada NÃO é automaticamente a opção mais barata?",
+   "ancora": "Registro garante regras a seguir, não preço — tarifa alta cabe nele.",
+   "alternativas": [
+    {
+     "texto": "Quando cobra tarifas altas mesmo sendo regulada",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nunca, registro sempre significa preço mais baixo",
+     "correta": false,
+     "feedbackErro": "Registro não tem relação nenhuma com o valor cobrado. Uma instituição regulada pode, sim, cobrar tarifas mais altas que outra."
+    },
+    {
+     "texto": "Só quando é um banco muito grande",
+     "correta": false,
+     "feedbackErro": "O tamanho do banco não é o que decide o preço cobrado. Registro garante regras, mas não impede tarifas altas em nenhum porte."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-provedor",
+   "criterio": "O registro garante que você nunca perde?",
+   "enunciado": "Investir numa ação vendida por uma corretora registrada e confiável",
+   "resposta": false,
+   "ancora": "Corretora registrada garante regras, não que ação não caia.",
+   "feedbackErro": "Corretora registrada parece garantir tudo, mas ela garante regras seguidas, não que o preço da ação vá se manter ou subir."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "confiabilidade-provedor",
+   "instrucao": "Tem proteção do FGC ou não tem?",
+   "ancora": "Depósito e CDB têm; ações e cripto não têm cobertura do FGC.",
+   "feedbackErro": "Parece que todo produto de banco registrado tem a mesma proteção, mas o FGC cobre só certos produtos, não o risco de mercado de outros.",
+   "caixas": [
+    {
+     "id": "tem",
+     "rotulo": "Tem proteção"
+    },
+    {
+     "id": "naotem",
+     "rotulo": "Não tem proteção"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Poupança num banco registrado",
+     "caixaCorreta": "tem"
+    },
+    {
+     "texto": "Ação comprada na bolsa",
+     "caixaCorreta": "naotem"
+    },
+    {
+     "texto": "CDB de banco registrado",
+     "caixaCorreta": "tem"
+    },
+    {
+     "texto": "Criptomoeda comprada numa corretora qualquer",
+     "caixaCorreta": "naotem"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-provedor",
+   "criterio": "Regulado NÃO basta como garantia total?",
+   "enunciado": "Aplicar todas as economias numa única ação de empresa registrada",
+   "resposta": true,
+   "ancora": "Regulação organiza o mercado; não elimina o risco de concentrar tudo.",
+   "feedbackErro": "A empresa ser registrada na bolsa parece suficiente, mas regulação não elimina o risco de colocar tudo numa única aposta."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "instituicoes-sfn",
+   "criterio": "Faz parte do sistema, mesmo pequena?",
+   "enunciado": "Sociedade de crédito ao microempreendedor, autorizada pelo Bacen",
+   "resposta": true,
+   "ancora": "Autorização do Bacen inclui mesmo instituições pequenas.",
+   "feedbackErro": "O tamanho pequeno faz parecer que fica fora do sistema, mas com autorização do Banco Central, ela segue as mesmas regras oficiais."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "confiabilidade-provedor",
+   "pergunta": "Você tem R$ 140 mil em cada um de dois CDBs, do mesmo banco. Quanto o FGC cobre no total?",
+   "campo": "moeda",
+   "min": 200000,
+   "max": 280000,
+   "gabarito": 250000,
+   "toleranciaPct": 20,
+   "fonte": "limite de cobertura do FGC, R$ 250 mil por CPF por instituição",
+   "feedbackPerto": "Isso mesmo — R$ 250 mil é o teto por instituição, mesmo somando os dois CDBs.",
+   "feedbackLonge": "O total coberto é R$ 250 mil. O FGC soma os produtos do mesmo banco e aplica o limite uma vez só."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "instituicoes-sfn",
+   "dificuldade": 3,
+   "pergunta": "Uma fintech opera sem CNPJ registrado, mas processa pagamentos há 2 anos sem problema. Isso prova segurança?",
+   "ancora": "Funcionar até agora é sorte, não garantia de segurança.",
+   "alternativas": [
+    {
+     "texto": "Não — é sorte sem fiscalização, não garantia",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, dois anos de funcionamento provam solidez",
+     "correta": false,
+     "feedbackErro": "Tempo de operação não substitui registro nem fiscalização. Sem eles, cada dia sem problema pode ser só sorte, não garantia real."
+    },
+    {
+     "texto": "Sim, se ela processa muitos pagamentos por dia",
+     "correta": false,
+     "feedbackErro": "Volume alto de pagamentos não é prova de segurança regulatória. Sem CNPJ registrado, falta a fiscalização que protege o cliente."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "confiabilidade-provedor",
+   "dificuldade": 3,
+   "pergunta": "Qual situação exige MAIS cuidado, mesmo com registro oficial em dia?",
+   "ancora": "Concentrar toda a reserva de emergência num único produto de risco.",
+   "alternativas": [
+    {
+     "texto": "Colocar toda a reserva num único produto de risco",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Guardar a reserva de emergência na poupança",
+     "correta": false,
+     "feedbackErro": "Poupança é conhecida por segurança e liquidez, exigindo pouco cuidado extra. O risco maior é concentrar tudo num único produto arriscado."
+    },
+    {
+     "texto": "Diversificar entre dois bancos registrados",
+     "correta": false,
+     "feedbackErro": "Diversificar entre instituições registradas é justamente uma forma de reduzir risco, não de aumentar cuidado necessário."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "instituicoes-sfn",
+   "criterio": "O registro importa em produto de risco?",
+   "enunciado": "Escolher a corretora registrada, mesmo pra investir em algo arriscado",
+   "resposta": true,
+   "ancora": "Registro reduz risco de fraude, mesmo sem eliminar risco de mercado.",
+   "feedbackErro": "Se o produto já é arriscado, parece que o registro não importa mais, mas ele ainda reduz o risco de fraude, mesmo sem tirar o risco de mercado."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-provedor",
+   "criterio": "É prudente com instituição confiável?",
+   "enunciado": "Diversificar entre mais de uma instituição, mesmo todas registradas",
+   "resposta": true,
+   "ancora": "Diversificar reduz risco de concentração, mesmo com todas confiáveis.",
+   "feedbackErro": "Se todas são confiáveis, parece desnecessário diversificar, mas isso reduz o risco de concentrar tudo numa única instituição, por segurança que ela pareça."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "confiabilidade-provedor",
+   "pergunta": "Qual frase resume os limites da proteção mesmo com instituição registrada?",
+   "alternativas": [
+    {
+     "texto": "Registro reduz fraude, mas não elimina risco de mercado nem de concentração",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Instituição registrada elimina qualquer risco de perder dinheiro",
+     "correta": false,
+     "feedbackErro": "Registro reduz risco de fraude, mas não elimina risco de mercado, como o de uma ação cair de preço."
+    },
+    {
+     "texto": "O FGC cobre qualquer valor aplicado, sem nenhum limite",
+     "correta": false,
+     "feedbackErro": "O FGC tem um teto de R$ 250 mil por CPF por instituição. Acima disso, o valor fica sem essa cobertura específica."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "confiabilidade-provedor",
+   "instrucao": "O FGC cobre esse produto ou não cobre?",
+   "ancora": "FGC cobre depósito e alguns títulos de renda fixa, não ações.",
+   "feedbackErro": "Parece que qualquer produto de banco registrado tem a mesma cobertura, mas o FGC protege só certos produtos específicos.",
+   "caixas": [
+    {
+     "id": "cobre",
+     "rotulo": "FGC cobre"
+    },
+    {
+     "id": "naocobre",
+     "rotulo": "FGC não cobre"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Conta corrente num banco registrado",
+     "caixaCorreta": "cobre"
+    },
+    {
+     "texto": "Ação de uma empresa negociada na bolsa",
+     "caixaCorreta": "naocobre"
+    },
+    {
+     "texto": "LCI de um banco registrado",
+     "caixaCorreta": "cobre"
+    },
+    {
+     "texto": "Fundo de investimento em ações",
+     "caixaCorreta": "naocobre"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "confiabilidade-provedor",
+   "dificuldade": 3,
+   "pergunta": "Uma instituição registrada oferece retorno 'quase garantido' em investimento de risco. O que isso ignora?",
+   "ancora": "Investimento de risco nunca tem retorno quase garantido de verdade.",
+   "alternativas": [
+    {
+     "texto": "Que risco de verdade nunca vem com retorno quase garantido",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que só empresas pequenas usam esse tipo de promessa",
+     "correta": false,
+     "feedbackErro": "O tamanho da empresa não muda a lógica do risco. Nenhum investimento de risco real tem retorno quase garantido."
+    },
+    {
+     "texto": "Que o Banco Central proíbe esse tipo de anúncio",
+     "correta": false,
+     "feedbackErro": "A questão não é sobre o que é proibido anunciar. É que risco de verdade não combina com retorno quase garantido."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-provedor",
+   "criterio": "O registro impede toda perda?",
+   "enunciado": "Uma corretora registrada oferecendo uma ação que caiu 30% no ano",
+   "resposta": false,
+   "ancora": "Registro não impede o preço de uma ação cair no mercado.",
+   "feedbackErro": "A corretora ser registrada parece garantir o valor investido, mas ela não impede o preço de mercado da ação de cair."
+  }
+ ]
+}

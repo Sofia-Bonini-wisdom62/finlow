@@ -1,0 +1,274 @@
+{
+ "slug": "planejada-ou-por-impulso-consolida",
+ "segmento": "ef35",
+ "conceitoPrincipal": "planejada-ou-por-impulso",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "planejada-x-impulso",
+   "criterio": "Isso ainda é impulso?",
+   "enunciado": "Comprar um guarda-chuva na hora, porque começou a chover forte",
+   "resposta": false,
+   "ancora": "Necessidade urgente não é o mesmo que comprar por impulso.",
+   "feedbackErro": "A compra não estava na lista, e por isso parece impulso. Mas ela resolve uma necessidade real e urgente — isso é diferente."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "planejada-x-impulso",
+   "criterio": "Isso ainda é impulso?",
+   "enunciado": "Comprar um segundo sorvete só porque o primeiro já acabou",
+   "resposta": true,
+   "ancora": "Vontade repetida, sem necessidade real, continua sendo impulso.",
+   "feedbackErro": "Parece parecido com o caso da chuva, mas não é: aqui não existe necessidade urgente, só vontade de repetir. Isso ainda é impulso."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "recusar-oferta",
+   "criterio": "Faz sentido recusar aqui?",
+   "enunciado": "Uma oferta de remédio que você realmente precisa, mesmo fora da lista",
+   "resposta": false,
+   "ancora": "Necessidade real muda o critério de recusar.",
+   "feedbackErro": "O critério de recusar é pensado pra desejo, não pra necessidade real. Um remédio necessário, mesmo fora da lista, costuma valer a compra."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "planejada-x-impulso",
+   "dificuldade": 3,
+   "pergunta": "Você saiu só pra comprar pão. No caminho, sua bicicleta furou e havia uma borracharia ali. Isso foi impulso?",
+   "ancora": "Resolver um problema urgente não é o mesmo que impulso.",
+   "alternativas": [
+    {
+     "texto": "Não, porque resolver um problema urgente não é impulso",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque não estava na lista de compras",
+     "correta": false,
+     "feedbackErro": "Não estar na lista é o primeiro sinal de impulso, mas não o único. Aqui existe um problema real e urgente a resolver, o que muda o caso."
+    },
+    {
+     "texto": "Sim, porque toda compra fora de casa é impulso",
+     "correta": false,
+     "feedbackErro": "Sair de casa não define o tipo de compra. O que define é se existia plano ou necessidade real por trás da decisão."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "recusar-oferta",
+   "dificuldade": 3,
+   "pergunta": "Otávio foi comprar arroz, mas viu um extintor em oferta e o de casa estava vencido. Comprar foge do critério de recusar?",
+   "ancora": "Necessidade real de segurança muda o critério.",
+   "alternativas": [
+    {
+     "texto": "Não, porque era uma necessidade real de segurança",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque não estava na lista de compras dele",
+     "correta": false,
+     "feedbackErro": "Não estar na lista costuma ser sinal de recusar. Mas aqui existe uma necessidade real de segurança, que muda o critério."
+    },
+    {
+     "texto": "Sim, porque qualquer oferta deve ser sempre recusada",
+     "correta": false,
+     "feedbackErro": "O critério nunca foi recusar tudo — é recusar o que é desnecessário ou fora de uma necessidade real, como não é este caso."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "planejada-x-impulso",
+   "criterio": "A lista escrita é sempre obrigatória?",
+   "enunciado": "Decidir mentalmente, antes de sair, o que vai comprar",
+   "resposta": true,
+   "ancora": "Planejar é pensar antes; a lista escrita é só uma ferramenta.",
+   "feedbackErro": "Parece que só vale se estiver escrito no papel. Mas o que define planejamento é pensar antes — a lista ajuda, mas não é obrigatória."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "planejada-x-impulso",
+   "instrucao": "É impulso ou é uma necessidade urgente?",
+   "ancora": "Urgência resolve um problema real; impulso só segue a vontade.",
+   "feedbackErro": "As duas surgem sem aviso, e por isso confundem. O que separa é se existe um problema real por trás ou só vontade.",
+   "caixas": [
+    {
+     "id": "urgente",
+     "rotulo": "Necessidade urgente"
+    },
+    {
+     "id": "impulso",
+     "rotulo": "Impulso"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Comprar um remédio quando alguém passa mal",
+     "caixaCorreta": "urgente"
+    },
+    {
+     "texto": "Comprar um brinquedo só porque estava na vitrine",
+     "caixaCorreta": "impulso"
+    },
+    {
+     "texto": "Comprar uma lanterna numa queda de energia",
+     "caixaCorreta": "urgente"
+    },
+    {
+     "texto": "Comprar mais um lanche só porque o cheiro estava bom",
+     "caixaCorreta": "impulso"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "recusar-oferta",
+   "criterio": "O critério de recusar ainda se aplica?",
+   "enunciado": "Uma oferta de item que resolve um problema real e urgente",
+   "resposta": false,
+   "ancora": "O critério de recusar é pra desejo fora do plano, não pra urgência.",
+   "feedbackErro": "Parece que toda oferta fora do plano deve ser recusada. Mas quando existe um problema real e urgente por trás, isso não se aplica."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "planejada-x-impulso",
+   "dificuldade": 3,
+   "pergunta": "Você tinha R$ 25 pro lanche da semana. Um imprevisto (livro escolar obrigatório) custou R$ 18. Quanto sobra pro lanche?",
+   "ancora": "25 menos 18 é 7: o que sobra pro lanche.",
+   "alternativas": [
+    {
+     "texto": "R$ 7",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 25",
+     "correta": false,
+     "feedbackErro": "R$ 25 ignora o gasto com o livro. Como ele era necessário, o valor sai do total: 25 menos 18 é 7."
+    },
+    {
+     "texto": "R$ 43",
+     "correta": false,
+     "feedbackErro": "Somar os dois valores não faz sentido aqui: o livro é um gasto, não uma renda extra. A conta certa é 25 menos 18."
+    }
+   ],
+   "verificacao": {
+    "expressao": "25-18",
+    "esperado": 7
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "recusar-oferta",
+   "criterio": "Ainda vale recusar, mesmo mais barato?",
+   "enunciado": "Uma oferta de item parecido, mas que você não precisa de jeito nenhum",
+   "resposta": true,
+   "ancora": "Preço baixo não muda a falta de necessidade real.",
+   "feedbackErro": "Preço baixo tenta disfarçar a falta de necessidade. Mas se você não precisa do item de jeito nenhum, vale recusar mesmo barato."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "planejada-x-impulso",
+   "criterio": "Isso é planejado, mesmo sem lista?",
+   "enunciado": "Pensar por dois dias antes de decidir comprar um jogo",
+   "resposta": true,
+   "ancora": "O tempo de reflexão conta mais do que ter lista escrita.",
+   "feedbackErro": "Sem lista escrita, parece impulso. Mas pensar por dois dias antes de decidir é o oposto da decisão rápida do impulso."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "recusar-oferta",
+   "pergunta": "Depois de tudo isso, qual frase é mais completa?",
+   "alternativas": [
+    {
+     "texto": "Fora do plano nem sempre é impulso: urgência real muda o critério",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Toda compra fora da lista deve ser sempre recusada",
+     "correta": false,
+     "feedbackErro": "Necessidade real e urgente é a exceção que quebra essa regra — nem toda compra fora da lista deve ser recusada."
+    },
+    {
+     "texto": "Só existe compra planejada se tiver lista escrita no papel",
+     "correta": false,
+     "feedbackErro": "Planejar é pensar antes; a lista escrita ajuda, mas decidir mentalmente com antecedência também é planejamento."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "planejada-x-impulso",
+   "dificuldade": 3,
+   "pergunta": "Choveu de repente e você comprou uma capa de chuva de R$ 12, sem planejar. Isso quebra o critério de compra planejada?",
+   "ancora": "Necessidade real e urgente muda o critério, não a lista.",
+   "alternativas": [
+    {
+     "texto": "Não, porque resolve uma necessidade urgente e real",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque não estava anotado em nenhuma lista",
+     "correta": false,
+     "feedbackErro": "Não estar na lista é normal em imprevistos. O critério de planejamento pensa em necessidade real, não só em listas escritas."
+    },
+    {
+     "texto": "Sim, porque qualquer gasto novo é sempre impulso",
+     "correta": false,
+     "feedbackErro": "Gasto novo por si só não é o critério. O que decide é se existe uma necessidade real e urgente por trás da compra."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "recusar-oferta",
+   "criterio": "É uma boa exceção pra aceitar a oferta?",
+   "enunciado": "O item oferecido substitui algo essencial que quebrou agora",
+   "resposta": true,
+   "ancora": "Substituir algo essencial que quebrou é necessidade, não desejo.",
+   "feedbackErro": "Parece só mais uma oferta chamativa. Mas quando o item substitui algo essencial que parou de funcionar, a compra deixa de ser fora do plano."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "planejada-x-impulso",
+   "instrucao": "Ordene como decidir diante de um gasto fora da lista.",
+   "ancora": "Primeiro checa a urgência real, só depois decide recusar.",
+   "feedbackErro": "Recusar de cara, sem checar se há urgência real, pode negar algo necessário. A urgência vem antes da decisão de recusar.",
+   "itens": [
+    {
+     "texto": "Perguntar se existe uma necessidade real e urgente",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Se não houver, lembrar que não estava no plano",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Decidir recusar ou adiar a compra",
+     "posicaoCorreta": 3
+    }
+   ]
+  }
+ ]
+}

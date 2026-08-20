@@ -1,0 +1,250 @@
+{
+ "slug": "quando-nao-paga-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "quando-nao-paga",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "confianca-e-credito",
+   "criterio": "Isso prejudica a confiança de crédito?",
+   "enunciado": "Renegociar a dívida antes que ela vença",
+   "resposta": false,
+   "ancora": "Renegociar antes é cuidado, não quebra de confiança.",
+   "feedbackErro": "Parece admitir um problema, mas agir antes do vencimento é exatamente o que preserva a confiança."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "confianca-e-credito",
+   "criterio": "Isso prejudica a confiança de crédito?",
+   "enunciado": "Prometer pagar 'semana que vem' repetidas vezes, sem cumprir",
+   "resposta": true,
+   "ancora": "Promessa repetida e não cumprida é o que mais desgasta.",
+   "feedbackErro": "Cada promessa isolada parece inofensiva, mas repetir sem cumprir é o que mais corrói a confiança do credor."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fatura-parcial-vira-rotativo",
+   "criterio": "Isso prejudica a confiança de crédito?",
+   "enunciado": "Pagar o mínimo da fatura achando que está tudo certo",
+   "resposta": true,
+   "ancora": "O nome fica em dia, mas o saldo cresce no rotativo sem parar.",
+   "feedbackErro": "O nome realmente não fica negativado, e por isso parece seguro. Mas o saldo restante segue rendendo juros altos."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "fatura-parcial-vira-rotativo",
+   "dificuldade": 2,
+   "pergunta": "Thiago paga sempre o mínimo da fatura, achando que está tudo certo. O que ele não percebe?",
+   "ancora": "O saldo que sobra entra no rotativo e cresce todo mês.",
+   "alternativas": [
+    {
+     "texto": "Que o nome fica protegido enquanto ele pagar o mínimo",
+     "correta": false,
+     "feedbackErro": "O nome realmente fica protegido do mínimo em diante — o problema não é esse, é o custo que ele não vê."
+    },
+    {
+     "texto": "Que o saldo restante entra no rotativo e cresce todo mês",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que o mínimo já é suficiente pra quitar a dívida",
+     "correta": false,
+     "feedbackErro": "O mínimo evita o atraso, mas está longe de quitar — o resto continua lá, rendendo juros."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "causas-do-endividamento",
+   "dificuldade": 2,
+   "pergunta": "Duas pessoas ganham o mesmo, mas uma sempre se endivida. Qual é a causa mais provável?",
+   "ancora": "Não acompanhar o gasto comprometido é a causa mais comum.",
+   "alternativas": [
+    {
+     "texto": "Ela recebe menos na prática, apesar do salário igual",
+     "correta": false,
+     "feedbackErro": "Se o salário é igual, a renda é igual — o que muda é como cada uma administra o gasto."
+    },
+    {
+     "texto": "Ela não acompanha o quanto já comprometeu do mês",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ela tem azar com gastos inesperados",
+     "correta": false,
+     "feedbackErro": "Imprevistos acontecem com as duas — o que separa quem se endivida é não ter controle nem reserva pra eles."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "causas-do-endividamento",
+   "criterio": "Isso é causa direta de endividamento?",
+   "enunciado": "Comparar preços antes de comprar parcelado",
+   "resposta": false,
+   "ancora": "Comparar preços reduz o risco, não causa dívida.",
+   "feedbackErro": "Comparar antes de comprar é justamente uma ação que evita o compromisso maior do que o necessário."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "confianca-e-credito",
+   "instrucao": "Classifique: honra a dívida ou quebra a confiança?",
+   "ancora": "Explicar e propor prazo ainda é honrar; ignorar é quebrar.",
+   "feedbackErro": "Propor um novo prazo com explicação ainda conta como honrar — o que quebra é ignorar quem está cobrando.",
+   "caixas": [
+    { "id": "honra", "rotulo": "Honra" },
+    { "id": "quebra", "rotulo": "Quebra confiança" }
+   ],
+   "itens": [
+    { "texto": "Renegociar antes do vencimento", "caixaCorreta": "honra" },
+    { "texto": "Prometer 'semana que vem' repetidas vezes", "caixaCorreta": "quebra" },
+    { "texto": "Explicar a dificuldade e propor novo prazo", "caixaCorreta": "honra" },
+    { "texto": "Ignorar as cobranças", "caixaCorreta": "quebra" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "causas-do-endividamento",
+   "criterio": "Isso é causa de endividamento?",
+   "enunciado": "Usar o limite do cartão até o fim, todo mês",
+   "resposta": true,
+   "ancora": "Usar o limite inteiro sempre é sinal de gasto acima da renda.",
+   "feedbackErro": "Usar o limite uma vez pode ser pontual, mas repetir isso todo mês mostra que o gasto já passou da renda."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "fatura-parcial-vira-rotativo",
+   "dificuldade": 2,
+   "pergunta": "Fatura de R$ 730. Paga R$ 280, o resto no rotativo a 14% a.m. Quanto de juros?",
+   "ancora": "(730 − 280) × 14% = R$ 63 de juros.",
+   "verificacao": { "expressao": "(730-280)*0.14", "esperado": 63 },
+   "alternativas": [
+    {
+     "texto": "R$ 63",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 102,20",
+     "correta": false,
+     "feedbackErro": "R$ 102,20 seria 14% da fatura inteira — mas o juro incide só sobre o que ficou sem pagar."
+    },
+    {
+     "texto": "R$ 39,20",
+     "correta": false,
+     "feedbackErro": "R$ 39,20 seria 14% do valor pago — o juro incide sobre o que sobrou sem pagar, não sobre o que foi quitado."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "confianca-e-credito",
+   "criterio": "Isso prejudica a confiança de crédito?",
+   "enunciado": "Pedir um prazo maior antes de assumir um compromisso apertado",
+   "resposta": false,
+   "ancora": "Pedir prazo realista de início evita quebrar promessa depois.",
+   "feedbackErro": "Parece admitir fraqueza, mas negociar o prazo antes é o que impede uma promessa quebrada mais tarde."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "fatura-parcial-vira-rotativo",
+   "criterio": "Ajuda a manter a confiança?",
+   "enunciado": "Pagar sempre o mínimo, sem nunca abater o saldo restante",
+   "resposta": false,
+   "ancora": "Nome fica em dia, mas a dívida não anda — isso não resolve.",
+   "feedbackErro": "O nome não é negativado, e por isso parece estar tudo bem. Mas a dívida só cresce enquanto o saldo não é abatido."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "quando-nao-paga",
+   "dificuldade": 2,
+   "pergunta": "Depois desses casos, o que realmente evita quebrar a confiança de crédito?",
+   "alternativas": [
+    {
+     "texto": "Nunca atrasar nada, em nenhuma hipótese",
+     "correta": false,
+     "feedbackErro": "Atrasar às vezes é inevitável — o que decide não é nunca atrasar, é comunicar antes."
+    },
+    {
+     "texto": "Comunicar dificuldades antes e cumprir o que for possível",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pagar sempre o mínimo da fatura",
+     "correta": false,
+     "feedbackErro": "O mínimo evita a negativação, mas não resolve a dívida nem impede o rotativo de crescer."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "confianca-e-credito",
+   "instrucao": "Ordene do que menos à que mais desgasta a confiança.",
+   "ancora": "Comunicar antes desgasta menos do que prometer e não cumprir.",
+   "feedbackErro": "Renegociar antes desgasta pouco; o que mais pesa é prometer repetidamente e não cumprir.",
+   "itens": [
+    { "texto": "Renegociar o prazo antes do vencimento", "posicaoCorreta": 1 },
+    { "texto": "Atrasar uma vez e avisar depois", "posicaoCorreta": 2 },
+    { "texto": "Prometer 'semana que vem' várias vezes seguidas", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "fatura-parcial-vira-rotativo",
+   "pergunta": "Fatura de R$ 520. Paga R$ 190. Resto no rotativo a 14% a.m. Quanto de juros?",
+   "campo": "moeda",
+   "min": 10,
+   "max": 100,
+   "gabarito": 46.2,
+   "toleranciaPct": 20,
+   "fonte": "taxa média do rotativo, ~14% ao mês (Banco Central)",
+   "verificacao": { "expressao": "(520-190)*0.14", "esperado": 46.2 },
+   "feedbackPerto": "Isso mesmo — (520 − 190) × 14% = R$ 46,20.",
+   "feedbackLonge": "R$ 46,20. O juro do rotativo incide só sobre o que ficou sem pagar."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "causas-do-endividamento",
+   "dificuldade": 2,
+   "pergunta": "Comprar parcelado sem checar as parcelas de outras compras já feitas leva a quê?",
+   "ancora": "As parcelas somadas podem passar da renda sem se perceber.",
+   "alternativas": [
+    {
+     "texto": "A comprometer mais da renda do que parece",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A pagar menos juros no total",
+     "correta": false,
+     "feedbackErro": "O parcelamento não reduz juros por si só — o risco é comprometer mais renda do que se percebe."
+    },
+    {
+     "texto": "A ganhar desconto automático na próxima compra",
+     "correta": false,
+     "feedbackErro": "Parcelar não gera desconto — o efeito real é somar compromissos que passam despercebidos."
+    }
+   ]
+  }
+ ]
+}

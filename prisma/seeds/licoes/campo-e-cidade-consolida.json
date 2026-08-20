@@ -1,0 +1,244 @@
+{
+ "slug": "campo-e-cidade-consolida",
+ "segmento": "ef35",
+ "conceitoPrincipal": "campo-e-cidade",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "atividade-campo-cidade",
+   "criterio": "É atividade do campo?",
+   "enunciado": "Horta plantada dentro da cidade, num terreno do bairro",
+   "resposta": false,
+   "ancora": "Plantar é do campo, mas aqui o local é a cidade — é horta urbana.",
+   "feedbackErro": "Parece atividade do campo por causa do plantio. Mas ela acontece dentro da cidade, num terreno urbano — é horta urbana."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "empreender-na-comunidade",
+   "criterio": "É negócio da comunidade?",
+   "enunciado": "Uma grande rede de mercado com loja aberta no bairro",
+   "resposta": false,
+   "ancora": "Rede grande não nasce da comunidade, mesmo com loja no bairro.",
+   "feedbackErro": "Parece empreendedorismo local só por estar no bairro. Mas uma rede grande, criada fora dali, não é negócio da comunidade."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "setores-da-economia",
+   "criterio": "Mostra dependência entre etapas?",
+   "enunciado": "Fazenda no interior e loja em outra cidade, ligadas pelo transporte",
+   "resposta": true,
+   "ancora": "Mesmo distantes, o transporte liga as etapas — uma depende da outra.",
+   "feedbackErro": "A distância grande engana. Mas o transporte é o elo: sem ele, o produto do campo não chega até a loja."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "atividade-campo-cidade",
+   "dificuldade": 3,
+   "pergunta": "Uma fazenda vende o leite direto pro consumidor, num quiosque montado ali mesmo. Que etapa da cidade existe aqui?",
+   "ancora": "Aqui produção e venda acontecem no campo — não há etapa urbana.",
+   "alternativas": [
+    {
+     "texto": "Nenhuma: produção e venda acontecem no campo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A etapa de transporte até a loja da cidade",
+     "correta": false,
+     "feedbackErro": "Não há transporte até a cidade aqui — a venda acontece no próprio quiosque da fazenda."
+    },
+    {
+     "texto": "A etapa de fabricar as embalagens",
+     "correta": false,
+     "feedbackErro": "Embalagem pode existir em algum lugar, mas não define uma etapa urbana nesse caso — aqui tudo é no campo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "setores-da-economia",
+   "dificuldade": 3,
+   "pergunta": "Uma loja de queijos compra leite de 3 fazendas. Uma delas para de produzir. O que acontece?",
+   "ancora": "A loja recebe menos leite, mas ainda tem as outras duas fontes.",
+   "alternativas": [
+    {
+     "texto": "A loja tem menos leite, mas ainda recebe das outras duas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A loja para de funcionar completamente",
+     "correta": false,
+     "feedbackErro": "Parar totalmente seria exagero: ela ainda recebe leite das outras duas fazendas, só com menos volume."
+    },
+    {
+     "texto": "Não muda nada, porque a loja não depende do campo",
+     "correta": false,
+     "feedbackErro": "Muda, sim: a loja depende do leite das fazendas — perder uma fonte reduz o volume disponível."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "setores-da-economia",
+   "criterio": "Depende do campo, mesmo sendo da cidade?",
+   "enunciado": "Uma oficina que conserta computadores, sem usar nada do campo",
+   "resposta": true,
+   "ancora": "Nem tudo na cidade depende do campo: computador usa insumo industrial.",
+   "feedbackErro": "Parece que tudo depende do campo. Mas consertar computador usa peças de metal e plástico, não matéria-prima agrícola."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "atividade-campo-cidade",
+   "instrucao": "É atividade rural ou urbana, mesmo nos casos que confundem? Arraste.",
+   "ancora": "O local, não a aparência, define se a atividade é rural ou urbana.",
+   "feedbackErro": "A aparência engana. Horta e vaso envolvem plantas, mas o que define é onde a atividade acontece.",
+   "caixas": [
+    { "id": "rural", "rotulo": "Rural" },
+    { "id": "urbana", "rotulo": "Urbana" }
+   ],
+   "itens": [
+    { "texto": "Horta dentro de um terreno na cidade", "caixaCorreta": "urbana" },
+    { "texto": "Fazenda de gado no interior", "caixaCorreta": "rural" },
+    { "texto": "Conserto de computadores", "caixaCorreta": "urbana" },
+    { "texto": "Colheita de café nas montanhas", "caixaCorreta": "rural" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "empreender-na-comunidade",
+   "criterio": "Conta como empreendedorismo local?",
+   "enunciado": "Um adolescente do bairro que vende artesanato só pela internet",
+   "resposta": true,
+   "ancora": "Vender online, mesmo sem loja física, ainda é empreender.",
+   "feedbackErro": "Parece que só loja física conta. Mas vender por conta própria, mesmo online, já é empreendedorismo."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "setores-da-economia",
+   "dificuldade": 3,
+   "pergunta": "Théo notou que o pão ficou mais caro quando faltou trigo na safra, mesmo sem nada mudar na padaria. O que isso mostra?",
+   "ancora": "A cidade continua dependendo do que acontece na produção do campo.",
+   "alternativas": [
+    {
+     "texto": "A cidade continua dependendo do que acontece no campo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A padaria decidiu aumentar o preço sem motivo",
+     "correta": false,
+     "feedbackErro": "Tem motivo, sim: a falta de trigo no campo encarece a farinha, e isso chega até o preço do pão."
+    },
+    {
+     "texto": "O preço do pão não tem relação com a safra",
+     "correta": false,
+     "feedbackErro": "Tem relação direta: menos trigo na safra encarece a farinha, e isso sobe o preço do pão."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "atividade-campo-cidade",
+   "criterio": "É atividade econômica do campo?",
+   "enunciado": "Vaso de flores cultivado dentro de um apartamento",
+   "resposta": false,
+   "ancora": "Cultivar um vaso dentro de casa é hobby, não atividade do campo.",
+   "feedbackErro": "Envolve plantar, e por isso confunde. Mas cultivar um vaso dentro de casa é hobby, não a atividade econômica do campo."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "empreender-na-comunidade",
+   "criterio": "É empreendedorismo?",
+   "enunciado": "Um grupo de amigos que organiza uma rifa beneficente, sem lucro pra ninguém",
+   "resposta": false,
+   "ancora": "Sem fins lucrativos, não é negócio — é ação social.",
+   "feedbackErro": "Parece negócio por envolver venda. Mas rifa beneficente, sem lucro pro organizador, é ação social, não empreendedorismo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "atividade-campo-cidade",
+   "pergunta": "Qual frase resume a transferência que você acabou de fazer?",
+   "alternativas": [
+    {
+     "texto": "Localização e finalidade definem campo, cidade e negócio, não a aparência",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Toda atividade com planta é sempre do campo",
+     "correta": false,
+     "feedbackErro": "Não é sempre: horta urbana e vaso em casa envolvem plantas, mas não são atividade do campo."
+    },
+    {
+     "texto": "Toda venda é sempre empreendedorismo",
+     "correta": false,
+     "feedbackErro": "Nem sempre: uma rifa beneficente, sem fins lucrativos, não conta como negócio."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "setores-da-economia",
+   "dificuldade": 3,
+   "pergunta": "Uma fábrica de suco usa laranja de 4 fazendas. Uma delas atrasa a entrega por causa da chuva. O que a fábrica faz primeiro?",
+   "ancora": "Usar o estoque das outras 3 fazendas é a solução mais imediata.",
+   "alternativas": [
+    {
+     "texto": "Usa o estoque das outras 3 fazendas enquanto espera",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Para a produção até a fazenda atrasada entregar",
+     "correta": false,
+     "feedbackErro": "Parar tudo seria exagero — ainda há laranja das outras 3 fazendas pra usar enquanto espera."
+    },
+    {
+     "texto": "Compra só de fazendas de outro país",
+     "correta": false,
+     "feedbackErro": "Trocar de fornecedor de outro país é mudança grande e cara — antes, dá pra usar o estoque das outras 3."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "atividade-campo-cidade",
+   "criterio": "É exceção ao padrão campo-cidade?",
+   "enunciado": "Uma fazenda que tem uma fábrica de queijo dentro dela mesma",
+   "resposta": true,
+   "ancora": "Quando a transformação acontece dentro da fazenda, não há etapa urbana separada.",
+   "feedbackErro": "Parece o padrão comum. Mas aqui a fábrica fica dentro da fazenda — a etapa que normalmente é da cidade acontece no campo."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "setores-da-economia",
+   "instrucao": "Toque na ordem, considerando que a fazenda vende direto ao consumidor.",
+   "ancora": "Sem etapa urbana, tudo acontece dentro da própria fazenda.",
+   "feedbackErro": "É tentador incluir uma etapa na cidade. Mas aqui, criar, ordenhar, transformar e vender acontecem todos na fazenda.",
+   "itens": [
+    { "texto": "Criar as vacas", "posicaoCorreta": 1 },
+    { "texto": "Ordenhar", "posicaoCorreta": 2 },
+    { "texto": "Fazer o queijo na própria fazenda", "posicaoCorreta": 3 },
+    { "texto": "Vender no quiosque da fazenda", "posicaoCorreta": 4 }
+   ]
+  }
+ ]
+}

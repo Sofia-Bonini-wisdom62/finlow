@@ -1,0 +1,245 @@
+{
+ "slug": "comprar-menos-usar-mais",
+ "segmento": "ef35",
+ "conceitoPrincipal": "comprar-menos-usar-mais",
+ "fraseConceito": "Antes de comprar algo novo, dá pra recusar, reduzir, reutilizar ou reciclar.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "consumo-e-lixo",
+   "criterio": "Ajuda a reduzir o lixo?",
+   "enunciado": "Reaproveitar um pote de vidro pra guardar tempero",
+   "resposta": true,
+   "ancora": "Reutilizar um objeto evita jogar mais uma coisa fora.",
+   "feedbackErro": "Parece só um jeito de organizar a cozinha. Mas reaproveitar em vez de jogar fora é o que reduz o lixo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "consumo-e-lixo",
+   "criterio": "Ajuda a reduzir o lixo?",
+   "enunciado": "Comprar um brinquedo novo toda semana",
+   "resposta": false,
+   "ancora": "Comprar toda semana gera mais lixo, não menos.",
+   "feedbackErro": "Parece só uma compra comum. Mas comprar toda semana descarta o brinquedo antigo cedo, e isso aumenta o lixo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "consumo-consciente",
+   "criterio": "É consumismo?",
+   "enunciado": "Comprar um tênis novo só porque saiu um lançamento",
+   "resposta": true,
+   "ancora": "Comprar por lançamento, sem precisar, é consumismo.",
+   "feedbackErro": "Parece só gostar de moda. Mas comprar sem necessidade, só pelo lançamento, é o que caracteriza consumismo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "consumo-e-lixo",
+   "dificuldade": 1,
+   "pergunta": "Antes de comprar uma mochila nova, o que reduz mais o lixo?",
+   "ancora": "Consertar o que já existe evita descartar e comprar de novo.",
+   "alternativas": [
+    {
+     "texto": "Ver se dá pra consertar a mochila antiga",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Jogar a antiga fora e comprar outra",
+     "correta": false,
+     "feedbackErro": "Jogar fora sem tentar consertar gera lixo que talvez nem fosse necessário."
+    },
+    {
+     "texto": "Comprar duas mochilas, uma de reserva",
+     "correta": false,
+     "feedbackErro": "Comprar a mais aumenta o consumo, não reduz. O primeiro passo é ver se dá pra consertar a que já tem."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "economizar-no-dia-a-dia",
+   "dificuldade": 1,
+   "pergunta": "Qual atitude ajuda a economizar nos gastos do dia a dia?",
+   "ancora": "Comparar preços mostra onde o mesmo item custa menos.",
+   "alternativas": [
+    {
+     "texto": "Comparar o preço em mais de uma loja antes de comprar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Comprar sempre na primeira loja que ver",
+     "correta": false,
+     "feedbackErro": "A primeira loja pode não ter o menor preço. Comparar antes é o que ajuda a economizar."
+    },
+    {
+     "texto": "Comprar mais do que precisa pra não faltar",
+     "correta": false,
+     "feedbackErro": "Comprar além do necessário gasta mais dinheiro à toa, não economiza."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "consumo-consciente",
+   "criterio": "É consumo consciente?",
+   "enunciado": "Comprar só o que realmente vai usar",
+   "resposta": true,
+   "ancora": "Comprar pensando no uso real é consumo consciente.",
+   "feedbackErro": "Parece uma regra óbvia demais. Mas pensar se vai usar antes de comprar é justamente o que define consumo consciente."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "consumo-e-lixo",
+   "instrucao": "Isso reduz o lixo ou aumenta o lixo? Arraste.",
+   "ancora": "Reutilizar e doar reduzem; trocar e comprar demais aumentam.",
+   "feedbackErro": "É fácil confundir hábitos comuns com bons hábitos. Reutilizar e doar reduzem o lixo; trocar sem necessidade aumenta.",
+   "caixas": [
+    { "id": "reduz", "rotulo": "Reduz o lixo" },
+    { "id": "aumenta", "rotulo": "Aumenta o lixo" }
+   ],
+   "itens": [
+    { "texto": "Reutilizar a sacola de compras", "caixaCorreta": "reduz" },
+    { "texto": "Trocar de celular todo ano", "caixaCorreta": "aumenta" },
+    { "texto": "Doar roupa que não usa mais", "caixaCorreta": "reduz" },
+    { "texto": "Comprar tudo em embalagem individual", "caixaCorreta": "aumenta" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "economizar-no-dia-a-dia",
+   "criterio": "Ajuda a economizar?",
+   "enunciado": "Fazer uma lista antes de ir ao mercado",
+   "resposta": true,
+   "ancora": "A lista evita comprar por impulso o que não precisa.",
+   "feedbackErro": "Parece um passo a mais que dá trabalho. Mas a lista evita comprar por impulso coisas que não estavam no plano."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "consumo-consciente",
+   "dificuldade": 1,
+   "pergunta": "Beatriz viu um vestido igual ao que já tem, só de outra cor, e quis comprar mesmo assim. O que é isso?",
+   "ancora": "Comprar igual ao que já tem, sem necessidade, é consumismo.",
+   "alternativas": [
+    {
+     "texto": "Um exemplo de consumismo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Um exemplo de necessidade real",
+     "correta": false,
+     "feedbackErro": "Ela já tem um vestido igual — não falta nada de verdade. É desejo, não necessidade."
+    },
+    {
+     "texto": "Um exemplo de economia",
+     "correta": false,
+     "feedbackErro": "Comprar mais uma peça parecida gasta dinheiro extra, não economiza nada."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "consumo-e-lixo",
+   "criterio": "Ajuda a reduzir o lixo?",
+   "enunciado": "Levar sacola própria pro mercado",
+   "resposta": true,
+   "ancora": "Sacola própria evita usar e jogar fora sacolas novas.",
+   "feedbackErro": "Parece um detalhe pequeno demais pra importar. Mas levar a própria sacola evita gerar lixo com sacolas novas toda vez."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "economizar-no-dia-a-dia",
+   "criterio": "Ajuda a economizar?",
+   "enunciado": "Esperar a promoção pra comprar algo que você já precisa",
+   "resposta": true,
+   "ancora": "Esperar o preço baixar economiza, desde que o item seja necessário.",
+   "feedbackErro": "Parece só um detalhe de paciência. Mas esperar a promoção de algo que você já ia comprar é o que economiza."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "consumo-consciente",
+   "pergunta": "Qual frase resume a lição?",
+   "alternativas": [
+    {
+     "texto": "Comprar menos e reaproveitar mais economiza dinheiro e reduz o lixo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quanto mais se compra, melhor pro bolso",
+     "correta": false,
+     "feedbackErro": "É o contrário: comprar mais do que precisa gasta dinheiro à toa e gera mais lixo."
+    },
+    {
+     "texto": "Só reciclar já resolve todo o problema do lixo",
+     "correta": false,
+     "feedbackErro": "Reciclar ajuda, mas reduzir o que se compra e reutilizar o que já se tem ajudam ainda mais."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "economizar-no-dia-a-dia",
+   "dificuldade": 2,
+   "pergunta": "Uma caneta parou de escrever. O que economiza mais antes de comprar outra?",
+   "ancora": "Trocar a carga, quando dá, custa menos que comprar uma caneta nova.",
+   "alternativas": [
+    {
+     "texto": "Ver se dá pra trocar só a carga",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Comprar uma caneta nova na hora",
+     "correta": false,
+     "feedbackErro": "Comprar logo de cara gasta mais do que trocar só a carga, quando isso é possível."
+    },
+    {
+     "texto": "Comprar três canetas de uma vez",
+     "correta": false,
+     "feedbackErro": "Comprar em quantidade maior do que precisa não economiza — só antecipa um gasto que talvez nem fosse necessário."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "consumo-e-lixo",
+   "criterio": "Ajuda a reduzir o lixo?",
+   "enunciado": "Usar os dois lados da folha de caderno",
+   "resposta": true,
+   "ancora": "Usar o verso da folha reduz o papel descartado.",
+   "feedbackErro": "Parece um detalhe irrelevante. Mas usar os dois lados da folha reduz a quantidade de papel que vira lixo."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "consumo-e-lixo",
+   "instrucao": "Toque na ordem certa, do que mais reduz lixo pro que menos reduz.",
+   "ancora": "Recusar evita o lixo antes de existir; reciclar é o último recurso.",
+   "feedbackErro": "É comum pensar em reciclar primeiro. Mas recusar o que não precisa evita o lixo antes mesmo dele existir.",
+   "itens": [
+    { "texto": "Recusar o que não precisa", "posicaoCorreta": 1 },
+    { "texto": "Reduzir o que compra", "posicaoCorreta": 2 },
+    { "texto": "Reutilizar o que já tem", "posicaoCorreta": 3 },
+    { "texto": "Reciclar o que sobra", "posicaoCorreta": 4 }
+   ]
+  }
+ ]
+}

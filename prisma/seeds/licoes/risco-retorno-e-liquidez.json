@@ -1,0 +1,333 @@
+{
+ "slug": "risco-retorno-e-liquidez",
+ "segmento": "em2",
+ "conceitoPrincipal": "risco-retorno-e-liquidez",
+ "fraseConceito": "Todo investimento equilibra três coisas: risco (chance de perder), retorno (quanto rende) e liquidez (rapidez de virar dinheiro de novo).",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "criterio": "Vira dinheiro no mesmo dia?",
+   "enunciado": "O saldo guardado na poupança",
+   "resposta": true,
+   "ancora": "Resgate cai na conta na hora: liquidez alta. É o L do tripé.",
+   "feedbackErro": "Parece que dinheiro aplicado fica preso, mas a poupança tem liquidez diária: você resgata e usa no mesmo dia."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "criterio": "Vira dinheiro no mesmo dia?",
+   "enunciado": "Um apartamento colocado à venda",
+   "resposta": false,
+   "ancora": "Vender imóvel leva meses. Liquidez baixa é parte do negócio.",
+   "feedbackErro": "O imóvel vale muito, e isso confunde: valor não é liquidez. Até achar comprador e fechar a venda, passam meses — o dinheiro não aparece quando você precisa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "criterio": "Vira dinheiro no mesmo dia?",
+   "enunciado": "Um título que só libera o dinheiro no vencimento, em 2 anos",
+   "resposta": false,
+   "ancora": "Antes do prazo, ou não sai, ou sai perdendo parte do valor.",
+   "feedbackErro": "A aplicação existe e tem valor, mas o combinado é esperar: travar o resgate é o preço que ela cobra para pagar mais que as de liquidez diária."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "dificuldade": 1,
+   "pergunta": "Uma oferta promete render muito, sem risco e com resgate na hora. O que o tripé diz sobre ela?",
+   "ancora": "Ninguém entrega os três cantos do tripé ao mesmo tempo.",
+   "alternativas": [
+    {
+     "texto": "É rara, mas existe para quem investe valores altos",
+     "correta": false,
+     "feedbackErro": "Valor alto compra taxa melhor, não milagre: nem grandes fortunas recebem os três juntos. Quem promete isso está escondendo o risco."
+    },
+    {
+     "texto": "É sinal de golpe: os três juntos não existem",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "É normal em bancos grandes e conhecidos",
+     "correta": false,
+     "feedbackErro": "Banco grande também obedece ao tripé: o que paga mais ali também oscila ou trava. A marca não anula a troca entre risco, retorno e liquidez."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "dificuldade": 1,
+   "pergunta": "Otávio compara: uma aplicação paga 0,5% ao mês garantido; outra 'pode render 3%'. Por que a diferença?",
+   "ancora": "Quem paga mais cobra em risco: o 3% pode não vir — ou virar perda.",
+   "verificacao": {
+    "expressao": "3/0.5",
+    "esperado": 6
+   },
+   "alternativas": [
+    {
+     "texto": "A segunda é melhor: 3% é seis vezes 0,5%",
+     "correta": false,
+     "feedbackErro": "A conta está certa, mas compara promessa com garantia. 'Pode render 3%' inclui o mês em que rende zero ou negativo; o 0,5% vem sempre."
+    },
+    {
+     "texto": "A segunda paga mais porque o risco de perder é maior",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A primeira é para idosos, a segunda para jovens",
+     "correta": false,
+     "feedbackErro": "Idade não define a regra; a meta define. O que separa as duas é o risco embutido no retorno maior, para qualquer pessoa."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "criterio": "É o tripé funcionando?",
+   "enunciado": "Pagar mais retorno a quem aceita mais risco",
+   "resposta": true,
+   "ancora": "Retorno maior é o pagamento por carregar risco maior.",
+   "feedbackErro": "Parece injusto pagar mais a quem arrisca, mas é a lógica do mercado: sem prêmio, ninguém aceitaria a chance de perder. O retorno é o aluguel do risco."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "prazo-e-liquidez",
+   "instrucao": "Ordene: do mais rápido ao mais lento para virar dinheiro.",
+   "ancora": "Liquidez é velocidade de resgate, não valor da aplicação.",
+   "feedbackErro": "A ordem tentadora é pelo valor, mas liquidez mede velocidade: poupança sai na hora, o título espera o vencimento e o imóvel espera comprador.",
+   "itens": [
+    {
+     "texto": "Dinheiro na poupança",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Título que vence daqui a 2 anos",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Imóvel anunciado para venda",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "prazo-e-liquidez",
+   "criterio": "Liquidez alta importa aqui?",
+   "enunciado": "Na reserva para emergências",
+   "resposta": true,
+   "ancora": "Emergência não espera vencimento: reserva pede resgate na hora.",
+   "feedbackErro": "A reserva rende pouco e dá vontade de buscar mais, mas o papel dela é outro: estar disponível no dia ruim. Sem liquidez, ela não cumpre o próprio nome."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "prazo-e-liquidez",
+   "criterio": "Liquidez alta importa aqui?",
+   "enunciado": "Num dinheiro que só será usado daqui a 20 anos",
+   "resposta": false,
+   "ancora": "Meta longe permite trocar liquidez por mais retorno.",
+   "feedbackErro": "Liquidez parece sempre boa, mas tem preço: resgate imediato paga menos. Se o dinheiro só sai em 20 anos, você paga por uma pressa que não tem."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "pergunta": "R$ 1.000 na poupança, a 0,5% ao mês. Quanto viram após 12 meses?",
+   "campo": "moeda",
+   "min": 900,
+   "max": 1500,
+   "gabarito": 1062,
+   "toleranciaPct": 20,
+   "fonte": "rendimento da poupança, ~0,5% ao mês (Banco Central)",
+   "verificacao": {
+    "expressao": "1000*1.005^12",
+    "esperado": 1061.68,
+    "tolerancia": 0.05
+   },
+   "feedbackPerto": "Isso: R$ 1.062. Rendeu R$ 62 — pouco, mas com liquidez diária e risco quase zero. É o canto seguro do tripé.",
+   "feedbackLonge": "R$ 1.062. Quem chuta muito alto espera da poupança um retorno que ela não promete: segurança e liquidez custam retorno."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "diversificacao",
+   "dificuldade": 1,
+   "pergunta": "Por que espalhar o dinheiro em aplicações diferentes em vez de escolher só a 'melhor'?",
+   "ancora": "Se uma cair, as outras seguram o conjunto.",
+   "alternativas": [
+    {
+     "texto": "Porque se uma for mal, as outras amortecem a perda",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque assim todas passam a render mais",
+     "correta": false,
+     "feedbackErro": "Diversificar não turbina o retorno de ninguém: cada aplicação rende o seu. O que muda é o risco do conjunto, que cai quando as perdas não vêm juntas."
+    },
+    {
+     "texto": "Porque apps de banco cobram menos de quem espalha",
+     "correta": false,
+     "feedbackErro": "Tarifa não é o motivo — às vezes espalhar até custa mais taxas. O ganho é outro: nenhuma perda sozinha consegue derrubar o seu total."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "prazo-e-liquidez",
+   "dificuldade": 1,
+   "pergunta": "Meta: trocar de celular em 6 meses. Qual critério pesa mais na escolha de onde guardar?",
+   "ancora": "Prazo curto: poder resgatar sem perder decide a escolha.",
+   "alternativas": [
+    {
+     "texto": "O maior retorno possível, mesmo oscilando",
+     "correta": false,
+     "feedbackErro": "Em 6 meses, uma queda não tem tempo de se recuperar: você pode sacar no prejuízo. Oscilação combina com prazo longo, não com meta marcada."
+    },
+    {
+     "texto": "Resgatar no prazo certo sem perder valor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A aplicação da moda nas redes sociais",
+     "correta": false,
+     "feedbackErro": "A moda mostra o que subiu ontem, não o que serve à sua meta. O critério é prazo e liquidez, não popularidade."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "criterio": "Passa no teste do tripé?",
+   "enunciado": "Render 10% ao mês 'garantido e sem risco'",
+   "resposta": false,
+   "ancora": "Vinte vezes a poupança, sem risco, não existe: é golpe.",
+   "verificacao": {
+    "expressao": "10/0.5",
+    "esperado": 20
+   },
+   "feedbackErro": "O número tenta, e é justamente por isso que é falso: retorno alto, garantido e disponível quebra o tripé que rege todo o mercado. Promessa assim esconde risco."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "criterio": "Passa no teste do tripé?",
+   "enunciado": "Aceitar oscilação em troca de chance de render mais",
+   "resposta": true,
+   "ancora": "Essa é a troca honesta do tripé: risco assumido, não escondido.",
+   "feedbackErro": "Oscilar assusta, mas aqui não há pegadinha: quem aceita variação está pagando o preço declarado do retorno maior. Problema é risco escondido, não assumido."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "pergunta": "Qual frase resume o que você viu?",
+   "alternativas": [
+    {
+     "texto": "Risco, retorno e liquidez se equilibram: melhorar um cobra preço nos outros.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O melhor investimento é sempre o que rende mais.",
+     "correta": false,
+     "feedbackErro": "Rende mais cobrando algo: risco ou trava no resgate. Sem olhar o preço, o 'melhor' pode ser o pior para a sua meta."
+    },
+    {
+     "texto": "Liquidez alta é sempre a escolha certa.",
+     "correta": false,
+     "feedbackErro": "Para a reserva, sim. Para metas longas, liquidez é um luxo que custa retorno — o prazo da meta decide."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "instrucao": "Onde a chance de perder é maior?",
+   "ancora": "Risco é a variação possível, não a fama do nome.",
+   "feedbackErro": "Aplicações garantidas variam pouco; ação e cripto variam por natureza. Fama e risco andam separados: o que subiu muito pode cair muito.",
+   "caixas": [
+    {
+     "id": "maior",
+     "rotulo": "Risco maior"
+    },
+    {
+     "id": "menor",
+     "rotulo": "Risco menor"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Ações de uma empresa recém-criada",
+     "caixaCorreta": "maior"
+    },
+    {
+     "texto": "Poupança",
+     "caixaCorreta": "menor"
+    },
+    {
+     "texto": "Criptomoeda que dobrou no mês passado",
+     "caixaCorreta": "maior"
+    },
+    {
+     "texto": "Título público de curto prazo",
+     "caixaCorreta": "menor"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "dificuldade": 1,
+   "pergunta": "Uma aplicação rendeu 15% no ano passado. O que isso garante para o próximo ano?",
+   "ancora": "Retorno passado não é contrato: o risco continua no jogo.",
+   "alternativas": [
+    {
+     "texto": "Nada: rendimento passado não é promessa futura",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que ela deve render perto de 15% de novo",
+     "correta": false,
+     "feedbackErro": "Se fosse assim, não haveria risco. O 15% mostra o que aconteceu num cenário que já passou; o próximo ano rola outros dados."
+    },
+    {
+     "texto": "Que ela é mais segura que a poupança",
+     "correta": false,
+     "feedbackErro": "Render mais não é ser mais segura — costuma ser o contrário: o retorno alto veio de aceitar variação que a poupança não tem."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "diversificacao",
+   "criterio": "Isso é diversificar?",
+   "enunciado": "Comprar ações de 5 empresas do mesmo setor",
+   "resposta": false,
+   "ancora": "Se o setor cair, as 5 caem juntas. Variar é variar o risco.",
+   "feedbackErro": "São 5 nomes diferentes, e isso engana. Diversificar de verdade é escolher riscos que não caem pelo mesmo motivo — setores, prazos e tipos diferentes."
+  }
+ ]
+}

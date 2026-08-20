@@ -1,0 +1,282 @@
+{
+ "slug": "querer-e-ilimitado-ter-nao-e-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "querer-e-ilimitado-ter-nao-e",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "desejo-x-necessidade",
+   "criterio": "Qual era o critério mesmo?",
+   "enunciado": "Achar que tudo que a gente quer muito vira necessidade",
+   "resposta": false,
+   "ancora": "Querer muito não muda desejo em necessidade.",
+   "feedbackErro": "Parece que a intensidade da vontade decide. Mas o critério é se a vida continua funcionando sem aquilo, não o tamanho da vontade."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "desejo-x-necessidade",
+   "criterio": "Qual era o critério mesmo?",
+   "enunciado": "Ter roupa pra se proteger do frio, mesmo sem ser da moda",
+   "resposta": true,
+   "ancora": "O critério de necessidade é a proteção, não a moda.",
+   "feedbackErro": "Sem ser da moda, parece que não conta como necessidade completa. Mas a função de proteger do frio já cumpre o critério."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "recursos-limitados",
+   "criterio": "Qual era o critério mesmo?",
+   "enunciado": "Achar que dá pra resolver a falta de dinheiro só desejando mais forte",
+   "resposta": false,
+   "ancora": "O critério é escolher prioridades, não desejar mais forte.",
+   "feedbackErro": "Desejar mais forte não muda o valor disponível. O critério pra recursos limitados é escolher prioridades, não a intensidade do desejo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "desejo-x-necessidade",
+   "dificuldade": 2,
+   "pergunta": "Um casaco simples custa R$ 45 e protege do frio igual a um de marca de R$ 210. Qual é a necessidade aqui?",
+   "ancora": "210 menos 45 é 165: o custo extra só da marca.",
+   "alternativas": [
+    {
+     "texto": "Ter um casaco que proteja do frio, qualquer um dos dois",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ter especificamente o casaco de R$ 210",
+     "correta": false,
+     "feedbackErro": "O casaco de R$ 210 protege igual ao de R$ 45. A necessidade é proteção do frio; escolher a marca específica é desejo."
+    },
+    {
+     "texto": "Não existe necessidade, os dois são supérfluos",
+     "correta": false,
+     "feedbackErro": "Proteger do frio não é supérfluo — é necessidade básica. O que é opcional é a diferença de R$ 165 pela marca."
+    }
+   ],
+   "verificacao": {
+    "expressao": "210-45",
+    "esperado": 165
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "recursos-limitados",
+   "dificuldade": 2,
+   "pergunta": "Sobram R$ 24 no fim do mês pra 2 desejos: um de R$ 15, outro de R$ 19. O que fazer?",
+   "ancora": "15 mais 19 é 34: mais do que os R$ 24 disponíveis.",
+   "alternativas": [
+    {
+     "texto": "Escolher só um, porque juntos passam dos R$ 24",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Dividir R$ 12 pra cada desejo, sem completar nenhum",
+     "correta": false,
+     "feedbackErro": "Dividir R$ 24 ao meio não fecha o preço de nenhum dos dois — R$ 12 não compra nem o de R$ 15. Melhor escolher um inteiro."
+    },
+    {
+     "texto": "Comprar os dois, porque falta pouco pra completar",
+     "correta": false,
+     "feedbackErro": "Faltam R$ 10 pra completar os dois (34 menos 24), e esse dinheiro não existe agora. Só dá pra escolher um dos dois."
+    }
+   ],
+   "verificacao": {
+    "expressao": "15+19",
+    "esperado": 34
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "recursos-limitados",
+   "criterio": "É definir prioridade corretamente?",
+   "enunciado": "Escolher o desejo mais barato, sem pensar em qual importa mais",
+   "resposta": false,
+   "ancora": "Prioridade é sobre importância, não sobre qual custa menos.",
+   "feedbackErro": "Escolher o mais barato parece prático. Mas prioridade de verdade compara o que importa mais, não só o preço mais baixo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "recursos-limitados",
+   "instrucao": "É prioridade alta ou baixa nesse mês?",
+   "ancora": "Prioridade alta resolve algo urgente ou necessário agora.",
+   "feedbackErro": "O que parece urgente pela vontade nem sempre é. O critério é: isso resolve algo necessário ou urgente agora?",
+   "caixas": [
+    {
+     "id": "alta",
+     "rotulo": "Prioridade alta"
+    },
+    {
+     "id": "baixa",
+     "rotulo": "Prioridade baixa"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Comprar o material que a escola pediu pra semana",
+     "caixaCorreta": "alta"
+    },
+    {
+     "texto": "Comprar um acessório novo só porque saiu lançamento",
+     "caixaCorreta": "baixa"
+    },
+    {
+     "texto": "Trocar o sapato que já furou",
+     "caixaCorreta": "alta"
+    },
+    {
+     "texto": "Trocar um sapato bom só porque quer outra cor",
+     "caixaCorreta": "baixa"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "desejo-x-necessidade",
+   "criterio": "Isso mostra que virou desejo?",
+   "enunciado": "Já ter um casaco que protege bem, mas querer um mais bonito",
+   "resposta": true,
+   "ancora": "Quando a necessidade já está atendida, o extra é desejo.",
+   "feedbackErro": "Parece continuação da mesma necessidade de antes. Mas se a proteção já está garantida, querer um mais bonito é desejo."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "recursos-limitados",
+   "dificuldade": 2,
+   "pergunta": "Você tem R$ 27. Precisa gastar R$ 16 com material escolar. Quanto sobra pros desejos?",
+   "ancora": "27 menos 16 é 11: o que sobra pros desejos.",
+   "alternativas": [
+    {
+     "texto": "R$ 11",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 27",
+     "correta": false,
+     "feedbackErro": "R$ 27 é o total antes de separar o material escolar. Depois de tirar os R$ 16 necessários, sobram 11."
+    },
+    {
+     "texto": "R$ 43",
+     "correta": false,
+     "feedbackErro": "Somar os dois valores não representa o que sobra. A conta certa é subtrair: 27 menos 16 é 11."
+    }
+   ],
+   "verificacao": {
+    "expressao": "27-16",
+    "esperado": 11
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "desejo-x-necessidade",
+   "criterio": "É priorizar necessidade sobre desejo?",
+   "enunciado": "Separar o dinheiro do material antes de pensar em brinquedo",
+   "resposta": true,
+   "ancora": "Separar a necessidade primeiro é priorizar corretamente.",
+   "feedbackErro": "Parece só uma ordem qualquer de gastar. Mas separar a necessidade primeiro garante que ela não fique sem dinheiro."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "recursos-limitados",
+   "criterio": "Isso ajuda a decidir prioridade?",
+   "enunciado": "Perguntar 'isso pode esperar até o próximo mês?'",
+   "resposta": true,
+   "ancora": "O que pode esperar tem prioridade menor do que o que não pode.",
+   "feedbackErro": "Parece pergunta simples demais pra decidir algo importante. Mas separar o que pode esperar é um jeito direto de definir prioridade."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "recursos-limitados",
+   "pergunta": "Depois de rever, qual frase está mais certa?",
+   "alternativas": [
+    {
+     "texto": "Prioridade compara importância, não só o preço mais baixo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A necessidade específica de uma marca é sempre necessidade",
+     "correta": false,
+     "feedbackErro": "A marca específica costuma ser desejo. A necessidade é a função — como se proteger do frio — não a marca."
+    },
+    {
+     "texto": "Se sobra pouco dinheiro, o certo é dividir igual entre os desejos",
+     "correta": false,
+     "feedbackErro": "Dividir igual pode não fechar o preço de nenhum desejo. Às vezes escolher um inteiro resolve melhor do que dividir."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "recursos-limitados",
+   "instrucao": "Ordene os passos pra decidir prioridade com dinheiro limitado.",
+   "ancora": "Necessidade primeiro, depois o que sobra decide o desejo.",
+   "feedbackErro": "Escolher o desejo antes de separar a necessidade pode deixar o essencial sem dinheiro. A ordem começa pela necessidade.",
+   "itens": [
+    {
+     "texto": "Separar o que é necessidade",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Ver quanto sobra depois disso",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Escolher o desejo mais importante com o que sobrou",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "desejo-x-necessidade",
+   "dificuldade": 2,
+   "pergunta": "Duas mochilas resolvem a mesma função, mas uma custa R$ 38 a mais só pelo desenho estampado. Isso é necessidade?",
+   "ancora": "O desenho extra não muda a função da mochila.",
+   "alternativas": [
+    {
+     "texto": "Não, a necessidade já é atendida pela mais simples",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque toda mochila é uma necessidade igual",
+     "correta": false,
+     "feedbackErro": "A mochila em si pode ser necessidade, mas o desenho que custa R$ 38 a mais não muda a função dela. Isso é desejo."
+    },
+    {
+     "texto": "Sim, porque desenho bonito ajuda a estudar melhor",
+     "correta": false,
+     "feedbackErro": "Não existe essa relação direta. O desenho não muda a função da mochila — é preferência, ou seja, desejo."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "recursos-limitados",
+   "criterio": "É um erro comum ao definir prioridade?",
+   "enunciado": "Decidir pelo que dá mais vontade na hora, sem pensar no resto do mês",
+   "resposta": true,
+   "ancora": "Prioridade pensa no mês inteiro, não só no momento.",
+   "feedbackErro": "Parece só seguir a vontade do momento, sem problema nenhum. Mas decidir sem pensar no resto do mês pode deixar necessidades sem dinheiro."
+  }
+ ]
+}

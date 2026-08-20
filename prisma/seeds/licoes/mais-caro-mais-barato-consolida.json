@@ -1,0 +1,157 @@
+{
+ "slug": "mais-caro-mais-barato-consolida",
+ "segmento": "ef12",
+ "conceitoPrincipal": "mais-caro-mais-barato",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "mais-caro-mais-barato",
+   "criterio": "Isso é sempre verdade?",
+   "enunciado": "Coisa maior custa mais que coisa menor",
+   "resposta": false,
+   "ancora": "Nem sempre. Pipoca grande pode custar menos que um chocolate pequeno.",
+   "feedbackErro": "Parece regra segura, porque no dia a dia costuma ser assim. Mas o preço depende do que é vendido, não só do tamanho."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "mais-caro-mais-barato",
+   "criterio": "Isso é sempre verdade?",
+   "enunciado": "O que tem embalagem colorida custa mais",
+   "resposta": false,
+   "ancora": "Cor da embalagem não muda o preço. O preço é o número.",
+   "feedbackErro": "Embalagem bonita chama atenção, e parece coisa cara. Mas o que decide o preço é o número escrito, não a aparência."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "moedas-e-notas",
+   "criterio": "Dá pra pagar só com moeda?",
+   "enunciado": "Duas balas de R$ 0,50 cada, juntas",
+   "resposta": true,
+   "ancora": "R$0,50 + R$0,50 = R$1,00. Ainda cabe em moedas.",
+   "verificacao": { "expressao": "0.50+0.50", "esperado": 1 },
+   "feedbackErro": "Cada bala sozinha parece fácil de pagar em moeda. Some as duas: o total ainda não passa de R$1."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "moedas-e-notas",
+   "criterio": "Dá pra pagar só com moeda?",
+   "enunciado": "Duas balas de R$ 0,50 e um chiclete de R$ 1,00, juntos",
+   "resposta": false,
+   "ancora": "R$0,50 + R$0,50 + R$1 = R$2. Passou de R$1, precisa de nota.",
+   "verificacao": { "expressao": "0.50+0.50+1.00", "esperado": 2 },
+   "feedbackErro": "Cada peça sozinha parece pagável em moeda, e de fato é. Mas juntando tudo o total passa de R$1 — aí entra a nota."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "mais-caro-mais-barato",
+   "instrucao": "Some os dois preços: passa de R$5?",
+   "ancora": "Some os dois preços antes de comparar com R$5.",
+   "feedbackErro": "É tentador comparar só o primeiro preço da soma. O que decide é o total dos dois juntos.",
+   "caixas": [
+    { "id": "mais", "rotulo": "Passa de R$5" },
+    { "id": "menos", "rotulo": "Não passa" }
+   ],
+   "itens": [
+    { "texto": "Bala (R$0,50) + chiclete (R$1,00)", "caixaCorreta": "menos" },
+    { "texto": "Sorvete (R$6,00) sozinho", "caixaCorreta": "mais" },
+    { "texto": "Pipoca (R$3,50) + suco (R$0,90)", "caixaCorreta": "menos" },
+    { "texto": "Brinquedo (R$4,00) + bala (R$1,50)", "caixaCorreta": "mais" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "mais-caro-mais-barato",
+   "criterio": "Custa mais que o sorvete (R$0,90)?",
+   "enunciado": "Duas balas de R$ 0,40 cada, juntas",
+   "resposta": false,
+   "ancora": "R$0,40+R$0,40=R$0,80. É menos que R$0,90.",
+   "verificacao": { "expressao": "0.40+0.40", "esperado": 0.8 },
+   "feedbackErro": "Duas balas juntas parecem valer mais, porque são duas coisas. Mas somando dá R$0,80 — ainda menos que R$0,90."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "mais-caro-mais-barato",
+   "criterio": "Isso custa mais que R$5?",
+   "enunciado": "3 moedas de R$1 e 2 moedas de R$0,50, juntas",
+   "resposta": false,
+   "ancora": "3×R$1 + 2×R$0,50 = R$4. É menos que R$5.",
+   "verificacao": { "expressao": "3*1+2*0.5", "esperado": 4 },
+   "feedbackErro": "Contar moedas com valores diferentes confunde. Mas somando tudo dá R$4, que ainda é menos que R$5."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "mais-caro-mais-barato",
+   "dificuldade": 3,
+   "pergunta": "Um brinquedo grande e colorido. Isso garante que ele é o mais caro da loja?",
+   "ancora": "Só o número do preço garante isso.",
+   "alternativas": [
+    {
+     "texto": "Sim, coisa grande e colorida custa mais",
+     "correta": false,
+     "feedbackErro": "Grande e colorido chama atenção, parece caro. Mas o preço é só o número na etiqueta, não a aparência."
+    },
+    {
+     "texto": "Não, o que decide é o número no preço",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, mas só quando é importado",
+     "correta": false,
+     "feedbackErro": "De onde vem o brinquedo pode até mudar o preço, mas não é isso que a etiqueta mostra pra gente comparar."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "mais-caro-mais-barato",
+   "instrucao": "Toque na ordem do mais barato pro mais caro.",
+   "ancora": "Some cada combo antes de ordenar.",
+   "feedbackErro": "Alguns combos parecem parecidos de longe. Some cada um e compare os totais.",
+   "itens": [
+    { "texto": "Bala (R$0,50) + bala (R$0,50)", "posicaoCorreta": 1 },
+    { "texto": "Chiclete (R$1,00) + bala (R$0,50)", "posicaoCorreta": 2 },
+    { "texto": "Sorvete (R$6,00) sozinho", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "moedas-e-notas",
+   "instrucao": "O total dá pra pagar só com moedas?",
+   "ancora": "Some tudo antes de decidir.",
+   "feedbackErro": "Cada peça sozinha pode caber em moeda. O que importa é a soma de tudo.",
+   "caixas": [
+    { "id": "moeda", "rotulo": "Só moeda" },
+    { "id": "nota", "rotulo": "Precisa de nota" }
+   ],
+   "itens": [
+    { "texto": "R$ 0,25 + R$ 0,25", "caixaCorreta": "moeda" },
+    { "texto": "R$ 1,00 + R$ 1,00", "caixaCorreta": "nota" },
+    { "texto": "R$ 0,50 + R$ 0,25", "caixaCorreta": "moeda" },
+    { "texto": "R$ 0,50 + R$ 1,00", "caixaCorreta": "nota" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "mais-caro-mais-barato",
+   "criterio": "Isso é sempre verdade?",
+   "enunciado": "A marca escrita na etiqueta decide o preço",
+   "resposta": false,
+   "ancora": "Marca não é o preço. O preço é o número.",
+   "feedbackErro": "Marca conhecida costuma custar mais, e isso confunde a regra. Mas o que decide o preço em cada etiqueta é o número, não o nome."
+  }
+ ]
+}

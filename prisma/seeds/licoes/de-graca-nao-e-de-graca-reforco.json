@@ -1,0 +1,293 @@
+{
+ "slug": "de-graca-nao-e-de-graca-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "de-graca-nao-e-de-graca",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "criterio": "Isso é grátis de verdade?",
+   "enunciado": "Um cupom de desconto que só libera após você indicar 5 amigos",
+   "resposta": false,
+   "ancora": "O 'pagamento' aqui é sua rede de contatos virando propaganda.",
+   "feedbackErro": "Não sai dinheiro do seu bolso, então parece grátis. Mas você paga com sua rede de contatos."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "criterio": "Isso é grátis de verdade?",
+   "enunciado": "Um curso 'gratuito' que depois empurra um curso pago muito mais caro",
+   "resposta": false,
+   "ancora": "O curso grátis é isca — o custo real aparece na oferta seguinte.",
+   "feedbackErro": "O curso em si não cobra nada, e por isso parece limpo. Mas ele existe pra te preparar pra comprar o curso pago que vem depois."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "criterio": "Isso é grátis de verdade?",
+   "enunciado": "Uma horta comunitária mantida por voluntários, sem fins lucrativos",
+   "resposta": true,
+   "ancora": "Sem venda de dados nem anúncio por trás, não há custo escondido.",
+   "feedbackErro": "Depois de tantos exemplos com pegadinha, é natural desconfiar de tudo. Mas trabalho voluntário sem fins lucrativos é 'grátis' de verdade."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "dificuldade": 2,
+   "pergunta": "Uma loja tem frete grátis, mas cobra 15% mais caro que outra com frete pago. O que houve com o custo do frete?",
+   "ancora": "'Frete grátis' com preço mais alto é o frete embutido no produto.",
+   "alternativas": [
+    {
+     "texto": "Foi embutido no preço do produto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Desapareceu, porque a loja absorveu o prejuízo",
+     "correta": false,
+     "feedbackErro": "Empresa não sustenta 'frete grátis' de prejuízo por muito tempo — o custo normalmente é embutido no preço."
+    },
+    {
+     "texto": "Foi cobrado à parte, escondido na nota fiscal",
+     "correta": false,
+     "feedbackErro": "Não aparece separado — o jeito comum é embutir no preço do produto."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "dificuldade": 2,
+   "pergunta": "Uma marca de roupa reduz o preço com produção em massa acelerada. Qual impacto costuma ficar fora do preço da etiqueta?",
+   "ancora": "Preço baixo raramente inclui o custo ambiental da produção acelerada.",
+   "alternativas": [
+    {
+     "texto": "O impacto ambiental da produção e descarte em massa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O impacto no salário de quem vende na loja",
+     "correta": false,
+     "feedbackErro": "Salário de vendedor entra nos custos da empresa — o que costuma ficar fora do preço é o ambiental."
+    },
+    {
+     "texto": "O impacto no preço da matéria-prima usada",
+     "correta": false,
+     "feedbackErro": "O custo da matéria-prima entra no cálculo do preço — o que fica de fora costuma ser o impacto ambiental."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "criterio": "É custo psicológico, mesmo sem dinheiro?",
+   "enunciado": "A contagem regressiva que reaparece toda vez que você reabre o app",
+   "resposta": true,
+   "ancora": "Repetir a pressão de tempo é técnica pra te apressar sempre.",
+   "feedbackErro": "Um cronômetro sozinho pode parecer só informação. Mas reaparecer toda vez, de propósito, é desenhado pra te apressar."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "instrucao": "O que sustenta essa oferta 'grátis', afinal?",
+   "ancora": "Procure o anúncio, o patrocínio ou a cobrança futura.",
+   "feedbackErro": "Quando tem anúncio, patrocínio ou assinatura futura, alguém está pagando por trás. Sem nada disso, pode ser realmente livre.",
+   "caixas": [
+    {
+     "id": "tem",
+     "rotulo": "Tem alguém pagando"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não tem"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Rede social que cobra R$ 0 mas vende espaço de anúncio",
+     "caixaCorreta": "tem"
+    },
+    {
+     "texto": "Aula gravada, disponibilizada de graça por uma universidade pública, sem anúncio",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Amostra de creme numa sacola de evento patrocinado pela marca",
+     "caixaCorreta": "tem"
+    },
+    {
+     "texto": "Enciclopédia colaborativa mantida por doações voluntárias, sem anúncio",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "criterio": "É jeito comum de disfarçar o custo real?",
+   "enunciado": "Chamar de 'taxa de conveniência' o que na verdade é lucro extra do serviço",
+   "resposta": true,
+   "ancora": "Nomes bonitos pra cobranças disfarçam quanto você paga de fato.",
+   "feedbackErro": "'Taxa de conveniência' soa técnico e neutro. Mas muitas vezes é só um nome bonito pra uma cobrança extra."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "dificuldade": 2,
+   "pergunta": "Bryan assinou um app com 7 dias grátis e esqueceu de cancelar; foi cobrado R$ 34,90. Qual foi o erro de cálculo dele?",
+   "ancora": "Período 'grátis' costuma virar cobrança automática no fim.",
+   "alternativas": [
+    {
+     "texto": "Achar que 'grátis' significava sem nenhum compromisso futuro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Confiar demais no aplicativo",
+     "correta": false,
+     "feedbackErro": "Confiança não é o erro central — o erro foi não perceber que o período grátis vira cobrança automática."
+    },
+    {
+     "texto": "Usar o app por poucos dias",
+     "correta": false,
+     "feedbackErro": "Usar pouco não gera cobrança — o que gera é não cancelar antes do fim do período grátis."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "criterio": "É sinal de custo ambiental escondido?",
+   "enunciado": "Um produto muito barato, com embalagem excessiva de plástico",
+   "resposta": true,
+   "ancora": "Embalagem excessiva de material barato sinaliza descaso ambiental.",
+   "feedbackErro": "Preço baixo e embalagem chamativa parecem só estratégia de venda. Mas é um sinal comum de custo ambiental empurrado pra fora do preço."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "criterio": "É boa pergunta antes da oferta 'grátis'?",
+   "enunciado": "O que acontece depois que esse período grátis termina?",
+   "resposta": true,
+   "ancora": "Perguntar o 'depois' revela o custo que a oferta grátis está adiando.",
+   "feedbackErro": "Parece desconfiança exagerada logo de cara. Mas é justamente o 'depois' que costuma esconder o custo real."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "pergunta": "O que esse encontro acrescentou ao que já era sabido sobre ofertas 'grátis'?",
+   "alternativas": [
+    {
+     "texto": "Que o custo pode vir depois: assinatura, indicação, impacto adiado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que toda oferta grátis é sempre um golpe programado",
+     "correta": false,
+     "feedbackErro": "Nem toda oferta é golpe — algumas são realmente sem custo escondido."
+    },
+    {
+     "texto": "Que só existe custo escondido quando envolve dinheiro",
+     "correta": false,
+     "feedbackErro": "O custo escondido pode ser em dados, atenção, indicações ou impacto ambiental."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "instrucao": "Isso costuma virar cobrança depois de um tempo grátis?",
+   "ancora": "Prazo curto e depois cobrança automática é o padrão mais comum.",
+   "feedbackErro": "Teste por tempo limitado costuma ser isca pra assinatura — sem prazo definido, o risco é menor.",
+   "caixas": [
+    {
+     "id": "sim",
+     "rotulo": "Sim"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Assinatura de streaming com teste de 7 dias",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Livro de domínio público, sem prazo",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Academia com 'primeira semana grátis'",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Podcast independente, sem anúncio nem assinatura",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "instrucao": "Ordene da oferta mais transparente pra mais escondida.",
+   "ancora": "Quanto mais o custo aparece só depois, mais escondida é a oferta.",
+   "feedbackErro": "Não é sobre qual promoção parece melhor — é sobre em qual delas o custo real demora mais pra aparecer.",
+   "itens": [
+    {
+     "texto": "Desconto anunciado com preço final visível",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Frete grátis com preço do produto maior",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "App grátis com anúncios constantes",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Teste grátis que vira assinatura automática",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "pergunta": "Um app cobra R$ 24,90/mês após 7 dias grátis. Esquecendo de cancelar por 3 meses, quanto foi pago sem perceber?",
+   "campo": "moeda",
+   "min": 20,
+   "max": 150,
+   "gabarito": 74.7,
+   "toleranciaPct": 20,
+   "fonte": "mensalidade cobrada automaticamente após o período grátis",
+   "feedbackPerto": "Isso mesmo — R$ 24,90 vezes 3 meses somam R$ 74,70 sem perceber.",
+   "feedbackLonge": "R$ 74,70: multiplique a mensalidade pelo número de meses esquecidos.",
+   "verificacao": {
+    "expressao": "24.90*3",
+    "esperado": 74.7
+   }
+  }
+ ]
+}

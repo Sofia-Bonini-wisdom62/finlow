@@ -1,0 +1,250 @@
+{
+ "slug": "seus-direitos-como-consumidor-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "seus-direitos-como-consumidor",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "direito-como-protecao",
+   "criterio": "É um direito garantido do consumidor?",
+   "enunciado": "Devolver uma compra online, mesmo já tendo experimentado o produto normalmente",
+   "resposta": true,
+   "ancora": "O prazo de arrependimento permite testar o produto normalmente.",
+   "feedbackErro": "Parece que usar já cancela o direito, mas experimentar dentro do razoável ainda é permitido no prazo de arrependimento."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "direito-como-protecao",
+   "criterio": "É um direito garantido do consumidor?",
+   "enunciado": "Pedir troca por defeito depois que o prazo de garantia legal já venceu",
+   "resposta": false,
+   "ancora": "Fora do prazo, o direito automático deixa de valer.",
+   "feedbackErro": "Dentro do prazo funciona automático; fora dele, ainda dá pra negociar, mas não é mais um direito garantido."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "direitos-e-deveres",
+   "criterio": "É um direito garantido do consumidor?",
+   "enunciado": "Recusar uma cobrança prevista no contrato, alegando que não leu",
+   "resposta": false,
+   "ancora": "Se foi informado no contrato, não ler não cancela a cobrança.",
+   "feedbackErro": "Não ler é um risco de quem assina, não uma falha da empresa — se a informação estava lá, a cobrança vale."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "direito-como-protecao",
+   "dificuldade": 3,
+   "pergunta": "Rodrigo comprou uma TV com 1 ano de garantia. Ela quebrou no mês 14. Ele ainda tem direito automático à troca?",
+   "ancora": "O prazo de garantia legal já passou no mês 14.",
+   "alternativas": [
+    {
+     "texto": "Sim, o direito nunca vence",
+     "correta": false,
+     "feedbackErro": "O direito automático tem prazo — depois dele, a garantia legal já não cobre sozinha."
+    },
+    {
+     "texto": "Não, o prazo de garantia legal já passou",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, mas só se ele nunca tiver usado a TV",
+     "correta": false,
+     "feedbackErro": "Usar o produto normalmente não tira o direito — o que importa aqui é o prazo, que já venceu."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "canais-de-protecao",
+   "dificuldade": 3,
+   "pergunta": "Um problema envolve, ao mesmo tempo, uma loja e o banco que financiou a compra. Como agir?",
+   "ancora": "Cada parte do problema tem seu canal: loja e Banco Central.",
+   "alternativas": [
+    {
+     "texto": "Só reclamar com a loja, o banco não tem responsabilidade",
+     "correta": false,
+     "feedbackErro": "O banco também responde pela parte dele — cobrar só a loja deixa metade do problema sem solução."
+    },
+    {
+     "texto": "Loja pelo produto e Banco Central pelo financiamento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Esperar a loja resolver tudo, incluindo o banco",
+     "correta": false,
+     "feedbackErro": "A loja não controla o banco — cada parte do problema pede o canal certo pra ela."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "direitos-e-deveres",
+   "criterio": "Ainda é responsabilidade da empresa?",
+   "enunciado": "Cobrir o prejuízo de um produto que quebrou por mau uso do consumidor",
+   "resposta": false,
+   "ancora": "Mau uso comprovado tira a responsabilidade da empresa.",
+   "feedbackErro": "Defeito de fábrica é da empresa, mas dano causado pelo próprio uso indevido não entra na garantia."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "seus-direitos-como-consumidor",
+   "instrucao": "Isso ainda é direito garantido, mesmo sendo caso-limite?",
+   "ancora": "Prazo e origem do problema decidem se o direito vale.",
+   "feedbackErro": "É fácil achar que qualquer situação parecida garante direito, mas prazo e origem do problema é que decidem.",
+   "caixas": [
+    { "id": "direito", "rotulo": "É direito" },
+    { "id": "nao", "rotulo": "Não é direito" }
+   ],
+   "itens": [
+    { "texto": "Devolver compra online usada pra testar, dentro do prazo", "caixaCorreta": "direito" },
+    { "texto": "Trocar produto com defeito, fora do prazo de garantia legal", "caixaCorreta": "nao" },
+    { "texto": "Cancelar assinatura com a mesma facilidade de quando assinou", "caixaCorreta": "direito" },
+    { "texto": "Recusar cobrança avisada no contrato, alegando 'não li'", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "direitos-e-deveres",
+   "criterio": "Ainda é responsabilidade da empresa?",
+   "enunciado": "Cobrir defeito de fábrica que só aparece depois de meses de uso normal",
+   "resposta": true,
+   "ancora": "Demorar a aparecer não muda a origem do problema.",
+   "feedbackErro": "Demorar a aparecer não muda a origem do problema — se é de fábrica, continua sendo responsabilidade da empresa."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "direito-como-protecao",
+   "dificuldade": 3,
+   "pergunta": "Produto de R$ 600 com defeito. A loja troca por um de R$ 750. Quanto o consumidor paga de diferença?",
+   "ancora": "R$ 750 − R$ 600 = R$ 150 de diferença.",
+   "verificacao": { "expressao": "750-600", "esperado": 150 },
+   "alternativas": [
+    {
+     "texto": "R$ 150",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 0, a loja deveria cobrir tudo",
+     "correta": false,
+     "feedbackErro": "A empresa cobre o produto com defeito, mas não é obrigada a bancar um upgrade pra modelo mais caro."
+    },
+    {
+     "texto": "R$ 750, o valor cheio do novo produto",
+     "correta": false,
+     "feedbackErro": "O valor do produto antigo já é abatido — só a diferença entre os dois entra na conta."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "direito-como-protecao",
+   "criterio": "É um direito garantido do consumidor?",
+   "enunciado": "Receber o reembolso em até 7 dias após devolver uma compra online no prazo",
+   "resposta": true,
+   "ancora": "O reembolso também tem prazo, não pode demorar indefinidamente.",
+   "feedbackErro": "Parece que a devolução resolve tudo sozinha, mas o reembolso rápido dentro do prazo também é parte do direito."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "canais-de-protecao",
+   "criterio": "Esse canal resolve esse problema?",
+   "enunciado": "Usar o Juizado Especial quando o Procon já tentou e a empresa não resolveu",
+   "resposta": true,
+   "ancora": "Juizado Especial é o passo seguinte quando a via administrativa falha.",
+   "feedbackErro": "Parece que Procon é sempre o último recurso, mas quando ele não resolve, o Juizado Especial é o passo seguinte."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "seus-direitos-como-consumidor",
+   "dificuldade": 3,
+   "pergunta": "Depois dos casos-limite, o que define os limites de um direito do consumidor?",
+   "alternativas": [
+    {
+     "texto": "Nada, direito de consumidor nunca tem limite de prazo",
+     "correta": false,
+     "feedbackErro": "Quase todo direito tem prazo ou condição — ignorar isso é o erro mais comum nesses casos."
+    },
+    {
+     "texto": "O prazo, a origem do problema e o canal certo pra cada parte",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só depende de quanto o consumidor reclamar",
+     "correta": false,
+     "feedbackErro": "Reclamar ajuda a cobrar, mas não define se o direito existe — isso vem do prazo e da origem do problema."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "seus-direitos-como-consumidor",
+   "instrucao": "Ordene do problema mais fácil pro mais difícil de resolver.",
+   "ancora": "Direito automático resolve rápido; problema composto exige mais canais.",
+   "feedbackErro": "É fácil achar que todo defeito é igual, mas prazo vencido e problemas com duas partes pedem mais esforço.",
+   "itens": [
+    { "texto": "Defeito de fábrica dentro da garantia", "posicaoCorreta": 1 },
+    { "texto": "Defeito de fábrica fora do prazo de garantia", "posicaoCorreta": 2 },
+    { "texto": "Problema que envolve loja e banco ao mesmo tempo", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "direito-como-protecao",
+   "pergunta": "Produto de R$ 720 com defeito, trocado por um de R$ 860. Qual a diferença a pagar?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 300,
+   "gabarito": 140,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto da diferença de valor na troca",
+   "verificacao": { "expressao": "860-720", "esperado": 140 },
+   "feedbackPerto": "Isso mesmo — R$ 860 − R$ 720 = R$ 140.",
+   "feedbackLonge": "R$ 140. A empresa cobre o produto defeituoso; só a diferença de valor fica por conta do consumidor."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "direito-como-protecao",
+   "dificuldade": 3,
+   "pergunta": "Um consumidor perde o prazo de garantia por 3 meses. Isso apaga totalmente a chance de resolver?",
+   "ancora": "O direito automático acaba, mas negociação ainda é possível.",
+   "alternativas": [
+    {
+     "texto": "Sim, sem prazo não existe mais nenhuma saída",
+     "correta": false,
+     "feedbackErro": "O direito automático acaba, mas ainda dá pra negociar diretamente ou buscar o Procon, dependendo do caso."
+    },
+    {
+     "texto": "Não, o direito automático acaba, mas negociação ainda é possível",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, o prazo de garantia nunca vence de verdade",
+     "correta": false,
+     "feedbackErro": "O prazo vence sim — o que continua possível depois é negociar, não é o mesmo que o direito automático."
+    }
+   ]
+  }
+ ]
+}

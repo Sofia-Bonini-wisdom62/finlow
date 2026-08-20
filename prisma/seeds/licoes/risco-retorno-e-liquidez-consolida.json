@@ -1,0 +1,316 @@
+{
+ "slug": "risco-retorno-e-liquidez-consolida",
+ "segmento": "em2",
+ "conceitoPrincipal": "risco-retorno-e-liquidez",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "criterio": "A regra vale sem exceção?",
+   "enunciado": "Mais risco sempre entrega mais retorno",
+   "resposta": false,
+   "ancora": "Risco abre a porta do retorno — e também a da perda.",
+   "feedbackErro": "Metade da frase é verdade: sem risco não há retorno alto. A outra metade é a pegadinha — risco é chance, não garantia. Às vezes ele entrega só a perda."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "diversificacao",
+   "criterio": "A regra vale sem exceção?",
+   "enunciado": "Diversificar protege até numa crise que derruba tudo",
+   "resposta": false,
+   "ancora": "Em crise geral, quase tudo cai junto: proteção diminui, não zera.",
+   "feedbackErro": "Diversificar reduz quedas na maioria dos cenários. No cenário extremo, os riscos se juntam e caem em bloco — a estratégia amortece o tombo, não o cancela."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prazo-e-liquidez",
+   "criterio": "A regra vale sem exceção?",
+   "enunciado": "Liquidez baixa pode ser boa escolha em meta longa",
+   "resposta": true,
+   "ancora": "Abrir mão da pressa é justamente o que o prazo longo permite.",
+   "feedbackErro": "Baixa liquidez soa como defeito, mas é moeda de troca: quem não precisa sacar cedo vende a pressa e recebe retorno a mais por ela."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "prazo-e-liquidez",
+   "dificuldade": 3,
+   "pergunta": "Caio, 17, tem R$ 2.400: R$ 1.800 são reserva e R$ 600 só serão usados em 10 anos. Como o tripé divide?",
+   "ancora": "Cada pedaço do dinheiro tem prazo próprio — e tripé próprio.",
+   "alternativas": [
+    {
+     "texto": "Tudo em liquidez diária, para eliminar o risco",
+     "correta": false,
+     "feedbackErro": "Protege a reserva e desperdiça os R$ 600: dez anos pagando por uma pressa inexistente. Segurança total também tem custo — o retorno que não veio."
+    },
+    {
+     "texto": "Reserva com liquidez; os R$ 600 podem buscar retorno",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Tudo em risco alto, porque ele é jovem e tem tempo",
+     "correta": false,
+     "feedbackErro": "O tempo dele não muda a função da reserva: ela precisa existir líquida antes de qualquer voo. Idade flexibiliza os R$ 600, nunca os R$ 1.800."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "diversificacao",
+   "dificuldade": 3,
+   "pergunta": "Uma carteira bem diversificada caiu 8% no mês. Isso prova que a diversificação falhou?",
+   "ancora": "O teste é contra a alternativa: sem espalhar, o tombo seria pior.",
+   "alternativas": [
+    {
+     "texto": "Sim: diversificar existe para nunca deixar cair",
+     "correta": false,
+     "feedbackErro": "Essa expectativa é o mal-entendido clássico: a promessa é amortecer, não imunizar. Um mês ruim generalizado derruba até carteiras bem montadas."
+    },
+    {
+     "texto": "Não: a comparação certa é com a queda sem diversificar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim: o certo era prever a queda e sair antes",
+     "correta": false,
+     "feedbackErro": "Prever o mês da queda não é estratégia, é aposta — errar a saída e a volta custa mais que a própria queda. Diversificação existe porque ninguém prevê."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "prazo-e-liquidez",
+   "criterio": "Aqui o retorno é o chefe?",
+   "enunciado": "Na escolha de onde deixar a reserva de emergência",
+   "resposta": false,
+   "ancora": "Na reserva, mandam liquidez e segurança; retorno é bônus.",
+   "feedbackErro": "Todo dinheiro parece querer render o máximo, mas a reserva tem outro emprego: existir inteira, na hora, no dia ruim. O retorno dela é a tranquilidade."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "diversificacao",
+   "instrucao": "Ordene: da carteira mais protegida à mais exposta.",
+   "ancora": "Proteção cresce quando os motivos de queda são diferentes.",
+   "feedbackErro": "Não conte nomes; conte motivos de queda. Setores variados caem por razões distintas; o mesmo setor cai em bloco; uma ação única é tudo num bilhete só.",
+   "itens": [
+    {
+     "texto": "Aplicações espalhadas em setores e tipos variados",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Três ações do mesmo setor",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Todo o dinheiro em uma única ação",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "criterio": "A troca compensa?",
+   "enunciado": "Travar por 5 anos por retorno igual ao da poupança",
+   "resposta": false,
+   "ancora": "Liquidez só se vende por retorno que pague a trava.",
+   "feedbackErro": "A conta da troca: você entrega 5 anos de acesso e recebe o mesmo que teria com liquidez diária. Trava sem prêmio é doação para quem criou o produto."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "criterio": "A troca compensa?",
+   "enunciado": "Aceitar oscilação num dinheiro que só sai em 2045",
+   "resposta": true,
+   "ancora": "Décadas dão tempo de atravessar quedas — a oscilação dilui.",
+   "feedbackErro": "A queda de um ano assusta, mas 2045 está a décadas: há tempo para ciclos inteiros de queda e recuperação. Oscilação dói no curto prazo; o prazo longo digere."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "diversificacao",
+   "pergunta": "R$ 3.000 divididos em 3 partes iguais. Uma perde 30%; duas rendem 10%. Quanto sobra no total?",
+   "campo": "moeda",
+   "min": 2000,
+   "max": 3600,
+   "gabarito": 2900,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 1.000 × 0,70 + 2.000 × 1,10",
+   "verificacao": {
+    "expressao": "1000*0.7+2000*1.1",
+    "esperado": 2900
+   },
+   "feedbackPerto": "R$ 2.900: a perda feia de 30% virou −3,3% no conjunto. Amortecer é isso.",
+   "feedbackLonge": "R$ 2.900. O viés de ancoragem gruda no −30% e esquece que ele atingiu um terço do dinheiro; as outras partes seguraram o conjunto."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "prazo-e-liquidez",
+   "dificuldade": 3,
+   "pergunta": "Em que situação aceitar retorno abaixo da inflação é decisão certa?",
+   "ancora": "Perder um pouco para a inflação pode ser o preço da liquidez.",
+   "alternativas": [
+    {
+     "texto": "Nunca: perder da inflação é sempre erro",
+     "correta": false,
+     "feedbackErro": "No longo prazo, sim. Mas a reserva compra outra coisa: disponibilidade imediata. Pagar um pedágio de inflação por liquidez é contrato consciente."
+    },
+    {
+     "texto": "Na reserva, se for o preço da liquidez imediata",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sempre que a aplicação for de um banco grande",
+     "correta": false,
+     "feedbackErro": "Marca não justifica retorno ruim. A exceção é funcional — reserva —, não institucional. Fora dela, exija ao menos empatar com a inflação."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "prazo-e-liquidez",
+   "dificuldade": 3,
+   "pergunta": "Rende 1,1% ao mês, mas sacar antes de 3 anos custa 10% do valor. Para quem essa aplicação serve?",
+   "ancora": "Multa de saída transforma prazo em critério eliminatório.",
+   "alternativas": [
+    {
+     "texto": "Para quem talvez precise do dinheiro no próximo ano",
+     "correta": false,
+     "feedbackErro": "O 'talvez' é o problema: se a necessidade vier, os 10% comem meses de rendimento de uma vez. Incerteza de prazo pede liquidez, não multa."
+    },
+    {
+     "texto": "Para quem tem certeza de que cumpre os 3 anos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Para ninguém: multa de resgate é abuso",
+     "correta": false,
+     "feedbackErro": "A multa declarada é regra do jogo, não abuso: é o preço reverso da liquidez. Quem cumpre o prazo nunca a paga — e leva o retorno maior."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "criterio": "Sinal de alerta?",
+   "enunciado": "Retorno alto explicado só com 'confia, é garantido'",
+   "resposta": true,
+   "ancora": "Retorno sem risco explicado é tripé quebrado: desconfie.",
+   "feedbackErro": "A frase parece inofensiva, mas é a assinatura do golpe: quem tem retorno real explica o risco por trás dele. Garantia verbal não sustenta promessa."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "criterio": "Sinal de alerta?",
+   "enunciado": "Aplicação que avisa: 'pode perder valor no curto prazo'",
+   "resposta": false,
+   "ancora": "Declarar o risco é transparência — alerta é quem o esconde.",
+   "feedbackErro": "O aviso soa como ameaça, mas é o oposto: risco declarado permite decidir com clareza. Medo mesmo dá quem promete só ganho — esse esconde o lado B."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "pergunta": "Qual frase leva o tripé para as suas decisões?",
+   "alternativas": [
+    {
+     "texto": "A meta define: o prazo escolhe a liquidez, e o risco é o preço do retorno.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Escolho o maior retorno e resolvo a liquidez depois.",
+     "correta": false,
+     "feedbackErro": "Depois pode não ter solução: multa, trava ou venda no prejuízo. Liquidez se decide antes, olhando a meta."
+    },
+    {
+     "texto": "Diversificar garante que nunca vou perder.",
+     "correta": false,
+     "feedbackErro": "Diversificar amortece quedas; não as elimina. Quem espera 'nunca perder' abandona a estratégia na primeira queda."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "diversificacao",
+   "instrucao": "Isso diversifica de verdade?",
+   "ancora": "Pergunte: essas partes caem pelo mesmo motivo?",
+   "feedbackErro": "Cinco criptos caem juntas; aplicações gêmeas em bancos distintos também. Mistura real cruza tipos, setores e lugares que não caem pelo mesmo motivo.",
+   "caixas": [
+    {
+     "id": "sim",
+     "rotulo": "Diversifica"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Só parece"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Aplicações de tipos e setores bem diferentes",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Cinco criptomoedas diferentes",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Duas aplicações iguais em bancos distintos",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Parte no Brasil, parte no exterior",
+     "caixaCorreta": "sim"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "criterio": "Vale para todo caso?",
+   "enunciado": "Prazo longo aguenta qualquer nível de risco",
+   "resposta": false,
+   "ancora": "Prazo dilui oscilação; não apaga perda permanente.",
+   "feedbackErro": "Tempo cura oscilação de preço, não empresa quebrada nem golpe. Prazo longo amplia a tolerância à variação — não é licença para risco de perda total."
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "diversificacao",
+   "pergunta": "Agora os mesmos R$ 3.000 estão numa única aplicação, que cai 30%. Quanto sobra?",
+   "campo": "moeda",
+   "min": 1500,
+   "max": 3000,
+   "gabarito": 2100,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 3.000 × 0,70",
+   "verificacao": {
+    "expressao": "3000*0.7",
+    "esperado": 2100
+   },
+   "feedbackPerto": "R$ 2.100: a mesma queda que custou R$ 100 na carteira espalhada custa R$ 900 na concentrada.",
+   "feedbackLonge": "R$ 2.100. Sem divisão, os 30% mordem o total: R$ 900 a menos. O excesso de confiança numa aposta única é o viés que essa conta expõe."
+  }
+ ]
+}

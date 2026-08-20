@@ -1,0 +1,332 @@
+{
+ "slug": "imposto-servico-publico-e-voce-consolida",
+ "segmento": "em3",
+ "conceitoPrincipal": "imposto-servico-publico-e-voce",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "sonegacao",
+   "criterio": "Isso tira serviço da ponta?",
+   "enunciado": "Comprar no comércio que nunca emite nota",
+   "resposta": true,
+   "ancora": "O tributo que você pagou no preço para no caixa, não no cofre.",
+   "feedbackErro": "Parece escolha neutra de consumidor. Mas cada compra sem nota confirma o esquema: o tributo embutido que você pagou não chega a virar serviço."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "imposto-embutido",
+   "criterio": "Isso tira serviço da ponta?",
+   "enunciado": "Aproveitar a promoção legal de uma loja com nota",
+   "resposta": false,
+   "ancora": "Preço menor com nota: tributo proporcional e registrado.",
+   "feedbackErro": "Pagar menos parece tirar dinheiro do cofre. Mas com nota o tributo acompanha o preço: menor, porém registrado. Promoção não é sonegação."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fiscalizacao-cidada",
+   "criterio": "Isso tira serviço da ponta?",
+   "enunciado": "Verba de obra desviada depois de arrecadada",
+   "resposta": true,
+   "ancora": "O ciclo falha em dois pontos: na arrecadação e na aplicação.",
+   "feedbackErro": "O dinheiro entrou, então parece resolvido. Mas serviço só existe se a verba vira entrega: desvio na aplicação rouba a mesma ponta que a sonegação."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "sonegacao",
+   "dificuldade": 3,
+   "pergunta": "Um eletricista cobra R$ 1.840 com nota ou R$ 1.600 sem. O que a escolha pela versão sem nota significa?",
+   "ancora": "Os R$ 240 'economizados' são o tributo suprimido da sociedade.",
+   "verificacao": {
+    "expressao": "1840-1600",
+    "esperado": 240
+   },
+   "alternativas": [
+    {
+     "texto": "Participar da sonegação para ficar com R$ 240",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: quem sonega é só o prestador",
+     "correta": false,
+     "feedbackErro": "Ele é quem deve emitir, verdade. Mas o desconto existe porque o cliente topa: sem nota você perde garantia legal e financia o esquema por escolha."
+    },
+    {
+     "texto": "Um desconto comercial como outro qualquer",
+     "correta": false,
+     "feedbackErro": "Desconto legal vem com nota e sai da margem do vendedor. Aqui o abatimento é exatamente o tributo que deixaria de ser recolhido — essa é a diferença."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "justica-tributaria",
+   "dificuldade": 3,
+   "pergunta": "Num país onde 60% da arrecadação vem do consumo, por que a estrutura pesa mais sobre os mais pobres?",
+   "ancora": "Renda toda consumida é renda toda tributada; a sobra escapa.",
+   "alternativas": [
+    {
+     "texto": "Quem ganha menos consome quase toda a renda",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A lei fixa alíquotas maiores para os pobres",
+     "correta": false,
+     "feedbackErro": "Não fixa: no produto, a alíquota é igual para todos — e é essa igualdade aparente que engana. A fração da renda atingida é que muda entre famílias."
+    },
+    {
+     "texto": "Não pesa: o produto custa igual para todos",
+     "correta": false,
+     "feedbackErro": "Em reais, custa. Mas quem ganha pouco consome tudo o que ganha, então quase toda a renda é tributada; quem ganha muito poupa parte fora do consumo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "arrecadacao-e-servico",
+   "criterio": "A regra fecha o ciclo?",
+   "enunciado": "Nota fiscal em toda venda garante serviço bom na ponta",
+   "resposta": false,
+   "ancora": "Nota garante arrecadação; entrega depende de gestão fiscalizada.",
+   "feedbackErro": "A nota resolve a primeira metade: o dinheiro chega ao cofre. A segunda metade — virar escola e posto de saúde — exige aplicação bem gerida e vigiada."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "justica-tributaria",
+   "instrucao": "Toque na ordem de quem MAIS sente um aumento no imposto do consumo.",
+   "ancora": "Quanto menor a renda, maior a fatia dela que o consumo tributa.",
+   "feedbackErro": "A ordem é a da renda, da menor para a maior: o aumento no consumo morde a fração da renda que é consumida — e ela encolhe conforme a renda sobe.",
+   "itens": [
+    {
+     "texto": "Quem vive com R$ 1.500 por mês",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Quem ganha R$ 3.200 por mês",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Quem ganha R$ 8.000 por mês",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Quem ganha R$ 25.000 por mês",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "sonegacao",
+   "criterio": "É crime contra o cofre público?",
+   "enunciado": "Escolher na prateleira o produto com menos tributo",
+   "resposta": false,
+   "ancora": "Economizar dentro da regra é escolha; esconder venda é crime.",
+   "feedbackErro": "Parece 'fugir do imposto', e é — pelo caminho legal. O sistema até induz escolhas assim. Crime é ocultar operação que a lei manda registrar."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "sonegacao",
+   "criterio": "É crime contra o cofre público?",
+   "enunciado": "Declarar ao fisco renda menor que a real",
+   "resposta": true,
+   "ancora": "Sonegação não é só de empresa: pessoa física também comete.",
+   "feedbackErro": "Parece ajuste inofensivo na declaração. É ocultação de base tributável — o mesmo mecanismo da venda sem nota, com o mesmo buraco no serviço público."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "sonegacao",
+   "pergunta": "Uma cidade de 50 mil moradores perde R$ 120 por pessoa ao ano com sonegação. Quanto some do orçamento?",
+   "campo": "moeda",
+   "min": 500000,
+   "max": 20000000,
+   "gabarito": 6000000,
+   "toleranciaPct": 20,
+   "fonte": "conta com os dados do enunciado: 50.000 moradores × R$ 120",
+   "verificacao": {
+    "expressao": "50000*120",
+    "esperado": 6000000
+   },
+   "feedbackPerto": "R$ 6 milhões — o custo de postos de saúde e escolas reformadas, evaporado em vendas sem nota.",
+   "feedbackLonge": "50.000 × R$ 120 = R$ 6 milhões. O erro comum é subestimar a escala: dano pequeno por pessoa vira rombo milionário quando multiplicado pela cidade."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "sonegacao",
+   "dificuldade": 3,
+   "pergunta": "Vicente justifica: 'não emito nota porque político desvia mesmo'. Onde o argumento quebra?",
+   "ancora": "Desvio se combate fiscalizando; sonegar soma um segundo rombo.",
+   "alternativas": [
+    {
+     "texto": "Ele responde a um rombo abrindo outro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Em nada: com desvio, pagar é ingenuidade",
+     "correta": false,
+     "feedbackErro": "O desvio existe e revolta com razão. Mas quem sonega não pune o desviador — tira da mesma ponta: o serviço. Contra desvio, o remédio é controle."
+    },
+    {
+     "texto": "Ele só erra se for pego pela fiscalização",
+     "correta": false,
+     "feedbackErro": "O risco de multa é problema dele. O dano público independe de flagrante: a nota que não saiu já deixou de virar serviço, descoberta ou não."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "fiscalizacao-cidada",
+   "dificuldade": 3,
+   "pergunta": "O portal mostra gasto alto em educação, mas a escola do bairro segue precária. O que isso indica primeiro?",
+   "ancora": "Valor gasto ≠ resultado entregue: a análise começa no detalhe.",
+   "alternativas": [
+    {
+     "texto": "Que é preciso abrir o detalhe: onde o valor foi parar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que o portal mente e não serve para nada",
+     "correta": false,
+     "feedbackErro": "A frustração é compreensível, mas o portal mostra o registro do gasto — não a qualidade dele. É o dado que permite perguntar onde o valor parou."
+    },
+    {
+     "texto": "Que gasto alto prova serviço bem feito",
+     "correta": false,
+     "feedbackErro": "Gastar muito é condição, não prova: obra superfaturada também é 'gasto alto'. A fiscalização existe para cobrir o vão entre pagar e entregar."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "fiscalizacao-cidada",
+   "criterio": "O ciclo já fechou?",
+   "enunciado": "Pagou tudo certo: sua parte no sistema terminou",
+   "resposta": false,
+   "ancora": "Pagar abre o ciclo; fiscalizar a aplicação é o que fecha.",
+   "feedbackErro": "Pagar em dia é a parte visível — e cansativa — do contrato. Mas sem cobrança na outra ponta, o arrecadado pode nunca virar serviço."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "fiscalizacao-cidada",
+   "criterio": "O ciclo já fechou?",
+   "enunciado": "Acompanhar a aplicação do dinheiro depois de pagar",
+   "resposta": true,
+   "ancora": "Arrecadar, aplicar, entregar: o cidadão vigia as três etapas.",
+   "feedbackErro": "Parece trabalho de auditor, não de cidadão. Mas portais, ouvidorias e conselhos existem para isso: quem financia o sistema tem assento para vigiá-lo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "imposto-servico-publico-e-voce",
+   "dificuldade": 3,
+   "pergunta": "Depois de três encontros, qual frase fecha o ciclo do tributo?",
+   "alternativas": [
+    {
+     "texto": "Pagar, exigir nota e fiscalizar a aplicação: o ciclo só fecha com os três.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Arrecadar bem basta: o resto é problema do governo.",
+     "correta": false,
+     "feedbackErro": "Verba arrecadada e mal aplicada trai a mesma ponta que a sonegação."
+    },
+    {
+     "texto": "Serviço ruim justifica sonegar.",
+     "correta": false,
+     "feedbackErro": "Sonegar não pune o gestor ruim — tira mais do serviço que já falta."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "sonegacao",
+   "instrucao": "Arraste: dentro da lei ou sonegação?",
+   "ancora": "O divisor é ocultar do fisco o que a lei manda registrar.",
+   "feedbackErro": "Reduzir tributo escolhendo dentro das regras é legal. Sonegação é esconder a operação: venda sem nota, renda não declarada.",
+   "caixas": [
+    {
+     "id": "legal",
+     "rotulo": "Dentro da lei"
+    },
+    {
+     "id": "sonegacao",
+     "rotulo": "Sonegação"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Vender sem emitir nota",
+     "caixaCorreta": "sonegacao"
+    },
+    {
+     "texto": "Declarar renda menor que a verdadeira",
+     "caixaCorreta": "sonegacao"
+    },
+    {
+     "texto": "Comprar o item isento em vez do tributado",
+     "caixaCorreta": "legal"
+    },
+    {
+     "texto": "Pedir desconto à vista com nota emitida",
+     "caixaCorreta": "legal"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "sonegacao",
+   "dificuldade": 3,
+   "pergunta": "Se todos os clientes exigissem nota em toda compra, qual seria o efeito mais direto?",
+   "ancora": "A nota faz o tributo já pago no preço chegar ao destino.",
+   "alternativas": [
+    {
+     "texto": "Menos venda invisível: mais tributo chega ao cofre",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Preços subiriam para pagar o imposto novo",
+     "correta": false,
+     "feedbackErro": "Não há imposto novo: o tributo já está embutido no preço de hoje. A nota não cria custo — só impede que o valor pago fique no caixa errado."
+    },
+    {
+     "texto": "Nada mudaria: nota é só papel",
+     "correta": false,
+     "feedbackErro": "Parece burocracia, mas a nota é o registro que obriga o recolhimento. Sem ela, o fisco não vê a venda — e o tributo do preço evapora."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "arrecadacao-e-servico",
+   "criterio": "A conta fecha assim?",
+   "enunciado": "Serviço público é serviço de graça",
+   "resposta": false,
+   "ancora": "'Gratuito' na ponta, pago em cada preço: você já financiou.",
+   "feedbackErro": "Na porta do SUS ninguém paga, e daí vem a ideia. Mas o custeio saiu de cada compra e contracheque do país — cobrar qualidade não é pedir favor."
+  }
+ ]
+}

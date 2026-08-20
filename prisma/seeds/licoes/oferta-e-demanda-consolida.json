@@ -1,0 +1,270 @@
+{
+ "slug": "oferta-e-demanda-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "oferta-e-demanda",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "diferenciar-oferta-demanda",
+   "criterio": "Isso é oferta, ou é demanda?",
+   "enunciado": "O preço que a loja decide cobrar por cada camiseta",
+   "resposta": false,
+   "ancora": "Preço é o resultado do encontro entre oferta e demanda.",
+   "feedbackErro": "O preço não é oferta nem demanda; ele é o que nasce do encontro entre os dois. Oferta seria o estoque; demanda, quem quer comprar."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "impacto-no-preco",
+   "criterio": "Isso costuma mudar o preço?",
+   "enunciado": "Oferta e demanda subirem juntas, na mesma proporção",
+   "resposta": false,
+   "ancora": "Quando os dois lados sobem igual, o efeito sobre o preço se equilibra.",
+   "feedbackErro": "É tentador achar que qualquer mudança mexe no preço. Mas se oferta e demanda sobem na mesma proporção, o efeito de um cancela o do outro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "diferenciar-oferta-demanda",
+   "criterio": "Isso é oferta, ou é demanda?",
+   "enunciado": "O número de pedreiros disponíveis para trabalhar numa cidade",
+   "resposta": true,
+   "ancora": "É a mão de obra disponível pra vender o serviço: oferta.",
+   "feedbackErro": "O critério vale também para serviço, não só produto: quanto está disponível pra vender é oferta, mesmo sendo trabalho."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-no-preco",
+   "dificuldade": 3,
+   "pergunta": "A oferta de um remédio caiu 20% e a demanda por ele subiu 20% no mesmo mês. O que costuma acontecer com o preço?",
+   "ancora": "Os dois efeitos empurram pro mesmo lado: preço sobe bastante.",
+   "alternativas": [
+    {
+     "texto": "Fica praticamente igual, porque os 20% se cancelam",
+     "correta": false,
+     "feedbackErro": "Os 20% não se cancelam aqui: queda de oferta e alta de demanda empurram o preço para o MESMO lado, para cima."
+    },
+    {
+     "texto": "Tende a subir bastante, porque os dois efeitos somam",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Tende a cair, porque a demanda aumentou muito",
+     "correta": false,
+     "feedbackErro": "Mais demanda sozinha já tende a subir preço; combinada com menos oferta, o efeito de alta fica ainda mais forte."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "diferenciar-oferta-demanda",
+   "dificuldade": 3,
+   "pergunta": "Otávio diz: 'o preço da gasolina só sobe porque o posto quer lucrar mais'. O que essa frase ignora?",
+   "ancora": "Ignora que custo de produção e demanda também empurram o preço.",
+   "alternativas": [
+    {
+     "texto": "Que o preço também responde a custo de produção e a demanda",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que posto de gasolina nunca decide preço nenhum",
+     "correta": false,
+     "feedbackErro": "O posto até decide o preço final, mas essa decisão responde ao custo de comprar o combustível e à demanda, não é livre."
+    },
+    {
+     "texto": "Que o preço da gasolina nunca muda de verdade",
+     "correta": false,
+     "feedbackErro": "O preço da gasolina muda bastante, sim, e frequentemente. O que a frase ignora são as causas por trás dessa mudança."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "diferenciar-oferta-demanda",
+   "criterio": "Isso é oferta, ou é demanda?",
+   "enunciado": "Quantas famílias na cidade dizem que precisam trocar o fogão este ano",
+   "resposta": false,
+   "ancora": "Necessidade declarada de compra é demanda.",
+   "feedbackErro": "É quantas famílias querem comprar fogão, então é demanda. Oferta seria quantos fogões as lojas têm disponíveis."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "impacto-no-preco",
+   "instrucao": "Nesse caso composto, o preço tende a subir, ou tende a cair?",
+   "ancora": "Efeitos no mesmo sentido somam: o preço reage mais forte.",
+   "feedbackErro": "Quando oferta cai e demanda sobe juntas, o preço sobe mais forte; quando oferta sobe e demanda cai juntas, ele cai mais forte.",
+   "caixas": [
+    {
+     "id": "sobe",
+     "rotulo": "Tende a subir"
+    },
+    {
+     "id": "cai",
+     "rotulo": "Tende a cair"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Oferta cai por causa de praga e demanda sobe por moda",
+     "caixaCorreta": "sobe"
+    },
+    {
+     "texto": "Nova fábrica aumenta oferta e produto sai de moda",
+     "caixaCorreta": "cai"
+    },
+    {
+     "texto": "Falta matéria-prima e mais gente passa a querer o produto",
+     "caixaCorreta": "sobe"
+    },
+    {
+     "texto": "Chega concorrente novo e menos gente quer aquele produto",
+     "caixaCorreta": "cai"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "diferenciar-oferta-demanda",
+   "criterio": "Isso é oferta, ou é demanda?",
+   "enunciado": "A promoção que a loja faz pra vender o estoque parado",
+   "resposta": false,
+   "ancora": "A promoção tenta atrair compradores: mexe do lado da demanda.",
+   "feedbackErro": "A promoção não é o estoque em si (isso seria oferta); ela é uma tentativa de aumentar quem quer comprar — mexe na demanda."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-no-preco",
+   "dificuldade": 3,
+   "pergunta": "Em qual situação o aumento de oferta NÃO costuma baixar o preço?",
+   "ancora": "Se a demanda cresce na mesma medida, o excesso de oferta não sobra.",
+   "alternativas": [
+    {
+     "texto": "Quando a demanda cresce na mesma proporção da oferta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando ninguém mais quer comprar aquele produto",
+     "correta": false,
+     "feedbackErro": "Se a demanda cai e a oferta sobe, o preço tende a cair ainda mais — não é o caso em que a regra deixa de valer."
+    },
+    {
+     "texto": "Quando a fábrica aumenta a produção do mesmo jeito de sempre",
+     "correta": false,
+     "feedbackErro": "Mais oferta sem mudança na demanda é justamente o caso clássico de queda de preço, não uma exceção."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "diferenciar-oferta-demanda",
+   "criterio": "Isso é oferta, ou é demanda?",
+   "enunciado": "A fila virtual de espera para comprar um videogame esgotado",
+   "resposta": false,
+   "ancora": "Fila de espera mostra quem ainda quer comprar: demanda.",
+   "feedbackErro": "É a quantidade de gente esperando pra comprar, então é demanda. Oferta seria quantos videogames ainda existem pra vender."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "impacto-no-preco",
+   "criterio": "Isso costuma mudar o preço?",
+   "enunciado": "Duas fábricas concorrentes fecharem no mesmo mês em que o produto virou febre",
+   "resposta": true,
+   "ancora": "Menos oferta e mais demanda juntas sobem bastante o preço.",
+   "feedbackErro": "Os dois efeitos juntos pesam mais que separados: menos fábricas produzindo e mais gente querendo comprar sobem o preço com força."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "oferta-e-demanda",
+   "pergunta": "Qual frase resume um caso composto de oferta e demanda?",
+   "alternativas": [
+    {
+     "texto": "Quando os dois efeitos vão no mesmo sentido, o preço reage mais forte",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só um dos dois pode mudar de cada vez, nunca os dois juntos",
+     "correta": false,
+     "feedbackErro": "Oferta e demanda podem, sim, mudar ao mesmo tempo — e é justamente aí que o efeito no preço fica mais forte."
+    },
+    {
+     "texto": "Se oferta e demanda mudam juntas, o preço nunca se mexe",
+     "correta": false,
+     "feedbackErro": "Só fica parecido com 'parado' quando os efeitos se cancelam. Quando vão no mesmo sentido, o preço se mexe mais, não menos."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "impacto-no-preco",
+   "instrucao": "Ordene do caso que MAIS sobe o preço ao que MENOS sobe.",
+   "ancora": "Oferta caindo e demanda subindo juntas pesam mais.",
+   "feedbackErro": "Dois efeitos empurrando pra cima ao mesmo tempo pesam mais do que um efeito sozinho.",
+   "itens": [
+    {
+     "texto": "Oferta cai por praga e demanda sobe pela mesma época",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Só a demanda sobe um pouco, a oferta segue igual",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Oferta e demanda sobem na mesma proporção",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "diferenciar-oferta-demanda",
+   "dificuldade": 3,
+   "pergunta": "Um jornal anuncia 'demanda por apartamentos bate recorde na cidade'. Isso descreve o quê?",
+   "ancora": "Descreve quanta gente quer comprar apartamento, não quantos existem.",
+   "alternativas": [
+    {
+     "texto": "Quanta gente quer comprar apartamento na cidade",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quantos apartamentos foram construídos na cidade",
+     "correta": false,
+     "feedbackErro": "Construção é oferta, não demanda. A manchete fala de quanta gente quer comprar, e isso é demanda."
+    },
+    {
+     "texto": "O preço médio do metro quadrado na cidade",
+     "correta": false,
+     "feedbackErro": "A manchete não cita valor em dinheiro, só a quantidade de gente interessada em comprar. Isso é demanda."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "impacto-no-preco",
+   "criterio": "Isso costuma mudar o preço?",
+   "enunciado": "Oferta cair e demanda cair na mesma proporção, no mesmo mês",
+   "resposta": false,
+   "ancora": "Efeitos opostos na mesma proporção tendem a se equilibrar.",
+   "feedbackErro": "Os dois efeitos puxam para lados opostos aqui: oferta menor sobe o preço, demanda menor baixa — na mesma proporção, tendem a se anular."
+  }
+ ]
+}

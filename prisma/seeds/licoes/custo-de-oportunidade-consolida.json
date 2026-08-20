@@ -1,0 +1,296 @@
+{
+ "slug": "custo-de-oportunidade-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "custo-de-oportunidade",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Ainda é custo de oportunidade?",
+   "enunciado": "A vaga de emprego que você recusou, sem nunca saber se seria boa",
+   "resposta": true,
+   "ancora": "Mesmo incerta, a alternativa abandonada ainda é custo de oportunidade.",
+   "feedbackErro": "Por não ter certeza do resultado, parece que não conta. Mas o custo existe mesmo quando o resultado da alternativa é incerto."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Ainda é custo de oportunidade?",
+   "enunciado": "O tempo perdido decidindo qual das duas opções escolher",
+   "resposta": false,
+   "ancora": "Tempo de decisão é outro custo — não é a alternativa abandonada.",
+   "feedbackErro": "Também é um custo real, e por isso confunde. Mas custo de oportunidade é sobre a alternativa abandonada, não sobre decidir."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Ainda é custo de oportunidade?",
+   "enunciado": "Duas opções idênticas, sem nenhuma diferença entre elas",
+   "resposta": false,
+   "ancora": "Sem diferença entre as opções, não há nada relevante abandonado.",
+   "feedbackErro": "Toda escolha parece ter custo, e por isso confunde. Mas se as opções são idênticas, não há nada relevante sendo abandonado."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-de-oportunidade",
+   "dificuldade": 3,
+   "pergunta": "Quando o custo de oportunidade de uma escolha é, na prática, zero?",
+   "ancora": "Quando a segunda melhor opção é idêntica à escolhida.",
+   "alternativas": [
+    {
+     "texto": "Quando a segunda melhor opção é idêntica à escolhida",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando a escolha não envolveu dinheiro",
+     "correta": false,
+     "feedbackErro": "Mesmo escolhas de graça têm custo de oportunidade, se as opções forem diferentes."
+    },
+    {
+     "texto": "Quando você decidiu rápido, sem pensar muito",
+     "correta": false,
+     "feedbackErro": "Decidir rápido não muda se existe ou não uma alternativa melhor perdida."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "escolha-intertemporal",
+   "dificuldade": 3,
+   "pergunta": "Rodrigo guarda R$ 100/mês só 15 anos e deixa render. Sofia guarda R$ 50/mês por 30. Quem acumula mais?",
+   "ancora": "Rodrigo chega a cerca de R$ 21 mil a mais que Sofia.",
+   "verificacao": { "expressao": "100*((1.005^180-1)/0.005)*1.005^180 - 50*((1.005^360-1)/0.005)", "esperado": 21143.88, "tolerancia": 2000 },
+   "alternativas": [
+    {
+     "texto": "Rodrigo, porque guardou mais cedo, mesmo parando depois",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sofia, porque guardou constantemente até o fim",
+     "correta": false,
+     "feedbackErro": "Constância não venceu aqui — o tempo total de juros rendendo é o que mais pesa."
+    },
+    {
+     "texto": "Os dois acumulam igual, porque o total investido é igual",
+     "correta": false,
+     "feedbackErro": "Mesmo total investido, resultados bem diferentes — o tempo de cada real guardado decide."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "A incerteza muda o custo?",
+   "enunciado": "Recusar uma proposta de emprego sem saber se ela seria melhor",
+   "resposta": false,
+   "ancora": "O custo de oportunidade existe mesmo com resultado incerto.",
+   "feedbackErro": "Parece que sem certeza não há custo real. Mas ele existe mesmo quando não se sabe como a alternativa terminaria."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "escolha-intertemporal",
+   "instrucao": "Ordene do maior custo de oportunidade de gastar hoje pro menor.",
+   "ancora": "Tempo e valor juntos decidem — o maior valor nem sempre vence.",
+   "feedbackErro": "O valor parece decidir sozinho, mas não decide: R$ 100 por 3 anos rendem mais que R$ 500 por 6 meses.",
+   "itens": [
+    { "texto": "R$ 500 gastos hoje em vez de guardados por 3 anos", "posicaoCorreta": 1 },
+    { "texto": "R$ 100 gastos hoje em vez de guardados por 3 anos", "posicaoCorreta": 2 },
+    { "texto": "R$ 500 gastos hoje em vez de guardados por 6 meses", "posicaoCorreta": 3 },
+    { "texto": "R$ 100 gastos hoje em vez de guardados por 6 meses", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Isso muda o tamanho do custo?",
+   "enunciado": "O tempo que a alternativa ficaria disponível, não só o valor dela",
+   "resposta": true,
+   "ancora": "Tempo e valor juntos definem o tamanho do custo de oportunidade.",
+   "feedbackErro": "Parece que só o valor em jogo importa. Mas o tempo também muda o tamanho do custo, às vezes mais que o valor."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "escolha-intertemporal",
+   "criterio": "Isso muda a escolha intertemporal?",
+   "enunciado": "Ter certeza de que vai precisar do dinheiro em poucos meses",
+   "resposta": true,
+   "ancora": "Necessidade certa no curto prazo pesa contra esperar.",
+   "feedbackErro": "Parece que só a taxa de rendimento decide. Mas a certeza de precisar do dinheiro logo muda a balança."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-de-oportunidade",
+   "pergunta": "R$ 300 gastos hoje em vez de aplicados na poupança por 20 meses. Qual o custo de oportunidade em juros?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 100,
+   "gabarito": 31,
+   "toleranciaPct": 20,
+   "fonte": "taxa média da poupança, ~0,5% ao mês (Banco Central)",
+   "verificacao": { "expressao": "300*1.005^20-300", "esperado": 31.47, "tolerancia": 2 },
+   "feedbackPerto": "Isso mesmo — cerca de R$ 31 de rendimento perdido.",
+   "feedbackLonge": "O custo de oportunidade é de cerca de R$ 31 — o que os R$ 300 renderiam em 20 meses."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "escolha-intertemporal",
+   "dificuldade": 3,
+   "pergunta": "Rodrigo guarda cedo e para; Sofia guarda pouco a pouco até o fim, mesmo total. Isso sempre favorece quem guarda cedo?",
+   "ancora": "Depende dos valores mensais e do tempo restante de cada plano.",
+   "alternativas": [
+    {
+     "texto": "Sim, sempre — não importa o valor mensal de cada um",
+     "correta": false,
+     "feedbackErro": "'Sempre' é forte demais; se o valor tardio for bem maior, o resultado pode mudar."
+    },
+    {
+     "texto": "Depende do valor mensal de cada plano e do tempo restante",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, quem guarda até o fim sempre acumula mais",
+     "correta": false,
+     "feedbackErro": "O oposto também não é regra — depende dos valores e prazos envolvidos."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-de-oportunidade",
+   "dificuldade": 3,
+   "pergunta": "Duas opções idênticas em tudo, inclusive no valor. Qual o custo de oportunidade de escolher uma delas?",
+   "ancora": "Sem diferença entre elas, não há nada relevante sendo abandonado.",
+   "alternativas": [
+    {
+     "texto": "Zero, porque não há nada relevante sendo abandonado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O valor total da opção não escolhida",
+     "correta": false,
+     "feedbackErro": "Quando as opções são idênticas, escolher uma ou outra não muda nada — não há perda real."
+    },
+    {
+     "texto": "Sempre existe algum custo, mesmo em opções idênticas",
+     "correta": false,
+     "feedbackErro": "Se as opções são realmente idênticas, não sobra diferença relevante pra contar como custo."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "É um caso em que o custo é zero?",
+   "enunciado": "Duas opções idênticas em tudo que importa pra você",
+   "resposta": true,
+   "ancora": "Sem diferença relevante, não há nada sendo abandonado de fato.",
+   "feedbackErro": "Parece que toda escolha tem custo. Mas quando as opções são realmente idênticas, não sobra nada perdido."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "escolha-intertemporal",
+   "criterio": "É limite de 'esperar sempre compensa'?",
+   "enunciado": "Ter certeza de precisar do dinheiro em poucos meses, mesmo com juros atrativos",
+   "resposta": true,
+   "ancora": "Necessidade certa no curto prazo pode superar a vantagem dos juros.",
+   "feedbackErro": "A regra geral é que esperar rende mais. Mas necessidade certa e próxima pode pesar mais que os juros."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "custo-de-oportunidade",
+   "pergunta": "Depois dos casos-limite, qual frase é mais completa?",
+   "alternativas": [
+    {
+     "texto": "Toda escolha tem um custo de oportunidade maior que zero.",
+     "correta": false,
+     "feedbackErro": "Quando as opções são idênticas, o custo de oportunidade pode ser zero."
+    },
+    {
+     "texto": "É a melhor alternativa perdida; some só quando as opções são idênticas.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quem guarda constantemente sempre acumula mais que quem guarda cedo e para.",
+     "correta": false,
+     "feedbackErro": "Guardar cedo e parar pode acumular mais, dependendo do tempo de juros rendendo."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "custo-de-oportunidade",
+   "instrucao": "O custo de oportunidade é zero aqui?",
+   "ancora": "Só é zero quando não sobra diferença relevante entre as opções.",
+   "feedbackErro": "Toda escolha parece ter custo, mas quando as opções são idênticas, não sobra diferença relevante.",
+   "caixas": [
+    { "id": "zero", "rotulo": "É zero" },
+    { "id": "naozero", "rotulo": "Não é zero" }
+   ],
+   "itens": [
+    { "texto": "Duas opções idênticas em tudo", "caixaCorreta": "zero" },
+    { "texto": "Escolher entre dois empregos com salários diferentes", "caixaCorreta": "naozero" },
+    { "texto": "Mesma marca, cor e preço de um produto", "caixaCorreta": "zero" },
+    { "texto": "Gastar hoje em vez de guardar rendendo", "caixaCorreta": "naozero" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "escolha-intertemporal",
+   "dificuldade": 3,
+   "pergunta": "R$ 500 gastos hoje ou guardados por 15 meses a 0,5% ao mês. Qual o custo de oportunidade de gastar?",
+   "ancora": "R$ 500 a 0,5% ao mês por 15 meses rendem cerca de R$ 39.",
+   "verificacao": { "expressao": "500*1.005^15-500", "esperado": 38.84, "tolerancia": 2 },
+   "alternativas": [
+    {
+     "texto": "Cerca de R$ 39",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 0",
+     "correta": false,
+     "feedbackErro": "Gastar hoje tem custo: o rendimento que se perde ao longo dos 15 meses."
+    },
+    {
+     "texto": "Cerca de R$ 200",
+     "correta": false,
+     "feedbackErro": "Esse valor é alto demais pra uma taxa de 0,5% ao mês nesse prazo."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "É verdade?",
+   "enunciado": "O custo de oportunidade some se você nunca vai saber o resultado da alternativa",
+   "resposta": false,
+   "ancora": "Ele existe mesmo sem nunca saber como a alternativa terminaria.",
+   "feedbackErro": "Parece que sem saber o resultado, o custo não conta. Mas ele existe independente de você nunca descobrir."
+  }
+ ]
+}

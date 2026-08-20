@@ -1,0 +1,300 @@
+{
+ "slug": "fazendo-a-conta-do-rendimento",
+ "segmento": "ef89",
+ "conceitoPrincipal": "fazendo-a-conta-do-rendimento",
+ "fraseConceito": "Rendimento real é o que sobra depois de taxas, tarifas e impostos — nunca a taxa anunciada sozinha.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "calculo-de-rendimento",
+   "criterio": "Isso aumenta o dinheiro guardado?",
+   "enunciado": "Deixar R$100 render 0,5% na poupança em um mês",
+   "resposta": true,
+   "ancora": "0,5% de R$100 é R$0,50 a mais no fim do mês.",
+   "verificacao": { "expressao": "100*0.005", "esperado": 0.5 },
+   "feedbackErro": "Parece pouco, mas 0,5% de R$100 já é dinheiro extra entrando — pequeno, mas é rendimento de verdade."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "taxas-no-rendimento",
+   "criterio": "Isso aumenta o dinheiro guardado?",
+   "enunciado": "Pagar uma taxa de manutenção mensal da conta",
+   "resposta": false,
+   "ancora": "Taxa tira dinheiro, não rende nada.",
+   "feedbackErro": "Envolve movimento na conta, mas nesse caso o dinheiro sai, não entra — taxa é custo, o oposto de rendimento."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "calculo-de-rendimento",
+   "criterio": "Isso aumenta o dinheiro guardado?",
+   "enunciado": "Receber juros de um título público todo mês",
+   "resposta": true,
+   "ancora": "Juros recebidos aumentam o total guardado.",
+   "feedbackErro": "Parece só um extrato a mais, mas cada pagamento de juros soma diretamente ao valor que você tem guardado."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "calculo-de-rendimento",
+   "dificuldade": 1,
+   "pergunta": "Guardando R$200 a 1% ao mês, quanto rende só no primeiro mês?",
+   "ancora": "1% de R$200 é R$2 — vírgula no lugar certo.",
+   "verificacao": { "expressao": "200*0.01", "esperado": 2 },
+   "alternativas": [
+    {
+     "texto": "R$2",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$20",
+     "correta": false,
+     "feedbackErro": "Esse valor sai se você calcular 10% em vez de 1%. Confira a vírgula: 1% de R$200 é bem menor."
+    },
+    {
+     "texto": "R$200",
+     "correta": false,
+     "feedbackErro": "Esse é o valor guardado, não o rendimento. O rendimento é só a fatia de 1% sobre esse total."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "taxas-no-rendimento",
+   "dificuldade": 1,
+   "pergunta": "Um investimento rende 1% ao mês, mas cobra taxa de administração de 0,3% ao mês. Qual é o ganho real?",
+   "ancora": "1% menos 0,3% de taxa sobra 0,7% de ganho real.",
+   "verificacao": { "expressao": "1-0.3", "esperado": 0.7 },
+   "alternativas": [
+    {
+     "texto": "0,7% ao mês",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "1% ao mês",
+     "correta": false,
+     "feedbackErro": "Esse é o rendimento bruto, antes da taxa. A taxa de administração é descontada, então o ganho real é menor."
+    },
+    {
+     "texto": "0,3% ao mês",
+     "correta": false,
+     "feedbackErro": "Esse é o valor da taxa, não o ganho. O ganho real é o que sobra depois de tirar a taxa do rendimento bruto."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "taxas-no-rendimento",
+   "criterio": "Isso reduz o rendimento final?",
+   "enunciado": "Imposto de renda cobrado sobre o lucro do investimento",
+   "resposta": true,
+   "ancora": "Imposto incide sobre o ganho, reduzindo o que sobra.",
+   "feedbackErro": "Parece só burocracia, mas o imposto tira uma fatia real do lucro — o que cai na conta é sempre menor que o rendimento bruto."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "calculo-de-rendimento",
+   "instrucao": "Ordene do que rende mais ao que rende menos ao ano",
+   "ancora": "O critério é a taxa anual de cada opção, de cima para baixo.",
+   "feedbackErro": "O nome chamativo da aplicação não importa. O que ordena aqui é a taxa anual de cada uma, comparada de verdade.",
+   "itens": [
+    { "texto": "Tesouro Selic, rendendo perto da Selic (~15% ao ano)", "posicaoCorreta": 1 },
+    { "texto": "CDB rendendo 100% do CDI (~14% ao ano)", "posicaoCorreta": 2 },
+    { "texto": "Poupança, rendendo cerca de 6% ao ano", "posicaoCorreta": 3 },
+    { "texto": "Conta corrente sem nenhum rendimento", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "taxas-no-rendimento",
+   "criterio": "Isso reduz o rendimento final?",
+   "enunciado": "Taxa de custódia cobrada duas vezes ao ano sobre o saldo investido",
+   "resposta": true,
+   "ancora": "Cada cobrança de custódia tira uma fatia do saldo rendido.",
+   "feedbackErro": "Duas vezes ao ano parece raro, mas cada cobrança desconta diretamente do saldo — o efeito se soma ao longo do tempo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "calculo-de-rendimento",
+   "criterio": "Isso aumenta o dinheiro guardado?",
+   "enunciado": "Reinvestir os juros recebidos todo mês",
+   "resposta": true,
+   "ancora": "Juros reinvestidos passam a render juros também.",
+   "feedbackErro": "Não parece uma ação especial, mas manter os juros aplicados faz o próximo cálculo incidir sobre um valor maior — o dinheiro guardado cresce mais rápido."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "calculo-de-rendimento",
+   "pergunta": "R$1.000 guardados a 1% ao mês. Quanto rende só no primeiro mês, em reais?",
+   "campo": "moeda",
+   "min": 5,
+   "max": 50,
+   "gabarito": 10,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto de juros sobre o valor investido",
+   "verificacao": { "expressao": "1000*0.01", "esperado": 10 },
+   "feedbackPerto": "Isso mesmo, R$10 — 1% de R$1.000, sem mistério.",
+   "feedbackLonge": "Fica em R$10. O cálculo é direto: multiplique o valor guardado pela taxa do período, sem vírgula fora do lugar."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "taxas-no-rendimento",
+   "dificuldade": 1,
+   "pergunta": "Felipe investe R$500 a 1,2% ao mês, com taxa de administração de 0,2% ao mês. Quanto sobra de rendimento?",
+   "ancora": "1,2% menos 0,2% de taxa: 1% de R$500 é R$5.",
+   "verificacao": { "expressao": "500*(0.012-0.002)", "esperado": 5 },
+   "alternativas": [
+    {
+     "texto": "R$5",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$6",
+     "correta": false,
+     "feedbackErro": "Esse valor ignora a taxa de administração — é 1,2% de R$500 sem descontar nada. Falta tirar a taxa do rendimento bruto."
+    },
+    {
+     "texto": "R$1",
+     "correta": false,
+     "feedbackErro": "Esse é só o valor da taxa cobrada, não o rendimento que sobra. O rendimento líquido é o bruto menos a taxa."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "calculo-de-rendimento",
+   "dificuldade": 1,
+   "pergunta": "Dois investimentos renderam R$50 no mês. Um partiu de R$1.000, outro de R$5.000. Qual teve melhor desempenho percentual?",
+   "ancora": "R$50 sobre R$1.000 é 5%; sobre R$5.000 é 1%.",
+   "verificacao": { "expressao": "50/1000", "esperado": 0.05 },
+   "alternativas": [
+    {
+     "texto": "O que partiu de R$1.000, com 5% no mês",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O que partiu de R$5.000, porque rendeu o mesmo valor",
+     "correta": false,
+     "feedbackErro": "O valor em reais foi igual, mas o capital de partida também importa: sobre R$5.000, R$50 representa uma fatia bem menor."
+    },
+    {
+     "texto": "Os dois tiveram o mesmo desempenho, já que renderam igual",
+     "correta": false,
+     "feedbackErro": "Reais iguais não significam percentuais iguais. Comparar desempenho exige dividir o ganho pelo capital investido em cada caso."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "calculo-de-rendimento",
+   "criterio": "Isso aumenta o dinheiro guardado?",
+   "enunciado": "Juros compostos incidindo sobre o saldo total, mês após mês",
+   "resposta": true,
+   "ancora": "Cada mês o cálculo parte de um saldo maior que o anterior.",
+   "feedbackErro": "Parece só um detalhe técnico, mas juros sobre o saldo cheio, mês a mês, faz o dinheiro guardado crescer de forma acelerada."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "taxas-no-rendimento",
+   "criterio": "Isso reduz o rendimento final?",
+   "enunciado": "Taxa de saída cobrada ao resgatar o investimento antes do prazo",
+   "resposta": true,
+   "ancora": "Uma taxa na saída desconta diretamente do valor resgatado.",
+   "feedbackErro": "Parece só uma regra do contrato, mas essa taxa é descontada na hora do resgate — reduz exatamente o que você recebe de volta."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "calculo-de-rendimento",
+   "pergunta": "Qual frase resume como calcular o rendimento real de um investimento?",
+   "alternativas": [
+    {
+     "texto": "A taxa anunciada já é sempre o valor que cai na conta",
+     "correta": false,
+     "feedbackErro": "Vimos o contrário: taxas de administração e impostos descontam da taxa anunciada antes do dinheiro chegar até você."
+    },
+    {
+     "texto": "Rendimento real é a taxa anunciada menos taxas, tarifas e impostos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quem rende mais em reais teve sempre o melhor percentual",
+     "correta": false,
+     "feedbackErro": "Vimos que valor em reais depende do capital de partida — o percentual é que mostra o desempenho de verdade."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "taxas-no-rendimento",
+   "instrucao": "Isso soma ou tira do rendimento final?",
+   "ancora": "Juros somam; taxas e impostos tiram do que sobra.",
+   "feedbackErro": "O jeito de separar: qualquer coisa que aumenta o saldo (juros, dividendos) soma; qualquer desconto sobre o saldo ou o lucro (taxa, imposto) tira.",
+   "caixas": [
+    { "id": "soma", "rotulo": "Soma" },
+    { "id": "tira", "rotulo": "Tira" }
+   ],
+   "itens": [
+    { "texto": "Juros recebidos todo mês", "caixaCorreta": "soma" },
+    { "texto": "Taxa de administração cobrada sobre o saldo", "caixaCorreta": "tira" },
+    { "texto": "Imposto de renda sobre o lucro obtido", "caixaCorreta": "tira" },
+    { "texto": "Juros reinvestidos no mês seguinte", "caixaCorreta": "soma" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "taxas-no-rendimento",
+   "criterio": "Isso reduz o rendimento final?",
+   "enunciado": "IOF cobrado em resgates feitos antes de 30 dias de aplicação",
+   "resposta": true,
+   "ancora": "O IOF desconta parte do rendimento em resgates muito rápidos.",
+   "feedbackErro": "Parece uma regra rara, mas esse imposto incide justamente sobre o rendimento de quem resgata cedo, reduzindo o que sobra."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "calculo-de-rendimento",
+   "dificuldade": 1,
+   "pergunta": "Por que comparar apenas o valor em reais rendido por dois investimentos pode enganar?",
+   "ancora": "Sem o capital de partida, o valor em reais não diz muito.",
+   "alternativas": [
+    {
+     "texto": "Porque ignora o tamanho do capital investido inicialmente",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque reais e percentual são sempre a mesma coisa",
+     "correta": false,
+     "feedbackErro": "Não são a mesma coisa: o mesmo valor em reais pode representar percentuais bem diferentes, dependendo do capital de partida."
+    },
+    {
+     "texto": "Porque só bancos conseguem calcular percentual corretamente",
+     "correta": false,
+     "feedbackErro": "Qualquer pessoa consegue calcular a divisão entre o ganho e o capital investido — não é uma conta exclusiva de bancos."
+    }
+   ]
+  }
+ ]
+}

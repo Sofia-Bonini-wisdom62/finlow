@@ -1,0 +1,249 @@
+{
+ "slug": "de-onde-vem-o-dinheiro-da-casa-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "de-onde-vem-o-dinheiro-da-casa",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fontes-de-renda",
+   "criterio": "É uma fonte de renda?",
+   "enunciado": "Dinheiro recebido de aluguel de um cômodo da casa",
+   "resposta": true,
+   "ancora": "Alugar um espaço também traz dinheiro pra casa — é fonte de renda.",
+   "feedbackErro": "Parece só um combinado entre vizinhos. Mas o dinheiro do aluguel entra em casa todo mês — é fonte de renda."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fontes-de-renda",
+   "criterio": "É uma fonte de renda?",
+   "enunciado": "Elogio recebido por um trabalho bem feito",
+   "resposta": false,
+   "ancora": "Elogio não é dinheiro — não é fonte de renda.",
+   "feedbackErro": "Parece um reconhecimento importante, e é. Mas fonte de renda é dinheiro que entra em casa — elogio não é isso."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "renda-minima",
+   "criterio": "É um exemplo de renda mínima garantida?",
+   "enunciado": "Benefício pago a quem não consegue se sustentar sozinho",
+   "resposta": true,
+   "ancora": "Esse tipo de benefício é justamente o que garante a renda mínima.",
+   "feedbackErro": "Parece só uma ajuda pontual, sem grande peso. Mas esse benefício é o que garante o direito à renda mínima."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "fontes-de-renda",
+   "dificuldade": 2,
+   "pergunta": "Uma família recebe dinheiro todo mês porque aluga um quarto da casa. Que tipo de fonte de renda é essa?",
+   "ancora": "Alugar um bem que se tem também é fonte de renda.",
+   "alternativas": [
+    {
+     "texto": "Aluguel de um bem",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Trabalho fixo",
+     "correta": false,
+     "feedbackErro": "Ninguém da família presta serviço nesse caso — o dinheiro vem de alugar um cômodo, é aluguel de bem."
+    },
+    {
+     "texto": "Herança",
+     "correta": false,
+     "feedbackErro": "Não houve nenhum falecimento nem bem deixado — o dinheiro vem do aluguel do quarto, todo mês."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "renda-minima",
+   "dificuldade": 2,
+   "pergunta": "Uma pessoa perdeu o emprego e não tem outra renda. O que o direito à renda mínima garante nesse caso?",
+   "ancora": "O direito garante um valor básico, não o salário anterior.",
+   "alternativas": [
+    {
+     "texto": "Um valor básico pra não ficar sem nada",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O mesmo salário do emprego antigo",
+     "correta": false,
+     "feedbackErro": "A renda mínima garante um valor básico, não repõe o salário que a pessoa ganhava antes."
+    },
+    {
+     "texto": "Nenhuma ajuda, porque ela perdeu o emprego",
+     "correta": false,
+     "feedbackErro": "É justamente o contrário: perder o emprego é quando o direito à renda mínima passa a valer."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "fontes-de-renda",
+   "criterio": "É uma fonte de renda?",
+   "enunciado": "Dinheiro emprestado por um amigo, que precisa ser devolvido",
+   "resposta": false,
+   "ancora": "Dinheiro que precisa voltar não é renda — é dívida.",
+   "feedbackErro": "Parece dinheiro igual a qualquer outro que entra. Mas se precisa ser devolvido, ele é dívida, não fonte de renda."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "fontes-de-renda",
+   "instrucao": "É fonte de renda ou é dívida, que precisa ser devolvida? Arraste.",
+   "ancora": "Renda fica com você; dívida precisa voltar pra quem emprestou.",
+   "feedbackErro": "É fácil achar que todo dinheiro recebido é renda. Mas o que precisa ser devolvido é dívida, não renda.",
+   "caixas": [
+    { "id": "renda", "rotulo": "Fonte de renda" },
+    { "id": "divida", "rotulo": "Dívida" }
+   ],
+   "itens": [
+    { "texto": "Salário recebido pelo trabalho", "caixaCorreta": "renda" },
+    { "texto": "Dinheiro emprestado do banco", "caixaCorreta": "divida" },
+    { "texto": "Aluguel recebido de um imóvel", "caixaCorreta": "renda" },
+    { "texto": "Empréstimo pedido a um amigo", "caixaCorreta": "divida" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "renda-minima",
+   "criterio": "É um direito de toda pessoa?",
+   "enunciado": "Ter acesso a uma renda mínima, mesmo sem emprego",
+   "resposta": true,
+   "ancora": "Esse direito existe justamente pra quem está sem emprego.",
+   "feedbackErro": "Parece que só quem trabalha teria acesso. Mas esse direito existe justamente pra quem está sem emprego no momento."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "fontes-de-renda",
+   "dificuldade": 2,
+   "pergunta": "Nina ganhou um prêmio de sorteio na escola e vendeu um livro usado no mesmo mês. Quantas fontes diferentes ela teve?",
+   "ancora": "Prêmio e venda de bem são duas fontes diferentes.",
+   "alternativas": [
+    {
+     "texto": "2 fontes: o prêmio e a venda do livro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "1 fonte, porque as duas vieram por sorte",
+     "correta": false,
+     "feedbackErro": "Vender um livro não depende de sorte, depende de ter algo pra vender. São duas origens diferentes."
+    },
+    {
+     "texto": "3 fontes, contando o livro em si",
+     "correta": false,
+     "feedbackErro": "O livro não é uma fonte de renda, é o que foi vendido. As fontes são só duas: prêmio e venda."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "renda-minima",
+   "criterio": "Garante o básico pra viver?",
+   "enunciado": "Benefício do governo pago a famílias sem nenhuma outra renda",
+   "resposta": true,
+   "ancora": "Esse tipo de benefício existe justamente pra garantir o básico.",
+   "feedbackErro": "Parece só uma ajuda ocasional. Mas esse benefício existe justamente pra garantir o básico de quem não tem outra renda."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "fontes-de-renda",
+   "criterio": "É uma fonte de renda?",
+   "enunciado": "Dinheiro recebido por cuidar do cachorro do vizinho por um dia",
+   "resposta": true,
+   "ancora": "Prestar um serviço, mesmo por um dia, gera renda.",
+   "feedbackErro": "Parece só um favor entre vizinhos. Mas cuidar do cachorro e receber por isso já é uma fonte de renda."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "fontes-de-renda",
+   "pergunta": "Qual ideia fecha este encontro?",
+   "alternativas": [
+    {
+     "texto": "Nem todo dinheiro que entra é renda — empréstimo precisa ser devolvido",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Todo dinheiro que chega em casa é renda, sem exceção",
+     "correta": false,
+     "feedbackErro": "Não é assim: dinheiro emprestado precisa voltar pra quem emprestou — isso é dívida, não renda."
+    },
+    {
+     "texto": "Só quem tem emprego fixo tem direito a ajuda do governo",
+     "correta": false,
+     "feedbackErro": "O direito à renda mínima vale justamente pra quem está sem emprego, não só pra quem já trabalha."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "fontes-de-renda",
+   "dificuldade": 3,
+   "pergunta": "Uma família ganhou R$ 200 de aluguel de um cômodo e pegou R$ 100 emprestado do banco no mesmo mês. Quanto disso é renda de verdade?",
+   "ancora": "Só o aluguel é renda; o empréstimo precisa ser devolvido.",
+   "verificacao": { "expressao": "200", "esperado": 200 },
+   "alternativas": [
+    {
+     "texto": "R$ 200, só o aluguel",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 300, os dois valores juntos",
+     "correta": false,
+     "feedbackErro": "O empréstimo não é renda: os R$ 100 do banco precisam ser devolvidos. Só os R$ 200 do aluguel são renda."
+    },
+    {
+     "texto": "R$ 100, só o empréstimo",
+     "correta": false,
+     "feedbackErro": "É o contrário: o empréstimo precisa ser devolvido, então não é renda. A renda de verdade é o aluguel."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "fontes-de-renda",
+   "criterio": "É fonte de renda?",
+   "enunciado": "Cartão de crédito usado pra comprar algo",
+   "resposta": false,
+   "ancora": "Cartão de crédito é forma de pagamento, não fonte de renda.",
+   "feedbackErro": "Parece dar acesso a dinheiro na hora. Mas o cartão de crédito é uma forma de pagamento — o valor usado vira dívida a pagar."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "renda-minima",
+   "instrucao": "É renda garantida por direito ou renda que depende de sorte? Arraste.",
+   "ancora": "Direito garantido não depende de sorte; prêmio e achado, sim.",
+   "feedbackErro": "É fácil misturar os dois. Benefício e renda mínima são garantidos por lei; prêmio e achado dependem de sorte.",
+   "caixas": [
+    { "id": "direito", "rotulo": "Garantida por direito" },
+    { "id": "sorte", "rotulo": "Depende de sorte" }
+   ],
+   "itens": [
+    { "texto": "Benefício assistencial do governo", "caixaCorreta": "direito" },
+    { "texto": "Prêmio de sorteio", "caixaCorreta": "sorte" },
+    { "texto": "Renda mínima garantida por lei", "caixaCorreta": "direito" },
+    { "texto": "Dinheiro achado na rua", "caixaCorreta": "sorte" }
+   ]
+  }
+ ]
+}

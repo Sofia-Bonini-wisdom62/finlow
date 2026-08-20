@@ -1,0 +1,332 @@
+{
+ "slug": "troco-desconto-lucro-e-prejuizo-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "troco-desconto-lucro-e-prejuizo",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "troco",
+   "criterio": "Lembra o critério: é o troco certo?",
+   "enunciado": "Pagou R$47 por uma compra de R$31, recebeu R$16",
+   "resposta": true,
+   "ancora": "R$47 − R$31 = R$16. Troco certo.",
+   "feedbackErro": "Os números não são redondos, e isso dificulta de cabeça. Mas a conta continua sendo pagamento menos preço: R$16.",
+   "verificacao": {
+    "expressao": "47-31",
+    "esperado": 16
+   }
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "desconto",
+   "criterio": "Lembra o critério: isso é desconto?",
+   "enunciado": "Um tênis de R$130 passa a custar R$117",
+   "resposta": true,
+   "ancora": "O preço caiu R$13 — isso é desconto.",
+   "feedbackErro": "A queda é pequena perto do preço total, e isso faz parecer irrelevante. Mas qualquer redução do preço original já é desconto.",
+   "verificacao": {
+    "expressao": "130-117",
+    "esperado": 13
+   }
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "lucro-e-prejuizo",
+   "criterio": "Lembra o critério: isso é lucro?",
+   "enunciado": "Comprou uma peça por R$18 e vendeu por R$23",
+   "resposta": true,
+   "ancora": "Vendeu por R$5 a mais do que pagou — é lucro.",
+   "feedbackErro": "Pode parecer só uma troca qualquer, mas vender por mais do que custou é exatamente lucro — de R$5.",
+   "verificacao": {
+    "expressao": "23-18",
+    "esperado": 5
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "troco",
+   "dificuldade": 2,
+   "pergunta": "Dona Rosalina pagou com uma nota de R$100 uma compra de R$63,50. Quanto ela recebeu de troco?",
+   "ancora": "R$100 − R$63,50 = R$36,50.",
+   "alternativas": [
+    {
+     "texto": "R$36,50",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$37,50",
+     "correta": false,
+     "feedbackErro": "Arredondar os centavos para cima muda a conta. R$100 − R$63,50 é exatamente R$36,50."
+    },
+    {
+     "texto": "R$163,50",
+     "correta": false,
+     "feedbackErro": "Esse valor é a soma, não a diferença. Troco é R$100 − R$63,50 = R$36,50."
+    }
+   ],
+   "verificacao": {
+    "expressao": "100-63.5",
+    "esperado": 36.5
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "desconto",
+   "dificuldade": 2,
+   "pergunta": "Um caderno de R$18 está com 15% de desconto. Qual é o valor a pagar?",
+   "ancora": "15% de R$18 é R$2,70. R$18 − R$2,70 = R$15,30.",
+   "alternativas": [
+    {
+     "texto": "R$15,30",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$16,50",
+     "correta": false,
+     "feedbackErro": "Esse valor tira só R$1,50, menos que 15% de R$18. 15% de R$18 é R$2,70, então o preço final é R$15,30."
+    },
+    {
+     "texto": "R$2,70",
+     "correta": false,
+     "feedbackErro": "R$2,70 é só o desconto, não o preço final. Falta subtrair esse valor dos R$18: sobra R$15,30."
+    }
+   ],
+   "verificacao": {
+    "expressao": "18-18*0.15",
+    "esperado": 15.3
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "lucro-e-prejuizo",
+   "criterio": "Prejuízo mesmo vendendo acima do custo?",
+   "enunciado": "Comprou uma peça por R$40, gastou R$10 de frete, vendeu por R$45",
+   "resposta": true,
+   "ancora": "Custo total foi R$50 (R$40+R$10). Vendeu por R$45: prejuízo de R$5.",
+   "feedbackErro": "Vender por R$45 depois de pagar R$40 parece lucro, e é aí que mora o erro. O frete de R$10 também é custo — no total, ele perdeu R$5.",
+   "verificacao": {
+    "expressao": "45-40-10",
+    "esperado": -5
+   }
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "lucro-e-prejuizo",
+   "instrucao": "Contando todos os custos, deu lucro ou prejuízo?",
+   "ancora": "O custo total inclui o frete, não só o preço de compra.",
+   "feedbackErro": "Comparar só com o preço de compra engana — o frete também entra na conta do custo total.",
+   "caixas": [
+    {
+     "id": "lucro",
+     "rotulo": "Lucro"
+    },
+    {
+     "id": "prejuizo",
+     "rotulo": "Prejuízo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Custo R$20 + frete R$5, vendeu por R$30",
+     "caixaCorreta": "lucro"
+    },
+    {
+     "texto": "Custo R$50 + frete R$8, vendeu por R$55",
+     "caixaCorreta": "prejuizo"
+    },
+    {
+     "texto": "Custo R$15 + frete R$2, vendeu por R$25",
+     "caixaCorreta": "lucro"
+    },
+    {
+     "texto": "Custo R$60 + frete R$10, vendeu por R$65",
+     "caixaCorreta": "prejuizo"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "troco",
+   "criterio": "O troco está certo?",
+   "enunciado": "Pagou R$55 por uma compra de R$38,90, recebeu R$16,10",
+   "resposta": true,
+   "ancora": "R$55 − R$38,90 = R$16,10. Troco certo.",
+   "feedbackErro": "Os centavos deixam a conta menos óbvia, mas o resultado de R$55 menos R$38,90 é exatamente R$16,10.",
+   "verificacao": {
+    "expressao": "55-38.9",
+    "esperado": 16.1
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "desconto",
+   "dificuldade": 2,
+   "pergunta": "Uma mochila de R$90 tem 20% de desconto à vista. Quanto custa pagando à vista?",
+   "ancora": "20% de R$90 é R$18. R$90 − R$18 = R$72.",
+   "alternativas": [
+    {
+     "texto": "R$72",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$70",
+     "correta": false,
+     "feedbackErro": "R$70 tira R$20 fixos, não 20%. 20% de R$90 é R$18, então o preço final é R$72."
+    },
+    {
+     "texto": "R$18",
+     "correta": false,
+     "feedbackErro": "R$18 é só o desconto, não o preço final. Falta subtrair dos R$90: sobra R$72."
+    }
+   ],
+   "verificacao": {
+    "expressao": "90-90*0.20",
+    "esperado": 72
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "lucro-e-prejuizo",
+   "criterio": "Isso é lucro, contando todos os gastos?",
+   "enunciado": "Comprou material por R$25, gastou R$5 de embalagem, vendeu por R$36",
+   "resposta": true,
+   "ancora": "Custo total R$30. Vendeu por R$36: lucro de R$6.",
+   "feedbackErro": "É fácil só olhar o material e achar que o lucro é maior. Somando a embalagem, o custo total é R$30, e o lucro real é R$6.",
+   "verificacao": {
+    "expressao": "36-25-5",
+    "esperado": 6
+   }
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "troco",
+   "criterio": "O troco está certo?",
+   "enunciado": "Pagou R$30 por uma compra de R$19,75, recebeu R$11,25",
+   "resposta": false,
+   "ancora": "R$30 − R$19,75 = R$10,25, não R$11,25.",
+   "feedbackErro": "R$11,25 parece plausível pelos centavos redondos, mas a conta exata é R$30 menos R$19,75, que dá R$10,25.",
+   "verificacao": {
+    "expressao": "30-19.75",
+    "esperado": 10.25
+   }
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "troco-desconto-lucro-e-prejuizo",
+   "pergunta": "Qual erro mais comum ao calcular lucro ou prejuízo?",
+   "alternativas": [
+    {
+     "texto": "Esquecer de comparar o preço de venda com o de compra",
+     "correta": false,
+     "feedbackErro": "Essa comparação costuma ser feita — o erro mais comum é outro: esquecer custos extras como frete."
+    },
+    {
+     "texto": "Contar só o preço de compra e esquecer custos extras como frete",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Achar que desconto e troco são a mesma coisa",
+     "correta": false,
+     "feedbackErro": "Confundir os dois acontece, mas o erro mais frequente no cálculo de lucro é esquecer custos extras."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "troco",
+   "dificuldade": 2,
+   "pergunta": "Pagou R$85 por uma compra de R$52,40. Quanto volta de troco?",
+   "ancora": "R$85 − R$52,40 = R$32,60.",
+   "alternativas": [
+    {
+     "texto": "R$32,60",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$33,60",
+     "correta": false,
+     "feedbackErro": "Arredondar os centavos muda o resultado. R$85 menos R$52,40 é exatamente R$32,60."
+    },
+    {
+     "texto": "R$137,40",
+     "correta": false,
+     "feedbackErro": "Esse é o total somado, não a diferença. Troco é R$85 − R$52,40 = R$32,60."
+    }
+   ],
+   "verificacao": {
+    "expressao": "85-52.4",
+    "esperado": 32.6
+   }
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "desconto",
+   "criterio": "É desconto de mais de 10%?",
+   "enunciado": "Um livro de R$40 passa a custar R$34",
+   "resposta": true,
+   "ancora": "A queda de R$6 é 15% de R$40 — mais de 10%.",
+   "feedbackErro": "R$6 parece pouco em valor absoluto, mas sobre R$40 isso é 15% — mais de 10%, sim.",
+   "verificacao": {
+    "expressao": "(40-34)/40*100",
+    "esperado": 15
+   }
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "lucro-e-prejuizo",
+   "instrucao": "Somando todos os custos, é lucro ou prejuízo?",
+   "ancora": "O custo total soma compra e despesas extras.",
+   "feedbackErro": "Olhar só o preço de compra esconde o frete e a embalagem, que também entram na conta.",
+   "caixas": [
+    {
+     "id": "lucro",
+     "rotulo": "Lucro"
+    },
+    {
+     "id": "prejuizo",
+     "rotulo": "Prejuízo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Custo R$18 + embalagem R$3, vendeu por R$25",
+     "caixaCorreta": "lucro"
+    },
+    {
+     "texto": "Custo R$40 + frete R$12, vendeu por R$48",
+     "caixaCorreta": "prejuizo"
+    },
+    {
+     "texto": "Custo R$22 + frete R$3, vendeu por R$30",
+     "caixaCorreta": "lucro"
+    },
+    {
+     "texto": "Custo R$55 + embalagem R$10, vendeu por R$60",
+     "caixaCorreta": "prejuizo"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,294 @@
+{
+ "slug": "endividado-ou-inadimplente-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "endividado-ou-inadimplente",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "endividado-vs-inadimplente",
+   "criterio": "Essa pessoa está inadimplente?",
+   "enunciado": "Teve o nome retirado do cadastro de proteção ao crédito após quitar a dívida atrasada",
+   "resposta": false,
+   "ancora": "Quitada a dívida, a inadimplência que existia deixa de valer.",
+   "feedbackErro": "Houve inadimplência no passado, o que confunde. Mas depois de quitada e retirada do cadastro, a situação atual já não é mais de inadimplência."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "endividado-vs-inadimplente",
+   "criterio": "Essa pessoa está inadimplente?",
+   "enunciado": "Tem uma dívida judicializada de anos atrás, mas paga o acordo mensal em dia",
+   "resposta": false,
+   "ancora": "Acordo cumprido em dia tira a pessoa da inadimplência ativa.",
+   "feedbackErro": "A origem judicial parece grave, mas o que importa agora é cumprir o acordo atual — pago em dia, não há atraso em curso."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "credito-verde",
+   "criterio": "Isso é um exemplo de crédito verde?",
+   "enunciado": "Empréstimo com taxa comum, mas usado por acaso para comprar um carro elétrico",
+   "resposta": false,
+   "ancora": "Sem condição ambiental na oferta, o uso final não muda nada.",
+   "feedbackErro": "O destino parece ecológico, mas se a taxa e a condição do crédito são as mesmas de um empréstimo comum, ele não é crédito verde — falta o incentivo na origem."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "endividado-vs-inadimplente",
+   "dificuldade": 3,
+   "pergunta": "Uma empresa atrasa o fornecedor, que aceita esperar sem formalizar nada. Isso é inadimplência?",
+   "ancora": "O atraso existe de fato, mesmo sem cobrança ou registro formal.",
+   "alternativas": [
+    {
+     "texto": "Sim, porque o pagamento passou do prazo combinado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, porque não houve negativação nem cobrança formal",
+     "correta": false,
+     "feedbackErro": "A negativação é uma consequência possível, não a definição. O atraso em relação ao prazo combinado já caracteriza a inadimplência, com ou sem registro formal."
+    },
+    {
+     "texto": "Não, porque o fornecedor concordou em esperar",
+     "correta": false,
+     "feedbackErro": "A boa vontade do fornecedor muda a cobrança, não o fato: o pagamento já passou do prazo original combinado, então já é inadimplência técnica."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "credito-verde",
+   "dificuldade": 3,
+   "pergunta": "Um banco anuncia 'crédito verde' para qualquer reforma residencial, sem exigir critério ambiental. É verde de verdade?",
+   "ancora": "Sem critério ambiental exigido, o rótulo não muda nada.",
+   "alternativas": [
+    {
+     "texto": "Não, falta o critério ambiental que justificaria o nome",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque toda reforma residencial reduz gastos",
+     "correta": false,
+     "feedbackErro": "Reduzir gastos é economia, não é o mesmo que impacto ambiental. Sem exigir um projeto de menor impacto, o rótulo 'verde' fica só no nome."
+    },
+    {
+     "texto": "Sim, o banco tem autoridade para definir o que é verde",
+     "correta": false,
+     "feedbackErro": "O nome usado pelo banco não garante o conteúdo. Crédito verde de verdade exige um critério ambiental concreto na condição da oferta, não só o rótulo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "endividado-vs-inadimplente",
+   "criterio": "Isso sozinho já é inadimplência?",
+   "enunciado": "Estar no limite máximo do cartão de crédito, mas com a fatura paga em dia",
+   "resposta": false,
+   "ancora": "Limite no máximo é risco alto, mas não é atraso.",
+   "feedbackErro": "Usar o limite todo é um sinal de alerta financeiro, mas enquanto a fatura é paga no vencimento, ainda não existe atraso — logo, não há inadimplência."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "endividado-vs-inadimplente",
+   "instrucao": "Ordene da situação mais leve à mais grave",
+   "ancora": "O critério é sempre o tempo de atraso desde o vencimento.",
+   "feedbackErro": "O nome chamativo de cada situação engana. O critério continua o mesmo: quanto mais tempo desde o vencimento sem pagar, mais grave.",
+   "itens": [
+    { "texto": "Acordo judicial cumprido em dia todo mês", "posicaoCorreta": 1 },
+    { "texto": "Fatura vencida há 15 dias, ainda sem negativação", "posicaoCorreta": 2 },
+    { "texto": "Dívida vencida há 4 meses, nome já negativado", "posicaoCorreta": 3 },
+    { "texto": "Execução judicial após anos sem qualquer pagamento", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "endividado-vs-inadimplente",
+   "criterio": "Isso sozinho já é inadimplência?",
+   "enunciado": "Ter uma dívida cujo prazo de pagamento ainda nem começou a contar",
+   "resposta": false,
+   "ancora": "Sem prazo vencido, não existe atraso possível ainda.",
+   "feedbackErro": "É dívida, sem dúvida, mas se o prazo de pagamento ainda não começou a valer, não há como já ter havido atraso — inadimplência exige um vencimento ultrapassado."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "credito-verde",
+   "criterio": "Isso é um exemplo de crédito verde?",
+   "enunciado": "Financiamento com taxa comum para comprar um caminhão a diesel novo, sem cláusula ambiental",
+   "resposta": false,
+   "ancora": "Sem incentivo ambiental na condição, não é crédito verde.",
+   "feedbackErro": "Envolve financiamento de veículo, o que confunde com os exemplos vistos, mas sem condição atrelada a impacto ambiental — falta o critério do crédito verde."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "endividado-vs-inadimplente",
+   "pergunta": "Uma dívida de R$4.000 fica inadimplente com mora de 1% ao mês. Quanto soma em 10 meses?",
+   "campo": "moeda",
+   "min": 4000,
+   "max": 4800,
+   "gabarito": 4400,
+   "toleranciaPct": 20,
+   "fonte": "taxa padrão de mora contratual, ~1% ao mês (uso comum em contratos)",
+   "verificacao": { "expressao": "4000 + 4000*0.01*10", "esperado": 4400 },
+   "feedbackPerto": "Isso mesmo, R$4.400 — a mora soma 1% do valor original a cada mês de atraso.",
+   "feedbackLonge": "Fica perto de R$4.400. A mora costuma somar linear, mês a mês, sobre o valor original — sem compor sobre si mesma como os juros do rotativo."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "endividado-vs-inadimplente",
+   "dificuldade": 3,
+   "pergunta": "Uma pessoa quita toda a dívida inadimplente de uma vez. A partir de quando ela deixa de ser considerada inadimplente?",
+   "ancora": "A baixa costuma levar alguns dias úteis para ser processada.",
+   "alternativas": [
+    {
+     "texto": "Alguns dias após o pagamento, quando o credor processa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "No exato segundo em que o pagamento é feito, sempre",
+     "correta": false,
+     "feedbackErro": "O pagamento resolve a dívida na hora, mas a atualização no cadastro de crédito costuma levar alguns dias úteis para ser processada."
+    },
+    {
+     "texto": "Só depois de 5 anos, prazo mínimo para qualquer baixa",
+     "correta": false,
+     "feedbackErro": "Cinco anos é o prazo de prescrição de uma dívida não paga — não se aplica a quem já quitou. A baixa por pagamento é bem mais rápida."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "credito-verde",
+   "dificuldade": 3,
+   "pergunta": "Uma indústria pega crédito verde para reduzir emissões, mas usa parte numa obra sem ligação ambiental. O que compromete?",
+   "ancora": "Desviar o uso quebra a condição que justificava a taxa menor.",
+   "alternativas": [
+    {
+     "texto": "A justificativa da taxa reduzida, ligada ao uso combinado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada, porque o dinheiro já é dela para usar como quiser",
+     "correta": false,
+     "feedbackErro": "O crédito verde tem uma condição específica de uso. Desviar a finalidade quebra o motivo pelo qual a taxa foi reduzida, mesmo sendo dinheiro dela."
+    },
+    {
+     "texto": "Só a reputação da indústria, sem efeito no contrato",
+     "correta": false,
+     "feedbackErro": "Vai além da reputação: desvio de finalidade pode ter efeito contratual, já que a taxa reduzida foi concedida sob uma condição específica de uso."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "endividado-vs-inadimplente",
+   "criterio": "Isso sozinho já é inadimplência?",
+   "enunciado": "Ter uma parcela futura de um financiamento, que ainda vai vencer daqui a 3 meses",
+   "resposta": false,
+   "ancora": "Parcela futura, ainda não vencida, não pode estar em atraso.",
+   "feedbackErro": "É dívida existente, mas o vencimento ainda não chegou — inadimplência exige que o prazo já tenha passado sem pagamento, o que ainda não é o caso."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "credito-verde",
+   "criterio": "Isso é um exemplo de crédito verde?",
+   "enunciado": "Crédito com taxa reduzida para uma escola instalar coleta seletiva e composteira",
+   "resposta": true,
+   "ancora": "Gestão de resíduos é um projeto ambiental típico do crédito verde.",
+   "feedbackErro": "Parece um projeto pedagógico comum, mas a taxa reduzida existe porque o projeto reduz o descarte inadequado de resíduos — é impacto ambiental na prática."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "endividado-vs-inadimplente",
+   "pergunta": "Qual frase resume melhor os limites do que você viu nesses casos?",
+   "alternativas": [
+    {
+     "texto": "Uma dívida judicializada é sempre sinônimo de inadimplência ativa",
+     "correta": false,
+     "feedbackErro": "Vimos o contrário: um acordo judicial cumprido em dia não é inadimplência ativa, mesmo com origem grave."
+    },
+    {
+     "texto": "O que define os dois conceitos é sempre a condição atual, não o rótulo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Todo crédito chamado de verde cumpre automaticamente critério ambiental",
+     "correta": false,
+     "feedbackErro": "Vimos que o nome sozinho não garante nada — sem critério ambiental exigido de verdade, o rótulo fica vazio."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "endividado-vs-inadimplente",
+   "instrucao": "É só endividamento ou já é inadimplência?",
+   "ancora": "O critério que separa é sempre a condição atual de pagamento.",
+   "feedbackErro": "O jeito de separar: se o prazo atual está sendo cumprido, mesmo com histórico ruim no passado, é só endividamento. Prazo vencido sem pagamento agora é inadimplência.",
+   "caixas": [
+    { "id": "endividado", "rotulo": "Só endividamento" },
+    { "id": "inadimplente", "rotulo": "Inadimplência" }
+   ],
+   "itens": [
+    { "texto": "Nome já retirado do cadastro após dívida antiga quitada", "caixaCorreta": "endividado" },
+    { "texto": "Fatura do cartão vencida há 3 meses, sem nenhum contato", "caixaCorreta": "inadimplente" },
+    { "texto": "Acordo de renegociação sendo pago em dia há 1 ano", "caixaCorreta": "endividado" },
+    { "texto": "Parcela do consignado que falhou e segue sem regularização", "caixaCorreta": "inadimplente" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "credito-verde",
+   "criterio": "Isso é um exemplo de crédito verde?",
+   "enunciado": "Empréstimo com taxa reduzida para uma cooperativa recuperar uma nascente de rio poluída",
+   "resposta": true,
+   "ancora": "Recuperar uma nascente é um projeto ambiental direto.",
+   "feedbackErro": "Parece um projeto comunitário qualquer, mas a taxa reduzida existe porque recuperar a nascente tem impacto ambiental positivo direto."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "endividado-vs-inadimplente",
+   "dificuldade": 3,
+   "pergunta": "Por que duas pessoas com a mesma dívida em atraso podem ter consequências bem diferentes?",
+   "ancora": "O tipo de credor e o contrato definem as consequências do atraso.",
+   "alternativas": [
+    {
+     "texto": "Porque o tipo de credor e as cláusulas do contrato variam",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque inadimplência não tem regra igual para todo mundo, por sorteio",
+     "correta": false,
+     "feedbackErro": "Não é aleatório. As consequências variam porque cada contrato tem cláusulas próprias de multa, juros e prazo de negativação."
+    },
+    {
+     "texto": "Porque só uma das duas está realmente inadimplente de fato",
+     "correta": false,
+     "feedbackErro": "As duas estão inadimplentes, já que ambas têm a mesma dívida em atraso. A diferença está nas consequências previstas em cada contrato."
+    }
+   ]
+  }
+ ]
+}

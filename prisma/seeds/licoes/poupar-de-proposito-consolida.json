@@ -1,0 +1,252 @@
+{
+ "slug": "poupar-de-proposito-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "poupar-de-proposito",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "meta-com-proposito",
+   "criterio": "Ainda é meta com propósito?",
+   "enunciado": "Definir agora valor e prazo pro que já vinha guardando sem plano",
+   "resposta": true,
+   "ancora": "Passa a valer quando valor e prazo ficam definidos, não antes.",
+   "feedbackErro": "Parece que só conta quem planeja desde o começo, mas o critério vale a partir do momento em que valor e prazo existem."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "meta-com-proposito",
+   "criterio": "Ainda é meta com propósito?",
+   "enunciado": "Ter uma meta de R$ 500 com prazo, guardando valores diferentes a cada semana",
+   "resposta": true,
+   "ancora": "O que define é valor final, prazo e destino — não a regularidade.",
+   "feedbackErro": "Regularidade ajuda a não perder o prazo, mas quem define meta é o valor total, o prazo e o destino — o valor semanal pode variar."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar-antes-de-gastar",
+   "criterio": "Ainda é meta com propósito?",
+   "enunciado": "Usar parte do valor guardado numa emergência real e depois retomar a meta",
+   "resposta": true,
+   "ancora": "Meta com propósito não é rígida a ponto de ignorar emergência real.",
+   "feedbackErro": "Parece que usar o dinheiro guardado 'quebra' a meta, mas emergência real é exceção — o que importa é retomar o plano depois."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "meta-com-proposito",
+   "dificuldade": 3,
+   "pergunta": "Otávio guardava R$ 20/semana pra um celular de R$ 400. Na semana 15, o preço subiu pra R$ 460. O que ele deve rever?",
+   "ancora": "O destino continua o mesmo; o valor ou o prazo é que precisam mudar.",
+   "alternativas": [
+    {
+     "texto": "O destino, porque o celular mudou",
+     "correta": false,
+     "feedbackErro": "O destino continua o mesmo (o celular) — o que mudou foi o valor, não o motivo de guardar."
+    },
+    {
+     "texto": "O valor guardado por semana ou o prazo final",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada, a meta original continua valendo do mesmo jeito",
+     "correta": false,
+     "feedbackErro": "Com o preço maior, manter o mesmo valor e prazo não fecha a conta — algo precisa mudar."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "poupar-antes-de-gastar",
+   "dificuldade": 3,
+   "pergunta": "Depois de separar a mesada, sobrou pouco pro lanche da semana. Isso significa que separar antes foi um erro?",
+   "ancora": "O valor separado precisa ser recalculado, não abandonado.",
+   "alternativas": [
+    {
+     "texto": "Sim, porque atrapalhou o orçamento do mês",
+     "correta": false,
+     "feedbackErro": "Apertar o orçamento incomoda, mas não é erro — o valor separado só precisa ser ajustado, não abandonado."
+    },
+    {
+     "texto": "Não, o valor separado é que precisa ser recalculado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, guardar o que sobra teria sido melhor nesse caso",
+     "correta": false,
+     "feedbackErro": "Guardar o que sobra tende a zerar a poupança, mesmo quando aperta — o ajuste certo é reduzir o valor fixo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "meta-com-proposito",
+   "criterio": "Isso ainda é poupar de propósito?",
+   "enunciado": "Reduzir o valor guardado por semana, mas manter o mesmo prazo e destino",
+   "resposta": true,
+   "ancora": "Ajustar o valor sem perder prazo e destino continua sendo propósito.",
+   "feedbackErro": "Reduzir o valor parece desistir da meta, mas o que define propósito é manter prazo e destino — o valor semanal pode ser recalculado."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "meta-com-proposito",
+   "instrucao": "Depois do ajuste, isso ainda conta como meta?",
+   "ancora": "O que sustenta a meta é valor, prazo e destino — não a rigidez.",
+   "feedbackErro": "É tentador achar que qualquer desvio invalida a meta, mas o que decide é se valor, prazo e destino continuam de pé.",
+   "caixas": [
+    { "id": "meta", "rotulo": "Tem meta" },
+    { "id": "sem", "rotulo": "Sem meta" }
+   ],
+   "itens": [
+    { "texto": "Meta de R$ 500 sem prazo, revisada toda semana", "caixaCorreta": "sem" },
+    { "texto": "Meta de R$ 150 com prazo, valor semanal variável", "caixaCorreta": "meta" },
+    { "texto": "Guardar 'o que der' até quando der", "caixaCorreta": "sem" },
+    { "texto": "Meta de R$ 300 até julho, usada 1 vez em emergência e retomada", "caixaCorreta": "meta" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "meta-com-proposito",
+   "criterio": "Ajuda a alcançar a meta?",
+   "enunciado": "Revisar o valor guardado quando o preço do item muda",
+   "resposta": true,
+   "ancora": "Ignorar a mudança de preço é que atrapalha a meta.",
+   "feedbackErro": "Parece que mexer no plano atrapalha, mas revisar o valor quando o preço muda é o que mantém a meta possível."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "meta-com-proposito",
+   "dificuldade": 3,
+   "pergunta": "Meta de R$ 384 em 8 semanas. Após 3 semanas guardando R$ 40, quanto falta por semana nas 5 restantes?",
+   "ancora": "(384 − 3×40) ÷ 5 = R$ 52,80 por semana.",
+   "verificacao": { "expressao": "(384-3*40)/5", "esperado": 52.8 },
+   "alternativas": [
+    {
+     "texto": "R$ 48",
+     "correta": false,
+     "feedbackErro": "R$ 48 × 5 dá R$ 240; somando os R$ 120 já guardados, fica R$ 360 — R$ 24 abaixo da meta."
+    },
+    {
+     "texto": "R$ 52,80",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 45",
+     "correta": false,
+     "feedbackErro": "R$ 45 × 5 dá R$ 225; somando os R$ 120 já guardados, fica R$ 345 — R$ 39 abaixo da meta."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "meta-com-proposito",
+   "criterio": "O valor guardado bate com a meta?",
+   "enunciado": "Guardar R$ 18/semana por 5 semanas e depois R$ 22/semana por 3 semanas, meta de R$ 160",
+   "resposta": false,
+   "ancora": "18×5 + 22×3 = 156 — fica R$ 4 abaixo da meta de R$ 160.",
+   "verificacao": { "expressao": "18*5 + 22*3", "esperado": 156 },
+   "feedbackErro": "A soma dos dois períodos dá R$ 156, quatro reais a menos que a meta — quase lá, mas não bate."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "poupar-antes-de-gastar",
+   "criterio": "É poupar de propósito?",
+   "enunciado": "Guardar todo mês o mesmo valor, mesmo sem lembrar mais qual era o destino original",
+   "resposta": false,
+   "ancora": "Perder o destino de vista tira o propósito, mesmo com regularidade.",
+   "feedbackErro": "A regularidade continua, mas propósito exige lembrar o destino — sem ele, virou hábito sem meta."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "poupar-de-proposito",
+   "dificuldade": 3,
+   "pergunta": "Depois de ver os ajustes e exceções, o que continua sendo o núcleo de uma meta com propósito?",
+   "alternativas": [
+    {
+     "texto": "Nunca mexer no valor ou no prazo, custe o que custar",
+     "correta": false,
+     "feedbackErro": "Rigidez total não é o critério — ajustar valor e prazo quando a realidade muda ainda é ter propósito."
+    },
+    {
+     "texto": "Manter valor, prazo e destino definidos, revisando quando necessário",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Guardar o máximo possível, mesmo sem destino",
+     "correta": false,
+     "feedbackErro": "Guardar muito sem destino continua sem ser meta — o valor não substitui o propósito."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "meta-com-proposito",
+   "instrucao": "Ordene da meta mais exigente pra menos exigente por semana.",
+   "ancora": "O que decide é o valor dividido pelo prazo, não o valor total.",
+   "feedbackErro": "Não é o valor total que decide a exigência, é o valor dividido pelo prazo — a razão semanal.",
+   "verificacao": { "expressao": "400/10", "esperado": 40 },
+   "itens": [
+    { "texto": "R$ 400 em 10 semanas", "posicaoCorreta": 1 },
+    { "texto": "R$ 210 em 7 semanas", "posicaoCorreta": 2 },
+    { "texto": "R$ 180 em 9 semanas", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "meta-com-proposito",
+   "pergunta": "Faltam R$ 96 pra meta, em 4 semanas. Quanto guardar por semana?",
+   "campo": "moeda",
+   "min": 10,
+   "max": 40,
+   "gabarito": 24,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto da meta (valor ÷ prazo)",
+   "verificacao": { "expressao": "96/4", "esperado": 24 },
+   "feedbackPerto": "Isso mesmo — R$ 96 ÷ 4 semanas = R$ 24.",
+   "feedbackLonge": "R$ 24 por semana. O valor que falta dividido pelas semanas restantes."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "meta-com-proposito",
+   "dificuldade": 3,
+   "pergunta": "Uma meta atrasa 2 semanas do prazo combinado. Isso invalida o propósito?",
+   "ancora": "Atraso pede ajuste de prazo, não descarte da meta.",
+   "alternativas": [
+    {
+     "texto": "Sim, meta atrasada deixa de ser meta",
+     "correta": false,
+     "feedbackErro": "Atraso não apaga o propósito — o valor e o destino continuam, só o prazo precisa ser recalculado."
+    },
+    {
+     "texto": "Não, o prazo pode ser ajustado sem perder o propósito",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, é preciso recomeçar do zero",
+     "correta": false,
+     "feedbackErro": "Recomeçar do zero descarta o que já foi guardado — o certo é ajustar o prazo, não jogar fora o progresso."
+    }
+   ]
+  }
+ ]
+}

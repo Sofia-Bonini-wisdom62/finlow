@@ -1,0 +1,278 @@
+{
+ "slug": "preco-nao-e-valor-consolida",
+ "segmento": "ef35",
+ "conceitoPrincipal": "preco-nao-e-valor",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "caro-barato",
+   "criterio": "Aqui, o preço alto reflete valor real?",
+   "enunciado": "Um capacete de marca certificada, testado contra impactos",
+   "resposta": true,
+   "ancora": "Com certificação de segurança, o preço alto pode se justificar.",
+   "feedbackErro": "Parece o mesmo caso de marca só pelo nome. Mas aqui a marca vem com testes e certificação real de segurança."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "caro-barato",
+   "criterio": "Aqui, o preço alto reflete valor real?",
+   "enunciado": "Uma mochila comum com logo de time, sem diferença de material",
+   "resposta": false,
+   "ancora": "Sem diferença real de material, o preço extra é só a marca.",
+   "feedbackErro": "Parece que toda marca famosa garante algo a mais. Mas se o material é idêntico, o preço extra aqui não reflete valor real."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "preco-x-valor",
+   "criterio": "Preço e valor coincidem aqui?",
+   "enunciado": "Um remédio caro que realmente cura uma doença grave",
+   "resposta": true,
+   "ancora": "Benefício real e necessário aproxima preço e valor.",
+   "feedbackErro": "Parece contradizer a regra de que preço não é valor. Mas quando o benefício é real e necessário, o preço pode refletir o valor."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "caro-barato",
+   "dificuldade": 3,
+   "pergunta": "Um extintor sem certificação custa R$ 40; um certificado custa R$ 90. Quando o mais caro se justifica?",
+   "ancora": "90 menos 40 é 50: o custo extra da certificação.",
+   "alternativas": [
+    {
+     "texto": "Quando a certificação garante que ele realmente funciona",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nunca, porque extintor é sempre igual por dentro",
+     "correta": false,
+     "feedbackErro": "Extintores não são sempre iguais por dentro. A certificação testa se ele realmente funciona na hora do perigo."
+    },
+    {
+     "texto": "Sempre, porque o mais caro é sempre melhor",
+     "correta": false,
+     "feedbackErro": "'Sempre' é forte demais: no tênis de marca, por exemplo, o preço maior não veio de qualidade real. Aqui é a certificação que justifica."
+    }
+   ],
+   "verificacao": {
+    "expressao": "90-40",
+    "esperado": 50
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "preco-x-valor",
+   "dificuldade": 3,
+   "pergunta": "Diego pagou caro por um curso que mudou como ele lida com dinheiro. É um caso onde preço e valor se encontram?",
+   "ancora": "Benefício real pode igualar o preço pago em casos assim.",
+   "alternativas": [
+    {
+     "texto": "Sim, porque o benefício real igualou o preço pago",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, porque preço e valor nunca podem coincidir",
+     "correta": false,
+     "feedbackErro": "'Nunca' é forte demais: às vezes o benefício real de algo é tão grande quanto o preço pago, como no caso de Diego."
+    },
+    {
+     "texto": "Não, porque cursos caros nunca valem o preço",
+     "correta": false,
+     "feedbackErro": "Não é uma regra geral: alguns cursos caros realmente entregam um benefício à altura do preço, como o de Diego."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "preco-x-valor",
+   "criterio": "Isso é exceção: preço alto = valor alto?",
+   "enunciado": "Um serviço caro que resolve um problema grave, de forma comprovada",
+   "resposta": true,
+   "ancora": "Benefício grave e comprovado é quando preço reflete valor.",
+   "feedbackErro": "Parece contrariar tudo visto até agora. Mas quando o resultado é comprovado e resolve algo grave, o preço pode refletir o valor."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "caro-barato",
+   "instrucao": "O preço alto aqui é justificado ou é só marca?",
+   "ancora": "Justificado tem prova real por trás; só marca não tem.",
+   "feedbackErro": "Nome famoso sozinho não é prova de nada. O que justifica é teste, certificação ou material comprovadamente melhor.",
+   "caixas": [
+    {
+     "id": "justificado",
+     "rotulo": "Justificado"
+    },
+    {
+     "id": "so-marca",
+     "rotulo": "Só marca"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Cadeirinha de bebê com certificação de segurança testada",
+     "caixaCorreta": "justificado"
+    },
+    {
+     "texto": "Camiseta comum com o nome de um jogador famoso",
+     "caixaCorreta": "so-marca"
+    },
+    {
+     "texto": "Capacete de ciclismo com certificação contra impacto",
+     "caixaCorreta": "justificado"
+    },
+    {
+     "texto": "Squeeze comum com adesivo de um desenho famoso",
+     "caixaCorreta": "so-marca"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "preco-x-valor",
+   "criterio": "Preço-não-é-valor ainda vale aqui?",
+   "enunciado": "Um item caro que realmente resolve um problema grave e comprovado",
+   "resposta": false,
+   "ancora": "Com benefício real e comprovado, preço e valor podem se igualar.",
+   "feedbackErro": "A regra geral costuma valer. Mas quando existe um benefício grave, real e comprovado, essa exceção aproxima os dois."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "caro-barato",
+   "dificuldade": 3,
+   "pergunta": "Um filtro de água sem teste custa R$ 25. Um filtro testado e certificado custa R$ 70. Qual pergunta ajuda a decidir?",
+   "ancora": "70 menos 25 é 45: o custo extra do certificado.",
+   "alternativas": [
+    {
+     "texto": "Se o teste realmente comprova que filtra melhor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Qual dos dois tem a cor mais bonita",
+     "correta": false,
+     "feedbackErro": "A cor não tem relação com filtrar água de verdade. O que importa é se existe comprovação real por trás do preço maior."
+    },
+    {
+     "texto": "Qual dos dois é vendido em mais lojas",
+     "correta": false,
+     "feedbackErro": "Estar em mais lojas não prova qualidade nenhuma. O que decide é se o teste realmente comprova a diferença."
+    }
+   ],
+   "verificacao": {
+    "expressao": "70-25",
+    "esperado": 45
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "preco-x-valor",
+   "criterio": "É um caso-limite de preço não ser valor?",
+   "enunciado": "Pagar caro por algo raro, mesmo sem nenhuma utilidade prática",
+   "resposta": true,
+   "ancora": "Raridade sem utilidade real afasta o preço do valor de uso.",
+   "feedbackErro": "Parece que raridade sempre justifica o preço. Mas sem utilidade prática nenhuma, o preço se afasta do valor de uso real."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "caro-barato",
+   "criterio": "Isso é prova real, não só marca?",
+   "enunciado": "Um teste independente mostrando que o produto dura o dobro do tempo",
+   "resposta": true,
+   "ancora": "Teste independente é prova concreta, diferente de propaganda.",
+   "feedbackErro": "Propaganda da própria marca não prova nada sozinha. Mas um teste independente mostrando o dobro da duração é prova concreta."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "preco-x-valor",
+   "pergunta": "Depois de tudo isso, qual frase é mais completa?",
+   "alternativas": [
+    {
+     "texto": "Preço não é valor, exceto quando o benefício é comprovado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Preço e valor são sempre a mesma coisa, sem exceção",
+     "correta": false,
+     "feedbackErro": "Não são sempre iguais: a regra geral é que preço não é valor, com exceção dos casos de benefício real e comprovado."
+    },
+    {
+     "texto": "Marca famosa é sempre prova de mais qualidade",
+     "correta": false,
+     "feedbackErro": "Nem sempre: certificação e teste independente é que provam qualidade, não o nome da marca sozinho."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "caro-barato",
+   "dificuldade": 3,
+   "pergunta": "Um brinquedo de segurança para bebês, testado, custa o dobro de um sem testes. Isso é caso de marca ou de valor real?",
+   "ancora": "Testes reais de segurança justificam o preço maior.",
+   "alternativas": [
+    {
+     "texto": "De valor real, pela segurança comprovada",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "De marca, porque brinquedo de bebê é sempre caro",
+     "correta": false,
+     "feedbackErro": "Não é regra geral de categoria. Aqui o preço maior vem de testes reais de segurança, não só do tipo de produto."
+    },
+    {
+     "texto": "Não dá pra saber sem ver a cor da embalagem",
+     "correta": false,
+     "feedbackErro": "A cor da embalagem não prova segurança nenhuma. O que prova é o teste, não a aparência."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "preco-x-valor",
+   "criterio": "O preço alto reflete valor real aqui?",
+   "enunciado": "Uma cirurgia necessária, cara, que resolve um problema de saúde grave",
+   "resposta": true,
+   "ancora": "Necessidade grave e resultado comprovado aproximam os dois.",
+   "feedbackErro": "Parece contrariar a regra geral. Mas quando a necessidade é grave e o resultado comprovado, o preço pode refletir um valor real."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "caro-barato",
+   "instrucao": "Ordene como checar se um preço alto é justificado.",
+   "ancora": "Prova real vem antes de decidir pagar mais.",
+   "feedbackErro": "Decidir sem checar prova real é confiar só na fama da marca. A ordem começa pela comprovação, não pela decisão.",
+   "itens": [
+    {
+     "texto": "Ver se existe teste ou certificação real",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Ver se o resultado é comprovado, não só prometido",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Só então decidir se vale pagar mais",
+     "posicaoCorreta": 3
+    }
+   ]
+  }
+ ]
+}

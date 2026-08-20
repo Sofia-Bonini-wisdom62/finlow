@@ -1,0 +1,295 @@
+{
+ "slug": "colchao-aposentadoria-e-planeta-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "colchao-aposentadoria-e-planeta",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "colchao-de-emergencia",
+   "criterio": "Ainda funciona, considerando o contexto?",
+   "enunciado": "Colchão de R$ 4.000, líquido, mas o único dinheiro guardado de qualquer tipo",
+   "resposta": true,
+   "ancora": "Colchão não depende de outras reservas — só de liquidez e separação.",
+   "feedbackErro": "Parece incompleto não ter outras reservas. Mas colchão não depende disso — só precisa ser líquido e reservado."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "colchao-de-emergencia",
+   "criterio": "Ainda funciona, considerando o contexto?",
+   "enunciado": "R$ 50 mil investidos pra aposentadoria, mas sem nenhum colchão líquido",
+   "resposta": false,
+   "ancora": "Sem colchão líquido, um imprevisto força mexer na aposentadoria.",
+   "feedbackErro": "R$ 50 mil parece uma reserva sólida, e é. Mas sem nada líquido separado, um imprevisto força mexer no dinheiro de longo prazo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "investimento-sustentavel",
+   "criterio": "Ainda funciona, considerando o contexto?",
+   "enunciado": "Fundo sustentável que rende bem menos que a inflação",
+   "resposta": false,
+   "ancora": "Sustentável não substitui rendimento suficiente pra vencer a inflação.",
+   "feedbackErro": "O critério ambiental é bom, mas não substitui o básico: precisa render mais que a inflação pra preservar valor."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "colchao-de-emergencia",
+   "dificuldade": 3,
+   "pergunta": "Quando o colchão de emergência sozinho NÃO é suficiente pra um imprevisto grande?",
+   "ancora": "Quando o imprevisto custa muito mais do que o colchão cobre.",
+   "alternativas": [
+    {
+     "texto": "Quando o imprevisto custa muito mais que o colchão cobre",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando o colchão está na poupança, e não em outra aplicação",
+     "correta": false,
+     "feedbackErro": "Onde ele está aplicado pesa menos que o tamanho dele frente ao imprevisto."
+    },
+    {
+     "texto": "Quando o colchão está guardado há mais de um ano",
+     "correta": false,
+     "feedbackErro": "Tempo guardado não reduz a proteção — o que limita é o tamanho dele frente ao imprevisto."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "aposentadoria",
+   "dificuldade": 3,
+   "pergunta": "Vinícius guarda R$ 200/mês só dos 20 aos 30. Enzo guarda R$ 100/mês dos 20 aos 60. Quem acumula mais?",
+   "ancora": "Vinícius chega a R$ 197 mil; Enzo, a R$ 199 mil — quase empatam.",
+   "verificacao": { "expressao": "200*((1.005^120-1)/0.005)*1.005^360", "esperado": 197395.14, "tolerancia": 2000 },
+   "alternativas": [
+    {
+     "texto": "Enzo, porque guardou por mais tempo",
+     "correta": false,
+     "feedbackErro": "Guardar por mais tempo não venceu aqui — Vinícius parou aos 30 e quase empatou."
+    },
+    {
+     "texto": "Os dois quase empatam — Vinícius começou cedo e parou logo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Vinícius, porque guardou o dobro por mês",
+     "correta": false,
+     "feedbackErro": "Guardou o dobro só por 10 anos; o que quase empata é o tempo de juros rendendo, não o valor mensal."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "investimento-sustentavel",
+   "criterio": "O ambiental vence o financeiro?",
+   "enunciado": "Escolher um fundo sustentável que rende bem menos que a inflação, só pelo critério ambiental",
+   "resposta": false,
+   "ancora": "Perder pra inflação anula o propósito de guardar, mesmo sustentável.",
+   "feedbackErro": "O critério ambiental importa, e por isso parece a prioridade certa. Mas perder pra inflação anula o motivo de guardar dinheiro."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "colchao-de-emergencia",
+   "instrucao": "Ordene do melhor coberto pro pior, com colchão de R$ 6.000.",
+   "ancora": "Quanto maior o imprevisto perto do colchão, pior a cobertura.",
+   "feedbackErro": "O colchão é o mesmo em todos os casos. O que muda a cobertura é o tamanho do imprevisto comparado a ele.",
+   "itens": [
+    { "texto": "Conserto de R$ 800 no notebook", "posicaoCorreta": 1 },
+    { "texto": "Três meses sem renda, gastando R$ 1.800/mês", "posicaoCorreta": 2 },
+    { "texto": "Cirurgia de emergência de R$ 15.000", "posicaoCorreta": 3 },
+    { "texto": "Perda total da casa por incêndio, R$ 200.000", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "colchao-de-emergencia",
+   "criterio": "Isso muda o tamanho ideal do colchão?",
+   "enunciado": "Ter um plano de saúde que cobre a maior parte de emergências médicas",
+   "resposta": true,
+   "ancora": "Menos risco descoberto pode reduzir o colchão necessário.",
+   "feedbackErro": "Parece que colchão é sempre 3 a 6 meses, sem exceção. Mas cobertura de outros riscos pode reduzir o tamanho necessário."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "aposentadoria",
+   "criterio": "Isso muda o plano de aposentadoria?",
+   "enunciado": "Parar de contribuir por alguns anos, mas deixar o valor já guardado rendendo",
+   "resposta": true,
+   "ancora": "Mesmo parado, o que já foi guardado continua rendendo.",
+   "feedbackErro": "Parece que parar de contribuir trava tudo. Mas o que já está guardado continua rendendo, mesmo sem novos aportes."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "colchao-de-emergencia",
+   "pergunta": "Despesas de R$ 1.900/mês, com plano de saúde cobrindo metade dos imprevistos. Qual colchão de 3 meses?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 8000,
+   "gabarito": 5700,
+   "toleranciaPct": 20,
+   "fonte": "referência de 3 meses de despesas gerais para reserva de emergência",
+   "verificacao": { "expressao": "1900*3", "esperado": 5700 },
+   "feedbackPerto": "Isso mesmo — R$ 5.700 cobrem 3 meses das despesas gerais.",
+   "feedbackLonge": "O colchão de 3 meses é R$ 5.700 (3 × R$ 1.900), considerando as despesas gerais."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "aposentadoria",
+   "dificuldade": 3,
+   "pergunta": "Guardar cedo e parar, ou guardar tarde e nunca parar: quando a segunda pode superar a primeira?",
+   "ancora": "Valor tardio bem maior, com prazo ainda longo, pode superar.",
+   "alternativas": [
+    {
+     "texto": "Quando o valor tardio é bem maior e o prazo ainda é longo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nunca, começar cedo sempre vence, não importa o valor",
+     "correta": false,
+     "feedbackErro": "'Sempre' é forte demais — um valor bem maior, com prazo ainda longo, pode superar."
+    },
+    {
+     "texto": "Sempre, guardar tarde sempre supera guardar cedo",
+     "correta": false,
+     "feedbackErro": "O oposto também não é regra — depende do valor mensal e do prazo restante."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "investimento-sustentavel",
+   "dificuldade": 3,
+   "pergunta": "Fundo sustentável rende bem menos que a inflação, mas tem apelo ambiental forte. Vale investir nele pra aposentadoria?",
+   "ancora": "Perder pra inflação corrói o valor real, mesmo com bom propósito.",
+   "alternativas": [
+    {
+     "texto": "Sim, o ambiental compensa qualquer perda de rendimento",
+     "correta": false,
+     "feedbackErro": "Perder pra inflação corrói o valor real guardado, mesmo com bom propósito ambiental."
+    },
+    {
+     "texto": "Não, perder pra inflação anula o objetivo de guardar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Depende só da idade de quem está investindo",
+     "correta": false,
+     "feedbackErro": "Idade não muda o fato de que perder pra inflação corrói valor, em qualquer idade."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "colchao-de-emergencia",
+   "criterio": "O colchão padrão não basta neste caso?",
+   "enunciado": "Um imprevisto que custa muito mais do que o colchão cobre",
+   "resposta": true,
+   "ancora": "Colchão de 3 a 6 meses não cobre todo tipo de imprevisto grande.",
+   "feedbackErro": "O colchão parece sempre suficiente, e na maioria dos casos é. Mas imprevistos muito grandes passam do que ele cobre."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "aposentadoria",
+   "criterio": "É um caso-limite de 'cedo sempre vence'?",
+   "enunciado": "Começar tarde com um valor mensal bem maior, ainda com prazo longo",
+   "resposta": true,
+   "ancora": "Valor bem maior, com prazo ainda longo, pode empatar ou superar.",
+   "feedbackErro": "A regra geral é começar cedo vence. Mas com valor bem maior e prazo ainda longo, esse caso escapa da regra."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "colchao-aposentadoria-e-planeta",
+   "pergunta": "Depois dos casos-limite, qual frase é mais completa?",
+   "alternativas": [
+    {
+     "texto": "Colchão de 3 a 6 meses sempre cobre qualquer imprevisto.",
+     "correta": false,
+     "feedbackErro": "Imprevistos muito grandes passam do que o colchão cobre."
+    },
+    {
+     "texto": "Colchão, tempo e ambiental valem, mas nada vence render acima da inflação.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sustentabilidade sempre vale mais que rendimento, em qualquer caso.",
+     "correta": false,
+     "feedbackErro": "Perder pra inflação anula o propósito de guardar, mesmo com apelo ambiental."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "colchao-de-emergencia",
+   "instrucao": "O colchão de R$ 4.000 cobre esse imprevisto?",
+   "ancora": "Colchão padrão cobre imprevistos do tamanho pra que foi pensado.",
+   "feedbackErro": "O colchão é o mesmo valor sempre. O que muda é o tamanho do imprevisto comparado a ele.",
+   "caixas": [
+    { "id": "cobre", "rotulo": "Cobre" },
+    { "id": "naocobre", "rotulo": "Não cobre" }
+   ],
+   "itens": [
+    { "texto": "Conserto de eletrônico, R$ 700", "caixaCorreta": "cobre" },
+    { "texto": "Cirurgia de emergência de R$ 15.000", "caixaCorreta": "naocobre" },
+    { "texto": "Três meses sem renda, R$ 1.200/mês", "caixaCorreta": "cobre" },
+    { "texto": "Perda total da casa", "caixaCorreta": "naocobre" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "aposentadoria",
+   "dificuldade": 3,
+   "pergunta": "Mesmo total guardado: uma pessoa para de contribuir aos 30 e deixa render; outra contribui até os 60. Quem acumula mais?",
+   "ancora": "Quem começou bem mais cedo pode acumular perto ou mais, mesmo parando.",
+   "alternativas": [
+    {
+     "texto": "A que parou aos 30, se começou bem mais cedo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A que contribui até os 60, sempre, sem exceção",
+     "correta": false,
+     "feedbackErro": "'Sempre' é forte demais; quem começou bem mais cedo pode acumular perto ou mais, mesmo parando."
+    },
+    {
+     "texto": "As duas acumulam sempre o mesmo, já que o total é igual",
+     "correta": false,
+     "feedbackErro": "Total investido igual não garante resultado igual — o tempo de juros compostos muda tudo."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "investimento-sustentavel",
+   "criterio": "É verdade?",
+   "enunciado": "Um fundo sustentável nunca deve perder pra inflação, mesmo em nome do critério ambiental",
+   "resposta": true,
+   "ancora": "Perder pra inflação anula o propósito, seja qual for o critério.",
+   "feedbackErro": "Pode parecer radical demais. Mas perder pra inflação corrói o valor guardado, não importa o propósito."
+  }
+ ]
+}

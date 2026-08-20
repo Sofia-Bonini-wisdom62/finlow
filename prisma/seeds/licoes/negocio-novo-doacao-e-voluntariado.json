@@ -1,0 +1,339 @@
+{
+ "slug": "negocio-novo-doacao-e-voluntariado",
+ "segmento": "ef89",
+ "conceitoPrincipal": "risco-de-negocio-novo",
+ "fraseConceito": "Negócio novo pede calcular custo e testar antes de crescer; doação é dar bens ou dinheiro, voluntariado é dar tempo sem remuneração.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-de-negocio-novo",
+   "criterio": "É um risco real desse negócio?",
+   "enunciado": "Abrir uma barraca de churros sem calcular quanto custa cada um",
+   "resposta": true,
+   "ancora": "Sem custo calculado, não dá pra saber se o preço cobre o gasto.",
+   "feedbackErro": "Vender parece o desafio maior, e por isso o custo passa despercebido. Mas sem saber o custo de cada churro, não dá pra saber se sobra lucro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-de-negocio-novo",
+   "criterio": "É um risco real desse negócio?",
+   "enunciado": "Ter um produto que os amigos elogiam bastante",
+   "resposta": false,
+   "ancora": "Elogio de amigo não é o mesmo que cliente pagante.",
+   "feedbackErro": "Elogio anima, e parece validar o negócio. Mas amigos raramente dizem que não gostaram — o teste real é alguém de fora pagando pelo produto."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-de-negocio-novo",
+   "criterio": "É um risco real desse negócio?",
+   "enunciado": "Guardar dinheiro para os primeiros meses, antes de dar lucro",
+   "resposta": false,
+   "ancora": "Reserva inicial reduz risco, não é risco.",
+   "feedbackErro": "Pode soar preocupante gastar dinheiro guardado. Mas ter reserva para os primeiros meses é o que evita que um começo lento vire dívida."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-de-negocio-novo",
+   "dificuldade": 1,
+   "pergunta": "Antes de abrir um pequeno negócio de doces, o que é mais importante calcular primeiro?",
+   "ancora": "Custo e preço definem se o negócio se sustenta.",
+   "alternativas": [
+    {
+     "texto": "Quanto custa cada doce e por quanto vai vender",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Qual vai ser o nome e o logo da marca",
+     "correta": false,
+     "feedbackErro": "Nome e logo importam para a identidade, mas não decidem se o negócio se sustenta financeiramente."
+    },
+    {
+     "texto": "Quantos seguidores ela vai ter nas redes sociais",
+     "correta": false,
+     "feedbackErro": "Seguidores ajudam a divulgar, mas não substituem saber se o preço cobre o custo de produção."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-de-negocio-novo",
+   "dificuldade": 1,
+   "pergunta": "Um novo negócio pode falhar mesmo com um bom produto. Qual é o motivo mais comum?",
+   "ancora": "Sem clientes pagando o preço, o produto não sustenta o negócio.",
+   "alternativas": [
+    {
+     "texto": "Falta de clientes dispostos a pagar o preço cobrado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O produto ser bom demais para o mercado",
+     "correta": false,
+     "feedbackErro": "Um produto muito bom não costuma ser o problema. O que derruba o negócio é não achar gente disposta a pagar por ele."
+    },
+    {
+     "texto": "A loja abrir também nos finais de semana",
+     "correta": false,
+     "feedbackErro": "Abrir mais dias tende a ajudar as vendas, não a prejudicar. O risco real está em não ter demanda pagante."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "risco-de-negocio-novo",
+   "criterio": "É garantia de sucesso?",
+   "enunciado": "Ter uma boa ideia de negócio",
+   "resposta": false,
+   "ancora": "Ideia é o começo; execução e clientes decidem o resto.",
+   "feedbackErro": "A ideia empolga, e parece que já resolve metade do caminho. Mas o que decide se o negócio sobrevive é execução, custo controlado e clientes."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "doacao-e-voluntariado",
+   "instrucao": "Classifique: doação ou voluntariado?",
+   "ancora": "Doação é o que se dá; voluntariado é o tempo que se oferece.",
+   "feedbackErro": "As duas ajudam, e por isso se confundem. A diferença é o que sai: dinheiro ou bens é doação; tempo e esforço é voluntariado.",
+   "caixas": [
+    {
+     "id": "doacao",
+     "rotulo": "Doação"
+    },
+    {
+     "id": "voluntariado",
+     "rotulo": "Voluntariado"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Dar roupas que não usa mais para uma instituição",
+     "caixaCorreta": "doacao"
+    },
+    {
+     "texto": "Ajudar a organizar uma feira beneficente sem receber",
+     "caixaCorreta": "voluntariado"
+    },
+    {
+     "texto": "Depositar dinheiro para uma ONG",
+     "caixaCorreta": "doacao"
+    },
+    {
+     "texto": "Dar aulas de reforço de graça num projeto social",
+     "caixaCorreta": "voluntariado"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "doacao-e-voluntariado",
+   "criterio": "É uma forma de ajudar a comunidade?",
+   "enunciado": "Doar roupas que ainda estão em bom estado",
+   "resposta": true,
+   "ancora": "Doar bens em bom estado ajuda quem precisa e evita desperdício.",
+   "feedbackErro": "Pode parecer pouco perto de uma doação em dinheiro. Mas roupas em bom estado ajudam de verdade quem precisa, sem custo de compra."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "doacao-e-voluntariado",
+   "criterio": "É uma forma de ajudar a comunidade?",
+   "enunciado": "Guardar dinheiro só para o próprio consumo, sem nunca doar",
+   "resposta": false,
+   "ancora": "Guardar para si não ajuda a comunidade — mas também não é errado.",
+   "feedbackErro": "Não é proibido guardar tudo para si, mas isso não conta como ajuda à comunidade: doação e voluntariado exigem abrir mão de algo para o outro."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "risco-de-negocio-novo",
+   "pergunta": "Limonada: gasta R$ 60 para 30 copos, vendidos a R$ 4. Lucro se vender todos?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 200,
+   "gabarito": 60,
+   "toleranciaPct": 20,
+   "fonte": "cálculo de custo e receita do próprio negócio",
+   "feedbackPerto": "Isso mesmo, R$ 60 de lucro. É a receita total menos o custo total de produção.",
+   "feedbackLonge": "R$ 60: 30 copos a R$ 4 dá R$ 120 de receita, menos R$ 60 de custo, sobra R$ 60 de lucro.",
+   "verificacao": {
+    "expressao": "30*4 - 60",
+    "esperado": 60
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "doacao-e-voluntariado",
+   "dificuldade": 1,
+   "pergunta": "Uma escola arrecada dinheiro para uma campanha. Qual ação é voluntariado, e não doação?",
+   "ancora": "Voluntariado é oferecer tempo e trabalho, não dinheiro ou bens.",
+   "alternativas": [
+    {
+     "texto": "Passar a tarde ajudando a organizar as caixas arrecadadas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Depositar R$ 20 na campanha",
+     "correta": false,
+     "feedbackErro": "Depositar dinheiro é uma forma de ajudar, mas é doação: o que sai é dinheiro, não tempo de trabalho."
+    },
+    {
+     "texto": "Comprar um produto e deixá-lo na caixa de arrecadação",
+     "correta": false,
+     "feedbackErro": "Deixar um produto na caixa também é doação de um bem, e não voluntariado, que envolve tempo e esforço."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "risco-de-negocio-novo",
+   "dificuldade": 1,
+   "pergunta": "Otávio gastou tudo em embalagens caras antes de vender o primeiro brigadeiro. Qual risco ele ignorou?",
+   "ancora": "Investir tudo antes de testar a demanda é um risco alto.",
+   "alternativas": [
+    {
+     "texto": "Investir demais antes de testar se as pessoas comprariam",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Escolher um produto sem sabor bom",
+     "correta": false,
+     "feedbackErro": "O sabor pode ser ótimo, e o problema continua o mesmo: gastar tudo antes de saber se existe demanda real."
+    },
+    {
+     "texto": "Vender apenas para conhecidos no início",
+     "correta": false,
+     "feedbackErro": "Vender primeiro para conhecidos é uma forma comum de testar. O erro real foi gastar tudo antes desse teste."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "risco-de-negocio-novo",
+   "criterio": "Reduz o risco do negócio novo?",
+   "enunciado": "Vender para poucas pessoas antes de produzir em grande quantidade",
+   "resposta": true,
+   "ancora": "Testar pequeno mostra a demanda antes de comprometer mais dinheiro.",
+   "feedbackErro": "Vender pouco parece ineficiente no começo. Mas testar em pequena escala mostra se há demanda real antes de comprometer mais dinheiro."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "doacao-e-voluntariado",
+   "criterio": "É voluntariado?",
+   "enunciado": "Receber um pagamento simbólico por horas de trabalho numa ONG",
+   "resposta": false,
+   "ancora": "Havendo pagamento, mesmo pequeno, deixa de ser voluntariado.",
+   "feedbackErro": "O valor pode ser bem menor que um salário normal, e isso confunde. Mas voluntariado, por definição, não tem remuneração nenhuma."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "risco-de-negocio-novo",
+   "dificuldade": null,
+   "pergunta": "Qual frase resume o que você viu?",
+   "alternativas": [
+    {
+     "texto": "Boa ideia já garante que o negócio vai dar certo",
+     "correta": false,
+     "feedbackErro": "Ideia é só o começo: execução, custo controlado e clientes pagantes é que decidem o sucesso."
+    },
+    {
+     "texto": "Negócio novo pede calcular custo e testar; ajudar pode ser com tempo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Doação e voluntariado são a mesma coisa",
+     "correta": false,
+     "feedbackErro": "Doação é dar dinheiro ou bens; voluntariado é oferecer tempo e trabalho, sem remuneração."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "risco-de-negocio-novo",
+   "criterio": "É um risco real desse negócio?",
+   "enunciado": "Não saber quanto custa produzir cada unidade do produto",
+   "resposta": true,
+   "ancora": "Sem custo conhecido, o preço pode não cobrir o gasto.",
+   "feedbackErro": "Parece um detalhe técnico, mas é essencial: sem saber o custo de cada unidade, é impossível saber se o preço cobre o gasto."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "doacao-e-voluntariado",
+   "dificuldade": 1,
+   "pergunta": "Uma pessoa passa o fim de semana pintando o muro de uma escola pública, de graça. Isso é",
+   "ancora": "Oferecer tempo e trabalho sem receber é voluntariado.",
+   "alternativas": [
+    {
+     "texto": "Voluntariado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Doação",
+     "correta": false,
+     "feedbackErro": "Doação seria entregar tinta ou dinheiro. Aqui o que ela oferece é o próprio tempo e trabalho."
+    },
+    {
+     "texto": "Nenhum dos dois, porque não envolve uma ONG formal",
+     "correta": false,
+     "feedbackErro": "Voluntariado não exige uma ONG formal por trás: o que define é oferecer tempo e trabalho sem remuneração."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "risco-de-negocio-novo",
+   "instrucao": "Classifique: reduz o risco ou aumenta o risco do negócio?",
+   "ancora": "Testar, calcular e guardar reserva reduzem risco.",
+   "feedbackErro": "Algumas atitudes protegem o negócio novo, outras o deixam mais vulnerável a um começo ruim.",
+   "caixas": [
+    {
+     "id": "reduz",
+     "rotulo": "Reduz risco"
+    },
+    {
+     "id": "aumenta",
+     "rotulo": "Aumenta risco"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Testar vender poucas unidades antes de produzir muito",
+     "caixaCorreta": "reduz"
+    },
+    {
+     "texto": "Gastar toda a reserva em embalagem antes de vender algo",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "Separar a conta do negócio da conta pessoal",
+     "caixaCorreta": "reduz"
+    },
+    {
+     "texto": "Confiar só no elogio de amigos e familiares",
+     "caixaCorreta": "aumenta"
+    }
+   ]
+  }
+ ]
+}

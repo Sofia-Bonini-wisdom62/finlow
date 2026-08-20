@@ -1,0 +1,327 @@
+{
+ "slug": "poupar-usar-credito-e-aposta-nao-entra-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "poupar-usar-credito-e-aposta-nao-entra",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-credito",
+   "criterio": "Vale mais poupar que usar crédito?",
+   "enunciado": "Uma emergência médica urgente, sem tempo de juntar",
+   "resposta": false,
+   "ancora": "Em emergência, o custo é o tempo que falta — crédito vira necessário.",
+   "feedbackErro": "A regra 'juntar sempre' parece valer sempre, e é essa a armadilha. Numa emergência real, não há tempo de juntar — o crédito, mesmo caro, resolve agora."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-credito",
+   "criterio": "Vale mais poupar que usar crédito?",
+   "enunciado": "Trocar um celular que ainda funciona bem",
+   "resposta": true,
+   "ancora": "Sem urgência, dá pra esperar e não pagar juros.",
+   "feedbackErro": "Trocar de celular parece sempre urgente pela vontade, e é aí que confunde. Sem necessidade real, esperar e juntar evita pagar qualquer juro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-credito",
+   "criterio": "Vale mais poupar que usar crédito?",
+   "enunciado": "Aproveitar uma taxa promocional de 0% de juros parcelado",
+   "resposta": false,
+   "ancora": "Sem juros, parcelar custa igual a juntar — a vantagem some.",
+   "feedbackErro": "Parcelamento sempre parece mais caro, e é essa a confusão. Mas sem nenhum juro cobrado, pagar parcelado ou à vista dá exatamente no mesmo valor final."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "aposta-nao-e-investir",
+   "dificuldade": 3,
+   "pergunta": "Reservar um valor fixo e pequeno do lazer pra apostar, sem nunca passar disso. Isso vira investimento?",
+   "ancora": "Limitar o valor reduz o estrago, mas não muda a natureza da aposta.",
+   "alternativas": [
+    {
+     "texto": "Não — continua aposta, só que com risco limitado e planejado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque virou parte do orçamento planejado",
+     "correta": false,
+     "feedbackErro": "Estar no orçamento organiza o gasto, mas não muda a natureza da atividade. O resultado ainda depende de sorte — o que é aposta, não investimento."
+    },
+    {
+     "texto": "Sim, se for feito olhando estatísticas do jogo",
+     "correta": false,
+     "feedbackErro": "Olhar estatísticas pode informar a escolha, mas não elimina a incerteza do resultado. O jogo continua dependendo de sorte, então segue sendo aposta."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "poupar-vs-credito",
+   "dificuldade": 3,
+   "pergunta": "Usar o cartão e pagar a fatura inteira todo mês, mesmo tendo dinheiro guardado. Por que isso pode ajudar?",
+   "ancora": "Fatura paga inteira não cobra juro nenhum, e ainda constrói histórico.",
+   "alternativas": [
+    {
+     "texto": "Constrói histórico de bom pagador, sem custar nenhum juro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque garante desconto em todas as compras",
+     "correta": false,
+     "feedbackErro": "Usar o cartão não garante desconto nenhum por si só. O ganho real de pagar a fatura inteira é construir histórico sem pagar juros."
+    },
+    {
+     "texto": "Porque aumenta o limite automaticamente todo mês",
+     "correta": false,
+     "feedbackErro": "O limite não sobe sozinho todo mês só por pagar em dia. O que acontece é a construção de um histórico de bom pagador, sem juros."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-credito",
+   "criterio": "Usar crédito custa mais do que esperar?",
+   "enunciado": "Parcelar sem juros um valor guardado, rendendo em outro lugar",
+   "resposta": false,
+   "ancora": "Sem juros no parcelamento, deixar o valor render pode compensar mais.",
+   "feedbackErro": "Pagar à vista parece sempre esperto, e é essa a pegadinha. Sem juro no parcelamento, manter o dinheiro rendendo em outro lugar pode valer mais."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "poupar-vs-credito",
+   "instrucao": "Ordene da decisão mais barata pra mais cara, mesmo valor final.",
+   "ancora": "Desconto à vista bate qualquer parcela; rotativo é sempre o mais caro.",
+   "feedbackErro": "O instinto é olhar só o valor da parcela, mas o que decide é a taxa embutida em cada forma de pagamento, do desconto ao rotativo.",
+   "itens": [
+    {
+     "texto": "Pagar à vista com desconto de 10%",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Parcelar sem juros, no número exato de meses",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Parcelar com juros de 5% a.m.",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Deixar cair no rotativo do cartão",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "aposta-nao-e-investir",
+   "criterio": "Isso muda o resultado real da aposta?",
+   "enunciado": "Ter uma 'estratégia' ou 'sistema' pra escolher os números da loteria",
+   "resposta": false,
+   "ancora": "Cada combinação tem a mesma chance — sistema não muda a probabilidade.",
+   "feedbackErro": "Uma 'estratégia' parece dar controle sobre o sorteio, e é essa a ilusão. Na loteria, toda combinação tem a mesma chance — sistema nenhum muda isso."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-credito",
+   "criterio": "Poupar antes é mais barato aqui?",
+   "enunciado": "Usar a reserva guardada pra outra meta numa promoção relâmpago de 24h",
+   "resposta": false,
+   "ancora": "Usar a reserva de outra meta é furar o planejamento, não economizar.",
+   "feedbackErro": "É tentador ver como 'só uma pausa' no plano, e é aí que engana. Gastar a reserva de outra meta quebra o planejamento, mesmo que o preço esteja bom."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "poupar-vs-credito",
+   "pergunta": "R$ 2.000 aplicados a ~15% a.a. (Selic), sem precisar deles agora: quanto rendem em 1 ano?",
+   "campo": "moeda",
+   "min": 100,
+   "max": 600,
+   "gabarito": 300,
+   "toleranciaPct": 20,
+   "fonte": "Selic média anual, ~15% (Banco Central)",
+   "feedbackPerto": "Isso mesmo — quase R$ 300 de rendimento, dinheiro que some se você gastar tudo à vista sem necessidade.",
+   "feedbackLonge": "O rendimento fica perto de R$ 300. A 15% ao ano, cada real parado rende centavos que se somam ao longo do ano.",
+   "verificacao": {
+    "expressao": "2000*0.15",
+    "esperado": 300
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "poupar-vs-credito",
+   "dificuldade": 3,
+   "pergunta": "Renata tem R$ 3.000 guardados e quer um notebook de R$ 3.000. Por que talvez não valha pagar tudo à vista?",
+   "ancora": "Zerar a reserva deixa qualquer emergência sem nenhum amparo.",
+   "alternativas": [
+    {
+     "texto": "Porque zera a reserva, sem deixar nada pra emergências",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque o notebook fica mais caro à vista",
+     "correta": false,
+     "feedbackErro": "À vista costuma custar igual ou menos, nunca mais. O problema real é zerar toda a reserva de uma vez, sem sobra pra imprevistos."
+    },
+    {
+     "texto": "Porque à vista sempre tem taxa extra escondida",
+     "correta": false,
+     "feedbackErro": "Pagamento à vista, em geral, não tem taxa extra. O risco de pagar tudo de uma vez é ficar sem nenhuma reserva pra emergências."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "aposta-nao-e-investir",
+   "dificuldade": 3,
+   "pergunta": "Uma casa de apostas oferece 'aposta grátis' no primeiro depósito. Qual é a armadilha?",
+   "ancora": "A aposta grátis existe pra prender você apostando de novo depois.",
+   "alternativas": [
+    {
+     "texto": "Fisgar o primeiro depósito pra manter você apostando depois",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Fazer você perder o depósito imediatamente",
+     "correta": false,
+     "feedbackErro": "A oferta não tenta fazer você perder na hora — o objetivo é justamente prender você por mais tempo. É aí que mora a armadilha."
+    },
+    {
+     "texto": "Obrigar você a indicar outras pessoas",
+     "correta": false,
+     "feedbackErro": "Indicar amigos pode até existir em algum programa à parte, mas não é o mecanismo da aposta grátis. A armadilha é te manter apostando depois."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-credito",
+   "criterio": "Continua barata mudando o contexto?",
+   "enunciado": "Pagar a fatura do cartão inteira todo mês, mesmo em mês de gasto maior",
+   "resposta": true,
+   "ancora": "Fatura paga inteira nunca gera juros, não importa o valor do mês.",
+   "feedbackErro": "Num mês de gasto maior, parece mais difícil manter a regra — e é aí que ela é testada. Mas fatura paga inteira zera os juros, qualquer que seja o valor."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "aposta-nao-e-investir",
+   "criterio": "É sinal de controle sobre a aposta?",
+   "enunciado": "Definir um limite de gasto com apostas antes, e parar quando bate",
+   "resposta": true,
+   "ancora": "Limite antes é a forma de manter aposta como lazer, não vício.",
+   "feedbackErro": "Parece pouco, já que a decisão maior é 'não apostar' — essa é a ideia comum. Mas quem já aposta, definir e respeitar um limite antes evita o descontrole."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "poupar-vs-credito",
+   "pergunta": "Qual frase captura quando as regras de poupar x crédito x aposta mudam?",
+   "alternativas": [
+    {
+     "texto": "O contexto decide: emergência justifica crédito, aposta nunca é investimento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "As regras nunca mudam, seja qual for a situação",
+     "correta": false,
+     "feedbackErro": "O contexto muda a melhor escolha entre poupar e crédito, como numa emergência real. O que não muda é que aposta segue sendo aposta."
+    },
+    {
+     "texto": "Crédito é sempre a pior opção, em qualquer situação",
+     "correta": false,
+     "feedbackErro": "Crédito custa juros, mas em emergência real pode ser a escolha certa. O que nunca muda é que aposta não vira investimento."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "poupar-vs-credito",
+   "instrucao": "Vale a pena esperar, ou a urgência justifica crédito?",
+   "ancora": "Necessidade real sem tempo justifica crédito; sem urgência, espere.",
+   "feedbackErro": "É fácil achar que crédito é sempre ruim, e essa é a simplificação perigosa. O que decide é se existe urgência real sem tempo de juntar.",
+   "caixas": [
+    {
+     "id": "espera",
+     "rotulo": "Vale esperar"
+    },
+    {
+     "id": "credito",
+     "rotulo": "Justifica crédito"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Trocar um pneu furado no dia da viagem",
+     "caixaCorreta": "credito"
+    },
+    {
+     "texto": "Comprar um jogo que acabou de lançar",
+     "caixaCorreta": "espera"
+    },
+    {
+     "texto": "Consertar um cano estourado em casa",
+     "caixaCorreta": "credito"
+    },
+    {
+     "texto": "Trocar de tênis por estar fora de moda",
+     "caixaCorreta": "espera"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "aposta-nao-e-investir",
+   "dificuldade": 3,
+   "pergunta": "Uma pessoa ganha em uma aposta e decide reinvestir tudo na próxima. O que isso ignora?",
+   "ancora": "Cada rodada é independente — ganhar antes não muda a próxima chance.",
+   "alternativas": [
+    {
+     "texto": "Que o resultado da próxima aposta não depende da anterior",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que ela já tem experiência suficiente pra apostar mais alto",
+     "correta": false,
+     "feedbackErro": "Experiência anterior não muda a probabilidade da rodada seguinte. Cada aposta nova tem seu próprio risco, independente do resultado passado."
+    },
+    {
+     "texto": "Que apostar tudo de novo é a forma mais rápida de crescer",
+     "correta": false,
+     "feedbackErro": "Apostar tudo de novo expõe o valor inteiro ao mesmo risco de perda. O problema é ignorar que cada rodada é independente da anterior."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-credito",
+   "criterio": "Crédito é a escolha mais cara aqui?",
+   "enunciado": "Usar cheque especial por 2 dias, com pagamento já confirmado",
+   "resposta": false,
+   "ancora": "Prazo curtíssimo, com entrada de dinheiro certa, limita o custo.",
+   "feedbackErro": "Cheque especial tem fama de vilão, e quase sempre é. Mas por poucos dias, com entrada certa, o custo total fica pequeno perto de outras alternativas."
+  }
+ ]
+}

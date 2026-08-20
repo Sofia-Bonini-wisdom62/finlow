@@ -1,0 +1,341 @@
+{
+ "slug": "quanto-sobra-de-verdade",
+ "segmento": "em2",
+ "conceitoPrincipal": "quanto-sobra-de-verdade",
+ "fraseConceito": "O que sobra de verdade é o rendimento depois de taxas, impostos e inflação — o líquido real, não o número da propaganda.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "liquido-real",
+   "criterio": "É o que sobra de verdade?",
+   "enunciado": "O rendimento anunciado de 12% ao ano",
+   "resposta": false,
+   "ancora": "O anunciado é bruto: faltam imposto, taxas e inflação.",
+   "feedbackErro": "É o número em destaque, e por isso parece final. Mas dele ainda saem imposto e taxas — e a inflação corta o que o dinheiro compra. Sobra menos que 12%."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "liquido-real",
+   "criterio": "É o que sobra de verdade?",
+   "enunciado": "O rendimento já descontado imposto e inflação",
+   "resposta": true,
+   "ancora": "Líquido e acima da inflação: esse é o número que interessa.",
+   "feedbackErro": "Parece pessimismo calcular tanto desconto. Mas é esse número que diz o que você vai poder comprar a mais — o resto é vitrine."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "inflacao",
+   "criterio": "A inflação mexe nisso?",
+   "enunciado": "O que dá para comprar com o dinheiro guardado",
+   "resposta": true,
+   "ancora": "Inflação corrói o poder de compra, mesmo com o saldo subindo.",
+   "feedbackErro": "O saldo não muda, e isso engana. Mas se os preços sobem 5% e o dinheiro rende 0, o mesmo saldo compra menos — a perda é invisível no extrato."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "liquido-real",
+   "dificuldade": 1,
+   "pergunta": "Uma aplicação rendeu R$ 100. Saíram R$ 20 de imposto. Quanto sobrou de rendimento?",
+   "ancora": "Líquido = bruto menos descontos: 100 − 20 = 80.",
+   "verificacao": {
+    "expressao": "100-20",
+    "esperado": 80
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 80",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 100",
+     "correta": false,
+     "feedbackErro": "R$ 100 é o bruto — o número de antes do desconto. O que sobra é o líquido: 100 − 20 = 80."
+    },
+    {
+     "texto": "R$ 120",
+     "correta": false,
+     "feedbackErro": "Imposto sai do rendimento, não entra. O caminho é subtrair: 100 − 20 = 80."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "inflacao",
+   "dificuldade": 1,
+   "pergunta": "Rendimento líquido de 10% no ano; inflação de 4%. Quanto o dinheiro ganhou de verdade?",
+   "ancora": "Ganho real ≈ rendimento − inflação: 10 − 4 = 6.",
+   "verificacao": {
+    "expressao": "10-4",
+    "esperado": 6
+   },
+   "alternativas": [
+    {
+     "texto": "Cerca de 6%",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "10%",
+     "correta": false,
+     "feedbackErro": "10% é o líquido em reais — mas os preços subiram 4%. O ganho real é o que sobra acima da inflação: uns 6%."
+    },
+    {
+     "texto": "14%",
+     "correta": false,
+     "feedbackErro": "Inflação não soma ao rendimento, desconta dele. Ganho real ≈ rendimento − inflação: 10 − 4 = 6."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "inflacao",
+   "criterio": "A inflação mexe nisso?",
+   "enunciado": "Dinheiro parado na carteira durante um ano",
+   "resposta": true,
+   "ancora": "Parado, ele perde o que a inflação sobe: ~4 a 5% ao ano.",
+   "feedbackErro": "Parado parece protegido: ninguém tira nada dele. Mas os preços sobem por fora — em um ano de inflação a 5%, os mesmos R$ 100 compram 5% menos."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "liquido-real",
+   "instrucao": "Do bruto ao real: ordene os passos da conta.",
+   "ancora": "Bruto → taxas → imposto → inflação = ganho real.",
+   "feedbackErro": "A ordem é a da conta: o bruto é o ponto de partida, taxas e imposto saem no caminho, e a inflação corta por último o que o dinheiro compra.",
+   "itens": [
+    {
+     "texto": "Rendimento bruto anunciado",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Menos as taxas cobradas",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Menos o imposto de renda",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Menos a inflação do período",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "inflacao",
+   "criterio": "É o que sobra de verdade?",
+   "enunciado": "Saldo maior no app, com preços subindo mais que ele",
+   "resposta": false,
+   "ancora": "Saldo subindo menos que os preços é perda real disfarçada.",
+   "feedbackErro": "O número cresceu, e o extrato confirma. Mas se os preços subiram mais, o saldo maior compra menos — o que sobra se mede em compra, não em saldo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "liquido-real",
+   "criterio": "É o que sobra de verdade?",
+   "enunciado": "O rendimento da poupança, que cai isento de imposto",
+   "resposta": true,
+   "ancora": "Na poupança, o creditado já é líquido de IR — falta só a inflação.",
+   "feedbackErro": "Parece pegadinha, porque quase tudo tem desconto. A poupança é exceção: isenta de imposto de renda. O que cai é líquido — resta comparar com a inflação."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "liquido-real",
+   "pergunta": "R$ 1.000 na poupança a 0,5% ao mês: quanto rendem em 12 meses?",
+   "campo": "moeda",
+   "min": 10,
+   "max": 500,
+   "gabarito": 62,
+   "toleranciaPct": 20,
+   "fonte": "rendimento da poupança, ~0,5% ao mês (Banco Central)",
+   "verificacao": {
+    "expressao": "1000*1.005^12-1000",
+    "esperado": 61.7,
+    "tolerancia": 0.5
+   },
+   "feedbackPerto": "Perto de R$ 62 — e isento de imposto. Com inflação de 4 a 5% no ano, o ganho real fica perto de zero.",
+   "feedbackLonge": "R$ 62: 0,5% compostos por 12 meses (~6,2% no ano). O erro comum é esquecer que rende sobre rendimento — ou esperar bem mais de 0,5% ao mês."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "liquido-real",
+   "dificuldade": 1,
+   "pergunta": "Larissa viu um cartaz: 'renda 1% ao mês'. O que perguntar antes de comparar com a poupança?",
+   "ancora": "Só se compara rendimento na mesma régua: a do líquido.",
+   "alternativas": [
+    {
+     "texto": "Se o 1% é antes ou depois de taxas e imposto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se o banco do cartaz é maior que o dela",
+     "correta": false,
+     "feedbackErro": "Tamanho de banco não muda a conta do rendimento. O que muda o resultado é o desconto escondido: 1% bruto pode virar 0,7% líquido."
+    },
+    {
+     "texto": "Se 1% ao mês é mais que 0,5% ao mês",
+     "correta": false,
+     "feedbackErro": "Essa parte é direta: 1% é mais que 0,5%. A dúvida real é se os dois estão na mesma régua — a poupança é isenta; o cartaz talvez não."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "plano-e-revisao",
+   "dificuldade": 1,
+   "pergunta": "Para que serve revisar o plano de investimento de tempos em tempos?",
+   "ancora": "Revisão confere se o plano ainda vence a inflação e serve à meta.",
+   "alternativas": [
+    {
+     "texto": "Conferir se rendimento e meta seguem fazendo sentido",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Trocar de aplicação todo mês para render mais",
+     "correta": false,
+     "feedbackErro": "Trocar demais costuma custar imposto e taxas a cada saída. Revisar é conferir — a troca só vem quando a conta líquida justifica."
+    },
+    {
+     "texto": "Nada: plano bom não precisa de revisão",
+     "correta": false,
+     "feedbackErro": "Taxas mudam, inflação muda, sua renda muda. O plano que era bom no ano passado pode estar perdendo da inflação hoje — só a revisão mostra."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "inflacao",
+   "criterio": "A inflação mexe nisso?",
+   "enunciado": "O preço da mensalidade, do lanche e da passagem",
+   "resposta": true,
+   "ancora": "Inflação é isso: os mesmos itens custando mais a cada ano.",
+   "feedbackErro": "Cada aumento parece caso isolado — o lanche subiu, a passagem subiu. A inflação é a média desses aumentos: o custo de viver subindo em conjunto."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "liquido-real",
+   "criterio": "É o que sobra de verdade?",
+   "enunciado": "Render 5% num ano em que os preços subiram 5%",
+   "resposta": false,
+   "ancora": "Empatou com a inflação: o poder de compra ficou no lugar.",
+   "feedbackErro": "Render 5% parece ganho — o saldo subiu. Mas os preços subiram junto: dá para comprar o mesmo de antes. Ganho real começa acima da inflação."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "quanto-sobra-de-verdade",
+   "pergunta": "Qual frase resume esta lição?",
+   "alternativas": [
+    {
+     "texto": "O que sobra é o líquido acima da inflação — não o número da propaganda.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Rendimento anunciado é rendimento garantido no bolso.",
+     "correta": false,
+     "feedbackErro": "O anunciado é bruto: taxas, imposto e inflação ainda vão morder."
+    },
+    {
+     "texto": "Se o saldo cresceu, houve ganho de verdade.",
+     "correta": false,
+     "feedbackErro": "Saldo subindo menos que os preços é perda de poder de compra."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "liquido-real",
+   "instrucao": "Isso reduz o que sobra para você?",
+   "ancora": "Custos e inflação mordem; fachada não.",
+   "feedbackErro": "Taxa, imposto e inflação saem do seu resultado — cada um numa etapa. O prestígio do banco não entra na conta do líquido.",
+   "caixas": [
+    {
+     "id": "reduz",
+     "rotulo": "Reduz"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não reduz"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Taxa de administração",
+     "caixaCorreta": "reduz"
+    },
+    {
+     "texto": "Imposto sobre o rendimento",
+     "caixaCorreta": "reduz"
+    },
+    {
+     "texto": "Inflação do período",
+     "caixaCorreta": "reduz"
+    },
+    {
+     "texto": "Nome famoso do banco",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "liquido-real",
+   "dificuldade": 2,
+   "pergunta": "Um CDB rendeu R$ 200 brutos; IR de 20% sobre o rendimento. Qual é o líquido?",
+   "ancora": "O imposto morde o rendimento: 20% de 200 = 40. Sobram 160.",
+   "verificacao": {
+    "expressao": "200*0.8",
+    "esperado": 160
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 160",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 40",
+     "correta": false,
+     "feedbackErro": "R$ 40 é o imposto, não o que sobra. O líquido é o rendimento menos ele: 200 − 40 = 160."
+    },
+    {
+     "texto": "R$ 180",
+     "correta": false,
+     "feedbackErro": "Você descontou 10%. A alíquota era 20%: 200 × 0,20 = 40 de imposto, sobram 160."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "inflacao",
+   "criterio": "A inflação mexe nisso?",
+   "enunciado": "Uma dívida antiga com valor congelado em contrato",
+   "resposta": true,
+   "ancora": "Corrói também a dívida parada: o valor fixo fica mais leve.",
+   "feedbackErro": "Parece que inflação só atinge quem guarda. Mas ela desvaloriza qualquer valor fixo — inclusive a dívida sem correção, que fica mais leve de pagar."
+  }
+ ]
+}

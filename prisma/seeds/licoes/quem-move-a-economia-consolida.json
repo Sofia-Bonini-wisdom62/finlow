@@ -1,0 +1,327 @@
+{
+ "slug": "quem-move-a-economia-consolida",
+ "segmento": "em3",
+ "conceitoPrincipal": "agentes-economicos",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "agentes-economicos",
+   "criterio": "Análise que se sustenta?",
+   "enunciado": "Boicote de um bairro sempre derruba uma marca global",
+   "resposta": false,
+   "ancora": "Poder do consumidor tem alcance: forte no local, diluído no global.",
+   "feedbackErro": "A compra coletiva tem força, mas proporcional ao peso no faturamento. Um bairro decide a vida da padaria; para a multinacional, é arredondamento."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "distribuicao-de-renda",
+   "criterio": "Análise que se sustenta?",
+   "enunciado": "Transferir renda a quem gasta tudo aquece o consumo",
+   "resposta": true,
+   "ancora": "Renda na base gira quase 100% — vira venda no mesmo mês.",
+   "feedbackErro": "Parece dinheiro que 'só sai' do orçamento público. Mas quem tem pouco gasta quase tudo e rápido: a transferência reaparece no caixa do comércio em semanas."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "distribuicao-de-renda",
+   "criterio": "Análise que se sustenta?",
+   "enunciado": "PIB crescendo pode conviver com desigualdade aumentando",
+   "resposta": true,
+   "ancora": "O bolo pode crescer com a fatia da base encolhendo em proporção.",
+   "feedbackErro": "Crescimento parece maré que levanta todos os barcos. Mas se o ganho se concentra no topo, o país enriquece na média e a maioria fica onde estava."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "distribuicao-de-renda",
+   "dificuldade": 3,
+   "pergunta": "Um país cresce 3% ao ano, mas a renda do topo cresce 6% e a da base, 0%. E a desigualdade?",
+   "ancora": "Desigualdade é proporção: se só o topo cresce, a distância abre.",
+   "alternativas": [
+    {
+     "texto": "Aumenta: o bolo cresce e a fatia da base encolhe",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Diminui: crescimento sempre acaba distribuído",
+     "correta": false,
+     "feedbackErro": "Não há 'gotejamento' automático: sem mecanismos como salário, imposto e serviço público, o ganho fica onde nasceu — no topo."
+    },
+    {
+     "texto": "Fica igual: todos vivem no mesmo país",
+     "correta": false,
+     "feedbackErro": "Dividir o mesmo território não divide o ganho. Com a base a 0% e o topo a 6%, a distância entre eles dobra de tamanho em poucos anos."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "agentes-economicos",
+   "dificuldade": 3,
+   "pergunta": "A prefeitura congela a tarifa de ônibus abaixo do custo, sem subsídio. Efeito provável?",
+   "ancora": "Lei muda o preço, não o custo. Alguém paga: no subsídio ou no serviço.",
+   "alternativas": [
+    {
+     "texto": "Empresa corta frota e qualidade: tarifa barata, serviço pior",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só benefício: mais gente andando de ônibus para sempre",
+     "correta": false,
+     "feedbackErro": "No curto prazo, sim. Mas operar no prejuízo não dura: sem subsídio cobrindo a diferença, a empresa corta linha e frota — e o barato vira espera no ponto."
+    },
+    {
+     "texto": "O custo cai, porque a lei mandou o preço cair",
+     "correta": false,
+     "feedbackErro": "A lei alcança a tarifa, não o diesel nem os salários. Preço abaixo do custo abre um buraco que alguém cobre — o subsídio público ou a qualidade do serviço."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "circulacao-da-renda",
+   "criterio": "Conclusão correta?",
+   "enunciado": "Se gastar move a economia, poupar é sabotar o país",
+   "resposta": false,
+   "ancora": "Poupança no banco vira crédito e investimento: outro braço do giro.",
+   "feedbackErro": "A conclusão estica o conceito demais. Poupança depositada vira empréstimo para quem investe — e a reserva das famílias evita que a crise vire calote em cadeia."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "circulacao-da-renda",
+   "instrucao": "Ordene a onda: da energia cara até o emprego.",
+   "ancora": "Choque de custo viaja: fábrica → preço → consumo → contratação.",
+   "feedbackErro": "Siga o choque pela cadeia: o custo sobe na fábrica, vai ao preço, encolhe o poder de compra das famílias e volta ao comércio como venda e vaga a menos.",
+   "itens": [
+    {
+     "texto": "Energia mais cara eleva o custo das fábricas",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Fábricas repassam o custo aos preços",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Famílias compram menos com a mesma renda",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Comércio vende menos e segura contratações",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "agentes-economicos",
+   "criterio": "Papel duplo de agente?",
+   "enunciado": "O Estado é comprador gigante e também árbitro do jogo",
+   "resposta": true,
+   "ancora": "Por isso licitação tem regra: o árbitro também joga de comprador.",
+   "feedbackErro": "Parece contradição, mas é acúmulo real: o governo que escreve as regras compra merenda, obra e remédio — a lei de licitações vigia esse encontro."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "agentes-economicos",
+   "criterio": "Papel duplo de agente?",
+   "enunciado": "Você é só consumidor até assinar a carteira de trabalho",
+   "resposta": false,
+   "ancora": "Poupador, contribuinte, revendedor: os papéis não esperam o crachá.",
+   "feedbackErro": "Sem emprego formal parece que só resta consumir. Mas quem poupa financia crédito, quem paga imposto sustenta serviço, quem revende online produz oferta."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "circulacao-da-renda",
+   "pergunta": "R$ 1.000 entram no bairro e cada um regasta 80% ali mesmo. Somando as rodadas, quanto de gasto total?",
+   "campo": "moeda",
+   "min": 1000,
+   "max": 10000,
+   "gabarito": 5000,
+   "toleranciaPct": 20,
+   "fonte": "derivado da própria conta: 1.000 ÷ (1 − 0,80)",
+   "verificacao": {
+    "expressao": "1000/(1-0.8)",
+    "esperado": 5000
+   },
+   "feedbackPerto": "R$ 5.000: 1.000 + 800 + 640 + ... A soma das rodadas multiplica a entrada por 5 — é o efeito multiplicador.",
+   "feedbackLonge": "R$ 5.000. O viés é contar só a primeira rodada: renda gasta vira renda de novo, e a soma 1.000 + 800 + 640... converge para cinco vezes a entrada."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "distribuicao-de-renda",
+   "dificuldade": 3,
+   "pergunta": "Qual combinação ataca a desigualdade pelos dois lados ao mesmo tempo?",
+   "ancora": "Cobrar mais de quem pode + serviço que libera renda da base.",
+   "alternativas": [
+    {
+     "texto": "Imposto progressivo + serviço que libera renda da base",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Imposto de valor igual para todos, por justiça",
+     "correta": false,
+     "feedbackErro": "Valor igual sobre rendas desiguais pesa mais embaixo — vimos os R$ 200 virando 12,5% de uma renda e 1,25% de outra. Igualdade de taxa não é igualdade de peso."
+    },
+    {
+     "texto": "Cortar todos os impostos para a economia girar livre",
+     "correta": false,
+     "feedbackErro": "Sem receita não há escola nem SUS — e é a base que mais gasta do próprio bolso quando o serviço público some. O corte total redistribui para cima."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "agentes-economicos",
+   "dificuldade": 3,
+   "pergunta": "Quando comprar do pequeno comércio local NÃO é a melhor escolha?",
+   "ancora": "Apoiar o bairro convive com o seu limite: estourar vira dívida.",
+   "alternativas": [
+    {
+     "texto": "Quando o preço bem maior derruba o resto do seu orçamento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nunca: o local é sempre a escolha superior",
+     "correta": false,
+     "feedbackErro": "Apoiar o bairro vale — dentro do seu limite. Pagar caro demais e cair no rotativo transfere sua renda para o banco, não para o comércio local."
+    },
+    {
+     "texto": "Sempre que houver opção mais barata no app",
+     "correta": false,
+     "feedbackErro": "Diferença pequena de preço pode valer pelo emprego que sustenta perto de você. O caso muda quando a diferença é grande — o critério é o tamanho dela."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "circulacao-da-renda",
+   "criterio": "Vale como leitura final?",
+   "enunciado": "Crise em um agente contagia os outros pelo giro da renda",
+   "resposta": true,
+   "ancora": "O gasto de um é a renda do outro — a corrente transmite o choque.",
+   "feedbackErro": "Cada agente parece um mundo isolado. Mas a fábrica que demite esvazia o comércio, que corta o fornecedor: a mesma corrente que gira riqueza transmite crise."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "distribuicao-de-renda",
+   "criterio": "Vale como leitura final?",
+   "enunciado": "Basta produzir mais para todos consumirem mais",
+   "resposta": false,
+   "ancora": "Produção sem renda distribuída encalha na prateleira.",
+   "feedbackErro": "Oferta não cria demanda sozinha: consumir exige renda na mão de quem quer comprar. Produção recorde com renda concentrada é estoque cheio e loja vazia."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "agentes-economicos",
+   "pergunta": "Fechando o conceito: qual análise você leva?",
+   "alternativas": [
+    {
+     "texto": "Os agentes dependem uns dos outros; renda e regras decidem quem o giro alcança.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cada agente cuida do seu papel e ninguém afeta ninguém.",
+     "correta": false,
+     "feedbackErro": "A demissão na fábrica chegou ao comércio em semanas — a corrente conecta todos."
+    },
+    {
+     "texto": "O giro se ajusta sozinho, sem governo nem regra.",
+     "correta": false,
+     "feedbackErro": "Sem árbitro, o preço congela mas o custo não some, e o imposto pesa onde não deve. As regras desenham o giro."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "circulacao-da-renda",
+   "instrucao": "Aquece ou esfria o giro de renda local?",
+   "ancora": "Aquece o que põe renda para circular; esfria o que a retira.",
+   "feedbackErro": "O critério é o efeito sobre o gasto local: salário e obra injetam renda que vira consumo; demissão e crédito caro retiram poder de compra do circuito.",
+   "caixas": [
+    {
+     "id": "aquece",
+     "rotulo": "Aquece"
+    },
+    {
+     "id": "esfria",
+     "rotulo": "Esfria"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Demissão em massa na maior empregadora",
+     "caixaCorreta": "esfria"
+    },
+    {
+     "texto": "13º salário caindo em dezembro",
+     "caixaCorreta": "aquece"
+    },
+    {
+     "texto": "Juros altos encarecendo o crediário",
+     "caixaCorreta": "esfria"
+    },
+    {
+     "texto": "Obra pública contratando no bairro",
+     "caixaCorreta": "aquece"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "circulacao-da-renda",
+   "dificuldade": 3,
+   "pergunta": "Cidade que depende de uma única fábrica: qual é o risco estrutural?",
+   "ancora": "Fonte única de renda: um choque derruba a cidade inteira junto.",
+   "alternativas": [
+    {
+     "texto": "Um choque nela derruba renda, comércio e arrecadação juntos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nenhum: especializar é sempre mais eficiente",
+     "correta": false,
+     "feedbackErro": "Eficiente enquanto dura. Depender de fonte única concentra o risco: se a fábrica fecha ou automatiza, não há outro setor para absorver a renda perdida."
+    },
+    {
+     "texto": "Só o risco de faltar vaga para os jovens",
+     "correta": false,
+     "feedbackErro": "Esse é um sintoma. O risco estrutural é maior: a renda de toda a cadeia local — comércio, serviço, prefeitura — pendurada num único pagador."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "agentes-economicos",
+   "criterio": "Isso é verdade?",
+   "enunciado": "O salário mínimo é reajustado por lei todos os anos",
+   "resposta": true,
+   "ancora": "Reajuste anual por lei: piso nacional que reposiciona a renda da base.",
+   "feedbackErro": "Parece decisão opcional de cada governo. O reajuste anual é obrigação legal — muda o piso de milhões de salários, benefícios e aposentadorias de uma vez."
+  }
+ ]
+}

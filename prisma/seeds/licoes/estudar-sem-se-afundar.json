@@ -1,0 +1,335 @@
+{
+ "slug": "estudar-sem-se-afundar",
+ "segmento": "em3",
+ "conceitoPrincipal": "estudar-sem-se-afundar",
+ "fraseConceito": "O ensino superior tem portas sem dívida — nota, bolsa, cota — e portas com dívida. Conhecer a ordem delas protege seu projeto de vida.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "portas-de-entrada",
+   "criterio": "Gera dívida para estudar?",
+   "enunciado": "Vaga pelo SiSU em universidade federal",
+   "resposta": false,
+   "ancora": "Pública é gratuita: a nota do Enem é a entrada, não o boleto.",
+   "feedbackErro": "Como o vestibular exige preparo, parece que há um preço escondido. Mas o custo é a nota, não dinheiro: na federal não existe mensalidade nem contrato de dívida."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "portas-de-entrada",
+   "criterio": "Gera dívida para estudar?",
+   "enunciado": "Bolsa integral do ProUni em faculdade privada",
+   "resposta": false,
+   "ancora": "ProUni é bolsa, não empréstimo: estuda sem pagar e sem dever.",
+   "feedbackErro": "Faculdade privada soa como boleto na certa, e aí vem o erro. A bolsa do ProUni cobre a mensalidade sem virar dívida: ninguém cobra nada depois."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-do-financiamento",
+   "criterio": "Gera dívida para estudar?",
+   "enunciado": "FIES, pagando só depois de formado",
+   "resposta": true,
+   "ancora": "FIES é empréstimo: adia o boleto, não o apaga.",
+   "feedbackErro": "'Pagar depois de formado' soa como não pagar — é o desenho que confunde. Mas cada mensalidade financiada vira parcela futura: dívida com data para chegar."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "portas-de-entrada",
+   "dificuldade": 1,
+   "pergunta": "SiSU, ProUni e FIES são programas bem diferentes. O que os três têm em comum?",
+   "ancora": "A nota do Enem abre as três portas — gratuita, bolsa e financiada.",
+   "alternativas": [
+    {
+     "texto": "Todos usam a nota do Enem como porta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Todos são bolsas de estudo",
+     "correta": false,
+     "feedbackErro": "ProUni é bolsa, esse pedaço está certo. Mas SiSU é vaga gratuita em pública e FIES é empréstimo. O que une os três é a chave de entrada: a nota do Enem."
+    },
+    {
+     "texto": "Todos cobram mensalidade depois",
+     "correta": false,
+     "feedbackErro": "Só o FIES gera cobrança futura. SiSU não tem mensalidade e ProUni cobre a da privada. Confundir os três é o erro que sai caro — só um cria dívida."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-do-financiamento",
+   "dificuldade": 1,
+   "pergunta": "Curso de 4 anos, mensalidade de R$ 900. Quanto custa o curso inteiro, sem juros?",
+   "ancora": "R$ 900 × 48 meses = R$ 43.200. O curso custa anos, não meses.",
+   "verificacao": {
+    "expressao": "900*48",
+    "esperado": 43200,
+    "tolerancia": 0.01
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 43.200",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 7.200",
+     "correta": false,
+     "feedbackErro": "Você multiplicou por 8 — os semestres. Mas mensalidade se paga por mês: 4 anos são 48 boletos de R$ 900. O total é R$ 43.200."
+    },
+    {
+     "texto": "R$ 21.600",
+     "correta": false,
+     "feedbackErro": "Essa é a conta de 2 anos (24 × R$ 900). O curso tem 4: são 48 mensalidades, R$ 43.200. Sempre estique a conta até a formatura."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "portas-de-entrada",
+   "criterio": "É a ordem certa de tentar?",
+   "enunciado": "Buscar vaga pública e bolsa antes de assinar financiamento",
+   "resposta": true,
+   "ancora": "Primeiro as portas sem dívida; financiamento é a última porta.",
+   "feedbackErro": "O financiamento parece atalho porque aprova rápido. Mas assinar dívida antes de tentar o gratuito é pagar por algo que talvez você conseguisse de graça."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "portas-de-entrada",
+   "instrucao": "Toque na ordem de tentativa: da porta sem dívida à mais cara.",
+   "ancora": "Gratuito → bolsa → dívida barata → dívida cara. Nessa ordem.",
+   "feedbackErro": "A régua não é facilidade de entrar, é custo de sair. Vaga pública custa zero; bolsa reduz sem dever; FIES é dívida barata; banco é dívida cara.",
+   "itens": [
+    {
+     "texto": "Vaga gratuita pelo SiSU",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Bolsa ProUni ou da própria faculdade",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "FIES, com juros baixos",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Financiamento comum de banco",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "portas-de-entrada",
+   "criterio": "Se encaixa no ProUni?",
+   "enunciado": "Quem fez escola pública e tem renda familiar baixa",
+   "resposta": true,
+   "ancora": "ProUni pede renda por pessoa limitada e escola pública (ou bolsa).",
+   "feedbackErro": "Parece loteria, mas é regra objetiva: renda por pessoa dentro do limite + ensino médio em escola pública (ou bolsista integral). Perfil comum no país."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-do-financiamento",
+   "criterio": "O FIES é de graça?",
+   "enunciado": "No FIES, quem se forma começa a pagar as parcelas",
+   "resposta": true,
+   "ancora": "A cobrança começa depois da formatura — e pode durar mais que o curso.",
+   "feedbackErro": "Durante o curso não sai nada do bolso, e o cérebro registra 'grátis'. Mas o contrato só estava esperando o diploma: formado, as parcelas começam a vencer."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-do-financiamento",
+   "pergunta": "Qual é a mensalidade média de uma faculdade privada no Brasil?",
+   "campo": "moeda",
+   "min": 100,
+   "max": 5000,
+   "gabarito": 1100,
+   "toleranciaPct": 20,
+   "fonte": "mensalidade média em instituições privadas, ~R$ 1.100 (Semesp)",
+   "feedbackPerto": "Na faixa: em torno de R$ 1.100. Multiplicada por 48 meses, essa média passa de R$ 50 mil — é esse o número a planejar.",
+   "feedbackLonge": "A média fica perto de R$ 1.100. Quem chuta muito alto ancora em medicina e nas faculdades famosas — viés de ancoragem: o caso extremo não é a média."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "permanencia",
+   "dificuldade": 1,
+   "pergunta": "Yasmin passou na federal longe de casa e na privada perto, com FIES. O que entra na conta além da mensalidade?",
+   "ancora": "Permanência custa: moradia, transporte e comida decidem junto.",
+   "alternativas": [
+    {
+     "texto": "Nada: gratuito é sempre mais barato",
+     "correta": false,
+     "feedbackErro": "A mensalidade zero é real. Mas morar longe cobra aluguel, comida e passagem — a permanência tem preço. Gratuito com custo de vida alto pode sair caro."
+    },
+    {
+     "texto": "Moradia, transporte e o custo de se manter",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O nome da faculdade no diploma",
+     "correta": false,
+     "feedbackErro": "Reputação pesa na carreira, é verdade. Mas a decisão financeira se resolve antes: se o custo de permanência não fecha, nem o melhor diploma se completa."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "portas-de-entrada",
+   "dificuldade": 1,
+   "pergunta": "Antes de assinar um financiamento, por que vale ligar para a própria faculdade?",
+   "ancora": "Bolsa institucional e desconto reduzem o custo sem criar dívida.",
+   "alternativas": [
+    {
+     "texto": "Para pedir um prazo maior de pagamento",
+     "correta": false,
+     "feedbackErro": "Prazo maior só espalha o mesmo custo — ou aumenta. O telefonema vale por outra razão: bolsa e desconto cortam o valor sem criar dívida nenhuma."
+    },
+    {
+     "texto": "Muitas dão bolsa ou desconto a quem pergunta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Para reclamar do preço da mensalidade",
+     "correta": false,
+     "feedbackErro": "Reclamar desabafa, negociar resolve. A pergunta certa é 'quais bolsas e descontos existem?' — programas de nota, pontualidade e convênio raramente anunciados."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-do-financiamento",
+   "criterio": "Adiar é apagar?",
+   "enunciado": "Financiar o curso deixa o estudo de graça até a formatura",
+   "resposta": false,
+   "ancora": "Você não paga agora — mas a dívida cresce e espera na formatura.",
+   "feedbackErro": "O boleto não chega, e a sensação é de gratuidade. É o truque do 'depois': cada semestre financiado é dívida acumulando. A formatura vem com diploma e carnê."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "permanencia",
+   "criterio": "Porta sem dívida?",
+   "enunciado": "Auxílio-moradia e alimentação nas universidades públicas",
+   "resposta": true,
+   "ancora": "Além da vaga, há assistência estudantil para conseguir ficar no curso.",
+   "feedbackErro": "Pouca gente conta no ensino médio: além da vaga gratuita, universidades públicas têm auxílio-moradia, alimentação e transporte. Permanência também tem porta."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "estudar-sem-se-afundar",
+   "dificuldade": 1,
+   "pergunta": "Qual frase guarda a ideia central de hoje?",
+   "alternativas": [
+    {
+     "texto": "Financiar estudo é sempre errado: melhor nem cursar.",
+     "correta": false,
+     "feedbackErro": "Financiar pode ser a porta que resta — o erro é pular as gratuitas antes."
+    },
+    {
+     "texto": "Esgote as portas sem dívida; se financiar, saiba o total e quando pagará.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Faculdade paga vale mais porque quem paga leva a sério.",
+     "correta": false,
+     "feedbackErro": "Preço não mede qualidade de curso. A régua é custo total × o que ele entrega."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "portas-de-entrada",
+   "instrucao": "Arraste: esse caminho cria dívida ou não?",
+   "ancora": "Bolsa e vaga pública não geram cobrança; crédito de qualquer tipo, sim.",
+   "feedbackErro": "O critério não é pagar agora, é dever depois. Bolsa e vaga pública terminam sem cobrança; FIES e cartão deixam parcelas esperando por você.",
+   "caixas": [
+    {
+     "id": "sem",
+     "rotulo": "Sem dívida"
+    },
+    {
+     "id": "com",
+     "rotulo": "Vira dívida"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Bolsa integral por nota",
+     "caixaCorreta": "sem"
+    },
+    {
+     "texto": "FIES contratado no 1º semestre",
+     "caixaCorreta": "com"
+    },
+    {
+     "texto": "Vaga em universidade estadual",
+     "caixaCorreta": "sem"
+    },
+    {
+     "texto": "Matrícula parcelada no cartão de crédito",
+     "caixaCorreta": "com"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "custo-do-financiamento",
+   "dificuldade": 2,
+   "pergunta": "Financiamento de R$ 40.000, pago em 100 parcelas de R$ 480. Qual é o custo total?",
+   "ancora": "100 × R$ 480 = R$ 48.000: o 'pagar depois' custou R$ 8.000.",
+   "verificacao": {
+    "expressao": "480*100",
+    "esperado": 48000,
+    "tolerancia": 0.01
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 40.000",
+     "correta": false,
+     "feedbackErro": "Esse é o valor financiado, não o pago. As parcelas carregam juros: 100 × R$ 480 = R$ 48.000. O custo real de um crédito é a soma de tudo que sai."
+    },
+    {
+     "texto": "R$ 48.000",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 44.000",
+     "correta": false,
+     "feedbackErro": "Parece um meio-termo razoável, mas custo não se chuta: multiplica-se. 100 parcelas de R$ 480 somam R$ 48.000 — R$ 8.000 além do que foi emprestado."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custo-do-financiamento",
+   "criterio": "Abandonar zera a dívida?",
+   "enunciado": "Quem tranca o curso financiado para de dever",
+   "resposta": false,
+   "ancora": "A dívida é do contrato, não da matrícula: trancou, ela continua.",
+   "feedbackErro": "Sem aula, sem cobrança — parece lógico. Mas o banco pagou as mensalidades passadas, e esse dinheiro segue devido. Trancar pausa o curso; a dívida, não."
+  }
+ ]
+}

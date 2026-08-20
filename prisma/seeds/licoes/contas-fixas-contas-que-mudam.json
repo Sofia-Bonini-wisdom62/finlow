@@ -1,0 +1,245 @@
+{
+ "slug": "contas-fixas-contas-que-mudam",
+ "segmento": "ef35",
+ "conceitoPrincipal": "contas-fixas-contas-que-mudam",
+ "fraseConceito": "Contas fixas mantêm o valor todo mês; contas variáveis mudam conforme o uso.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fixa-ou-variavel",
+   "criterio": "É uma conta fixa?",
+   "enunciado": "Aluguel da casa",
+   "resposta": true,
+   "ancora": "O aluguel costuma ter o mesmo valor todo mês.",
+   "feedbackErro": "Parece que toda conta de casa muda. Mas o aluguel costuma ficar com o mesmo valor mês após mês — é conta fixa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fixa-ou-variavel",
+   "criterio": "É uma conta fixa?",
+   "enunciado": "Conta de luz, que muda todo mês",
+   "resposta": false,
+   "ancora": "Conta de luz varia conforme o quanto se usa — é conta variável.",
+   "feedbackErro": "Parece uma conta comum, igual às outras. Mas o valor da luz muda com o uso — por isso é uma conta variável, não fixa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prevista-ou-imprevista",
+   "criterio": "É uma despesa prevista?",
+   "enunciado": "Mensalidade da escola",
+   "resposta": true,
+   "ancora": "A mensalidade é combinada com antecedência — é despesa prevista.",
+   "feedbackErro": "Parece surpresa por chegar todo mês. Mas a mensalidade é combinada com antecedência — é despesa prevista."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "fixa-ou-variavel",
+   "dificuldade": 1,
+   "pergunta": "Qual dessas contas costuma ter o mesmo valor todo mês?",
+   "ancora": "O aluguel é combinado com valor fixo, mês após mês.",
+   "alternativas": [
+    {
+     "texto": "Aluguel",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Conta de água",
+     "correta": false,
+     "feedbackErro": "A conta de água muda conforme o quanto a casa consome — não tem valor fixo."
+    },
+    {
+     "texto": "Conta de luz",
+     "correta": false,
+     "feedbackErro": "A conta de luz muda conforme o uso de aparelhos — também não tem valor fixo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "prevista-ou-imprevista",
+   "dificuldade": 1,
+   "pergunta": "O carro furou o pneu de repente. Que tipo de despesa é essa?",
+   "ancora": "Ninguém planeja furar um pneu — é despesa imprevista.",
+   "alternativas": [
+    {
+     "texto": "Imprevista",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Prevista",
+     "correta": false,
+     "feedbackErro": "Prevista é a que dá pra planejar com antecedência. Furar o pneu acontece de surpresa — é imprevista."
+    },
+    {
+     "texto": "Fixa",
+     "correta": false,
+     "feedbackErro": "Fixa é a que se repete todo mês com o mesmo valor. Furar um pneu não se repete assim — é imprevista."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "fixa-ou-variavel",
+   "criterio": "É uma conta que muda de valor?",
+   "enunciado": "Conta de água, que varia conforme o uso",
+   "resposta": true,
+   "ancora": "O valor da água sobe ou desce de acordo com o consumo.",
+   "feedbackErro": "Parece uma conta como qualquer outra do mês. Mas o valor da água muda de acordo com o quanto se usa em casa."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "fixa-ou-variavel",
+   "instrucao": "É conta fixa ou variável? Arraste.",
+   "ancora": "Fixa tem valor combinado; variável muda com o uso.",
+   "feedbackErro": "É fácil confundir as duas. Fixa mantém o mesmo valor combinado; variável sobe ou desce conforme o uso.",
+   "caixas": [
+    { "id": "fixa", "rotulo": "Fixa" },
+    { "id": "variavel", "rotulo": "Variável" }
+   ],
+   "itens": [
+    { "texto": "Mensalidade da escola", "caixaCorreta": "fixa" },
+    { "texto": "Conta de luz", "caixaCorreta": "variavel" },
+    { "texto": "Aluguel", "caixaCorreta": "fixa" },
+    { "texto": "Conta de água", "caixaCorreta": "variavel" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "prevista-ou-imprevista",
+   "criterio": "É uma despesa imprevista?",
+   "enunciado": "Remédio comprado depois de um resfriado repentino",
+   "resposta": true,
+   "ancora": "Ninguém planeja adoecer — é despesa imprevista.",
+   "feedbackErro": "Parece só mais uma compra do mês. Mas ninguém planeja ficar resfriado — o remédio comprado assim é imprevisto."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "fixa-ou-variavel",
+   "dificuldade": 1,
+   "pergunta": "Diego pagou R$ 50 de luz num mês e R$ 80 no outro. Por que isso acontece?",
+   "ancora": "Conta de luz muda com o consumo — por isso o valor varia.",
+   "alternativas": [
+    {
+     "texto": "Porque é uma conta variável, que muda com o uso",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque é uma conta fixa, com erro na cobrança",
+     "correta": false,
+     "feedbackErro": "Não é erro: a luz é conta variável, e o valor muda de acordo com quanto se gastou de energia."
+    },
+    {
+     "texto": "Porque toda conta muda de valor sempre",
+     "correta": false,
+     "feedbackErro": "Nem toda conta muda: o aluguel, por exemplo, costuma manter o mesmo valor. A luz é que varia com o uso."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "prevista-ou-imprevista",
+   "criterio": "É uma despesa prevista?",
+   "enunciado": "Pagamento do plano de internet, todo mês",
+   "resposta": true,
+   "ancora": "É um valor combinado e esperado todo mês — despesa prevista.",
+   "feedbackErro": "Parece surpresa por vir toda hora. Mas é um valor combinado e esperado todo mês — despesa prevista."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "fixa-ou-variavel",
+   "criterio": "Ajuda a planejar o orçamento?",
+   "enunciado": "Saber quais contas são fixas antes de fazer o orçamento",
+   "resposta": true,
+   "ancora": "Saber o que é fixo facilita calcular o que sobra pro resto.",
+   "feedbackErro": "Parece um detalhe sem importância. Mas saber o que é fixo ajuda a calcular quanto sobra pras contas que variam."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "fixa-ou-variavel",
+   "pergunta": "Qual frase resume a lição?",
+   "alternativas": [
+    {
+     "texto": "Contas fixas têm valor previsível; contas variáveis mudam com o uso",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Toda conta do mês tem sempre o mesmo valor",
+     "correta": false,
+     "feedbackErro": "Não é assim: água e luz mudam conforme o uso — só as fixas mantêm o mesmo valor."
+    },
+    {
+     "texto": "Não dá pra saber quais contas vão mudar",
+     "correta": false,
+     "feedbackErro": "Dá, sim: contas variáveis, como água e luz, são conhecidas por mudarem — o que muda é só o valor exato."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "fixa-ou-variavel",
+   "dificuldade": 2,
+   "pergunta": "A família paga R$ 600 de aluguel todo mês e gastou R$ 120 de água num mês, R$ 90 no outro. Qual delas é fixa?",
+   "ancora": "O aluguel manteve R$ 600 nos dois meses — é a conta fixa.",
+   "alternativas": [
+    {
+     "texto": "O aluguel, que continua R$ 600",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A água, porque tem valor parecido nos dois meses",
+     "correta": false,
+     "feedbackErro": "R$ 120 e R$ 90 são valores diferentes — isso já mostra que a água varia, não é fixa."
+    },
+    {
+     "texto": "As duas, porque ambas têm valor definido",
+     "correta": false,
+     "feedbackErro": "Só o aluguel manteve o mesmo valor nos dois meses. A água mudou de R$ 120 pra R$ 90 — é variável."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "prevista-ou-imprevista",
+   "criterio": "É despesa imprevista?",
+   "enunciado": "Presente de aniversário planejado com meses de antecedência",
+   "resposta": false,
+   "ancora": "Planejar com antecedência é o que caracteriza uma despesa prevista.",
+   "feedbackErro": "Presente parece gasto extra, e por isso confunde. Mas planejado com meses de antecedência, ele é despesa prevista."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "prevista-ou-imprevista",
+   "instrucao": "Toque na ordem de quem é mais fácil de prever pra mais difícil.",
+   "ancora": "Fixo é o mais fácil de prever; imprevisto é o mais difícil.",
+   "feedbackErro": "É tentador pensar que tudo é igualmente difícil de prever. Mas o valor fixo é o mais fácil; o imprevisto, o mais difícil.",
+   "itens": [
+    { "texto": "Aluguel", "posicaoCorreta": 1 },
+    { "texto": "Mensalidade da escola", "posicaoCorreta": 2 },
+    { "texto": "Conta de luz", "posicaoCorreta": 3 },
+    { "texto": "Conserto urgente do carro", "posicaoCorreta": 4 }
+   ]
+  }
+ ]
+}

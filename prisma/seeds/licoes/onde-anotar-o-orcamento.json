@@ -1,0 +1,271 @@
+{
+ "slug": "onde-anotar-o-orcamento",
+ "segmento": "ef67",
+ "conceitoPrincipal": "onde-anotar-o-orcamento",
+ "fraseConceito": "Orçamento pode ser anotado em caderno, planilha ou app; renda pode ser formal, informal, fixa ou esporádica.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "ferramentas-de-orcamento",
+   "criterio": "Serve pra anotar orçamento?",
+   "enunciado": "Um caderno com uma coluna de entradas e outra de saídas",
+   "resposta": true,
+   "ancora": "Qualquer registro organizado de entradas e saídas é orçamento.",
+   "feedbackErro": "Não precisa ser digital nem bonito. Um caderno com entradas e saídas separadas já cumpre a função de um orçamento."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "ferramentas-de-orcamento",
+   "criterio": "Serve pra anotar orçamento?",
+   "enunciado": "Guardar os recibos numa gaveta sem nunca somar nada",
+   "resposta": false,
+   "ancora": "Guardar sem somar não organiza nada — falta o registro em si.",
+   "feedbackErro": "Guardar papel parece um começo de controle. Mas sem somar ou organizar, não vira orçamento — falta o registro em si."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "tipos-de-renda",
+   "criterio": "Isso é renda formal?",
+   "enunciado": "Um salário com carteira assinada, registrado na empresa",
+   "resposta": true,
+   "ancora": "Registro em carteira é o que torna a renda formal.",
+   "feedbackErro": "É justamente o registro em carteira que define a renda como formal — com direitos e comprovação garantidos por lei."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "ferramentas-de-orcamento",
+   "dificuldade": 1,
+   "pergunta": "Qual é a maior vantagem de um aplicativo de orçamento sobre um caderno?",
+   "ancora": "O app soma e organiza sozinho; no caderno, você faz tudo à mão.",
+   "alternativas": [
+    {
+     "texto": "Ele soma e organiza os valores automaticamente",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ele é a única forma de controlar o dinheiro direito",
+     "correta": false,
+     "feedbackErro": "Caderno e planilha também controlam bem o dinheiro, se usados com constância. A vantagem do app é só automatizar a conta."
+    },
+    {
+     "texto": "Ele nunca pode ter erro de nenhum tipo",
+     "correta": false,
+     "feedbackErro": "App também pode ter erro, se a pessoa digitar o valor errado. A vantagem real é ele calcular sozinho, não ser infalível."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "tipos-de-renda",
+   "dificuldade": 1,
+   "pergunta": "O que diferencia renda frequente de renda esporádica?",
+   "ancora": "Frequente se repete todo mês; esporádica aparece de vez em quando.",
+   "alternativas": [
+    {
+     "texto": "A frequente se repete todo mês; a esporádica é irregular",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A frequente é sempre maior em valor que a esporádica",
+     "correta": false,
+     "feedbackErro": "Não é sobre o valor: um bico pode pagar mais que um salário em um mês. A diferença é a regularidade, não o tamanho."
+    },
+    {
+     "texto": "A esporádica é sempre em dinheiro; a frequente, no banco",
+     "correta": false,
+     "feedbackErro": "As duas podem chegar em dinheiro ou em conta bancária. O que muda entre elas é se acontecem sempre ou de vez em quando."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "ferramentas-de-orcamento",
+   "criterio": "Serve pra anotar orçamento?",
+   "enunciado": "Uma planilha eletrônica com colunas de gasto por categoria",
+   "resposta": true,
+   "ancora": "Planilha organizada por categoria também é orçamento.",
+   "feedbackErro": "Parece só uma tabela no computador. Mas separar os gastos por categoria numa planilha é exatamente o que faz dela um orçamento."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "ferramentas-de-orcamento",
+   "instrucao": "Isso é uma ferramenta pra anotar orçamento, ou não é?",
+   "ancora": "Ferramenta de orçamento organiza entradas e saídas de dinheiro.",
+   "feedbackErro": "Só conta como ferramenta o que registra e organiza entradas e saídas — o resto não cumpre essa função.",
+   "caixas": [
+    {
+     "id": "sim",
+     "rotulo": "É ferramenta"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é ferramenta"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Um bloco de notas com os gastos do mês anotados",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Um álbum de fotos da família",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Um aplicativo que separa gasto fixo de gasto variável",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Uma lista de músicas favoritas no celular",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "tipos-de-renda",
+   "criterio": "Isso é renda formal?",
+   "enunciado": "Vender doces pela vizinhança sem nenhum registro",
+   "resposta": false,
+   "ancora": "Sem registro nenhum, essa renda é informal.",
+   "feedbackErro": "Vender é um trabalho de verdade, mas sem registro (como MEI ou carteira), essa renda é classificada como informal."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "tipos-de-renda",
+   "dificuldade": 1,
+   "pergunta": "Uma família tem salário fixo e, às vezes, um extra de bico no fim de semana. Como planejar o orçamento?",
+   "ancora": "Fixo cobre os gastos certos; o esporádico vira reforço, não base.",
+   "alternativas": [
+    {
+     "texto": "Contar o extra do bico como parte fixa do orçamento",
+     "correta": false,
+     "feedbackErro": "O bico não é garantido todo mês. Contar com ele como fixo deixa o orçamento sem base quando ele não aparecer."
+    },
+    {
+     "texto": "Basear os fixos no salário, tratando o bico como reforço",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ignorar o salário fixo e planejar só com o bico",
+     "correta": false,
+     "feedbackErro": "O salário é a renda mais confiável, garantida todo mês. Ignorá-lo joga fora a base mais estável do orçamento."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "ferramentas-de-orcamento",
+   "criterio": "Serve pra anotar orçamento?",
+   "enunciado": "Um cofrinho de moedas, sem anotar quanto entra ou sai",
+   "resposta": false,
+   "ancora": "Guardar dinheiro não é o mesmo que registrar entradas e saídas.",
+   "feedbackErro": "O cofrinho guarda dinheiro, mas não registra nada. Orçamento precisa de um registro de quanto entra e quanto sai."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "tipos-de-renda",
+   "criterio": "Isso é renda formal?",
+   "enunciado": "Trabalhar como MEI, registrado e emitindo nota",
+   "resposta": true,
+   "ancora": "MEI registrado é uma forma de renda formal, mesmo sem carteira.",
+   "feedbackErro": "Não é só carteira assinada que torna renda formal. MEI registrado e com nota também conta como renda formal."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "onde-anotar-o-orcamento",
+   "pergunta": "Qual frase resume o que você viu?",
+   "alternativas": [
+    {
+     "texto": "Só planilha eletrônica serve de verdade como orçamento",
+     "correta": false,
+     "feedbackErro": "Caderno, bloco de notas e app também funcionam, desde que registrem entradas e saídas com constância."
+    },
+    {
+     "texto": "Vários registros servem de orçamento; renda pode ser formal ou informal",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Renda informal nunca deve entrar no orçamento",
+     "correta": false,
+     "feedbackErro": "Renda informal também é dinheiro de verdade e deve entrar no orçamento — só costuma ser tratada como menos previsível."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "ferramentas-de-orcamento",
+   "instrucao": "Ordene da ferramenta que soma mais rápido pra quem menos soma rápido.",
+   "ancora": "O app automatiza a conta; o caderno depende de somar à mão.",
+   "feedbackErro": "O que muda a velocidade é o quanto a ferramenta automatiza a soma dos valores.",
+   "itens": [
+    {
+     "texto": "Aplicativo que soma sozinho",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Planilha com fórmula de soma",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Caderno somado à mão",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "tipos-de-renda",
+   "dificuldade": 2,
+   "pergunta": "Por que vender roupas usadas de vez em quando é considerado renda esporádica?",
+   "ancora": "Não acontece com regularidade fixa, então não é renda frequente.",
+   "alternativas": [
+    {
+     "texto": "Porque não acontece com regularidade fixa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque roupa usada vale menos que roupa nova",
+     "correta": false,
+     "feedbackErro": "O valor da roupa não define o tipo de renda. O que define é a regularidade: acontece de vez em quando, não todo mês."
+    },
+    {
+     "texto": "Porque é proibido vender roupa usada sem registro",
+     "correta": false,
+     "feedbackErro": "Não há proibição nesse caso. O que torna essa renda esporádica é simplesmente não se repetir com regularidade."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "ferramentas-de-orcamento",
+   "criterio": "Serve pra anotar orçamento?",
+   "enunciado": "Um aplicativo que só mostra o saldo, sem separar entrada e saída",
+   "resposta": false,
+   "ancora": "Sem separar entrada de saída, falta a organização de um orçamento.",
+   "feedbackErro": "Mostrar só o saldo final não conta a história do dinheiro. Orçamento precisa separar o que entrou do que saiu."
+  }
+ ]
+}

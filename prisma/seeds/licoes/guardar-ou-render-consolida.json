@@ -1,0 +1,275 @@
+{
+ "slug": "guardar-ou-render-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "guardar-ou-render",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-investir",
+   "criterio": "Ainda é investir, caso raro?",
+   "enunciado": "Um mês em que a poupança rende R$0, porque a taxa de referência ficou zerada",
+   "resposta": false,
+   "ancora": "Sem render naquele mês, funcionou como poupar.",
+   "feedbackErro": "É a mesma aplicação de sempre, parece que devia continuar investir. Mas o que define é render; sem render, funcionou como poupar."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-investir",
+   "criterio": "Ainda é investir, caso raro?",
+   "enunciado": "Um valor investido que cresceu em reais, mas rendeu menos que a inflação do período",
+   "resposta": true,
+   "ancora": "Cresceu em reais, então é investir — só perdeu pra inflação.",
+   "feedbackErro": "Pode parecer que perder poder de compra tira o status de investir, mas o critério é render nominalmente — isso aconteceu."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-investir",
+   "criterio": "Ainda é investir, caso raro?",
+   "enunciado": "Dinheiro guardado numa aplicação que trava o saque por 2 anos, mas não paga juro nenhum enquanto isso",
+   "resposta": false,
+   "ancora": "Travar saque não é render — sem juro, é poupar bloqueado.",
+   "feedbackErro": "A trava do saque parece 'coisa de investimento', mas o que define investir é render, não a restrição de saque. Sem juro, é poupar bloqueado."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "poupar-vs-investir",
+   "dificuldade": 3,
+   "pergunta": "Um valor rendeu 4% no ano, mas a inflação do período foi de 6%. Isso ainda foi investir?",
+   "ancora": "Investir é render nominalmente; vencer a inflação é outro critério.",
+   "alternativas": [
+    {
+     "texto": "Não, porque perder poder de compra desfaz o investimento",
+     "correta": false,
+     "feedbackErro": "O critério de investir é render nominalmente, não vencer a inflação. Perder poder de compra é um problema de resultado, não desfaz o fato de ter rendido."
+    },
+    {
+     "texto": "Sim, rendeu nominalmente — só que não venceu a inflação",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque toda aplicação sempre vence a inflação",
+     "correta": false,
+     "feedbackErro": "Não é verdade — esse próprio caso mostra o contrário: 4% de rendimento contra 6% de inflação é perda real, mesmo tendo rendido."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "reserva-para-imprevistos",
+   "dificuldade": 3,
+   "pergunta": "Alguém usa a reserva numa emergência médica, e no mês seguinte surge outro imprevisto. O que isso revela?",
+   "ancora": "Reserva pequena cobre um imprevisto, pode faltar pro próximo.",
+   "alternativas": [
+    {
+     "texto": "Que a reserva era grande demais",
+     "correta": false,
+     "feedbackErro": "O problema aqui não é excesso — é o oposto: a reserva se esgotou rápido demais pra cobrir dois imprevistos seguidos."
+    },
+    {
+     "texto": "Que a reserva não era grande o bastante pra dois imprevistos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que reserva nunca deveria ser usada, nem em emergência",
+     "correta": false,
+     "feedbackErro": "O uso na emergência médica foi correto — é exatamente pra isso que ela existe. O problema é o tamanho, não o uso."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "reserva-para-imprevistos",
+   "criterio": "Reserva NÃO seria a melhor escolha aqui?",
+   "enunciado": "Usar a reserva de emergência pra pagar a entrada de uma casa, um plano de longo prazo",
+   "resposta": true,
+   "ancora": "Reserva é pra imprevisto, não plano de longo prazo.",
+   "feedbackErro": "Comprar casa é objetivo real e planejado — reserva é pra imprevisto, e usá-la aqui deixa exposto num aperto de verdade."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "poupar-vs-investir",
+   "instrucao": "Nesse mês específico, isso rendeu, ou ficou parado?",
+   "ancora": "O que importa é o comportamento naquele mês específico.",
+   "feedbackErro": "O critério muda de mês pra mês: mesmo a poupança, que costuma render, pode ficar parada num mês de taxa zerada — o nome da aplicação não garante nada sozinho.",
+   "caixas": [
+    {
+     "id": "rendeu",
+     "rotulo": "Rendeu"
+    },
+    {
+     "id": "parado",
+     "rotulo": "Ficou parado"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Poupança num mês de taxa de referência zerada",
+     "caixaCorreta": "parado"
+    },
+    {
+     "texto": "Poupança num mês de taxa normal, positiva",
+     "caixaCorreta": "rendeu"
+    },
+    {
+     "texto": "Dinheiro no cofrinho, em qualquer mês",
+     "caixaCorreta": "parado"
+    },
+    {
+     "texto": "Aplicação que pagou juro mesmo baixo naquele mês",
+     "caixaCorreta": "rendeu"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "reserva-para-imprevistos",
+   "criterio": "Reserva cumpriu o papel, mesmo pequena?",
+   "enunciado": "Uma reserva de R$300 cobrindo o conserto urgente de uma torneira, sem precisar de empréstimo",
+   "resposta": true,
+   "ancora": "R$300 resolveu sem dívida — reserva não precisa ser grande.",
+   "feedbackErro": "Pode parecer que só reserva grande 'conta de verdade', mas mesmo um valor pequeno já cumpre o papel quando cobre o imprevisto sem gerar dívida."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "poupar-vs-investir",
+   "dificuldade": 3,
+   "pergunta": "Aplicação rendeu R$45 sobre R$3.000, mas taxas no resgate consumiram os R$45. O saldo final aumentou?",
+   "ancora": "R$45 de rendimento menos R$45 de taxas = R$0 de ganho líquido.",
+   "verificacao": {
+    "expressao": "45-45",
+    "esperado": 0
+   },
+   "alternativas": [
+    {
+     "texto": "Sim, porque rendeu R$45",
+     "correta": false,
+     "feedbackErro": "O rendimento existiu, mas foi consumido inteiro pelas taxas — o que sobrou no bolso, no fim, não aumentou."
+    },
+    {
+     "texto": "Não, porque o custo do resgate consumiu todo o rendimento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, porque investimento nunca rende de verdade",
+     "correta": false,
+     "feedbackErro": "Rendeu sim, R$45 — o problema nesse caso foi o custo cobrado no resgate ter anulado exatamente esse ganho, não a falta de rendimento em si."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-investir",
+   "criterio": "Investir NÃO supera poupar aqui?",
+   "enunciado": "Um rendimento tão pequeno que, descontada a taxa de manutenção da conta, ficou negativo",
+   "resposta": true,
+   "ancora": "Taxa maior que o rendimento deixa o saldo líquido pior.",
+   "feedbackErro": "Pode parecer que qualquer rendimento é vantagem, mas se a taxa supera o rendimento, o líquido fica pior que guardar sem custo."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "reserva-para-imprevistos",
+   "criterio": "Reserva usada fora do propósito?",
+   "enunciado": "Usar a reserva pra pagar um curso que estava nos planos há meses, com data marcada",
+   "resposta": true,
+   "ancora": "Curso planejado com data marcada é objetivo, não imprevisto.",
+   "feedbackErro": "Pode parecer razoável usar a reserva pra algo já planejado, mas planejado com antecedência não é imprevisto — foge do propósito da reserva."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "poupar-vs-investir",
+   "pergunta": "Depois de ver os casos-limite, qual frase é mais completa?",
+   "alternativas": [
+    {
+     "texto": "Toda aplicação que rende sempre vence a inflação e nunca tem custo",
+     "correta": false,
+     "feedbackErro": "Os casos mostraram o contrário: rendimento pode perder pra inflação, e taxas podem consumir o ganho todo."
+    },
+    {
+     "texto": "Investir é render; pode não vencer inflação ou custo; reserva é pro imprevisto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Reserva serve pra qualquer plano, contanto que tenha data marcada",
+     "correta": false,
+     "feedbackErro": "Ter data marcada não torna algo imprevisto — plano com data é objetivo de longo prazo, não emergência."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "poupar-vs-investir",
+   "pergunta": "R$5.000 renderam 3% no ano, inflação foi 5%. Qual a perda real, em pontos percentuais?",
+   "campo": "percentual",
+   "min": 1,
+   "max": 5,
+   "gabarito": 2,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto sobre as duas taxas informadas",
+   "verificacao": {
+    "expressao": "5-3",
+    "esperado": 2
+   },
+   "feedbackPerto": "Isso mesmo: 5% de inflação menos 3% de rendimento = 2 pontos percentuais de perda real.",
+   "feedbackLonge": "A perda real é ~2 pontos percentuais. Fácil somar as taxas em vez de subtrair, ou esquecer que rendimento nominal não é poder de compra."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "reserva-para-imprevistos",
+   "instrucao": "Ordene do uso mais alinhado ao propósito da reserva ao menos.",
+   "ancora": "O propósito enfraquece quanto mais previsível o evento fica.",
+   "feedbackErro": "O critério é o quanto o evento é inesperado e essencial — do acidente doméstico (mais alinhado) ao lançamento de eletrônico (menos alinhado).",
+   "itens": [
+    {
+     "texto": "Cobrir um conserto emergencial depois de um acidente doméstico",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Pagar meses de aluguel após perda inesperada de renda",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Antecipar a entrada de um plano de viagem já programado há meses",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Comprar um lançamento de eletrônico assim que sai",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-investir",
+   "criterio": "Investir supera poupar, com custos?",
+   "enunciado": "R$2.000 que renderam R$30 numa aplicação com R$5 de taxa de manutenção no mês",
+   "resposta": true,
+   "verificacao": {
+    "expressao": "30-5",
+    "esperado": 25
+   },
+   "ancora": "R$30 de rendimento menos R$5 de taxa ainda deixa R$25 líquidos.",
+   "feedbackErro": "O rendimento bruto de R$30 chama atenção, mas o que importa é o líquido depois da taxa: R$25 ainda é mais que os R$0 de guardar parado, então superou sim."
+  }
+ ]
+}

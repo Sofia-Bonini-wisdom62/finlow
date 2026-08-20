@@ -1,0 +1,298 @@
+{
+ "slug": "colchao-aposentadoria-e-planeta",
+ "segmento": "ef89",
+ "conceitoPrincipal": "colchao-aposentadoria-e-planeta",
+ "fraseConceito": "Poupar dá resiliência para imprevistos, segurança para a aposentadoria e pode até ajudar o planeta.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "colchao-de-emergencia",
+   "criterio": "Isso é reserva de emergência?",
+   "enunciado": "Dinheiro de fácil acesso, guardado pra imprevistos como perder o emprego",
+   "resposta": true,
+   "ancora": "Colchão de emergência precisa ser líquido — fácil de sacar rápido.",
+   "feedbackErro": "Guardar dinheiro sozinho não basta pra ser colchão. Mas nesse caso, além de guardado, ele é de fácil acesso — encaixa direitinho."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "colchao-de-emergencia",
+   "criterio": "Isso é reserva de emergência?",
+   "enunciado": "Dinheiro aplicado numa previdência, travado até os 60 anos",
+   "resposta": false,
+   "ancora": "Isso é aposentadoria, não colchão — fica travado por décadas.",
+   "feedbackErro": "Também é uma forma de poupar, e por isso confunde. Mas travado por décadas, ele não serve pra um imprevisto amanhã."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "colchao-de-emergencia",
+   "criterio": "Isso é reserva de emergência?",
+   "enunciado": "Dinheiro guardado só pra comprar um tênis novo",
+   "resposta": false,
+   "ancora": "Colchão é pra imprevistos, não pra desejos de consumo.",
+   "feedbackErro": "É dinheiro guardado, e por isso parece a mesma coisa. Mas colchão tem destino certo: cobrir imprevisto, não um desejo planejado."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "colchao-de-emergencia",
+   "dificuldade": 1,
+   "pergunta": "Por que ter um colchão de emergência te deixa mais resiliente?",
+   "ancora": "Ele evita que um imprevisto vire uma dívida cara.",
+   "alternativas": [
+    {
+     "texto": "Porque ele rende mais que qualquer outro investimento",
+     "correta": false,
+     "feedbackErro": "Colchão prioriza acesso rápido, não o maior rendimento possível."
+    },
+    {
+     "texto": "Porque você não precisa se endividar num imprevisto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque ele garante que nada de ruim vai acontecer",
+     "correta": false,
+     "feedbackErro": "Ele não evita o imprevisto — só evita que o imprevisto vire uma crise maior."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "aposentadoria",
+   "dificuldade": 1,
+   "pergunta": "Clarice guarda R$ 100 por mês desde os 20 anos, a 0,5% ao mês. Por que começar cedo importa tanto?",
+   "ancora": "R$ 100 por mês a 0,5% ao mês por 40 anos somam quase R$ 199 mil.",
+   "verificacao": { "expressao": "100*((1.005^480-1)/0.005)", "esperado": 199149.07, "tolerancia": 100 },
+   "alternativas": [
+    {
+     "texto": "Porque o valor guardado por mês é maior no início",
+     "correta": false,
+     "feedbackErro": "O valor mensal nem precisa ser maior — o que muda tudo é o tempo pros juros compostos renderem."
+    },
+    {
+     "texto": "Porque o tempo extra deixa os juros renderem mais tempo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque depois dos 20 anos não dá mais pra guardar dinheiro",
+     "correta": false,
+     "feedbackErro": "Sempre dá pra começar — só que com menos tempo de juros compostos trabalhando a seu favor."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "investimento-sustentavel",
+   "criterio": "É um investimento sustentável?",
+   "enunciado": "Um fundo que investe só em empresas de energia renovável",
+   "resposta": true,
+   "ancora": "Fundos ESG priorizam empresas com práticas ambientais melhores.",
+   "feedbackErro": "Pode parecer só rótulo de marketing. Mas selecionar empresas por critério ambiental é o que define um investimento sustentável."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "colchao-de-emergencia",
+   "instrucao": "Ordene do mais líquido (saca rápido) pro menos líquido.",
+   "ancora": "Colchão de emergência precisa ficar nas opções mais líquidas.",
+   "feedbackErro": "Rendimento alto não ajuda se você não consegue sacar rápido — liquidez é o que decide a ordem aqui.",
+   "itens": [
+    { "texto": "Dinheiro na conta corrente", "posicaoCorreta": 1 },
+    { "texto": "Poupança", "posicaoCorreta": 2 },
+    { "texto": "Previdência privada, com carência de resgate", "posicaoCorreta": 3 },
+    { "texto": "Imóvel", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "colchao-de-emergencia",
+   "criterio": "Serve como colchão de emergência?",
+   "enunciado": "Reserva equivalente a 3 a 6 meses de despesas, de fácil acesso",
+   "resposta": true,
+   "ancora": "3 a 6 meses de despesas é a referência comum pra esse colchão.",
+   "feedbackErro": "Pode parecer um número arbitrário. Mas 3 a 6 meses de despesas é a referência mais usada pra cobrir imprevistos."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "aposentadoria",
+   "criterio": "Ajuda a construir a aposentadoria?",
+   "enunciado": "Guardar um valor pequeno, mas todo mês, desde cedo",
+   "resposta": true,
+   "ancora": "Constância e tempo pesam mais que o valor de cada aporte.",
+   "feedbackErro": "Parece pouco relevante perto de guardar valores grandes. Mas constância e tempo, juntos, pesam mais que o tamanho do aporte."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "colchao-de-emergencia",
+   "pergunta": "Despesas mensais de R$ 1.200. Qual o valor de um colchão de 3 meses?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 5000,
+   "gabarito": 3600,
+   "toleranciaPct": 20,
+   "fonte": "referência comum de 3 a 6 meses de despesas para reserva de emergência",
+   "verificacao": { "expressao": "1200*3", "esperado": 3600 },
+   "feedbackPerto": "Isso mesmo — R$ 3.600 cobrem 3 meses de despesas.",
+   "feedbackLonge": "O colchão de 3 meses é R$ 3.600 (3 × R$ 1.200) — o mínimo pra não se endividar num imprevisto."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "aposentadoria",
+   "dificuldade": 2,
+   "pergunta": "Mesmo total investido, R$ 96 mil: R$ 200/mês por 40 anos, ou R$ 400/mês nos últimos 20. Qual acumula mais?",
+   "ancora": "O plano de 40 anos acumula cerca de R$ 213 mil a mais.",
+   "verificacao": { "expressao": "200*((1.005^480-1)/0.005) - 400*((1.005^240-1)/0.005)", "esperado": 213481.79, "tolerancia": 1000 },
+   "alternativas": [
+    {
+     "texto": "O de R$ 400/mês, porque o valor mensal é maior",
+     "correta": false,
+     "feedbackErro": "Valor mensal maior não compensa ter metade do tempo pros juros compostos renderem."
+    },
+    {
+     "texto": "O de R$ 200/mês, porque o tempo extra rende muito mais",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Os dois acumulam o mesmo, já que o total investido é igual",
+     "correta": false,
+     "feedbackErro": "Total investido igual não significa resultado igual — o tempo de juros compostos muda tudo."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "investimento-sustentavel",
+   "dificuldade": 2,
+   "pergunta": "Um fundo sustentável rende parecido com um fundo comum, mas evita empresas poluidoras. Isso é motivo pra escolher?",
+   "ancora": "Com retorno parecido, o critério ambiental pode desempatar a escolha.",
+   "alternativas": [
+    {
+     "texto": "Não, porque render igual não compensa mudar de fundo",
+     "correta": false,
+     "feedbackErro": "Quando o retorno é parecido, o critério ambiental pode ser exatamente o que desempata a escolha."
+    },
+    {
+     "texto": "Sim, pode desempatar quando o retorno é parecido",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, mas só se render mais que qualquer outro fundo",
+     "correta": false,
+     "feedbackErro": "Não precisa render mais que tudo — precisa ser competitivo, o resto é critério de escolha."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "colchao-de-emergencia",
+   "criterio": "Isso aumenta sua resiliência financeira?",
+   "enunciado": "Ter uma reserva de fácil acesso pra imprevistos",
+   "resposta": true,
+   "ancora": "Resiliência é resistir a um imprevisto sem quebrar o orçamento.",
+   "feedbackErro": "Parece só uma reserva parada, sem função clara. Mas é ela que evita que um imprevisto vire uma crise maior."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "aposentadoria",
+   "criterio": "Isso ajuda na aposentadoria?",
+   "enunciado": "Deixar pra começar a guardar só depois dos 40 anos",
+   "resposta": false,
+   "ancora": "Menos tempo de juros compostos significa acumular bem menos.",
+   "feedbackErro": "Parece que sobra tempo depois. Mas cada ano de atraso corta anos de juros compostos rendendo sobre o que já rendeu."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "colchao-aposentadoria-e-planeta",
+   "pergunta": "Qual frase resume o que você viu nesta lição?",
+   "alternativas": [
+    {
+     "texto": "Só importa a emergência; aposentadoria e sustentabilidade são separadas.",
+     "correta": false,
+     "feedbackErro": "São objetivos diferentes, mas todos nascem do mesmo hábito de poupar e pensar no futuro."
+    },
+    {
+     "texto": "Poupar dá resiliência hoje, segurança amanhã, e pode ajudar o planeta.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quanto mais cedo aposentar, melhor — não importa quanto se guardou.",
+     "correta": false,
+     "feedbackErro": "O que importa não é a idade de aposentar, é o tempo que o dinheiro teve pra render."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "colchao-de-emergencia",
+   "instrucao": "É reserva de emergência ou não?",
+   "ancora": "Colchão precisa ser líquido e reservado só pra imprevistos.",
+   "feedbackErro": "Guardar dinheiro não é a mesma coisa que ter colchão — ele precisa ser líquido e sem outro destino.",
+   "caixas": [
+    { "id": "sim", "rotulo": "É reserva" },
+    { "id": "nao", "rotulo": "Não é" }
+   ],
+   "itens": [
+    { "texto": "Dinheiro líquido pra 3 a 6 meses de despesas", "caixaCorreta": "sim" },
+    { "texto": "Investimento travado por 10 anos", "caixaCorreta": "nao" },
+    { "texto": "Poupança de fácil acesso", "caixaCorreta": "sim" },
+    { "texto": "Dinheiro guardado pra viagem de fim de ano", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "aposentadoria",
+   "dificuldade": 3,
+   "pergunta": "R$ 150 por mês a 0,5% ao mês por 30 anos. Cerca de quanto acumula?",
+   "ancora": "R$ 150 por mês a 0,5% ao mês por 30 anos somam cerca de R$ 151 mil.",
+   "verificacao": { "expressao": "150*((1.005^360-1)/0.005)", "esperado": 150677.26, "tolerancia": 500 },
+   "alternativas": [
+    {
+     "texto": "Cerca de R$ 151 mil",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cerca de R$ 54 mil",
+     "correta": false,
+     "feedbackErro": "Esse é só o total guardado, sem contar o rendimento dos juros compostos."
+    },
+    {
+     "texto": "Cerca de R$ 300 mil",
+     "correta": false,
+     "feedbackErro": "Esse valor está alto demais pra uma taxa de 0,5% ao mês nesse prazo."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "investimento-sustentavel",
+   "criterio": "É verdade?",
+   "enunciado": "Investimento sustentável sempre rende menos que investimento comum",
+   "resposta": false,
+   "ancora": "Muitos fundos ESG têm retorno competitivo com fundos comuns.",
+   "feedbackErro": "É uma crença comum, mas não é regra: vários fundos sustentáveis rendem parecido ou até melhor."
+  }
+ ]
+}

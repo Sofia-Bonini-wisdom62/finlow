@@ -1,0 +1,297 @@
+{
+ "slug": "preco-nao-e-valor",
+ "segmento": "ef35",
+ "conceitoPrincipal": "preco-nao-e-valor",
+ "fraseConceito": "Preço é o número que você paga; valor é o quanto algo realmente importa pra você.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "preco-x-valor",
+   "criterio": "Preço é só o número pago?",
+   "enunciado": "O preço é só o número que você paga",
+   "resposta": true,
+   "ancora": "Preço é o número; valor é o quanto algo importa pra você.",
+   "feedbackErro": "Parece que preço e valor são sinônimos, porque aparecem juntos. Mas preço é só o número cobrado — valor é outra coisa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "preco-x-valor",
+   "criterio": "Valor pode existir sem preço?",
+   "enunciado": "Um presente feito à mão, sem custar nada, pode valer muito",
+   "resposta": true,
+   "ancora": "Valor pode existir mesmo sem preço nenhum.",
+   "feedbackErro": "Sem preço, parece que não tem valor nenhum. Mas o quanto algo importa pra você não depende só do dinheiro gasto nele."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "caro-barato",
+   "criterio": "O mais caro é sempre melhor?",
+   "enunciado": "Um tênis de marca famosa custa mais só pelo nome na etiqueta",
+   "resposta": true,
+   "ancora": "A marca pode aumentar o preço sem mudar a qualidade.",
+   "feedbackErro": "Parece que preço alto sempre vem de mais qualidade. Mas às vezes o que pesa no preço é só o nome da marca."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "preco-x-valor",
+   "dificuldade": 1,
+   "pergunta": "Um desenho feito por você custa R$ 0, mas pode valer muito pra sua avó. O que isso mostra?",
+   "ancora": "Valor não depende só do preço pago por algo.",
+   "alternativas": [
+    {
+     "texto": "Que valor não depende só do preço pago",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que o desenho não vale nada, porque não custou dinheiro",
+     "correta": false,
+     "feedbackErro": "Não custar dinheiro não é o mesmo que não valer nada. O carinho e o esforço também formam valor, mesmo sem preço."
+    },
+    {
+     "texto": "Que toda avó gosta de qualquer desenho, sem motivo",
+     "correta": false,
+     "feedbackErro": "O motivo existe: é o cuidado e a intenção por trás do desenho. Isso é valor, mesmo sem preço envolvido."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "caro-barato",
+   "dificuldade": 1,
+   "pergunta": "Duas camisetas parecidas: uma sem marca custa R$ 20, outra com marca famosa custa R$ 80. O que explica a diferença?",
+   "ancora": "80 menos 20 é 60: parte disso pode ser só a marca.",
+   "alternativas": [
+    {
+     "texto": "O nome da marca, mais do que a qualidade do tecido",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A marca famosa sempre usa um tecido 4 vezes melhor",
+     "correta": false,
+     "feedbackErro": "4 vezes o preço não garante 4 vezes a qualidade do tecido. Muitas vezes o que custa mais é só o nome estampado."
+    },
+    {
+     "texto": "Não existe nenhum motivo, os preços são aleatórios",
+     "correta": false,
+     "feedbackErro": "Existe motivo sim: marca, propaganda e fama pesam no preço, mesmo quando o produto em si é parecido."
+    }
+   ],
+   "verificacao": {
+    "expressao": "80-20",
+    "esperado": 60
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "preco-x-valor",
+   "criterio": "Isso vale sem custar caro?",
+   "enunciado": "Um tempo de brincadeira com um amigo, sem gastar nada",
+   "resposta": true,
+   "ancora": "Momentos importantes podem valer muito sem custar dinheiro.",
+   "feedbackErro": "Parece que só o que custa dinheiro tem valor. Mas um tempo bom com um amigo pode valer muito, mesmo sem nenhum gasto."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "caro-barato",
+   "instrucao": "O que mais pesa no preço aqui? Arraste.",
+   "ancora": "Preço pode vir de qualidade, marca ou os dois juntos.",
+   "feedbackErro": "É fácil achar que preço alto é sempre qualidade. Mas marca também pesa, às vezes mais que o material do produto.",
+   "caixas": [
+    {
+     "id": "qualidade",
+     "rotulo": "Qualidade"
+    },
+    {
+     "id": "marca",
+     "rotulo": "Marca"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Um tênis com material mais resistente e costura reforçada",
+     "caixaCorreta": "qualidade"
+    },
+    {
+     "texto": "Um boné comum com o logo de um time famoso",
+     "caixaCorreta": "marca"
+    },
+    {
+     "texto": "Uma mochila com zíper que não quebra fácil",
+     "caixaCorreta": "qualidade"
+    },
+    {
+     "texto": "Uma caneta comum com nome de personagem famoso",
+     "caixaCorreta": "marca"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "preco-x-valor",
+   "criterio": "Isso mostra a diferença entre os dois?",
+   "enunciado": "Um brinquedo caro que você não gosta de usar",
+   "resposta": true,
+   "ancora": "Preço alto não garante que algo tenha valor pra você.",
+   "feedbackErro": "Parece que preço alto já garante valor. Mas se você não gosta de usar o brinquedo, o valor dele pra você é baixo, mesmo caro."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "caro-barato",
+   "dificuldade": 1,
+   "pergunta": "Uma bola sem marca custa R$ 15. A mesma bola, com o logo de um time, custa R$ 25. Qual é a diferença de preço?",
+   "ancora": "25 menos 15 é 10: provavelmente o preço do logo.",
+   "alternativas": [
+    {
+     "texto": "R$ 10, que provavelmente é o preço do logo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 40, somando os dois preços",
+     "correta": false,
+     "feedbackErro": "Somar os dois preços não mostra a diferença entre eles. Pra saber a diferença, subtraia: 25 menos 15 é 10."
+    },
+    {
+     "texto": "R$ 15, porque é o preço da bola sem marca",
+     "correta": false,
+     "feedbackErro": "R$ 15 é só o preço de uma das bolas, não a diferença entre elas. A diferença é 25 menos 15, que dá 10."
+    }
+   ],
+   "verificacao": {
+    "expressao": "25-15",
+    "esperado": 10
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "preco-x-valor",
+   "criterio": "Preço alto é valor alto pra você?",
+   "enunciado": "Um livro caro sobre um assunto que você não gosta",
+   "resposta": false,
+   "ancora": "Valor depende do que importa pra você, não só do preço.",
+   "feedbackErro": "Preço alto parece garantir importância. Mas se o assunto não te interessa, o valor pra você continua baixo, mesmo caro."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "caro-barato",
+   "criterio": "Isso explica um preço maior?",
+   "enunciado": "O produto usar um material mais resistente e durar mais",
+   "resposta": true,
+   "ancora": "Material melhor é um motivo real pra pagar mais.",
+   "feedbackErro": "Parece só desculpa da loja pra cobrar mais caro. Mas um material mais resistente, que dura mais, é motivo real de preço maior."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "preco-x-valor",
+   "pergunta": "Qual frase resume o que você viu hoje?",
+   "alternativas": [
+    {
+     "texto": "Preço é o número pago; valor é o quanto algo importa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Preço e valor são sempre a mesma coisa",
+     "correta": false,
+     "feedbackErro": "Não são: dá pra pagar caro por algo sem valor pra você, e ter algo de muito valor sem pagar nada."
+    },
+    {
+     "texto": "O mais caro é sempre o de melhor qualidade",
+     "correta": false,
+     "feedbackErro": "Nem sempre: às vezes o preço alto vem só do nome da marca, não de mais qualidade."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "preco-x-valor",
+   "criterio": "Mostra diferença entre preço e valor?",
+   "enunciado": "Uma carta escrita à mão, sem nenhum custo, guardada por anos",
+   "resposta": true,
+   "ancora": "Guardar por anos mostra o valor, mesmo sem preço.",
+   "feedbackErro": "Sem preço, parece não valer nada. Mas guardar algo por anos é sinal de valor, mesmo que não tenha custado dinheiro."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "caro-barato",
+   "dificuldade": 1,
+   "pergunta": "Dois cadernos: um custa R$ 8, outro custa R$ 14 e vem com um personagem estampado. Por que o segundo custa mais?",
+   "ancora": "14 menos 8 é 6: o preço extra do personagem.",
+   "alternativas": [
+    {
+     "texto": "Porque o desenho do personagem tem licença paga",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque as folhas dele são sempre em dobro",
+     "correta": false,
+     "feedbackErro": "A quantidade de folhas não muda só porque tem um desenho. O que costuma pesar no preço é o direito de usar o personagem."
+    },
+    {
+     "texto": "Porque cadernos com desenho nunca têm o mesmo tamanho",
+     "correta": false,
+     "feedbackErro": "O tamanho pode ser igual nos dois. A diferença de preço geralmente vem da licença do personagem, não do tamanho."
+    }
+   ],
+   "verificacao": {
+    "expressao": "14-8",
+    "esperado": 6
+   }
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "caro-barato",
+   "instrucao": "O que mais pesa no preço aqui? Arraste.",
+   "ancora": "Marca ou personagem custam à parte da qualidade.",
+   "feedbackErro": "É fácil achar que todo preço alto vem de qualidade. Marca e personagem também pesam no valor cobrado.",
+   "caixas": [
+    {
+     "id": "qualidade",
+     "rotulo": "Qualidade"
+    },
+    {
+     "id": "marca",
+     "rotulo": "Marca"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Um estojo com zíper reforçado que não emperra",
+     "caixaCorreta": "qualidade"
+    },
+    {
+     "texto": "Uma mochila comum com nome de um jogo famoso",
+     "caixaCorreta": "marca"
+    },
+    {
+     "texto": "Um lápis que não quebra a ponta fácil",
+     "caixaCorreta": "qualidade"
+    },
+    {
+     "texto": "Uma garrafinha comum com adesivo de desenho animado",
+     "caixaCorreta": "marca"
+    }
+   ]
+  }
+ ]
+}

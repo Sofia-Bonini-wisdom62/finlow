@@ -1,0 +1,249 @@
+{
+ "slug": "comprar-menos-usar-mais-consolida",
+ "segmento": "ef35",
+ "conceitoPrincipal": "comprar-menos-usar-mais",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "consumo-e-lixo",
+   "criterio": "Reduz o lixo de verdade?",
+   "enunciado": "Doar um brinquedo quebrado que não funciona mais",
+   "resposta": false,
+   "ancora": "Doar algo quebrado só transfere o problema, não reduz o lixo.",
+   "feedbackErro": "Parece um gesto generoso. Mas doar algo quebrado não reduz lixo — só passa o problema adiante; melhor consertar ou descartar direito."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "consumo-consciente",
+   "criterio": "É sempre consumismo comprar algo novo?",
+   "enunciado": "Trocar uma geladeira muito velha por uma que gasta menos energia",
+   "resposta": false,
+   "ancora": "Trocar por eficiência energética pode ser decisão consciente.",
+   "feedbackErro": "Parece contraditório comprar algo novo sendo consciente. Mas trocar por um modelo que gasta menos energia é decisão pensada."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "economizar-no-dia-a-dia",
+   "criterio": "Economiza de verdade?",
+   "enunciado": "Comprar 10kg de fruta em promoção sem ter como conservar tudo",
+   "resposta": false,
+   "ancora": "Comprar além do que dá pra conservar gera desperdício, não economia.",
+   "feedbackErro": "A promoção engana pelo preço baixo. Mas se boa parte estraga antes de ser usada, o desperdício apaga a economia."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "consumo-e-lixo",
+   "dificuldade": 3,
+   "pergunta": "Uma família reutiliza potes de vidro há anos, mas um deles rachou e pode cortar. O que fazer?",
+   "ancora": "Segurança vem antes do hábito — pote rachado deve ser descartado.",
+   "alternativas": [
+    {
+     "texto": "Descartar o pote, mesmo sendo hábito reutilizar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Continuar usando, porque reutilizar é sempre melhor",
+     "correta": false,
+     "feedbackErro": "Reutilizar ajuda na maioria das vezes, mas um pote rachado pode cortar — aqui a segurança vem primeiro."
+    },
+    {
+     "texto": "Doar o pote rachado pra outra família",
+     "correta": false,
+     "feedbackErro": "Doar um item rachado só transfere o risco pra outra pessoa, em vez de resolver o problema."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "consumo-consciente",
+   "dificuldade": 3,
+   "pergunta": "Uma família compra roupa durável e cara; outra, barata que rasga rápido. Quem gasta menos com o tempo?",
+   "ancora": "Peça durável rasga menos e evita repor a roupa com frequência.",
+   "alternativas": [
+    {
+     "texto": "A que compra peças duráveis, mesmo mais caras",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A que compra mais barato, porque gasta menos por peça",
+     "correta": false,
+     "feedbackErro": "O preço por peça é menor, mas rasgar rápido obriga a comprar de novo — no fim, pode gastar mais."
+    },
+    {
+     "texto": "As duas gastam o mesmo no fim das contas",
+     "correta": false,
+     "feedbackErro": "Não gastam o mesmo: repor roupa que rasga rápido soma mais compras ao longo do ano."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "economizar-no-dia-a-dia",
+   "criterio": "É economia real?",
+   "enunciado": "Comprar um pacote grande de iogurte que vai vencer antes de acabar",
+   "resposta": false,
+   "ancora": "Comida que vence antes de ser usada vira desperdício, não economia.",
+   "feedbackErro": "O pacote grande parece vantajoso pelo preço. Mas se vence antes de acabar, o que sobra vira lixo — não economia."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "consumo-consciente",
+   "instrucao": "É consumo consciente ou consumismo, mesmo sendo compra nova? Arraste.",
+   "ancora": "O que importa é o motivo da compra, não se é nova ou usada.",
+   "feedbackErro": "Comprar novo nem sempre é ruim, e comprar em promoção nem sempre é bom — o que decide é o motivo por trás da compra.",
+   "caixas": [
+    { "id": "consciente", "rotulo": "Consumo consciente" },
+    { "id": "consumismo", "rotulo": "Consumismo" }
+   ],
+   "itens": [
+    { "texto": "Trocar a geladeira velha por uma mais eficiente", "caixaCorreta": "consciente" },
+    { "texto": "Comprar roupa nova só porque saiu em outra cor", "caixaCorreta": "consumismo" },
+    { "texto": "Comprar peça durável, mesmo mais cara, pra durar mais", "caixaCorreta": "consciente" },
+    { "texto": "Comprar em dobro só porque está na promoção, sem precisar", "caixaCorreta": "consumismo" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "consumo-e-lixo",
+   "criterio": "Reaproveitar reduz o lixo mesmo assim?",
+   "enunciado": "Guardar comida com mofo num pote reutilizado, achando que ainda dá pra comer",
+   "resposta": false,
+   "ancora": "Reaproveitar não vale quando compromete a saúde.",
+   "feedbackErro": "Parece economia por não jogar fora na hora. Mas comida com mofo deve ser descartada — reaproveitar não vale a saúde."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "economizar-no-dia-a-dia",
+   "dificuldade": 3,
+   "pergunta": "Luana comprou uma bike usada, mais barata, mas com conserto caro toda semana. O que pode estar acontecendo?",
+   "ancora": "Somando os consertos, o gasto pode superar o de uma bike nova.",
+   "alternativas": [
+    {
+     "texto": "Ela pode gastar mais do que se tivesse comprado nova",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ela com certeza economizou, porque pagou menos no início",
+     "correta": false,
+     "feedbackErro": "Pagar menos no início não garante economia — os consertos semanais podem somar mais que a diferença de preço."
+    },
+    {
+     "texto": "Não faz diferença, o gasto é sempre igual",
+     "correta": false,
+     "feedbackErro": "Faz diferença, sim: consertos frequentes podem tornar o total gasto maior do que comprar uma bicicleta nova."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "consumo-e-lixo",
+   "criterio": "Reduz o lixo de verdade?",
+   "enunciado": "Reformar um móvel velho em vez de jogar fora e comprar outro",
+   "resposta": true,
+   "ancora": "Reformar um móvel que ainda tem conserto evita descarte desnecessário.",
+   "feedbackErro": "Parece trabalho demais pra valer a pena. Mas reformar um móvel com conserto simples evita jogar fora algo ainda útil."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "consumo-consciente",
+   "criterio": "É consumismo, mesmo parecendo vantagem?",
+   "enunciado": "Levar o segundo item de uma promoção 'leve 2, pague 1', sem precisar dele",
+   "resposta": true,
+   "ancora": "Levar o segundo item sem precisar ainda é consumismo, mesmo de graça.",
+   "feedbackErro": "Parece vantagem, já que o segundo item não custa nada a mais. Mas levar o que não precisa ainda é consumismo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "consumo-consciente",
+   "pergunta": "Qual frase resume a transferência que você fez?",
+   "alternativas": [
+    {
+     "texto": "O que importa é o resultado real da escolha, não uma regra fixa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Reutilizar é sempre a melhor opção, em qualquer situação",
+     "correta": false,
+     "feedbackErro": "Nem sempre: reutilizar algo rachado ou estragado pode ser pior do que descartar direito."
+    },
+    {
+     "texto": "Comprar algo novo é sempre consumismo",
+     "correta": false,
+     "feedbackErro": "Nem sempre: trocar por um item mais eficiente ou durável pode ser decisão consciente."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "economizar-no-dia-a-dia",
+   "dificuldade": 3,
+   "pergunta": "Um pacote de 12 ovos custa R$ 9. Cada ovo avulso custa R$ 0,90. Comprando o pacote, quanto você economiza?",
+   "ancora": "12 ovos avulsos custariam R$ 10,80 — R$ 1,80 a mais que o pacote.",
+   "verificacao": { "expressao": "12*0.9-9", "esperado": 1.8 },
+   "alternativas": [
+    {
+     "texto": "R$ 1,80",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 0,90",
+     "correta": false,
+     "feedbackErro": "R$ 0,90 é só o preço de um ovo avulso. A diferença entre os 12 avulsos e o pacote é R$ 1,80."
+    },
+    {
+     "texto": "R$ 9,00",
+     "correta": false,
+     "feedbackErro": "R$ 9 é o preço do pacote inteiro, não a economia. A diferença pros 12 avulsos é R$ 1,80."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "consumo-e-lixo",
+   "criterio": "É reaproveitamento seguro?",
+   "enunciado": "Reutilizar uma garrafa pet gasta e amassada pra guardar água por anos",
+   "resposta": false,
+   "ancora": "Garrafa pet degradada pode liberar substâncias — nem todo reaproveitamento é seguro.",
+   "feedbackErro": "Parece economia por não comprar outra. Mas garrafa pet muito usada e degradada pode não ser segura pra guardar água."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "consumo-e-lixo",
+   "instrucao": "Vale a pena reutilizar ou é melhor descartar? Arraste.",
+   "ancora": "Reutilize o que ainda serve com segurança; descarte o que não serve mais.",
+   "feedbackErro": "É fácil querer reaproveitar tudo. Mas item rachado ou estragado deve ser descartado, não reutilizado.",
+   "caixas": [
+    { "id": "reutilizar", "rotulo": "Reutilizar" },
+    { "id": "descartar", "rotulo": "Descartar" }
+   ],
+   "itens": [
+    { "texto": "Pote de vidro com rachadura", "caixaCorreta": "descartar" },
+    { "texto": "Camiseta com um furo pequeno que dá pra remendar", "caixaCorreta": "reutilizar" },
+    { "texto": "Alimento com mofo", "caixaCorreta": "descartar" },
+    { "texto": "Caderno com folhas em branco sobrando", "caixaCorreta": "reutilizar" }
+   ]
+  }
+ ]
+}

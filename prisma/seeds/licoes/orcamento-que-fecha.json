@@ -1,0 +1,344 @@
+{
+ "slug": "orcamento-que-fecha",
+ "segmento": "ef89",
+ "conceitoPrincipal": "orcamento-que-fecha",
+ "fraseConceito": "Orçamento é somar entradas e saídas, fixas e imprevistas, e ver se sobra, empata ou falta — e o que fazer se faltar.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "montar-orcamento",
+   "criterio": "Isso é despesa fixa?",
+   "enunciado": "A mensalidade da academia, todo mês o mesmo valor",
+   "resposta": true,
+   "ancora": "Fixa: valor e data se repetem, mês após mês.",
+   "feedbackErro": "Parece variável por ser 'só' uma assinatura. Mas o valor não muda de mês para mês — isso é o que define uma despesa fixa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "montar-orcamento",
+   "criterio": "Isso é despesa fixa?",
+   "enunciado": "A conta de luz, que varia com o quanto se usa",
+   "resposta": false,
+   "ancora": "Variável: o valor muda de mês para mês, conforme o uso.",
+   "feedbackErro": "Chega todo mês, e isso confunde com fixa. Mas o valor muda conforme o consumo — o que varia mês a mês é despesa variável."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "montar-orcamento",
+   "criterio": "Isso é despesa fixa?",
+   "enunciado": "O conserto do pneu furado, que ninguém esperava",
+   "resposta": false,
+   "ancora": "Nem fixa, nem variável comum: é despesa imprevista.",
+   "feedbackErro": "Não é fixa nem se repete como as variáveis do mês. É uma categoria à parte — imprevisto — que o orçamento também precisa reservar espaço."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "montar-orcamento",
+   "dificuldade": 1,
+   "pergunta": "Renda de R$ 1.800. Despesas fixas R$ 900, variáveis R$ 600. O saldo do mês é...",
+   "ancora": "1.800 − 900 − 600 = 300. Sobra: orçamento superavitário.",
+   "verificacao": {
+    "expressao": "1800-900-600",
+    "esperado": 300
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 300 superavitário",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 900 superavitário",
+     "correta": false,
+     "feedbackErro": "Você descontou só as despesas fixas. As variáveis também saem da renda: 1.800 − 900 − 600 = 300."
+    },
+    {
+     "texto": "R$ 300 deficitário",
+     "correta": false,
+     "feedbackErro": "A conta fecha positiva, não negativa: sobrou dinheiro depois de pagar tudo. Deficitário seria se faltasse, não se sobrasse."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "corrigir-orcamento",
+   "dificuldade": 1,
+   "pergunta": "O orçamento de Igor está deficitário em R$ 200 por mês. Qual mudança resolve isso de forma sustentável?",
+   "ancora": "Deficitário se resolve cortando gasto ou ganhando mais, de verdade.",
+   "alternativas": [
+    {
+     "texto": "Usar o cartão de crédito para cobrir a diferença todo mês",
+     "correta": false,
+     "feedbackErro": "Isso cobre o mês, mas cria dívida nova com juros — o problema volta maior no mês seguinte, não desaparece."
+    },
+    {
+     "texto": "Cortar R$ 200 de despesa variável ou ganhar R$ 200 a mais",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ignorar o problema, porque R$ 200 é pouco",
+     "correta": false,
+     "feedbackErro": "R$ 200 por mês parece pequeno, mas em um ano vira R$ 2.400 de buraco. Ignorar não fecha a conta, só adia o problema."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "montar-orcamento",
+   "criterio": "É despesa prevista?",
+   "enunciado": "O material escolar comprado todo início de ano",
+   "resposta": true,
+   "ancora": "Acontece todo ano, na mesma época — dá para planejar.",
+   "feedbackErro": "Não é mensal como despesa fixa, e por isso parece imprevisto. Mas acontece toda vez no mesmo período — é despesa prevista, planejável."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "montar-orcamento",
+   "instrucao": "Toque na ordem: do que mais pesa no mês ao que menos pesa.",
+   "ancora": "Aluguel costuma ser o maior peso fixo no orçamento familiar.",
+   "feedbackErro": "O olho vai para o que é comprado com mais frequência, mas o que pesa é o valor: aluguel supera mercado, que supera transporte e lazer.",
+   "itens": [
+    {
+     "texto": "Aluguel — R$ 900",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Mercado do mês — R$ 500",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Transporte — R$ 200",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Lazer — R$ 80",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "montar-orcamento",
+   "criterio": "O orçamento fecha superavitário?",
+   "enunciado": "Renda de R$ 2.000, despesas totais de R$ 1.700",
+   "resposta": true,
+   "ancora": "Sobram R$ 300: renda maior que despesa é superávit.",
+   "verificacao": {
+    "expressao": "2000-1700",
+    "esperado": 300
+   },
+   "feedbackErro": "A conta fecha positiva: 2.000 − 1.700 = 300 sobrando. Superavitário é exatamente isso — renda maior que a soma das despesas."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "montar-orcamento",
+   "criterio": "O orçamento fecha superavitário?",
+   "enunciado": "Renda de R$ 1.500, despesas totais de R$ 1.500",
+   "resposta": false,
+   "ancora": "Nem sobra nem falta: renda igual à despesa é orçamento neutro.",
+   "feedbackErro": "Não falta dinheiro, e por isso parece positivo. Mas também não sobra nada: renda igual à despesa é orçamento neutro, não superavitário."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "montar-orcamento",
+   "pergunta": "Renda de R$ 2.200. Despesas fixas R$ 1.100 e variáveis R$ 700. Quanto sobra no mês?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 1000,
+   "gabarito": 400,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: renda menos despesas fixas e variáveis",
+   "verificacao": {
+    "expressao": "2200-1100-700",
+    "esperado": 400
+   },
+   "feedbackPerto": "Isso: sobram R$ 400. Renda menos fixas menos variáveis é o caminho direto.",
+   "feedbackLonge": "Dá R$ 400. Some as duas despesas primeiro (1.800) e só depois subtraia da renda (2.200)."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "corrigir-orcamento",
+   "dificuldade": 1,
+   "pergunta": "O orçamento de Priscila está deficitário há 3 meses seguidos. Qual é o primeiro passo antes de qualquer corte?",
+   "ancora": "Sem listar o gasto real, o corte é chute — pode cortar o errado.",
+   "alternativas": [
+    {
+     "texto": "Listar exatamente onde o dinheiro está indo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cortar o lazer inteiro, sem olhar o resto",
+     "correta": false,
+     "feedbackErro": "Cortar sem checar o resto pode não resolver, e pesa em uma área só. Antes de cortar, é preciso ver onde o dinheiro realmente está indo."
+    },
+    {
+     "texto": "Pedir um empréstimo para reorganizar as contas",
+     "correta": false,
+     "feedbackErro": "Empréstimo cobre o buraco agora, mas soma juros ao problema. O primeiro passo é entender os gastos, não tomar mais dívida."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "montar-orcamento",
+   "dificuldade": 1,
+   "pergunta": "Uma família ganha R$ 3.000 e gasta R$ 3.400, incluindo uma parcela imprevista de conserto. O orçamento do mês é...",
+   "ancora": "3.000 − 3.400 = −400. Gastou mais do que ganhou: déficit.",
+   "verificacao": {
+    "expressao": "3000-3400",
+    "esperado": -400
+   },
+   "alternativas": [
+    {
+     "texto": "Deficitário em R$ 400",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Superavitário, porque o conserto era imprevisto",
+     "correta": false,
+     "feedbackErro": "Imprevisto ainda é gasto real, que sai do bolso. A conta soma tudo: 3.000 de renda contra 3.400 de despesa dá déficit, não superávit."
+    },
+    {
+     "texto": "Neutro, porque a diferença é pequena",
+     "correta": false,
+     "feedbackErro": "R$ 400 não é neutro: é o valor que faltou no mês. Neutro só existe quando renda e despesa são exatamente iguais."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "montar-orcamento",
+   "criterio": "Isso é despesa fixa?",
+   "enunciado": "A parcela do financiamento do celular, mesmo valor todo mês",
+   "resposta": true,
+   "ancora": "Valor combinado e repetido — despesa fixa clássica.",
+   "feedbackErro": "Parece variável por vir de uma compra única. Mas o valor da parcela não muda mês a mês — isso é o que caracteriza despesa fixa."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "corrigir-orcamento",
+   "criterio": "Ajuda a virar superavitário?",
+   "enunciado": "Trocar um serviço de streaming caro por um mais barato",
+   "resposta": true,
+   "ancora": "Cortar despesa fixa reduz o gasto todo mês, não só uma vez.",
+   "feedbackErro": "Parece pequeno demais para importar. Mas por ser despesa fixa, a economia se repete todo mês — ajuda de verdade a fechar a conta."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "orcamento-que-fecha",
+   "pergunta": "Qual frase resume o que você viu?",
+   "alternativas": [
+    {
+     "texto": "Orçamento soma tudo — fixo, variável e imprevisto — e mostra o saldo real",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Gasto imprevisto não entra na conta do orçamento",
+     "correta": false,
+     "feedbackErro": "Entra sim: imprevisto ainda sai do bolso. Deixar de fora esconde parte real da despesa."
+    },
+    {
+     "texto": "Renda igual à despesa já é orçamento superavitário",
+     "correta": false,
+     "feedbackErro": "Renda igual à despesa é orçamento neutro. Superavitário exige sobrar dinheiro depois de pagar tudo."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "montar-orcamento",
+   "instrucao": "Despesa fixa ou variável? Arraste cada item.",
+   "ancora": "Fixa repete o valor; variável muda de mês para mês.",
+   "feedbackErro": "O que mantém o mesmo valor todo mês é fixa. O que muda com o uso ou o consumo é variável.",
+   "caixas": [
+    {
+     "id": "fixa",
+     "rotulo": "Fixa"
+    },
+    {
+     "id": "variavel",
+     "rotulo": "Variável"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Mensalidade da escola",
+     "caixaCorreta": "fixa"
+    },
+    {
+     "texto": "Conta de água do mês",
+     "caixaCorreta": "variavel"
+    },
+    {
+     "texto": "Aluguel do apartamento",
+     "caixaCorreta": "fixa"
+    },
+    {
+     "texto": "Gasto com delivery no mês",
+     "caixaCorreta": "variavel"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "corrigir-orcamento",
+   "dificuldade": 2,
+   "pergunta": "Renda de R$ 2.500, despesas de R$ 2.700. Cortar R$ 150 do lazer resolve o mês?",
+   "ancora": "2.700 − 150 = 2.550, ainda acima da renda de 2.500. Falta mais.",
+   "verificacao": {
+    "expressao": "2700-150",
+    "esperado": 2550
+   },
+   "alternativas": [
+    {
+     "texto": "Não: ainda faltariam R$ 50 depois do corte",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, corta exatamente o déficit",
+     "correta": false,
+     "feedbackErro": "O déficit é R$ 200 (2.700 − 2.500). Cortar R$ 150 reduz, mas ainda sobra R$ 50 de falta — não fecha sozinho."
+    },
+    {
+     "texto": "Sim, e ainda sobra dinheiro",
+     "correta": false,
+     "feedbackErro": "2.700 − 150 = 2.550, que ainda é maior que a renda de 2.500. Não sobra: continua faltando R$ 50."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "montar-orcamento",
+   "criterio": "Isso é despesa fixa?",
+   "enunciado": "A fatura do cartão, que muda de valor conforme as compras",
+   "resposta": false,
+   "ancora": "Muda de mês para mês conforme o uso — despesa variável.",
+   "feedbackErro": "Chega todo mês na mesma data, e isso confunde com fixa. Mas o valor varia conforme o que foi comprado — é despesa variável."
+  }
+ ]
+}

@@ -1,0 +1,321 @@
+{
+ "slug": "por-que-custa-o-que-custa",
+ "segmento": "em1",
+ "conceitoPrincipal": "por-que-custa-o-que-custa",
+ "fraseConceito": "Preço junta custos, impostos e lucro — e ainda se move com concorrência, demanda, qualidade e publicidade.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fatores-de-preco",
+   "criterio": "Isso mexe no preço?",
+   "enunciado": "Abrir uma lanchonete nova na mesma rua",
+   "resposta": true,
+   "ancora": "Concorrência puxa preço para baixo — ou obriga a melhorar.",
+   "feedbackErro": "Parece problema só do dono, mas chega ao seu bolso: com duas opções, quem cobra caro demais perde cliente. Concorrência é fator de preço."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fatores-de-preco",
+   "criterio": "Isso mexe no preço?",
+   "enunciado": "A cor da parede do estoque da fábrica",
+   "resposta": false,
+   "ancora": "Só entra no preço o que muda custo, procura ou percepção.",
+   "feedbackErro": "Nem todo detalhe vira preço. O teste: isso muda o custo de produzir, a vontade de comprar ou a imagem do produto? A parede do estoque, não."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fatores-de-preco",
+   "criterio": "Isso mexe no preço?",
+   "enunciado": "Guaraná gelado num dia de 38 graus",
+   "resposta": true,
+   "ancora": "Demanda sobe, preço encontra espaço para subir junto.",
+   "feedbackErro": "O refrigerante é o mesmo de ontem — o que mudou foi a procura. Quando muita gente quer ao mesmo tempo, o vendedor testa preços maiores."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-e-lucro",
+   "dificuldade": 1,
+   "pergunta": "Bianca vende brigadeiro a R$ 5. Ingredientes e embalagem custam R$ 2. Os R$ 3 de diferença são o quê?",
+   "ancora": "Entre custo e preço moram outros gastos, o trabalho e o lucro.",
+   "verificacao": {
+    "expressao": "5-2",
+    "esperado": 3
+   },
+   "alternativas": [
+    {
+     "texto": "A sobra: paga os outros custos e o resto é lucro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Desperdício: o justo seria vender a R$ 2",
+     "correta": false,
+     "feedbackErro": "A R$ 2 ela só repõe ingredientes — e trabalha de graça. Preço precisa cobrir todos os custos e ainda remunerar quem faz."
+    },
+    {
+     "texto": "Imposto que ela repassa ao governo",
+     "correta": false,
+     "feedbackErro": "Imposto existe, mas não é toda a diferença. Entre o custo e o preço moram: outros gastos, o trabalho dela e o lucro."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "fatores-de-preco",
+   "dificuldade": 1,
+   "pergunta": "Duas garrafas de água iguais: R$ 2 no mercado, R$ 8 dentro do show. O que explica os R$ 8?",
+   "ancora": "Mesmo produto, cenário diferente: sem concorrência, preço sobe.",
+   "alternativas": [
+    {
+     "texto": "No show não há concorrência e a demanda é alta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A água do show custa mais para produzir",
+     "correta": false,
+     "feedbackErro": "A água é a mesma, da mesma fábrica. O custo mal mudou — o que mudou foi o cenário: público com sede e um único vendedor."
+    },
+    {
+     "texto": "O transporte até o show encarece a garrafa",
+     "correta": false,
+     "feedbackErro": "Levar a água até lá custa centavos, não R$ 6. A diferença não está no caminho: está em quem mais poderia vender ali — ninguém."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "fatores-de-preco",
+   "criterio": "Isso mexe no preço?",
+   "enunciado": "Imposto cobrado sobre o produto",
+   "resposta": true,
+   "ancora": "Imposto entra no preço antes de o produto chegar à prateleira.",
+   "feedbackErro": "Ele não aparece separado na etiqueta, e por isso parece invisível. Mas está lá dentro: uma parte do que você paga segue direto para o governo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "custo-e-lucro",
+   "instrucao": "Monte o preço: toque na ordem em que as camadas entram.",
+   "ancora": "Produzir → vender → impostos → lucro. O preço é essa pilha.",
+   "feedbackErro": "O preço se monta em camadas: primeiro produzir, depois os custos de vender, depois impostos — e o lucro fecha a conta. Tirar uma camada quebra o negócio.",
+   "itens": [
+    {
+     "texto": "Custos de produção: matéria-prima e trabalho",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Custos de vender: aluguel, luz, entrega",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Impostos sobre a venda",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "O lucro de quem vende fecha o preço",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "fatores-de-preco",
+   "criterio": "Preço maior garante qualidade maior?",
+   "enunciado": "O chocolate mais caro é sempre o melhor",
+   "resposta": false,
+   "ancora": "Preço carrega marca e publicidade, não só qualidade.",
+   "feedbackErro": "Qualidade pode custar mais, sim. Mas o preço também paga embalagem, marca e anúncio — dá para ser caro e mediano. Qualidade se testa, não se presume."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "fatores-de-preco",
+   "criterio": "Isso mexe no preço?",
+   "enunciado": "Anúncio com artista famoso na TV",
+   "resposta": true,
+   "ancora": "Publicidade é custo — e custo vai parar na etiqueta.",
+   "feedbackErro": "Parece gasto da marca, longe de você. Mas o contrato do artista entra nos custos, e os custos entram no preço: quem financia o anúncio é quem compra."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-e-lucro",
+   "pergunta": "Um lanche custa R$ 6 para a lanchonete, que vende com 50% em cima. Qual o preço?",
+   "campo": "moeda",
+   "min": 6,
+   "max": 20,
+   "gabarito": 9,
+   "toleranciaPct": 20,
+   "fonte": "conta do próprio enunciado (R$ 6 × 1,5)",
+   "verificacao": {
+    "expressao": "6*1.5",
+    "esperado": 9
+   },
+   "feedbackPerto": "R$ 9. Os 50% em cima parecem muito — mas dali saem aluguel, gás, funcionário. O lucro é o que resta.",
+   "feedbackLonge": "R$ 9: 50% sobre R$ 6 são R$ 3, somados ao custo. Porcentagem é fração do valor, não número solto — o tropeço comum é dobrar ou somar centavos."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "fatores-de-preco",
+   "dificuldade": 1,
+   "pergunta": "O celular recém-lançado custa o dobro do modelo do ano passado. O que sustenta esse preço?",
+   "ancora": "Inovação + fila de estreia seguram preço alto — por um tempo.",
+   "alternativas": [
+    {
+     "texto": "Novidade e a fila de quem paga para ter primeiro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ele custa o dobro para ser fabricado",
+     "correta": false,
+     "feedbackErro": "A produção encarece pouco de um ano para outro. O que dobra o preço é a demanda dos apressados — tanto que ele cai meses depois."
+    },
+    {
+     "texto": "O modelo antigo ficou ruim de repente",
+     "correta": false,
+     "feedbackErro": "O antigo continua igual a ontem. O preço do novo não vem de defeito do velho: vem da inovação e do desejo de estreia."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-e-lucro",
+   "dificuldade": 1,
+   "pergunta": "Na feira, o vendedor quer vender caro e você quer pagar barato. O preço fecha onde?",
+   "ancora": "Venda só existe quando os dois lados ainda ganham algo.",
+   "alternativas": [
+    {
+     "texto": "Onde os dois ganham: cobre custos e cabe no bolso",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "No valor que o vendedor decidir, sempre",
+     "correta": false,
+     "feedbackErro": "Se só ele decidisse, cobraria o máximo — mas você iria embora. O preço que fecha precisa servir aos dois lados, senão não há venda."
+    },
+    {
+     "texto": "No menor preço que o comprador exigir",
+     "correta": false,
+     "feedbackErro": "Abaixo do custo, o vendedor quebra e amanhã não há feira. Preço sustentável cobre o custo de quem vende — barato demais também tem conta."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "fatores-de-preco",
+   "criterio": "Isso mexe no preço?",
+   "enunciado": "Poucos vendedores para muita gente querendo",
+   "resposta": true,
+   "ancora": "Pouca oferta com muita procura: preço sobe.",
+   "feedbackErro": "É a lei mais básica do preço: quando falta produto e sobra comprador, quem vende escolhe o preço. Concorrência é o freio disso."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-e-lucro",
+   "criterio": "Isso é verdade?",
+   "enunciado": "O lucro é o único fator que forma o preço",
+   "resposta": false,
+   "ancora": "Lucro é uma fatia — custos, impostos e mercado são as outras.",
+   "feedbackErro": "O lucro é a parte mais comentada, mas raramente a maior. Antes dele vêm custos de produzir e vender, impostos — e o teto que a concorrência impõe."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "por-que-custa-o-que-custa",
+   "pergunta": "O que forma o preço de um produto?",
+   "alternativas": [
+    {
+     "texto": "Custos, impostos e lucro, movidos por demanda e concorrência.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O preço é o custo mais um lucro abusivo.",
+     "correta": false,
+     "feedbackErro": "Entre custo e preço há aluguel, impostos, trabalho. Lucro existe — abusivo só onde falta concorrência."
+    },
+    {
+     "texto": "O preço é o que o produto realmente vale.",
+     "correta": false,
+     "feedbackErro": "Não há valor 'verdadeiro' escondido: preço é um acordo que muda com cenário, procura e informação."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "fatores-de-preco",
+   "instrucao": "Cada fator empurra o preço para onde?",
+   "ancora": "Custo e procura empurram; concorrência e oferta seguram.",
+   "feedbackErro": "O que aumenta custo ou procura empurra o preço para cima; o que aumenta oferta ou concorrência, para baixo. Classifique pelo efeito, não pela fama.",
+   "caixas": [
+    {
+     "id": "sobe",
+     "rotulo": "Para cima"
+    },
+    {
+     "id": "desce",
+     "rotulo": "Para baixo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Imposto maior sobre o produto",
+     "caixaCorreta": "sobe"
+    },
+    {
+     "texto": "Concorrente novo na mesma rua",
+     "caixaCorreta": "desce"
+    },
+    {
+     "texto": "Safra recorde enchendo o mercado",
+     "caixaCorreta": "desce"
+    },
+    {
+     "texto": "Campanha cara de publicidade",
+     "caixaCorreta": "sobe"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "fatores-de-preco",
+   "pergunta": "De cada R$ 100 num produto industrializado no Brasil, quanto costuma ser imposto?",
+   "campo": "moeda",
+   "min": 5,
+   "max": 70,
+   "gabarito": 33,
+   "toleranciaPct": 20,
+   "fonte": "carga média de tributos em produtos industrializados, ~33% (IBPT)",
+   "feedbackPerto": "Cerca de um terço do preço é tributo — embutido, sem aparecer na etiqueta.",
+   "feedbackLonge": "Por volta de R$ 33 — um terço. Como o imposto vem embutido, o viés é subestimar: o que não aparece separado parece não existir."
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "fatores-de-preco",
+   "criterio": "Isso mexe no preço?",
+   "enunciado": "Geada que destrói metade da safra de café",
+   "resposta": true,
+   "ancora": "Oferta despenca, procura continua: o preço dispara.",
+   "feedbackErro": "A geada é longe do mercado, mas chega na prateleira: com menos café disponível e a mesma procura, cada saca vale mais. Oferta é fator de preço."
+  }
+ ]
+}

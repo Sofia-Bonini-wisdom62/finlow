@@ -1,0 +1,333 @@
+{
+ "slug": "quanto-sobra-de-verdade-reforco",
+ "segmento": "em2",
+ "conceitoPrincipal": "quanto-sobra-de-verdade",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "liquido-real",
+   "criterio": "É o que sobra de verdade?",
+   "enunciado": "Os R$ 118 que o app destaca como 'rendimento bruto'",
+   "resposta": false,
+   "ancora": "Qual era o critério? Bruto é ponto de partida, não resultado.",
+   "feedbackErro": "O app dá destaque ao bruto porque é o maior número. Dos 118 ainda saem imposto e taxa — e a inflação corta por fora. Só o líquido real interessa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "liquido-real",
+   "criterio": "É o que sobra de verdade?",
+   "enunciado": "Rendimento de 0,9% num mês de inflação a 0,4%",
+   "resposta": true,
+   "ancora": "0,9 − 0,4: sobrou 0,5% de ganho real no mês.",
+   "verificacao": {
+    "expressao": "0.9-0.4",
+    "esperado": 0.5
+   },
+   "feedbackErro": "Números pequenos parecem empate. Mas a régua é a diferença: rendeu 0,9% com preços subindo 0,4% — sobrou 0,5% de compra a mais. Pouco, mas real."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "inflacao",
+   "criterio": "A inflação mexe nisso?",
+   "enunciado": "Um salário que ficou 2 anos sem reajuste",
+   "resposta": true,
+   "ancora": "Mesmo número, menos compra: a inflação corta salário parado.",
+   "feedbackErro": "O contracheque não mudou, então parece tudo igual. Mas com preços ~5% maiores ao ano, o mesmo salário compra quase 10% menos após 2 anos."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "imposto-e-prazo",
+   "dificuldade": 2,
+   "pergunta": "Ícaro resgatou um CDB aos 8 meses: IR de 20%. Após 2 anos, seria 15%. O que isso mostra?",
+   "ancora": "IR regressivo: quanto mais tempo aplicado, menor a alíquota.",
+   "alternativas": [
+    {
+     "texto": "O prazo do resgate muda o imposto — e o líquido",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O imposto é igual em qualquer prazo",
+     "correta": false,
+     "feedbackErro": "É regressivo: começa em 22,5% e cai até 15% depois de 2 anos. Esperar mais tempo deixa mais rendimento com você."
+    },
+    {
+     "texto": "Resgatar cedo é sempre um erro",
+     "correta": false,
+     "feedbackErro": "Nem sempre — emergência justifica pagar mais IR. O ponto é decidir sabendo: resgate cedo custa alíquota maior, e isso entra na conta."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custos",
+   "dificuldade": 2,
+   "pergunta": "Dois fundos rendem os mesmos 11% brutos ao ano. Um cobra 0,3% de taxa; o outro, 2%. O que decide?",
+   "ancora": "Bruto empatado, decide o custo: 2% ao ano comem o rendimento.",
+   "alternativas": [
+    {
+     "texto": "A taxa: no empate de bruto, vence o custo menor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nenhum dos dois, porque o bruto é igual",
+     "correta": false,
+     "feedbackErro": "Bruto igual é o começo do empate, não o fim. A taxa sai todo ano do seu bolo: 2% contra 0,3% muda o líquido — e a diferença cresce com o tempo."
+    },
+    {
+     "texto": "O de taxa maior, que deve ser melhor",
+     "correta": false,
+     "feedbackErro": "Taxa alta não é sinal de qualidade — é custo. Com o mesmo bruto, cada ponto de taxa é rendimento a menos para você, todos os anos."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custos",
+   "criterio": "Reduz o que sobra?",
+   "enunciado": "Taxa de administração de 2% ao ano do fundo",
+   "resposta": true,
+   "ancora": "Sai do bolo todo ano, com rendimento alto ou baixo: custo certo.",
+   "feedbackErro": "Passa despercebida porque nunca aparece como cobrança — é descontada por dentro. Mas 2% ao ano saem do seu resultado mesmo em ano de perda."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "liquido-real",
+   "instrucao": "Ordene do maior ao menor rendimento líquido.",
+   "ancora": "Líquidos: 10,2% · 10% · 8,5% · 8%. O desconto reordena tudo.",
+   "verificacao": {
+    "expressao": "12*0.85",
+    "esperado": 10.2
+   },
+   "feedbackErro": "O bruto maior não vence sempre: 12% com IR e taxa viram 8,5% — menos que 10% isentos. Faça a conta do líquido antes de ordenar.",
+   "itens": [
+    {
+     "texto": "12% brutos, IR de 15%, sem taxa",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "10% brutos, isentos e sem taxa",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "12% brutos, IR de 15% e taxa de 2%",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "8% brutos, isentos e sem taxa",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custos",
+   "criterio": "Reduz o que sobra?",
+   "enunciado": "IOF de um resgate feito antes de 30 dias",
+   "resposta": true,
+   "ancora": "Saque em menos de 30 dias paga IOF: imposto sobre o rendimento.",
+   "feedbackErro": "O IOF passa despercebido porque some após 30 dias de aplicação. Antes disso, ele morde o rendimento junto com o IR — saque rápido custa caro."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "inflacao",
+   "criterio": "É o que sobra de verdade?",
+   "enunciado": "Render 0,6% num mês em que os preços subiram 0,8%",
+   "resposta": false,
+   "ancora": "0,6 − 0,8 = −0,2%: rendeu no app, perdeu na prateleira.",
+   "verificacao": {
+    "expressao": "0.6-0.8",
+    "esperado": -0.2
+   },
+   "feedbackErro": "Rendeu, então parece ganho. Mas a régua é a inflação do mesmo período: 0,6 contra 0,8 é poder de compra encolhendo — ganho nominal, perda real."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "imposto-e-prazo",
+   "pergunta": "R$ 2.000 renderam 10% no ano; IR de 15% sobre o ganho. Líquido em reais?",
+   "campo": "moeda",
+   "min": 50,
+   "max": 400,
+   "gabarito": 170,
+   "toleranciaPct": 20,
+   "fonte": "aritmética: 10% de 2.000, menos 15% de IR",
+   "verificacao": {
+    "expressao": "2000*0.1*0.85",
+    "esperado": 170
+   },
+   "feedbackPerto": "R$ 170: o imposto morde o rendimento (R$ 30), não o valor aplicado.",
+   "feedbackLonge": "R$ 170. O erro clássico é aplicar os 15% sobre os R$ 2.000. IR incide só sobre o ganho: 15% de 200 = 30."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "plano-e-revisao",
+   "dificuldade": 2,
+   "pergunta": "A inflação do ano veio em 5,1% e sua aplicação rendeu 5,1% líquidos. O que a revisão aponta?",
+   "ancora": "Empate real: um ano de esforço para andar de lado.",
+   "alternativas": [
+    {
+     "texto": "Ganho real zero: procurar opção que renda acima disso",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sucesso: o rendimento cobriu a inflação",
+     "correta": false,
+     "feedbackErro": "Cobrir a inflação evita perda — mas o objetivo do plano é crescer, não empatar. Empate real é sinal amarelo, não sucesso."
+    },
+    {
+     "texto": "Prejuízo: houve perda de dinheiro no ano",
+     "correta": false,
+     "feedbackErro": "Perda não houve: o poder de compra ficou onde estava. O problema é outro — andar de lado por um ano. A revisão existe para corrigir isso."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "plano-e-revisao",
+   "dificuldade": 2,
+   "pergunta": "No plano, renda fixa para a reserva e uma parte pequena em renda variável. Por que essa divisão?",
+   "ancora": "Cada parte tem função: previsibilidade aqui, busca de retorno ali.",
+   "alternativas": [
+    {
+     "texto": "Cada parte tem função: segurança e busca de retorno",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Renda variável é onde o ganho é garantido maior",
+     "correta": false,
+     "feedbackErro": "Variável pode render mais — e pode cair. Garantia é o que ela não tem. Por isso recebe só a parte que o plano aguenta ver oscilar."
+    },
+    {
+     "texto": "Renda fixa não rende nada, é só um cofre",
+     "correta": false,
+     "feedbackErro": "Renda fixa rende — perto da Selic, ~15% ao ano hoje. O papel dela na reserva é ser previsível e de saque fácil, não render zero."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custos",
+   "criterio": "Reduz o que sobra?",
+   "enunciado": "A isenção de imposto de renda da poupança",
+   "resposta": false,
+   "ancora": "Isenção não desconta nada — o limite da poupança é render pouco.",
+   "feedbackErro": "Como quase tudo desconta, o reflexo é marcar 'reduz'. Isenção é o contrário: zero de IR. O ponto fraco da poupança é o rendimento baixo, não imposto."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "liquido-real",
+   "criterio": "É o que sobra de verdade?",
+   "enunciado": "O ganho acima da inflação, depois de taxas e IR",
+   "resposta": true,
+   "ancora": "Esse é o nome completo do resultado: líquido e real.",
+   "feedbackErro": "De tanto desconto, parece que nunca sobra nada de verdade. Sobra sim — e é exatamente este número: o que passa das taxas, do IR e da inflação."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "quanto-sobra-de-verdade",
+   "pergunta": "Qual frase leva este reforço adiante?",
+   "alternativas": [
+    {
+     "texto": "Compare tudo no líquido real: depois de taxas, IR e inflação.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "IR e taxas são detalhes que não mudam a escolha.",
+     "correta": false,
+     "feedbackErro": "Mudam o pódio: 12% brutos com custos podem perder de 10% isentos."
+    },
+    {
+     "texto": "Empatar com a inflação já é um ótimo resultado.",
+     "correta": false,
+     "feedbackErro": "Empate real é andar de lado — plano existe para crescer poder de compra."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "custos",
+   "instrucao": "Quando esse custo morde?",
+   "ancora": "Taxas correm com o tempo; impostos esperam o resgate.",
+   "feedbackErro": "Taxas de administração e mensalidades saem todo ano, renda boa ou ruim. IR e IOF só aparecem quando você resgata — mas aparecem.",
+   "caixas": [
+    {
+     "id": "ano",
+     "rotulo": "Sai todo ano"
+    },
+    {
+     "id": "resgate",
+     "rotulo": "Sai no resgate"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Taxa de administração do fundo",
+     "caixaCorreta": "ano"
+    },
+    {
+     "texto": "IR sobre o rendimento",
+     "caixaCorreta": "resgate"
+    },
+    {
+     "texto": "IOF de saque antes de 30 dias",
+     "caixaCorreta": "resgate"
+    },
+    {
+     "texto": "Mensalidade da conta de investimento",
+     "caixaCorreta": "ano"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "inflacao",
+   "pergunta": "Preços subindo 5% ao ano: R$ 100 parados compram quanto dali a 2 anos?",
+   "campo": "moeda",
+   "min": 50,
+   "max": 100,
+   "gabarito": 91,
+   "toleranciaPct": 20,
+   "fonte": "IPCA na faixa de 4 a 5% ao ano (IBGE)",
+   "verificacao": {
+    "expressao": "100/(1.05^2)",
+    "esperado": 90.7,
+    "tolerancia": 0.2
+   },
+   "feedbackPerto": "Uns R$ 91 de compra: a nota é a mesma, o carrinho encolhe.",
+   "feedbackLonge": "Perto de R$ 91: 100 ÷ 1,05². O viés é achar que dinheiro parado 'não perde' — perde na prateleira, não no extrato."
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custos",
+   "criterio": "Reduz o que sobra?",
+   "enunciado": "Trocar de aplicação toda semana atrás do topo",
+   "resposta": true,
+   "ancora": "Cada saída pode pagar IR e IOF — girar demais corrói o líquido.",
+   "feedbackErro": "Perseguir o melhor rendimento parece otimização. Mas cada troca antecipa imposto e taxas — o giro frequente costuma render menos que a paciência."
+  }
+ ]
+}

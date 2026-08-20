@@ -1,0 +1,290 @@
+{
+ "slug": "emprestado-tem-que-voltar-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "emprestado-tem-que-voltar",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "emprestimo-se-devolve",
+   "criterio": "Isso precisa ser devolvido?",
+   "enunciado": "A caneta que a colega deixou você usar, sem combinar quando devolve",
+   "resposta": true,
+   "ancora": "Mesmo sem data marcada, emprestado continua sendo pra devolver.",
+   "feedbackErro": "Sem data marcada, parece que virou um presente. Mas sem combinar o contrário, emprestado continua pra devolver — só falta combinar quando."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "emprestimo-se-devolve",
+   "criterio": "Isso precisa ser devolvido?",
+   "enunciado": "O troco que o caixa devolveu depois da compra",
+   "resposta": false,
+   "ancora": "Troco já é seu — não é empréstimo de ninguém.",
+   "feedbackErro": "Parece dinheiro vindo de fora, como um empréstimo. Mas troco é parte do seu próprio dinheiro voltando — não tem nada pra devolver depois."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "emprestimo-se-devolve",
+   "criterio": "Isso precisa ser devolvido?",
+   "enunciado": "R$ 30 que o tio emprestou, combinando devolver 'quando desse'",
+   "resposta": true,
+   "ancora": "Combinação vaga ainda é combinação — o dinheiro é pra devolver.",
+   "feedbackErro": "'Quando desse' parece que não vale como prazo de verdade. Mas o combinado foi devolver — só a data ficou em aberto, não a obrigação."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "emprestimo-se-devolve",
+   "dificuldade": 2,
+   "pergunta": "Larissa emprestou R$ 15 pra Duda três vezes seguidas, e Duda sempre devolveu no dia. O que isso trouxe pra Duda?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "Mais facilidade pra pedir emprestado de novo, se precisar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O direito de não devolver na quarta vez",
+     "correta": false,
+     "feedbackErro": "Devolver sempre não dá direito de faltar depois. Cada empréstimo continua exigindo devolução."
+    },
+    {
+     "texto": "Um desconto no valor da próxima vez",
+     "correta": false,
+     "feedbackErro": "Confiança não vira desconto automático. O que ela traz é mais facilidade de conseguir emprestado de novo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "tipos-de-credito",
+   "dificuldade": 2,
+   "pergunta": "Comprar uma moto usando dinheiro do banco, pagando o banco em 36 vezes, é qual tipo de crédito?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "Financiamento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Parcelamento direto com a loja",
+     "correta": false,
+     "feedbackErro": "Aqui quem paga a loja é o banco, à vista — depois você paga o banco aos poucos. Isso é financiamento."
+    },
+    {
+     "texto": "Cartão de crédito",
+     "correta": false,
+     "feedbackErro": "Não teve cartão envolvido nessa compra. O crédito veio direto do banco, pra um bem específico."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "tipos-de-credito",
+   "criterio": "Isso é diferença real entre os dois?",
+   "enunciado": "O financiamento é preso a um bem específico, tipo carro ou casa",
+   "resposta": true,
+   "ancora": "Empréstimo é livre; financiamento é amarrado ao bem comprado.",
+   "feedbackErro": "Parece que os dois são a mesma coisa com nome diferente. Mas o financiamento está sempre ligado a um bem específico — o empréstimo, não."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "tipos-de-credito",
+   "instrucao": "É financiamento ou parcelamento?",
+   "ancora": "Financiamento passa pelo banco; parcelamento é direto com a loja.",
+   "feedbackErro": "Os dois dividem o pagamento, e por isso confundem. Mas financiamento passa pelo banco, preso a um bem; parcelamento é direto com quem vendeu.",
+   "caixas": [
+    {
+     "id": "financiamento",
+     "rotulo": "Financiamento"
+    },
+    {
+     "id": "parcelamento",
+     "rotulo": "Parcelamento"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Pagar a moto ao banco em 36 vezes",
+     "caixaCorreta": "financiamento"
+    },
+    {
+     "texto": "Pagar o tênis à loja em 3 vezes no cartão",
+     "caixaCorreta": "parcelamento"
+    },
+    {
+     "texto": "Pagar a casa ao banco por 20 anos",
+     "caixaCorreta": "financiamento"
+    },
+    {
+     "texto": "Dividir o valor do celular em 5 vezes na loja",
+     "caixaCorreta": "parcelamento"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "emprestimo-se-devolve",
+   "criterio": "É bom motivo pra confiar na devolução?",
+   "enunciado": "A pessoa já devolveu empréstimos anteriores na data combinada",
+   "resposta": true,
+   "ancora": "Histórico de cumprir combina com confiar de novo.",
+   "feedbackErro": "Pode parecer que cada empréstimo é isolado, sem ligação com os anteriores. Mas o histórico de cumprir é o que constrói confiança pras próximas vezes."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "emprestimo-se-devolve",
+   "dificuldade": 2,
+   "pergunta": "Marcos pegou R$ 25 emprestados e, no dia combinado, só tinha R$ 15. O que ele deveria fazer?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "Avisar, devolver os R$ 15 e combinar nova data pro resto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não devolver nada até ter os R$ 25 completos",
+     "correta": false,
+     "feedbackErro": "Esperar sem avisar deixa quem emprestou sem informação nenhuma. Devolver parte e avisar é melhor que sumir."
+    },
+    {
+     "texto": "Fingir que esqueceu e não falar sobre o assunto",
+     "correta": false,
+     "feedbackErro": "Fingir esquecimento é o que mais quebra a confiança. Avisar e devolver o que dá já é bem melhor."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "tipos-de-credito",
+   "criterio": "Vale pro parcelamento sem juros?",
+   "enunciado": "O valor total pago no fim é igual ao preço original do produto",
+   "resposta": true,
+   "ancora": "Sem juros, dividir não aumenta o total — só espalha o pagamento.",
+   "feedbackErro": "Parece que parcelar sempre encarece. Mas sem juros, dividir o valor não muda o total — só espalha o pagamento no tempo."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "emprestimo-se-devolve",
+   "criterio": "Ajuda a manter a confiança no erro?",
+   "enunciado": "Avisar com antecedência que vai atrasar a devolução",
+   "resposta": true,
+   "ancora": "Avisar antes é diferente de sumir — protege mesmo no atraso.",
+   "feedbackErro": "Atrasar parece sempre ruim, sem meio-termo. Mas avisar antes muda tudo: protege a confiança mesmo quando o prazo não é cumprido à risca."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "emprestimo-se-devolve",
+   "dificuldade": 3,
+   "pergunta": "Qual frase resume melhor o que você viu hoje?",
+   "alternativas": [
+    {
+     "texto": "Financiamento e parcelamento são exatamente a mesma coisa",
+     "correta": false,
+     "feedbackErro": "Financiamento passa pelo banco e é preso a um bem; parcelamento é direto com quem vendeu."
+    },
+    {
+     "texto": "Avisar e cumprir o combinado é o que sustenta a confiança no empréstimo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Depois de um atraso, não faz mais diferença avisar",
+     "correta": false,
+     "feedbackErro": "Avisar antes continua fazendo diferença — separa um atraso comunicado de um sumiço."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "tipos-de-credito",
+   "instrucao": "Ordene pelo tamanho comum da compra: da menor pra maior.",
+   "ancora": "Quanto maior o valor envolvido, mais comum usar financiamento.",
+   "feedbackErro": "Parece que o tipo de crédito não tem relação com o tamanho da compra. Mas, na prática, financiamento costuma ser usado pros valores mais altos.",
+   "itens": [
+    {
+     "texto": "Parcelamento de um tênis",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Empréstimo pra uma reforma pequena",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Financiamento de uma casa",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "emprestimo-se-devolve",
+   "instrucao": "Isso protege a confiança num atraso?",
+   "ancora": "Comunicar protege; sumir ou prometer sem cumprir quebra.",
+   "feedbackErro": "Atrasar por si só já preocupa, mas o que mais pesa é o silêncio. Avisar e explicar protege a confiança mesmo quando o prazo escorrega.",
+   "caixas": [
+    {
+     "id": "protege",
+     "rotulo": "Protege"
+    },
+    {
+     "id": "naoprotege",
+     "rotulo": "Não protege"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Avisar antes da data que vai atrasar",
+     "caixaCorreta": "protege"
+    },
+    {
+     "texto": "Sumir e não responder mensagens",
+     "caixaCorreta": "naoprotege"
+    },
+    {
+     "texto": "Explicar o motivo do atraso",
+     "caixaCorreta": "protege"
+    },
+    {
+     "texto": "Prometer de novo sem nunca cumprir",
+     "caixaCorreta": "naoprotege"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "tipos-de-credito",
+   "pergunta": "Uma bicicleta de R$ 480 parcelada em 6 vezes sem juros. Quanto é cada parcela?",
+   "campo": "moeda",
+   "min": 20,
+   "max": 200,
+   "gabarito": 80,
+   "toleranciaPct": 20,
+   "fonte": "conta direta: valor total dividido pelo número de parcelas",
+   "feedbackPerto": "Isso mesmo — R$ 80 cada. É só dividir o total pelas parcelas.",
+   "feedbackLonge": "R$ 480 dividido por 6 dá R$ 80. Sem juros, dividir o total pelas parcelas dá o valor exato de cada uma.",
+   "verificacao": {
+    "expressao": "480/6",
+    "esperado": 80
+   }
+  }
+ ]
+}

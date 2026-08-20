@@ -1,0 +1,334 @@
+{
+ "slug": "escolher-e-abrir-mao-reforco",
+ "segmento": "em1",
+ "conceitoPrincipal": "escolher-e-abrir-mao",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Mede o custo de oportunidade?",
+   "enunciado": "O valor da melhor alternativa que você recusou",
+   "resposta": true,
+   "ancora": "Esse era o critério da lição: a alternativa perdida, não o preço.",
+   "feedbackErro": "É a própria definição, e ela costuma escapar dias depois. Custo de oportunidade se mede pelo melhor caminho que você deixou de seguir."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Mede o custo de oportunidade?",
+   "enunciado": "O total pago na nota fiscal",
+   "resposta": false,
+   "ancora": "Nota fiscal mede o custo visível. A alternativa perdida não tem nota.",
+   "feedbackErro": "O valor da nota é real, mas responde outra pergunta: quanto saiu do bolso. O custo de oportunidade pergunta o que esses reais fariam de melhor."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Mede o custo de oportunidade?",
+   "enunciado": "O arrependimento que você sente depois",
+   "resposta": false,
+   "ancora": "Sentimento varia; o critério é objetivo: o que a melhor opção valia.",
+   "feedbackErro": "Arrependimento é sinal de que talvez houvesse opção melhor — mas não é medida. Dá para ter custo alto sem arrependimento e arrependimento sem custo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "escolha-no-tempo",
+   "dificuldade": 2,
+   "pergunta": "Ingresso do festival: R$ 40 em março, R$ 90 na semana do evento. O que o preço antecipado cobra de você?",
+   "ancora": "O desconto compra sua decisão cedo: você vende o direito de mudar.",
+   "alternativas": [
+    {
+     "texto": "Decidir cedo e abrir mão de mudar de planos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ter cartão de crédito com limite alto",
+     "correta": false,
+     "feedbackErro": "R$ 40 exigem menos limite que R$ 90, não mais. O que o antecipado exige não é crédito: é compromisso — se o plano mudar, o ingresso perde valor."
+    },
+    {
+     "texto": "Sorte, porque preço antecipado é loteria",
+     "correta": false,
+     "feedbackErro": "Não há sorteio: a regra é conhecida. Quem compra antes paga menos e trava a escolha; quem espera paga pela flexibilidade. É troca, não azar."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "inflacao-no-bolso",
+   "dificuldade": 2,
+   "pergunta": "Com inflação de 5% ao ano, o que perde quem deixa R$ 500 no colchão por um ano?",
+   "ancora": "As cédulas ficam; o que elas compram encolhe ~5%: uns R$ 24.",
+   "verificacao": {
+    "expressao": "500-500/1.05",
+    "esperado": 23.81,
+    "tolerancia": 0.05
+   },
+   "alternativas": [
+    {
+     "texto": "Uns R$ 24 de poder de compra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: as cédulas continuam as mesmas",
+     "correta": false,
+     "feedbackErro": "O papel não muda, e é isso que disfarça a perda. Mas com preços 5% maiores, os mesmos R$ 500 compram o que hoje custa uns R$ 476."
+    },
+    {
+     "texto": "Metade do valor guardado",
+     "correta": false,
+     "feedbackErro": "Você acertou a direção — há perda — mas errou o tamanho: 5% ao ano tira uns R$ 24, não R$ 250. Perder metade exigiria anos de inflação alta."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "inflacao-no-bolso",
+   "criterio": "A inflação pesa igual para todos?",
+   "enunciado": "Preços subindo atingem pobres e ricos do mesmo jeito",
+   "resposta": false,
+   "ancora": "Quem gasta quase tudo no básico sente a alta primeiro e por inteiro.",
+   "feedbackErro": "A taxa é a mesma no jornal, e isso engana. Mas quem gasta toda a renda em comida e transporte não tem onde amortecer; quem tem sobra aplica e se defende."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "inflacao-no-bolso",
+   "instrucao": "Inflação em alta: ordene quem sofre mais impacto.",
+   "ancora": "Menos sobra e menos reajuste = mais exposição à alta dos preços.",
+   "feedbackErro": "O critério é a defesa disponível: sem sobra, a alta morde tudo; reajuste anual repõe com atraso; aplicação acima da inflação repõe a perda.",
+   "itens": [
+    {
+     "texto": "Família que gasta tudo com comida e aluguel",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Quem tem salário reajustado uma vez ao ano",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Quem aplica a sobra acima da inflação",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "inflacao-no-bolso",
+   "criterio": "Defende da alta de preços?",
+   "enunciado": "Deixar a sobra rendendo acima da inflação",
+   "resposta": true,
+   "ancora": "Render acima da inflação repõe o que os preços comem. É o critério.",
+   "feedbackErro": "Parece que render 'pouco' não defende de nada. Mas a régua certa é a inflação: qualquer rendimento acima dela mantém seu poder de compra vivo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "inflacao-no-bolso",
+   "criterio": "Defende da alta de preços?",
+   "enunciado": "Estocar de tudo, sempre, o máximo que der",
+   "resposta": false,
+   "ancora": "Estocar sem critério perde validade, ocupa espaço e trava dinheiro.",
+   "feedbackErro": "Antecipar compra planejada de item durável pode valer. Mas estocar tudo vira perda: comida vence, produto sai de linha e o dinheiro fica preso na prateleira."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "inflacao-no-bolso",
+   "pergunta": "IPCA de 5% ao ano, três anos seguidos: uma compra de R$ 200 hoje passa a custar quanto?",
+   "campo": "moeda",
+   "min": 200,
+   "max": 500,
+   "gabarito": 232,
+   "toleranciaPct": 20,
+   "fonte": "IPCA ~4-5% ao ano (IBGE)",
+   "verificacao": {
+    "expressao": "200*1.05^3",
+    "esperado": 231.53,
+    "tolerancia": 0.05
+   },
+   "feedbackPerto": "R$ 232: a alta pequena, repetida, muda o preço sem ninguém perceber o dia em que mudou.",
+   "feedbackLonge": "R$ 232. O viés é somar 15% direto: inflação compõe ano sobre ano, como juros — 5% sobre um preço que já subiu 5%."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "sazonalidade",
+   "dificuldade": 2,
+   "pergunta": "Iara pode comprar o material escolar em janeiro, na volta às aulas, ou em outubro. O que a sazonalidade sugere?",
+   "ancora": "Mesmo caderno, outro mês, outro preço: o pico de procura encarece.",
+   "alternativas": [
+    {
+     "texto": "Outubro: procura baixa, preço menor pelo mesmo item",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Janeiro, porque o material está mais novo",
+     "correta": false,
+     "feedbackErro": "O caderno de outubro é idêntico ao de janeiro — só o preço muda. Pagar mais no pico não compra qualidade, compra pressa."
+    },
+    {
+     "texto": "Tanto faz: papelaria não muda preço no ano",
+     "correta": false,
+     "feedbackErro": "Muda, e muito: janeiro concentra milhões de compradores obrigatórios. Quem foge do pico usa a sazonalidade a favor, sem perder nada."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "escolha-no-tempo",
+   "dificuldade": 2,
+   "pergunta": "Guardar R$ 100 por mês rendendo 0,5% ao mês, ou esperar 'sobrar' no fim do ano. Qual a diferença real?",
+   "ancora": "R$ 100/mês a 0,5% viram R$ 1.233 no ano — R$ 33 são juros do hábito.",
+   "verificacao": {
+    "expressao": "100*(1.005^12-1)/0.005",
+    "esperado": 1233.56,
+    "tolerancia": 0.05
+   },
+   "alternativas": [
+    {
+     "texto": "Quem começa cedo põe juros e hábito a favor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nenhuma: o total guardado seria igual",
+     "correta": false,
+     "feedbackErro": "Guardando todo mês, os depósitos rendem: R$ 1.233 contra R$ 1.200. E 'esperar sobrar' costuma terminar sem sobra nenhuma — o hábito é metade do ganho."
+    },
+    {
+     "texto": "Esperar é melhor: o dinheiro fica livre",
+     "correta": false,
+     "feedbackErro": "Liberdade total tem custo: o dinheiro livre é gasto, e o rendimento do ano se perde. A troca aqui é conforto agora contra resultado depois."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "escolha-no-tempo",
+   "criterio": "Troca o agora pelo depois?",
+   "enunciado": "Parcelar para levar hoje o que pagaria aos poucos",
+   "resposta": true,
+   "ancora": "Parcelar é o inverso de poupar: antecipa o prazer, empurra o custo.",
+   "feedbackErro": "Parcelar parece só forma de pagamento, mas é escolha no tempo: você traz o produto para o presente e manda a conta para o futuro — às vezes com juros."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "escolha-no-tempo",
+   "criterio": "Troca o agora pelo depois?",
+   "enunciado": "Escolher a marca mais barata na gôndola",
+   "resposta": false,
+   "ancora": "Comparação de preço no presente: o tempo não participa.",
+   "feedbackErro": "Há economia, mas tudo se resolve hoje: produto agora, pagamento agora. Escolha intertemporal é quando presente e futuro negociam entre si."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "custo-de-oportunidade",
+   "pergunta": "Qual resumo sobrevive ao reforço?",
+   "alternativas": [
+    {
+     "texto": "Custo de oportunidade se mede pela melhor alternativa — o tempo entra na conta.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Inflação só prejudica quem tem muito dinheiro guardado.",
+     "correta": false,
+     "feedbackErro": "É o contrário: quem gasta tudo com o básico sofre mais — não tem sobra para se defender."
+    },
+    {
+     "texto": "Comprar antecipado é sempre a escolha certa.",
+     "correta": false,
+     "feedbackErro": "Antecipar tem preço: você abre mão de mudar de ideia. Vale quando o plano é firme."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "escolha-no-tempo",
+   "instrucao": "Decisão só de agora, ou troca no tempo?",
+   "ancora": "Se o futuro entra na balança, a escolha é intertemporal.",
+   "feedbackErro": "O critério é quando cada lado da troca acontece: sabor e fila se resolvem no ato; assinatura anual e poupança negociam com meses à frente.",
+   "caixas": [
+    {
+     "id": "presente",
+     "rotulo": "Só presente"
+    },
+    {
+     "id": "tempo",
+     "rotulo": "Envolve o tempo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Escolher o sabor do suco",
+     "caixaCorreta": "presente"
+    },
+    {
+     "texto": "Assinatura anual com desconto",
+     "caixaCorreta": "tempo"
+    },
+    {
+     "texto": "Trocar lanche por dinheiro guardado",
+     "caixaCorreta": "tempo"
+    },
+    {
+     "texto": "Escolher o caixa com fila menor",
+     "caixaCorreta": "presente"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "sazonalidade",
+   "dificuldade": 2,
+   "pergunta": "Por que o mesmo quarto de hotel custa o dobro em janeiro?",
+   "ancora": "Férias concentram a procura; o preço acompanha o calendário.",
+   "alternativas": [
+    {
+     "texto": "Férias concentram a procura e o preço acompanha",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Os custos do hotel dobram em janeiro",
+     "correta": false,
+     "feedbackErro": "Luz, funcionários e limpeza custam quase o mesmo o ano todo. O que dobra é a fila de hóspedes querendo a mesma data — e o preço segue a fila."
+    },
+    {
+     "texto": "É ilegal, mas ninguém fiscaliza",
+     "correta": false,
+     "feedbackErro": "Preço sazonal é legal e informado antes da compra. Ilegal seria subir depois de fechado o negócio. A defesa do consumidor aqui é o calendário."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "inflacao-no-bolso",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Quem pode estocar e aplicar sofre menos com a inflação",
+   "resposta": true,
+   "ancora": "Renda maior compra defesa: estoque, prazo e aplicação. A inflação é desigual.",
+   "feedbackErro": "Parece que a taxa única iguala todo mundo, mas as defesas são desiguais: comprar no atacado, antecipar e aplicar exigem sobra — e sobra é privilégio."
+  }
+ ]
+}

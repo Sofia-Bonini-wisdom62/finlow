@@ -1,0 +1,327 @@
+{
+ "slug": "tipos-de-seguro-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "tipos-de-seguro",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "como-funciona-seguro",
+   "criterio": "Está dentro do que a apólice cobre?",
+   "enunciado": "Seguro de carro cobrindo dano causado por um alagamento",
+   "resposta": true,
+   "ancora": "Alagamento costuma ser cobertura adicional contratável.",
+   "feedbackErro": "Parece 'ato da natureza' fora do que o seguro cobre, mas dano por alagamento costuma ser uma cobertura adicional disponível — vale checar se ela foi contratada."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "como-funciona-seguro",
+   "criterio": "Está dentro do que a apólice cobre?",
+   "enunciado": "Seguro de vida pagando quem se aposentou por tempo de contribuição",
+   "resposta": false,
+   "ancora": "Aposentadoria é benefício previdenciário, não seguro de vida.",
+   "feedbackErro": "Os dois envolvem planejamento de longo prazo, e por isso confundem. Mas aposentadoria é da previdência; seguro de vida paga em caso de morte ou invalidez."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "como-funciona-seguro",
+   "criterio": "Está dentro do que a apólice cobre?",
+   "enunciado": "Seguro residencial cobrindo uma rachadura estrutural já existente antes da contratação",
+   "resposta": false,
+   "ancora": "Dano preexistente, anterior à apólice, geralmente fica de fora.",
+   "feedbackErro": "Parece que qualquer dano na casa entra, mas seguradoras costumam excluir problemas já existentes antes da contratação — cobertura vale para danos futuros."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "tipos-de-seguro",
+   "dificuldade": 2,
+   "pergunta": "Um motociclista quer se proteger de um acidente que o tire do trabalho por um tempo. Que cobertura resolve isso?",
+   "ancora": "Seguro de vida com invalidez temporária cobre perda de renda.",
+   "alternativas": [
+    {
+     "texto": "Seguro de vida com cobertura de invalidez",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Seguro do veículo, que cobre só danos ao bem",
+     "correta": false,
+     "feedbackErro": "O seguro da moto protege o veículo, não a renda do motociclista. Para cobrir a incapacidade de trabalhar, é o seguro de vida com cobertura de invalidez."
+    },
+    {
+     "texto": "Seguro residencial, porque ele mora sozinho",
+     "correta": false,
+     "feedbackErro": "Seguro residencial protege o imóvel onde ele mora, não a capacidade dele de gerar renda depois de um acidente."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "como-funciona-seguro",
+   "dificuldade": 2,
+   "pergunta": "Duas apólices residenciais custam o mesmo, mas uma exclui roubo e a outra inclui. Qual detalhe pesa mais na escolha?",
+   "ancora": "O que está incluso na cobertura pesa mais que o preço igual.",
+   "alternativas": [
+    {
+     "texto": "O que cada apólice realmente cobre, não só o preço",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nenhum: preço igual significa apólices equivalentes",
+     "correta": false,
+     "feedbackErro": "Preço igual não garante cobertura igual. Uma apólice sem roubo deixa você desprotegido num risco comum — o que está incluso pesa tanto quanto o preço."
+    },
+    {
+     "texto": "A cor da seguradora no anúncio",
+     "correta": false,
+     "feedbackErro": "Identidade visual não tem relação com o que a apólice cobre. O que decide é ler a lista de coberturas e exclusões."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "como-funciona-seguro",
+   "criterio": "Está dentro do que a apólice cobre?",
+   "enunciado": "Danos causados por um evento listado nas exclusões do contrato",
+   "resposta": false,
+   "ancora": "Exclusão é o oposto de cobertura: o que está lá fica de fora.",
+   "feedbackErro": "O nome 'exclusão' às vezes passa despercebido na letra miúda, mas é justamente a lista do que NÃO está protegido — o oposto do que está coberto."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "tipos-de-seguro",
+   "instrucao": "Cobre a perda de renda ou o bem físico?",
+   "ancora": "Renda protege a capacidade de ganhar; bem protege o objeto.",
+   "feedbackErro": "Carro e casa são bens físicos, protegidos contra dano direto. Seguro de vida protege a renda futura da família, não um objeto.",
+   "caixas": [
+    {
+     "id": "renda",
+     "rotulo": "Perda de renda"
+    },
+    {
+     "id": "bem",
+     "rotulo": "Bem físico"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Seguro de vida com cobertura de invalidez",
+     "caixaCorreta": "renda"
+    },
+    {
+     "texto": "Seguro de automóvel contra colisão",
+     "caixaCorreta": "bem"
+    },
+    {
+     "texto": "Seguro de vida em caso de morte, para a família",
+     "caixaCorreta": "renda"
+    },
+    {
+     "texto": "Seguro residencial contra incêndio",
+     "caixaCorreta": "bem"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "tipos-de-seguro",
+   "criterio": "O seguro certo é esse?",
+   "enunciado": "Acionar o seguro residencial para cobrir o roubo do carro na garagem",
+   "resposta": false,
+   "ancora": "Carro é coberto pelo seguro de automóvel, mesmo na garagem.",
+   "feedbackErro": "Estar dentro de casa confunde, mas o carro é um bem com apólice própria — o seguro residencial cobre a estrutura e os bens do imóvel, não o veículo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "como-funciona-seguro",
+   "criterio": "Está dentro do que a apólice cobre?",
+   "enunciado": "Dano causado por reforma feita sem avisar a seguradora, quando o contrato exige aviso",
+   "resposta": false,
+   "ancora": "Descumprir uma condição do contrato pode invalidar a cobertura.",
+   "feedbackErro": "Parece um detalhe burocrático sem importância, mas contratos têm condições — não avisar uma reforma exigida pode tirar a cobertura daquele risco."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "como-funciona-seguro",
+   "pergunta": "Um seguro residencial custa R$ 60/mês. Quanto sai em 2 anos e meio?",
+   "campo": "moeda",
+   "min": 1500,
+   "max": 2200,
+   "gabarito": 1800,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: R$ 60 × 30 meses",
+   "feedbackPerto": "Boa estimativa: R$ 1.800 ao longo dos 30 meses.",
+   "feedbackLonge": "São R$ 1.800: 60 vezes 30 meses.",
+   "verificacao": {
+    "expressao": "60*30",
+    "esperado": 1800
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "tipos-de-seguro",
+   "dificuldade": 2,
+   "pergunta": "Um pai quer garantir dinheiro para os estudos dos filhos, se morrer antes deles crescerem. Qual seguro atende?",
+   "ancora": "Seguro de vida com indenização voltada a esse objetivo.",
+   "alternativas": [
+    {
+     "texto": "Seguro de vida, com beneficiários definidos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Seguro residencial, que protege o patrimônio da casa",
+     "correta": false,
+     "feedbackErro": "Seguro residencial protege a casa, não gera uma indenização em dinheiro para os filhos em caso de morte do pai."
+    },
+    {
+     "texto": "Seguro de automóvel, que cobre acidentes",
+     "correta": false,
+     "feedbackErro": "Seguro de automóvel cobre danos ao carro em acidentes, não garante uma indenização para os filhos em qualquer causa de morte."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "como-funciona-seguro",
+   "dificuldade": 2,
+   "pergunta": "Você paga seguro há 3 anos sem acionar. No 4º ano, tem sinistro de R$ 5.000. A seguradora deve devolver o pago antes?",
+   "ancora": "A mensalidade paga é pela proteção do período, não um saldo.",
+   "alternativas": [
+    {
+     "texto": "Não — o valor pago foi pela cobertura de cada período",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim — anos sem uso deveriam virar crédito",
+     "correta": false,
+     "feedbackErro": "Parece justo virar crédito, mas o pagamento mensal já comprou a proteção daquele mês, mesmo sem acionamento — não é um saldo acumulado."
+    },
+    {
+     "texto": "Sim — senão o seguro nunca compensa quem não usa",
+     "correta": false,
+     "feedbackErro": "O 'compensa' está em ter ficado protegido nos anos sem sinistro, não em receber de volta. Quando o sinistro grande acontece, é aí que a proteção paga."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "como-funciona-seguro",
+   "criterio": "Está dentro do que a apólice cobre?",
+   "enunciado": "Item de altíssimo valor (joia rara) sem declaração especial na apólice",
+   "resposta": false,
+   "ancora": "Itens de alto valor costumam exigir declaração e cobertura à parte.",
+   "feedbackErro": "Parece que 'está dentro de casa, está coberto', mas item de valor muito acima da média precisa ser declarado à parte — sem isso, a cobertura fica limitada."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "tipos-de-seguro",
+   "criterio": "O seguro certo é esse?",
+   "enunciado": "Usar o seguro de vida para cobrir o conserto do carro batido",
+   "resposta": false,
+   "ancora": "Seguro de vida não cobre bens materiais como o carro.",
+   "feedbackErro": "Os dois têm 'seguro' no nome, e é fácil confundir. Seguro de vida paga em caso de morte ou invalidez; conserto de carro é assunto do seguro de automóvel."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "como-funciona-seguro",
+   "pergunta": "Qual ideia fecha este encontro?",
+   "alternativas": [
+    {
+     "texto": "Cada apólice cobre o que está escrito: leia coberturas e exclusões",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pagar seguro anos sem usar significa que não valeu a pena",
+     "correta": false,
+     "feedbackErro": "Anos sem sinistro significam anos protegidos, mesmo sem acionamento — o valor está na proteção durante o período, não em receber de volta."
+    },
+    {
+     "texto": "Todo tipo de seguro cobre qualquer imprevisto, sem exceção",
+     "correta": false,
+     "feedbackErro": "Cada seguro tem exclusões específicas — o que não está descrito na apólice não é coberto."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "como-funciona-seguro",
+   "instrucao": "Ordene da mais para a menos protegida.",
+   "ancora": "O que está coberto sem exclusão protege mais.",
+   "feedbackErro": "É fácil trocar a ordem dos dois últimos, mas item não declarado ainda pode ter cobertura limitada, enquanto exclusão explícita não cobre nada daquele risco.",
+   "itens": [
+    {
+     "texto": "Dano listado na cobertura, sem exclusão",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Dano com franquia a pagar, mas coberto",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Item de alto valor não declarado na apólice",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Dano listado como exclusão do contrato",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "tipos-de-seguro",
+   "dificuldade": 3,
+   "pergunta": "Uma pessoa mora de aluguel, não tem carro e não tem dependentes financeiros. Qual seguro faz menos sentido priorizar agora?",
+   "ancora": "Sem dependentes, o seguro de vida perde urgência.",
+   "alternativas": [
+    {
+     "texto": "Seguro de vida com foco em herança para dependentes",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Seguro residencial para os próprios bens dentro de casa",
+     "correta": false,
+     "feedbackErro": "Mesmo de aluguel, ela tem bens dentro de casa (móveis, eletrônicos) que um seguro residencial de conteúdo protegeria — isso ainda faz sentido."
+    },
+    {
+     "texto": "Seguro saúde para cobrir tratamentos médicos",
+     "correta": false,
+     "feedbackErro": "Saúde é um risco presente independente de ter dependentes ou carro — continua fazendo sentido priorizar."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "como-funciona-seguro",
+   "criterio": "Está dentro do que a apólice cobre?",
+   "enunciado": "Sinistro causado por uso do carro em corrida ilegal, com contrato que exclui uso indevido",
+   "resposta": false,
+   "ancora": "Uso fora do combinado no contrato costuma anular a cobertura.",
+   "feedbackErro": "Parece que qualquer acidente com o carro segurado é coberto, mas usar o veículo de um jeito que o contrato proíbe (como corrida ilegal) tira a cobertura daquele sinistro específico."
+  }
+ ]
+}

@@ -1,0 +1,1516 @@
+[
+ {
+  "slug": "o-dinheiro-serve-pra-que",
+  "nome": "O dinheiro serve pra quê",
+  "segmento": "ef12",
+  "habilidades": [
+   "EF12LF01",
+   "EF12LF02"
+  ],
+  "unidade": "Circulação social do dinheiro",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 33
+ },
+ {
+  "slug": "mais-caro-mais-barato",
+  "nome": "Mais caro, mais barato",
+  "segmento": "ef12",
+  "habilidades": [
+   "EF12LF03",
+   "EF12LF04",
+   "EF12LF08"
+  ],
+  "unidade": "Circulação social do dinheiro",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 33
+ },
+ {
+  "slug": "jeitos-de-pagar",
+  "nome": "Jeitos de pagar",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF35LF01",
+   "EF35LF02",
+   "EF45LF01"
+  ],
+  "unidade": "Circulação social do dinheiro",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "preco-nao-e-valor",
+  "nome": "Preço não é valor",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF35LF03",
+   "EF35LF04"
+  ],
+  "unidade": "Circulação social do dinheiro",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "troco-desconto-lucro-e-prejuizo",
+  "nome": "Troco, desconto, lucro e prejuízo",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF35LF05",
+   "EF35LF06",
+   "EF45LF02"
+  ],
+  "unidade": "Circulação social do dinheiro",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "os-papeis-do-dinheiro",
+  "nome": "Os papéis do dinheiro",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF35LF07",
+   "EF35LF08"
+  ],
+  "unidade": "Circulação social do dinheiro",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "do-sal-ao-pix",
+  "nome": "Do sal ao Pix",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF01",
+   "EF67LF02"
+  ],
+  "unidade": "Circulação social do dinheiro",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "o-mesmo-produto-preco-diferente",
+  "nome": "O mesmo produto, preço diferente",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF03",
+   "EF67LF05"
+  ],
+  "unidade": "Circulação social do dinheiro",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "conferir-a-conta",
+  "nome": "Conferir a conta",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF04",
+   "EF67LF06"
+  ],
+  "unidade": "Circulação social do dinheiro",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "dinheiro-como-poder",
+  "nome": "Dinheiro como poder",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF01",
+   "EF89LF02"
+  ],
+  "unidade": "Circulação social do dinheiro",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "moeda-de-outro-pais",
+  "nome": "Moeda de outro país",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF03",
+   "EF89LF04"
+  ],
+  "unidade": "Circulação social do dinheiro",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "de-onde-veio-esse-dinheiro",
+  "nome": "De onde veio esse dinheiro",
+  "segmento": "em1",
+  "habilidades": [
+   "EM13LF01",
+   "EM13LF47"
+  ],
+  "unidade": "Circulação social do dinheiro",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "por-que-custa-o-que-custa",
+  "nome": "Por que custa o que custa",
+  "segmento": "em1",
+  "habilidades": [
+   "EM13LF02",
+   "EM13LF04"
+  ],
+  "unidade": "Circulação social do dinheiro",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "o-termometro-da-economia",
+  "nome": "O termômetro da economia",
+  "segmento": "em3",
+  "habilidades": [
+   "EM13LF03",
+   "EM13LF44",
+   "EM13LF46"
+  ],
+  "unidade": "Circulação social do dinheiro",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "fonte-confiavel-e-a-sua-opiniao",
+  "nome": "Fonte confiável (e a sua opinião)",
+  "segmento": "em1",
+  "habilidades": [
+   "EM13LF05",
+   "EM13LF45"
+  ],
+  "unidade": "Circulação social do dinheiro",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "ler-antes-de-assinar",
+  "nome": "Ler antes de assinar",
+  "segmento": "em1",
+  "habilidades": [
+   "EM13LF06",
+   "EM13LF42"
+  ],
+  "unidade": "Circulação social do dinheiro",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "quero-ou-preciso",
+  "nome": "Quero ou preciso",
+  "segmento": "ef12",
+  "habilidades": [
+   "EF12LF05",
+   "EF12LF09"
+  ],
+  "unidade": "Planejamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 33
+ },
+ {
+  "slug": "hoje-mes-que-vem-ano-que-vem",
+  "nome": "Hoje, mês que vem, ano que vem",
+  "segmento": "ef12",
+  "habilidades": [
+   "EF12LF06",
+   "EF12LF07"
+  ],
+  "unidade": "Planejamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 33
+ },
+ {
+  "slug": "querer-e-ilimitado-ter-nao-e",
+  "nome": "Querer é ilimitado, ter não é",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF35LF09",
+   "EF45LF06"
+  ],
+  "unidade": "Planejamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "onde-eu-quero-chegar",
+  "nome": "Onde eu quero chegar",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF35LF10",
+   "EF45LF08"
+  ],
+  "unidade": "Planejamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "o-que-e-um-orcamento",
+  "nome": "O que é um orçamento",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF35LF11",
+   "EF35LF12",
+   "EF35LF13"
+  ],
+  "unidade": "Planejamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "fazendo-o-orcamento-fechar",
+  "nome": "Fazendo o orçamento fechar",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF35LF14",
+   "EF35LF15",
+   "EF35LF16"
+  ],
+  "unidade": "Planejamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "o-orcamento-e-da-casa-toda",
+  "nome": "O orçamento é da casa toda",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF45LF03",
+   "EF45LF07"
+  ],
+  "unidade": "Planejamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "contas-fixas-contas-que-mudam",
+  "nome": "Contas fixas, contas que mudam",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF45LF04",
+   "EF45LF05"
+  ],
+  "unidade": "Planejamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "oferta-e-demanda",
+  "nome": "Oferta e demanda",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF07",
+   "EF67LF08"
+  ],
+  "unidade": "Planejamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "onde-anotar-o-orcamento",
+  "nome": "Onde anotar o orçamento",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF09",
+   "EF67LF10"
+  ],
+  "unidade": "Planejamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "parcelou-comprometeu",
+  "nome": "Parcelou, comprometeu",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF11",
+   "EF67LF12"
+  ],
+  "unidade": "Planejamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "metas-e-o-que-ameaca-elas",
+  "nome": "Metas e o que ameaça elas",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF13",
+   "EF67LF14",
+   "EF67LF15"
+  ],
+  "unidade": "Planejamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "custo-de-oportunidade",
+  "nome": "Custo de oportunidade",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF05",
+   "EF89LF08"
+  ],
+  "unidade": "Planejamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "preco-que-muda-com-o-calendario",
+  "nome": "Preço que muda com o calendário",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF06",
+   "EF89LF09"
+  ],
+  "unidade": "Planejamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "seu-dinheiro-sua-responsabilidade",
+  "nome": "Seu dinheiro, sua responsabilidade",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF07",
+   "EF89LF12"
+  ],
+  "unidade": "Planejamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "orcamento-que-fecha",
+  "nome": "Orçamento que fecha",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF10",
+   "EF89LF11"
+  ],
+  "unidade": "Planejamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "escolher-e-abrir-mao",
+  "nome": "Escolher é abrir mão",
+  "segmento": "em1",
+  "habilidades": [
+   "EM13LF07",
+   "EM13LF10"
+  ],
+  "unidade": "Planejamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "seu-orcamento-em-uma-tela",
+  "nome": "Seu orçamento em uma tela",
+  "segmento": "em1",
+  "habilidades": [
+   "EM13LF08"
+  ],
+  "unidade": "Planejamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "o-que-te-faz-comprar",
+  "nome": "O que te faz comprar",
+  "segmento": "em1",
+  "habilidades": [
+   "EM13LF09",
+   "EM13LF13"
+  ],
+  "unidade": "Planejamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "pesquisar-antes-de-comprar",
+  "nome": "Pesquisar antes de comprar",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF35LF17",
+   "EF45LF10"
+  ],
+  "unidade": "Consumo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "comprar-menos-usar-mais",
+  "nome": "Comprar menos, usar mais",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF35LF18",
+   "EF35LF20",
+   "EF35LF21"
+  ],
+  "unidade": "Consumo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "o-planeta-entra-na-conta",
+  "nome": "O planeta entra na conta",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF35LF19",
+   "EF45LF09"
+  ],
+  "unidade": "Consumo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "planejada-ou-por-impulso",
+  "nome": "Planejada ou por impulso",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF45LF11",
+   "EF45LF12"
+  ],
+  "unidade": "Consumo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "de-graca-nao-e-de-graca",
+  "nome": "De graça não é de graça",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF16",
+   "EF67LF17"
+  ],
+  "unidade": "Consumo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "o-que-decide-por-voce",
+  "nome": "O que decide por você",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF18",
+   "EF67LF19"
+  ],
+  "unidade": "Consumo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "o-custo-depois-da-compra",
+  "nome": "O custo depois da compra",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF13",
+   "EF89LF16"
+  ],
+  "unidade": "Consumo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "publicidade-por-dentro",
+  "nome": "Publicidade por dentro",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF14",
+   "EF89LF15"
+  ],
+  "unidade": "Consumo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "preco-justo-pesquisar-e-negociar",
+  "nome": "Preço justo: pesquisar e negociar",
+  "segmento": "em1",
+  "habilidades": [
+   "EM13LF11",
+   "EM13LF12"
+  ],
+  "unidade": "Consumo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "juntar-da-certo",
+  "nome": "Juntar dá certo",
+  "segmento": "ef12",
+  "habilidades": [
+   "EF12LF10",
+   "EF12LF11",
+   "EF12LF12"
+  ],
+  "unidade": "Poupança e investimento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 33
+ },
+ {
+  "slug": "guardar-tem-objetivo",
+  "nome": "Guardar tem objetivo",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF35LF22",
+   "EF35LF23",
+   "EF45LF13"
+  ],
+  "unidade": "Poupança e investimento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "do-cofrinho-pro-banco",
+  "nome": "Do cofrinho pro banco",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF35LF24",
+   "EF45LF14"
+  ],
+  "unidade": "Poupança e investimento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "poupar-de-proposito",
+  "nome": "Poupar de propósito",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF20",
+   "EF67LF23"
+  ],
+  "unidade": "Poupança e investimento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "guardar-ou-render",
+  "nome": "Guardar ou render",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF21",
+   "EF67LF22"
+  ],
+  "unidade": "Poupança e investimento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "poupar-e-investir-no-plano",
+  "nome": "Poupar e investir no plano",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF17",
+   "EF89LF18"
+  ],
+  "unidade": "Poupança e investimento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "colchao-aposentadoria-e-planeta",
+  "nome": "Colchão, aposentadoria e planeta",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF19",
+   "EF89LF27",
+   "EF89LF29"
+  ],
+  "unidade": "Poupança e investimento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "casa-ou-banco",
+  "nome": "Casa ou banco",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF20",
+   "EF89LF26"
+  ],
+  "unidade": "Poupança e investimento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "risco-rendimento-e-liquidez",
+  "nome": "Risco, rendimento e liquidez",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF21",
+   "EF89LF28"
+  ],
+  "unidade": "Poupança e investimento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "fazendo-a-conta-do-rendimento",
+  "nome": "Fazendo a conta do rendimento",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF22",
+   "EF89LF23"
+  ],
+  "unidade": "Poupança e investimento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "poupar-usar-credito-e-aposta-nao-entra",
+  "nome": "Poupar, usar crédito — e aposta não entra",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF24",
+   "EF89LF25"
+  ],
+  "unidade": "Poupança e investimento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "poupar-tem-um-porque",
+  "nome": "Poupar tem um porquê",
+  "segmento": "em2",
+  "habilidades": [
+   "EM13LF14",
+   "EM13LF21"
+  ],
+  "unidade": "Poupança e investimento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "aposentadoria-comeca-hoje",
+  "nome": "Aposentadoria começa hoje",
+  "segmento": "em2",
+  "habilidades": [
+   "EM13LF15",
+   "EM13LF16"
+  ],
+  "unidade": "Poupança e investimento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "risco-retorno-e-liquidez",
+  "nome": "Risco, retorno e liquidez",
+  "segmento": "em2",
+  "habilidades": [
+   "EM13LF17",
+   "EM13LF18"
+  ],
+  "unidade": "Poupança e investimento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "quanto-sobra-de-verdade",
+  "nome": "Quanto sobra de verdade",
+  "segmento": "em2",
+  "habilidades": [
+   "EM13LF19",
+   "EM13LF20"
+  ],
+  "unidade": "Poupança e investimento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "colchao-e-apolice",
+  "nome": "Colchão e apólice",
+  "segmento": "em2",
+  "habilidades": [
+   "EM13LF22",
+   "EM13LF38"
+  ],
+  "unidade": "Poupança e investimento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "golpe-risco-e-promessa-boa-demais",
+  "nome": "Golpe, risco e promessa boa demais",
+  "segmento": "em2",
+  "habilidades": [
+   "EM13LF23",
+   "EM13LF36",
+   "EM13LF37"
+  ],
+  "unidade": "Poupança e investimento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "dinheiro-com-impacto-esg",
+  "nome": "Dinheiro com impacto (ESG)",
+  "segmento": "em2",
+  "habilidades": [
+   "EM13LF24"
+  ],
+  "unidade": "Poupança e investimento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "emprestado-tem-que-voltar",
+  "nome": "Emprestado tem que voltar",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF35LF25",
+   "EF45LF15"
+  ],
+  "unidade": "Crédito e endividamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "o-que-e-estar-endividado",
+  "nome": "O que é estar endividado",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF45LF16",
+   "EF45LF17"
+  ],
+  "unidade": "Crédito e endividamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "credito-pra-que-serve",
+  "nome": "Crédito: pra que serve",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF24",
+   "EF67LF34"
+  ],
+  "unidade": "Crédito e endividamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "as-pecas-do-credito",
+  "nome": "As peças do crédito",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF25",
+   "EF67LF28"
+  ],
+  "unidade": "Crédito e endividamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "custo-efetivo-total",
+  "nome": "Custo efetivo total",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF26",
+   "EF67LF27"
+  ],
+  "unidade": "Crédito e endividamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "quando-nao-paga",
+  "nome": "Quando não paga",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF29",
+   "EF67LF30",
+   "EF67LF33"
+  ],
+  "unidade": "Crédito e endividamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "a-fatura-do-cartao",
+  "nome": "A fatura do cartão",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF31",
+   "EF67LF32"
+  ],
+  "unidade": "Crédito e endividamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "historico-e-armadilha",
+  "nome": "Histórico e armadilha",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF35",
+   "EF67LF36"
+  ],
+  "unidade": "Crédito e endividamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "a-conta-do-emprestimo",
+  "nome": "A conta do empréstimo",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF30",
+   "EF89LF36"
+  ],
+  "unidade": "Crédito e endividamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "o-contrato-de-credito",
+  "nome": "O contrato de crédito",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF31",
+   "EF89LF32"
+  ],
+  "unidade": "Crédito e endividamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "cabe-no-seu-bolso",
+  "nome": "Cabe no seu bolso?",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF33",
+   "EF89LF34"
+  ],
+  "unidade": "Crédito e endividamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "atrasou-e-agora",
+  "nome": "Atrasou: e agora",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF35",
+   "EF89LF37",
+   "EF89LF38"
+  ],
+  "unidade": "Crédito e endividamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "endividado-ou-inadimplente",
+  "nome": "Endividado ou inadimplente",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF39",
+   "EF89LF40"
+  ],
+  "unidade": "Crédito e endividamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "estudar-sem-se-afundar",
+  "nome": "Estudar sem se afundar",
+  "segmento": "em3",
+  "habilidades": [
+   "EM13LF25"
+  ],
+  "unidade": "Crédito e endividamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "o-preco-do-credito",
+  "nome": "O preço do crédito",
+  "segmento": "em3",
+  "habilidades": [
+   "EM13LF26",
+   "EM13LF29"
+  ],
+  "unidade": "Crédito e endividamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "quando-a-divida-vira-problema",
+  "nome": "Quando a dívida vira problema",
+  "segmento": "em3",
+  "habilidades": [
+   "EM13LF27",
+   "EM13LF28"
+  ],
+  "unidade": "Crédito e endividamento",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "de-onde-vem-o-dinheiro-da-casa",
+  "nome": "De onde vem o dinheiro da casa",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF35LF26",
+   "EF45LF18"
+  ],
+  "unidade": "Renda e empreendedorismo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "trabalho-e-profissoes",
+  "nome": "Trabalho e profissões",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF35LF27",
+   "EF35LF28",
+   "EF35LF29"
+  ],
+  "unidade": "Renda e empreendedorismo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "campo-e-cidade",
+  "nome": "Campo e cidade",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF35LF30",
+   "EF45LF19",
+   "EF45LF20"
+  ],
+  "unidade": "Renda e empreendedorismo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "de-onde-vem-a-renda",
+  "nome": "De onde vem a renda",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF37",
+   "EF67LF40"
+  ],
+  "unidade": "Renda e empreendedorismo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "estudo-desigualdade-e-lucro",
+  "nome": "Estudo, desigualdade e lucro",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF38",
+   "EF67LF39",
+   "EF67LF41"
+  ],
+  "unidade": "Renda e empreendedorismo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "o-que-determina-a-sua-renda",
+  "nome": "O que determina a sua renda",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF41",
+   "EF89LF42"
+  ],
+  "unidade": "Renda e empreendedorismo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "formal-informal-precarizado",
+  "nome": "Formal, informal, precarizado",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF43",
+   "EF89LF44"
+  ],
+  "unidade": "Renda e empreendedorismo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "atitude-empreendedora",
+  "nome": "Atitude empreendedora",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF45",
+   "EF89LF50"
+  ],
+  "unidade": "Renda e empreendedorismo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "a-conta-do-negocio",
+  "nome": "A conta do negócio",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF46",
+   "EF89LF47"
+  ],
+  "unidade": "Renda e empreendedorismo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "vender-e-crescer",
+  "nome": "Vender e crescer",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF48",
+   "EF89LF49"
+  ],
+  "unidade": "Renda e empreendedorismo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "de-onde-vem-a-sua-renda",
+  "nome": "De onde vem a sua renda",
+  "segmento": "em3",
+  "habilidades": [
+   "EM13LF30",
+   "EM13LF31",
+   "EM13LF35"
+  ],
+  "unidade": "Renda e empreendedorismo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "pensar-como-quem-empreende",
+  "nome": "Pensar como quem empreende",
+  "segmento": "em3",
+  "habilidades": [
+   "EM13LF32",
+   "EM13LF33"
+  ],
+  "unidade": "Renda e empreendedorismo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "a-conta-do-negocio-em3",
+  "nome": "A conta do negócio",
+  "segmento": "em3",
+  "habilidades": [
+   "EM13LF34"
+  ],
+  "unidade": "Renda e empreendedorismo",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "o-que-e-risco",
+  "nome": "O que é risco",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF42",
+   "EF67LF43"
+  ],
+  "unidade": "Risco e proteção",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "proteger-o-que-e-seu",
+  "nome": "Proteger o que é seu",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF44",
+   "EF67LF45",
+   "EF67LF46"
+  ],
+  "unidade": "Risco e proteção",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "dinheiro-na-mao-risco-na-tela",
+  "nome": "Dinheiro na mão, risco na tela",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF51",
+   "EF89LF52"
+  ],
+  "unidade": "Risco e proteção",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "golpe-nao-e-azar",
+  "nome": "Golpe não é azar",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF53",
+   "EF89LF54",
+   "EF89LF55"
+  ],
+  "unidade": "Risco e proteção",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "tipos-de-seguro",
+  "nome": "Tipos de seguro",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF56"
+  ],
+  "unidade": "Risco e proteção",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "escolha-que-respinga-nos-outros",
+  "nome": "Escolha que respinga nos outros",
+  "segmento": "ef35",
+  "habilidades": [
+   "EF45LF21",
+   "EF45LF22"
+  ],
+  "unidade": "Cenário financeiro e cidadania",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "o-mundo-mexe-no-seu-bolso",
+  "nome": "O mundo mexe no seu bolso",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF47",
+   "EF67LF51"
+  ],
+  "unidade": "Cenário financeiro e cidadania",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "seus-direitos-como-consumidor",
+  "nome": "Seus direitos como consumidor",
+  "segmento": "ef67",
+  "habilidades": [
+   "EF67LF48",
+   "EF67LF49",
+   "EF67LF50"
+  ],
+  "unidade": "Cenário financeiro e cidadania",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 45
+ },
+ {
+  "slug": "renda-desigual-escolhas-desiguais",
+  "nome": "Renda desigual, escolhas desiguais",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF57",
+   "EF89LF58"
+  ],
+  "unidade": "Cenário financeiro e cidadania",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "justo-injusto-legal-ilegal",
+  "nome": "Justo, injusto, legal, ilegal",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF59",
+   "EF89LF61"
+  ],
+  "unidade": "Cenário financeiro e cidadania",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "imposto-vira-o-que",
+  "nome": "Imposto vira o quê",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF60",
+   "EF89LF63"
+  ],
+  "unidade": "Cenário financeiro e cidadania",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "quem-e-quem-no-sistema-financeiro",
+  "nome": "Quem é quem no sistema financeiro",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF62",
+   "EF89LF65"
+  ],
+  "unidade": "Cenário financeiro e cidadania",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "negocio-novo-doacao-e-voluntariado",
+  "nome": "Negócio novo, doação e voluntariado",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF64",
+   "EF89LF68"
+  ],
+  "unidade": "Cenário financeiro e cidadania",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "fonte-confiavel",
+  "nome": "Fonte confiável",
+  "segmento": "ef89",
+  "habilidades": [
+   "EF89LF66",
+   "EF89LF67"
+  ],
+  "unidade": "Cenário financeiro e cidadania",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "quem-move-a-economia",
+  "nome": "Quem move a economia",
+  "segmento": "em3",
+  "habilidades": [
+   "EM13LF39",
+   "EM13LF40"
+  ],
+  "unidade": "Cenário financeiro e cidadania",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ },
+ {
+  "slug": "imposto-servico-publico-e-voce",
+  "nome": "Imposto, serviço público e você",
+  "segmento": "em3",
+  "habilidades": [
+   "EM13LF41",
+   "EM13LF43"
+  ],
+  "unidade": "Cenário financeiro e cidadania",
+  "frase": null,
+  "preRequisitos": [],
+  "encontros": 3,
+  "itensAlvo": 54
+ }
+]

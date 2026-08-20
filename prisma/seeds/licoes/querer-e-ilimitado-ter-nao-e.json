@@ -1,0 +1,293 @@
+{
+ "slug": "querer-e-ilimitado-ter-nao-e",
+ "segmento": "ef35",
+ "conceitoPrincipal": "querer-e-ilimitado-ter-nao-e",
+ "fraseConceito": "Os desejos não têm limite, mas o dinheiro tem — por isso é preciso escolher prioridades.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "desejo-x-necessidade",
+   "criterio": "Isso é necessidade?",
+   "enunciado": "Comer alguma coisa todos os dias",
+   "resposta": true,
+   "ancora": "Necessidade é o que o corpo ou a vida exigem pra funcionar.",
+   "feedbackErro": "Parece só um hábito do dia a dia. Mas comer é algo que o corpo exige pra funcionar — isso é necessidade."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "desejo-x-necessidade",
+   "criterio": "Isso é desejo?",
+   "enunciado": "Querer o tênis mais novo, mesmo tendo um que ainda serve",
+   "resposta": true,
+   "ancora": "Desejo é querer algo além do que já é suficiente.",
+   "feedbackErro": "Parece igual a precisar de um tênis. Mas se o antigo ainda serve, querer o novo é desejo, não necessidade."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "recursos-limitados",
+   "criterio": "Dá pra ter tudo que se quer?",
+   "enunciado": "O dinheiro disponível é sempre menor que a lista de desejos",
+   "resposta": true,
+   "ancora": "Recursos são limitados; os desejos, não.",
+   "feedbackErro": "Parece exagero dizer que nunca alcança. Mas o dinheiro disponível quase sempre é menor do que tudo que a gente gostaria de ter."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "desejo-x-necessidade",
+   "dificuldade": 1,
+   "pergunta": "Qual dessas opções é uma necessidade, e não um desejo?",
+   "ancora": "Necessidade é o que falta faz de verdade pra viver.",
+   "alternativas": [
+    {
+     "texto": "Ter um lugar pra dormir protegido do frio",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ter o brinquedo mais novo que os amigos têm",
+     "correta": false,
+     "feedbackErro": "Ter o brinquedo mais novo não é indispensável pra viver — é uma vontade. Um lugar protegido do frio, sim, é necessidade."
+    },
+    {
+     "texto": "Ter roupas de marca cara pra usar na escola",
+     "correta": false,
+     "feedbackErro": "A roupa cara não é indispensável — qualquer roupa adequada cumpre a função. Isso é desejo, não necessidade."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "recursos-limitados",
+   "dificuldade": 1,
+   "pergunta": "Você tem R$ 20 e quer 3 coisas que juntas custam R$ 50. O que fazer?",
+   "ancora": "50 menos 20 é 30: o quanto falta pra ter tudo.",
+   "alternativas": [
+    {
+     "texto": "Escolher a mais importante e deixar as outras pra depois",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Comprar as 3 mesmo assim, de algum jeito",
+     "correta": false,
+     "feedbackErro": "R$ 20 não cobrem R$ 50 por conta alguma — faltam R$ 30. Ignorar essa diferença não faz o dinheiro aparecer."
+    },
+    {
+     "texto": "Esperar até os desejos desaparecerem sozinhos",
+     "correta": false,
+     "feedbackErro": "Desejos não desaparecem só de esperar. O que ajuda de verdade é escolher prioridades com o dinheiro que existe."
+    }
+   ],
+   "verificacao": {
+    "expressao": "50-20",
+    "esperado": 30
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "desejo-x-necessidade",
+   "criterio": "Sem isso, dá pra viver bem?",
+   "enunciado": "Sem ter o videogame mais recente",
+   "resposta": true,
+   "ancora": "Dá pra viver bem sem ele — por isso é desejo, não necessidade.",
+   "feedbackErro": "Parece que ficar sem o videogame mais novo é sério. Mas dá pra viver bem sem ele — isso mostra que é desejo, não necessidade."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "desejo-x-necessidade",
+   "instrucao": "É desejo ou necessidade? Arraste.",
+   "ancora": "Necessidade é o que falta faz; desejo é vontade extra.",
+   "feedbackErro": "É fácil confundir quando a vontade é forte. O critério é: sem isso, a vida continua funcionando ou não?",
+   "caixas": [
+    {
+     "id": "necessidade",
+     "rotulo": "Necessidade"
+    },
+    {
+     "id": "desejo",
+     "rotulo": "Desejo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Ter água limpa pra beber",
+     "caixaCorreta": "necessidade"
+    },
+    {
+     "texto": "Ter o celular mais caro da loja",
+     "caixaCorreta": "desejo"
+    },
+    {
+     "texto": "Ter remédio quando está doente",
+     "caixaCorreta": "necessidade"
+    },
+    {
+     "texto": "Ter todos os lançamentos de um jogo",
+     "caixaCorreta": "desejo"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "recursos-limitados",
+   "criterio": "Ajuda a lidar com recurso limitado?",
+   "enunciado": "Escolher o que é mais importante antes de gastar",
+   "resposta": true,
+   "ancora": "Escolher prioridades é o jeito de lidar com dinheiro limitado.",
+   "feedbackErro": "Parece só bom senso, sem técnica nenhuma. Mas escolher prioridades antes de gastar é o que resolve o limite do dinheiro."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "recursos-limitados",
+   "dificuldade": 1,
+   "pergunta": "Você tem R$ 30. Quer um livro de R$ 18 e um brinquedo de R$ 25. O que é possível?",
+   "ancora": "18 mais 25 é 43: mais do que os R$ 30 que você tem.",
+   "alternativas": [
+    {
+     "texto": "Só um dos dois, porque juntos custam mais que R$ 30",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Os dois juntos, porque R$ 30 é bastante dinheiro",
+     "correta": false,
+     "feedbackErro": "R$ 30 parece bastante, mas os dois juntos custam R$ 43 — R$ 13 a mais do que você tem."
+    },
+    {
+     "texto": "Nenhum dos dois, porque R$ 30 não compra nada",
+     "correta": false,
+     "feedbackErro": "R$ 30 compra o livro de R$ 18 ou o brinquedo de R$ 25, separadamente. O problema é só comprar os dois juntos."
+    }
+   ],
+   "verificacao": {
+    "expressao": "18+25",
+    "esperado": 43
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "desejo-x-necessidade",
+   "criterio": "Isso muda de necessidade pra desejo?",
+   "enunciado": "Comer alguma coisa é necessidade; comer sempre a marca mais cara não é",
+   "resposta": true,
+   "ancora": "A necessidade é a base; o extra em cima dela é desejo.",
+   "feedbackErro": "Parece que tudo relacionado à comida é necessidade. Mas comer é necessidade; escolher sempre a marca cara é o desejo em cima."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "recursos-limitados",
+   "criterio": "É uma boa forma de decidir prioridade?",
+   "enunciado": "Perguntar o que resolve um problema real antes do que só dá vontade",
+   "resposta": true,
+   "ancora": "Resolver um problema real pesa mais do que só vontade.",
+   "feedbackErro": "Parece uma pergunta óbvia demais pra ajudar. Mas separar o que resolve um problema real do que só dá vontade é o critério."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "desejo-x-necessidade",
+   "pergunta": "Qual frase resume o que você viu hoje?",
+   "alternativas": [
+    {
+     "texto": "Desejos não têm limite, mas o dinheiro tem — por isso escolhemos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Necessidade e desejo são sempre a mesma coisa",
+     "correta": false,
+     "feedbackErro": "Não são: necessidade é o que falta faz de verdade; desejo é a vontade além disso."
+    },
+    {
+     "texto": "O dinheiro sempre alcança pra tudo que a gente quer",
+     "correta": false,
+     "feedbackErro": "Quase nunca alcança: os desejos costumam ser maiores do que o dinheiro disponível."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "desejo-x-necessidade",
+   "criterio": "Isso é necessidade?",
+   "enunciado": "Ter um lugar seguro pra morar",
+   "resposta": true,
+   "ancora": "Segurança e abrigo são necessidades básicas.",
+   "feedbackErro": "Parece só conforto, sem grande urgência. Mas ter um lugar seguro pra morar é uma necessidade básica, não um extra."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "recursos-limitados",
+   "dificuldade": 1,
+   "pergunta": "Sobraram R$ 10 depois das necessidades do mês. O que fazer com eles?",
+   "ancora": "O critério é escolher o desejo que mais importa.",
+   "alternativas": [
+    {
+     "texto": "Escolher o desejo que importa mais entre as opções",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Gastar em qualquer coisa, já que é 'sobra'",
+     "correta": false,
+     "feedbackErro": "Ser sobra não quer dizer que não importa como se gasta. Escolher o que realmente importa evita desperdiçar mesmo pouco."
+    },
+    {
+     "texto": "Guardar sem nunca decidir o que fazer com ele",
+     "correta": false,
+     "feedbackErro": "Guardar é uma opção válida, mas 'nunca decidir' não é prioridade — é adiar a escolha, não fazer ela."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "desejo-x-necessidade",
+   "instrucao": "É desejo ou necessidade? Arraste.",
+   "ancora": "O critério é: sem isso, a vida continua funcionando?",
+   "feedbackErro": "Quando a vontade é forte, parece necessidade. Mas o critério é se a vida continua funcionando sem aquilo.",
+   "caixas": [
+    {
+     "id": "necessidade",
+     "rotulo": "Necessidade"
+    },
+    {
+     "id": "desejo",
+     "rotulo": "Desejo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Ter roupa adequada pro frio",
+     "caixaCorreta": "necessidade"
+    },
+    {
+     "texto": "Ter a roupa da moda mais recente",
+     "caixaCorreta": "desejo"
+    },
+    {
+     "texto": "Ter atendimento médico quando precisa",
+     "caixaCorreta": "necessidade"
+    },
+    {
+     "texto": "Ter o brinquedo que todo mundo está comprando",
+     "caixaCorreta": "desejo"
+    }
+   ]
+  }
+ ]
+}

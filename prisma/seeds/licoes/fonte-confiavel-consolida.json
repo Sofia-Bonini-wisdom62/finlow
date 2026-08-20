@@ -1,0 +1,329 @@
+{
+ "slug": "fonte-confiavel-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "fonte-confiavel",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "Isso sozinho garante confiabilidade?",
+   "enunciado": "Ter diploma de economia",
+   "resposta": false,
+   "ancora": "Diploma dá base técnica, mas não impede conflito de interesse.",
+   "feedbackErro": "Formação técnica parece suficiente pra confiar de olhos fechados. Mas quem tem diploma também pode vender produto com interesse na sua escolha."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "Isso sozinho garante confiabilidade?",
+   "enunciado": "Ser regulado pelo Banco Central",
+   "resposta": false,
+   "ancora": "Regulação garante legalidade, não neutralidade na indicação.",
+   "feedbackErro": "Regulado soa como sinônimo de confiável. Mas um banco regulado ainda vende o próprio produto — legal não é o mesmo que neutro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "Isso sozinho garante confiabilidade?",
+   "enunciado": "Citar uma fonte pública, mesmo que desatualizada",
+   "resposta": false,
+   "ancora": "Fonte pública velha não garante que o dado ainda vale hoje.",
+   "feedbackErro": "Citar o IBGE parece prova definitiva. Mas se o dado é de anos atrás, a origem é boa e a informação pode já ter mudado."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "avaliar-fonte",
+   "dificuldade": 3,
+   "pergunta": "Um banco regulado anuncia seu cartão como 'a melhor opção do mercado'. Isso é confiável?",
+   "ancora": "Legal e regulado não é o mesmo que comparação neutra.",
+   "alternativas": [
+    {
+     "texto": "É legal e regulado, mas não é neutro — ele vende o produto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, banco regulado nunca engana o cliente",
+     "correta": false,
+     "feedbackErro": "Regulação impede fraude grave, não impede propaganda exagerada do próprio produto."
+    },
+    {
+     "texto": "Não, porque banco regulado é sempre pior que fintech",
+     "correta": false,
+     "feedbackErro": "O tipo de instituição não define qualidade — o problema aqui é o interesse comercial no anúncio."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "decisao-de-credito-informada",
+   "dificuldade": 3,
+   "pergunta": "Uma família comparou taxas certinho e mesmo assim caiu em dívida cara. O que faltou?",
+   "ancora": "Taxa comparada certo ainda pode esconder tarifa e seguro no total.",
+   "alternativas": [
+    {
+     "texto": "Nada — comparar a taxa já resolve tudo",
+     "correta": false,
+     "feedbackErro": "Taxa comparada corretamente ainda pode esconder tarifas e seguros embutidos no custo total."
+    },
+    {
+     "texto": "Checar o valor total das parcelas, não só a taxa anunciada",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ter usado uma fonte errada pra comparar",
+     "correta": false,
+     "feedbackErro": "Mesmo com fonte certa, olhar só a taxa não revela o custo total do contrato."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "Isso sozinho garante confiabilidade?",
+   "enunciado": "Ter milhões de seguidores nas redes sociais",
+   "resposta": false,
+   "ancora": "Audiência mede alcance, não competência nem neutralidade.",
+   "feedbackErro": "Milhões de seguidores parecem prova de credibilidade. Mas audiência grande só mostra popularidade — não garante que o conteúdo é correto."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "decisao-de-credito-informada",
+   "instrucao": "Ordene do mais pro menos importante ao avaliar uma fonte de crédito.",
+   "ancora": "Interesse comercial pesa mais que aparência na hora de confiar.",
+   "feedbackErro": "O que mais importa é quem lucra com sua decisão; visual profissional é o que menos garante qualidade da informação.",
+   "itens": [
+    {
+     "texto": "Se tem interesse comercial na sua decisão",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Se o dado pode ser checado em outro lugar",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Se explica com clareza o critério usado",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Se o visual da página é profissional",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "Basta isso pra confiar?",
+   "enunciado": "A fonte não vender nada, mas nunca citar de onde tirou o dado",
+   "resposta": false,
+   "ancora": "Não vender é bom sinal, mas sem origem o dado ainda é opinião.",
+   "feedbackErro": "Não ter produto pra vender tira um motivo pra mentir, e isso ajuda. Mas sem citar a origem, ainda não dá pra checar se o dado é real."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "Basta isso pra confiar?",
+   "enunciado": "A fonte citar dado do IBGE e explicar como chegou à conclusão",
+   "resposta": true,
+   "ancora": "Origem citável e raciocínio exposto é o padrão mais alto.",
+   "feedbackErro": "Parece exigir demais de uma fonte comum. Mas citar a origem e mostrar o raciocínio é justamente o que permite qualquer um conferir."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "avaliar-fonte",
+   "pergunta": "Uma promessa de golpe rende 30% ao mês. Em 6 meses, quanto R$ 500 virariam?",
+   "campo": "moeda",
+   "min": 500,
+   "max": 6000,
+   "gabarito": 2413,
+   "toleranciaPct": 20,
+   "fonte": "juros compostos aplicados sobre a promessa do golpe",
+   "verificacao": {
+    "expressao": "500*1.3^6",
+    "esperado": 2413.4,
+    "tolerancia": 10
+   },
+   "feedbackPerto": "Isso mesmo — mais de R$ 2.400. Ritmo assim não existe fora de golpe ou pirâmide.",
+   "feedbackLonge": "Dá cerca de R$ 2.413. Composto multiplica rápido — em 6 meses o valor quase quintuplica, e é por isso que a promessa é irreal."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "avaliar-fonte",
+   "dificuldade": 3,
+   "pergunta": "Quando uma fonte oficial pode não bastar sozinha pra decidir?",
+   "ancora": "Fonte certa com dado velho ainda pode levar à decisão errada.",
+   "alternativas": [
+    {
+     "texto": "Quando o dado está velho ou fora do contexto da decisão",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nunca — fonte oficial sempre basta sozinha",
+     "correta": false,
+     "feedbackErro": "Oficial garante origem, não garante que o dado ainda serve pra decisão de hoje."
+    },
+    {
+     "texto": "Quando a fonte é gratuita",
+     "correta": false,
+     "feedbackErro": "Gratuidade não tem relação nenhuma com a suficiência do dado."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "decisao-de-credito-informada",
+   "dificuldade": 3,
+   "pergunta": "Dois golpes diferentes seguem o mesmo padrão: promessa alta e pressa. O que isso ensina?",
+   "ancora": "O padrão se repete mais do que o disfarce — vale mais notar o padrão.",
+   "alternativas": [
+    {
+     "texto": "Que o padrão se repete mais que o visual, e vale notar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que cada golpe é único e imprevisível",
+     "correta": false,
+     "feedbackErro": "Golpes mudam de roupagem, mas repetem o mesmo padrão: pressa e promessa alta demais."
+    },
+    {
+     "texto": "Que só golpe de investimento usa pressa",
+     "correta": false,
+     "feedbackErro": "Pressa aparece em golpe de prêmio, empréstimo e pedido de dado pessoal também."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "Isso sozinho garante confiabilidade?",
+   "enunciado": "A fonte ser gratuita e sem anúncio visível",
+   "resposta": false,
+   "ancora": "Gratuita não é sinônimo de neutra — pode ter outro interesse.",
+   "feedbackErro": "Sem anúncio parece sinal de isenção total. Mas o interesse pode estar em vender depois um curso ou produto ligado ao conteúdo."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "decisao-de-credito-informada",
+   "criterio": "Ajuda a decidir sobre crédito?",
+   "enunciado": "Comparar o custo total, não só a taxa mensal anunciada",
+   "resposta": true,
+   "ancora": "Taxa isolada esconde tarifa e seguro embutidos no total.",
+   "feedbackErro": "Taxa mensal parece o dado mais importante, e é o mais visível. Mas o custo total revela tarifas e seguros que a taxa sozinha esconde."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "avaliar-fonte",
+   "pergunta": "Qual frase resume a lição de hoje?",
+   "ancora": "Nenhum sinal isolado basta — confiança vem do conjunto.",
+   "alternativas": [
+    {
+     "texto": "Um sinal isolado, como diploma ou regulação, já garante confiança.",
+     "correta": false,
+     "feedbackErro": "Nenhum sinal sozinho garante — é o conjunto que conta."
+    },
+    {
+     "texto": "Confiabilidade vem do conjunto: origem checável, sem interesse e dado atual.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Fonte gratuita é sempre neutra, já que não vende nada.",
+     "correta": false,
+     "feedbackErro": "Gratuita pode ter outro interesse, como vender algo depois."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "avaliar-fonte",
+   "instrucao": "Isso garante confiabilidade sozinho? Arraste.",
+   "ancora": "Garante quando junta origem checável com ausência de interesse.",
+   "feedbackErro": "Sinal isolado como regulação ou seguidores não garante nada sozinho. Só garante quando origem checável se junta à ausência de interesse comercial.",
+   "caixas": [
+    {
+     "id": "garante",
+     "rotulo": "Garante"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não garante"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Ser regulado pelo Banco Central",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Citar dado do IBGE e mostrar o cálculo",
+     "caixaCorreta": "garante"
+    },
+    {
+     "texto": "Ter milhões de seguidores",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Ser órgão público sem produto pra vender",
+     "caixaCorreta": "garante"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "avaliar-fonte",
+   "dificuldade": 3,
+   "pergunta": "Uma fonte paga por anúncio ainda pode informar direito. Quando isso é aceitável?",
+   "ancora": "Patrocínio declarado não invalida o dado, só exige mais checagem.",
+   "alternativas": [
+    {
+     "texto": "Quando o patrocínio é declarado e o dado pode ser checado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nunca — anúncio pago invalida qualquer informação",
+     "correta": false,
+     "feedbackErro": "Invalidar tudo é exagero. O que resolve é declarar o patrocínio e permitir checagem do dado."
+    },
+    {
+     "texto": "Sempre, porque anúncio prova que a marca é séria",
+     "correta": false,
+     "feedbackErro": "Pagar por anúncio não prova seriedade — só prova que a marca tem verba de marketing."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "Basta isso pra confiar?",
+   "enunciado": "A fonte ter opinião forte e engajada sobre o tema",
+   "resposta": false,
+   "ancora": "Engajamento é estilo de comunicação, não prova de acerto.",
+   "feedbackErro": "Falar com convicção passa segurança, e por isso convence. Mas tom forte não substitui dado citável — são coisas diferentes."
+  }
+ ]
+}

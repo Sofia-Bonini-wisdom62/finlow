@@ -1,0 +1,339 @@
+{
+ "slug": "o-contrato-de-credito-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "o-contrato-de-credito",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "o-contrato-de-credito",
+   "criterio": "Isso aparece no contrato de crédito?",
+   "enunciado": "A cláusula de vencimento antecipado da dívida",
+   "resposta": true,
+   "ancora": "Vencimento antecipado é cláusula comum em contrato de crédito.",
+   "feedbackErro": "É um termo técnico, e por isso parece incomum. Mas vencimento antecipado é cláusula comum, presente na maioria dos contratos de crédito."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "o-contrato-de-credito",
+   "criterio": "Isso aparece no contrato de crédito?",
+   "enunciado": "O IOF cobrado sobre a operação de crédito",
+   "resposta": true,
+   "ancora": "IOF incide sobre operações de crédito e aparece no contrato.",
+   "feedbackErro": "IOF costuma ser lembrado só em compras internacionais, e isso confunde. Mas ele também incide sobre crédito, e aparece no contrato."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "o-contrato-de-credito",
+   "criterio": "Isso aparece no contrato de crédito?",
+   "enunciado": "A opinião do atendente sobre o banco concorrente",
+   "resposta": false,
+   "ancora": "Opinião pessoal do atendente não é cláusula contratual.",
+   "feedbackErro": "O atendimento influencia a decisão de contratar, e por isso parece relevante. Mas opinião pessoal não vira cláusula do contrato."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-efetivo-total",
+   "dificuldade": 2,
+   "pergunta": "Duas propostas com taxa de 2,3% ao mês. Uma tem CET de 2,3% e outra de 3,1%. O que explica a diferença?",
+   "ancora": "Tarifas ou seguro extra elevam o CET acima da taxa de juros.",
+   "alternativas": [
+    {
+     "texto": "A segunda cobra tarifas ou seguro que a primeira não cobra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A segunda proposta é sempre um golpe",
+     "correta": false,
+     "feedbackErro": "CET mais alto não significa golpe: pode ser um seguro ou tarifa legítima, só que embutida no cálculo."
+    },
+    {
+     "texto": "O CET não pode ser diferente da taxa de juros anunciada",
+     "correta": false,
+     "feedbackErro": "O CET costuma ser diferente da taxa de juros justamente quando há tarifas ou seguros embutidos no contrato."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "termos-do-contrato",
+   "dificuldade": 2,
+   "pergunta": "Um contrato tem 'carência de 60 dias'. O que isso significa na prática?",
+   "ancora": "Carência adia a primeira parcela, mas os juros continuam correndo.",
+   "alternativas": [
+    {
+     "texto": "A primeira parcela só vence 60 dias depois da contratação",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O empréstimo não tem juros nos primeiros 60 dias",
+     "correta": false,
+     "feedbackErro": "Os juros costumam continuar correndo durante a carência: o que muda é só a data da primeira cobrança."
+    },
+    {
+     "texto": "O cliente pode desistir em até 60 dias sem custo",
+     "correta": false,
+     "feedbackErro": "Carência não é sobre desistência: é o prazo antes do vencimento da primeira parcela do empréstimo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "Isso reduz o custo total do crédito?",
+   "enunciado": "Ter carência maior antes da primeira parcela",
+   "resposta": false,
+   "ancora": "Carência adia o pagamento, mas os juros continuam correndo.",
+   "feedbackErro": "Adiar o pagamento parece um alívio financeiro direto. Mas os juros continuam correndo durante a carência: o custo total tende a subir."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "custo-efetivo-total",
+   "instrucao": "Classifique: aumenta o CET ou não influencia?",
+   "ancora": "Tarifas e IOF aumentam o CET; detalhes visuais não.",
+   "feedbackErro": "Alguns itens do contrato têm custo real embutido; outros são só características sem impacto financeiro.",
+   "caixas": [
+    {
+     "id": "aumenta",
+     "rotulo": "Aumenta"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não influencia"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Tarifa de cadastro",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "Seguro prestamista opcional contratado",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "Cor do contrato impresso",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "IOF sobre a operação",
+     "caixaCorreta": "aumenta"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "termos-do-contrato",
+   "criterio": "Está descrito no contrato de crédito?",
+   "enunciado": "O valor da parcela mensal, em reais",
+   "resposta": true,
+   "ancora": "Valor da parcela é cláusula obrigatória do contrato.",
+   "feedbackErro": "Parece uma informação óbvia demais para precisar constar por escrito. Mas o valor exato da parcela é cláusula obrigatória do contrato."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "termos-do-contrato",
+   "criterio": "Está descrito no contrato de crédito?",
+   "enunciado": "A previsão de aumento de salário do cliente",
+   "resposta": false,
+   "ancora": "Contrato trata das condições do crédito, não da renda futura.",
+   "feedbackErro": "A capacidade de pagamento importa na aprovação, e isso confunde. Mas o contrato descreve as condições do crédito, não previsões de renda."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-efetivo-total",
+   "pergunta": "Empréstimo de R$ 1.500 a 2,4% ao mês, mais tarifa de R$ 45. Custo total no fim do 1º mês?",
+   "campo": "moeda",
+   "min": 1500,
+   "max": 1700,
+   "gabarito": 1581,
+   "toleranciaPct": 20,
+   "fonte": "cálculo padrão de juros simples de 1 mês mais tarifa",
+   "feedbackPerto": "Isso mesmo, R$ 1.581. É o valor com juros do mês, mais a tarifa cobrada à parte.",
+   "feedbackLonge": "R$ 1.581: R$ 1.500 com 2,4% de juros dá R$ 1.536; somando a tarifa de R$ 45, chega a R$ 1.581.",
+   "verificacao": {
+    "expressao": "1500*1.024+45",
+    "esperado": 1581,
+    "tolerancia": 1
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "termos-do-contrato",
+   "dificuldade": 2,
+   "pergunta": "Um contrato tem 'seguro prestamista' incluído automaticamente, sem o cliente ter pedido. O que ele pode fazer?",
+   "ancora": "Seguro prestamista precisa ser opcional, o cliente pode cancelar.",
+   "alternativas": [
+    {
+     "texto": "Pedir o cancelamento, já que o seguro deve ser opcional",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada, seguro é sempre obrigatório em empréstimo",
+     "correta": false,
+     "feedbackErro": "Seguro prestamista não é obrigatório por lei: ele deve ser oferecido como opção, e o cliente pode recusar."
+    },
+    {
+     "texto": "Só pode cancelar depois de quitar o empréstimo inteiro",
+     "correta": false,
+     "feedbackErro": "Não é preciso esperar quitar o empréstimo: o cliente pode pedir o cancelamento do seguro a qualquer momento."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "o-contrato-de-credito",
+   "dificuldade": 2,
+   "pergunta": "Priscila assinou um contrato sem ler e descobriu depois uma cláusula de multa de 10% por quitação antecipada. Isso é",
+   "ancora": "A lei limita ou veda multa para quitação antecipada.",
+   "alternativas": [
+    {
+     "texto": "Abusivo: a lei limita ou veda multa por quitação antecipada",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Normal, todo contrato de crédito tem essa cláusula",
+     "correta": false,
+     "feedbackErro": "Não é regra geral: a lei limita ou até proíbe esse tipo de multa em vários tipos de contrato de crédito."
+    },
+    {
+     "texto": "Irrelevante, porque ela não pretende quitar antes",
+     "correta": false,
+     "feedbackErro": "Mesmo sem planos de quitar antes, a cláusula abusiva continua sendo um problema jurídico no contrato assinado."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "Faz parte do custo total (CET)?",
+   "enunciado": "A tarifa de abertura de cadastro, quando cobrada",
+   "resposta": true,
+   "ancora": "Tarifas cobradas no contrato entram no cálculo do CET.",
+   "feedbackErro": "É uma cobrança única, pequena, e por isso parece irrelevante. Mas qualquer tarifa cobrada no contrato entra no cálculo do CET."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "Faz parte do custo total (CET)?",
+   "enunciado": "O nome do gerente que atendeu o cliente",
+   "resposta": false,
+   "ancora": "Dado pessoal do atendente não gera custo financeiro no contrato.",
+   "feedbackErro": "Depois de ver tarifas pequenas contando no CET, pode parecer que qualquer detalhe soma. Mas o nome do atendente não gera custo nenhum."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-contrato-de-credito",
+   "dificuldade": null,
+   "pergunta": "Qual frase resume o reforço de hoje?",
+   "alternativas": [
+    {
+     "texto": "O contrato tem termos próprios; tarifas e seguros podem inflar o CET",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Carência maior sempre reduz o custo total do crédito",
+     "correta": false,
+     "feedbackErro": "Carência adia a cobrança, mas os juros continuam correndo: o custo total tende a subir, não a cair."
+    },
+    {
+     "texto": "Seguro prestamista é sempre obrigatório em qualquer empréstimo",
+     "correta": false,
+     "feedbackErro": "Seguro prestamista deve ser oferecido como opção; o cliente pode recusar ou pedir o cancelamento."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "Faz parte do custo total (CET)?",
+   "enunciado": "O IOF cobrado sobre a operação de crédito contratada",
+   "resposta": true,
+   "ancora": "IOF é um imposto que soma ao custo total do crédito.",
+   "feedbackErro": "IOF é lembrado mais em compras internacionais, e por isso confunde. Mas ele também incide sobre crédito, e entra no cálculo do CET."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "termos-do-contrato",
+   "dificuldade": 2,
+   "pergunta": "Um contrato define 'multa de mora de 2% mais juros de 1% ao mês' em caso de atraso. O que é a multa de mora?",
+   "ancora": "Multa de mora é cobrada uma vez, pelo simples atraso.",
+   "alternativas": [
+    {
+     "texto": "Cobrança única pelo atraso, diferente do juro que se repete",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O mesmo que os juros do mês, com outro nome",
+     "correta": false,
+     "feedbackErro": "São cobranças diferentes: a multa é única, pelo atraso em si; os juros de mora se repetem enquanto durar o atraso."
+    },
+    {
+     "texto": "Uma taxa que se repete todo mês de atraso",
+     "correta": false,
+     "feedbackErro": "Quem se repete a cada mês é o juro de mora, não a multa: ela é cobrada uma única vez, no início do atraso."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "custo-efetivo-total",
+   "instrucao": "Classifique: cobrança única ou cobrança recorrente?",
+   "ancora": "Multa é única; juros e mora se repetem enquanto durar a dívida.",
+   "feedbackErro": "Todas essas cobranças aparecem no contrato, mas nem todas se repetem do mesmo jeito ao longo do tempo.",
+   "caixas": [
+    {
+     "id": "unica",
+     "rotulo": "Cobrança única"
+    },
+    {
+     "id": "recorrente",
+     "rotulo": "Recorrente"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Tarifa de abertura de cadastro",
+     "caixaCorreta": "unica"
+    },
+    {
+     "texto": "Juros mensais sobre o saldo devedor",
+     "caixaCorreta": "recorrente"
+    },
+    {
+     "texto": "Multa por atraso no pagamento",
+     "caixaCorreta": "unica"
+    },
+    {
+     "texto": "Juros de mora enquanto durar o atraso",
+     "caixaCorreta": "recorrente"
+    }
+   ]
+  }
+ ]
+}

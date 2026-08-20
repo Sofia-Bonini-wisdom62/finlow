@@ -1,0 +1,250 @@
+{
+ "slug": "o-que-e-um-orcamento",
+ "segmento": "ef35",
+ "conceitoPrincipal": "o-que-e-um-orcamento",
+ "fraseConceito": "Orçamento é o plano que compara o que entra (receita) e o que sai (despesa) pra saber quanto sobra.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "orcamento-serve",
+   "criterio": "Serve pra planejar o dinheiro?",
+   "enunciado": "Anotar quanto vai ganhar e quanto vai gastar no mês",
+   "resposta": true,
+   "ancora": "Orçamento é exatamente esse plano: o que entra e o que sai.",
+   "feedbackErro": "Parece só uma lista qualquer de números. Mas anotar entradas e saídas é a base do orçamento — ele existe pra isso."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "receita-despesa",
+   "criterio": "Isso é receita?",
+   "enunciado": "A mesada que você recebe toda semana",
+   "resposta": true,
+   "ancora": "Receita é todo dinheiro que entra pra você.",
+   "feedbackErro": "Parece só uma rotina da família, sem nome especial. Mas todo dinheiro que entra pra você, como a mesada, é chamado de receita."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "receita-despesa",
+   "criterio": "Isso é despesa?",
+   "enunciado": "Comprar um sorvete com o próprio dinheiro",
+   "resposta": true,
+   "ancora": "Despesa é todo dinheiro que sai do seu bolso.",
+   "feedbackErro": "Parece só um gasto pequeno, sem nome oficial. Mas qualquer dinheiro que sai do seu bolso, mesmo um sorvete, é despesa."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "orcamento-serve",
+   "dificuldade": 1,
+   "pergunta": "Pra que serve fazer um orçamento antes do mês começar?",
+   "ancora": "Orçamento mostra antes se o dinheiro alcança pros planos.",
+   "alternativas": [
+    {
+     "texto": "Pra saber se o dinheiro dá pra tudo que você quer",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pra deixar o dinheiro guardado rendendo juros",
+     "correta": false,
+     "feedbackErro": "Render juros é sobre onde guardar o dinheiro. Orçamento é sobre planejar o quanto entra e sai — outra etapa."
+    },
+    {
+     "texto": "Pra impedir que você receba mesada",
+     "correta": false,
+     "feedbackErro": "Orçamento não limita o quanto você recebe. Ele ajuda a planejar como usar o que já vai entrar."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "receita-despesa",
+   "dificuldade": 1,
+   "pergunta": "Qual dessas é uma despesa, e não uma receita?",
+   "ancora": "Despesa é o que sai; receita é o que entra.",
+   "alternativas": [
+    {
+     "texto": "Comprar um lápis novo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ganhar dinheiro de aniversário",
+     "correta": false,
+     "feedbackErro": "Ganhar dinheiro é entrada — isso é receita, não despesa."
+    },
+    {
+     "texto": "Receber a mesada da semana",
+     "correta": false,
+     "feedbackErro": "Receber mesada é dinheiro entrando — isso é receita, o oposto de despesa."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "registrar-orcamento",
+   "criterio": "Ajuda a registrar o orçamento?",
+   "enunciado": "Escrever numa lista cada vez que gasta ou recebe dinheiro",
+   "resposta": true,
+   "ancora": "Registrar cada entrada e saída é o que forma o orçamento.",
+   "feedbackErro": "Parece trabalho demais pra pouco dinheiro. Mas é exatamente escrever cada entrada e saída que transforma em orçamento organizado."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "receita-despesa",
+   "instrucao": "É receita ou despesa? Arraste.",
+   "ancora": "Receita entra no bolso; despesa sai dele.",
+   "feedbackErro": "É fácil confundir quando o valor é pequeno. O que decide é a direção: entrar é receita, sair é despesa.",
+   "caixas": [
+    { "id": "receita", "rotulo": "Receita" },
+    { "id": "despesa", "rotulo": "Despesa" }
+   ],
+   "itens": [
+    { "texto": "Mesada da semana", "caixaCorreta": "receita" },
+    { "texto": "Compra de um chocolate", "caixaCorreta": "despesa" },
+    { "texto": "Dinheiro do dia das crianças", "caixaCorreta": "receita" },
+    { "texto": "Ingresso do cinema", "caixaCorreta": "despesa" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "registrar-orcamento",
+   "criterio": "É um bom jeito de registrar?",
+   "enunciado": "Guardar todos os recibos numa caixa, sem nunca somar",
+   "resposta": false,
+   "ancora": "Guardar sem somar não mostra quanto sobrou de verdade.",
+   "feedbackErro": "Guardar já parece meio caminho andado. Mas sem somar entradas e saídas, você não sabe quanto realmente sobrou ou faltou."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "registrar-orcamento",
+   "dificuldade": 1,
+   "pergunta": "No orçamento do mês, a receita foi R$ 40 e as despesas somaram R$ 25. Quanto sobrou?",
+   "ancora": "40 menos 25 é 15 — o que sobrou depois das despesas.",
+   "verificacao": { "expressao": "40-25", "esperado": 15 },
+   "alternativas": [
+    {
+     "texto": "R$ 15",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 40",
+     "correta": false,
+     "feedbackErro": "R$ 40 foi só a receita, sem descontar nada. Pra saber o que sobrou, subtraia as despesas: 40 menos 25 é 15."
+    },
+    {
+     "texto": "R$ 65",
+     "correta": false,
+     "feedbackErro": "Somar receita com despesa não faz sentido aqui. O que sobra é a receita menos a despesa: 40 menos 25 é 15."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "orcamento-serve",
+   "criterio": "É uma vantagem do orçamento?",
+   "enunciado": "Saber com antecedência se vai faltar dinheiro pro passeio",
+   "resposta": true,
+   "ancora": "Ver o problema antes ajuda a se planejar a tempo.",
+   "feedbackErro": "Parece só uma previsão sem utilidade. Mas saber antes que vai faltar dinheiro dá tempo pra juntar mais ou ajustar os planos."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "registrar-orcamento",
+   "criterio": "Ajuda a manter o orçamento em dia?",
+   "enunciado": "Atualizar a lista toda vez que ganha ou gasta algo",
+   "resposta": true,
+   "ancora": "Atualizar sempre mantém o orçamento perto da realidade.",
+   "feedbackErro": "Parece chato fazer isso toda vez. Mas atualizar sempre é o que mantém o orçamento parecido com o que realmente acontece."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "orcamento-serve",
+   "pergunta": "Qual frase resume o que você viu hoje?",
+   "alternativas": [
+    {
+     "texto": "Orçamento é o plano que compara o que entra e o que sai",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Orçamento serve só pra guardar recibos numa caixa",
+     "correta": false,
+     "feedbackErro": "Guardar recibos é só parte do processo. Orçamento é comparar entradas e saídas, não só guardar papel."
+    },
+    {
+     "texto": "Receita e despesa são a mesma coisa, com nomes diferentes",
+     "correta": false,
+     "feedbackErro": "Receita é o que entra; despesa é o que sai. São opostos, não a mesma coisa com nomes diferentes."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "orcamento-serve",
+   "dificuldade": 2,
+   "pergunta": "Se as despesas do mês forem maiores que a receita, o que acontece?",
+   "ancora": "Despesa maior que receita é sinal de alerta no orçamento.",
+   "alternativas": [
+    {
+     "texto": "Falta dinheiro, e o orçamento fica negativo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sobra dinheiro pra guardar no cofrinho",
+     "correta": false,
+     "feedbackErro": "Sobrar é o contrário: acontece quando a receita é maior que a despesa, não o oposto."
+    },
+    {
+     "texto": "Não muda nada no orçamento",
+     "correta": false,
+     "feedbackErro": "Muda sim: quando despesa passa a receita, falta dinheiro — isso é o orçamento no negativo."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "receita-despesa",
+   "criterio": "Isso é receita?",
+   "enunciado": "Vender um brinquedo antigo que você não usa mais",
+   "resposta": true,
+   "ancora": "Vender algo e receber dinheiro também é receita.",
+   "feedbackErro": "Parece diferente de uma mesada, por isso confunde. Mas qualquer dinheiro que entra, mesmo de uma venda, conta como receita."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "receita-despesa",
+   "instrucao": "É receita ou despesa? Arraste.",
+   "ancora": "Receita entra, despesa sai — sempre essa direção.",
+   "feedbackErro": "Prêmios e ajudas parecem diferentes de mesada, mas entram no bolso do mesmo jeito — são receita. O que sai é despesa.",
+   "caixas": [
+    { "id": "receita", "rotulo": "Receita" },
+    { "id": "despesa", "rotulo": "Despesa" }
+   ],
+   "itens": [
+    { "texto": "Dinheiro ganho ajudando um vizinho", "caixaCorreta": "receita" },
+    { "texto": "Compra de figurinhas", "caixaCorreta": "despesa" },
+    { "texto": "Prêmio de uma gincana", "caixaCorreta": "receita" },
+    { "texto": "Passagem de ônibus", "caixaCorreta": "despesa" }
+   ]
+  }
+ ]
+}

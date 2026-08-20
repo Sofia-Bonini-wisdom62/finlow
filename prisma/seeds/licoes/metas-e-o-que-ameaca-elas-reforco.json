@@ -1,0 +1,282 @@
+{
+ "slug": "metas-e-o-que-ameaca-elas-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "metas-e-o-que-ameaca-elas",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "meta-orcamento",
+   "criterio": "Ameaça a meta guardada?",
+   "enunciado": "Comparar preço em duas lojas antes de comprar",
+   "resposta": false,
+   "ancora": "Comparar preço ajuda a poupar — não ameaça, evita gasto a mais.",
+   "feedbackErro": "Pode parecer perda de tempo. Mas comparar preço antes de comprar é o que evita pagar mais caro e some menos dinheiro da meta."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "ameaca-a-meta",
+   "criterio": "Ameaça a meta guardada?",
+   "enunciado": "Emprestar dinheiro sem combinar quando volta",
+   "resposta": true,
+   "ancora": "Sem prazo combinado, o dinheiro emprestado pode nunca voltar pra meta.",
+   "feedbackErro": "Emprestar parece generosidade, não ameaça. Mas sem data pra devolver, esse dinheiro pode simplesmente não voltar — e a meta fica menor."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "inflacao-na-meta",
+   "criterio": "Ameaça a meta guardada?",
+   "enunciado": "O preço do lanche subir 10% e a mesada continuar igual",
+   "resposta": true,
+   "ancora": "Preço sobe, renda não — o poder de compra da meta cai.",
+   "feedbackErro": "A mesada igual parece estabilidade. Mas se o preço sobe 10% e ela não muda, cada real guardado compra menos do que antes."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "meta-orcamento",
+   "dificuldade": 2,
+   "pergunta": "Alguém ganha R$ 52 por semana e gasta R$ 47. Quer guardar R$ 15 por semana pro fone novo. O que fecha a diferença?",
+   "ancora": "Faltam R$ 10 por semana: a meta de R$ 15 menos os R$ 5 que já sobram.",
+   "verificacao": {
+    "expressao": "15-(52-47)",
+    "esperado": 10
+   },
+   "alternativas": [
+    {
+     "texto": "Pedir R$ 10 extra aos pais toda semana",
+     "correta": false,
+     "feedbackErro": "Pode funcionar uma vez, mas depende de outra pessoa dizer sim — não é um hábito que dá pra controlar toda semana."
+    },
+    {
+     "texto": "Cortar R$ 10 de um gasto que não é essencial",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Guardar só quando sobrar, sem valor fixo",
+     "correta": false,
+     "feedbackErro": "Sem valor fixo, a meta fica ao acaso do que sobrar — e os R$ 10 que faltam continuam sem plano pra serem cobertos."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "ameaca-a-meta",
+   "dificuldade": 2,
+   "pergunta": "Uma conta de luz maior que o normal chegou no mês. O que isso faz com a meta, se ninguém ajustar o orçamento?",
+   "ancora": "Gasto fixo mais alto, sem ajuste, tira dinheiro da meta.",
+   "alternativas": [
+    {
+     "texto": "Nada, conta de luz não tem relação com a meta",
+     "correta": false,
+     "feedbackErro": "Conta de luz é despesa da casa — se ela sobe e mais nada muda, é a meta (ou outro gasto) que cede espaço pra cobrir."
+    },
+    {
+     "texto": "A meta perde espaço, a não ser que outro gasto seja cortado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A meta cresce, porque o susto aumenta o cuidado",
+     "correta": false,
+     "feedbackErro": "Ficar mais atento é bom, mas não cria dinheiro sozinho. Sem cortar outro gasto, a conta maior consome o que seria guardado."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "inflacao-na-meta",
+   "criterio": "É a inflação agindo?",
+   "enunciado": "O preço do combustível variar dia a dia por causa da oferta",
+   "resposta": false,
+   "ancora": "Variação de um dia é oferta; inflação é a tendência no tempo.",
+   "feedbackErro": "Parece a mesma coisa: preço mudando. Mas inflação é a alta persistente ao longo do tempo; preço subir e descer no mesmo mês é outra coisa — oferta e demanda."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "ameaca-a-meta",
+   "instrucao": "Isso ameaça a meta ou ajuda a proteger ela?",
+   "ancora": "O que trava o guardado ameaça; o que libera ou protege, ajuda.",
+   "feedbackErro": "Os dois grupos lidam com dinheiro saindo ou ficando. Mas o que consome ou trava o valor guardado ameaça a meta; o que libera ou protege, ajuda.",
+   "caixas": [
+    {
+     "id": "ameaca",
+     "rotulo": "Ameaça a meta"
+    },
+    {
+     "id": "ajuda",
+     "rotulo": "Ajuda a meta"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Emprestar dinheiro sem combinar devolução",
+     "caixaCorreta": "ameaca"
+    },
+    {
+     "texto": "Guardar o troco automaticamente",
+     "caixaCorreta": "ajuda"
+    },
+    {
+     "texto": "Gasto fixo subir sem ajuste no orçamento",
+     "caixaCorreta": "ameaca"
+    },
+    {
+     "texto": "Comparar preço antes de comprar",
+     "caixaCorreta": "ajuda"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "meta-orcamento",
+   "criterio": "Isso é orçamento superavitário?",
+   "enunciado": "Ganhar R$ 68 e gastar R$ 71 no mês",
+   "resposta": false,
+   "verificacao": {
+    "expressao": "68-71",
+    "esperado": -3
+   },
+   "ancora": "Despesa maior que receita é déficit, não superávit.",
+   "feedbackErro": "Só R$ 3 de diferença parece pouco pra chamar de problema. Mas despesa maior que receita, mesmo pouco, já é déficit — o oposto de superávit."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "inflacao-na-meta",
+   "dificuldade": 2,
+   "pergunta": "Um fone custava R$ 150 e passou a R$ 165 em 8 meses. No mesmo período, a poupança guardada rendeu 4%. O que aconteceu?",
+   "ancora": "Preço foi a R$ 165; a poupança, a R$ 156 — faltam R$ 9.",
+   "verificacao": {
+    "expressao": "150*1.1 - 150*1.04",
+    "esperado": 9
+   },
+   "alternativas": [
+    {
+     "texto": "Melhorou, porque a poupança rendeu",
+     "correta": false,
+     "feedbackErro": "A poupança realmente rendeu, e é isso que engana. Mas o preço subiu ainda mais rápido — no fim, faltam R$ 9 a mais pra alcançar o fone."
+    },
+    {
+     "texto": "Piorou, porque o preço subiu mais rápido que o rendimento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não mudou nada, os dois valores se cancelam",
+     "correta": false,
+     "feedbackErro": "Os dois mexeram na mesma direção, pra cima, mas em ritmos diferentes — 10% de preço contra 4% de rendimento não se cancelam."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "ameaca-a-meta",
+   "criterio": "Isso ajuda a proteger a meta?",
+   "enunciado": "Deixar tudo guardado junto, sem reserva separada",
+   "resposta": false,
+   "ancora": "Sem reserva separada, um imprevisto consome direto a meta principal.",
+   "feedbackErro": "Parece mais simples ter só um montinho de dinheiro. Mas sem reserva separada, o primeiro imprevisto come justo o que era pra a meta."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "meta-orcamento",
+   "criterio": "Ameaça a meta guardada?",
+   "enunciado": "Revisar os gastos do mês e cortar um item supérfluo",
+   "resposta": false,
+   "ancora": "Revisar e cortar libera dinheiro — não ameaça, protege a meta.",
+   "feedbackErro": "Cortar algo parece perda, e por isso confunde. Mas revisar gastos e cortar o supérfluo é o que sobra dinheiro pra meta, não o que ameaça."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "metas-e-o-que-ameaca-elas",
+   "pergunta": "Qual situação melhor resume uma ameaça real à meta guardada?",
+   "alternativas": [
+    {
+     "texto": "Comparar preços antes de comprar",
+     "correta": false,
+     "feedbackErro": "Comparar preço economiza dinheiro — ajuda a meta, não ameaça."
+    },
+    {
+     "texto": "Um gasto fixo subir sem ajuste no orçamento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Guardar o troco todo dia",
+     "correta": false,
+     "feedbackErro": "Guardar o troco soma dinheiro pra meta — é proteção, não ameaça."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "meta-orcamento",
+   "instrucao": "Ordene da ação mais eficaz à menos eficaz pra fechar a meta.",
+   "ancora": "Ação sobre o próprio gasto pesa mais que esperar sorte.",
+   "feedbackErro": "Esperar dinheiro extra não é estratégia, é sorte. Cortar gasto e comparar preço são ações que a pessoa controla e que fecham a diferença.",
+   "itens": [
+    {
+     "texto": "Cortar um gasto fixo que não é essencial",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Comparar preço antes de comprar de novo",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Esperar um dinheiro extra aparecer",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "inflacao-na-meta",
+   "dificuldade": 3,
+   "pergunta": "Duas pessoas guardam o mesmo valor por mês. Uma guarda em dinheiro parado; a outra, em algo que rende acima da inflação. Quem chega mais perto da meta?",
+   "ancora": "Quem rende acima da inflação não perde poder de compra.",
+   "alternativas": [
+    {
+     "texto": "As duas, porque guardam o mesmo valor",
+     "correta": false,
+     "feedbackErro": "Guardar o mesmo valor nominal não basta: dinheiro parado perde poder de compra se a inflação sobe mais que ele rende."
+    },
+    {
+     "texto": "Quem rende acima da inflação",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quem guarda em dinheiro parado, por ser mais garantido",
+     "correta": false,
+     "feedbackErro": "Parece mais seguro por não variar. Mas 'parado' significa perder pra inflação todo mês — é a opção que mais se afasta da meta."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "ameaca-a-meta",
+   "criterio": "Isso ajuda a proteger a meta?",
+   "enunciado": "Ter um valor fixo pra guardar todo mês, mesmo pequeno",
+   "resposta": true,
+   "ancora": "Valor fixo cria hábito — ameaça menos que guardar só quando sobra.",
+   "feedbackErro": "Parece pouco relevante se o valor é pequeno. Mas um valor fixo, mesmo pequeno, cria hábito — quem guarda só quando sobra tende a nunca guardar nada."
+  }
+ ]
+}

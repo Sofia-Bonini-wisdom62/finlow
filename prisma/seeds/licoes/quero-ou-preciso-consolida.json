@@ -1,0 +1,153 @@
+{
+ "slug": "quero-ou-preciso-consolida",
+ "segmento": "ef12",
+ "conceitoPrincipal": "quero-ou-preciso",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "É preciso pra viver, mesmo sem parecer?",
+   "enunciado": "Um momento de descanso depois de um dia cheio",
+   "resposta": true,
+   "ancora": "Descansar também é necessidade — o corpo pede.",
+   "feedbackErro": "Descanso não parece 'coisa' como comida ou roupa, e por isso passa batido. Mas o corpo também precisa descansar."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "É preciso pra viver, mesmo sem parecer?",
+   "enunciado": "Ter o brinquedo igual ao do amigo",
+   "resposta": false,
+   "ancora": "Copiar o que o amigo tem é desejo, não precisão.",
+   "feedbackErro": "Ver o amigo com algo novo dá vontade forte, quase parece 'preciso ter'. Mas isso ainda é desejo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "reaproveitar-e-consertar",
+   "criterio": "Dá pra consertar em vez de jogar fora?",
+   "enunciado": "Um brinquedo eletrônico que parou de funcionar de vez, sem solução",
+   "resposta": false,
+   "ancora": "Quando não tem mais jeito, o certo é descartar direito.",
+   "feedbackErro": "A vontade de guardar tudo é boa, mas nem tudo tem conserto. Quando realmente não tem mais solução, o certo é descartar direito."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "reaproveitar-e-consertar",
+   "criterio": "Dá pra consertar em vez de jogar fora?",
+   "enunciado": "Uma cadeira de madeira com uma perna balançando",
+   "resposta": true,
+   "ancora": "Perna balançando geralmente só precisa de reforço.",
+   "feedbackErro": "Móvel balançando parece perigoso e definitivo. Mas na maioria das vezes um reforço simples resolve."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "desejo-e-necessidade",
+   "instrucao": "É desejo ou é necessidade?",
+   "ancora": "Saúde e cuidado do corpo são necessidade, mesmo em detalhes.",
+   "feedbackErro": "Óculos e tênis parecem parecidos, os dois vão no corpo. Mas óculos corrige a visão; tênis de moda é desejo.",
+   "caixas": [
+    { "id": "desejo", "rotulo": "Desejo" },
+    { "id": "necessidade", "rotulo": "Necessidade" }
+   ],
+   "itens": [
+    { "texto": "Levar remédio todo dia por causa de uma alergia", "caixaCorreta": "necessidade" },
+    { "texto": "Ter o mesmo tênis que o influenciador usa", "caixaCorreta": "desejo" },
+    { "texto": "Trocar os óculos quando o grau mudou", "caixaCorreta": "necessidade" },
+    { "texto": "Comprar uma edição de brinquedo bem rara", "caixaCorreta": "desejo" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "reaproveitar-e-consertar",
+   "criterio": "Dá pra reaproveitar pra outra coisa?",
+   "enunciado": "Potes de sorvete vazios, ainda limpos e inteiros",
+   "resposta": true,
+   "ancora": "Potes de sorvete viram organizadores, vasinhos, o que precisar.",
+   "feedbackErro": "Pote de sorvete parece embalagem descartável por natureza. Mas limpo e inteiro, ele serve pra guardar outras coisas."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "É uma necessidade?",
+   "enunciado": "Comprar um brinquedo novo porque o antigo, ainda inteiro, ficou sem graça",
+   "resposta": false,
+   "ancora": "Brinquedo inteiro que só ficou sem graça ainda cumpre a função.",
+   "feedbackErro": "'Sem graça' dá uma sensação forte de que precisa trocar. Mas se o brinquedo ainda funciona, trocar por tédio é desejo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "reaproveitar-e-consertar",
+   "dificuldade": 3,
+   "pergunta": "Um brinquedo quebrou. Antes de comprar outro, o que faz mais sentido?",
+   "ancora": "Primeiro checar se o antigo tem conserto.",
+   "alternativas": [
+    {
+     "texto": "Comprar logo um novo, porque é mais rápido",
+     "correta": false,
+     "feedbackErro": "Rápido nem sempre é o melhor caminho. Vale checar antes se o antigo ainda tem conserto."
+    },
+    {
+     "texto": "Ver se dá pra consertar o antigo primeiro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pedir dois novos, pra garantir",
+     "correta": false,
+     "feedbackErro": "Pedir mais do que precisa não resolve o problema do brinquedo quebrado — o primeiro passo é checar o conserto."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "desejo-e-necessidade",
+   "instrucao": "Toque na ordem: mais precisamos pro que menos precisamos.",
+   "ancora": "Saúde vem antes do que só dá vontade de ter.",
+   "feedbackErro": "Tênis raro parece muito importante quando todo mundo fala dele. Mas remédio e óculos cuidam do corpo — vêm primeiro.",
+   "itens": [
+    { "texto": "Remédio quando está doente", "posicaoCorreta": 1 },
+    { "texto": "Óculos pra enxergar", "posicaoCorreta": 2 },
+    { "texto": "Tênis de edição rara", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "reaproveitar-e-consertar",
+   "criterio": "Dá pra consertar em vez de jogar fora?",
+   "enunciado": "Um guarda-chuva com uma vareta torta",
+   "resposta": true,
+   "ancora": "Vareta torta dá pra endireitar ou trocar.",
+   "feedbackErro": "Guarda-chuva com defeito parece condenado ao lixo. Mas uma vareta torta é fácil de ajeitar."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "desejo-e-necessidade",
+   "instrucao": "É desejo ou é necessidade?",
+   "ancora": "O que resolve um problema do corpo é necessidade.",
+   "feedbackErro": "Mochila aparece nos dois exemplos, e isso confunde. O que decide não é o objeto, é o motivo.",
+   "caixas": [
+    { "id": "desejo", "rotulo": "Desejo" },
+    { "id": "necessidade", "rotulo": "Necessidade" }
+   ],
+   "itens": [
+    { "texto": "Cortar o cabelo quando está atrapalhando a visão", "caixaCorreta": "necessidade" },
+    { "texto": "Ter uma mochila de personagem da moda", "caixaCorreta": "desejo" },
+    { "texto": "Colocar uma bota quando está chovendo muito", "caixaCorreta": "necessidade" },
+    { "texto": "Trocar de mochila só porque enjoou da estampa", "caixaCorreta": "desejo" }
+   ]
+  }
+ ]
+}

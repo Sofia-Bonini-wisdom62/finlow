@@ -1,0 +1,249 @@
+{
+ "slug": "de-onde-vem-o-dinheiro-da-casa",
+ "segmento": "ef35",
+ "conceitoPrincipal": "de-onde-vem-o-dinheiro-da-casa",
+ "fraseConceito": "O dinheiro de casa vem de fontes diferentes — trabalho, venda de bens, herança, benefícios — e é limitado.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fontes-de-renda",
+   "criterio": "É uma fonte de renda?",
+   "enunciado": "Salário do trabalho",
+   "resposta": true,
+   "ancora": "Salário é a fonte de renda mais comum de uma casa.",
+   "feedbackErro": "Parece óbvio demais pra perguntar. Mas o salário é justamente a fonte de renda mais comum de uma casa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fontes-de-renda",
+   "criterio": "É uma fonte de renda?",
+   "enunciado": "Dinheiro ganho vendendo uma bicicleta que não usa mais",
+   "resposta": true,
+   "ancora": "Vender um bem também traz dinheiro pra casa — é fonte de renda.",
+   "feedbackErro": "Parece só um jeito de se livrar de algo velho. Mas o dinheiro que entra com a venda também é uma fonte de renda."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "renda-minima",
+   "criterio": "Toda pessoa tem direito a isso?",
+   "enunciado": "Uma renda mínima pra viver",
+   "resposta": true,
+   "ancora": "Toda pessoa tem direito a uma renda mínima pra viver.",
+   "feedbackErro": "Parece algo que depende da sorte de cada um. Mas toda pessoa tem esse direito garantido, mesmo quem não trabalha ainda."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "fontes-de-renda",
+   "dificuldade": 1,
+   "pergunta": "De onde pode vir o dinheiro que sustenta uma casa?",
+   "ancora": "O trabalho de quem mora na casa é a fonte de renda mais comum.",
+   "alternativas": [
+    {
+     "texto": "Do trabalho de quem mora nela",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só de prêmios de sorteio",
+     "correta": false,
+     "feedbackErro": "Prêmio de sorteio é uma fonte possível, mas rara. A fonte mais comum é o trabalho de quem mora na casa."
+    },
+    {
+     "texto": "Só de herança de família",
+     "correta": false,
+     "feedbackErro": "Herança é uma fonte possível, mas nem toda família recebe. A mais comum é o trabalho."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "fontes-de-renda",
+   "dificuldade": 1,
+   "pergunta": "Uma avó deixou uma casa pra família depois que faleceu. Isso é uma fonte de renda de que tipo?",
+   "ancora": "Bem recebido depois de um falecimento é herança.",
+   "alternativas": [
+    {
+     "texto": "Herança",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Trabalho",
+     "correta": false,
+     "feedbackErro": "Não veio de um trabalho feito — a casa foi deixada pela avó. Isso é herança."
+    },
+    {
+     "texto": "Prêmio de sorteio",
+     "correta": false,
+     "feedbackErro": "Não teve sorteio nenhum envolvido — a casa foi deixada pela avó. Isso é herança."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "renda-minima",
+   "criterio": "É um benefício do governo?",
+   "enunciado": "Auxílio pago pelo governo pra famílias de baixa renda",
+   "resposta": true,
+   "ancora": "Esse tipo de auxílio é um benefício governamental.",
+   "feedbackErro": "Parece ajuda de alguma instituição privada. Mas esse tipo de auxílio é pago pelo governo — é benefício governamental."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "fontes-de-renda",
+   "instrucao": "É fonte de renda ou não? Arraste.",
+   "ancora": "Fonte de renda é o que traz dinheiro pra casa.",
+   "feedbackErro": "É fácil confundir com coisas do dia a dia que não trazem dinheiro. Fonte de renda é o que faz o dinheiro entrar em casa.",
+   "caixas": [
+    { "id": "fonte", "rotulo": "É fonte de renda" },
+    { "id": "nao", "rotulo": "Não é fonte de renda" }
+   ],
+   "itens": [
+    { "texto": "Salário do trabalho", "caixaCorreta": "fonte" },
+    { "texto": "Prêmio de loteria", "caixaCorreta": "fonte" },
+    { "texto": "Herança recebida da família", "caixaCorreta": "fonte" },
+    { "texto": "Nome da rua onde mora", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "renda-minima",
+   "criterio": "Ajuda a garantir o básico pra viver?",
+   "enunciado": "Programas do governo que garantem uma renda mínima",
+   "resposta": true,
+   "ancora": "Esses programas existem justamente pra garantir o básico.",
+   "feedbackErro": "Parece só uma ajuda extra, sem grande importância. Mas esses programas existem pra garantir o básico de quem precisa."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "fontes-de-renda",
+   "dificuldade": 1,
+   "pergunta": "Beatriz ganhou dinheiro vendendo brinquedos que não usava mais. De onde veio essa renda?",
+   "ancora": "Vender um bem que já se tem é uma fonte de renda.",
+   "alternativas": [
+    {
+     "texto": "Da venda de um bem",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Do trabalho fixo",
+     "correta": false,
+     "feedbackErro": "Ela não prestou um serviço nem tem emprego fixo — vendeu brinquedos que já tinha. É venda de bem."
+    },
+    {
+     "texto": "De um benefício do governo",
+     "correta": false,
+     "feedbackErro": "Não veio de programa nenhum do governo — veio da venda dos próprios brinquedos."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "fontes-de-renda",
+   "criterio": "É uma fonte de renda?",
+   "enunciado": "Dinheiro ganho num sorteio de rádio",
+   "resposta": true,
+   "ancora": "Prêmio de sorteio também é uma fonte de renda, mesmo sendo rara.",
+   "feedbackErro": "Parece sorte demais pra contar como renda de verdade. Mas prêmio de sorteio também é uma fonte de renda, só que rara."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "renda-minima",
+   "criterio": "É verdade?",
+   "enunciado": "Toda pessoa tem direito a uma renda mínima pra viver",
+   "resposta": true,
+   "ancora": "Esse direito vale pra toda pessoa, mesmo em situação difícil.",
+   "feedbackErro": "Parece que só quem trabalha teria esse direito. Mas toda pessoa tem direito a uma renda mínima pra viver."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "fontes-de-renda",
+   "pergunta": "Qual frase resume a lição?",
+   "alternativas": [
+    {
+     "texto": "O dinheiro da casa vem de várias fontes, e todos têm direito a renda mínima",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O dinheiro da casa só pode vir do trabalho",
+     "correta": false,
+     "feedbackErro": "Não é só isso: venda de bens, herança, prêmios e benefícios também são fontes de renda possíveis."
+    },
+    {
+     "texto": "Só quem tem herança consegue sustentar a casa",
+     "correta": false,
+     "feedbackErro": "Herança é só uma das fontes possíveis, e nem toda família recebe. O trabalho é a mais comum."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "fontes-de-renda",
+   "dificuldade": 2,
+   "pergunta": "Rafael recebeu R$ 50 de mesada e mais R$ 30 vendendo um jogo antigo no mesmo mês. Quantas fontes de renda diferentes ele teve?",
+   "ancora": "Mesada e venda de bem são duas fontes diferentes.",
+   "alternativas": [
+    {
+     "texto": "2 fontes: a mesada e a venda do jogo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "1 fonte, porque é tudo dinheiro",
+     "correta": false,
+     "feedbackErro": "Mesmo sendo tudo dinheiro no fim, a origem é diferente: uma é mesada, outra é venda de um bem."
+    },
+    {
+     "texto": "3 fontes, contando o jogo em si",
+     "correta": false,
+     "feedbackErro": "O jogo não é uma fonte de renda, é o que foi vendido. As fontes são só duas: mesada e venda."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "fontes-de-renda",
+   "criterio": "É fonte de renda?",
+   "enunciado": "Cor do carro da família",
+   "resposta": false,
+   "ancora": "Cor do carro não traz dinheiro pra casa — não é fonte de renda.",
+   "feedbackErro": "Parece detalhe sobre a família, e por isso confunde. Mas a cor do carro não traz nenhum dinheiro — não é fonte de renda."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "renda-minima",
+   "instrucao": "É direito garantido pelo governo ou não? Arraste.",
+   "ancora": "Renda mínima e benefício assistencial são direitos garantidos.",
+   "feedbackErro": "É fácil confundir com fontes de sorte ou de família. Direito garantido é o que o governo assegura a quem precisa.",
+   "caixas": [
+    { "id": "direito", "rotulo": "É direito garantido" },
+    { "id": "nao", "rotulo": "Não é direito garantido" }
+   ],
+   "itens": [
+    { "texto": "Renda mínima garantida a quem precisa", "caixaCorreta": "direito" },
+    { "texto": "Prêmio de loteria", "caixaCorreta": "nao" },
+    { "texto": "Benefício assistencial do governo", "caixaCorreta": "direito" },
+    { "texto": "Herança de um parente", "caixaCorreta": "nao" }
+   ]
+  }
+ ]
+}

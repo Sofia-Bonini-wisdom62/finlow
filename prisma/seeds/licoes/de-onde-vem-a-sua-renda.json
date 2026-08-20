@@ -1,0 +1,335 @@
+{
+ "slug": "de-onde-vem-a-sua-renda",
+ "segmento": "em3",
+ "conceitoPrincipal": "de-onde-vem-a-sua-renda",
+ "fraseConceito": "Renda não é só esforço: estrutura, conjuntura e vínculo de trabalho decidem quanto entra — e quanto dela está protegido.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "vinculo-e-protecao",
+   "criterio": "Essa renda tem proteção garantida?",
+   "enunciado": "Salário com carteira assinada",
+   "resposta": true,
+   "ancora": "CLT garante 13º, férias com 1/3, FGTS e INSS descontado na fonte.",
+   "feedbackErro": "O desconto no holerite engana: parece perda. Mas é ele que garante aposentadoria, seguro-desemprego e FGTS — a parte protegida da renda."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "vinculo-e-protecao",
+   "criterio": "Essa renda tem proteção garantida?",
+   "enunciado": "Diária de frete combinada de boca",
+   "resposta": false,
+   "ancora": "Sem contrato nem INSS, nada é garantido: nem o valor, nem o amanhã.",
+   "feedbackErro": "O dinheiro entra de verdade, e isso confunde. Mas se o trabalho parar amanhã — doença, acidente, calote — não há salário, auxílio nem seguro. Renda sem rede."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "vinculo-e-protecao",
+   "criterio": "Essa renda tem proteção garantida?",
+   "enunciado": "Vendas por conta própria, sem CNPJ nem INSS",
+   "resposta": false,
+   "ancora": "Trabalho real, renda real — proteção nenhuma enquanto não contribuir.",
+   "feedbackErro": "Vender por conta própria é trabalho legítimo. O que falta não é dignidade, é registro: sem contribuir ao INSS, não há aposentadoria nem auxílio-doença."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "determinantes-da-renda",
+   "dificuldade": 1,
+   "pergunta": "Dois vizinhos se esforçam igual e ganham salários bem diferentes. O que mais explica a diferença?",
+   "ancora": "Setor, formação, região e conjuntura pesam antes do esforço.",
+   "alternativas": [
+    {
+     "texto": "A sorte que cada um teve na vida",
+     "correta": false,
+     "feedbackErro": "Acaso existe, mas não é o motor. Setor que paga mais, formação exigida e região explicam diferenças de forma previsível — sorte não se analisa, estrutura sim."
+    },
+    {
+     "texto": "Setor, formação e região onde cada um trabalha",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quanto cada um se dedica no dia a dia",
+     "correta": false,
+     "feedbackErro": "Dedicação importa dentro de um emprego. Mas o enunciado diz que o esforço é igual — e a diferença continua. O que sobra é estrutura: setor, formação, região."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "vinculo-e-protecao",
+   "dificuldade": 1,
+   "pergunta": "CLT paga R$ 2.000 por mês; um bico paga R$ 2.100. Contando 13º e o terço de férias, qual rende mais no ano?",
+   "ancora": "CLT: R$ 24.000 + R$ 2.000 de 13º + R$ 667 do terço = R$ 26.667.",
+   "verificacao": {
+    "expressao": "2000*12+2000+2000/3",
+    "esperado": 26666.67,
+    "tolerancia": 0.01
+   },
+   "alternativas": [
+    {
+     "texto": "O bico: R$ 100 a mais todo mês",
+     "correta": false,
+     "feedbackErro": "R$ 100 a mais por mês são R$ 1.200 no ano — é real. Mas 13º e terço de férias do CLT somam R$ 2.667. Compare sempre o ano, não o mês."
+    },
+    {
+     "texto": "O CLT: os extras somam R$ 2.667 no ano",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Empatam: a diferença é pequena",
+     "correta": false,
+     "feedbackErro": "Parece perto porque o olho fica no mês. No ano, o CLT fecha R$ 1.467 à frente — e ainda carrega FGTS e INSS, que nem entraram nessa conta."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "vinculo-e-protecao",
+   "criterio": "Isso aumenta a renda protegida?",
+   "enunciado": "Receber uma parte por fora para evitar descontos",
+   "resposta": false,
+   "ancora": "Sem desconto de INSS, também não há aposentadoria sobre essa parte.",
+   "feedbackErro": "No bolso, o líquido sobe — a tentação é real. Mas a parte por fora não conta para aposentadoria, seguro-desemprego nem FGTS. Renda maior, proteção menor."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "vinculo-e-protecao",
+   "instrucao": "Toque na ordem: da renda mais protegida para a menos protegida.",
+   "ancora": "Proteção vem do vínculo: estabilidade, FGTS e INSS — nessa ordem.",
+   "feedbackErro": "O valor do salário não entra nessa régua — proteção é sobre o que segura você na queda. Estabilidade > direitos CLT > só INSS básico > nada.",
+   "itens": [
+    {
+     "texto": "Servidor público concursado",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Emprego com carteira assinada",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "MEI contribuindo em dia",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Bico sem contrato e sem INSS",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "direitos-trabalhistas",
+   "criterio": "É direito garantido por lei no CLT?",
+   "enunciado": "Décimo terceiro salário em dezembro",
+   "resposta": true,
+   "ancora": "13º é lei desde 1962 — não é bônus nem gentileza da empresa.",
+   "feedbackErro": "Parece benefício que a empresa dá, e era assim antes de 1962. Hoje é lei: todo CLT recebe. O critério é simples — direito de lei ninguém precisa negociar."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "direitos-trabalhistas",
+   "criterio": "É direito garantido por lei no CLT?",
+   "enunciado": "Aumento de salário todo ano",
+   "resposta": false,
+   "ancora": "A lei não garante aumento real: reajuste vem de negociação coletiva.",
+   "feedbackErro": "Muita categoria consegue reajuste anual, e isso parece automático. Mas vem de acordo entre sindicato e empresas — é conquista negociada, não direito de lei."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "informalidade",
+   "pergunta": "De cada 100 trabalhadores ocupados no Brasil, quantos estão na informalidade?",
+   "campo": "numero",
+   "min": 5,
+   "max": 90,
+   "gabarito": 39,
+   "toleranciaPct": 20,
+   "fonte": "taxa de informalidade, ~39% (IBGE, PNAD Contínua)",
+   "feedbackPerto": "Isso: cerca de 4 em cada 10. Informalidade no Brasil não é exceção — é quase metade do mundo do trabalho.",
+   "feedbackLonge": "São ~39 em 100. Quem erra muito aqui costuma julgar pelo próprio círculo — viés de disponibilidade: sua bolha não é o país."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "informalidade",
+   "dificuldade": 1,
+   "pergunta": "Caíque entrega por aplicativo, sem vínculo. Em relação a um contratado, o que ele deixa de ter?",
+   "ancora": "Sem vínculo: sem FGTS, sem férias pagas, sem seguro-desemprego.",
+   "alternativas": [
+    {
+     "texto": "Só o 13º salário",
+     "correta": false,
+     "feedbackErro": "O 13º de fato não existe para ele — mas é só o começo da lista. Faltam também FGTS, INSS na fonte, férias pagas e seguro-desemprego. O pacote inteiro."
+    },
+    {
+     "texto": "FGTS, INSS na fonte, férias pagas e seguro-desemprego",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: o aplicativo garante os mesmos direitos",
+     "correta": false,
+     "feedbackErro": "O app paga pelo serviço, e pagar em dia parece proteção. Mas proteção é o que segura você quando o trabalho para — e aí, hoje, não há nada garantido."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "informalidade",
+   "dificuldade": 1,
+   "pergunta": "Quando metade de uma cidade trabalha sem registro, o que acontece com a Previdência dela?",
+   "ancora": "Quem não contribui hoje é quem vai precisar de amparo amanhã.",
+   "alternativas": [
+    {
+     "texto": "Nada muda: aposentadoria vem do governo",
+     "correta": false,
+     "feedbackErro": "O pagamento sai mesmo do governo — mas o dinheiro vem das contribuições de quem trabalha. Metade fora da conta hoje vira conta sem fundo amanhã."
+    },
+    {
+     "texto": "Menos contribuintes hoje, mais desprotegidos depois",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ela melhora, porque sobra mais dinheiro",
+     "correta": false,
+     "feedbackErro": "Sobraria se informal não envelhecesse. Mas ele envelhece sem ter contribuído — e a sociedade paga o amparo do mesmo jeito, com menos caixa."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "vinculo-e-protecao",
+   "criterio": "O maior valor mensal vence sempre?",
+   "enunciado": "Bico de R$ 2.500/mês rende mais no ano que CLT de R$ 2.300",
+   "resposta": false,
+   "ancora": "CLT de R$ 2.300 fecha o ano em R$ 30.667; o bico, em R$ 30.000.",
+   "verificacao": {
+    "expressao": "2300*12+2300+2300/3",
+    "esperado": 30666.67,
+    "tolerancia": 0.01
+   },
+   "feedbackErro": "R$ 200 a mais por mês parecem decisivos. Mas 13º e terço de férias somam R$ 3.067 no CLT — o ano inteiro é a régua certa, nunca o mês."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "direitos-trabalhistas",
+   "criterio": "É proteção do vínculo formal?",
+   "enunciado": "Seguro-desemprego após demissão sem justa causa",
+   "resposta": true,
+   "ancora": "Demitido sem justa causa, o CLT recebe parcelas enquanto procura.",
+   "feedbackErro": "Parece favor do governo, mas é direito do vínculo: só quem foi CLT recebe. O informal demitido — ou o app desligado — sai sem nenhuma parcela."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "de-onde-vem-a-sua-renda",
+   "dificuldade": 1,
+   "pergunta": "Qual frase resume o que você viu hoje?",
+   "alternativas": [
+    {
+     "texto": "Renda depende só de esforço: quem corre mais, ganha mais.",
+     "correta": false,
+     "feedbackErro": "Esforço conta, mas setor, formação, região e vínculo pesam antes."
+    },
+    {
+     "texto": "Renda vem de estrutura e vínculo — o formal protege o que o mês não mostra.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Trabalho informal paga sempre menos que o formal.",
+     "correta": false,
+     "feedbackErro": "Às vezes paga até mais no mês. A diferença está na proteção e no ano."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "vinculo-e-protecao",
+   "instrucao": "Arraste: essa renda é protegida ou desprotegida?",
+   "ancora": "Protegida é a renda que contribui: INSS hoje, amparo amanhã.",
+   "feedbackErro": "Não é o valor que protege, é o registro. Salário em carteira e MEI em dia contribuem; pagamento por fora e freela sem nota não deixam rastro nem direito.",
+   "caixas": [
+    {
+     "id": "protegida",
+     "rotulo": "Protegida"
+    },
+    {
+     "id": "desprotegida",
+     "rotulo": "Desprotegida"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Salário registrado em carteira",
+     "caixaCorreta": "protegida"
+    },
+    {
+     "texto": "Freela pago por fora, sem nota",
+     "caixaCorreta": "desprotegida"
+    },
+    {
+     "texto": "MEI com a guia mensal em dia",
+     "caixaCorreta": "protegida"
+    },
+    {
+     "texto": "Gorjeta por fora do salário",
+     "caixaCorreta": "desprotegida"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "direitos-trabalhistas",
+   "dificuldade": 2,
+   "pergunta": "Férias pagas, 13º, jornada limitada. Como esses direitos surgiram no Brasil?",
+   "ancora": "Direito trabalhista é conquista de luta virando lei — não presente.",
+   "alternativas": [
+    {
+     "texto": "Presente espontâneo das empresas",
+     "correta": false,
+     "feedbackErro": "Algumas empresas ofereciam benefícios antes da lei, sim. Mas o que valia para todos só veio quando pressão e greve viraram lei — a CLT, em 1943."
+    },
+    {
+     "texto": "Conquista de trabalhadores que virou lei",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Regra que sempre existiu no país",
+     "correta": false,
+     "feedbackErro": "Parece eterno porque você nasceu com isso valendo. Até 1943 não havia CLT — cada direito de hoje tem data, luta e lei por trás."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "direitos-trabalhistas",
+   "criterio": "Isso pressiona os direitos?",
+   "enunciado": "Contratar como PJ no lugar de CLT para cortar custo",
+   "resposta": true,
+   "ancora": "Pejotização corta encargos da empresa — e as proteções de quem trabalha.",
+   "feedbackErro": "O contrato é legal em muitos casos, e por isso parece neutro. Mas quando substitui vínculo real, transfere o custo da proteção da empresa para o trabalhador."
+  }
+ ]
+}

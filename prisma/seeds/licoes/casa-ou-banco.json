@@ -1,0 +1,298 @@
+{
+ "slug": "casa-ou-banco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "casa-ou-banco",
+ "fraseConceito": "Em casa o dinheiro não rende e perde valor pra inflação; numa instituição confiável, ele rende juros.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "casa-ou-banco",
+   "criterio": "O dinheiro cresce guardado assim?",
+   "enunciado": "R$ 500 guardados debaixo do colchão por um ano",
+   "resposta": false,
+   "ancora": "Sem juros, o dinheiro em casa não cresce sozinho.",
+   "feedbackErro": "Fica intacto, e é fácil achar que 'intacto' é o mesmo que 'crescendo'. Mas sem juros, não há nenhum ganho — só o valor parado."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "casa-ou-banco",
+   "criterio": "O dinheiro cresce guardado assim?",
+   "enunciado": "R$ 500 numa poupança por um ano",
+   "resposta": true,
+   "ancora": "Na poupança, o dinheiro rende cerca de 0,5% ao mês.",
+   "feedbackErro": "Poupança tem fama de render pouco, e é verdade. Mas pouco ainda é rendimento — cerca de 0,5% ao mês, todo mês."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "casa-ou-banco",
+   "criterio": "O dinheiro cresce guardado assim?",
+   "enunciado": "R$ 500 guardados num cofre em casa, trancado",
+   "resposta": false,
+   "ancora": "Trancado ou não, dinheiro em casa não rende juros.",
+   "feedbackErro": "O cofre passa segurança, e por isso parece diferente. Mas segurança física não é rendimento — sem juros, o valor continua parado."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "casa-ou-banco",
+   "dificuldade": 1,
+   "pergunta": "Qual é a maior vantagem de guardar dinheiro numa instituição financeira, e não em casa?",
+   "ancora": "O rendimento é o que diferencia guardar no banco de guardar em casa.",
+   "alternativas": [
+    {
+     "texto": "Você não corre risco de gastar por impulso",
+     "correta": false,
+     "feedbackErro": "Dificultar o acesso ajuda a poupar, mas não é a vantagem principal do banco — é o rendimento."
+    },
+    {
+     "texto": "O dinheiro rende juros com o tempo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Fica mais fácil sacar quando quiser",
+     "correta": false,
+     "feedbackErro": "Acesso existe nos dois casos. A vantagem real do banco é o rendimento, não a facilidade de saque."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "juros-e-instituicao-confiavel",
+   "dificuldade": 1,
+   "pergunta": "Bianca guardou R$ 1.000 na poupança por 1 ano, a 0,5% ao mês. Quanto rendeu, aproximadamente?",
+   "ancora": "R$ 1.000 a 0,5% ao mês por 12 meses rendem cerca de R$ 62.",
+   "verificacao": { "expressao": "1000*1.005^12-1000", "esperado": 61.68, "tolerancia": 2 },
+   "alternativas": [
+    {
+     "texto": "Cerca de R$ 62",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 0, poupança não rende",
+     "correta": false,
+     "feedbackErro": "Poupança rende, sim — na faixa de 0,5% ao mês, mesmo sendo pouco."
+    },
+    {
+     "texto": "Cerca de R$ 500, metade do valor",
+     "correta": false,
+     "feedbackErro": "O rendimento é bem menor que isso — a taxa mensal é de cerca de 0,5%."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "casa-ou-banco",
+   "criterio": "É protegido contra roubo ou incêndio?",
+   "enunciado": "Dinheiro guardado numa conta bancária",
+   "resposta": true,
+   "ancora": "O banco guarda o dinheiro seguro, sem risco de roubo em casa.",
+   "feedbackErro": "Parece que o banco só rende juros. Mas ele também guarda o dinheiro fisicamente seguro, sem risco de incêndio ou assalto em casa."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "casa-ou-banco",
+   "instrucao": "Ordene de quem rende mais pra quem rende menos.",
+   "ancora": "Quem rende mais tem taxa maior; guardado em casa, só perde valor.",
+   "feedbackErro": "É fácil achar que todo banco rende igual. Mas cada opção tem uma taxa diferente, e em casa não há taxa nenhuma.",
+   "itens": [
+    { "texto": "Conta que rende 100% do CDI, cerca de 1% ao mês", "posicaoCorreta": 1 },
+    { "texto": "Poupança, cerca de 0,5% ao mês", "posicaoCorreta": 2 },
+    { "texto": "Conta corrente comum, sem rendimento", "posicaoCorreta": 3 },
+    { "texto": "Dinheiro em casa, perdendo valor pra inflação", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "casa-ou-banco",
+   "criterio": "Isso é uma vantagem de guardar em casa?",
+   "enunciado": "Acesso imediato, sem app nem senha",
+   "resposta": true,
+   "ancora": "Em casa, o dinheiro está sempre à mão — é a vantagem real dele.",
+   "feedbackErro": "Pode parecer pouco importante perto do rendimento. Mas acesso imediato é sim uma vantagem real de manter dinheiro em espécie."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "casa-ou-banco",
+   "criterio": "Isso é uma vantagem de guardar em casa?",
+   "enunciado": "Não perder valor com a inflação",
+   "resposta": false,
+   "ancora": "Em casa, a inflação corrói o valor todo mês — não é vantagem.",
+   "feedbackErro": "Como o número em reais não muda, parece neutro. Mas o que ele compra vai diminuindo — isso é desvantagem, não vantagem."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "juros-e-instituicao-confiavel",
+   "pergunta": "R$ 1.000 na poupança, a 0,5% ao mês. Quanto rende em 12 meses?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 200,
+   "gabarito": 62,
+   "toleranciaPct": 20,
+   "fonte": "taxa média da poupança, ~0,5% ao mês (Banco Central)",
+   "verificacao": { "expressao": "1000*1.005^12-1000", "esperado": 61.68, "tolerancia": 2 },
+   "feedbackPerto": "Isso mesmo — cerca de R$ 62, o juro composto de 12 meses.",
+   "feedbackLonge": "O rendimento é de cerca de R$ 62. Mesmo pequeno, é juro composto: cada mês rende sobre o saldo anterior."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "casa-ou-banco",
+   "dificuldade": 2,
+   "pergunta": "R$ 2.000 parados em casa por 2 anos, com inflação de 5% ao ano. O que acontece com o poder de compra?",
+   "ancora": "Os R$2.000 continuam ali, mas compram menos do que antes.",
+   "verificacao": { "expressao": "2000/1.05^2", "esperado": 1814.06, "tolerancia": 1 },
+   "alternativas": [
+    {
+     "texto": "Continua igual, porque o valor em reais não mudou",
+     "correta": false,
+     "feedbackErro": "O valor em reais é o mesmo, mas o que ele compra fica menor — isso é perda de poder de compra."
+    },
+    {
+     "texto": "Diminui, mesmo o valor em reais sendo o mesmo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Aumenta, porque o dinheiro não foi gasto",
+     "correta": false,
+     "feedbackErro": "Não gastar não gera rendimento. Sem juros, a inflação só corrói o valor guardado."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "juros-e-instituicao-confiavel",
+   "dificuldade": 2,
+   "pergunta": "Mesmos R$ 1.500: guardar em casa ou numa poupança confiável. Qual protege contra a inflação?",
+   "ancora": "O rendimento da poupança compensa parte da inflação.",
+   "alternativas": [
+    {
+     "texto": "Guardar em casa, porque o valor não muda",
+     "correta": false,
+     "feedbackErro": "O valor não mudar não é proteção — é justamente o que deixa a inflação corroer sem resistência."
+    },
+    {
+     "texto": "A poupança, porque o rendimento compensa parte da inflação",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "As duas protegem igual, já que o valor guardado é o mesmo",
+     "correta": false,
+     "feedbackErro": "O valor inicial é igual, mas só a poupança rende — em casa não há nada compensando a inflação."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "casa-ou-banco",
+   "criterio": "Isso ajuda a decidir onde guardar?",
+   "enunciado": "Comparar o rendimento da instituição com a inflação do período",
+   "resposta": true,
+   "ancora": "Só rendimento acima da inflação preserva o poder de compra.",
+   "feedbackErro": "Olhar só o rendimento parece suficiente, mas ele precisa superar a inflação pra realmente valer a pena."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "juros-e-instituicao-confiavel",
+   "criterio": "Isso ajuda a decidir onde guardar?",
+   "enunciado": "Escolher qualquer banco, já que todos pagam a mesma taxa",
+   "resposta": false,
+   "ancora": "As taxas variam entre instituições — vale comparar antes de escolher.",
+   "feedbackErro": "É comum achar que banco é tudo igual. Mas as taxas variam, e comparar faz diferença no total recebido."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "casa-ou-banco",
+   "pergunta": "Qual frase resume o que você viu nesta lição?",
+   "alternativas": [
+    {
+     "texto": "Guardar em casa é sempre pior, porque não rende nada.",
+     "correta": false,
+     "feedbackErro": "Em casa não rende, mas tem vantagens reais, como o acesso imediato — não é 'pior' em tudo."
+    },
+    {
+     "texto": "Em casa o dinheiro fica acessível, mas perde valor; no banco, rende.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Todo banco rende a mesma taxa, então tanto faz onde guardar.",
+     "correta": false,
+     "feedbackErro": "As taxas variam entre instituições — vale comparar antes de escolher."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "casa-ou-banco",
+   "instrucao": "Rende juros ou não?",
+   "ancora": "Só rende quem tem taxa de juros aplicada.",
+   "feedbackErro": "Ter conta num banco não garante rendimento — só rende o que tem taxa de juros vinculada.",
+   "caixas": [
+    { "id": "rende", "rotulo": "Rende" },
+    { "id": "nao", "rotulo": "Não rende" }
+   ],
+   "itens": [
+    { "texto": "Poupança", "caixaCorreta": "rende" },
+    { "texto": "Colchão de casa", "caixaCorreta": "nao" },
+    { "texto": "Conta que rende 100% do CDI", "caixaCorreta": "rende" },
+    { "texto": "Conta corrente sem rendimento", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "juros-e-instituicao-confiavel",
+   "dificuldade": 3,
+   "pergunta": "R$ 800 na poupança por 6 meses, a 0,5% ao mês composto. Quanto rende, aproximadamente?",
+   "ancora": "R$ 800 a 0,5% ao mês por 6 meses rendem cerca de R$ 24.",
+   "verificacao": { "expressao": "800*1.005^6-800", "esperado": 24.3, "tolerancia": 1 },
+   "alternativas": [
+    {
+     "texto": "Cerca de R$ 24",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cerca de R$ 4",
+     "correta": false,
+     "feedbackErro": "Esse valor ignora que o juro é composto: cada mês rende sobre o saldo já rendido antes."
+    },
+    {
+     "texto": "Cerca de R$ 48",
+     "correta": false,
+     "feedbackErro": "Esse valor está alto demais pro prazo — 0,5% ao mês em 6 meses não dobra assim."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "casa-ou-banco",
+   "criterio": "É verdade?",
+   "enunciado": "Guardar em casa elimina o risco de falência do banco",
+   "resposta": true,
+   "ancora": "Sem conta, não há esse risco — mas surgem roubo e perda física.",
+   "feedbackErro": "Parece contraintuitivo, já que o banco parece mais seguro no geral. Mas em casa esse risco específico some, trocado por outros."
+  }
+ ]
+}

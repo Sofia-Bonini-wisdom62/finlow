@@ -1,0 +1,270 @@
+{
+ "slug": "o-que-e-risco-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "o-que-e-risco",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-cotidiano",
+   "criterio": "Isso é um risco?",
+   "enunciado": "Andar de moto sem capacete",
+   "resposta": true,
+   "ancora": "Faltar a proteção não cria o risco, mas deixa você mais exposto a ele.",
+   "feedbackErro": "Lembra do critério: risco é a chance de dar errado. Sem capacete, a chance de se machucar numa queda fica maior."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-cotidiano",
+   "criterio": "Isso é um risco?",
+   "enunciado": "Conferir a validade antes de comprar um remédio",
+   "resposta": false,
+   "ancora": "Conferir é uma forma de evitar o risco, não o risco em si.",
+   "feedbackErro": "O critério é a chance de dar errado. Conferir a validade é o oposto disso: é o cuidado que evita o problema."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-de-prejuizo",
+   "criterio": "Pode gerar prejuízo financeiro?",
+   "enunciado": "Investir todas as economias em uma única ação",
+   "resposta": true,
+   "ancora": "Se aquela empresa vai mal, todo o dinheiro vai mal junto.",
+   "feedbackErro": "Lembra o critério: chance de perda. Colocar tudo em um único lugar faz qualquer problema dele virar problema seu, inteiro."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-cotidiano",
+   "dificuldade": 2,
+   "pergunta": "Qual destas situações É o risco em si (não uma forma de reduzi-lo)?",
+   "ancora": "Atravessar sem olhar é o risco; olhar antes é a proteção.",
+   "alternativas": [
+    {
+     "texto": "Olhar os dois lados antes de atravessar a rua",
+     "correta": false,
+     "feedbackErro": "Olhar é o cuidado que reduz a chance de acidente. O risco é a situação perigosa, não o cuidado tomado antes dela."
+    },
+    {
+     "texto": "Atravessar a rua correndo, sem olhar antes",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Esperar o sinal fechar para os carros",
+     "correta": false,
+     "feedbackErro": "Esperar o sinal é proteção, reduz a chance de acidente. O risco é atravessar sem esse cuidado, não o próprio cuidado."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-de-prejuizo",
+   "dificuldade": 2,
+   "pergunta": "Bianca assina um contrato de empréstimo sem ler as condições. Qual é o principal risco?",
+   "ancora": "Sem ler, ela pode aceitar juros ou taxas que não esperava pagar.",
+   "alternativas": [
+    {
+     "texto": "Aceitar juros ou taxas que ela não previu",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O contrato ficar sem validade jurídica",
+     "correta": false,
+     "feedbackErro": "Assinar sem ler não invalida o contrato — ele continua valendo. O risco é aceitar condições que ela nem sabe quais são."
+    },
+    {
+     "texto": "O banco recusar receber o pagamento depois",
+     "correta": false,
+     "feedbackErro": "Bancos costumam querer receber, e não recusam pagamento. O risco está nas condições aceitas sem leitura, não na cobrança em si."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "risco-cotidiano",
+   "criterio": "Isso é um risco?",
+   "enunciado": "Conferir a validade de um alimento antes de comer",
+   "resposta": false,
+   "ancora": "Conferir é cuidado; o risco seria comer sem checar nada.",
+   "feedbackErro": "É fácil confundir cuidado com risco porque os dois aparecem juntos. Mas conferir é justamente o que evita o problema, não o problema."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "risco-de-prejuizo",
+   "instrucao": "É um risco financeiro, ou é uma proteção contra risco?",
+   "ancora": "Risco é a chance de perda; proteção é o que reduz essa chance.",
+   "feedbackErro": "O que reduz a chance de perda é proteção. O que aumenta essa chance é o risco em si.",
+   "caixas": [
+    {
+     "id": "risco",
+     "rotulo": "É risco"
+    },
+    {
+     "id": "protecao",
+     "rotulo": "É proteção"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Investir tudo sem diversificar",
+     "caixaCorreta": "risco"
+    },
+    {
+     "texto": "Fazer um seguro para o carro",
+     "caixaCorreta": "protecao"
+    },
+    {
+     "texto": "Comprar de um vendedor sem CNPJ nem endereço",
+     "caixaCorreta": "risco"
+    },
+    {
+     "texto": "Guardar uma reserva para imprevistos",
+     "caixaCorreta": "protecao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "risco-cotidiano",
+   "criterio": "Isso é um risco?",
+   "enunciado": "Ler o contrato inteiro antes de assinar",
+   "resposta": false,
+   "ancora": "Ler é o cuidado; assinar sem ler é que seria o risco.",
+   "feedbackErro": "Ler protege, não expõe. O risco estaria em assinar sem entender o que está escrito, não no ato de ler."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "risco-de-prejuizo",
+   "dificuldade": 2,
+   "pergunta": "Por que frases como 'garantido' e '100% seguro' pedem desconfiança em oferta de investimento?",
+   "ancora": "Todo investimento tem risco; quem garante 100% costuma mentir.",
+   "alternativas": [
+    {
+     "texto": "Porque todo investimento tem algum grau de risco",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque investimento seguro é sempre proibido por lei",
+     "correta": false,
+     "feedbackErro": "Investimento seguro existe e é permitido. O problema é a promessa de 100% de garantia, que nenhum investimento real cumpre."
+    },
+    {
+     "texto": "Porque só bancos grandes podem prometer isso",
+     "correta": false,
+     "feedbackErro": "Não é sobre quem promete, é sobre a promessa em si: nenhuma instituição, grande ou pequena, garante retorno sem nenhum risco."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "risco-cotidiano",
+   "criterio": "Isso é um risco?",
+   "enunciado": "Fazer um seguro para o celular",
+   "resposta": false,
+   "ancora": "Fazer seguro é proteção contra o risco de quebrar ou roubar.",
+   "feedbackErro": "O seguro nasce por causa de um risco (quebrar, roubar), mas ele mesmo é a proteção contra isso, não o risco."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "risco-de-prejuizo",
+   "criterio": "Pode gerar prejuízo financeiro?",
+   "enunciado": "Guardar todas as economias em um único banco, sem diversificar",
+   "resposta": true,
+   "ancora": "Concentrar tudo em um lugar aumenta o impacto se algo der errado ali.",
+   "feedbackErro": "Um banco parece um lugar seguro, e costuma ser. Mas concentrar tudo em um só lugar aumenta o quanto você perde se algo falhar ali."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-que-e-risco",
+   "pergunta": "Qual afirmação é a mais precisa sobre risco?",
+   "alternativas": [
+    {
+     "texto": "Proteção e risco são a mesma coisa, com nomes diferentes",
+     "correta": false,
+     "feedbackErro": "São opostos: risco é a chance de perda; proteção é o que reduz essa chance. Confundir os dois é o erro mais comum."
+    },
+    {
+     "texto": "Risco é a chance de perda; proteção reduz essa chance",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Uma promessa de 100% de garantia elimina todo risco",
+     "correta": false,
+     "feedbackErro": "Nenhuma promessa apaga o risco real de um investimento. Quem garante 100% costuma esconder informação, não eliminar o risco."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "risco-de-prejuizo",
+   "instrucao": "Ordene do que MAIS reduz risco financeiro ao que MENOS reduz.",
+   "ancora": "Diversificar e guardar reserva reduzem mais do que só desconfiar.",
+   "feedbackErro": "Diversificar separa o dinheiro em vários lugares; a reserva cobre imprevistos; desconfiar sozinho, sem checar nada, ajuda pouco.",
+   "itens": [
+    {
+     "texto": "Diversificar o dinheiro em mais de um investimento",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Guardar uma reserva para imprevistos",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Apenas desconfiar de tudo, sem checar nada de fato",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "risco-cotidiano",
+   "dificuldade": 2,
+   "pergunta": "Um carro com airbag reduz o risco de quê, exatamente?",
+   "ancora": "Airbag reduz a gravidade do machucado, não evita a colisão.",
+   "alternativas": [
+    {
+     "texto": "De acontecer o acidente em primeiro lugar",
+     "correta": false,
+     "feedbackErro": "Airbag não evita a colisão acontecer. Ele age depois, reduzindo o impacto sobre quem está dentro do carro."
+    },
+    {
+     "texto": "De o impacto machucar gravemente quem está no carro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "De o carro precisar de manutenção no futuro",
+     "correta": false,
+     "feedbackErro": "Manutenção não tem relação com o airbag. Ele existe para proteger as pessoas no momento de uma colisão."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "risco-de-prejuizo",
+   "criterio": "Pode gerar prejuízo financeiro?",
+   "enunciado": "Pagar por um curso online sem checar se a empresa existe de verdade",
+   "resposta": true,
+   "ancora": "Empresa sem existência confirmada pode sumir com o pagamento.",
+   "feedbackErro": "O curso pode até parecer bom demais para duvidar. Mas sem confirmar que a empresa existe, o pagamento pode simplesmente desaparecer."
+  }
+ ]
+}

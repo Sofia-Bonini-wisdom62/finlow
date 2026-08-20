@@ -1,0 +1,332 @@
+{
+ "slug": "ler-antes-de-assinar",
+ "segmento": "em1",
+ "conceitoPrincipal": "ler-antes-de-assinar",
+ "fraseConceito": "Contrato vale pelo que está escrito, não pelo prometido. Antes de assinar: quanto custa, quando vence, até quando dura, como sair.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "assinatura-obriga",
+   "criterio": "Isso te obriga?",
+   "enunciado": "O 'aceito' que você tocou no app sem ler nada",
+   "resposta": true,
+   "ancora": "Aceitar no app é assinar: contrato digital obriga igual.",
+   "feedbackErro": "Sem papel e sem caneta, não parece contrato — mas é. O toque em 'aceito' cria a mesma obrigação da assinatura. Ler é opcional; a obrigação, não."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "assinatura-obriga",
+   "criterio": "Isso te obriga?",
+   "enunciado": "O contrato que você assinou 'só para constar'",
+   "resposta": true,
+   "ancora": "Não existe assinatura de mentira: assinou, valeu.",
+   "feedbackErro": "Todo mundo já assinou algo por confiança ou pressa. Mas a lei não pergunta a intenção, pergunta a assinatura. Trate cada uma como definitiva — porque é."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "assinatura-obriga",
+   "criterio": "Isso te obriga?",
+   "enunciado": "A promessa do vendedor que ficou só na conversa",
+   "resposta": false,
+   "ancora": "Cobrar conversa é difícil: faça a promessa virar cláusula.",
+   "feedbackErro": "A oferta até obriga o vendedor pela lei. O problema é provar: sem registro, vira a sua palavra contra a dele. Promessa que importa se escreve no contrato."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "mapa-do-contrato",
+   "dificuldade": 1,
+   "pergunta": "Um contrato chega na sua mão. O que procurar antes de qualquer assinatura?",
+   "ancora": "Quanto custa, quando vence, até quando dura, como sair.",
+   "alternativas": [
+    {
+     "texto": "Valor total, vencimento, duração e multa de saída",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O logotipo e o nome da empresa no topo",
+     "correta": false,
+     "feedbackErro": "Identificar a empresa importa, mas o topo é a parte que nunca esconde nada. O que muda a sua vida está nos números e na cláusula de saída — mais abaixo."
+    },
+    {
+     "texto": "A linha da assinatura, para agilizar",
+     "correta": false,
+     "feedbackErro": "É a única linha que não informa nada e a única que te prende. Ela é o fim da leitura, nunca o começo: antes dela vêm valor, prazo e saída."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "documento-e-prova",
+   "dificuldade": 1,
+   "pergunta": "Naiara pagou R$ 80 num fone, e a cobrança veio de R$ 120. Qual papel prova o preço combinado?",
+   "ancora": "Cupom fiscal registra valor, data e loja: prova pronta.",
+   "alternativas": [
+    {
+     "texto": "O cupom fiscal daquela compra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A memória dela do valor da etiqueta",
+     "correta": false,
+     "feedbackErro": "A memória pode estar certa — e não prova nada sozinha. Contra um sistema de cobrança, palavra não disputa com registro. O cupom vira a lembrança em documento."
+    },
+    {
+     "texto": "Um print do anúncio da loja nas redes",
+     "correta": false,
+     "feedbackErro": "O anúncio até vincula a loja, mas muda e some do ar. O cupom fiscal registra o valor exato daquela compra, com data e identificação — prova mais forte."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "documento-e-prova",
+   "criterio": "É papel que protege você?",
+   "enunciado": "O recibo de um pagamento feito em dinheiro vivo",
+   "resposta": true,
+   "ancora": "Dinheiro não deixa rastro; o recibo é o único registro do pagamento.",
+   "feedbackErro": "Pix e cartão registram sozinhos; dinheiro vivo, não. Sem recibo, o pagamento vira palavra contra palavra — e quem recebeu pode 'esquecer'. Peça sempre."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "mapa-do-contrato",
+   "instrucao": "Contrato na mesa. Ordene o que fazer até assinar.",
+   "ancora": "Assinar é o último ato — depois de ler, perguntar e conferir.",
+   "feedbackErro": "A ordem protege: primeiro os números e a saída, depois as dúvidas, depois conferir se as promessas viraram cláusulas. Só então a caneta — e a sua via guardada.",
+   "itens": [
+    {
+     "texto": "Ler valor, prazo e multa de saída",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Perguntar tudo o que não entendeu",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Conferir se as promessas estão escritas",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Assinar e guardar a sua via",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "documento-e-prova",
+   "criterio": "A cobrança está correta?",
+   "enunciado": "Streaming que você nunca contratou aparece na fatura",
+   "resposta": false,
+   "ancora": "Cobrança sem contrato por trás se contesta — a lei te apoia.",
+   "feedbackErro": "Valor pequeno passa batido, e os sistemas contam com isso. Serviço não contratado é cobrança indevida: conteste e, se pagou, a lei prevê devolução em dobro."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "documento-e-prova",
+   "criterio": "A cobrança está correta?",
+   "enunciado": "Boleto do curso veio de R$ 200, igual à parcela do contrato",
+   "resposta": true,
+   "ancora": "Boleto que bate com a cláusula: confere, paga e guarda o comprovante.",
+   "feedbackErro": "Conferir parece paranoia até o dia em que não bate. Aqui a checagem fecha: o valor do boleto é o da cláusula. Cobrança certa se paga em dia — e se arquiva."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "mapa-do-contrato",
+   "pergunta": "Academia: 12x de R$ 100, multa de 30% do que falta. Desistir após 4 parcelas pagas custa quanto?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 800,
+   "gabarito": 240,
+   "toleranciaPct": 20,
+   "fonte": "conta: 30% × 8 parcelas restantes de R$ 100",
+   "verificacao": {
+    "expressao": "8*100*0.3",
+    "esperado": 240
+   },
+   "feedbackPerto": "R$ 240: a multa incide sobre as 8 parcelas que faltam. Esse número estava no contrato desde o primeiro dia.",
+   "feedbackLonge": "R$ 240 — 30% dos R$ 800 restantes, não do total. O viés é assinar sem calcular a saída: quem não faz essa conta antes descobre o preço dela na hora de sair."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "direito-do-consumidor",
+   "dificuldade": 1,
+   "pergunta": "Você comprou um tênis pela internet e se arrependeu ao abrir a caixa. O que a lei garante?",
+   "ancora": "Compra a distância: 7 dias para desistir e receber de volta (CDC).",
+   "alternativas": [
+    {
+     "texto": "Devolver em até 7 dias e receber o valor pago",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: comprou, é seu",
+     "correta": false,
+     "feedbackErro": "Vale para quem viu e provou o produto na loja. Na internet você compra sem ver — por isso o CDC dá 7 dias de arrependimento a partir do recebimento."
+    },
+    {
+     "texto": "Troca, mas só se houver defeito",
+     "correta": false,
+     "feedbackErro": "Defeito dá direito a conserto ou troca em qualquer compra. O arrependimento é outro direito, extra, das compras a distância: 7 dias, sem precisar de motivo."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "direito-do-consumidor",
+   "dificuldade": 1,
+   "pergunta": "Cobraram R$ 50 de um serviço que você não pediu, e você pagou sem notar. O CDC prevê o quê?",
+   "ancora": "Cobrança indevida paga: devolução em dobro — R$ 100.",
+   "verificacao": {
+    "expressao": "50*2",
+    "esperado": 100
+   },
+   "alternativas": [
+    {
+     "texto": "Devolução em dobro: R$ 100 de volta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só o estorno simples dos R$ 50",
+     "correta": false,
+     "feedbackErro": "Seria o mínimo, mas a lei foi além de propósito: o dobro existe para a empresa ter prejuízo ao cobrar errado — e caprichar na fatura que te manda."
+    },
+    {
+     "texto": "Nada: pagar foi aceitar a cobrança",
+     "correta": false,
+     "feedbackErro": "Pagar sem notar não é concordar — a lei sabe que ninguém confere tudo. O direito ao dobro nasce justamente quando você pagou o que não devia."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "documento-e-prova",
+   "criterio": "Você fica protegido?",
+   "enunciado": "Jogar fora o comprovante logo depois de pagar",
+   "resposta": false,
+   "ancora": "Comprovante é a certidão de que a dívida morreu. Guarde.",
+   "feedbackErro": "Pagou de verdade — mas a prova foi para o lixo. Sistemas erram e cobranças voltam: sem comprovante, é pagar de novo ou brigar no escuro."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "assinatura-obriga",
+   "criterio": "Você fica protegido?",
+   "enunciado": "Pedir que o desconto prometido seja escrito no contrato",
+   "resposta": true,
+   "ancora": "Promessa escrita vira cláusula: agora dá para cobrar.",
+   "feedbackErro": "Constrange na hora, e o vendedor pode reclamar. Mas vendedor sai, gerência muda — o papel fica. Quem escreve o combinado não depende de memória alheia."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "assinatura-obriga",
+   "pergunta": "O que resume esta primeira lição?",
+   "alternativas": [
+    {
+     "texto": "Obriga o que está escrito e assinado. Leia antes; guarde a sua via.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Contrato é formalidade: vale o combinado de boca.",
+     "correta": false,
+     "feedbackErro": "Provar conversa é quase impossível. Na disputa, o escrito decide."
+    },
+    {
+     "texto": "Se a empresa é confiável, ler é perda de tempo.",
+     "correta": false,
+     "feedbackErro": "Confiança não revoga cláusula. A multa que você não leu vale igual."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "documento-e-prova",
+   "instrucao": "Guardar ou pode jogar fora?",
+   "ancora": "Guarda-se o que prova pagamento ou obrigação viva.",
+   "feedbackErro": "O critério é prova: papel que registra pagamento ou contrato em vigor se guarda; o que não prova nada — propaganda, rascunho — pode ir para o lixo.",
+   "caixas": [
+    {
+     "id": "guardar",
+     "rotulo": "Guardar"
+    },
+    {
+     "id": "jogar",
+     "rotulo": "Pode jogar"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Comprovante do boleto pago",
+     "caixaCorreta": "guardar"
+    },
+    {
+     "texto": "Contrato do curso em andamento",
+     "caixaCorreta": "guardar"
+    },
+    {
+     "texto": "Panfleto de promoção já encerrada",
+     "caixaCorreta": "jogar"
+    },
+    {
+     "texto": "Lista de compras do mês passado",
+     "caixaCorreta": "jogar"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "documento-e-prova",
+   "dificuldade": 1,
+   "pergunta": "Por que pedir a nota fiscal importa para você, e não só para o governo?",
+   "ancora": "Nota fiscal é a sua prova de compra para troca e garantia.",
+   "alternativas": [
+    {
+     "texto": "É a prova da compra para troca e garantia",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Serve apenas para o imposto do lojista",
+     "correta": false,
+     "feedbackErro": "O imposto é a parte do governo. A sua parte: sem nota, provar que comprou ali, naquele valor e naquela data, vira discussão — e a garantia depende disso."
+    },
+    {
+     "texto": "Só vale a pena em compras muito caras",
+     "correta": false,
+     "feedbackErro": "O fone barato também quebra na primeira semana. O custo de pedir a nota é zero; o de não ter é a garantia perdida — em qualquer valor."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "direito-do-consumidor",
+   "criterio": "A cláusula pode isso?",
+   "enunciado": "Multa de atraso de 10% numa conta de consumo",
+   "resposta": false,
+   "ancora": "No CDC, multa de atraso tem teto: 2%. Acima disso, conteste.",
+   "feedbackErro": "Atrasar tem custo, e multa existe — isso a cláusula acerta. O que ela não pode é passar do teto legal de 2% em dívida de consumo. Cláusula fora da lei não vale."
+  }
+ ]
+}

@@ -1,0 +1,249 @@
+{
+ "slug": "o-que-e-um-orcamento-consolida",
+ "segmento": "ef35",
+ "conceitoPrincipal": "o-que-e-um-orcamento",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "orcamento-serve",
+   "criterio": "Serve pra planejar o dinheiro?",
+   "enunciado": "Fazer um orçamento depois que o dinheiro já acabou",
+   "resposta": false,
+   "ancora": "Depois que acabou, só resta conferir o que aconteceu.",
+   "feedbackErro": "Parece que organizar depois ainda ajuda. Mas orçamento serve pra planejar antes; depois que o dinheiro já acabou, o que resta é só analisar o que aconteceu."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "receita-despesa",
+   "criterio": "Isso é receita?",
+   "enunciado": "Receber de volta um dinheiro que você tinha emprestado",
+   "resposta": false,
+   "ancora": "Reaver o que já era seu não é entrada nova.",
+   "feedbackErro": "Parece receita, porque o dinheiro volta pro seu bolso. Mas ele já era seu antes de emprestar — reaver não é uma entrada nova."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "receita-despesa",
+   "criterio": "Isso é despesa?",
+   "enunciado": "Perder uma moeda que caiu do bolso sem querer",
+   "resposta": false,
+   "ancora": "Perder não é uma escolha de gasto — não é despesa.",
+   "feedbackErro": "Parece despesa, porque o dinheiro também sai do seu controle. Mas despesa é um gasto escolhido; perder por acidente é outra coisa."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "orcamento-serve",
+   "dificuldade": 3,
+   "pergunta": "Iago tem R$ 50 de orçamento, mas surgiu um gasto extra de R$ 15 não planejado. O que fazer agora?",
+   "ancora": "Gasto extra não anula o orçamento — pede ajuste dentro dele.",
+   "alternativas": [
+    {
+     "texto": "Ver de onde cortar pra caber o gasto extra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ignorar o orçamento, já que ele não previu o extra",
+     "correta": false,
+     "feedbackErro": "Não previu esse gasto específico, mas continua servindo: mostra onde cortar pra caber o extra dentro do total."
+    },
+    {
+     "texto": "Esperar receber mais dinheiro pra não mudar nada",
+     "correta": false,
+     "feedbackErro": "Esperar mais dinheiro não resolve o mês atual. O orçamento serve justo pra decidir o que ajustar agora, com o que já se tem."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "receita-despesa",
+   "dificuldade": 3,
+   "pergunta": "Ana comprou um caderno de R$ 12 com defeito e devolveu, recebendo o dinheiro de volta. Como fica no orçamento?",
+   "ancora": "Devolução cancela a despesa — não vira receita nova.",
+   "alternativas": [
+    {
+     "texto": "A despesa é cancelada, como se não tivesse ocorrido",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Conta como receita nova de R$ 12",
+     "correta": false,
+     "feedbackErro": "O dinheiro que voltou já era dela antes da compra. Não é uma entrada nova — é o cancelamento da despesa."
+    },
+    {
+     "texto": "Conta como despesa e como receita ao mesmo tempo",
+     "correta": false,
+     "feedbackErro": "Contar as duas juntas dobra o efeito no orçamento. O certo é simplesmente cancelar a despesa, já que a compra não ficou de pé."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "registrar-orcamento",
+   "criterio": "Ainda vale registrar isso?",
+   "enunciado": "Um gasto pago pela mãe diretamente, sem passar pela sua mão",
+   "resposta": false,
+   "ancora": "Só entra no seu orçamento o que passa pelo seu dinheiro.",
+   "feedbackErro": "Parece que todo gasto relacionado a você deveria entrar. Mas o orçamento pessoal registra só o que passa pelo seu dinheiro, não o que outra pessoa paga direto."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "receita-despesa",
+   "instrucao": "Isso entra no orçamento pessoal? Arraste.",
+   "ancora": "Só entra o que passa pelas suas mãos, ganho ou gasto por escolha.",
+   "feedbackErro": "Perdas e gastos de terceiros parecem relacionados a você, mas não passam pelo seu dinheiro por escolha — ficam fora do orçamento pessoal.",
+   "caixas": [
+    { "id": "entra", "rotulo": "Entra" },
+    { "id": "naoentra", "rotulo": "Não entra" }
+   ],
+   "itens": [
+    { "texto": "Dinheiro recebido de mesada", "caixaCorreta": "entra" },
+    { "texto": "Presente pago pela mãe direto na loja", "caixaCorreta": "naoentra" },
+    { "texto": "Compra feita com seu próprio dinheiro", "caixaCorreta": "entra" },
+    { "texto": "Moeda perdida sem querer", "caixaCorreta": "naoentra" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "registrar-orcamento",
+   "criterio": "Ainda é um bom registro?",
+   "enunciado": "Registrar separado cada dívida que você tem com pessoas diferentes",
+   "resposta": true,
+   "ancora": "Separar por credor evita confundir quanto deve a cada um.",
+   "feedbackErro": "Parece complicado demais separar tanto. Mas registrar cada dívida por pessoa evita confundir quanto você deve a cada uma delas."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "registrar-orcamento",
+   "dificuldade": 3,
+   "pergunta": "Receita do mês: R$ 45. Despesas: R$ 14, R$ 8 e mais um gasto extra de R$ 10. Quanto sobrou?",
+   "ancora": "45 menos 14 menos 8 menos 10 é 13 — o que sobrou no mês.",
+   "verificacao": { "expressao": "45-14-8-10", "esperado": 13 },
+   "alternativas": [
+    {
+     "texto": "R$ 13",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 23",
+     "correta": false,
+     "feedbackErro": "Esse valor esquece o gasto extra de R$ 10. Somando as três despesas (14+8+10=32) e subtraindo de 45, sobram 13."
+    },
+    {
+     "texto": "R$ 3",
+     "correta": false,
+     "feedbackErro": "Esse valor conta uma despesa a mais do que existe. Somando certo (14+8+10=32), 45 menos 32 é 13."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "orcamento-serve",
+   "criterio": "É vantagem, mesmo com imprevisto?",
+   "enunciado": "Ter uma reserva pensada no orçamento pra gastos que não estavam previstos",
+   "resposta": true,
+   "ancora": "Reserva pro imprevisto é orçamento se antecipando ao que pode variar.",
+   "feedbackErro": "Parece contraditório planejar pro que não se sabe. Mas reservar uma parte pro imprevisto é o orçamento se antecipando ao que pode variar."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "registrar-orcamento",
+   "criterio": "Ainda ajuda quando está apertado?",
+   "enunciado": "Revisar o registro pra achar de onde cortar antes de gastar mais",
+   "resposta": true,
+   "ancora": "Revisar antes de gastar mais é o que evita fechar no negativo.",
+   "feedbackErro": "Parece tarde demais revisar quando já está apertado. Mas é justamente nesse momento que revisar mostra de onde cortar antes de piorar."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "orcamento-serve",
+   "pergunta": "Qual frase resume os três encontros sobre orçamento?",
+   "alternativas": [
+    {
+     "texto": "Orçamento é comparar entradas e saídas — e se ajusta quando muda",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Todo dinheiro que passa perto de você é receita",
+     "correta": false,
+     "feedbackErro": "Só é receita o que realmente entra no seu bolso — dinheiro perdido ou gasto de outra pessoa não conta."
+    },
+    {
+     "texto": "Gasto extra imprevisto invalida o orçamento do mês",
+     "correta": false,
+     "feedbackErro": "Um gasto extra não invalida o orçamento — ele mostra onde ajustar pra caber dentro do que já foi planejado."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "receita-despesa",
+   "dificuldade": 3,
+   "pergunta": "Beto emprestou R$ 10 e recebeu de volta. Isso muda o orçamento dele?",
+   "ancora": "Reaver o que já era seu não altera o total do orçamento.",
+   "alternativas": [
+    {
+     "texto": "Não muda o total, porque o dinheiro já era dele",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Aumenta a receita em R$ 10",
+     "correta": false,
+     "feedbackErro": "Reaver o que já era seu não é entrada nova — o total do orçamento não muda por isso."
+    },
+    {
+     "texto": "Aumenta a despesa em R$ 10",
+     "correta": false,
+     "feedbackErro": "Receber de volta não é gasto — é o oposto. Não afeta a despesa, e o total do orçamento continua igual."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "receita-despesa",
+   "criterio": "Isso entra no orçamento pessoal?",
+   "enunciado": "Um passeio pago inteiramente pela escola, sem custo pra você",
+   "resposta": false,
+   "ancora": "Sem valor saindo do seu dinheiro, não há o que registrar.",
+   "feedbackErro": "Parece um gasto relacionado a você, mesmo sem pagar nada. Mas sem nenhum valor saindo do seu dinheiro, não há despesa a registrar."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "orcamento-serve",
+   "instrucao": "Isso afeta o total do orçamento? Arraste.",
+   "ancora": "Só afeta o total o que é entrada ou gasto novo de verdade.",
+   "feedbackErro": "Reaver dinheiro e perdas por acidente parecem mexer no total, mas não são entrada nem gasto novo — só mesada e compras de fato afetam o orçamento.",
+   "caixas": [
+    { "id": "afeta", "rotulo": "Afeta" },
+    { "id": "naoafeta", "rotulo": "Não afeta" }
+   ],
+   "itens": [
+    { "texto": "Receber a mesada da semana", "caixaCorreta": "afeta" },
+    { "texto": "Reaver um empréstimo que você tinha feito", "caixaCorreta": "naoafeta" },
+    { "texto": "Comprar um brinquedo novo", "caixaCorreta": "afeta" },
+    { "texto": "Perder uma moeda sem querer", "caixaCorreta": "naoafeta" }
+   ]
+  }
+ ]
+}

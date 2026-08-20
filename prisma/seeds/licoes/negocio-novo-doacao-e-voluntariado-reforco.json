@@ -1,0 +1,338 @@
+{
+ "slug": "negocio-novo-doacao-e-voluntariado-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "risco-de-negocio-novo",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-de-negocio-novo",
+   "criterio": "É um risco real desse negócio?",
+   "enunciado": "Comprar 200 unidades de um produto novo antes de vender a primeira",
+   "resposta": true,
+   "ancora": "Comprar em grande escala sem testar a demanda é risco alto.",
+   "feedbackErro": "O preço por atacado parece vantajoso, e isso confunde. Mas comprar 200 unidades sem saber se alguém compra é arriscar tudo de uma vez."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-de-negocio-novo",
+   "criterio": "É um risco real desse negócio?",
+   "enunciado": "Cobrar R$ 8,50 por um item que custa R$ 8,20 para fazer",
+   "resposta": true,
+   "ancora": "Margem de poucos centavos não cobre nenhum imprevisto.",
+   "feedbackErro": "A conta parece fechar, já que dá lucro. Mas uma margem de R$ 0,30 não sobrevive a um imprevisto pequeno, como um insumo mais caro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-de-negocio-novo",
+   "criterio": "É um risco real desse negócio?",
+   "enunciado": "Ter um caderno simples anotando todo gasto do negócio",
+   "resposta": false,
+   "ancora": "Anotar gastos reduz risco, não é risco.",
+   "feedbackErro": "Parece trabalho extra sem necessidade. Mas anotar cada gasto é o que permite descobrir se o negócio dá lucro de verdade."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-de-negocio-novo",
+   "dificuldade": 2,
+   "pergunta": "Um negócio de bolos vende bem no primeiro mês, mas o dono não sabe se teve lucro. Qual é o problema?",
+   "ancora": "Sem separar gasto do negócio do pessoal, não dá pra saber o lucro.",
+   "alternativas": [
+    {
+     "texto": "Ele não separou o gasto do negócio do gasto pessoal",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ele vendeu demais para o tamanho do negócio",
+     "correta": false,
+     "feedbackErro": "Vender bastante costuma ser positivo. O problema é não conseguir medir se sobrou lucro de verdade."
+    },
+    {
+     "texto": "O bolo era bom demais para o preço cobrado",
+     "correta": false,
+     "feedbackErro": "Um produto muito bom não é o problema aqui. Sem separar as contas, não dá pra saber se o preço cobre tudo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-de-negocio-novo",
+   "dificuldade": 2,
+   "pergunta": "Testar vendendo só 10 unidades antes de produzir 100 serve para",
+   "ancora": "Testar em pequena escala reduz o risco do investimento maior.",
+   "alternativas": [
+    {
+     "texto": "Verificar se existe demanda real, com risco menor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Economizar na compra de ingredientes usados",
+     "correta": false,
+     "feedbackErro": "A economia de insumos é só um efeito colateral. O objetivo principal do teste é verificar se existe demanda de verdade."
+    },
+    {
+     "texto": "Ganhar mais dinheiro de uma vez só",
+     "correta": false,
+     "feedbackErro": "Vender pouco no início não maximiza o ganho imediato. O objetivo é reduzir o risco antes de investir mais."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "risco-de-negocio-novo",
+   "criterio": "Isso garante que o negócio vai lucrar?",
+   "enunciado": "Ter conseguido vender rápido no primeiro fim de semana",
+   "resposta": false,
+   "ancora": "Vender rápido uma vez não garante repetição nem margem positiva.",
+   "feedbackErro": "Vender rápido anima, e parece prova de sucesso. Mas uma boa venda isolada não garante que o preço cobre o custo nem que vai se repetir."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "doacao-e-voluntariado",
+   "instrucao": "Classifique: doação ou voluntariado?",
+   "ancora": "Doação é bem ou dinheiro; voluntariado é tempo sem remuneração.",
+   "feedbackErro": "Ambas ajudam causas sociais, e por isso se confundem no dia a dia. A diferença está no que a pessoa entrega.",
+   "caixas": [
+    {
+     "id": "doacao",
+     "rotulo": "Doação"
+    },
+    {
+     "id": "voluntariado",
+     "rotulo": "Voluntariado"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Levar uma caixa de alimentos para um abrigo",
+     "caixaCorreta": "doacao"
+    },
+    {
+     "texto": "Passar o sábado ensinando informática de graça",
+     "caixaCorreta": "voluntariado"
+    },
+    {
+     "texto": "Transferir R$ 50 por mês para uma instituição",
+     "caixaCorreta": "doacao"
+    },
+    {
+     "texto": "Cozinhar para uma ação social sem cobrar nada",
+     "caixaCorreta": "voluntariado"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "doacao-e-voluntariado",
+   "criterio": "Isso exige dar dinheiro?",
+   "enunciado": "Doar um casaco que não serve mais",
+   "resposta": false,
+   "ancora": "Doação pode ser em bens, não só em dinheiro.",
+   "feedbackErro": "A palavra doação lembra logo dinheiro, e isso confunde. Mas doar um bem parado, como um casaco, também é doação, sem gastar nada a mais."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "doacao-e-voluntariado",
+   "criterio": "Isso exige dar dinheiro?",
+   "enunciado": "Fazer um pix de R$ 30 para uma campanha",
+   "resposta": true,
+   "ancora": "Pix é uma transferência direta de dinheiro.",
+   "feedbackErro": "Depois do exemplo do casaco, pode parecer que doação nunca envolve dinheiro. Mas o pix é justamente uma doação em dinheiro direto."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "risco-de-negocio-novo",
+   "pergunta": "Barraca de pastel gasta R$ 180 para fazer 40 pastéis, vendidos a R$ 7. Qual o lucro vendendo 35?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 200,
+   "gabarito": 65,
+   "toleranciaPct": 20,
+   "fonte": "cálculo de custo e receita do próprio negócio",
+   "feedbackPerto": "Isso mesmo, R$ 65 de lucro. Receita de 35 pastéis menos o custo total de produzir os 40.",
+   "feedbackLonge": "R$ 65: 35 pastéis a R$ 7 dá R$ 245 de receita, menos R$ 180 de custo, sobra R$ 65.",
+   "verificacao": {
+    "expressao": "35*7-180",
+    "esperado": 65
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "doacao-e-voluntariado",
+   "dificuldade": 2,
+   "pergunta": "Uma campanha recebe doações em dinheiro e pessoas para separar caixas. Qual ação é voluntariado?",
+   "ancora": "Separar caixas sem receber nada é voluntariado, não doação.",
+   "alternativas": [
+    {
+     "texto": "Separar as doações em caixas, sem receber nada por isso",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Doar R$ 100 pela internet",
+     "correta": false,
+     "feedbackErro": "Doar dinheiro pela internet continua sendo doação: o que sai é dinheiro, não tempo de trabalho."
+    },
+    {
+     "texto": "Comprar um produto e destinar parte do lucro à campanha",
+     "correta": false,
+     "feedbackErro": "Destinar parte de um lucro à campanha ainda é uma forma de doação em dinheiro, não de trabalho voluntário."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "risco-de-negocio-novo",
+   "dificuldade": 2,
+   "pergunta": "Fernanda comprou 300 peças de um único modelo de acessório, sem saber se venderia. Qual foi o erro?",
+   "ancora": "Concentrar tudo num único item não testado eleva o risco.",
+   "alternativas": [
+    {
+     "texto": "Concentrar o estoque em um único item não testado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Escolher acessórios como tipo de produto",
+     "correta": false,
+     "feedbackErro": "O tipo de produto escolhido não é o problema. O erro foi comprar em grande quantidade sem testar a demanda antes."
+    },
+    {
+     "texto": "Comprar peças de modelos variados demais",
+     "correta": false,
+     "feedbackErro": "Ela fez o oposto: concentrou tudo em um único modelo, sem variar, e sem testar se ele venderia."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "risco-de-negocio-novo",
+   "criterio": "Reduz o risco de um negócio novo?",
+   "enunciado": "Separar uma conta só para o dinheiro do negócio",
+   "resposta": true,
+   "ancora": "Contas separadas mostram com clareza se o negócio dá lucro.",
+   "feedbackErro": "Parece burocracia desnecessária para um negócio pequeno. Mas contas separadas são o que mostra, com clareza, se sobra lucro de verdade."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "doacao-e-voluntariado",
+   "criterio": "É voluntariado?",
+   "enunciado": "Trabalhar numa ONG recebendo comissão sobre doações captadas",
+   "resposta": false,
+   "ancora": "Comissão é remuneração — deixa de ser voluntariado.",
+   "feedbackErro": "Trabalhar numa ONG parece já classificar como voluntariado. Mas receber comissão sobre o que capta é remuneração: descaracteriza o voluntariado."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "risco-de-negocio-novo",
+   "dificuldade": null,
+   "pergunta": "Qual frase resume melhor o reforço de hoje?",
+   "alternativas": [
+    {
+     "texto": "Negócio novo pede teste e custo separado; ajudar sem remuneração é voluntariado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Vender rápido uma vez já garante que o negócio vai dar lucro",
+     "correta": false,
+     "feedbackErro": "Uma venda boa isolada não garante nada: é preciso repetir com margem positiva."
+    },
+    {
+     "texto": "Trabalho numa ONG é sempre voluntariado, mesmo com comissão",
+     "correta": false,
+     "feedbackErro": "Comissão é remuneração. Havendo pagamento pelo trabalho, deixa de ser voluntariado."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "risco-de-negocio-novo",
+   "criterio": "É um risco real desse negócio?",
+   "enunciado": "Fixar o preço de venda sem nunca comparar com a concorrência",
+   "resposta": true,
+   "ancora": "Preço fora do mercado pode afastar o cliente ou reduzir o lucro.",
+   "feedbackErro": "Fixar preço só pelo custo parece suficiente. Mas ignorar a concorrência pode deixar o preço alto demais para o cliente, ou baixo demais para o negócio."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "doacao-e-voluntariado",
+   "dificuldade": 2,
+   "pergunta": "Uma pessoa dá aulas particulares de graça para vizinhos de baixa renda, todo sábado. Isso é",
+   "ancora": "Oferecer tempo e ensino sem cobrar é voluntariado.",
+   "alternativas": [
+    {
+     "texto": "Voluntariado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Doação",
+     "correta": false,
+     "feedbackErro": "Doação seria entregar material ou dinheiro. Aqui o que ela oferece é tempo e conhecimento, sem cobrar."
+    },
+    {
+     "texto": "Nenhum dos dois, porque é informal, sem projeto cadastrado",
+     "correta": false,
+     "feedbackErro": "Voluntariado não depende de estar num projeto formal cadastrado: o que define é o tempo oferecido sem remuneração."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "risco-de-negocio-novo",
+   "instrucao": "Classifique: aumenta ou reduz o risco do negócio novo?",
+   "ancora": "Testar e controlar custo reduzem risco; ignorar isso aumenta.",
+   "feedbackErro": "Cada atitude muda a chance de o negócio sobreviver aos primeiros meses.",
+   "caixas": [
+    {
+     "id": "aumenta",
+     "rotulo": "Aumenta risco"
+    },
+    {
+     "id": "reduz",
+     "rotulo": "Reduz risco"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Comprar estoque grande antes de vender a primeira unidade",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "Anotar todo gasto desde o primeiro dia",
+     "caixaCorreta": "reduz"
+    },
+    {
+     "texto": "Fixar preço sem calcular o custo de produção",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "Testar vendendo poucas unidades antes de crescer",
+     "caixaCorreta": "reduz"
+    }
+   ]
+  }
+ ]
+}

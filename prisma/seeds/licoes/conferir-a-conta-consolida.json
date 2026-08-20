@@ -1,0 +1,248 @@
+{
+ "slug": "conferir-a-conta-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "conferir-a-conta",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "conferir-o-recibo",
+   "criterio": "Ainda é erro, mesmo assim?",
+   "enunciado": "Recibo com centavo arredondado pra baixo, R$ 0,01 a menos",
+   "resposta": false,
+   "ancora": "Diferença de 1 centavo é arredondamento, não erro de cobrança.",
+   "feedbackErro": "Parece que toda diferença conta como erro. Mas 1 centavo de arredondamento é prática comum, não cobrança errada."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "conferir-o-recibo",
+   "criterio": "Ainda é erro, mesmo assim?",
+   "enunciado": "Recibo mostra R$ 63,40, mas o extrato do cartão mostra R$ 58,40",
+   "resposta": true,
+   "ancora": "63,40 menos 58,40 é 5 — diferença real, não arredondamento.",
+   "verificacao": { "expressao": "63.40-58.40", "esperado": 5 },
+   "feedbackErro": "Parece pouco perto do valor total. Mas R$ 5 de diferença entre o recibo e o extrato é erro real, não centavo de arredondamento."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "ler-noticia-financeira",
+   "criterio": "Ainda conta como notícia financeira?",
+   "enunciado": "Vídeo de influenciador comentando a alta do dólar",
+   "resposta": true,
+   "ancora": "Formato mudou, mas o conteúdo ainda é sobre economia.",
+   "feedbackErro": "Parece só entretenimento por causa do formato. Mas comentar a alta do dólar ainda é conteúdo financeiro, mesmo em vídeo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "conferir-o-recibo",
+   "dificuldade": 3,
+   "pergunta": "Produto de R$ 250 com placa de 30% off. Recibo cobra R$ 180. Está certo?",
+   "ancora": "30% de 250 são 75 de desconto — o certo é 175, não 180.",
+   "verificacao": { "expressao": "250-250*0.3", "esperado": 175 },
+   "alternativas": [
+    {
+     "texto": "Não, o certo é R$ 175",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, está certo",
+     "correta": false,
+     "feedbackErro": "30% de 250 são 75 de desconto. O valor certo é 175 — 180 ainda tem 5 a mais."
+    },
+    {
+     "texto": "Não, o certo é R$ 150",
+     "correta": false,
+     "feedbackErro": "R$ 150 usaria 40% de desconto. A placa diz 30%: 250 menos 75 dá 175."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "ler-noticia-financeira",
+   "dificuldade": 3,
+   "pergunta": "Notícia de 2019 sobre taxa de juros ainda serve pra decidir hoje?",
+   "ancora": "Taxas mudam com o tempo — vale checar o dado atual antes de usar.",
+   "alternativas": [
+    {
+     "texto": "Não necessariamente: taxas mudam, vale checar o dado atual",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, taxa de juros nunca muda",
+     "correta": false,
+     "feedbackErro": "Taxa de juros muda com frequência, inclusive várias vezes ao ano — o dado de 2019 pode estar bem desatualizado."
+    },
+    {
+     "texto": "Sim, notícia antiga é sempre mais confiável",
+     "correta": false,
+     "feedbackErro": "Idade não garante confiabilidade. O que importa é se o dado ainda reflete a realidade atual."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "conferir-o-recibo",
+   "criterio": "Isso é sempre verdade?",
+   "enunciado": "Reclamar de qualquer diferença, por menor que seja, é sempre certo",
+   "resposta": false,
+   "ancora": "Diferença de arredondamento não exige a mesma reação que erro real.",
+   "feedbackErro": "Parece que toda diferença merece reclamação. Mas centavo de arredondamento é diferente de um erro real de cobrança."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "conferir-o-recibo",
+   "instrucao": "Vale reclamar ou é só arredondamento? Arraste.",
+   "ancora": "Centavo de troco é arredondamento; valor sem explicação é erro.",
+   "feedbackErro": "É fácil tratar tudo como erro. Diferença de centavo por arredondamento é normal; cobrança sem explicação ou item errado merece reclamação.",
+   "caixas": [
+    { "id": "arredondamento", "rotulo": "Arredondamento" },
+    { "id": "reclamar", "rotulo": "Vale reclamar" }
+   ],
+   "itens": [
+    { "texto": "Diferença de R$ 0,01 por arredondamento", "caixaCorreta": "arredondamento" },
+    { "texto": "Diferença de R$ 5 sem nenhuma explicação", "caixaCorreta": "reclamar" },
+    { "texto": "Cobrança de um item que você não levou", "caixaCorreta": "reclamar" },
+    { "texto": "Centavo a menos pelo troco em moedas", "caixaCorreta": "arredondamento" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "ler-noticia-financeira",
+   "criterio": "Ainda vale checar, mesmo em fonte boa?",
+   "enunciado": "Mesmo notícia de fonte oficial pode estar desatualizada",
+   "resposta": true,
+   "ancora": "Fonte confiável não impede que o dado tenha ficado velho.",
+   "feedbackErro": "Parece que fonte oficial garante estar sempre certa. Mas até ela pode publicar um dado que já mudou com o tempo."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "conferir-o-recibo",
+   "dificuldade": 3,
+   "pergunta": "2 itens de R$ 99,90 cada. O extrato mostra R$ 195,80 — menos que o esperado. O que fazer?",
+   "ancora": "2 vezes 99,90 é 199,80; o extrato tem R$ 4 a menos que isso.",
+   "verificacao": { "expressao": "99.90*2-195.80", "esperado": 4 },
+   "alternativas": [
+    {
+     "texto": "Avisar a loja, mesmo o erro sendo a seu favor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ficar quieto, já que o erro te beneficia",
+     "correta": false,
+     "feedbackErro": "Ficar quieto parece vantagem, mas é um erro real, só que a seu favor. Avisar é a atitude correta, nos dois sentidos."
+    },
+    {
+     "texto": "Não há erro, é só desconto automático",
+     "correta": false,
+     "feedbackErro": "Nenhum desconto foi anunciado. A diferença de R$ 4 é erro de cobrança, não promoção."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "ler-noticia-financeira",
+   "criterio": "Isso ainda se aplica?",
+   "enunciado": "Manchete chamativa pode estar exagerando o fato",
+   "resposta": true,
+   "ancora": "Manchete busca atenção; o texto completo revela o real tamanho.",
+   "feedbackErro": "Parece que o título já resume tudo com precisão. Mas manchetes buscam atenção e podem exagerar o que o texto realmente diz."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "conferir-o-recibo",
+   "criterio": "Resolve, mesmo em casos raros?",
+   "enunciado": "Confiar cegamente no troco automático da maquininha",
+   "resposta": false,
+   "ancora": "Maquininha também pode ter erro de configuração ou digitação.",
+   "feedbackErro": "Parece um sistema infalível por ser automático. Mas erro de configuração ou digitação ainda pode acontecer — vale conferir."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "conferir-o-recibo",
+   "pergunta": "Qual frase resume os três encontros?",
+   "alternativas": [
+    {
+     "texto": "Erro de centavo não é erro de cobrança — e toda notícia pede checagem",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Qualquer centavo de diferença exige reclamação formal",
+     "correta": false,
+     "feedbackErro": "Centavo de arredondamento é prática comum, não erro — reclamação vale pra diferença sem explicação."
+    },
+    {
+     "texto": "Notícia de fonte oficial nunca precisa ser checada de novo",
+     "correta": false,
+     "feedbackErro": "Mesmo fonte oficial pode publicar dado que ficou desatualizado com o tempo."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "conferir-o-recibo",
+   "dificuldade": 3,
+   "pergunta": "Produto de R$ 400 com 25% de desconto. Recibo cobra R$ 310. Está certo?",
+   "ancora": "25% de 400 são 100 de desconto — o certo é 300, não 310.",
+   "verificacao": { "expressao": "400-400*0.25", "esperado": 300 },
+   "alternativas": [
+    {
+     "texto": "Não, o certo é R$ 300",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, está certo",
+     "correta": false,
+     "feedbackErro": "25% de 400 são 100 de desconto. O valor certo é 300, não 310."
+    },
+    {
+     "texto": "Não, o certo é R$ 280",
+     "correta": false,
+     "feedbackErro": "R$ 280 usaria 30% de desconto. Com 25%, o certo é 400 menos 100, ou seja, 300."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "conferir-o-recibo",
+   "criterio": "É verdade?",
+   "enunciado": "Erro de cobrança a seu favor não precisa ser informado",
+   "resposta": false,
+   "ancora": "Erro continua sendo erro, mesmo quando favorece você.",
+   "feedbackErro": "Parece vantagem ficar quieto. Mas é um erro de cobrança de qualquer jeito — informar é a atitude correta."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "ler-noticia-financeira",
+   "instrucao": "Toque na ordem de prioridade ao avaliar notícia sobre dinheiro.",
+   "ancora": "Fonte e data primeiro, depois separar fato de opinião.",
+   "feedbackErro": "É tentador formar opinião de cara. Mas checar fonte, data e separar fato de opinião vem antes de comparar e opinar.",
+   "itens": [
+    { "texto": "Ver a fonte e a data", "posicaoCorreta": 1 },
+    { "texto": "Separar fato de opinião", "posicaoCorreta": 2 },
+    { "texto": "Comparar com outra fonte", "posicaoCorreta": 3 },
+    { "texto": "Formar sua opinião", "posicaoCorreta": 4 }
+   ]
+  }
+ ]
+}

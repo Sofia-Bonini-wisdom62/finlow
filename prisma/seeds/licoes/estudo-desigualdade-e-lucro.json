@@ -1,0 +1,294 @@
+{
+ "slug": "estudo-desigualdade-e-lucro",
+ "segmento": "ef67",
+ "conceitoPrincipal": "estudo-desigualdade-e-lucro",
+ "fraseConceito": "Lucro é receita menos despesa. Mais estudo tende a elevar a renda. A distância entre rendas afeta a sociedade toda.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "lucro-receita-despesa",
+   "criterio": "Isso conta como despesa do negócio?",
+   "enunciado": "Compra de ingredientes pra fazer os brigadeiros",
+   "resposta": true,
+   "ancora": "Tudo que sai do caixa pra fazer o produto é despesa.",
+   "feedbackErro": "Parece só 'ingrediente de receita', mas cada real gasto pra produzir é despesa — e some do lucro se não for contado."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "lucro-receita-despesa",
+   "criterio": "Isso conta como despesa do negócio?",
+   "enunciado": "O dinheiro que sobra depois de pagar tudo",
+   "resposta": false,
+   "ancora": "Isso é lucro, não despesa — é o que sobra, não o que sai.",
+   "feedbackErro": "É fácil confundir porque os dois giram em torno do caixa. Mas despesa é o que sai pra produzir e vender; o que sobra no fim é lucro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "lucro-receita-despesa",
+   "criterio": "Isso conta como despesa do negócio?",
+   "enunciado": "O aluguel da barraca na feira",
+   "resposta": true,
+   "ancora": "Custo fixo pra vender entra em despesa, mesmo sem virar produto.",
+   "feedbackErro": "Pode parecer 'custo de fundo', separado do produto em si. Mas qualquer gasto necessário pra vender entra na despesa, inclusive o aluguel do ponto."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "lucro-receita-despesa",
+   "dificuldade": 1,
+   "pergunta": "Um brigadeiro vendido a R$3 custou R$1,20 pra fazer. O que é o lucro por unidade?",
+   "ancora": "R$3 de receita menos R$1,20 de despesa = R$1,80 de lucro por unidade.",
+   "verificacao": {
+    "expressao": "3-1.2",
+    "esperado": 1.8
+   },
+   "alternativas": [
+    {
+     "texto": "R$3, o preço de venda",
+     "correta": false,
+     "feedbackErro": "R$3 é a receita, o que entra na venda. Lucro é o que sobra depois de tirar o custo de produzir."
+    },
+    {
+     "texto": "R$1,80, a diferença entre venda e custo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$1,20, o custo de produzir",
+     "correta": false,
+     "feedbackErro": "R$1,20 é a despesa, não o lucro. O lucro é o que sobra depois de descontar essa despesa da venda."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "escolaridade-e-renda",
+   "dificuldade": 1,
+   "pergunta": "O que mais se observa entre pessoas com mais anos de estudo concluídos?",
+   "ancora": "Mais escolaridade tende a abrir renda potencial maior.",
+   "alternativas": [
+    {
+     "texto": "Tendem a ter acesso a empregos com renda potencial maior",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sempre ganham exatamente o dobro de quem estudou menos",
+     "correta": false,
+     "feedbackErro": "Não existe essa proporção fixa. A tendência é renda potencial maior, não um múltiplo exato garantido."
+    },
+    {
+     "texto": "A escolaridade não tem nenhuma relação com a renda",
+     "correta": false,
+     "feedbackErro": "Os dados mostram o oposto: em média, mais anos de estudo estão associados a renda maior ao longo da vida."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "desigualdade-de-renda",
+   "criterio": "É um efeito da desigualdade de renda?",
+   "enunciado": "Bairros com menos investimento em transporte e saneamento",
+   "resposta": true,
+   "ancora": "Renda menor tende a vir com menos investimento público.",
+   "feedbackErro": "Parece só falta de dinheiro pessoal, mas o investimento público segue a renda: bairro mais pobre, menos verba."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "desigualdade-de-renda",
+   "instrucao": "Isso é causa ou consequência da desigualdade de renda?",
+   "ancora": "Causa empurra a desigualdade a existir; consequência aparece depois.",
+   "feedbackErro": "O critério é a ordem: o que já empurra a desigualdade pra existir é causa; o que aparece como resultado dela no cotidiano é consequência.",
+   "caixas": [
+    {
+     "id": "causa",
+     "rotulo": "Causa"
+    },
+    {
+     "id": "consequencia",
+     "rotulo": "Consequência"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Acesso desigual à educação de qualidade",
+     "caixaCorreta": "causa"
+    },
+    {
+     "texto": "Diferença grande de expectativa de vida entre bairros",
+     "caixaCorreta": "consequencia"
+    },
+    {
+     "texto": "Herança concentrada em poucas famílias",
+     "caixaCorreta": "causa"
+    },
+    {
+     "texto": "Menor acesso a crédito bancário em regiões pobres",
+     "caixaCorreta": "consequencia"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "escolaridade-e-renda",
+   "criterio": "Isso liga estudo à renda potencial?",
+   "enunciado": "Um curso técnico abrir acesso a uma vaga com salário maior",
+   "resposta": true,
+   "ancora": "Mais qualificação tende a abrir vagas com renda maior.",
+   "feedbackErro": "Pode parecer que só o diploma conta, mas cursos técnicos também abrem vagas de renda maior — o vínculo é qualificação."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "lucro-receita-despesa",
+   "dificuldade": 1,
+   "pergunta": "Uma banca vendeu R$500 em um dia e gastou R$320 em mercadoria e transporte. Qual foi o lucro do dia?",
+   "ancora": "R$500 de receita menos R$320 de despesa = R$180 de lucro.",
+   "verificacao": {
+    "expressao": "500-320",
+    "esperado": 180
+   },
+   "alternativas": [
+    {
+     "texto": "R$180",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$500",
+     "correta": false,
+     "feedbackErro": "R$500 é a receita total, antes de descontar o que foi gasto pra vender."
+    },
+    {
+     "texto": "R$320",
+     "correta": false,
+     "feedbackErro": "R$320 é a despesa do dia, não o lucro. O lucro é o que sobra depois de descontar essa despesa da receita."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "desigualdade-de-renda",
+   "criterio": "Reduz a distância de renda?",
+   "enunciado": "Mais gente com renda estável consumindo e girando a economia local",
+   "resposta": true,
+   "ancora": "Renda mais equilibrada movimenta mais comércio local.",
+   "feedbackErro": "O ganho parece só individual, de quem recebe mais. Mas renda mais distribuída aumenta o consumo local, e isso movimenta a economia de todos ao redor."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "escolaridade-e-renda",
+   "criterio": "Isso mostra o vínculo estudo-renda?",
+   "enunciado": "Duas pessoas com a mesma função, uma com curso superior ganhando salário-base maior",
+   "resposta": true,
+   "ancora": "Mesma função, formação diferente, salário-base diferente.",
+   "feedbackErro": "Pode parecer injusto à primeira vista, mas reflete exatamente o padrão: mais anos de formação tendem a vir com renda potencial maior, mesmo em cargos parecidos."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "lucro-receita-despesa",
+   "pergunta": "Qual frase resume os três pontos vistos?",
+   "alternativas": [
+    {
+     "texto": "Lucro é a receita total, sem descontar nada",
+     "correta": false,
+     "feedbackErro": "Receita é só o que entra pela venda. Lucro exige descontar o que foi gasto pra produzir e vender."
+    },
+    {
+     "texto": "Lucro é receita menos despesa; estudo eleva renda; a distância afeta a sociedade",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Desigualdade de renda não afeta quem já tem renda alta",
+     "correta": false,
+     "feedbackErro": "A distância de renda afeta o consumo, os serviços públicos e a mobilidade social de todo mundo — inclusive de quem está no topo."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "lucro-receita-despesa",
+   "instrucao": "Ordene os passos pra calcular o lucro de um mês.",
+   "ancora": "Soma cada lado primeiro, depois subtrai — a ordem importa.",
+   "feedbackErro": "O critério é matemático: sem somar receita e despesa separadamente antes, a subtração final não tem o que comparar.",
+   "itens": [
+    {
+     "texto": "Somar toda a receita das vendas do mês",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Somar todas as despesas do mês",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Subtrair as despesas da receita",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Conferir se o resultado é positivo ou negativo",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "desigualdade-de-renda",
+   "instrucao": "Isso reduz, ou aumenta, a desigualdade de renda?",
+   "ancora": "O que amplia acesso reduz a distância; o que concentra, aumenta.",
+   "feedbackErro": "O critério é o efeito sobre o acesso: o que abre oportunidade pra mais gente reduz a distância; o que concentra vantagem em poucos aumenta.",
+   "caixas": [
+    {
+     "id": "reduz",
+     "rotulo": "Reduz"
+    },
+    {
+     "id": "aumenta",
+     "rotulo": "Aumenta"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Acesso amplo a educação pública de qualidade",
+     "caixaCorreta": "reduz"
+    },
+    {
+     "texto": "Herança concentrada em poucas famílias",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "Programas de transferência de renda",
+     "caixaCorreta": "reduz"
+    },
+    {
+     "texto": "Cobrança alta para entrar em boas escolas",
+     "caixaCorreta": "aumenta"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "escolaridade-e-renda",
+   "criterio": "Isso é garantia, e não tendência?",
+   "enunciado": "Quem termina a faculdade sempre ganha mais que quem não terminou",
+   "resposta": false,
+   "ancora": "É tendência, não garantia — existem exceções em ambos os sentidos.",
+   "feedbackErro": "A tendência estatística é real, mas 'sempre' é forte demais: há quem não terminou a faculdade e ganha mais do que muita gente formada."
+  }
+ ]
+}

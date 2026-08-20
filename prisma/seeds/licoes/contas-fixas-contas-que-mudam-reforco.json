@@ -1,0 +1,249 @@
+{
+ "slug": "contas-fixas-contas-que-mudam-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "contas-fixas-contas-que-mudam",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fixa-ou-variavel",
+   "criterio": "Muda de valor todo mês?",
+   "enunciado": "Parcela do financiamento da moto, sempre o mesmo valor",
+   "resposta": false,
+   "ancora": "A parcela combinada não muda — é despesa fixa.",
+   "feedbackErro": "Parece financiamento, e por isso parece variar. Mas a parcela combinada se mantém igual todo mês — é fixa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fixa-ou-variavel",
+   "criterio": "Muda de valor todo mês?",
+   "enunciado": "Conta do cartão de crédito, que varia com as compras do mês",
+   "resposta": true,
+   "ancora": "O valor da fatura muda conforme o quanto se gasta.",
+   "feedbackErro": "Parece uma conta como qualquer outra. Mas a fatura do cartão muda de acordo com o que se compra a cada mês."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prevista-ou-imprevista",
+   "criterio": "É uma despesa prevista?",
+   "enunciado": "Multa de trânsito por excesso de velocidade",
+   "resposta": false,
+   "ancora": "Ninguém planeja levar multa — é despesa imprevista.",
+   "feedbackErro": "Parece que dirigir gera gasto esperado. Mas ninguém planeja levar multa — ela é uma despesa imprevista."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "fixa-ou-variavel",
+   "dificuldade": 2,
+   "pergunta": "A parcela do financiamento do celular é sempre R$ 120. O que isso indica?",
+   "ancora": "Valor que se repete igual todo mês é despesa fixa.",
+   "alternativas": [
+    {
+     "texto": "É uma despesa fixa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "É uma despesa variável, porque celular quebra",
+     "correta": false,
+     "feedbackErro": "O celular quebrar seria outro gasto. A parcela do financiamento em si tem valor fixo, sempre igual."
+    },
+    {
+     "texto": "É uma despesa imprevista, porque veio de repente",
+     "correta": false,
+     "feedbackErro": "Não veio de repente: a parcela é combinada desde a compra, com valor certo todo mês — é fixa."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "prevista-ou-imprevista",
+   "dificuldade": 2,
+   "pergunta": "A geladeira quebrou sem aviso e custou R$ 300 pra consertar. Que tipo de despesa é essa?",
+   "ancora": "Quebra sem aviso é o que caracteriza uma despesa imprevista.",
+   "alternativas": [
+    {
+     "texto": "Imprevista",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Fixa",
+     "correta": false,
+     "feedbackErro": "Fixa é a que se repete com o mesmo valor todo mês. Um conserto de geladeira não se repete assim."
+    },
+    {
+     "texto": "Variável, porque acontece todo mês",
+     "correta": false,
+     "feedbackErro": "Não acontece todo mês: foi uma quebra pontual e sem aviso — isso é imprevisto, não variável."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "fixa-ou-variavel",
+   "criterio": "É despesa fixa?",
+   "enunciado": "Assinatura de streaming, sempre R$ 25",
+   "resposta": true,
+   "ancora": "Valor combinado que se repete igual é despesa fixa.",
+   "feedbackErro": "Parece serviço que pode mudar de preço a qualquer hora. Mas enquanto o plano não muda, o valor se repete — é fixa."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "fixa-ou-variavel",
+   "instrucao": "É fixa ou variável? Arraste.",
+   "ancora": "Fixa se repete igual; variável muda de acordo com o uso ou a compra.",
+   "feedbackErro": "É fácil confundir despesa comum com despesa fixa. O que define fixa é repetir sempre o mesmo valor.",
+   "caixas": [
+    { "id": "fixa", "rotulo": "Fixa" },
+    { "id": "variavel", "rotulo": "Variável" }
+   ],
+   "itens": [
+    { "texto": "Parcela do financiamento do celular", "caixaCorreta": "fixa" },
+    { "texto": "Conta do cartão de crédito", "caixaCorreta": "variavel" },
+    { "texto": "Assinatura de streaming", "caixaCorreta": "fixa" },
+    { "texto": "Gasto com combustível do carro", "caixaCorreta": "variavel" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "prevista-ou-imprevista",
+   "criterio": "É despesa imprevista?",
+   "enunciado": "Conserto do computador que travou sem motivo aparente",
+   "resposta": true,
+   "ancora": "Quebra sem motivo esperado é despesa imprevista.",
+   "feedbackErro": "Parece gasto comum de manutenção. Mas travar sem motivo aparente não estava no plano — é imprevisto."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "fixa-ou-variavel",
+   "dificuldade": 2,
+   "pergunta": "Yasmin notou que pagou R$ 25 de streaming em janeiro e também R$ 25 em fevereiro. O que isso mostra?",
+   "ancora": "Mesmo valor em meses seguidos indica despesa fixa.",
+   "alternativas": [
+    {
+     "texto": "É uma despesa fixa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "É uma despesa variável que coincidiu",
+     "correta": false,
+     "feedbackErro": "Não foi coincidência: o plano de streaming tem valor combinado, e por isso se repete igual todo mês."
+    },
+    {
+     "texto": "É uma despesa imprevista recorrente",
+     "correta": false,
+     "feedbackErro": "Despesa imprevista não se repete com o mesmo valor esperado — o streaming é combinado, então é fixa."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "prevista-ou-imprevista",
+   "criterio": "É despesa prevista?",
+   "enunciado": "Presente de Natal comprado todo ano em dezembro",
+   "resposta": true,
+   "ancora": "Comprar todo ano no mesmo período é despesa prevista.",
+   "feedbackErro": "Parece gasto extra, e por isso confunde. Mas comprar todo ano em dezembro é algo que dá pra planejar com antecedência."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "fixa-ou-variavel",
+   "criterio": "Ajuda a planejar o orçamento?",
+   "enunciado": "Somar todas as contas fixas antes de ver o que sobra",
+   "resposta": true,
+   "ancora": "Somar as fixas primeiro mostra quanto já está comprometido.",
+   "feedbackErro": "Parece um passo dispensável. Mas somar as fixas primeiro mostra quanto já está comprometido antes das variáveis."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "prevista-ou-imprevista",
+   "pergunta": "Qual ideia fecha este encontro?",
+   "alternativas": [
+    {
+     "texto": "Fixa se repete no mesmo valor; imprevista pega de surpresa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Toda despesa que varia de valor é imprevista",
+     "correta": false,
+     "feedbackErro": "Não é assim: a conta de luz varia com o uso, mas é esperada todo mês — é variável, não imprevista."
+    },
+    {
+     "texto": "Só despesa grande pode ser imprevista",
+     "correta": false,
+     "feedbackErro": "O tamanho não define isso: um conserto pequeno e sem aviso também é uma despesa imprevista."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "fixa-ou-variavel",
+   "dificuldade": 3,
+   "pergunta": "A luz da casa variou entre R$ 130 e R$ 170 em três meses. Qual foi a diferença máxima entre os valores?",
+   "ancora": "170 menos 130 dá 40 — a maior diferença entre os meses.",
+   "verificacao": { "expressao": "170-130", "esperado": 40 },
+   "alternativas": [
+    {
+     "texto": "R$ 40",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 150",
+     "correta": false,
+     "feedbackErro": "R$ 150 fica entre os dois valores, mas não é a diferença entre eles. 170 menos 130 dá 40."
+    },
+    {
+     "texto": "R$ 170",
+     "correta": false,
+     "feedbackErro": "R$ 170 é só o maior valor cobrado, não a diferença entre os meses. A diferença certa é 40."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "fixa-ou-variavel",
+   "criterio": "É despesa fixa?",
+   "enunciado": "Mensalidade da academia, sempre o mesmo valor",
+   "resposta": true,
+   "ancora": "Valor combinado e repetido todo mês é despesa fixa.",
+   "feedbackErro": "Parece gasto que pode variar por frequência. Mas o valor da mensalidade é combinado e se repete — é fixa."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "prevista-ou-imprevista",
+   "instrucao": "É prevista ou imprevista? Arraste.",
+   "ancora": "Prevista dá pra planejar com antecedência; imprevista pega de surpresa.",
+   "feedbackErro": "É fácil achar que tudo agendado é imprevisto. Prevista é o que se sabe com antecedência; imprevista pega de surpresa.",
+   "caixas": [
+    { "id": "prevista", "rotulo": "Prevista" },
+    { "id": "imprevista", "rotulo": "Imprevista" }
+   ],
+   "itens": [
+    { "texto": "Consulta médica marcada com um mês de antecedência", "caixaCorreta": "prevista" },
+    { "texto": "Vazamento de cano que estourou de repente", "caixaCorreta": "imprevista" },
+    { "texto": "Compra de material escolar no início do ano", "caixaCorreta": "prevista" },
+    { "texto": "Perda do celular dentro do ônibus", "caixaCorreta": "imprevista" }
+   ]
+  }
+ ]
+}

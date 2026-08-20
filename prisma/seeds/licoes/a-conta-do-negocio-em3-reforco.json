@@ -1,0 +1,328 @@
+{
+ "slug": "a-conta-do-negocio-em3-reforco",
+ "segmento": "em3",
+ "conceitoPrincipal": "a-conta-do-negocio-em3",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-fixo-variavel",
+   "criterio": "Esse custo muda com a venda?",
+   "enunciado": "O aluguel do espaço, todo mês igual",
+   "resposta": false,
+   "ancora": "Custo fixo: existe vendendo muito ou nada.",
+   "feedbackErro": "Qual era o critério? Não é ser grande ou pequeno, é acompanhar a venda. O aluguel não sobe quando você vende mais — por isso é fixo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-fixo-variavel",
+   "criterio": "Esse custo muda com a venda?",
+   "enunciado": "A matéria-prima de cada unidade produzida",
+   "resposta": true,
+   "ancora": "Custo variável: cada venda carrega o seu.",
+   "feedbackErro": "Ele parece estável porque o preço unitário não muda — mas o total acompanha o volume: 10 unidades, 10 porções de matéria-prima. Isso é variar com a venda."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-fixo-variavel",
+   "criterio": "Esse custo muda com a venda?",
+   "enunciado": "A taxa cobrada pela maquininha em cada venda",
+   "resposta": true,
+   "ancora": "Sem venda, não há taxa: variável por definição.",
+   "feedbackErro": "A porcentagem é fixa, e isso engana. Mas o valor pago acompanha o faturamento: vendeu mais, pagou mais. Custo que nasce da venda é variável."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "receita-custo-lucro",
+   "dificuldade": 2,
+   "pergunta": "Sandro fatura R$ 8.400 com custos de R$ 6.720. Um sócio diz que a margem é 25%. Qual é a margem sobre a receita?",
+   "ancora": "Margem = lucro ÷ receita: 1.680 ÷ 8.400 = 20%.",
+   "verificacao": {
+    "expressao": "(8400-6720)/8400*100",
+    "esperado": 20
+   },
+   "alternativas": [
+    {
+     "texto": "20%",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "25%",
+     "correta": false,
+     "feedbackErro": "É o lucro dividido pelo custo (1.680 ÷ 6.720) — outra régua. A margem clássica compara a sobra com o que entrou: divide-se pela receita."
+    },
+    {
+     "texto": "80%",
+     "correta": false,
+     "feedbackErro": "Essa é a fatia da receita que os custos consomem. A margem é o pedaço que sobra: os 20% restantes."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-fixo-variavel",
+   "dificuldade": 2,
+   "pergunta": "Uma marcenaria tem R$ 3.000 de custos fixos. Por que vender mais unidades barateia cada peça?",
+   "ancora": "Fixo de R$ 3.000: 100 peças = R$ 30 cada; 300 peças = R$ 10.",
+   "verificacao": {
+    "expressao": "3000/300",
+    "esperado": 10
+   },
+   "alternativas": [
+    {
+     "texto": "O fixo se divide por mais unidades",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A madeira sai mais barata no atacado",
+     "correta": false,
+     "feedbackErro": "Pode acontecer, mas é outro efeito — desconto de volume no custo variável. A pergunta é sobre o fixo, que não muda e por isso se dilui entre mais peças."
+    },
+    {
+     "texto": "Não barateia: custo por peça é sempre igual",
+     "correta": false,
+     "feedbackErro": "O variável por peça é estável; o fixo, não. R$ 3.000 divididos por 100 ou por 300 peças dão custos unitários bem diferentes."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-fixo-variavel",
+   "criterio": "É custo fixo?",
+   "enunciado": "A comissão paga ao vendedor por venda fechada",
+   "resposta": false,
+   "ancora": "Nasce da venda, cresce com ela: variável.",
+   "feedbackErro": "Sai todo mês e parece fixa, mas o valor depende de quantas vendas houve. Mês sem venda, comissão zero — o contrário do aluguel, que não perdoa."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "custo-fixo-variavel",
+   "instrucao": "Fixo ou variável? Arraste cada custo.",
+   "ancora": "O teste: se a venda dobrar, esse custo dobra junto?",
+   "feedbackErro": "Não olhe o tamanho nem a frequência; olhe a reação ao volume. Dobra com a venda: variável. Continua igual: fixo. É esse o critério, sempre.",
+   "caixas": [
+    {
+     "id": "fixo",
+     "rotulo": "Fixo"
+    },
+    {
+     "id": "variavel",
+     "rotulo": "Variável"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Aluguel do ponto",
+     "caixaCorreta": "fixo"
+    },
+    {
+     "texto": "Embalagem de cada pedido",
+     "caixaCorreta": "variavel"
+    },
+    {
+     "texto": "Salário mensal da atendente",
+     "caixaCorreta": "fixo"
+    },
+    {
+     "texto": "Ingredientes de cada lanche",
+     "caixaCorreta": "variavel"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "corte-inteligente",
+   "criterio": "Melhora a margem?",
+   "enunciado": "Renegociar o aluguel sem mudar de ponto",
+   "resposta": true,
+   "ancora": "Corta custo fixo sem tocar no que o cliente recebe.",
+   "feedbackErro": "Parece ganho pequeno, mas desconto em custo fixo se repete todo mês e não afeta produto nem atendimento — margem sobe sem risco à venda."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "receita-custo-lucro",
+   "criterio": "Melhora a margem?",
+   "enunciado": "Dar desconto que empurra o preço abaixo do custo",
+   "resposta": false,
+   "ancora": "Abaixo do custo, cada venda extra aumenta o prejuízo.",
+   "feedbackErro": "Desconto atrai movimento, e movimento parece saúde. Mas abaixo do custo, cada cliente novo é uma perda nova — margem negativa não se compensa no volume."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "receita-custo-lucro",
+   "pergunta": "Receita de R$ 9.000 e custos de R$ 7.200. Qual é a margem de lucro, em %?",
+   "campo": "percentual",
+   "min": 0,
+   "max": 100,
+   "gabarito": 20,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: (9.000 − 7.200) ÷ 9.000 × 100",
+   "verificacao": {
+    "expressao": "(9000-7200)/9000*100",
+    "esperado": 20
+   },
+   "feedbackPerto": "20%: de cada R$ 100 vendidos, R$ 20 ficam. É essa taxa que diz se o negócio aguenta imprevisto.",
+   "feedbackLonge": "20%. O erro comum é dividir o lucro pelo custo e achar 25% — margem se mede sobre a receita, o total que entrou."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "sustentavel-que-da-lucro",
+   "dificuldade": 2,
+   "pergunta": "Embalagem retornável custa R$ 240/mês a mais e corta R$ 380/mês em descartáveis. O que o orçamento diz?",
+   "ancora": "A conta da troca: 380 − 240 = R$ 140/mês a favor.",
+   "verificacao": {
+    "expressao": "380-240",
+    "esperado": 140
+   },
+   "alternativas": [
+    {
+     "texto": "Compensa: sobram R$ 140 por mês no caixa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não compensa: sustentável é sempre mais caro",
+     "correta": false,
+     "feedbackErro": "O rótulo 'sustentável' não define o preço — a conta define. Aqui o custo novo é menor que o custo cortado: a troca paga a si mesma e ainda sobra."
+    },
+    {
+     "texto": "Só compensa se virar propaganda",
+     "correta": false,
+     "feedbackErro": "A propaganda seria bônus. A troca já fecha no caixa antes de qualquer marketing: R$ 140 mensais de economia real, com ou sem post."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "corte-inteligente",
+   "dificuldade": 2,
+   "pergunta": "O mercadinho comprou a geladeira mais barata, que gasta o dobro de luz da outra. Qual foi o erro na conta?",
+   "ancora": "Preço de compra é só a entrada; o custo de usar corre por anos.",
+   "alternativas": [
+    {
+     "texto": "Nenhum: pagar menos na compra é economia",
+     "correta": false,
+     "feedbackErro": "É economia só no primeiro dia. A partir daí, a conta de luz dobrada cobra a diferença mês a mês — em pouco tempo, a 'barata' vira a mais cara."
+    },
+    {
+     "texto": "Olhou o preço de compra e ignorou o custo de operar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Devia comprar a mais cara sem calcular",
+     "correta": false,
+     "feedbackErro": "Também seria chute, só que para o outro lado. A decisão certa compara compra + operação das duas ao longo do tempo — a conta completa."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "sustentavel-que-da-lucro",
+   "criterio": "Corte inteligente?",
+   "enunciado": "Trocar equipamentos por versões que gastam menos energia",
+   "resposta": true,
+   "ancora": "Menos conta de luz todo mês, mesma entrega ao cliente.",
+   "feedbackErro": "O gasto inicial engana — parece aumento de custo. Mas ele se paga na conta de luz e segue economizando depois: corte que preserva a venda e o ambiente."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "corte-inteligente",
+   "criterio": "Corte inteligente?",
+   "enunciado": "Usar insumo pior no produto que mais vende",
+   "resposta": false,
+   "ancora": "Mexer no carro-chefe arrisca a receita inteira.",
+   "feedbackErro": "No papel, o custo cai e a margem sobe. Na rua, o cliente percebe, não volta e leva outros: a economia de centavos cobra a receita que sustentava tudo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "corte-inteligente",
+   "pergunta": "Qual resumo você leva da margem?",
+   "alternativas": [
+    {
+     "texto": "Corto custo que não gera venda e conto o custo no uso, não só na compra.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cortar qualquer custo sempre aumenta o lucro.",
+     "correta": false,
+     "feedbackErro": "Corte que derruba a venda derruba a receita junto — o lucro cai em vez de subir."
+    },
+    {
+     "texto": "Custo fixo não tem solução: só aceitar.",
+     "correta": false,
+     "feedbackErro": "Fixo se renegocia e se dilui vendendo mais. Ele é teimoso, não intocável."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "corte-inteligente",
+   "instrucao": "Ordene: do corte mais seguro ao mais arriscado para a venda.",
+   "ancora": "Comece pelo que o cliente nunca vê; termine no que ele ama.",
+   "feedbackErro": "Desperdício não tem defensor: corte sem dó. Contrato fixo se renegocia com cuidado. Qualidade do carro-chefe é o coração da receita — mexa por último.",
+   "itens": [
+    {
+     "texto": "Desperdício e retrabalho na produção",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Renegociar contratos e custos fixos",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Qualidade do produto mais vendido",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "custo-fixo-variavel",
+   "pergunta": "Custo fixo de R$ 2.400 e 160 unidades vendidas. Quanto de fixo carrega cada unidade?",
+   "campo": "moeda",
+   "min": 5,
+   "max": 50,
+   "gabarito": 15,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 2.400 ÷ 160",
+   "verificacao": {
+    "expressao": "2400/160",
+    "esperado": 15
+   },
+   "feedbackPerto": "R$ 15 por unidade — e esse número cai se a produção crescer: o fixo se dilui.",
+   "feedbackLonge": "R$ 15. A pegada é lembrar que o fixo se espalha pelo volume: com 240 unidades, cairia para R$ 10. Diluição é a arma contra o custo fixo."
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custo-fixo-variavel",
+   "criterio": "Acompanha o volume de vendas?",
+   "enunciado": "O seguro anual da loja",
+   "resposta": false,
+   "ancora": "Pago uma vez por ano, igual com loja cheia ou vazia: fixo.",
+   "feedbackErro": "Ser anual confunde — parece variável porque não é mensal. Mas o critério é outro: ele não muda se a venda dobrar. Frequência não define; reação ao volume define."
+  }
+ ]
+}

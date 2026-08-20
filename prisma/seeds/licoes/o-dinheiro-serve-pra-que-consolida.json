@@ -1,0 +1,151 @@
+{
+ "slug": "o-dinheiro-serve-pra-que-consolida",
+ "segmento": "ef12",
+ "conceitoPrincipal": "o-dinheiro-serve-pra-que",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "funcao-do-dinheiro",
+   "criterio": "É dinheiro sendo usado pra trocar?",
+   "enunciado": "Comprar pão com moedas no caixa",
+   "resposta": true,
+   "ancora": "Isso é troca: moeda por pão.",
+   "feedbackErro": "Comprar parece uma ação comum, quase automática, e por isso passa despercebido. Mas é exatamente aí que o dinheiro cumpre sua função."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "funcao-do-dinheiro",
+   "criterio": "É dinheiro sendo usado pra trocar?",
+   "enunciado": "Ganhar um doce de presente da vovó",
+   "resposta": false,
+   "ancora": "Presente não é troca — ninguém pagou nada.",
+   "feedbackErro": "Doce e comprar pão parecem parecidos, os dois envolvem comida. Mas presente não tem pagamento — não é o dinheiro fazendo a troca."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "moedas-e-notas",
+   "criterio": "Essa moeda ou nota existe no Brasil?",
+   "enunciado": "Nota de R$ 200,00",
+   "resposta": true,
+   "ancora": "R$200 é a nota mais nova, existe desde 2020.",
+   "feedbackErro": "R$200 é um valor alto, pode parecer exagero pra uma nota. Mas ela existe — é a mais nova do dinheiro brasileiro."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "moedas-e-notas",
+   "criterio": "Essa moeda ou nota existe no Brasil?",
+   "enunciado": "Moeda de R$ 2,00",
+   "resposta": false,
+   "ancora": "Não existe moeda de R$2 no Brasil — R$2 só em nota.",
+   "feedbackErro": "R$2 é um valor pequeno perto de R$5 ou R$10, parece que podia ser moeda. Mas no Brasil R$2 só existe em nota."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "funcao-do-dinheiro",
+   "instrucao": "Isso é troca por dinheiro ou é outra coisa?",
+   "ancora": "Troca tem pagamento. Presente e empréstimo não.",
+   "feedbackErro": "Presente e empréstimo também trocam de mãos, e isso confunde. Mas só é troca por dinheiro quando existe pagamento.",
+   "caixas": [
+    { "id": "troca", "rotulo": "É troca" },
+    { "id": "outra", "rotulo": "Não é troca" }
+   ],
+   "itens": [
+    { "texto": "Pagar o ônibus com moedas", "caixaCorreta": "troca" },
+    { "texto": "Ganhar uma figurinha de um amigo, de graça", "caixaCorreta": "outra" },
+    { "texto": "Comprar um sorvete na praia", "caixaCorreta": "troca" },
+    { "texto": "Emprestar um brinquedo e receber de volta depois", "caixaCorreta": "outra" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "funcao-do-dinheiro",
+   "criterio": "Dá pra comprar um livro de R$18?",
+   "enunciado": "Uma nota de R$ 20,00",
+   "resposta": true,
+   "ancora": "R$20 é mais que R$18, sobra troco de R$2.",
+   "verificacao": { "expressao": "20-18", "esperado": 2 },
+   "feedbackErro": "R$18 e R$20 são pertinho, dá pra achar que falta dinheiro. Mas R$20 é maior — dá pra comprar e ainda sobra R$2."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "funcao-do-dinheiro",
+   "criterio": "Isso serve pra guardar dinheiro?",
+   "enunciado": "Uma conta de banco (poupança)",
+   "resposta": true,
+   "ancora": "Poupança guarda dinheiro, como um cofrinho maior.",
+   "feedbackErro": "Banco parece coisa só de adulto, longe do cofrinho de casa. Mas a função é a mesma: guardar dinheiro até usar depois."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "funcao-do-dinheiro",
+   "dificuldade": 3,
+   "pergunta": "Ganhar um brinquedo de presente é a mesma coisa que comprar ele?",
+   "ancora": "Presente não tem pagamento; compra tem.",
+   "alternativas": [
+    {
+     "texto": "Sim, presente também é uma compra",
+     "correta": false,
+     "feedbackErro": "Presente parece uma troca, porque o brinquedo muda de dono. Mas ninguém pagou por ele — não é compra."
+    },
+    {
+     "texto": "Não, presente não tem pagamento, compra tem",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque as duas formas usam dinheiro",
+     "correta": false,
+     "feedbackErro": "Presente não usa dinheiro nenhum — é isso que diferencia das duas."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "moedas-e-notas",
+   "instrucao": "Toque na ordem da menor pra maior nota.",
+   "ancora": "Ordem pelo valor escrito na nota.",
+   "feedbackErro": "Notas maiores têm cores diferentes, e é fácil ordenar pela cor. O que vale é o número escrito nela.",
+   "itens": [
+    { "texto": "Nota de R$ 5,00", "posicaoCorreta": 1 },
+    { "texto": "Nota de R$ 100,00", "posicaoCorreta": 2 },
+    { "texto": "Nota de R$ 200,00", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "moedas-e-notas",
+   "pergunta": "Quantas notas de R$ 5,00 formam R$ 20,00?",
+   "campo": "numero",
+   "min": 1,
+   "max": 10,
+   "gabarito": 4,
+   "toleranciaPct": 20,
+   "fonte": "sistema monetário brasileiro (Banco Central)",
+   "verificacao": { "expressao": "20/5", "esperado": 4 },
+   "feedbackPerto": "Isso mesmo, 4 notas de R$5 fecham R$20.",
+   "feedbackLonge": "São 4 notas: 5 quatro vezes dá R$20."
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "funcao-do-dinheiro",
+   "criterio": "Isso é um exemplo de troca por dinheiro?",
+   "enunciado": "Trocar figurinhas repetidas com um colega",
+   "resposta": false,
+   "ancora": "Figurinha por figurinha não usa dinheiro — é troca direta.",
+   "feedbackErro": "Trocar uma coisa por outra parece igual a comprar, porque muda de dono. Mas sem dinheiro no meio, não é a mesma troca de uma loja."
+  }
+ ]
+}

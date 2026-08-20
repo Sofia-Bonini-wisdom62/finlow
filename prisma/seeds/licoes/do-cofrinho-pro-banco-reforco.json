@@ -1,0 +1,290 @@
+{
+ "slug": "do-cofrinho-pro-banco-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "do-cofrinho-pro-banco",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "guardar-no-banco",
+   "criterio": "Isso protege o dinheiro guardado?",
+   "enunciado": "Guardar as notas de dinheiro dentro de um livro na estante",
+   "resposta": false,
+   "ancora": "Livro não impede perda nem faz o dinheiro crescer.",
+   "feedbackErro": "Parece um esconderijo seguro porque ninguém acha. Mas nada ali impede perda, incêndio ou faz o dinheiro render — só o banco faz isso."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "guardar-no-banco",
+   "criterio": "Isso protege o dinheiro guardado?",
+   "enunciado": "Abrir uma conta poupança e deixar as economias lá",
+   "resposta": true,
+   "ancora": "O banco guarda com segurança e ainda paga juros por isso.",
+   "feedbackErro": "Pode parecer burocrático demais para uma criança. Mas é justamente a conta poupança que protege o dinheiro e ainda faz ele crescer."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "guardar-no-banco",
+   "criterio": "Isso protege o dinheiro guardado?",
+   "enunciado": "Deixar moedas espalhadas dentro da mochila da escola",
+   "resposta": false,
+   "ancora": "Mochila viaja todo dia — é fácil perder ou derrubar moedas.",
+   "feedbackErro": "A mochila parece prática porque vai junto com você. Mas isso também facilita perder moedas pelo caminho — e elas não rendem nada lá."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "guardar-no-banco",
+   "dificuldade": 2,
+   "pergunta": "Beatriz tinha R$ 350 no cofrinho e levou tudo pro banco. Um ano depois, o que mudou de verdade?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "O valor ficou protegido e maior, por causa dos juros",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O valor virou o dobro, porque banco sempre dobra o dinheiro",
+     "correta": false,
+     "feedbackErro": "Banco rende, mas não dobra o dinheiro em um ano. A poupança paga juros pequenos, bem longe de dobrar o valor."
+    },
+    {
+     "texto": "Nada mudou, porque ela não gastou nada nos dois casos",
+     "correta": false,
+     "feedbackErro": "Não gastar é verdade nos dois casos. Mas só no banco esse valor parado ainda cresce um pouco — no cofrinho, fica exatamente igual."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "poupanca-x-corrente",
+   "dificuldade": 2,
+   "pergunta": "O pai de Yuri usa a conta corrente pra pagar contas e a poupança pra guardar. Por que ele não guarda tudo na corrente?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "Porque a corrente não foi pensada pra render",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque a corrente tem um limite de dinheiro guardado",
+     "correta": false,
+     "feedbackErro": "O limite não é o motivo — o problema é que a conta corrente não paga juros por deixar o dinheiro parado."
+    },
+    {
+     "texto": "Porque a corrente cobra taxa pra guardar dinheiro",
+     "correta": false,
+     "feedbackErro": "A questão não é taxa. É que a conta corrente serve pra movimentar, não pra fazer o valor guardado crescer."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "poupanca-x-corrente",
+   "criterio": "É uma função da conta corrente?",
+   "enunciado": "Fazer o dinheiro parado render com juros",
+   "resposta": false,
+   "ancora": "Render é papel da poupança; a corrente serve pra movimentar.",
+   "feedbackErro": "Pode parecer que qualquer conta de banco rende. Mas fazer o saldo crescer é função da poupança — a corrente só movimenta o dinheiro."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "poupanca-x-corrente",
+   "instrucao": "É pra guardar e render ou pra movimentar o dia a dia?",
+   "ancora": "Guardar e render é poupança; mexer toda hora é corrente.",
+   "feedbackErro": "As duas parecem iguais por ficarem no mesmo banco. Mas o que separa é o uso: guardar e render é poupança, movimentar o tempo todo é corrente.",
+   "caixas": [
+    {
+     "id": "guardar",
+     "rotulo": "Guardar e render"
+    },
+    {
+     "id": "movimentar",
+     "rotulo": "Movimentar"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Deixar uma reserva por 8 meses",
+     "caixaCorreta": "guardar"
+    },
+    {
+     "texto": "Pagar a conta de internet",
+     "caixaCorreta": "movimentar"
+    },
+    {
+     "texto": "Receber um pouco de juro todo mês",
+     "caixaCorreta": "guardar"
+    },
+    {
+     "texto": "Transferir dinheiro pro colega, várias vezes por semana",
+     "caixaCorreta": "movimentar"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "guardar-no-banco",
+   "criterio": "É mais seguro que guardar em casa?",
+   "enunciado": "Deixar as economias na poupança, em vez de numa caixa de sapato",
+   "resposta": true,
+   "ancora": "O banco protege contra perda, incêndio e roubo — a caixa, não.",
+   "feedbackErro": "A caixa de sapato parece segura por ficar escondida. Mas ela não protege de incêndio, perda nem faz o dinheiro crescer."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "guardar-no-banco",
+   "dificuldade": 2,
+   "pergunta": "Duas famílias guardam R$ 240: uma no pote de vidro, outra na poupança, por 6 meses. O que é verdade?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "Só a da poupança pode ter um pouco a mais no fim",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "As duas viram o dobro, porque seis meses é bastante tempo",
+     "correta": false,
+     "feedbackErro": "Seis meses não dobra dinheiro nenhum, nem no banco. A poupança rende bem pouco por mês — longe de dobrar."
+    },
+    {
+     "texto": "O pote rende mais, porque fica fechado e protegido",
+     "correta": false,
+     "feedbackErro": "Fechado protege contra poeira, não gera juro. Só dinheiro no banco rende — o pote guarda o mesmo valor parado."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "poupanca-x-corrente",
+   "criterio": "Serve pra fazer o dinheiro crescer?",
+   "enunciado": "Uma conta corrente cheia de dinheiro parado",
+   "resposta": false,
+   "ancora": "Parado na corrente, o dinheiro não rende nada.",
+   "feedbackErro": "Pode parecer que estar no banco já garante render. Mas só a poupança paga juros — a corrente guarda sem fazer crescer."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "guardar-no-banco",
+   "criterio": "Ajuda a crescer com segurança?",
+   "enunciado": "Trocar o cofrinho de casa pela conta poupança do banco",
+   "resposta": true,
+   "ancora": "Essa troca protege o dinheiro e ainda faz ele render.",
+   "feedbackErro": "Trocar dá trabalho, e por isso parece que não vale a pena. Mas é essa troca que protege o dinheiro e faz ele crescer, mesmo pouco."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "guardar-no-banco",
+   "dificuldade": 3,
+   "pergunta": "Qual frase resume melhor o que você viu hoje?",
+   "alternativas": [
+    {
+     "texto": "Cofrinho e poupança guardam dinheiro do mesmo jeito",
+     "correta": false,
+     "feedbackErro": "Os dois guardam, mas só a poupança protege de verdade e ainda rende."
+    },
+    {
+     "texto": "A poupança protege o dinheiro e ainda faz ele crescer um pouco",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Conta corrente é o melhor lugar pra guardar dinheiro por muito tempo",
+     "correta": false,
+     "feedbackErro": "A corrente serve pra movimentar o dia a dia — quem guarda e rende é a poupança."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "guardar-no-banco",
+   "instrucao": "Ordene do mais arriscado pro mais protegido.",
+   "ancora": "Quanto mais perto do banco, menor o risco de perder.",
+   "feedbackErro": "Parece que qualquer lugar guardado já é seguro. Mas só o banco tem proteção de verdade contra perda e roubo.",
+   "itens": [
+    {
+     "texto": "Dinheiro no bolso da calça",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Dinheiro numa caixa em casa",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Dinheiro na poupança do banco",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "poupanca-x-corrente",
+   "instrucao": "Isso serve pra guardar ou pra movimentar?",
+   "ancora": "Guardar e render é poupança; movimentar o dia a dia é corrente.",
+   "feedbackErro": "As duas contas moram no mesmo banco, e isso confunde. O que separa é a função: guardar e render, ou movimentar o dia a dia.",
+   "caixas": [
+    {
+     "id": "guardar",
+     "rotulo": "Guardar"
+    },
+    {
+     "id": "movimentar",
+     "rotulo": "Movimentar"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Deixar uma reserva por muitos meses",
+     "caixaCorreta": "guardar"
+    },
+    {
+     "texto": "Fazer compras no cartão de débito",
+     "caixaCorreta": "movimentar"
+    },
+    {
+     "texto": "Ver o saldo crescer aos poucos",
+     "caixaCorreta": "guardar"
+    },
+    {
+     "texto": "Receber o dinheiro do trabalho dos pais",
+     "caixaCorreta": "movimentar"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "guardar-no-banco",
+   "pergunta": "R$ 400 na poupança por 1 mês, a ~0,5% ao mês. Quanto rende de juro?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 10,
+   "gabarito": 2,
+   "toleranciaPct": 20,
+   "fonte": "taxa média da poupança, ~0,5% ao mês (Banco Central)",
+   "feedbackPerto": "Isso mesmo — R$ 2, pouco, mas é a mais. No cofrinho, seria sempre zero.",
+   "feedbackLonge": "R$ 400 vezes 0,5% dá R$ 2. Parece pouco porque é mesmo — juro da poupança é baixo, mas nunca é zero.",
+   "verificacao": {
+    "expressao": "400*0.005",
+    "esperado": 2
+   }
+  }
+ ]
+}

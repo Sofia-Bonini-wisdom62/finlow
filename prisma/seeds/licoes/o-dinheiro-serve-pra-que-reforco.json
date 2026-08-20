@@ -1,0 +1,151 @@
+{
+ "slug": "o-dinheiro-serve-pra-que-reforco",
+ "segmento": "ef12",
+ "conceitoPrincipal": "o-dinheiro-serve-pra-que",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "funcao-do-dinheiro",
+   "criterio": "Serve pra trocar por coisas?",
+   "enunciado": "Uma nota de R$ 10",
+   "resposta": true,
+   "ancora": "Nota de R$10 troca por comida, brinquedo, o que for.",
+   "feedbackErro": "R$10 é uma nota comum, pode parecer só um papel qualquer. Mas ela troca por coisas — é pra isso que o dinheiro existe."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "funcao-do-dinheiro",
+   "criterio": "Serve pra trocar por coisas?",
+   "enunciado": "Um botão de camisa",
+   "resposta": false,
+   "ancora": "Botão não é aceito como troca em lugar nenhum.",
+   "feedbackErro": "Botão também é um objeto pequeno como uma moeda, dá pra confundir. Mas ninguém aceita botão como pagamento — só o dinheiro tem esse combinado."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "moedas-e-notas",
+   "criterio": "Essa moeda ou nota existe no Brasil?",
+   "enunciado": "Moeda de R$ 0,05",
+   "resposta": true,
+   "ancora": "R$0,05 é a moeda de 5 centavos, existe sim.",
+   "feedbackErro": "5 centavos é um valor tão pequeno que parece não valer nada. Mas é uma moeda oficial brasileira."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "moedas-e-notas",
+   "criterio": "Essa moeda ou nota existe no Brasil?",
+   "enunciado": "Nota de R$ 15,00",
+   "resposta": false,
+   "ancora": "Não existe nota de R$15 no Brasil.",
+   "feedbackErro": "R$15 é um valor comum de gastar, dá pra imaginar uma nota assim. Mas as notas pulam de R$10 pra R$20 — R$15 não existe."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "moedas-e-notas",
+   "instrucao": "É moeda ou é nota?",
+   "ancora": "Moeda é sempre o valor menor; nota é o maior.",
+   "feedbackErro": "R$0,10 e R$0,05 parecem quase nada, mas ainda são moeda. Pequeno é moeda, grande é nota.",
+   "caixas": [
+    { "id": "moeda", "rotulo": "Moeda" },
+    { "id": "nota", "rotulo": "Nota" }
+   ],
+   "itens": [
+    { "texto": "R$ 0,10", "caixaCorreta": "moeda" },
+    { "texto": "R$ 20,00", "caixaCorreta": "nota" },
+    { "texto": "R$ 0,05", "caixaCorreta": "moeda" },
+    { "texto": "R$ 100,00", "caixaCorreta": "nota" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "funcao-do-dinheiro",
+   "criterio": "Dá pra comprar um suco de R$4?",
+   "enunciado": "Nota de R$ 10,00",
+   "resposta": true,
+   "ancora": "R$10 é mais que R$4, sobra troco.",
+   "feedbackErro": "R$10 é bem mais que R$4, dá pra achar que é dinheiro de menos. Mas 10 é maior que 4 — dá, e ainda sobra troco."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "funcao-do-dinheiro",
+   "criterio": "Isso serve pra guardar dinheiro?",
+   "enunciado": "A carteira",
+   "resposta": true,
+   "ancora": "Carteira guarda notas e moedas no dia a dia.",
+   "feedbackErro": "Carteira parece só um acessório de roupa. Mas ela guarda dinheiro pra usar quando precisar."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "funcao-do-dinheiro",
+   "dificuldade": 2,
+   "pergunta": "Por que as pessoas aceitam trocar coisas por dinheiro?",
+   "ancora": "Porque existe um combinado: todo mundo aceita.",
+   "alternativas": [
+    {
+     "texto": "Porque o papel do dinheiro é bonito",
+     "correta": false,
+     "feedbackErro": "A aparência não é o motivo. O motivo é que todo mundo confia e aceita esse combinado."
+    },
+    {
+     "texto": "Porque todo mundo combinou aceitar esse valor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque o dinheiro é mais pesado que outras coisas",
+     "correta": false,
+     "feedbackErro": "Peso não tem nada a ver. O que importa é que existe um combinado: todo mundo aceita o dinheiro em troca."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "moedas-e-notas",
+   "instrucao": "Toque na ordem da menor pra maior moeda.",
+   "ancora": "Ordem pelo valor da moeda.",
+   "feedbackErro": "Moedas pequenas parecem todas parecidas, mas cada uma tem um valor diferente escrito nela.",
+   "itens": [
+    { "texto": "R$ 0,05", "posicaoCorreta": 1 },
+    { "texto": "R$ 0,25", "posicaoCorreta": 2 },
+    { "texto": "R$ 1,00", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "moedas-e-notas",
+   "pergunta": "Quantas moedas de R$ 0,50 formam R$ 2,00?",
+   "campo": "numero",
+   "min": 1,
+   "max": 10,
+   "gabarito": 4,
+   "toleranciaPct": 20,
+   "fonte": "sistema monetário brasileiro (Banco Central)",
+   "verificacao": { "expressao": "2/0.5", "esperado": 4 },
+   "feedbackPerto": "Isso mesmo, 4 moedas de R$0,50 fecham R$2,00.",
+   "feedbackLonge": "São 4 moedas: 0,50 quatro vezes dá R$2,00."
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "funcao-do-dinheiro",
+   "criterio": "Dá pra comprar um chaveiro de R$6 com isso?",
+   "enunciado": "Duas notas de R$ 2,00",
+   "resposta": false,
+   "ancora": "R$2+R$2=R$4. É menos que R$6.",
+   "verificacao": { "expressao": "2+2", "esperado": 4 },
+   "feedbackErro": "Duas notas juntas parecem bastante dinheiro. Mas R$2+R$2 dá R$4, que ainda é menos que R$6."
+  }
+ ]
+}

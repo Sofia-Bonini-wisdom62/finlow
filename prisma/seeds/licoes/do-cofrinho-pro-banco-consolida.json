@@ -1,0 +1,290 @@
+{
+ "slug": "do-cofrinho-pro-banco-consolida",
+ "segmento": "ef35",
+ "conceitoPrincipal": "do-cofrinho-pro-banco",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "guardar-no-banco",
+   "criterio": "Isso ainda vale, nessa situação?",
+   "enunciado": "Guardar R$ 100 no colchão, achando que é mais seguro que o banco",
+   "resposta": false,
+   "ancora": "Nenhum lugar em casa protege como o banco — nem o colchão.",
+   "feedbackErro": "O colchão parece um esconderijo perfeito, ninguém imagina. Mas ele não impede incêndio, perda ou roubo — só o banco protege de verdade."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "guardar-no-banco",
+   "criterio": "Isso ainda vale, nessa situação?",
+   "enunciado": "Ter um cofrinho pras moedinhas do dia a dia, além da conta poupança",
+   "resposta": true,
+   "ancora": "Troco no cofrinho combina com a poupança pras economias maiores.",
+   "feedbackErro": "Parece contradição, já que a lição elogia o banco. Mas guardar o troco no cofrinho, com as economias maiores no banco, é uma combinação que funciona."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "guardar-no-banco",
+   "criterio": "Isso ainda vale, nessa situação?",
+   "enunciado": "Guardar dinheiro na poupança e nunca mais olhar o saldo",
+   "resposta": false,
+   "ancora": "Mesmo rendendo, vale acompanhar — o dinheiro é seu.",
+   "feedbackErro": "Pode parecer que, uma vez no banco, está tudo resolvido pra sempre. Mas acompanhar o saldo ajuda a perceber se está guardando o suficiente."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "guardar-no-banco",
+   "dificuldade": 3,
+   "pergunta": "Um menino guarda dinheiro tanto no cofrinho quanto na poupança. Quando o cofrinho ainda faz sentido?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "Pra guardar trocado do dia a dia, que ele quer usar logo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pra guardar a maior parte das economias, por anos",
+     "correta": false,
+     "feedbackErro": "Pra guardar por muito tempo, a poupança protege melhor e ainda rende — o cofrinho não faz nem uma coisa."
+    },
+    {
+     "texto": "Porque cofrinho rende mais que a poupança",
+     "correta": false,
+     "feedbackErro": "Cofrinho não rende nada, nunca. Quem rende, mesmo pouco, é o dinheiro guardado no banco."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "poupanca-x-corrente",
+   "dificuldade": 3,
+   "pergunta": "A avó de Sofia recebe a aposentadoria na conta corrente e todo mês transfere parte pra poupança. Por quê?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "Pra deixar rendendo o que ela não vai usar logo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque a conta corrente não aceita guardar dinheiro nenhum",
+     "correta": false,
+     "feedbackErro": "A corrente aceita guardar, sim — só não faz o valor crescer. Por isso ela move parte pra poupança."
+    },
+    {
+     "texto": "Porque juntar tudo na mesma conta é proibido",
+     "correta": false,
+     "feedbackErro": "Não existe essa proibição. A separação é escolha, pra fazer parte do dinheiro render."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "poupanca-x-corrente",
+   "criterio": "É bom motivo pra usar a poupança?",
+   "enunciado": "Guardar ali o dinheiro que só vai ser usado daqui a muitos meses",
+   "resposta": true,
+   "ancora": "Quanto mais tempo parado, mais vale render enquanto espera.",
+   "feedbackErro": "Parece que qualquer dinheiro deveria ficar na corrente, por praticidade. Mas o que vai ficar parado por meses rende mais na poupança."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "guardar-no-banco",
+   "instrucao": "Isso é motivo pra levar o dinheiro pro banco?",
+   "ancora": "O que importa é proteção e rendimento — não aparência nem moda.",
+   "feedbackErro": "Cor e moda chamam atenção, mas não protegem nem fazem o dinheiro crescer. O que vale é segurança e o pouco que ele rende.",
+   "caixas": [
+    {
+     "id": "motivo",
+     "rotulo": "É motivo"
+    },
+    {
+     "id": "naomotivo",
+     "rotulo": "Não é motivo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "O banco protege contra perda e roubo",
+     "caixaCorreta": "motivo"
+    },
+    {
+     "texto": "O banco tem uma cor bonita nas propagandas",
+     "caixaCorreta": "naomotivo"
+    },
+    {
+     "texto": "O dinheiro parado no banco pode render um pouco",
+     "caixaCorreta": "motivo"
+    },
+    {
+     "texto": "Todo mundo da turma já tem conta no banco",
+     "caixaCorreta": "naomotivo"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "guardar-no-banco",
+   "criterio": "O cofrinho ainda serve, nesse caso?",
+   "enunciado": "Guardar moedas de troco que serão gastas na semana seguinte",
+   "resposta": true,
+   "ancora": "Pra um uso rápido, o cofrinho ainda cumpre o papel dele.",
+   "feedbackErro": "Depois de tanto elogio ao banco, parece que o cofrinho nunca serve. Mas pra guardar um troco de uso rápido, ele ainda funciona bem."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "guardar-no-banco",
+   "dificuldade": 3,
+   "pergunta": "Um menino tem R$ 900: R$ 100 pra gastar essa semana e R$ 800 que só vai usar ano que vem. Onde guardar cada parte?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "R$ 100 no cofrinho ou na carteira; R$ 800 na poupança",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Os R$ 900 inteiros no cofrinho, pra ter tudo à mão",
+     "correta": false,
+     "feedbackErro": "Ter tudo à mão parece prático, mas os R$ 800 parados por um ano perderiam a chance de render no banco."
+    },
+    {
+     "texto": "Os R$ 900 numa caixa em casa, pra não precisar ir ao banco",
+     "correta": false,
+     "feedbackErro": "Evitar o banco parece mais simples, mas deixa os R$ 800 sem proteção nem rendimento por um ano inteiro."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "poupanca-x-corrente",
+   "criterio": "Faz sentido guardar tudo na poupança?",
+   "enunciado": "Uma família que só usa poupança, mesmo pra pagar contas do dia a dia",
+   "resposta": false,
+   "ancora": "Pagar conta exige movimentar — função que é da conta corrente.",
+   "feedbackErro": "Parece mais simples ter só uma conta. Mas pagar boleto e fazer pix toda hora é papel da conta corrente, não da poupança."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "guardar-no-banco",
+   "criterio": "Mostra que sabe quando usar cada opção?",
+   "enunciado": "Guardar o troco do lanche no cofrinho e a economia maior na poupança",
+   "resposta": true,
+   "ancora": "Usar cada opção pro que ela serve é o que mais protege o dinheiro.",
+   "feedbackErro": "Pode parecer indeciso usar os dois ao mesmo tempo. Mas é justamente separar por função — troco no cofrinho, economia maior no banco — que funciona melhor."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "guardar-no-banco",
+   "dificuldade": 3,
+   "pergunta": "Depois de tudo isso, qual frase é mais precisa?",
+   "alternativas": [
+    {
+     "texto": "O cofrinho nunca mais deve ser usado, pra nada",
+     "correta": false,
+     "feedbackErro": "Ele ainda serve pro troco do dia a dia — o problema é usá-lo pra guardar por muito tempo."
+    },
+    {
+     "texto": "O que fica parado por muito tempo rende mais protegido no banco",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Poupança e corrente são a mesma coisa com nomes diferentes",
+     "correta": false,
+     "feedbackErro": "Cada uma tem uma função: corrente movimenta, poupança guarda e rende."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "poupanca-x-corrente",
+   "instrucao": "Ordene pelo tempo parado ali: do mais curto pro mais longo.",
+   "ancora": "Quanto mais tempo parado, mais faz sentido estar rendendo.",
+   "feedbackErro": "Parece que o lugar não importa, só o valor. Mas quanto mais tempo o dinheiro vai ficar parado, mais vale render na poupança.",
+   "itens": [
+    {
+     "texto": "Dinheiro na carteira, pra gastar hoje",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Dinheiro na conta corrente, pra pagar contas do mês",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Dinheiro na poupança, guardado por vários meses",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "guardar-no-banco",
+   "pergunta": "R$ 800 na poupança por 1 mês, a ~0,5% ao mês. Quanto rende de juro?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 20,
+   "gabarito": 4,
+   "toleranciaPct": 20,
+   "fonte": "taxa média da poupança, ~0,5% ao mês (Banco Central)",
+   "feedbackPerto": "Isso mesmo — R$ 4. Pouco, mas o cofrinho nunca daria nem isso.",
+   "feedbackLonge": "R$ 800 vezes 0,5% dá R$ 4. É pouco porque a poupança rende baixo — mas sempre mais que zero.",
+   "verificacao": {
+    "expressao": "800*0.005",
+    "esperado": 4
+   }
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "poupanca-x-corrente",
+   "instrucao": "Serve mais pra guardar ou pra usar agora?",
+   "ancora": "Sem pressa rende melhor guardado; com uso perto, fica na corrente.",
+   "feedbackErro": "Parece que só o valor importa, mas o que decide é o prazo: sem pressa, guarda e rende; com uso perto, fica na conta que movimenta.",
+   "caixas": [
+    {
+     "id": "guardar",
+     "rotulo": "Guardar"
+    },
+    {
+     "id": "usar",
+     "rotulo": "Usar agora"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Dinheiro que só vai fazer falta daqui a 1 ano",
+     "caixaCorreta": "guardar"
+    },
+    {
+     "texto": "Dinheiro pra pagar a conta de água desse mês",
+     "caixaCorreta": "usar"
+    },
+    {
+     "texto": "Dinheiro que rende parado, sem pressa",
+     "caixaCorreta": "guardar"
+    },
+    {
+     "texto": "Dinheiro que sai da conta toda semana",
+     "caixaCorreta": "usar"
+    }
+   ]
+  }
+ ]
+}

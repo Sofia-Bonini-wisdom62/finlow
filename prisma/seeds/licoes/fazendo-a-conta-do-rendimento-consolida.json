@@ -1,0 +1,297 @@
+{
+ "slug": "fazendo-a-conta-do-rendimento-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "fazendo-a-conta-do-rendimento",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "calculo-de-rendimento",
+   "criterio": "Isso aumenta o dinheiro guardado?",
+   "enunciado": "Render 0,4% no mês, com inflação de 0,6% no mesmo mês",
+   "resposta": false,
+   "ancora": "Rendimento real fica negativo quando a inflação supera o nominal.",
+   "verificacao": { "expressao": "0.4-0.6", "esperado": -0.2 },
+   "feedbackErro": "O extrato mostra número positivo, e isso confunde. Mas em poder de compra, render menos que a inflação é perder valor, não ganhar."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "taxas-no-rendimento",
+   "criterio": "Isso aumenta o dinheiro guardado?",
+   "enunciado": "Aplicação isenta de imposto de renda, rendendo 0,7% ao mês",
+   "resposta": true,
+   "ancora": "Sem imposto descontado, o rendimento chega inteiro.",
+   "feedbackErro": "A isenção não é o rendimento em si, mas ela preserva o ganho de 0,7% sem nenhum desconto de imposto — o dinheiro guardado cresce."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "calculo-de-rendimento",
+   "criterio": "Isso aumenta o dinheiro guardado?",
+   "enunciado": "Guardar dinheiro parado numa conta corrente sem nenhum rendimento, por 1 ano",
+   "resposta": false,
+   "ancora": "Sem render, e com inflação no período, o valor perde poder de compra.",
+   "feedbackErro": "O número na tela continua o mesmo, e isso engana. Mas sem nenhum rendimento e com inflação no período, o poder de compra desse dinheiro cai."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "calculo-de-rendimento",
+   "dificuldade": 3,
+   "pergunta": "Um investimento rendeu 5% no ano, e a inflação do período também foi 5%. Qual foi o ganho real?",
+   "ancora": "5% de rendimento menos 5% de inflação: ganho real igual a zero.",
+   "verificacao": { "expressao": "5-5", "esperado": 0 },
+   "alternativas": [
+    {
+     "texto": "Zero — o dinheiro manteve o poder de compra, sem ganho real",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "5%, porque foi o que apareceu no extrato",
+     "correta": false,
+     "feedbackErro": "O extrato mostra o rendimento nominal. Mas com a inflação consumindo os mesmos 5%, o ganho de poder de compra foi zero."
+    },
+    {
+     "texto": "10%, somando rendimento e inflação",
+     "correta": false,
+     "feedbackErro": "Rendimento e inflação não se somam nesse cálculo — a inflação corrói o rendimento nominal, então elas se subtraem."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "taxas-no-rendimento",
+   "dificuldade": 3,
+   "pergunta": "Uma aplicação rende 12% ao ano, cobra 2% de administração, depois 15% de IR sobre o lucro líquido. Qual conta é certa?",
+   "ancora": "Primeiro tira a taxa (10%), depois o IR sobre o que sobrou (8,5%).",
+   "verificacao": { "expressao": "(12-2) - (12-2)*0.15", "esperado": 8.5 },
+   "alternativas": [
+    {
+     "texto": "Tira a taxa de administração, depois o IR sobre o restante",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Tira o IR sobre os 12%, depois a taxa de administração",
+     "correta": false,
+     "feedbackErro": "A ordem importa: a taxa de administração desconta do rendimento bruto antes do IR incidir só sobre o lucro que sobrou."
+    },
+    {
+     "texto": "Soma as duas taxas e tira tudo de uma vez: 12% menos 17%",
+     "correta": false,
+     "feedbackErro": "As taxas não se somam assim — cada uma incide sobre uma base diferente, em etapas sucessivas, não numa soma direta."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "taxas-no-rendimento",
+   "criterio": "Isso reduz o rendimento final?",
+   "enunciado": "Aplicação isenta de imposto de renda, mas com taxa de administração de 1% ao ano",
+   "resposta": true,
+   "ancora": "Isenção tira o imposto, mas a taxa de administração ainda reduz.",
+   "feedbackErro": "A isenção de imposto confunde, mas ela cobre só o IR — a taxa de administração de 1% ao ano segue descontando o rendimento normalmente."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "calculo-de-rendimento",
+   "instrucao": "Ordene do rendimento real maior ao menor",
+   "ancora": "O critério é o rendimento nominal menos a inflação de cada caso.",
+   "feedbackErro": "O número nominal maior engana. O critério aqui é sempre o que sobra depois de descontar a inflação de cada situação.",
+   "itens": [
+    { "texto": "Rendendo 15% ao ano nominal, com inflação de 5% ao ano", "posicaoCorreta": 1 },
+    { "texto": "Rendendo 9% ao ano nominal, com inflação de 5% ao ano", "posicaoCorreta": 2 },
+    { "texto": "Rendendo 5% ao ano nominal, com inflação de 5% ao ano", "posicaoCorreta": 3 },
+    { "texto": "Rendendo 3% ao ano nominal, com inflação de 5% ao ano", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "taxas-no-rendimento",
+   "criterio": "Isso reduz o rendimento final?",
+   "enunciado": "Taxa de saída de 2% cobrada só se o resgate for feito antes de 90 dias",
+   "resposta": true,
+   "ancora": "É uma taxa condicional, mas ainda reduz o rendimento se aplicada.",
+   "feedbackErro": "A condição de prazo confunde, mas se o resgate cai dentro dos 90 dias, a taxa é cobrada de verdade e reduz o valor final recebido."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "calculo-de-rendimento",
+   "criterio": "Isso aumenta o dinheiro guardado?",
+   "enunciado": "Rendimento nominal positivo, mas menor que a inflação do período",
+   "resposta": false,
+   "ancora": "Nominal positivo não significa que o poder de compra aumentou.",
+   "feedbackErro": "O extrato mostra um número maior, e isso confunde. Mas se a inflação foi maior que o rendimento, o poder de compra do dinheiro caiu."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "calculo-de-rendimento",
+   "pergunta": "R$1.000 rendem 15% ao ano nominal, com inflação de 5% ao ano. Qual o ganho real aproximado, em reais?",
+   "campo": "moeda",
+   "min": 50,
+   "max": 200,
+   "gabarito": 100,
+   "toleranciaPct": 20,
+   "fonte": "cálculo simplificado de rendimento real: nominal menos inflação do período",
+   "verificacao": { "expressao": "1000*(0.15-0.05)", "esperado": 100 },
+   "feedbackPerto": "Isso mesmo, cerca de R$100 — 10% de ganho real sobre R$1.000.",
+   "feedbackLonge": "Fica perto de R$100. De forma simplificada, o ganho real é o nominal menos a inflação, aplicado sobre o valor guardado."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "calculo-de-rendimento",
+   "dificuldade": 3,
+   "pergunta": "Bruno acha que ganhou 8% no ano porque foi o que apareceu no extrato. A inflação do ano foi 8%. O que faltou considerar?",
+   "ancora": "8% de rendimento menos 8% de inflação: ganho real próximo de zero.",
+   "alternativas": [
+    {
+     "texto": "Que o rendimento real foi próximo de zero",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que ele deveria ter investido mais dinheiro",
+     "correta": false,
+     "feedbackErro": "O valor investido não muda essa conclusão — o problema é comparar o rendimento nominal com a inflação, não o tamanho do capital."
+    },
+    {
+     "texto": "Que o banco errou o cálculo do extrato",
+     "correta": false,
+     "feedbackErro": "O extrato provavelmente está certo sobre o rendimento nominal. O que falta é descontar a inflação para ver o ganho real."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "taxas-no-rendimento",
+   "dificuldade": 3,
+   "pergunta": "Uma aplicação promete 20% ao ano, mas cobra 5% de taxa de entrada logo na aplicação. Sobre o que essa taxa incide?",
+   "ancora": "A taxa de entrada desconta do valor aplicado, antes de render.",
+   "alternativas": [
+    {
+     "texto": "Sobre o valor aplicado, antes mesmo de qualquer rendimento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sobre o rendimento gerado ao final do ano",
+     "correta": false,
+     "feedbackErro": "Uma taxa de entrada, pelo nome, incide no momento da aplicação — reduz o capital que efetivamente vai gerar rendimento, não o ganho do fim do ano."
+    },
+    {
+     "texto": "Sobre o imposto de renda cobrado depois",
+     "correta": false,
+     "feedbackErro": "Taxa de entrada e imposto de renda são cobranças distintas, em momentos diferentes — a de entrada incide logo na aplicação do dinheiro."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "calculo-de-rendimento",
+   "criterio": "Isso aumenta o dinheiro guardado?",
+   "enunciado": "Rendimento de 6% ao ano num período de inflação zero",
+   "resposta": true,
+   "ancora": "Sem inflação corroendo, o rendimento nominal já é ganho real.",
+   "feedbackErro": "Sem inflação no período, não há o que descontar do rendimento nominal — os 6% já representam ganho real de poder de compra."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "taxas-no-rendimento",
+   "criterio": "Isso reduz o rendimento final?",
+   "enunciado": "Taxa de administração cobrada mesmo em um mês de rendimento negativo do fundo",
+   "resposta": true,
+   "ancora": "A taxa segue incidindo mesmo quando o fundo perde valor.",
+   "feedbackErro": "Parece injusto, mas muitas taxas de administração são cobradas independentemente do resultado — elas pioram ainda mais um mês negativo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "calculo-de-rendimento",
+   "pergunta": "Qual frase resume os limites do cálculo de rendimento que você viu?",
+   "alternativas": [
+    {
+     "texto": "O número do extrato já é sempre o ganho real",
+     "correta": false,
+     "feedbackErro": "Vimos casos em que o número do extrato, mesmo positivo, representava ganho real zero ou negativo depois da inflação."
+    },
+    {
+     "texto": "O que importa é o rendimento real, depois de taxas, impostos e inflação",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Taxas fixas e impostos se anulam quando somados",
+     "correta": false,
+     "feedbackErro": "Vimos o contrário: taxas e impostos incidem em etapas sucessivas sobre bases diferentes, nunca se anulando por soma."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "calculo-de-rendimento",
+   "instrucao": "Isso é rendimento nominal ou real?",
+   "ancora": "Nominal é o número do contrato; real já desconta a inflação.",
+   "feedbackErro": "O jeito de separar: se é a taxa anunciada, sem ajuste nenhum, é nominal. Se já descontou a inflação do período, é real.",
+   "caixas": [
+    { "id": "nominal", "rotulo": "Nominal" },
+    { "id": "real", "rotulo": "Real" }
+   ],
+   "itens": [
+    { "texto": "6% ao ano, como aparece no contrato", "caixaCorreta": "nominal" },
+    { "texto": "6% ao ano menos a inflação do período", "caixaCorreta": "real" },
+    { "texto": "12% ao ano, taxa anunciada pelo banco", "caixaCorreta": "nominal" },
+    { "texto": "12% ao ano menos taxas, impostos e inflação", "caixaCorreta": "real" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "taxas-no-rendimento",
+   "criterio": "Isso reduz o rendimento final?",
+   "enunciado": "Inflação alta durante o período em que o dinheiro ficou aplicado",
+   "resposta": true,
+   "ancora": "Inflação alta corrói o poder de compra do rendimento nominal.",
+   "feedbackErro": "Não é uma taxa cobrada pelo banco, mas o efeito é parecido: inflação alta reduz o quanto o rendimento nominal realmente vale."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "taxas-no-rendimento",
+   "dificuldade": 3,
+   "pergunta": "Por que dois fundos com a mesma taxa de administração podem ter rendimentos líquidos diferentes?",
+   "ancora": "A taxa igual não garante rendimento bruto igual entre os fundos.",
+   "alternativas": [
+    {
+     "texto": "Porque o rendimento bruto de cada um pode ser diferente",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque taxas de administração nunca são iguais de verdade",
+     "correta": false,
+     "feedbackErro": "O enunciado já parte de taxas iguais entre os dois fundos. A diferença no líquido vem de outro lugar: o rendimento bruto de cada um."
+    },
+    {
+     "texto": "Porque só um deles paga imposto de renda",
+     "correta": false,
+     "feedbackErro": "Fundos de mesma categoria costumam seguir a mesma regra de imposto. O que diferencia o líquido aqui é o desempenho bruto de cada um."
+    }
+   ]
+  }
+ ]
+}

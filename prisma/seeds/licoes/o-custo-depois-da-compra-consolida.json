@@ -1,0 +1,335 @@
+{
+ "slug": "o-custo-depois-da-compra-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "o-custo-depois-da-compra",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "Continua cobrando com o item?",
+   "enunciado": "Plano de proteção contra roubo, contratado no dia da compra do celular",
+   "resposta": true,
+   "ancora": "Mesmo contratado na hora, ele cobra mês a mês enquanto durar.",
+   "feedbackErro": "Foi assinado junto com a compra, e isso confunde. Mas ele cobra toda vez que renova — o que importa é continuar cobrando, não o dia da assinatura."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "Continua cobrando com o item?",
+   "enunciado": "O desconto negociado no preço do celular seminovo",
+   "resposta": false,
+   "ancora": "Desconto muda o preço da compra — é o oposto de um custo.",
+   "feedbackErro": "Desconto parece 'econômico' e por isso confunde com custo de posse. Mas ele reduz o preço da aquisição — não gera nenhuma cobrança futura."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "Continua cobrando com o item?",
+   "enunciado": "Consertar a tela quebrada, seis meses depois, sem garantia",
+   "resposta": true,
+   "ancora": "Sem garantia, o conserto sai do seu bolso — custo de posse clássico.",
+   "feedbackErro": "Parece azar isolado, mas é conta previsível de quem tem um aparelho: sem garantia, qualquer estrago pelo uso vira custo seu, depois da compra."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-de-posse",
+   "dificuldade": 3,
+   "pergunta": "Carro usado custou R$ 18.000. No 1º ano: seguro R$ 1.800, IPVA R$ 720, revisão R$ 400. Custo de possuí-lo, sem a compra?",
+   "ancora": "1.800 + 720 + 400 = R$ 2.920. A compra fica fora dessa conta.",
+   "verificacao": {
+    "expressao": "1800+720+400",
+    "esperado": 2920
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 18.000",
+     "correta": false,
+     "feedbackErro": "Esse é o preço de compra do carro, e a pergunta pede o custo de tê-lo depois. Some seguro, IPVA e revisão: R$ 2.920."
+    },
+    {
+     "texto": "R$ 2.920",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 20.920",
+     "correta": false,
+     "feedbackErro": "Você somou o preço do carro à conta, mas a pergunta pede só o custo de posse. Sem a compra: 1.800 + 720 + 400 = 2.920."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-da-producao",
+   "dificuldade": 3,
+   "pergunta": "Empresa terceiriza a fábrica só para pagar menos imposto, sem mudar salário. É o mesmo que explorar mão de obra?",
+   "ancora": "Nem toda mudança de país é sobre condições de trabalho.",
+   "alternativas": [
+    {
+     "texto": "Não: reduzir imposto é diferente de reduzir direitos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, mudar de país sempre piora as condições de trabalho",
+     "correta": false,
+     "feedbackErro": "Nem sempre: o enunciado diz que salário e processo continuam iguais. O que mudou foi só a rota fiscal, não a forma de tratar quem trabalha."
+    },
+    {
+     "texto": "Sim, pagar menos imposto é sempre ilegal",
+     "correta": false,
+     "feedbackErro": "Rotas fiscais diferentes podem ser legais dependendo do país e do tipo de operação. O ponto da pergunta é outro: se piorou o trabalhador."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "É custo de posse?",
+   "enunciado": "Trocar o pneu furado do carro na primeira semana, por um buraco",
+   "resposta": true,
+   "ancora": "Não importa o prazo: se nasce do uso, é custo de posse.",
+   "feedbackErro": "Parece cedo demais para contar como 'depois' — foi só uma semana. Mas o critério é a causa: nasceu do uso do carro, não do preço combinado."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "custo-de-posse",
+   "instrucao": "Toque na ordem: do que mais pesou ao que menos pesou, no carro usado.",
+   "ancora": "O que cobra uma vez por ano ainda pode superar o que é raro.",
+   "feedbackErro": "Some cada item pelo que ele representa no ano: seguro (R$ 1.800) supera IPVA, revisão e troca de palhetas, nessa ordem.",
+   "itens": [
+    {
+     "texto": "Seguro anual — R$ 1.800",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "IPVA anual — R$ 720",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Revisão programada — R$ 400",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Troca de palhetas — R$ 60",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "É custo de posse?",
+   "enunciado": "Multa por não fazer a revisão obrigatória de um carro por assinatura",
+   "resposta": true,
+   "ancora": "Mesmo sem ser dono, usar mal gera custo de posse temporária.",
+   "feedbackErro": "Carro por assinatura não é seu, e isso confunde. Mas enquanto está com você, o mau uso gera custo do mesmo jeito — é posse temporária."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "É custo de posse?",
+   "enunciado": "Taxa de adesão paga uma vez para abrir a assinatura do carro",
+   "resposta": false,
+   "ancora": "Taxa de adesão é custo de aquisição do serviço, pago uma vez.",
+   "feedbackErro": "Parece um custo do carro em si, e é do contrato. Mas ela é cobrada uma única vez, na entrada — é custo de aquisição, não de posse."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-de-posse",
+   "pergunta": "Moto de R$ 12.000 gasta 4% do valor por ano em manutenção e seguro. Soma em 3 anos?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 3000,
+   "gabarito": 1440,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 4% do valor da moto ao ano, por 3 anos",
+   "verificacao": {
+    "expressao": "12000*0.04*3",
+    "esperado": 1440
+   },
+   "feedbackPerto": "Isso: R$ 1.440 — 12% do valor da moto só em manutenção e seguro, em 3 anos.",
+   "feedbackLonge": "Dá R$ 1.440. Calcule 4% de 12.000 (R$ 480) e multiplique pelos 3 anos de posse."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-de-posse",
+   "dificuldade": 3,
+   "pergunta": "Duas motos de R$ 10.000: uma gasta 3% do valor ao ano em manutenção, outra 8%. Em 5 anos, qual a diferença total?",
+   "ancora": "(8% − 3%) × 5 anos × 10.000 = R$ 2.500 de diferença.",
+   "verificacao": {
+    "expressao": "10000*0.08*5-10000*0.03*5",
+    "esperado": 2500
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 250",
+     "correta": false,
+     "feedbackErro": "Esse é o resultado de apenas 1 ano de diferença. A pergunta pede 5 anos: multiplique por 5 para chegar a R$ 2.500."
+    },
+    {
+     "texto": "R$ 2.500",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 5.000",
+     "correta": false,
+     "feedbackErro": "Você usou 10 pontos percentuais de diferença, mas são 5 (8% − 3%). Em 5 anos, isso dá R$ 2.500, não R$ 5.000."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-da-producao",
+   "dificuldade": 3,
+   "pergunta": "Grife e marca local usam a mesma fábrica, nas mesmas condições. A grife custa 5x mais. Isso prova impacto pior na grife?",
+   "ancora": "Preço mistura marca e lucro — nem sempre reflete condição de trabalho.",
+   "alternativas": [
+    {
+     "texto": "Não: preço mais alto não significa impacto social pior",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, preço mais alto sempre indica exploração maior",
+     "correta": false,
+     "feedbackErro": "O enunciado diz que a fábrica e as condições são as mesmas. A diferença de preço aqui é marca e lucro, não o tratamento de quem produziu."
+    },
+    {
+     "texto": "Sim, marca cara sempre paga menos ao trabalhador",
+     "correta": false,
+     "feedbackErro": "Não sempre — nesse caso o próprio enunciado garante que as condições são idênticas nas duas. O preço maior vem de outro lugar."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "É custo de posse?",
+   "enunciado": "Pagar taxa por devolver o carro de assinatura atrasado",
+   "resposta": true,
+   "ancora": "Nasce do uso além do combinado — típico custo de posse.",
+   "feedbackErro": "O carro nem é seu, e isso confunde. Mas a taxa nasce de como você usou o serviço enquanto esteve com ele — é custo de posse."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "É custo de posse?",
+   "enunciado": "Pagar a primeira mensalidade no ato da assinatura do carro",
+   "resposta": false,
+   "ancora": "Primeira cobrança na entrada é custo de aquisição do serviço.",
+   "feedbackErro": "Parece rotina do carro, e é rotina do contrato. Mas o pagamento cobrado no exato momento de assinar é custo de aquisição, não de posse."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-custo-depois-da-compra",
+   "pergunta": "Fechando os três encontros, o que fica?",
+   "alternativas": [
+    {
+     "texto": "Ter algo, e produzi-lo, custa depois da compra — em qualquer tipo de posse",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só produtos comprados à vista geram custo de posse",
+     "correta": false,
+     "feedbackErro": "A forma de pagamento não muda isso: mesmo alugado ou por assinatura, o uso continua gerando custos próprios."
+    },
+    {
+     "texto": "Preço mais alto sempre significa produção mais justa",
+     "correta": false,
+     "feedbackErro": "Não significa: preço alto pode ser marca e lucro, sem nenhuma relação com melhores condições de quem produziu."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "custo-de-posse",
+   "instrucao": "Custo de aquisição ou custo de posse? Arraste.",
+   "ancora": "Posse é o que se repete ou nasce do uso; aquisição é o ato único.",
+   "feedbackErro": "O que é cobrado uma vez, no ato de adquirir, é custo de aquisição. O que se repete ou nasce do uso, depois, é custo de posse.",
+   "caixas": [
+    {
+     "id": "aquisicao",
+     "rotulo": "Custo de aquisição"
+    },
+    {
+     "id": "posse",
+     "rotulo": "Custo de posse"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Taxa de registro paga na compra do imóvel",
+     "caixaCorreta": "aquisicao"
+    },
+    {
+     "texto": "IPTU pago todo ano pelo dono",
+     "caixaCorreta": "posse"
+    },
+    {
+     "texto": "Comissão do corretor na venda",
+     "caixaCorreta": "aquisicao"
+    },
+    {
+     "texto": "Conserto do telhado depois de dois anos",
+     "caixaCorreta": "posse"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "impacto-da-producao",
+   "dificuldade": 3,
+   "pergunta": "Um produto tem selo ambiental sério, mas é fabricado com jornada de trabalho excessiva. O selo garante produção 100% responsável?",
+   "ancora": "Selo ambiental fiscaliza o ambiente, não garante tudo no processo.",
+   "alternativas": [
+    {
+     "texto": "Não: cada selo costuma cobrir uma dimensão, não todas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, selo sério cobre automaticamente qualquer critério",
+     "correta": false,
+     "feedbackErro": "Um selo ambiental fiscaliza critérios ambientais — não garante, por si, que a jornada de trabalho também está correta."
+    },
+    {
+     "texto": "Sim, porque jornada de trabalho não afeta produção responsável",
+     "correta": false,
+     "feedbackErro": "Afeta, sim: condição de trabalho é parte das dimensões éticas e sociais da produção, separada da dimensão ambiental do selo."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "É custo de posse?",
+   "enunciado": "Pagar condomínio todo mês pelo apartamento próprio",
+   "resposta": true,
+   "ancora": "Cobrança recorrente por manter o imóvel — custo de posse.",
+   "feedbackErro": "O apartamento já foi pago ou financiado, e isso confunde. Mas o condomínio se repete todo mês, enquanto você for dono — é custo de posse."
+  }
+ ]
+}

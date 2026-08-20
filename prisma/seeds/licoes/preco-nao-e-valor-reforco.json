@@ -1,0 +1,274 @@
+{
+ "slug": "preco-nao-e-valor-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "preco-nao-e-valor",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "preco-x-valor",
+   "criterio": "Qual era o critério mesmo?",
+   "enunciado": "Achar que algo caro sempre importa mais pra você",
+   "resposta": false,
+   "ancora": "O critério é o quanto importa pra você, não o preço.",
+   "feedbackErro": "Preço alto parece prova de importância. Mas o critério de valor é o quanto algo importa pra você, e isso nem sempre segue o preço."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "preco-x-valor",
+   "criterio": "Qual era o critério mesmo?",
+   "enunciado": "Um objeto de família, sem preço de venda, guardado com cuidado",
+   "resposta": true,
+   "ancora": "Cuidado e importância mostram valor, mesmo sem preço.",
+   "feedbackErro": "Sem preço de venda, parece que não vale nada no mercado. Mas o cuidado com que é guardado mostra o valor que tem."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "caro-barato",
+   "criterio": "Qual era o critério mesmo?",
+   "enunciado": "Achar que preço baixo sempre significa qualidade ruim",
+   "resposta": false,
+   "ancora": "Preço baixo pode vir de menos propaganda, não menos qualidade.",
+   "feedbackErro": "Preço baixo parece sinal de produto ruim. Mas às vezes ele só tem menos gastos com propaganda ou marca, sem perder qualidade."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "preco-x-valor",
+   "dificuldade": 2,
+   "pergunta": "Um chaveiro custou R$ 3, dado por um amigo antes de mudar de cidade. Por que pode valer mais do que o preço mostra?",
+   "ancora": "R$ 3 é o preço; a lembrança é o que muda o valor.",
+   "alternativas": [
+    {
+     "texto": "Porque lembra de uma pessoa e um momento importante",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque R$ 3 é sempre um preço muito alto",
+     "correta": false,
+     "feedbackErro": "R$ 3 é um preço baixo, não alto. O que aumenta o valor aqui não é o preço, é a lembrança que ele carrega."
+    },
+    {
+     "texto": "Porque todo chaveiro vale mais do que parece",
+     "correta": false,
+     "feedbackErro": "Não é uma regra geral sobre chaveiros. O que muda o valor deste é a história por trás dele, não o tipo de objeto."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "caro-barato",
+   "dificuldade": 2,
+   "pergunta": "Um tênis genérico custa R$ 60. O mesmo modelo, com a marca famosa, custa R$ 180. O que essa diferença sugere?",
+   "ancora": "180 menos 60 é 120: boa parte pode ser só a marca.",
+   "alternativas": [
+    {
+     "texto": "Que boa parte dos R$ 120 a mais é pela marca",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que o tênis de marca é sempre 3 vezes mais resistente",
+     "correta": false,
+     "feedbackErro": "Custar 3 vezes mais não garante durar 3 vezes mais. Boa parte da diferença de R$ 120 costuma vir do nome da marca."
+    },
+    {
+     "texto": "Que o tênis genérico é feito com material proibido",
+     "correta": false,
+     "feedbackErro": "Não há nada que mostre isso. A diferença de preço aqui é mais provável de vir da marca do que de proibição."
+    }
+   ],
+   "verificacao": {
+    "expressao": "180-60",
+    "esperado": 120
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "preco-x-valor",
+   "criterio": "Isso é um erro comum sobre valor?",
+   "enunciado": "Pensar que se algo é caro, tem que valer a pena de qualquer jeito",
+   "resposta": true,
+   "ancora": "Preço alto não obriga a valorizar algo que não serve pra você.",
+   "feedbackErro": "Parece raciocínio razoável: gastar muito 'obrigaria' a gostar. Mas o valor real depende de servir pra você, não do quanto custou."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "caro-barato",
+   "instrucao": "Essa diferença de preço vem de quê?",
+   "ancora": "Separar material de nome ajuda a decidir melhor.",
+   "feedbackErro": "Nome de marca famosa não é sinônimo de material melhor. Cada caso pede olhar separadamente.",
+   "caixas": [
+    {
+     "id": "qualidade",
+     "rotulo": "Material/Qualidade"
+    },
+    {
+     "id": "marca",
+     "rotulo": "Marca/Nome"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Uma mochila com costura reforçada nas alças",
+     "caixaCorreta": "qualidade"
+    },
+    {
+     "texto": "Um relógio comum com o nome de um jogador famoso",
+     "caixaCorreta": "marca"
+    },
+    {
+     "texto": "Um casaco com tecido que não deixa passar chuva",
+     "caixaCorreta": "qualidade"
+    },
+    {
+     "texto": "Uma sandália comum vendida com nome de um cantor",
+     "caixaCorreta": "marca"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "preco-x-valor",
+   "criterio": "Isso reforça que preço não é valor?",
+   "enunciado": "Duas pessoas pagam o mesmo preço, com importâncias diferentes",
+   "resposta": true,
+   "ancora": "O mesmo preço pode gerar valores diferentes pra pessoas.",
+   "feedbackErro": "Parece que preço igual deveria significar valor igual. Mas cada pessoa pode dar uma importância diferente ao mesmo produto."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "caro-barato",
+   "dificuldade": 2,
+   "pergunta": "Uma caneta comum custa R$ 4,50. A mesma caneta numerada, de edição limitada, custa R$ 32. O que mais explica isso?",
+   "ancora": "A raridade costuma pesar mais que o material.",
+   "alternativas": [
+    {
+     "texto": "A raridade e a edição limitada, mais do que o material",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A tinta da edição limitada dura para sempre",
+     "correta": false,
+     "feedbackErro": "Nenhuma tinta dura para sempre. O que normalmente eleva tanto o preço é a raridade da edição, não a tinta em si."
+    },
+    {
+     "texto": "É impossível saber, preços são sempre aleatórios",
+     "correta": false,
+     "feedbackErro": "Não é aleatório: edição limitada e numeração costumam ser o motivo real de um preço tão mais alto."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "preco-x-valor",
+   "criterio": "Isso é um bom critério pra decidir?",
+   "enunciado": "Perguntar 'isso importa de verdade pra mim?', além de olhar o preço",
+   "resposta": true,
+   "ancora": "Combinar preço com importância real é decisão mais completa.",
+   "feedbackErro": "Olhar só o preço parece mais rápido. Mas perguntar se algo importa de verdade evita gastar com o que não tem valor pra você."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "caro-barato",
+   "criterio": "Isso justifica pagar mais?",
+   "enunciado": "O produto ter uma garantia mais longa contra defeitos",
+   "resposta": true,
+   "ancora": "Garantia mais longa é benefício real, não só nome.",
+   "feedbackErro": "Parece só detalhe do contrato, sem grande peso. Mas uma garantia mais longa protege seu dinheiro por mais tempo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "caro-barato",
+   "pergunta": "Depois de rever, qual frase está mais certa?",
+   "alternativas": [
+    {
+     "texto": "Nem toda diferença de preço vem de mais qualidade",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Preço mais alto é sempre garantia de qualidade",
+     "correta": false,
+     "feedbackErro": "Nem sempre: marca e raridade também elevam o preço, sem mudar a qualidade do material."
+    },
+    {
+     "texto": "Se o preço é igual, o valor pra todo mundo também é",
+     "correta": false,
+     "feedbackErro": "Não é igual: pessoas diferentes dão importâncias diferentes ao mesmo produto, mesmo pagando o mesmo preço."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "caro-barato",
+   "instrucao": "Ordene os passos pra descobrir se um preço alto se justifica.",
+   "ancora": "Primeiro material, depois marca, só então decidir.",
+   "feedbackErro": "Decidir sem checar material e marca separadamente é decidir no escuro. A ordem ajuda a enxergar de onde vem o preço.",
+   "itens": [
+    {
+     "texto": "Perguntar se o material é realmente melhor",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Perguntar se parte do preço é só a marca",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Decidir se vale pagar a mais por isso",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "preco-x-valor",
+   "dificuldade": 2,
+   "pergunta": "Um brinquedo usado custa R$ 5, mas foi o último presente do seu avô. Isso muda o valor dele?",
+   "ancora": "R$ 5 é o preço; a história é o que muda o valor.",
+   "alternativas": [
+    {
+     "texto": "Sim, a história por trás aumenta o valor, mesmo barato",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, o preço de R$ 5 já define o valor total dele",
+     "correta": false,
+     "feedbackErro": "O preço de R$ 5 é só o número de venda. A história por trás do brinquedo pode aumentar muito o valor dele pra você."
+    },
+    {
+     "texto": "Não, brinquedo usado nunca tem valor nenhum",
+     "correta": false,
+     "feedbackErro": "Ser usado não zera o valor. Aqui, a lembrança do avô conta mais do que o estado físico do brinquedo."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "caro-barato",
+   "criterio": "Boa pergunta antes de pagar mais caro?",
+   "enunciado": "Perguntar 'o que exatamente esse preço a mais está pagando?'",
+   "resposta": true,
+   "ancora": "Essa pergunta separa qualidade real de só marca.",
+   "feedbackErro": "Parece pergunta óbvia demais pra ajudar. Mas ela separa um preço maior por qualidade real de um preço maior só pela marca."
+  }
+ ]
+}

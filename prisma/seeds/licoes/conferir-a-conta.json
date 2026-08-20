@@ -1,0 +1,249 @@
+{
+ "slug": "conferir-a-conta",
+ "segmento": "ef67",
+ "conceitoPrincipal": "conferir-a-conta",
+ "fraseConceito": "Conferir o troco e o recibo evita prejuízo — e saber ler uma notícia financeira ajuda a entender por quê.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "conferir-o-recibo",
+   "criterio": "Isso é um erro na conta?",
+   "enunciado": "Recibo cobra R$ 5 por um item que custava R$ 3",
+   "resposta": true,
+   "ancora": "A diferença de R$ 2 é erro na conta — vale conferir e apontar.",
+   "feedbackErro": "Parece um detalhe pequeno pra reclamar. Mas cobrar mais que o preço certo é erro, e vale apontar, mesmo sendo pouco."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "conferir-o-recibo",
+   "criterio": "Isso é um erro na conta?",
+   "enunciado": "Troco de R$ 10 numa compra de R$ 8, com nota de R$ 20",
+   "resposta": true,
+   "ancora": "20 menos 8 é 12; o troco certo seria R$ 12, não R$ 10.",
+   "verificacao": { "expressao": "20-8", "esperado": 12 },
+   "feedbackErro": "Parece um troco razoável à primeira vista. Mas a conta fecha em R$ 12 — R$ 10 deixa R$ 2 de diferença sem explicação."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "ler-noticia-financeira",
+   "criterio": "Isso é uma notícia financeira?",
+   "enunciado": "Reportagem sobre aumento da taxa Selic",
+   "resposta": true,
+   "ancora": "Selic é assunto de economia — tema central de notícia financeira.",
+   "feedbackErro": "Parece um termo técnico só de especialista. Mas notícia sobre Selic é justamente o tipo de conteúdo financeiro que vale acompanhar."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "conferir-o-recibo",
+   "dificuldade": 1,
+   "pergunta": "Recibo mostra 3 itens de R$ 15 cada, mas cobra R$ 50 no total. O que fazer?",
+   "ancora": "3 vezes 15 é 45; a cobrança de R$ 50 tem R$ 5 de diferença.",
+   "verificacao": { "expressao": "3*15", "esperado": 45 },
+   "alternativas": [
+    {
+     "texto": "Apontar a diferença de R$ 5 e pedir a correção",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pagar assim mesmo, é pouca diferença",
+     "correta": false,
+     "feedbackErro": "A diferença parece pequena, mas ela é um erro real. Apontar o erro é o certo, seja qual for o valor."
+    },
+    {
+     "texto": "Não dizer nada, pode ser vergonhoso",
+     "correta": false,
+     "feedbackErro": "Apontar um erro de cobrança não é vergonha — é checar se a conta bate, algo comum e esperado."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "ler-noticia-financeira",
+   "dificuldade": 1,
+   "pergunta": "Uma notícia diz que a inflação subiu. Isso afeta o quê no seu dia a dia?",
+   "ancora": "Inflação alta encarece o que você compra no mercado, na farmácia.",
+   "alternativas": [
+    {
+     "texto": "O preço das coisas que você compra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só afeta bancos e empresas grandes",
+     "correta": false,
+     "feedbackErro": "Bancos e empresas sentem, sim, mas o efeito mais direto chega no seu bolso: os preços do dia a dia sobem."
+    },
+    {
+     "texto": "Nada, é assunto só de economista",
+     "correta": false,
+     "feedbackErro": "Parece distante, mas inflação sobe o preço do que você compra toda semana — não é assunto só de especialista."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "ler-noticia-financeira",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Reportagem de economia é só pra quem entende de finanças",
+   "resposta": false,
+   "ancora": "Notícia financeira também explica o que muda no seu bolso.",
+   "feedbackErro": "Parece um tema fechado pra especialista. Mas boa parte das notícias explica o que muda no dia a dia de quem lê."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "conferir-o-recibo",
+   "instrucao": "Erro a favor de quem paga ou de quem vende? Arraste.",
+   "ancora": "Cobrar a mais favorece o vendedor; troco a mais favorece quem paga.",
+   "feedbackErro": "É fácil confundir de quem é o ganho. Cobrar a mais e repetir item favorece quem vende; troco e desconto extra favorecem quem paga.",
+   "caixas": [
+    { "id": "vende", "rotulo": "A favor de quem vende" },
+    { "id": "paga", "rotulo": "A favor de quem paga" }
+   ],
+   "itens": [
+    { "texto": "Cobrar mais caro que o preço anunciado", "caixaCorreta": "vende" },
+    { "texto": "Dar troco a mais que o devido", "caixaCorreta": "paga" },
+    { "texto": "Cobrar duas vezes o mesmo item", "caixaCorreta": "vende" },
+    { "texto": "Aplicar desconto que não foi combinado", "caixaCorreta": "paga" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "ler-noticia-financeira",
+   "criterio": "Isso ajuda a entender a notícia?",
+   "enunciado": "Checar a data da reportagem antes de usar a informação",
+   "resposta": true,
+   "ancora": "Notícia antiga pode trazer dado que já mudou.",
+   "feedbackErro": "Parece um detalhe sem importância. Mas uma notícia antiga pode trazer taxa ou valor que já mudaram desde então."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "conferir-o-recibo",
+   "dificuldade": 2,
+   "pergunta": "Conta de R$ 45,50 + R$ 12,30 + R$ 8,90. O garçom cobrou R$ 70. Está certo?",
+   "ancora": "45,50 mais 12,30 mais 8,90 dá 66,70 — R$ 3,30 a menos que os R$ 70.",
+   "verificacao": { "expressao": "45.50+12.30+8.90", "esperado": 66.7 },
+   "alternativas": [
+    {
+     "texto": "Não, o certo é R$ 66,70",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, está certo",
+     "correta": false,
+     "feedbackErro": "Somando os três valores dá 66,70, não 70. Sobrou R$ 3,30 cobrados a mais."
+    },
+    {
+     "texto": "Não, o certo é R$ 63",
+     "correta": false,
+     "feedbackErro": "R$ 63 fica abaixo da soma real. Somando os três valores certinho, o total é 66,70."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "ler-noticia-financeira",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Toda notícia sobre dinheiro é confiável, mesmo sem fonte",
+   "resposta": false,
+   "ancora": "Sem fonte, não dá pra checar se a informação é real.",
+   "feedbackErro": "Parece que qualquer notícia sobre dinheiro já é confiável. Mas sem fonte, não dá pra checar se o dado é verdadeiro."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "conferir-o-recibo",
+   "criterio": "Ajuda a evitar prejuízo?",
+   "enunciado": "Somar os itens da conta antes de pagar",
+   "resposta": true,
+   "ancora": "Somar antes revela erro de cobrança antes de pagar errado.",
+   "feedbackErro": "Parece um passo a mais que atrasa o pagamento. Mas somar antes é o que revela erro de cobrança antes de você pagar errado."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "conferir-o-recibo",
+   "pergunta": "Qual frase resume a lição?",
+   "alternativas": [
+    {
+     "texto": "Conferir a conta e a fonte da notícia evita prejuízo e engano",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Reclamar de erro pequeno na conta é exagero",
+     "correta": false,
+     "feedbackErro": "Erro pequeno ainda é erro — apontar é o certo, não importa o valor da diferença."
+    },
+    {
+     "texto": "Notícia sobre dinheiro nunca precisa de fonte",
+     "correta": false,
+     "feedbackErro": "Sem fonte, não dá pra checar se a informação é confiável ou está desatualizada."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "conferir-o-recibo",
+   "dificuldade": 2,
+   "pergunta": "Compra de R$ 100 com 12% de desconto anunciado. Recibo cobra R$ 92. Está certo?",
+   "ancora": "12% de 100 é 12 de desconto — o valor certo é 88, não 92.",
+   "verificacao": { "expressao": "100-100*0.12", "esperado": 88 },
+   "alternativas": [
+    {
+     "texto": "Não, o certo é R$ 88",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, está certo",
+     "correta": false,
+     "feedbackErro": "12% de 100 é 12 de desconto — o valor certo é 88, não 92."
+    },
+    {
+     "texto": "Não, o certo é R$ 12",
+     "correta": false,
+     "feedbackErro": "R$ 12 é só o valor do desconto, não o total a pagar. Com desconto, o certo é 100 menos 12, ou seja, 88."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "ler-noticia-financeira",
+   "criterio": "É verdade?",
+   "enunciado": "Reportagem econômica é a mesma coisa que anúncio de produto",
+   "resposta": false,
+   "ancora": "Notícia informa; anúncio busca vender — funções diferentes.",
+   "feedbackErro": "Os dois falam de dinheiro, e por isso confundem. Mas notícia busca informar; anúncio busca vender — a função é diferente."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "conferir-o-recibo",
+   "instrucao": "Toque na ordem de quem confere primeiro numa nota fiscal.",
+   "ancora": "Item por item, depois o total, depois comparar e só então reclamar.",
+   "feedbackErro": "É tentador só olhar o total. Mas conferir item por item revela onde está o erro antes de comparar e reclamar.",
+   "itens": [
+    { "texto": "Conferir os itens um a um", "posicaoCorreta": 1 },
+    { "texto": "Somar o total", "posicaoCorreta": 2 },
+    { "texto": "Comparar com o valor cobrado", "posicaoCorreta": 3 },
+    { "texto": "Reclamar se houver diferença", "posicaoCorreta": 4 }
+   ]
+  }
+ ]
+}

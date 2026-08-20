@@ -1,0 +1,238 @@
+{
+ "slug": "o-orcamento-e-da-casa-toda-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "o-orcamento-e-da-casa-toda",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "participacao-da-familia",
+   "criterio": "Quem pode opinar no orçamento?",
+   "enunciado": "O filho mais novo dar sua opinião sobre o passeio do fim de semana",
+   "resposta": true,
+   "ancora": "Idade não tira o direito de opinar sobre os gastos da casa.",
+   "feedbackErro": "Parece que só os adultos devem opinar, mas qualquer pessoa da casa pode opinar sobre os gastos."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "participacao-da-familia",
+   "criterio": "Quem pode opinar no orçamento?",
+   "enunciado": "Fazer uma compra grande sem contar pra ninguém, só porque 'é meu dinheiro'",
+   "resposta": false,
+   "ancora": "Gasto grande afeta o orçamento de todos, mesmo com dinheiro próprio.",
+   "feedbackErro": "Parece justo, já que é dinheiro próprio. Mas um gasto grande mexe no total que sobra pra casa toda."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "criterio": "Isso prepara o futuro?",
+   "enunciado": "Fazer manutenção da geladeira antes que ela pare de funcionar de vez",
+   "resposta": true,
+   "ancora": "Cuidar antes evita o gasto muito maior de trocar tudo depois.",
+   "feedbackErro": "Parece gasto desnecessário agora, mas cuidar antes evita o custo bem maior de substituir o aparelho inteiro."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "dificuldade": 2,
+   "pergunta": "A família ganhou R$ 730 e separou R$ 180 pra manutenção da casa. Quanto sobra pros outros gastos?",
+   "ancora": "730 menos 180 reservados é 550 para os outros gastos.",
+   "verificacao": { "expressao": "730-180", "esperado": 550 },
+   "alternativas": [
+    {
+     "texto": "R$ 550",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 180",
+     "correta": false,
+     "feedbackErro": "R$ 180 é o valor separado pra manutenção, não o que sobra. 730 menos 180 é 550."
+    },
+    {
+     "texto": "R$ 730",
+     "correta": false,
+     "feedbackErro": "R$ 730 seria sem separar nada. Como R$ 180 já foi reservado, sobram 550."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "participacao-da-familia",
+   "dificuldade": 2,
+   "pergunta": "Otávio quer gastar sua mesada num jogo, mas a família combinou juntar tudo pro passeio. O que ele deveria fazer?",
+   "ancora": "Conversar antes é o que mantém o plano da família funcionando.",
+   "alternativas": [
+    {
+     "texto": "Conversar com a família antes de decidir sozinho",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Gastar do jeito que quiser, porque a mesada é dele",
+     "correta": false,
+     "feedbackErro": "É dinheiro dele, mas se o combinado é juntar pro passeio, decidir sozinho quebra o plano da família."
+    },
+    {
+     "texto": "Fingir que concorda e gastar escondido",
+     "correta": false,
+     "feedbackErro": "Gastar escondido não resolve nada — só esconde o problema até alguém descobrir."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "criterio": "Isso prepara o futuro?",
+   "enunciado": "Adiar o conserto do telhado até ele começar a vazar de verdade",
+   "resposta": false,
+   "ancora": "Esperar o problema piorar costuma custar mais caro que resolver antes.",
+   "feedbackErro": "Parece economia esperar, mas adiar até vazar de verdade costuma custar bem mais caro que consertar cedo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "participacao-da-familia",
+   "instrucao": "É um jeito de participar do orçamento? Arraste.",
+   "ancora": "Participar é agir junto, não só reclamar depois.",
+   "feedbackErro": "Reclamar depois não muda nada — participar é ajudar a decidir e comparar antes da compra acontecer.",
+   "caixas": [
+    { "id": "sim", "rotulo": "É participar" },
+    { "id": "nao", "rotulo": "Não é" }
+   ],
+   "itens": [
+    { "texto": "Perguntar antes de pedir algo caro", "caixaCorreta": "sim" },
+    { "texto": "Gastar escondido achando que ninguém vai notar", "caixaCorreta": "nao" },
+    { "texto": "Ajudar a comparar preços antes de uma compra grande", "caixaCorreta": "sim" },
+    { "texto": "Reclamar sem sugerir nada quando o dinheiro acaba", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "criterio": "Isso afeta o orçamento futuro?",
+   "enunciado": "Comprar um presente que já tinha sido combinado no início do mês",
+   "resposta": false,
+   "ancora": "Gasto combinado com antecedência não desorganiza o planejado.",
+   "feedbackErro": "Parece um gasto igual aos outros, mas já estar combinado significa que ele não pega o orçamento de surpresa."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "dificuldade": 2,
+   "pergunta": "A geladeira quebrou e o conserto custa R$ 340. A família tinha R$ 220 guardados. Quanto falta?",
+   "ancora": "340 menos 220 já guardados é 120 — o que ainda falta.",
+   "verificacao": { "expressao": "340-220", "esperado": 120 },
+   "alternativas": [
+    {
+     "texto": "R$ 120",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 220",
+     "correta": false,
+     "feedbackErro": "R$ 220 é o que já estava guardado, não o que falta. 340 menos 220 é 120."
+    },
+    {
+     "texto": "R$ 340",
+     "correta": false,
+     "feedbackErro": "R$ 340 seria o conserto inteiro, sem contar o que já tinha guardado. Falta só a diferença: 120."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "participacao-da-familia",
+   "criterio": "Isso ajuda o orçamento?",
+   "enunciado": "Deixar sempre a mesma pessoa decidir tudo, sem perguntar aos outros",
+   "resposta": false,
+   "ancora": "Decidir sozinho tira a chance de a casa toda ajudar a planejar.",
+   "feedbackErro": "Pode parecer mais rápido, mas decidir sempre sozinho tira a chance de a família toda ajudar a planejar melhor."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "criterio": "Isso ajuda a preparar o futuro?",
+   "enunciado": "Guardar as notas fiscais dos gastos maiores do mês",
+   "resposta": true,
+   "ancora": "Guardar as notas ajuda a lembrar e planejar os próximos meses.",
+   "feedbackErro": "Parece burocracia sem sentido, mas guardar as notas ajuda a lembrar pra onde foi o dinheiro."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "participacao-da-familia",
+   "pergunta": "Depois deste encontro, qual frase resume melhor o orçamento da casa?",
+   "alternativas": [
+    {
+     "texto": "Cada um deve cuidar só do seu próprio dinheiro",
+     "correta": false,
+     "feedbackErro": "Um gasto grande de uma pessoa ainda afeta o total que sobra pra casa toda."
+    },
+    {
+     "texto": "Participar e prever o futuro evitam que o orçamento estoure",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só vale a pena pensar no futuro quando falta dinheiro",
+     "correta": false,
+     "feedbackErro": "Pensar no futuro antes que falte é o que evita chegar nessa situação."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "instrucao": "Toque na ordem, do que evita mais gasto futuro pro que evita menos.",
+   "ancora": "Quanto mais cedo o problema é resolvido, menor o gasto no fim.",
+   "feedbackErro": "Esperar demais transforma um conserto simples num gasto bem maior — agir cedo é o que mais economiza.",
+   "itens": [
+    { "texto": "Consertar o vazamento assim que aparece", "posicaoCorreta": 1 },
+    { "texto": "Esperar um pouco antes de chamar o técnico", "posicaoCorreta": 2 },
+    { "texto": "Ignorar o problema até parar de funcionar", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "participacao-da-familia",
+   "instrucao": "É um bom jeito de participar? Arraste.",
+   "ancora": "Bom participar é somar ideias, não decidir ou gastar sozinho.",
+   "feedbackErro": "O que ajuda de verdade é somar ideias e avisar antes — decidir ou gastar sozinho quebra o combinado da casa.",
+   "caixas": [
+    { "id": "sim", "rotulo": "Bom jeito" },
+    { "id": "nao", "rotulo": "Não é" }
+   ],
+   "itens": [
+    { "texto": "Sugerir onde economizar no mês", "caixaCorreta": "sim" },
+    { "texto": "Fazer gastos grandes sem avisar ninguém", "caixaCorreta": "nao" },
+    { "texto": "Perguntar antes de comprar algo fora do combinado", "caixaCorreta": "sim" },
+    { "texto": "Decidir por todo mundo sem ouvir ninguém", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "criterio": "Isso prepara o futuro?",
+   "enunciado": "Comparar preços antes de comprar algo caro para a casa",
+   "resposta": true,
+   "ancora": "Comparar preços deixa mais dinheiro disponível pro que vier depois.",
+   "feedbackErro": "Parece só economia de agora, mas o que sobra de comparar preços ajuda o orçamento dos próximos meses."
+  }
+ ]
+}

@@ -1,0 +1,292 @@
+{
+ "slug": "metas-e-o-que-ameaca-elas-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "metas-e-o-que-ameaca-elas",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "inflacao-na-meta",
+   "criterio": "Ameaça a meta guardada?",
+   "enunciado": "Guardar dinheiro dentro de casa, sem render nada, por anos",
+   "resposta": true,
+   "ancora": "Parado por anos, o dinheiro perde valor sem ninguém gastar nada.",
+   "feedbackErro": "Parece seguro, já que ninguém mexe nele. Mas guardado assim, sem render, ele perde valor pra inflação ano após ano — a meta se afasta mesmo intacta."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "meta-orcamento",
+   "criterio": "Ameaça a meta guardada?",
+   "enunciado": "Cortar todos os gastos com lazer de uma vez só",
+   "resposta": true,
+   "ancora": "Corte radical não dura — a meta quebra quando o hábito quebra.",
+   "feedbackErro": "Parece a solução mais rápida. Mas corte total tende a durar pouco: quando o hábito quebra, a pessoa volta a gastar tudo de uma vez, e a meta some junto."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "inflacao-na-meta",
+   "criterio": "Ameaça a meta guardada?",
+   "enunciado": "A inflação subir e a mesada subir na mesma proporção",
+   "resposta": false,
+   "ancora": "Se a renda acompanha a inflação, o poder de compra não muda.",
+   "feedbackErro": "Inflação normalmente ameaça a meta. Mas aqui a mesada subiu no mesmo ritmo — o poder de compra ficou igual, então não houve ameaça de fato."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "meta-orcamento",
+   "dificuldade": 3,
+   "pergunta": "Alguém corta o lanche fora, mas passa a gastar o mesmo valor num aplicativo de jogo. O superávit muda?",
+   "ancora": "O dinheiro só trocou de destino — não sobrou nada a mais.",
+   "alternativas": [
+    {
+     "texto": "Sim, porque trocou por um gasto mais barato",
+     "correta": false,
+     "feedbackErro": "Trocar de gasto só ajuda se o novo custar menos. Aqui o valor gasto é o mesmo — não sobrou nada a mais."
+    },
+    {
+     "texto": "Não, porque o dinheiro só mudou de destino",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque cortar qualquer gasto sempre gera superávit",
+     "correta": false,
+     "feedbackErro": "Cortar ajuda quando o dinheiro fica guardado. Aqui ele foi todo pra outro gasto — não sobrou nada, então o superávit não mudou."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "inflacao-na-meta",
+   "dificuldade": 3,
+   "pergunta": "A meta é pra daqui a 2 semanas, com o valor quase todo guardado. A inflação do mês preocupa nesse caso?",
+   "ancora": "Em prazo curto, o efeito acumulado da inflação é pequeno.",
+   "alternativas": [
+    {
+     "texto": "Sim, tanto quanto numa meta de 2 anos",
+     "correta": false,
+     "feedbackErro": "Inflação pesa mais quanto mais tempo o dinheiro fica parado. Em 2 semanas, o efeito é pequeno perto de uma meta de anos."
+    },
+    {
+     "texto": "Pouco, porque o prazo é curto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não existe inflação em prazos curtos",
+     "correta": false,
+     "feedbackErro": "Inflação existe todo mês, mesmo pequena. O que muda é o efeito acumulado: em 2 semanas ele é pequeno, não zero."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "ameaca-a-meta",
+   "criterio": "Ameaça mesmo já tendo reserva?",
+   "enunciado": "Um imprevisto maior que toda a reserva guardada",
+   "resposta": true,
+   "ancora": "Reserva ajuda até certo ponto — imprevisto maior que ela ainda ameaça.",
+   "feedbackErro": "Ter reserva parece resolver qualquer imprevisto. Mas se ele é maior que a reserva toda, o que passa do limite ainda sai da meta principal."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "inflacao-na-meta",
+   "instrucao": "Isso ameaça a meta mesmo fazendo 'tudo certo'?",
+   "ancora": "Fazer 'certo' pela metade ainda deixa a meta exposta.",
+   "feedbackErro": "Guardar e ter reserva parecem suficientes. Mas se o rendimento não bate a inflação, ou a reserva é menor que o imprevisto, a meta segue exposta.",
+   "caixas": [
+    {
+     "id": "sim",
+     "rotulo": "Ameaça mesmo assim"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não ameaça"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Guardar todo mês num lugar que rende menos que a inflação",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Guardar todo mês num lugar que rende acima da inflação",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Ter reserva menor que o imprevisto que apareceu",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Ter reserva maior que qualquer imprevisto provável",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "meta-orcamento",
+   "criterio": "É superávit de verdade?",
+   "enunciado": "Receita R$ 90, despesa R$ 90, mais R$ 20 de uma dívida vencendo",
+   "resposta": false,
+   "verificacao": {
+    "expressao": "90-90-20",
+    "esperado": -20
+   },
+   "ancora": "Com a dívida entrando, a despesa real supera a receita.",
+   "feedbackErro": "Receita e despesa parecem empatadas, R$ 90 cada. Mas a dívida vencendo entra como despesa também — no total, sai R$ 20 a mais do que entra."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "inflacao-na-meta",
+   "dificuldade": 3,
+   "pergunta": "Alguém guardou R$ 1.200 num ano, parado. O preço do que ela quer subiu 8% no período. Compra o que comprava?",
+   "ancora": "Pra acompanhar 8% de alta, faltariam R$ 96 a mais no total.",
+   "verificacao": {
+    "expressao": "1200*1.08 - 1200",
+    "esperado": 96
+   },
+   "alternativas": [
+    {
+     "texto": "Sim, guardou o valor que planejou",
+     "correta": false,
+     "feedbackErro": "Guardar o valor planejado garante o total combinado, mas não o poder de compra — se o preço subiu 8% e o dinheiro não rendeu, faltam R$ 96."
+    },
+    {
+     "texto": "Não, o preço subiu mais que o dinheiro parado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não dá pra saber sem o valor exato do produto",
+     "correta": false,
+     "feedbackErro": "Não precisa do preço exato: se o dinheiro ficou parado e o preço subiu 8%, faltam 8% de poder de compra, seja qual for o valor final."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "ameaca-a-meta",
+   "criterio": "Ainda ameaça, mesmo sendo boa notícia?",
+   "enunciado": "Ganhar uma bike de presente e parar de guardar pro fone por causa disso",
+   "resposta": true,
+   "ancora": "O presente não ameaça — parar de guardar por causa dele, sim.",
+   "feedbackErro": "O presente em si é bom e não tira nada da meta. A ameaça real é a decisão de parar de guardar por causa dele — isso consome o hábito."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "meta-orcamento",
+   "criterio": "Isso é superávit sustentável?",
+   "enunciado": "Sobrar dinheiro um mês por cortar a única diversão da semana",
+   "resposta": false,
+   "ancora": "Corte que ninguém aguenta manter é superávit que não dura.",
+   "feedbackErro": "Sobrou dinheiro esse mês, e isso é real. Mas cortar a única diversão da semana raramente dura — sem hábito sustentável, o superávit some no mês seguinte."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "metas-e-o-que-ameaca-elas",
+   "pergunta": "Qual situação é uma ameaça 'escondida', que parece segura mas não é?",
+   "alternativas": [
+    {
+     "texto": "Guardar dinheiro parado, sem render, por anos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cortar um gasto pequeno e manter o hábito",
+     "correta": false,
+     "feedbackErro": "Cortar um gasto pequeno e manter o hábito é o que protege a meta — não é uma ameaça escondida."
+    },
+    {
+     "texto": "Ter reserva maior que qualquer imprevisto provável",
+     "correta": false,
+     "feedbackErro": "Reserva maior que o imprevisto provável é proteção de verdade, não ameaça escondida."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "ameaca-a-meta",
+   "dificuldade": 3,
+   "pergunta": "Duas famílias perdem a mesma renda. Uma tinha reserva; a outra, não. A meta de qual é mais ameaçada?",
+   "ancora": "A reserva absorve o golpe; sem ela, o impacto vai direto na meta.",
+   "alternativas": [
+    {
+     "texto": "A que tinha reserva, porque agora ela também acaba",
+     "correta": false,
+     "feedbackErro": "A reserva pode acabar cobrindo o buraco. Mas é exatamente pra isso que ela existe — quem não tinha sente o impacto direto na meta."
+    },
+    {
+     "texto": "A que não tinha reserva",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "As duas igualmente, porque a renda perdida é a mesma",
+     "correta": false,
+     "feedbackErro": "A renda perdida é igual, mas o efeito não: a reserva amortece o golpe numa família e não existe pra isso na outra."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "inflacao-na-meta",
+   "instrucao": "O dinheiro perde ou mantém poder de compra?",
+   "ancora": "Só mantém poder de compra quem rende igual ou mais que a inflação.",
+   "feedbackErro": "Render alguma coisa parece sempre suficiente. Mas só mantém poder de compra quem rende igual ou mais que a inflação do período.",
+   "caixas": [
+    {
+     "id": "perde",
+     "rotulo": "Perde poder de compra"
+    },
+    {
+     "id": "mantem",
+     "rotulo": "Mantém poder de compra"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Guardado parado, com inflação de 5% no ano",
+     "caixaCorreta": "perde"
+    },
+    {
+     "texto": "Guardado rendendo 6%, com inflação de 5% no ano",
+     "caixaCorreta": "mantem"
+    },
+    {
+     "texto": "Guardado rendendo 3%, com inflação de 5% no ano",
+     "caixaCorreta": "perde"
+    },
+    {
+     "texto": "Renda que sobe na mesma proporção da inflação",
+     "caixaCorreta": "mantem"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "meta-orcamento",
+   "criterio": "É superávit sustentável?",
+   "enunciado": "Guardar um valor fixo pequeno todo mês, ajustado se necessário",
+   "resposta": true,
+   "ancora": "Valor fixo e ajustável é o que resiste ao longo do tempo.",
+   "feedbackErro": "Parece pequeno demais pra importar. Mas um valor fixo, mantido e ajustado quando preciso, é o tipo de superávit que realmente dura."
+  }
+ ]
+}

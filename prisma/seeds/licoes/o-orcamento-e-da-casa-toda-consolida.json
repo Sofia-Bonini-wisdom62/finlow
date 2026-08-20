@@ -1,0 +1,251 @@
+{
+ "slug": "o-orcamento-e-da-casa-toda-consolida",
+ "segmento": "ef35",
+ "conceitoPrincipal": "o-orcamento-e-da-casa-toda",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "participacao-da-familia",
+   "criterio": "Ajuda no orçamento da casa?",
+   "enunciado": "Um convidado da casa opinar sobre os gastos da família",
+   "resposta": false,
+   "ancora": "Participar do orçamento é de quem mora e divide as contas da casa.",
+   "feedbackErro": "Opinião de visita pode ser bem-vinda, mas quem decide o orçamento é quem mora e divide as contas da casa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "participacao-da-familia",
+   "criterio": "Ajuda no orçamento da casa?",
+   "enunciado": "Avisar a família só depois de já ter feito o gasto grande",
+   "resposta": false,
+   "ancora": "Avisar depois não dá chance de decidir junto — só de saber depois.",
+   "feedbackErro": "Avisar parece participar, mas se é depois do gasto feito, a família não teve chance real de decidir junto."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "criterio": "Isso prepara o futuro?",
+   "enunciado": "Guardar dinheiro pra emergência, mas nunca usá-lo mesmo quando aparece uma",
+   "resposta": false,
+   "ancora": "Reserva que nunca é usada, nem na emergência, não cumpriu sua função.",
+   "feedbackErro": "Parece prudência guardar sempre, mas a reserva existe pra ser usada quando a emergência realmente aparece."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "dificuldade": 3,
+   "pergunta": "A família tem R$ 900. Separa um terço pra manutenção da casa e o resto pros gastos do mês. Quanto sobra?",
+   "ancora": "Um terço de 900 é 300; o resto, 900 menos 300, é 600.",
+   "verificacao": { "expressao": "900-(900/3)", "esperado": 600 },
+   "alternativas": [
+    {
+     "texto": "R$ 600",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 300",
+     "correta": false,
+     "feedbackErro": "300 é o valor separado pra manutenção (um terço de 900), não o que sobra. O resto é 600."
+    },
+    {
+     "texto": "R$ 450",
+     "correta": false,
+     "feedbackErro": "450 seria dividir os R$ 900 ao meio. Mas só um terço, 300, foi separado — sobram 600."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "participacao-da-familia",
+   "dificuldade": 3,
+   "pergunta": "Numa emergência médica urgente, é preciso reunir a família e votar antes de qualquer gasto?",
+   "ancora": "Participar vale pro planejado; emergência pede ação imediata.",
+   "alternativas": [
+    {
+     "texto": "Não, decisões urgentes de emergência não esperam reunião",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, sempre — participação em família não tem exceção",
+     "correta": false,
+     "feedbackErro": "Participar é a regra do dia a dia, mas numa emergência real, esperar reunião pode custar caro demais."
+    },
+    {
+     "texto": "Sim, mas só se o gasto for muito alto",
+     "correta": false,
+     "feedbackErro": "Mesmo um gasto alto, numa emergência de verdade, não pode esperar uma reunião pra ser resolvido."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "criterio": "Isso prepara o futuro?",
+   "enunciado": "Trocar um eletrodoméstico que ainda funciona bem, só porque saiu um modelo novo",
+   "resposta": false,
+   "ancora": "Trocar o que ainda funciona bem gasta hoje sem necessidade real.",
+   "feedbackErro": "Parece cuidado com o futuro, mas trocar algo que ainda funciona bem é gasto sem necessidade, não prevenção."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "participacao-da-familia",
+   "instrucao": "Ainda conta como participar de verdade? Arraste.",
+   "ancora": "Participar de verdade é opinar antes, não só concordar depois.",
+   "feedbackErro": "Concordar sem entender ou saber depois do fato não é participar — é só estar por perto.",
+   "caixas": [
+    { "id": "sim", "rotulo": "É participar" },
+    { "id": "nao", "rotulo": "Não é" }
+   ],
+   "itens": [
+    { "texto": "Opinar antes da decisão ser tomada", "caixaCorreta": "sim" },
+    { "texto": "Só ficar sabendo depois que o gasto já aconteceu", "caixaCorreta": "nao" },
+    { "texto": "Ajudar a decidir prioridades quando o dinheiro é curto", "caixaCorreta": "sim" },
+    { "texto": "Concordar com tudo sem nunca ler ou entender os gastos", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "criterio": "Isso prepara o futuro?",
+   "enunciado": "Fazer a revisão do carro certinho no prazo, mesmo sem nenhum problema aparente",
+   "resposta": true,
+   "ancora": "Prevenção funciona mesmo sem sinal de problema — isso evita surpresas.",
+   "feedbackErro": "Sem problema visível parece gasto à toa, mas é justamente prevenir antes de aparecer que evita surpresas caras."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "dificuldade": 3,
+   "pergunta": "A família tem R$ 850 e duas contas atrasadas de R$ 210 cada. Depois de pagar as duas, quanto sobra?",
+   "ancora": "Duas contas de 210 somam 420; 850 menos 420 é 430.",
+   "verificacao": { "expressao": "850-210*2", "esperado": 430 },
+   "alternativas": [
+    {
+     "texto": "R$ 430",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 640",
+     "correta": false,
+     "feedbackErro": "640 pagaria só uma das contas de 210. As duas juntas somam 420; 850 menos 420 é 430."
+    },
+    {
+     "texto": "R$ 210",
+     "correta": false,
+     "feedbackErro": "210 é o valor de uma conta só. Pagando as duas, 850 menos 420 sobra 430."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "participacao-da-familia",
+   "criterio": "Isso ajuda o orçamento?",
+   "enunciado": "Reunir a família pra decidir até o gasto de um lanche de R$ 5",
+   "resposta": false,
+   "ancora": "Participar não significa votar até nos gastos mínimos do dia a dia.",
+   "feedbackErro": "Parece cuidado extra, mas reunir todo mundo pra decisões tão pequenas atrapalha mais do que ajuda."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "criterio": "Isso ajuda a preparar o futuro?",
+   "enunciado": "Guardar dinheiro pra emergência, mas usá-lo pra emergência de verdade quando ela aparece",
+   "resposta": true,
+   "ancora": "Reserva cumpre sua função quando é usada na emergência certa.",
+   "feedbackErro": "Parece contraditório usar o que foi guardado, mas é exatamente pra isso que a reserva existe."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "participacao-da-familia",
+   "pergunta": "Depois de tudo isso, qual é a ideia mais completa sobre o orçamento da casa?",
+   "alternativas": [
+    {
+     "texto": "Participar significa decidir até os menores gastos do dia",
+     "correta": false,
+     "feedbackErro": "Participar é opinar nas decisões que importam — não travar cada gasto pequeno numa reunião."
+    },
+    {
+     "texto": "Participar nas decisões importantes e prever o futuro evitam surpresas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Guardar reserva significa nunca usá-la, mesmo na emergência",
+     "correta": false,
+     "feedbackErro": "A reserva existe pra ser usada quando a emergência aparece — guardar sem nunca usar não cumpre sua função."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "dificuldade": 3,
+   "pergunta": "A família tem R$ 620 e separa um quarto pra manutenção da casa. Quanto sobra pros gastos do mês?",
+   "ancora": "Um quarto de 620 é 155; o resto, 620 menos 155, é 465.",
+   "verificacao": { "expressao": "620-(620/4)", "esperado": 465 },
+   "alternativas": [
+    {
+     "texto": "R$ 465",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 155",
+     "correta": false,
+     "feedbackErro": "155 é o valor separado pra manutenção (um quarto de 620), não o que sobra. O resto é 465."
+    },
+    {
+     "texto": "R$ 310",
+     "correta": false,
+     "feedbackErro": "310 seria dividir os R$ 620 ao meio. Mas só um quarto, 155, foi separado — sobram 465."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "participacao-da-familia",
+   "instrucao": "É participar de verdade? Arraste.",
+   "ancora": "Participar é opinar antes e entender — não só saber depois.",
+   "feedbackErro": "Descobrir depois ou concordar sem entender não é participar de fato — é só estar por perto do resultado.",
+   "caixas": [
+    { "id": "sim", "rotulo": "É participar" },
+    { "id": "nao", "rotulo": "Não é" }
+   ],
+   "itens": [
+    { "texto": "Opinar antes de um gasto grande ser decidido", "caixaCorreta": "sim" },
+    { "texto": "Só descobrir o gasto quando a conta chega", "caixaCorreta": "nao" },
+    { "texto": "Ajudar a escolher o que é prioridade no mês apertado", "caixaCorreta": "sim" },
+    { "texto": "Concordar sem entender do que se trata o gasto", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "criterio": "Isso prepara o futuro?",
+   "enunciado": "Adiar a troca do filtro de água até ele parar de funcionar de vez",
+   "resposta": false,
+   "ancora": "Esperar parar de vez costuma custar mais que trocar no prazo certo.",
+   "feedbackErro": "Parece economia esperar, mas deixar parar de vez costuma sair mais caro do que trocar no prazo certo."
+  }
+ ]
+}

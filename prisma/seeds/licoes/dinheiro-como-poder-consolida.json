@@ -1,0 +1,295 @@
+{
+ "slug": "dinheiro-como-poder-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "dinheiro-como-poder",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-status",
+   "criterio": "O dinheiro está dando poder aqui?",
+   "enunciado": "Empresa pagar o salário em dia, como manda a lei",
+   "resposta": false,
+   "ancora": "Obrigação legal não é poder — poder vem de escolha.",
+   "feedbackErro": "Envolve dinheiro e parece controle, mas pagar o que a lei exige não dá margem de escolha a quem paga — sem escolha, não há poder em jogo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-status",
+   "criterio": "O dinheiro está dando poder aqui?",
+   "enunciado": "Avô condicionar a herança a quem visitar mais vezes",
+   "resposta": true,
+   "ancora": "A condição transforma a herança em instrumento de controle.",
+   "feedbackErro": "Deixar herança seria neutro, mas condicioná-la a visitas transforma o dinheiro futuro numa ferramenta de controle sobre o comportamento da família."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-status",
+   "criterio": "O dinheiro está dando poder aqui?",
+   "enunciado": "Comprar o mesmo pão de sempre na padaria do bairro",
+   "resposta": false,
+   "ancora": "Compra rotineira, sem ninguém sendo controlado.",
+   "feedbackErro": "É uma troca comum de dinheiro por produto, sem disputa de decisão envolvida — não há poder social nisso, só consumo do dia a dia."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "formacao-de-preco",
+   "dificuldade": 3,
+   "pergunta": "Uma grife cara entra em liquidação com 70% de desconto. O status dela cai junto com o preço?",
+   "ancora": "Preço baixo pode corroer o status que sustentava o preço alto.",
+   "verificacao": { "expressao": "1-0.7", "esperado": 0.3 },
+   "alternativas": [
+    {
+     "texto": "Sim, porque o status dependia em parte de ser cara e rara",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, porque status é uma marca registrada e nunca muda",
+     "correta": false,
+     "feedbackErro": "Marca registrada é jurídico, não social. A percepção de status de uma marca pode cair quando ela vira acessível e comum."
+    },
+    {
+     "texto": "Não, porque o desconto só afeta quem já tinha comprado antes",
+     "correta": false,
+     "feedbackErro": "O efeito é o contrário: liquidações frequentes tendem a diluir o status de uma marca para todo mundo, não só para quem comprou antes."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "dinheiro-e-status",
+   "dificuldade": 3,
+   "pergunta": "Um professor recusa presentes de alunos, mesmo caros. Por que essa é uma prática recomendada?",
+   "ancora": "Recusar o presente impede que o dinheiro compre tratamento diferente.",
+   "alternativas": [
+    {
+     "texto": "Porque presentes caros sempre são ilegais no Brasil",
+     "correta": false,
+     "feedbackErro": "Presentes entre pessoas não são ilegais por si só. O problema aqui é outro: o risco de o dinheiro comprar favoritismo."
+    },
+    {
+     "texto": "Porque aceitar poderia dar a quem paga poder sobre as notas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque professores não podem receber nenhum tipo de presente",
+     "correta": false,
+     "feedbackErro": "A regra não é 'nenhum presente' de forma absoluta — o cuidado é específico com presentes que possam comprar influência sobre notas."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "formacao-de-preco",
+   "criterio": "Isso muda o preço por causa da demanda?",
+   "enunciado": "Preço de um remédio essencial continuar igual mesmo com surto de uma doença",
+   "resposta": false,
+   "ancora": "Preço tabelado por lei não responde à demanda do mercado.",
+   "feedbackErro": "A demanda de fato dispara num surto — mas para remédios essenciais o preço costuma ser controlado por regulação, não pelo livre jogo de oferta e demanda."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "dinheiro-e-status",
+   "instrucao": "Ordene do maior ao menor alcance da decisão",
+   "ancora": "O critério: alcance da decisão, não o valor gasto.",
+   "feedbackErro": "O valor em reais continua sendo a armadilha. O que ordena aqui é quantas pessoas sentem o efeito da decisão, não quanto custou.",
+   "itens": [
+    { "texto": "Governo federal decide o valor do salário mínimo", "posicaoCorreta": 1 },
+    { "texto": "Prefeito decide o valor do IPTU da cidade", "posicaoCorreta": 2 },
+    { "texto": "Síndico decide o valor da taxa extra do condomínio", "posicaoCorreta": 3 },
+    { "texto": "Você decide quanto vai gastar de crédito no celular", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-status",
+   "criterio": "Isso é dinheiro controlando uma escolha?",
+   "enunciado": "Um banco aprovar empréstimo com juros iguais para qualquer cliente",
+   "resposta": false,
+   "ancora": "Sem condição diferente por pessoa, não há controle individual.",
+   "feedbackErro": "Envolve dinheiro e uma decisão do banco, mas a regra é igual para todo mundo — controle pressupõe uma condição sob medida para influenciar alguém específico."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-status",
+   "criterio": "Isso é dinheiro controlando uma escolha?",
+   "enunciado": "Uma emissora pagar mais a um jogador para ele só dar entrevista a ela",
+   "resposta": true,
+   "ancora": "O contrato de exclusividade é dinheiro comprando a escolha do jogador.",
+   "feedbackErro": "Parece só um contrato de trabalho comum, mas o pagamento extra existe justamente para restringir a liberdade de escolha do jogador — isso é controle."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "formacao-de-preco",
+   "pergunta": "Um relógio genérico custa R$80 para fabricar. Com marca de luxo, chega a quanto na loja?",
+   "campo": "moeda",
+   "min": 80,
+   "max": 4000,
+   "gabarito": 2000,
+   "toleranciaPct": 20,
+   "fonte": "múltiplo típico de marcas de luxo sobre o custo de produção, ordem de grandeza (setor de luxo)",
+   "verificacao": { "expressao": "80*25", "esperado": 2000 },
+   "feedbackPerto": "Isso mesmo — no luxo o múltiplo pode passar de 20 vezes o custo de fabricação.",
+   "feedbackLonge": "Fica perto de R$2.000. No luxo, o múltiplo entre custo e preço final é bem mais alto que numa marca comum."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "formacao-de-preco",
+   "dificuldade": 3,
+   "pergunta": "Camila é a única médica da cidade e cobra o dobro da tabela padrão. Isso é igual a comprar status com marca?",
+   "ancora": "Aqui o preço alto vem de escassez de oferta, não de imagem.",
+   "alternativas": [
+    {
+     "texto": "Não, vem de pouca oferta de médicos na região, não de imagem",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque toda cobrança acima da média é sobre status",
+     "correta": false,
+     "feedbackErro": "Nem todo preço alto é sobre status. Aqui a causa é estrutural: falta de outros médicos na cidade, não uma imagem construída."
+    },
+    {
+     "texto": "Sim, porque médicos sempre cobram por prestígio pessoal",
+     "correta": false,
+     "feedbackErro": "Prestígio pode influenciar em alguns casos, mas o fator decisivo aqui é a escassez de profissionais disponíveis na região."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "dinheiro-e-status",
+   "dificuldade": 3,
+   "pergunta": "Uma seguradora cobra mais caro de motoristas jovens. Isso é poder do dinheiro ou outra coisa?",
+   "ancora": "É cálculo de risco, não controle: o critério muda tudo.",
+   "alternativas": [
+    {
+     "texto": "É cálculo de risco baseado em estatística de acidentes",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "É a seguradora usando dinheiro para punir jovens",
+     "correta": false,
+     "feedbackErro": "Punir seria arbitrário. O preço maior aqui segue uma estatística real de mais sinistros nessa faixa etária — é risco, não punição."
+    },
+    {
+     "texto": "É status: seguradoras cobram mais de quem parece rico",
+     "correta": false,
+     "feedbackErro": "O critério declarado não é aparência de riqueza, é idade associada a risco estatístico de acidente — categorias diferentes."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "formacao-de-preco",
+   "criterio": "O preço mudou por oferta ou demanda?",
+   "enunciado": "Preço da água engarrafada disparar após falta de abastecimento na cidade",
+   "resposta": true,
+   "ancora": "Oferta de água cai, urgência sobe: clássico efeito de escassez.",
+   "feedbackErro": "Parece abuso, e às vezes é — mas o motivo econômico de base é a oferta menor combinada com uma demanda urgente."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "formacao-de-preco",
+   "criterio": "O preço mudou por oferta ou demanda?",
+   "enunciado": "Preço do pão continuar igual mesmo com a padaria cheia todo dia",
+   "resposta": false,
+   "ancora": "Demanda alta e constante nem sempre muda o preço combinado.",
+   "feedbackErro": "Fila cheia sugere demanda alta, mas o preço pode ficar travado por contrato, tabela ou concorrência — nem toda demanda alta se traduz em preço maior."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "dinheiro-e-status",
+   "pergunta": "Qual frase resume melhor os limites do que você viu?",
+   "alternativas": [
+    {
+     "texto": "Todo preço alto é sempre sobre status e poder",
+     "correta": false,
+     "feedbackErro": "Vimos casos em que o preço alto vem de escassez de oferta ou de risco calculado — não de status."
+    },
+    {
+     "texto": "Poder e preço têm causas específicas: escolha controlada ou mercado apertado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Obrigação legal também é uma forma de poder do dinheiro",
+     "correta": false,
+     "feedbackErro": "Vimos o contrário: quando não há escolha, como cumprir a lei, não há poder em jogo — poder pressupõe alternativa."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "dinheiro-e-status",
+   "instrucao": "É poder do dinheiro ou é preço de mercado?",
+   "ancora": "Poder controla uma pessoa; mercado ajusta um valor geral.",
+   "feedbackErro": "O jeito de separar: poder tem um alvo específico sendo influenciado; mercado reage a oferta e demanda de forma geral, sem escolher uma pessoa.",
+   "caixas": [
+    { "id": "poder", "rotulo": "Poder" },
+    { "id": "mercado", "rotulo": "Mercado" }
+   ],
+   "itens": [
+    { "texto": "Investidor só libera a verba se trocarem o sócio", "caixaCorreta": "poder" },
+    { "texto": "Preço do frete subir na época de fim de ano", "caixaCorreta": "mercado" },
+    { "texto": "Patrocinador corta o contrato se o atleta perder uma partida", "caixaCorreta": "poder" },
+    { "texto": "Ingresso de cinema ficar mais caro na estreia", "caixaCorreta": "mercado" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-status",
+   "criterio": "Isso é dinheiro comprando status?",
+   "enunciado": "Comprar um carro popular usado, pelo menor preço disponível",
+   "resposta": false,
+   "ancora": "Escolher pelo preço baixo é economia, não status.",
+   "feedbackErro": "Envolve compra de carro, o mesmo tema de outros exemplos — mas aqui o critério foi economizar, o oposto de pagar mais para impressionar."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "formacao-de-preco",
+   "dificuldade": 3,
+   "pergunta": "Por que hospitais particulares de ponta cobram muito mais que o SUS pelo mesmo procedimento?",
+   "ancora": "O preço no particular soma conforto, estrutura e exclusividade.",
+   "alternativas": [
+    {
+     "texto": "Porque somam conforto, estrutura extra e exclusividade ao preço",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque o SUS usa equipamento proibido no particular",
+     "correta": false,
+     "feedbackErro": "Não existe essa proibição — os equipamentos podem ser parecidos. A diferença de preço vem de estrutura, conforto e exclusividade."
+    },
+    {
+     "texto": "Porque o SUS é gratuito por limite legal do preço particular",
+     "correta": false,
+     "feedbackErro": "O SUS é gratuito por política pública, não por limite legal de preço do particular — são lógicas de financiamento diferentes."
+    }
+   ]
+  }
+ ]
+}

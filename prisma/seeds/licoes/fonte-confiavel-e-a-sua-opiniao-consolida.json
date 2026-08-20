@@ -1,0 +1,332 @@
+{
+ "slug": "fonte-confiavel-e-a-sua-opiniao-consolida",
+ "segmento": "em1",
+ "conceitoPrincipal": "fonte-confiavel-e-a-sua-opiniao",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "quem-publica",
+   "criterio": "Confiável mesmo assim?",
+   "enunciado": "Dado do Banco Central, mas de dez anos atrás, para decidir hoje",
+   "resposta": false,
+   "ancora": "Fonte certa, dado vencido: taxa velha descreve outro país.",
+   "feedbackErro": "A origem passa no filtro, e isso conta. O que falha é a validade: taxas mudam, e um dado de dez anos descreve outro cenário. Cheque a data junto com a fonte."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "quem-publica",
+   "criterio": "Confiável mesmo assim?",
+   "enunciado": "Economista com diploma real indicando o fundo que ele mesmo vende",
+   "resposta": false,
+   "ancora": "Credencial não anula conflito: ele lucra com a sua decisão.",
+   "feedbackErro": "O diploma é verdadeiro e o conhecimento existe — é isso que confunde. Mas quem vende o que recomenda tem interesse na sua escolha: exija o dado, não o título."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "quem-publica",
+   "criterio": "Confiável mesmo assim?",
+   "enunciado": "Jornal que errou um número e publicou a correção no dia seguinte",
+   "resposta": true,
+   "ancora": "Corrigir às claras é sinal de método — quem nunca erra, esconde.",
+   "feedbackErro": "O erro parece desqualificar. Mas fonte séria corrige com registro público; fonte ruim apaga e nega. Correção declarada é o método funcionando, não falhando."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "fato-ou-opiniao",
+   "dificuldade": 3,
+   "pergunta": "Otávio vai publicar um artigo de opinião sobre os juros do cartão. O que torna o texto honesto?",
+   "ancora": "Tese declarada, dados checáveis, fonte citada.",
+   "alternativas": [
+    {
+     "texto": "Tese assumida, apoiada em dados com fonte citada",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só a indignação dele, sem número de ninguém",
+     "correta": false,
+     "feedbackErro": "Indignação é legítima e move o texto. Mas opinião sem dado é desabafo: quem lê não tem o que conferir. Artigo honesto mostra em que fatos a tese se apoia."
+    },
+    {
+     "texto": "Números soltos, sem dizer de onde vieram",
+     "correta": false,
+     "feedbackErro": "Número sem fonte parece técnico, mas é incheckável — vale o mesmo que boato. Citar a origem é o que permite ao leitor conferir e até discordar com base."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "fato-ou-opiniao",
+   "dificuldade": 3,
+   "pergunta": "'A poupança rendeu 8% no ano' — número correto, inflação de 9%. Qual o problema do texto?",
+   "ancora": "Dado real, conclusão torta: render 8% com inflação de 9% é perder.",
+   "verificacao": {
+    "expressao": "1.08/1.09",
+    "esperado": 0.9908,
+    "tolerancia": 0.001
+   },
+   "alternativas": [
+    {
+     "texto": "Falta o contexto: o rendimento perdeu da inflação",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nenhum: número verdadeiro encerra a conversa",
+     "correta": false,
+     "feedbackErro": "O 8% confere, e checar foi certo. Mas dado verdadeiro fora de contexto engana: com preços subindo 9%, o 'ganho' comprou menos. Contexto é parte do fato."
+    },
+    {
+     "texto": "O número certo seria uns 10%",
+     "correta": false,
+     "feedbackErro": "Não é questão de ajuste: o 8% está certo e registrado. O defeito do texto não mora no número — mora no silêncio sobre a inflação que o engoliu."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "fato-ou-opiniao",
+   "criterio": "A checagem termina aí?",
+   "enunciado": "O número confere na fonte, mas a conclusão vai muito além dele",
+   "resposta": false,
+   "ancora": "Conferir o dado é metade; a outra é ver se a conclusão cabe nele.",
+   "feedbackErro": "Achar o número na origem é o passo raro — mérito. Falta o segundo: o dado sustenta a conclusão? Verdade parcial bem usada é a mentira mais difícil de pegar."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "fato-ou-opiniao",
+   "instrucao": "Reportagem sobre dinheiro: ordene a produção.",
+   "ancora": "Apurar vem antes de escrever; citar as fontes fecha o texto.",
+   "feedbackErro": "O critério é apuração antes de redação: primeiro a pergunta, depois o dado primário e os lados ouvidos — o texto vem por último, com as fontes citadas.",
+   "itens": [
+    {
+     "texto": "Definir a pergunta que o texto responde",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Levantar os dados nas fontes primárias",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Ouvir os lados envolvidos no assunto",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Escrever citando as fontes usadas",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "fato-ou-opiniao",
+   "criterio": "O texto se sustenta?",
+   "enunciado": "Artigo de opinião que declara a tese e cita as fontes dos dados",
+   "resposta": true,
+   "ancora": "Opinião honesta mostra em que fatos se apoia — e assume o resto.",
+   "feedbackErro": "Ter tese parece suspeito, mas tese declarada é o oposto de manipulação: você sabe o que o autor quer e confere os dados dele. Perigosa é a tese escondida."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "fato-ou-opiniao",
+   "criterio": "O texto se sustenta?",
+   "enunciado": "Texto de tom neutro cujos dados ninguém consegue localizar",
+   "resposta": false,
+   "ancora": "Sem fonte localizável, neutralidade é só tom de voz.",
+   "feedbackErro": "O tom equilibrado passa seriedade — é esse o disfarce. Sem a origem dos números, o texto pede fé, não leitura crítica: neutro no estilo, opaco no método."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "onde-checar",
+   "pergunta": "Pela régua pública (Selic, ~15% ao ano), R$ 2.000 aplicados viram quanto em 2 anos?",
+   "campo": "moeda",
+   "min": 2000,
+   "max": 4000,
+   "gabarito": 2645,
+   "toleranciaPct": 20,
+   "fonte": "Selic ~15% ao ano (Banco Central)",
+   "verificacao": {
+    "expressao": "2000*1.15^2",
+    "esperado": 2645
+   },
+   "feedbackPerto": "R$ 2.645. Essa é a régua realista do país: promessa muito acima disso exige prova pública — ou embute um risco que ninguém declarou.",
+   "feedbackLonge": "R$ 2.645 — não R$ 2.600: no 2º ano o juro rende sobre juro. O viés é a régua ausente: sem ela na cabeça, qualquer promessa absurda soa possível."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "quem-publica",
+   "dificuldade": 3,
+   "pergunta": "Um vídeo mostra âncora de telejornal 'recomendando' um investimento. Por que o rosto não basta?",
+   "ancora": "Vídeo se falsifica; confirme no canal oficial de quem aparece.",
+   "alternativas": [
+    {
+     "texto": "Vídeos são forjados; cheque o canal oficial da pessoa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Âncora famoso não se arriscaria a mentir",
+     "correta": false,
+     "feedbackErro": "A reputação é real — e é o que o golpe sequestra. Com IA, rosto e voz se fabricam; a pessoa nem sabe que 'recomendou'. Confirme no canal oficial, não na fama."
+    },
+    {
+     "texto": "Se está patrocinado na rede, foi verificado",
+     "correta": false,
+     "feedbackErro": "Patrocínio compra alcance, não verificação: plataformas aprovam anúncios em segundos, e golpes pagam impulsionamento. A checagem continua sendo sua."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "onde-checar",
+   "dificuldade": 3,
+   "pergunta": "Você achou o mesmo número em dez sites diferentes. A checagem terminou?",
+   "ancora": "Dez cópias da mesma origem contam como uma fonte só.",
+   "alternativas": [
+    {
+     "texto": "Não: dez cópias de uma origem valem por uma",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim: tanta repetição confirma o dado",
+     "correta": false,
+     "feedbackErro": "Repetição parece confirmação, mas sites copiam uns dos outros — inclusive o erro. Confirmação real é achar a origem primária e conferir lá."
+    },
+    {
+     "texto": "Sim, se os dez sites forem conhecidos",
+     "correta": false,
+     "feedbackErro": "Fama não impede copiar errado: veículo grande também replica número sem conferir. O que encerra a checagem é a fonte primária, não o tamanho de quem repete."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "onde-checar",
+   "criterio": "É checagem bem feita?",
+   "enunciado": "Duvidar de tudo e nunca chegar a uma conclusão",
+   "resposta": false,
+   "ancora": "Checagem tem fim: origem conferida, régua aplicada, decisão tomada.",
+   "feedbackErro": "Desconfiança parece rigor, mas sem fim ela vira paralisia — e abre espaço para decidir no impulso depois. O método existe para concluir, não para adiar."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "fato-ou-opiniao",
+   "criterio": "É checagem bem feita?",
+   "enunciado": "Aceitar o dado do regulador mesmo quando ele desmente você",
+   "resposta": true,
+   "ancora": "Fonte boa vale principalmente quando contraria sua opinião.",
+   "feedbackErro": "Dói admitir — é o viés de confirmação agindo. Mas checagem que só aceita o que agrada é espelho, não método. O dado manda; a opinião se ajusta a ele."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "quem-publica",
+   "pergunta": "Depois de três encontros, o que resume checar de verdade?",
+   "alternativas": [
+    {
+     "texto": "Origem, interesse, data e contexto — e conclusão que caiba no dado.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Dado verdadeiro garante conclusão verdadeira.",
+     "correta": false,
+     "feedbackErro": "O 8% da poupança era real — e escondia perda para a inflação. Contexto decide."
+    },
+    {
+     "texto": "Checar é ver o número repetido em muitos sites.",
+     "correta": false,
+     "feedbackErro": "Dez cópias valem uma. Checagem conta origens independentes, não repetições."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "quem-publica",
+   "instrucao": "Sinal de alerta ou prática regular?",
+   "ancora": "Alerta: pressa, garantia e conta de pessoa física. Regular: registro.",
+   "feedbackErro": "O regulado exige registro, clareza e conta da empresa. Pressa para decidir, lucro garantido e depósito em conta de pessoa física são assinatura de golpe.",
+   "caixas": [
+    {
+     "id": "alerta",
+     "rotulo": "Alerta"
+    },
+    {
+     "id": "regular",
+     "rotulo": "Regular"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Pressão para aplicar 'só até hoje'",
+     "caixaCorreta": "alerta"
+    },
+    {
+     "texto": "Registro conferível no site da CVM",
+     "caixaCorreta": "regular"
+    },
+    {
+     "texto": "Depósito na conta pessoal do vendedor",
+     "caixaCorreta": "alerta"
+    },
+    {
+     "texto": "Taxas e riscos descritos por escrito",
+     "caixaCorreta": "regular"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "fato-ou-opiniao",
+   "dificuldade": 3,
+   "pergunta": "Dois artigos assinados defendem teses opostas sobre o mesmo imposto. Como escolher em qual confiar?",
+   "ancora": "Compare argumentos e dados citados — não a sua simpatia prévia.",
+   "alternativas": [
+    {
+     "texto": "Pelos dados que cada um cita e por como argumenta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pelo que combina com o que você já pensava",
+     "correta": false,
+     "feedbackErro": "É o caminho confortável — e o viés de confirmação em ação. Texto bom às vezes muda sua opinião; escolher pela concordância cancela a leitura."
+    },
+    {
+     "texto": "Pelo autor com mais seguidores nas redes",
+     "correta": false,
+     "feedbackErro": "Alcance mede popularidade do autor, não qualidade do argumento. Opinião se pesa pelo que sustenta a tese: dados citados, lógica e fontes."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "quem-publica",
+   "criterio": "Pronto para publicar?",
+   "enunciado": "Seu texto usa um dado que você não conseguiu conferir",
+   "resposta": false,
+   "ancora": "O que você publica vira fonte para alguém. Confira ou corte.",
+   "feedbackErro": "A tentação é usar assim mesmo. Mas publicar dado não conferido faz de você o elo do boato — o filtro que você cobra dos outros vale para o seu texto."
+  }
+ ]
+}

@@ -1,0 +1,247 @@
+{
+ "slug": "a-fatura-do-cartao-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "a-fatura-do-cartao",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "ler-a-fatura",
+   "criterio": "Ainda entra na fatura, mesmo assim?",
+   "enunciado": "Uma compra cancelada, estornada antes do fechamento",
+   "resposta": false,
+   "ancora": "Estorno antes do fechamento tira a compra da fatura.",
+   "feedbackErro": "Parece que toda compra feita fica registrada pra sempre. Mas o estorno antes do fechamento remove o valor do total."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-do-parcial",
+   "criterio": "Isso é verdade sobre a fatura?",
+   "enunciado": "O mínimo evita que seu nome vá pro cadastro de inadimplentes",
+   "resposta": true,
+   "ancora": "Mínimo evita negativação; não evita o juro do rotativo.",
+   "feedbackErro": "Parece que pagar o mínimo já resolve tudo. Ele evita a negativação, mas o saldo restante continua rendendo juro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-do-parcial",
+   "criterio": "Isso é verdade sobre a fatura?",
+   "enunciado": "Pagar o mínimo todo mês, indefinidamente, é uma boa estratégia",
+   "resposta": false,
+   "ancora": "Pagar só o mínimo sempre mantém a dívida crescendo a 14% ao mês.",
+   "feedbackErro": "Não atrasar parece já ser suficiente. Mas pagar só o mínimo mês após mês deixa a dívida crescendo sem parar, a 14% ao mês."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "ler-a-fatura",
+   "dificuldade": 3,
+   "pergunta": "Fatura mostra total de R$ 620, mas você só reconhece R$ 500 em compras. Causa mais provável?",
+   "ancora": "A diferença de R$ 120 costuma ser saldo do rotativo com juro.",
+   "verificacao": { "expressao": "620-500", "esperado": 120 },
+   "alternativas": [
+    {
+     "texto": "Sobrou saldo do rotativo do mês passado, com juros",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A fatura está errada e deve ser ignorada",
+     "correta": false,
+     "feedbackErro": "Ignorar não resolve — o valor pode estar certo. O jeito certo é checar a fatura anterior antes de descartar."
+    },
+    {
+     "texto": "É cobrança de anuidade nesse valor exato",
+     "correta": false,
+     "feedbackErro": "Anuidade costuma ser um valor fixo e conhecido, cobrado uma vez por ano — raramente explica uma diferença assim."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-do-parcial",
+   "dificuldade": 3,
+   "pergunta": "Você quitou a fatura inteira, mas comprou de novo no dia seguinte. Isso já gera juro?",
+   "ancora": "Juro só aparece se sobrar saldo até o fechamento da fatura.",
+   "alternativas": [
+    {
+     "texto": "Não: juro só aparece se sobrar saldo até o fechamento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, toda compra nova já gera juro na hora",
+     "correta": false,
+     "feedbackErro": "O juro não é automático por comprar. Ele só existe se, no fechamento, sobrar saldo sem pagar."
+    },
+    {
+     "texto": "Sim, porque o cartão sempre cobra juro nas compras",
+     "correta": false,
+     "feedbackErro": "O cartão não cobra juro por comprar. O juro aparece só quando sobra saldo sem pagar até o fechamento."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-do-parcial",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Fatura paga com atraso, mas acima do mínimo, evita todo juro",
+   "resposta": false,
+   "ancora": "Atraso cobra multa e mora, mesmo pagando mais que o mínimo.",
+   "feedbackErro": "Pagar mais que o mínimo parece suficiente. Mas o atraso, por si só, já gera multa e mora — independente do valor pago."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "custo-do-parcial",
+   "instrucao": "Saldo no rotativo. Toque na ordem de urgência.",
+   "ancora": "Conter o gasto, atacar o saldo, só depois comparar trocas.",
+   "feedbackErro": "Trocar de crédito parece a solução rápida. Mas primeiro para de crescer a dívida, depois ataca o saldo — só então compara opções.",
+   "itens": [
+    { "texto": "Parar de usar o cartão pra não crescer mais", "posicaoCorreta": 1 },
+    { "texto": "Pagar o máximo possível na próxima fatura", "posicaoCorreta": 2 },
+    { "texto": "Comparar se dá pra trocar por crédito mais barato", "posicaoCorreta": 3 },
+    { "texto": "Voltar a usar o cartão normalmente", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-do-parcial",
+   "criterio": "Ainda vale esse cuidado?",
+   "enunciado": "Mesmo com saldo pequeno no rotativo, vale quitar logo",
+   "resposta": true,
+   "ancora": "Mesmo pequeno, o saldo cresce 14% ao mês se ficar parado.",
+   "feedbackErro": "Saldo pequeno parece não fazer diferença. Mas ele cresce na mesma taxa de 14% ao mês — quitar cedo evita o acúmulo."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-do-parcial",
+   "dificuldade": 3,
+   "pergunta": "Fatura de R$ 620 sem pagamento, rotativo a 14% ao mês. Dívida após o juro do 1º mês?",
+   "ancora": "620 mais 14% de juro: 620 vezes 1,14 dá 706,80.",
+   "verificacao": { "expressao": "620*1.14", "esperado": 706.8 },
+   "alternativas": [
+    {
+     "texto": "R$ 706,80",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 634",
+     "correta": false,
+     "feedbackErro": "Esse valor soma só R$ 14 fixos. É percentual sobre 620: 620 vezes 1,14 dá 706,80."
+    },
+    {
+     "texto": "R$ 620",
+     "correta": false,
+     "feedbackErro": "R$ 620 seria sem nenhum juro. Sem pagar nada, o rotativo cobra 14% em cima — o valor cresce pra 706,80."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "ler-a-fatura",
+   "criterio": "Ainda ajuda, mesmo em fatura zerada?",
+   "enunciado": "Conferir a fatura mesmo quando o valor parece igual todo mês",
+   "resposta": true,
+   "ancora": "Cobrança indevida pode se disfarçar de valor parecido.",
+   "feedbackErro": "Valor repetido parece sinal de que está tudo certo. Mas uma cobrança indevida pode aparecer com valor parecido ao de sempre."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-do-parcial",
+   "criterio": "Isso resolve o rotativo?",
+   "enunciado": "Trocar de cartão pra outro banco, sem mudar o hábito de gasto",
+   "resposta": false,
+   "ancora": "Trocar de cartão não muda o comportamento que gerou o saldo.",
+   "feedbackErro": "Trocar de banco parece um recomeço. Mas sem mudar o hábito que gerou o saldo, o rotativo tende a se repetir no cartão novo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "ler-a-fatura",
+   "pergunta": "Qual frase resume os três encontros sobre a fatura?",
+   "alternativas": [
+    {
+     "texto": "A fatura só protege quem lê tudo — total, mínimo, rotativo e encargos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pagando mais que o mínimo, o rotativo nunca aparece",
+     "correta": false,
+     "feedbackErro": "Só some o rotativo pagando o total. Pagar mais que o mínimo, sem quitar tudo, ainda deixa saldo rendendo juro."
+    },
+    {
+     "texto": "Fatura parecida com a do mês passado nunca tem erro",
+     "correta": false,
+     "feedbackErro": "Valor parecido não garante que está certo — cobranças indevidas podem se disfarçar assim."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "custo-do-parcial",
+   "dificuldade": 3,
+   "pergunta": "Fatura de R$ 1.200, você paga R$ 450. Quanto entra no rotativo?",
+   "ancora": "1.200 menos 450 é 750 — o que sobra vira dívida com juros.",
+   "verificacao": { "expressao": "1200-450", "esperado": 750 },
+   "alternativas": [
+    {
+     "texto": "R$ 750",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 450",
+     "correta": false,
+     "feedbackErro": "R$ 450 é o que você pagou, não o que sobrou. Subtraia: 1.200 menos 450 é 750."
+    },
+    {
+     "texto": "R$ 1.200",
+     "correta": false,
+     "feedbackErro": "R$ 1.200 seria a fatura inteira, sem pagamento. Você pagou parte — sobram 750."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custo-do-parcial",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Rotativo por poucos dias não gera juro, só por mês inteiro",
+   "resposta": false,
+   "ancora": "O juro corre por dia até o fechamento, não exige mês cheio.",
+   "feedbackErro": "Parece que precisa passar um mês inteiro pra contar. Mas o rotativo cobra juro proporcional aos dias, mesmo que sejam poucos."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "ler-a-fatura",
+   "instrucao": "É esperado ou é motivo de checar com o banco? Arraste.",
+   "ancora": "Cobrança desconhecida e total sem explicação pedem checagem.",
+   "feedbackErro": "Encargos e mínimo proporcional são parte normal da fatura. Compra estranha e total sem explicação pedem contato com o banco.",
+   "caixas": [
+    { "id": "esperado", "rotulo": "Esperado" },
+    { "id": "checar", "rotulo": "Checar com o banco" }
+   ],
+   "itens": [
+    { "texto": "Encargos de juros quando você não pagou tudo", "caixaCorreta": "esperado" },
+    { "texto": "Uma compra que você nunca fez, na fatura", "caixaCorreta": "checar" },
+    { "texto": "Total maior mesmo comprando menos que antes", "caixaCorreta": "checar" },
+    { "texto": "Mínimo cobrando uma % do saldo devedor", "caixaCorreta": "esperado" }
+   ]
+  }
+ ]
+}

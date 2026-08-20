@@ -1,0 +1,343 @@
+{
+ "slug": "por-que-custa-o-que-custa-reforco",
+ "segmento": "em1",
+ "conceitoPrincipal": "por-que-custa-o-que-custa",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fatores-de-preco",
+   "criterio": "Isso mexe no preço?",
+   "enunciado": "Frete mais caro para levar o produto à loja",
+   "resposta": true,
+   "ancora": "Transportar é custo — e custo viaja até a etiqueta.",
+   "feedbackErro": "O frete acontece longe do caixa, e por isso parece não ter a ver com você. Mas quem vende soma esse custo antes de o produto chegar à prateleira."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fatores-de-preco",
+   "criterio": "Isso mexe no preço?",
+   "enunciado": "O nome do gerente da loja",
+   "resposta": false,
+   "ancora": "Lembra o teste: muda custo, procura ou percepção? Não muda.",
+   "feedbackErro": "Reaplique o critério do primeiro encontro: só entra no preço o que muda custo, procura ou percepção do produto. O nome do gerente não mexe em nenhum dos três."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fatores-de-preco",
+   "criterio": "Isso mexe no preço?",
+   "enunciado": "Metade das lojas de material da cidade fechou",
+   "resposta": true,
+   "ancora": "Menos concorrência: quem ficou pode testar preços maiores.",
+   "feedbackErro": "Loja fechando parece assunto dos donos. Mas cada concorrente a menos tira um freio do preço: quem continua aberto disputa com menos gente e cobra mais folgado."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-e-lucro",
+   "dificuldade": 2,
+   "pergunta": "Uma marmita custa R$ 11,50 para produzir e sai por R$ 18. O que são os R$ 6,50 de diferença?",
+   "ancora": "Da diferença saem entrega, embalagem, gás — o lucro é o resto.",
+   "verificacao": {
+    "expressao": "18-11.5",
+    "esperado": 6.5
+   },
+   "alternativas": [
+    {
+     "texto": "Lucro puro, direto no bolso de quem cozinha",
+     "correta": false,
+     "feedbackErro": "Parte disso vira lucro — mas antes saem entrega, gás e embalagem. Lucro é o que resta depois de todos os custos, não a diferença inteira."
+    },
+    {
+     "texto": "A sobra que paga os outros custos e vira lucro no fim",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Um erro de conta: o justo seria vender a R$ 11,50",
+     "correta": false,
+     "feedbackErro": "A R$ 11,50 ela repõe ingredientes e trabalha de graça — e fecha na primeira semana. Preço precisa cobrir todos os custos e remunerar quem faz."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "fatores-de-preco",
+   "dificuldade": 2,
+   "pergunta": "O ingresso do mesmo cinema custa R$ 22 na terça e R$ 36 no sábado. O que muda entre os dias?",
+   "ancora": "Filme igual, procura diferente: o sábado lota sozinho.",
+   "alternativas": [
+    {
+     "texto": "A procura: sábado tem fila, e fila sustenta preço maior",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O custo da sessão, que dobra no fim de semana",
+     "correta": false,
+     "feedbackErro": "Projetar o filme custa quase o mesmo em qualquer dia. O que muda no sábado não é o custo da sessão — é quanta gente disputa as mesmas cadeiras."
+    },
+    {
+     "texto": "A qualidade do filme, que melhora no sábado",
+     "correta": false,
+     "feedbackErro": "O filme é o mesmo arquivo, na mesma tela. Se a qualidade não muda e o preço muda, o fator está fora do produto: na quantidade de gente querendo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "fatores-de-preco",
+   "criterio": "Isso mexe no preço?",
+   "enunciado": "Governo corta o imposto de um produto",
+   "resposta": true,
+   "ancora": "Imposto menor abre espaço para preço menor — se houver disputa.",
+   "feedbackErro": "Mexe nos dois sentidos: imposto sobe, preço sobe; imposto cai, abre espaço para cair. Se o corte chega ao cliente, depende da concorrência do setor."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "fatores-de-preco",
+   "instrucao": "Cada mudança empurra o preço para onde?",
+   "ancora": "Custo e procura empurram para cima; oferta e disputa, para baixo.",
+   "feedbackErro": "O critério do encontro passado: o que aumenta custo ou procura empurra o preço para cima; o que aumenta oferta ou concorrência empurra para baixo.",
+   "caixas": [
+    {
+     "id": "sobe",
+     "rotulo": "Para cima"
+    },
+    {
+     "id": "desce",
+     "rotulo": "Para baixo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Aluguel do ponto dobrou",
+     "caixaCorreta": "sobe"
+    },
+    {
+     "texto": "Concorrente novo com entrega grátis",
+     "caixaCorreta": "desce"
+    },
+    {
+     "texto": "Produto virou febre nas redes",
+     "caixaCorreta": "sobe"
+    },
+    {
+     "texto": "Fábricas produzindo mais que a procura",
+     "caixaCorreta": "desce"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "fatores-de-preco",
+   "criterio": "Isso mexe no preço?",
+   "enunciado": "Logo famoso estampado num tênis básico",
+   "resposta": true,
+   "ancora": "Marca é percepção — e percepção sustenta preço.",
+   "feedbackErro": "O tênis pode sair da mesma fábrica que o sem marca. O que encarece não é o material: é a imagem construída com anos de publicidade — paga na etiqueta."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-e-lucro",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Vender abaixo do custo dá lucro em cada venda",
+   "resposta": false,
+   "ancora": "Abaixo do custo, cada venda aumenta o prejuízo.",
+   "feedbackErro": "Vender muito dá sensação de negócio bom. Mas se cada unidade sai por menos do que custou, quanto mais vende, mais perde. Lucro começa acima do custo."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-e-lucro",
+   "pergunta": "Uma camiseta custa R$ 26 para a loja, que vende com 45% em cima. Qual o preço?",
+   "campo": "moeda",
+   "min": 26,
+   "max": 60,
+   "gabarito": 37.7,
+   "toleranciaPct": 20,
+   "fonte": "conta do próprio enunciado (R$ 26 × 1,45)",
+   "verificacao": {
+    "expressao": "26*1.45",
+    "esperado": 37.7
+   },
+   "feedbackPerto": "R$ 37,70. Dos R$ 11,70 em cima ainda saem aluguel, luz e vendedor — o lucro é a fatia final.",
+   "feedbackLonge": "R$ 37,70: 45% de R$ 26 são R$ 11,70, somados ao custo. O tropeço comum é tratar 45% como número solto em vez de fração do custo."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-e-lucro",
+   "dificuldade": 2,
+   "pergunta": "A única farmácia do bairro triplicou o preço do xarope na epidemia de gripe. O que há de errado?",
+   "ancora": "Sem concorrente e com urgência, não há escolha — há refém.",
+   "alternativas": [
+    {
+     "texto": "Ela usa a urgência e a falta de opção para explorar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: todo preço é livre, sempre",
+     "correta": false,
+     "feedbackErro": "Preço livre pressupõe que o cliente possa dizer não e ir ao lado. Doente, com pressa e sem outra farmácia, ele não pode — e a lei chama isso de abuso."
+    },
+    {
+     "texto": "O erro é do cliente, que não estocou xarope",
+     "correta": false,
+     "feedbackErro": "Ninguém estoca remédio para cada doença possível. A análise ética olha quem tem poder na cena — e aqui todo o poder está de um lado só."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-e-lucro",
+   "dificuldade": 2,
+   "pergunta": "Tainá vende pastel a R$ 9. O custo subiu de R$ 4 para R$ 6. Se ela mantiver o preço, o que acontece?",
+   "ancora": "Margem: era R$ 5, virou R$ 3 — o custo comeu R$ 2 do lucro.",
+   "verificacao": {
+    "expressao": "9-6",
+    "esperado": 3
+   },
+   "alternativas": [
+    {
+     "texto": "O ganho por pastel encolhe de R$ 5 para R$ 3",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ela passa a ter prejuízo em cada pastel",
+     "correta": false,
+     "feedbackErro": "Prejuízo seria vender abaixo do custo, e R$ 9 ainda cobre os R$ 6. O que aconteceu foi a margem encolher — o lucro diminuiu, não desapareceu."
+    },
+    {
+     "texto": "Nada muda: o preço continua R$ 9",
+     "correta": false,
+     "feedbackErro": "Para o cliente nada mudou — para ela, sim. O preço é o mesmo, mas sobra menos: R$ 2 a menos por pastel. Preço parado com custo subindo é lucro derretendo."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "fatores-de-preco",
+   "criterio": "Isso mexe no preço?",
+   "enunciado": "Muitos vendendo e pouca gente comprando",
+   "resposta": true,
+   "ancora": "Oferta sobrando derruba preço: alguém corta para não encalhar.",
+   "feedbackErro": "É o espelho da escassez: quando sobra produto e falta comprador, quem vende primeiro baixa o preço — e os outros acompanham para não ficar com estoque."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-e-lucro",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Todo preço alto esconde lucro abusivo",
+   "resposta": false,
+   "ancora": "Preço alto pode ser custo alto, imposto alto — ou abuso. Cheque.",
+   "feedbackErro": "Às vezes é abuso, sim — mas preço alto também pode ser custo caro, imposto pesado ou procura em pico. Antes de acusar, decomponha: o preço tem camadas."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "por-que-custa-o-que-custa",
+   "pergunta": "Revendo o conceito: por que o preço é o que é?",
+   "alternativas": [
+    {
+     "texto": "Custos, impostos e lucro em camadas — com procura e concorrência apertando.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O vendedor inventa um número e todo mundo aceita.",
+     "correta": false,
+     "feedbackErro": "Se fosse invenção livre, ninguém venderia barato. Concorrência e cliente dizem não — o preço nasce desse cabo de guerra."
+    },
+    {
+     "texto": "Preço alto é sempre culpa do imposto.",
+     "correta": false,
+     "feedbackErro": "Imposto é uma camada real, mas não a única: custo, lucro e procura também estão dentro do preço."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "custo-e-lucro",
+   "pergunta": "Um tênis custa R$ 90 para a loja e vai à vitrine por R$ 144. Quantos % em cima do custo?",
+   "campo": "percentual",
+   "min": 10,
+   "max": 120,
+   "gabarito": 60,
+   "toleranciaPct": 20,
+   "fonte": "conta do próprio enunciado ((144 − 90) ÷ 90)",
+   "verificacao": {
+    "expressao": "(144-90)/90*100",
+    "esperado": 60
+   },
+   "feedbackPerto": "60% em cima — e dessa fatia ainda saem aluguel, funcionário e imposto antes do lucro.",
+   "feedbackLonge": "São 60%: R$ 54 sobre R$ 90. O erro comum é calcular sobre o preço de venda (37,5%) em vez de sobre o custo — a base da porcentagem muda tudo."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "fatores-de-preco",
+   "instrucao": "Toque na ordem: o que acontece quando chega um concorrente forte.",
+   "ancora": "Concorrência age em cadeia: cliente migra, margem cede.",
+   "feedbackErro": "A cadeia começa na abertura com preço menor, passa pela migração dos clientes e termina com a rua inteira ajustando as margens.",
+   "itens": [
+    {
+     "texto": "Concorrente abre cobrando menos",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Clientes começam a migrar",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "A loja antiga reduz a margem",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Os preços da rua se aproximam",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "fatores-de-preco",
+   "dificuldade": 2,
+   "pergunta": "O governo zera o imposto de um alimento básico. O que tende a acontecer com o preço?",
+   "ancora": "O corte só chega inteiro ao cliente onde há disputa por ele.",
+   "alternativas": [
+    {
+     "texto": "Cai — mais onde a concorrência força o repasse",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cai sempre, na hora e por inteiro",
+     "correta": false,
+     "feedbackErro": "Seria o ideal, mas o repasse não é automático: onde o vendedor não tem concorrente, ele pode embolsar parte do corte e mover pouco a etiqueta."
+    },
+    {
+     "texto": "Nada muda: imposto não entra no preço",
+     "correta": false,
+     "feedbackErro": "Imposto está dentro do preço desde sempre — cerca de um terço nos industrializados. Tirar uma camada dessas mexe na pilha inteira."
+    }
+   ]
+  }
+ ]
+}

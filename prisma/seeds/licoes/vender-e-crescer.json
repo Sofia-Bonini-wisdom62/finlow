@@ -1,0 +1,299 @@
+{
+ "slug": "vender-e-crescer",
+ "segmento": "ef89",
+ "conceitoPrincipal": "vender-e-crescer",
+ "fraseConceito": "Marketing atrai cliente e crédito dá fôlego pra crescer — mas os dois têm custo e pedem plano.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "marketing-que-vende",
+   "criterio": "É ação de marketing?",
+   "enunciado": "Postar fotos do produto no story do Instagram",
+   "resposta": true,
+   "ancora": "Buscar cliente novo é marketing — vale pra postagem grátis também.",
+   "feedbackErro": "Parece só uma postagem qualquer. Mas ela busca gente que ainda não conhece o produto — essa busca por cliente é marketing."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "marketing-que-vende",
+   "criterio": "É ação de marketing?",
+   "enunciado": "Dar amostra grátis pros vizinhos experimentarem",
+   "resposta": true,
+   "ancora": "Amostra grátis busca cliente novo — isso também é marketing.",
+   "feedbackErro": "Parece generosidade sem cálculo. Mas o objetivo é conquistar cliente novo, e isso é marketing, mesmo sem gastar em anúncio."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "credito-para-o-negocio",
+   "criterio": "É crédito para o negócio?",
+   "enunciado": "Parcelar uma batedeira nova em 10x no cartão",
+   "resposta": true,
+   "ancora": "Parcelar é usar crédito: alguém paga agora, você devolve depois.",
+   "feedbackErro": "Parece só uma forma de pagamento. Mas parcelar é pegar emprestado pra comprar agora e devolver depois, com juros."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "marketing-que-vende",
+   "dificuldade": 1,
+   "pergunta": "Bianca vendia 20 brigadeiros por dia. Após anunciar no Instagram, passou a vender 30. O que isso mostra?",
+   "ancora": "Vendas subiram 50% depois do anúncio — resultado direto do marketing.",
+   "verificacao": { "expressao": "(30-20)/20*100", "esperado": 50 },
+   "alternativas": [
+    {
+     "texto": "Marketing pode aumentar as vendas do negócio",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O aumento não tem relação com o anúncio",
+     "correta": false,
+     "feedbackErro": "Coincidência existe, mas o salto veio logo após o anúncio — é o efeito que o marketing busca."
+    },
+    {
+     "texto": "Brigadeiro sempre vende mais em qualquer mês",
+     "correta": false,
+     "feedbackErro": "Sazonalidade existe, mas não explica um salto de 50% logo depois de o anúncio começar."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "credito-para-o-negocio",
+   "dificuldade": 1,
+   "pergunta": "Pra comprar uma geladeira de R$ 2.000, Bianca junta dinheiro por 6 meses ou pega empréstimo hoje. O que o crédito dá?",
+   "ancora": "Crédito antecipa a compra: ela usa a geladeira antes de juntar tudo.",
+   "alternativas": [
+    {
+     "texto": "Comprar agora e pagar aos poucos, com juros",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Comprar sem nenhum custo extra",
+     "correta": false,
+     "feedbackErro": "Todo crédito cobra juros — é o preço de usar o dinheiro do banco antes da hora."
+    },
+    {
+     "texto": "Esperar os 6 meses do mesmo jeito",
+     "correta": false,
+     "feedbackErro": "Esperar é a opção sem crédito. O crédito serve justamente pra não precisar esperar."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "marketing-que-vende",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Negócio pequeno não precisa investir em marketing",
+   "resposta": false,
+   "ancora": "Todo negócio precisa ser visto — pequeno também compete por cliente.",
+   "feedbackErro": "Parece desnecessário quando o negócio é pequeno. Mas sem ser visto, nem o pequeno consegue cliente novo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "marketing-que-vende",
+   "instrucao": "Toque na ordem de quem vem primeiro pra vender pelo Instagram.",
+   "ancora": "Sem foto boa e preço claro, o anúncio não vira venda.",
+   "feedbackErro": "É tentador postar primeiro e pensar depois. Mas sem foto boa e preço claro, quem vê passa direto — a ordem importa.",
+   "itens": [
+    { "texto": "Tirar fotos boas do produto", "posicaoCorreta": 1 },
+    { "texto": "Escrever o preço e a forma de entrega", "posicaoCorreta": 2 },
+    { "texto": "Postar no story ou feed", "posicaoCorreta": 3 },
+    { "texto": "Responder rápido quem perguntar", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "credito-para-o-negocio",
+   "criterio": "Antes de pegar o crédito, já checou?",
+   "enunciado": "Se o negócio vende o suficiente pra pagar a parcela",
+   "resposta": true,
+   "ancora": "Sem essa conta, a parcela pode virar problema maior que o equipamento.",
+   "feedbackErro": "Parece óbvio, e por isso muita gente pula essa conta. Sem saber se vende o bastante, a parcela pode virar dívida maior que o ganho."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "marketing-que-vende",
+   "criterio": "Antes de investir, já checou?",
+   "enunciado": "Se o gasto em anúncio cabe no que o negócio já vende",
+   "resposta": true,
+   "ancora": "Investir mais do que se fatura é o erro que aperta o caixa.",
+   "feedbackErro": "Investir em marketing parece sempre certo. Mas gastar mais do que o negócio fatura aperta o caixa antes do anúncio dar retorno."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "credito-para-o-negocio",
+   "pergunta": "Empréstimo de R$ 1.000 a 3% ao mês pra comprar equipamento. Sem pagar nada, quanto vira em 4 meses?",
+   "campo": "moeda",
+   "min": 1000,
+   "max": 2000,
+   "gabarito": 1126,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: juros compostos de 3% ao mês sobre R$ 1.000",
+   "verificacao": { "expressao": "1000*1.03^4", "esperado": 1125.51, "tolerancia": 1 },
+   "feedbackPerto": "Perto: cerca de R$ 1.126. Em 4 meses, o equipamento já custou 12,6% a mais.",
+   "feedbackLonge": "Dá R$ 1.126. Juro composto cobra sobre o saldo que já cresceu — passa dos 3% × 4 (12%) na conta simples."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "marketing-que-vende",
+   "dificuldade": 2,
+   "pergunta": "Bianca gastou R$ 100 em anúncio e vendeu R$ 400 a mais no mês. O que essa conta mostra?",
+   "ancora": "R$ 400 vendidos com R$ 100 gastos — retorno de 4 vezes o valor.",
+   "verificacao": { "expressao": "400/100", "esperado": 4 },
+   "alternativas": [
+    {
+     "texto": "O retorno do anúncio foi 4 vezes o valor gasto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O anúncio deu prejuízo, porque teve custo",
+     "correta": false,
+     "feedbackErro": "Todo anúncio tem custo, e isso confunde. Mas o retorno em vendas foi bem maior que o gasto — não houve prejuízo."
+    },
+    {
+     "texto": "Não dá pra saber sem mais informação",
+     "correta": false,
+     "feedbackErro": "Os dois números já bastam: dividir o retorno pelo gasto mostra direto quantas vezes ele voltou."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "credito-para-o-negocio",
+   "dificuldade": 2,
+   "pergunta": "Empréstimo de R$ 1.000 a 3% ao mês. O equipamento gera R$ 300 extras de venda por mês. Vale pegar o crédito?",
+   "ancora": "O juro do mês é R$ 30; o ganho extra é R$ 300 — sobra folga grande.",
+   "verificacao": { "expressao": "1000*0.03", "esperado": 30 },
+   "alternativas": [
+    {
+     "texto": "Vale: o retorno mensal supera o juro do empréstimo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não vale: todo empréstimo é ruim pro negócio",
+     "correta": false,
+     "feedbackErro": "Empréstimo tem custo, e isso é real. Mas aqui o ganho mensal é bem maior que o juro — a conta fecha a favor do crédito."
+    },
+    {
+     "texto": "Não dá pra saber sem o prazo total do contrato",
+     "correta": false,
+     "feedbackErro": "O prazo muda o total, mas a comparação de cada mês já mostra vantagem clara: R$ 300 de ganho contra R$ 30 de juro."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "marketing-que-vende",
+   "criterio": "Ajuda a vender mais?",
+   "enunciado": "Postar só quando sobra tempo, sem constância",
+   "resposta": false,
+   "ancora": "Marketing sem constância perde o cliente que só olhou uma vez.",
+   "feedbackErro": "Postar de vez em quando parece suficiente. Mas sem constância, o cliente esquece a marca antes de comprar."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "credito-para-o-negocio",
+   "criterio": "Ajuda o negócio crescer?",
+   "enunciado": "Pegar empréstimo sem saber quanto vai vender depois",
+   "resposta": false,
+   "ancora": "Crédito sem plano de venda vira dívida sem retorno certo.",
+   "feedbackErro": "O empréstimo compra o equipamento na hora, e isso parece só ganho. Mas sem saber quanto vai vender, o risco é virar dívida sem retorno."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "marketing-que-vende",
+   "pergunta": "Qual frase resume a lição?",
+   "alternativas": [
+    {
+     "texto": "Marketing e crédito ajudam o negócio, mas os dois têm custo e pedem plano",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quanto mais crédito o negócio pegar, mais rápido ele cresce",
+     "correta": false,
+     "feedbackErro": "Crédito sem plano de venda pode virar dívida — mais crédito não é sempre melhor."
+    },
+    {
+     "texto": "Marketing só vale a pena pra negócio grande",
+     "correta": false,
+     "feedbackErro": "Negócio pequeno também precisa ser visto pra conseguir cliente novo."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "marketing-que-vende",
+   "instrucao": "É marketing ou é crédito? Arraste cada item.",
+   "ancora": "Marketing busca cliente; crédito busca dinheiro emprestado.",
+   "feedbackErro": "Marketing é o que busca cliente novo; crédito é o que traz dinheiro emprestado pro negócio. As duas coisas ajudam a crescer, mas são diferentes.",
+   "caixas": [
+    { "id": "marketing", "rotulo": "Marketing" },
+    { "id": "credito", "rotulo": "Crédito" }
+   ],
+   "itens": [
+    { "texto": "Anunciar no grupo de WhatsApp do bairro", "caixaCorreta": "marketing" },
+    { "texto": "Financiar uma van de entrega no banco", "caixaCorreta": "credito" },
+    { "texto": "Fazer parceria com um perfil grande", "caixaCorreta": "marketing" },
+    { "texto": "Usar o cheque especial pra comprar insumo", "caixaCorreta": "credito" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "marketing-que-vende",
+   "dificuldade": 3,
+   "pergunta": "Negócio gastou R$ 200 em anúncio e vendeu R$ 250 a mais. Retorno positivo, mas apertado. O que fazer?",
+   "ancora": "R$ 250 contra R$ 200 é retorno de 25% — positivo, mas com pouca folga.",
+   "verificacao": { "expressao": "(250-200)/200*100", "esperado": 25 },
+   "alternativas": [
+    {
+     "texto": "Acompanhar e ajustar antes de gastar mais",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Parar de anunciar, já que a margem é pequena",
+     "correta": false,
+     "feedbackErro": "O retorno é positivo, mesmo apertado — parar corta um ganho real antes de tentar melhorar o anúncio."
+    },
+    {
+     "texto": "Dobrar o gasto em anúncio imediatamente",
+     "correta": false,
+     "feedbackErro": "Com margem apertada, dobrar o gasto sem ajustar pode fazer o custo crescer mais rápido que o retorno."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "credito-para-o-negocio",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Anunciar garante que o cliente vai comprar",
+   "resposta": false,
+   "ancora": "Anúncio atrai atenção; a compra ainda depende de preço e confiança.",
+   "feedbackErro": "O anúncio faz o trabalho de ser visto. Mas ver não é comprar: preço, confiança e atendimento decidem o resto."
+  }
+ ]
+}

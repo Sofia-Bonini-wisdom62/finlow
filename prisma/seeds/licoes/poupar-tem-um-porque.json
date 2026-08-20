@@ -1,0 +1,348 @@
+{
+ "slug": "poupar-tem-um-porque",
+ "segmento": "em2",
+ "conceitoPrincipal": "poupar-tem-um-porque",
+ "fraseConceito": "Poupar é separar dinheiro com objetivo, valor e prazo definidos. Aposta não entra: resultado sorteado não é rendimento.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "meta-de-poupanca",
+   "criterio": "É poupar com objetivo?",
+   "enunciado": "Guardar R$ 50 por mês para trocar de celular",
+   "resposta": true,
+   "ancora": "Tem valor, prazo e destino: é disso que uma meta é feita.",
+   "feedbackErro": "Parece pouco para valer como plano, e é isso que engana. R$ 50 por mês tem valor fixo, destino e prazo — os três pedaços de uma meta de poupança."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "meta-de-poupanca",
+   "criterio": "É poupar com objetivo?",
+   "enunciado": "Deixar no pote o que sobrar no fim do mês",
+   "resposta": false,
+   "ancora": "O que sobra, sem plano, quase sempre é zero.",
+   "feedbackErro": "Guardar sobra é melhor que nada, e isso conta. Mas sem valor definido nem prazo, a meta não existe: quem decide quanto sobra é o gasto, não você."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "aposta-nao-e-investimento",
+   "criterio": "Isso é investimento?",
+   "enunciado": "Apostar R$ 20 no jogo do tigrinho",
+   "resposta": false,
+   "ancora": "Aposta é sorteio: o dinheiro não trabalha, é sorteado.",
+   "feedbackErro": "Tem gente que ganha, e isso confunde. Mas o resultado é sorteio desenhado para a casa lucrar: no total, quem aposta perde. Investir rende; apostar sorteia."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "meta-de-poupanca",
+   "dificuldade": 1,
+   "pergunta": "Caio quer um violão de R$ 1.200 daqui a 12 meses. Quanto precisa guardar por mês?",
+   "ancora": "R$ 1.200 ÷ 12 meses = R$ 100 por mês. Meta vira número.",
+   "verificacao": {
+    "expressao": "1200/12",
+    "esperado": 100
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 100 por mês",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 120 por mês",
+     "correta": false,
+     "feedbackErro": "R$ 120 por mês dariam R$ 1.440 — sobra apertando o orçamento à toa. A conta da meta é o valor dividido pelo prazo: 1.200 ÷ 12 = 100."
+    },
+    {
+     "texto": "R$ 60 por mês",
+     "correta": false,
+     "feedbackErro": "Com R$ 60 por mês, em 12 meses ele junta R$ 720 — pouco mais da metade do violão. Divida o valor pelo prazo: 1.200 ÷ 12 = 100."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "aposta-nao-e-investimento",
+   "dificuldade": 1,
+   "pergunta": "O que separa um investimento de uma aposta?",
+   "ancora": "Investimento tem rendimento; aposta tem sorteio.",
+   "alternativas": [
+    {
+     "texto": "Investimento rende com o tempo; aposta sorteia",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Aposta tem risco e investimento não tem nenhum",
+     "correta": false,
+     "feedbackErro": "Investimento também tem risco — até renda fixa varia. A diferença é outra: no investimento o dinheiro rende; na aposta, o resultado é sorteado contra você."
+    },
+    {
+     "texto": "Aposta é investimento de prazo mais curto",
+     "correta": false,
+     "feedbackErro": "Prazo curto existe em investimento sério também. O que define a aposta é o mecanismo: resultado sorteado, sem nada produzindo rendimento por trás."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "aposta-nao-e-investimento",
+   "criterio": "Isso é investimento?",
+   "enunciado": "Deixar o dinheiro rendendo na poupança",
+   "resposta": true,
+   "ancora": "Rende pouco, ~0,5% ao mês, mas rende sempre: não é sorte.",
+   "feedbackErro": "Render pouco faz parecer que não vale. Mas a poupança tem rendimento previsível, todo mês — o oposto da aposta, onde o resultado é sorteado."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "prazo-da-meta",
+   "instrucao": "Toque na ordem do prazo: do mais curto ao mais longo.",
+   "ancora": "Curto, médio e longo prazo pedem planos diferentes.",
+   "feedbackErro": "A ordem que vale é a do prazo da meta, não a do valor. Lanche vem antes do celular, que vem antes do curso, que vem antes do apartamento.",
+   "itens": [
+    {
+     "texto": "Lanche do fim de semana",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Celular novo no fim do ano",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Curso técnico daqui a 2 anos",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Entrada de um apartamento em 10 anos",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "meta-de-poupanca",
+   "criterio": "É poupar com objetivo?",
+   "enunciado": "Separar R$ 40 no dia em que o dinheiro entra",
+   "resposta": true,
+   "ancora": "Guardar antes de gastar: a meta sai na frente do impulso.",
+   "feedbackErro": "Parece invertido — gastar primeiro e guardar depois soa natural. Mas quem guarda antes garante a meta; quem guarda depois depende do que o gasto deixar."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "aposta-nao-e-investimento",
+   "criterio": "Isso é investimento?",
+   "enunciado": "Comprar raspadinha toda semana para 'acumular'",
+   "resposta": false,
+   "ancora": "Repetir aposta não vira investimento: só repete o sorteio.",
+   "feedbackErro": "A constância engana: parece disciplina de poupança. Mas cada raspadinha é um sorteio novo com a chance contra você — repetir só acumula o custo."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "meta-de-poupanca",
+   "pergunta": "Guardando R$ 120 por mês, quanto você junta em 2 anos, sem contar juros?",
+   "campo": "moeda",
+   "min": 500,
+   "max": 10000,
+   "gabarito": 2880,
+   "toleranciaPct": 20,
+   "fonte": "aritmética da meta: R$ 120 × 24 meses",
+   "verificacao": {
+    "expressao": "120*24",
+    "esperado": 2880
+   },
+   "feedbackPerto": "Isso: R$ 2.880. Constância vale mais que valor alto — o tempo faz o volume.",
+   "feedbackLonge": "São R$ 2.880: 120 × 24. O erro comum é subestimar o acúmulo — parcela pequena parece que não vira nada, mas 24 meses somam."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "aposta-nao-e-investimento",
+   "dificuldade": 1,
+   "pergunta": "Um site promete 'renda garantida' de R$ 200 por dia em apostas. Qual é o alerta?",
+   "ancora": "Ganho garantido em sorteio não existe — é a marca do golpe.",
+   "alternativas": [
+    {
+     "texto": "Garantir ganho em jogo de azar: isso não existe",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O valor prometido é baixo demais para valer",
+     "correta": false,
+     "feedbackErro": "O tamanho do valor não é o problema — golpe promete valor alto ou baixo. O impossível é a garantia: sorteio não tem resultado garantido para você."
+    },
+    {
+     "texto": "Falta mostrar prints de quem já ganhou",
+     "correta": false,
+     "feedbackErro": "Prints são fáceis de forjar e todo golpe tem. O alerta não é a falta de prova, é a promessa: ganho garantido em aposta é impossível por definição."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "prazo-da-meta",
+   "dificuldade": 1,
+   "pergunta": "Meta: viagem daqui a 6 meses. Onde deixar o dinheiro que você vai guardando?",
+   "ancora": "Meta curta pede segurança e saque fácil, não promessa de ganho.",
+   "alternativas": [
+    {
+     "texto": "Numa aplicação segura, de onde dá para sacar sem perda",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Em aposta esportiva, para multiplicar mais rápido",
+     "correta": false,
+     "feedbackErro": "Multiplicar rápido é o que a meta curta parece pedir. Mas aposta pode zerar o dinheiro da viagem — e o prazo curto não deixa tempo para recuperar."
+    },
+    {
+     "texto": "Na carteira, para ver o dinheiro de perto",
+     "correta": false,
+     "feedbackErro": "Ver de perto ajuda a lembrar da meta, é verdade. Mas dinheiro na carteira não rende nada e vira troco de gasto do dia — separado, ele fica protegido."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "meta-de-poupanca",
+   "criterio": "Ajuda a chegar na meta?",
+   "enunciado": "Definir valor mensal e data para o objetivo",
+   "resposta": true,
+   "ancora": "Meta com número e data dá para acompanhar; sem isso, é desejo.",
+   "feedbackErro": "Parece burocracia para pouca coisa. Mas é o número que diz se você está no caminho: sem valor e data, não há como saber se o mês foi bom ou ruim."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "aposta-nao-e-investimento",
+   "criterio": "Ajuda a chegar na meta?",
+   "enunciado": "Contar com um prêmio de aposta no plano",
+   "resposta": false,
+   "ancora": "Plano não depende de sorteio: o que é sorte não se agenda.",
+   "feedbackErro": "Se viesse, ajudaria — por isso tenta entrar no plano. Mas prêmio é sorteio: não tem valor nem data. Plano se faz com o que depende de você."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "poupar-tem-um-porque",
+   "pergunta": "Qual frase resume esta lição?",
+   "alternativas": [
+    {
+     "texto": "Poupar pede objetivo, valor e prazo — e aposta não é investimento.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Poupar é guardar o que sobrar; se não sobrar, tudo bem.",
+     "correta": false,
+     "feedbackErro": "O que sobra sem plano costuma ser zero. Meta pede valor e prazo definidos."
+    },
+    {
+     "texto": "Apostar pouco, toda semana, é um jeito de investir.",
+     "correta": false,
+     "feedbackErro": "Repetir sorteio não cria rendimento — só repete o custo da aposta."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "aposta-nao-e-investimento",
+   "instrucao": "Investimento ou aposta?",
+   "ancora": "Investimento rende; aposta sorteia.",
+   "feedbackErro": "O nome bonito confunde: 'trade esportivo' é aposta, poupança é investimento. O teste: existe rendimento previsível ou é sorteio?",
+   "caixas": [
+    {
+     "id": "inv",
+     "rotulo": "Investimento"
+    },
+    {
+     "id": "aposta",
+     "rotulo": "Aposta"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Poupança",
+     "caixaCorreta": "inv"
+    },
+    {
+     "texto": "Aposta esportiva",
+     "caixaCorreta": "aposta"
+    },
+    {
+     "texto": "Tesouro Direto",
+     "caixaCorreta": "inv"
+    },
+    {
+     "texto": "Rifa da vizinhança",
+     "caixaCorreta": "aposta"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "meta-de-poupanca",
+   "dificuldade": 2,
+   "pergunta": "Guardar todo mês sem meta definida: qual é o risco maior desse jeito?",
+   "ancora": "Sem destino, qualquer vontade vira motivo de saque.",
+   "alternativas": [
+    {
+     "texto": "Sacar por impulso: sem destino, qualquer gasto justifica",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Perder o dinheiro guardado",
+     "correta": false,
+     "feedbackErro": "Guardado não some — o risco não é perder, é usar. Sem meta, o dinheiro vira reserva de qualquer vontade que aparecer."
+    },
+    {
+     "texto": "Guardar demais e faltar para as contas",
+     "correta": false,
+     "feedbackErro": "Isso se resolve ajustando o valor. O ponto fraco de poupar sem meta é outro: sem destino, o saque por impulso sempre encontra motivo."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "meta-de-poupanca",
+   "instrucao": "Monte o plano de meta, do primeiro passo ao último.",
+   "ancora": "Objetivo → número → constância → revisão.",
+   "feedbackErro": "Sem objetivo não há número; sem número não há constância; e sem revisão o plano não sobrevive ao primeiro imprevisto.",
+   "itens": [
+    {
+     "texto": "Escolher o objetivo",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Definir valor e prazo",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Separar o valor todo mês",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Acompanhar e ajustar",
+     "posicaoCorreta": 4
+    }
+   ]
+  }
+ ]
+}
