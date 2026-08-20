@@ -23,7 +23,8 @@ config({ path: ".env" })
 import { readFileSync } from "node:fs"
 import type Stripe from "stripe"
 import { decidirAcesso, type StatusAssinatura } from "../lib/pagamento/acesso.js"
-import { mesSP, TETO_GRATIS_TOKENS } from "../lib/pagamento/tokens.js"
+import { mesSP, TETO_GRATIS_TOKENS, TETO_ESCOLA_TOKENS } from "../lib/pagamento/tokens.js"
+import { perguntasNoTeto, perguntasRestantes, rotuloPerguntas } from "../lib/pagamento/perguntas.js"
 import { idDaAssinaturaNaFatura, fimDoPeriodo, conferirAmbiente } from "../lib/pagamento/stripe.js"
 import { lerPrecoDaStripe } from "../lib/pagamento/preco.js"
 import { dinheiro, porIntervalo } from "../lib/formato.js"
@@ -352,6 +353,43 @@ conferir(
   /Cobrança mensal/.test(telaPremium.replace(/\/\*[\s\S]*?\*\/|\/\/.*$/gm, "")),
   false
 )
+
+// ------------------------------------------ a cota em perguntas, não em token ---
+/**
+ * A tradução não pode mentir para nenhum lado.
+ *
+ * Errar para MAIS é prometer conversa que a cota não paga. Errar para menos é
+ * chato, mas seguro: por isso a divisão usa a ponta alta da faixa de custo.
+ * O caso que mais importa é o do piso: enquanto `podeUsar` é true, a próxima
+ * resposta vem inteira mesmo estourando o teto (regra escrita em tokens.ts), e
+ * uma tela dizendo "0 perguntas" com o chat respondendo seria uma mentira nova
+ * no lugar da conta de padaria.
+ */
+console.log("\ncota em perguntas")
+
+conferir("cota cheia vira a régua do plano (15)", perguntasRestantes(TETO_GRATIS_TOKENS, true), 15)
+conferir("metade da cota, metade das perguntas", perguntasRestantes(60_000, true), 7)
+conferir("sobra menor que uma pergunta ainda vale uma", perguntasRestantes(3_000, true), 1)
+conferir("sobra zero mas ainda pode usar vale uma", perguntasRestantes(0, true), 1)
+conferir("cota esgotada é zero", perguntasRestantes(3_000, false), 0)
+conferir("sem teto não tem 'quantas faltam'", perguntasRestantes(null, true), null)
+conferir("o teto da escola vira 37 perguntas", perguntasNoTeto(TETO_ESCOLA_TOKENS), 37)
+conferir("teto do grátis em perguntas", perguntasNoTeto(TETO_GRATIS_TOKENS), 15)
+conferir("sem teto não tem tamanho", perguntasNoTeto(null), null)
+conferir("singular não fica torto", rotuloPerguntas(1), "1 pergunta")
+conferir("plural com separador de milhar", rotuloPerguntas(1_200), "1.200 perguntas")
+
+// A estimativa é da TELA: se ela voltar a escrever a divisão à mão, o número da
+// tela e o do teste passam a poder discordar sem ninguém notar.
+conferir(
+  "a tela usa o módulo, não uma divisão própria",
+  /perguntasRestantes\(/.test(telaPremium) && !/\/\s*8_?000/.test(telaPremium),
+  true
+)
+// O token não sumiu da tela: ele deixou de ser a manchete, e continua legível
+// para quem quiser calibrar. Sem esta linha, a correção do item 9c poderia
+// virar "esconder o número", que é outro defeito.
+conferir("a conta em token continua na tela", /tokens do mês/.test(telaPremium), true)
 
 // ------------------------------------------------------------------ fechamento ---
 console.log(`\n${total - falhas}/${total} casos passaram`)

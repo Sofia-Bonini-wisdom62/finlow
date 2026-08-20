@@ -395,7 +395,7 @@ export default function LandingPage() {
             <div className="mb-4 text-[13px] font-black uppercase tracking-[.6px]" style={{ color: "var(--fin-dim)" }}>Os outros apps</div>
             <div className="flex flex-col gap-3.5 text-[15px]" style={{ color: "var(--fin-muted)" }}>
               {[
-                "Gráficos que você precisa interpretar sozinho",
+                "Gráficos que você precisa interpretar por conta própria",
                 "Categorização manual e cansativa",
                 "Cores alarmantes e notificações de culpa",
                 "Feito para quem já entende de finanças",

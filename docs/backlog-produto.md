@@ -534,11 +534,52 @@ Lista do mais crítico ao mais simples; cada item é um trabalho independente.
    > sem citar valor. Publicar o número na home é escolha comercial, não
    > conserto de defeito, e não entrou aqui por isso.
 
-4. **🟠 Cadastro com fricção** (revisado 16/08: metade caiu). A data de
-   nascimento GANHOU o porquê na tela ("adequar o conteúdo à idade e menores
-   nunca verem anúncio", V2-1). Segue pendente: as chaves OAuth do Google na
-   Vercel (o botão se esconde sem elas) e o subtítulo que fala "trilha" antes
-   de a pessoa saber o que é.
+4. **🟠 Cadastro com fricção** (revisado 16/08: metade caiu; a metade de código
+   fechou em 18/08). A data de nascimento GANHOU o porquê na tela ("adequar o
+   conteúdo à idade e menores nunca verem anúncio", V2-1). ~~O subtítulo que
+   fala "trilha" antes de a pessoa saber o que é~~ ✅ **18/08/2026.** Segue
+   pendente só o que não é código: as chaves OAuth do Google na Vercel (o botão
+   se esconde sem elas).
+
+   > **O defeito era de ordem, não de palavra.** A pessoa chega da home tendo
+   > lido "extrato", "painel" e "IA", e a primeira tela em que ela decide se
+   > entra descrevia a conta com a única palavra que ela ainda não podia
+   > conhecer. O subtítulo passou a dizer o que a conta guarda, no vocabulário
+   > que ela acabou de ler: *"Pra guardar seu painel, suas metas e as conversas
+   > com a IA. Criar conta é de graça."* O "de graça" já estava no CTA da home
+   > e sumia justo na hora de decidir.
+   >
+   > **O rótulo do apelido tinha o mesmo defeito e caiu junto**: "Como você
+   > quer aparecer **na liga**?" virou "no ranking", que é o que a versão de
+   > quem chega por convite já dizia ("ranking da sala"). O campo é o mesmo,
+   > opcional e sempre visível, como a decisão de 14/08 registrou; mudou só a
+   > palavra que ninguém de fora entende.
+   >
+   > **Guardado por `scripts/testar-landing.mts`** (sem banco, sem build), que
+   > passou a cobrir o outro lado da porta: recusa jargão de dentro do app na
+   > copy de `/login` e `/cadastro` (trilha, liga, XP, ofensiva, combo, baú,
+   > corredor, missão, módulo, bloco, Finlo Coins), confere que **celular e
+   > apelido continuam opcionais** (fricção só volta com decisão registrada),
+   > que a data de nascimento continua com o porquê à vista e que o botão do
+   > Google segue perguntando ao servidor se está ligado. A varredura ignora
+   > classe, estilo e rota: guard que acusasse `router.push("/trilha")` como
+   > jargão de tela treinaria quem viesse depois a desligá-lo. Conferido contra
+   > o código mutilado.
+   >
+   > **Correção de 20/08/2026, no próprio guard.** A borda de palavra era `\b`,
+   > que é ASCII e erra dos dois lados quando há acento: depois do "ú" de "baú"
+   > ele não vê fronteira nenhuma (a checagem dessa palavra nascia **sempre
+   > verde**), e antes do "ç" de "ligações" ele vê uma que não existe (a Liga
+   > seria acusada numa frase que não fala dela). As onze expressões passaram a
+   > sair de um helper com `\p{L}\p{N}`, e os dois casos viraram teste. Guard
+   > que não acusa parece resolvido; guard que acusa o que ninguém escreveu
+   > ensina a desligá-lo.
+   >
+   > **A metade que sobrou é passo de painel, não de código.** Sem
+   > `GOOGLE_CLIENT_ID`/`GOOGLE_CLIENT_SECRET` na Vercel o provider não é
+   > registrado, e o botão some em vez de levar a uma tela de erro do NextAuth
+   > (a pessoa concluiria que a conta dela é que tem problema). No dia em que
+   > as chaves entrarem, ele aparece sozinho.
 
 5. ~~**🟠 Imagem quebrada em toda ficha de módulo.**~~ ✅ **13/08/2026** (Fin
    1): o fallback virou o Fin professor num bloco surface — o
@@ -604,21 +645,74 @@ Lista do mais crítico ao mais simples; cada item é um trabalho independente.
    > pedir jorro ou a rota parar de responder em SSE, o chat volta calado para os
    > pontinhos e tudo continua "funcionando".
 
-7. **🟡 Botão "Enviar para a IA reordenar" promete o que não faz.** Ele só
-   abre o chat com a mensagem pronta (`components/trilha-visual/DrawerModulo.tsx:394`).
-   Se a IA responder "não dá", vira botão de mentira. Renomear para algo como
-   "Pedir pro assistente" resolve — o problema é a promessa, não a mecânica.
+7. ~~**🟡 Botão "Enviar para a IA reordenar" promete o que não faz.**~~
+   ✅ **19/08/2026.** Ele só abre o chat com a mensagem pronta
+   (`components/trilha-visual/DrawerModulo.tsx`). Se a IA responder "não dá",
+   virava botão de mentira. O problema era a promessa, não a mecânica.
+
+   > **O rótulo passou a dizer o que o toque faz:** "Pedir pro assistente", com
+   > uma linha embaixo, "Abre o chat com essa pergunta pronta". Quem decide se
+   > dá para adiantar continua sendo a resposta do assistente, e agora a tela
+   > não decide isso antes dele.
+   >
+   > **Nada da mecânica mudou** e isso é a escolha: `confirmarNecessidade`
+   > continua montando a pergunta com o motivo escolhido e navegando para
+   > `/chat`. Construir a reordenação de verdade era o outro caminho, e não é
+   > correção de defeito — é frente nova, com decisão de produto por trás
+   > (quem pode furar o corredor, e sob qual critério).
+   >
+   > **Guardado por `scripts/testar-copy.mts`**, e a checagem é amarrada à
+   > mecânica, não à data: ela só exige o rótulo honesto **enquanto** o toque
+   > for navegação para o chat. No dia em que existir rota que reordena, ela
+   > afrouxa sozinha em vez de virar teste mentiroso pedindo para ser apagado.
 
 8. **🟡 Cheiro de beta + sem experiência de app** (revisado 16/08: metade
    caiu). O manifest/PWA EXISTE desde 13/08 (`app/manifest.ts`, Fin 1); e os
    "em breve" do Menu caíram de seis pra quatro (foto e personalidade
    viraram recurso de verdade). Push notification segue sem existir.
 
-9. **🟢 Deslizes pequenos** (revisado 16/08). (a) "Prefiro olhar o app
-   sozinha" com flexão feminina fixa — segue; (b) ~~accept do chat sem
-   `.qif`/`.txt`~~ ✅ 16/08, uma linha; (c) a cota em tokens continua sendo
-   conta de padaria, a pessoa quer "quantas perguntas ainda tenho" — segue;
-   (d) ~~Menu × Ajustes~~ ✅ com o redesign, a tela diz "Menu" como a aba.
+9. **🟢 Deslizes pequenos** (revisado 19/08). (a) ~~"Prefiro olhar o app
+   sozinha" com flexão feminina fixa~~ ✅ 19/08: virou "Prefiro olhar o app
+   **por conta própria**", que diz o mesmo sem flexionar e sem precisar de
+   "(a)". A varredura achou o espelho do deslize na landing ("Gráficos que você
+   precisa interpretar **sozinho**", masculino fixo), e ele caiu no mesmo
+   commit — eram os dois únicos casos em `app/` e `components/`. Guardado por
+   `scripts/testar-copy.mts`, que pega a palavra flexionada **só** quando a
+   pessoa é o sujeito: "a energia volta sozinha" passa, porque ali a
+   concordância está certa e guard que acusa frase correta só ensina a
+   desligá-lo; (b) ~~accept do chat sem
+   `.qif`/`.txt`~~ ✅ 16/08, uma linha; (c) ~~a cota em tokens é conta de
+   padaria, a pessoa quer "quantas perguntas ainda tenho"~~ ✅ **20/08**: o
+   destaque de `/premium` virou "Dá para mais umas 12 perguntas de cerca de
+   15", e a conta em token continua logo abaixo, inteira; (d) ~~Menu ×
+   Ajustes~~ ✅ com o redesign, a tela diz "Menu" como a aba.
+
+   > **A contagem NÃO mudou de moeda, e isso é o ponto.** Contar em token é
+   > decisão registrada da fundadora (mensagem não mede nada: três palavras e
+   > vinte turnos sobre o extrato inteiro contam igual, e é o segundo que
+   > custa). O guard, a soma e o teto seguem em token; quem mudou foi a tela,
+   > que dividia mal a informação e não dividia o número.
+   >
+   > A divisão mora em `lib/pagamento/perguntas.ts`, puro e sem `server-only`
+   > (a tela que mostra é de cliente). `TOKENS_POR_PERGUNTA` é 8 mil, a ponta
+   > **alta** da faixa de custo de um turno: a estimativa erra para menos, e
+   > quem lê "cerca de 12" costuma conseguir mais. Errar para mais seria
+   > prometer conversa que a cota não paga. A conta fecha com a régua original
+   > do plano: 120.000 / 8.000 = 15 mensagens.
+   >
+   > **O piso de 1 pergunta é regra, não arredondamento.** O guard roda antes
+   > da chamada, então quem tem qualquer sobra ganha a próxima resposta
+   > inteira, mesmo estourando o teto (está escrito em `lib/pagamento/tokens.ts`
+   > e é de propósito). Uma tela dizendo "restam 0 perguntas" com o chat ainda
+   > respondendo trocaria a conta de padaria por uma mentira, que é pior.
+   >
+   > **Guardado em `scripts/testar-pagamento.mts`** (sem banco, com
+   > `--conditions react-server`): 79 casos, 13 novos, conferidos contra o
+   > código mutilado — tirar o piso faz dois deles acusarem. Dois olham o
+   > CÓDIGO da tela: que ela use o módulo em vez de repetir a divisão (duas
+   > cópias discordariam no primeiro ajuste do número) e que o total em token
+   > continue visível, para "consertar o item 9c" nunca virar "esconder o
+   > número".
 
 **O que segurou o usuário (não mexer):** onboarding pulável com aceites
 explicados, "nada entra sem confirmar", tom sem culpa, tema escuro + paleta,

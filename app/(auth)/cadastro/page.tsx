@@ -138,8 +138,14 @@ export default function CadastroPage() {
         </Link>
 
         <h1 className="mt-6 text-2xl font-black" style={{ color: "var(--fin-text)" }}>Cria sua conta</h1>
+        {/* A pessoa acabou de sair da home, onde leu "extrato", "painel" e "IA".
+            O subtítulo falava do "progresso na trilha": palavra que só faz
+            sentido depois de entrar, na primeira tela em que ela decide se
+            entra. Aqui a conta é descrita pelo que ela guarda, no vocabulário
+            que a home usou, e o "de graça" que estava no CTA da home continua
+            valendo do lado de cá. Guardado em scripts/testar-landing.mts. */}
         <p className="mt-1 text-sm" style={{ color: "var(--fin-muted)" }}>
-          Pra salvar seu perfil e seu progresso na trilha.
+          Pra guardar seu painel, suas metas e as conversas com a IA. Criar conta é de graça.
         </p>
 
         {convite && !convite.recusa && (
@@ -232,12 +238,17 @@ export default function CadastroPage() {
           </div>
 
           {/* Sempre visível desde o protótipo v2 — o apelido alimenta a Liga
-              (e o rank da sala, para quem chega por convite). */}
+              (e o rank da sala, para quem chega por convite).
+
+              O campo continua o mesmo; o rótulo é que deixou de dizer "na
+              liga". Quem ainda não entrou não sabe o que é a Liga, e a versão
+              de quem vem por convite já dizia "ranking da sala": as duas
+              perguntas agora são a mesma pergunta. */}
           <div className="flex flex-col gap-1.5">
             <label htmlFor="apelido" className="text-sm font-bold" style={{ color: "var(--fin-muted)" }}>
               {convite?.papel === "aluno" && !convite.recusa
                 ? "Como você quer aparecer no ranking da sala? (opcional)"
-                : "Como você quer aparecer na liga? (opcional)"}
+                : "Como você quer aparecer no ranking? (opcional)"}
             </label>
             <input
               id="apelido"

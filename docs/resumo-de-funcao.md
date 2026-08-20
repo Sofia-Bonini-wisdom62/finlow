@@ -29,7 +29,7 @@ Avançado, atrás de flag).
 
 | Função | O que faz | Onde |
 |---|---|---|
-| Landing | Posicionamento, problema, recursos, como funciona, FAQ. **Porta de entrada:** `Entrar` (`/login`) e `Criar conta` (`/cadastro`) no cabeçalho, no hero e no rodapé. Captura e-mail de quem prefere só acompanhar (`Waitlist`, e-mail único) — não é mais lista de espera, porque o cadastro é aberto | `app/page.tsx`, `components/landing/*`, `/api/waitlist`, `scripts/testar-landing.mts` |
+| Landing | Posicionamento, problema, recursos, como funciona, FAQ. **Porta de entrada:** `Entrar` (`/login`) e `Criar conta` (`/cadastro`) no cabeçalho, no hero e no rodapé. Captura e-mail de quem prefere só acompanhar (`Waitlist`, e-mail único) — não é mais lista de espera, porque o cadastro é aberto | `app/page.tsx`, `components/landing/*`, `/api/waitlist`, `scripts/testar-landing.mts` (cobre também `/login` e `/cadastro`, o outro lado da porta) |
 | Landing B2B | Finlow como benefício de RH, sem preço público. Formulário abre conversa comercial: upsert por e-mail (mandar duas vezes atualiza, não duplica), 5 envios/h por IP, filtro de conteúdo impróprio | `app/empresas`, `/api/empresas/lead` |
 | Link de indicação | `/r/{codigo}` → cadastro já vinculado ao indicador | `app/r/[codigo]` |
 | Card público do vazamento | Página compartilhável do diagnóstico, **só se a pessoa pediu o link**, com imagem OpenGraph | `app/v/[token]` |
@@ -37,7 +37,17 @@ Avançado, atrás de flag).
 ### 2.2 Conta
 
 - Cadastro por e-mail + senha (bcrypt) e Google (NextAuth v5).
-- Data de nascimento é informativa — **não há validação de idade**.
+- **A tela de cadastro fala a língua de quem ainda não entrou** (18/08/2026,
+  item 4 da avaliação de UX): o subtítulo descrevia a conta como "seu perfil e
+  seu progresso na trilha", e "trilha" só significa alguma coisa depois de
+  entrar. Passou a descrever o que a conta guarda no vocabulário da home
+  (painel, metas, conversas com a IA), e o rótulo do apelido deixou de dizer
+  "na liga". Obrigatórios continuam sendo quatro: nome, e-mail, senha e data de
+  nascimento; celular e apelido são opcionais. Guardado por
+  `scripts/testar-landing.mts`, que agora cobre as duas telas de porta.
+- Data de nascimento é informativa — **não há validação de idade**. O porquê
+  fica na tela, embaixo do campo ("adequar o conteúdo à sua idade, e garantir
+  que menores nunca vejam anúncio").
 - Ajustes concentra: dados da conta, cor de destaque (Dourado padrão,
   Terracota, Lilás, Verde-água — só o acento muda dentro do navy; o seletor
   claro/escuro saiu em 14/08/2026, o tema Fin tem uma cara só), convite de
@@ -170,7 +180,12 @@ confirmação. Só o dono vê as imagens (a rota exige a sessão dele).
   achar uma aula trancada e não poder abri-la é pior que não achar. Quem chega
   com dúvida específica vai ao Chat — e o botão "Preciso disso agora" do módulo
   travado leva para lá com o assunto escrito, porque o assistente consegue
-  ADIANTAR a aula na trilha.
+  ADIANTAR a aula na trilha. O botão que fecha esse mini-diálogo diz o que o
+  toque faz, não o que a resposta vai ser: "Pedir pro assistente", com "Abre o
+  chat com essa pergunta pronta" embaixo (19/08/2026, item 7 da avaliação de
+  UX). Antes dizia "Enviar para a IA reordenar", e um "não dá" do assistente
+  fazia dele um botão de mentira. Guardado por `scripts/testar-copy.mts`, que
+  só exige o rótulo honesto **enquanto** o toque for navegação para o chat.
 - Valores digitados nas telas de input **nunca persistem** — só sessão local.
 - Números macro (Selic, IPCA, rotativo) entram por `{{variável}}` da tabela
   `Indicador`, com fonte e data de apuração. O texto da aula nunca crava o
@@ -295,6 +310,20 @@ que a ofensiva e o teto diário de pontos: em UTC a cota viraria às 21h do dia 
 O guard roda **antes** da chamada ao Vertex e devolve **402**; a soma acontece
 dentro de `responderIA` a partir do `userId` em `OpcoesResposta`, para que rota
 nova não esqueça de contar. O onboarding **conta mas não é bloqueado**.
+
+**A tela conta em PERGUNTAS; a máquina continua contando em token** (20/08/2026,
+item 9c da avaliação UX). O que mudou é só apresentação: `/premium` mostrava
+"94.300 de 120.000", que é conta de padaria — quem lê quer saber se dá para
+conversar amanhã. `lib/pagamento/perguntas.ts` divide o que sobrou por
+`TOKENS_POR_PERGUNTA` (8 mil, a ponta **alta** da faixa de custo de um turno, de
+propósito: a estimativa erra para menos, nunca promete conversa que a cota não
+paga), e 120.000 / 8.000 dá exatamente as 15 mensagens da régua original do
+plano. O módulo é puro e **sem `server-only`**, porque quem mostra o número é
+tela de cliente. Dois cuidados que o teste guarda: enquanto `podeUsar` for
+verdadeiro o resultado tem piso de 1, já que a próxima resposta vem inteira
+mesmo estourando o teto (dizer "0 perguntas" com o chat respondendo seria
+mentira nova no lugar da antiga), e a conta em token **não sumiu** da tela, só
+deixou de ser a manchete. `scripts/testar-pagamento.mts` cobre os dois.
 
 Apagar a conta **cancela a assinatura na Stripe antes** do delete, e falha aí
 aborta o apagamento: `Assinatura` cascateia no nosso banco, mas o objeto na

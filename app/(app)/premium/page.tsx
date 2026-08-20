@@ -5,6 +5,7 @@ import { Check, Loader2, TriangleAlert } from "lucide-react"
 import { BottomNav } from "@/components/bottom-nav"
 import { POSE } from "@/lib/fin"
 import { dinheiro, porIntervalo } from "@/lib/formato"
+import { perguntasNoTeto, perguntasRestantes, rotuloPerguntas } from "@/lib/pagamento/perguntas"
 
 /**
  * Premium: a mesma página vende e administra.
@@ -73,10 +74,22 @@ const milhar = (n: number) => n.toLocaleString("pt-BR")
  * calibrar nada; "94.300 de 120.000" deixa. E o rótulo evita "tokens" no lugar
  * de destaque — é jargão, e a regra do produto é não usar jargão sem explicação
  * na mesma frase. O termo aparece na nota de rodapé, onde é explicado.
+ *
+ * O NÚMERO GRANDE VIROU PERGUNTA (item 9c da avaliação de UX). "94.300 de
+ * 120.000" calibra a régua de quem já entende a régua: quem lê quer saber se dá
+ * para conversar amanhã, e token não responde isso. O destaque passou a ser a
+ * estimativa em perguntas (`lib/pagamento/perguntas.ts`), e a conta em token
+ * continua logo abaixo, inteira — ela não some, ela deixa de ser a manchete.
+ *
+ * "Cerca de" não é modéstia: o custo real de um turno varia, e um extrato
+ * inteiro pesa muito mais que uma pergunta. A estimativa usa a ponta alta da
+ * faixa para errar para menos.
  */
 function UsoDoMes({ cota, premium }: { cota: Estado["cota"]; premium: boolean }) {
   const ilimitado = cota.teto == null
   const pct = ilimitado ? 0 : Math.min(100, Math.round((cota.usados / cota.teto!) * 100))
+  const restamPerguntas = perguntasRestantes(cota.restam, cota.podeUsar)
+  const totalPerguntas = perguntasNoTeto(cota.teto)
 
   return (
     <div className="rounded-2xl border border-fl-sand bg-fl-card p-5">
@@ -85,17 +98,31 @@ function UsoDoMes({ cota, premium }: { cota: Estado["cota"]; premium: boolean })
         {!ilimitado && <p className="text-sm tabular-nums text-fl-ink/50">{pct}%</p>}
       </div>
 
-      <p className="mt-1 text-xl font-semibold tabular-nums text-fl-ink">
-        {milhar(cota.usados)}
-        {!ilimitado && <span className="text-fl-ink/50"> de {milhar(cota.teto!)}</span>}
-      </p>
-
       {ilimitado ? (
-        <p className="mt-2 text-sm text-fl-ink/70">
-          Sua assinatura não tem limite. O número acima é só para você acompanhar.
-        </p>
+        <>
+          <p className="mt-1 text-xl font-semibold tabular-nums text-fl-ink">
+            {milhar(cota.usados)}
+          </p>
+          <p className="mt-2 text-sm text-fl-ink/70">
+            Sua assinatura não tem limite. O número acima é só para você acompanhar.
+          </p>
+        </>
       ) : (
         <>
+          <p className="mt-1 text-xl font-semibold text-fl-ink">
+            {cota.podeUsar ? (
+              <>
+                Dá para mais umas{" "}
+                <span className="tabular-nums">{rotuloPerguntas(restamPerguntas ?? 0)}</span>
+                {totalPerguntas != null && (
+                  <span className="text-fl-ink/50"> de cerca de {totalPerguntas}</span>
+                )}
+              </>
+            ) : (
+              <>Sua cota deste mês acabou</>
+            )}
+          </p>
+
           <div className="mt-3 h-2 overflow-hidden rounded-full bg-fl-sand">
             <div
               className={`h-full rounded-full ${cota.podeUsar ? "bg-fl-500" : "bg-fl-accent"}`}
@@ -105,11 +132,12 @@ function UsoDoMes({ cota, premium }: { cota: Estado["cota"]; premium: boolean })
           <p className="mt-3 text-sm text-fl-ink/70">
             {cota.podeUsar ? (
               <>
-                Restam <strong className="tabular-nums">{milhar(cota.restam ?? 0)}</strong> até o
-                dia 1º, quando a cota renova.
+                É estimativa: já foram <strong className="tabular-nums">{milhar(cota.usados)}</strong>{" "}
+                dos <strong className="tabular-nums">{milhar(cota.teto!)}</strong> tokens do mês, e a
+                cota renova no dia 1º.
               </>
             ) : (
-              <>Sua cota gratuita deste mês acabou. Ela renova no dia 1º.</>
+              <>Ela renova no dia 1º.</>
             )}
           </p>
         </>
@@ -118,7 +146,8 @@ function UsoDoMes({ cota, premium }: { cota: Estado["cota"]; premium: boolean })
       {/* O jargão explicado, e só aqui. */}
       <p className="mt-3 text-xs text-fl-ink/50">
         A conta é em <em>tokens</em>, pedaços de palavra que o assistente lê e escreve. Uma
-        conversa curta gasta pouco; mandar um extrato inteiro gasta bem mais.
+        conversa curta gasta pouco; mandar um extrato inteiro gasta bem mais, por isso a
+        estimativa de perguntas é aproximada.
         {premium && " Cobramos por assinatura, não por uso."}
       </p>
     </div>
