@@ -270,9 +270,10 @@ chegarem, é troca de arquivo, não de código.
   professor** com os 4 tiles e "1ª passada × após correção": a nota que
   valeu XP (`acertos`/`totalQuiz`) vira pedra na 1ª conclusão, refazer
   grava em `acertosRevisao`/`totalQuizRevisao` — a 2ª rodada não vale XP
-  nem infla a média do professor. ⚠️ `ProgressoLicao` continua FORA de
+  nem infla a média do professor. ~~⚠️ `ProgressoLicao` continua FORA de
   `/api/exportar` (lacuna pré-existente, registrada em
-  resumo-de-funcao.md) — as colunas novas herdam a pendência.
+  resumo-de-funcao.md) — as colunas novas herdam a pendência.~~
+  ✅ **23/08/2026** — ver "A exportação LGPD passa a exportar tudo", abaixo.
 - **Landing pública do Finlow para Escolas** — ⚠️ correção de catálogo
   (14/08): a tela "Finlow para Escolas" do protótipo v2 é a **home da
   administração** (abas Início/Turmas/Professores), que já foi vestida
@@ -405,6 +406,74 @@ venda):**
 - **`preRequisitoSlug` segue inerte** — o corredor escolar usa a ordem
   linear dos blocos, que na prática cobre o grafo de pré-requisitos; ligar o
   grafo de verdade é projeto próprio.
+
+## ~~A exportação LGPD passa a exportar tudo~~ ✅ 23/08/2026
+
+Não era pedido da fundadora: era a pendência que o repositório vinha
+registrando de três lugares ao mesmo tempo — a ressalva de `ProgressoLicao`
+acima (14/08), a divergência 6 de [`resumo-de-funcao.md`](resumo-de-funcao.md)
+e o item de [`estado-do-produto.md`](estado-do-produto.md). A primeira tarefa
+desta fila que não dependia de decisão de produto nem de contrato com
+terceiro, e por isso a escolhida.
+
+> **O que estava errado.** O topo da rota promete "baixa TODOS os dados do
+> usuário", e a regra 3 do `README.md` promete o mesmo: dado novo do usuário
+> entra em `/api/exportar` e sai no delete de `/api/conta`. O delete cumpria
+> sempre — é CASCADE do banco, tabela nova nasce coberta. A exportação era uma
+> lista escrita à mão dentro da rota, e estava **onze tabelas** atrás do
+> schema: conversas do chat, memória do assistente, orçamentos, respostas da
+> primeira conversa, perfil da trilha, progresso por lição, recomendações,
+> extrato de XP, insights, dias ativos e extratos importados. As duas primeiras
+> são o dado mais sensível do app — é onde a pessoa contou desemprego, doença,
+> separação. Todas entraram, e a `conta` passou a levar também apelido, nível,
+> XP, público e os dois opt-ins (memória e ranking), que a pessoa vê na tela e
+> não levava.
+>
+> **A lista saiu de dentro da rota, e é isso que impede a repetição.** Cada uma
+> dessas tabelas chegou depois da rota, e nenhuma falhou nada ao não ser somada:
+> compila, roda, e mente numa tela de privacidade. Agora a classificação é dado
+> em [`lib/dados-exportados.ts`](../lib/dados-exportados.ts) e
+> `scripts/testar-exportacao.mts` a confere contra o `schema.prisma` — modelo
+> novo com `userId`, não classificado como exportado nem como excluído **com
+> motivo escrito**, derruba o teste pedindo a decisão. É o mesmo desenho de
+> `lib/dados-financeiros.ts`, que nasceu do defeito espelhado do lado do apagar
+> (10/08), e as duas metades agora se conferem: tudo que o botão de apagar
+> financeiro destrói tem de sair no arquivo, porque a tela oferece "Baixar meus
+> dados antes" ao lado dele.
+>
+> **Duas coisas ficam de fora, de propósito e por escrito:** `Account` e
+> `Session`. São credencial de login — access token, refresh token, token de
+> sessão. Um JSON baixado vai para a pasta de downloads, o Drive, o anexo de
+> e-mail; token ali dentro é a conta na mão de quem abrir. O que a pessoa leva
+> daqui é o que importa e já saía: o e-mail com que ela entra.
+>
+> **Campo cifrado sai pelo repositório dele, nunca por `db.*` direto** — a cifra
+> é amarrada ao dono e ao campo (AAD), e a leitura crua entregaria "v1.VQ3H…"
+> num arquivo que existe para ser legível. O teste também guarda isso, e a lista
+> de quem é cifrado ele tira do próprio schema: modelo novo com campo cifrado
+> entra na checagem sozinho.
+>
+> **Conversa sai inteira**, sem os tetos de 40/200 que existem para a tela rolar
+> — cortar em 200 devolveria menos do que o banco tem sem dizer que cortou. O
+> limite continua onde tem de estar: na gravação. E mensagem que não decifra sai
+> marcada (`erroDeLeitura`) em vez de derrubar a exportação inteira ou sumir
+> calada — uma cifra adulterada não pode custar à pessoa o direito de baixar o
+> resto, nem virar um arquivo que se diz completo com um pedaço faltando.
+>
+> **Guardado por `scripts/testar-exportacao.mts`** (roda sem banco, lendo o DMMF
+> do Prisma e o fonte da rota), conferido contra o código mutilado: tirar uma
+> tabela da rota, cortar as mensagens com `take`, ler campo cifrado direto pelo
+> `db`, perder o `where: { userId }` de uma consulta ou apagar uma chave do JSON
+> faz o teste acusar. Duas checagens nasceram frouxas e foram apertadas nessa
+> conferência — a da chave varria a rota inteira (e o `const [ ... ]` da
+> destruição já a satisfazia) e a do dono usava janela fixa (e o `where` da
+> consulta SEGUINTE cobria a anterior). Guard que não acusa parece resolvido.
+>
+> **O que NÃO foi provado nesta rodada:** o arquivo baixado de um banco real.
+> Este ambiente não tem `DATABASE_URL` nem `ENCRYPTION_KEY`, então valeram
+> `tsc`, `eslint`, `next build` e os guards sem banco. Vale abrir a exportação
+> de uma conta de teste no preview antes de considerar a linha fechada de ponta
+> a ponta.
 
 ---
 

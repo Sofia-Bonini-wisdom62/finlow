@@ -71,6 +71,77 @@ export async function listarConversas(userId: string): Promise<ConversaResumo[]>
     }))
 }
 
+/**
+ * Tudo que foi conversado, para a portabilidade LGPD (`/api/exportar`).
+ *
+ * Existe separada de `listarConversas` + `abrirConversa` por três diferenças que
+ * não são detalhe:
+ *
+ * 1. **Sem os tetos de leitura.** A tela para em 40 conversas e 200 mensagens
+ *    porque ninguém rola mais que isso; a exportação é o direito de levar o que
+ *    está guardado, e cortar em 200 devolveria menos do que o banco tem sem
+ *    dizer que cortou. O volume continua limitado na GRAVAÇÃO (`podar`), que é
+ *    onde o limite tem de estar.
+ * 2. **Todos os cards, não só os que voltam para a tela.** `CARDS_QUE_VOLTAM`
+ *    filtra proposta de ação para não ressuscitar um botão "Confirmar" numa
+ *    conversa reaberta. Num arquivo JSON não há botão nenhum — o que sobra é
+ *    dado que a IA gerou sobre a pessoa, e some sem motivo se for filtrado.
+ * 3. **Conversa vazia sai também.** A lista esconde sessão abandonada porque
+ *    seria linha morta na tela; aqui a linha existe no banco.
+ *
+ * Mensagem que não decifra vira `texto: null` com `erroDeLeitura: true` em vez
+ * de derrubar a exportação inteira ou sumir calada. As duas alternativas são
+ * piores: uma cifra adulterada tirando a pessoa do direito de baixar o resto, ou
+ * um arquivo que se diz completo com um pedaço faltando.
+ */
+export interface MensagemExportada {
+  papel: "usuario" | "ia"
+  texto: string | null
+  erroDeLeitura?: true
+  cards?: CardIA[]
+  criadoEm: Date
+}
+
+export interface ConversaExportada {
+  titulo: string | null
+  criadoEm: Date
+  atualizadoEm: Date
+  mensagens: MensagemExportada[]
+}
+
+export async function exportarConversas(userId: string): Promise<ConversaExportada[]> {
+  const linhas = await db.conversa.findMany({
+    where: { userId },
+    orderBy: { criadoEm: "asc" },
+    include: { mensagens: { orderBy: { criadoEm: "asc" } } },
+  })
+
+  return linhas.map((c) => ({
+    titulo: c.titulo ? tentarDecifrar(c.titulo, userId, "conversa") : null,
+    criadoEm: c.criadoEm,
+    atualizadoEm: c.atualizadoEm,
+    mensagens: c.mensagens.map((m) => {
+      const texto = tentarDecifrar(m.texto, userId, "mensagem")
+      return {
+        papel: m.papel === "ia" ? ("ia" as const) : ("usuario" as const),
+        texto,
+        ...(texto === null ? { erroDeLeitura: true as const } : {}),
+        ...(m.cards ? { cards: m.cards as CardIA[] } : {}),
+        criadoEm: m.criadoEm,
+      }
+    }),
+  }))
+}
+
+function tentarDecifrar(valor: string, userId: string, campo: string): string | null {
+  try {
+    return decifrar(valor, userId, campo)
+  } catch (e) {
+    console.error(`[exportar] ${campo} ilegível`, e)
+    return null
+  }
+}
+
 export async function abrirConversa(
   userId: string,
   conversaId: string

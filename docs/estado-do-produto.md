@@ -7,14 +7,21 @@ um app para adolescentes que já não existia).
 
 Legenda: ✅ pronto · 🔧 em desenvolvimento · 📋 planejado · 🚫 fora deste repo
 
-Última revisão: 17/08/2026 — a resposta do chat deixou de chegar só no fim
+Última revisão: 23/08/2026 — a exportação LGPD passou a exportar tudo: entraram
+conversas do chat, memória do assistente, orçamentos, respostas da primeira
+conversa, perfil da trilha, XP, insights, recomendações, dias ativos, extratos
+importados e o progresso por LIÇÃO (a lacuna que o backlog nomeou em 14/08). A
+lista virou dado conferível em `lib/dados-exportados.ts`, e tabela do usuário
+sem classificação derruba `scripts/testar-exportacao.mts` — a regra 3 do README
+("dado novo entra em `/api/exportar` e sai no delete de `/api/conta`") ganhou
+quem a cobre. Antes disso, 17/08/2026 — a resposta do chat deixou de chegar só no fim
 (jorro em SSE), e o "solte o extrato aqui" do campo de escrever virou gesto de
 verdade. Na mesma data, uma passada de segurança: as dependências com CVE no
 caminho de produção subiram (pdfjs-dist, next-auth, next), o webhook da Stripe
 parou de dar premium a boleto não pago, o texto que a pessoa digita passou a ser
 escapado antes de virar HTML na trilha, o app ganhou cabeçalhos de segurança, e
 o guard de `/api/ops/metrics` passou a falhar fechado. O ✅ de exportar dados
-ganhou a ressalva que o próprio arquivo já cobrava. Antes disso: o assistente deixou de ter uma voz só (seção
+ganhou a ressalva que o próprio arquivo já cobrava — e ela caiu em 23/08. Antes disso: o assistente deixou de ter uma voz só (seção
 *Personalidade do assistente* abaixo). A trilha de Ensino Médio segue portada e
 semeada atrás do gate de público, e as cinco fases do script do Plano 2026–2029
 seguem entregues.
@@ -43,7 +50,7 @@ seguem entregues.
 | Ranking opt-in (apelido e pontos, nada mais) | ✅ | `app/api/ranking` |
 | Login com Google | ✅ | botão pronto; falta chave OAuth na Vercel |
 | Trava de conteúdo impróprio (saída + registros) | ✅ | `lib/conteudo-proibido.ts` |
-| Exportar dados (LGPD) + apagar conta em cascade | ✅ | `/api/exportar`, `/api/conta` — a exportação ainda não cobre tudo, ver Pendências conhecidas |
+| Exportar dados (LGPD) + apagar conta em cascade | ✅ 23/08/2026 | `/api/exportar`, `/api/conta`. A exportação passou a cobrir **todas** as 26 tabelas do usuário; as 2 que ficam de fora (`Account`, `Session`) são credencial de login, com o motivo escrito em `lib/dados-exportados.ts` e conferido por `scripts/testar-exportacao.mts` |
 | Apagar dados financeiros, com a lista conferida contra o schema | ✅ 10/08/2026 | `lib/dados-financeiros.ts`, `lib/apagar-financeiro.ts` |
 | Cifra AES-256-GCM + RLS em todas as tabelas | ✅ | `lib/cripto.ts`, `prisma/seguranca-rls.sql` |
 
@@ -191,6 +198,7 @@ professor por métrica (G-17) ficam de fora; os caminhos sem design novo
 | B4 | Comprar energia: tocar no raio abre modal com recarga cheia por 10 moedas (transação única: débito condicionado + evento no ledger + energia no máximo) ou a porta do Finlow+; botão também na tela de energia zerada | ✅ 16/08 | `lib/energia.ts` (`comprarRecarga`), `app/api/jogo/energia`, `components/trilha-visual/fin/ModalEnergia.tsx`, `components/trilha-visual/TrilhaHeader.tsx`, `app/trilha/[moduloId]/page.tsx` |
 | B5 | Perfil mais limpo: os cinco controles de foto e capa saem da tela e viram um menu atrás de um botão só. `TrocarImagem.tsx` (botões soltos) vira `MenuDoPerfil.tsx` (bottom sheet do `ModalFin`), e remover imagem passa a pedir confirmação, porque a lixeira deixou de ficar a um toque no lugar em que o dedo rola a página | ✅ 18/08 | `components/perfil/MenuDoPerfil.tsx` (novo), `components/perfil/TrocarImagem.tsx` (removido), `app/(app)/perfil/page.tsx`. A mecânica de imagem não mudou: mesmo corte 256²/1280×512, mesmo POST/DELETE de `/api/imagem` |
 | B6 | Bug do contador da Biblioteca: usuário comum que fazia lição escolar via o card virar concluído e o "N concluídas" do cabeçalho não se mexer. A MESMA pergunta era respondida em dois lugares (o card olhava o público antes do corredor; o contador olhava só o corredor, que não conhece aula de outro público) e o denominador ao lado já contava todas as aulas. A regra virou `estadoDaAula` em `lib/biblioteca.ts`, chamada pelos dois | ✅ 18/08 | `lib/biblioteca.ts` (novo), `app/trilha/biblioteca/page.tsx`, `scripts/testar-biblioteca.mts` (16 conferências, com o cenário do bug e uma varredura que quebra se a contagem voltar a filtrar só a trilha da pessoa) |
+| B7 | Exportação LGPD passa a exportar TUDO: entraram conversas do chat (com as mensagens, decifradas), memória do assistente, orçamentos, respostas da primeira conversa, perfil da trilha, progresso por LIÇÃO (a lacuna nomeada em V2-6), recomendações, extrato de XP, insights, dias ativos e extratos importados; a conta leva também apelido, nível, XP, público e os dois opt-ins. A lista saiu de dentro da rota e virou dado classificado, com as 2 exclusões (Account, Session) justificadas por escrito | ✅ 23/08 | `lib/dados-exportados.ts` (novo), `app/api/exportar/route.ts`, `lib/conversa-repo.ts` (`exportarConversas`, sem os tetos de tela e com mensagem ilegível marcada em vez de omitida), `scripts/testar-exportacao.mts` (novo, 100+ conferências, roda sem banco). Guard conferido contra o código mutilado: tirar uma tabela da rota, cortar as mensagens com `take`, ler campo cifrado direto pelo `db` ou perder o `where: { userId }` faz o teste acusar |
 
 ## Fila de produto (05/08/2026)
 
@@ -336,19 +344,22 @@ silenciosa. Estão descritos em `lib/pagamento/stripe.ts`, com teste para cada u
   mês; não impede alguém de gastar a cota inteira em dois minutos, nem protege o
   extrato, que não tem guard nenhum. O limitador (`lib/limite-taxa.ts`) segue só
   na rota de lead B2B.
-- **`/api/exportar` não exporta tudo**, apesar do que o comentário no topo dela
-  diz. Ficam de fora memórias, conversas do chat, orçamentos, respostas do
-  onboarding, eventos de pontuação e insights — e o que falta é justamente o
-  mais sensível. O *delete* cobre tudo por cascade; a exportação, não.
-  (Assinatura e uso de IA entraram em 10/08; o resto continua de fora.)
+- ~~**`/api/exportar` não exporta tudo**~~ ✅ **23/08/2026.** Ficavam de fora
+  memórias, conversas do chat, orçamentos, respostas do onboarding, eventos de
+  pontuação e insights — o mais sensível do app — mais o perfil da trilha, as
+  recomendações, os dias ativos, os extratos importados e o progresso por lição.
+  Todos entraram, e a lista deixou de morar dentro da rota: `lib/dados-exportados.ts`
+  classifica cada tabela do usuário, e `scripts/testar-exportacao.mts` confere
+  contra o `schema.prisma` — tabela nova sem classificação derruba o teste,
+  pedindo a decisão.
 
-  > O lado do apagar tinha o defeito espelhado, e foi corrigido em 10/08/2026:
-  > "Apagar meus dados financeiros" deixava para trás investimento, orçamento
-  > de mês inteiro, extrato importado, diagnóstico e insights, enquanto a tela
-  > respondia "Dados financeiros apagados.". A lista agora é dado em
-  > `lib/dados-financeiros.ts`, conferida contra o `schema.prisma` — tabela do
-  > usuário sem classificação derruba `scripts/testar-apagar-dados.mts`. Falta
-  > o mesmo tratamento do lado da exportação.
+  > O lado do apagar tinha o defeito espelhado, e foi corrigido antes, em
+  > 10/08/2026: "Apagar meus dados financeiros" deixava para trás investimento,
+  > orçamento de mês inteiro, extrato importado, diagnóstico e insights,
+  > enquanto a tela respondia "Dados financeiros apagados.". Foi de lá que veio
+  > a forma da correção — e agora as duas metades se conferem uma à outra: o
+  > teste da exportação exige que **tudo que o botão de apagar destrói saia no
+  > arquivo**, porque a tela oferece "Baixar meus dados antes" ao lado dele.
 
 - **`RecomendacaoTrilha.motivo` é decisão de produto em aberto.** É texto livre
   escrito pela IA a partir dos números da pessoa, e nada impede a frase de citar

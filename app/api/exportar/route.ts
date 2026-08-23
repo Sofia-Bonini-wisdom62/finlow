@@ -5,6 +5,9 @@ import { listarTransacoes, listarContasFixas } from "@/lib/financeiro-repo"
 import { lerDiagnostico } from "@/lib/vazamento-repo"
 import { listarInvestimentos } from "@/lib/investimento-repo"
 import { listarObjetivos } from "@/lib/objetivo-repo"
+import { listarOrcamentos } from "@/lib/orcamento-repo"
+import { listarMemorias } from "@/lib/memoria-repo"
+import { exportarConversas } from "@/lib/conversa-repo"
 import { lerPersonalidade } from "@/lib/personalidade-repo"
 
 export const dynamic = "force-dynamic"
@@ -12,6 +15,14 @@ export const dynamic = "force-dynamic"
 // GET /api/exportar — baixa TODOS os dados do usuário em JSON.
 // Portabilidade de dados (LGPD art. 18): o usuário leva o que é dele.
 // Não inclui hash de senha nem tokens de sessão.
+//
+// "TODOS" passou meses sendo mentira nesta linha: conversas, memórias,
+// orçamentos, respostas do onboarding, XP, insights e progresso de lição nunca
+// saíram daqui. Fechado em 23/08/2026, e a lista virou dado conferível em
+// `lib/dados-exportados.ts` — `scripts/testar-exportacao.mts` derruba quem
+// acrescentar tabela do usuário sem decidir se ela sai no arquivo. É a regra 3
+// do README ("dado novo entra em /api/exportar e sai no delete de /api/conta")
+// finalmente com quem a cobre.
 export async function GET() {
   const userId = await getUserIdOr401()
   if (userId instanceof NextResponse) return userId
@@ -20,7 +31,16 @@ export async function GET() {
     const [user, categorias, contas, transacoes, progresso, indicacoesFeitas, indicacaoRecebida, diagnostico, investimentos, objetivos, assinatura, usoIA, personalidade] = await Promise.all([
       db.user.findUnique({
         where: { id: userId },
-        select: { nome: true, email: true, celular: true, dataNascimento: true, criadoEm: true, consentimentoPainelEm: true, codigoIndicacao: true },
+        // Sem `senha` (hash) e sem os ids da Stripe, aqui e em qualquer bloco
+        // abaixo: os dois primeiros são credencial, o resto é identificador de
+        // sistema nosso. O que entrou junto com a lacuna de 23/08 são as
+        // colunas que a pessoa VÊ no app e não levava — apelido, nível, XP,
+        // se a memória está ligada, se está no ranking, qual trilha é a dela.
+        select: {
+          nome: true, email: true, celular: true, dataNascimento: true, criadoEm: true,
+          consentimentoPainelEm: true, codigoIndicacao: true, apelido: true, nivel: true,
+          pontos: true, publico: true, memoriaAtiva: true, rankingOptIn: true, onboardingEm: true,
+        },
       }),
       db.categoria.findMany({
         where: { userId },
@@ -75,6 +95,80 @@ export async function GET() {
       where: { userId },
       select: { tipo: true, dados: true, atualizadoEm: true },
     })
+
+    // O assistente. É o bloco mais sensível do arquivo e era o que faltava
+    // inteiro: memória e conversa são onde a pessoa contou desemprego, doença e
+    // separação. Os dois vêm pelo repositório porque são cifrados com AAD
+    // amarrada ao dono e ao campo — `db.memoriaUsuario` direto entregaria
+    // "v1.VQ3H…" num arquivo que existe justamente para ser legível.
+    const [memorias, conversas, onboarding, perfilTrilha] = await Promise.all([
+      listarMemorias(userId),
+      exportarConversas(userId),
+      db.onboarding.findUnique({
+        where: { userId },
+        select: {
+          objetivo: true, objetivoOutro: true, eixo2: true, eixo2Valor: true, eixo2Outro: true,
+          momento: true, nivelInferido: true, situacoes: true, concluidoEm: true, criadoEm: true,
+        },
+      }),
+      db.perfil.findUnique({
+        where: { userId },
+        select: { tipo: true, respostas: true, criadoEm: true },
+      }),
+    ])
+
+    // Aprendizado e XP. `progressoLicao` é a lacuna que o backlog nomeou quando
+    // a métrica "1ª passada × após correção" entrou (14/08/2026): o professor
+    // passou a ver a nota da aluna numa tela da escola, e o arquivo da própria
+    // aluna não trazia nem os acertos nem o tempo dela.
+    const [progressoLicoes, eventosXP, insights, recomendacoes, diasAtivos, extratos, orcamentos] =
+      await Promise.all([
+        db.progressoLicao.findMany({
+          where: { userId },
+          select: {
+            licao: true, concluido: true, telaAtual: true, acertos: true, totalQuiz: true,
+            acertosRevisao: true, totalQuizRevisao: true, segundos: true, concluidoEm: true,
+            criadoEm: true, modulo: { select: { slug: true, titulo: true } },
+          },
+          orderBy: [{ criadoEm: "asc" }, { licao: "asc" }],
+        }),
+        db.eventoPontuacao.findMany({
+          where: { userId },
+          select: { motivo: true, pontos: true, refId: true, criadoEm: true },
+          orderBy: { criadoEm: "asc" },
+        }),
+        db.insight.findMany({
+          where: { userId },
+          select: { texto: true, tipo: true, ativo: true, criadoEm: true },
+          orderBy: { criadoEm: "asc" },
+        }),
+        db.recomendacaoTrilha.findMany({
+          where: { userId },
+          select: {
+            motivo: true, origem: true, ordem: true, leva: true, entregueEm: true,
+            substituidaEm: true, criadoEm: true, modulo: { select: { slug: true, titulo: true } },
+          },
+          orderBy: { criadoEm: "asc" },
+        }),
+        db.diaAtivo.findMany({
+          where: { userId },
+          select: { dia: true },
+          orderBy: { dia: "asc" },
+        }),
+        // Sem `tokensEntrada`/`tokensSaida`/`modelo`: qual modelo leu e quanto
+        // custou é medidor nosso, e o consumo de IA dela já sai inteiro em
+        // `usoDeIA`. O que é dela aqui é a vida financeira descrita — "Nubank,
+        // março a junho, 412 linhas".
+        db.extratoImport.findMany({
+          where: { userId },
+          select: {
+            status: true, banco: true, periodoInicio: true, periodoFim: true,
+            totalLinhas: true, erroValidacao: true, criadoEm: true,
+          },
+          orderBy: { criadoEm: "asc" },
+        }),
+        listarOrcamentos(userId),
+      ])
 
     // O jogo (Redesign Fin): carteira, itens e o extrato de coins — tudo dela.
     const [jogoUser, extratoCoins] = await Promise.all([
@@ -146,6 +240,22 @@ export async function GET() {
         criadoEm: o.criadoEm,
         atualizadoEm: o.atualizadoEm,
       })),
+      orcamentos: orcamentos.map((o) => ({
+        categoria: o.categoria?.nome ?? null, // null = teto do mês inteiro
+        limite: o.limite,
+      })),
+      // O assistente, em três blocos. A memória sai mesmo com o opt-in
+      // desligado hoje: o que está guardado está guardado, e `memoriaAtiva`
+      // (em `conta`) diz se ele ainda pode ler.
+      memoriaDoAssistente: memorias.map((m) => ({
+        tipo: m.tipo,
+        conteudo: m.conteudo,
+        origem: m.origem,
+        criadoEm: m.criadoEm,
+      })),
+      conversas,
+      primeiraConversa: onboarding,
+      perfilDaTrilha: perfilTrilha,
       progressoModulos: progresso.map((p) => ({
         modulo: p.modulo.slug,
         titulo: p.modulo.titulo,
@@ -153,6 +263,36 @@ export async function GET() {
         telaAtual: p.telaAtual,
         concluidoEm: p.concluidoEm,
       })),
+      progressoLicoes: progressoLicoes.map((p) => ({
+        modulo: p.modulo.slug,
+        titulo: p.modulo.titulo,
+        licao: p.licao,
+        concluido: p.concluido,
+        telaAtual: p.telaAtual,
+        // Os dois pares separados, como no banco: o primeiro é a nota que valeu
+        // XP e virou pedra; o segundo, null quando nunca refez.
+        acertos: p.acertos,
+        totalQuiz: p.totalQuiz,
+        acertosRevisao: p.acertosRevisao,
+        totalQuizRevisao: p.totalQuizRevisao,
+        segundos: p.segundos,
+        concluidoEm: p.concluidoEm,
+      })),
+      recomendacoesDaTrilha: recomendacoes.map((r) => ({
+        modulo: r.modulo.slug,
+        titulo: r.modulo.titulo,
+        motivo: r.motivo,
+        origem: r.origem,
+        ordem: r.ordem,
+        leva: r.leva,
+        entregueEm: r.entregueEm,
+        substituidaEm: r.substituidaEm,
+        criadoEm: r.criadoEm,
+      })),
+      extratoDeXP: eventosXP,
+      insights,
+      diasAtivos: diasAtivos.map((d) => d.dia),
+      extratosImportados: extratos,
       indicacoes: {
         meuCodigo: user?.codigoIndicacao ?? null,
         convitesQueFiz: indicacoesFeitas,
