@@ -7,14 +7,19 @@ um app para adolescentes que já não existia).
 
 Legenda: ✅ pronto · 🔧 em desenvolvimento · 📋 planejado · 🚫 fora deste repo
 
-Última revisão: 17/08/2026 — a resposta do chat deixou de chegar só no fim
+Última revisão: 24/08/2026 — a exportação LGPD passou a entregar TUDO, que é o
+que ela sempre prometeu no topo da própria rota (seção *Portabilidade LGPD*
+abaixo): memórias, conversas, orçamentos, onboarding, XP, insights, progresso de
+lição, ofensiva, perfil e recomendações da trilha entraram, e a lista agora é
+dado conferido contra o schema. Antes disso, em 17/08/2026 — a resposta do chat deixou de chegar só no fim
 (jorro em SSE), e o "solte o extrato aqui" do campo de escrever virou gesto de
 verdade. Na mesma data, uma passada de segurança: as dependências com CVE no
 caminho de produção subiram (pdfjs-dist, next-auth, next), o webhook da Stripe
 parou de dar premium a boleto não pago, o texto que a pessoa digita passou a ser
 escapado antes de virar HTML na trilha, o app ganhou cabeçalhos de segurança, e
-o guard de `/api/ops/metrics` passou a falhar fechado. O ✅ de exportar dados
-ganhou a ressalva que o próprio arquivo já cobrava. Antes disso: o assistente deixou de ter uma voz só (seção
+o guard de `/api/ops/metrics` passou a falhar fechado. Foi nessa passada que o
+✅ de exportar dados ganhou a ressalva que o próprio arquivo já cobrava — a
+ressalva que caiu agora, com a lacuna. Antes disso: o assistente deixou de ter uma voz só (seção
 *Personalidade do assistente* abaixo). A trilha de Ensino Médio segue portada e
 semeada atrás do gate de público, e as cinco fases do script do Plano 2026–2029
 seguem entregues.
@@ -43,7 +48,7 @@ seguem entregues.
 | Ranking opt-in (apelido e pontos, nada mais) | ✅ | `app/api/ranking` |
 | Login com Google | ✅ | botão pronto; falta chave OAuth na Vercel |
 | Trava de conteúdo impróprio (saída + registros) | ✅ | `lib/conteudo-proibido.ts` |
-| Exportar dados (LGPD) + apagar conta em cascade | ✅ | `/api/exportar`, `/api/conta` — a exportação ainda não cobre tudo, ver Pendências conhecidas |
+| Exportar dados (LGPD) + apagar conta em cascade | ✅ 24/08/2026 | `/api/exportar`, `/api/conta` — a exportação passou a cobrir tudo, com a lista conferida contra o schema (`lib/dados-exportacao.ts`, `scripts/testar-exportacao.mts`) |
 | Apagar dados financeiros, com a lista conferida contra o schema | ✅ 10/08/2026 | `lib/dados-financeiros.ts`, `lib/apagar-financeiro.ts` |
 | Cifra AES-256-GCM + RLS em todas as tabelas | ✅ | `lib/cripto.ts`, `prisma/seguranca-rls.sql` |
 
@@ -318,6 +323,37 @@ alguém de verdade, ver o checklist em `docs/pagamento-antes-de-cobrar.md`.
 os três da mesma família (campo que a Stripe mudou de lugar) e os três com falha
 silenciosa. Estão descritos em `lib/pagamento/stripe.ts`, com teste para cada um.
 
+## Portabilidade LGPD: a exportação passou a entregar tudo (24/08/2026)
+
+`/api/exportar` dizia "baixa TODOS os dados do usuário" no comentário do topo, e
+a regra 3 do `README.md` promete o mesmo. Não era verdade: ficavam de fora as
+memórias do assistente, as conversas do chat, os orçamentos, as respostas do
+onboarding, os eventos de pontuação, os insights, o progresso das lições, os
+dias da ofensiva, o perfil da trilha, as recomendações da IA e de que banco veio
+cada extrato importado — **o mais sensível do banco**. O delete cobre tudo por
+CASCADE, porque quem escolhe é o banco; a exportação é escrita à mão, e o que se
+escreve à mão se esquece.
+
+| Peça | Estado |
+|---|---|
+| A lista virou dado, com a razão de cada item | ✅ `lib/dados-exportacao.ts` |
+| 26 seções saem; 1 fica (sessão), com a razão escrita | ✅ |
+| Conversa inteira, sem o teto de 40/200 que serve à tela | ✅ `exportarConversas` em `lib/conversa-repo.ts` |
+| Cifrado sai decifrado, sempre pelo repositório | ✅ o arquivo não pode sair com `"v1.…"` |
+| Credencial e id da Stripe nunca entram no arquivo | ✅ `CAMPOS_FORA` |
+| Tabela nova do usuário sem classificação derruba o teste | ✅ `scripts/testar-exportacao.mts` |
+
+**O que continua FORA, e por quê:** token de sessão e de OAuth (é credencial, não
+retrato da pessoa — o arquivo é feito para ser guardado e compartilhado), os ids
+`cus_`/`sub_`/`cs_` da Stripe (identificador do nosso sistema) e dado de
+terceiro — quem entrou pelo link dela e quem estuda na mesma turma continuam
+saindo como status e datas, nunca como identidade.
+
+**A simetria com o apagar virou teste.** Toda tabela que "Apagar meus dados
+financeiros" leva precisa estar na exportação: some no botão e nunca ter saído
+no arquivo é a pessoa perder sem nunca ter podido levar. Era assimetria real —
+orçamento e extrato importado eram apagados e nunca exportados.
+
 ## Pendências conhecidas
 
 - **`/api/ops/metrics` agora falha FECHADA, e por isso está fora do ar até
@@ -336,20 +372,6 @@ silenciosa. Estão descritos em `lib/pagamento/stripe.ts`, com teste para cada u
   mês; não impede alguém de gastar a cota inteira em dois minutos, nem protege o
   extrato, que não tem guard nenhum. O limitador (`lib/limite-taxa.ts`) segue só
   na rota de lead B2B.
-- **`/api/exportar` não exporta tudo**, apesar do que o comentário no topo dela
-  diz. Ficam de fora memórias, conversas do chat, orçamentos, respostas do
-  onboarding, eventos de pontuação e insights — e o que falta é justamente o
-  mais sensível. O *delete* cobre tudo por cascade; a exportação, não.
-  (Assinatura e uso de IA entraram em 10/08; o resto continua de fora.)
-
-  > O lado do apagar tinha o defeito espelhado, e foi corrigido em 10/08/2026:
-  > "Apagar meus dados financeiros" deixava para trás investimento, orçamento
-  > de mês inteiro, extrato importado, diagnóstico e insights, enquanto a tela
-  > respondia "Dados financeiros apagados.". A lista agora é dado em
-  > `lib/dados-financeiros.ts`, conferida contra o `schema.prisma` — tabela do
-  > usuário sem classificação derruba `scripts/testar-apagar-dados.mts`. Falta
-  > o mesmo tratamento do lado da exportação.
-
 - **`RecomendacaoTrilha.motivo` é decisão de produto em aberto.** É texto livre
   escrito pela IA a partir dos números da pessoa, e nada impede a frase de citar
   um valor. Ficou FORA de "apagar dados financeiros" porque é trilha, não

@@ -140,6 +140,39 @@ export async function guardarTurno(
   return id
 }
 
+/**
+ * Todas as conversas, com TODAS as mensagens, para a exportação LGPD.
+ *
+ * Existe separada de `listarConversas` + `abrirConversa` por causa dos tetos.
+ * Aqueles dois servem a tela: 40 conversas na barra lateral e 200 mensagens ao
+ * reabrir são cortes de renderização, e cortar o que a tela mostra é sensato.
+ * Cortar o que a portabilidade entrega não é — o arquivo diria "todos os seus
+ * dados" entregando os 40 mais recentes, e a conversa que a pessoa foi buscar
+ * seria justamente a antiga.
+ *
+ * `cards` sai como está gravado, sem o filtro de `CARDS_QUE_VOLTAM`: ali o
+ * filtro impede que uma proposta de lançamento reabra com botão "Confirmar"
+ * vivo, e num arquivo JSON não há botão nenhum para apertar.
+ */
+export async function exportarConversas(userId: string) {
+  const conversas = await db.conversa.findMany({
+    where: { userId },
+    orderBy: { criadoEm: "asc" },
+    include: { mensagens: { orderBy: { criadoEm: "asc" } } },
+  })
+  return conversas.map((c) => ({
+    titulo: c.titulo ? decifrar(c.titulo, userId, "conversa") : null,
+    criadoEm: c.criadoEm,
+    atualizadoEm: c.atualizadoEm,
+    mensagens: c.mensagens.map((m) => ({
+      papel: m.papel,
+      texto: decifrar(m.texto, userId, "mensagem"),
+      cards: m.cards ?? null,
+      criadoEm: m.criadoEm,
+    })),
+  }))
+}
+
 export async function apagarConversa(userId: string, id: string): Promise<boolean> {
   const r = await db.conversa.deleteMany({ where: { id, userId } })
   return r.count > 0

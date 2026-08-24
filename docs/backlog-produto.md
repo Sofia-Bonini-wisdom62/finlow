@@ -270,9 +270,12 @@ chegarem, é troca de arquivo, não de código.
   professor** com os 4 tiles e "1ª passada × após correção": a nota que
   valeu XP (`acertos`/`totalQuiz`) vira pedra na 1ª conclusão, refazer
   grava em `acertosRevisao`/`totalQuizRevisao` — a 2ª rodada não vale XP
-  nem infla a média do professor. ⚠️ `ProgressoLicao` continua FORA de
+  nem infla a média do professor. ~~⚠️ `ProgressoLicao` continua FORA de
   `/api/exportar` (lacuna pré-existente, registrada em
-  resumo-de-funcao.md) — as colunas novas herdam a pendência.
+  resumo-de-funcao.md) — as colunas novas herdam a pendência.~~ ✅ **24/08/2026**
+  — a lacuna era a tabela inteira, e a tabela inteira entrou: as duas duplas
+  ("1ª passada × após correção") saem separadas, como ficam no banco. Ver
+  *Exportação LGPD completa* abaixo.
 - **Landing pública do Finlow para Escolas** — ⚠️ correção de catálogo
   (14/08): a tela "Finlow para Escolas" do protótipo v2 é a **home da
   administração** (abas Início/Turmas/Professores), que já foi vestida
@@ -405,6 +408,54 @@ venda):**
 - **`preRequisitoSlug` segue inerte** — o corredor escolar usa a ordem
   linear dos blocos, que na prática cobre o grafo de pré-requisitos; ligar o
   grafo de verdade é projeto próprio.
+
+## ~~Exportação LGPD completa~~ ✅ 24/08/2026
+
+Não é pedido novo: é a lacuna que `estado-do-produto.md` e
+[`resumo-de-funcao.md`](resumo-de-funcao.md) já registravam, e que a ⚠️ do
+Finlow para Escolas (acima) herdou. `/api/exportar` prometia "TODOS os dados do
+usuário" no comentário do topo — e a regra 3 do `README.md` promete o mesmo —
+enquanto deixava de fora **memórias do assistente, conversas do chat,
+orçamentos, respostas do onboarding, eventos de pontuação, insights e progresso
+das lições**. Entraram também os dias da ofensiva, o perfil da trilha, as
+recomendações da IA (com o `motivo` que ela escreveu sobre a pessoa) e de que
+banco veio cada extrato importado.
+
+> **O defeito não era a lista errada; era a lista morar onde esquecer não dá
+> erro.** O delete cobre tudo porque quem escolhe é o banco (CASCADE); a
+> exportação é escrita à mão. Tabela nova entra no schema, ninguém lembra da
+> rota, e o app passa a mentir numa tela de privacidade — em silêncio, e do lado
+> que a pessoa só descobre ao abrir o arquivo procurando a conversa que não
+> está lá. Por isso a correção é a mesma que `lib/dados-financeiros.ts` já tinha
+> feito do outro lado: a lista virou dado em `lib/dados-exportacao.ts`, e
+> `scripts/testar-exportacao.mts` a confere contra o `schema.prisma` — modelo do
+> usuário sem classificação derruba o teste pedindo a decisão.
+>
+> **Teto de tela não vale para portabilidade.** As conversas saem inteiras, por
+> `exportarConversas` (novo em `lib/conversa-repo.ts`): os cortes de 40
+> conversas e 200 mensagens existem para a barra lateral renderizar, e usá-los
+> aqui entregaria "os 40 mais recentes" com o arquivo dizendo "todos os seus
+> dados" — sendo que a conversa que a pessoa foi buscar é justamente a antiga.
+> O teste recusa `take:` na rota pelo mesmo motivo.
+>
+> **O que fica de fora tem razão escrita, e são três famílias:** credencial
+> (senha, token de sessão, token do Google — é a chave da conta, e o arquivo é
+> feito para ser guardado e mandado por e-mail), identificador de sistema nosso
+> (os ids `cus_`/`sub_`/`cs_` da Stripe) e dado de terceiro (quem entrou pelo
+> link dela, quem estuda na mesma turma). O teste confere que nenhum desses
+> nomes reaparece no código da rota — um `select` copiado de outro arquivo é o
+> jeito comum de isso voltar sem ninguém decidir.
+>
+> **Cifrado sai decifrado, sempre pelo repositório.** Ler `db.conversaMensagem`
+> direto não quebra nada: gera um arquivo de `"v1.…"` que a pessoa abre sem
+> entender. O teste lê o `schema.prisma` como texto (a marca CIFRADO é
+> comentário `//`, que o DMMF não carrega) e recusa leitura direta de qualquer
+> modelo cifrado dentro da rota.
+>
+> **Simetria com o apagar virou teste:** toda tabela que "Apagar meus dados
+> financeiros" leva precisa estar na exportação. Some no botão e nunca ter saído
+> no arquivo é a pessoa perder sem nunca ter podido levar — era o caso de
+> orçamento e de extrato importado. Conferido contra o código mutilado.
 
 ---
 
