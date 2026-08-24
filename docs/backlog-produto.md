@@ -17,16 +17,63 @@ guardar dinheiro para eles, uma coisa meio sonho.
 > "Redesign Fin v2" abaixo; pendência que segue viva lá: remover/editar
 > objetivo não tem desenho.
 
-## ~~Tela de perfil a reconfigurar~~ ✅ 15/08/2026 (com uma sobra)
+## ~~Tela de perfil a reconfigurar~~ ✅ 15/08/2026, e a sobra fechou em 24/08/2026
 
 Nome e foto no topo, saldo atual + (entrada + saída) do mês, logo abaixo. Aí sim
 o gráfico de rosca e os 4 botões que tem atualmente.
 
-> Veio quase inteira com a unificação dos perfis (15/08): nome e FOTO no
-> topo, rosca, os 4 botões, e de quebra nível/XP, missões e conquistas.
-> **A sobra:** o "saldo atual + (entrada + saída) do mês" não está no topo
-> do Perfil — esses números moram no Painel e nas Análises, a um toque. Se
-> a fundadora ainda os quiser no Perfil, é pedido pequeno e a API já os tem.
+> **A ordem pedida virou a ordem da tela.** `/perfil` agora é: nome e foto →
+> saldo com o que entrou e o que saiu do mês → rosca → leituras → Objetivos →
+> as quatro portas. O bloco de dinheiro é novo; o resto já existia e só mudou
+> de lugar.
+>
+> **A sobra registrada em 15/08 era exatamente este bloco**, e ela fechou sem
+> nada sair da tela: DIAS SEGUIDOS / XP TOTAL / PRECISÃO continuam onde o
+> protótipo v2 os pôs, uma linha abaixo do dinheiro. Descê-los para junto da
+> porta da Liga era a outra saída, e resolvia o mesmo problema — mas mover
+> elemento que um desenho registrado posicionou é decisão de produto, e o
+> pedido ("nome e foto no topo, o dinheiro logo abaixo") se cumpre sem ela.
+>
+> **"Saldo atual" virou "saldo acumulado", e a diferença é honestidade, não
+> estilo.** Não existe integração bancária: o que o app sabe é a soma do que a
+> pessoa registrou. Chamar isso de saldo da conta seria a mesma falha do passo
+> 1 da landing, que prometia conexão automática (item 2 da avaliação de UX). A
+> tela mostra o número em destaque e diz, embaixo, de onde ele vem e o que ele
+> não é. Quando o conector Open Finance existir, o saldo de verdade entra aqui
+> — e aí o rótulo pode mudar porque a frase terá virado verdade.
+>
+> **Entradas e saídas são do MESMO mês da rosca** (o último com movimento, não
+> o mês corrente — no dia 1º o corrente está vazio por definição). A escolha
+> desse mês era uma função privada da rota do Perfil e virou
+> `mesDeReferencia` em [`lib/financas.ts`](../lib/financas.ts): três
+> leituras do mesmo mês na mesma tela não podem ter três donos. De quebra, a
+> versão privada lia a data em UTC enquanto o resto da biblioteca lê em hora
+> local — as duas só concordam porque o servidor roda em UTC, e em qualquer
+> fuso a oeste o rótulo diria "agosto" sobre números de julho.
+>
+> **Sem lançamento nenhum a tela não diz "R$ 0,00"**, porque o app não sabe que
+> a pessoa tem zero: sabe que não sabe. O bloco vira convite para subir o
+> extrato. E o que foi para a poupança continua fora de "saiu" (regra do
+> `ehPoupanca`), com linha própria quando houver — guardar não é gastar.
+>
+> **Guardado por `scripts/testar-perfil.mts`** (roda sem banco, sem build): 37
+> casos — a escolha do mês (virada de ano, histórico vazio, data ilegível), a
+> concordância entre rosca, "entrou" e "saiu", a neutralidade da poupança, e
+> quatro conferências que olham o CÓDIGO da tela: a ordem dos blocos, que
+> nenhum tile sumiu, que nada promete saldo bancário e que não há `R$` escrito
+> à mão. Nada disso quebra build, typecheck ou lint — uma tela somando o mês
+> errado compila perfeitamente. O teste foi conferido contra o código mutilado:
+> escolher o primeiro mês em vez do último derruba 7 casos, e dar a
+> `indicadores` um mês diferente do da rosca derruba a conferência de
+> competência única.
+>
+> ⚠️ **Pendência que fica registrada, e é maior que esta tela:**
+> `lib/financas.ts` agrupa por mês com `getMonth()` (hora local) enquanto
+> `dataCurta()` em [`lib/formato.ts`](../lib/formato.ts) lê o dia em UTC de
+> propósito — a data de um lançamento é dia de calendário, não instante. Hoje
+> ninguém sente porque a Vercel roda em UTC. Uniformizar a biblioteca inteira
+> para UTC é projeto próprio, com teste próprio, e não cabia dentro de um
+> trabalho de tela.
 
 ## Conector Open Finance
 

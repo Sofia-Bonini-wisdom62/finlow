@@ -58,6 +58,47 @@ function dentroDoCorte(data: Date, ate?: Competencia): boolean {
   return ate ? chaveMes(data) <= ateChave(ate) : true
 }
 
+/**
+ * O último mês COM movimento — a competência de que a tela fala.
+ *
+ * NÃO SE CHAMA `ultimoMesComMovimento`, E O NOME É DE PROPÓSITO. Existe uma
+ * função com esse nome em `lib/contexto-financeiro.ts`: ela responde a mesma
+ * pergunta para a IA, indo ao BANCO e lendo a data em UTC. Esta aqui é pura,
+ * roda sobre a lista já carregada e lê a data como o resto deste arquivo lê.
+ * Duas implementações da mesma pergunta é o que ainda não dá para resolver
+ * (ver a ressalva de fuso abaixo); duas com o MESMO nome seria a próxima
+ * pessoa importando a errada sem perceber.
+ *
+ * Não é o mês corrente. No dia 1º o mês corrente está vazio por definição, e
+ * quem tem meses de histórico veria a rosca oca e "entrou R$ 0,00" no mesmo
+ * instante em que o dinheiro do mês passado ainda é a realidade dela. O Perfil
+ * é retrato, não extrato do mês: o último mês real é o que responde "para onde
+ * vai meu dinheiro".
+ *
+ * MORA AQUI, E NÃO NA ROTA, PARA QUE SÓ EXISTA UMA RESPOSTA. A rosca, as
+ * entradas e as saídas do Perfil são três leituras do MESMO mês; se cada uma
+ * escolhesse o seu, a tela diria "suas saídas em julho" ao lado de um "saiu"
+ * que somou agosto. Quem escolhe é esta função, e ela lê a data do mesmo jeito
+ * que `indicadores` e `gastosPorCategoria` leem — `getMonth()` local, não
+ * `getUTCMonth()`. A versão anterior (privada da rota do Perfil) lia em UTC, e
+ * as duas só concordam porque o servidor roda em UTC: em qualquer fuso a oeste,
+ * um lançamento gravado à meia-noite do dia 1º escolheria agosto para o rótulo
+ * e cairia em julho na soma. A divergência UTC × local de `financas.ts` inteiro
+ * é anterior a isto e continua registrada como pendência.
+ */
+export function mesDeReferencia(todas: TransacaoCalc[], hoje = new Date()): Competencia {
+  let maior = 0
+  for (const t of todas) {
+    const dt = d(t.data)
+    if (isNaN(dt.getTime())) continue
+    const ordinal = dt.getFullYear() * 12 + dt.getMonth() + 1
+    if (ordinal > maior) maior = ordinal
+  }
+  if (maior === 0) return { mes: hoje.getMonth() + 1, ano: hoje.getFullYear() }
+  const mes = ((maior - 1) % 12) + 1
+  return { mes, ano: Math.floor((maior - mes) / 12) }
+}
+
 // ---------- indicadores rápidos (topo das Análises) ----------
 
 export interface Indicadores {

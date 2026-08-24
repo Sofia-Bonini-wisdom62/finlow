@@ -3,6 +3,7 @@ import { db } from "@/lib/db"
 import { getUserIdOr401 } from "@/lib/painel"
 import {
   metricasPerfil, nivelFinanceiro, resumoUsuario, gastosPorCategoria,
+  indicadores, mesDeReferencia,
   type TransacaoCalc,
 } from "@/lib/financas"
 import { listarTransacoes } from "@/lib/financeiro-repo"
@@ -16,26 +17,10 @@ const NOMES_MESES = [
   "julho", "agosto", "setembro", "outubro", "novembro", "dezembro",
 ]
 
-/**
- * O mês que a rosca do Perfil mostra.
- *
- * O último COM movimento, não o corrente. No dia 1º o mês corrente está vazio
- * por definição, e a rosca apareceria oca para quem tem meses de histórico —
- * o mesmo defeito que as leituras tinham. O Perfil é retrato, não extrato do
- * mês: mostrar o último mês real é o que responde "para onde vai meu dinheiro".
- */
-function mesDaRosca(calc: TransacaoCalc[]): { mes: number; ano: number } {
-  const hoje = new Date()
-  let maior = 0
-  for (const t of calc) {
-    const d = t.data instanceof Date ? t.data : new Date(t.data)
-    const ordinal = d.getUTCFullYear() * 12 + d.getUTCMonth() + 1
-    if (ordinal > maior) maior = ordinal
-  }
-  if (maior === 0) return { mes: hoje.getMonth() + 1, ano: hoje.getFullYear() }
-  const mes = ((maior - 1) % 12) + 1
-  return { mes, ano: Math.floor((maior - mes) / 12) }
-}
+// O mês de que o Perfil fala — o último COM movimento — mora em
+// `lib/financas.ts` (`mesDeReferencia`). A rosca, as entradas e as saídas
+// desta rota são três leituras da MESMA competência, e uma função privada aqui
+// já tinha começado a divergir da leitura de data do resto da biblioteca.
 
 export const dynamic = "force-dynamic"
 
@@ -67,7 +52,12 @@ export async function GET() {
     const calc: TransacaoCalc[] = transacoes
 
     const metricas = metricasPerfil(calc)
-    const { mes, ano } = mesDaRosca(calc)
+    const { mes, ano } = mesDeReferencia(calc)
+    // O bloco de dinheiro do topo (backlog "Tela de perfil a reconfigurar"):
+    // saldo acumulado + o que entrou e o que saiu NO MESMO mês da rosca.
+    // `indicadores` já é a fonte do topo das Análises — dois cálculos de saldo
+    // no app seriam duas respostas para a mesma pergunta.
+    const ind = indicadores(calc, mes, ano)
 
     // O cabeçalho de jogo, as imagens da personalização e o placar do jogo
     // (perfis UNIFICADOS, decisão da fundadora de 15/08/2026: missões,
@@ -125,6 +115,16 @@ export async function GET() {
       metricas,
       categorias: gastosPorCategoria(calc, mes, ano),
       mesRosca: `${NOMES_MESES[mes - 1]} de ${ano}`,
+      // Nome curto do mês para a linha de entradas/saídas: "em julho" cabe onde
+      // "em julho de 2026" quebraria, e o ano já está dito acima na rosca.
+      mesCurto: NOMES_MESES[mes - 1],
+      dinheiro: {
+        saldo: ind.acumulado,
+        entradas: ind.receita,
+        saidas: ind.despesa,
+        guardado: ind.investimentos,
+        lancamentos: ind.lancamentosNoMes,
+      },
       insights,
       pontos: user?.pontos ?? 0,
       noRanking: !!user?.rankingOptIn,
