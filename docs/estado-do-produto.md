@@ -337,11 +337,27 @@ escreve à mão se esquece.
 | Peça | Estado |
 |---|---|
 | A lista virou dado, com a razão de cada item | ✅ `lib/dados-exportacao.ts` |
-| 26 seções saem; 1 fica (sessão), com a razão escrita | ✅ |
+| 29 seções saem; 4 ficam (sessão e as três da escola), com a razão escrita | ✅ |
 | Conversa inteira, sem o teto de 40/200 que serve à tela | ✅ `exportarConversas` em `lib/conversa-repo.ts` |
 | Cifrado sai decifrado, sempre pelo repositório | ✅ o arquivo não pode sair com `"v1.…"` |
+| Cada seção vem da fonte que a lista nomeia (`lidoPor`) | ✅ chave presente com array vazio deixa de passar |
 | Credencial e id da Stripe nunca entram no arquivo | ✅ `CAMPOS_FORA` |
-| Tabela nova do usuário sem classificação derruba o teste | ✅ `scripts/testar-exportacao.mts` |
+| Toda consulta da rota filtra pelo dono | ✅ conferido pelo argumento da consulta, não por janela de texto |
+| Modelo novo LIGADO A `User` sem classificação derruba o teste | ✅ `scripts/testar-exportacao.mts` |
+
+**A regra de posse é a relação com `User`, não a coluna `userId`.** Procurar a
+coluna pelo nome deixava passar quatro modelos que pertencem a alguém por outro
+nome de chave: `Indicacao` (`indicadorId`/`indicadoId`), `Turma`
+(`professorDaTurma`), `ConviteEscola` (`geradorDoConvite`) e `AcessoTrilhaTurma`
+(`concessorDoAcesso`). A indicação a rota já entregava sem estar em lista
+nenhuma — o falso verde mais caro que um teste destes pode dar. As três da
+escola são da instituição, não de quem as opera, e ficam de fora com a razão
+escrita.
+
+**A lista de espera sai, e não tem relação com `User`.** `Waitlist` é chaveada
+por e-mail, então nenhuma regra que olhe o schema a alcança. Ela entra na
+exportação porque o DELETE de conta já a apaga pelo e-mail: o que o app associa
+para apagar, associa para entregar.
 
 **O que continua FORA, e por quê:** token de sessão e de OAuth (é credencial, não
 retrato da pessoa — o arquivo é feito para ser guardado e compartilhado), os ids

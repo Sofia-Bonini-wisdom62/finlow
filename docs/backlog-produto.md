@@ -456,6 +456,25 @@ banco veio cada extrato importado.
 > financeiros" leva precisa estar na exportação. Some no botão e nunca ter saído
 > no arquivo é a pessoa perder sem nunca ter podido levar — era o caso de
 > orçamento e de extrato importado. Conferido contra o código mutilado.
+>
+> **Quatro sessões resolveram este mesmo item em paralelo, e a versão que ficou
+> é a soma delas** (24/08/2026). As quatro chegaram à mesma forma — lista em
+> arquivo, teste contra o schema, `exportarConversas` sem teto — e cada uma viu
+> uma coisa que as outras não viram. O que entrou por causa disso: a regra de
+> posse passou a ser a RELAÇÃO com `User` e não a coluna `userId` (a coluna
+> deixava passar `Indicacao`, `Turma`, `ConviteEscola` e `AcessoTrilhaTurma`, e
+> a indicação a rota já entregava sem estar em lista nenhuma); a lista de espera
+> entrou, porque o delete de conta já a apaga pelo e-mail; cada seção declara de
+> qual fonte vem (`lidoPor`), o que impede uma chave presente com array vazio
+> passar por entrega; e o teste confere que toda consulta filtra pelo dono.
+>
+> **Essa última checagem veio com defeito, e o defeito foi corrigido aqui.** A
+> versão original olhava uma janela de caracteres depois da consulta — e a
+> janela vazava para a consulta SEGUINTE, que quase sempre tem `userId`. Tirar o
+> `where` de uma leitura passava no teste por causa do filtro do vizinho, no
+> bloco que existe justamente para impedir que o arquivo saia com dado dos
+> outros. Agora a checagem casa os parênteses e lê só o argumento daquela
+> consulta.
 
 ---
 

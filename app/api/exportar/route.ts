@@ -210,6 +210,16 @@ export async function GET() {
       }),
     ])
 
+    // A lista de espera da landing. Não tem relação com `User` — é chaveada
+    // por e-mail — mas o DELETE de conta a apaga por e-mail, e o que o app
+    // associa para apagar ele associa para entregar.
+    const listaDeEspera = user?.email
+      ? await db.waitlist.findUnique({
+          where: { email: user.email },
+          select: { email: true, criadoEm: true },
+        })
+      : null
+
     // Como ela entra no app. SÓ o nome do provedor: `access_token`,
     // `refresh_token` e `id_token` moram na mesma tabela e são a chave da conta
     // Google dela — num arquivo feito para ser guardado e compartilhado, seriam
@@ -227,6 +237,7 @@ export async function GET() {
         comoQuerSerAtendida: personalidade.detalhe || null,
       },
       provedoresDeLogin: logins.map((l) => l.provider),
+      listaDeEspera,
       categorias,
       // a exportação sai em CLARO de propósito: é o direito de portabilidade da
       // LGPD, e um arquivo cifrado com chave que o usuário não tem seria inútil
