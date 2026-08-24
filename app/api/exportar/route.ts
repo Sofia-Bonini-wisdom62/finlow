@@ -5,13 +5,26 @@ import { listarTransacoes, listarContasFixas } from "@/lib/financeiro-repo"
 import { lerDiagnostico } from "@/lib/vazamento-repo"
 import { listarInvestimentos } from "@/lib/investimento-repo"
 import { listarObjetivos } from "@/lib/objetivo-repo"
+import { listarOrcamentos } from "@/lib/orcamento-repo"
+import { exportarMemorias } from "@/lib/memoria-repo"
+import { exportarConversas } from "@/lib/conversa-repo"
 import { lerPersonalidade } from "@/lib/personalidade-repo"
 
 export const dynamic = "force-dynamic"
 
 // GET /api/exportar — baixa TODOS os dados do usuário em JSON.
 // Portabilidade de dados (LGPD art. 18): o usuário leva o que é dele.
-// Não inclui hash de senha nem tokens de sessão.
+//
+// "TODOS" passou a ser verdade em 24/08/2026. Antes disso a frase acima era
+// promessa vencida: ficavam de fora memórias, conversas, orçamentos, respostas
+// do onboarding, eventos de pontuação, insights e progresso das lições — o mais
+// sensível do banco. Quem decide o que sai é `lib/dados-exportacao.ts`, e
+// `scripts/testar-exportacao.mts` confere a lista contra o schema: tabela nova
+// do usuário sem classificação derruba o teste.
+//
+// O que NÃO sai, e por quê, está escrito lá: credencial (senha, token de sessão,
+// token de OAuth), identificador de sistema nosso (ids da Stripe) e dado de
+// terceiro (quem entrou pelo link dela, quem estuda na mesma turma).
 export async function GET() {
   const userId = await getUserIdOr401()
   if (userId instanceof NextResponse) return userId
@@ -20,7 +33,17 @@ export async function GET() {
     const [user, categorias, contas, transacoes, progresso, indicacoesFeitas, indicacaoRecebida, diagnostico, investimentos, objetivos, assinatura, usoIA, personalidade] = await Promise.all([
       db.user.findUnique({
         where: { id: userId },
-        select: { nome: true, email: true, celular: true, dataNascimento: true, criadoEm: true, consentimentoPainelEm: true, codigoIndicacao: true },
+        select: {
+          nome: true, email: true, celular: true, dataNascimento: true, criadoEm: true,
+          consentimentoPainelEm: true, consentimentoLGPD: true, codigoIndicacao: true,
+          // O retrato que o app faz dela: como aparece no ranking, se optou por
+          // aparecer, se ligou a memória, quando terminou a primeira conversa,
+          // que nível e que público a trilha assumiu. São inferências NOSSAS
+          // sobre ela — o tipo de dado que a portabilidade existe para mostrar,
+          // porque é o que o produto usa para decidir o que ela vê.
+          apelido: true, rankingOptIn: true, memoriaAtiva: true, onboardingEm: true,
+          nivel: true, publico: true, pontos: true, moduloAvancado: true,
+        },
       }),
       db.categoria.findMany({
         where: { userId },
@@ -76,8 +99,76 @@ export async function GET() {
       select: { tipo: true, dados: true, atualizadoEm: true },
     })
 
-    // O jogo (Redesign Fin): carteira, itens e o extrato de coins — tudo dela.
-    const [jogoUser, extratoCoins] = await Promise.all([
+    // O assistente. É a metade que faltava, e é a mais sensível do banco: a
+    // conversa junta número, contexto de vida e o que a pessoa contou sobre a
+    // família dela. Tudo cifrado, e por isso tudo sai pelos repositórios —
+    // `db.conversaMensagem` direto devolveria "v1.…" num arquivo que a pessoa
+    // abriria sem entender por que o próprio texto virou lixo.
+    const [memorias, conversas, onboarding] = await Promise.all([
+      exportarMemorias(userId),
+      exportarConversas(userId),
+      db.onboarding.findUnique({
+        where: { userId },
+        select: {
+          objetivo: true, objetivoOutro: true, eixo2: true, eixo2Valor: true,
+          eixo2Outro: true, momento: true, nivelInferido: true, situacoes: true,
+          concluidoEm: true, criadoEm: true,
+        },
+      }),
+    ])
+
+    // Dinheiro que ainda não saía: os tetos (cifrados, pelo repo) e de que
+    // banco e período veio cada extrato importado.
+    const [orcamentos, importacoes, insights] = await Promise.all([
+      listarOrcamentos(userId),
+      db.extratoImport.findMany({
+        where: { userId },
+        select: {
+          status: true, banco: true, periodoInicio: true, periodoFim: true,
+          totalLinhas: true, erroValidacao: true, criadoEm: true,
+        },
+        orderBy: { criadoEm: "asc" },
+      }),
+      // As três linhas que a IA escreveu lendo o dash dela. `ativo: false` sai
+      // junto: leitura antiga continua sendo leitura feita sobre ela.
+      db.insight.findMany({
+        where: { userId },
+        select: { texto: true, tipo: true, ativo: true, criadoEm: true },
+        orderBy: { criadoEm: "asc" },
+      }),
+    ])
+
+    // Aprendizado: o quiz que escolheu a trilha, o progresso lição a lição
+    // (inclusive "1ª passada × após correção") e as aulas que a IA recomendou,
+    // com o porquê que ela escreveu.
+    const [perfilTrilha, progressoLicoes, recomendacoes] = await Promise.all([
+      db.perfil.findUnique({
+        where: { userId },
+        select: { tipo: true, respostas: true, criadoEm: true },
+      }),
+      db.progressoLicao.findMany({
+        where: { userId },
+        select: {
+          licao: true, concluido: true, telaAtual: true, acertos: true, totalQuiz: true,
+          acertosRevisao: true, totalQuizRevisao: true, segundos: true, concluidoEm: true,
+          criadoEm: true, modulo: { select: { slug: true, titulo: true } },
+        },
+        orderBy: { criadoEm: "asc" },
+      }),
+      db.recomendacaoTrilha.findMany({
+        where: { userId },
+        select: {
+          motivo: true, origem: true, ordem: true, leva: true, entregueEm: true,
+          substituidaEm: true, criadoEm: true, modulo: { select: { slug: true, titulo: true } },
+        },
+        orderBy: { criadoEm: "asc" },
+      }),
+    ])
+
+    // O jogo (Redesign Fin): carteira, itens e os dois extratos — coins e XP —
+    // mais os dias que sustentam a ofensiva. O saldo é cache; o extrato é a
+    // verdade, e é o extrato que permite conferir o saldo.
+    const [jogoUser, extratoCoins, extratoXP, diasAtivos] = await Promise.all([
       db.user.findUnique({
         where: { id: userId },
         select: { coins: true, energia: true, pocaoAtiva: true, avatarFin: true, comboRecorde: true },
@@ -86,6 +177,16 @@ export async function GET() {
         where: { userId },
         select: { motivo: true, moedas: true, refId: true, criadoEm: true },
         orderBy: { criadoEm: "asc" },
+      }),
+      db.eventoPontuacao.findMany({
+        where: { userId },
+        select: { motivo: true, pontos: true, refId: true, criadoEm: true },
+        orderBy: { criadoEm: "asc" },
+      }),
+      db.diaAtivo.findMany({
+        where: { userId },
+        select: { dia: true },
+        orderBy: { dia: "asc" },
       }),
     ])
 
@@ -109,6 +210,25 @@ export async function GET() {
       }),
     ])
 
+    // A lista de espera da landing. Não tem relação com `User` — é chaveada
+    // por e-mail — mas o DELETE de conta a apaga por e-mail, e o que o app
+    // associa para apagar ele associa para entregar.
+    const listaDeEspera = user?.email
+      ? await db.waitlist.findUnique({
+          where: { email: user.email },
+          select: { email: true, criadoEm: true },
+        })
+      : null
+
+    // Como ela entra no app. SÓ o nome do provedor: `access_token`,
+    // `refresh_token` e `id_token` moram na mesma tabela e são a chave da conta
+    // Google dela — num arquivo feito para ser guardado e compartilhado, seriam
+    // a pior linha do arquivo. A senha, pelo mesmo motivo, nunca sai.
+    const logins = await db.account.findMany({
+      where: { userId },
+      select: { provider: true },
+    })
+
     const dump = {
       exportadoEm: new Date().toISOString(),
       conta: user,
@@ -116,6 +236,8 @@ export async function GET() {
         tom: personalidade.id,
         comoQuerSerAtendida: personalidade.detalhe || null,
       },
+      provedoresDeLogin: logins.map((l) => l.provider),
+      listaDeEspera,
       categorias,
       // a exportação sai em CLARO de propósito: é o direito de portabilidade da
       // LGPD, e um arquivo cifrado com chave que o usuário não tem seria inútil
@@ -130,6 +252,13 @@ export async function GET() {
         escopo: t.escopo,
         data: t.data,
         criadoEm: t.criadoEm,
+      })),
+      orcamentos: orcamentos.map((o) => ({
+        // teto de categoria ou do mês inteiro — o `null` é a informação, não
+        // um dado faltando, e por isso vem dito por extenso.
+        categoria: o.categoria?.nome ?? null,
+        doMesInteiro: o.categoriaId === null,
+        limite: o.limite,
       })),
       investimentos: investimentos.map((i) => ({
         tipo: i.tipo,
@@ -146,6 +275,7 @@ export async function GET() {
         criadoEm: o.criadoEm,
         atualizadoEm: o.atualizadoEm,
       })),
+      importacoesDeExtrato: importacoes,
       progressoModulos: progresso.map((p) => ({
         modulo: p.modulo.slug,
         titulo: p.modulo.titulo,
@@ -153,6 +283,42 @@ export async function GET() {
         telaAtual: p.telaAtual,
         concluidoEm: p.concluidoEm,
       })),
+      progressoLicoes: progressoLicoes.map((p) => ({
+        modulo: p.modulo.slug,
+        titulo: p.modulo.titulo,
+        licao: p.licao,
+        concluido: p.concluido,
+        telaAtual: p.telaAtual,
+        // a nota que valeu XP (1ª passada) e a de quando refez, separadas como
+        // ficam no banco: juntá-las aqui apagaria a diferença que o professor vê
+        acertos: p.acertos,
+        totalQuiz: p.totalQuiz,
+        acertosRevisao: p.acertosRevisao,
+        totalQuizRevisao: p.totalQuizRevisao,
+        segundos: p.segundos,
+        concluidoEm: p.concluidoEm,
+        criadoEm: p.criadoEm,
+      })),
+      perfilDaTrilha: perfilTrilha,
+      recomendacoesDaTrilha: recomendacoes.map((r) => ({
+        modulo: r.modulo.slug,
+        titulo: r.modulo.titulo,
+        motivo: r.motivo,
+        origem: r.origem,
+        ordem: r.ordem,
+        leva: r.leva,
+        entregueEm: r.entregueEm,
+        substituidaEm: r.substituidaEm,
+        criadoEm: r.criadoEm,
+      })),
+      memorias: memorias.map((m) => ({
+        tipo: m.tipo,
+        conteudo: m.conteudo,
+        origem: m.origem,
+        criadoEm: m.criadoEm,
+      })),
+      conversas,
+      primeiraConversa: onboarding,
       indicacoes: {
         meuCodigo: user?.codigoIndicacao ?? null,
         convitesQueFiz: indicacoesFeitas,
@@ -168,6 +334,7 @@ export async function GET() {
             geradoEm: diagnostico.geradoEm,
           }
         : null,
+      insights,
       assinatura,
       usoDeIA: usoIA,
       imagens: imagens.map((i) => ({ tipo: i.tipo, dados: i.dados, atualizadoEm: i.atualizadoEm })),
@@ -178,6 +345,10 @@ export async function GET() {
         avatarEquipado: jogoUser?.avatarFin ?? null,
         comboRecorde: jogoUser?.comboRecorde ?? 0,
         extratoDeCoins: extratoCoins,
+        extratoDeXP: extratoXP,
+        // a ofensiva é DERIVADA destas datas; entregar o número calculado sem
+        // elas daria um dado que ela não teria como conferir
+        diasAtivos: diasAtivos.map((d) => d.dia),
       },
       escola: membroEscola
         ? {

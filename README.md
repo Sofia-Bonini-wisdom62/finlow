@@ -90,6 +90,8 @@ docs/             matriz BCB, backlog T2, estado do produto
 2. Tabela nova nasce com `userId`, `onDelete: Cascade` e RLS (`pnpm db:push`
    aplica e falha se alguma tabela ficar aberta).
 3. Dado novo do usuário entra em `/api/exportar` e sai no delete de `/api/conta`.
+   Desde 24/08/2026 a regra é conferida, não confiada: classifique o modelo em
+   `lib/dados-exportacao.ts` ou `scripts/testar-exportacao.mts` acusa.
 4. O Finlow explica mecanismo e nunca indica produto financeiro — recomendação
    é de profissional autorizado pela CVM.
 5. Antes de qualquer push: `pnpm build` verde e as baterias `scripts/testar-*`.

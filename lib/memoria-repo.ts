@@ -68,6 +68,29 @@ export async function listarMemorias(userId: string): Promise<Memoria[]> {
   }))
 }
 
+/**
+ * Todas as memórias, para a exportação LGPD — sem o `take` de `listarMemorias`.
+ *
+ * Hoje os dois devolveriam o mesmo: `podar` mantém no máximo TETO, então não
+ * existe memória além do teto para ficar de fora. A separação é para o dia em
+ * que o teto da TELA e o teto do BANCO deixarem de ser o mesmo número — nesse
+ * dia a exportação continua entregando tudo, em vez de passar a mentir por
+ * causa de uma constante que alguém ajustou pensando na barra lateral.
+ */
+export async function exportarMemorias(userId: string): Promise<Memoria[]> {
+  const linhas = await db.memoriaUsuario.findMany({
+    where: { userId },
+    orderBy: { criadoEm: "asc" },
+  })
+  return linhas.map((l) => ({
+    id: l.id,
+    tipo: ehTipo(l.tipo) ? l.tipo : "situacao",
+    conteudo: decifrar(l.conteudo, userId, "memoria"),
+    origem: l.origem,
+    criadoEm: l.criadoEm,
+  }))
+}
+
 export interface NovaMemoria {
   tipo: TipoMemoria
   conteudo: string

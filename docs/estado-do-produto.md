@@ -7,14 +7,19 @@ um app para adolescentes que já não existia).
 
 Legenda: ✅ pronto · 🔧 em desenvolvimento · 📋 planejado · 🚫 fora deste repo
 
-Última revisão: 17/08/2026 — a resposta do chat deixou de chegar só no fim
+Última revisão: 24/08/2026 — a exportação LGPD passou a entregar TUDO, que é o
+que ela sempre prometeu no topo da própria rota (seção *Portabilidade LGPD*
+abaixo): memórias, conversas, orçamentos, onboarding, XP, insights, progresso de
+lição, ofensiva, perfil e recomendações da trilha entraram, e a lista agora é
+dado conferido contra o schema. Antes disso, em 17/08/2026 — a resposta do chat deixou de chegar só no fim
 (jorro em SSE), e o "solte o extrato aqui" do campo de escrever virou gesto de
 verdade. Na mesma data, uma passada de segurança: as dependências com CVE no
 caminho de produção subiram (pdfjs-dist, next-auth, next), o webhook da Stripe
 parou de dar premium a boleto não pago, o texto que a pessoa digita passou a ser
 escapado antes de virar HTML na trilha, o app ganhou cabeçalhos de segurança, e
-o guard de `/api/ops/metrics` passou a falhar fechado. O ✅ de exportar dados
-ganhou a ressalva que o próprio arquivo já cobrava. Antes disso: o assistente deixou de ter uma voz só (seção
+o guard de `/api/ops/metrics` passou a falhar fechado. Foi nessa passada que o
+✅ de exportar dados ganhou a ressalva que o próprio arquivo já cobrava — a
+ressalva que caiu agora, com a lacuna. Antes disso: o assistente deixou de ter uma voz só (seção
 *Personalidade do assistente* abaixo). A trilha de Ensino Médio segue portada e
 semeada atrás do gate de público, e as cinco fases do script do Plano 2026–2029
 seguem entregues.
@@ -43,7 +48,7 @@ seguem entregues.
 | Ranking opt-in (apelido e pontos, nada mais) | ✅ | `app/api/ranking` |
 | Login com Google | ✅ | botão pronto; falta chave OAuth na Vercel |
 | Trava de conteúdo impróprio (saída + registros) | ✅ | `lib/conteudo-proibido.ts` |
-| Exportar dados (LGPD) + apagar conta em cascade | ✅ | `/api/exportar`, `/api/conta` — a exportação ainda não cobre tudo, ver Pendências conhecidas |
+| Exportar dados (LGPD) + apagar conta em cascade | ✅ 24/08/2026 | `/api/exportar`, `/api/conta` — a exportação passou a cobrir tudo, com a lista conferida contra o schema (`lib/dados-exportacao.ts`, `scripts/testar-exportacao.mts`) |
 | Apagar dados financeiros, com a lista conferida contra o schema | ✅ 10/08/2026 | `lib/dados-financeiros.ts`, `lib/apagar-financeiro.ts` |
 | Cifra AES-256-GCM + RLS em todas as tabelas | ✅ | `lib/cripto.ts`, `prisma/seguranca-rls.sql` |
 
@@ -207,6 +212,7 @@ arquivo dizia, e por isso aparecem aqui:
 | Cadastro na língua de quem ainda não entrou | ✅ entregue em 18/08/2026 (a metade de código do item 4) | Item 4 da avaliação UX. A tela em que a pessoa decide se cria conta abria dizendo "Pra salvar seu perfil e seu progresso na **trilha**" — palavra que só significa alguma coisa depois de entrar, e que a home nunca explica antes. Passou a descrever o que a conta guarda no vocabulário que a home acabou de usar: "Pra guardar seu painel, suas metas e as conversas com a IA. Criar conta é de graça." O rótulo do apelido seguia o mesmo defeito ("Como você quer aparecer **na liga**?") e virou "no ranking", igual ao que a versão de quem chega por convite já dizia; o campo continua o mesmo, opcional e sempre visível, como a decisão de 14/08 registrou. Guardado por `scripts/testar-landing.mts`, sem banco e sem build: o guard passou a ler `/login` e `/cadastro`, recusa jargão de dentro do app na copy das duas telas (trilha, liga, XP, ofensiva, combo, baú, corredor, missão, módulo, bloco, Finlo Coins), confere que celular e apelido continuam **opcionais** e que a data de nascimento continua com o porquê à vista. Conferido contra o código mutilado: devolver a frase antiga ou marcar o apelido como `required` faz o teste acusar. **A outra metade do item 4 não é código:** as chaves OAuth do Google na Vercel seguem pendentes, e o botão continua sumindo sozinho até elas existirem. |
 | Rótulo que promete o que o toque faz, e copy sem gênero fixo | ✅ entregue em 19/08/2026 | Itens 7 e 9a da avaliação UX, juntos porque o guard é um só. (1) O botão da válvula de escape do módulo travado dizia "Enviar para a IA **reordenar**", e o toque só abre o chat com a pergunta pronta (`confirmarNecessidade` monta a frase e navega para `/chat`): se o assistente responde "não dá", o botão era mentira. Virou "Pedir pro assistente", com "Abre o chat com essa pergunta pronta" embaixo. A mecânica ficou igual de propósito — reordenar de verdade é frente nova, com decisão de produto por trás (quem pode furar o corredor, e sob qual critério). (2) "Prefiro olhar o app **sozinha**" (onboarding) flexionava em feminino para todo mundo, e a landing tinha o espelho masculino ("interpretar **sozinho**"); os dois viraram "por conta própria", e eram os dois únicos casos em `app/` e `components/`. Guardado por `scripts/testar-copy.mts`, sem banco e sem build: o rótulo do botão só é exigido honesto **enquanto** o toque for navegação para `/chat` (afrouxa sozinho se a reordenação nascer), e a checagem de flexão só acusa a palavra quando a pessoa é o sujeito da frase — "a energia volta sozinha" passa, porque ali a concordância está certa e guard que acusa frase correta só ensina a desligá-lo. Conferido contra o código mutilado: desfazer qualquer uma das duas correções derruba o guard. |
 | A cota do mês contada em perguntas, e não só em token | ✅ entregue em 20/08/2026 | Item 9c da avaliação UX. `/premium` mostrava "94.300 de 120.000" como destaque: conta de padaria, porque quem lê quer saber se dá para conversar amanhã, não quantos tokens sobraram. **A contagem não mudou de moeda** (contar em token é decisão registrada da fundadora, e o guard, a soma e o teto seguem em `lib/pagamento/tokens.ts`); mudou a tela. `lib/pagamento/perguntas.ts` (novo, puro e sem `server-only`, porque quem mostra é tela de cliente) divide o que resta por `TOKENS_POR_PERGUNTA` = 8 mil, a ponta **alta** da faixa de custo de um turno, de propósito: a estimativa erra para menos e nunca promete conversa que a cota não paga. 120.000 / 8.000 = 15, exatamente a régua original do plano. Enquanto `podeUsar` for verdadeiro o resultado tem piso de 1, porque a próxima resposta vem inteira mesmo estourando o teto, e "restam 0 perguntas" com o chat respondendo seria mentira nova no lugar da antiga. A conta em token continua na tela, uma linha abaixo. `scripts/testar-pagamento.mts` vai a 79 casos, 13 novos, conferidos contra o código mutilado. |
+| Perfil reconfigurado: dinheiro logo abaixo do nome | ✅ entregue em 24/08/2026 (a sobra do item de 15/08) | Ordem pedida no backlog ("nome e foto no topo, saldo + entrada/saída do mês logo abaixo, aí sim a rosca e os 4 botões"), agora é a ordem de `/perfil`. O bloco de dinheiro é novo e entra ANTES dos três tiles do jogo (dias seguidos, XP, precisão), que continuam onde o protótipo v2 os pôs: mover elemento que um desenho registrado posicionou seria decisão de produto, e o pedido se cumpre sem ela. **"Saldo atual" saiu do vocabulário:** não há integração bancária, então o número em destaque é o **acumulado do que a pessoa registrou**, com a legenda dizendo de onde vem e que não é o saldo da conta no banco — mesma régua do item 2 da avaliação de UX. Entradas e saídas são do MESMO mês da rosca: a escolha da competência era função privada da rota e virou `mesDeReferencia` em `lib/financas.ts` (a versão privada ainda lia a data em UTC contra o `getMonth()` local do resto da biblioteca — só concordavam porque o servidor roda em UTC). Sem lançamento, a tela convida a subir o extrato em vez de afirmar "R$ 0,00". Guardado por `scripts/testar-perfil.mts`, sem banco, conferido contra código mutilado. ⚠️ Fica registrada a divergência UTC × local de `financas.ts` inteiro, anterior a esta entrega. Onde: `app/(app)/perfil/page.tsx`, `app/api/perfil-financeiro/route.ts`, `lib/financas.ts` |
 | Trilha em blocos de 4 lições, com sequência travada | ✅ entregue em 06/08/2026 | Era "em conflito" com a biblioteca posicionada. Sofia decidiu pelo corredor com a ressalva à vista, escolhendo travar **entre módulos**. A documentação da biblioteca caiu no mesmo commit — este arquivo, `resumo-de-funcao.md`, `backlog-trilha-t2.md`, o comentário de `Modulo.situacoes` e `app/trilha/page.tsx`. |
 
 ## Personalidade do assistente (08/08/2026)
@@ -318,6 +324,53 @@ alguém de verdade, ver o checklist em `docs/pagamento-antes-de-cobrar.md`.
 os três da mesma família (campo que a Stripe mudou de lugar) e os três com falha
 silenciosa. Estão descritos em `lib/pagamento/stripe.ts`, com teste para cada um.
 
+## Portabilidade LGPD: a exportação passou a entregar tudo (24/08/2026)
+
+`/api/exportar` dizia "baixa TODOS os dados do usuário" no comentário do topo, e
+a regra 3 do `README.md` promete o mesmo. Não era verdade: ficavam de fora as
+memórias do assistente, as conversas do chat, os orçamentos, as respostas do
+onboarding, os eventos de pontuação, os insights, o progresso das lições, os
+dias da ofensiva, o perfil da trilha, as recomendações da IA e de que banco veio
+cada extrato importado — **o mais sensível do banco**. O delete cobre tudo por
+CASCADE, porque quem escolhe é o banco; a exportação é escrita à mão, e o que se
+escreve à mão se esquece.
+
+| Peça | Estado |
+|---|---|
+| A lista virou dado, com a razão de cada item | ✅ `lib/dados-exportacao.ts` |
+| 29 seções saem; 4 ficam (sessão e as três da escola), com a razão escrita | ✅ |
+| Conversa inteira, sem o teto de 40/200 que serve à tela | ✅ `exportarConversas` em `lib/conversa-repo.ts` |
+| Cifrado sai decifrado, sempre pelo repositório | ✅ o arquivo não pode sair com `"v1.…"` |
+| Cada seção vem da fonte que a lista nomeia (`lidoPor`) | ✅ chave presente com array vazio deixa de passar |
+| Credencial e id da Stripe nunca entram no arquivo | ✅ `CAMPOS_FORA` |
+| Toda consulta da rota filtra pelo dono | ✅ conferido pelo argumento da consulta, não por janela de texto |
+| Modelo novo LIGADO A `User` sem classificação derruba o teste | ✅ `scripts/testar-exportacao.mts` |
+
+**A regra de posse é a relação com `User`, não a coluna `userId`.** Procurar a
+coluna pelo nome deixava passar quatro modelos que pertencem a alguém por outro
+nome de chave: `Indicacao` (`indicadorId`/`indicadoId`), `Turma`
+(`professorDaTurma`), `ConviteEscola` (`geradorDoConvite`) e `AcessoTrilhaTurma`
+(`concessorDoAcesso`). A indicação a rota já entregava sem estar em lista
+nenhuma — o falso verde mais caro que um teste destes pode dar. As três da
+escola são da instituição, não de quem as opera, e ficam de fora com a razão
+escrita.
+
+**A lista de espera sai, e não tem relação com `User`.** `Waitlist` é chaveada
+por e-mail, então nenhuma regra que olhe o schema a alcança. Ela entra na
+exportação porque o DELETE de conta já a apaga pelo e-mail: o que o app associa
+para apagar, associa para entregar.
+
+**O que continua FORA, e por quê:** token de sessão e de OAuth (é credencial, não
+retrato da pessoa — o arquivo é feito para ser guardado e compartilhado), os ids
+`cus_`/`sub_`/`cs_` da Stripe (identificador do nosso sistema) e dado de
+terceiro — quem entrou pelo link dela e quem estuda na mesma turma continuam
+saindo como status e datas, nunca como identidade.
+
+**A simetria com o apagar virou teste.** Toda tabela que "Apagar meus dados
+financeiros" leva precisa estar na exportação: some no botão e nunca ter saído
+no arquivo é a pessoa perder sem nunca ter podido levar. Era assimetria real —
+orçamento e extrato importado eram apagados e nunca exportados.
+
 ## Pendências conhecidas
 
 - **`/api/ops/metrics` agora falha FECHADA, e por isso está fora do ar até
@@ -336,20 +389,6 @@ silenciosa. Estão descritos em `lib/pagamento/stripe.ts`, com teste para cada u
   mês; não impede alguém de gastar a cota inteira em dois minutos, nem protege o
   extrato, que não tem guard nenhum. O limitador (`lib/limite-taxa.ts`) segue só
   na rota de lead B2B.
-- **`/api/exportar` não exporta tudo**, apesar do que o comentário no topo dela
-  diz. Ficam de fora memórias, conversas do chat, orçamentos, respostas do
-  onboarding, eventos de pontuação e insights — e o que falta é justamente o
-  mais sensível. O *delete* cobre tudo por cascade; a exportação, não.
-  (Assinatura e uso de IA entraram em 10/08; o resto continua de fora.)
-
-  > O lado do apagar tinha o defeito espelhado, e foi corrigido em 10/08/2026:
-  > "Apagar meus dados financeiros" deixava para trás investimento, orçamento
-  > de mês inteiro, extrato importado, diagnóstico e insights, enquanto a tela
-  > respondia "Dados financeiros apagados.". A lista agora é dado em
-  > `lib/dados-financeiros.ts`, conferida contra o `schema.prisma` — tabela do
-  > usuário sem classificação derruba `scripts/testar-apagar-dados.mts`. Falta
-  > o mesmo tratamento do lado da exportação.
-
 - **`RecomendacaoTrilha.motivo` é decisão de produto em aberto.** É texto livre
   escrito pela IA a partir dos números da pessoa, e nada impede a frase de citar
   um valor. Ficou FORA de "apagar dados financeiros" porque é trilha, não

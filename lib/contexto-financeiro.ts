@@ -93,6 +93,14 @@ export async function montarContexto(
 /**
  * O último mês em que entrou ou saiu dinheiro.
  *
+ * TEM UMA IRMÃ: `mesDeReferencia` em `lib/financas.ts` responde a mesma
+ * pergunta para as TELAS. Esta vai ao banco e lê a data em UTC, como o resto
+ * deste arquivo; a de lá é pura, sobre a lista já carregada, e lê em hora local
+ * como o resto de `financas.ts`. Hoje as duas concordam porque o servidor roda
+ * em UTC — juntá-las é o projeto de uniformizar o fuso da biblioteca inteira,
+ * registrado como pendência no backlog. Até lá, use esta no caminho da IA e a
+ * de lá no caminho das telas.
+ *
  * Existe por causa do dia 1º. O contexto lê o mês corrente, e no primeiro dia
  * do mês ele é vazio por definição: as leituras do Perfil saíam todas sobre
  * zero para quem tem meses de histórico, o que parece defeito e não é.

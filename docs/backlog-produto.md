@@ -17,16 +17,63 @@ guardar dinheiro para eles, uma coisa meio sonho.
 > "Redesign Fin v2" abaixo; pendência que segue viva lá: remover/editar
 > objetivo não tem desenho.
 
-## ~~Tela de perfil a reconfigurar~~ ✅ 15/08/2026 (com uma sobra)
+## ~~Tela de perfil a reconfigurar~~ ✅ 15/08/2026, e a sobra fechou em 24/08/2026
 
 Nome e foto no topo, saldo atual + (entrada + saída) do mês, logo abaixo. Aí sim
 o gráfico de rosca e os 4 botões que tem atualmente.
 
-> Veio quase inteira com a unificação dos perfis (15/08): nome e FOTO no
-> topo, rosca, os 4 botões, e de quebra nível/XP, missões e conquistas.
-> **A sobra:** o "saldo atual + (entrada + saída) do mês" não está no topo
-> do Perfil — esses números moram no Painel e nas Análises, a um toque. Se
-> a fundadora ainda os quiser no Perfil, é pedido pequeno e a API já os tem.
+> **A ordem pedida virou a ordem da tela.** `/perfil` agora é: nome e foto →
+> saldo com o que entrou e o que saiu do mês → rosca → leituras → Objetivos →
+> as quatro portas. O bloco de dinheiro é novo; o resto já existia e só mudou
+> de lugar.
+>
+> **A sobra registrada em 15/08 era exatamente este bloco**, e ela fechou sem
+> nada sair da tela: DIAS SEGUIDOS / XP TOTAL / PRECISÃO continuam onde o
+> protótipo v2 os pôs, uma linha abaixo do dinheiro. Descê-los para junto da
+> porta da Liga era a outra saída, e resolvia o mesmo problema — mas mover
+> elemento que um desenho registrado posicionou é decisão de produto, e o
+> pedido ("nome e foto no topo, o dinheiro logo abaixo") se cumpre sem ela.
+>
+> **"Saldo atual" virou "saldo acumulado", e a diferença é honestidade, não
+> estilo.** Não existe integração bancária: o que o app sabe é a soma do que a
+> pessoa registrou. Chamar isso de saldo da conta seria a mesma falha do passo
+> 1 da landing, que prometia conexão automática (item 2 da avaliação de UX). A
+> tela mostra o número em destaque e diz, embaixo, de onde ele vem e o que ele
+> não é. Quando o conector Open Finance existir, o saldo de verdade entra aqui
+> — e aí o rótulo pode mudar porque a frase terá virado verdade.
+>
+> **Entradas e saídas são do MESMO mês da rosca** (o último com movimento, não
+> o mês corrente — no dia 1º o corrente está vazio por definição). A escolha
+> desse mês era uma função privada da rota do Perfil e virou
+> `mesDeReferencia` em [`lib/financas.ts`](../lib/financas.ts): três
+> leituras do mesmo mês na mesma tela não podem ter três donos. De quebra, a
+> versão privada lia a data em UTC enquanto o resto da biblioteca lê em hora
+> local — as duas só concordam porque o servidor roda em UTC, e em qualquer
+> fuso a oeste o rótulo diria "agosto" sobre números de julho.
+>
+> **Sem lançamento nenhum a tela não diz "R$ 0,00"**, porque o app não sabe que
+> a pessoa tem zero: sabe que não sabe. O bloco vira convite para subir o
+> extrato. E o que foi para a poupança continua fora de "saiu" (regra do
+> `ehPoupanca`), com linha própria quando houver — guardar não é gastar.
+>
+> **Guardado por `scripts/testar-perfil.mts`** (roda sem banco, sem build): 37
+> casos — a escolha do mês (virada de ano, histórico vazio, data ilegível), a
+> concordância entre rosca, "entrou" e "saiu", a neutralidade da poupança, e
+> quatro conferências que olham o CÓDIGO da tela: a ordem dos blocos, que
+> nenhum tile sumiu, que nada promete saldo bancário e que não há `R$` escrito
+> à mão. Nada disso quebra build, typecheck ou lint — uma tela somando o mês
+> errado compila perfeitamente. O teste foi conferido contra o código mutilado:
+> escolher o primeiro mês em vez do último derruba 7 casos, e dar a
+> `indicadores` um mês diferente do da rosca derruba a conferência de
+> competência única.
+>
+> ⚠️ **Pendência que fica registrada, e é maior que esta tela:**
+> `lib/financas.ts` agrupa por mês com `getMonth()` (hora local) enquanto
+> `dataCurta()` em [`lib/formato.ts`](../lib/formato.ts) lê o dia em UTC de
+> propósito — a data de um lançamento é dia de calendário, não instante. Hoje
+> ninguém sente porque a Vercel roda em UTC. Uniformizar a biblioteca inteira
+> para UTC é projeto próprio, com teste próprio, e não cabia dentro de um
+> trabalho de tela.
 
 ## Conector Open Finance
 
@@ -249,7 +296,14 @@ chegarem, é troca de arquivo, não de código.
   girando por card, aviso do Fin "cofrinho é bolso seu". Entrada pelo Menu.
   ⚠️ Pendência de design: o desenho não tem caminho de **remover nem
   editar** objetivo (nome/meta) — sem rota DELETE de propósito, rota sem
-  tela é porta morta. Quando desenhar, a rota nasce junto.
+  tela é porta morta. Quando desenhar, a rota nasce junto — e não precisa
+  nascer do zero: a branch `claude/zealous-turing-fav2pl` construiu uma
+  versão anterior desta tela, de antes do Redesign Fin v2, que já tem
+  `atualizarObjetivo`, `apagarObjetivo`, DELETE na rota, emoji, prazo e
+  conclusão derivada do alvo. **Ela não foi mesclada de propósito** (ver
+  *Branches paralelas* no fim deste arquivo): renomearia colunas do schema
+  que a v2 já batizou (`meta`/`guardado`) e trocaria a tela entregue por
+  uma anterior ao desenho. Serve como fonte, não como merge.
 - ~~**Diagnóstico de Vazamento**~~ ✅ 14/08 — Fin assustado com a conta no
   hero, CTA "Conversar sobre isso com o Fin" 3D.
 - ~~**Memória do assistente**~~ ✅ 14/08 — a tela já era o desenho; só o
@@ -270,9 +324,12 @@ chegarem, é troca de arquivo, não de código.
   professor** com os 4 tiles e "1ª passada × após correção": a nota que
   valeu XP (`acertos`/`totalQuiz`) vira pedra na 1ª conclusão, refazer
   grava em `acertosRevisao`/`totalQuizRevisao` — a 2ª rodada não vale XP
-  nem infla a média do professor. ⚠️ `ProgressoLicao` continua FORA de
+  nem infla a média do professor. ~~⚠️ `ProgressoLicao` continua FORA de
   `/api/exportar` (lacuna pré-existente, registrada em
-  resumo-de-funcao.md) — as colunas novas herdam a pendência.
+  resumo-de-funcao.md) — as colunas novas herdam a pendência.~~ ✅ **24/08/2026**
+  — a lacuna era a tabela inteira, e a tabela inteira entrou: as duas duplas
+  ("1ª passada × após correção") saem separadas, como ficam no banco. Ver
+  *Exportação LGPD completa* abaixo.
 - **Landing pública do Finlow para Escolas** — ⚠️ correção de catálogo
   (14/08): a tela "Finlow para Escolas" do protótipo v2 é a **home da
   administração** (abas Início/Turmas/Professores), que já foi vestida
@@ -405,6 +462,73 @@ venda):**
 - **`preRequisitoSlug` segue inerte** — o corredor escolar usa a ordem
   linear dos blocos, que na prática cobre o grafo de pré-requisitos; ligar o
   grafo de verdade é projeto próprio.
+
+## ~~Exportação LGPD completa~~ ✅ 24/08/2026
+
+Não é pedido novo: é a lacuna que `estado-do-produto.md` e
+[`resumo-de-funcao.md`](resumo-de-funcao.md) já registravam, e que a ⚠️ do
+Finlow para Escolas (acima) herdou. `/api/exportar` prometia "TODOS os dados do
+usuário" no comentário do topo — e a regra 3 do `README.md` promete o mesmo —
+enquanto deixava de fora **memórias do assistente, conversas do chat,
+orçamentos, respostas do onboarding, eventos de pontuação, insights e progresso
+das lições**. Entraram também os dias da ofensiva, o perfil da trilha, as
+recomendações da IA (com o `motivo` que ela escreveu sobre a pessoa) e de que
+banco veio cada extrato importado.
+
+> **O defeito não era a lista errada; era a lista morar onde esquecer não dá
+> erro.** O delete cobre tudo porque quem escolhe é o banco (CASCADE); a
+> exportação é escrita à mão. Tabela nova entra no schema, ninguém lembra da
+> rota, e o app passa a mentir numa tela de privacidade — em silêncio, e do lado
+> que a pessoa só descobre ao abrir o arquivo procurando a conversa que não
+> está lá. Por isso a correção é a mesma que `lib/dados-financeiros.ts` já tinha
+> feito do outro lado: a lista virou dado em `lib/dados-exportacao.ts`, e
+> `scripts/testar-exportacao.mts` a confere contra o `schema.prisma` — modelo do
+> usuário sem classificação derruba o teste pedindo a decisão.
+>
+> **Teto de tela não vale para portabilidade.** As conversas saem inteiras, por
+> `exportarConversas` (novo em `lib/conversa-repo.ts`): os cortes de 40
+> conversas e 200 mensagens existem para a barra lateral renderizar, e usá-los
+> aqui entregaria "os 40 mais recentes" com o arquivo dizendo "todos os seus
+> dados" — sendo que a conversa que a pessoa foi buscar é justamente a antiga.
+> O teste recusa `take:` na rota pelo mesmo motivo.
+>
+> **O que fica de fora tem razão escrita, e são três famílias:** credencial
+> (senha, token de sessão, token do Google — é a chave da conta, e o arquivo é
+> feito para ser guardado e mandado por e-mail), identificador de sistema nosso
+> (os ids `cus_`/`sub_`/`cs_` da Stripe) e dado de terceiro (quem entrou pelo
+> link dela, quem estuda na mesma turma). O teste confere que nenhum desses
+> nomes reaparece no código da rota — um `select` copiado de outro arquivo é o
+> jeito comum de isso voltar sem ninguém decidir.
+>
+> **Cifrado sai decifrado, sempre pelo repositório.** Ler `db.conversaMensagem`
+> direto não quebra nada: gera um arquivo de `"v1.…"` que a pessoa abre sem
+> entender. O teste lê o `schema.prisma` como texto (a marca CIFRADO é
+> comentário `//`, que o DMMF não carrega) e recusa leitura direta de qualquer
+> modelo cifrado dentro da rota.
+>
+> **Simetria com o apagar virou teste:** toda tabela que "Apagar meus dados
+> financeiros" leva precisa estar na exportação. Some no botão e nunca ter saído
+> no arquivo é a pessoa perder sem nunca ter podido levar — era o caso de
+> orçamento e de extrato importado. Conferido contra o código mutilado.
+>
+> **Quatro sessões resolveram este mesmo item em paralelo, e a versão que ficou
+> é a soma delas** (24/08/2026). As quatro chegaram à mesma forma — lista em
+> arquivo, teste contra o schema, `exportarConversas` sem teto — e cada uma viu
+> uma coisa que as outras não viram. O que entrou por causa disso: a regra de
+> posse passou a ser a RELAÇÃO com `User` e não a coluna `userId` (a coluna
+> deixava passar `Indicacao`, `Turma`, `ConviteEscola` e `AcessoTrilhaTurma`, e
+> a indicação a rota já entregava sem estar em lista nenhuma); a lista de espera
+> entrou, porque o delete de conta já a apaga pelo e-mail; cada seção declara de
+> qual fonte vem (`lidoPor`), o que impede uma chave presente com array vazio
+> passar por entrega; e o teste confere que toda consulta filtra pelo dono.
+>
+> **Essa última checagem veio com defeito, e o defeito foi corrigido aqui.** A
+> versão original olhava uma janela de caracteres depois da consulta — e a
+> janela vazava para a consulta SEGUINTE, que quase sempre tem `userId`. Tirar o
+> `where` de uma leitura passava no teste por causa do filtro do vizinho, no
+> bloco que existe justamente para impedir que o arquivo saia com dado dos
+> outros. Agora a checagem casa os parênteses e lê só o argumento daquela
+> consulta.
 
 ---
 
@@ -717,3 +841,33 @@ Lista do mais crítico ao mais simples; cada item é um trabalho independente.
 **O que segurou o usuário (não mexer):** onboarding pulável com aceites
 explicados, "nada entra sem confirmar", tom sem culpa, tema escuro + paleta,
 exportar/apagar dados em dois toques, estado vazio do chat com sugestões.
+
+---
+
+## Branches paralelas conferidas (24/08/2026)
+
+Nove branches estavam abertas fora da `main`, e **três itens deste backlog
+tinham mais de uma solução pronta ao mesmo tempo**. Nenhuma delas foi mesclada
+em cima da outra: duas seções deste arquivo descrevendo a mesma tela é
+exatamente o que a regra da pasta existe para impedir, e quatro rotas de
+exportação seria pior ainda. O que foi feito com cada uma:
+
+| Branch | Item | Destino |
+|---|---|---|
+| `claude/dazzling-galileo-zvk92q` | Exportação LGPD | **Consolidada e mesclada.** Virou a versão única, com o que as outras três acharam |
+| `claude/dazzling-galileo-2k5vjn` | Exportação LGPD | Superada: o que ela viu de único (`Indicacao` fora de qualquer lista, a fonte de cada seção declarada) entrou na consolidada |
+| `claude/dazzling-galileo-qub9gg` | Exportação LGPD | Superada: dela vieram a lista de espera, as três tabelas da escola e a checagem de filtro por dono |
+| `claude/dazzling-galileo-ubibgp` | Exportação LGPD | Superada: dela veio o `lidoPor` por seção |
+| `claude/dazzling-galileo-ixth9w` | Perfil: dinheiro no topo | **Mesclada** como base do bloco de dinheiro |
+| `claude/dazzling-galileo-qstm3a` | Perfil: dinheiro no topo | Superada: dela vieram as conferências de código amarradas ao produto |
+| `claude/zealous-turing-e1n19t` | Perfil: dinheiro no topo | Superada: dela veio a guarda contra resposta velha em cache |
+| `claude/dazzling-galileo-7hwagc` | Cadastro sem jargão | **Já estava na main** (entrou em 18/08 por outra branch, com a mesma copy palavra por palavra) |
+| `claude/zealous-turing-fav2pl` | Objetivos | **Não mesclada, de propósito.** É uma versão anterior ao Redesign Fin v2: renomearia `meta`/`guardado` no schema e trocaria a tela entregue. Fica como fonte para a pendência de remover/editar objetivo |
+
+**A convergência foi quase total, e as diferenças é que valeram a leitura.** As
+quatro branches de exportação chegaram sozinhas à mesma forma (lista em arquivo,
+teste contra o `schema.prisma`, conversa sem teto), e as três do Perfil à mesma
+recusa de chamar o número de "saldo". O que cada uma enxergou de diferente virou
+a versão final — inclusive um defeito: a checagem de "toda consulta filtra pelo
+dono" nasceu olhando uma janela de caracteres que vazava para a consulta
+seguinte, e aprovava uma leitura sem filtro por causa do `userId` do vizinho.

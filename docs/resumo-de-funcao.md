@@ -484,7 +484,7 @@ dos dois guards.
 | 3 | "Enquanto você vive sua vida, a IA cruza cada transação" | Landing, *Insights automáticos* | Geração é **sob demanda**, na abertura da tela. Não há processamento em segundo plano. |
 | ~~4~~ | ~~"O Finlow já está disponível? **Ainda não.**"~~ | ~~FAQ da landing~~ | ✅ **Fechada em 12/08/2026.** O FAQ responde "Sim" e descreve o que dá para fazer hoje; a landing ganhou as portas que não tinha (`Entrar` → `/login` e `Criar conta` → `/cadastro` no cabeçalho, no hero e no rodapé). A captura de e-mail deixou de ser lista de espera — a tabela `Waitlist` e `/api/waitlist` continuam iguais, só a promessa mudou. Guardado por `scripts/testar-landing.mts`, que roda sem banco. |
 | 5 | Login com Google | Botão na tela de login | Código pronto; **falta a chave OAuth na Vercel** para aparecer em produção. |
-| 6 | "Baixa **TODOS** os dados do usuário" (portabilidade LGPD) | `/api/exportar`, regra 3 do README | Incompleto. Saem conta, categorias, contas fixas, transações, investimentos, progresso, indicações e diagnóstico. **Não saem: memórias, conversas do chat, orçamentos, respostas do onboarding, eventos de pontuação e insights.** O *delete* cobre tudo (cascade); a exportação não. |
+| ~~6~~ | ~~"Baixa **TODOS** os dados do usuário" (portabilidade LGPD)~~ | ~~`/api/exportar`, regra 3 do README~~ | ✅ **Fechada em 24/08/2026.** Entraram as memórias, as conversas inteiras (sem o teto de 40/200 que serve à tela), os orçamentos, o onboarding, os eventos de pontuação, os insights, o progresso das lições, os dias da ofensiva, o perfil da trilha, as recomendações da IA e as importações de extrato. Quem decide o que sai virou dado em `lib/dados-exportacao.ts`, com a razão escrita de cada item que fica de fora (a sessão, que é credencial, e as três tabelas da escola, que são da instituição). A regra de posse é a RELAÇÃO com `User`, não a coluna `userId`: a coluna deixava passar `Indicacao`, `Turma`, `ConviteEscola` e `AcessoTrilhaTurma`. A lista de espera também sai, porque o delete de conta já a apaga pelo e-mail. Guardado por `scripts/testar-exportacao.mts`, que roda sem banco: tabela do usuário sem classificação derruba o teste, e seção classificada que não aparece no arquivo também. |
 | 7 | Política escrita de retenção e privacidade (R1) | `docs/estado-do-produto.md` | Engenharia pronta (consentimento separado, cifra, RLS, exclusão, exportação). **Falta o texto jurídico**: base legal, finalidade, prazo de retenção. |
 | 8 | Revisão jurídica CVM/LGPD do conteúdo | `docs/estado-do-produto.md` | Pendente nos módulos que tocam investimento (M09, M10, M22–M25) e no M07 (bets). |
 | 9 | Proteção de custo por abuso | — | Rate limit existe **só** na rota de lead B2B. **Chat e extrato — as chamadas que custam dinheiro — não têm limite.** |
@@ -505,10 +505,11 @@ chat, e a T1 ganhou tags via `prisma/classificacao-t1.ts`.
 O que está entregue é coerente e defensável: o produto faz o que diz **dentro do
 app** — e, desde 13/08/2026, a home também: a landing deixou de vender Open
 Finance e o passo 1 virou "Suba seu extrato", o caminho real (divergência 1,
-fechada). As duas divergências que importam estão **fora dele**:
+fechada). Das duas divergências que importavam, uma fechou:
 
-- **A exportação LGPD não exporta tudo** — e o que falta (conversas e memórias)
-  é justamente o mais sensível.
+- ~~**A exportação LGPD não exporta tudo**~~ ✅ **24/08/2026** — passou a
+  exportar, inclusive conversas e memórias, que eram o mais sensível do que
+  faltava (divergência 6).
 - **Chat e extrato não têm rate limit.** Uma conta abusiva vira conta de Vertex.
 
 Dentro do app, a de operação fechou em 17/08/2026: **`/api/ops/metrics`** falha
