@@ -296,7 +296,14 @@ chegarem, é troca de arquivo, não de código.
   girando por card, aviso do Fin "cofrinho é bolso seu". Entrada pelo Menu.
   ⚠️ Pendência de design: o desenho não tem caminho de **remover nem
   editar** objetivo (nome/meta) — sem rota DELETE de propósito, rota sem
-  tela é porta morta. Quando desenhar, a rota nasce junto.
+  tela é porta morta. Quando desenhar, a rota nasce junto — e não precisa
+  nascer do zero: a branch `claude/zealous-turing-fav2pl` construiu uma
+  versão anterior desta tela, de antes do Redesign Fin v2, que já tem
+  `atualizarObjetivo`, `apagarObjetivo`, DELETE na rota, emoji, prazo e
+  conclusão derivada do alvo. **Ela não foi mesclada de propósito** (ver
+  *Branches paralelas* no fim deste arquivo): renomearia colunas do schema
+  que a v2 já batizou (`meta`/`guardado`) e trocaria a tela entregue por
+  uma anterior ao desenho. Serve como fonte, não como merge.
 - ~~**Diagnóstico de Vazamento**~~ ✅ 14/08 — Fin assustado com a conta no
   hero, CTA "Conversar sobre isso com o Fin" 3D.
 - ~~**Memória do assistente**~~ ✅ 14/08 — a tela já era o desenho; só o
@@ -834,3 +841,33 @@ Lista do mais crítico ao mais simples; cada item é um trabalho independente.
 **O que segurou o usuário (não mexer):** onboarding pulável com aceites
 explicados, "nada entra sem confirmar", tom sem culpa, tema escuro + paleta,
 exportar/apagar dados em dois toques, estado vazio do chat com sugestões.
+
+---
+
+## Branches paralelas conferidas (24/08/2026)
+
+Nove branches estavam abertas fora da `main`, e **três itens deste backlog
+tinham mais de uma solução pronta ao mesmo tempo**. Nenhuma delas foi mesclada
+em cima da outra: duas seções deste arquivo descrevendo a mesma tela é
+exatamente o que a regra da pasta existe para impedir, e quatro rotas de
+exportação seria pior ainda. O que foi feito com cada uma:
+
+| Branch | Item | Destino |
+|---|---|---|
+| `claude/dazzling-galileo-zvk92q` | Exportação LGPD | **Consolidada e mesclada.** Virou a versão única, com o que as outras três acharam |
+| `claude/dazzling-galileo-2k5vjn` | Exportação LGPD | Superada: o que ela viu de único (`Indicacao` fora de qualquer lista, a fonte de cada seção declarada) entrou na consolidada |
+| `claude/dazzling-galileo-qub9gg` | Exportação LGPD | Superada: dela vieram a lista de espera, as três tabelas da escola e a checagem de filtro por dono |
+| `claude/dazzling-galileo-ubibgp` | Exportação LGPD | Superada: dela veio o `lidoPor` por seção |
+| `claude/dazzling-galileo-ixth9w` | Perfil: dinheiro no topo | **Mesclada** como base do bloco de dinheiro |
+| `claude/dazzling-galileo-qstm3a` | Perfil: dinheiro no topo | Superada: dela vieram as conferências de código amarradas ao produto |
+| `claude/zealous-turing-e1n19t` | Perfil: dinheiro no topo | Superada: dela veio a guarda contra resposta velha em cache |
+| `claude/dazzling-galileo-7hwagc` | Cadastro sem jargão | **Já estava na main** (entrou em 18/08 por outra branch, com a mesma copy palavra por palavra) |
+| `claude/zealous-turing-fav2pl` | Objetivos | **Não mesclada, de propósito.** É uma versão anterior ao Redesign Fin v2: renomearia `meta`/`guardado` no schema e trocaria a tela entregue. Fica como fonte para a pendência de remover/editar objetivo |
+
+**A convergência foi quase total, e as diferenças é que valeram a leitura.** As
+quatro branches de exportação chegaram sozinhas à mesma forma (lista em arquivo,
+teste contra o `schema.prisma`, conversa sem teto), e as três do Perfil à mesma
+recusa de chamar o número de "saldo". O que cada uma enxergou de diferente virou
+a versão final — inclusive um defeito: a checagem de "toda consulta filtra pelo
+dono" nasceu olhando uma janela de caracteres que vazava para a consulta
+seguinte, e aprovava uma leitura sem filtro por causa do `userId` do vizinho.
