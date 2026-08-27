@@ -1,0 +1,238 @@
+{
+ "slug": "o-orcamento-e-da-casa-toda",
+ "segmento": "ef35",
+ "conceitoPrincipal": "o-orcamento-e-da-casa-toda",
+ "fraseConceito": "O orçamento da casa é de todo mundo: o que cada um gasta hoje afeta o que a família vai precisar amanhã.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "participacao-da-familia",
+   "criterio": "Ajuda no orçamento da casa?",
+   "enunciado": "As crianças contarem quando querem algo, antes de os pais comprarem",
+   "resposta": true,
+   "ancora": "Falar antes ajuda a família a planejar junto o que cabe no mês.",
+   "feedbackErro": "Parece só pedir, mas avisar antes dá tempo pra família decidir junto o que cabe no orçamento."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "participacao-da-familia",
+   "criterio": "Ajuda no orçamento da casa?",
+   "enunciado": "Só quem trabalha na casa decide como o dinheiro é gasto",
+   "resposta": false,
+   "ancora": "Orçamento é da casa toda — opinar também é participar.",
+   "feedbackErro": "Parece lógico que só quem ganha decide, mas o orçamento é de todos que moram na casa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "criterio": "Isso afeta o orçamento futuro?",
+   "enunciado": "Gastar toda a reserva da família num passeio de um dia",
+   "resposta": true,
+   "ancora": "Gastar a reserva hoje deixa menos dinheiro pra imprevistos amanhã.",
+   "feedbackErro": "O passeio acontece hoje, mas usar toda a reserva tira o dinheiro que a família teria pra imprevistos depois."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "participacao-da-familia",
+   "dificuldade": 1,
+   "pergunta": "A família toda janta junta e decide os gastos do mês. Por que isso ajuda o orçamento?",
+   "ancora": "Decidir junto evita surpresas e gastos que ninguém combinou.",
+   "alternativas": [
+    {
+     "texto": "Porque todo mundo entende pra onde o dinheiro vai",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque janta em família deixa a comida mais gostosa",
+     "correta": false,
+     "feedbackErro": "A comida não muda o orçamento — o que ajuda é todo mundo entender e combinar os gastos juntos."
+    },
+    {
+     "texto": "Porque só assim dá pra gastar mais no mês",
+     "correta": false,
+     "feedbackErro": "Conversar junto não libera mais dinheiro — ajuda é combinar melhor como usar o que já existe."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "dificuldade": 1,
+   "pergunta": "Sobraram R$ 200 este mês. Qual escolha pensa mais no futuro da família?",
+   "ancora": "Pensar no que vai vencer ou quebrar é olhar pro futuro.",
+   "alternativas": [
+    {
+     "texto": "Guardar para o conserto do carro que vai vencer a revisão",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Gastar tudo em um jantar especial no fim de semana",
+     "correta": false,
+     "feedbackErro": "O jantar é bom, mas gasta os R$ 200 sem pensar no que vai ser necessário depois."
+    },
+    {
+     "texto": "Comprar roupas novas que ninguém pediu ainda",
+     "correta": false,
+     "feedbackErro": "Comprar sem necessidade agora não ajuda a preparar a família pro que vai precisar no futuro."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "criterio": "Isso afeta o orçamento futuro?",
+   "enunciado": "Trocar o pneu gasto do carro antes que ele estoure na estrada",
+   "resposta": true,
+   "ancora": "Prevenir um problema agora evita um gasto muito maior depois.",
+   "feedbackErro": "Parece um gasto comum do mês, mas trocar antes evita o custo bem maior de um estouro na estrada."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "participacao-da-familia",
+   "instrucao": "Isso ajuda o orçamento da casa? Arraste.",
+   "ancora": "Ajuda quando todos sabem e decidem juntos o que é gasto.",
+   "feedbackErro": "O que ajuda não é gastar pouco ou muito, é todo mundo saber e decidir junto os gastos da casa.",
+   "caixas": [
+    { "id": "sim", "rotulo": "Ajuda" },
+    { "id": "nao", "rotulo": "Não ajuda" }
+   ],
+   "itens": [
+    { "texto": "Cada um contar o que gastou no mês", "caixaCorreta": "sim" },
+    { "texto": "Gastar escondido, sem avisar ninguém", "caixaCorreta": "nao" },
+    { "texto": "Combinar juntos o que é essencial comprar", "caixaCorreta": "sim" },
+    { "texto": "Decidir sozinho um gasto grande, sem falar com a família", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "criterio": "Isso afeta o orçamento futuro?",
+   "enunciado": "Comprar um presente de aniversário que já estava nos planos do mês",
+   "resposta": false,
+   "ancora": "Gasto já planejado não pega o orçamento de surpresa.",
+   "feedbackErro": "Parece um gasto igual aos outros, mas já estar nos planos significa que ele não desorganiza o que vem depois."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "dificuldade": 1,
+   "pergunta": "A família recebe R$ 500. Separa R$ 100 pra imprevistos. Quanto sobra pros gastos do mês?",
+   "ancora": "500 menos 100 reservados é 400 para os gastos do mês.",
+   "verificacao": { "expressao": "500-100", "esperado": 400 },
+   "alternativas": [
+    {
+     "texto": "R$ 400",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 100",
+     "correta": false,
+     "feedbackErro": "R$ 100 é o valor separado para imprevistos, não o que sobra. 500 menos 100 é 400."
+    },
+    {
+     "texto": "R$ 500",
+     "correta": false,
+     "feedbackErro": "R$ 500 seria sem separar nada. Como R$ 100 já foi reservado, sobram 400 para os gastos."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "participacao-da-familia",
+   "criterio": "Isso ajuda o orçamento?",
+   "enunciado": "Cada pessoa da casa avisar antes de fazer um gasto grande",
+   "resposta": true,
+   "ancora": "Avisar antes evita que o orçamento estoure sem ninguém saber.",
+   "feedbackErro": "Parece burocrático avisar antes, mas isso evita que o dinheiro da casa acabe sem ninguém perceber."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "criterio": "Isso ajuda a preparar o futuro?",
+   "enunciado": "Anotar os gastos fixos que voltam todo mês, como luz e água",
+   "resposta": true,
+   "ancora": "Saber o que se repete todo mês ajuda a planejar o resto.",
+   "feedbackErro": "Anotar parece trabalho extra, mas saber os gastos fixos ajuda a planejar o que sobra pro resto do mês."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "participacao-da-familia",
+   "pergunta": "Qual frase resume o que você aprendeu sobre o orçamento da casa?",
+   "alternativas": [
+    {
+     "texto": "Só quem ganha dinheiro deve decidir os gastos da casa",
+     "correta": false,
+     "feedbackErro": "O orçamento é de todos que moram na casa — participar também é opinar e avisar."
+    },
+    {
+     "texto": "O orçamento é de todos, e pensar no futuro evita surpresas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Gastar tudo que sobra é a melhor forma de aproveitar o mês",
+     "correta": false,
+     "feedbackErro": "Gastar tudo deixa a família sem reserva pra imprevistos que podem vir depois."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "instrucao": "Toque na ordem, do que pensa mais no futuro pro que pensa menos.",
+   "ancora": "Pensar no futuro é guardar antes de gastar tudo.",
+   "feedbackErro": "Guardar primeiro pensa mais à frente; gastar tudo na hora é o que menos prepara a família pro futuro.",
+   "itens": [
+    { "texto": "Guardar parte do dinheiro pra imprevistos", "posicaoCorreta": 1 },
+    { "texto": "Pagar as contas fixas do mês em dia", "posicaoCorreta": 2 },
+    { "texto": "Gastar tudo assim que o dinheiro chega", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "participacao-da-familia",
+   "instrucao": "Toda a casa participa? Arraste.",
+   "ancora": "Participar é opinar e saber — não precisa ser quem paga a conta.",
+   "feedbackErro": "Participar não é sobre quem ganha o dinheiro, é sobre opinar e estar por dentro dos gastos da casa.",
+   "caixas": [
+    { "id": "sim", "rotulo": "Todos participam" },
+    { "id": "nao", "rotulo": "Não participam" }
+   ],
+   "itens": [
+    { "texto": "Cada um dá sua opinião antes de uma compra grande", "caixaCorreta": "sim" },
+    { "texto": "Uma pessoa decide tudo sozinha, sem avisar", "caixaCorreta": "nao" },
+    { "texto": "Todos combinam juntos o que é prioridade no mês", "caixaCorreta": "sim" },
+    { "texto": "Ninguém sabe quanto a casa gasta, só uma pessoa", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "gasto-e-necessidade-futura",
+   "criterio": "Isso afeta o orçamento futuro?",
+   "enunciado": "Deixar de pagar a conta de luz esse mês pra sobrar mais dinheiro",
+   "resposta": true,
+   "ancora": "Atrasar hoje cria multa e juros que pesam no mês seguinte.",
+   "feedbackErro": "Parece que sobra dinheiro agora, mas atrasar gera multa e juros que pesam ainda mais no orçamento seguinte."
+  }
+ ]
+}

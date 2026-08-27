@@ -1,0 +1,344 @@
+{
+ "slug": "estudar-sem-se-afundar-consolida",
+ "segmento": "em3",
+ "conceitoPrincipal": "estudar-sem-se-afundar",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "portas-de-entrada",
+   "criterio": "A regra vale aqui?",
+   "enunciado": "Quem passou em federal perto de casa não precisa de FIES",
+   "resposta": true,
+   "ancora": "Sem mensalidade, não há o que financiar — o desafio vira permanência.",
+   "feedbackErro": "FIES financia mensalidade — e federal não tem mensalidade. O aperto que sobra é outro: passagem, material, comida. Para isso a porta é assistência estudantil."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-do-financiamento",
+   "criterio": "A regra vale aqui?",
+   "enunciado": "Financiar pode ser racional quando é a porta que restou",
+   "resposta": true,
+   "ancora": "Última porta não é porta errada: é porta cara, aberta com conta feita.",
+   "feedbackErro": "Depois de tanto alerta, financiar parece pecado. Não é: esgotadas as portas gratuitas, dívida planejada — total conhecido, parcela que cabe — é legítima."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-do-financiamento",
+   "criterio": "Dívida boa existe?",
+   "enunciado": "Toda dívida de estudo se paga sozinha com o diploma",
+   "resposta": false,
+   "ancora": "Diploma ajuda, não garante: a parcela vence mesmo sem o emprego.",
+   "feedbackErro": "'Investimento em você' é o argumento de venda, e tem fundo real. Mas retorno de diploma é probabilidade, e parcela é certeza — o plano precisa aguentar os dois."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-do-financiamento",
+   "dificuldade": 3,
+   "pergunta": "À vista, o curso soma R$ 47.040 (48 × R$ 980). Financiado, R$ 61.000. Quanto custa o 'pagar depois'?",
+   "ancora": "R$ 61.000 − R$ 47.040 = R$ 13.960: esse é o preço do tempo.",
+   "verificacao": {
+    "expressao": "61000-980*48",
+    "esperado": 13960,
+    "tolerancia": 0.01
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 13.960 a mais no financiado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: o curso é o mesmo nos dois",
+     "correta": false,
+     "feedbackErro": "O diploma é o mesmo; o preço, não. A diferença de R$ 13.960 é o custo de transferir o pagamento para o futuro. Curso igual não significa custo igual."
+    },
+    {
+     "texto": "R$ 9.800 a mais no financiado",
+     "correta": false,
+     "feedbackErro": "Número plausível, mas chutado — e custo não se chuta. A subtração fecha em R$ 13.960: quase 15 mensalidades extras só pelo direito de pagar depois."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-do-financiamento",
+   "dificuldade": 3,
+   "pergunta": "Quando abandonar um curso financiado no meio pode ser a decisão certa?",
+   "ancora": "Regra de bolso: some o que falta pagar e compare com o que entrega.",
+   "alternativas": [
+    {
+     "texto": "Nunca: desistir é sempre fracasso",
+     "correta": false,
+     "feedbackErro": "Persistência tem valor — até o ponto em que só o orgulho paga a conta. O gasto não volta; a decisão olha o que falta pagar contra o que falta receber."
+    },
+    {
+     "texto": "Quando o custo restante supera o que o curso entrega",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sempre que a parcela subir de valor",
+     "correta": false,
+     "feedbackErro": "Parcela subindo é alerta, não veredito. Pode caber renegociação, bolsa ou pausa. O critério de saída é a comparação fria: custo restante × valor restante."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-do-financiamento",
+   "criterio": "É sinal de alerta?",
+   "enunciado": "Assinar contrato sem saber o total a pagar até o fim",
+   "resposta": true,
+   "ancora": "Quem não sabe o total não decidiu: obedeceu ao vendedor.",
+   "feedbackErro": "A papelada cansa e a fila anda — assinar logo parece eficiência. Mas contrato de anos sem total conhecido é cheque em branco. O total é a primeira pergunta."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "custo-do-financiamento",
+   "instrucao": "Recebeu o 'sim' do financiamento. Toque na ordem do que checar.",
+   "ancora": "Total → prazo e início da cobrança → parcela na renda → assinatura.",
+   "feedbackErro": "Assinar primeiro e entender depois é a ordem do arrependimento. Antes da caneta: quanto custa ao todo, quando e por quanto tempo paga, se a parcela caberá.",
+   "itens": [
+    {
+     "texto": "O total a pagar até a última parcela",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Quando começa a cobrança e quanto dura",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Se a parcela caberá na renda esperada",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "A assinatura do contrato",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "permanencia",
+   "criterio": "A exceção existe?",
+   "enunciado": "Bolsa de 100% longe de casa pode custar mais que curso pago perto",
+   "resposta": true,
+   "ancora": "Gratuito + permanência cara pode perder de pago + perto. Faça a conta.",
+   "feedbackErro": "'Gratuito' parece imbatível — é o rótulo mais forte. Mas aluguel, comida e passagem podem passar de mil reais/mês: a conta completa decide, não o rótulo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "permanencia",
+   "criterio": "A conta da permanência fecha?",
+   "enunciado": "Morar perto por R$ 650 custa R$ 410 a mais que R$ 240 de ônibus",
+   "resposta": true,
+   "ancora": "R$ 410 × 48 meses ≈ R$ 20 mil: onde morar é decisão financeira.",
+   "verificacao": {
+    "expressao": "650-240",
+    "esperado": 410,
+    "tolerancia": 0.01
+   },
+   "feedbackErro": "A subtração é simples: 650 − 240 = 410. O que engana é a escala — R$ 410 por mês parecem pouco, mas em 48 meses de curso viram quase R$ 20 mil."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-do-financiamento",
+   "pergunta": "Formado, você paga R$ 320 por mês de financiamento durante 12 anos. Quanto ao todo?",
+   "campo": "moeda",
+   "min": 10000,
+   "max": 90000,
+   "gabarito": 46080,
+   "toleranciaPct": 20,
+   "fonte": "prazos de amortização do FIES, que chegam a ~14 anos (FNDE/MEC)",
+   "verificacao": {
+    "expressao": "320*144",
+    "esperado": 46080,
+    "tolerancia": 0.01
+   },
+   "feedbackPerto": "Isso: 144 parcelas, R$ 46.080. Doze anos pagando — mais tempo quitando do que estudando. É esse horizonte que a assinatura compromete.",
+   "feedbackLonge": "R$ 320 × 144 meses = R$ 46.080. O viés é subestimar prazos longos: 12 anos 'parecem' uns 5. Converta sempre anos em número de parcelas."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-do-financiamento",
+   "dificuldade": 3,
+   "pergunta": "Débora se formou devendo R$ 43.000. Ganha R$ 2.900 e paga parcela de R$ 480. Qual leitura está certa?",
+   "ancora": "R$ 480 de R$ 2.900 ≈ 17%: um sexto da renda já tem dono todo mês.",
+   "verificacao": {
+    "expressao": "480/2900*100",
+    "esperado": 16.55,
+    "tolerancia": 0.01
+   },
+   "alternativas": [
+    {
+     "texto": "A dívida se quitará sozinha com o tempo",
+     "correta": false,
+     "feedbackErro": "O tempo só passa se a parcela for paga — nada anda sozinho. O ponto é planejar a vida com um sexto da renda comprometido antes de qualquer outro gasto."
+    },
+    {
+     "texto": "Um sexto da renda já tem dono todo mês",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Vale pegar rotativo para adiantar a quitação",
+     "correta": false,
+     "feedbackErro": "Adiantar quitação é instinto bom — com dinheiro sobrando. Trocar dívida estudantil barata por rotativo a ~14% ao mês é apagar vela com maçarico."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-do-financiamento",
+   "dificuldade": 3,
+   "pergunta": "Fazer o financiamento no nome dos pais 'para facilitar' muda o quê?",
+   "ancora": "A dívida vai para a renda e o nome deles — o risco muda de endereço.",
+   "alternativas": [
+    {
+     "texto": "Nada: no fim, a dívida é da família",
+     "correta": false,
+     "feedbackErro": "O dinheiro pode até sair do mesmo caixa da casa. Mas juridicamente muda tudo: atraso suja o nome de quem assinou e trava o crédito deles — aposentadoria junto."
+    },
+    {
+     "texto": "O risco vai para a renda e o nome deles",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Os juros caem pela metade",
+     "correta": false,
+     "feedbackErro": "Taxa não cai por parentesco. Ela depende de renda e histórico de quem assina — e o que muda de verdade é quem responde pela dívida se algo der errado."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "portas-de-entrada",
+   "criterio": "Vale para todo mundo?",
+   "enunciado": "A melhor porta de entrada é a mesma para qualquer estudante",
+   "resposta": false,
+   "ancora": "Nota, renda, cidade e projeto mudam a porta; a ordem é o método.",
+   "feedbackErro": "Se houvesse porta única, não existiriam quatro programas. O que se transfere é o método — esgotar as gratuitas antes das pagas — não a resposta pronta."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-do-financiamento",
+   "criterio": "Regra ou exceção?",
+   "enunciado": "Existe financiamento que vale a pena: última porta, conta feita",
+   "resposta": true,
+   "ancora": "O erro nunca foi financiar — é financiar sem saber o total.",
+   "feedbackErro": "A trilha alertou contra dívida, e a conclusão parece 'nunca'. Mas o alerta era contra dívida cega: com total, prazo e parcela medidos, financiar é opção."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "estudar-sem-se-afundar",
+   "dificuldade": 3,
+   "pergunta": "Fechando a trilha: qual síntese está certa?",
+   "alternativas": [
+    {
+     "texto": "Quem financia estudo sempre se arrepende.",
+     "correta": false,
+     "feedbackErro": "Financiar com conta feita é legítimo. O arrependimento mora na dívida cega."
+    },
+    {
+     "texto": "Portas na ordem, total na mesa: estudo também é decisão financeira.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O diploma paga qualquer dívida que for preciso assumir.",
+     "correta": false,
+     "feedbackErro": "Diploma melhora chances; parcela é certeza. O plano precisa caber sem milagre."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "custo-do-financiamento",
+   "instrucao": "Arraste: decisão com conta feita ou decisão no escuro?",
+   "ancora": "Conta feita = total, prazo e parcela conhecidos antes da assinatura.",
+   "feedbackErro": "O critério não é coragem, é informação. Saber total e prazo, comparar bolsa antes: conta feita. Escolher pela parcela ou confiar no 'depois você vê': escuro.",
+   "caixas": [
+    {
+     "id": "conta",
+     "rotulo": "Conta feita"
+    },
+    {
+     "id": "escuro",
+     "rotulo": "No escuro"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Assinou sabendo total, prazo e parcela",
+     "caixaCorreta": "conta"
+    },
+    {
+     "texto": "Escolheu pela parcela que coube no mês",
+     "caixaCorreta": "escuro"
+    },
+    {
+     "texto": "Comparou bolsas antes de financiar",
+     "caixaCorreta": "conta"
+    },
+    {
+     "texto": "Confiou no 'depois você vê os detalhes'",
+     "caixaCorreta": "escuro"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "portas-de-entrada",
+   "dificuldade": 3,
+   "pergunta": "Seu irmão mais novo vai prestar o Enem. Qual conselho resume esta trilha?",
+   "ancora": "A nota abre as portas gratuitas — tente todas antes das pagas.",
+   "alternativas": [
+    {
+     "texto": "Financie logo: resolve rápido e pronto",
+     "correta": false,
+     "feedbackErro": "Rápido na entrada, longo na saída: são anos de parcela. O conselho que protege é a ordem — a mesma nota pode abrir vaga ou bolsa que custam zero."
+    },
+    {
+     "texto": "A nota abre portas gratuitas antes das pagas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Curso pago vale mais no mercado de trabalho",
+     "correta": false,
+     "feedbackErro": "O mercado olha curso, instituição e entrega — não o boleto. Pagar mais não compra valor: públicas gratuitas lideram os rankings do país."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custo-do-financiamento",
+   "criterio": "É verdade?",
+   "enunciado": "O FIES cobra juros bem menores que o crédito comum",
+   "resposta": true,
+   "ancora": "Juros limitados, muito abaixo dos 4% a 8% ao mês do crédito livre.",
+   "feedbackErro": "Dívida é dívida, mas o preço varia brutalmente. O FIES tem juros contidos por regra pública; o crédito comum cobra o mercado. Entre dívidas, a barata primeiro."
+  }
+ ]
+}

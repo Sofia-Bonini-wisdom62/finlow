@@ -1,0 +1,284 @@
+{
+ "slug": "o-que-decide-por-voce-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "o-que-decide-por-voce",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fatores-internos",
+   "criterio": "Isso decidiu a compra por você?",
+   "enunciado": "Comprar algo caro por impulso e se arrepender uma hora depois",
+   "resposta": true,
+   "ancora": "O arrependimento depois não muda o que decidiu na hora.",
+   "feedbackErro": "Parece que o arrependimento anula o motivo original. Mas o que decidiu a compra foi o impulso — o arrependimento veio só depois."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "influencia-externa",
+   "criterio": "Isso decidiu a compra por você?",
+   "enunciado": "Seguir a recomendação de um amigo depois de comparar com 3 outras opções",
+   "resposta": false,
+   "ancora": "A comparação final é que decidiu, não a recomendação isolada.",
+   "feedbackErro": "Parece que ouvir o amigo já conta como influência decisiva. Mas comparar com outras opções antes é o que realmente decidiu, não a recomendação sozinha."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "influencia-externa",
+   "criterio": "Isso decidiu a compra por você?",
+   "enunciado": "Resistir a uma promoção chamativa por já ter decidido não comprar antes",
+   "resposta": false,
+   "ancora": "A decisão prévia resistiu à influência do anúncio.",
+   "feedbackErro": "Parece que ver a promoção já é meio caminho pra cair nela. Mas quem já tinha decidido antes resistiu à influência, em vez de ser levado por ela."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "fatores-internos",
+   "dificuldade": 3,
+   "pergunta": "Alguém resiste a um impulso, mas volta 2 dias depois e compra o item, já com o preço pesquisado. O que motivou a compra?",
+   "ancora": "Pesquisa e tempo pra pensar apontam pra decisão racional.",
+   "alternativas": [
+    {
+     "texto": "Ainda foi impulso, só que atrasado",
+     "correta": false,
+     "feedbackErro": "Impulso é decisão rápida, sem pensar. Pesquisar preço e esperar 2 dias é o oposto disso — é processo racional."
+    },
+    {
+     "texto": "Decisão racional, após pesquisa e tempo pra pensar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pressão do grupo, que insistiu nesses 2 dias",
+     "correta": false,
+     "feedbackErro": "O enunciado não menciona nenhum grupo insistindo — o que mudou foi a pesquisa de preço feita pela própria pessoa."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "influencia-externa",
+   "dificuldade": 3,
+   "pergunta": "Um anúncio e um amigo indicam o mesmo produto, mas a pessoa comparou o preço com 2 rivais antes. O que decidiu, no fim?",
+   "ancora": "A escolha combinou influência inicial com análise própria.",
+   "alternativas": [
+    {
+     "texto": "Só a publicidade, porque apareceu primeiro",
+     "correta": false,
+     "feedbackErro": "A ordem em que a influência apareceu não define sozinha o resultado — a comparação de preço feita depois também pesou na decisão."
+    },
+    {
+     "texto": "Uma combinação de influência e análise própria",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só o amigo, porque teve a última palavra",
+     "correta": false,
+     "feedbackErro": "A pessoa ainda comparou com concorrentes depois da opinião do amigo — a decisão não veio só dessa última palavra."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "fatores-internos",
+   "criterio": "Ainda é viés, mesmo sabendo?",
+   "enunciado": "Saber que 'últimas unidades' é estratégia e mesmo assim sentir urgência",
+   "resposta": true,
+   "ancora": "Conhecer o viés reduz o efeito, mas não elimina a sensação.",
+   "feedbackErro": "Parece que saber da estratégia já protege por completo. Mas o viés pode continuar agindo na sensação, mesmo quando a pessoa sabe do truque."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "fatores-internos",
+   "instrucao": "A decisão final foi por viés e pressão, ou foi racional?",
+   "ancora": "Tempo e comparação indicam racionalidade; pressa indica viés.",
+   "feedbackErro": "Ter contato com anúncio ou opinião de grupo não decide sozinho. O que conta é se a pessoa comparou e teve tempo, ou se agiu na pressa.",
+   "caixas": [
+    {
+     "id": "vies",
+     "rotulo": "Viés ou pressão"
+    },
+    {
+     "id": "racional",
+     "rotulo": "Racional"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Comparar preço e esperar 2 dias antes de comprar",
+     "caixaCorreta": "racional"
+    },
+    {
+     "texto": "Comprar na hora por medo de perder a promoção",
+     "caixaCorreta": "vies"
+    },
+    {
+     "texto": "Resistir ao anúncio por já ter decidido antes",
+     "caixaCorreta": "racional"
+    },
+    {
+     "texto": "Comprar porque o grupo inteiro decidiu comprar igual",
+     "caixaCorreta": "vies"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "influencia-externa",
+   "criterio": "A influência venceu a decisão racional?",
+   "enunciado": "Ver o anúncio, comparar com 3 opções e escolher a mais barata, não a anunciada",
+   "resposta": false,
+   "ancora": "A comparação levou a outra escolha — a influência não venceu.",
+   "feedbackErro": "Parece que ver o anúncio já conta como influência decisiva. Mas se a comparação levou a escolher outro produto, quem decidiu foi a análise."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "fatores-internos",
+   "dificuldade": 3,
+   "pergunta": "Uma pessoa evita uma loja desde uma experiência ruim há anos, mesmo a loja tendo mudado bastante desde então. Isso é...?",
+   "ancora": "Generalizar um caso antigo pro presente, sem checar se mudou.",
+   "alternativas": [
+    {
+     "texto": "Uma decisão racional atualizada com dados novos",
+     "correta": false,
+     "feedbackErro": "Não há dados novos sendo considerados — a decisão ignora justamente as mudanças recentes da loja."
+    },
+    {
+     "texto": "Um viés que generaliza um caso antigo pro presente",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pressão externa de outras pessoas",
+     "correta": false,
+     "feedbackErro": "Não há menção de outras pessoas influenciando — a decisão vem de uma experiência própria antiga, generalizada sem checar."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "influencia-externa",
+   "criterio": "A influência venceu a decisão racional?",
+   "enunciado": "Comprar o produto mais caro por insistência do vendedor, ignorando a pesquisa de preço já feita",
+   "resposta": true,
+   "ancora": "A insistência do vendedor superou a pesquisa já feita.",
+   "feedbackErro": "Parece só simpatia com o vendedor. Mas ignorar uma pesquisa de preço já feita por causa da insistência é a influência vencendo a análise."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "fatores-internos",
+   "criterio": "Ainda é viés, mesmo sabendo?",
+   "enunciado": "Reconhecer o impulso, esperar um dia e decidir não comprar",
+   "resposta": false,
+   "ancora": "Esperar e decidir com calma neutraliza o impulso inicial.",
+   "feedbackErro": "Parece que só sentir o impulso já conta como cair nele. Mas esperar e decidir com calma depois é o oposto: o impulso foi neutralizado."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-que-decide-por-voce",
+   "pergunta": "Qual situação mostra a influência vencendo, mesmo havendo alguma análise no meio?",
+   "alternativas": [
+    {
+     "texto": "Comparar preços e escolher a opção mais barata, não a anunciada",
+     "correta": false,
+     "feedbackErro": "Aqui a comparação venceu — a pessoa escolheu outro produto, diferente do anunciado."
+    },
+    {
+     "texto": "Ignorar a pesquisa já feita por causa da insistência do vendedor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Esperar um dia e desistir da compra por impulso",
+     "correta": false,
+     "feedbackErro": "Aqui o impulso foi neutralizado pela espera — a decisão final foi racional, não a influência vencendo."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "influencia-externa",
+   "dificuldade": 3,
+   "pergunta": "Duas pessoas veem o mesmo anúncio. Uma compra na hora; a outra pesquisa por 3 dias e não compra. O que diferenciou as duas decisões?",
+   "ancora": "O tempo e a pesquisa feitos antes de decidir.",
+   "alternativas": [
+    {
+     "texto": "O anúncio foi diferente para cada uma",
+     "correta": false,
+     "feedbackErro": "O enunciado diz que as duas viram o mesmo anúncio — a diferença não está no anúncio, e sim no que cada uma fez depois."
+    },
+    {
+     "texto": "O tempo e a pesquisa antes de decidir",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O preço do produto, que mudou entre as duas",
+     "correta": false,
+     "feedbackErro": "Não há menção de mudança de preço — a diferença descrita está no comportamento de cada pessoa, não no produto."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "fatores-internos",
+   "instrucao": "O viés foi vencido pela razão, ou venceu a decisão?",
+   "ancora": "Vencer o viés exige ação: esperar, comparar, recusar.",
+   "feedbackErro": "Perceber o viés é o primeiro passo, mas não basta. Só conta como vencido quando a pessoa realmente espera, compara ou recusa apesar da pressão.",
+   "caixas": [
+    {
+     "id": "vencido",
+     "rotulo": "Viés vencido"
+    },
+    {
+     "id": "venceu",
+     "rotulo": "Viés venceu"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Sentir urgência, mas esperar e comparar antes de agir",
+     "caixaCorreta": "vencido"
+    },
+    {
+     "texto": "Comprar na hora por medo de perder a oferta",
+     "caixaCorreta": "venceu"
+    },
+    {
+     "texto": "Reconhecer a insistência do vendedor e recusar mesmo assim",
+     "caixaCorreta": "vencido"
+    },
+    {
+     "texto": "Ignorar a pesquisa já feita por causa da insistência",
+     "caixaCorreta": "venceu"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "fatores-internos",
+   "criterio": "Ainda é viés, mesmo sabendo?",
+   "enunciado": "Sentir o impulso de comprar, mesmo decidindo esperar depois",
+   "resposta": true,
+   "ancora": "O impulso existiu; só a ação foi controlada, não eliminada.",
+   "feedbackErro": "Parece que esperar já significa que não houve impulso nenhum. Mas ele pode existir e ser sentido, mesmo quando a pessoa não age na hora."
+  }
+ ]
+}

@@ -1,0 +1,295 @@
+{
+ "slug": "endividado-ou-inadimplente",
+ "segmento": "ef89",
+ "conceitoPrincipal": "endividado-ou-inadimplente",
+ "fraseConceito": "Endividado é quem deve; inadimplente é quem não pagou no prazo combinado — nem todo devedor está atrasado.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "endividado-vs-inadimplente",
+   "criterio": "Essa pessoa está inadimplente?",
+   "enunciado": "Paga o financiamento do celular em dia, todo mês",
+   "resposta": false,
+   "ancora": "Deve, mas paga em dia: é endividada, não inadimplente.",
+   "feedbackErro": "Ter uma dívida em aberto confunde com inadimplência. Mas pagar certinho no prazo combinado é justamente o que a diferencia — ela deve, mas não está atrasada."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "endividado-vs-inadimplente",
+   "criterio": "Essa pessoa está inadimplente?",
+   "enunciado": "Deixou de pagar a fatura do cartão há dois meses",
+   "resposta": true,
+   "ancora": "Não pagar no prazo combinado é o que define a inadimplência.",
+   "feedbackErro": "Não é só ter dívida — é o atraso que muda o status. Duas faturas vencidas e não pagas caracterizam a inadimplência."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "credito-verde",
+   "criterio": "Isso é um exemplo de crédito verde?",
+   "enunciado": "Empréstimo com juros menores para instalar painéis solares em casa",
+   "resposta": true,
+   "ancora": "Crédito verde financia projetos com impacto ambiental positivo.",
+   "feedbackErro": "Parece só um empréstimo comum, mas a condição especial — juros menores para um projeto de energia limpa — é o que caracteriza o crédito verde."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "endividado-vs-inadimplente",
+   "dificuldade": 1,
+   "pergunta": "Duas pessoas têm a mesma dívida de R$2.000. Uma paga em dia, a outra está 3 meses atrasada. O que as diferencia?",
+   "ancora": "O tamanho da dívida é igual; o que muda é o cumprimento do prazo.",
+   "alternativas": [
+    {
+     "texto": "O valor total que cada uma deve",
+     "correta": false,
+     "feedbackErro": "O valor é o mesmo nas duas, então ele não pode ser o que separa uma situação da outra. Quem diferencia é o cumprimento do prazo."
+    },
+    {
+     "texto": "O fato de uma estar em dia e a outra, atrasada",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O banco em que cada uma fez o empréstimo",
+     "correta": false,
+     "feedbackErro": "O banco não determina se alguém é inadimplente ou não. O que determina é se o pagamento combinado foi feito no prazo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "credito-verde",
+   "dificuldade": 1,
+   "pergunta": "Por que um banco oferece juros menores para financiar um carro elétrico do que para um carro comum?",
+   "ancora": "A taxa cai para incentivar um projeto de menor impacto ambiental.",
+   "alternativas": [
+    {
+     "texto": "Porque carros elétricos custam menos para o banco financiar",
+     "correta": false,
+     "feedbackErro": "O custo de financiar não muda pelo tipo de motor. A taxa menor é um incentivo deliberado a um projeto de menor impacto ambiental."
+    },
+    {
+     "texto": "Porque é incentivo a um projeto de menor impacto ambiental",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque carros elétricos têm garantia de fábrica maior",
+     "correta": false,
+     "feedbackErro": "A garantia de fábrica é uma característica do produto, não do crédito. A taxa menor existe para incentivar a escolha ambientalmente mais responsável."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "endividado-vs-inadimplente",
+   "criterio": "Isso sozinho já é inadimplência?",
+   "enunciado": "Ter um financiamento de longo prazo ainda em aberto",
+   "resposta": false,
+   "ancora": "Dívida em aberto não é inadimplência — atraso é.",
+   "feedbackErro": "Ter uma dívida longa parece grave, mas o que define inadimplência é o não pagamento no prazo — enquanto as parcelas estão em dia, ela não existe."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "endividado-vs-inadimplente",
+   "instrucao": "Ordene da situação mais leve à mais grave",
+   "ancora": "O critério é o tempo de atraso, não o valor da dívida.",
+   "feedbackErro": "É tentador ordenar pelo valor da dívida. Mas o critério aqui é o tempo de atraso: quanto mais tempo sem pagar, mais grave a situação fica.",
+   "itens": [
+    { "texto": "Dívida paga em dia, todo mês", "posicaoCorreta": 1 },
+    { "texto": "Fatura vencida há 5 dias, ainda dentro da tolerância", "posicaoCorreta": 2 },
+    { "texto": "Conta vencida há 2 meses, sem contato com o credor", "posicaoCorreta": 3 },
+    { "texto": "Nome negativado após 6 meses sem nenhum pagamento", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "endividado-vs-inadimplente",
+   "criterio": "Isso sozinho já é inadimplência?",
+   "enunciado": "Usar o limite do cheque especial e ainda não ter pago",
+   "resposta": false,
+   "ancora": "Usar o limite é ficar endividado; inadimplência exige atraso.",
+   "feedbackErro": "Usar o cheque especial já cria uma dívida, mas enquanto o prazo combinado não vencer sem pagamento, ainda não há inadimplência."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "credito-verde",
+   "criterio": "Isso é um exemplo de crédito verde?",
+   "enunciado": "Empréstimo comum para reformar a cozinha, sem condição ambiental",
+   "resposta": false,
+   "ancora": "Sem critério ambiental na condição do crédito, não é crédito verde.",
+   "feedbackErro": "Envolve empréstimo, mas sem nenhuma condição ligada a impacto ambiental — crédito verde exige esse critério específico na oferta."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "endividado-vs-inadimplente",
+   "pergunta": "Uma dívida de R$1.000 na inadimplência, com juros de mora de 1% ao mês, vira quanto em 6 meses?",
+   "campo": "moeda",
+   "min": 1000,
+   "max": 1200,
+   "gabarito": 1060,
+   "toleranciaPct": 20,
+   "fonte": "taxa padrão de mora contratual, ~1% ao mês (uso comum em contratos)",
+   "verificacao": { "expressao": "1000 + 1000*0.01*6", "esperado": 1060 },
+   "feedbackPerto": "Isso mesmo, R$1.060 — a mora soma 1% do valor original a cada mês parado.",
+   "feedbackLonge": "Fica perto de R$1.060. A mora de atraso costuma ser simples: soma-se o mesmo valor todo mês, não multiplica."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "endividado-vs-inadimplente",
+   "dificuldade": 1,
+   "pergunta": "Sandra tem um financiamento de R$30 mil em dia e nenhuma outra dívida. Ela é inadimplente?",
+   "ancora": "Sem nenhum pagamento atrasado, não há inadimplência.",
+   "alternativas": [
+    {
+     "texto": "Não, porque não há nenhum pagamento em atraso",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque o valor da dívida é muito alto",
+     "correta": false,
+     "feedbackErro": "O tamanho da dívida não define inadimplência. O que define é se algum pagamento passou do prazo sem ser feito."
+    },
+    {
+     "texto": "Sim, porque financiamento sempre conta como atraso",
+     "correta": false,
+     "feedbackErro": "Financiamento é uma dívida planejada e paga em parcelas — só vira inadimplência se alguma parcela não for paga no prazo."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "credito-verde",
+   "dificuldade": 1,
+   "pergunta": "Um agricultor pega crédito com taxa menor para trocar a irrigação por uma que gasta menos água. Por que é crédito verde?",
+   "ancora": "O projeto financiado reduz o impacto ambiental do uso da água.",
+   "alternativas": [
+    {
+     "texto": "Porque reduz o impacto ambiental do uso da água na lavoura",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque agricultura sempre tem taxa de juros menor",
+     "correta": false,
+     "feedbackErro": "Crédito rural comum não tem taxa especial por si só. O que reduz a taxa aqui é o projeto específico de menor impacto ambiental."
+    },
+    {
+     "texto": "Porque o crédito é destinado só a quem já tem baixa renda",
+     "correta": false,
+     "feedbackErro": "O critério do crédito verde é o impacto ambiental do projeto financiado, não a renda de quem contrata."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "endividado-vs-inadimplente",
+   "criterio": "Isso sozinho já é inadimplência?",
+   "enunciado": "Ter o nome no cadastro de proteção ao crédito",
+   "resposta": true,
+   "ancora": "A negativação só acontece depois do atraso confirmado.",
+   "feedbackErro": "Parece só uma marca burocrática, mas o nome só entra nesse cadastro depois que um pagamento venceu sem ser feito — é a inadimplência já confirmada."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "credito-verde",
+   "criterio": "Isso é um exemplo de crédito verde?",
+   "enunciado": "Financiamento com taxa reduzida para reflorestar uma área degradada",
+   "resposta": true,
+   "ancora": "Reflorestar é um projeto ambiental clássico do crédito verde.",
+   "feedbackErro": "Parece só um financiamento agrícola comum, mas a taxa reduzida existe justamente para incentivar o projeto de recuperação ambiental."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "endividado-vs-inadimplente",
+   "pergunta": "Qual frase resume a diferença entre endividado e inadimplente?",
+   "alternativas": [
+    {
+     "texto": "Toda pessoa endividada está automaticamente inadimplente",
+     "correta": false,
+     "feedbackErro": "Vimos o contrário: dá para dever e pagar tudo em dia, sem nunca ficar inadimplente."
+    },
+    {
+     "texto": "Endividado deve; inadimplente deve e está atrasado no pagamento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Crédito verde é qualquer empréstimo com juros baixos",
+     "correta": false,
+     "feedbackErro": "Juros baixos sozinhos não bastam — crédito verde exige um projeto com impacto ambiental na condição."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "endividado-vs-inadimplente",
+   "instrucao": "É só endividamento ou já é inadimplência?",
+   "ancora": "O critério que separa é o atraso confirmado no pagamento.",
+   "feedbackErro": "O jeito de separar: se toda parcela está sendo paga no prazo, é só endividamento. Se alguma venceu sem pagamento, virou inadimplência.",
+   "caixas": [
+    { "id": "endividado", "rotulo": "Só endividamento" },
+    { "id": "inadimplente", "rotulo": "Inadimplência" }
+   ],
+   "itens": [
+    { "texto": "Consignado descontado direto da folha, sem falhas", "caixaCorreta": "endividado" },
+    { "texto": "Conta de luz vencida há 3 meses, sem pagamento", "caixaCorreta": "inadimplente" },
+    { "texto": "Financiamento de imóvel com todas as parcelas em dia", "caixaCorreta": "endividado" },
+    { "texto": "Mensalidade escolar atrasada, sem acordo com a escola", "caixaCorreta": "inadimplente" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "credito-verde",
+   "criterio": "Isso é um exemplo de crédito verde?",
+   "enunciado": "Empréstimo com taxa menor para trocar telhado por um com captação de água da chuva",
+   "resposta": true,
+   "ancora": "Captação de água é um projeto de menor impacto ambiental.",
+   "feedbackErro": "Parece uma reforma comum, mas a taxa reduzida vem da condição ambiental: captar água da chuva reduz o consumo de recursos."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "endividado-vs-inadimplente",
+   "dificuldade": 1,
+   "pergunta": "Por que uma pessoa pode estar muito endividada e, ainda assim, ter um bom histórico de crédito?",
+   "ancora": "Histórico de crédito mede pagamento em dia, não o tamanho da dívida.",
+   "alternativas": [
+    {
+     "texto": "Porque o histórico de crédito mede o pagamento em dia, não o total devido",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque bancos não registram dívidas muito grandes",
+     "correta": false,
+     "feedbackErro": "Bancos registram dívidas de qualquer tamanho. O que pesa no histórico não é o valor, é o cumprimento dos prazos combinados."
+    },
+    {
+     "texto": "Porque o histórico de crédito só existe para quem não deve nada",
+     "correta": false,
+     "feedbackErro": "O histórico existe justamente para quem usa crédito. Quem nunca deve nada simplesmente não tem histórico para avaliar."
+    }
+   ]
+  }
+ ]
+}

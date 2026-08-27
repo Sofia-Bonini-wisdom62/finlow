@@ -1,0 +1,271 @@
+{
+ "slug": "estudo-desigualdade-e-lucro-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "estudo-desigualdade-e-lucro",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "lucro-receita-despesa",
+   "criterio": "É despesa que reduz o lucro deste mês?",
+   "enunciado": "Parcela de um empréstimo tomado pra abrir o negócio, paga neste mês",
+   "resposta": true,
+   "ancora": "O que sai do caixa neste mês é despesa deste mês.",
+   "feedbackErro": "Pode parecer 'coisa do passado', mas o pagamento que sai do caixa neste mês entra na conta das despesas deste mês, não do mês em que o empréstimo foi tomado."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "lucro-receita-despesa",
+   "criterio": "É despesa que reduz o lucro deste mês?",
+   "enunciado": "O valor que ainda falta receber de um cliente que comprou fiado",
+   "resposta": false,
+   "ancora": "Sem entrar no caixa, não é receita nem despesa ainda.",
+   "feedbackErro": "Parece que devia contar de algum jeito, mas o valor a receber não é despesa nem lucro ainda — só vira algo concreto quando o cliente pagar."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "lucro-receita-despesa",
+   "criterio": "É despesa que reduz o lucro deste mês?",
+   "enunciado": "O valor de mercadoria que estragou e teve que ser jogada fora",
+   "resposta": true,
+   "ancora": "Mercadoria perdida é despesa: o valor gasto já saiu.",
+   "feedbackErro": "Pode parecer só um prejuízo material, sem ligação com o caixa. Mas o valor gasto pra comprar aquilo já saiu do bolso — é despesa, mesmo sem virar venda."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "lucro-receita-despesa",
+   "dificuldade": 3,
+   "pergunta": "Um negócio teve receita alta, mas boa parte ainda está a receber. O lucro do mês já pode ser comemorado?",
+   "ancora": "Lucro no papel difere de lucro em caixa, com fiado no meio.",
+   "alternativas": [
+    {
+     "texto": "Sim, receita alta já garante lucro alto",
+     "correta": false,
+     "feedbackErro": "Receita registrada não é dinheiro em caixa. Se boa parte ainda está a receber, o lucro real depende de esse valor entrar de fato."
+    },
+    {
+     "texto": "Só depois de saber quanto desse valor realmente vai entrar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, porque fiado nunca deve ser contado como receita",
+     "correta": false,
+     "feedbackErro": "Fiado pode ser contado como receita da venda, sim — o cuidado é não tratá-lo como se já estivesse em caixa, prontinho pra virar lucro."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "escolaridade-e-renda",
+   "dificuldade": 3,
+   "pergunta": "Alguém estudou mais que a média, mas está numa área com pouca demanda. O que a tendência estudo-renda diz desse caso?",
+   "ancora": "Tendência é sobre médias; casos individuais fogem por outros fatores.",
+   "alternativas": [
+    {
+     "texto": "A tendência garante renda maior pra ela de qualquer forma",
+     "correta": false,
+     "feedbackErro": "Tendência não é garantia individual — ela descreve a média, não cada caso. Área com pouca demanda pode neutralizar o efeito da escolaridade."
+    },
+    {
+     "texto": "É média; nesse caso, a demanda da área pode pesar mais",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Escolaridade nunca influencia renda, só a demanda",
+     "correta": false,
+     "feedbackErro": "Descartar a escolaridade também é exagero — em média ela ainda pesa. O caso individual é que pode fugir da média por causa da demanda baixa."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "desigualdade-de-renda",
+   "criterio": "Desigualdade NÃO depende só de renda?",
+   "enunciado": "Duas famílias com a mesma renda, mas uma numa cidade sem hospital público por perto",
+   "resposta": true,
+   "ancora": "Mesma renda, acesso bem diferente — desigualdade também é acesso.",
+   "feedbackErro": "Pode parecer que renda igual resolve tudo, mas o acesso a serviços públicos na região pesa tanto quanto o valor em reais que cada família recebe."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "lucro-receita-despesa",
+   "instrucao": "Esse valor entra no cálculo do lucro do mês, ou fica de fora?",
+   "ancora": "Só entra no lucro do mês o que moveu o caixa desse período.",
+   "feedbackErro": "O critério é movimentação real de caixa no período: valor a receber e reserva guardada não mexeram o caixa deste mês, então ficam fora do cálculo.",
+   "caixas": [
+    {
+     "id": "entra",
+     "rotulo": "Entra no lucro do mês"
+    },
+    {
+     "id": "fora",
+     "rotulo": "Fica de fora"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Mercadoria vendida e já paga à vista",
+     "caixaCorreta": "entra"
+    },
+    {
+     "texto": "Valor combinado, mas que o cliente ainda vai pagar",
+     "caixaCorreta": "fora"
+    },
+    {
+     "texto": "Aluguel do ponto, pago neste mês",
+     "caixaCorreta": "entra"
+    },
+    {
+     "texto": "Reserva de emergência guardada em outra conta",
+     "caixaCorreta": "fora"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "escolaridade-e-renda",
+   "criterio": "Caso-limite: estudo NÃO deu mais renda?",
+   "enunciado": "Alguém com mestrado que escolheu uma carreira de forte propósito social, com salário abaixo da média do setor",
+   "resposta": true,
+   "ancora": "Tendência é estatística; a escolha de carreira também pesa.",
+   "feedbackErro": "Pode parecer que o mestrado deveria garantir salário alto de qualquer jeito, mas a escolha de área pesa tanto quanto o tempo de formação no resultado final."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "lucro-receita-despesa",
+   "dificuldade": 3,
+   "pergunta": "Confeitaria: R$4.750 em vendas, R$3.980 pagos neste mês. Deve R$600 a fornecedor, só paga mês que vem. Lucro deste mês?",
+   "ancora": "R$4.750 − R$3.980 = R$770. A dívida futura entra só quando paga.",
+   "verificacao": {
+    "expressao": "4750-3980",
+    "esperado": 770
+   },
+   "alternativas": [
+    {
+     "texto": "R$770",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$170",
+     "correta": false,
+     "feedbackErro": "Isso já desconta a dívida futura, mas ela só vai virar despesa no mês em que for paga, não neste."
+    },
+    {
+     "texto": "R$4.750",
+     "correta": false,
+     "feedbackErro": "Isso é a receita bruta, sem descontar nenhuma despesa já paga neste mês."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "desigualdade-de-renda",
+   "criterio": "Só renda NÃO resolve a desigualdade?",
+   "enunciado": "Uma cidade sem nenhuma escola técnica pública, mesmo com famílias ganhando mais",
+   "resposta": true,
+   "ancora": "Renda maior sem oferta de serviço não vira oportunidade.",
+   "feedbackErro": "Pode parecer que renda maior já resolve o acesso sozinha, mas sem a escola técnica existir na cidade, o dinheiro extra não vira oportunidade de qualificação."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "escolaridade-e-renda",
+   "criterio": "Mostra o vínculo estudo-renda aqui?",
+   "enunciado": "Alguém que trocou de área depois de uma especialização e passou a ganhar menos que na área anterior",
+   "resposta": false,
+   "ancora": "Aqui o vínculo não se confirma — casos fogem da média.",
+   "feedbackErro": "Pode parecer que mais estudo devia render mais, mas a tendência é estatística: carreira e demanda também pesam no resultado."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "lucro-receita-despesa",
+   "pergunta": "Depois desses casos-limite, qual frase é mais precisa?",
+   "alternativas": [
+    {
+     "texto": "Lucro é tudo que entrou de venda, mesmo o que ainda não foi pago",
+     "correta": false,
+     "feedbackErro": "Fiado ainda não é caixa — lucro real considera só o que efetivamente entrou ou saiu no período."
+    },
+    {
+     "texto": "Lucro, estudo-renda e desigualdade são tendências; casos fogem da média",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Casos individuais provam que essas relações nunca valem",
+     "correta": false,
+     "feedbackErro": "Um caso fora da média não invalida a tendência geral — só mostra que ela não é garantia individual."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "lucro-receita-despesa",
+   "pergunta": "Horta vendeu R$2.340, teve R$1.890 de despesa, e tem R$300 a receber. Qual o lucro já em caixa?",
+   "campo": "moeda",
+   "min": 200,
+   "max": 900,
+   "gabarito": 450,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto sobre os valores já movimentados no caixa",
+   "verificacao": {
+    "expressao": "2340-1890",
+    "esperado": 450
+   },
+   "feedbackPerto": "Isso mesmo: R$2.340 − R$1.890 = R$450. O valor a receber ainda não entrou no caixa, então fica fora dessa conta.",
+   "feedbackLonge": "O lucro já realizado é R$450. É fácil incluir por engano o valor a receber, que ainda não virou caixa."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "desigualdade-de-renda",
+   "instrucao": "Ordene da causa mais distante à mais próxima no ciclo.",
+   "ancora": "O ciclo vai da educação na infância ao patrimônio adulto.",
+   "feedbackErro": "O critério é a ordem temporal do ciclo: o que acontece na infância tende a influenciar o que vem depois, até o patrimônio acumulado no fim da trajetória.",
+   "itens": [
+    {
+     "texto": "Acesso desigual à educação na infância",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Diferença de qualificação profissional na juventude",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Diferença de renda no início da vida adulta",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Diferença de patrimônio acumulado na vida adulta",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "lucro-receita-despesa",
+   "criterio": "É despesa só quando o caixa sai de fato?",
+   "enunciado": "O valor orçado, mas ainda não gasto, para reformar a loja no ano que vem",
+   "resposta": false,
+   "ancora": "Orçamento futuro não é despesa até o dinheiro sair de fato.",
+   "feedbackErro": "Planejar o gasto é importante, mas não movimenta o caixa agora. Só quando o dinheiro sai de fato é que ele entra na conta de despesa do período."
+  }
+ ]
+}

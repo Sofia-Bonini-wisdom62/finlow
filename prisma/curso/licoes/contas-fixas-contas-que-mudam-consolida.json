@@ -1,0 +1,244 @@
+{
+ "slug": "contas-fixas-contas-que-mudam-consolida",
+ "segmento": "ef35",
+ "conceitoPrincipal": "contas-fixas-contas-que-mudam",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fixa-ou-variavel",
+   "criterio": "Continua sendo despesa fixa?",
+   "enunciado": "Aluguel de R$ 800 que sobe pra R$ 850 só uma vez por ano, no reajuste",
+   "resposta": true,
+   "ancora": "Fixa é o valor que se mantém igual entre os reajustes combinados.",
+   "feedbackErro": "Parece que mudar uma vez já tira do grupo das fixas. Mas o reajuste é raro e combinado — entre uma mudança e outra, continua fixa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prevista-ou-imprevista",
+   "criterio": "Continua imprevista mesmo se repetindo?",
+   "enunciado": "Conserto do carro velho, que quebra sem aviso quase todo mês",
+   "resposta": true,
+   "ancora": "Repetir não torna previsível — cada quebra pega de surpresa.",
+   "feedbackErro": "Parece que repetir já vira rotina previsível. Mas cada quebra ainda pega de surpresa, sem hora nem valor certos."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fixa-ou-variavel",
+   "criterio": "É variável, mesmo envolvendo internet?",
+   "enunciado": "Plano de internet ilimitado, sempre R$ 100, não importa o quanto se usa",
+   "resposta": false,
+   "ancora": "Com franquia ilimitada, o valor não muda com o uso — continua fixa.",
+   "feedbackErro": "Internet parece sempre variável por causa do uso. Mas com franquia ilimitada, o valor não muda — é despesa fixa."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "fixa-ou-variavel",
+   "dificuldade": 3,
+   "pergunta": "O aluguel de R$ 900 sobe pra R$ 950 só depois de 12 meses, no reajuste. Isso muda o tipo da despesa?",
+   "ancora": "O reajuste é raro e combinado — entre um e outro, o aluguel é fixo.",
+   "alternativas": [
+    {
+     "texto": "Não, continua sendo despesa fixa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, vira despesa variável a partir do reajuste",
+     "correta": false,
+     "feedbackErro": "Variável muda praticamente todo mês. O aluguel só muda uma vez por ano, num reajuste combinado — segue fixo."
+    },
+    {
+     "texto": "Sim, vira despesa imprevista, porque o valor mudou",
+     "correta": false,
+     "feedbackErro": "Não é imprevisto: o reajuste é combinado em contrato, com data conhecida — o aluguel continua sendo despesa fixa."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "prevista-ou-imprevista",
+   "dificuldade": 3,
+   "pergunta": "O carro de uma família quebra, em média, uma vez por mês, com valor diferente. Qual a melhor forma de lidar com isso?",
+   "ancora": "Guardar uma reserva mensal ajuda mesmo sem saber o valor exato.",
+   "alternativas": [
+    {
+     "texto": "Guardar reserva mensal, mesmo sem saber o valor exato",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Tratar como despesa fixa e ignorar quando quebra",
+     "correta": false,
+     "feedbackErro": "Tratar como fixa esconde o risco: o valor muda a cada quebra, e ignorar isso pode faltar dinheiro na hora."
+    },
+    {
+     "texto": "Não planejar nada, já que é imprevisto",
+     "correta": false,
+     "feedbackErro": "Mesmo sendo imprevisto quando exatamente vai acontecer, dá pra se preparar guardando uma reserva com antecedência."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "prevista-ou-imprevista",
+   "criterio": "Despesa que repete ainda é imprevista?",
+   "enunciado": "Saber que o carro sempre quebra, mas não saber quando nem quanto vai custar",
+   "resposta": true,
+   "ancora": "Saber que vai acontecer não é o mesmo que saber quando e quanto.",
+   "feedbackErro": "Parece que já dá pra prever, só de saber que vai acontecer. Mas sem saber quando nem o valor, ela continua imprevista."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "fixa-ou-variavel",
+   "instrucao": "Mesmo nos casos que confundem, é fixa ou variável? Arraste.",
+   "ancora": "O que define fixa é manter o valor entre os reajustes combinados.",
+   "feedbackErro": "Reajuste raro e franquia ilimitada confundem. Mas o que importa é: o valor muda com o uso (variável) ou fica igual (fixa)?",
+   "caixas": [
+    { "id": "fixa", "rotulo": "Fixa" },
+    { "id": "variavel", "rotulo": "Variável" }
+   ],
+   "itens": [
+    { "texto": "Aluguel que só muda uma vez por ano, no reajuste", "caixaCorreta": "fixa" },
+    { "texto": "Plano de celular cobrado por minuto usado", "caixaCorreta": "variavel" },
+    { "texto": "Internet ilimitada, mesmo valor todo mês", "caixaCorreta": "fixa" },
+    { "texto": "Conta de água que sobe no verão", "caixaCorreta": "variavel" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "prevista-ou-imprevista",
+   "criterio": "Ajuda a lidar com imprevistos raros?",
+   "enunciado": "Guardar dinheiro todo mês pensando num possível conserto futuro do carro",
+   "resposta": true,
+   "ancora": "Guardar antes de acontecer dá resiliência financeira pra imprevistos.",
+   "feedbackErro": "Parece guardar dinheiro à toa, sem gasto certo. Mas é isso que dá resiliência pra quando o imprevisto realmente chegar."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "fixa-ou-variavel",
+   "dificuldade": 3,
+   "pergunta": "Caio assina um streaming com preço promocional por 3 meses, que depois sobe. Isso muda o tipo da despesa?",
+   "ancora": "A mudança já é combinada numa data certa — segue sendo fixa.",
+   "alternativas": [
+    {
+     "texto": "Não, continua fixa — só muda de valor numa data combinada",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, vira despesa variável porque o preço muda",
+     "correta": false,
+     "feedbackErro": "A mudança acontece numa data certa, já sabida no contrato — isso ainda é despesa fixa, não variável."
+    },
+    {
+     "texto": "Sim, vira despesa imprevista porque ninguém esperava",
+     "correta": false,
+     "feedbackErro": "Todo mundo esperava: o fim da promoção estava combinado desde o início da assinatura — não é surpresa."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "prevista-ou-imprevista",
+   "criterio": "É despesa prevista, mesmo sendo anual?",
+   "enunciado": "IPVA do carro, cobrado todo início de ano",
+   "resposta": true,
+   "ancora": "Mesmo sendo anual, o IPVA é sabido com antecedência — é prevista.",
+   "feedbackErro": "Parece imprevisto por não vir todo mês. Mas o IPVA é cobrado todo início de ano, com data conhecida — é prevista."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "fixa-ou-variavel",
+   "criterio": "Ajuda planejar, mesmo em mudança rara?",
+   "enunciado": "Anotar a data do próximo reajuste do aluguel, mesmo ele sendo raro",
+   "resposta": true,
+   "ancora": "Saber a data do reajuste evita surpresa quando o valor mudar.",
+   "feedbackErro": "Parece detalhe sem importância, já que o reajuste é raro. Mas anotar a data evita ser pego de surpresa quando ele chegar."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "fixa-ou-variavel",
+   "pergunta": "Qual frase resume a transferência que você fez?",
+   "alternativas": [
+    {
+     "texto": "Fixa muda só em datas combinadas; imprevista pega de surpresa mesmo se repetir",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Qualquer mudança de valor tira a despesa do grupo das fixas",
+     "correta": false,
+     "feedbackErro": "Não tira: o aluguel pode reajustar uma vez por ano e continuar sendo despesa fixa entre os reajustes."
+    },
+    {
+     "texto": "Despesa que se repete sempre é prevista, nunca imprevista",
+     "correta": false,
+     "feedbackErro": "Nem sempre: o carro pode quebrar todo mês sem hora nem valor certos, e mesmo assim continua imprevisto."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "prevista-ou-imprevista",
+   "dificuldade": 3,
+   "pergunta": "O condomínio cobra uma taxa extra de R$ 200 pra pintura do prédio, avisada com 2 meses de antecedência. Essa despesa é prevista ou imprevista?",
+   "ancora": "Aviso com antecedência é o que torna a despesa prevista.",
+   "alternativas": [
+    {
+     "texto": "Prevista, porque foi avisada com antecedência",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Imprevista, porque é cobrança extra, fora do normal",
+     "correta": false,
+     "feedbackErro": "Ser extra não é o mesmo que ser imprevisto. Com 2 meses de aviso, dá pra planejar — é despesa prevista."
+    },
+    {
+     "texto": "Fixa, porque é cobrada pelo condomínio",
+     "correta": false,
+     "feedbackErro": "Fixa se repete todo mês com o mesmo valor. Essa taxa é única, pra um fim específico — não é fixa."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "prevista-ou-imprevista",
+   "criterio": "É despesa prevista?",
+   "enunciado": "Manutenção anual do ar-condicionado, agendada todo início de verão",
+   "resposta": true,
+   "ancora": "Agendar com antecedência é o que caracteriza uma despesa prevista.",
+   "feedbackErro": "Parece surpresa por acontecer só uma vez ao ano. Mas sendo agendada todo verão, ela é uma despesa prevista."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "fixa-ou-variavel",
+   "instrucao": "Toque na ordem de quem muda de valor com menos frequência pra mais frequência.",
+   "ancora": "Do que nunca muda até o que muda toda vez que acontece.",
+   "feedbackErro": "É fácil trocar a ordem. Internet ilimitada nunca muda; o aluguel muda uma vez por ano; luz muda todo mês; conserto muda a cada vez.",
+   "itens": [
+    { "texto": "Internet ilimitada, nunca muda", "posicaoCorreta": 1 },
+    { "texto": "Aluguel, reajusta uma vez por ano", "posicaoCorreta": 2 },
+    { "texto": "Conta de luz, muda todo mês", "posicaoCorreta": 3 },
+    { "texto": "Conserto do carro, muda toda vez que quebra", "posicaoCorreta": 4 }
+   ]
+  }
+ ]
+}

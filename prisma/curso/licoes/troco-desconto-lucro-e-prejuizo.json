@@ -1,0 +1,333 @@
+{
+ "slug": "troco-desconto-lucro-e-prejuizo",
+ "segmento": "ef35",
+ "conceitoPrincipal": "troco-desconto-lucro-e-prejuizo",
+ "fraseConceito": "Troco volta do pagamento; desconto reduz o preço; lucro é vender acima do custo, prejuízo é vender abaixo.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "troco",
+   "criterio": "Isso é troco correto?",
+   "enunciado": "Pagou R$10 por um item de R$7, recebeu R$3",
+   "resposta": true,
+   "ancora": "R$10 − R$7 = R$3. Troco certo.",
+   "feedbackErro": "R$3 é exatamente a diferença entre o que foi pago e o preço — o troco está certo.",
+   "verificacao": {
+    "expressao": "10-7",
+    "esperado": 3
+   }
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "troco",
+   "criterio": "Isso é troco correto?",
+   "enunciado": "Pagou R$20 por um item de R$12, recebeu R$10",
+   "resposta": false,
+   "ancora": "R$20 − R$12 = R$8, não R$10.",
+   "feedbackErro": "R$10 parece um troco redondo, e isso engana. Mas a conta certa é R$20 menos R$12, que dá R$8.",
+   "verificacao": {
+    "expressao": "20-12",
+    "esperado": 8
+   }
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "desconto",
+   "criterio": "Isso é desconto?",
+   "enunciado": "Uma calça de R$50 passa a custar R$40",
+   "resposta": true,
+   "ancora": "O preço caiu R$10 — isso é desconto.",
+   "feedbackErro": "Parece só uma promoção qualquer, mas a redução do preço original é exatamente a definição de desconto.",
+   "verificacao": {
+    "expressao": "50-40",
+    "esperado": 10
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "troco",
+   "dificuldade": 1,
+   "pergunta": "Seu Ademar pagou uma nota de R$50 por uma compra de R$32. Quanto ele recebeu de troco?",
+   "ancora": "R$50 − R$32 = R$18 de troco.",
+   "alternativas": [
+    {
+     "texto": "R$18",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$22",
+     "correta": false,
+     "feedbackErro": "R$22 seria a conta trocada: R$50 − R$28. O valor certo é R$50 − R$32, que dá R$18."
+    },
+    {
+     "texto": "R$82",
+     "correta": false,
+     "feedbackErro": "R$82 é a soma dos dois valores, não a diferença. Troco é R$50 − R$32 = R$18."
+    }
+   ],
+   "verificacao": {
+    "expressao": "50-32",
+    "esperado": 18
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "desconto",
+   "dificuldade": 1,
+   "pergunta": "Um brinquedo de R$60 está com 10% de desconto. Qual é o novo preço?",
+   "ancora": "10% de R$60 é R$6. R$60 − R$6 = R$54.",
+   "alternativas": [
+    {
+     "texto": "R$54",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$50",
+     "correta": false,
+     "feedbackErro": "R$50 seria tirar R$10 fixos, não 10%. 10% de R$60 é R$6, então o preço fica R$54."
+    },
+    {
+     "texto": "R$6",
+     "correta": false,
+     "feedbackErro": "R$6 é só o valor do desconto, não o preço final. O novo preço é R$60 menos os R$6, ou seja, R$54."
+    }
+   ],
+   "verificacao": {
+    "expressao": "60-60*0.10",
+    "esperado": 54
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "lucro-e-prejuizo",
+   "criterio": "Isso é lucro?",
+   "enunciado": "Comprou um livro por R$20 e revendeu por R$25",
+   "resposta": true,
+   "ancora": "Vendeu por R$5 a mais do que pagou — é lucro.",
+   "feedbackErro": "Pode parecer só uma troca qualquer, mas vender por mais do que custou é exatamente lucro — de R$5.",
+   "verificacao": {
+    "expressao": "25-20",
+    "esperado": 5
+   }
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "lucro-e-prejuizo",
+   "instrucao": "Essa venda deu lucro ou prejuízo?",
+   "ancora": "Lucro é vender por mais do que custou; prejuízo é vender por menos.",
+   "feedbackErro": "O valor da venda sozinho não diz nada — o que importa é comparar com quanto custou para saber se sobrou ou faltou dinheiro.",
+   "caixas": [
+    {
+     "id": "lucro",
+     "rotulo": "Lucro"
+    },
+    {
+     "id": "prejuizo",
+     "rotulo": "Prejuízo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Comprou por R$15, vendeu por R$20",
+     "caixaCorreta": "lucro"
+    },
+    {
+     "texto": "Comprou por R$30, vendeu por R$25",
+     "caixaCorreta": "prejuizo"
+    },
+    {
+     "texto": "Comprou por R$8, vendeu por R$12",
+     "caixaCorreta": "lucro"
+    },
+    {
+     "texto": "Comprou por R$50, vendeu por R$40",
+     "caixaCorreta": "prejuizo"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "troco",
+   "criterio": "O troco está certo?",
+   "enunciado": "Pagou R$100 por uma compra de R$65, recebeu R$35",
+   "resposta": true,
+   "ancora": "R$100 − R$65 = R$35. Troco certo.",
+   "feedbackErro": "R$35 é exatamente a diferença entre o pagamento e o preço — o troco está correto.",
+   "verificacao": {
+    "expressao": "100-65",
+    "esperado": 35
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "desconto",
+   "dificuldade": 1,
+   "pergunta": "Uma bicicleta de R$200 tem 25% de desconto. Quanto se paga por ela?",
+   "ancora": "25% de R$200 é R$50. R$200 − R$50 = R$150.",
+   "alternativas": [
+    {
+     "texto": "R$150",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$175",
+     "correta": false,
+     "feedbackErro": "R$175 seria tirar só R$25. Mas 25% de R$200 é R$50, então o preço final é R$150."
+    },
+    {
+     "texto": "R$50",
+     "correta": false,
+     "feedbackErro": "R$50 é só o valor do desconto, não o preço final. O valor a pagar é R$200 menos os R$50, ou seja, R$150."
+    }
+   ],
+   "verificacao": {
+    "expressao": "200-200*0.25",
+    "esperado": 150
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "lucro-e-prejuizo",
+   "criterio": "Isso é prejuízo?",
+   "enunciado": "Comprou uma bola por R$30 e vendeu por R$22",
+   "resposta": true,
+   "ancora": "Vendeu por R$8 a menos do que pagou — é prejuízo.",
+   "feedbackErro": "Pode parecer só uma venda qualquer, mas vender por menos do que custou é prejuízo — de R$8.",
+   "verificacao": {
+    "expressao": "30-22",
+    "esperado": 8
+   }
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "troco",
+   "criterio": "O troco está certo?",
+   "enunciado": "Pagou R$5 por um doce de R$3, recebeu R$1",
+   "resposta": false,
+   "ancora": "R$5 − R$3 = R$2, não R$1.",
+   "feedbackErro": "R$1 parece pouco e por isso convence, mas a conta é R$5 menos R$3, que dá R$2 de troco.",
+   "verificacao": {
+    "expressao": "5-3",
+    "esperado": 2
+   }
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "troco-desconto-lucro-e-prejuizo",
+   "pergunta": "Qual frase explica melhor os quatro conceitos juntos?",
+   "alternativas": [
+    {
+     "texto": "Troco, desconto e lucro são sempre a mesma coisa: sobra de dinheiro",
+     "correta": false,
+     "feedbackErro": "Cada um é diferente: troco é do pagamento, desconto é do preço, lucro é da venda com ganho."
+    },
+    {
+     "texto": "Troco volta do pagamento, desconto reduz o preço, lucro é vender acima do custo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só existe desconto quando a loja está falindo",
+     "correta": false,
+     "feedbackErro": "Desconto é só uma redução de preço decidida pela loja, por vários motivos — não indica falência."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "troco",
+   "dificuldade": 1,
+   "pergunta": "Pagou uma nota de R$20 por uma compra de R$14. Quanto volta de troco?",
+   "ancora": "R$20 − R$14 = R$6.",
+   "alternativas": [
+    {
+     "texto": "R$6",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$34",
+     "correta": false,
+     "feedbackErro": "R$34 é a soma dos dois valores. Troco é a diferença: R$20 − R$14 = R$6."
+    },
+    {
+     "texto": "R$14",
+     "correta": false,
+     "feedbackErro": "R$14 é o preço da compra, não o troco. O troco é R$20 − R$14 = R$6."
+    }
+   ],
+   "verificacao": {
+    "expressao": "20-14",
+    "esperado": 6
+   }
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "desconto",
+   "criterio": "Isso é desconto?",
+   "enunciado": "Uma camisa de R$40 passa a custar R$45",
+   "resposta": false,
+   "ancora": "O preço subiu — isso não é desconto.",
+   "feedbackErro": "Mudança de preço nem sempre é desconto: desconto é quando o preço cai. Aqui ele subiu R$5.",
+   "verificacao": {
+    "expressao": "45-40",
+    "esperado": 5
+   }
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "lucro-e-prejuizo",
+   "instrucao": "Deu lucro ou prejuízo nessa venda?",
+   "ancora": "Lucro é vender acima do custo; prejuízo é vender abaixo.",
+   "feedbackErro": "O critério é sempre a comparação entre custo e venda, não o tamanho do valor envolvido.",
+   "caixas": [
+    {
+     "id": "lucro",
+     "rotulo": "Lucro"
+    },
+    {
+     "id": "prejuizo",
+     "rotulo": "Prejuízo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Comprou por R$12, vendeu por R$18",
+     "caixaCorreta": "lucro"
+    },
+    {
+     "texto": "Comprou por R$25, vendeu por R$20",
+     "caixaCorreta": "prejuizo"
+    },
+    {
+     "texto": "Comprou por R$60, vendeu por R$70",
+     "caixaCorreta": "lucro"
+    },
+    {
+     "texto": "Comprou por R$45, vendeu por R$38",
+     "caixaCorreta": "prejuizo"
+    }
+   ]
+  }
+ ]
+}

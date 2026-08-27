@@ -1,0 +1,271 @@
+{
+ "slug": "oferta-e-demanda",
+ "segmento": "ef67",
+ "conceitoPrincipal": "oferta-e-demanda",
+ "fraseConceito": "Oferta é quanto existe pra vender; demanda é quanto se quer comprar — juntas, movem o preço.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "diferenciar-oferta-demanda",
+   "criterio": "Isso é oferta, ou é demanda?",
+   "enunciado": "A quantidade de picolés que a fábrica produz no verão",
+   "resposta": true,
+   "ancora": "Oferta é o que existe disponível para vender.",
+   "feedbackErro": "Quem produz e coloca à venda está do lado da oferta. Demanda seria o quanto as pessoas querem comprar, não o quanto existe."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "diferenciar-oferta-demanda",
+   "criterio": "Isso é oferta, ou é demanda?",
+   "enunciado": "A vontade das pessoas de comprar picolé em um dia de calor",
+   "resposta": false,
+   "ancora": "Isso é demanda: o quanto as pessoas querem comprar.",
+   "feedbackErro": "É fácil confundir os dois lados. Mas vontade de comprar é demanda; oferta é o que está disponível para ser vendido."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "impacto-no-preco",
+   "criterio": "Isso costuma mudar o preço?",
+   "enunciado": "Muita gente querendo comprar um produto que está em falta",
+   "resposta": true,
+   "ancora": "Muita procura e pouco produto disponível tendem a subir o preço.",
+   "feedbackErro": "Parece só um detalhe da loja. Mas quando falta produto e sobra gente querendo, o preço costuma subir."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "diferenciar-oferta-demanda",
+   "dificuldade": 1,
+   "pergunta": "Numa feira, o que representa a demanda por tomate?",
+   "ancora": "Demanda é o quanto as pessoas querem comprar de tomate.",
+   "alternativas": [
+    {
+     "texto": "A quantidade de tomate que os feirantes trouxeram",
+     "correta": false,
+     "feedbackErro": "Isso é oferta: o quanto os feirantes trouxeram para vender. Demanda é o quanto os clientes querem comprar."
+    },
+    {
+     "texto": "A quantidade de tomate que os clientes querem comprar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O espaço da barraca onde o tomate fica exposto",
+     "correta": false,
+     "feedbackErro": "O espaço da barraca é só o local de venda, não representa nem oferta nem demanda em si."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-no-preco",
+   "dificuldade": 1,
+   "pergunta": "Choveu demais e estragou boa parte da colheita de tomate. O que costuma acontecer com o preço?",
+   "ancora": "Menos tomate disponível, mesma vontade de comprar: preço sobe.",
+   "alternativas": [
+    {
+     "texto": "O preço tende a subir, porque falta tomate",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O preço tende a cair, porque sobrou menos gente comprando",
+     "correta": false,
+     "feedbackErro": "A chuva não afasta quem quer comprar tomate, e sim quem produz. Com menos oferta e a mesma demanda, o preço tende a subir."
+    },
+    {
+     "texto": "O preço não muda, tomate tem preço fixo sempre",
+     "correta": false,
+     "feedbackErro": "O preço do tomate varia bastante conforme safra e clima. Menos produto disponível costuma empurrar o preço para cima."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "diferenciar-oferta-demanda",
+   "criterio": "Isso é oferta, ou é demanda?",
+   "enunciado": "O número de ingressos que o show colocou à venda",
+   "resposta": true,
+   "ancora": "Ingressos disponíveis são a oferta do show.",
+   "feedbackErro": "É a quantidade colocada à venda, então é oferta. Demanda seria quantas pessoas querem comprar esses ingressos."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "diferenciar-oferta-demanda",
+   "instrucao": "Isso é do lado da oferta, ou do lado da demanda?",
+   "ancora": "Oferta é quem produz e vende; demanda é quem quer comprar.",
+   "feedbackErro": "Quem coloca o produto à venda está na oferta; quem quer comprar está na demanda.",
+   "caixas": [
+    {
+     "id": "oferta",
+     "rotulo": "Oferta"
+    },
+    {
+     "id": "demanda",
+     "rotulo": "Demanda"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "A quantidade de camisetas que a loja tem em estoque",
+     "caixaCorreta": "oferta"
+    },
+    {
+     "texto": "O número de pessoas na fila querendo comprar o tênis novo",
+     "caixaCorreta": "demanda"
+    },
+    {
+     "texto": "A quantidade de pão que a padaria assa por dia",
+     "caixaCorreta": "oferta"
+    },
+    {
+     "texto": "Quantas famílias querem comprar um carro este ano",
+     "caixaCorreta": "demanda"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "impacto-no-preco",
+   "criterio": "Isso costuma mudar o preço?",
+   "enunciado": "Uma fábrica nova começar a produzir o mesmo produto",
+   "resposta": true,
+   "ancora": "Mais oferta do mesmo produto tende a baixar o preço.",
+   "feedbackErro": "Parece só notícia de fábrica. Mas mais produto disponível, com a mesma demanda, costuma puxar o preço para baixo."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-no-preco",
+   "dificuldade": 1,
+   "pergunta": "Um brinquedo vira febre nas redes e a fábrica não aumenta a produção. O que costuma acontecer com o preço?",
+   "ancora": "Mesma oferta, mais gente querendo comprar: o preço tende a subir.",
+   "alternativas": [
+    {
+     "texto": "O preço tende a subir, porque a procura aumentou",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O preço tende a cair, porque tem mais gente comprando",
+     "correta": false,
+     "feedbackErro": "Mais gente comprando sem mais produto disponível não baixa o preço — costuma fazer o contrário: subir."
+    },
+    {
+     "texto": "O preço fica igual, moda não afeta o preço de nada",
+     "correta": false,
+     "feedbackErro": "Moda muda, sim, a vontade de comprar. E mais gente querendo o mesmo produto, sem mais oferta, tende a subir o preço."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "diferenciar-oferta-demanda",
+   "criterio": "Isso é oferta, ou é demanda?",
+   "enunciado": "Quantos alunos querem comprar lanche no intervalo",
+   "resposta": false,
+   "ancora": "É demanda: quantos alunos querem comprar.",
+   "feedbackErro": "É o quanto as pessoas querem comprar, então é demanda. Oferta seria quanto lanche a cantina tem disponível."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "impacto-no-preco",
+   "criterio": "Isso costuma mudar o preço?",
+   "enunciado": "Um produto sair de moda e quase ninguém mais querer comprar",
+   "resposta": true,
+   "ancora": "Menos gente querendo comprar tende a derrubar o preço.",
+   "feedbackErro": "Parece só um detalhe de gosto. Mas com a demanda caindo e a oferta igual, o preço tende a cair para atrair compradores."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "oferta-e-demanda",
+   "pergunta": "Qual frase resume oferta e demanda?",
+   "alternativas": [
+    {
+     "texto": "Oferta é quem quer comprar; demanda é quem produz",
+     "correta": false,
+     "feedbackErro": "É o contrário: oferta é quem produz e vende; demanda é quem quer comprar."
+    },
+    {
+     "texto": "Oferta é o que existe pra vender; demanda é o que se quer comprar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Preço nunca muda por causa de oferta ou demanda",
+     "correta": false,
+     "feedbackErro": "O preço reage bastante a isso: menos oferta ou mais demanda costuma subir o preço, e o inverso costuma baixar."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "impacto-no-preco",
+   "instrucao": "Ordene da situação que MAIS sobe o preço à que MENOS sobe.",
+   "ancora": "Falta de produto com muita procura é o que mais pressiona o preço.",
+   "feedbackErro": "O que mais pressiona o preço para cima é pouca oferta encontrando muita demanda ao mesmo tempo.",
+   "itens": [
+    {
+     "texto": "Pouco produto disponível e muita gente querendo comprar",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Produto normal disponível e um pouco mais de gente comprando",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Produto disponível igual e a mesma quantidade de compradores",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "diferenciar-oferta-demanda",
+   "dificuldade": 2,
+   "pergunta": "Uma loja anuncia 'só restam 3 unidades'. A que isso se refere?",
+   "ancora": "Está informando a oferta restante daquele produto.",
+   "alternativas": [
+    {
+     "texto": "À oferta, o quanto ainda está disponível para venda",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "À demanda, o quanto de gente quer comprar",
+     "correta": false,
+     "feedbackErro": "A frase fala do estoque restante, não de quantas pessoas querem comprar. Isso é informação sobre a oferta."
+    },
+    {
+     "texto": "Ao preço final que o cliente vai pagar",
+     "correta": false,
+     "feedbackErro": "A frase não fala de valor, fala de quantidade disponível. Isso é oferta, não preço."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "impacto-no-preco",
+   "criterio": "Isso costuma mudar o preço?",
+   "enunciado": "Duas lanchonetes novas abrirem perto de uma que já existia",
+   "resposta": true,
+   "ancora": "Mais opções de oferta tendem a puxar os preços para baixo.",
+   "feedbackErro": "Parece só concorrência entre lanchonetes. Mas mais oferta de lanche na região tende a puxar os preços para baixo."
+  }
+ ]
+}

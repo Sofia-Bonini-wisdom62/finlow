@@ -1,0 +1,329 @@
+{
+ "slug": "fonte-confiavel-e-a-sua-opiniao",
+ "segmento": "em1",
+ "conceitoPrincipal": "fonte-confiavel-e-a-sua-opiniao",
+ "fraseConceito": "Antes de acreditar num papo de dinheiro, pergunte: quem publicou, o que ganha com isso, onde está o dado original?",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "quem-publica",
+   "criterio": "É fonte confiável sobre dinheiro?",
+   "enunciado": "O site oficial do Banco Central",
+   "resposta": true,
+   "ancora": "Regulador publica o dado primário: taxas, registros, estatísticas.",
+   "feedbackErro": "Desconfiar de tudo parece prudente, mas trava a checagem. O site do BC é onde o dado nasce — é contra ele que o resto se confere."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "quem-publica",
+   "criterio": "É fonte confiável sobre dinheiro?",
+   "enunciado": "Vídeo de influencer prometendo renda fácil",
+   "resposta": false,
+   "ancora": "Quem lucra com sua decisão não é fonte: é vendedor.",
+   "feedbackErro": "Milhões de visualizações dão ar de autoridade, e é esse o mecanismo. Mas audiência não é evidência — e promessa de renda fácil é o anúncio do próprio produto."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "quem-publica",
+   "criterio": "É fonte confiável sobre dinheiro?",
+   "enunciado": "Print de WhatsApp sem autor nem data",
+   "resposta": false,
+   "ancora": "Sem autor e data, não há o que verificar — nem quem responsabilizar.",
+   "feedbackErro": "Veio de alguém de confiança, e isso pesa. Mas quem encaminhou não é quem escreveu: sem origem rastreável, o print não se sustenta nem se checa."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "quem-publica",
+   "dificuldade": 1,
+   "pergunta": "O que torna uma fonte confiável num assunto de dinheiro?",
+   "ancora": "Autor identificado + dado checável + sem lucro na sua decisão.",
+   "alternativas": [
+    {
+     "texto": "Autor claro, dado checável, sem lucro na sua decisão",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Muitos seguidores e engajamento alto",
+     "correta": false,
+     "feedbackErro": "Alcance mede popularidade, não verdade. Boatos batem recorde de compartilhamento justamente porque ninguém checa antes de repassar."
+    },
+    {
+     "texto": "Visual profissional e site bem feito",
+     "correta": false,
+     "feedbackErro": "Design se compra pronto — golpes investem pesado nisso. A aparência elimina os amadores, não os mentirosos; o critério está no autor e no dado."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "fato-ou-opiniao",
+   "dificuldade": 1,
+   "pergunta": "'A poupança rendeu 0,5% em julho' e 'poupança é coisa de perdedor'. Qual a diferença entre as frases?",
+   "ancora": "Fato se confere na fonte; opinião se avalia pelo argumento.",
+   "alternativas": [
+    {
+     "texto": "A primeira dá para checar; a segunda é opinião",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "As duas são fatos sobre a poupança",
+     "correta": false,
+     "feedbackErro": "'Coisa de perdedor' não tem número, data nem fonte — é julgamento. Fato é o que você consegue conferir num registro público; o resto é posição."
+    },
+    {
+     "texto": "As duas são opiniões de quem escreveu",
+     "correta": false,
+     "feedbackErro": "O 0,5% de julho se confere no site do Banco Central: ou bate, ou não bate. Quando existe registro público, a frase sai do campo da opinião."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "fato-ou-opiniao",
+   "criterio": "É um fato checável?",
+   "enunciado": "'Investir em renda fixa é para covardes'",
+   "resposta": false,
+   "ancora": "Xingamento não se checa. Fato tem número, data e fonte.",
+   "feedbackErro": "A frase fala de investimento e soa técnica, mas não há o que conferir nela. É opinião vestida de conselho — o disfarce mais comum da internet financeira."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "quem-publica",
+   "instrucao": "Chegou uma dica de investimento. Ordene a checagem.",
+   "ancora": "Primeiro a origem, depois o dado, depois a régua. Decidir vem ao fim.",
+   "feedbackErro": "O critério é a ordem do filtro: saber quem fala e o que ganha, conferir o dado na fonte oficial, comparar com a taxa de referência — e só então decidir.",
+   "itens": [
+    {
+     "texto": "Identificar quem publica e o que ganha",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Procurar o dado na fonte oficial (BC, CVM)",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Comparar com a taxa de referência (Selic)",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Só então decidir se leva a sério",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "quem-publica",
+   "criterio": "O interesse está declarado?",
+   "enunciado": "Post marcado '#publi' de um banco no perfil de influencer",
+   "resposta": true,
+   "ancora": "#publi declara: é anúncio. Pior é o anúncio disfarçado de dica.",
+   "feedbackErro": "Anúncio declarado ainda é anúncio — mas você sabe o que está vendo. O perigo mora na 'dica isenta' que esconde o contrato por trás."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "quem-publica",
+   "criterio": "O interesse está declarado?",
+   "enunciado": "'Dica isenta' de quem ganha comissão escondida",
+   "resposta": false,
+   "ancora": "Comissão oculta é conflito de interesse: a dica serve a quem paga.",
+   "feedbackErro": "O tom neutro convence, e é para isso que ele existe. Sem declarar a comissão, o conselho vira propaganda sem etiqueta — o interesse decide, não a informação."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "quem-publica",
+   "pergunta": "Promessa: '10% ao mês, garantido'. Se fosse real, R$ 1.000 virariam quanto em 12 meses?",
+   "campo": "moeda",
+   "min": 1000,
+   "max": 10000,
+   "gabarito": 3138,
+   "toleranciaPct": 20,
+   "fonte": "conta: 1.000 × 1,10^12",
+   "verificacao": {
+    "expressao": "1000*1.1^12",
+    "esperado": 3138.43,
+    "tolerancia": 0.05
+   },
+   "feedbackPerto": "Mais que o triplo em um ano — enquanto a Selic paga ~15% ao ano. Promessa assim é o próprio alarme de golpe.",
+   "feedbackLonge": "R$ 3.138: o triplo. O viés é subestimar juros compostos — e é essa cegueira que faz '10% ao mês' soar possível."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "onde-checar",
+   "dificuldade": 1,
+   "pergunta": "Heitor recebeu no grupo da família: 'o banco vai confiscar as poupanças'. O que fazer antes de repassar?",
+   "ancora": "Boato de dinheiro se checa no regulador, não no próprio grupo.",
+   "alternativas": [
+    {
+     "texto": "Buscar o assunto no site oficial do Banco Central",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Repassar logo, para avisar todo mundo",
+     "correta": false,
+     "feedbackErro": "A intenção é boa e o efeito é péssimo: repassar sem checar multiplica o boato. Se for falso, você virou parte da corrente que espalha pânico."
+    },
+    {
+     "texto": "Perguntar no próprio grupo se é verdade",
+     "correta": false,
+     "feedbackErro": "O grupo foi quem trouxe o boato — perguntar ali é medir a temperatura com o termômetro quebrado. A resposta está na fonte oficial, fora da bolha."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "onde-checar",
+   "dificuldade": 1,
+   "pergunta": "Você quer saber se uma corretora de investimentos existe legalmente. Onde checar?",
+   "ancora": "CVM registra o mercado de investimentos; BC, os bancos.",
+   "alternativas": [
+    {
+     "texto": "Na CVM, reguladora do mercado de investimentos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "No perfil da corretora no Instagram",
+     "correta": false,
+     "feedbackErro": "O perfil é a vitrine que a própria empresa monta — golpistas capricham nela. Registro se confere no regulador, que não trabalha para a corretora."
+    },
+    {
+     "texto": "Num ranking patrocinado de blog",
+     "correta": false,
+     "feedbackErro": "Patrocinado significa que alguém pagou pela posição. Ranking pago informa quem anuncia, não quem é registrado — isso só a CVM confirma."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "fato-ou-opiniao",
+   "criterio": "Dá para confiar sem checar?",
+   "enunciado": "Rendimento passado apresentado como garantia de futuro",
+   "resposta": false,
+   "ancora": "Passado é fato; 'vai se repetir' é aposta vestida de fato.",
+   "feedbackErro": "O número passado pode ser verdadeiro e registrado. O salto falso está no 'garantido': nenhum retorno futuro é garantia — isso a própria CVM obriga a avisar."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "onde-checar",
+   "criterio": "Dá para confiar sem checar?",
+   "enunciado": "A taxa Selic publicada no site do Banco Central",
+   "resposta": true,
+   "ancora": "Dado primário do regulador: é a própria régua da checagem.",
+   "feedbackErro": "Sadio desconfiar, mas em algum ponto a checagem termina — e ela termina na fonte primária. A Selic no site do BC é o dado original, não uma versão dele."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "quem-publica",
+   "pergunta": "Qual destas frases resume a lição?",
+   "alternativas": [
+    {
+     "texto": "Cheque quem publica, o que essa pessoa ganha e onde está o dado original.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se muita gente compartilhou, deve ser verdade.",
+     "correta": false,
+     "feedbackErro": "Compartilhamento mede emoção, não verdade. Boato corre mais que correção."
+    },
+    {
+     "texto": "Fonte confiável é a que confirma o que eu já penso.",
+     "correta": false,
+     "feedbackErro": "Isso é viés de confirmação: conforto não é critério. Fonte boa às vezes desmente você."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "fato-ou-opiniao",
+   "instrucao": "Fato checável ou opinião?",
+   "ancora": "Fato tem número, data e registro público; opinião tem adjetivo.",
+   "feedbackErro": "O critério é a conferência: IPCA e Selic estão em registros públicos — batem ou não batem. 'Chata' e 'trouxa' não têm onde ser conferidos.",
+   "caixas": [
+    {
+     "id": "fato",
+     "rotulo": "Fato checável"
+    },
+    {
+     "id": "opiniao",
+     "rotulo": "Opinião"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "O IPCA de 2024 ficou perto de 5%",
+     "caixaCorreta": "fato"
+    },
+    {
+     "texto": "Renda fixa é chata demais",
+     "caixaCorreta": "opiniao"
+    },
+    {
+     "texto": "A Selic está em torno de 15% ao ano",
+     "caixaCorreta": "fato"
+    },
+    {
+     "texto": "Só trouxa deixa dinheiro parado",
+     "caixaCorreta": "opiniao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "quem-publica",
+   "dificuldade": 2,
+   "pergunta": "Um site 'de notícias' só elogia um investimento — e vende o curso dele. O que isso indica?",
+   "ancora": "Quando a 'notícia' lucra com sua decisão, ela é vitrine.",
+   "alternativas": [
+    {
+     "texto": "Conflito de interesse: a notícia é vitrine de venda",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Especialização saudável num só tema",
+     "correta": false,
+     "feedbackErro": "Especialista de verdade mostra prós, contras e riscos do próprio tema. Elogio unânime somado a produto à venda não é foco: é balcão."
+    },
+    {
+     "texto": "Jornalismo independente e premiado",
+     "correta": false,
+     "feedbackErro": "Independência se mede pela distância entre quem informa e quem lucra. Aqui a distância é zero: o mesmo site informa, elogia e fatura."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "onde-checar",
+   "criterio": "É o regulador certo do assunto?",
+   "enunciado": "Consultar a Susep para checar um seguro",
+   "resposta": true,
+   "ancora": "Susep: seguros. Previc: previdência fechada. CVM: investimentos. BC: bancos.",
+   "feedbackErro": "As siglas confundem mesmo. O mapa é por assunto: seguro é com a Susep; fundo de pensão, Previc; corretora e fundos, CVM; banco e Pix, Banco Central."
+  }
+ ]
+}

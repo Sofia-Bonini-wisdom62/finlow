@@ -1,0 +1,291 @@
+{
+ "slug": "do-cofrinho-pro-banco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "do-cofrinho-pro-banco",
+ "fraseConceito": "O dinheiro guardado em casa não rende e pode sumir; no banco, ele fica seguro e ainda cresce um pouco.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "guardar-no-banco",
+   "criterio": "Isso protege o dinheiro guardado?",
+   "enunciado": "Guardar o dinheiro numa conta poupança no banco",
+   "resposta": true,
+   "ancora": "O banco guarda com segurança e ainda paga um pouco de juros.",
+   "feedbackErro": "Parece só mais um lugar para guardar, mas o banco protege o dinheiro contra perda, roubo e ainda paga juros por ele."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "guardar-no-banco",
+   "criterio": "Isso protege o dinheiro guardado?",
+   "enunciado": "Guardar as moedas soltas numa gaveta da cozinha",
+   "resposta": false,
+   "ancora": "Gaveta não impede perda, roubo nem ajuda o dinheiro a crescer.",
+   "feedbackErro": "Parece prático por estar sempre à mão, mas nada protege esse dinheiro: pode sumir, ser gasto sem perceber, e nunca cresce."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "guardar-no-banco",
+   "criterio": "Isso protege o dinheiro guardado?",
+   "enunciado": "Guardar as economias no cofrinho, sem nunca levar ao banco",
+   "resposta": false,
+   "ancora": "O cofrinho quebra, perde, e o dinheiro dentro dele não rende nada.",
+   "feedbackErro": "O cofrinho parece seguro por ficar guardado em casa. Mas ele pode quebrar ou sumir, e o dinheiro nunca cresce lá dentro."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "guardar-no-banco",
+   "dificuldade": 1,
+   "pergunta": "Pedro guardou R$ 600 no cofrinho por 1 ano. O que ele perdeu, comparado a guardar no banco?",
+   "ancora": "No banco, esse dinheiro parado ainda cresce um pouco todo mês.",
+   "alternativas": [
+    {
+     "texto": "A chance de ver o dinheiro crescer com juros",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A chance de gastar o dinheiro quando quisesse",
+     "correta": false,
+     "feedbackErro": "No banco, na poupança, o dinheiro também pode ser sacado quando quiser — isso não muda entre os dois."
+    },
+    {
+     "texto": "A chance de guardar moeda por moeda",
+     "correta": false,
+     "feedbackErro": "No banco também dá pra guardar aos poucos, depositando moedas — isso não é exclusivo do cofrinho."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "poupanca-x-corrente",
+   "dificuldade": 1,
+   "pergunta": "Qual conta é feita pra guardar dinheiro e vê-lo crescer aos poucos?",
+   "ancora": "A poupança existe pra isso: guardar e render, mesmo pouco.",
+   "alternativas": [
+    {
+     "texto": "Conta poupança",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Conta corrente",
+     "correta": false,
+     "feedbackErro": "Conta corrente serve pra pagar contas e mexer no dinheiro toda hora — ela não foi feita pra fazer o saldo crescer."
+    },
+    {
+     "texto": "Carteira",
+     "correta": false,
+     "feedbackErro": "Carteira guarda dinheiro na hora, mas fora do banco ele não cresce nem fica protegido."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "poupanca-x-corrente",
+   "criterio": "É uma conta poupança?",
+   "enunciado": "Conta feita pra guardar dinheiro parado e ver ele crescer com juros",
+   "resposta": true,
+   "ancora": "A poupança existe pra isso: guardar e render, mesmo pouco.",
+   "feedbackErro": "Parece descrição de qualquer conta de banco, mas essa função específica — guardar e render — é da poupança, não da conta corrente."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "poupanca-x-corrente",
+   "instrucao": "Isso é da conta poupança ou da conta corrente?",
+   "ancora": "Poupança guarda e rende; corrente movimenta o dia a dia.",
+   "feedbackErro": "As duas ficam no banco, e por isso parecem iguais. Mas a poupança serve pra guardar e render; a corrente serve pra movimentar o dinheiro todo dia.",
+   "caixas": [
+    {
+     "id": "poupanca",
+     "rotulo": "Poupança"
+    },
+    {
+     "id": "corrente",
+     "rotulo": "Corrente"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Guardar dinheiro e ver ele render",
+     "caixaCorreta": "poupanca"
+    },
+    {
+     "texto": "Pagar o boleto de luz",
+     "caixaCorreta": "corrente"
+    },
+    {
+     "texto": "Receber um pouco de juros todo mês",
+     "caixaCorreta": "poupanca"
+    },
+    {
+     "texto": "Fazer pix pro colega toda semana",
+     "caixaCorreta": "corrente"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "guardar-no-banco",
+   "criterio": "É mais seguro que o cofrinho?",
+   "enunciado": "Deixar o dinheiro guardado numa conta no banco",
+   "resposta": true,
+   "ancora": "O banco tem sistemas de segurança que o cofrinho em casa não tem.",
+   "feedbackErro": "Cofrinho parece seguro por ficar perto de você. Mas o banco protege o dinheiro contra perda, incêndio e roubo — o cofrinho, não."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "guardar-no-banco",
+   "dificuldade": 1,
+   "pergunta": "Duas crianças guardam R$ 100. Uma no cofrinho, outra na poupança. Depois de 1 ano, qual diferença é real?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "A da poupança pode ter um pouco mais, por causa dos juros",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "As duas têm o mesmo valor, porque ninguém gastou nada",
+     "correta": false,
+     "feedbackErro": "É verdade que nenhuma foi gasta. Mas só a poupança rende juros — o cofrinho guarda o mesmo valor, parado, sem crescer."
+    },
+    {
+     "texto": "A do cofrinho rendeu mais, por ficar guardada o tempo todo",
+     "correta": false,
+     "feedbackErro": "Ficar guardado não é o mesmo que render. O cofrinho não paga juros — só o dinheiro no banco cresce com o tempo."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "poupanca-x-corrente",
+   "criterio": "Serve pra guardar por mais tempo?",
+   "enunciado": "Uma conta corrente, usada só pra pagar contas do dia a dia",
+   "resposta": false,
+   "ancora": "Corrente é pra movimentar, não pra guardar por muito tempo.",
+   "feedbackErro": "Parece que qualquer conta de banco guarda dinheiro do mesmo jeito. Mas a corrente foi pensada pra mexer no saldo toda hora, não pra deixá-lo parado crescendo."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "guardar-no-banco",
+   "criterio": "Protege e faz o dinheiro render?",
+   "enunciado": "Levar as economias do cofrinho pra uma conta poupança",
+   "resposta": true,
+   "ancora": "Isso protege o dinheiro e ainda faz ele render um pouco.",
+   "feedbackErro": "Pode parecer que tanto faz onde o dinheiro fica guardado. Mas levar pro banco protege e ainda rende juros — o cofrinho não faz nem uma coisa nem outra."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "guardar-no-banco",
+   "dificuldade": 3,
+   "pergunta": "Qual frase resume o que você viu?",
+   "alternativas": [
+    {
+     "texto": "Guardar no cofrinho é sempre melhor, porque o dinheiro fica com você",
+     "correta": false,
+     "feedbackErro": "Ficar perto parece mais seguro, mas o cofrinho não protege de perda nem rende nada."
+    },
+    {
+     "texto": "O banco protege o dinheiro guardado e ainda faz ele crescer um pouco",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Conta poupança e conta corrente servem pra mesma coisa",
+     "correta": false,
+     "feedbackErro": "A poupança guarda e rende; a corrente serve pra movimentar o dinheiro no dia a dia."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "guardar-no-banco",
+   "instrucao": "Ordene do menos seguro pro mais seguro.",
+   "ancora": "Quanto mais perto do banco, mais protegido o dinheiro fica.",
+   "feedbackErro": "Parece que qualquer lugar fechado já protege. Mas só o banco tem sistemas de segurança de verdade — por isso ele vem por último, o mais seguro.",
+   "itens": [
+    {
+     "texto": "Dinheiro solto na gaveta",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Dinheiro no cofrinho fechado",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Dinheiro na conta poupança do banco",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "poupanca-x-corrente",
+   "instrucao": "É função da poupança ou da corrente?",
+   "ancora": "Poupança guarda e rende; corrente recebe e paga o dia a dia.",
+   "feedbackErro": "As duas contas ficam no mesmo banco, e isso confunde. Mas cada uma tem uma função: poupança rende, corrente movimenta.",
+   "caixas": [
+    {
+     "id": "poupanca",
+     "rotulo": "Poupança"
+    },
+    {
+     "id": "corrente",
+     "rotulo": "Corrente"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Ganhar um pouco de juro todo mês",
+     "caixaCorreta": "poupanca"
+    },
+    {
+     "texto": "Fazer um pix urgente",
+     "caixaCorreta": "corrente"
+    },
+    {
+     "texto": "Deixar dinheiro guardado por um ano",
+     "caixaCorreta": "poupanca"
+    },
+    {
+     "texto": "Sacar dinheiro no caixa toda semana",
+     "caixaCorreta": "corrente"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "guardar-no-banco",
+   "pergunta": "Se R$ 200 ficam na poupança por 1 mês, a ~0,5% ao mês, quanto rendem de juro?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 5,
+   "gabarito": 1,
+   "toleranciaPct": 20,
+   "fonte": "taxa média da poupança, ~0,5% ao mês (Banco Central)",
+   "feedbackPerto": "Isso mesmo — pouco, mas cresce. No cofrinho, esse real não apareceria.",
+   "feedbackLonge": "R$ 200 vezes 0,5% dá R$ 1. É R$ 1 a mais do que o cofrinho dá, que é sempre zero.",
+   "verificacao": {
+    "expressao": "200*0.005",
+    "esperado": 1
+   }
+  }
+ ]
+}

@@ -1,0 +1,184 @@
+{
+ "slug": "juntar-da-certo-consolida",
+ "segmento": "ef12",
+ "conceitoPrincipal": "juntar-da-certo",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar",
+   "criterio": "Ainda é poupar, guardando pouco?",
+   "enunciado": "Guardar só 1 moeda por semana, mas nunca faltar nenhuma semana",
+   "resposta": true,
+   "ancora": "Pouco, mas sempre, ainda é poupar.",
+   "feedbackErro": "1 moeda parece pouco demais pra contar, mas o que importa é guardar sempre, mesmo sendo pouco."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar",
+   "criterio": "Deixa de ser poupar ao gastar uma parte?",
+   "enunciado": "Guardar a maior parte da mesada e gastar só um pouquinho",
+   "resposta": false,
+   "ancora": "Gastar um pouco não anula guardar a maior parte.",
+   "feedbackErro": "Gastar qualquer valor parece contradizer poupar, mas o que conta é ter guardado a maior parte."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "cofrinho",
+   "criterio": "Cofrinho ajuda, aberto às vezes?",
+   "enunciado": "Abrir o cofrinho só pra contar quanto já tem, sem tirar nada",
+   "resposta": true,
+   "ancora": "Contar sem tirar nada não atrapalha o objetivo.",
+   "feedbackErro": "Abrir o cofrinho parece perigoso pra poupança, e tirar dinheiro atrapalha de fato. Mas só contar não muda nada."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "juntar-para-conseguir",
+   "criterio": "Isso atrapalha, mesmo sendo uma vez só?",
+   "enunciado": "Tirar uma parte do cofrinho, uma única vez, pra uma emergência real",
+   "resposta": true,
+   "ancora": "Mesmo uma vez, tirar dinheiro atrasa um pouco o objetivo.",
+   "feedbackErro": "Uma vez só parece pouco pra atrapalhar, mas o valor tirado precisa ser guardado de novo depois."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "poupar",
+   "instrucao": "Ainda é poupar ou já deixou de ser?",
+   "ancora": "O que importa é guardar parte do dinheiro com constância.",
+   "feedbackErro": "Guardar pouco ou guardar quase tudo ainda é poupar, desde que guarde com constância.",
+   "caixas": [
+    {
+     "id": "poupar",
+     "rotulo": "Ainda é poupar"
+    },
+    {
+     "id": "deixou",
+     "rotulo": "Deixou de ser"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Guardar 1 moeda por semana, sempre",
+     "caixaCorreta": "poupar"
+    },
+    {
+     "texto": "Gastar toda a mesada e nunca guardar nada",
+     "caixaCorreta": "deixou"
+    },
+    {
+     "texto": "Guardar a maior parte e gastar só um pouco",
+     "caixaCorreta": "poupar"
+    },
+    {
+     "texto": "Pedir emprestado toda vez que o dinheiro acaba",
+     "caixaCorreta": "deixou"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "cofrinho",
+   "criterio": "Ainda vale, mesmo trocando de cofrinho?",
+   "enunciado": "Trocar de cofrinho, mas continuar guardando todo o dinheiro nele",
+   "resposta": true,
+   "ancora": "O que importa é continuar guardando, não o cofrinho em si.",
+   "feedbackErro": "Trocar de cofrinho parece que perde o que já tinha guardado. Mas se o dinheiro continua guardado, o objetivo segue de pé."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "juntar-para-conseguir",
+   "criterio": "Ainda ajuda, mesmo demorando mais?",
+   "enunciado": "Guardar menos em um mês difícil, mas voltar a guardar no mês seguinte",
+   "resposta": true,
+   "ancora": "Demorar um pouco mais não impede de alcançar o objetivo.",
+   "feedbackErro": "Um mês guardando menos parece que estraga o plano todo. Mas voltando a guardar depois, o objetivo só demora mais."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "juntar-da-certo",
+   "pergunta": "Uma emergência obrigou a tirar dinheiro do cofrinho. O que fazer depois?",
+   "alternativas": [
+    {
+     "texto": "Desistir do objetivo, já que o dinheiro acabou",
+     "correta": false,
+     "feedbackErro": "Desistir não é preciso — dá pra voltar a guardar e alcançar o objetivo, só que depois."
+    },
+    {
+     "texto": "Voltar a guardar assim que possível, mesmo que demore mais",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Trocar de cofrinho e começar do zero sem contar o que já tinha",
+     "correta": false,
+     "feedbackErro": "Trocar de cofrinho não apaga o que já foi guardado — o importante é continuar de onde parou."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "poupar",
+   "criterio": "Ainda é poupar, variando o valor?",
+   "enunciado": "Guardar mais em um mês e menos no mês seguinte, mas guardar sempre algo",
+   "resposta": true,
+   "ancora": "Variar o valor não impede de poupar, se guardar sempre algo.",
+   "feedbackErro": "Variar o valor parece bagunçado, mas o critério de poupar é continuar guardando algo, mesmo que a quantia mude."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "cofrinho",
+   "instrucao": "É um bom motivo pra abrir o cofrinho ou não é?",
+   "ancora": "Bons motivos são necessidade real ou objetivo alcançado.",
+   "feedbackErro": "Curiosidade ou vontade repentina não justificam abrir o cofrinho antes da hora.",
+   "caixas": [
+    {
+     "id": "bom",
+     "rotulo": "Bom motivo"
+    },
+    {
+     "id": "ruim",
+     "rotulo": "Não é bom motivo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Uma emergência de verdade",
+     "caixaCorreta": "bom"
+    },
+    {
+     "texto": "Uma vontade repentina de doce",
+     "caixaCorreta": "ruim"
+    },
+    {
+     "texto": "O objetivo guardado já foi alcançado",
+     "caixaCorreta": "bom"
+    },
+    {
+     "texto": "Ver o cofrinho cheio e ficar curioso",
+     "caixaCorreta": "ruim"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "juntar-para-conseguir",
+   "criterio": "Objetivo ainda dá certo após imprevisto?",
+   "enunciado": "Perder parte do dinheiro guardado, mas continuar guardando depois",
+   "resposta": true,
+   "ancora": "Continuar depois do imprevisto leva ao objetivo, só que mais tarde.",
+   "feedbackErro": "Perder parte do dinheiro parece o fim do plano, mas continuar guardando depois ainda leva ao objetivo."
+  }
+ ]
+}

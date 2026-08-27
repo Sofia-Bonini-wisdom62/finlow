@@ -1,0 +1,238 @@
+{
+ "slug": "o-planeta-entra-na-conta",
+ "segmento": "ef35",
+ "conceitoPrincipal": "o-planeta-entra-na-conta",
+ "fraseConceito": "Comprar mais do que precisamos também custa pro planeta — o consumo em excesso gera mais lixo e mais gasto de recursos.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "impacto-do-consumismo",
+   "criterio": "Isso afeta o planeta?",
+   "enunciado": "Comprar uma camiseta nova toda semana, mesmo tendo várias",
+   "resposta": true,
+   "ancora": "Comprar mais do que precisa gasta mais recursos do planeta.",
+   "feedbackErro": "Parece só uma escolha pessoal, mas produzir cada camiseta nova usa água, energia e matéria-prima do planeta."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "impacto-do-consumismo",
+   "criterio": "Isso afeta o planeta?",
+   "enunciado": "Usar a mesma mochila até ela não dar mais pra usar",
+   "resposta": false,
+   "ancora": "Usar até o fim da vida útil não gera consumo extra.",
+   "feedbackErro": "Parece pouco cuidado, mas usar até o fim da vida útil é o oposto de consumir demais."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "comportamento-sustentavel",
+   "criterio": "É um comportamento sustentável?",
+   "enunciado": "Separar o lixo reciclável do lixo comum em casa",
+   "resposta": true,
+   "ancora": "Separar o lixo ajuda o material a virar matéria-prima de novo.",
+   "feedbackErro": "Parece só organização, mas separar o lixo é o que permite reciclar e reduzir o impacto no planeta."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-do-consumismo",
+   "dificuldade": 1,
+   "pergunta": "Qual desses hábitos gera mais impacto no planeta?",
+   "ancora": "Trocar sem necessidade gera lixo e gasta mais recursos.",
+   "alternativas": [
+    {
+     "texto": "Trocar de celular todo ano, mesmo funcionando bem",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Usar o mesmo celular até ele realmente parar de funcionar",
+     "correta": false,
+     "feedbackErro": "Usar até parar de funcionar reduz o impacto — trocar sem necessidade é o que gera mais lixo eletrônico."
+    },
+    {
+     "texto": "Consertar o celular quando quebra, em vez de trocar",
+     "correta": false,
+     "feedbackErro": "Consertar reduz o impacto, pois evita fabricar um aparelho novo — o problema é trocar sem necessidade."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "comportamento-sustentavel",
+   "dificuldade": 1,
+   "pergunta": "Qual atitude ajuda mais o planeta na hora das compras?",
+   "ancora": "Reutilizar a sacola evita gerar mais plástico descartado.",
+   "alternativas": [
+    {
+     "texto": "Levar sacola reutilizável ao mercado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pedir sempre sacola plástica nova",
+     "correta": false,
+     "feedbackErro": "Sacola nova a cada compra gera mais plástico descartado — o que ajuda é reutilizar a mesma."
+    },
+    {
+     "texto": "Comprar mais do que precisa porque estava em promoção",
+     "correta": false,
+     "feedbackErro": "Comprar além do necessário gera desperdício, mesmo que o preço tenha sido bom."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "comportamento-sustentavel",
+   "criterio": "É um comportamento sustentável?",
+   "enunciado": "Doar roupas que não servem mais em vez de jogar fora",
+   "resposta": true,
+   "ancora": "Doar dá um novo uso e evita que a roupa vire lixo à toa.",
+   "feedbackErro": "Parece só generosidade, mas doar também evita que a roupa vire lixo sem necessidade."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "impacto-do-consumismo",
+   "instrucao": "Isso aumenta o impacto no planeta? Arraste.",
+   "ancora": "Impacto vem de desperdiçar e comprar além do necessário.",
+   "feedbackErro": "O que aumenta o impacto não é usar as coisas, é desperdiçar comida ou comprar mais do que se precisa.",
+   "caixas": [
+    { "id": "sim", "rotulo": "Aumenta" },
+    { "id": "nao", "rotulo": "Não aumenta" }
+   ],
+   "itens": [
+    { "texto": "Comprar um brinquedo novo toda semana", "caixaCorreta": "sim" },
+    { "texto": "Brincar com o brinquedo que já tem", "caixaCorreta": "nao" },
+    { "texto": "Jogar comida fora sem necessidade", "caixaCorreta": "sim" },
+    { "texto": "Comer tudo o que foi servido no prato", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "comportamento-sustentavel",
+   "criterio": "É um comportamento sustentável?",
+   "enunciado": "Deixar a torneira aberta enquanto escova os dentes",
+   "resposta": false,
+   "ancora": "Água aberta à toa é desperdício de um recurso limitado.",
+   "feedbackErro": "Parece um hábito pequeno, mas deixar a torneira aberta sem necessidade desperdiça um recurso limitado."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-do-consumismo",
+   "dificuldade": 1,
+   "pergunta": "Uma família troca de sofá a cada 2 anos, mesmo funcionando bem. Em 10 anos, quantos sofás ela descarta?",
+   "ancora": "10 anos divididos por trocas a cada 2 anos dá 5 sofás.",
+   "verificacao": { "expressao": "10/2", "esperado": 5 },
+   "alternativas": [
+    {
+     "texto": "5 sofás",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "2 sofás",
+     "correta": false,
+     "feedbackErro": "2 é o intervalo entre as trocas, não o total. Em 10 anos, trocando a cada 2, são 5 sofás."
+    },
+    {
+     "texto": "10 sofás",
+     "correta": false,
+     "feedbackErro": "10 seria trocar todo ano. Trocando a cada 2 anos, em 10 anos são 5 sofás."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "comportamento-sustentavel",
+   "criterio": "Isso ajuda o planeta?",
+   "enunciado": "Levar a própria garrafa de água em vez de comprar uma nova toda vez",
+   "resposta": true,
+   "ancora": "Reutilizar a garrafa evita gerar mais plástico descartado.",
+   "feedbackErro": "Parece um detalhe pequeno, mas evitar comprar garrafa nova toda vez reduz bastante o plástico."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "impacto-do-consumismo",
+   "criterio": "Isso reduz o impacto no planeta?",
+   "enunciado": "Pensar bem antes de comprar algo que não é realmente necessário",
+   "resposta": true,
+   "ancora": "Pensar antes evita compras que só geram lixo e gasto.",
+   "feedbackErro": "Parece só demora na hora de comprar, mas pensar antes evita compras que viram lixo sem necessidade."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "impacto-do-consumismo",
+   "pergunta": "Qual frase resume o que você aprendeu sobre consumo e planeta?",
+   "alternativas": [
+    {
+     "texto": "Comprar mais rápido é sempre melhor pro planeta",
+     "correta": false,
+     "feedbackErro": "É o contrário: comprar mais do que precisa é o que mais pesa pro planeta."
+    },
+    {
+     "texto": "Consumir menos e reaproveitar mais ajuda o planeta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só empresas grandes afetam o meio ambiente, não as pessoas",
+     "correta": false,
+     "feedbackErro": "As escolhas de cada pessoa, como comprar demais ou desperdiçar, também afetam o planeta."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "impacto-do-consumismo",
+   "instrucao": "Toque na ordem, do que menos impacta pro que mais impacta o planeta.",
+   "ancora": "Quanto mais frequente a troca sem necessidade, maior o impacto.",
+   "feedbackErro": "O que pesa mais pro planeta não é ter coisas novas, é trocar sem necessidade real e com muita frequência.",
+   "itens": [
+    { "texto": "Usar o mesmo objeto até ele não servir mais", "posicaoCorreta": 1 },
+    { "texto": "Trocar de objeto de vez em quando, com necessidade real", "posicaoCorreta": 2 },
+    { "texto": "Trocar de objeto toda semana, mesmo funcionando bem", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "comportamento-sustentavel",
+   "instrucao": "Isso ajuda o planeta? Arraste.",
+   "ancora": "Ajuda reaproveitar e consertar; desperdiçar recursos não ajuda.",
+   "feedbackErro": "Reaproveitar e consertar reduzem o consumo de recursos; descartar errado e desperdiçar energia pesam contra o planeta.",
+   "caixas": [
+    { "id": "sim", "rotulo": "Ajuda" },
+    { "id": "nao", "rotulo": "Não ajuda" }
+   ],
+   "itens": [
+    { "texto": "Reaproveitar potes de vidro pra guardar coisas", "caixaCorreta": "sim" },
+    { "texto": "Jogar pilha usada no lixo comum", "caixaCorreta": "nao" },
+    { "texto": "Consertar um brinquedo quebrado em vez de trocar", "caixaCorreta": "sim" },
+    { "texto": "Deixar luzes acesas em cômodos vazios", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "impacto-do-consumismo",
+   "criterio": "Isso afeta o planeta?",
+   "enunciado": "Comprar um lanche embalado em plástico todo dia, quando dá pra levar de casa",
+   "resposta": true,
+   "ancora": "Plástico descartável todo dia soma bastante lixo no ano.",
+   "feedbackErro": "Parece pouco, um plástico por dia, mas somado no ano vira bastante lixo que poderia ser evitado."
+  }
+ ]
+}

@@ -1,0 +1,327 @@
+{
+ "slug": "o-que-te-faz-comprar-reforco",
+ "segmento": "em1",
+ "conceitoPrincipal": "o-que-te-faz-comprar",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "gatilho-de-compra",
+   "criterio": "É um gatilho de compra?",
+   "enunciado": "Cupom de 10% que vence em 2 horas",
+   "resposta": true,
+   "ancora": "Prazo curto fabrica pressa: a vontade nasceu do estímulo.",
+   "feedbackErro": "O cupom até economiza — se a compra já estava decidida. Se a vontade nasceu junto com o cupom, quem mandou foi o prazo, não a sua necessidade."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "gatilho-de-compra",
+   "criterio": "É um gatilho de compra?",
+   "enunciado": "Recomprar o desodorante que acabou",
+   "resposta": false,
+   "ancora": "Reposição de uso: a compra existia antes de qualquer estímulo.",
+   "feedbackErro": "Tem compra envolvida, mas nenhum estímulo criou a vontade: o uso é contínuo e o produto acabou. Gatilho é o que inventa desejo novo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "gatilho-de-compra",
+   "criterio": "É um gatilho de compra?",
+   "enunciado": "Fila na porta da loja no dia do lançamento",
+   "resposta": true,
+   "ancora": "Multidão querendo é prova social — e prova social é gatilho.",
+   "feedbackErro": "A fila parece só consequência, mas funciona como anúncio: ver todo mundo querendo aumenta a sua vontade. Prova social é gatilho de grupo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "gatilho-de-compra",
+   "dificuldade": 2,
+   "pergunta": "Larissa foi comprar uma mochila. Saiu da loja com mochila, garrafa e chaveiro. O que explica os extras?",
+   "ancora": "Loja é ambiente projetado: cada item no caminho é um gatilho.",
+   "alternativas": [
+    {
+     "texto": "Ela descobriu necessidades que já tinha",
+     "correta": false,
+     "feedbackErro": "Se fossem necessidades, estariam na lista antes de entrar. Vontade que nasce na vitrine tem outro nome: gatilho de ocasião."
+    },
+    {
+     "texto": "Os itens no caminho do caixa criaram o desejo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A mochila estava barata e sobrou dinheiro",
+     "correta": false,
+     "feedbackErro": "Sobrar dinheiro não obriga a gastá-lo. A pergunta é por que a vontade apareceu ali — e a resposta é o arranjo da loja, não o troco."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "pros-e-contras",
+   "dificuldade": 2,
+   "pergunta": "Um tênis está 'pela metade do preço'. Qual pergunta testa se a compra vale?",
+   "ancora": "O preço antigo é isca. O teste usa o valor de hoje e o seu uso.",
+   "alternativas": [
+    {
+     "texto": "Eu pagaria esse valor sem a etiqueta de desconto?",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quanto ele custava antes da promoção?",
+     "correta": false,
+     "feedbackErro": "O preço antigo é a isca: ancora sua cabeça no valor alto para o atual parecer presente. O que importa é o valor de hoje para o seu uso."
+    },
+    {
+     "texto": "Quantas pessoas já aproveitaram a oferta?",
+     "correta": false,
+     "feedbackErro": "Popularidade mede o alcance do anúncio, não a sua necessidade. Muita gente comprando por impulso continua sendo impulso — multiplicado."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "gatilho-de-compra",
+   "criterio": "Ajuda a decidir melhor?",
+   "enunciado": "Levar lista pronta e sair quando ela acabar",
+   "resposta": true,
+   "ancora": "A lista decide antes de o gatilho aparecer.",
+   "feedbackErro": "Parece rigidez, e a loja conta com isso: quanto mais tempo lá dentro, mais gatilhos. A lista é a decisão tomada em ambiente neutro."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "gatilho-de-compra",
+   "instrucao": "Quem decidiu essa compra: você ou o gatilho?",
+   "ancora": "Decisão sua nasce antes do estímulo; a do gatilho, durante.",
+   "feedbackErro": "O critério é o tempo: se a intenção existia antes do estímulo, foi você. Se a vontade nasceu na oferta, na live ou no caixa, o gatilho decidiu.",
+   "caixas": [
+    {
+     "id": "voce",
+     "rotulo": "Você"
+    },
+    {
+     "id": "gatilho",
+     "rotulo": "O gatilho"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Comprou o casaco que esperava baixar de preço",
+     "caixaCorreta": "voce"
+    },
+    {
+     "texto": "Assinou o app na oferta relâmpago da live",
+     "caixaCorreta": "gatilho"
+    },
+    {
+     "texto": "Trocou o celular quebrado pelo básico que resolve",
+     "caixaCorreta": "voce"
+    },
+    {
+     "texto": "Pediu o combo porque o caixa ofereceu",
+     "caixaCorreta": "gatilho"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "pros-e-contras",
+   "criterio": "É um bom motivo para comprar?",
+   "enunciado": "Todo mundo do grupo já tem, menos eu",
+   "resposta": false,
+   "ancora": "Pertencer é desejo legítimo — mas é do grupo, não do produto.",
+   "feedbackErro": "A vontade de pertencer é real e não é boba. Só que ela se resolve de outros jeitos — e o produto comprado por ela perde a graça junto com a moda."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "pros-e-contras",
+   "criterio": "É um bom motivo para comprar?",
+   "enunciado": "Pesquisei por um mês e o uso continua fazendo sentido",
+   "resposta": true,
+   "ancora": "Vontade que sobrevive à espera não é impulso.",
+   "feedbackErro": "Parece frieza demais para uma compra de desejo — mas é o contrário: a espera provou que o desejo é seu, não do anúncio. Comprar assim é decidir."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "gatilho-de-compra",
+   "pergunta": "Assinatura de R$ 27,90 por mês que você quase não usa. Quanto custa em um ano?",
+   "campo": "moeda",
+   "min": 100,
+   "max": 700,
+   "gabarito": 334.8,
+   "toleranciaPct": 20,
+   "fonte": "conta do próprio enunciado (R$ 27,90 × 12)",
+   "verificacao": {
+    "expressao": "27.9*12",
+    "esperado": 334.8
+   },
+   "feedbackPerto": "R$ 335 por ano num app esquecido. Assinatura é gatilho silencioso: cobra sem pedir de novo.",
+   "feedbackLonge": "Dá R$ 334,80. O viés é o do débito invisível: o que sai sozinho todo mês não passa pela decisão — e o cérebro não soma."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-do-consumo",
+   "dificuldade": 2,
+   "pergunta": "Uma marca lança camiseta nova de R$ 19 toda semana. O preço baixo esconde qual custo?",
+   "ancora": "Quem paga a diferença aparece na produção e no descarte.",
+   "alternativas": [
+    {
+     "texto": "O lucro menor que a marca aceita ter",
+     "correta": false,
+     "feedbackErro": "Volume compensa margem: vendendo muito, a marca lucra bem. Quem paga a diferença aparece fora da etiqueta — na produção e no descarte."
+    },
+    {
+     "texto": "O custo social e ambiental da produção rápida",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O imposto embutido no preço final",
+     "correta": false,
+     "feedbackErro": "Imposto existe em toda camiseta, cara ou barata — não é ele que muda aqui. O que o preço baixo esconde é o custo de produzir tão rápido e barato."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "gatilho-de-compra",
+   "dificuldade": 2,
+   "pergunta": "A live de vendas tem cronômetro, plateia comprando e cupom exclusivo. Por que esse formato vende tanto?",
+   "ancora": "Live empilha gatilhos: pressa, prova social e rosto confiável.",
+   "alternativas": [
+    {
+     "texto": "Junta pressa, prova social e confiança no rosto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque os produtos da live são mais baratos",
+     "correta": false,
+     "feedbackErro": "Às vezes há desconto real. Mas o formato venderia mesmo sem ele: o que empurra é o cronômetro e a multidão comprando junto — pressa e prova social."
+    },
+    {
+     "texto": "Porque só passam produtos já testados",
+     "correta": false,
+     "feedbackErro": "Teste não é o filtro da live: o filtro é comissão. Quem apresenta ganha por venda — a confiança é a ferramenta, não a garantia."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "gatilho-de-compra",
+   "criterio": "Reduz compra por impulso?",
+   "enunciado": "Tirar o cartão salvo dos aplicativos de compra",
+   "resposta": true,
+   "ancora": "Cada atrito a mais é um segundo para o impulso esfriar.",
+   "feedbackErro": "Parece só inconveniência — e é exatamente isso. Digitar o cartão dá tempo de pensar; o pagamento em um toque existe para você não ter esse tempo."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "gatilho-de-compra",
+   "criterio": "Reduz compra por impulso?",
+   "enunciado": "Decidir a compra dentro da loja, na frente do produto",
+   "resposta": false,
+   "ancora": "Na frente do produto, todos os gatilhos jogam contra você.",
+   "feedbackErro": "Ver de perto ajuda a avaliar qualidade, sim. Mas decidir ali entrega a escolha ao ambiente: luz, cheiro, vendedor. Decida antes; na loja, só confira."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-que-te-faz-comprar",
+   "pergunta": "Dias depois: qual critério continua valendo?",
+   "alternativas": [
+    {
+     "texto": "Vontade que nasce do estímulo é gatilho; espere ela provar que é sua.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Promoção boa deve ser aproveitada na hora.",
+     "correta": false,
+     "feedbackErro": "A pressa é o mecanismo, não um detalhe. Oferta que não espera nem um dia quer sua decisão sem pensamento."
+    },
+    {
+     "texto": "Quem conhece os gatilhos fica imune a eles.",
+     "correta": false,
+     "feedbackErro": "Conhecer ajuda, mas gatilho age em todo mundo. A defesa é o hábito: pausa, lista, cartão longe."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "gatilho-de-compra",
+   "instrucao": "Bateu a vontade. Toque na ordem para esfriá-la.",
+   "ancora": "Primeiro distância, depois tempo, depois decisão.",
+   "feedbackErro": "O critério é esfriar antes de decidir: distância do estímulo, tempo para a vontade assentar, e só então a escolha — com preço pesquisado.",
+   "itens": [
+    {
+     "texto": "Sair do site e fechar o aplicativo",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Esperar um dia longe do anúncio",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Conferir se a vontade continua viva",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Decidir com o preço pesquisado",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "gatilho-de-compra",
+   "criterio": "É publicidade?",
+   "enunciado": "Ranking 'os 10 melhores' feito pelo site da loja",
+   "resposta": true,
+   "ancora": "Ranking da loja é vitrine com cara de conselho.",
+   "feedbackErro": "Parece serviço de curadoria — e é vitrine: a loja ordena o que quer vender. Ranking neutro não vem de quem lucra com o clique."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "pros-e-contras",
+   "dificuldade": 2,
+   "pergunta": "Olhando uma compra antiga, que sinal indica que ela foi por gatilho?",
+   "ancora": "O teste do gatilho é retroativo: o uso aconteceu?",
+   "alternativas": [
+    {
+     "texto": "O produto quase não saiu da gaveta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O preço pago foi maior que o planejado",
+     "correta": false,
+     "feedbackErro": "Pagar mais caro pode ser erro de pesquisa, não de motivo. O sinal do gatilho é outro: o uso que não aconteceu."
+    },
+    {
+     "texto": "A compra foi feita pelo celular",
+     "correta": false,
+     "feedbackErro": "O aparelho não define o motivo. Tem compra planejada no celular e impulso no caixa da loja. O teste é o uso depois."
+    }
+   ]
+  }
+ ]
+}

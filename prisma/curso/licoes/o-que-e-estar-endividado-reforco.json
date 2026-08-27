@@ -1,0 +1,250 @@
+{
+ "slug": "o-que-e-estar-endividado-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "o-que-e-estar-endividado",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "o-que-e-divida",
+   "criterio": "Isso é uma dívida?",
+   "enunciado": "Prometer pagar depois por algo que já usou",
+   "resposta": true,
+   "ancora": "Usar agora e pagar depois é a definição de dívida.",
+   "feedbackErro": "Parece um combinado comum entre amigos. Mas usar algo agora e prometer pagar depois é exatamente o que forma uma dívida."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "o-que-e-divida",
+   "criterio": "Isso é uma dívida?",
+   "enunciado": "Trocar uma figurinha repetida por outra que falta",
+   "resposta": false,
+   "ancora": "Troca é igual por igual — ninguém fica devendo nada.",
+   "feedbackErro": "Parece negócio, e todo negócio lembra dívida. Mas numa troca direta, sem prometer nada depois, ninguém fica devendo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "consumo-consciente",
+   "criterio": "Isso ajuda a não se endividar?",
+   "enunciado": "Fazer uma lista do que precisa antes de ir à loja",
+   "resposta": true,
+   "ancora": "Lista evita comprar o que não estava nos planos.",
+   "feedbackErro": "Parece só organização, sem ligação com dinheiro. Mas a lista impede comprar por impulso o que sobra do orçamento."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "o-que-e-divida",
+   "dificuldade": 2,
+   "pergunta": "Bia ficou devendo R$ 23 pro colega desde a semana passada. Isso ainda é dívida hoje?",
+   "ancora": "Dívida não expira sozinha — só acaba quando é paga.",
+   "alternativas": [
+    {
+     "texto": "Sim, continua sendo dívida até ela pagar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, porque já faz tempo que ela deve",
+     "correta": false,
+     "feedbackErro": "O tempo passando não apaga o que se deve. Pelo contrário: a dívida continua existindo até ser paga, não importa há quanto tempo."
+    },
+    {
+     "texto": "Não, porque o colega provavelmente já esqueceu",
+     "correta": false,
+     "feedbackErro": "Esquecer não é o mesmo que estar quitado. A dívida existe pelo que foi combinado, não pela memória de quem emprestou."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "consumo-consciente",
+   "dificuldade": 2,
+   "pergunta": "Rafael tinha R$ 15 e viu um brinquedo de R$ 23. O que é consumo consciente aqui?",
+   "ancora": "23 menos 15 é 8 — o quanto falta juntar sem pedir emprestado.",
+   "verificacao": { "expressao": "23-15", "esperado": 8 },
+   "alternativas": [
+    {
+     "texto": "Esperar e juntar mais R$ 8 antes de comprar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pedir os R$ 8 que faltam emprestados agora",
+     "correta": false,
+     "feedbackErro": "Pedir emprestado resolve na hora, mas cria uma dívida de R$ 8. Consumo consciente é esperar juntar, não tomar emprestado por impaciência."
+    },
+    {
+     "texto": "Comprar outro brinquedo mais barato só pra não esperar",
+     "correta": false,
+     "feedbackErro": "Trocar de brinquedo só pra evitar esperar não é sobre precisar, é sobre pressa. O critério é esperar até ter o valor certo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "o-que-e-divida",
+   "criterio": "Isso é uma dívida?",
+   "enunciado": "Pegar dinheiro emprestado do pai e não combinar quando devolve",
+   "resposta": true,
+   "ancora": "Falta combinar a data, mas o valor emprestado já é dívida.",
+   "feedbackErro": "Sem data marcada, parece que ainda não é dívida de verdade. Mas o valor já foi emprestado — a dívida existe, só falta combinar o prazo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "o-que-e-divida",
+   "instrucao": "Isso cria uma dívida? Arraste.",
+   "ancora": "Dívida nasce quando falta pagar ou devolver algo combinado.",
+   "feedbackErro": "Trocas diretas e pagamentos à vista não deixam nada pendente. Dívida só existe quando fica faltando pagar ou devolver.",
+   "caixas": [
+    { "id": "cria", "rotulo": "Cria dívida" },
+    { "id": "naocria", "rotulo": "Não cria" }
+   ],
+   "itens": [
+    { "texto": "Pegar R$ 8 emprestados do colega", "caixaCorreta": "cria" },
+    { "texto": "Trocar figurinha por figurinha", "caixaCorreta": "naocria" },
+    { "texto": "Usar o lanche fiado e prometer pagar amanhã", "caixaCorreta": "cria" },
+    { "texto": "Pagar o lanche na hora, certinho", "caixaCorreta": "naocria" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "consumo-consciente",
+   "criterio": "Isso ajuda a não se endividar?",
+   "enunciado": "Perguntar 'posso esperar até a próxima mesada?' antes de comprar",
+   "resposta": true,
+   "ancora": "Perguntar se dá pra esperar evita gastar o que ainda não tem.",
+   "feedbackErro": "Parece só uma pergunta boba antes de comprar. Mas ela mostra se dá pra esperar, e esperar evita pedir emprestado."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "o-que-e-divida",
+   "dificuldade": 2,
+   "pergunta": "Marina devia R$ 12 pro irmão. Pagou R$ 5 essa semana. Quanto ainda deve?",
+   "ancora": "12 menos 5 é 7 — o que ainda falta pra quitar.",
+   "verificacao": { "expressao": "12-5", "esperado": 7 },
+   "alternativas": [
+    {
+     "texto": "R$ 7",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 5",
+     "correta": false,
+     "feedbackErro": "R$ 5 é o quanto ela já pagou, não o que falta. Subtraindo do total: 12 menos 5 é 7."
+    },
+    {
+     "texto": "R$ 12",
+     "correta": false,
+     "feedbackErro": "R$ 12 era a dívida antes do pagamento. Como ela já pagou R$ 5, restam 7."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "consumo-consciente",
+   "criterio": "Isso é consumo consciente?",
+   "enunciado": "Comprar um brinquedo caro parcelado pra caber no bolso",
+   "resposta": false,
+   "ancora": "Parcelar não é decidir precisar — só divide o mesmo gasto.",
+   "feedbackErro": "Parcelar parece resolver, porque cabe no bolso por mês. Mas isso não responde se você precisa — só divide o mesmo gasto em partes."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "o-que-e-divida",
+   "criterio": "Isso ajuda a sair da dívida?",
+   "enunciado": "Combinar um valor fixo por semana até quitar",
+   "resposta": true,
+   "ancora": "Um valor fixo e certo é o jeito mais simples de quitar.",
+   "feedbackErro": "Parece devagar demais pra resolver. Mas um valor certo toda semana é o que garante que a dívida realmente acabe."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-que-e-divida",
+   "pergunta": "Qual frase resume melhor este encontro?",
+   "alternativas": [
+    {
+     "texto": "Dívida existe até ser paga, não importa o tempo ou a data",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Trocar objetos direto sempre gera algum tipo de dívida",
+     "correta": false,
+     "feedbackErro": "Numa troca direta, sem promessas, ninguém fica devendo nada — não é dívida."
+    },
+    {
+     "texto": "Parcelar uma compra já é decidir que você precisa dela",
+     "correta": false,
+     "feedbackErro": "Parcelar só divide o valor em partes. Precisar é outra pergunta, que precisa ser feita antes de parcelar."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "o-que-e-divida",
+   "dificuldade": 3,
+   "pergunta": "Duda quer repor o troco que deve ao pai. O que ajuda mais a decidir quando pagar?",
+   "ancora": "Combinar prazo é o que transforma dívida em plano.",
+   "alternativas": [
+    {
+     "texto": "Combinar uma data certa com o pai",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Esperar o pai perguntar sobre o troco",
+     "correta": false,
+     "feedbackErro": "Esperar não resolve — a dívida continua enquanto ninguém combina nada. O certo é definir uma data."
+    },
+    {
+     "texto": "Torcer para o pai esquecer do troco",
+     "correta": false,
+     "feedbackErro": "Esquecimento não apaga a dívida — ela continua existindo até ser paga, combinada ou não."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "o-que-e-divida",
+   "criterio": "Isso é uma dívida?",
+   "enunciado": "Pegar uma bala do colega e devolver outra igual depois",
+   "resposta": false,
+   "ancora": "Repor um item igual é troca, não dívida.",
+   "feedbackErro": "Parece dívida porque envolve pegar e devolver. Mas repor um item igual, sem dinheiro ou prazo, é apenas uma troca combinada."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "consumo-consciente",
+   "instrucao": "Isso é pensar antes de comprar? Arraste.",
+   "ancora": "Pensar antes é sobre precisar, não sobre pressa ou comparação.",
+   "feedbackErro": "Pressa e comparação parecem boas razões na hora. Mas pensar antes é checar se o dinheiro alcança e se dá pra esperar.",
+   "caixas": [
+    { "id": "sim", "rotulo": "Sim" },
+    { "id": "nao", "rotulo": "Não" }
+   ],
+   "itens": [
+    { "texto": "Checar se o dinheiro guardado é suficiente", "caixaCorreta": "sim" },
+    { "texto": "Comprar rápido pra não perder a vez na fila", "caixaCorreta": "nao" },
+    { "texto": "Perguntar se dá pra esperar mais uma semana", "caixaCorreta": "sim" },
+    { "texto": "Comprar porque o colega acabou de comprar igual", "caixaCorreta": "nao" }
+   ]
+  }
+ ]
+}

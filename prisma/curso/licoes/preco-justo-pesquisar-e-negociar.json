@@ -1,0 +1,348 @@
+{
+ "slug": "preco-justo-pesquisar-e-negociar",
+ "segmento": "em1",
+ "conceitoPrincipal": "preco-justo-pesquisar-e-negociar",
+ "fraseConceito": "Preço justo se encontra: pesquise em mais de um lugar, some o custo total e negocie quando fizer sentido.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-total",
+   "criterio": "Muda o quanto sai do seu bolso?",
+   "enunciado": "Frete de R$ 30 num fone de R$ 100",
+   "resposta": true,
+   "ancora": "A compra custa R$ 130 — o frete é preço, só que escondido.",
+   "verificacao": {
+    "expressao": "100+30",
+    "esperado": 130
+   },
+   "feedbackErro": "A etiqueta diz R$ 100, mas seu bolso paga R$ 130. Tudo que é obrigatório para o produto chegar faz parte do custo total da compra."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-total",
+   "criterio": "Muda o quanto sai do seu bolso?",
+   "enunciado": "A cor da caixa em que o produto chega",
+   "resposta": false,
+   "ancora": "Só entra na conta o que altera o valor pago.",
+   "feedbackErro": "Detalhe visual não é custo. O teste da compra é simples: isso muda o número que sai da sua conta? A cor da caixa, não."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-total",
+   "criterio": "Muda o quanto sai do seu bolso?",
+   "enunciado": "Desconto de 10% pagando no Pix",
+   "resposta": true,
+   "ancora": "Forma de pagamento mexe no total: à vista costuma valer menos.",
+   "feedbackErro": "Muda, e a seu favor: 10% a menos é preço novo. Condição de pagamento faz parte do custo total — sempre pergunte o valor à vista."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "pesquisa-de-preco",
+   "dificuldade": 1,
+   "pergunta": "Larissa achou o mesmo fone por R$ 90, R$ 100 e R$ 120. O que a pesquisa deu a ela?",
+   "ancora": "Mesmo produto, R$ 30 de diferença — pesquisar paga o tempo gasto.",
+   "verificacao": {
+    "expressao": "120-90",
+    "esperado": 30
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 30 de economia: o mesmo fone pelo menor preço",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: fone bom é o mais caro",
+     "correta": false,
+     "feedbackErro": "É o mesmo modelo nas três lojas — a qualidade não muda com a etiqueta. Pagar R$ 120 aqui não compra um fone melhor, só um preço pior."
+    },
+    {
+     "texto": "Dúvida: agora ela não sabe qual escolher",
+     "correta": false,
+     "feedbackErro": "A pesquisa decide por ela: produto igual, escolha o menor custo total. Dúvida real só existe quando os produtos são diferentes."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-total",
+   "dificuldade": 1,
+   "pergunta": "Camiseta por R$ 50 com frete de R$ 20, ou por R$ 60 com frete grátis. Qual custa menos?",
+   "ancora": "R$ 50 + R$ 20 = R$ 70. A de R$ 60 vence por R$ 10.",
+   "verificacao": {
+    "expressao": "50+20",
+    "esperado": 70
+   },
+   "alternativas": [
+    {
+     "texto": "A de R$ 60: custo total menor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A de R$ 50: menor preço na etiqueta",
+     "correta": false,
+     "feedbackErro": "A etiqueta menor esconde o frete. Somando tudo, essa opção custa R$ 70 — R$ 10 a mais. Compare sempre o total, nunca só a etiqueta."
+    },
+    {
+     "texto": "Tanto faz: a diferença é pequena",
+     "correta": false,
+     "feedbackErro": "R$ 10 em R$ 60 é um sexto da compra. Pequenas diferenças repetidas em cada compra do ano viram um dinheiro grande."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-total",
+   "criterio": "Muda o quanto sai do seu bolso?",
+   "enunciado": "Parcelamento com juros embutidos na parcela",
+   "resposta": true,
+   "ancora": "Parcela pequena, total grande: multiplique antes de assinar.",
+   "feedbackErro": "A parcela cabe no bolso, e é isso que engana. Multiplique parcela por quantidade e compare com o preço à vista: a diferença é o custo do prazo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "pesquisa-de-preco",
+   "instrucao": "Toque na ordem de uma compra bem feita.",
+   "ancora": "Precisa → pesquisa → soma total → negocia. Nessa ordem.",
+   "feedbackErro": "A ordem protege o bolso: primeiro saber o que precisa e quanto pode, depois comparar, depois somar tudo — e negociar por último, com números na mão.",
+   "itens": [
+    {
+     "texto": "Definir o que precisa e quanto pode gastar",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Pesquisar o preço em mais de uma loja",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Somar frete, prazo e forma de pagamento",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Negociar e fechar onde o total for menor",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "negociacao",
+   "criterio": "Dá para negociar aqui?",
+   "enunciado": "Desconto à vista na loja de móveis do bairro",
+   "resposta": true,
+   "ancora": "Onde há dono e margem, há conversa — à vista, ainda mais.",
+   "feedbackErro": "Móveis têm margem para negociar, e o pagamento à vista é o argumento clássico: o lojista recebe na hora, sem taxa — e pode dividir esse ganho com você."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "negociacao",
+   "criterio": "Dá para negociar aqui?",
+   "enunciado": "O preço do refrigerante no caixa do mercado",
+   "resposta": false,
+   "ancora": "Preço de gôndola não conversa — se pesou, troque de mercado.",
+   "feedbackErro": "O caixa não tem autonomia sobre a etiqueta. Nesses lugares a negociação é outra: comparar mercados, aproveitar oferta, mudar de marca."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-total",
+   "pergunta": "Notebook: R$ 2.000 à vista ou 10 parcelas de R$ 240. Quanto custa no total parcelado?",
+   "campo": "moeda",
+   "min": 2000,
+   "max": 3200,
+   "gabarito": 2400,
+   "toleranciaPct": 20,
+   "fonte": "conta do próprio enunciado (10 × R$ 240)",
+   "verificacao": {
+    "expressao": "240*10",
+    "esperado": 2400
+   },
+   "feedbackPerto": "R$ 2.400 — o prazo custou R$ 400, ou 20% a mais. Às vezes vale; o erro é não saber que se pagou.",
+   "feedbackLonge": "10 × R$ 240 = R$ 2.400. O viés aqui é a âncora na parcela: R$ 240 parece pouco, e o cérebro esquece de multiplicar."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "pesquisa-de-preco",
+   "dificuldade": 1,
+   "pergunta": "A vitrine anuncia 'de R$ 300 por R$ 199'. O que isso prova sobre a oferta?",
+   "ancora": "O 'de' pode ser inventado — quem confirma é a pesquisa fora.",
+   "alternativas": [
+    {
+     "texto": "Nada ainda: o 'de' se confere pesquisando fora",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que você economiza R$ 101 comprando agora",
+     "correta": false,
+     "feedbackErro": "Só se o produto valesse mesmo R$ 300 em algum lugar. Se nas outras lojas ele custa R$ 210, a economia real é R$ 11 — o resto é encenação."
+    },
+    {
+     "texto": "Que R$ 199 é o menor preço do mercado",
+     "correta": false,
+     "feedbackErro": "A loja diz o próprio preço, não o do mercado. O menor preço só aparece comparando: duas ou três buscas resolvem."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "negociacao",
+   "dificuldade": 1,
+   "pergunta": "Você vai pedir desconto no balcão. O que dá mais força ao pedido?",
+   "ancora": "Negociar com número é proposta; sem número é súplica.",
+   "alternativas": [
+    {
+     "texto": "Mostrar o preço menor que achou em outra loja",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Dizer que achou tudo muito caro",
+     "correta": false,
+     "feedbackErro": "Reclamação sem número não dá ao vendedor motivo concreto para ceder. 'A loja X faz por R$ 180' — isso ele consegue cobrir ou explicar."
+    },
+    {
+     "texto": "Ameaçar avaliar mal a loja na internet",
+     "correta": false,
+     "feedbackErro": "Ameaça trava a conversa e pode sair pela culatra. Negociação boa oferece algo: pagamento à vista, levar dois, fechar agora."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-total",
+   "criterio": "Entra na decisão de compra?",
+   "enunciado": "Prazo de entrega e garantia do produto",
+   "resposta": true,
+   "ancora": "Decisão boa pesa preço, prazo, garantia — o pacote inteiro.",
+   "feedbackErro": "Preço igual não é empate: esperar 30 dias tem custo, garantia curta tem risco. Aspectos além do preço também decidem a compra."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "pesquisa-de-preco",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Preço justo é sempre o mais barato que existe",
+   "resposta": false,
+   "ancora": "Justo é o menor custo total que entrega o que você precisa.",
+   "feedbackErro": "O mais barato pode não entregar: sem garantia, prazo eterno, loja duvidosa. Justo é a melhor conta fechada — preço, condição e confiança juntos."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "preco-justo-pesquisar-e-negociar",
+   "pergunta": "O que é pagar um preço justo?",
+   "alternativas": [
+    {
+     "texto": "Comparar o custo total em mais de um lugar e negociar quando dá.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Aceitar o preço da primeira loja, que é o oficial.",
+     "correta": false,
+     "feedbackErro": "Não existe preço oficial: cada loja escolhe o seu. A primeira etiqueta é só a primeira informação."
+    },
+    {
+     "texto": "Escolher sempre a menor parcela do anúncio.",
+     "correta": false,
+     "feedbackErro": "Parcela pequena costuma esconder o total grande. Multiplique antes: o justo se mede no total."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "negociacao",
+   "instrucao": "Negociável ou tabelado?",
+   "ancora": "Onde há margem e dono, negocia-se; onde há tabela, compara-se.",
+   "feedbackErro": "O critério é quem pode mexer no preço: dono presente e margem aberta aceitam conversa; preço tabelado ou de gôndola só muda trocando de lugar.",
+   "caixas": [
+    {
+     "id": "negociavel",
+     "rotulo": "Negociável"
+    },
+    {
+     "id": "tabelado",
+     "rotulo": "Tabelado"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Carro usado na concessionária",
+     "caixaCorreta": "negociavel"
+    },
+    {
+     "texto": "Passagem de ônibus urbano",
+     "caixaCorreta": "tabelado"
+    },
+    {
+     "texto": "Aluguel na renovação do contrato",
+     "caixaCorreta": "negociavel"
+    },
+    {
+     "texto": "Lanche no cardápio do fast-food",
+     "caixaCorreta": "tabelado"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "custo-total",
+   "pergunta": "Fone por R$ 150 à vista ou 6 parcelas de R$ 30. Quanto a mais custa o parcelado?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 100,
+   "gabarito": 30,
+   "toleranciaPct": 20,
+   "fonte": "conta do próprio enunciado (6 × 30 − 150)",
+   "verificacao": {
+    "expressao": "30*6-150",
+    "esperado": 30
+   },
+   "feedbackPerto": "R$ 30 — 20% a mais pelo prazo. Visto assim, o 'parcelinha' ganha outro peso.",
+   "feedbackLonge": "6 × R$ 30 = R$ 180, contra R$ 150 à vista: R$ 30 de diferença. A âncora na parcela pequena esconde o custo do prazo."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "custo-total",
+   "dificuldade": 1,
+   "pergunta": "Duas lojas cobram os mesmos R$ 80. Uma entrega amanhã; a outra, em 30 dias. O que decide?",
+   "ancora": "Empatou o preço? Desempata o resto: prazo, garantia, confiança.",
+   "alternativas": [
+    {
+     "texto": "O prazo: com preço igual, decide o que não é preço",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: preço igual, compra igual",
+     "correta": false,
+     "feedbackErro": "A compra não termina no pagamento — termina com o produto na mão. Trinta dias de espera são um custo, mesmo sem aparecer no boleto."
+    },
+    {
+     "texto": "A sorte: qualquer uma serve",
+     "correta": false,
+     "feedbackErro": "Servir, as duas servem — mas uma entrega o mesmo valor 29 dias antes. Quando a conta empata, a decisão vira prazo, garantia e reputação."
+    }
+   ]
+  }
+ ]
+}

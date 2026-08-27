@@ -1,0 +1,286 @@
+{
+ "slug": "pesquisar-antes-de-comprar-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "pesquisar-antes-de-comprar",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "onde-pesquisar",
+   "criterio": "Qual era o critério mesmo?",
+   "enunciado": "Escolher onde comprar só pela loja mais perto de casa",
+   "resposta": false,
+   "ancora": "Perto é conveniente, mas não garante o menor preço.",
+   "feedbackErro": "A loja perto poupa tempo, e por isso parece a certa. Mas o critério pra pagar menos é comparar preços, não a distância."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "onde-pesquisar",
+   "criterio": "Qual era o critério mesmo?",
+   "enunciado": "Comparar o preço do mesmo lanche em dois aplicativos diferentes",
+   "resposta": true,
+   "ancora": "Comparar o mesmo item em lugares diferentes é o critério.",
+   "feedbackErro": "Parece trabalho extra abrir dois aplicativos. Mas é exatamente essa comparação que revela onde o mesmo lanche sai mais barato."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-beneficio",
+   "criterio": "Qual era o critério mesmo?",
+   "enunciado": "Escolher só pelo preço mais baixo, sem olhar a durabilidade",
+   "resposta": false,
+   "ancora": "O critério do custo-benefício junta preço e durabilidade.",
+   "feedbackErro": "O preço baixo pesa na hora da compra, e por isso convence rápido. Mas o critério certo compara também quanto tempo o produto dura."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "onde-pesquisar",
+   "dificuldade": 2,
+   "pergunta": "Um fone custa R$ 45 numa loja e R$ 38 em outra, a duas quadras. O que decide onde comprar?",
+   "ancora": "R$ 45 e R$ 38: comparar mostra R$ 7 de diferença.",
+   "alternativas": [
+    {
+     "texto": "Comparar os dois preços antes de decidir",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Comprar na loja mais próxima, sem comparar",
+     "correta": false,
+     "feedbackErro": "Perto é confortável, mas não é o critério. Sem comparar, você pode deixar de economizar R$ 7 por pouco esforço."
+    },
+    {
+     "texto": "Comprar na loja com a vitrine mais bonita",
+     "correta": false,
+     "feedbackErro": "A vitrine não muda o preço nem a qualidade do fone. O que decide é comparar quanto cada loja cobra."
+    }
+   ],
+   "verificacao": {
+    "expressao": "45-38",
+    "esperado": 7
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-beneficio",
+   "dificuldade": 2,
+   "pergunta": "Camila viu um chinelo de R$ 20 que dura 2 meses e outro de R$ 35 que dura 6. Qual compensa?",
+   "ancora": "R$ 20 em 2 meses é R$ 10 por mês de uso.",
+   "alternativas": [
+    {
+     "texto": "O de R$ 35, porque dura três vezes mais tempo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O de R$ 20, porque é mais barato na hora de pagar",
+     "correta": false,
+     "feedbackErro": "Custar menos agora parece a escolha certa. Mas ele dura só 2 meses: em 6 meses ela compraria três, gastando mais no total."
+    },
+    {
+     "texto": "Os dois custam o mesmo por mês de uso",
+     "correta": false,
+     "feedbackErro": "Não é igual: R$ 20 por 2 meses custa mais por mês do que R$ 35 por 6 meses. Dividir o preço pelo tempo de uso muda a conta."
+    }
+   ],
+   "verificacao": {
+    "expressao": "20/2",
+    "esperado": 10
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-beneficio",
+   "criterio": "É custo-benefício?",
+   "enunciado": "Pagar mais caro num produto que quebra rápido",
+   "resposta": false,
+   "ancora": "Pagar mais só compensa se durar mais ou for melhor.",
+   "feedbackErro": "Pagar mais parece garantia de qualidade. Mas se quebra rápido do mesmo jeito, o preço alto não teve retorno nenhum."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "onde-pesquisar",
+   "instrucao": "É um bom critério pra escolher onde comprar?",
+   "ancora": "O critério é preço comparado, não conveniência ou aparência.",
+   "feedbackErro": "Distância e embalagem chamam atenção primeiro. Mas o que decide o menor gasto é comparar o preço em mais de um lugar.",
+   "caixas": [
+    {
+     "id": "bom",
+     "rotulo": "Bom critério"
+    },
+    {
+     "id": "ruim",
+     "rotulo": "Não é critério"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Comparar o preço em dois mercados",
+     "caixaCorreta": "bom"
+    },
+    {
+     "texto": "Ver qual embalagem é mais colorida",
+     "caixaCorreta": "ruim"
+    },
+    {
+     "texto": "Perguntar o preço numa loja física e numa virtual",
+     "caixaCorreta": "bom"
+    },
+    {
+     "texto": "Escolher pela loja que tem música mais alta",
+     "caixaCorreta": "ruim"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-beneficio",
+   "criterio": "Isso pesa no custo-benefício?",
+   "enunciado": "Quanto tempo o produto costuma durar",
+   "resposta": true,
+   "ancora": "Durabilidade é parte da conta do custo-benefício.",
+   "feedbackErro": "Parece detalhe técnico, sem relação com o preço. Mas quanto mais um produto dura, menos ele custa por mês de uso — isso é custo-benefício."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "onde-pesquisar",
+   "dificuldade": 2,
+   "pergunta": "Uma mesma bola custa R$ 32 na loja do bairro e R$ 27 no mercado, a 10 minutos a mais de caminhada. Vale ir?",
+   "ancora": "32 menos 27 é 5: a economia de ir ao mercado.",
+   "alternativas": [
+    {
+     "texto": "Sim, R$ 5 de economia compensa 10 minutos a mais",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, porque qualquer economia pequena não vale o esforço",
+     "correta": false,
+     "feedbackErro": "Cada pessoa decide o próprio limite de esforço, mas R$ 5 numa bola é quase 16% do preço — normalmente compensa a caminhada."
+    },
+    {
+     "texto": "Não, porque a loja do bairro é sempre mais confiável",
+     "correta": false,
+     "feedbackErro": "Confiança da loja é outro critério, sem relação com o preço. Pra saber onde compensa comprar, o que decide é a comparação de valores."
+    }
+   ],
+   "verificacao": {
+    "expressao": "32-27",
+    "esperado": 5
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "custo-beneficio",
+   "criterio": "Isso é comparar custo-benefício?",
+   "enunciado": "Ver o preço de dois produtos parecidos e escolher só pelo mais barato",
+   "resposta": false,
+   "ancora": "Comparar custo-benefício olha preço e qualidade juntos.",
+   "feedbackErro": "Olhar só o preço é mais rápido, e por isso parece suficiente. Mas ignorar a qualidade pode levar a comprar de novo em pouco tempo."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "onde-pesquisar",
+   "criterio": "Isso é pesquisar preço direito?",
+   "enunciado": "Comparar o preço do mesmo brinquedo em três lugares antes de decidir",
+   "resposta": true,
+   "ancora": "Quanto mais lugares comparados, maior a chance de achar o menor preço.",
+   "feedbackErro": "Comparar em três lugares dá mais trabalho que em um só. Mas é esse esforço extra que aumenta a chance de encontrar o menor preço."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "custo-beneficio",
+   "pergunta": "Depois de comparar de novo, qual frase está certa?",
+   "alternativas": [
+    {
+     "texto": "O menor preço só vale a pena se o produto também durar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A loja mais perto é sempre a melhor escolha",
+     "correta": false,
+     "feedbackErro": "Perto é confortável, mas não garante o menor preço nem a maior durabilidade."
+    },
+    {
+     "texto": "Durabilidade não tem nada a ver com o preço",
+     "correta": false,
+     "feedbackErro": "Tem sim: um produto que dura pouco pode custar mais no total, mesmo com preço baixo no início."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "custo-beneficio",
+   "instrucao": "Ordene os passos pra comparar custo-benefício.",
+   "ancora": "Primeiro o preço, depois a durabilidade, por último a decisão.",
+   "feedbackErro": "Decidir antes de olhar a durabilidade ignora metade da conta. O critério pede preço e duração antes da escolha.",
+   "itens": [
+    {
+     "texto": "Ver o preço do produto",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Descobrir quanto tempo ele costuma durar",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Escolher o que compensa mais no total",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "onde-pesquisar",
+   "dificuldade": 2,
+   "pergunta": "Um caderno custa R$ 12 na papelaria e R$ 9 na loja de material escolar, mais longe. O que muda a decisão?",
+   "ancora": "12 menos 9 é 3: a diferença a comparar com o esforço.",
+   "alternativas": [
+    {
+     "texto": "Quanto a diferença de preço compensa o deslocamento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A cor da capa do caderno",
+     "correta": false,
+     "feedbackErro": "A cor não influencia o preço nem a distância. O que pesa na decisão é comparar economia com deslocamento."
+    },
+    {
+     "texto": "O nome da loja mais conhecida",
+     "correta": false,
+     "feedbackErro": "Ser conhecida não garante preço menor. O critério é comparar valores, não fama da loja."
+    }
+   ],
+   "verificacao": {
+    "expressao": "12-9",
+    "esperado": 3
+   }
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custo-beneficio",
+   "criterio": "Isso muda o custo-benefício?",
+   "enunciado": "Um produto ter garantia de troca se quebrar",
+   "resposta": true,
+   "ancora": "Garantia reduz o risco de perder o dinheiro investido.",
+   "feedbackErro": "Garantia parece só um papel a mais na compra. Mas ela protege o valor pago se o produto quebrar antes da hora — isso muda o custo-benefício."
+  }
+ ]
+}

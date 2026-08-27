@@ -1,0 +1,249 @@
+{
+ "slug": "seus-direitos-como-consumidor-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "seus-direitos-como-consumidor",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "direito-como-protecao",
+   "criterio": "É um direito garantido do consumidor?",
+   "enunciado": "Trocar uma calça só porque não gostou da cor, na loja física",
+   "resposta": false,
+   "ancora": "Não gostar não é defeito — em loja física, isso é cortesia.",
+   "feedbackErro": "Parece que dá pra trocar qualquer coisa, mas por gosto, em loja física, a troca é política da loja, não lei."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "direitos-e-deveres",
+   "criterio": "É um direito garantido do consumidor?",
+   "enunciado": "Receber o troco certo em uma compra à vista",
+   "resposta": true,
+   "ancora": "Troco errado é falha na obrigação básica da empresa.",
+   "feedbackErro": "Parece detalhe pequeno demais pra ser direito, mas receber o valor certo de volta é garantido em qualquer compra."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "direitos-e-deveres",
+   "criterio": "É um direito garantido do consumidor?",
+   "enunciado": "Ser informado sobre o custo total antes de fechar um financiamento",
+   "resposta": true,
+   "ancora": "Custo total escondido fere o direito à informação clara.",
+   "feedbackErro": "Parece letra miúda de contrato, mas saber o custo total antes de assinar é um direito, não um extra."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "direito-como-protecao",
+   "dificuldade": 2,
+   "pergunta": "Fernanda comprou uma blusa na loja física e quer trocar só porque não gostou. A loja pode recusar?",
+   "ancora": "Troca por gosto em loja física é cortesia, não obrigação legal.",
+   "alternativas": [
+    {
+     "texto": "Não, é direito trocar por não gostar",
+     "correta": false,
+     "feedbackErro": "Não gostar não é defeito — em loja física, a troca por gosto é política da loja, não obrigação legal."
+    },
+    {
+     "texto": "Sim, troca por gosto é cortesia da loja, não obrigação",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só se ela levar o dinheiro exato de volta",
+     "correta": false,
+     "feedbackErro": "O valor exato não muda a regra — trocar por gosto não é um direito garantido em loja física."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "canais-de-protecao",
+   "dificuldade": 2,
+   "pergunta": "Uma cobrança irregular aparece na fatura, e o banco não resolve. Qual canal é mais específico?",
+   "ancora": "Banco Central regula bancos — é o canal mais específico.",
+   "alternativas": [
+    {
+     "texto": "Reclame Aqui, porque é o mais conhecido",
+     "correta": false,
+     "feedbackErro": "Reclame Aqui dá visibilidade, mas não regula bancos — quem faz isso é o Banco Central."
+    },
+    {
+     "texto": "Banco Central, que regula instituições financeiras",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nenhum canal resolve cobrança de cartão",
+     "correta": false,
+     "feedbackErro": "Existe canal específico sim — cobranças bancárias irregulares podem ser levadas ao Banco Central."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "canais-de-protecao",
+   "criterio": "É canal oficial de proteção?",
+   "enunciado": "Reclame Aqui",
+   "resposta": false,
+   "ancora": "É útil, mas é plataforma privada, não órgão oficial.",
+   "feedbackErro": "Reclame Aqui pressiona empresas de forma pública, mas não é um órgão oficial como Procon ou Banco Central."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "direito-como-protecao",
+   "instrucao": "Classifique: direito garantido ou depende da empresa?",
+   "ancora": "Direito é lei; cortesia é escolha de cada empresa.",
+   "feedbackErro": "É fácil confundir os dois — direito está na lei, cortesia é o que a empresa decide oferecer a mais.",
+   "caixas": [
+    { "id": "direito", "rotulo": "Direito garantido" },
+    { "id": "depende", "rotulo": "Depende da empresa" }
+   ],
+   "itens": [
+    { "texto": "Trocar calça só por não gostar da cor, na loja física", "caixaCorreta": "depende" },
+    { "texto": "Devolver compra online em até 7 dias, sem motivo", "caixaCorreta": "direito" },
+    { "texto": "Ganhar embrulho pra presente de graça", "caixaCorreta": "depende" },
+    { "texto": "Receber garantia mínima contra defeito de fábrica", "caixaCorreta": "direito" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "direitos-e-deveres",
+   "criterio": "É responsabilidade da empresa?",
+   "enunciado": "Consertar de graça um defeito que aparece dentro do prazo de garantia",
+   "resposta": true,
+   "ancora": "Defeito dentro da garantia é custo da empresa, não do cliente.",
+   "feedbackErro": "Parece favor da assistência técnica, mas consertar sem custo dentro da garantia é obrigação da empresa."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "direito-como-protecao",
+   "dificuldade": 2,
+   "pergunta": "Produto de R$ 340 com defeito, na garantia. A loja oferece troca por um de R$ 280. Isso cumpre o direito?",
+   "ancora": "A troca precisa ser por equivalente, ou com a diferença devolvida.",
+   "alternativas": [
+    {
+     "texto": "Sim, qualquer troca já cumpre a lei",
+     "correta": false,
+     "feedbackErro": "A troca precisa ser por produto equivalente — receber um mais barato não cobre o direito por completo."
+    },
+    {
+     "texto": "Não, precisa ser equivalente ou devolver a diferença",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, o consumidor perde o direito se aceitar qualquer troca",
+     "correta": false,
+     "feedbackErro": "Aceitar não anula o direito — o problema é a troca ser por um produto de valor menor sem compensar."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "direito-como-protecao",
+   "criterio": "É um direito garantido do consumidor?",
+   "enunciado": "Cancelar uma assinatura online com o mesmo número de cliques usados pra assinar",
+   "resposta": true,
+   "ancora": "Cancelar precisa ser tão fácil quanto assinar.",
+   "feedbackErro": "Parece detalhe técnico, mas dificultar o cancelamento em relação à assinatura fere um direito garantido."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "canais-de-protecao",
+   "criterio": "Esse canal resolve esse problema?",
+   "enunciado": "Usar o Detran para resolver uma cobrança irregular de cartão de crédito",
+   "resposta": false,
+   "ancora": "Detran cuida de trânsito e veículos, não de finanças.",
+   "feedbackErro": "Parece só mais um órgão público, mas Detran cuida de trânsito — cobrança de cartão é Banco Central ou Procon."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "seus-direitos-como-consumidor",
+   "dificuldade": 2,
+   "pergunta": "Depois desses casos, o que decide se algo é direito garantido ou cortesia da loja?",
+   "alternativas": [
+    {
+     "texto": "Se a loja tem fama de boa ou má",
+     "correta": false,
+     "feedbackErro": "Fama não define direito — o que define é o que está previsto em lei, independente da reputação da loja."
+    },
+    {
+     "texto": "Se está previsto em lei, e não só na boa vontade da empresa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se o cliente insiste o suficiente",
+     "correta": false,
+     "feedbackErro": "Insistir pode funcionar às vezes, mas não transforma cortesia em direito garantido."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "canais-de-protecao",
+   "instrucao": "Ordene a escalada de uma reclamação, do primeiro ao último passo.",
+   "ancora": "A lei não exige pular direto pra Justiça — há uma ordem.",
+   "feedbackErro": "É comum querer ir direto à Justiça, mas reclamar com a empresa e passar pelo Procon costuma resolver antes.",
+   "itens": [
+    { "texto": "Reclamar direto com a empresa", "posicaoCorreta": 1 },
+    { "texto": "Acionar o Procon", "posicaoCorreta": 2 },
+    { "texto": "Recorrer ao Juizado Especial", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "direito-como-protecao",
+   "pergunta": "Produto de R$ 480 com defeito. Garantia cobre 100% do conserto. Quanto o consumidor paga?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 480,
+   "gabarito": 0,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto de cobertura de garantia (100%)",
+   "verificacao": { "expressao": "480-480", "esperado": 0 },
+   "feedbackPerto": "Isso mesmo — garantia de 100% zera o custo do consumidor.",
+   "feedbackLonge": "R$ 0. Dentro da garantia integral, o conserto de defeito de fábrica não deveria gerar custo."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "canais-de-protecao",
+   "dificuldade": 2,
+   "pergunta": "Por que o Reclame Aqui não substitui o Procon numa reclamação séria?",
+   "ancora": "Reclame Aqui não tem poder de multar ou fiscalizar.",
+   "alternativas": [
+    {
+     "texto": "Porque é uma plataforma privada, sem poder de multar a empresa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque é pago pra usar",
+     "correta": false,
+     "feedbackErro": "O custo não é o ponto — a diferença real é que o Reclame Aqui não tem poder de multar como o Procon."
+    },
+    {
+     "texto": "Porque só aceita reclamações de lojas físicas",
+     "correta": false,
+     "feedbackErro": "O Reclame Aqui aceita qualquer tipo de reclamação — o que falta a ele é o poder oficial de fiscalizar."
+    }
+   ]
+  }
+ ]
+}

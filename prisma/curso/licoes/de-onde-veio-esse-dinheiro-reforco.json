@@ -1,0 +1,337 @@
+{
+ "slug": "de-onde-veio-esse-dinheiro-reforco",
+ "segmento": "em1",
+ "conceitoPrincipal": "de-onde-veio-esse-dinheiro",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-acordo",
+   "criterio": "Isso basta para ser dinheiro?",
+   "enunciado": "Ser aceito por todo mundo como pagamento",
+   "resposta": true,
+   "ancora": "Aceitação geral era o critério da lição — e continua sendo.",
+   "feedbackErro": "Parece pouco, mas é o núcleo: se todos aceitam e esperam que os outros aceitem, funciona como dinheiro. Foi assim com sal, cacau e papel."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-acordo",
+   "criterio": "Isso basta para ser dinheiro?",
+   "enunciado": "Ser antigo, bonito e raro",
+   "resposta": false,
+   "ancora": "Raridade sem aceitação vira coleção, não dinheiro.",
+   "feedbackErro": "Raridade ajuda, e por isso engana. Mas um selo raríssimo não paga o lanche: falta a aceitação geral, que era o critério da lição."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-acordo",
+   "criterio": "Isso basta para ser dinheiro?",
+   "enunciado": "Ter o valor garantido só pela loja que emitiu",
+   "resposta": false,
+   "ancora": "Garantia de um só emissor é aceitação restrita: vale onde ele manda.",
+   "feedbackErro": "Um vale da loja compra coisas na loja, e isso parece suficiente. Mas dinheiro de verdade vale em qualquer balcão — a garantia de um só não basta."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "funcoes-do-dinheiro",
+   "dificuldade": 2,
+   "pergunta": "Na aldeia, o pescador quer sandálias, mas o sapateiro odeia peixe. O que o dinheiro resolve nessa cena?",
+   "ancora": "Sem coincidência de desejos, o dinheiro faz a ponte entre as trocas.",
+   "alternativas": [
+    {
+     "texto": "Dispensa achar alguém que queira exatamente seu produto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Garante preço justo para o peixe",
+     "correta": false,
+     "feedbackErro": "Preço justo é negociação, e briga acontece com ou sem dinheiro. O que ele destrava é outra coisa: o sapateiro aceita moedas mesmo odiando peixe."
+    },
+    {
+     "texto": "Obriga os dois a registrar a troca em cartório",
+     "correta": false,
+     "feedbackErro": "Nenhum registro é exigido numa compra simples. A mágica do dinheiro é justamente dispensar burocracia: aceitar a moeda encerra a troca."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "dinheiro-e-acordo",
+   "dificuldade": 2,
+   "pergunta": "Em campos de prisioneiros da 2ª Guerra, cigarros viraram moeda. O que explica isso?",
+   "ancora": "Raro, divisível, durável e aceito: requisitos de qualquer sociedade.",
+   "alternativas": [
+    {
+     "texto": "Eram raros, divisíveis, duráveis e todos aceitavam",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O comando do campo decretou que valiam",
+     "correta": false,
+     "feedbackErro": "Não houve decreto nenhum: o acordo nasceu do uso, de baixo para cima. É a prova de que dinheiro é costume coletivo antes de ser lei."
+    },
+    {
+     "texto": "Só os fumantes aceitavam cigarros",
+     "correta": false,
+     "feedbackErro": "Até quem não fumava aceitava — porque sabia que outros aceitariam depois. Essa expectativa em cadeia é exatamente o que faz algo virar dinheiro."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-acordo",
+   "criterio": "Depende de decreto do governo?",
+   "enunciado": "Algo passar a funcionar como dinheiro na prática",
+   "resposta": false,
+   "ancora": "Sal, conchas, cigarros: o uso cria o acordo. Decreto ajuda, não basta.",
+   "feedbackErro": "A lei dá força ao dinheiro oficial, e isso confunde. Mas a história mostra moedas nascendo do costume sem decreto — e moedas oficiais morrendo sem confiança."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "funcoes-do-dinheiro",
+   "instrucao": "Qual função do dinheiro aparece em cada cena?",
+   "ancora": "Meio de troca move o presente; reserva de valor carrega o futuro.",
+   "feedbackErro": "O critério é o tempo: pagar agora é meio de troca; segurar para usar depois é reserva de valor. A mesma nota faz os dois papéis em momentos diferentes.",
+   "caixas": [
+    {
+     "id": "troca",
+     "rotulo": "Meio de troca"
+    },
+    {
+     "id": "reserva",
+     "rotulo": "Reserva de valor"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Pagar o lanche com Pix",
+     "caixaCorreta": "troca"
+    },
+    {
+     "texto": "Guardar para a viagem do ano que vem",
+     "caixaCorreta": "reserva"
+    },
+    {
+     "texto": "Comprar o material da escola à vista",
+     "caixaCorreta": "troca"
+    },
+    {
+     "texto": "Manter um valor parado para emergências",
+     "caixaCorreta": "reserva"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "funcoes-do-dinheiro",
+   "criterio": "Cumpre bem o papel de reserva?",
+   "enunciado": "Dinheiro parado num país com inflação de 40% ao mês",
+   "resposta": false,
+   "ancora": "Com preços dobrando em 2 meses, guardar cédula é guardar perda.",
+   "feedbackErro": "A cédula continua inteira na gaveta, e é isso que ilude. O que ela compra derrete 40% ao mês: a forma sobrevive, a função de guardar valor morre."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "funcoes-do-dinheiro",
+   "criterio": "Cumpre bem o papel de reserva?",
+   "enunciado": "Dinheiro guardado onde a inflação é baixa e estável",
+   "resposta": true,
+   "ancora": "Preços estáveis deixam o dinheiro guardar valor por mais tempo.",
+   "feedbackErro": "Mesmo com inflação baixa há perda lenta, e isso justifica a dúvida. Mas no curto prazo o valor se mantém quase todo: a função de reserva funciona."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "funcoes-do-dinheiro",
+   "pergunta": "Feira de escambo com 10 produtos: quantos preços de troca entre pares seriam necessários?",
+   "campo": "numero",
+   "min": 9,
+   "max": 200,
+   "gabarito": 45,
+   "toleranciaPct": 20,
+   "fonte": "conta: pares possíveis entre 10 produtos = 10 × 9 ÷ 2",
+   "verificacao": {
+    "expressao": "10*9/2",
+    "esperado": 45
+   },
+   "feedbackPerto": "45 pares — com dinheiro, bastam 10 preços. É por isso que toda feira acaba inventando uma moeda.",
+   "feedbackLonge": "São 45: cada produto contra os outros 9, sem contar o par duas vezes. O viés é achar que basta um preço por produto."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "dinheiro-e-acordo",
+   "dificuldade": 2,
+   "pergunta": "Otávio diz: 'meu cartão de transporte tem saldo, logo é dinheiro'. Qual é o furo do argumento?",
+   "ancora": "Saldo que só compra uma coisa é vale, não dinheiro.",
+   "alternativas": [
+    {
+     "texto": "O saldo só compra passagem: aceitação restrita",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Saldo digital nunca pode ser dinheiro",
+     "correta": false,
+     "feedbackErro": "Pix é digital e é dinheiro pleno. O problema do cartão de transporte não é ser digital: é valer num único balcão."
+    },
+    {
+     "texto": "Cartão só vale se for emitido por banco",
+     "correta": false,
+     "feedbackErro": "Quem emite importa menos do que quem aceita. Um saldo emitido por banco, mas aceito num só lugar, teria a mesma limitação."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "evolucao-do-dinheiro",
+   "dificuldade": 2,
+   "pergunta": "Por que sociedades diferentes escolheram dinheiros tão diferentes — sal, conchas, cacau, pedras?",
+   "ancora": "Cada cultura monetizou o que era raro e valioso no seu mundo.",
+   "alternativas": [
+    {
+     "texto": "Cada uma usou o que era raro e valorizado no seu contexto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Todas copiaram as moedas europeias",
+     "correta": false,
+     "feedbackErro": "Astecas e ilhéus de Yap criaram seus dinheiros sem contato com a Europa. A invenção foi local e repetida: cada grupo achou seu objeto de confiança."
+    },
+    {
+     "texto": "Nenhuma delas sabia trabalhar metais",
+     "correta": false,
+     "feedbackErro": "Várias dominavam metalurgia e mesmo assim preferiram outra coisa. O que decide não é a técnica: é o que a comunidade aceita como valioso."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "funcoes-do-dinheiro",
+   "criterio": "É uma limitação do dinheiro?",
+   "enunciado": "Perder poder de compra quando os preços sobem",
+   "resposta": true,
+   "ancora": "Inflação é a limitação clássica: o acordo vale, o valor encolhe.",
+   "feedbackErro": "O dinheiro segue aceito, e por isso a perda passa despercebida. Mas comprar menos com o mesmo valor é limitação — e das grandes."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "funcoes-do-dinheiro",
+   "criterio": "É uma limitação do dinheiro?",
+   "enunciado": "Permitir trocas entre pessoas desconhecidas",
+   "resposta": false,
+   "ancora": "O maior benefício: confiar no dinheiro dispensa conhecer o outro.",
+   "feedbackErro": "Negociar com estranhos soa arriscado, e é daí que vem a confusão. Mas é o dinheiro que torna isso possível — benefício central, não limitação."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "dinheiro-e-acordo",
+   "pergunta": "Depois deste reforço, qual critério define o que é dinheiro?",
+   "alternativas": [
+    {
+     "texto": "Aceitação geral: vale o que todos aceitam e esperam que continue valendo.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Origem oficial: só é dinheiro o que o governo imprime.",
+     "correta": false,
+     "feedbackErro": "Cigarros e sal viraram moeda sem governo nenhum. O decreto ajuda, o uso decide."
+    },
+    {
+     "texto": "Forma física: dinheiro de verdade se pega na mão.",
+     "correta": false,
+     "feedbackErro": "O Pix não se pega na mão e paga tudo. O suporte muda; o acordo é que importa."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "dinheiro-e-acordo",
+   "instrucao": "Aceitação geral ou restrita?",
+   "ancora": "Quanto mais balcões aceitam, mais perto de dinheiro pleno.",
+   "feedbackErro": "O critério é onde vale: cédula e Pix pagam em qualquer lugar; pontos e fichas só valem no balcão de quem os criou.",
+   "caixas": [
+    {
+     "id": "geral",
+     "rotulo": "Aceitação geral"
+    },
+    {
+     "id": "restrita",
+     "rotulo": "Aceitação restrita"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Cédula de R$ 20",
+     "caixaCorreta": "geral"
+    },
+    {
+     "texto": "Pix da sua conta",
+     "caixaCorreta": "geral"
+    },
+    {
+     "texto": "Pontos de fidelidade",
+     "caixaCorreta": "restrita"
+    },
+    {
+     "texto": "Ficha de fliperama",
+     "caixaCorreta": "restrita"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "dinheiro-e-acordo",
+   "dificuldade": 3,
+   "pergunta": "Se metade de uma cidade parasse de aceitar a moeda local, o que aconteceria com ela?",
+   "ancora": "Aceitação menor, acordo mais fraco, valor menor: é uma engrenagem só.",
+   "alternativas": [
+    {
+     "texto": "Perderia valor: o acordo que a sustenta encolheu",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada, porque o valor está impresso nela",
+     "correta": false,
+     "feedbackErro": "O número impresso é promessa, não garantia. Se metade dos balcões recusa, cada nota compra menos lugares — e valor é isso: o que ela compra."
+    },
+    {
+     "texto": "Dobraria de valor, por ficar mais rara",
+     "correta": false,
+     "feedbackErro": "Raridade só valoriza o que continua desejado. Moeda recusada fica rara e indesejada ao mesmo tempo — e aí só resta cair."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-acordo",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Cada real tem ouro guardado no Banco Central",
+   "resposta": false,
+   "ancora": "Nenhuma moeda moderna tem lastro em ouro. O lastro é a confiança.",
+   "feedbackErro": "O lastro-ouro existiu e acabou no século passado. Hoje o real vale pela confiança no acordo e na gestão da moeda — não por metal em cofre."
+  }
+ ]
+}

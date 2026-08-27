@@ -1,0 +1,251 @@
+{
+ "slug": "o-planeta-entra-na-conta-consolida",
+ "segmento": "ef35",
+ "conceitoPrincipal": "o-planeta-entra-na-conta",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "impacto-do-consumismo",
+   "criterio": "Isso afeta o planeta?",
+   "enunciado": "Comprar um produto durável, mesmo custando mais caro no início",
+   "resposta": false,
+   "ancora": "Durar mais tempo significa menos trocas e menos lixo depois.",
+   "feedbackErro": "Parece um gasto maior agora, mas durar mais tempo reduz as trocas futuras e o lixo gerado."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "impacto-do-consumismo",
+   "criterio": "Isso afeta o planeta?",
+   "enunciado": "Comprar um produto barato que quebra rápido e precisa ser trocado toda hora",
+   "resposta": true,
+   "ancora": "Trocar toda hora, mesmo produtos baratos, soma mais impacto.",
+   "feedbackErro": "Parece economia por ser barato, mas trocar toda hora soma mais recursos gastos do que um produto durável."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "comportamento-sustentavel",
+   "criterio": "É um comportamento sustentável?",
+   "enunciado": "Reciclar embalagens, mas continuar comprando muito mais do que precisa",
+   "resposta": false,
+   "ancora": "Reciclar sozinho não compensa continuar consumindo demais.",
+   "feedbackErro": "Reciclar ajuda, mas sozinho não resolve — consumir menos é a parte que falta nesse comportamento."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-do-consumismo",
+   "dificuldade": 3,
+   "pergunta": "Um copo descartável dura 1 uso; um reutilizável dura 300. Pra beber água 300 vezes, quantos descartáveis seriam usados?",
+   "ancora": "Cada descartável dura 1 uso; pra 300 usos, são 300 copos.",
+   "verificacao": { "expressao": "300/1", "esperado": 300 },
+   "alternativas": [
+    {
+     "texto": "300 copos descartáveis",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "1 copo descartável",
+     "correta": false,
+     "feedbackErro": "1 seria a duração de um único copo. Pra cobrir 300 usos, seriam necessários 300 copos."
+    },
+    {
+     "texto": "30 copos descartáveis",
+     "correta": false,
+     "feedbackErro": "30 está bem abaixo do necessário. Cada descartável dura só 1 uso, então pra 300 usos são 300 copos."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "comportamento-sustentavel",
+   "dificuldade": 3,
+   "pergunta": "Uma pessoa compra só produtos 'sustentáveis', mas troca tudo todo mês. Isso é um comportamento sustentável completo?",
+   "ancora": "Mesmo produtos sustentáveis pesam se trocados o tempo todo.",
+   "alternativas": [
+    {
+     "texto": "Não, porque trocar demais ainda gasta muitos recursos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque o rótulo do produto já garante isso",
+     "correta": false,
+     "feedbackErro": "O rótulo indica cuidado na fabricação, mas trocar toda hora ainda consome muito mais recursos."
+    },
+    {
+     "texto": "Sim, porque produtos sustentáveis não têm limite de consumo",
+     "correta": false,
+     "feedbackErro": "Nenhum produto, mesmo sustentável, deixa de gastar recursos quando trocado com muita frequência."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "comportamento-sustentavel",
+   "criterio": "É um comportamento sustentável?",
+   "enunciado": "Comprar uma quantidade grande de comida perecível que não vai dar tempo de consumir",
+   "resposta": false,
+   "ancora": "Comprar além do que se consome gera desperdício de alimento.",
+   "feedbackErro": "Comprar em quantidade parece economia, mas se sobra e estraga, o desperdício pesa mais."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "impacto-do-consumismo",
+   "instrucao": "Ainda pesa pro planeta, mesmo parecendo bom? Arraste.",
+   "ancora": "Pesa trocar demais ou desperdiçar, mesmo com boas intenções.",
+   "feedbackErro": "Trocar toda hora e desperdiçar comida ainda pesam, mesmo parecendo cuidado — usar até gastar e doar reduzem.",
+   "caixas": [
+    { "id": "sim", "rotulo": "Ainda pesa" },
+    { "id": "nao", "rotulo": "Não pesa" }
+   ],
+   "itens": [
+    { "texto": "Trocar tudo por versão 'sustentável' todo mês", "caixaCorreta": "sim" },
+    { "texto": "Comprar em excesso comida que vai estragar", "caixaCorreta": "sim" },
+    { "texto": "Usar um produto durável até ele realmente gastar", "caixaCorreta": "nao" },
+    { "texto": "Doar o que sobrou, em vez de descartar", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "comportamento-sustentavel",
+   "criterio": "É um comportamento sustentável?",
+   "enunciado": "Comprar um eletrodoméstico mais caro, mas que gasta bem menos energia",
+   "resposta": true,
+   "ancora": "Gastar menos energia com o tempo compensa o preço maior.",
+   "feedbackErro": "O preço maior parece o oposto de economia, mas gastar menos energia por anos compensa o investimento."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-do-consumismo",
+   "dificuldade": 3,
+   "pergunta": "Uma família usa 3 sacolas plásticas por ida ao mercado, 2 vezes por semana. Em 6 semanas, quantas sacolas?",
+   "ancora": "3 sacolas × 2 idas × 6 semanas dá 36 sacolas.",
+   "verificacao": { "expressao": "3*2*6", "esperado": 36 },
+   "alternativas": [
+    {
+     "texto": "36 sacolas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "12 sacolas",
+     "correta": false,
+     "feedbackErro": "12 contaria só as idas ao mercado (2×6), sem multiplicar pelas 3 sacolas de cada vez. O total é 36."
+    },
+    {
+     "texto": "18 sacolas",
+     "correta": false,
+     "feedbackErro": "18 usaria só parte da conta. É 3 sacolas vezes 2 idas vezes 6 semanas, que dá 36."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "comportamento-sustentavel",
+   "criterio": "Isso ajuda o planeta?",
+   "enunciado": "Reduzir o consumo de carne algumas vezes por semana",
+   "resposta": true,
+   "ancora": "Menos consumo de carne reduz o uso de água e terra na produção.",
+   "feedbackErro": "Parece só uma questão de gosto, mas produzir carne usa muito mais água e terra que outros alimentos."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "impacto-do-consumismo",
+   "criterio": "Isso reduz o impacto no planeta?",
+   "enunciado": "Comprar em maior quantidade um produto que será usado aos poucos, sem estragar",
+   "resposta": true,
+   "ancora": "Comprar o necessário, mesmo em maior volume, evita embalagens extras.",
+   "feedbackErro": "Parece que comprar mais é sempre pior, mas sem estragar, comprar maior reduz embalagens extras."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "comportamento-sustentavel",
+   "pergunta": "Depois de tudo isso, qual é a ideia mais completa sobre consumo e planeta?",
+   "alternativas": [
+    {
+     "texto": "Produto 'sustentável' pode ser trocado o quanto quiser sem problema",
+     "correta": false,
+     "feedbackErro": "Mesmo produtos sustentáveis pesam pro planeta se forem trocados com muita frequência."
+    },
+    {
+     "texto": "O que importa é durar, ser bem usado e não virar desperdício",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só comida orgânica evita impacto no meio ambiente",
+     "correta": false,
+     "feedbackErro": "Impacto vem de vários hábitos, como desperdiçar e trocar demais — não só do tipo de alimento."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "impacto-do-consumismo",
+   "dificuldade": 3,
+   "pergunta": "Uma escola usa 25 copos descartáveis por dia, 5 dias por semana. Em 4 semanas, quantos copos?",
+   "ancora": "25 copos × 5 dias × 4 semanas dá 500 copos.",
+   "verificacao": { "expressao": "25*5*4", "esperado": 500 },
+   "alternativas": [
+    {
+     "texto": "500 copos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "125 copos",
+     "correta": false,
+     "feedbackErro": "125 é o total de uma semana só (25×5). Em 4 semanas, multiplique também por 4: 500."
+    },
+    {
+     "texto": "100 copos",
+     "correta": false,
+     "feedbackErro": "100 usaria só 4 copos por dia. Sendo 25 por dia, 5 dias, 4 semanas, o total é 500."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "comportamento-sustentavel",
+   "instrucao": "É sustentável de verdade? Arraste.",
+   "ancora": "Sustentável de verdade é durar, reaproveitar e não desperdiçar.",
+   "feedbackErro": "Trocar demais ou desperdiçar comida ainda pesam, mesmo com boas intenções — durar e reaproveitar é o que conta.",
+   "caixas": [
+    { "id": "sim", "rotulo": "É sustentável" },
+    { "id": "nao", "rotulo": "Não é" }
+   ],
+   "itens": [
+    { "texto": "Comprar durável e usar até o fim da vida útil", "caixaCorreta": "sim" },
+    { "texto": "Trocar por 'sustentável' toda semana", "caixaCorreta": "nao" },
+    { "texto": "Doar o que não usa mais, em vez de acumular", "caixaCorreta": "sim" },
+    { "texto": "Comprar mais comida do que dá tempo de consumir", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "impacto-do-consumismo",
+   "criterio": "Isso afeta o planeta?",
+   "enunciado": "Comprar uma quantidade de roupa maior do que a família realmente usa",
+   "resposta": true,
+   "ancora": "Roupa parada no armário ainda representa recursos gastos à toa.",
+   "feedbackErro": "Parece só um armário cheio, mas cada peça parada representa recursos gastos sem necessidade real."
+  }
+ ]
+}

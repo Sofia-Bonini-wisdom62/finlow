@@ -1,0 +1,330 @@
+{
+ "slug": "imposto-servico-publico-e-voce",
+ "segmento": "em3",
+ "conceitoPrincipal": "imposto-servico-publico-e-voce",
+ "fraseConceito": "Todo mundo paga imposto — a maior parte escondida nos preços — e todo cidadão tem o direito de cobrar de volta o serviço que financia.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "imposto-embutido",
+   "criterio": "Tem imposto embutido?",
+   "enunciado": "O pacote de arroz do mercado",
+   "resposta": true,
+   "ancora": "Parte do preço já é tributo: quem consome, paga imposto.",
+   "feedbackErro": "Não aparece separado na etiqueta, e por isso parece não existir. Mas dentro do preço do arroz há tributos recolhidos na cadeia — você paga sem ver."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "imposto-embutido",
+   "criterio": "Tem imposto embutido?",
+   "enunciado": "A recarga do celular",
+   "resposta": true,
+   "ancora": "Em telecom, cerca de um terço do valor pago é tributo.",
+   "feedbackErro": "Serviço digital parece fora do alcance do fisco — engano comum. Telefonia é dos setores mais tributados: de cada R$ 30 de recarga, uns R$ 10 são imposto."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "imposto-embutido",
+   "criterio": "Tem imposto embutido?",
+   "enunciado": "O dinheiro parado na sua carteira",
+   "resposta": false,
+   "ancora": "Guardar não gera tributo; ganhar e gastar, sim.",
+   "feedbackErro": "Se tudo tem imposto, a nota parada também teria — é a generalização que engana. Tributo incide sobre fluxo: renda, consumo, propriedade. Dinheiro parado, não."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "imposto-embutido",
+   "dificuldade": 1,
+   "pergunta": "Se até quem é isento de Imposto de Renda paga imposto, por onde ele paga?",
+   "ancora": "Pelo consumo: tributo embutido em cada preço, de todos, sempre.",
+   "alternativas": [
+    {
+     "texto": "Pelo consumo: tributo embutido nos preços",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não paga: isento é isento de tudo",
+     "correta": false,
+     "feedbackErro": "A isenção do IR é real — mas cobre só a renda. No mercado, na conta de luz e na recarga, o tributo embutido cobra de todos, sem pedir declaração."
+    },
+    {
+     "texto": "Só paga quando viaja para fora",
+     "correta": false,
+     "feedbackErro": "Compras no exterior têm imposto, verdade. Mas o grosso é aqui e agora: cada compra do dia a dia carrega tributo no preço — sem passaporte."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "imposto-embutido",
+   "dificuldade": 1,
+   "pergunta": "De um produto de R$ 80, 25% do preço é tributo. Quantos reais vão em imposto?",
+   "ancora": "25% de R$ 80 = R$ 20: um quarto do preço nem é do produto.",
+   "verificacao": {
+    "expressao": "80*0.25",
+    "esperado": 20,
+    "tolerancia": 0.01
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 20",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 25",
+     "correta": false,
+     "feedbackErro": "Você transformou os 25% direto em reais. Porcentagem é fração do preço: 25% de R$ 80 são R$ 20. Se o produto custasse R$ 100, aí sim seriam R$ 25."
+    },
+    {
+     "texto": "R$ 5",
+     "correta": false,
+     "feedbackErro": "R$ 5 seria um tributo de 6,25% — bem menor que o real. A conta é 80 × 0,25 = 20. Um quarto do que você paga não compra produto: paga tributo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "arrecadacao-e-servico",
+   "criterio": "É para isso que serve?",
+   "enunciado": "Imposto financia escola, SUS, estrada e segurança",
+   "resposta": true,
+   "ancora": "Tributo é a mensalidade do país: sem ela, serviço público não existe.",
+   "feedbackErro": "Com serviço ruim, parece que o dinheiro não vira nada — a revolta é compreensível. Mas SUS, escola e estrada saem daí. A pergunta certa é se está bem aplicado."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "arrecadacao-e-servico",
+   "instrucao": "Toque na ordem do caminho do seu dinheiro.",
+   "ancora": "Preço → cofre público → orçamento → serviço na ponta.",
+   "feedbackErro": "O caminho tem direção única: você paga no preço, o valor entra no cofre público, o orçamento divide por área e o serviço chega (ou não) na ponta.",
+   "itens": [
+    {
+     "texto": "Você paga o tributo dentro do preço",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "O valor entra nos cofres públicos",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "O orçamento divide por área",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "O serviço chega (ou não) até você",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "sonegacao",
+   "criterio": "Sonegar prejudica você?",
+   "enunciado": "Empresa vende sem nota e fica com o tributo do preço",
+   "resposta": true,
+   "ancora": "O serviço que falta na ponta é pago pela nota que não saiu.",
+   "feedbackErro": "Parece briga entre empresa e governo, longe de você. Mas o tributo já estava no preço que você pagou — sem nota, vira lucro privado e falta no serviço público."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "fiscalizacao-cidada",
+   "criterio": "Isso é fiscalizar?",
+   "enunciado": "Pedir a nota fiscal na compra",
+   "resposta": true,
+   "ancora": "A nota registra a venda: com ela, o tributo tem para onde ir.",
+   "feedbackErro": "Parece burocracia de papelzinho. Mas a nota é o rastro do tributo: sem registro, o valor embutido no preço some no caixa. Pedir nota é fiscalização de bolso."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "imposto-embutido",
+   "pergunta": "De cada R$ 100 produzidos no Brasil em um ano, quantos viram tributo?",
+   "campo": "numero",
+   "min": 5,
+   "max": 80,
+   "gabarito": 33,
+   "toleranciaPct": 20,
+   "fonte": "carga tributária brasileira, ~33% do PIB (Receita Federal)",
+   "feedbackPerto": "Isso: cerca de um terço de tudo que o país produz passa pelo cofre público. Por isso a aplicação desse dinheiro é assunto seu.",
+   "feedbackLonge": "~R$ 33 de cada R$ 100. Quem chuta baixo sofre do viés da invisibilidade: como a maior parte vem embutida nos preços, parece que quase não se paga."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "imposto-embutido",
+   "dificuldade": 1,
+   "pergunta": "Renato diz que nunca pagou imposto porque não declara IR. O que a recarga do celular dele responde?",
+   "ancora": "Quem consome paga: a fatura já leva um terço de tributo embutido.",
+   "alternativas": [
+    {
+     "texto": "Que ele tem razão: sem IR, sem imposto",
+     "correta": false,
+     "feedbackErro": "Ele acerta que não paga IR — a renda dele é isenta. Mas IR é uma porta entre várias: cada recarga, compra e conta de luz dele carrega tributo embutido."
+    },
+    {
+     "texto": "Que cerca de um terço dela já é tributo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que celular é isento de imposto por lei",
+     "correta": false,
+     "feedbackErro": "É o oposto: telecom está entre os setores mais tributados do país. A isenção que ele tem é do IR — no consumo, ninguém é isento."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "fiscalizacao-cidada",
+   "dificuldade": 1,
+   "pergunta": "A praça do bairro está abandonada há meses. Qual atitude usa o poder de cidadão?",
+   "ancora": "Reclamação registrada gera protocolo — e protocolo gera obrigação.",
+   "alternativas": [
+    {
+     "texto": "Reclamar no grupo da família e pronto",
+     "correta": false,
+     "feedbackErro": "Reclamar mostra que você viu o problema — é o primeiro passo. Mas desabafo não gera protocolo. Registrado na ouvidoria, o mesmo incômodo vira cobrança oficial."
+    },
+    {
+     "texto": "Registrar na ouvidoria e cobrar a prefeitura",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Esperar que alguém resolva algum dia",
+     "correta": false,
+     "feedbackErro": "A espera parte de uma ideia errada: que o serviço é favor. Você já pagou por ele em cada compra — cobrar não é incômodo, é contrapartida."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "fiscalizacao-cidada",
+   "criterio": "O dinheiro é de quem?",
+   "enunciado": "O orçamento público é dinheiro dos governantes",
+   "resposta": false,
+   "ancora": "É arrecadado de todos: governante administra, não é dono.",
+   "feedbackErro": "'O governo deu' é força de expressão que confunde: o governo não tem dinheiro próprio. Administra o que arrecadou de todos — e devolver em serviço é obrigação."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "fiscalizacao-cidada",
+   "criterio": "Pagar dá direito?",
+   "enunciado": "Quem paga tributo tem o direito de cobrar o serviço",
+   "resposta": true,
+   "ancora": "Cobrar serviço bom não é favor: é a contrapartida do que você paga.",
+   "feedbackErro": "Cobrar parece atrevimento — o Estado intimida. Mas a relação é de contrato: você financia em cada preço; fiscalizar a entrega é o seu lado do acordo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "imposto-servico-publico-e-voce",
+   "dificuldade": 1,
+   "pergunta": "Qual frase resume o encontro de hoje?",
+   "alternativas": [
+    {
+     "texto": "Imposto é dinheiro perdido: melhor nem pensar nisso.",
+     "correta": false,
+     "feedbackErro": "É um terço do que o país produz — ignorar é abrir mão de cobrar."
+    },
+    {
+     "texto": "Você já paga em cada preço — então tem o direito de cobrar o serviço.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só rico e empresário pagam imposto no Brasil.",
+     "correta": false,
+     "feedbackErro": "O tributo embutido no consumo cobra de todos — até de quem é isento de IR."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "imposto-embutido",
+   "instrucao": "Arraste: tem tributo embutido ou não?",
+   "ancora": "Comprou ou consumiu, pagou tributo; parado ou feito em casa, não.",
+   "feedbackErro": "O critério é a transação: onde há venda registrada de produto ou serviço, há tributo no preço. Dinheiro parado e produção caseira ficam fora do fisco.",
+   "caixas": [
+    {
+     "id": "tem",
+     "rotulo": "Tem tributo"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não tem"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Gasolina no posto",
+     "caixaCorreta": "tem"
+    },
+    {
+     "texto": "Energia elétrica da casa",
+     "caixaCorreta": "tem"
+    },
+    {
+     "texto": "Nota de R$ 50 guardada na gaveta",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Presente feito à mão por você",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "sonegacao",
+   "dificuldade": 2,
+   "pergunta": "Por que sonegação não é 'esperteza sem vítima'?",
+   "ancora": "O tributo sonegado falta no serviço — e sobra na conta de quem paga.",
+   "alternativas": [
+    {
+     "texto": "Porque a multa é alta demais",
+     "correta": false,
+     "feedbackErro": "A multa pune o sonegador — mas ela não é a vítima da história. A vítima é quem fica sem o serviço que aquele tributo pagaria: a sociedade que pagou certinho."
+    },
+    {
+     "texto": "Porque falta serviço e sobra conta para quem paga",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque o governo sempre descobre",
+     "correta": false,
+     "feedbackErro": "Nem sempre descobre — e é aí que mora o dano. O problema da sonegação não é o risco de ser pego: é o buraco que ela deixa no que é de todos."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "fiscalizacao-cidada",
+   "criterio": "Cidadão pode?",
+   "enunciado": "Qualquer pessoa pode consultar o gasto público na internet",
+   "resposta": true,
+   "ancora": "Portais da transparência são abertos: orçamento é documento público.",
+   "feedbackErro": "Parece coisa restrita a jornalista ou auditor. Não é: os portais da transparência mostram salários, contratos e obras a qualquer pessoa, sem senha nem justificativa."
+  }
+ ]
+}

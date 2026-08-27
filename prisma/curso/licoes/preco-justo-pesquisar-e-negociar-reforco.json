@@ -1,0 +1,324 @@
+{
+ "slug": "preco-justo-pesquisar-e-negociar-reforco",
+ "segmento": "em1",
+ "conceitoPrincipal": "preco-justo-pesquisar-e-negociar",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-total",
+   "criterio": "Muda o quanto sai do seu bolso?",
+   "enunciado": "Taxa de conveniência de R$ 12 no ingresso",
+   "resposta": true,
+   "ancora": "Taxa obrigatória é preço com outro nome.",
+   "feedbackErro": "Qual era o critério? Muda o número que sai da conta. A taxa muda: o ingresso de R$ 80 custa, na verdade, R$ 92."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-total",
+   "criterio": "Muda o quanto sai do seu bolso?",
+   "enunciado": "O vendedor ser simpático no atendimento",
+   "resposta": false,
+   "ancora": "Simpatia ajuda a conversa, não muda o valor da nota.",
+   "feedbackErro": "Simpatia facilita negociar — mas, sozinha, não altera a nota. Cuidado com o inverso: atendimento agradável costuma soltar o freio da compra."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-total",
+   "criterio": "Muda o quanto sai do seu bolso?",
+   "enunciado": "Cupom de 15% que vence hoje à noite",
+   "resposta": true,
+   "ancora": "Muda a conta — mas o relógio correndo também é pressão.",
+   "feedbackErro": "O cupom muda o total, sim. Só repare no truque que vem junto: o prazo apertado quer impedir justamente o que te protege — comparar fora."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-total",
+   "dificuldade": 2,
+   "pergunta": "Mochila: R$ 84 com frete de R$ 19, ou R$ 97 com frete grátis. Onde está o menor custo total?",
+   "ancora": "84 + 19 = 103 contra 97: o frete grátis vence por R$ 6.",
+   "verificacao": {
+    "expressao": "84+19-97",
+    "esperado": 6
+   },
+   "alternativas": [
+    {
+     "texto": "Na de R$ 97: seis reais mais barata no total",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Na de R$ 84: menor número na etiqueta",
+     "correta": false,
+     "feedbackErro": "Com o frete, ela fecha em R$ 103. Números quebrados dificultam a conta de cabeça — e é justamente aí que a etiqueta menor engana mais."
+    },
+    {
+     "texto": "Empate técnico: dá na mesma",
+     "correta": false,
+     "feedbackErro": "R$ 6 de diferença é real e paga um lanche. 'Dá na mesma' costuma ser a preguiça da soma falando — e ela cobra caro no ano."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "pesquisa-de-preco",
+   "dificuldade": 2,
+   "pergunta": "O histórico mostra que a 'oferta' de R$ 199 era o preço normal do produto há meses. O que muda?",
+   "ancora": "Sem corte real sobre o preço praticado, não há desconto.",
+   "alternativas": [
+    {
+     "texto": "Tudo: sem corte real, o desconto é encenação",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: R$ 199 segue sendo barato",
+     "correta": false,
+     "feedbackErro": "Barato comparado a quê? A referência não pode ser o 'de' da própria loja. Sem histórico ou concorrente confirmando, 'barato' é só slogan."
+    },
+    {
+     "texto": "O histórico deve estar errado",
+     "correta": false,
+     "feedbackErro": "Rastreadores de preço registram a etiqueta dia a dia — errar é raro. Já inflar o 'de' na semana da promoção é prática velha e documentada."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-total",
+   "criterio": "Muda o quanto sai do seu bolso?",
+   "enunciado": "Garantia estendida oferecida no caixa",
+   "resposta": true,
+   "ancora": "É custo adicional opcional: entra na conta se você aceitar.",
+   "feedbackErro": "Se aceitar, o total sobe agora — por uma proteção que talvez duplique a garantia que o produto já tem por lei. Decida com a conta, não no susto."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "custo-total",
+   "instrucao": "O que entra na conta da compra?",
+   "ancora": "Entra o que muda o total; pressão e fama ficam de fora.",
+   "feedbackErro": "O critério segue o do primeiro encontro: entra o que altera o valor pago — juros, frete, taxa. Medo de perder a oferta e fama de anúncio não são números.",
+   "caixas": [
+    {
+     "id": "entra",
+     "rotulo": "Entra na conta"
+    },
+    {
+     "id": "fora",
+     "rotulo": "Fica de fora"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Juros das 12 parcelas",
+     "caixaCorreta": "entra"
+    },
+    {
+     "texto": "Frete e taxa de instalação",
+     "caixaCorreta": "entra"
+    },
+    {
+     "texto": "O influencer que anunciou o produto",
+     "caixaCorreta": "fora"
+    },
+    {
+     "texto": "O medo de a oferta acabar",
+     "caixaCorreta": "fora"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "negociacao",
+   "criterio": "Dá para negociar aqui?",
+   "enunciado": "O valor do conserto na assistência de celular",
+   "resposta": true,
+   "ancora": "Serviço tem margem e concorrente na esquina: orce dois.",
+   "feedbackErro": "Serviço quase sempre negocia: mão de obra tem margem flexível. Com dois orçamentos na mão, o 'quanto você faz?' vira pergunta com resposta."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "negociacao",
+   "criterio": "Isso fortalece a negociação?",
+   "enunciado": "Pesquisar preços só depois de fechar o negócio",
+   "resposta": false,
+   "ancora": "Pesquisa é antes: é ela que põe número na sua proposta.",
+   "feedbackErro": "Depois de fechado, o número só serve para arrependimento. A ordem certa inverte o jogo: pesquisa primeiro, e a informação vira seu argumento."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-total",
+   "pergunta": "Geladeira: R$ 2.150 à vista ou 12 parcelas de R$ 205. Quanto a mais custa a parcelada?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 1000,
+   "gabarito": 310,
+   "toleranciaPct": 20,
+   "fonte": "conta do próprio enunciado (12 × 205 − 2.150)",
+   "verificacao": {
+    "expressao": "205*12-2150",
+    "esperado": 310
+   },
+   "feedbackPerto": "R$ 310 de diferença — uns 14% a mais pelo prazo. Agora a escolha é informada.",
+   "feedbackLonge": "12 × R$ 205 = R$ 2.460, contra R$ 2.150: R$ 310. A âncora na parcela esconde o total — multiplicar é o antídoto."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "negociacao",
+   "dificuldade": 2,
+   "pergunta": "Ícaro quer desconto no sofá de R$ 1.480. Qual proposta tende a funcionar melhor?",
+   "ancora": "Proposta boa tem valor, prova e fechamento: 'à vista, hoje'.",
+   "alternativas": [
+    {
+     "texto": "R$ 1.350 à vista hoje, citando o anúncio concorrente",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pedir 'um descontinho' sem valor definido",
+     "correta": false,
+     "feedbackErro": "Sem número, quem escolhe o tamanho do desconto é o vendedor — e ele escolhe pequeno. Proposta concreta muda o centro da conversa para o seu valor."
+    },
+    {
+     "texto": "Dizer que volta mês que vem se não baixar",
+     "correta": false,
+     "feedbackErro": "Ameaça vaga não fecha venda nenhuma hoje, e o vendedor sabe. O que move a conversa é o contrário: mostrar que dá para fechar agora, no seu preço."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-total",
+   "dificuldade": 2,
+   "pergunta": "Entrega expressa por R$ 15 ou grátis em 12 dias. Quando pagar pelo frete rápido faz sentido?",
+   "ancora": "Prazo tem preço quando esperar custa algo real.",
+   "alternativas": [
+    {
+     "texto": "Quando esperar custa mais que R$ 15 — presente com data",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nunca: frete grátis sempre vence",
+     "correta": false,
+     "feedbackErro": "Se o produto é para o aniversário de sábado, chegar em 12 dias custa o presente inteiro. Prazo é parte da conta — às vezes a parte mais cara."
+    },
+    {
+     "texto": "Sempre: rápido é melhor por definição",
+     "correta": false,
+     "feedbackErro": "Sem urgência real, os R$ 15 compram uma espera que não te custava nada. Velocidade só vale o preço quando o tempo tem uso."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-total",
+   "criterio": "Muda o quanto sai do seu bolso?",
+   "enunciado": "Cashback de 5% que cai depois da compra",
+   "resposta": true,
+   "ancora": "Dinheiro que volta muda o custo final — se voltar mesmo.",
+   "feedbackErro": "Muda: 5% de volta é desconto adiado. Só confira as condições — cashback preso na carteira do aplicativo, com validade, vale menos que desconto na hora."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "pesquisa-de-preco",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Quem pesquisa demais perde as boas ofertas",
+   "resposta": false,
+   "ancora": "Oferta de verdade sobrevive a dez minutos de comparação.",
+   "feedbackErro": "Alguma oferta relâmpago se perde, sim — e tudo bem. O 'compre já ou perca' derruba mais gente do que a espera: pressa é a ferramenta de quem vende caro."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "preco-justo-pesquisar-e-negociar",
+   "pergunta": "Qual frase leva o reforço para casa?",
+   "alternativas": [
+    {
+     "texto": "Some o total, desconfie do 'de/por' e negocie com número na mão.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Oferta boa se fecha na hora, sem conferir.",
+     "correta": false,
+     "feedbackErro": "A pressa é sempre do vendedor. Dez minutos de conferência custam pouco e desmontam oferta falsa."
+    },
+    {
+     "texto": "Frete grátis garante o menor custo total.",
+     "correta": false,
+     "feedbackErro": "A mochila de R$ 97 venceu, mas porque a soma disse — não pelo selo de frete grátis."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "negociacao",
+   "instrucao": "Toque na ordem: negociação com mais chance de desconto.",
+   "ancora": "Pesquisa → limite → proposta → fecho (ou saída sem culpa).",
+   "feedbackErro": "Sem pesquisa não há argumento; sem limite você aceita qualquer contraproposta; sem oferta concreta não há decisão — e sair é sempre opção legítima.",
+   "itens": [
+    {
+     "texto": "Pesquisar o preço nos concorrentes",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Definir o máximo que você paga",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Fazer a proposta citando a pesquisa",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Fechar — ou ir embora sem culpa",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "custo-total",
+   "pergunta": "Cupom de 15% numa compra de R$ 260. Qual o valor final?",
+   "campo": "moeda",
+   "min": 100,
+   "max": 260,
+   "gabarito": 221,
+   "toleranciaPct": 20,
+   "fonte": "conta do próprio enunciado (260 × 0,85)",
+   "verificacao": {
+    "expressao": "260*0.85",
+    "esperado": 221
+   },
+   "feedbackPerto": "R$ 221 — o cupom tirou R$ 39. Desconto percentual se converte em reais para pesar na decisão.",
+   "feedbackLonge": "15% de R$ 260 são R$ 39; ficam R$ 221. O deslize comum é subtrair 15 como se fosse valor em reais, não porcentagem."
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custo-total",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Parcelado 'sem juros' nunca embute custo",
+   "resposta": false,
+   "ancora": "O custo pode estar dentro do preço — teste pedindo o à vista.",
+   "feedbackErro": "O 'sem juros' costuma morar dentro do preço cheio, pago por todos. O teste: pergunte o valor à vista. Se cair, o parcelado tinha custo escondido."
+  }
+ ]
+}

@@ -1,0 +1,151 @@
+{
+ "slug": "o-dinheiro-serve-pra-que",
+ "segmento": "ef12",
+ "conceitoPrincipal": "o-dinheiro-serve-pra-que",
+ "fraseConceito": "Dinheiro é o que todo mundo aceita trocar por coisas, em moedas e notas com valor certo.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "funcao-do-dinheiro",
+   "criterio": "Dá pra trocar por coisas?",
+   "enunciado": "O dinheiro",
+   "resposta": true,
+   "ancora": "Dinheiro troca por comida, roupa, brinquedo — quase tudo.",
+   "feedbackErro": "Parece só papel e metal, e por isso é fácil duvidar. Mas todo mundo aceita trocar coisas por ele — é pra isso que ele serve."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "funcao-do-dinheiro",
+   "criterio": "Dá pra trocar por coisas?",
+   "enunciado": "Uma pedra do quintal",
+   "resposta": false,
+   "ancora": "Ninguém troca pão por uma pedra. Só dinheiro serve pra isso.",
+   "feedbackErro": "Pedra também é um objeto que existe, dá pra pensar que serve igual. Mas ninguém aceita pedra na padaria — só o dinheiro tem esse combinado."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "moedas-e-notas",
+   "criterio": "Essa moeda ou nota existe no Brasil?",
+   "enunciado": "Moeda de R$ 1,00",
+   "resposta": true,
+   "ancora": "R$1 é uma das moedas do Brasil.",
+   "feedbackErro": "Nem toda moeda parece familiar de cara. Mas R$1 é uma moeda oficial brasileira, bem comum no troco."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "moedas-e-notas",
+   "criterio": "Essa moeda ou nota existe no Brasil?",
+   "enunciado": "Nota de R$ 3,00",
+   "resposta": false,
+   "ancora": "Não existe nota de R$3 no Brasil.",
+   "feedbackErro": "R$3 é um valor comum de se gastar, dá pra achar que existe uma nota assim. Mas as notas são R$2, R$5, R$10, R$20, R$50 e R$100 — R$3 não é uma delas."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "moedas-e-notas",
+   "instrucao": "É moeda ou é nota?",
+   "ancora": "Valores pequenos são moeda. Valores maiores são nota.",
+   "feedbackErro": "R$1 pode confundir, porque já parece um valor 'inteiro'. Mas no Brasil R$1 ainda é moeda — nota começa em R$2.",
+   "caixas": [
+    { "id": "moeda", "rotulo": "Moeda" },
+    { "id": "nota", "rotulo": "Nota" }
+   ],
+   "itens": [
+    { "texto": "R$ 0,25", "caixaCorreta": "moeda" },
+    { "texto": "R$ 10,00", "caixaCorreta": "nota" },
+    { "texto": "R$ 1,00", "caixaCorreta": "moeda" },
+    { "texto": "R$ 50,00", "caixaCorreta": "nota" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "funcao-do-dinheiro",
+   "criterio": "Dá pra usar isso pra comprar pão?",
+   "enunciado": "Nota de R$ 5,00",
+   "resposta": true,
+   "ancora": "R$5 compra pão na padaria.",
+   "feedbackErro": "R$5 é um valor pequeno perto de outras notas, parece pouco pra comprar algo. Mas dá pra comprar pão e ainda sobra troco."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "funcao-do-dinheiro",
+   "criterio": "Isso serve pra guardar dinheiro?",
+   "enunciado": "O cofrinho",
+   "resposta": true,
+   "ancora": "Cofrinho guarda moedas e notas até juntar mais.",
+   "feedbackErro": "Cofrinho parece só um brinquedo de casa, não uma coisa 'financeira'. Mas ele serve justamente pra isso: guardar o dinheiro até juntar mais."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "funcao-do-dinheiro",
+   "dificuldade": 1,
+   "pergunta": "Pra que serve o dinheiro?",
+   "ancora": "Serve pra trocar por coisas que as pessoas aceitam.",
+   "alternativas": [
+    {
+     "texto": "Só pra guardar em casa",
+     "correta": false,
+     "feedbackErro": "Guardar é uma parte, mas não é só isso. O dinheiro também serve pra trocar por coisas que você precisa."
+    },
+    {
+     "texto": "Pra trocar por coisas que as pessoas combinaram aceitar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pra ser mais bonito que uma pedra",
+     "correta": false,
+     "feedbackErro": "Aparência não é o que importa. O que importa é que todo mundo aceita trocar coisas por ele."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "moedas-e-notas",
+   "instrucao": "Toque na ordem da menor pra maior nota.",
+   "ancora": "Ordem pelo valor escrito na nota.",
+   "feedbackErro": "É fácil ordenar pela cor ou pelo desenho da nota. O que importa é o número escrito nela.",
+   "itens": [
+    { "texto": "Nota de R$ 2,00", "posicaoCorreta": 1 },
+    { "texto": "Nota de R$ 10,00", "posicaoCorreta": 2 },
+    { "texto": "Nota de R$ 50,00", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "moedas-e-notas",
+   "pergunta": "Quantas moedas de R$ 0,25 formam R$ 1,00?",
+   "campo": "numero",
+   "min": 1,
+   "max": 10,
+   "gabarito": 4,
+   "toleranciaPct": 20,
+   "fonte": "sistema monetário brasileiro (Banco Central)",
+   "verificacao": { "expressao": "1/0.25", "esperado": 4 },
+   "feedbackPerto": "Isso mesmo, 4 moedas de R$0,25 fecham R$1,00.",
+   "feedbackLonge": "São 4 moedas: 0,25 quatro vezes dá R$1,00 certinho."
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "funcao-do-dinheiro",
+   "criterio": "Dá pra comprar um lápis de R$3 com isso?",
+   "enunciado": "Nota de R$ 2,00 sozinha",
+   "resposta": false,
+   "ancora": "R$2 é menos que R$3.",
+   "feedbackErro": "R$2 é quase R$3, dá pra achar que já dá. Mas falta R$1 pra fechar o preço do lápis."
+  }
+ ]
+}

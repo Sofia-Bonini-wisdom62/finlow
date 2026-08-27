@@ -1,0 +1,336 @@
+{
+ "slug": "o-custo-depois-da-compra",
+ "segmento": "ef89",
+ "conceitoPrincipal": "o-custo-depois-da-compra",
+ "fraseConceito": "Comprar é só a primeira conta: manter, consertar e pagar imposto vêm depois — e o jeito de produzir também cobra um preço social.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "Aparece depois da compra?",
+   "enunciado": "Pagar a internet do videogame todo mês",
+   "resposta": true,
+   "ancora": "Mensalidade é custo de posse: paga mesmo sem comprar nada novo.",
+   "feedbackErro": "Parece parte do próprio jogo, mas é conta separada: a internet chega todo mês, mesmo que você não compre nenhum jogo novo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "Aparece depois da compra?",
+   "enunciado": "O preço do videogame na loja",
+   "resposta": false,
+   "ancora": "Preço de etiqueta é custo de aquisição — pago uma vez, na hora.",
+   "feedbackErro": "Dá para achar que todo gasto grande é 'depois'. Mas o preço da loja é o custo de aquisição: acontece uma vez, no dia da compra."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "Aparece depois da compra?",
+   "enunciado": "Trocar a bateria do fone bluetooth depois de um ano",
+   "resposta": true,
+   "ancora": "Uso desgasta peça — trocar bateria é custo de manter o aparelho.",
+   "feedbackErro": "O fone já foi pago, e por isso parece que a conta acabou. Mas o uso desgasta a bateria, e trocá-la é um custo novo, criado depois."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-de-posse",
+   "dificuldade": 1,
+   "pergunta": "Rafael pagou R$ 900 no patinete, R$ 300 numa bateria nova e R$ 50 de manutenção. Total gasto?",
+   "ancora": "900 + 300 + 50 = 1.250. A compra é só a primeira parcela da conta.",
+   "verificacao": {
+    "expressao": "900+300+50",
+    "esperado": 1250
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 900",
+     "correta": false,
+     "feedbackErro": "Esse é só o preço da loja. Bateria e manutenção também saíram do bolso dele — some os três valores."
+    },
+    {
+     "texto": "R$ 1.250",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 1.200",
+     "correta": false,
+     "feedbackErro": "Você somou o patinete com a bateria e esqueceu a manutenção de R$ 50. Some os três valores: R$ 1.250."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-da-producao",
+   "dificuldade": 1,
+   "pergunta": "Uma camiseta custa R$ 20, bem abaixo do preço médio do mercado. O que esse preço pode esconder?",
+   "ancora": "Preço muito baixo cobra de alguém — trabalho ou meio ambiente.",
+   "alternativas": [
+    {
+     "texto": "Um tecido de qualidade muito superior ao normal",
+     "correta": false,
+     "feedbackErro": "Preço baixo raramente vem de material melhor — geralmente é o contrário. Desconfie primeiro do que foi cortado para caber nesse preço."
+    },
+    {
+     "texto": "Condições de trabalho ruins ou dano ambiental",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: preço baixo é só eficiência da fábrica",
+     "correta": false,
+     "feedbackErro": "Eficiência existe, mas raramente explica sozinha uma diferença tão grande. Vale checar se quem produziu e o ambiente pagaram a conta."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "É custo que aparece depois da compra?",
+   "enunciado": "Multa de trânsito na moto que você comprou",
+   "resposta": true,
+   "ancora": "Multa nasce do uso errado — é custo de posse, não de compra.",
+   "feedbackErro": "A moto já foi paga, e por isso a multa parece 'separada'. Mas ela nasce de como você usa o que tem — é custo de posse, criado depois."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "custo-de-posse",
+   "instrucao": "Toque na ordem: do custo que mais pesa por ano ao que menos pesa.",
+   "ancora": "O que se repete todo mês pesa mais no ano que o que é raro.",
+   "feedbackErro": "A parcela grande de uma vez assusta, mas o que se repete todo mês soma mais no ano. Multiplique cada custo pelas vezes que ele se repete.",
+   "itens": [
+    {
+     "texto": "Plano de internet do celular — R$ 50 por mês",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Seguro contra roubo — R$ 240 por ano",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Troca de tela quebrada — R$ 150 (média no ano)",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Capinha nova — R$ 40 no ano",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "É custo de posse?",
+   "enunciado": "Pagar o conserto do zíper da mochila depois de um ano de uso",
+   "resposta": true,
+   "ancora": "Consertar o que usou é custo de manter, não de comprar.",
+   "feedbackErro": "A mochila já tinha sido paga inteira. Mas o uso desgasta o zíper, e consertá-lo é conta que nasce depois, pela posse."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "É custo de posse?",
+   "enunciado": "Pagar o frete para receber a mochila em casa",
+   "resposta": false,
+   "ancora": "Frete é custo de aquisição — cobrado junto com a compra.",
+   "feedbackErro": "Frete parece extra, e é mesmo um valor a mais. Mas ele é cobrado no momento da compra, junto com o produto — não depois dela."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-de-posse",
+   "pergunta": "Bicicleta de R$ 800 gasta cerca de R$ 15 por mês em manutenção. Soma em 2 anos?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 800,
+   "gabarito": 360,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: R$ 15 por mês × 24 meses de manutenção",
+   "verificacao": {
+    "expressao": "15*24",
+    "esperado": 360
+   },
+   "feedbackPerto": "Isso: R$ 360 em manutenção — quase metade do preço da bike, só para mantê-la rodando.",
+   "feedbackLonge": "Dá R$ 360. É fácil pensar só no valor mensal; multiplique pelos 24 meses para ver o total acumulado."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-de-posse",
+   "dificuldade": 1,
+   "pergunta": "Tênis A custa R$ 210 e dura 1 ano. Tênis B custa R$ 420 e dura 3 anos, sem custo extra. Qual custa menos por ano?",
+   "ancora": "420 ÷ 3 = R$ 140/ano contra R$ 210/ano do tênis A.",
+   "verificacao": {
+    "expressao": "420/3",
+    "esperado": 140
+   },
+   "alternativas": [
+    {
+     "texto": "Tênis A, porque custa menos na hora de comprar",
+     "correta": false,
+     "feedbackErro": "O preço na loja é menor, e é isso que chama atenção. Mas dividido pelos anos de uso, o A custa R$ 210/ano contra R$ 140/ano do B."
+    },
+    {
+     "texto": "Tênis B: R$ 140 por ano contra R$ 210 do A",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Os dois custam o mesmo por ano de uso",
+     "correta": false,
+     "feedbackErro": "420 ÷ 3 dá R$ 140 por ano; 210 ÷ 1 dá R$ 210. A diferença é real: dividir pelo tempo de uso muda a comparação."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-da-producao",
+   "dificuldade": 1,
+   "pergunta": "Uma fábrica corta custo despejando resíduos no rio da cidade. Quem acaba pagando essa conta?",
+   "ancora": "O custo ambiental não some — ele muda de quem paga.",
+   "alternativas": [
+    {
+     "texto": "Ninguém: reduzir custo de produção não tem consequência",
+     "correta": false,
+     "feedbackErro": "O preço da roupa parece menor, e por isso parece que ninguém perdeu. Mas a comunidade paga com água suja e saúde pior — o custo mudou de mão."
+    },
+    {
+     "texto": "A comunidade que usa o rio, com água e saúde piores",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só o dono da fábrica, no lucro que ele tem",
+     "correta": false,
+     "feedbackErro": "O dono economiza, então não é ele quem perde. Quem paga é quem depende do rio — a conta ambiental cai sobre a comunidade."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "É custo de posse?",
+   "enunciado": "O IPVA pago todo ano pelo dono do carro",
+   "resposta": true,
+   "ancora": "Imposto anual sobre ter o carro — típico custo de posse.",
+   "feedbackErro": "O carro já foi comprado uma vez, e por isso o IPVA parece estranho. Mas é imposto cobrado todo ano só por você ser dono — custo de posse puro."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "É custo de posse?",
+   "enunciado": "A entrada mais a primeira parcela do financiamento do carro",
+   "resposta": false,
+   "ancora": "Entrada e parcelas do financiamento são custo de aquisição.",
+   "feedbackErro": "Parecem gastos separados por virem em partes. Mas entrada e parcelas compõem o preço de compra do carro, não o custo de mantê-lo depois."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-custo-depois-da-compra",
+   "pergunta": "Qual frase resume o que você viu?",
+   "alternativas": [
+    {
+     "texto": "Comprar é só o primeiro gasto — manter e produzir também custam",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Depois de pago o preço da loja, nada mais custa",
+     "correta": false,
+     "feedbackErro": "É o contrário: manutenção, impostos e multas continuam aparecendo depois da compra."
+    },
+    {
+     "texto": "Preço baixo nunca tem relação com impacto ambiental",
+     "correta": false,
+     "feedbackErro": "Às vezes tem, sim: baratear a produção pode significar cortar custos ambientais ou trabalhistas."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "custo-de-posse",
+   "instrucao": "Custo de comprar ou custo de manter? Arraste.",
+   "ancora": "Custo de manter aparece depois, pelo uso.",
+   "feedbackErro": "O que se paga na loja é custo de comprar; o que se paga depois, pelo uso, é custo de manter.",
+   "caixas": [
+    {
+     "id": "comprar",
+     "rotulo": "Custo de comprar"
+    },
+    {
+     "id": "manter",
+     "rotulo": "Custo de manter"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Preço do videogame na loja",
+     "caixaCorreta": "comprar"
+    },
+    {
+     "texto": "Assinatura do serviço online do console",
+     "caixaCorreta": "manter"
+    },
+    {
+     "texto": "Frete da compra",
+     "caixaCorreta": "comprar"
+    },
+    {
+     "texto": "Troca do controle quebrado",
+     "caixaCorreta": "manter"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "impacto-da-producao",
+   "dificuldade": 2,
+   "pergunta": "Uma calça custa o mesmo em duas lojas, mas só uma fábrica paga salário justo. Preço igual prova que o salário não pesou?",
+   "ancora": "Preço final mistura marca, lucro e salário — nem sempre mostra tudo.",
+   "alternativas": [
+    {
+     "texto": "Sim: preço igual prova que o salário não pesa no custo",
+     "correta": false,
+     "feedbackErro": "Preço final envolve marca, propaganda e lucro, não só salário. Preço igual não prova que o custo do trabalho foi igual."
+    },
+    {
+     "texto": "Não: outros fatores do preço escondem a diferença",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim: o preço sempre mostra o custo real de produção",
+     "correta": false,
+     "feedbackErro": "O preço final soma marca, propaganda e lucro — raramente mostra sozinho o que cada trabalhador recebeu na fábrica."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "É custo de posse?",
+   "enunciado": "Trocar o óleo do carro a cada 10 mil km",
+   "resposta": true,
+   "ancora": "Manutenção periódica é o custo mais previsível da posse.",
+   "feedbackErro": "Parece rotina chata, mas é conta real: trocar óleo é manutenção — nasce do uso do carro, não da compra dele."
+  }
+ ]
+}

@@ -1,0 +1,270 @@
+{
+ "slug": "o-que-decide-por-voce-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "o-que-decide-por-voce",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fatores-internos",
+   "criterio": "Isso decidiu a compra por você?",
+   "enunciado": "Comprar um jogo caro logo após brigar com um amigo, pra 'se sentir melhor'",
+   "resposta": true,
+   "ancora": "A necessidade de se sentir melhor pesou mais que o preço do jogo.",
+   "feedbackErro": "Parece só um mimo depois de um dia ruim. Mas comprar pra aliviar uma emoção negativa é a emoção decidindo, não uma necessidade real."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fatores-internos",
+   "criterio": "Isso decidiu a compra por você?",
+   "enunciado": "Trocar de celular porque a bateria do antigo não segura mais o dia",
+   "resposta": false,
+   "ancora": "Necessidade prática, sem emoção nem pressão social envolvida.",
+   "feedbackErro": "Pode parecer que toda troca de aparelho esconde um viés. Mas bateria que não segura o dia é um problema real e concreto de uso."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "influencia-externa",
+   "criterio": "Isso decidiu a compra por você?",
+   "enunciado": "Comprar o mesmo boné que o grupo todo está usando essa semana",
+   "resposta": true,
+   "ancora": "O padrão do grupo pesou mais que a preferência individual.",
+   "feedbackErro": "Parece só coincidência de gosto. Mas seguir o boné que 'todo mundo' está usando essa semana é o grupo decidindo por você."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "fatores-internos",
+   "dificuldade": 2,
+   "pergunta": "Alguém vê 'últimas unidades!' num produto e compra na hora, sem checar se precisa. Qual atalho mental pesou?",
+   "ancora": "O medo de perder a chance pesou mais que a necessidade real.",
+   "alternativas": [
+    {
+     "texto": "A comparação cuidadosa de preços",
+     "correta": false,
+     "feedbackErro": "Não houve comparação nenhuma — a compra foi na hora, sem checar preço ou necessidade."
+    },
+    {
+     "texto": "O medo de perder a chance (escassez)",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A real necessidade do produto",
+     "correta": false,
+     "feedbackErro": "O enunciado diz que a pessoa comprou sem checar se precisava — a necessidade não foi o que pesou aqui."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "influencia-externa",
+   "dificuldade": 2,
+   "pergunta": "Uma marca paga vários criadores pequenos pra postar o mesmo produto na mesma semana. Qual o objetivo dessa estratégia?",
+   "ancora": "Criar a sensação de que o produto está em toda parte ao mesmo tempo.",
+   "alternativas": [
+    {
+     "texto": "Informar tecnicamente sobre o produto",
+     "correta": false,
+     "feedbackErro": "Postagens de vários criadores ao mesmo tempo não são sobre detalhe técnico — são sobre repetição e alcance."
+    },
+    {
+     "texto": "Criar a sensação de que todo mundo já tem",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Reduzir o preço do produto pros consumidores",
+     "correta": false,
+     "feedbackErro": "Pagar criadores é um custo a mais pra marca, não uma forma de baixar preço — o objetivo é outro: aumentar a sensação de presença."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "fatores-internos",
+   "criterio": "É um atalho mental (viés)?",
+   "enunciado": "Achar que preço mais alto sempre significa qualidade melhor",
+   "resposta": true,
+   "ancora": "Ligar preço alto à qualidade automaticamente é um viés comum.",
+   "feedbackErro": "Parece uma regra prática razoável, e por isso engana. Mas preço alto nem sempre significa qualidade melhor — assumir isso é um atalho mental."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "influencia-externa",
+   "instrucao": "É pressão do grupo ou é publicidade?",
+   "ancora": "Publicidade vem de marca; pressão do grupo vem de quem está perto.",
+   "feedbackErro": "As duas empurram pra mesma compra, e por isso confundem. Mas publicidade é estratégia de marca; pressão do grupo vem de pessoas próximas.",
+   "caixas": [
+    {
+     "id": "grupo",
+     "rotulo": "Pressão do grupo"
+    },
+    {
+     "id": "publi",
+     "rotulo": "Publicidade"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Colegas dizendo que quem não tem o tênis 'não é do time'",
+     "caixaCorreta": "grupo"
+    },
+    {
+     "texto": "Um comercial de TV mostrando o produto em uso",
+     "caixaCorreta": "publi"
+    },
+    {
+     "texto": "Um anúncio patrocinado aparecendo no feed",
+     "caixaCorreta": "publi"
+    },
+    {
+     "texto": "Amigos combinando de comprar o mesmo modelo",
+     "caixaCorreta": "grupo"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "fatores-internos",
+   "criterio": "É um atalho mental (viés)?",
+   "enunciado": "Comprar de novo a mesma marca só porque já é 'o que sempre comprei'",
+   "resposta": true,
+   "ancora": "Repetir sem comparar de novo é um atalho mental automático.",
+   "feedbackErro": "Parece só fidelidade natural à marca. Mas repetir a escolha sem checar se ainda é a melhor opção é um atalho mental, não uma decisão nova."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "influencia-externa",
+   "dificuldade": 2,
+   "pergunta": "Um site mostra '12 pessoas estão vendo este produto agora' durante a compra. Que efeito essa mensagem busca causar?",
+   "ancora": "Criar urgência pela sensação de disputa por um item limitado.",
+   "alternativas": [
+    {
+     "texto": "Informar sobre o estoque disponível",
+     "correta": false,
+     "feedbackErro": "A mensagem fala de pessoas vendo, não de quantidade em estoque — o foco não é informar, é pressionar a decisão."
+    },
+    {
+     "texto": "Criar urgência pela sensação de disputa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Reduzir o preço do produto automaticamente",
+     "correta": false,
+     "feedbackErro": "Essa mensagem não muda preço nenhum — ela mexe com a emoção de urgência, não com o valor cobrado."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "fatores-internos",
+   "criterio": "É um atalho mental (viés)?",
+   "enunciado": "Evitar comprar algo só porque, há anos, algo parecido deu errado",
+   "resposta": true,
+   "ancora": "Generalizar uma experiência antiga é um atalho mental.",
+   "feedbackErro": "Parece prudência baseada em experiência, e às vezes é. Mas generalizar um caso antigo pra toda situação parecida é um atalho mental."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "influencia-externa",
+   "criterio": "Isso decidiu a compra por você?",
+   "enunciado": "Ler avaliações de várias pessoas diferentes antes de decidir",
+   "resposta": false,
+   "ancora": "Pesquisar várias opiniões é decisão informada, não influência isolada.",
+   "feedbackErro": "Parece que qualquer opinião externa conta como influência decisiva. Mas juntar várias avaliações pra decidir é pesquisa informada, não pressão."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-que-decide-por-voce",
+   "pergunta": "Qual frase resume melhor o que você viu?",
+   "alternativas": [
+    {
+     "texto": "Atalhos mentais só afetam quem não presta atenção",
+     "correta": false,
+     "feedbackErro": "Vieses agem de forma automática, mesmo em quem presta atenção — não é uma questão só de distração."
+    },
+    {
+     "texto": "Vieses e pressão externa afetam até quem presta atenção",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Publicidade só funciona em comerciais de TV",
+     "correta": false,
+     "feedbackErro": "Publicidade age em redes sociais, sites e influenciadores também, não só em comercial de TV."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "fatores-internos",
+   "instrucao": "Ordene do viés mais forte ao mais fraco nessa decisão.",
+   "ancora": "Urgência pressiona mais na hora que hábito automático.",
+   "feedbackErro": "Cada viés pesa diferente: medo de perder algo age na hora; associar preço a qualidade é mais lento; repetir hábito é o mais automático.",
+   "itens": [
+    {
+     "texto": "Medo de perder a última unidade",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Achar que preço alto é sempre qualidade",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Repetir a marca de sempre, sem pensar muito",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "influencia-externa",
+   "dificuldade": 3,
+   "pergunta": "Uma pessoa só percebe que comprou por pressão do grupo depois de ver que nunca usou o produto. O que isso mostra?",
+   "ancora": "A influência pode agir sem que a pessoa perceba na hora.",
+   "alternativas": [
+    {
+     "texto": "Que a pressão do grupo nunca existiu de verdade",
+     "correta": false,
+     "feedbackErro": "O produto parado sem uso é justamente o sinal de que a pressão existiu — só não foi percebida na hora da compra."
+    },
+    {
+     "texto": "Que a influência pode passar despercebida na hora",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que o produto era de má qualidade",
+     "correta": false,
+     "feedbackErro": "O problema descrito não é sobre a qualidade do produto, é sobre o motivo real da compra ter sido a pressão do grupo."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "fatores-internos",
+   "criterio": "É um atalho mental (viés)?",
+   "enunciado": "Testar o produto e comparar com outros antes de decidir",
+   "resposta": false,
+   "ancora": "Testar e comparar é análise, o oposto de atalho mental.",
+   "feedbackErro": "Parece que qualquer processo de decisão pode virar viés. Mas testar e comparar de verdade é análise cuidadosa, o oposto de um atalho mental."
+  }
+ ]
+}

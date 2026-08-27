@@ -1,0 +1,339 @@
+{
+ "slug": "seu-orcamento-em-uma-tela-consolida",
+ "segmento": "em1",
+ "conceitoPrincipal": "seu-orcamento-em-uma-tela",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "imprevistos",
+   "criterio": "É falha do orçamento?",
+   "enunciado": "O imprevisto veio e comeu a reserva inteira",
+   "resposta": false,
+   "ancora": "Reserva usada no susto é o plano funcionando, não falhando.",
+   "feedbackErro": "A reserva existe para ser gasta no dia errado. Usá-la é o sistema operando; falha seria o susto chegar e não haver nada entre ele e a dívida."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "imprevistos",
+   "criterio": "É falha do orçamento?",
+   "enunciado": "Todo mês surge a mesma 'despesa surpresa'",
+   "resposta": true,
+   "ancora": "Surpresa que se repete é gasto mal mapeado, não azar.",
+   "feedbackErro": "Imprevisto de verdade não tem hora marcada. O que aparece todo mês já mostrou o padrão — falta promovê-lo a categoria do mapa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "mapa-do-mes",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Orçamento bom é o que nunca precisa mudar",
+   "resposta": false,
+   "ancora": "Renda e vida mudam; o mapa se redesenha quando o terreno muda.",
+   "feedbackErro": "Mapa fiel a um território que mudou é mapa errado. Renda caiu, curso acabou, preço subiu: cada virada dessas pede revisão — e isso é maturidade."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "mapa-do-mes",
+   "dificuldade": 3,
+   "pergunta": "Freela: R$ 300 num mês, R$ 700 no outro. Como orçar com renda que varia tanto?",
+   "ancora": "Planeje pelo magro; o extra do gordo vira colchão, não padrão.",
+   "alternativas": [
+    {
+     "texto": "Planejar pelo mês magro e guardar o extra dos gordos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Planejar pela média e torcer",
+     "correta": false,
+     "feedbackErro": "A média promete R$ 500 num mês que entrega R$ 300 — e o buraco vira dívida. Média só funciona com colchão que atravesse os vales."
+    },
+    {
+     "texto": "Orçar pelo mês gordo, que motiva mais",
+     "correta": false,
+     "feedbackErro": "Motiva até o primeiro mês magro, quando o plano inteiro afunda. Orçamento não é meta de otimismo: é piso de segurança."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "mapa-do-mes",
+   "dificuldade": 3,
+   "pergunta": "A renda da casa caiu 10%. O que atacar primeiro no orçamento familiar?",
+   "ancora": "Ajuste grande mora nos fixos grandes — renegociar vem antes.",
+   "alternativas": [
+    {
+     "texto": "Renegociar os fixos grandes: planos, parcelas, contratos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só os cafezinhos, que não doem",
+     "correta": false,
+     "feedbackErro": "Pequenos ajudam, mas raramente somam 10% da renda. Corte simbólico dá sensação de ação — a conta grande continua aberta nos fixos."
+    },
+    {
+     "texto": "A reserva: guardar é luxo de mês bom",
+     "correta": false,
+     "feedbackErro": "É a última coisa a cortar: sem ela, o próximo susto vira dívida cara. Na crise, a reserva vale mais, não menos."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "mapa-do-mes",
+   "criterio": "É falha do orçamento?",
+   "enunciado": "Plano perfeito no papel que ninguém consegue seguir",
+   "resposta": true,
+   "ancora": "Mapa que ignora como a família vive descreve outra casa.",
+   "feedbackErro": "Se ninguém segue, o erro é do desenho: metas irreais, categorias que não existem na prática. Plano bom nasce dos gastos reais — não do ideal."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "mapa-do-mes",
+   "instrucao": "Na crise: corta ou protege?",
+   "ancora": "Corta-se o dispensável; protege-se o que sustenta e ampara.",
+   "feedbackErro": "Dois testes: isso sustenta a rotina (remédio) ou ampara o futuro (reserva)? Protege. É consumo que ninguém sentiria falta? Corta primeiro.",
+   "caixas": [
+    {
+     "id": "cortar",
+     "rotulo": "Cortar"
+    },
+    {
+     "id": "proteger",
+     "rotulo": "Proteger"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Assinaturas que ninguém abre",
+     "caixaCorreta": "cortar"
+    },
+    {
+     "texto": "Remédio de uso contínuo",
+     "caixaCorreta": "proteger"
+    },
+    {
+     "texto": "Upgrade no plano do jogo",
+     "caixaCorreta": "cortar"
+    },
+    {
+     "texto": "A reserva de emergência",
+     "caixaCorreta": "proteger"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "mapa-do-mes",
+   "criterio": "Ajuda no mês difícil?",
+   "enunciado": "Pagar o essencial assim que a renda cai na conta",
+   "resposta": true,
+   "ancora": "Essencial pago primeiro: o resto disputa o que sobrar.",
+   "feedbackErro": "Invertendo — gastando primeiro e pagando depois —, o essencial fica refém do que escapou. Prioridade se executa na ordem do pagamento."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "imprevistos",
+   "criterio": "Ajuda no mês difícil?",
+   "enunciado": "Cobrir o buraco do mês no rotativo do cartão",
+   "resposta": false,
+   "ancora": "Buraco coberto a 14% ao mês vira cratera — rotativo não é reserva.",
+   "feedbackErro": "Resolve hoje criando um mês seguinte pior: o buraco volta com juros de ~14% ao mês. Antes dele: reserva, corte, renegociação — o rotativo é o último lugar."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "mapa-do-mes",
+   "pergunta": "Os fixos somam R$ 350 e a renda caiu para R$ 500. Quantos % da renda os fixos ocupam agora?",
+   "campo": "percentual",
+   "min": 10,
+   "max": 100,
+   "gabarito": 70,
+   "toleranciaPct": 20,
+   "fonte": "conta do próprio enunciado (350 ÷ 500)",
+   "verificacao": {
+    "expressao": "350/500*100",
+    "esperado": 70
+   },
+   "feedbackPerto": "70% — restam R$ 150 para tudo o mais. Número assim é alerta de renegociação urgente dos fixos.",
+   "feedbackLonge": "350 ÷ 500 = 70%. Quando a renda cai, os fixos crescem em proporção sem mudar de valor — esse efeito passa despercebido sem a conta."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "mapa-do-mes",
+   "dificuldade": 3,
+   "pergunta": "Ravi guarda R$ 80 por mês, mas paga R$ 95 de juros num parcelado. O que o mapa grita?",
+   "ancora": "Juros de 95 comem os 80 guardados — a dívida cara vem antes.",
+   "verificacao": {
+    "expressao": "95-80",
+    "esperado": 15
+   },
+   "alternativas": [
+    {
+     "texto": "Quitar a dívida cara antes: ela come mais do que ele guarda",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que guardar é sempre a prioridade número um",
+     "correta": false,
+     "feedbackErro": "Guardar rende pouco; a dívida cobra muito. Enquanto os R$ 80 entram, R$ 95 saem — o saldo do esforço é negativo. Mate primeiro o que sangra."
+    },
+    {
+     "texto": "Que está tudo bem: os dois cabem na renda",
+     "correta": false,
+     "feedbackErro": "Caber não é o teste — render é. A mesma disciplina dos R$ 80, apontada para a dívida, encerra os R$ 95 mensais e aí sim libera a poupança."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "mapa-do-mes",
+   "dificuldade": 3,
+   "pergunta": "Tem mês que não fecha de jeito nenhum. O que o orçamento ainda faz por você?",
+   "ancora": "Quando falta, o mapa vira triagem: tamanho do buraco e ordem.",
+   "alternativas": [
+    {
+     "texto": "Mostra o tamanho exato do buraco e o que negociar antes",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: sem sobra, orçamento é enfeite",
+     "correta": false,
+     "feedbackErro": "É no vermelho que ele mais serve: saber que faltam R$ 120 — e onde — transforma pânico difuso em duas ligações e um corte."
+    },
+    {
+     "texto": "Esconde o problema até a renda melhorar",
+     "correta": false,
+     "feedbackErro": "Buraco escondido cresce com juros e multa. O mapa faz o oposto de esconder: dá nome, número e ordem de ataque ao problema."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "imprevistos",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Reserva usada se reconstrói aos poucos, depois do susto",
+   "resposta": true,
+   "ancora": "Usou? A prioridade seguinte é reerguê-la — no ritmo possível.",
+   "feedbackErro": "A reserva não é de uso único: cada susto a gasta, cada mês seguinte a repõe um pouco. O ciclo usar-repor é o funcionamento normal dela."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "mapa-do-mes",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Quem tem orçamento nunca passa aperto",
+   "resposta": false,
+   "ancora": "O mapa não impede a tempestade — encurta o estrago e a saída.",
+   "feedbackErro": "Aperto vem de renda, saúde, economia — coisas que nenhum mapa controla. O que ele muda é a travessia: quem vê o buraco antes cai de pé."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "mapa-do-mes",
+   "pergunta": "O que um orçamento maduro faz?",
+   "alternativas": [
+    {
+     "texto": "Adapta-se à renda real, protege o essencial e repõe a reserva.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Garante que nunca falte dinheiro.",
+     "correta": false,
+     "feedbackErro": "Nenhum plano garante isso. O que ele garante é ver antes, decidir melhor e sair mais rápido."
+    },
+    {
+     "texto": "Congela os gastos para sempre.",
+     "correta": false,
+     "feedbackErro": "Vida congelada não existe. O orçamento bom acompanha as mudanças — por isso se revisa."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "imprevistos",
+   "pergunta": "Num mês que rendeu R$ 180 além do normal, metade do extra vai para a reserva. Quanto é?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 180,
+   "gabarito": 90,
+   "toleranciaPct": 20,
+   "fonte": "conta do próprio enunciado (180 ÷ 2)",
+   "verificacao": {
+    "expressao": "180/2",
+    "esperado": 90
+   },
+   "feedbackPerto": "R$ 90 — regra prática de renda variável: o extra se divide entre presente e colchão.",
+   "feedbackLonge": "Metade de R$ 180 é R$ 90. O viés do mês gordo é tratar o extra como novo padrão — e gastá-lo inteiro."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "mapa-do-mes",
+   "instrucao": "A renda caiu. Toque na ordem de ação no mapa.",
+   "ancora": "Diagnóstico → renegociação → reestimativa → nova meta de sobra.",
+   "feedbackErro": "Primeiro enxergar o essencial, depois negociar contratos, depois reduzir o variável — e a meta de guardar se recalcula por último.",
+   "itens": [
+    {
+     "texto": "Listar os fixos e marcar o essencial",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Renegociar os fixos que têm margem",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Reestimar o variável para baixo",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Definir a nova meta de sobra",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "mapa-do-mes",
+   "dificuldade": 3,
+   "pergunta": "O orçamento é da família toda. Quem precisa participar dele?",
+   "ancora": "Plano escondido não segura os gastos de quem não o conhece.",
+   "alternativas": [
+    {
+     "texto": "Todo mundo que gasta — plano secreto não segura ninguém",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só quem paga as contas decide",
+     "correta": false,
+     "feedbackErro": "Quem decide sozinho controla só os próprios gastos. Os outros seguem gastando no escuro — e o plano fura pelas beiradas."
+    },
+    {
+     "texto": "Crianças não devem saber de dinheiro",
+     "correta": false,
+     "feedbackErro": "Na medida da idade, saber que o mês tem limite é educação financeira em casa — a mais eficaz que existe."
+    }
+   ]
+  }
+ ]
+}

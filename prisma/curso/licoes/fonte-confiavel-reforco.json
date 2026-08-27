@@ -1,0 +1,329 @@
+{
+ "slug": "fonte-confiavel-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "fonte-confiavel",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "Ainda é fonte confiável?",
+   "enunciado": "Uma pesquisa da CVM sobre educação financeira",
+   "resposta": true,
+   "ancora": "Órgão regulador público, sem produto pra vender.",
+   "feedbackErro": "Sigla técnica confunde, mas CVM é o órgão que fiscaliza o mercado — dado público, sem venda por trás."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "Ainda é fonte confiável?",
+   "enunciado": "Um 'especialista' que só aparece pra vender sinais de day trade",
+   "resposta": false,
+   "ancora": "Vende o sinal e dá a opinião junto — conflito de interesse claro.",
+   "feedbackErro": "Ele fala como analista, e o tom técnico convence. Mas quem vende o próprio sinal tem interesse direto em você comprar."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "Ainda é fonte confiável?",
+   "enunciado": "Um artigo sem autor identificado, compartilhado 50 mil vezes",
+   "resposta": false,
+   "ancora": "Sem autor, ninguém responde pelo dado — só o alcance não prova nada.",
+   "feedbackErro": "50 mil compartilhamentos parecem prova social forte. Mas sem autor identificado, não há quem responda se o dado for falso."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "avaliar-fonte",
+   "dificuldade": 2,
+   "pergunta": "Um grupo fechado cobra R$ 97 pra ensinar a 'ganhar' 8% ao dia. O que prova golpe?",
+   "ancora": "8% ao dia multiplicariam R$ 200 por mais de 10 vezes em 30 dias.",
+   "alternativas": [
+    {
+     "texto": "A taxa diária prometida é matematicamente insustentável",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O grupo é fechado, só entra quem é convidado",
+     "correta": false,
+     "feedbackErro": "Exclusividade não prova nada — o que denuncia é a taxa impossível de sustentar."
+    },
+    {
+     "texto": "Cobra apenas R$ 97, um valor baixo",
+     "correta": false,
+     "feedbackErro": "Preço baixo não garante lisura; é isca pra atrair volume de vítimas."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "decisao-de-credito-informada",
+   "dificuldade": 2,
+   "pergunta": "Renan compara um empréstimo de banco com outro de um 'parceiro' achado no Instagram. O que checar primeiro?",
+   "ancora": "Instituição sem registro no BC pode nem ser autorizada a emprestar.",
+   "alternativas": [
+    {
+     "texto": "Se a instituição tem registro no Banco Central",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Qual anúncio tem o design mais bonito",
+     "correta": false,
+     "feedbackErro": "Design bom não indica regularidade — golpe também investe em aparência."
+    },
+    {
+     "texto": "Qual promete resposta mais rápida",
+     "correta": false,
+     "feedbackErro": "Rapidez pode ser sinal de pressão pra fechar sem checar, não de qualidade."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "É fonte confiável?",
+   "enunciado": "Comparador de empréstimos que recebe comissão da instituição sem avisar",
+   "resposta": false,
+   "ancora": "Comissão escondida é conflito de interesse não declarado.",
+   "feedbackErro": "Um comparador parece neutro por natureza. Mas comissão paga por trás, sem aviso, muda o que ele recomenda — não é neutro."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "avaliar-fonte",
+   "instrucao": "Ordene do dado mais checável ao menos checável.",
+   "ancora": "Metodologia publicada é o que mais permite conferir a informação.",
+   "feedbackErro": "Metodologia aberta vence porque qualquer um pode reproduzir a conta; print sem link é o que menos se verifica.",
+   "itens": [
+    {
+     "texto": "Nota técnica com metodologia publicada",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Reportagem que cita a fonte original",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Post de opinião sem nenhum dado",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Print sem link, compartilhado em grupo",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "É sinal de golpe?",
+   "enunciado": "Pedir pagamento antecipado pra 'liberar' um prêmio que você não concorreu",
+   "resposta": true,
+   "ancora": "Prêmio de verdade não cobra taxa pra ser entregue.",
+   "feedbackErro": "A ideia de ganhar algo grátis distrai da cobrança. Mas prêmio real nunca exige pagamento antes — essa taxa é o golpe em si."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "É sinal de golpe?",
+   "enunciado": "Oferecer contrato por escrito, com CNPJ e regras claras",
+   "resposta": false,
+   "ancora": "Transparência e CNPJ checável reduzem risco, mas ajudam.",
+   "feedbackErro": "Contrato formal não garante 100%, mas vai na direção oposta do golpe: dá algo concreto pra checar antes de decidir."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "avaliar-fonte",
+   "pergunta": "Um golpe prometeu 8% ao dia. Em 30 dias, quanto R$ 200 virariam?",
+   "campo": "moeda",
+   "min": 200,
+   "max": 5000,
+   "gabarito": 2013,
+   "toleranciaPct": 20,
+   "fonte": "juros compostos aplicados sobre a promessa do golpe",
+   "verificacao": {
+    "expressao": "200*1.08^30",
+    "esperado": 2012.53,
+    "tolerancia": 10
+   },
+   "feedbackPerto": "Isso mesmo — mais de R$ 2.000. Nenhum retorno real sustenta esse ritmo por um mês.",
+   "feedbackLonge": "Dá cerca de R$ 2.013. Repetir um ganho diário alto composto explode rápido — é por isso que a promessa é golpe."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "decisao-de-credito-informada",
+   "dificuldade": 2,
+   "pergunta": "Camila comparou as taxas de duas dívidas antes de trocar a mais cara pela mais barata. Isso é...",
+   "ancora": "Comparar taxa por taxa é o que define decisão informada.",
+   "alternativas": [
+    {
+     "texto": "Decisão de crédito informada, baseada em comparação real",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Aposta, porque toda troca de dívida é arriscada",
+     "correta": false,
+     "feedbackErro": "Trocar dívida cara por barata reduz custo comprovado — não é aposta, é conta feita."
+    },
+    {
+     "texto": "Perda de tempo, já que dívida é dívida",
+     "correta": false,
+     "feedbackErro": "Duas dívidas de mesmo valor custam bem diferente conforme a taxa — a comparação evita pagar mais do que precisa."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "avaliar-fonte",
+   "dificuldade": 2,
+   "pergunta": "Um site termina em '.gov.br', mas a página não é atualizada há 6 anos. Ainda vale como fonte?",
+   "ancora": "Endereço oficial não garante que o dado ainda é atual.",
+   "alternativas": [
+    {
+     "texto": "Sim, sempre — '.gov.br' garante que está certo",
+     "correta": false,
+     "feedbackErro": "O domínio garante origem oficial, não atualidade. Dado velho pode estar defasado mesmo sendo oficial."
+    },
+    {
+     "texto": "Vale como origem, mas é preciso checar se o dado segue atual",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não vale nada, porque está desatualizada",
+     "correta": false,
+     "feedbackErro": "Descartar tudo ignora que a origem é real — o certo é checar se algo mudou, não jogar fora."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "É fonte confiável?",
+   "enunciado": "Um vídeo que mostra prints de lucro, sem mostrar prejuízo nenhum",
+   "resposta": false,
+   "ancora": "Mostrar só o lado bom é seleção, não retrato completo.",
+   "feedbackErro": "Os prints de lucro parecem prova concreta. Mas quem some com os prejuízos está mostrando metade da história."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "decisao-de-credito-informada",
+   "criterio": "Reduz risco de dívida ruim?",
+   "enunciado": "Checar a instituição no Banco Central antes de assinar",
+   "resposta": true,
+   "ancora": "Checar o registro é rápido e evita cair em oferta irregular.",
+   "feedbackErro": "Parece burocracia demais pra quem só quer resolver rápido. Mas o registro no BC separa instituição real de golpe disfarçado."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "avaliar-fonte",
+   "pergunta": "Qual frase resume melhor o que você reforçou hoje?",
+   "ancora": "Três filtros: quem fala, por que fala, e se o número é plausível.",
+   "alternativas": [
+    {
+     "texto": "'.gov.br' garante que a informação está sempre certa e atual.",
+     "correta": false,
+     "feedbackErro": "Garante origem oficial, não atualidade — dado velho ainda pode enganar."
+    },
+    {
+     "texto": "Fonte confiável: origem clara, sem interesse e taxa plausível.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quanto mais compartilhado, mais confiável é o dado.",
+     "correta": false,
+     "feedbackErro": "Alcance mede popularidade, não veracidade — golpe também viraliza."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "avaliar-fonte",
+   "instrucao": "Isso é sinal de golpe? Arraste cada item.",
+   "ancora": "Golpe combina promessa alta com pressa e pedido de dado.",
+   "feedbackErro": "Sinal de golpe junta promessa impossível, urgência ou pedido de dado sensível — o resto costuma ser oferta comum.",
+   "caixas": [
+    {
+     "id": "golpe",
+     "rotulo": "Sinal de golpe"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Prometer 8% de retorno ao dia",
+     "caixaCorreta": "golpe"
+    },
+    {
+     "texto": "Mostrar CNPJ e contrato por escrito",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Pedir senha do banco pra 'confirmar identidade'",
+     "caixaCorreta": "golpe"
+    },
+    {
+     "texto": "Comparar taxas de dois bancos registrados",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "decisao-de-credito-informada",
+   "dificuldade": 2,
+   "pergunta": "Um anúncio promete empréstimo 'sem consulta ao nome sujo'. O que isso sugere?",
+   "ancora": "Quem empresta sem checar risco costuma cobrar isso na taxa.",
+   "alternativas": [
+    {
+     "texto": "Que a instituição é mais generosa que as outras",
+     "correta": false,
+     "feedbackErro": "Não checar risco não é generosidade — normalmente vem embutido em juro mais alto."
+    },
+    {
+     "texto": "Que o risco maior tende a virar taxa de juros mais alta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que esse empréstimo é sempre golpe",
+     "correta": false,
+     "feedbackErro": "Pode ser oferta real, só que mais cara. O sinal de alerta é a taxa, não só a facilidade de aprovação."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "É sinal de golpe?",
+   "enunciado": "Site que só aceita pagamento via Pix pra 'pessoa física'",
+   "resposta": true,
+   "ancora": "Empresa de verdade recebe em CNPJ, com nota fiscal.",
+   "feedbackErro": "Pix é comum no dia a dia, e isso disfarça o problema. Mas cobrança de empresa em conta de pessoa física é sinal clássico de golpe."
+  }
+ ]
+}

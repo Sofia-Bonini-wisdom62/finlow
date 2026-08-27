@@ -1,0 +1,357 @@
+{
+ "slug": "orcamento-que-fecha-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "orcamento-que-fecha",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "montar-orcamento",
+   "criterio": "Qual era o critério: fixa ou variável?",
+   "enunciado": "O plano de celular pós-pago, mesmo valor todo mês",
+   "resposta": true,
+   "ancora": "Fixa: o valor combinado não muda, mês após mês.",
+   "feedbackErro": "Parece variável por depender do uso. Mas no plano pós-pago combinado, o valor não muda — é despesa fixa, mesmo que o uso varie."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "montar-orcamento",
+   "criterio": "Qual era o critério: fixa ou variável?",
+   "enunciado": "A gasolina do mês, que muda com quanto se roda",
+   "resposta": false,
+   "ancora": "Variável: o valor muda de mês para mês, com o uso do carro.",
+   "feedbackErro": "É gasto recorrente, e por isso confunde com fixo. Mas o valor muda conforme quanto se roda — critério de despesa variável."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "corrigir-orcamento",
+   "criterio": "Resolve o déficit de forma sustentável?",
+   "enunciado": "Atrasar o pagamento de uma conta para cobrir outra",
+   "resposta": false,
+   "ancora": "Só transfere o problema — e ainda soma multa e juros.",
+   "feedbackErro": "Parece resolver porque a outra conta fica paga. Mas o atraso cria multa e juros na primeira — o buraco fica maior, não menor."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "montar-orcamento",
+   "dificuldade": 2,
+   "pergunta": "Renda de R$ 2.450. Fixas R$ 1.180, variáveis R$ 890, imprevisto de R$ 220 no mês. Saldo final?",
+   "ancora": "2.450 − 1.180 − 890 − 220 = 160. Ainda sobra, mas menos.",
+   "verificacao": {
+    "expressao": "2450-1180-890-220",
+    "esperado": 160
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 160 superavitário",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 380 superavitário",
+     "correta": false,
+     "feedbackErro": "Você esqueceu de descontar o imprevisto de R$ 220. Some as três despesas antes de subtrair: 1.180 + 890 + 220 = 2.290."
+    },
+    {
+     "texto": "R$ 160 deficitário",
+     "correta": false,
+     "feedbackErro": "A conta fecha positiva: ainda sobra dinheiro depois de pagar tudo, incluindo o imprevisto. É superávit, não déficit."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "corrigir-orcamento",
+   "dificuldade": 2,
+   "pergunta": "Marcelo está deficitário em R$ 300. Ele já cortou R$ 150 de lazer. O que falta para fechar de vez?",
+   "ancora": "Faltam ainda R$ 150 para cobrir o déficit original.",
+   "verificacao": {
+    "expressao": "300-150",
+    "esperado": 150
+   },
+   "alternativas": [
+    {
+     "texto": "Cortar mais R$ 150 ou aumentar a renda nesse valor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada, o corte de R$ 150 já resolveu tudo",
+     "correta": false,
+     "feedbackErro": "O déficit era R$ 300; cortar R$ 150 resolve metade. Ainda faltam R$ 150 para o orçamento deixar de ser deficitário."
+    },
+    {
+     "texto": "Usar o cheque especial para cobrir o resto",
+     "correta": false,
+     "feedbackErro": "Cobre o mês, mas soma juros altos ao problema. O que fecha a conta de verdade é cortar mais gasto ou ganhar mais, não tomar dívida."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "montar-orcamento",
+   "criterio": "É despesa prevista?",
+   "enunciado": "O presente de aniversário de um familiar, no mês certo todo ano",
+   "resposta": true,
+   "ancora": "Data conhecida com antecedência — dá para planejar.",
+   "feedbackErro": "Não é mensal, e por isso parece imprevisto. Mas a data é conhecida com antecedência — é despesa prevista, possível de planejar."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "montar-orcamento",
+   "instrucao": "Prevista ou imprevista? Arraste cada despesa.",
+   "ancora": "Prevista tem data conhecida; imprevista surge sem aviso.",
+   "feedbackErro": "O que você sabe que vai acontecer, mesmo anual, é prevista. O que surge sem aviso, tipo conserto urgente, é imprevista.",
+   "caixas": [
+    {
+     "id": "prevista",
+     "rotulo": "Prevista"
+    },
+    {
+     "id": "imprevista",
+     "rotulo": "Imprevista"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "IPTU cobrado todo início de ano",
+     "caixaCorreta": "prevista"
+    },
+    {
+     "texto": "Vazamento urgente no encanamento",
+     "caixaCorreta": "imprevista"
+    },
+    {
+     "texto": "Material escolar de janeiro",
+     "caixaCorreta": "prevista"
+    },
+    {
+     "texto": "Multa de trânsito inesperada",
+     "caixaCorreta": "imprevista"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "montar-orcamento",
+   "criterio": "O orçamento fecha superavitário?",
+   "enunciado": "Renda de R$ 1.900, despesas totais de R$ 2.100",
+   "resposta": false,
+   "ancora": "Falta R$ 200: renda menor que despesa é déficit.",
+   "verificacao": {
+    "expressao": "1900-2100",
+    "esperado": -200
+   },
+   "feedbackErro": "A conta fecha negativa: 1.900 − 2.100 = −200, faltando dinheiro. Isso é orçamento deficitário, o oposto de superavitário."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "corrigir-orcamento",
+   "criterio": "Resolve o déficit de forma sustentável?",
+   "enunciado": "Trocar o plano de internet por um mais barato, todo mês",
+   "resposta": true,
+   "ancora": "Corte em despesa fixa economiza todo mês, não só uma vez.",
+   "feedbackErro": "Parece pouco por ser um valor pequeno. Mas por ser despesa fixa, a economia se repete todo mês — ajuda de forma sustentável."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "montar-orcamento",
+   "pergunta": "Renda de R$ 2.700. Fixas R$ 1.350, variáveis R$ 950. Quanto sobra no mês?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 1000,
+   "gabarito": 400,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: renda menos despesas fixas e variáveis",
+   "verificacao": {
+    "expressao": "2700-1350-950",
+    "esperado": 400
+   },
+   "feedbackPerto": "Isso: sobram R$ 400. Some as despesas primeiro, depois subtraia da renda.",
+   "feedbackLonge": "Dá R$ 400. Some fixas e variáveis (2.300) e subtraia da renda (2.700) — o caminho é sempre esse."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "corrigir-orcamento",
+   "dificuldade": 2,
+   "pergunta": "O orçamento de Talita está deficitário todo mês, mesmo com gastos enxutos. O que ela deveria olhar além dos cortes?",
+   "ancora": "Quando cortar não basta, o outro lado da conta é a renda.",
+   "alternativas": [
+    {
+     "texto": "Formas de aumentar a renda, não só de cortar gasto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Continuar cortando até o gasto chegar a zero",
+     "correta": false,
+     "feedbackErro": "Gasto essencial não some, e cortar até zero não é possível. Quando o corte já está enxuto, o outro caminho é aumentar a renda."
+    },
+    {
+     "texto": "Esperar o próximo mês ser melhor sem mudar nada",
+     "correta": false,
+     "feedbackErro": "Esperar não muda a conta: se a renda e o gasto continuam iguais, o déficit se repete. É preciso agir num dos dois lados."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "montar-orcamento",
+   "dificuldade": 2,
+   "pergunta": "Uma família ganha R$ 3.500, gasta R$ 2.900 fixas e variáveis, mais R$ 600 de conserto imprevisto no carro. Saldo do mês?",
+   "ancora": "3.500 − 2.900 − 600 = 0. Orçamento neutro: nem sobra, nem falta.",
+   "verificacao": {
+    "expressao": "3500-2900-600",
+    "esperado": 0
+   },
+   "alternativas": [
+    {
+     "texto": "Neutro: renda e despesa total se igualam",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Superavitário em R$ 600",
+     "correta": false,
+     "feedbackErro": "O conserto imprevisto também é despesa real, e precisa ser descontado. 3.500 − 2.900 − 600 = 0, sem sobra nem falta."
+    },
+    {
+     "texto": "Deficitário, porque houve imprevisto",
+     "correta": false,
+     "feedbackErro": "Ter imprevisto não é o mesmo que faltar dinheiro. A conta fecha exatamente em zero: orçamento neutro, não deficitário."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "montar-orcamento",
+   "criterio": "Isso é despesa fixa?",
+   "enunciado": "A parcela do consórcio, valor igual todo mês",
+   "resposta": true,
+   "ancora": "Valor combinado, repetido igual — despesa fixa.",
+   "feedbackErro": "Parece variável por vir de um contrato de longo prazo. Mas o valor da parcela é igual todo mês — isso é despesa fixa."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "corrigir-orcamento",
+   "criterio": "Resolve o déficit de forma sustentável?",
+   "enunciado": "Parcelar o rombo do mês no cartão de crédito",
+   "resposta": false,
+   "ancora": "Parcelar soma juros — o próximo mês nasce ainda mais apertado.",
+   "feedbackErro": "Parece alívio porque o mês fecha. Mas parcelar cria despesa nova, com juros, para os meses seguintes — o problema cresce, não some."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "orcamento-que-fecha",
+   "pergunta": "Qual ideia fecha este encontro?",
+   "alternativas": [
+    {
+     "texto": "Déficit se resolve cortando gasto real ou aumentando renda real",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Atrasar uma conta para pagar outra resolve o mês",
+     "correta": false,
+     "feedbackErro": "Só transfere o problema: o atraso soma multa e juros, deixando a conta mais pesada no mês seguinte."
+    },
+    {
+     "texto": "Despesa prevista não precisa entrar no orçamento",
+     "correta": false,
+     "feedbackErro": "Precisa, sim: mesmo anual, uma despesa prevista tem valor conhecido e deve ter espaço reservado no orçamento."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "montar-orcamento",
+   "instrucao": "Despesa fixa ou variável? Arraste cada item.",
+   "ancora": "Fixa repete o valor; variável muda com o uso.",
+   "feedbackErro": "O que combina o mesmo valor todo mês é fixa. O que muda de acordo com o consumo é variável.",
+   "caixas": [
+    {
+     "id": "fixa",
+     "rotulo": "Fixa"
+    },
+    {
+     "id": "variavel",
+     "rotulo": "Variável"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Plano de saúde mensal",
+     "caixaCorreta": "fixa"
+    },
+    {
+     "texto": "Conta de energia do mês",
+     "caixaCorreta": "variavel"
+    },
+    {
+     "texto": "Parcela do financiamento do carro",
+     "caixaCorreta": "fixa"
+    },
+    {
+     "texto": "Gasto com farmácia no mês",
+     "caixaCorreta": "variavel"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "corrigir-orcamento",
+   "dificuldade": 3,
+   "pergunta": "Renda de R$ 2.000, despesas de R$ 2.300. Aumentar a renda em R$ 200 fecha o mês?",
+   "ancora": "Faltam ainda R$ 100 depois desse aumento de renda.",
+   "verificacao": {
+    "expressao": "2300-2000-200",
+    "esperado": 100
+   },
+   "alternativas": [
+    {
+     "texto": "Não: ainda faltam R$ 100 para fechar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, fecha exatamente no zero a zero",
+     "correta": false,
+     "feedbackErro": "O déficit é R$ 300 (2.300 − 2.000). Aumentar a renda em R$ 200 reduz, mas ainda faltam R$ 100 para fechar de vez."
+    },
+    {
+     "texto": "Sim, e ainda sobra dinheiro no fim",
+     "correta": false,
+     "feedbackErro": "Com renda de R$ 2.200 contra despesa de R$ 2.300, ainda falta R$ 100 — não é o suficiente para sobrar."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "montar-orcamento",
+   "criterio": "É despesa prevista?",
+   "enunciado": "Uma multa de trânsito por excesso de velocidade",
+   "resposta": false,
+   "ancora": "Não tem data conhecida — é despesa imprevista.",
+   "feedbackErro": "Parece 'culpa de alguém' e não do acaso, mas isso não muda a categoria: sem data conhecida com antecedência, é despesa imprevista."
+  }
+ ]
+}

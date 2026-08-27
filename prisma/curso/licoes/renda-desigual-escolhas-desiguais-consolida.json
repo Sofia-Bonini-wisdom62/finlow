@@ -1,0 +1,331 @@
+{
+ "slug": "renda-desigual-escolhas-desiguais-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "renda-desigual-escolhas-desiguais",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "renda-e-escolha",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Renda alta sempre significa mais liberdade de escolha, em qualquer situação",
+   "resposta": false,
+   "ancora": "Dívida alta pode travar a escolha de quem ganha bem também.",
+   "feedbackErro": "Parece regra sem exceção, mas quem ganha bem e está endividado pode ter menos margem de escolha do que alguém com renda menor e sem dívidas."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "agentes-economicos",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "O governo nunca influencia o preço de produtos que ele não vende",
+   "resposta": false,
+   "ancora": "Impostos e subsídios mudam o preço mesmo sem o governo vender nada.",
+   "feedbackErro": "Parece que o governo só age em serviços públicos, mas impostos, subsídios e regras de importação mudam o preço de qualquer produto vendido no país."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "renda-e-escolha",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Comida sempre pesa mais no orçamento de quem ganha menos, em qualquer cenário",
+   "resposta": false,
+   "ancora": "Programas sociais podem reduzir esse peso em casos específicos.",
+   "feedbackErro": "É verdade na maioria dos casos, mas um programa de transferência de renda ou doação de alimentos pode reduzir esse peso — a regra tem exceção."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "renda-e-escolha",
+   "dificuldade": 3,
+   "pergunta": "Duas famílias ganham R$ 1.500 e R$ 6.000; a de R$ 1.500 recebe auxílio de R$ 400. Quem tem mais renda disponível?",
+   "ancora": "1.500 + 400 = 1.900, ainda bem abaixo dos 6.000.",
+   "alternativas": [
+    {
+     "texto": "A de R$ 6.000: ainda tem a maior renda disponível",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A de R$ 1.500, porque o auxílio equipara as duas",
+     "correta": false,
+     "feedbackErro": "O auxílio ajuda, mas 1.500 + 400 = 1.900, valor ainda bem distante dos 6.000 — não chega a equiparar a renda disponível."
+    },
+    {
+     "texto": "As duas ficam iguais, o auxílio fecha a diferença",
+     "correta": false,
+     "feedbackErro": "A diferença entre 1.900 e 6.000 continua grande. O auxílio reduz a distância, mas está longe de fechá-la."
+    }
+   ],
+   "verificacao": {
+    "expressao": "1500+400",
+    "esperado": 1900
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "agentes-economicos",
+   "dificuldade": 3,
+   "pergunta": "Imposto sobe o combustível; governo amplia o subsídio ao ônibus junto. Efeito mais provável em quem usa ônibus?",
+   "ancora": "Subsídio reduz o efeito do combustível mais caro para quem usa ônibus.",
+   "alternativas": [
+    {
+     "texto": "O efeito é amenizado: o subsídio compensa parte do custo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O efeito é o mesmo de quem tem carro, sem diferença",
+     "correta": false,
+     "feedbackErro": "Quem usa ônibus sente o combustível mais caro de forma indireta e, com o subsídio ampliado, de forma amenizada — diferente de quem abastece o próprio carro."
+    },
+    {
+     "texto": "O efeito piora, porque dois preços sobem ao mesmo tempo",
+     "correta": false,
+     "feedbackErro": "Só o combustível sobe; o subsídio ao transporte público vai na direção contrária, reduzindo o custo para quem usa ônibus."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "agentes-economicos",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Toda alta de preço na cadeia produtiva chega inteira ao comprador final",
+   "resposta": false,
+   "ancora": "Vendedor pode absorver parte do custo para não perder cliente.",
+   "feedbackErro": "Parece automático repassar tudo, mas em mercados concorridos o vendedor às vezes absorve parte do aumento para não perder cliente para o concorrente."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "renda-e-escolha",
+   "instrucao": "Situação composta: ordene por prioridade de gasto numa renda apertada.",
+   "ancora": "O essencial que sustenta a vida vem antes do simples conforto.",
+   "feedbackErro": "É comum priorizar o financiamento por medo de perder o bem, mas numa renda muito apertada, alimentação e moradia vêm antes de qualquer parcela de bem durável.",
+   "itens": [
+    {
+     "texto": "Comida do mês",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Aluguel ou financiamento da casa",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Conta de luz e água",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Assinatura de streaming",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "renda-e-escolha",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Quem ganha mais nunca faz escolhas limitadas por dinheiro",
+   "resposta": false,
+   "ancora": "Um bem muito caro pode ficar fora do alcance de qualquer renda.",
+   "feedbackErro": "Parece que renda alta remove qualquer limite, mas existem gastos tão grandes (uma mansão, um jato) que ficam fora do alcance até de quem ganha muito bem."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "agentes-economicos",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Um subsídio do governo sempre beneficia mais quem ganha menos",
+   "resposta": false,
+   "ancora": "Subsídio em produto de luxo tende a beneficiar quem já ganha mais.",
+   "feedbackErro": "Depende do que é subsidiado: desconto em produto essencial ajuda quem ganha menos, mas subsídio em item de luxo tende a beneficiar quem já ganha mais."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "renda-e-escolha",
+   "pergunta": "Renda de R$ 2.000 gasta 30% com comida; renda de R$ 8.000 gasta 12%. Qual a diferença em reais?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 800,
+   "gabarito": 360,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 30% de 2.000 e 12% de 8.000",
+   "feedbackPerto": "Perto: a diferença é R$ 360 (960 contra 600) — mesmo a de renda maior gastando fatia menor, gasta mais reais.",
+   "feedbackLonge": "São R$ 360: 2.000×0,30=600 e 8.000×0,12=960; a diferença entre 960 e 600 é 360. A fatia menor ainda representa mais dinheiro.",
+   "verificacao": {
+    "expressao": "8000*0.12-2000*0.30",
+    "esperado": 360
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "agentes-economicos",
+   "dificuldade": 3,
+   "pergunta": "Um país aumenta o imposto de importação de eletrônicos para proteger a indústria nacional. Quem tende a perder?",
+   "ancora": "Comprador paga mais caro; produtor nacional ganha proteção.",
+   "alternativas": [
+    {
+     "texto": "O comprador, que paga mais caro pelo eletrônico",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O produtor nacional, que perde proteção contra concorrência",
+     "correta": false,
+     "feedbackErro": "É o contrário: o imposto de importação protege o produtor nacional, dificultando a concorrência de fora — ele tende a ganhar, não perder."
+    },
+    {
+     "texto": "O governo, que deixa de arrecadar imposto",
+     "correta": false,
+     "feedbackErro": "O governo continua arrecadando com o imposto de importação mais alto — quem sente o preço maior é quem compra o produto."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "renda-e-escolha",
+   "dificuldade": 3,
+   "pergunta": "Uma pessoa de renda alta financia um carro de luxo e fica com pouca folga por 5 anos. O que o caso mostra?",
+   "ancora": "Renda alta não garante folga se o compromisso assumido for grande.",
+   "alternativas": [
+    {
+     "texto": "Que renda alta não garante folga se o gasto fixo é grande",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que renda alta sempre garante folga, independente do gasto",
+     "correta": false,
+     "feedbackErro": "O caso mostra o contrário: mesmo com renda alta, um compromisso financeiro grande pode reduzir a folga do orçamento por anos."
+    },
+    {
+     "texto": "Que só quem ganha pouco assume compromissos arriscados",
+     "correta": false,
+     "feedbackErro": "Compromissos que consomem a folga do orçamento acontecem em qualquer faixa de renda — o caso descrito é justamente de renda alta."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "renda-e-escolha",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Um gasto pequeno em reais nunca pesa no orçamento de ninguém",
+   "resposta": false,
+   "ancora": "Repetido todo mês, um gasto pequeno pode somar um valor relevante.",
+   "feedbackErro": "Um valor pequeno isolado parece inofensivo, mas repetido todo mês durante um ano pode somar um total que pesa bastante — mesmo em rendas mais altas."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "agentes-economicos",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Regular preço de produto essencial em crise nunca traz efeito colateral",
+   "resposta": false,
+   "ancora": "Tabelamento pode gerar escassez se o preço fixado for baixo demais.",
+   "feedbackErro": "A intenção de proteger o comprador é boa, mas fixar um preço abaixo do custo pode fazer produtores pararem de vender aquele produto — gerando escassez."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "renda-e-escolha",
+   "pergunta": "Qual frase fecha os três encontros sobre renda e escolha?",
+   "alternativas": [
+    {
+     "texto": "Renda molda o espaço de escolha, mas o efeito muda conforme o caso",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Renda alta elimina qualquer limite de escolha, sempre",
+     "correta": false,
+     "feedbackErro": "Compromissos grandes ou bens muito caros podem limitar até quem ganha bem."
+    },
+    {
+     "texto": "Toda política do governo beneficia igualmente quem ganha menos",
+     "correta": false,
+     "feedbackErro": "Depende do que é subsidiado ou taxado — alguns efeitos beneficiam mais quem já ganha mais."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "agentes-economicos",
+   "instrucao": "Aumenta ou reduz o preço final para o comprador?",
+   "ancora": "Imposto e taxa de importação sobem preço; subsídio reduz.",
+   "feedbackErro": "Impostos e taxas de importação empurram o preço para cima; subsídios e isenções empurram para baixo — o efeito depende da política aplicada.",
+   "caixas": [
+    {
+     "id": "aumenta",
+     "rotulo": "Aumenta"
+    },
+    {
+     "id": "reduz",
+     "rotulo": "Reduz"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Imposto de importação sobre eletrônicos",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "Subsídio ao transporte público",
+     "caixaCorreta": "reduz"
+    },
+    {
+     "texto": "Novo imposto sobre bebidas açucaradas",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "Isenção de imposto sobre a cesta básica",
+     "caixaCorreta": "reduz"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "renda-e-escolha",
+   "dificuldade": 3,
+   "pergunta": "Uma pessoa de renda média herda uma casa e passa a ter renda de aluguel extra. Isso muda o espaço de escolha dela?",
+   "ancora": "Renda extra amplia o que antes não cabia no orçamento.",
+   "alternativas": [
+    {
+     "texto": "Sim: opções antes fora de alcance passam a caber",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não: só o salário conta como renda de verdade",
+     "correta": false,
+     "feedbackErro": "Aluguel recebido é renda como outra qualquer — soma ao que a pessoa tem disponível para decidir todo mês."
+    },
+    {
+     "texto": "Não: herança nunca muda hábitos de consumo",
+     "correta": false,
+     "feedbackErro": "Uma renda extra recorrente, como aluguel, tende sim a abrir espaço para novas escolhas, ainda que os hábitos mudem aos poucos."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "agentes-economicos",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Toda empresa repassa ao comprador qualquer aumento de custo que sofre",
+   "resposta": false,
+   "ancora": "Concorrência forte pode impedir o repasse total do aumento.",
+   "feedbackErro": "Parece automático repassar o custo maior, mas num mercado com muita concorrência, repassar tudo pode fazer o cliente ir para o concorrente — a empresa então absorve parte."
+  }
+ ]
+}

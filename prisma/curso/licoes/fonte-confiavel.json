@@ -1,0 +1,330 @@
+{
+ "slug": "fonte-confiavel",
+ "segmento": "ef89",
+ "conceitoPrincipal": "fonte-confiavel",
+ "fraseConceito": "Fonte confiável mostra de onde vem a informação, não promete ganho garantido e não lucra com o que indica pra você.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "É fonte confiável sobre dinheiro?",
+   "enunciado": "Um post que promete triplicar seu dinheiro em um mês",
+   "resposta": false,
+   "ancora": "Ninguém garante ganho alto e rápido. Isso é golpe, não informação.",
+   "feedbackErro": "A promessa parece uma dica valiosa, e é isso que atrai. Mas nenhuma fonte séria garante ganho certo — quem garante está vendendo, não informando."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "É fonte confiável sobre dinheiro?",
+   "enunciado": "O canal oficial do Banco Central explicando a Selic",
+   "resposta": true,
+   "ancora": "Instituição pública, sem produto pra vender, dado aberto e checável.",
+   "feedbackErro": "Por ser vídeo curto e informal, parece pouco oficial. Mas vindo do canal do próprio Banco Central, o dado é público e não vende nada."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "É fonte confiável sobre dinheiro?",
+   "enunciado": "Um influenciador que vende curso vendendo a mesma dica que dá de graça",
+   "resposta": false,
+   "ancora": "Quem lucra com o que indica tem interesse, não neutralidade.",
+   "feedbackErro": "Ele parece generoso por postar dica de graça. Mas o objetivo é vender o curso completo depois — o conselho grátis é isca, não neutralidade."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "avaliar-fonte",
+   "dificuldade": 1,
+   "pergunta": "Vitor viu um vídeo prometendo 20% ao mês sem nenhum risco. O que denuncia golpe?",
+   "ancora": "Poupança rende ~0,5% ao mês; 20% não existe sem risco altíssimo.",
+   "alternativas": [
+    {
+     "texto": "O valor prometido é maior que qualquer taxa real de mercado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O vídeo tem mais de 1 milhão de visualizações",
+     "correta": false,
+     "feedbackErro": "Popularidade não garante verdade — muita gente pode acreditar no mesmo golpe."
+    },
+    {
+     "texto": "A pessoa no vídeo fala rápido e usa termos técnicos",
+     "correta": false,
+     "feedbackErro": "Jargão sozinho não prova nada. O que denuncia golpe é a promessa de retorno impossível."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "decisao-de-credito-informada",
+   "dificuldade": 1,
+   "pergunta": "Qual fonte tem menos interesse em te enganar sobre um empréstimo?",
+   "ancora": "Quem não lucra com sua escolha tende a ser mais neutro.",
+   "alternativas": [
+    {
+     "texto": "O gerente do banco que vende o empréstimo",
+     "correta": false,
+     "feedbackErro": "Ele quer fechar o contrato — o interesse dele é a venda, não uma opinião neutra."
+    },
+    {
+     "texto": "Um órgão de defesa do consumidor (Procon)",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Um grupo de WhatsApp de 'renda extra garantida'",
+     "correta": false,
+     "feedbackErro": "Promete ganho fácil sem risco. Quem participa costuma lucrar recrutando gente, não investindo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "É fonte confiável?",
+   "enunciado": "Um site que pede seus dados bancários pra 'liberar' uma notícia",
+   "resposta": false,
+   "ancora": "Fonte de informação não pede dado bancário pra te deixar ler.",
+   "feedbackErro": "A notícia parece exclusiva, e isso convence a preencher o formulário. Mas pedir dado bancário pra 'liberar leitura' é phishing, não jornalismo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "avaliar-fonte",
+   "instrucao": "Toque na ordem de confiança, da mais pra menos confiável.",
+   "ancora": "Quanto mais checável a origem, mais confiável a informação.",
+   "feedbackErro": "A ordem certa segue quem pode ser checado: dado oficial e reportagem com fonte vêm antes de opinião e de mensagem anônima.",
+   "itens": [
+    {
+     "texto": "Dado oficial do Banco Central",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Reportagem de jornal que cita a fonte",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Vídeo de um influenciador de finanças",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Mensagem de um desconhecido no WhatsApp",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "É sinal de golpe?",
+   "enunciado": "Prometer lucro garantido sem nenhum risco",
+   "resposta": true,
+   "ancora": "Todo investimento real tem risco. 'Garantido' é bandeira vermelha.",
+   "feedbackErro": "A palavra 'garantido' soa como segurança, e por isso funciona. Mas todo investimento de verdade tem risco — quem garante ganho está mentindo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "É sinal de golpe?",
+   "enunciado": "Pedir pra você trazer mais gente pra 'aumentar seu ganho'",
+   "resposta": true,
+   "ancora": "Isso é pirâmide: quem ganha é quem entrou primeiro, não quem trabalha.",
+   "feedbackErro": "Parece uma forma de multiplicar resultado em grupo. Mas o ganho vem de quem entra depois, não de produto real — é o desenho de uma pirâmide."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "decisao-de-credito-informada",
+   "pergunta": "Uma 'oportunidade' promete 15% ao mês. Quanto R$ 1.000 virariam em 1 ano?",
+   "campo": "moeda",
+   "min": 1000,
+   "max": 15000,
+   "gabarito": 5350,
+   "toleranciaPct": 20,
+   "fonte": "juros compostos aplicados sobre a promessa anunciada",
+   "verificacao": {
+    "expressao": "1000*1.15^12",
+    "esperado": 5350.25,
+    "tolerancia": 5
+   },
+   "feedbackPerto": "Isso mesmo — quase R$ 5.350. Promessa desse tamanho não existe: é sinal de golpe, não de sorte.",
+   "feedbackLonge": "Dá cerca de R$ 5.350. Juros compostos multiplicam mês a mês — por isso mesmo ninguém sustenta esse ritmo de verdade."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "avaliar-fonte",
+   "dificuldade": 1,
+   "pergunta": "Uma reportagem sobre dívidas cita 'especialistas' sem dizer o nome. O que fazer?",
+   "ancora": "Fonte não checável não é motivo pra confiar nem pra descartar tudo.",
+   "alternativas": [
+    {
+     "texto": "Confiar, porque é uma reportagem",
+     "correta": false,
+     "feedbackErro": "Reportagem também pode errar ou ser paga. Fonte sem nome não pode ser checada."
+    },
+    {
+     "texto": "Buscar se outro veículo confirma o mesmo dado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ignorar toda a reportagem, sem checar nada",
+     "correta": false,
+     "feedbackErro": "Descartar tudo sem checar também é raso. O caminho é confirmar em outra fonte, não abandonar a busca."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "decisao-de-credito-informada",
+   "dificuldade": 1,
+   "pergunta": "Por que o endividamento das famílias também é um problema de informação?",
+   "ancora": "Informação ruim leva a crédito mais caro, e a dívida cresce.",
+   "alternativas": [
+    {
+     "texto": "Porque falta dinheiro, e informação não resolve isso",
+     "correta": false,
+     "feedbackErro": "Falta de renda pesa, mas boa parte da dívida vem de crédito caro escolhido sem comparar."
+    },
+    {
+     "texto": "Decisão mal informada empurra pro rotativo e cheque especial",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque o governo esconde os dados de dívida da população",
+     "correta": false,
+     "feedbackErro": "Os dados de endividamento são públicos, do Banco Central. O problema não é acesso, é o uso da informação."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "É fonte confiável?",
+   "enunciado": "Um anúncio pago dizendo ser 'a melhor opção do mercado'",
+   "resposta": false,
+   "ancora": "Anúncio pago existe pra vender, não pra comparar com neutralidade.",
+   "feedbackErro": "Soa como um veredito de especialista, e por isso convence. Mas é publicidade paga: o objetivo é vender, nunca comparar com isenção."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "decisao-de-credito-informada",
+   "criterio": "Ajuda a não cair em dívida ruim?",
+   "enunciado": "Desconfiar de promessa de ganho garantido",
+   "resposta": true,
+   "ancora": "Desconfiar do 'garantido' é o primeiro filtro contra decisão ruim.",
+   "feedbackErro": "Parece só cautela excessiva. Mas checar antes de acreditar é o que evita entrar em crédito ou golpe caro por informação errada."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "avaliar-fonte",
+   "pergunta": "Qual frase resume o que você viu?",
+   "ancora": "Checar a origem é o primeiro passo antes de decidir sobre dinheiro.",
+   "alternativas": [
+    {
+     "texto": "Fonte confiável é a que promete o maior ganho.",
+     "correta": false,
+     "feedbackErro": "Promessa de ganho alto é sinal de alerta, não de confiança."
+    },
+    {
+     "texto": "Fonte confiável mostra a origem e não lucra com sua escolha.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Toda notícia sobre dinheiro é confiável se for popular.",
+     "correta": false,
+     "feedbackErro": "Popularidade não garante verdade — até golpe viraliza."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "avaliar-fonte",
+   "instrucao": "Fonte confiável ou não? Arraste cada item.",
+   "ancora": "Confiável é o que não lucra com sua decisão e mostra a origem.",
+   "feedbackErro": "Fonte oficial não vende produto nem promete ganho. Quem promete riqueza rápida está vendendo algo, não informando.",
+   "caixas": [
+    {
+     "id": "confiavel",
+     "rotulo": "Confiável"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Relatório do IBGE sobre inflação",
+     "caixaCorreta": "confiavel"
+    },
+    {
+     "texto": "Grupo de WhatsApp de 'renda garantida'",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Site oficial do Banco Central",
+     "caixaCorreta": "confiavel"
+    },
+    {
+     "texto": "Anúncio de curso que promete 'ficar rico rápido'",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "avaliar-fonte",
+   "dificuldade": 2,
+   "pergunta": "Um 'consultor' cobra 10% do lucro só se você ganhar. Isso é confiável?",
+   "ancora": "Interesse financeiro no seu 'sim' não é neutralidade.",
+   "alternativas": [
+    {
+     "texto": "Sim, porque ele só ganha se eu ganhar",
+     "correta": false,
+     "feedbackErro": "Parece alinhado, mas isso o incentiva a prometer retorno alto pra fechar o contrato."
+    },
+    {
+     "texto": "Não necessariamente: ele ainda tem interesse em te convencer",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, cobrar comissão sobre lucro é ilegal, logo é seguro",
+     "correta": false,
+     "feedbackErro": "Cobrar comissão sobre lucro é comum e legal. O problema não é a legalidade, é o conflito de interesse."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "avaliar-fonte",
+   "criterio": "É sinal de golpe?",
+   "enunciado": "Pedir urgência pra você decidir 'antes que acabe'",
+   "resposta": true,
+   "ancora": "Pressa é ferramenta clássica pra você não checar antes de agir.",
+   "feedbackErro": "Ofertas reais também têm prazo, e isso confunde. Mas pressa combinada com promessa alta é o padrão clássico de golpe."
+  }
+ ]
+}

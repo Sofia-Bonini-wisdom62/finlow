@@ -1,0 +1,275 @@
+{
+ "slug": "metas-e-o-que-ameaca-elas",
+ "segmento": "ef67",
+ "conceitoPrincipal": "metas-e-o-que-ameaca-elas",
+ "fraseConceito": "Uma meta financeira só se cumpre se o orçamento for superavitário e resistir a imprevistos e à inflação.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "meta-orcamento",
+   "criterio": "Ameaça a meta guardada?",
+   "enunciado": "Anotar quanto gasta toda semana",
+   "resposta": false,
+   "ancora": "Anotar não ameaça — é o que revela onde cortar para sobrar dinheiro.",
+   "feedbackErro": "Parece chato e sem efeito direto. Mas é anotando que dá pra ver o que está consumindo a meta antes que ela suma."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "ameaca-a-meta",
+   "criterio": "Ameaça a meta guardada?",
+   "enunciado": "Um gasto surpresa consumir o que você guardou",
+   "resposta": true,
+   "ancora": "Imprevisto sem reserva come a meta inteira de uma vez.",
+   "feedbackErro": "Parece só azar, mas é isso que ameaça: sem reserva pra imprevisto, qualquer surpresa consome o que foi guardado com esforço."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "inflacao-na-meta",
+   "criterio": "Ameaça a meta guardada?",
+   "enunciado": "O preço do que você quer subir enquanto você guarda",
+   "resposta": true,
+   "ancora": "Se o preço sobe mais rápido que a poupança, a meta se afasta.",
+   "feedbackErro": "Guardar parece garantia, mas se o preço sobe mais rápido que o dinheiro guardado, você corre atrás de um alvo que também se move."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "meta-orcamento",
+   "dificuldade": 1,
+   "pergunta": "Bia ganha R$ 40 de mesada por semana e gasta R$ 40 em lanche. Sobra zero. O que cria superávit?",
+   "ancora": "Reduzir um gasto habitual sobra dinheiro sem precisar ganhar mais.",
+   "alternativas": [
+    {
+     "texto": "Pedir R$ 10 a mais de mesada aos pais",
+     "correta": false,
+     "feedbackErro": "Pode ajudar, mas depende dos pais dizerem sim — não é algo que ela controla todo mês."
+    },
+    {
+     "texto": "Levar lanche de casa na maioria dos dias",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Guardar a mesada inteira e não comprar nada",
+     "correta": false,
+     "feedbackErro": "Parece resolver de vez, mas ninguém aguenta por muito tempo — o hábito que dura é o que ajusta o consumo, não o que corta tudo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "ameaca-a-meta",
+   "dificuldade": 1,
+   "pergunta": "Uma família perdeu parte da renda no mês. O que isso faz com a meta guardada?",
+   "ancora": "Menos receita, sem ajuste na meta, drena o que já foi guardado.",
+   "alternativas": [
+    {
+     "texto": "Nada muda, a meta segue no mesmo ritmo",
+     "correta": false,
+     "feedbackErro": "Parece que a meta é independente da renda, mas ela nasce do orçamento — se a receita cai e nada muda, o guardado cobre a diferença."
+    },
+    {
+     "texto": "A família precisa rever a meta ou os gastos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A meta só muda se a família quiser",
+     "correta": false,
+     "feedbackErro": "A vontade não segura o orçamento sozinha. Se a receita caiu e as despesas seguem iguais, a meta é afetada, queira a família ou não."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "inflacao-na-meta",
+   "criterio": "É a inflação agindo?",
+   "enunciado": "O tênis de R$ 200 passar a custar R$ 220 no ano seguinte",
+   "resposta": true,
+   "ancora": "Preço subindo com o tempo, sem mudar o produto, é inflação.",
+   "feedbackErro": "Pode parecer só o tênis ficando mais caro por moda. Mas quando o preço sobe de um ano pro outro sem o produto mudar, isso é inflação."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "ameaca-a-meta",
+   "instrucao": "É hábito de consumo ou vem de fora do seu controle?",
+   "ancora": "O que você decide é seu; o que vem do mercado, não.",
+   "feedbackErro": "É fácil misturar os dois porque ambos afetam a meta. Mas hábito de gasto você escolhe; preço subindo ou renda caindo vêm de fora do seu controle.",
+   "caixas": [
+    {
+     "id": "controla",
+     "rotulo": "Você controla"
+    },
+    {
+     "id": "fora",
+     "rotulo": "Vem de fora"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Gastar a mesada toda no primeiro dia",
+     "caixaCorreta": "controla"
+    },
+    {
+     "texto": "O preço do produto subir com a inflação",
+     "caixaCorreta": "fora"
+    },
+    {
+     "texto": "Comprar sem comparar preços antes",
+     "caixaCorreta": "controla"
+    },
+    {
+     "texto": "A família perder parte da renda",
+     "caixaCorreta": "fora"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "meta-orcamento",
+   "criterio": "Isso é orçamento superavitário?",
+   "enunciado": "Ganhar R$ 30 e gastar R$ 25 no mês",
+   "resposta": true,
+   "verificacao": {
+    "expressao": "30-25",
+    "esperado": 5
+   },
+   "ancora": "Sobra R$ 5 — receita maior que despesa é superávit.",
+   "feedbackErro": "Pode parecer pouco, R$ 5. Mas superávit não é sobre o tamanho da sobra, é sobre a receita ficar maior que a despesa — e aqui ficou."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "inflacao-na-meta",
+   "dificuldade": 1,
+   "pergunta": "Alguém guarda para um videogame de R$ 500. Em um ano, o preço médio deles sobe. O que essa pessoa deve fazer?",
+   "ancora": "Reavaliar o valor da meta de tempos em tempos, não só guardar.",
+   "alternativas": [
+    {
+     "texto": "Continuar guardando o mesmo valor todo mês",
+     "correta": false,
+     "feedbackErro": "Guardar é necessário, mas se o preço subiu e o valor guardado por mês não mudou, ela vai demorar mais do que o planejado."
+    },
+    {
+     "texto": "Revisar a meta e ajustar quanto guardar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Desistir, porque o preço nunca vai parar de subir",
+     "correta": false,
+     "feedbackErro": "O preço realmente tende a subir com o tempo. Mas isso não é motivo pra desistir — é motivo pra ajustar quanto guardar por mês."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "ameaca-a-meta",
+   "criterio": "Isso ajuda a proteger a meta?",
+   "enunciado": "Ter um dinheiro guardado só para imprevistos",
+   "resposta": true,
+   "ancora": "Reserva para imprevisto evita que ele consuma a meta principal.",
+   "feedbackErro": "Pode parecer dinheiro parado à toa. Mas essa reserva separada é o que impede que um imprevisto coma justamente o valor guardado para a meta."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "meta-orcamento",
+   "criterio": "Ameaça a meta guardada?",
+   "enunciado": "Trocar o lanche comprado por um feito em casa, às vezes",
+   "resposta": false,
+   "ancora": "Isso libera dinheiro para a meta — não ameaça, ajuda.",
+   "feedbackErro": "Parece um sacrifício, e por isso confunde. Mas trocar o lanche comprado por um de casa de vez em quando sobra dinheiro pra meta, não ameaça."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "metas-e-o-que-ameaca-elas",
+   "pergunta": "Qual frase resume o que você viu?",
+   "alternativas": [
+    {
+     "texto": "A meta só depende de guardar dinheiro todo mês",
+     "correta": false,
+     "feedbackErro": "Guardar é a base, mas não basta: hábitos de consumo, imprevistos e inflação também mexem na meta."
+    },
+    {
+     "texto": "A meta pode ser ameaçada por hábitos, imprevistos e inflação",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Inflação não muda nada numa meta de curto prazo",
+     "correta": false,
+     "feedbackErro": "Mesmo em poucos meses, o preço pode subir o bastante pra atrasar uma meta — inflação conta mesmo no curto prazo."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "meta-orcamento",
+   "instrucao": "Ordene do que mais ajuda ao que menos ajuda a meta.",
+   "ancora": "Controle ativo ajuda mais do que esperança.",
+   "feedbackErro": "Torcer não muda nada no orçamento. Anotar e reduzir gasto são ações que criam superávit; esperar sobrar não é uma delas.",
+   "itens": [
+    {
+     "texto": "Anotar todo gasto da semana",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Reduzir um gasto fixo pequeno",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Torcer para sobrar no fim do mês",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "ameaca-a-meta",
+   "dificuldade": 2,
+   "pergunta": "Qual situação NÃO ameaça uma meta financeira guardada?",
+   "ancora": "Preço cair aproxima da meta, não afasta.",
+   "alternativas": [
+    {
+     "texto": "Perder parte da renda da família",
+     "correta": false,
+     "feedbackErro": "Perder renda reduz o que sobra pra guardar — isso ameaça, sim, a meta."
+    },
+    {
+     "texto": "O preço do produto cair antes da compra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Gasto surpresa sem reserva pra cobrir",
+     "correta": false,
+     "feedbackErro": "Sem reserva, o imprevisto consome o que já foi guardado — isso ameaça a meta."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "meta-orcamento",
+   "criterio": "É hábito que ameaça a meta?",
+   "enunciado": "Comprar por impulso quando vê promoção",
+   "resposta": true,
+   "ancora": "Compra por impulso corrói a meta aos poucos.",
+   "feedbackErro": "Parece pequeno, uma promoção aqui outra ali. Mas comprar por impulso repetidamente consome, aos poucos, o que seria guardado para a meta."
+  }
+ ]
+}

@@ -1,0 +1,153 @@
+{
+ "slug": "mais-caro-mais-barato-reforco",
+ "segmento": "ef12",
+ "conceitoPrincipal": "mais-caro-mais-barato",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "mais-caro-mais-barato",
+   "criterio": "Isso decide se é mais caro?",
+   "enunciado": "O número escrito na etiqueta",
+   "resposta": true,
+   "ancora": "O preço (o número) é o que decide, não o tamanho.",
+   "feedbackErro": "Dá pra achar que só o tamanho ou a cor mostram o preço. Mas quem decide é sempre o número na etiqueta."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "mais-caro-mais-barato",
+   "criterio": "Isso decide se é mais caro?",
+   "enunciado": "O tamanho da caixa",
+   "resposta": false,
+   "ancora": "Caixa grande pode custar pouco; caixa pequena pode custar muito.",
+   "feedbackErro": "Caixa grande parece cara, e às vezes é. Mas quem decide o preço é o número na etiqueta, não o tamanho da caixa."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "moedas-e-notas",
+   "criterio": "Dá pra pagar só com moeda?",
+   "enunciado": "O suco (R$ 3,90)",
+   "resposta": false,
+   "ancora": "R$3,90 passa de R$1. Precisa de nota.",
+   "feedbackErro": "R$3,90 tem centavos, o que confunde pensando em moedas. Mas o valor total passa de R$1 — por isso precisa de nota."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "moedas-e-notas",
+   "criterio": "Dá pra pagar só com moeda?",
+   "enunciado": "A bala (R$ 0,75)",
+   "resposta": true,
+   "ancora": "R$0,75 é menos que R$1. Dá pra pagar só com moedas.",
+   "feedbackErro": "R$0,75 tem várias moedas diferentes envolvidas, parece complicado. Mas o total ainda é menor que R$1."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "mais-caro-mais-barato",
+   "instrucao": "Custa mais ou menos que R$4?",
+   "ancora": "R$4 é a régua nova. Compare cada preço com ela.",
+   "feedbackErro": "Alguns preços ficam bem perto de R$4, e isso confunde. Compare direitinho antes de escolher o lado.",
+   "caixas": [
+    { "id": "mais", "rotulo": "Mais que R$4" },
+    { "id": "menos", "rotulo": "Menos que R$4" }
+   ],
+   "itens": [
+    { "texto": "Pipoca (R$ 3,50)", "caixaCorreta": "menos" },
+    { "texto": "Refrigerante (R$ 4,90)", "caixaCorreta": "mais" },
+    { "texto": "Bala de goma (R$ 0,80)", "caixaCorreta": "menos" },
+    { "texto": "Sanduíche (R$ 7,25)", "caixaCorreta": "mais" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "mais-caro-mais-barato",
+   "criterio": "É mais barato que o sanduíche (R$7,25)?",
+   "enunciado": "A pipoca (R$ 3,50)",
+   "resposta": true,
+   "ancora": "R$3,50 é menos que R$7,25.",
+   "feedbackErro": "R$3,50 e R$7,25 têm centavos parecidos, o que confunde. Mas 3,50 é bem menor que 7,25."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "mais-caro-mais-barato",
+   "criterio": "Custa mais que R$10?",
+   "enunciado": "O livro (R$ 12,40)",
+   "resposta": true,
+   "ancora": "R$12,40 passa de R$10.",
+   "feedbackErro": "R$12,40 é só um pouco mais que R$10, dá pra achar que é menos. Mas 12,40 já passou de 10."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "mais-caro-mais-barato",
+   "dificuldade": 2,
+   "pergunta": "Dois brinquedos, preços parecidos. Como saber qual é mais barato?",
+   "ancora": "Compare o número dos dois preços.",
+   "alternativas": [
+    {
+     "texto": "Vendo qual é maior de tamanho",
+     "correta": false,
+     "feedbackErro": "Tamanho não é o critério. Dois brinquedos parecidos podem ter preços bem diferentes."
+    },
+    {
+     "texto": "Comparando o número dos dois preços",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Perguntando qual a loja prefere vender",
+     "correta": false,
+     "feedbackErro": "Isso não muda o preço pra você. O que decide é comparar os dois números."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "mais-caro-mais-barato",
+   "instrucao": "Toque na ordem do mais barato pro mais caro.",
+   "ancora": "Ordem pelo preço, sempre.",
+   "feedbackErro": "É fácil ordenar pela aparência do produto. Aqui o que manda é o número do preço.",
+   "itens": [
+    { "texto": "Bala de goma (R$ 0,80)", "posicaoCorreta": 1 },
+    { "texto": "Pipoca (R$ 3,50)", "posicaoCorreta": 2 },
+    { "texto": "Sanduíche (R$ 7,25)", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "moedas-e-notas",
+   "instrucao": "Dá pra pagar só com moeda ou precisa de nota?",
+   "ancora": "Até R$1 é moeda. Passou disso, precisa de nota.",
+   "feedbackErro": "Alguns valores ficam pertinho de R$1, e isso confunde. Compare cada preço com R$1.",
+   "caixas": [
+    { "id": "moeda", "rotulo": "Só moeda" },
+    { "id": "nota", "rotulo": "Precisa de nota" }
+   ],
+   "itens": [
+    { "texto": "R$ 0,90", "caixaCorreta": "moeda" },
+    { "texto": "R$ 1,50", "caixaCorreta": "nota" },
+    { "texto": "R$ 0,40", "caixaCorreta": "moeda" },
+    { "texto": "R$ 5,00", "caixaCorreta": "nota" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "mais-caro-mais-barato",
+   "criterio": "Custa menos que R$6?",
+   "enunciado": "O sorvete de casquinha (R$ 5,80)",
+   "resposta": true,
+   "ancora": "R$5,80 é menos que R$6.",
+   "feedbackErro": "R$5,80 chega bem perto de R$6, e isso confunde. Mas ainda é menor."
+  }
+ ]
+}

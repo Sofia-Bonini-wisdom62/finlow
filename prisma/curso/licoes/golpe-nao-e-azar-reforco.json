@@ -1,0 +1,332 @@
+{
+ "slug": "golpe-nao-e-azar-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "golpe-nao-e-azar",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "padrao-do-golpe",
+   "criterio": "Ainda é sinal de golpe?",
+   "enunciado": "Empresa liga avisando compra suspeita e pede pra confirmar pelo app oficial",
+   "resposta": false,
+   "ancora": "Alertar e mandar confirmar no app oficial é prática legítima.",
+   "feedbackErro": "Uma ligação sobre compra suspeita já soa alarmante. Mas pedir pra você mesmo confirmar no app oficial, sem senha, é procedimento normal."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "padrao-do-golpe",
+   "criterio": "Ainda é sinal de golpe?",
+   "enunciado": "Perfil clonado de um amigo pedindo Pix 'urgente' pra uma emergência",
+   "resposta": true,
+   "ancora": "Perfil clonado é tática comum — sempre confirme por outro canal.",
+   "feedbackErro": "É a foto e o nome do seu amigo de verdade, e isso convence rápido. Mas perfil clonado é comum — ligue por outro canal antes de mandar algo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "protecao-de-dados",
+   "criterio": "Ainda é sinal de golpe?",
+   "enunciado": "Recrutador que faz entrevista formal antes de qualquer proposta de pagamento",
+   "resposta": false,
+   "ancora": "Processo com etapas e sem pedido de pagamento é contratação comum.",
+   "feedbackErro": "Poderia parecer suspeito só por ser um processo longo. Mas etapas formais, sem pedir dinheiro antes, é como contratação séria funciona."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "padrao-do-golpe",
+   "dificuldade": 2,
+   "pergunta": "Um golpe de cartão clonado gerou 4 compras de R$ 180 cada, sem seu conhecimento. Quanto saiu da conta?",
+   "ancora": "4 × R$ 180 = R$ 720 debitados sem autorização.",
+   "verificacao": {
+    "expressao": "180*4",
+    "esperado": 720
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 180",
+     "correta": false,
+     "feedbackErro": "R$ 180 é só uma das quatro compras. Multiplique pelas 4 vezes: dá R$ 720 no total."
+    },
+    {
+     "texto": "R$ 720",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 900",
+     "correta": false,
+     "feedbackErro": "R$ 900 seriam 5 compras. Foram 4 de R$ 180: 4 × 180 = R$ 720."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "protecao-de-dados",
+   "dificuldade": 2,
+   "pergunta": "Você recebe um link 'do banco' com endereço parecido, mas com uma letra trocada. O que isso indica?",
+   "ancora": "Endereço quase igual ao oficial é a marca do phishing.",
+   "alternativas": [
+    {
+     "texto": "Site normal, só com erro de digitação no anúncio",
+     "correta": false,
+     "feedbackErro": "Não é erro de digitação — é técnica proposital pra imitar o endereço oficial e te enganar."
+    },
+    {
+     "texto": "Phishing: site falso imitando o oficial pra roubar dado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Prova de que o banco está testando um novo domínio",
+     "correta": false,
+     "feedbackErro": "Banco não testa domínio parecido pra confundir cliente — esse padrão é típico de golpe de phishing."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "padrao-do-golpe",
+   "criterio": "Ainda é sinal de golpe?",
+   "enunciado": "Pedir pra você instalar um 'app de suporte' pra 'resolver' o problema",
+   "resposta": true,
+   "ancora": "App de acesso remoto dá controle do aparelho a golpistas.",
+   "feedbackErro": "Parece ajuda técnica genuína, do tipo 'suporte remoto'. Mas esse tipo de app dá controle total do celular pra quem pediu a instalação."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "padrao-do-golpe",
+   "instrucao": "Ordene da ação mais segura pra mais arriscada, ao suspeitar de golpe.",
+   "ancora": "Quanto mais você confia no canal do golpista, mais arriscado fica.",
+   "feedbackErro": "Ligar pro número oficial é o mais seguro; fazer o Pix pedido 'só pra garantir' é o mais arriscado de todos.",
+   "itens": [
+    {
+     "texto": "Desligar e ligar de volta pro número oficial",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Checar direto no app oficial do banco",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Responder pedindo mais detalhes pelo mesmo canal",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Fazer o Pix pedido, 'só pra garantir'",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "protecao-de-dados",
+   "criterio": "Reduz o risco de golpe?",
+   "enunciado": "Ativar a confirmação em duas etapas nas contas importantes",
+   "resposta": true,
+   "ancora": "Duas etapas travam o golpista mesmo com a senha em mãos.",
+   "feedbackErro": "Pode parecer um passo extra chato no login. Mas mesmo com a senha roubada, a segunda etapa barra o acesso do golpista."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "protecao-de-dados",
+   "criterio": "Reduz o risco de golpe?",
+   "enunciado": "Usar a mesma senha em todos os apps pra não esquecer",
+   "resposta": false,
+   "ancora": "Uma senha só faz um vazamento abrir todas as portas.",
+   "feedbackErro": "Facilita lembrar, e por isso é tão comum. Mas se um app vazar essa senha, todos os outros com a mesma senha ficam expostos junto."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "padrao-do-golpe",
+   "pergunta": "Golpe do falso emprego cobrou R$ 89 de 'kit inicial' 4 vezes. Quanto perdeu?",
+   "campo": "moeda",
+   "min": 50,
+   "max": 1000,
+   "gabarito": 356,
+   "toleranciaPct": 20,
+   "fonte": "cálculo simples sobre o valor médio do golpe",
+   "verificacao": {
+    "expressao": "89*4",
+    "esperado": 356
+   },
+   "feedbackPerto": "Isso mesmo — R$ 356. A cobrança repetida em pequenas parcelas disfarça o total perdido.",
+   "feedbackLonge": "Dá R$ 356. Cada parcela parece pequena isoladamente, mas repetida 4 vezes soma um valor bem maior."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "padrao-do-golpe",
+   "dificuldade": 2,
+   "pergunta": "Uma mensagem do 'RH' cobra taxa pra 'liberar' um emprego que você nunca se candidatou. Onde está o padrão do golpe?",
+   "ancora": "Cobrar antes de trabalhar é a marca clássica do golpe do emprego.",
+   "alternativas": [
+    {
+     "texto": "Em cobrar taxa antes de você sequer começar a trabalhar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "No fato de a mensagem vir por WhatsApp",
+     "correta": false,
+     "feedbackErro": "O canal não é o problema — WhatsApp também é usado por empresas reais. O golpe está em cobrar antes de trabalhar."
+    },
+    {
+     "texto": "No fato de mencionar o departamento de RH",
+     "correta": false,
+     "feedbackErro": "Mencionar RH não prova nada sozinho. O sinal real é pedir pagamento por uma vaga que você não buscou."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "protecao-de-dados",
+   "dificuldade": 2,
+   "pergunta": "Um app de lanterna pede acesso aos seus contatos e mensagens. Isso é...",
+   "ancora": "Uma lanterna não precisa de contato nem mensagem pra funcionar.",
+   "alternativas": [
+    {
+     "texto": "Pedido de permissão desproporcional à função do app",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Normal, porque todo app pede acesso a tudo",
+     "correta": false,
+     "feedbackErro": "Nem todo app precisa de tudo — o critério é se a permissão faz sentido pra função dele."
+    },
+    {
+     "texto": "Sinal de que o app é mais completo que os outros",
+     "correta": false,
+     "feedbackErro": "Mais permissão não é mais qualidade — pode ser só uma forma de coletar dado sem necessidade real."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "protecao-de-dados",
+   "criterio": "Ainda é sinal de golpe?",
+   "enunciado": "Pedir print da tela do seu aplicativo bancário aberto",
+   "resposta": true,
+   "ancora": "O print pode revelar saldo, dado e até código na tela.",
+   "feedbackErro": "Parece só uma prova de que 'você tem conta no banco'. Mas o print pode mostrar saldo, dado pessoal e até código sensível."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "padrao-do-golpe",
+   "criterio": "Reduz o risco de golpe?",
+   "enunciado": "Desconfiar de contato não solicitado pedindo dado ou dinheiro",
+   "resposta": true,
+   "ancora": "Contato não pedido, cobrando algo, é o começo típico do golpe.",
+   "feedbackErro": "Desconfiar de tudo parece exagero no dia a dia. Mas contato que você não pediu, cobrando dado ou dinheiro, é onde o golpe sempre começa."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "padrao-do-golpe",
+   "pergunta": "Qual frase resume o que você reforçou hoje?",
+   "ancora": "Processo sem pressa é legítimo; pressão pedindo dado é golpe.",
+   "alternativas": [
+    {
+     "texto": "Todo pedido de confirmação por telefone é golpe.",
+     "correta": false,
+     "feedbackErro": "Confirmar pelo app oficial, sem dar senha, é procedimento legítimo comum."
+    },
+    {
+     "texto": "Legítimo segue processo sem pressa; golpe pressiona e pede o que só você sabe.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só quem clica em link cai em golpe.",
+     "correta": false,
+     "feedbackErro": "Clonagem de perfil e ligação também enganam sem nenhum link envolvido."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "protecao-de-dados",
+   "instrucao": "Isso é permissão razoável pro app? Arraste.",
+   "ancora": "Razoável é a permissão que a função do app realmente exige.",
+   "feedbackErro": "App de mapa precisar de localização é razoável; lanterna pedir contatos e mensagens, não — isso é coleta sem necessidade.",
+   "caixas": [
+    {
+     "id": "razoavel",
+     "rotulo": "Razoável"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "App de mapa pedindo localização",
+     "caixaCorreta": "razoavel"
+    },
+    {
+     "texto": "App de lanterna pedindo contatos",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "App de câmera pedindo acesso à câmera",
+     "caixaCorreta": "razoavel"
+    },
+    {
+     "texto": "App de calculadora pedindo suas mensagens",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "padrao-do-golpe",
+   "dificuldade": 2,
+   "pergunta": "Você recebe uma cobrança de boleto que nunca fechou negócio nenhum. O que fazer antes de pagar?",
+   "ancora": "Checar o CNPJ do beneficiário evita pagar boleto falso.",
+   "alternativas": [
+    {
+     "texto": "Checar o nome e CNPJ do beneficiário do boleto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pagar logo, já que boleto tem código de barras oficial",
+     "correta": false,
+     "feedbackErro": "Código de barras não garante nada — boleto falso também tem um, só que direcionado pra outra conta."
+    },
+    {
+     "texto": "Ignorar, porque boleto falso nunca é cobrado de verdade",
+     "correta": false,
+     "feedbackErro": "Ignorar sem checar arrisca deixar passar uma cobrança real — o certo é conferir antes de decidir."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "protecao-de-dados",
+   "criterio": "Reduz o risco de golpe?",
+   "enunciado": "Guardar o número de telefone oficial do seu banco em um lugar confiável",
+   "resposta": true,
+   "ancora": "Ter o número oficial à mão evita usar o que o golpista te passou.",
+   "feedbackErro": "Parece um detalhe pequeno demais pra fazer diferença. Mas ter o número oficial salvo evita ligar pro número que o golpista sugeriu."
+  }
+ ]
+}

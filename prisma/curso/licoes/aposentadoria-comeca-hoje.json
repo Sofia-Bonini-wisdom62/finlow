@@ -1,0 +1,339 @@
+{
+ "slug": "aposentadoria-comeca-hoje",
+ "segmento": "em2",
+ "conceitoPrincipal": "aposentadoria-comeca-hoje",
+ "fraseConceito": "Na aposentadoria, o tempo vale mais que o valor: começar cedo com pouco rende mais que começar tarde com muito.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "aposentadoria-comeca-hoje",
+   "criterio": "Aumenta o que você terá aos 65?",
+   "enunciado": "Começar a guardar aos 20, não aos 40",
+   "resposta": true,
+   "ancora": "Cada década a mais de juros compostos multiplica o resultado.",
+   "feedbackErro": "Parece cedo demais para pensar nisso, e é aí que mora o custo: os primeiros anos são os que mais rendem, porque os juros trabalham por mais tempo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "aposentadoria-comeca-hoje",
+   "criterio": "Aumenta o que você terá aos 65?",
+   "enunciado": "Esperar ganhar bem para começar a poupar",
+   "resposta": false,
+   "ancora": "Esperar joga fora os anos mais valiosos: os do início.",
+   "feedbackErro": "Faz sentido achar que só sobra quando a renda cresce. Mas quem espera perde o tempo, que é o ingrediente que nenhum aumento de salário devolve."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "aposentadoria-comeca-hoje",
+   "criterio": "Aumenta o que você terá aos 65?",
+   "enunciado": "Contribuir para o INSS trabalhando",
+   "resposta": true,
+   "ancora": "A contribuição garante o benefício público lá na frente.",
+   "feedbackErro": "O desconto na folha parece só imposto, e é aí que confunde. Ele conta tempo de contribuição e garante sua aposentadoria pública no futuro."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "aposentadoria-comeca-hoje",
+   "dificuldade": 1,
+   "pergunta": "Aos 20, Caio guardou R$ 10.000 e nunca mais mexeu. A 0,5% ao mês, quanto tem aos 40?",
+   "ancora": "1,005^240 ≈ 3,31: o dinheiro mais que triplica sem depósito novo.",
+   "verificacao": {
+    "expressao": "10000*1.005^240",
+    "esperado": 33102,
+    "tolerancia": 1
+   },
+   "alternativas": [
+    {
+     "texto": "Cerca de R$ 22.000",
+     "correta": false,
+     "feedbackErro": "Você somou 0,5% de R$ 10.000 por 240 meses, como juro simples. Mas o rendimento de cada mês também rende: composto multiplica, não soma."
+    },
+    {
+     "texto": "Cerca de R$ 33.000",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cerca de R$ 12.400",
+     "correta": false,
+     "feedbackErro": "R$ 12.400 seria pouco mais de 2 anos de rendimento. Em 20 anos, o composto passa longe: cada mês rende sobre o total acumulado."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "aposentadoria-comeca-hoje",
+   "dificuldade": 1,
+   "pergunta": "Parte do seu salário com carteira assinada vai para o INSS. Esse dinheiro serve para quê?",
+   "ancora": "Repartição: quem trabalha hoje paga quem já se aposentou.",
+   "alternativas": [
+    {
+     "texto": "Fica numa conta sua, para sacar quando quiser",
+     "correta": false,
+     "feedbackErro": "Esse é o modelo de previdência privada. No INSS vale a repartição: sua contribuição paga os aposentados de hoje e gera seu direito futuro."
+    },
+    {
+     "texto": "Paga os aposentados de hoje e gera seu direito",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "É um imposto comum, sem retorno para você",
+     "correta": false,
+     "feedbackErro": "Parece só mais um desconto, mas ele conta tempo de contribuição. Sem ele, não há benefício público na sua velhice."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "aposentadoria-comeca-hoje",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Quem começa cedo pode aportar menos por mês",
+   "resposta": true,
+   "ancora": "O tempo faz parte do aporte: começar cedo barateia a meta.",
+   "feedbackErro": "Parece que só o valor mensal importa. Mas o tempo multiplica cada depósito: começando cedo, um aporte menor chega ao mesmo lugar."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "aposentadoria-comeca-hoje",
+   "instrucao": "Todos guardam R$ 200/mês até os 60. Toque em quem termina com mais.",
+   "ancora": "Quanto mais cedo o início, maior o resultado final.",
+   "feedbackErro": "O instinto é achar que dá para compensar depois. Mas cada década de atraso corta uma multiplicação inteira: quem começa aos 20 termina na frente.",
+   "itens": [
+    {
+     "texto": "Começou aos 20",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Começou aos 30",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Começou aos 40",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Começou aos 50",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "aposentadoria-comeca-hoje",
+   "criterio": "Ajuda a chegar bem aos 65?",
+   "enunciado": "Somar um plano privado ao INSS",
+   "resposta": true,
+   "ancora": "Regimes privados complementam o público — compare as taxas antes.",
+   "feedbackErro": "O INSS é a base, e para muita gente basta. Mas ele tem teto: quem quer renda acima disso precisa complementar, avaliando custo e prazo do plano."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "aposentadoria-comeca-hoje",
+   "criterio": "Ajuda a chegar bem aos 65?",
+   "enunciado": "Contar que vai trabalhar para sempre",
+   "resposta": false,
+   "ancora": "Longevidade não garante saúde nem emprego até o fim.",
+   "feedbackErro": "Trabalhar por gosto depois dos 65 é ótimo. Contar com isso como plano é o risco: saúde e mercado de trabalho não obedecem à sua necessidade."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "aposentadoria-comeca-hoje",
+   "pergunta": "Guardando R$ 300 por mês a 0,5% ao mês, quanto você acumula em 30 anos?",
+   "campo": "moeda",
+   "min": 100000,
+   "max": 600000,
+   "gabarito": 301355,
+   "toleranciaPct": 20,
+   "fonte": "rendimento próximo ao da poupança, ~0,5% ao mês (Banco Central)",
+   "verificacao": {
+    "expressao": "300*((1.005^360-1)/0.005)",
+    "esperado": 301355,
+    "tolerancia": 5
+   },
+   "feedbackPerto": "Cerca de R$ 300 mil — e do seu bolso saíram R$ 108 mil. Dois terços vieram dos juros sobre o tempo.",
+   "feedbackLonge": "R$ 301 mil. O erro clássico é a linearidade: projetar em linha reta. Juros compostos curvam para cima, e a curva dispara no fim."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "aposentadoria-comeca-hoje",
+   "dificuldade": 1,
+   "pergunta": "As reformas subiram a idade de aposentadoria (65 homens, 62 mulheres). O motivo central?",
+   "ancora": "Vivemos mais: o sistema paga benefícios por muito mais tempo.",
+   "alternativas": [
+    {
+     "texto": "As pessoas vivem mais e recebem por mais tempo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Punir quem não guardou dinheiro antes",
+     "correta": false,
+     "feedbackErro": "A reforma não olha a poupança de cada um. A conta que mudou foi coletiva: mais anos de benefício por pessoa exigem mais anos de contribuição."
+    },
+    {
+     "texto": "Sobram jovens querendo vagas de trabalho",
+     "correta": false,
+     "feedbackErro": "É o contrário que pressiona: proporcionalmente menos jovens contribuem para cada aposentado. A longevidade esticou a conta do sistema."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "aposentadoria-comeca-hoje",
+   "dificuldade": 1,
+   "pergunta": "Primeiro estágio, primeira renda. O que já faz sentido fazer pela aposentadoria?",
+   "ancora": "Valor pequeno + tempo grande vence valor grande + tempo pequeno.",
+   "alternativas": [
+    {
+     "texto": "Separar um valor fixo mensal, mesmo pequeno",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Esperar a carreira estabilizar para pensar nisso",
+     "correta": false,
+     "feedbackErro": "Parece prudente esperar terreno firme. Mas os anos de espera são justamente os que mais renderiam. Comece pequeno; ajuste quando a renda crescer."
+    },
+    {
+     "texto": "Buscar alto risco para acelerar o resultado",
+     "correta": false,
+     "feedbackErro": "Pressa de multiplicar é o que mais destrói começo de patrimônio. Longo prazo ganha com constância, não com aposta."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "aposentadoria-comeca-hoje",
+   "criterio": "Acelera sua aposentadoria?",
+   "enunciado": "Aumentar o aporte quando a renda subir",
+   "resposta": true,
+   "ancora": "Crescer o aporte junto com a renda mantém o plano vivo.",
+   "feedbackErro": "Parece que o plano inicial basta. Mas a renda sobe, o custo de vida sobe — e o aporte parado encolhe em importância. Atualizar é parte do jogo."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "aposentadoria-comeca-hoje",
+   "criterio": "Acelera sua aposentadoria?",
+   "enunciado": "Adiar um ano o início, 'sem perder nada'",
+   "resposta": false,
+   "ancora": "O adiamento corta justamente os meses que mais rendem no fim.",
+   "feedbackErro": "Um ano parece pouco diante de 40. Mas no composto os últimos períodos são os mais gordos: adiar o início corta exatamente eles do final da curva."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "aposentadoria-comeca-hoje",
+   "dificuldade": 1,
+   "pergunta": "Qual frase resume o que você viu?",
+   "alternativas": [
+    {
+     "texto": "Tempo é o maior aporte: comece cedo, mesmo com pouco, e some INSS ao privado.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Aposentadoria é assunto para depois dos 40.",
+     "correta": false,
+     "feedbackErro": "Aos 40 ainda dá, mas pagando caro: metade do resultado de quem começou aos 25."
+    },
+    {
+     "texto": "Só vale a pena poupar quando a renda for alta.",
+     "correta": false,
+     "feedbackErro": "Quem espera a renda ideal perde o tempo — o único fator que não se recupera."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "aposentadoria-comeca-hoje",
+   "instrucao": "De onde vem cada característica?",
+   "ancora": "INSS: obrigatório e coletivo. Privado: opcional e individual.",
+   "feedbackErro": "O INSS é repartição coletiva com desconto obrigatório; o plano privado é opcional, com aporte que você define e taxas que você deve comparar.",
+   "caixas": [
+    {
+     "id": "inss",
+     "rotulo": "INSS (público)"
+    },
+    {
+     "id": "privado",
+     "rotulo": "Plano privado"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Desconto obrigatório na folha",
+     "caixaCorreta": "inss"
+    },
+    {
+     "texto": "Você escolhe quanto e quando aportar",
+     "caixaCorreta": "privado"
+    },
+    {
+     "texto": "Paga os aposentados de hoje",
+     "caixaCorreta": "inss"
+    },
+    {
+     "texto": "Cobra taxa de administração",
+     "caixaCorreta": "privado"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "aposentadoria-comeca-hoje",
+   "dificuldade": 2,
+   "pergunta": "Guardando R$ 100 por mês durante 40 anos, quanto sai do seu bolso no total?",
+   "ancora": "R$ 48 mil depositados — os juros fazem o resto do trabalho.",
+   "verificacao": {
+    "expressao": "100*12*40",
+    "esperado": 48000
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 48.000",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 4.800",
+     "correta": false,
+     "feedbackErro": "R$ 4.800 são só 4 anos de aporte (48 meses). Em 40 anos são 480 depósitos de R$ 100: R$ 48 mil saídos do bolso."
+    },
+    {
+     "texto": "R$ 480.000",
+     "correta": false,
+     "feedbackErro": "R$ 480 mil exigiriam R$ 1.000 por mês. Com R$ 100, o bolso entrega R$ 48 mil — e o tempo composto multiplica em cima disso."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "aposentadoria-comeca-hoje",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Depois dos 40 não vale mais a pena poupar",
+   "resposta": false,
+   "ancora": "Vale sempre — só muda a dose: mais aporte, menos tempo.",
+   "feedbackErro": "O ideal era ter começado antes, verdade. Mas 20 anos de composto ainda multiplicam: quem começa aos 40 chega melhor que quem nunca começa."
+  }
+ ]
+}

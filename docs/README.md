@@ -17,6 +17,9 @@ para quem chega de fora. Ele é a porta; esta pasta é a casa.
 | [`resumo-de-funcao.md`](resumo-de-funcao.md) | O que cada peça **faz**, função por função, e onde a promessa não encontrou a entrega | Ao entrar no projeto, ou ao explicar o produto para alguém |
 | [`backlog-produto.md`](backlog-produto.md) | O que está na **fila**, na palavra de quem decidiu | Antes de começar algo novo |
 | [`backlog-trilha-t2.md`](backlog-trilha-t2.md) | Especificação dos módulos da Trilha (Temporada 2+) | Ao escrever conteúdo de aula |
+| [`arquitetura-pedagogica.md`](arquitetura-pedagogica.md) | Por que o card flow de 5 telas não fixa, e o formato de 15 perguntas que o substitui — motor de repetição espaçada incluído | Antes de tocar em qualquer coisa do curso v2 |
+| [`backlog-curso-v2.md`](backlog-curso-v2.md) | O que falta para as 321 lições do curso v2 virarem produto jogável, em ordem | Antes de começar algo do curso v2 |
+| [`agente-de-licoes.md`](agente-de-licoes.md) | O prompt que produziu as 321 lições, com o contrato que o validador cobra | Ao produzir ou revisar lição do curso v2 |
 | [`matriz-bcb.md`](matriz-bcb.md) | A Matriz de Competências do Banco Central, lida e mapeada | Ao escrever ou revisar aula da trilha de Ensino Médio |
 | [`matriz-bcb-competencias.json`](matriz-bcb-competencias.json) | A matriz em dado estruturado — **incompleta, ver aviso abaixo** | Nunca sozinha: rode `scripts/testar-matriz.mts` |
 | [`pagamento-antes-de-cobrar.md`](pagamento-antes-de-cobrar.md) | O que falta para sair do modo de teste e cobrar de verdade — quase tudo passo no painel da Stripe ou na Vercel | **Antes de trocar `sk_test` por `sk_live`** |

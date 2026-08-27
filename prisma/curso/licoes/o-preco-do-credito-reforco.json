@@ -1,0 +1,341 @@
+{
+ "slug": "o-preco-do-credito-reforco",
+ "segmento": "em3",
+ "conceitoPrincipal": "o-preco-do-credito",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prazo-e-total",
+   "criterio": "Encarece sem mudar a taxa?",
+   "enunciado": "Esticar o prazo mantendo a mesma taxa",
+   "resposta": true,
+   "ancora": "Mais meses de juros correndo: a taxa fica, o total sobe.",
+   "feedbackErro": "Taxa igual soa como preço igual — é o engano clássico. Cada mês a mais é um mês inteiro de juros sobre o saldo: o prazo é um motor de custo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cet",
+   "criterio": "Encarece sem mudar a taxa?",
+   "enunciado": "Assinar no fim do mês em vez do início",
+   "resposta": false,
+   "ancora": "A data de contratar não muda o custo; muda só o vencimento.",
+   "feedbackErro": "Parece haver um 'momento certo' escondido no calendário. Os juros correm a partir da liberação, seja dia 3 ou dia 28 — o custo é o mesmo contrato."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cet",
+   "criterio": "Encarece sem mudar a taxa?",
+   "enunciado": "O seguro exigido para 'facilitar a aprovação'",
+   "resposta": true,
+   "ancora": "Venda casada é proibida — e o seguro extra infla o CET.",
+   "feedbackErro": "Parece ajuda para sair aprovado. É custo disfarçado: condicionar o crédito a outro produto é venda casada, proibida — e o valor entra no seu CET."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "prazo-e-total",
+   "dificuldade": 2,
+   "pergunta": "Para R$ 3.500, o banco A pede 18 parcelas de R$ 245 e o B, 12 de R$ 336. Qual sai mais barato no total?",
+   "ancora": "18 × 245 = R$ 4.410; 12 × 336 = R$ 4.032. A parcela menor perdeu.",
+   "verificacao": {
+    "expressao": "245*18-336*12",
+    "esperado": 378
+   },
+   "alternativas": [
+    {
+     "texto": "O banco B: R$ 4.032 contra R$ 4.410",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O banco A, que tem a parcela menor",
+     "correta": false,
+     "feedbackErro": "R$ 245 pesa menos no mês, é real. Mas são 6 parcelas a mais: no total, o A cobra R$ 378 além do B. Parcela pequena esticada sai cara."
+    },
+    {
+     "texto": "Empatam: o valor emprestado é o mesmo",
+     "correta": false,
+     "feedbackErro": "O que você recebe é igual; o que devolve, não. O preço do crédito está exatamente nessa diferença — e ela muda R$ 378 entre os bancos."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "cadastro-positivo",
+   "dificuldade": 2,
+   "pergunta": "Iara nunca usou crédito nem tem contas no nome dela. Por que a taxa dela pode sair alta?",
+   "ancora": "Sem histórico, o banco não mede o risco — e cobra pela dúvida.",
+   "alternativas": [
+    {
+     "texto": "Sem histórico, o banco precifica a incerteza",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque quem nunca pegou crédito é mau pagador",
+     "correta": false,
+     "feedbackErro": "Ausência de dado não é dado ruim. Mas para o banco é escuridão — e escuridão custa caro. Histórico de contas pagas acende a luz e derruba a taxa."
+    },
+    {
+     "texto": "Porque banco cobra mais dos mais jovens",
+     "correta": false,
+     "feedbackErro": "Idade não é o critério: o cadastro positivo mede comportamento, não nascimento. Jovem com contas no nome e em dia pontua como qualquer um."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "cadastro-positivo",
+   "criterio": "O CET pode variar?",
+   "enunciado": "O mesmo banco dando CET diferente a duas pessoas",
+   "resposta": true,
+   "ancora": "Taxa é preço do risco: histórico bom negocia CET menor.",
+   "feedbackErro": "Parece tabela única, igual para todos. Não é: o CET carrega o risco de cada cliente — e é por isso que construir histórico muda o seu preço."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "prazo-e-total",
+   "instrucao": "Arraste: aumenta o custo total do crédito ou não?",
+   "ancora": "Custo cresce com prazo e penduricalhos; cai com antecipação.",
+   "feedbackErro": "O critério: o que adiciona meses de juros ou itens à parcela aumenta o total; o que reduz juros futuros ou só informa, não.",
+   "caixas": [
+    {
+     "id": "aumenta",
+     "rotulo": "Aumenta"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não aumenta"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Esticar de 12 para 36 parcelas",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "Aceitar o seguro oferecido junto",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "Antecipar parcelas com desconto",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Pedir o CET antes de assinar",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "cadastro-positivo",
+   "criterio": "Melhora sua taxa futura?",
+   "enunciado": "Pagar luz, água e boleto sempre em dia",
+   "resposta": true,
+   "ancora": "O cadastro positivo registra contas pagas: histórico é ativo.",
+   "feedbackErro": "Conta de luz parece pequena demais para importar. Mas o cadastro positivo registra justamente a rotina — e rotina em dia é o melhor previsor de risco."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "cadastro-positivo",
+   "criterio": "Melhora sua taxa futura?",
+   "enunciado": "Ficar invisível: nunca ter nada no seu nome",
+   "resposta": false,
+   "ancora": "Invisível não é confiável: sem dados, o risco fica no máximo.",
+   "feedbackErro": "Sem dívida, sem risco — parece lógico. Mas o banco não vê prudência, vê escuridão: quem nunca mostrou como paga entra na faixa mais cara."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "prazo-e-total",
+   "pergunta": "R$ 1.200 esquecidos no cheque especial a 8% ao mês. Quanto viram em 6 meses?",
+   "campo": "moeda",
+   "min": 1200,
+   "max": 4000,
+   "gabarito": 1904,
+   "toleranciaPct": 20,
+   "fonte": "taxa média do cheque especial, ~8% ao mês (Banco Central)",
+   "verificacao": {
+    "expressao": "1200*1.08^6",
+    "esperado": 1904.25,
+    "tolerancia": 1
+   },
+   "feedbackPerto": "R$ 1.904: quase 60% a mais em meio ano. O cheque especial é dos créditos mais caros — e o mais silencioso.",
+   "feedbackLonge": "Cerca de R$ 1.904. Somar 48% daria R$ 1.776 — mas juro compõe: cada mês cobra sobre o saldo já engordado do anterior."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "cet",
+   "dificuldade": 2,
+   "pergunta": "A loja vende por R$ 2.400 à vista ou 'em 12x sem juros' por R$ 2.760. Onde estão os juros?",
+   "ancora": "R$ 360 de diferença: o 'sem juros' mora dentro da etiqueta.",
+   "verificacao": {
+    "expressao": "2760-2400",
+    "esperado": 360
+   },
+   "alternativas": [
+    {
+     "texto": "Embutidos no preço: R$ 360 pelo prazo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não existem: a loja prometeu sem juros",
+     "correta": false,
+     "feedbackErro": "A promessa vale para a taxa da parcela — e é cumprida. Mas o preço parcelado nasce R$ 360 maior: o custo do prazo entrou antes, na etiqueta."
+    },
+    {
+     "texto": "Só aparecem se alguma parcela atrasar",
+     "correta": false,
+     "feedbackErro": "Atraso gera custo extra, verdade. Mas os R$ 360 você paga mesmo quitando tudo em dia — estão no preço desde o início, não na punição."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "capacidade-pagamento",
+   "dificuldade": 2,
+   "pergunta": "Renda de R$ 2.600, com R$ 520 já indo em parcelas. Quanto ainda cabe sem passar de 30% da renda?",
+   "ancora": "Teto: R$ 780. Já usados: R$ 520. Espaço novo: R$ 260.",
+   "verificacao": {
+    "expressao": "2600*0.3-520",
+    "esperado": 260
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 260 de parcela nova",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 780 de parcela nova",
+     "correta": false,
+     "feedbackErro": "R$ 780 é o teto inteiro dos 30% — mas R$ 520 dele já estão ocupados. Parcela nova disputa só a sobra: R$ 260."
+    },
+    {
+     "texto": "R$ 1.040 de parcela nova",
+     "correta": false,
+     "feedbackErro": "Você somou o teto com o que já paga. A conta anda ao contrário: do teto de R$ 780, subtraia os R$ 520 comprometidos. Restam R$ 260."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "prazo-e-total",
+   "criterio": "Parcela menor = mais barato?",
+   "enunciado": "Quando os prazos das ofertas são iguais",
+   "resposta": true,
+   "ancora": "Prazo igual: a parcela carrega todo o custo — menor vence.",
+   "feedbackErro": "Depois de tanto 'desconfie da parcela', a resposta surpreende. Mas com o mesmo número de parcelas, a menor só pode vir de um custo total menor."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "prazo-e-total",
+   "criterio": "Parcela menor = mais barato?",
+   "enunciado": "Quando uma oferta estica o prazo e a outra não",
+   "resposta": false,
+   "ancora": "Prazos diferentes: só o total pago revela o mais barato.",
+   "feedbackErro": "É a armadilha clássica: a parcela cai porque o prazo esticou, não porque o crédito baratou. Multiplique parcela × prazo antes de decidir."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-preco-do-credito",
+   "dificuldade": 2,
+   "pergunta": "O que este encontro acrescentou ao preço do crédito?",
+   "alternativas": [
+    {
+     "texto": "Compare totais no mesmo prazo — e construa histórico: risco baixo paga menos.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Parcela menor é sempre o melhor negócio.",
+     "correta": false,
+     "feedbackErro": "Só quando os prazos empatam. Esticada, ela esconde juros."
+    },
+    {
+     "texto": "Quem nunca usou crédito paga as menores taxas.",
+     "correta": false,
+     "feedbackErro": "É o oposto: sem histórico, o banco cobra pela incerteza."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "capacidade-pagamento",
+   "instrucao": "Toque na ordem dos passos antes de assinar um crédito.",
+   "ancora": "Orçamento → CET → totais no mesmo prazo → assinatura.",
+   "feedbackErro": "Começa em você, não no banco: primeiro o quanto cabe, depois o CET de cada oferta, os totais lado a lado e, só no fim, a assinatura.",
+   "itens": [
+    {
+     "texto": "Calcular quanto cabe na sua renda",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Pedir o CET de cada proposta",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Comparar os totais no mesmo prazo",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Fechar a de menor custo total",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "cadastro-positivo",
+   "dificuldade": 2,
+   "pergunta": "O que o cadastro positivo NÃO faz por você?",
+   "ancora": "Ele registra o presente; não apaga o passado em atraso.",
+   "alternativas": [
+    {
+     "texto": "Apagar dívidas atrasadas do seu nome",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Registrar suas contas pagas em dia",
+     "correta": false,
+     "feedbackErro": "Isso ele faz — é a função central. A pergunta pedia o que ele NÃO faz: limpar atraso não está na lista; dívida em aberto continua lá."
+    },
+    {
+     "texto": "Dar argumento para negociar taxa menor",
+     "correta": false,
+     "feedbackErro": "Também faz: histórico bom é sua moeda de barganha. O que ele não entrega é apagar dívida atrasada — isso só a quitação resolve."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "cet",
+   "criterio": "É venda casada?",
+   "enunciado": "Condicionar o empréstimo à compra de um seguro",
+   "resposta": true,
+   "ancora": "Amarrar crédito a outro produto é proibido pelo CDC.",
+   "feedbackErro": "Oferecer seguro é permitido; obrigar, não. Se a aprovação depende de levar outro produto, é venda casada — proibida, e denunciável ao Banco Central."
+  }
+ ]
+}

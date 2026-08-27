@@ -1,0 +1,251 @@
+{
+ "slug": "o-que-e-estar-endividado-consolida",
+ "segmento": "ef35",
+ "conceitoPrincipal": "o-que-e-estar-endividado",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "o-que-e-divida",
+   "criterio": "Isso é uma dívida?",
+   "enunciado": "Dever um abraço prometido a alguém",
+   "resposta": false,
+   "ancora": "Dívida é sobre dinheiro ou algo material — não sentimento.",
+   "feedbackErro": "Prometer parece criar uma obrigação, e por isso lembra dívida. Mas dívida financeira é sobre dinheiro ou objetos combinados, não sentimentos."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "o-que-e-divida",
+   "criterio": "Isso é uma dívida?",
+   "enunciado": "Usar o cartão pré-pago da escola e ele ficar sem saldo",
+   "resposta": false,
+   "ancora": "Sem saldo, simplesmente não dá pra comprar mais.",
+   "feedbackErro": "Parece que ficar sem saldo é uma forma de dever. Mas cartão pré-pago só bloqueia a compra — ninguém fica devendo nada a ninguém."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "consumo-consciente",
+   "criterio": "Isso ainda é pensar antes de comprar?",
+   "enunciado": "Comprar um caderno mais caro porque o mais barato acaba rápido",
+   "resposta": true,
+   "ancora": "Pensar no que dura mais também é pensar antes de comprar.",
+   "feedbackErro": "Parece o contrário de economizar, porque custa mais na hora. Mas avaliar durabilidade também é pensar antes — às vezes o mais caro rende mais."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "o-que-e-divida",
+   "dificuldade": 3,
+   "pergunta": "Léo deve R$ 15 pro colega e mais R$ 9 pra irmã. Ele recebeu R$ 20 de mesada. Ele consegue quitar tudo?",
+   "ancora": "15 mais 9 é 24; com 20, faltam 4 reais.",
+   "verificacao": { "expressao": "15+9-20", "esperado": 4 },
+   "alternativas": [
+    {
+     "texto": "Não, faltam R$ 4 pra quitar as duas dívidas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, os R$ 20 dão pra pagar as duas",
+     "correta": false,
+     "feedbackErro": "20 não cobre 15 mais 9, que somam 24. Faltam 4 reais pra fechar as duas dívidas."
+    },
+    {
+     "texto": "Sim, porque R$ 20 é mais que cada dívida separada",
+     "correta": false,
+     "feedbackErro": "Comparar uma dívida de cada vez esconde o total. Somando as duas, 15 mais 9 é 24 — mais que os 20 que ele tem."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "consumo-consciente",
+   "dificuldade": 3,
+   "pergunta": "Marina tem dinheiro suficiente pra um jogo, mas ele sai de linha amanhã. Quando NÃO faz sentido esperar mais pra pensar?",
+   "ancora": "Pensar tem limite: depois de decidido, esperar mais só atrapalha.",
+   "alternativas": [
+    {
+     "texto": "Quando ela já sabe que precisa, só falta decidir",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando ela ainda não sabe se vai usar o jogo de verdade",
+     "correta": false,
+     "feedbackErro": "Sem saber se vai usar, esperar ainda é a escolha mais segura — mesmo com pressa do prazo."
+    },
+    {
+     "texto": "Quando o preço pode cair depois que a promoção acabar",
+     "correta": false,
+     "feedbackErro": "Se o preço pode cair, esperar tende a compensar. A pressa aqui não justifica decidir sem pensar."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "o-que-e-divida",
+   "criterio": "Isso ainda é dívida?",
+   "enunciado": "Dever uma tarefa da escola que ainda não foi entregue",
+   "resposta": false,
+   "ancora": "Tarefa pendente é compromisso, não dívida financeira.",
+   "feedbackErro": "Parece dívida porque também é algo pendente. Mas dívida financeira envolve dinheiro ou objeto combinado — tarefa escolar é outro tipo de compromisso."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "o-que-e-divida",
+   "instrucao": "Isso é dívida de dinheiro? Arraste.",
+   "ancora": "Dívida de dinheiro envolve valor — combinados sem dinheiro não contam.",
+   "feedbackErro": "Combinados e promessas parecem dívida, porque também ficam pendentes. Mas só conta como dívida financeira quando envolve valor em dinheiro.",
+   "caixas": [
+    { "id": "divida", "rotulo": "É dívida" },
+    { "id": "nao", "rotulo": "Não é" }
+   ],
+   "itens": [
+    { "texto": "Dever R$ 6 do lanche de ontem", "caixaCorreta": "divida" },
+    { "texto": "Ter combinado de fazer o dever de casa junto", "caixaCorreta": "nao" },
+    { "texto": "Ficar devendo o troco de R$ 3 numa compra", "caixaCorreta": "divida" },
+    { "texto": "Prometer contar um segredo depois", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "consumo-consciente",
+   "criterio": "Isso ainda é pensar antes de comprar?",
+   "enunciado": "Comprar o item mais barato mesmo sabendo que estraga rápido",
+   "resposta": false,
+   "ancora": "Barato que estraga rápido pode custar mais no fim.",
+   "feedbackErro": "Parece economia, porque custa menos na hora. Mas se estraga rápido e precisa comprar de novo, o gasto total fica maior."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "o-que-e-divida",
+   "dificuldade": 3,
+   "pergunta": "Bia deve R$ 18. Pagou R$ 7 numa semana e R$ 6 na outra. Quanto falta agora?",
+   "ancora": "18 menos 7 menos 6 é 5 — o que ainda falta pagar.",
+   "verificacao": { "expressao": "18-7-6", "esperado": 5 },
+   "alternativas": [
+    {
+     "texto": "R$ 5",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 13",
+     "correta": false,
+     "feedbackErro": "R$ 13 conta só o primeiro pagamento. Somando os dois pagamentos (7 mais 6) e subtraindo de 18, sobram 5."
+    },
+    {
+     "texto": "R$ 11",
+     "correta": false,
+     "feedbackErro": "Esse valor não bate com os dois pagamentos somados. 7 mais 6 é 13; 18 menos 13 são 5."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "consumo-consciente",
+   "criterio": "É consumo consciente, mesmo caro?",
+   "enunciado": "Pagar mais caro por um produto que dura o dobro do tempo",
+   "resposta": true,
+   "ancora": "Preço por uso pode ser menor mesmo custando mais na hora.",
+   "feedbackErro": "Custar mais parece sempre pior à primeira vista. Mas se dura o dobro, o custo por uso pode ficar menor — isso também é pensar antes."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "o-que-e-divida",
+   "criterio": "Ainda ajuda a sair da dívida?",
+   "enunciado": "Pagar primeiro quem cobrar mais, sem olhar o valor de cada dívida",
+   "resposta": false,
+   "ancora": "Quem cobra mais alto não é sempre quem tem o valor maior.",
+   "feedbackErro": "Parece justo atender quem insiste mais. Mas o que importa pra quitar rápido é o valor de cada dívida, não quem cobra mais forte."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-que-e-divida",
+   "pergunta": "Qual frase resume os três encontros sobre dívida?",
+   "alternativas": [
+    {
+     "texto": "Dívida é sobre dinheiro combinado — some tudo antes de decidir",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Toda promessa não cumprida é uma dívida financeira",
+     "correta": false,
+     "feedbackErro": "Promessas sem dinheiro envolvido, como tarefas ou segredos, não são dívida financeira — dívida precisa de valor."
+    },
+    {
+     "texto": "O mais barato é sempre a escolha mais consciente",
+     "correta": false,
+     "feedbackErro": "Nem sempre: um produto barato que estraga rápido pode custar mais no total do que um mais caro e durável."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "o-que-e-divida",
+   "dificuldade": 3,
+   "pergunta": "Théo deve R$ 10 e recebe R$ 4 de troco numa compra. Ele pode usar o troco pra abater a dívida?",
+   "ancora": "10 menos 4 é 6 — o troco abate direto na dívida.",
+   "verificacao": { "expressao": "10-4", "esperado": 6 },
+   "alternativas": [
+    {
+     "texto": "Sim, e passa a dever só R$ 6",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, troco e dívida são coisas separadas",
+     "correta": false,
+     "feedbackErro": "Dinheiro é dinheiro, venha de onde vier. O troco pode abater a dívida sim — ela cai pra 6."
+    },
+    {
+     "texto": "Sim, mas a dívida vira R$ 14",
+     "correta": false,
+     "feedbackErro": "Usar o troco reduz o que falta pagar, não aumenta. 10 menos 4 é 6, não 14."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "o-que-e-divida",
+   "criterio": "Isso é dívida financeira?",
+   "enunciado": "Ficar devendo satisfação por ter chegado atrasado",
+   "resposta": false,
+   "ancora": "Atraso pede desculpa, não envolve dinheiro.",
+   "feedbackErro": "Parece que toda pendência é uma dívida. Mas dívida financeira precisa de dinheiro ou objeto combinado — atraso pede satisfação, não pagamento."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "o-que-e-divida",
+   "instrucao": "Isso é dívida ou outra pendência? Arraste.",
+   "ancora": "Dívida financeira sempre envolve dinheiro ou valor combinado.",
+   "feedbackErro": "Tarefas e promessas de ajuda parecem pendência, e são — mas só viram dívida financeira quando envolvem dinheiro ou valor combinado.",
+   "caixas": [
+    { "id": "divida", "rotulo": "Dívida" },
+    { "id": "outra", "rotulo": "Outra pendência" }
+   ],
+   "itens": [
+    { "texto": "Dever R$ 12 pro colega", "caixaCorreta": "divida" },
+    { "texto": "Prometer arrumar o quarto antes do jantar", "caixaCorreta": "outra" },
+    { "texto": "Ficar devendo o troco de uma compra", "caixaCorreta": "divida" },
+    { "texto": "Prometer ajudar num trabalho da escola", "caixaCorreta": "outra" }
+   ]
+  }
+ ]
+}

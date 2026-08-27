@@ -1,0 +1,298 @@
+{
+ "slug": "cabe-no-seu-bolso-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "cabe-no-seu-bolso",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cabe-no-seu-bolso",
+   "criterio": "Passa dos 30% comprometidos?",
+   "enunciado": "Parcela de R$ 350 numa renda de R$ 1.050, sem outras dívidas",
+   "resposta": true,
+   "ancora": "R$ 350 são 33,3% de R$ 1.050 — passa do teto seguro.",
+   "feedbackErro": "R$ 350 parece pagável isolado. Mas é 33,3% de R$ 1.050, acima da faixa segura de 30%."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cabe-no-seu-bolso",
+   "criterio": "Passa dos 30% comprometidos?",
+   "enunciado": "Parcela de R$ 210 numa renda de R$ 1.050, com R$ 140 já descontados de outro crédito",
+   "resposta": true,
+   "ancora": "R$ 210 + R$ 140 = R$ 350, ou 33,3% da renda — passa do teto.",
+   "feedbackErro": "Olhando só os R$ 210, parece 20% e tranquilo. Mas somado ao que já está comprometido, dá 33,3% — passa do teto."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cabe-no-seu-bolso",
+   "criterio": "Passa dos 30% comprometidos?",
+   "enunciado": "Parcela de R$ 126 numa renda de R$ 1.260, sem outras dívidas",
+   "resposta": false,
+   "ancora": "R$ 126 são 10% de R$ 1.260 — bem abaixo do teto.",
+   "feedbackErro": "Mesmo com o hábito de desconfiar de toda parcela, aqui os 10% ficam longe do teto de 30%."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "cabe-no-seu-bolso",
+   "dificuldade": 2,
+   "pergunta": "Qual pergunta você faz primeiro antes de comparar taxas de crédito?",
+   "ancora": "Sem saber o que já está comprometido, comparar taxa não resolve nada.",
+   "alternativas": [
+    {
+     "texto": "Quanto tempo vou levar pra pagar",
+     "correta": false,
+     "feedbackErro": "O prazo importa, mas vem depois de saber se a parcela cabe na renda disponível."
+    },
+    {
+     "texto": "Quanto já está comprometido da minha renda",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se o crédito está na moda entre os colegas",
+     "correta": false,
+     "feedbackErro": "Moda não é critério financeiro — ela não diz nada sobre a sua renda."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "juros-por-tipo-de-credito",
+   "dificuldade": 2,
+   "pergunta": "Tomás tem duas opções pros mesmos R$ 700: crediário a 5% ou cheque especial a 8%. Qual pesa menos no mês?",
+   "ancora": "R$ 700 a 8% custam R$ 56; a 5%, R$ 35 — diferença de R$ 21.",
+   "verificacao": { "expressao": "700*0.08 - 700*0.05", "esperado": 21 },
+   "alternativas": [
+    {
+     "texto": "Cheque especial, porque não parcela",
+     "correta": false,
+     "feedbackErro": "Não parcelar não reduz juros — o cheque especial cobra a taxa maior mesmo assim."
+    },
+    {
+     "texto": "Crediário, porque a taxa é mais baixa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Tanto faz, o valor emprestado é igual",
+     "correta": false,
+     "feedbackErro": "Mesmo valor, custos diferentes — a taxa é quem separa as duas opções."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "juros-por-tipo-de-credito",
+   "criterio": "A taxa menor sempre ganha?",
+   "enunciado": "Crediário a 5% ao mês em 10x, comparado ao rotativo a 14% ao mês pago em 1 mês",
+   "resposta": false,
+   "ancora": "5% ao mês em 10x acumula 63% — mais que 14% em uma parcela só.",
+   "feedbackErro": "Parece o oposto: taxa mais baixa devia vencer. Mas repetida por 10 meses, ela vira quase 63% no total — mais que 14% pagos uma vez.",
+   "verificacao": { "expressao": "1.05^10", "esperado": 1.629, "tolerancia": 0.01 }
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "juros-por-tipo-de-credito",
+   "instrucao": "Ordene do que mais cresce por mês pro que menos cresce.",
+   "ancora": "Cresce mais rápido quem tem a taxa mensal maior — sempre nessa ordem.",
+   "feedbackErro": "O nome do crédito não diz o custo. O que ordena é a taxa mensal, do maior pro menor.",
+   "itens": [
+    { "texto": "Cartão sem pagar o mínimo — 14% ao mês", "posicaoCorreta": 1 },
+    { "texto": "Cheque especial — 8% ao mês", "posicaoCorreta": 2 },
+    { "texto": "Financiamento de moto — 2,5% ao mês", "posicaoCorreta": 3 },
+    { "texto": "Consignado — 1,8% ao mês", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "cabe-no-seu-bolso",
+   "criterio": "É o critério certo pra decidir?",
+   "enunciado": "Quanto sobra depois das contas fixas, mês a mês",
+   "resposta": true,
+   "ancora": "O que sobra depois das contas fixas é o teto real da parcela.",
+   "feedbackErro": "Pode parecer trabalhoso olhar mês a mês. Mas é isso que evita comprometer dinheiro que já tem destino certo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "cabe-no-seu-bolso",
+   "criterio": "É o critério certo pra decidir?",
+   "enunciado": "O quanto os amigos estão parcelando no mesmo aparelho",
+   "resposta": false,
+   "ancora": "O orçamento dos amigos não é o seu.",
+   "feedbackErro": "Comparar com os amigos é natural, mas a renda e as contas de cada um são diferentes — o critério é sempre o seu orçamento."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "cabe-no-seu-bolso",
+   "pergunta": "Renda de R$ 1.580, já com R$ 430 comprometidos. Quanto ainda cabe até o teto de 30%?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 500,
+   "gabarito": 44,
+   "toleranciaPct": 20,
+   "fonte": "regra dos 30% de comprometimento de renda (uso comum em educação financeira)",
+   "verificacao": { "expressao": "1580*0.3 - 430", "esperado": 44 },
+   "feedbackPerto": "Isso mesmo — só sobram R$ 44 até o teto seguro.",
+   "feedbackLonge": "O teto é R$ 474 (30% de R$ 1.580). Já tem R$ 430 comprometidos, então só cabem mais R$ 44."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "cabe-no-seu-bolso",
+   "dificuldade": 2,
+   "pergunta": "A parcela cabe hoje, mas o contrato dura 18 meses e a bolsa de estágio acaba em 6. O que muda?",
+   "ancora": "O que importa é caber também depois que a bolsa acabar.",
+   "alternativas": [
+    {
+     "texto": "Nada, porque cabe agora",
+     "correta": false,
+     "feedbackErro": "Caber agora não garante caber depois, quando a renda cair."
+    },
+    {
+     "texto": "Calcular se a parcela cabe também sem a bolsa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Trocar por um crédito com prazo menor que 6 meses",
+     "correta": false,
+     "feedbackErro": "Encurtar o prazo sozinho não resolve — falta checar se cabe na renda futura, sem a bolsa."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "juros-por-tipo-de-credito",
+   "dificuldade": 2,
+   "pergunta": "Empréstimo de R$ 900: consignado a 1,8% ou pessoal a 6% ao mês. Qual a diferença de juros no mês?",
+   "ancora": "R$ 54 do pessoal menos R$ 16,20 do consignado = R$ 37,80.",
+   "verificacao": { "expressao": "900*0.06 - 900*0.018", "esperado": 37.8 },
+   "alternativas": [
+    {
+     "texto": "R$ 16,20",
+     "correta": false,
+     "feedbackErro": "Esse é só o valor do consignado sozinho. A pergunta pede a diferença entre as duas opções."
+    },
+    {
+     "texto": "R$ 37,80",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 54,00",
+     "correta": false,
+     "feedbackErro": "Esse é o valor do empréstimo pessoal sozinho, sem descontar o que o consignado já custaria."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "cabe-no-seu-bolso",
+   "criterio": "Isso é sinal de que não cabe?",
+   "enunciado": "A parcela some quando comparada à renda total, mas aperta quando comparada ao que sobra",
+   "resposta": true,
+   "ancora": "O sinal de alerta é comparar com a sobra, não com a renda cheia.",
+   "feedbackErro": "Comparar com a renda total dá sensação de folga. O sinal real aparece quando você compara com o que sobra depois das contas."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "juros-por-tipo-de-credito",
+   "criterio": "Isso é sinal de que não cabe?",
+   "enunciado": "A taxa mensal é menor que a do rotativo",
+   "resposta": false,
+   "ancora": "Ser mais barata que o rotativo não é o mesmo que caber no orçamento.",
+   "feedbackErro": "Muita gente para nessa comparação. Mas 'mais barato que o rotativo' não quer dizer 'cabe na renda' — são critérios diferentes."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "cabe-no-seu-bolso",
+   "pergunta": "Depois de revisar, qual frase está certa?",
+   "alternativas": [
+    {
+     "texto": "Taxa baixa em muitas parcelas nunca custa mais que taxa alta em poucas.",
+     "correta": false,
+     "feedbackErro": "5% ao mês em 10x pode superar 14% pago uma vez só — o prazo também conta."
+    },
+    {
+     "texto": "Cabe no bolso quem compara com a sobra e escolhe a taxa mais baixa pro prazo.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se a taxa é menor que o rotativo, o crédito sempre cabe.",
+     "correta": false,
+     "feedbackErro": "Ser mais barato que o pior crédito não garante que a parcela cabe na sua renda."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "juros-por-tipo-de-credito",
+   "instrucao": "No total do prazo, passa de 20%?",
+   "ancora": "Componha a taxa mês a mês — não some.",
+   "feedbackErro": "Somar taxa vezes parcelas dá uma ideia errada. Juros compostos rendem mais que isso — componha mês a mês.",
+   "caixas": [
+    { "id": "passa", "rotulo": "Passa de 20%" },
+    { "id": "abaixo", "rotulo": "Fica abaixo" }
+   ],
+   "itens": [
+    { "texto": "Consignado 1,8% ao mês em 10x", "caixaCorreta": "abaixo" },
+    { "texto": "Cheque especial 8% ao mês em 2x", "caixaCorreta": "abaixo" },
+    { "texto": "Crediário 5% ao mês em 10x", "caixaCorreta": "passa" },
+    { "texto": "Rotativo 14% ao mês em 2x", "caixaCorreta": "passa" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "cabe-no-seu-bolso",
+   "dificuldade": 3,
+   "pergunta": "Renda de R$ 2.000, já comprometida em 25% com outro crédito. Quanto ainda cabe até 30%?",
+   "ancora": "Teto de 30% (R$ 600) menos o já comprometido (R$ 500) = R$ 100.",
+   "verificacao": { "expressao": "2000*0.3 - 2000*0.25", "esperado": 100 },
+   "alternativas": [
+    {
+     "texto": "R$ 500",
+     "correta": false,
+     "feedbackErro": "R$ 500 é o que já está comprometido, não o que ainda cabe."
+    },
+    {
+     "texto": "R$ 100",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 600",
+     "correta": false,
+     "feedbackErro": "R$ 600 é o teto total de 30%, não o espaço que ainda sobra."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "juros-por-tipo-de-credito",
+   "criterio": "É verdade?",
+   "enunciado": "Parcelas menores sempre significam menos juros no total",
+   "resposta": false,
+   "ancora": "Parcela menor pode vir de prazo maior — e juros compostos acumulam.",
+   "feedbackErro": "Parcela pequena parece vantagem na hora. Mas esticar o prazo faz os juros compostos renderem mais no total."
+  }
+ ]
+}

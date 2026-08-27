@@ -1,0 +1,287 @@
+{
+ "slug": "golpe-risco-e-promessa-boa-demais",
+ "segmento": "em2",
+ "conceitoPrincipal": "golpe-risco-e-promessa-boa-demais",
+ "fraseConceito": "Ganho alto, garantido e urgente não anda junto: é a assinatura do golpe. Risco real existe — e quem é sério o declara.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "promessa-boa-demais",
+   "criterio": "Cheiro de golpe?",
+   "enunciado": "Lucro garantido de 10% ao mês, 'sem risco nenhum'",
+   "resposta": true,
+   "ancora": "Nada honesto paga 10% ao mês garantido — a Selic dá ~15% AO ANO.",
+   "feedbackErro": "O número parece só 'ótimo', não impossível — e o golpe mora nessa dúvida. Referência: o juro básico do país é ~15% ao ano. Prometer 10% AO MÊS é ficção."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "promessa-boa-demais",
+   "criterio": "Cheiro de golpe?",
+   "enunciado": "Aplicação que avisa: 'pode subir e pode cair'",
+   "resposta": false,
+   "ancora": "Declarar o risco é sinal de seriedade — golpe promete só a subida.",
+   "feedbackErro": "Avisar que pode cair parece coisa de produto ruim — é o contrário. Quem é regulado é obrigado a mostrar o risco; quem esconde a queda tem algo a vender."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "promessa-boa-demais",
+   "criterio": "Cheiro de golpe?",
+   "enunciado": "'Vaga só até hoje: decida agora ou perde'",
+   "resposta": true,
+   "ancora": "Pressa é ferramenta de golpe: corta o tempo de checar.",
+   "feedbackErro": "Urgência parece só técnica agressiva de venda — mas note o alvo: o seu tempo de verificação. Oportunidade real sobrevive a uma noite de sono."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "promessa-boa-demais",
+   "dificuldade": 1,
+   "pergunta": "Por que 'ganho alto E garantido' é uma combinação impossível?",
+   "ancora": "Ganho alto nasce do risco; garantia real paga pouco. Junto, é isca.",
+   "verificacao": { "expressao": "1.1^8", "esperado": 2.14, "tolerancia": 0.01 },
+   "alternativas": [
+    {
+     "texto": "Ganho alto exige risco; garantia real rende pouco",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não é impossível: banco grande promete isso",
+     "correta": false,
+     "feedbackErro": "Banco grande oferece o oposto: quanto mais garantido o produto, menor o rendimento — perto da Selic. Quem promete os dois ao mesmo tempo não é banco, é isca."
+    },
+    {
+     "texto": "Porque 10% ao mês é lucro pequeno demais",
+     "correta": false,
+     "feedbackErro": "É o inverso: 10% ao mês é astronômico — dobraria seu dinheiro em 8 meses. O impossível não é o tamanho sozinho, é o tamanho com 'garantido' do lado."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "piramide",
+   "dificuldade": 1,
+   "pergunta": "Num esquema que paga quem traz mais gente, de onde sai o dinheiro?",
+   "ancora": "Pirâmide: paga os de cima com a entrada dos de baixo. Sem produto.",
+   "alternativas": [
+    {
+     "texto": "Da entrada dos novos: sem eles, quebra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "De investimentos que o grupo faz por fora",
+     "correta": false,
+     "feedbackErro": "É a história que contam — 'operamos no mercado' — e quase nunca há operação real. A prova: o ganho depende de recrutar, não de qualquer resultado lá fora."
+    },
+    {
+     "texto": "Do governo, que banca esquemas cadastrados",
+     "correta": false,
+     "feedbackErro": "Governo nenhum banca esquema de recrutamento — pirâmide é crime, não produto registrado. Registro real se checa no Banco Central e na CVM; pirâmide não tem."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "checagem",
+   "criterio": "Sinal de seriedade?",
+   "enunciado": "Registro checável no Banco Central ou na CVM",
+   "resposta": true,
+   "ancora": "CVM: órgão que fiscaliza investimentos. Registro se confere no site.",
+   "feedbackErro": "Registro parece burocracia decorativa, mas é rastro: quem é registrado tem endereço, responsável e fiscal. Golpe evita registro porque registro dá cadeia."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "checagem",
+   "instrucao": "Chegou 'oportunidade imperdível' no grupo. Ordene a reação.",
+   "ancora": "Primeiro frear a pressa; depois checar; decidir por último.",
+   "feedbackErro": "A ordem desarma o golpe: a pressa é a arma dele — cai primeiro. Depois vem a checagem: registro e reclamações. Decidir é o último passo, nunca o primeiro.",
+   "itens": [
+    { "texto": "Frear: não decidir sob pressa", "posicaoCorreta": 1 },
+    { "texto": "Checar registro no BC e na CVM", "posicaoCorreta": 2 },
+    { "texto": "Buscar reclamações e notícias", "posicaoCorreta": 3 },
+    { "texto": "Decidir com calma, se tudo passou", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "seguranca-digital",
+   "criterio": "Transação segura?",
+   "enunciado": "Digitar a senha do banco em link recebido por mensagem",
+   "resposta": false,
+   "ancora": "Banco não pede senha por link. Página clonada rouba o acesso.",
+   "feedbackErro": "O link imita o site oficial pixel por pixel — o visual não protege. A regra é de caminho, não de aparência: acesso ao banco só pelo app oficial."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "seguranca-digital",
+   "criterio": "Transação segura?",
+   "enunciado": "Conferir nome e CPF do destinatário antes do Pix",
+   "resposta": true,
+   "ancora": "A tela de confirmação é a última chance: Pix errado não volta fácil.",
+   "feedbackErro": "Parece paranoia para uma transferência rápida — mas é o único freio: o Pix cai na hora e a devolução depende do outro lado. Três segundos de leitura valem."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "promessa-boa-demais",
+   "pergunta": "Golpista promete 10% ao mês. SE fosse real, R$ 1.000 virariam quanto em 12 meses?",
+   "campo": "moeda",
+   "min": 1000,
+   "max": 10000,
+   "gabarito": 3138,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 1.000 × 1,1^12",
+   "verificacao": { "expressao": "1000*1.1^12", "esperado": 3138.43, "tolerancia": 0.1 },
+   "feedbackPerto": "R$ 3.138 — o triplo em um ano. Se existisse garantido, ninguém ofereceria no seu grupo: pediriam empréstimo no banco e ficariam com tudo.",
+   "feedbackLonge": "R$ 3.138: juros compostos triplicam. O viés é somar 10% doze vezes (120%) — e é essa conta 'modesta' que faz a promessa parecer possível."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "golpes-comuns",
+   "dificuldade": 1,
+   "pergunta": "Rafaela recebeu SMS: 'seu CPF será bloqueado, clique para regularizar'. O que fazer?",
+   "ancora": "O golpe cria a urgência e entrega o link: vá você ao canal oficial.",
+   "alternativas": [
+    {
+     "texto": "Não clicar: buscar o órgão pelo canal oficial",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Clicar logo, antes do bloqueio do CPF",
+     "correta": false,
+     "feedbackErro": "O prazo apertado é fabricado para isso: fazer você agir antes de pensar. CPF não se 'bloqueia' por SMS — e o link leva à página que rouba seus dados."
+    },
+    {
+     "texto": "Responder pedindo mais detalhes",
+     "correta": false,
+     "feedbackErro": "Responder confirma que seu número existe e lê mensagens — você vira alvo prioritário. Com remetente desconhecido, o silêncio é a resposta."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "risco-vs-golpe",
+   "dificuldade": 1,
+   "pergunta": "O que separa um investimento de risco de um golpe?",
+   "ancora": "Risco é declarado e regulado; golpe vende certeza falsa.",
+   "alternativas": [
+    {
+     "texto": "Risco é declarado; golpe promete certeza",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Investimento não perde; golpe perde",
+     "correta": false,
+     "feedbackErro": "Investimento legítimo perde, sim — ações caem, fundos oscilam. A diferença não está no resultado, está na promessa: quem jura que nunca cai está mentindo."
+    },
+    {
+     "texto": "O tamanho: golpe é só coisa pequena",
+     "correta": false,
+     "feedbackErro": "Golpes bilionários existem — pirâmides famosas moveram fortunas e caíram. Tamanho e fama não filtram nada; promessa e registro filtram."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "seguranca-digital",
+   "criterio": "Atitude que protege?",
+   "enunciado": "Ligar a confirmação em duas etapas no app do banco",
+   "resposta": true,
+   "ancora": "Duas etapas: senha + código no seu celular. Senha vazada não basta.",
+   "feedbackErro": "Parece fricção desnecessária — até o dia em que sua senha vaza. Com a segunda etapa, o ladrão tem a chave mas não tem a porta."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "seguranca-digital",
+   "criterio": "Atitude que protege?",
+   "enunciado": "Emprestar cartão e senha para um amigo próximo",
+   "resposta": false,
+   "ancora": "Senha é intransferível — até por amizade. O rastro é seu.",
+   "feedbackErro": "A confiança no amigo não é o ponto: cartão emprestado se perde, se clona, se usa além do combinado — e tudo no SEU nome. Há jeitos melhores de ajudar."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "golpe-risco-e-promessa-boa-demais",
+   "dificuldade": 1,
+   "pergunta": "Qual frase resume a defesa contra golpes?",
+   "alternativas": [
+    {
+     "texto": "Alto, garantido e urgente não existem juntos: desconfie e cheque.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Golpe só pega desatento ou ganancioso.",
+     "correta": false,
+     "feedbackErro": "Golpe pega gente atenta em dia ruim — ele é desenhado por profissionais. Culpar a vítima só ajuda o golpista: a defesa é método, não superioridade."
+    },
+    {
+     "texto": "Se muita gente já entrou, é seguro entrar.",
+     "correta": false,
+     "feedbackErro": "Multidão é o combustível da pirâmide, não um atestado: todo esquema quebrado estava cheio na véspera. Cheque registro, não fila."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "risco-vs-golpe",
+   "instrucao": "Golpe na certa ou risco legítimo?",
+   "ancora": "Certeza de ganho alto = golpe; risco declarado = legítimo.",
+   "feedbackErro": "Aplique a régua da promessa: 'nunca perde' e 'sinal infalível' vendem certeza — golpe. Ação que pode cair e fundo que declara risco são o jogo real.",
+   "caixas": [
+    { "id": "golpe", "rotulo": "Golpe" },
+    { "id": "risco", "rotulo": "Risco legítimo" }
+   ],
+   "itens": [
+    { "texto": "Robô que 'nunca perde' operando por você", "caixaCorreta": "golpe" },
+    { "texto": "Ação que pode cair 30% no ano", "caixaCorreta": "risco" },
+    { "texto": "Grupo VIP pago com 'sinais infalíveis'", "caixaCorreta": "golpe" },
+    { "texto": "Fundo registrado que declara o risco", "caixaCorreta": "risco" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "piramide",
+   "pergunta": "Numa pirâmide, cada pessoa recruta 5. No 6º nível, quantas pessoas precisam entrar?",
+   "campo": "numero",
+   "min": 100,
+   "max": 100000,
+   "gabarito": 15625,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 5^6",
+   "verificacao": { "expressao": "5^6", "esperado": 15625 },
+   "feedbackPerto": "15.625 pessoas só nesse nível — e o 10º exigiria quase 10 milhões. É matemática: a pirâmide sempre fica sem gente.",
+   "feedbackLonge": "15.625: 5×5×5×5×5×5. O viés é pensar linear (5×6=30) — recrutamento multiplica, e é por isso que toda pirâmide esgota a cidade e quebra."
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "golpes-comuns",
+   "criterio": "Sinal de golpe?",
+   "enunciado": "Pedido de sigilo: 'não conta para ninguém'",
+   "resposta": true,
+   "ancora": "Sigilo isola a vítima de quem daria o alerta.",
+   "feedbackErro": "'Oportunidade exclusiva' soa como privilégio — mas o sigilo tem função: impedir que alguém de fora, com a cabeça fria, aponte o óbvio."
+  }
+ ]
+}

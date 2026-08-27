@@ -1,0 +1,336 @@
+{
+ "slug": "poupar-usar-credito-e-aposta-nao-entra-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "poupar-usar-credito-e-aposta-nao-entra",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-credito",
+   "criterio": "O valor aplicado volta garantido?",
+   "enunciado": "Aplicar em um CDB de banco, com resgate no vencimento",
+   "resposta": true,
+   "ancora": "CDB devolve o valor aplicado mais os juros combinados.",
+   "feedbackErro": "Parece arriscado por envolver banco e prazo, e é isso que gera dúvida. Mas o CDB tem regra clara: no vencimento, devolve o valor mais os juros combinados."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "aposta-nao-e-investir",
+   "criterio": "O valor aplicado volta garantido?",
+   "enunciado": "Entrar num bolão de loteria com os colegas",
+   "resposta": false,
+   "ancora": "Bolão divide o prêmio se vier, mas também divide o risco de nunca vir.",
+   "feedbackErro": "Dividir com colegas parece diminuir o risco, e essa é a confusão. Mas o bolão ainda depende do sorteio — o valor pago não tem garantia de retorno."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-credito",
+   "criterio": "O valor aplicado volta garantido?",
+   "enunciado": "Comprar ação de uma empresa na bolsa",
+   "resposta": false,
+   "ancora": "Ação oscila com o mercado — pode valer menos do que o comprado.",
+   "feedbackErro": "Ação é investimento de verdade, e é isso que engana. Mas investir não garante nada: o preço da ação sobe e desce, sem promessa de devolver o valor."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "poupar-vs-credito",
+   "dificuldade": 2,
+   "pergunta": "Marcelo: parcelar R$ 350 em 5x a 9% a.m. ou juntar R$ 70 por mês. O que ele deveria perguntar primeiro?",
+   "ancora": "Em 5x a 9% a.m., R$ 350 somam cerca de R$ 538 — quase R$ 188 de juros.",
+   "alternativas": [
+    {
+     "texto": "Quanto o parcelamento vai somar de juros no total",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se a loja tem o tênis no tamanho certo",
+     "correta": false,
+     "feedbackErro": "Disponibilidade de tamanho é logística da compra, não decisão financeira. O que muda o custo final é o total de juros do parcelamento."
+    },
+    {
+     "texto": "Se dá pra pagar com o cartão de outra pessoa",
+     "correta": false,
+     "feedbackErro": "De quem é o cartão não muda quanto os juros somam no total. O ponto financeiro é o valor extra pago pelo parcelamento."
+    }
+   ],
+   "verificacao": {
+    "expressao": "350*1.09^5",
+    "esperado": 538.5,
+    "tolerancia": 1
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "aposta-nao-e-investir",
+   "dificuldade": 2,
+   "pergunta": "Um 'grupo de investimento' promete 20% de retorno por semana, sem risco. O que isso revela?",
+   "ancora": "Retorno alto e garantido junto é sinal de golpe, não de investimento.",
+   "alternativas": [
+    {
+     "texto": "Retorno alto e garantido junto não existe — é sinal de golpe",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que é uma oportunidade rara de investimento",
+     "correta": false,
+     "feedbackErro": "Oportunidades reais também explicam de onde vem o retorno. A promessa de 20% por semana sem risco é o padrão clássico de golpe."
+    },
+    {
+     "texto": "Que só vale a pena entrar com pouco dinheiro",
+     "correta": false,
+     "feedbackErro": "O valor de entrada não muda a natureza da promessa. Retorno alto e sem risco garantido é sinal de golpe, independente do valor."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-credito",
+   "criterio": "Cresce mais quanto mais tempo dura?",
+   "enunciado": "Uma dívida no cartão parcelada com juros compostos",
+   "resposta": true,
+   "ancora": "Quanto mais parcelas, mais meses de juros incidindo.",
+   "feedbackErro": "Parece que o valor da parcela já resolve tudo, e é aí que confunde. Mas quanto mais tempo a dívida dura, mais meses de juros se acumulam sobre ela."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "poupar-vs-credito",
+   "instrucao": "Ordene do que cobra mais juros pro que cobra menos.",
+   "ancora": "A ordem segue a taxa: do rotativo (caro) ao consignado (barato).",
+   "feedbackErro": "Pensar no valor da dívida é o instinto, mas o que define o custo é a taxa mensal. O rotativo sempre lidera, o consignado sempre fica atrás.",
+   "itens": [
+    {
+     "texto": "Cartão de crédito rotativo — 14% a.m.",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Cheque especial — 8% a.m.",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Empréstimo pessoal — 4% a.m.",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Crédito consignado — 1,8% a.m.",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-credito",
+   "criterio": "Vale trocar por opção mais barata?",
+   "enunciado": "Financiar em 10x com juros, podendo esperar 5 meses e pagar à vista",
+   "resposta": true,
+   "ancora": "Esperar 5 meses evita os juros das 10 parcelas inteiras.",
+   "feedbackErro": "10x parece 'mais leve' no bolso mês a mês, e é isso que atrai. Mas esperar e pagar à vista evita todos os juros que as 10 parcelas carregam."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "aposta-nao-e-investir",
+   "criterio": "É golpe disfarçado de investimento?",
+   "enunciado": "Prometer dinheiro em dobro em poucos dias, sem explicar como",
+   "resposta": true,
+   "ancora": "Promessa de retorno rápido e garantido é a marca do golpe.",
+   "feedbackErro": "A pressa e o valor alto chamam atenção, e é isso que distrai. Mas nenhum investimento real garante dobrar o dinheiro em poucos dias."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "poupar-vs-credito",
+   "pergunta": "Guardando R$ 150 por mês, quanto você junta em 8 meses (sem rendimento)?",
+   "campo": "moeda",
+   "min": 900,
+   "max": 1500,
+   "gabarito": 1200,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto de acumulação mensal",
+   "feedbackPerto": "Isso mesmo: 8 meses guardando R$ 150 já somam R$ 1.200, mesmo sem juros.",
+   "feedbackLonge": "O total é R$ 1.200. Sem contar juros, é só multiplicar o valor mensal pelo número de meses.",
+   "verificacao": {
+    "expressao": "150*8",
+    "esperado": 1200
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "poupar-vs-credito",
+   "dificuldade": 2,
+   "pergunta": "Um fone: R$ 280 à vista ou R$ 310 em 3x sem juros. O que pesa mais na decisão?",
+   "ancora": "A diferença de R$ 30 entre as formas de pagamento decide o custo.",
+   "alternativas": [
+    {
+     "texto": "A diferença de R$ 30 entre pagar à vista e parcelar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A cor do fone disponível em cada opção",
+     "correta": false,
+     "feedbackErro": "Cor é escolha estética, sem impacto no valor pago. O que separa as opções financeiramente é a diferença de R$ 30."
+    },
+    {
+     "texto": "Se a loja física fica perto de casa",
+     "correta": false,
+     "feedbackErro": "Distância até a loja não muda o preço final da compra. O que decide aqui é a diferença de R$ 30 entre as opções."
+    }
+   ],
+   "verificacao": {
+    "expressao": "310-280",
+    "esperado": 30
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "aposta-nao-e-investir",
+   "dificuldade": 2,
+   "pergunta": "Uma 'aposta esportiva com IA' promete acerto garantido, mediante taxa de entrada. O que isso ignora?",
+   "ancora": "Nenhum sistema prevê com certeza o resultado de um jogo real.",
+   "alternativas": [
+    {
+     "texto": "Que o resultado de um jogo real nunca é garantido",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que a taxa de entrada costuma ser baixa",
+     "correta": false,
+     "feedbackErro": "O valor da taxa de entrada não muda o problema central. O que a promessa ignora é que resultado de jogo real não tem garantia."
+    },
+    {
+     "texto": "Que só funciona em campeonatos grandes",
+     "correta": false,
+     "feedbackErro": "O tamanho do campeonato não afeta a incerteza do resultado. Nenhum jogo real tem acerto garantido, seja qual for o campeonato."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-credito",
+   "criterio": "Reduz o total pago pela compra?",
+   "enunciado": "Esperar a promoção de fim de temporada em vez de parcelar agora",
+   "resposta": true,
+   "ancora": "Preço mais baixo à vista costuma pesar mais que os juros evitados.",
+   "feedbackErro": "Esperar parece só 'atraso', e é isso que confunde. Mas comprar mais barato depois, sem juros, costuma sair mais barato que parcelar agora."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "aposta-nao-e-investir",
+   "criterio": "É comportamento de quem investe?",
+   "enunciado": "Aumentar o valor apostado depois de uma sequência de perdas",
+   "resposta": false,
+   "ancora": "Isso é 'caça ao prejuízo' — aposta, não investimento.",
+   "feedbackErro": "Parece uma forma de 'recuperar o prejuízo', e é esse raciocínio que engana. Mas aumentar a aposta após perder é caça ao prejuízo, o oposto de investir."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "aposta-nao-e-investir",
+   "pergunta": "Qual frase resume o risco de confundir aposta com investimento?",
+   "alternativas": [
+    {
+     "texto": "Aposta depende de sorte e pode zerar; investimento tem retorno esperado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Aposta e investimento têm o mesmo risco, só muda o nome",
+     "correta": false,
+     "feedbackErro": "Os riscos não são equivalentes: investimento tem retorno esperado e regras; aposta depende só de sorte."
+    },
+    {
+     "texto": "Quem entende de números sempre ganha na aposta",
+     "correta": false,
+     "feedbackErro": "Entender números ajuda a ler chances, mas não muda o resultado de um sorteio ou jogo. Aposta continua dependendo de sorte."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "poupar-vs-credito",
+   "instrucao": "Custa juros ou não custa juros?",
+   "ancora": "Sem juros combinados, o valor final não cresce.",
+   "feedbackErro": "Parcelamento parece sempre ter juros embutido, e essa é a pegadinha. Sem taxa combinada, o valor total não muda, só a data de cada pagamento.",
+   "caixas": [
+    {
+     "id": "custa",
+     "rotulo": "Custa juros"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não custa juros"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Rotativo do cartão de crédito",
+     "caixaCorreta": "custa"
+    },
+    {
+     "texto": "Parcelamento anunciado como 'sem juros'",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Cheque especial usado por uma semana",
+     "caixaCorreta": "custa"
+    },
+    {
+     "texto": "Juntar dinheiro num pote em casa",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "aposta-nao-e-investir",
+   "dificuldade": 3,
+   "pergunta": "Uma promessa de investimento 'sem risco' aparece marcada como anúncio pago numa rede social. Isso muda algo?",
+   "ancora": "Anúncio pago não valida a promessa, só mostra quem pagou pra divulgar.",
+   "alternativas": [
+    {
+     "texto": "O risco da promessa é o mesmo, virou anúncio ou não",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, anúncio pago sempre passou por checagem de verdade",
+     "correta": false,
+     "feedbackErro": "Pagar por um anúncio não significa que o conteúdo foi checado quanto à veracidade. A promessa de retorno sem risco continua sendo o alerta central."
+    },
+    {
+     "texto": "Sim, porque anúncio é mais confiável que post comum",
+     "correta": false,
+     "feedbackErro": "O formato do anúncio não garante confiabilidade nenhuma. O que decide é se a promessa de retorno sem risco é possível — e não é."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-credito",
+   "criterio": "Vale mais que juntar sem juros?",
+   "enunciado": "Financiar algo em parcelas que somam mais do que o valor à vista",
+   "resposta": false,
+   "ancora": "Se soma mais do que à vista, o financiamento custa mais caro.",
+   "feedbackErro": "Parcelar parece 'mais leve' porque divide o valor, e é aí que confunde. Mas se a soma das parcelas é maior que o preço à vista, juntar sai mais barato."
+  }
+ ]
+}

@@ -1,0 +1,351 @@
+{
+ "slug": "a-conta-do-negocio-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "a-conta-do-negocio",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custos-do-negocio",
+   "criterio": "É custo variável?",
+   "enunciado": "Sacolinhas plásticas compradas por unidade vendida",
+   "resposta": true,
+   "ancora": "Cresce com a venda: quanto mais vende, mais sacolinha gasta.",
+   "feedbackErro": "Parece um detalhe pequeno perto do aluguel. Mas custo variável se define pelo comportamento: sobe e desce junto com as vendas — é isso que a sacolinha faz."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "orcamento-do-negocio",
+   "criterio": "É custo variável?",
+   "enunciado": "A conta de internet do escritório, sempre o mesmo valor",
+   "resposta": false,
+   "ancora": "Não muda com a venda: é custo fixo, mesmo sendo essencial.",
+   "feedbackErro": "Internet parece ligada ao negócio funcionando, e por isso confunde. Mas o valor é o mesmo vendendo muito ou pouco — isso é a marca do custo fixo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "preco-de-venda",
+   "criterio": "É custo variável?",
+   "enunciado": "O aluguel do ponto comercial",
+   "resposta": false,
+   "ancora": "O aluguel não muda com quanto se vende — é custo fixo.",
+   "feedbackErro": "Como o ponto é essencial para vender, parece 'custo de venda'. Mas o valor do aluguel não muda se você vende 10 ou 100 unidades — por isso é fixo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "preco-de-venda",
+   "dificuldade": 2,
+   "pergunta": "Um produto custa R$ 12 para fazer. A loja quer 50% de margem sobre o custo. Qual o preço de venda?",
+   "ancora": "12 + 50% de 12 = 18. Margem soma sobre o custo, não substitui.",
+   "alternativas": [
+    {
+     "texto": "R$ 18",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 6",
+     "correta": false,
+     "feedbackErro": "R$ 6 é só os 50% de margem, sem somar ao custo. O preço final soma o custo com a margem: 12 + 6 = 18."
+    },
+    {
+     "texto": "R$ 24",
+     "correta": false,
+     "feedbackErro": "R$ 24 dobraria o custo (100% de margem). Aqui a margem pedida é 50%: 12 + (0,5 × 12) = 18."
+    }
+   ],
+   "verificacao": {
+    "expressao": "12+0.5*12",
+    "esperado": 18
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custos-do-negocio",
+   "dificuldade": 2,
+   "pergunta": "Uma confeitaria tem R$ 900 de custo fixo e R$ 6 de custo variável por bolo. Fez 50 bolos. Custo total?",
+   "ancora": "900 + 6×50 = 1.200. Fixo soma uma vez; variável multiplica.",
+   "alternativas": [
+    {
+     "texto": "R$ 1.200",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 300",
+     "correta": false,
+     "feedbackErro": "R$ 300 é só o custo variável (6 × 50), sem contar o fixo. O total soma os dois: 900 + 300 = 1.200."
+    },
+    {
+     "texto": "R$ 900",
+     "correta": false,
+     "feedbackErro": "R$ 900 é só o custo fixo, sem os R$ 6 de cada bolo. Some o variável dos 50 bolos: 900 + 300 = 1.200."
+    }
+   ],
+   "verificacao": {
+    "expressao": "900+6*50",
+    "esperado": 1200
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "orcamento-do-negocio",
+   "criterio": "É verdade sobre o orçamento?",
+   "enunciado": "Um orçamento sem prever os impostos superestima o lucro",
+   "resposta": true,
+   "ancora": "Custo esquecido no orçamento infla o lucro só no papel.",
+   "feedbackErro": "Parece que o imposto entra 'depois', numa conta separada. Mas se ele não está previsto no orçamento, o lucro projetado fica maior do que o de verdade."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "preco-de-venda",
+   "instrucao": "Mesma margem de 40%. Ordene do menor ao maior preço final.",
+   "ancora": "Preço = custo + 40% do custo. Custo maior gera preço maior.",
+   "feedbackErro": "A margem é igual nas quatro, mas o custo muda o resultado: quanto maior o custo de base, maior o preço final, sempre na mesma proporção.",
+   "itens": [
+    {
+     "texto": "Custo R$ 10 → preço R$ 14",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Custo R$ 20 → preço R$ 28",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Custo R$ 35 → preço R$ 49",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Custo R$ 50 → preço R$ 70",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custos-do-negocio",
+   "criterio": "A conta está certa?",
+   "enunciado": "Custo fixo de R$ 1.200 dividido por 300 unidades dá R$ 4 de custo fixo por unidade",
+   "resposta": true,
+   "ancora": "1.200 ÷ 300 = 4. O fixo diluído mostra o peso por unidade.",
+   "feedbackErro": "Fecha: 1.200 dividido por 300 é 4. Repartir o custo fixo pela quantidade produzida mostra quanto dele cada unidade carrega.",
+   "verificacao": {
+    "expressao": "1200/300",
+    "esperado": 4
+   }
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "orcamento-do-negocio",
+   "criterio": "É verdade?",
+   "enunciado": "Vender mais sempre aumenta o lucro, mesmo com margem negativa",
+   "resposta": false,
+   "ancora": "Com margem negativa, cada venda aumenta o prejuízo, não o lucro.",
+   "feedbackErro": "Vender mais parece sempre bom, e geralmente é. Mas se o preço não cobre o custo, cada unidade vendida piora o resultado — quanto mais vende, mais perde."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "preco-de-venda",
+   "pergunta": "Um produto custa R$ 18 para fazer. A loja aplica 60% de margem sobre o custo. Qual o preço final?",
+   "campo": "moeda",
+   "min": 18,
+   "max": 40,
+   "gabarito": 28.8,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: custo + percentual de margem sobre o custo",
+   "feedbackPerto": "Isso: R$ 28,80. O custo de R$ 18 cresce 60% até virar preço de venda.",
+   "feedbackLonge": "Dá R$ 28,80. Calcule 60% de 18 (10,80) e some ao custo — margem soma sobre o custo, não sobre o preço final.",
+   "verificacao": {
+    "expressao": "18+0.6*18",
+    "esperado": 28.8
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custos-do-negocio",
+   "dificuldade": 2,
+   "pergunta": "Uma oficina tem custo fixo de R$ 2.400/mês e ganha R$ 80 de margem por serviço. Quantos serviços para cobrir o fixo?",
+   "ancora": "2.400 ÷ 80 = 30 serviços cobrem só o custo fixo do mês.",
+   "alternativas": [
+    {
+     "texto": "30 serviços",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "80 serviços",
+     "correta": false,
+     "feedbackErro": "80 é a margem de cada serviço, não a quantidade. Divida o fixo pela margem: 2.400 ÷ 80 = 30."
+    },
+    {
+     "texto": "2.400 serviços",
+     "correta": false,
+     "feedbackErro": "2.400 é o valor do custo fixo em reais, não a quantidade de serviços. Divida pela margem: 2.400 ÷ 80 = 30."
+    }
+   ],
+   "verificacao": {
+    "expressao": "2400/80",
+    "esperado": 30
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "orcamento-do-negocio",
+   "dificuldade": 2,
+   "pergunta": "Receita do mês: R$ 5.000. Custos: R$ 1.800 de matéria-prima, R$ 1.200 de salário, R$ 400 de imposto. Lucro?",
+   "ancora": "5.000 − 3.400 = 1.600. Some todos os custos antes de subtrair.",
+   "alternativas": [
+    {
+     "texto": "R$ 1.600",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 3.200",
+     "correta": false,
+     "feedbackErro": "R$ 3.200 esquece um dos custos na conta. Some os três: 1.800 + 1.200 + 400 = 3.400, e subtraia da receita."
+    },
+    {
+     "texto": "R$ 2.000",
+     "correta": false,
+     "feedbackErro": "R$ 2.000 usa só dois dos três custos. O orçamento completo soma matéria-prima, salário e imposto juntos."
+    }
+   ],
+   "verificacao": {
+    "expressao": "5000-(1800+1200+400)",
+    "esperado": 1600
+   }
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "preco-de-venda",
+   "criterio": "Verdadeiro?",
+   "enunciado": "Preço de venda deve cobrir custo e ainda deixar margem",
+   "resposta": true,
+   "ancora": "Preço menor que o custo dá prejuízo em cada venda.",
+   "feedbackErro": "Parece óbvio, mas é comum esquecer no calor da promoção. Se o preço não cobre o custo mais uma margem, cada venda tira dinheiro do negócio."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "orcamento-do-negocio",
+   "criterio": "Verdadeiro?",
+   "enunciado": "Um orçamento serve para prever se vai sobrar ou faltar dinheiro",
+   "resposta": true,
+   "ancora": "Orçamento é previsão: compara receita e custos antes de acontecer.",
+   "feedbackErro": "É fácil achar que orçamento é só registro do passado. Na verdade, ele serve para planejar antes: mostra se as contas vão fechar no mês que vem."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "custos-do-negocio",
+   "pergunta": "Qual frase resume este encontro?",
+   "alternativas": [
+    {
+     "texto": "Custo fixo dividido pela margem por unidade mostra quanto vender para cobrir.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só o custo variável importa no preço final.",
+     "correta": false,
+     "feedbackErro": "O custo fixo também precisa ser coberto — por isso ele entra na conta de quantas unidades vender."
+    },
+    {
+     "texto": "Vender mais sempre aumenta o lucro.",
+     "correta": false,
+     "feedbackErro": "Só se a margem for positiva. Com margem negativa, vender mais aumenta o prejuízo."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "orcamento-do-negocio",
+   "instrucao": "Entra no cálculo do lucro do mês? Arraste.",
+   "ancora": "Lucro soma receita e subtrai todo custo do negócio.",
+   "feedbackErro": "Receita e custos do negócio entram na conta. Dinheiro pessoal, como uma poupança à parte, fica de fora.",
+   "caixas": [
+    {
+     "id": "entra",
+     "rotulo": "Entra"
+    },
+    {
+     "id": "fora",
+     "rotulo": "Fica fora"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Receita das vendas do mês",
+     "caixaCorreta": "entra"
+    },
+    {
+     "texto": "Imposto pago sobre as vendas",
+     "caixaCorreta": "entra"
+    },
+    {
+     "texto": "Poupança pessoal do dono",
+     "caixaCorreta": "fora"
+    },
+    {
+     "texto": "Salário da equipe",
+     "caixaCorreta": "entra"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "preco-de-venda",
+   "dificuldade": 2,
+   "pergunta": "Um produto custa R$ 25 para fazer. Margem de 20% sobre o custo. Qual o preço de venda?",
+   "ancora": "25 + 20% de 25 = 30. Some a margem ao custo.",
+   "alternativas": [
+    {
+     "texto": "R$ 30",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 5",
+     "correta": false,
+     "feedbackErro": "R$ 5 é só a margem, sem somar ao custo. O preço final é o custo mais a margem: 25 + 5 = 30."
+    },
+    {
+     "texto": "R$ 45",
+     "correta": false,
+     "feedbackErro": "R$ 45 usaria 80% de margem. Aqui é 20%: 25 + (0,2 × 25) = 30."
+    }
+   ],
+   "verificacao": {
+    "expressao": "25+0.2*25",
+    "esperado": 30
+   }
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custos-do-negocio",
+   "criterio": "É verdade?",
+   "enunciado": "Diluir o custo fixo por mais unidades reduz o custo fixo por unidade",
+   "resposta": true,
+   "ancora": "O fixo total não muda, mas repartido por mais peças, pesa menos.",
+   "feedbackErro": "O custo fixo total continua o mesmo. Mas repartido por mais unidades produzidas, a fatia que cada uma carrega fica menor."
+  }
+ ]
+}

@@ -41,6 +41,7 @@ npx tsx scripts/semear-indicadores.mts         # grava direto, sem flag
 npx tsx scripts/semear-t2.mts --aplicar
 npx tsx scripts/semear-ef.mts --aplicar        # trilha escolar de EF (sem a flag, só simula)
 npx tsx scripts/semear-em.mts --aplicar        # trilha de EM (idem)
+node --import tsx scripts/semear-curso.mts --aplicar  # curso escolar v2 (idem)
 pnpm dev
 ```
 
@@ -65,10 +66,12 @@ app/
   convite/        convite de escola por código (rota + tela de aceite)
   api/            rotas — chat, extrato, painel, trilha, ranking, ops…
 lib/              domínio: financas, ia, pontos, recomendacao, cripto, repos
+  licao/          contrato do curso escolar v2 — formatos, validador, carregador
 components/       UI por área (chat/, trilha/, analises/, painel/)
 prisma/           schema, seeds (modulos-data, modulos-t2), RLS
+  curso/          curso escolar v2: 321 lições, 107 conceitos, índice de currículo
 scripts/          seeds, baterias de teste (testar-*.mts), auditoria
-docs/             matriz BCB, backlog T2, estado do produto
+docs/             matriz BCB, backlog T2, arquitetura pedagógica, estado do produto
 ```
 
 ## Fluxo de dados

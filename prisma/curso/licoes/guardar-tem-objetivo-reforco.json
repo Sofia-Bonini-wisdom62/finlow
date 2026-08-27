@@ -1,0 +1,238 @@
+{
+ "slug": "guardar-tem-objetivo-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "guardar-tem-objetivo",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "guardar-com-objetivo",
+   "criterio": "Tem um objetivo por trás?",
+   "enunciado": "Guardar dinheiro escondido, sem saber ainda pra que vai servir",
+   "resposta": false,
+   "ancora": "Sem saber pra quê, não é objetivo — é só guardar por guardar.",
+   "feedbackErro": "Esconder parece ter uma intenção, mas sem saber pra que serve o dinheiro, falta o objetivo que define o critério."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "guardar-com-objetivo",
+   "criterio": "Tem um objetivo por trás?",
+   "enunciado": "Separar R$ 3 todo dia da semana para comprar um caderno novo",
+   "resposta": true,
+   "ancora": "Saber exatamente pra que serve o valor é o que conta como objetivo.",
+   "feedbackErro": "Pode parecer pouco, R$ 3 por dia, mas ter o caderno em mente torna isso guardar com objetivo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar-e-nao-gastar",
+   "criterio": "Isso é poupar?",
+   "enunciado": "Comprar algo pequeno toda vez que sobra um trocado, achando que não conta",
+   "resposta": false,
+   "ancora": "Gastar aos poucos ainda é gastar — mesmo em valores pequenos.",
+   "feedbackErro": "Parece inofensivo por ser pouco de cada vez, mas gastar o trocado sempre que sobra é consumo, não poupança."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "guardar-com-objetivo",
+   "dificuldade": 2,
+   "pergunta": "Um tênis custa R$ 137. Já foram guardados R$ 89. Quanto ainda falta?",
+   "ancora": "137 menos 89 é 48 — o que falta pra fechar o valor.",
+   "verificacao": { "expressao": "137-89", "esperado": 48 },
+   "alternativas": [
+    {
+     "texto": "R$ 48",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 89",
+     "correta": false,
+     "feedbackErro": "R$ 89 é o que já foi guardado, não o que falta. A conta certa é 137 menos 89, que dá 48."
+    },
+    {
+     "texto": "R$ 226",
+     "correta": false,
+     "feedbackErro": "226 seria somar os dois valores, não subtrair. O que falta é a diferença: 137 menos 89, ou seja, 48."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "poupar-e-nao-gastar",
+   "dificuldade": 2,
+   "pergunta": "Larissa passou a comprar um salgado a menos por semana e guarda essa diferença numa caixa. O que ela está fazendo?",
+   "ancora": "Gastar menos sozinho não basta — ela guarda a diferença separada.",
+   "alternativas": [
+    {
+     "texto": "Só reduzindo o consumo, sem juntar nada",
+     "correta": false,
+     "feedbackErro": "Reduzir ajuda, mas se o dinheiro que sobra não é separado, ele se mistura e não vira poupança."
+    },
+    {
+     "texto": "Reduzindo o consumo e guardando a diferença separada",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Trocando o salgado por outra besteira do mesmo preço",
+     "correta": false,
+     "feedbackErro": "Trocar um gasto por outro do mesmo valor não deixa nada sobrando pra guardar — não é poupar."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "prazo-da-reserva",
+   "criterio": "É reserva com prazo?",
+   "enunciado": "Guardar sem saber quando vai usar o dinheiro",
+   "resposta": false,
+   "ancora": "Sem uma data ou momento em mente, não há prazo definido.",
+   "feedbackErro": "Guardar continua sendo bom, mas sem um momento em mente, não é reserva com prazo — é reserva solta."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "prazo-da-reserva",
+   "instrucao": "É reserva pensada no futuro? Arraste.",
+   "ancora": "Reserva com prazo sempre tem um momento futuro definido.",
+   "feedbackErro": "O que separa reserva com prazo de guardar solto é ter um momento futuro definido, não só a quantidade guardada.",
+   "caixas": [
+    { "id": "sim", "rotulo": "Tem prazo" },
+    { "id": "nao", "rotulo": "Não tem" }
+   ],
+   "itens": [
+    { "texto": "Guardar hoje pensando na formatura, daqui a 2 anos", "caixaCorreta": "sim" },
+    { "texto": "Guardar sem pensar em quando vai gastar", "caixaCorreta": "nao" },
+    { "texto": "Separar dinheiro toda semana pensando no acampamento de outubro", "caixaCorreta": "sim" },
+    { "texto": "Juntar moedas até a caixinha ficar cheia, sem saber quando", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "poupar-e-nao-gastar",
+   "criterio": "É um jeito de poupar?",
+   "enunciado": "Pedir emprestado pros pais pra comprar algo e devolver depois com a mesada",
+   "resposta": false,
+   "ancora": "Pedir emprestado antecipa o gasto; poupar é guardar antes de gastar.",
+   "feedbackErro": "Parece parecido porque o dinheiro volta depois, mas pedir emprestado é gastar adiantado — poupar é guardar antes."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "prazo-da-reserva",
+   "dificuldade": 2,
+   "pergunta": "Uma bicicleta custa R$ 150 e o passeio é daqui a 5 semanas. Quanto guardar por semana?",
+   "ancora": "150 dividido por 5 semanas é 30 por semana.",
+   "verificacao": { "expressao": "150/5", "esperado": 30 },
+   "alternativas": [
+    {
+     "texto": "R$ 30 por semana",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 25 por semana",
+     "correta": false,
+     "feedbackErro": "25 seria dividir por 6 semanas, não por 5. A conta certa é 150 dividido por 5, que dá 30."
+    },
+    {
+     "texto": "R$ 5 por semana",
+     "correta": false,
+     "feedbackErro": "5 por semana levaria 30 semanas pra juntar tudo, bem mais que as 5 semanas que sobram."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "guardar-com-objetivo",
+   "criterio": "Ajuda a alcançar o objetivo?",
+   "enunciado": "Trocar de objetivo toda semana, sem terminar nenhum",
+   "resposta": false,
+   "ancora": "Trocar de objetivo toda hora reinicia a conta do zero.",
+   "feedbackErro": "Mudar de ideia parece normal, mas trocar de objetivo o tempo todo faz o dinheiro nunca chegar a nenhum deles."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "poupar-e-nao-gastar",
+   "criterio": "Isso ajuda a poupar?",
+   "enunciado": "Guardar o dinheiro assim que ele chega, antes de gastar em qualquer coisa",
+   "resposta": true,
+   "ancora": "Guardar primeiro evita que o dinheiro seja gasto antes.",
+   "feedbackErro": "Guardar o que sobra parece mais fácil, mas quase nunca sobra nada — guardar primeiro garante a poupança."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "guardar-com-objetivo",
+   "pergunta": "Qual dessas frases resume melhor o encontro de hoje?",
+   "alternativas": [
+    {
+     "texto": "Só vale guardar se o valor guardado for grande",
+     "correta": false,
+     "feedbackErro": "O valor não precisa ser grande — R$ 3 por dia também é guardar com objetivo, se tem um plano por trás."
+    },
+    {
+     "texto": "Guardar com objetivo é saber pra quê e separar antes de gastar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Reduzir gastos já é a mesma coisa que poupar",
+     "correta": false,
+     "feedbackErro": "Reduzir ajuda, mas só vira poupança se a diferença for guardada separada, não misturada com o resto."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "poupar-e-nao-gastar",
+   "instrucao": "É poupar de verdade? Arraste.",
+   "ancora": "Poupar é separar antes, não guardar só o que sobrar por acaso.",
+   "feedbackErro": "Guardar só se sobrar raramente funciona — poupar de verdade é separar a parte antes de gastar o resto.",
+   "caixas": [
+    { "id": "sim", "rotulo": "É poupar" },
+    { "id": "nao", "rotulo": "Não é" }
+   ],
+   "itens": [
+    { "texto": "Guardar a troco de um lanche mais barato, toda semana", "caixaCorreta": "sim" },
+    { "texto": "Gastar o troco em figurinhas, mesmo sendo pouco", "caixaCorreta": "nao" },
+    { "texto": "Separar parte do dinheiro do aniversário antes de gastar o resto", "caixaCorreta": "sim" },
+    { "texto": "Deixar pra guardar só se sobrar algo no fim do mês", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "guardar-com-objetivo",
+   "instrucao": "Toque na ordem, de quem guarda melhor pra quem guarda pior.",
+   "ancora": "Guardar primeiro e de forma fixa funciona melhor que guardar por acaso.",
+   "feedbackErro": "Guardar por acaso parece a opção mais fácil, mas é a que menos garante o objetivo. Fixo e antes funciona melhor.",
+   "itens": [
+    { "texto": "Separa um valor fixo toda semana, direto pro objetivo", "posicaoCorreta": 1 },
+    { "texto": "Guarda o que sobra, quando sobra alguma coisa", "posicaoCorreta": 2 },
+    { "texto": "Só pensa em guardar quando já gastou tudo", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "prazo-da-reserva",
+   "criterio": "É reserva com prazo?",
+   "enunciado": "Guardar dinheiro pensando na troca de tênis, que gasta rápido",
+   "resposta": true,
+   "ancora": "Saber quando o tênis vai gastar já é um prazo em mente.",
+   "feedbackErro": "Parece vago por não ter uma data exata marcada, mas saber que vai precisar logo já conta como um prazo."
+  }
+ ]
+}

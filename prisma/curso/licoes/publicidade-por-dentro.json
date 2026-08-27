@@ -1,0 +1,338 @@
+{
+ "slug": "publicidade-por-dentro",
+ "segmento": "ef89",
+ "conceitoPrincipal": "publicidade-por-dentro",
+ "fraseConceito": "Publicidade explícita se identifica como anúncio; a implícita se disfarça de conteúdo — as duas usam emoção pra vender.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "publicidade-implicita-explicita",
+   "criterio": "É publicidade explícita (se identifica)?",
+   "enunciado": "Um comercial de TV com a marca aparecendo",
+   "resposta": true,
+   "ancora": "Anúncio tradicional se identifica como publicidade, sem disfarce.",
+   "feedbackErro": "Parece óbvio demais pra ser um exemplo, mas é exatamente isso: comercial de TV se assume como propaganda, sem se disfarçar de outra coisa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "publicidade-implicita-explicita",
+   "criterio": "É publicidade explícita (se identifica)?",
+   "enunciado": "Influenciador usando o produto no vídeo, sem falar que foi pago",
+   "resposta": false,
+   "ancora": "Sem aviso de parceria, é publicidade implícita, não opinião.",
+   "feedbackErro": "Parece só a opinião pessoal de quem usa, e é aí que engana. Sem avisar que foi pago pra isso, vira publicidade implícita disfarçada de opinião."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "publicidade-implicita-explicita",
+   "criterio": "É publicidade explícita (se identifica)?",
+   "enunciado": "Um post marcado 'publi' ou 'parceria paga'",
+   "resposta": true,
+   "ancora": "A marcação avisa: aquilo é publicidade, mesmo em rede social.",
+   "feedbackErro": "A marcação parece só um detalhe pequeno no post, mas é justamente ela que identifica o conteúdo como publicidade explícita."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "dificuldade": 1,
+   "pergunta": "Por que uma loja mostra 'de R$ 199 por R$ 99' mesmo vendendo sempre por R$ 99?",
+   "ancora": "O preço 'de' cria a sensação de desconto que nunca existiu de fato.",
+   "alternativas": [
+    {
+     "texto": "Pra parecer desconto e ativar a sensação de ganhar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque o preço mudou de verdade há pouco tempo",
+     "correta": false,
+     "feedbackErro": "Se o preço nunca foi R$ 199 de fato, não houve mudança real nenhuma. O 'de' serve só pra criar a sensação de desconto."
+    },
+    {
+     "texto": "Porque é uma exigência da legislação de preços",
+     "correta": false,
+     "feedbackErro": "Não existe lei obrigando mostrar um preço 'de' inventado. A prática existe pra ativar a sensação de estar ganhando um desconto."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "publicidade-implicita-explicita",
+   "dificuldade": 1,
+   "pergunta": "Um personagem de série bebe sempre a mesma marca de refrigerante, sem comercial. É publicidade?",
+   "ancora": "Aparecer repetido dentro da história já conta como publicidade.",
+   "alternativas": [
+    {
+     "texto": "Sim — é publicidade implícita, dentro da própria história",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, só é publicidade se tiver comercial separado",
+     "correta": false,
+     "feedbackErro": "Publicidade não precisa vir num bloco separado. Aparecer de propósito dentro da própria história já conta como publicidade implícita."
+    },
+    {
+     "texto": "Não, porque a cena não fala o preço do produto",
+     "correta": false,
+     "feedbackErro": "Falar o preço não é exigência pra ser publicidade. Mostrar a marca de forma destacada e repetida já cumpre esse papel."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "criterio": "Isso usa emoção pra apressar a compra?",
+   "enunciado": "Contador regressivo com '3 pessoas vendo esse produto agora'",
+   "resposta": true,
+   "ancora": "Mostra escassez e disputa — dois gatilhos clássicos de pressa.",
+   "feedbackErro": "Parece só uma informação extra sobre o produto, mas escassez e disputa juntas são um gatilho emocional clássico pra apressar a compra."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "publicidade-implicita-explicita",
+   "instrucao": "É publicidade explícita ou implícita?",
+   "ancora": "Explícita avisa que é anúncio; implícita se mistura ao conteúdo.",
+   "feedbackErro": "Parece que só existe publicidade com aviso claro, mas boa parte se disfarça de conteúdo comum — é isso que faz a implícita.",
+   "caixas": [
+    {
+     "id": "explicita",
+     "rotulo": "Explícita"
+    },
+    {
+     "id": "implicita",
+     "rotulo": "Implícita"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Comercial de 30 segundos entre os blocos do programa",
+     "caixaCorreta": "explicita"
+    },
+    {
+     "texto": "Youtuber usando o boné da marca o vídeo inteiro, sem avisar",
+     "caixaCorreta": "implicita"
+    },
+    {
+     "texto": "Banner que diz 'anúncio' no topo do site",
+     "caixaCorreta": "explicita"
+    },
+    {
+     "texto": "Cena de novela em que a heroína elogia um creme específico",
+     "caixaCorreta": "implicita"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "criterio": "É gatilho emocional pra vender rápido?",
+   "enunciado": "A frase 'só restam 2 unidades' embaixo do produto",
+   "resposta": true,
+   "ancora": "Escassez anunciada empurra decisão sem dar tempo pra pensar.",
+   "feedbackErro": "Parece só uma informação de estoque, mas o efeito real é empurrar a decisão rápido, antes que a pessoa pense direito."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "publicidade-implicita-explicita",
+   "criterio": "Precisa avisar que é publicidade?",
+   "enunciado": "Influenciador recebendo o produto de graça pra divulgar no story",
+   "resposta": true,
+   "ancora": "Recebeu pra divulgar: é parceria paga e precisa avisar quem assiste.",
+   "feedbackErro": "Receber o produto de graça parece 'não ser pago de verdade', mas é troca por divulgação, e isso já exige o aviso de parceria."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "pergunta": "Uma loja anuncia 'de R$ 250 por R$ 180'. Qual o desconto em %?",
+   "campo": "percentual",
+   "min": 10,
+   "max": 40,
+   "gabarito": 28,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto sobre o preço anunciado",
+   "feedbackPerto": "Isso mesmo — 28%. Os R$ 70 de diferença representam essa fatia do preço original.",
+   "feedbackLonge": "O desconto fica perto de 28%. Divida a diferença de R$ 70 pelo preço original de R$ 250.",
+   "verificacao": {
+    "expressao": "(250-180)/250*100",
+    "esperado": 28
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "publicidade-implicita-explicita",
+   "dificuldade": 1,
+   "pergunta": "Como reconhecer publicidade implícita numa série ou novela?",
+   "ancora": "Um produto destacado sem motivo pra história é sinal claro.",
+   "alternativas": [
+    {
+     "texto": "Reparar se um produto aparece sem motivo pra história",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Reparar se a cena tem boa iluminação",
+     "correta": false,
+     "feedbackErro": "Iluminação é escolha estética da produção, sem relação com publicidade. O sinal real é um produto destacado sem função na história."
+    },
+    {
+     "texto": "Reparar se o ator é famoso",
+     "correta": false,
+     "feedbackErro": "A fama do ator não indica publicidade nenhuma. O que denuncia é um produto específico ganhando destaque sem motivo na trama."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "dificuldade": 1,
+   "pergunta": "Uma propaganda mostra pessoas felizes e populares usando o produto. Que gatilho é esse?",
+   "ancora": "Associa o produto a fazer parte de um grupo desejado.",
+   "alternativas": [
+    {
+     "texto": "Pertencimento — associar o produto a fazer parte do grupo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Informação técnica sobre o desempenho do produto",
+     "correta": false,
+     "feedbackErro": "Não há dado técnico nenhum nessa cena, só pessoas felizes usando o produto. O gatilho é emocional: pertencer ao grupo retratado."
+    },
+    {
+     "texto": "Comparação de preço com a concorrência",
+     "correta": false,
+     "feedbackErro": "Nenhum preço é comparado na cena descrita. O que ela ativa é o desejo de pertencer ao grupo de pessoas felizes mostrado."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "publicidade-implicita-explicita",
+   "criterio": "Ajuda a achar publicidade escondida?",
+   "enunciado": "Checar se o post tem a tag 'publi' em algum lugar",
+   "resposta": true,
+   "ancora": "A tag denuncia parceria paga, mesmo escondida no fim do texto.",
+   "feedbackErro": "Parece um detalhe pequeno demais pra importar, mas essa tag é justamente o que revela que existe pagamento por trás do conteúdo."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "criterio": "É gatilho, não informação do produto?",
+   "enunciado": "A contagem regressiva que reinicia toda vez que a página recarrega",
+   "resposta": true,
+   "ancora": "Contagem que reinicia é falsa urgência — não é prazo real.",
+   "feedbackErro": "O relógio correndo parece um prazo de verdade, mas se ele reinicia a cada recarregamento, não existe prazo real nenhum ali."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "publicidade-implicita-explicita",
+   "pergunta": "Qual frase resume o que você viu sobre publicidade e gatilhos?",
+   "alternativas": [
+    {
+     "texto": "Publicidade se disfarça de conteúdo; gatilhos emocionais empurram a compra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só existe publicidade quando aparece marcada como anúncio",
+     "correta": false,
+     "feedbackErro": "Boa parte da publicidade se disfarça de conteúdo comum, sem marcação nenhuma. É a publicidade implícita."
+    },
+    {
+     "texto": "Gatilhos emocionais só funcionam em quem não presta atenção",
+     "correta": false,
+     "feedbackErro": "Gatilhos emocionais funcionam mesmo em quem sabe que existem — por isso reconhecer sozinho não basta, tem que parar antes de agir."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "instrucao": "É gatilho emocional ou informação real?",
+   "ancora": "Gatilho ativa emoção; informação real descreve o produto.",
+   "feedbackErro": "Parece que qualquer texto no anúncio é informação, mas boa parte serve só pra ativar emoção, sem descrever nada do produto.",
+   "caixas": [
+    {
+     "id": "gatilho",
+     "rotulo": "Gatilho emocional"
+    },
+    {
+     "id": "real",
+     "rotulo": "Informação real"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "'Apenas hoje' escrito em vermelho piscando",
+     "caixaCorreta": "gatilho"
+    },
+    {
+     "texto": "Ficha técnica com tamanho e peso do produto",
+     "caixaCorreta": "real"
+    },
+    {
+     "texto": "'Junte-se a milhares de pessoas satisfeitas'",
+     "caixaCorreta": "gatilho"
+    },
+    {
+     "texto": "Lista de ingredientes na embalagem",
+     "caixaCorreta": "real"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "dificuldade": 2,
+   "pergunta": "Um anúncio mostra 'nota 5 estrelas' sem dizer quantas avaliações. O que isso esconde?",
+   "ancora": "Nota alta com poucas avaliações não prova qualidade real.",
+   "alternativas": [
+    {
+     "texto": "Pode ser poucas avaliações, não prova de qualidade real",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Esconde que o produto é caro",
+     "correta": false,
+     "feedbackErro": "O preço não tem relação com a nota mostrada. O que a nota sozinha esconde é quantas pessoas avaliaram de verdade."
+    },
+    {
+     "texto": "Esconde a cor real do produto",
+     "correta": false,
+     "feedbackErro": "Cor não tem nada a ver com a nota de avaliação. O problema é não saber quantas pessoas avaliaram pra confiar na nota."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "publicidade-implicita-explicita",
+   "criterio": "É publicidade, mesmo sem falar de venda?",
+   "enunciado": "Vídeo de 'rotina do dia' com o mesmo produto sempre, pago pela marca",
+   "resposta": true,
+   "ancora": "Pagamento da marca já torna publicidade, mesmo sem pedir pra comprar.",
+   "feedbackErro": "Sem 'compre agora' parece que não é publicidade, mas o pagamento da marca por trás do vídeo já é o que define isso."
+  }
+ ]
+}

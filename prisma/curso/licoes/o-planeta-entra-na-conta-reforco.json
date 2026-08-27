@@ -1,0 +1,237 @@
+{
+ "slug": "o-planeta-entra-na-conta-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "o-planeta-entra-na-conta",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "impacto-do-consumismo",
+   "criterio": "Isso afeta o planeta?",
+   "enunciado": "Comprar um par de tênis novo assim que sai uma cor diferente",
+   "resposta": true,
+   "ancora": "Trocar por cor, sem necessidade, ainda gasta recursos do planeta.",
+   "feedbackErro": "Parece só estilo, mas cada tênis novo fabricado consome recursos, mesmo trocando só pela cor."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "impacto-do-consumismo",
+   "criterio": "Isso afeta o planeta?",
+   "enunciado": "Consertar a costura de uma mochila em vez de comprar outra",
+   "resposta": false,
+   "ancora": "Consertar em vez de trocar reduz o consumo, não aumenta.",
+   "feedbackErro": "Parece um gasto a mais, mas consertar evita fabricar uma mochila nova — isso reduz o impacto."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "comportamento-sustentavel",
+   "criterio": "É um comportamento sustentável?",
+   "enunciado": "Levar as pilhas usadas até um ponto de coleta, em vez do lixo comum",
+   "resposta": true,
+   "ancora": "Descarte correto evita que produtos tóxicos contaminem o solo.",
+   "feedbackErro": "Parece trabalho extra, mas o ponto de coleta evita que substâncias tóxicas contaminem solo e água."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-do-consumismo",
+   "dificuldade": 2,
+   "pergunta": "Uma loja troca sacolas plásticas de graça por sacolas de pano reutilizáveis. Qual o efeito, com o tempo?",
+   "ancora": "Reutilizar a mesma sacola por meses evita gerar plástico novo.",
+   "alternativas": [
+    {
+     "texto": "Menos plástico descartado ao longo dos meses",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O mesmo tanto de plástico, só muda a cor da sacola",
+     "correta": false,
+     "feedbackErro": "A troca não é só estética — usar a mesma sacola de pano várias vezes reduz o plástico descartado."
+    },
+    {
+     "texto": "Mais lixo, porque agora tem dois tipos de sacola",
+     "correta": false,
+     "feedbackErro": "O objetivo é substituir, não somar — quem usa a de pano deixa de gerar as plásticas novas."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "comportamento-sustentavel",
+   "dificuldade": 2,
+   "pergunta": "Rafael separa o lixo em casa, mas joga tudo junto na rua. O que falta pro comportamento ser completo?",
+   "ancora": "Comportamento sustentável vale em qualquer lugar, não só em casa.",
+   "alternativas": [
+    {
+     "texto": "Separar o lixo em qualquer lugar, não só em casa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Parar de separar em casa também, já que na rua não dá",
+     "correta": false,
+     "feedbackErro": "Desistir em casa não resolve nada — o certo é estender o cuidado também pra rua."
+    },
+    {
+     "texto": "Nada, separar só em casa já é o suficiente",
+     "correta": false,
+     "feedbackErro": "Separar só em parte dos lugares deixa o resto do lixo sem destino certo — o hábito precisa ser constante."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "comportamento-sustentavel",
+   "criterio": "É um comportamento sustentável?",
+   "enunciado": "Comprar frutas soltas em vez de embaladas em bandeja plástica",
+   "resposta": true,
+   "ancora": "Menos embalagem descartável é menos lixo gerado.",
+   "feedbackErro": "Parece só um jeito diferente de comprar, mas evitar a bandeja plástica reduz o lixo gerado."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "impacto-do-consumismo",
+   "instrucao": "Isso reduz o impacto no planeta? Arraste.",
+   "ancora": "Reduz reaproveitar e compartilhar; aumenta trocar por moda.",
+   "feedbackErro": "Reaproveitar e compartilhar reduzem o consumo; trocar por moda ou jogar fora coisas úteis aumenta o impacto.",
+   "caixas": [
+    { "id": "sim", "rotulo": "Reduz" },
+    { "id": "nao", "rotulo": "Aumenta" }
+   ],
+   "itens": [
+    { "texto": "Comprar roupas de segunda mão", "caixaCorreta": "sim" },
+    { "texto": "Jogar fora um objeto que ainda funciona, só por estar fora de moda", "caixaCorreta": "nao" },
+    { "texto": "Emprestar um livro em vez de comprar um novo", "caixaCorreta": "sim" },
+    { "texto": "Trocar de mochila toda vez que aparece um lançamento", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "comportamento-sustentavel",
+   "criterio": "É um comportamento sustentável?",
+   "enunciado": "Imprimir os dois lados da folha, em vez de uma folha pra cada página",
+   "resposta": true,
+   "ancora": "Usar as duas faces da folha reduz o consumo de papel.",
+   "feedbackErro": "Parece só economia de papel qualquer, mas isso reduz o consumo de árvores e água na produção."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-do-consumismo",
+   "dificuldade": 2,
+   "pergunta": "Uma escola descarta 45 garrafas plásticas por semana. Em 8 semanas, quantas garrafas descartadas?",
+   "ancora": "45 garrafas por semana, vezes 8 semanas, dá 360.",
+   "verificacao": { "expressao": "45*8", "esperado": 360 },
+   "alternativas": [
+    {
+     "texto": "360 garrafas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "45 garrafas",
+     "correta": false,
+     "feedbackErro": "45 é só o total de uma semana. Multiplicando por 8 semanas, chega a 360."
+    },
+    {
+     "texto": "53 garrafas",
+     "correta": false,
+     "feedbackErro": "53 seria somar 45 mais 8, não multiplicar. Em 8 semanas, o total é 45 vezes 8, ou seja, 360."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "comportamento-sustentavel",
+   "criterio": "Isso ajuda o planeta?",
+   "enunciado": "Comprar uma garrafa reutilizável e usar ela por anos",
+   "resposta": true,
+   "ancora": "Uma garrafa usada por anos substitui centenas de descartáveis.",
+   "feedbackErro": "Parece um gasto inicial maior, mas usar por anos evita comprar centenas de garrafas descartáveis."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "impacto-do-consumismo",
+   "criterio": "Isso reduz o impacto no planeta?",
+   "enunciado": "Perguntar 'eu realmente preciso disso?' antes de comprar",
+   "resposta": true,
+   "ancora": "Essa pergunta simples evita boa parte das compras desnecessárias.",
+   "feedbackErro": "Parece um detalhe bobo, mas essa pergunta evita boa parte das compras que viram lixo depois."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "comportamento-sustentavel",
+   "pergunta": "Depois deste encontro, qual frase resume melhor consumo e planeta?",
+   "alternativas": [
+    {
+     "texto": "Separar o lixo em casa já resolve todo o problema",
+     "correta": false,
+     "feedbackErro": "Separar em casa ajuda, mas o comportamento sustentável precisa valer em qualquer lugar."
+    },
+    {
+     "texto": "Reaproveitar, consertar e comprar com consciência reduzem o impacto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O impacto no planeta só depende de fábricas grandes",
+     "correta": false,
+     "feedbackErro": "As escolhas do dia a dia, como comprar demais ou desperdiçar, também pesam no impacto total."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "comportamento-sustentavel",
+   "instrucao": "Toque na ordem, do que mais ajuda o planeta pro que menos ajuda.",
+   "ancora": "Consertar e doar reaproveitam; jogar fora sem pensar não ajuda.",
+   "feedbackErro": "Consertar e doar dão um novo destino às coisas; jogar fora sem pensar é o que menos ajuda o planeta.",
+   "itens": [
+    { "texto": "Consertar o que quebrou", "posicaoCorreta": 1 },
+    { "texto": "Doar o que não usa mais", "posicaoCorreta": 2 },
+    { "texto": "Jogar fora sem pensar em outro destino", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "impacto-do-consumismo",
+   "instrucao": "Isso gera mais lixo? Arraste.",
+   "ancora": "Embalagens pequenas e trocas por moda geram mais lixo.",
+   "feedbackErro": "O que gera mais lixo é fracionar demais as compras ou trocar por moda — comprar maior e usar até gastar reduz.",
+   "caixas": [
+    { "id": "sim", "rotulo": "Gera mais" },
+    { "id": "nao", "rotulo": "Gera menos" }
+   ],
+   "itens": [
+    { "texto": "Comprar embalagens individuais em vez de uma grande", "caixaCorreta": "sim" },
+    { "texto": "Comprar em quantidade maior, dividindo entre a família", "caixaCorreta": "nao" },
+    { "texto": "Trocar de roupa toda semana só por moda", "caixaCorreta": "sim" },
+    { "texto": "Usar a roupa até ela realmente gastar", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "comportamento-sustentavel",
+   "criterio": "É um comportamento sustentável?",
+   "enunciado": "Usar o verso de folhas já impressas como rascunho",
+   "resposta": true,
+   "ancora": "Reaproveitar o papel reduz o consumo de um recurso novo.",
+   "feedbackErro": "Parece só economia de papel qualquer, mas reaproveitar reduz o consumo de um recurso novo."
+  }
+ ]
+}

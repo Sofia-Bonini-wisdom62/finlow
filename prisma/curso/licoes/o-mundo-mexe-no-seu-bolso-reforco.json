@@ -1,0 +1,270 @@
+{
+ "slug": "o-mundo-mexe-no-seu-bolso-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "o-mundo-mexe-no-seu-bolso",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "eventos-e-bolso",
+   "criterio": "Isso mexe no seu bolso?",
+   "enunciado": "O aluguel dos imóveis da cidade subir bastante",
+   "resposta": true,
+   "ancora": "Aluguel mais caro consome mais renda mensal da família.",
+   "feedbackErro": "Parece um problema só de quem aluga. Mas aluguel mais caro consome uma fatia maior da renda mensal, sobrando menos pro resto."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "eventos-e-bolso",
+   "criterio": "Isso mexe no seu bolso?",
+   "enunciado": "A previsão do tempo mudar de sol pra nublado",
+   "resposta": false,
+   "ancora": "Mudança de tempo comum não muda emprego, renda ou preço.",
+   "feedbackErro": "O tempo muda o dia a dia, mas nublar não muda emprego, renda nem preço de nada — não é um evento com efeito financeiro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "para-que-servem-bancos",
+   "criterio": "Isso mexe no seu bolso?",
+   "enunciado": "Um banco reduzir a taxa de juros dos empréstimos",
+   "resposta": true,
+   "ancora": "Juro menor barateia o financiamento de quem precisa pegar emprestado.",
+   "feedbackErro": "Parece decisão só do banco, sem efeito em você. Mas juro menor barateia o financiamento de quem precisa pegar dinheiro emprestado."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "eventos-e-bolso",
+   "dificuldade": 2,
+   "pergunta": "Uma usina falha e falta luz em várias cidades. O que acontece com o preço de produtos que precisam de geladeira?",
+   "ancora": "Falta de luz estraga estoque e reduz a oferta desses produtos.",
+   "alternativas": [
+    {
+     "texto": "Cai, porque ninguém compra sem energia",
+     "correta": false,
+     "feedbackErro": "A falta de luz não reduz quem quer comprar. O que ela reduz é a oferta, com o estoque estragando — e isso sobe o preço."
+    },
+    {
+     "texto": "Sobe, porque a falta de luz estraga estoque e reduz oferta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Fica igual, energia não influencia preço de alimento",
+     "correta": false,
+     "feedbackErro": "Energia influencia sim: sem geladeira funcionando, parte do estoque estraga, a oferta cai e o preço tende a subir."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "para-que-servem-bancos",
+   "dificuldade": 2,
+   "pergunta": "Uma pessoa quer comprar uma casa, mas não tem todo o dinheiro. Qual função do banco ajuda nesse caso?",
+   "ancora": "Financiamento é a função do banco pra esse tipo de compra.",
+   "alternativas": [
+    {
+     "texto": "Guardar o dinheiro dela até completar o valor sozinha",
+     "correta": false,
+     "feedbackErro": "Só guardar não resolve a falta do valor total. A função que ajuda aqui é o banco emprestar a diferença, no financiamento."
+    },
+    {
+     "texto": "Emprestar o valor que falta, com financiamento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Fabricar dinheiro extra especialmente pra ela",
+     "correta": false,
+     "feedbackErro": "Bancos comuns não fabricam dinheiro — essa não é uma função deles. O que fazem é emprestar o que já existe, com financiamento."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "eventos-e-bolso",
+   "criterio": "Isso mexe no seu bolso?",
+   "enunciado": "Uma nova lei reduzir impostos sobre alimentos básicos",
+   "resposta": true,
+   "ancora": "Menos imposto tende a baixar o preço final desses produtos.",
+   "feedbackErro": "Parece só uma mudança de lei distante. Mas menos imposto sobre um produto tende a baixar o preço que chega até você."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "para-que-servem-bancos",
+   "instrucao": "É função de banco ou é função do governo?",
+   "ancora": "Banco lida com o dinheiro de cada um; governo, com regras gerais.",
+   "feedbackErro": "Os dois mexem com dinheiro, e por isso confundem. Mas banco guarda e empresta o dinheiro de cada pessoa; governo define regras e impostos.",
+   "caixas": [
+    {
+     "id": "banco",
+     "rotulo": "Função de banco"
+    },
+    {
+     "id": "governo",
+     "rotulo": "Função do governo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Emprestar dinheiro pra financiar um carro",
+     "caixaCorreta": "banco"
+    },
+    {
+     "texto": "Definir o valor do salário mínimo",
+     "caixaCorreta": "governo"
+    },
+    {
+     "texto": "Guardar as economias das famílias",
+     "caixaCorreta": "banco"
+    },
+    {
+     "texto": "Cobrar impostos sobre produtos",
+     "caixaCorreta": "governo"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "eventos-e-bolso",
+   "criterio": "Isso mexe no seu bolso?",
+   "enunciado": "O dólar ficar mais caro em relação ao real",
+   "resposta": true,
+   "ancora": "Dólar mais caro sobe o preço de produtos importados.",
+   "feedbackErro": "Parece assunto só de quem viaja pro exterior. Mas dólar mais caro sobe o preço de produtos importados e de insumos vindos de fora."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "eventos-e-bolso",
+   "dificuldade": 2,
+   "pergunta": "Uma fábrica automatiza a produção e demite metade da linha. O que costuma acontecer no consumo da região?",
+   "ancora": "Menos gente com renda tende a reduzir o consumo local.",
+   "alternativas": [
+    {
+     "texto": "Aumenta, porque sobra mais tempo livre",
+     "correta": false,
+     "feedbackErro": "Tempo livre sem renda não vira consumo. Com metade da linha demitida, menos gente tem dinheiro pra gastar na região."
+    },
+    {
+     "texto": "Cai, porque menos gente tem renda pra gastar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada muda, o consumo depende só do preço",
+     "correta": false,
+     "feedbackErro": "O preço pesa, mas não sozinho: sem renda pra gastar, mesmo produtos baratos deixam de ser comprados."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "para-que-servem-bancos",
+   "criterio": "É função de um banco?",
+   "enunciado": "Transferir dinheiro de uma pessoa pra outra, em segundos",
+   "resposta": true,
+   "ancora": "Movimentar dinheiro entre pessoas é função central do banco.",
+   "feedbackErro": "Pode parecer só um app conveniente. Mas movimentar dinheiro entre contas é uma das funções centrais que o banco existe para cumprir."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "eventos-e-bolso",
+   "criterio": "Isso mexe no seu bolso?",
+   "enunciado": "Uma feira de rua nova abrir toda semana no bairro",
+   "resposta": true,
+   "ancora": "Mais opção de compra pode baixar preço pela concorrência local.",
+   "feedbackErro": "Parece só uma opção a mais de lazer. Mas mais concorrência entre vendedores locais tende a puxar os preços pra baixo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-mundo-mexe-no-seu-bolso",
+   "pergunta": "Qual frase resume melhor o papel dos bancos e dos eventos externos no seu bolso?",
+   "alternativas": [
+    {
+     "texto": "Eventos só afetam grandes empresas, nunca famílias",
+     "correta": false,
+     "feedbackErro": "Eventos como falta de energia ou câmbio alto chegam até o preço que a família paga, não só nas empresas."
+    },
+    {
+     "texto": "Eventos afetam preço e emprego; bancos guardam, emprestam e movimentam dinheiro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Bancos só lidam com empresas, nunca com pessoas comuns",
+     "correta": false,
+     "feedbackErro": "Bancos guardam e emprestam dinheiro de pessoas comuns o tempo todo, não só de empresas."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "eventos-e-bolso",
+   "instrucao": "Ordene do evento que afeta mais ao que afeta menos os preços.",
+   "ancora": "Câmbio mexe em muitos preços; vitrine não muda nenhum.",
+   "feedbackErro": "Dólar afeta o custo de muitos produtos importados; feira nova mexe só na concorrência local; trocar vitrine não muda custo nenhum.",
+   "itens": [
+    {
+     "texto": "O dólar subir bastante",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Uma feira nova abrir no bairro",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Uma loja trocar a vitrine",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "para-que-servem-bancos",
+   "dificuldade": 3,
+   "pergunta": "Um banco empresta dinheiro e cobra juros por isso. Por que ele cobra?",
+   "ancora": "Assume o risco do calote e cobra pelo serviço de emprestar.",
+   "alternativas": [
+    {
+     "texto": "Porque é proibido por lei emprestar de graça",
+     "correta": false,
+     "feedbackErro": "Não existe essa proibição. O banco cobra juros porque assume o risco de não receber de volta e por oferecer o serviço."
+    },
+    {
+     "texto": "Porque assume o risco e oferece o serviço de emprestar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só para ter lucro, sem nenhuma razão além disso",
+     "correta": false,
+     "feedbackErro": "O lucro existe, mas não é sem razão: ele cobre o risco de calote e o custo de operar o serviço de empréstimo."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "eventos-e-bolso",
+   "criterio": "Isso mexe no seu bolso?",
+   "enunciado": "Uma nova tecnologia deixar um produto mais barato de fabricar",
+   "resposta": true,
+   "ancora": "Produção mais barata tende a baixar o preço final.",
+   "feedbackErro": "Parece só avanço tecnológico distante. Mas fabricar mais barato tende a chegar no preço final, com o produto custando menos pra você."
+  }
+ ]
+}

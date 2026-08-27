@@ -1,0 +1,184 @@
+{
+ "slug": "hoje-mes-que-vem-ano-que-vem-reforco",
+ "segmento": "ef12",
+ "conceitoPrincipal": "hoje-mes-que-vem-ano-que-vem",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prazos",
+   "criterio": "Lembra: isso é hoje?",
+   "enunciado": "Tomar banho depois da escola",
+   "resposta": true,
+   "ancora": "Acontece ainda hoje — é hoje.",
+   "feedbackErro": "Parece rotina boba, mas toda tarefa do mesmo dia conta como hoje."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prazos",
+   "criterio": "Lembra: isso é hoje?",
+   "enunciado": "Guardar dinheiro 3 meses pra comprar um jogo",
+   "resposta": false,
+   "ancora": "3 meses não é hoje — é mês que vem, repetido.",
+   "feedbackErro": "3 meses parece pouco perto de um ano, e isso confunde com hoje. Mas qualquer espera de semanas ou meses já não é hoje."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "prazos",
+   "criterio": "Isso é mês que vem?",
+   "enunciado": "Guardar dinheiro 6 semanas pra um presente de aniversário",
+   "resposta": true,
+   "ancora": "6 semanas é pouco mais de um mês — ainda é mês que vem.",
+   "feedbackErro": "6 semanas parece mais que 'um mês', e isso confunde com ano que vem. Mas ainda está na faixa de mês que vem."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "prazos",
+   "criterio": "Isso é ano que vem?",
+   "enunciado": "Guardar dinheiro 8 meses pra uma viagem",
+   "resposta": true,
+   "ancora": "8 meses está mais perto de um ano — é ano que vem.",
+   "feedbackErro": "8 meses parece só 'muitos meses', não um ano inteiro. Mas já está na faixa de espera longa — ano que vem."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "prazos",
+   "instrucao": "É de hoje ou é de esperar bastante?",
+   "ancora": "O que é do dia a dia é hoje; o que exige meses de espera é depois.",
+   "feedbackErro": "Tarefas rápidas do dia são hoje. Quando precisa juntar por meses, já conta como depois.",
+   "caixas": [
+    {
+     "id": "hoje",
+     "rotulo": "Hoje"
+    },
+    {
+     "id": "depois",
+     "rotulo": "Mês ou ano que vem"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Arrumar a mochila pra amanhã",
+     "caixaCorreta": "hoje"
+    },
+    {
+     "texto": "Guardar dinheiro 5 meses pra um presente",
+     "caixaCorreta": "depois"
+    },
+    {
+     "texto": "Lavar as mãos antes de comer",
+     "caixaCorreta": "hoje"
+    },
+    {
+     "texto": "Guardar dinheiro o ano todo pra um passeio grande",
+     "caixaCorreta": "depois"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "planejar",
+   "criterio": "Isso é um bom plano?",
+   "enunciado": "Guardar uma moeda por semana, mesmo sendo pouco",
+   "resposta": true,
+   "ancora": "Pouco toda semana também é um plano — soma com o tempo.",
+   "feedbackErro": "Parece pouco demais pra valer a pena, mas guardar um pouco toda semana também é um plano que funciona."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "planejar",
+   "criterio": "Isso ajuda a conseguir algo que demora?",
+   "enunciado": "Pedir emprestado toda vez que o dinheiro guardado acaba",
+   "resposta": false,
+   "ancora": "Pedir emprestado não é guardar — não constrói o plano.",
+   "feedbackErro": "Pedir emprestado resolve na hora, e isso confunde com um plano. Mas não é guardar — o plano é juntar aos poucos."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "hoje-mes-que-vem-ano-que-vem",
+   "pergunta": "Qual é o jeito certo de pensar nos prazos?",
+   "alternativas": [
+    {
+     "texto": "Só hoje importa, o resto é longe demais pra pensar",
+     "correta": false,
+     "feedbackErro": "Ignorar o depois deixa sem plano pra quando o objetivo demora mais pra chegar."
+    },
+    {
+     "texto": "Cada prazo pede um plano: hoje é rápido, meses e anos pedem guardar aos poucos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ano que vem nunca chega, então não vale planejar",
+     "correta": false,
+     "feedbackErro": "Ano que vem chega, e planejar aos poucos é o que faz o objetivo virar realidade."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "prazos",
+   "criterio": "Isso é hoje?",
+   "enunciado": "Guardar mochila pronta pra amanhã de manhã",
+   "resposta": true,
+   "ancora": "Amanhã de manhã ainda está bem perto — conta como hoje.",
+   "feedbackErro": "Amanhã parece 'não ser hoje', mas preparar hoje pra amanhã cedo ainda está dentro do prazo de hoje."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "planejar",
+   "instrucao": "É plano ou é gastar sem guardar nada?",
+   "ancora": "Plano guarda aos poucos com objetivo; gastar tudo não deixa nada.",
+   "feedbackErro": "Sem guardar nada, não sobra dinheiro pra quando o objetivo demora mais pra chegar.",
+   "caixas": [
+    {
+     "id": "plano",
+     "rotulo": "Plano"
+    },
+    {
+     "id": "gastar",
+     "rotulo": "Gastar sem guardar"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Guardar uma moeda toda semana",
+     "caixaCorreta": "plano"
+    },
+    {
+     "texto": "Gastar a mesada assim que chega",
+     "caixaCorreta": "gastar"
+    },
+    {
+     "texto": "Separar parte do dinheiro pro presente do ano que vem",
+     "caixaCorreta": "plano"
+    },
+    {
+     "texto": "Comprar besteira toda vez que vê algo bonito",
+     "caixaCorreta": "gastar"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "prazos",
+   "criterio": "Isso é ano que vem?",
+   "enunciado": "Guardar dinheiro 2 semanas pra um lanche especial",
+   "resposta": false,
+   "ancora": "2 semanas é rápido — isso é mês que vem, não ano que vem.",
+   "feedbackErro": "2 semanas parece uma espera grande pra uma criança, mas ainda é bem menos que um ano — é mês que vem."
+  }
+ ]
+}

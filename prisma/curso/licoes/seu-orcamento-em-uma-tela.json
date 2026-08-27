@@ -1,0 +1,350 @@
+{
+ "slug": "seu-orcamento-em-uma-tela",
+ "segmento": "em1",
+ "conceitoPrincipal": "seu-orcamento-em-uma-tela",
+ "fraseConceito": "Orçamento é o mapa do mês: o que entra, o que sai em fixos e variáveis, e o plano para a sobra e os sustos.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fixo-ou-variavel",
+   "criterio": "É gasto fixo?",
+   "enunciado": "Mensalidade do plano de celular",
+   "resposta": true,
+   "ancora": "Fixo: valor e data conhecidos, chega todo mês igual.",
+   "feedbackErro": "Fixo é o gasto que vem todo mês com valor combinado: plano, aluguel, assinatura. Ele é a parte previsível do mapa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fixo-ou-variavel",
+   "criterio": "É gasto fixo?",
+   "enunciado": "Lanche depois da aula",
+   "resposta": false,
+   "ancora": "Variável: você decide se, quando e quanto — a cada vez.",
+   "feedbackErro": "O lanche muda de valor e de frequência conforme o dia. Gasto que depende da sua decisão em cada momento é variável — e é onde o ajuste mora."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "imprevistos",
+   "criterio": "É gasto fixo?",
+   "enunciado": "Conserto do celular que caiu no chão",
+   "resposta": false,
+   "ancora": "Nem fixo nem variável do dia a dia: é imprevisto — e ele vem.",
+   "feedbackErro": "Não estava no plano de ninguém, e é esse o ponto: imprevistos não têm data, mas têm certeza. O orçamento reserva um espaço para eles."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "mapa-do-mes",
+   "dificuldade": 1,
+   "pergunta": "Vitor recebe R$ 400 por mês e sempre chega ao dia 20 sem nada. Para que serve o orçamento aqui?",
+   "ancora": "Antes de cortar, o mapa mostra onde o dinheiro está indo.",
+   "alternativas": [
+    {
+     "texto": "Mostrar para onde o dinheiro vai, antes de decidir cortes",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Provar que ele gasta demais",
+     "correta": false,
+     "feedbackErro": "O orçamento não julga — mede. Talvez ele gaste demais em uma coisa só, talvez a renda esteja curta. Sem o mapa, é chute dos dois lados."
+    },
+    {
+     "texto": "Fazer o dinheiro render sem mudar nada",
+     "correta": false,
+     "feedbackErro": "Mapa não multiplica dinheiro: dá visão. A mudança vem depois, escolhida — cortar aqui, remanejar ali. Sem ação, o orçamento é só um desenho."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "mapa-do-mes",
+   "dificuldade": 1,
+   "pergunta": "No mês: entram R$ 400; R$ 180 são fixos e R$ 150, variáveis. Quanto sobra?",
+   "ancora": "400 − 180 − 150 = 70. A sobra também merece destino.",
+   "verificacao": {
+    "expressao": "400-180-150",
+    "esperado": 70
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 70",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 220",
+     "correta": false,
+     "feedbackErro": "Você descontou só os fixos (400 − 180). Os variáveis também saem do mesmo bolso: faltou tirar os R$ 150."
+    },
+    {
+     "texto": "R$ 250",
+     "correta": false,
+     "feedbackErro": "Você descontou só os variáveis (400 − 150). Os fixos saem primeiro — são compromisso, não opção. Faltou tirar os R$ 180."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "fixo-ou-variavel",
+   "criterio": "É gasto fixo?",
+   "enunciado": "Assinatura de streaming que renova sozinha",
+   "resposta": true,
+   "ancora": "Renova sem perguntar: valor certo, data certa — fixo clássico.",
+   "feedbackErro": "Parece pequeno demais para contar, mas tem as duas marcas do fixo: valor conhecido e cobrança automática. Fixos pequenos somados viram um grande."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "fixo-ou-variavel",
+   "instrucao": "Fixo ou variável?",
+   "ancora": "Fixo tem valor e data; variável depende da sua decisão.",
+   "feedbackErro": "O teste: o valor e a data já estão combinados? Fixo. Você decide na hora se gasta e quanto? Variável. É essa divisão que organiza o mapa.",
+   "caixas": [
+    {
+     "id": "fixo",
+     "rotulo": "Fixo"
+    },
+    {
+     "id": "variavel",
+     "rotulo": "Variável"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Passe de ônibus mensal",
+     "caixaCorreta": "fixo"
+    },
+    {
+     "texto": "Rolê do fim de semana",
+     "caixaCorreta": "variavel"
+    },
+    {
+     "texto": "Mensalidade do curso de inglês",
+     "caixaCorreta": "fixo"
+    },
+    {
+     "texto": "Recarga de créditos do jogo",
+     "caixaCorreta": "variavel"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "mapa-do-mes",
+   "criterio": "Entra como renda no orçamento?",
+   "enunciado": "Os R$ 50 que talvez sua avó dê no fim do mês",
+   "resposta": false,
+   "ancora": "Dinheiro incerto não sustenta plano: entre só quando cair.",
+   "feedbackErro": "Se o talvez falhar, o plano quebra junto. Renda do orçamento é a que tem data e certeza; o extra, quando vier, é bônus — direto para a sobra."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "imprevistos",
+   "criterio": "Entra no mapa do mês?",
+   "enunciado": "Uma reserva pequena para o que quebrar",
+   "resposta": true,
+   "ancora": "O imprevisto não tem data, mas tem certeza — reserve antes.",
+   "feedbackErro": "Parece contradição planejar o inesperado, mas é o contrário: você não sabe o quê, sabe que algo vem. A reserva transforma susto em transtorno pequeno."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "mapa-do-mes",
+   "pergunta": "Entram R$ 300: R$ 120 são fixos e R$ 60 vão para guardar. Quanto sobra para gastar livre?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 300,
+   "gabarito": 120,
+   "toleranciaPct": 20,
+   "fonte": "conta do próprio enunciado (300 − 120 − 60)",
+   "verificacao": {
+    "expressao": "300-120-60",
+    "esperado": 120
+   },
+   "feedbackPerto": "R$ 120 livres — e livres de verdade, porque fixos e poupança já saíram antes.",
+   "feedbackLonge": "300 − 120 − 60 = R$ 120. O tropeço comum é esquecer que o 'guardar' também é saída: quem separa depois de gastar não separa."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "mapa-do-mes",
+   "dificuldade": 1,
+   "pergunta": "O dinheiro zerou no dia 20. O que o orçamento revela primeiro?",
+   "ancora": "O mapa aponta a categoria que secou o mês — aí se decide.",
+   "alternativas": [
+    {
+     "texto": "Em qual categoria o dinheiro acabou antes da hora",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que faltou força de vontade",
+     "correta": false,
+     "feedbackErro": "Culpa não é diagnóstico. Às vezes é um fixo caro demais, uma estimativa irreal — o mapa acha a causa concreta antes de qualquer sermão."
+    },
+    {
+     "texto": "Que a renda é o único problema",
+     "correta": false,
+     "feedbackErro": "Pode ser a renda — mas só o mapa confirma. Se metade do variável foi para um gasto repetido, o problema tem outro nome e outra solução."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "mapa-do-mes",
+   "dificuldade": 1,
+   "pergunta": "O variável estourou de novo. Qual corte costuma doer menos?",
+   "ancora": "Comece pelo gasto pequeno que se repete sem você notar.",
+   "alternativas": [
+    {
+     "texto": "O gasto pequeno que se repete sem você perceber",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O fixo essencial, como o transporte",
+     "correta": false,
+     "feedbackErro": "Cortar o que te leva à escola ou ao trabalho compromete a renda de amanhã. Essencial se protege; o ajuste começa no supérfluo repetido."
+    },
+    {
+     "texto": "Todos de uma vez, para resolver logo",
+     "correta": false,
+     "feedbackErro": "Corte radical dura duas semanas e volta com fome. Ajuste sustentável começa pequeno, no gasto que você nem sentia fazer."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "fixo-ou-variavel",
+   "criterio": "É gasto fixo?",
+   "enunciado": "Aluguel que vence todo dia 5",
+   "resposta": true,
+   "ancora": "Data e valor certos: o aluguel é o fixo dos fixos.",
+   "feedbackErro": "Valor combinado, data marcada, todo mês: é a definição de fixo. No orçamento da família, costuma ser o maior deles."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "mapa-do-mes",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Orçamento é coisa de quem ganha muito",
+   "resposta": false,
+   "ancora": "Quanto mais apertado o dinheiro, mais o mapa importa.",
+   "feedbackErro": "É o contrário: quem tem folga sobrevive sem mapa; quem tem pouco não pode errar. Orçamento é a ferramenta de quem precisa que cada real trabalhe."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "mapa-do-mes",
+   "pergunta": "Para que serve um orçamento?",
+   "alternativas": [
+    {
+     "texto": "Ver o que entra e sai, separar fixo de variável e planejar sobra e susto.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Registrar os gastos depois que o dinheiro acabou.",
+     "correta": false,
+     "feedbackErro": "Registro de autópsia não salva o mês. O mapa funciona antes: prevendo, não lamentando."
+    },
+    {
+     "texto": "Cortar todo prazer até sobrar dinheiro.",
+     "correta": false,
+     "feedbackErro": "Orçamento sem nenhum prazer dura um mês. O mapa existe para caber a vida — inclusive o rolê."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "imprevistos",
+   "instrucao": "Previsto ou imprevisto?",
+   "ancora": "Se tem data conhecida — mesmo longe —, é previsto.",
+   "feedbackErro": "O critério é a data: aniversário e material escolar têm mês certo, dá para guardar antes. Pneu e óculos quebrados não avisam — são a razão da reserva.",
+   "caixas": [
+    {
+     "id": "previsto",
+     "rotulo": "Previsto"
+    },
+    {
+     "id": "imprevisto",
+     "rotulo": "Imprevisto"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Presente de aniversário da mãe",
+     "caixaCorreta": "previsto"
+    },
+    {
+     "texto": "Pneu da bike furado no caminho",
+     "caixaCorreta": "imprevisto"
+    },
+    {
+     "texto": "Material escolar de fevereiro",
+     "caixaCorreta": "previsto"
+    },
+    {
+     "texto": "Óculos quebrado no jogo de quarta",
+     "caixaCorreta": "imprevisto"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "mapa-do-mes",
+   "pergunta": "Fixos de R$ 220 numa renda de R$ 400. Quantos % da renda eles ocupam?",
+   "campo": "percentual",
+   "min": 10,
+   "max": 100,
+   "gabarito": 55,
+   "toleranciaPct": 20,
+   "fonte": "conta do próprio enunciado (220 ÷ 400)",
+   "verificacao": {
+    "expressao": "220/400*100",
+    "esperado": 55
+   },
+   "feedbackPerto": "55% — mais da metade do mês já tem dono antes de começar. É esse número que o mapa vigia.",
+   "feedbackLonge": "220 ÷ 400 = 55%. Sem a conta, fixos parecem menores do que são: eles saem calados, todo mês, antes de qualquer escolha."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "fixo-ou-variavel",
+   "dificuldade": 1,
+   "pergunta": "Por que o mapa separa fixo de variável, em vez de somar tudo junto?",
+   "ancora": "Cada tipo tem alavanca própria: renegociar ou decidir menos.",
+   "alternativas": [
+    {
+     "texto": "Porque se ajustam diferente: fixo renegocia, variável decide",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque fixo é sempre maior que variável",
+     "correta": false,
+     "feedbackErro": "Nem sempre — tem mês em que o variável dispara. A separação não é por tamanho: é porque cada tipo se controla com ferramenta diferente."
+    },
+    {
+     "texto": "Para deixar a planilha mais bonita",
+     "correta": false,
+     "feedbackErro": "A divisão é funcional: no aperto, você sabe na hora onde dá para agir hoje (variável) e o que exige renegociação (fixo)."
+    }
+   ]
+  }
+ ]
+}

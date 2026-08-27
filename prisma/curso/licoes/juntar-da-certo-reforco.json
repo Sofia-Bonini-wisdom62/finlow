@@ -1,0 +1,184 @@
+{
+ "slug": "juntar-da-certo-reforco",
+ "segmento": "ef12",
+ "conceitoPrincipal": "juntar-da-certo",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar",
+   "criterio": "Lembra: isso é poupar?",
+   "enunciado": "Guardar as moedas que sobram do lanche, toda semana",
+   "resposta": true,
+   "ancora": "Guardar o que sobra, sempre, é poupar.",
+   "feedbackErro": "Parece pouco, sobra de lanche, mas guardar isso toda semana já é poupar."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar",
+   "criterio": "Lembra: isso é poupar?",
+   "enunciado": "Pedir dinheiro emprestado pra comprar algo que quer agora",
+   "resposta": false,
+   "ancora": "Pedir emprestado não é guardar — não é poupar.",
+   "feedbackErro": "Pedir emprestado até resolve na hora, mas não guarda nada — isso não é poupar."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "cofrinho",
+   "criterio": "O cofrinho está sendo bem usado?",
+   "enunciado": "Guardar as moedas e só abrir quando o objetivo é alcançado",
+   "resposta": true,
+   "ancora": "Guardar e esperar o objetivo é o uso certo do cofrinho.",
+   "feedbackErro": "Esperar parece difícil, mas é exatamente isso que faz o cofrinho funcionar: guardar até juntar o suficiente."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "juntar-para-conseguir",
+   "criterio": "Juntar ajuda mesmo devagar?",
+   "enunciado": "Guardar pouquinho todo dia, mesmo sendo devagar",
+   "resposta": true,
+   "ancora": "Devagar também junta, se for sempre.",
+   "feedbackErro": "Devagar parece que nunca vai chegar lá, mas guardar todo dia, mesmo pouco, soma até alcançar o objetivo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "poupar",
+   "instrucao": "É poupar ou é pedir emprestado?",
+   "ancora": "Poupar é guardar o que já é seu; pedir usa dinheiro alheio.",
+   "feedbackErro": "Pedir emprestado ou adiantado não é guardar — é usar dinheiro que ainda não é seu.",
+   "caixas": [
+    {
+     "id": "poupar",
+     "rotulo": "Poupar"
+    },
+    {
+     "id": "pedir",
+     "rotulo": "Pedir emprestado"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Guardar parte da mesada toda semana",
+     "caixaCorreta": "poupar"
+    },
+    {
+     "texto": "Pedir dinheiro emprestado pro colega",
+     "caixaCorreta": "pedir"
+    },
+    {
+     "texto": "Separar moedas todo dia no cofrinho",
+     "caixaCorreta": "poupar"
+    },
+    {
+     "texto": "Pedir adiantado a mesada do mês que vem",
+     "caixaCorreta": "pedir"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "cofrinho",
+   "criterio": "Ajuda o cofrinho a encher mais rápido?",
+   "enunciado": "Colocar todo dinheiro que sobra, sem deixar nada de fora",
+   "resposta": true,
+   "ancora": "Quanto mais entra, mais rápido o cofrinho enche.",
+   "feedbackErro": "Guardar só às vezes também ajuda um pouco, mas colocar tudo que sobra enche o cofrinho bem mais rápido."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "juntar-para-conseguir",
+   "criterio": "Isso ajuda a conseguir algo mais caro?",
+   "enunciado": "Guardar dinheiro por muitos meses seguidos, sem parar",
+   "resposta": true,
+   "ancora": "Guardar sem parar por muito tempo permite objetivos mais caros.",
+   "feedbackErro": "Parar de vez em quando parece normal, mas guardar sem parar por meses permite alcançar objetivos mais caros."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "juntar-da-certo",
+   "pergunta": "O que faz juntar dinheiro dar errado?",
+   "alternativas": [
+    {
+     "texto": "Guardar um pouco todo dia",
+     "correta": false,
+     "feedbackErro": "Guardar um pouco todo dia funciona — é o caminho certo pra juntar."
+    },
+    {
+     "texto": "Pedir emprestado sempre que quer algo, em vez de guardar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Deixar o cofrinho fechado até o objetivo chegar",
+     "correta": false,
+     "feedbackErro": "Deixar fechado até o objetivo chegar é o uso certo do cofrinho."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "poupar",
+   "criterio": "Isso é poupar?",
+   "enunciado": "Guardar o dinheiro do troco depois de uma compra",
+   "resposta": true,
+   "ancora": "Guardar o troco em vez de gastar já é poupar.",
+   "feedbackErro": "O troco parece pequeno demais pra contar, mas guardá-lo em vez de gastar já é poupar."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "cofrinho",
+   "instrucao": "Isso enche o cofrinho ou esvazia ele?",
+   "ancora": "Colocar dinheiro enche o cofrinho; tirar sem motivo esvazia.",
+   "feedbackErro": "O cofrinho só cresce quando mais entra do que sai.",
+   "caixas": [
+    {
+     "id": "enche",
+     "rotulo": "Enche"
+    },
+    {
+     "id": "esvazia",
+     "rotulo": "Esvazia"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Colocar moedas todo dia",
+     "caixaCorreta": "enche"
+    },
+    {
+     "texto": "Quebrar o cofrinho pra comprar doce",
+     "caixaCorreta": "esvazia"
+    },
+    {
+     "texto": "Guardar o dinheiro do aniversário",
+     "caixaCorreta": "enche"
+    },
+    {
+     "texto": "Pegar dinheiro do cofrinho sem avisar ninguém",
+     "caixaCorreta": "esvazia"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "juntar-para-conseguir",
+   "criterio": "Isso ajuda a conseguir o objetivo?",
+   "enunciado": "Parar de guardar assim que aparece uma vontade nova",
+   "resposta": false,
+   "ancora": "Parar de guardar atrasa o objetivo original.",
+   "feedbackErro": "Uma vontade nova é tentadora, mas parar de guardar pro objetivo original faz ele demorar mais pra chegar."
+  }
+ ]
+}

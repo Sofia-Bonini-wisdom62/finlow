@@ -1,0 +1,327 @@
+{
+ "slug": "de-onde-veio-esse-dinheiro-consolida",
+ "segmento": "em1",
+ "conceitoPrincipal": "de-onde-veio-esse-dinheiro",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-acordo",
+   "criterio": "Sobrevive sem confiança coletiva?",
+   "enunciado": "O valor do dinheiro na sua carteira",
+   "resposta": false,
+   "ancora": "Sem o acordo, a cédula volta a ser papel estampado.",
+   "feedbackErro": "A nota parece valer sozinha porque a confiança nunca falhou para você. Onde ela falhou — hiperinflações — o dinheiro virou papel de parede."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-acordo",
+   "criterio": "Sobrevive sem confiança coletiva?",
+   "enunciado": "O valor de um saco de arroz numa crise",
+   "resposta": true,
+   "ancora": "Bens de uso valem por si; dinheiro vale pelo acordo.",
+   "feedbackErro": "Parece que tudo depende de confiança, mas arroz alimenta mesmo que ninguém combine nada. É a diferença entre valor de uso e valor por acordo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-acordo",
+   "criterio": "Sobrevive sem confiança coletiva?",
+   "enunciado": "Seu saldo, se todos duvidarem do banco ao mesmo tempo",
+   "resposta": false,
+   "ancora": "Corrida bancária é o acordo quebrando em tempo real.",
+   "feedbackErro": "O número na tela continua lá, e isso tranquiliza. Mas se todos sacarem juntos, o sistema trava: o saldo também é uma promessa coletiva."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "quebra-do-acordo",
+   "dificuldade": 3,
+   "pergunta": "Numa hiperinflação, vizinhos voltam a trocar arroz por conserto de bicicleta. O que isso mostra?",
+   "ancora": "Quando o acordo quebra, a sociedade regride ao escambo e seus custos.",
+   "alternativas": [
+    {
+     "texto": "Quando o acordo quebra, a troca se recria sem dinheiro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que o escambo é mais eficiente que o dinheiro",
+     "correta": false,
+     "feedbackErro": "O escambo volta por falta de opção, não por eficiência: a coincidência de desejos continua custosa. É plano B, não upgrade."
+    },
+    {
+     "texto": "Que o arroz virou a moeda oficial do país",
+     "correta": false,
+     "feedbackErro": "Nenhum decreto fez isso: o arroz circula por valor de uso, informalmente. Oficial ou não, o que sumiu foi a confiança na moeda."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "dinheiro-e-acordo",
+   "dificuldade": 3,
+   "pergunta": "Um jogo online tem moeda própria que os jogadores usam entre si. Ela é dinheiro?",
+   "ancora": "Dinheiro é acordo com fronteira: fora do grupo que aceita, ele acaba.",
+   "alternativas": [
+    {
+     "texto": "No jogo funciona como dinheiro; fora dele, a aceitação morre",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, porque não existe em forma física",
+     "correta": false,
+     "feedbackErro": "Ser digital não desqualifica nada — o Pix é digital. O limite da moeda do jogo é outro: a fronteira da comunidade que aceita."
+    },
+    {
+     "texto": "Sim, e vale em qualquer loja de verdade",
+     "correta": false,
+     "feedbackErro": "Nenhuma padaria aceita moeda de jogo. Dentro do grupo o acordo funciona; do lado de fora, ninguém assinou o combinado."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "quebra-do-acordo",
+   "criterio": "Esse acordo pode quebrar?",
+   "enunciado": "A confiança numa moeda nacional",
+   "resposta": true,
+   "ancora": "Já quebrou: Alemanha em 1923, Brasil no início dos anos 1990.",
+   "feedbackErro": "Moeda nacional parece eterna porque a vemos todo dia. Mas a história registra dezenas de moedas mortas — o acordo é forte, não indestrutível."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "quebra-do-acordo",
+   "instrucao": "Crise de confiança na moeda: ordene o que vem primeiro.",
+   "ancora": "Cada etapa corrói mais a aceitação — até a moeda parar de circular.",
+   "feedbackErro": "O critério é a espiral da desconfiança: preços sobem, todos correm para gastar, o comércio foge da moeda, e por fim ela deixa de circular.",
+   "itens": [
+    {
+     "texto": "Preços sobem e o dinheiro compra menos",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Pessoas correm para gastar logo o que têm",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "O comércio prefere troca direta ou outra moeda",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "A moeda deixa de circular",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "quebra-do-acordo",
+   "criterio": "Ainda funciona como dinheiro?",
+   "enunciado": "Uma cédula de cruzeiro guardada desde 1990",
+   "resposta": false,
+   "ancora": "Moeda fora de circulação vira lembrança: o acordo acabou por lei.",
+   "feedbackErro": "A cédula é autêntica, e isso engana. Mas o cruzeiro saiu de circulação: hoje ela só tem valor para colecionador — que é outro tipo de acordo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-acordo",
+   "criterio": "Ainda funciona como dinheiro?",
+   "enunciado": "O real, numa loja comum do Japão",
+   "resposta": false,
+   "ancora": "Dinheiro é acordo territorial: fora do país, vira a moeda local.",
+   "feedbackErro": "O real segue valendo — no Brasil. A loja japonesa não participa do nosso acordo; por isso existe câmbio: a ponte entre dois acordos diferentes."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "evolucao-do-dinheiro",
+   "pergunta": "Das primeiras moedas (~600 a.C.) ao papel-moeda na China (~1000 d.C.): quantos anos se passaram?",
+   "campo": "numero",
+   "min": 100,
+   "max": 5000,
+   "gabarito": 1600,
+   "toleranciaPct": 20,
+   "fonte": "história monetária: moedas na Lídia (~600 a.C.); papel-moeda na China (~1000 d.C.)",
+   "verificacao": {
+    "expressao": "600+1000",
+    "esperado": 1600
+   },
+   "feedbackPerto": "Cerca de 1.600 anos — e o papel levou ainda séculos para ser aceito na Europa. Acordos coletivos mudam devagar.",
+   "feedbackLonge": "1.600 anos (600 antes + 1000 depois de Cristo). O viés é imaginar a evolução do dinheiro rápida: cada forma levou séculos para ganhar confiança."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "quebra-do-acordo",
+   "dificuldade": 3,
+   "pergunta": "Renata guarda as economias em moeda de um jogo online. Que risco ela corre que os reais não têm?",
+   "ancora": "Acordo com dono único quebra por decisão de um; moeda nacional, não.",
+   "alternativas": [
+    {
+     "texto": "A empresa muda a regra ou fecha, e o valor some",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Perder valor com a inflação oficial do país",
+     "correta": false,
+     "feedbackErro": "A inflação atinge os reais, não a moeda do jogo. O risco dela é pior: um dono único controla o acordo inteiro e pode encerrá-lo amanhã."
+    },
+    {
+     "texto": "Ser obrigada a sacar tudo todo mês",
+     "correta": false,
+     "feedbackErro": "Nenhuma regra exige saque. O perigo não está no que ela é obrigada a fazer, mas no que a empresa pode fazer: mudar ou apagar o valor."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "dinheiro-e-acordo",
+   "dificuldade": 3,
+   "pergunta": "O que o sal romano, o cigarro de prisão e o Pix têm em comum?",
+   "ancora": "Três épocas, três formas, um mecanismo: aceitação em cadeia.",
+   "alternativas": [
+    {
+     "texto": "Funcionam enquanto o grupo aceita e crê que outros aceitem",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Tiveram valor garantido por um Estado",
+     "correta": false,
+     "feedbackErro": "O cigarro circulou sem Estado nenhum, e o sal valia antes de qualquer garantia formal. O que os três compartilham vem do grupo, não do governo."
+    },
+    {
+     "texto": "Valem pelo custo de produção",
+     "correta": false,
+     "feedbackErro": "Um Pix não custa quase nada para 'produzir' e move milhões. O valor está na aceitação, não no custo de fabricar o meio."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "quebra-do-acordo",
+   "criterio": "Sinal de acordo enfraquecendo?",
+   "enunciado": "Comércios recusando a moeda e pedindo outra",
+   "resposta": true,
+   "ancora": "Recusa no balcão é o primeiro sintoma visível da quebra.",
+   "feedbackErro": "Pode parecer capricho do lojista, mas é diagnóstico: quando o comércio foge da moeda, a expectativa de aceitação futura já rachou."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "quebra-do-acordo",
+   "criterio": "Sinal de acordo enfraquecendo?",
+   "enunciado": "Preços estáveis e troco aceito sem discussão",
+   "resposta": false,
+   "ancora": "Acordo forte é invisível: ninguém pensa nele ao pagar.",
+   "feedbackErro": "A normalidade parece não dizer nada, mas diz tudo: quando ninguém questiona a moeda no caixa, a confiança coletiva está inteira."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "dinheiro-e-acordo",
+   "pergunta": "Qual frase carrega a lição inteira?",
+   "alternativas": [
+    {
+     "texto": "Dinheiro é um acordo: forte quando todos aceitam, frágil se a confiança quebra.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Depois do Pix, o dinheiro deixou de depender de confiança.",
+     "correta": false,
+     "feedbackErro": "O Pix é confiança pura em forma de registro. Mudou o suporte, não o fundamento."
+    },
+    {
+     "texto": "Moeda forte é a que tem lastro em metal precioso.",
+     "correta": false,
+     "feedbackErro": "Nenhuma moeda atual tem lastro em metal. Força de moeda é confiança e gestão, não cofre."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "quebra-do-acordo",
+   "instrucao": "O acordo está forte ou quebrando?",
+   "ancora": "Meça pela aceitação: quem foge da moeda vota contra ela.",
+   "feedbackErro": "O critério é o comportamento coletivo diante da moeda: aceitar sem pensar é força; remarcar preços e fugir para trocas diretas é quebra em curso.",
+   "caixas": [
+    {
+     "id": "forte",
+     "rotulo": "Forte"
+    },
+    {
+     "id": "quebrando",
+     "rotulo": "Quebrando"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Todos aceitam Pix e cédulas sem pensar",
+     "caixaCorreta": "forte"
+    },
+    {
+     "texto": "Lojas remarcam preços duas vezes por dia",
+     "caixaCorreta": "quebrando"
+    },
+    {
+     "texto": "Vizinhos trocam serviços para fugir da moeda",
+     "caixaCorreta": "quebrando"
+    },
+    {
+     "texto": "Poupança mantém o que o dinheiro compra",
+     "caixaCorreta": "forte"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "quebra-do-acordo",
+   "dificuldade": 3,
+   "pergunta": "Por que um país lança moeda nova depois de uma hiperinflação, como o Brasil fez em 1994?",
+   "ancora": "O Plano Real não trocou só o papel: reconstruiu a expectativa.",
+   "alternativas": [
+    {
+     "texto": "Para refundar a confiança: nome novo, regras novas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque as cédulas antigas se desgastaram",
+     "correta": false,
+     "feedbackErro": "Desgaste físico se resolve imprimindo mais do mesmo. O que estava gasto era a confiança — e essa só se troca com um acordo novo."
+    },
+    {
+     "texto": "Para baratear os preços por decreto",
+     "correta": false,
+     "feedbackErro": "Decreto não segura preço: o Brasil tentou congelamentos e a inflação voltou. O real funcionou porque mudou a confiança, não a etiqueta."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-acordo",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Sem aceitação, nem ouro funciona como dinheiro",
+   "resposta": true,
+   "ancora": "Ouro sem aceitação é mercadoria valiosa; dinheiro é outro papel.",
+   "feedbackErro": "O ouro tem valor próprio, e isso confunde. Mas para ser dinheiro precisa ser aceito como pagamento — onde ninguém aceita, ele é só metal para vender."
+  }
+ ]
+}

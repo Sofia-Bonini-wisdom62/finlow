@@ -1,0 +1,329 @@
+{
+ "slug": "renda-desigual-escolhas-desiguais",
+ "segmento": "ef89",
+ "conceitoPrincipal": "renda-desigual-escolhas-desiguais",
+ "fraseConceito": "Renda diferente muda o tamanho do espaço de escolha: quem ganha menos decide com menos margem, não com menos inteligência.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "renda-e-escolha",
+   "criterio": "Depende mais da renda que do gosto?",
+   "enunciado": "Trocar de celular todo ano",
+   "resposta": true,
+   "ancora": "Trocar todo ano pede renda alta; é opção, não regra.",
+   "feedbackErro": "Parece só questão de gosto pessoal, mas trocar de aparelho todo ano exige renda sobrando — quem tem orçamento apertado não tem essa opção, por mais que queira."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "renda-e-escolha",
+   "criterio": "Depende mais da renda que do gosto?",
+   "enunciado": "Escolher a cor da capinha do celular",
+   "resposta": false,
+   "ancora": "Cor é gosto: custa igual em qualquer faixa de renda.",
+   "feedbackErro": "Dá para achar que é sempre sobre dinheiro, mas cor de capinha custa o mesmo em qualquer opção — quem decide aqui é o gosto, não o orçamento."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "renda-e-escolha",
+   "criterio": "Depende mais da renda que do gosto?",
+   "enunciado": "Comprar arroz de marca cara ou pacote genérico",
+   "resposta": true,
+   "ancora": "O preço da marca pesa mais em orçamento menor.",
+   "feedbackErro": "Comida parece necessidade igual para todo mundo, mas escolher marca cara ou genérica é decidido pelo quanto sobra no mês — isso é renda, não preferência."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "renda-e-escolha",
+   "dificuldade": 1,
+   "pergunta": "Duas famílias ganham R$ 1.500 e R$ 6.000. Qual gasta uma fatia maior da renda com comida?",
+   "ancora": "Quem ganha menos gasta % maior com o essencial.",
+   "alternativas": [
+    {
+     "texto": "A de R$ 6.000, porque compra mais itens",
+     "correta": false,
+     "feedbackErro": "Compra mais itens em valor absoluto, sim. Mas o essencial pesa menos no orçamento dela — a fatia percentual é menor, não maior."
+    },
+    {
+     "texto": "A de R$ 1.500, porque o essencial deixa pouca folga",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "As duas gastam a mesma fatia; o preço é igual",
+     "correta": false,
+     "feedbackErro": "O preço no mercado é igual para as duas. O que muda é o tamanho da renda: a mesma conta pesa mais em orçamento menor."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "agentes-economicos",
+   "dificuldade": 1,
+   "pergunta": "Quem decide o preço final de um produto na prateleira do mercado?",
+   "ancora": "Vendedor fixa o preço; comprador decide se paga.",
+   "alternativas": [
+    {
+     "texto": "Só o produtor, lá na fábrica",
+     "correta": false,
+     "feedbackErro": "O produtor define um preço de saída, mas o vendedor soma seus custos e decide o preço que você vê na prateleira."
+    },
+    {
+     "texto": "O vendedor, com base em custos e demanda",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O governo, em todos os produtos",
+     "correta": false,
+     "feedbackErro": "O governo define impostos e regras (às vezes tabela preços específicos), mas não fixa o preço de cada produto do mercado."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "agentes-economicos",
+   "criterio": "É papel do governo nessa cena?",
+   "enunciado": "Cobrar imposto sobre a venda de um produto",
+   "resposta": true,
+   "ancora": "Arrecadar imposto é função do governo, não da loja.",
+   "feedbackErro": "O imposto aparece embutido no preço da loja, e por isso parece coisa do vendedor. Mas quem cria e cobra o imposto é o governo — a loja só repassa."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "agentes-economicos",
+   "instrucao": "Toque na ordem do produto até chegar em você.",
+   "ancora": "A cadeia sempre segue essa ordem: produz, vende, compra, recolhe.",
+   "feedbackErro": "É tentador pensar no governo primeiro, pois impostos aparecem em tudo. Mas ele arrecada depois da venda — o produto sai da fábrica antes de qualquer cobrança.",
+   "itens": [
+    {
+     "texto": "Produtor fabrica o produto",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Vendedor coloca o produto à venda",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Comprador paga e leva o produto",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Governo recolhe o imposto da venda",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "renda-e-escolha",
+   "criterio": "Depende mais da renda que do gosto?",
+   "enunciado": "Estudar em escola particular ou pública",
+   "resposta": true,
+   "ancora": "A mensalidade filtra quem pode escolher a particular.",
+   "feedbackErro": "Parece decisão de valorizar mais ou menos os estudos, mas a mensalidade da particular é o que decide quem tem essa opção na mesa — isso é renda."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "renda-e-escolha",
+   "criterio": "Depende mais da renda que do gosto?",
+   "enunciado": "Torcer para o time de futebol da família",
+   "resposta": false,
+   "ancora": "Time de coração não tem preço de entrada.",
+   "feedbackErro": "Times de futebol parecem ligados a tradição de família e bairro, mas torcer não custa nada — nenhuma faixa de renda fica de fora dessa escolha."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "renda-e-escolha",
+   "pergunta": "Famílias que ganham até 2 salários mínimos gastam que % da renda com alimentação?",
+   "campo": "percentual",
+   "min": 10,
+   "max": 60,
+   "gabarito": 28,
+   "toleranciaPct": 20,
+   "fonte": "Pesquisa de Orçamentos Familiares (POF), IBGE",
+   "feedbackPerto": "Perto disso: famílias de renda mais baixa chegam a gastar quase 1/3 do orçamento só com comida.",
+   "feedbackLonge": "A pesquisa aponta perto de 28%. Erro comum é achar que todo mundo gasta a mesma fatia — quem ganha menos gasta proporcionalmente mais com o essencial."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "agentes-economicos",
+   "dificuldade": 1,
+   "pergunta": "O governo baixa o imposto sobre a cesta básica. Quem sente mais o efeito no bolso?",
+   "ancora": "Quem gasta fatia maior da renda com comida sente mais.",
+   "alternativas": [
+    {
+     "texto": "Quem ganha menos, pois comida pesa mais no orçamento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quem ganha mais, porque compra mais itens",
+     "correta": false,
+     "feedbackErro": "Quem ganha mais compra mais em valor absoluto, mas a fatia da renda dele gasta com comida é menor — o alívio pesa menos no total do orçamento."
+    },
+    {
+     "texto": "Ninguém: o desconto é igual para todos",
+     "correta": false,
+     "feedbackErro": "O desconto no preço é igual, sim. Mas o mesmo desconto pesa mais para quem tem orçamento menor — o efeito no bolso não é igual."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "renda-e-escolha",
+   "dificuldade": 1,
+   "pergunta": "Duas pessoas ganham R$ 1.200 e R$ 12.000. As duas compram um lanche de R$ 20. Para quem pesa mais?",
+   "ancora": "R$ 20 são quase 2% de R$ 1.200 e 0,2% de R$ 12.000.",
+   "alternativas": [
+    {
+     "texto": "Para quem ganha R$ 1.200: a fatia da renda é maior",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Para quem ganha R$ 12.000, porque paga o mesmo valor",
+     "correta": false,
+     "feedbackErro": "O valor pago em reais é igual, sim. Mas dividido pela renda de cada um, R$ 20 pesam bem mais para quem ganha R$ 1.200."
+    },
+    {
+     "texto": "Pesa igual, porque o preço do lanche é o mesmo",
+     "correta": false,
+     "feedbackErro": "O preço no cardápio é igual para os dois. O que muda o peso no bolso é dividir esse valor pela renda de cada pessoa."
+    }
+   ],
+   "verificacao": {
+    "expressao": "20/1200*100",
+    "esperado": 1.67,
+    "tolerancia": 0.05
+   }
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "renda-e-escolha",
+   "criterio": "Depende mais da renda que do gosto?",
+   "enunciado": "Escolher entre ônibus e aplicativo de carro",
+   "resposta": true,
+   "ancora": "O preço da corrida decide quem pode escolher o app.",
+   "feedbackErro": "Pode parecer só praticidade, mas o valor da corrida de aplicativo é o que separa quem tem essa opção no dia a dia de quem depende do ônibus."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "agentes-economicos",
+   "criterio": "É papel do governo nessa cena?",
+   "enunciado": "Fiscalizar se a loja vende dentro da validade",
+   "resposta": true,
+   "ancora": "Fiscalização de qualidade e segurança é função pública.",
+   "feedbackErro": "Parece responsabilidade só da loja, mas o governo fiscaliza para proteger o comprador — é papel do Estado nessa cena, não só do vendedor."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "renda-e-escolha",
+   "pergunta": "Qual frase resume a lição?",
+   "alternativas": [
+    {
+     "texto": "Quem ganha menos escolhe com menos margem; cada agente tem um papel na cadeia",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Escolha de consumo depende só do gosto de cada um",
+     "correta": false,
+     "feedbackErro": "Gosto importa, mas casos como comida ou transporte mostram que a renda decide quem tem a opção na mesa."
+    },
+    {
+     "texto": "O governo define sozinho o preço de tudo que se vende",
+     "correta": false,
+     "feedbackErro": "O governo regula e cobra impostos, mas quem fixa o preço na prateleira é o vendedor, considerando custos e demanda."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "renda-e-escolha",
+   "instrucao": "Depende da renda ou é só gosto pessoal?",
+   "ancora": "Onde há preço alto envolvido, a renda decide quem escolhe.",
+   "feedbackErro": "Gosto pessoal não tem preço de entrada. Quando a opção exige gastar mais, é a renda que filtra quem escolhe.",
+   "caixas": [
+    {
+     "id": "renda",
+     "rotulo": "Depende da renda"
+    },
+    {
+     "id": "gosto",
+     "rotulo": "É só gosto"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Comprar tênis de marca ou genérico",
+     "caixaCorreta": "renda"
+    },
+    {
+     "texto": "Escolher música para ouvir no fone",
+     "caixaCorreta": "gosto"
+    },
+    {
+     "texto": "Contratar plano de internet mais rápido",
+     "caixaCorreta": "renda"
+    },
+    {
+     "texto": "Escolher o jogo favorito de videogame",
+     "caixaCorreta": "gosto"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "agentes-economicos",
+   "dificuldade": 2,
+   "pergunta": "Uma fábrica de roupas aumenta o salário dos funcionários. Quem se beneficia primeiro?",
+   "ancora": "Quem recebe o salário sente o efeito primeiro, no bolso.",
+   "alternativas": [
+    {
+     "texto": "Os funcionários (produtores), com renda maior",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O governo, que arrecada mais imposto na hora",
+     "correta": false,
+     "feedbackErro": "O governo pode arrecadar mais depois, com o consumo. Mas o efeito direto e imediato é no salário de quem trabalha na fábrica."
+    },
+    {
+     "texto": "Os compradores, porque a roupa fica mais barata",
+     "correta": false,
+     "feedbackErro": "Salário maior tende a aumentar o custo, não a baixar o preço. Quem sente o efeito direto e imediato é quem recebe o salário."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "renda-e-escolha",
+   "criterio": "Depende mais da renda que do gosto?",
+   "enunciado": "Decidir se vai de férias para outro estado",
+   "resposta": true,
+   "ancora": "Viagem tem custo alto: renda decide quem viaja.",
+   "feedbackErro": "Parece escolha de preferência de destino, mas o que determina se a viagem acontece é o orçamento disponível — isso é renda, não gosto."
+  }
+ ]
+}

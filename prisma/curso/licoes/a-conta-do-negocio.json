@@ -1,0 +1,348 @@
+{
+ "slug": "a-conta-do-negocio",
+ "segmento": "ef89",
+ "conceitoPrincipal": "a-conta-do-negocio",
+ "fraseConceito": "Todo negócio tem custos fixos e variáveis; o orçamento soma tudo e mostra se sobra lucro.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custos-do-negocio",
+   "criterio": "É um custo do negócio?",
+   "enunciado": "Comprar farinha para fazer os bolos",
+   "resposta": true,
+   "ancora": "Matéria-prima é custo direto: sem ela, não há produto.",
+   "feedbackErro": "Farinha parece só ingrediente da receita, não 'custo do negócio'. Mas é o primeiro custo que toda venda precisa cobrir: sem ela, não existe produto."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custos-do-negocio",
+   "criterio": "É um custo do negócio?",
+   "enunciado": "O salário do funcionário que ajuda na loja",
+   "resposta": true,
+   "ancora": "Salário é custo fixo: entra na conta todo mês, vendendo ou não.",
+   "feedbackErro": "Parece um combinado à parte, fora da 'conta do negócio'. Mas folha de pagamento é custo — e um dos que mais pesam no orçamento mensal."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "orcamento-do-negocio",
+   "criterio": "É um custo do negócio?",
+   "enunciado": "Guardar dinheiro pessoal na poupança",
+   "resposta": false,
+   "ancora": "Poupança pessoal é economia sua, fora da conta da empresa.",
+   "feedbackErro": "Como envolve dinheiro e planejamento, parece entrar na mesma conta. Mas é economia pessoal — o orçamento do negócio soma só o que entra e sai da empresa."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custos-do-negocio",
+   "dificuldade": 1,
+   "pergunta": "Uma lanchonete paga R$ 800 de aluguel e R$ 1.200 de ingredientes por mês. Qual é custo fixo?",
+   "ancora": "Aluguel não muda com quanto você vende. Isso é custo fixo.",
+   "alternativas": [
+    {
+     "texto": "O aluguel de R$ 800",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Os ingredientes de R$ 1.200",
+     "correta": false,
+     "feedbackErro": "Ingredientes sobem e descem com o quanto se vende — isso é custo variável, não fixo."
+    },
+    {
+     "texto": "Nenhum dos dois: tudo muda todo mês",
+     "correta": false,
+     "feedbackErro": "O aluguel é o mesmo valor, vendendo muito ou pouco — por isso é fixo. Só os ingredientes variam."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "orcamento-do-negocio",
+   "dificuldade": 1,
+   "pergunta": "Uma marmita custa R$ 8 para fazer e é vendida por R$ 15. Qual é a margem por unidade?",
+   "ancora": "15 − 8 = 7. Margem é o que sobra depois do custo direto.",
+   "alternativas": [
+    {
+     "texto": "R$ 7",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 15",
+     "correta": false,
+     "feedbackErro": "R$ 15 é o preço de venda, não o que sobra. Margem é preço menos custo: 15 − 8 = 7."
+    },
+    {
+     "texto": "R$ 8",
+     "correta": false,
+     "feedbackErro": "R$ 8 é o custo de fazer a marmita, não a margem. Margem é o que sobra depois de pagar esse custo."
+    }
+   ],
+   "verificacao": {
+    "expressao": "15-8",
+    "esperado": 7
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custos-do-negocio",
+   "criterio": "Entra na conta do negócio?",
+   "enunciado": "O imposto pago sobre cada venda",
+   "resposta": true,
+   "ancora": "Imposto é custo obrigatório: reduz o que sobra de lucro.",
+   "feedbackErro": "Imposto não compra ingrediente nem paga ninguém, e por isso parece de fora. Mas ele sai do caixa da empresa — é custo como qualquer outro."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "custos-do-negocio",
+   "instrucao": "Toque na ordem: do menor ao maior custo mensal.",
+   "ancora": "Ordene pelos valores — cada um pesa diferente no caixa.",
+   "feedbackErro": "A ordem certa segue o valor: impostos, aluguel, matéria-prima e salários, do menor peso ao maior.",
+   "itens": [
+    {
+     "texto": "Impostos — R$ 300",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Aluguel — R$ 500",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Matéria-prima — R$ 700",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Salários — R$ 1.500",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "orcamento-do-negocio",
+   "criterio": "A conta está certa?",
+   "enunciado": "Receita de R$ 2.500 menos custos de R$ 1.800 dá lucro de R$ 700",
+   "resposta": true,
+   "ancora": "2.500 − 1.800 = 700. Lucro é o que sobra depois de tudo pago.",
+   "feedbackErro": "Fecha: 2.500 menos 1.800 é 700. Lucro é sempre receita menos todos os custos — sem esquecer nenhum deles na conta.",
+   "verificacao": {
+    "expressao": "2500-1800",
+    "esperado": 700
+   }
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custos-do-negocio",
+   "criterio": "É verdade?",
+   "enunciado": "Se os custos sobem e o preço de venda não muda, a margem cai",
+   "resposta": true,
+   "ancora": "Margem é preço menos custo: custo sobe, o espaço encolhe.",
+   "feedbackErro": "Parece que só o preço de venda decide a margem. Mas margem é a diferença entre os dois: se o custo sobe sozinho, o espaço entre eles fica menor."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "orcamento-do-negocio",
+   "pergunta": "Brigadeiro custa R$ 1,20 e é vendido a R$ 3,50. Vendendo 40 por dia, qual o lucro do dia?",
+   "campo": "moeda",
+   "min": 20,
+   "max": 200,
+   "gabarito": 92,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: margem por unidade × quantidade vendida",
+   "feedbackPerto": "Isso — R$ 92. É a margem de R$ 2,30 por unidade vezes 40 vendidos.",
+   "feedbackLonge": "Dá R$ 92. O lucro por unidade é 3,50 − 1,20 = 2,30; multiplique pelas 40 unidades vendidas no dia.",
+   "verificacao": {
+    "expressao": "(3.5-1.2)*40",
+    "esperado": 92
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "orcamento-do-negocio",
+   "dificuldade": 1,
+   "pergunta": "Denise vende bolos a R$ 25, com custo de R$ 10 cada. Vendeu 12 no mês. Qual foi o lucro?",
+   "ancora": "(25 − 10) × 12 = 180. Margem por unidade vezes quantidade.",
+   "alternativas": [
+    {
+     "texto": "R$ 180",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 300",
+     "correta": false,
+     "feedbackErro": "R$ 300 é só a receita (25 × 12), sem descontar o custo. Lucro precisa subtrair o custo antes de multiplicar."
+    },
+    {
+     "texto": "R$ 120",
+     "correta": false,
+     "feedbackErro": "R$ 120 é só o custo total (10 × 12). Lucro é o que sobra depois de vender, não o gasto sozinho."
+    }
+   ],
+   "verificacao": {
+    "expressao": "(25-10)*12",
+    "esperado": 180
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custos-do-negocio",
+   "dificuldade": 1,
+   "pergunta": "Um negócio tem custo fixo de R$ 1.000/mês e ganha R$ 20 de margem por unidade. Quantas para cobrir o fixo?",
+   "ancora": "1.000 ÷ 20 = 50 unidades cobrem só o custo fixo.",
+   "alternativas": [
+    {
+     "texto": "50 unidades",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "20 unidades",
+     "correta": false,
+     "feedbackErro": "20 é a margem por unidade, não a quantidade. Divida o custo fixo pela margem: 1.000 ÷ 20 = 50."
+    },
+    {
+     "texto": "1.000 unidades",
+     "correta": false,
+     "feedbackErro": "1.000 é o custo fixo em reais, não em unidades. Divida pela margem de cada venda: 1.000 ÷ 20 = 50."
+    }
+   ],
+   "verificacao": {
+    "expressao": "1000/20",
+    "esperado": 50
+   }
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custos-do-negocio",
+   "criterio": "Verdadeiro?",
+   "enunciado": "Custo fixo muda conforme o quanto o negócio vende",
+   "resposta": false,
+   "ancora": "Custo fixo não muda com vendas; variável, sim.",
+   "feedbackErro": "É fácil confundir os dois nomes. Mas fixo é o que se mantém vendendo muito ou pouco — o aluguel é o mesmo; variável é o que acompanha a venda."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "orcamento-do-negocio",
+   "criterio": "Verdadeiro?",
+   "enunciado": "Lucro é a receita menos todos os custos do negócio",
+   "resposta": true,
+   "ancora": "Lucro = receita − custos. Esquecer um custo infla o lucro na conta.",
+   "feedbackErro": "Parece óbvio, e por isso muita gente esquece um custo no meio do caminho. Lucro real só aparece quando TODOS os custos saem da receita."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "orcamento-do-negocio",
+   "pergunta": "Qual frase resume esta lição?",
+   "alternativas": [
+    {
+     "texto": "Todo negócio tem custos fixos e variáveis; o orçamento mostra o que sobra.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só importa o preço de venda; os custos vêm depois.",
+     "correta": false,
+     "feedbackErro": "Sem contar os custos, o preço de venda não diz se sobra ou falta dinheiro."
+    },
+    {
+     "texto": "Custo fixo cresce junto com as vendas.",
+     "correta": false,
+     "feedbackErro": "Quem cresce com as vendas é o custo variável. O fixo se mantém do mesmo tamanho."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "custos-do-negocio",
+   "instrucao": "Custo fixo ou variável? Arraste cada item.",
+   "ancora": "Fixo não muda com a venda; variável acompanha ela.",
+   "feedbackErro": "Aluguel e internet são iguais todo mês — fixos. Embalagem e ingrediente sobem com a produção — variáveis.",
+   "caixas": [
+    {
+     "id": "fixo",
+     "rotulo": "Fixo"
+    },
+    {
+     "id": "variavel",
+     "rotulo": "Variável"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Aluguel do ponto",
+     "caixaCorreta": "fixo"
+    },
+    {
+     "texto": "Embalagem de cada produto",
+     "caixaCorreta": "variavel"
+    },
+    {
+     "texto": "Internet do escritório",
+     "caixaCorreta": "fixo"
+    },
+    {
+     "texto": "Ingredientes por unidade vendida",
+     "caixaCorreta": "variavel"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "orcamento-do-negocio",
+   "dificuldade": 2,
+   "pergunta": "Uma barraca vende picolés a R$ 4, custo de R$ 1,50 cada. Vendeu 30 no fim de semana. Lucro?",
+   "ancora": "(4 − 1,50) × 30 = 75. Margem por unidade vezes quantidade.",
+   "alternativas": [
+    {
+     "texto": "R$ 75",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 120",
+     "correta": false,
+     "feedbackErro": "R$ 120 é só a receita (4 × 30), sem tirar o custo. Desconte o custo antes de multiplicar."
+    },
+    {
+     "texto": "R$ 45",
+     "correta": false,
+     "feedbackErro": "R$ 45 é só o custo total (1,50 × 30). O lucro soma a margem de cada picolé, não o gasto."
+    }
+   ],
+   "verificacao": {
+    "expressao": "(4-1.5)*30",
+    "esperado": 75
+   }
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custos-do-negocio",
+   "criterio": "É verdade?",
+   "enunciado": "Imposto sobre a venda é opcional para quem quiser pagar",
+   "resposta": false,
+   "ancora": "Imposto é obrigatório por lei, não uma escolha do dono.",
+   "feedbackErro": "Parece que dá para pular se o caixa estiver apertado. Mas imposto é obrigação legal — deixar de pagar gera multa, não é opção de orçamento."
+  }
+ ]
+}

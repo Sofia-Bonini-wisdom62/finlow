@@ -1,0 +1,275 @@
+{
+ "slug": "parcelou-comprometeu",
+ "segmento": "ef67",
+ "conceitoPrincipal": "parcelou-comprometeu",
+ "fraseConceito": "Parcelar compromete a renda dos meses seguintes; cada estilo de vida lida diferente com isso.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "criterio": "Compromete os próximos meses?",
+   "enunciado": "Comprar um tênis parcelado em 5x no cartão",
+   "resposta": true,
+   "ancora": "Cada parcela tira uma fatia da renda dos 5 meses seguintes.",
+   "feedbackErro": "O tênis já está com você, e isso confunde. Mas as parcelas seguem cobrando: 5 meses de renda já têm destino certo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "criterio": "Compromete os próximos meses?",
+   "enunciado": "Pagar o mesmo tênis à vista, com dinheiro já guardado",
+   "resposta": false,
+   "ancora": "À vista, o gasto termina na hora — nada sobra pros próximos meses.",
+   "feedbackErro": "O dinheiro saiu, e parece pesado igual. Mas à vista o compromisso acaba ali: os meses seguintes ficam livres dessa compra."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "estilos-de-vida-com-dinheiro",
+   "criterio": "Mostra controle sobre o dinheiro?",
+   "enunciado": "Anotar as parcelas em aberto antes de fazer uma compra nova",
+   "resposta": true,
+   "ancora": "Saber o que já está comprometido evita comprometer demais.",
+   "feedbackErro": "Pode parecer burocracia demais pra uma compra pequena. Mas conferir o que já está comprometido evita passar do limite sem perceber."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "dificuldade": 1,
+   "pergunta": "Vinícius parcelou um celular em 10x de R$ 150. O que isso compromete nos próximos meses?",
+   "ancora": "R$ 150 por mês, durante 10 meses: R$ 1.500 do orçamento reservados.",
+   "verificacao": {
+    "expressao": "150*10",
+    "esperado": 1500
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 150 da renda de cada um dos 10 meses seguintes",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só o mês em que ele comprou o celular",
+     "correta": false,
+     "feedbackErro": "A cobrança não para no primeiro mês. Ela se repete por 10 meses seguidos, comprometendo a renda de cada um deles."
+    },
+    {
+     "texto": "Nada, porque o celular já foi pago na loja",
+     "correta": false,
+     "feedbackErro": "A loja recebeu à vista do banco, mas quem parcelou continua devendo, mês a mês, até a última parcela."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "estilos-de-vida-com-dinheiro",
+   "dificuldade": 1,
+   "pergunta": "Duas pessoas ganham o mesmo salário. Uma guarda renda; outra parcela quase toda compra. Qual a diferença central?",
+   "ancora": "Uma libera a renda futura; a outra a compromete com parcelas.",
+   "alternativas": [
+    {
+     "texto": "O quanto cada uma compromete a renda dos meses seguintes",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quem ganha mais dinheiro no fim do mês",
+     "correta": false,
+     "feedbackErro": "O salário é igual para as duas — isso não muda. O que muda é quanto da renda futura cada uma já deixa reservada."
+    },
+    {
+     "texto": "Quem compra produtos de qualidade melhor",
+     "correta": false,
+     "feedbackErro": "A qualidade do produto não define o estilo de lidar com dinheiro. O que define é o quanto se compromete da renda futura."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "criterio": "Compromete os próximos meses?",
+   "enunciado": "Parcelar a conta de luz atrasada em 3x no boleto",
+   "resposta": true,
+   "ancora": "Os 3 meses seguintes já têm essa parcela reservada.",
+   "feedbackErro": "Parece só uma forma de resolver o atraso. Mas as 3 parcelas seguem cobrando renda dos próximos meses, igual qualquer parcelamento."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "estilos-de-vida-com-dinheiro",
+   "instrucao": "Isso aumenta o compromisso futuro, ou reduz?",
+   "ancora": "Parcelar aumenta; guardar e pagar à vista reduzem.",
+   "feedbackErro": "O que aumenta compromisso futuro é assumir parcelas novas; o que reduz é guardar renda ou quitar à vista.",
+   "caixas": [
+    {
+     "id": "aumenta",
+     "rotulo": "Aumenta compromisso"
+    },
+    {
+     "id": "reduz",
+     "rotulo": "Reduz compromisso"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Parcelar todas as compras possíveis, mesmo as pequenas",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "Guardar parte da renda antes de decidir gastar",
+     "caixaCorreta": "reduz"
+    },
+    {
+     "texto": "Usar o limite do cartão até o fim, todo mês",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "Comprar à vista, mesmo que demore mais pra juntar",
+     "caixaCorreta": "reduz"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "criterio": "Compromete os próximos meses?",
+   "enunciado": "Guardar dinheiro todo mês pra comprar algo à vista depois",
+   "resposta": false,
+   "ancora": "Guardar não compromete o futuro — o gasto ainda não aconteceu.",
+   "feedbackErro": "Guardar parece um esforço mensal parecido com pagar parcela. Mas nada foi comprado ainda: o compromisso só nasce na hora da compra."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "estilos-de-vida-com-dinheiro",
+   "dificuldade": 1,
+   "pergunta": "Qual comportamento tende a comprometer mais a renda dos próximos meses?",
+   "ancora": "Várias parcelas pequenas somadas comprometem tanto quanto uma grande.",
+   "alternativas": [
+    {
+     "texto": "Parcelar várias compras pequenas ao mesmo tempo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Fazer uma única compra grande, paga à vista",
+     "correta": false,
+     "feedbackErro": "À vista, o compromisso termina naquele mês. Várias parcelas pequenas somadas seguem cobrando por muito mais tempo."
+    },
+    {
+     "texto": "Guardar dinheiro toda semana numa poupança",
+     "correta": false,
+     "feedbackErro": "Guardar dinheiro libera o futuro, não compromete. O que compromete é assumir parcelas que se repetem mês a mês."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "criterio": "Compromete os próximos meses?",
+   "enunciado": "Parcelar uma viagem em 6x sem saber quanto sobra de renda por mês",
+   "resposta": true,
+   "ancora": "Compromete, e sem saber a sobra, o risco de apertar é maior.",
+   "feedbackErro": "O passeio parece resolvido de imediato. Mas as 6 parcelas cobram renda futura, e sem saber a sobra mensal, o risco de faltar dinheiro sobe."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "estilos-de-vida-com-dinheiro",
+   "criterio": "Mostra controle sobre o dinheiro?",
+   "enunciado": "Checar quanto da renda já está comprometido antes de parcelar de novo",
+   "resposta": true,
+   "ancora": "Checar antes evita comprometer mais do que a renda aguenta.",
+   "feedbackErro": "Parece um passo extra que atrasa a compra. Mas checar antes é o que evita comprometer mais renda do que realmente sobra."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "parcelou-comprometeu",
+   "pergunta": "Qual frase resume o que você viu?",
+   "alternativas": [
+    {
+     "texto": "Parcelar não afeta em nada os meses seguintes",
+     "correta": false,
+     "feedbackErro": "Cada parcela reserva parte da renda dos meses seguintes até acabar — o compromisso segue existindo, mês a mês."
+    },
+    {
+     "texto": "Parcelar compromete a renda futura; guardar e pagar à vista liberam ela",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só compras grandes comprometem o orçamento futuro",
+     "correta": false,
+     "feedbackErro": "Várias compras pequenas parceladas ao mesmo tempo também somam um compromisso relevante nos meses seguintes."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "instrucao": "Ordene do que MAIS compromete a renda futura ao que MENOS compromete.",
+   "ancora": "Mais parcelas e mais meses de duração comprometem mais renda futura.",
+   "feedbackErro": "O que mais pesa é o número de parcelas em aberto ao mesmo tempo, e por quanto tempo elas duram.",
+   "itens": [
+    {
+     "texto": "Três compras parceladas ao mesmo tempo, em 10x cada",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Uma compra parcelada em 5x",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Uma compra paga à vista",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "estilos-de-vida-com-dinheiro",
+   "dificuldade": 2,
+   "pergunta": "Por que duas pessoas com o mesmo salário podem viver de formas bem diferentes?",
+   "ancora": "O quanto cada uma compromete a renda futura muda a folga do mês.",
+   "alternativas": [
+    {
+     "texto": "Porque o jeito de lidar com o dinheiro muda quanto sobra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque o salário de uma delas na verdade é maior",
+     "correta": false,
+     "feedbackErro": "O salário é igual para as duas. O que muda a folga do mês é quanto cada uma compromete com parcelas e gastos."
+    },
+    {
+     "texto": "Porque uma delas recebe o salário em outro dia do mês",
+     "correta": false,
+     "feedbackErro": "A data de recebimento não muda o total nem o compromisso assumido. O que pesa é quanto da renda já está reservado."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "criterio": "Compromete os próximos meses?",
+   "enunciado": "Cancelar uma compra parcelada antes de ela ser entregue",
+   "resposta": false,
+   "ancora": "Cancelada a tempo, a compra não chega a comprometer nada.",
+   "feedbackErro": "Parece que já criou compromisso. Mas cancelada antes de confirmar a cobrança, ela não chega a reservar renda de mês nenhum."
+  }
+ ]
+}

@@ -1,0 +1,252 @@
+{
+ "slug": "poupar-de-proposito-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "poupar-de-proposito",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "meta-com-proposito",
+   "criterio": "Tem meta clara de quanto e até quando?",
+   "enunciado": "Guardar R$ 13 por semana para um fone novo em 5 semanas",
+   "resposta": true,
+   "ancora": "Valor, prazo e destino definidos — critério completo.",
+   "feedbackErro": "Os números não são redondos, mas os três elementos estão lá: valor, prazo e destino."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "meta-com-proposito",
+   "criterio": "Tem meta clara de quanto e até quando?",
+   "enunciado": "Guardar 'até dar', sem valor nem prazo, para o presente da irmã",
+   "resposta": false,
+   "ancora": "Ter destino não basta — falta valor e prazo definidos.",
+   "feedbackErro": "O destino existe, e isso confunde. Mas sem valor nem prazo, ainda falta o resto do critério."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "meta-com-proposito",
+   "criterio": "Tem meta clara de quanto e até quando?",
+   "enunciado": "Separar R$ 27 por mês até junho para um skate",
+   "resposta": true,
+   "ancora": "Valor, prazo e destino: os três presentes de novo.",
+   "feedbackErro": "O valor não é redondo, mas o critério não pede número redondo — pede os três elementos definidos."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "meta-com-proposito",
+   "dificuldade": 2,
+   "pergunta": "Igor quer um videogame de R$ 300. Ele guarda R$ 15 por semana, sem saber até quando. O que falta virar meta?",
+   "ancora": "Falta o prazo — valor e destino já existem.",
+   "alternativas": [
+    {
+     "texto": "Nada, já é uma meta completa",
+     "correta": false,
+     "feedbackErro": "Tem valor certo e destino, mas falta o prazo — sem ele não dá pra saber se vai chegar a tempo."
+    },
+    {
+     "texto": "Definir até quando ele quer chegar aos R$ 300",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Aumentar o valor guardado por semana",
+     "correta": false,
+     "feedbackErro": "Aumentar o valor ajuda a chegar mais rápido, mas não resolve o que falta: definir o prazo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "poupar-antes-de-gastar",
+   "dificuldade": 2,
+   "pergunta": "Depois de pagar as contas do mês, sobrou pouco pra guardar. Qual é o problema desse método?",
+   "ancora": "O valor guardado varia e pode até zerar.",
+   "alternativas": [
+    {
+     "texto": "O valor guardado varia e pode até zerar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "É proibido guardar o que sobra",
+     "correta": false,
+     "feedbackErro": "Não é proibido — o problema não é a regra, é que o valor fica instável e pode não sobrar nada."
+    },
+    {
+     "texto": "Sobra é sempre maior que separar antes",
+     "correta": false,
+     "feedbackErro": "Costuma ser o contrário: quem separa antes garante o valor; quem espera sobrar, geralmente não sobra."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "poupar-antes-de-gastar",
+   "criterio": "Isso conta como poupar de propósito?",
+   "enunciado": "Guardar R$ 8 por semana, sem saber para quê, só por hábito",
+   "resposta": false,
+   "ancora": "Hábito ajuda, mas sem destino não é 'de propósito'.",
+   "feedbackErro": "Guardar por hábito é ótimo começo, mas poupar de propósito exige saber para quê — não só continuar guardando."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "meta-com-proposito",
+   "instrucao": "Classifique: tem meta clara ou falta algo?",
+   "ancora": "Falta valor OU prazo já tira do time 'meta'.",
+   "feedbackErro": "Ter só um dos elementos — valor ou prazo — não é suficiente; os dois precisam estar definidos.",
+   "caixas": [
+    { "id": "meta", "rotulo": "Tem meta" },
+    { "id": "sem", "rotulo": "Sem meta" }
+   ],
+   "itens": [
+    { "texto": "R$ 300, sem prazo, para trocar de celular", "caixaCorreta": "sem" },
+    { "texto": "R$ 90 até outubro para presentear a família", "caixaCorreta": "meta" },
+    { "texto": "Guardar 'bastante' até o fim do ano", "caixaCorreta": "sem" },
+    { "texto": "R$ 45 por mês, por 3 meses, para um curso", "caixaCorreta": "meta" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "meta-com-proposito",
+   "criterio": "Ajuda a alcançar a meta?",
+   "enunciado": "Mudar o valor guardado toda semana, conforme dá vontade",
+   "resposta": false,
+   "ancora": "Meta pede valor fixo — variar toda hora perde o prazo.",
+   "feedbackErro": "Guardar variando parece flexível, mas sem um valor fixo fica difícil calcular se o prazo vai fechar."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "meta-com-proposito",
+   "dificuldade": 2,
+   "pergunta": "Meta de R$ 175 em 7 semanas. Quanto guardar por semana?",
+   "ancora": "R$ 175 ÷ 7 semanas = R$ 25 por semana.",
+   "verificacao": { "expressao": "175/7", "esperado": 25 },
+   "alternativas": [
+    {
+     "texto": "R$ 20",
+     "correta": false,
+     "feedbackErro": "R$ 20 × 7 semanas dá R$ 140 — fica R$ 35 abaixo da meta."
+    },
+    {
+     "texto": "R$ 25",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 30",
+     "correta": false,
+     "feedbackErro": "R$ 30 × 7 semanas dá R$ 210 — passa R$ 35 da meta, mais do que precisa."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "meta-com-proposito",
+   "criterio": "O valor guardado bate com a meta?",
+   "enunciado": "Guardar R$ 12 por semana durante 6 semanas para uma meta de R$ 80",
+   "resposta": false,
+   "ancora": "R$ 12 × 6 semanas = R$ 72 — fica R$ 8 abaixo da meta.",
+   "verificacao": { "expressao": "12*6", "esperado": 72 },
+   "feedbackErro": "A conta não fecha: 12 × 6 dá 72, e a meta era 80 — faltam R$ 8."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "poupar-antes-de-gastar",
+   "criterio": "É poupar de propósito?",
+   "enunciado": "Separar R$ 10 assim que a mesada cai, para o presente de fim de ano",
+   "resposta": true,
+   "ancora": "Valor fixo, separado antes de gastar, com destino — isso é propósito.",
+   "feedbackErro": "Parece pouco pra contar, mas tem tudo: valor definido, separado antes de gastar, com destino certo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "poupar-de-proposito",
+   "dificuldade": 2,
+   "pergunta": "Depois desses exemplos, qual é o critério real de uma meta de poupança?",
+   "alternativas": [
+    {
+     "texto": "Ter um valor grande guardado",
+     "correta": false,
+     "feedbackErro": "Valor grande não é o critério — uma meta pequena com valor, prazo e destino também vale."
+    },
+    {
+     "texto": "Ter valor, prazo e destino definidos, separados antes de gastar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Guardar o que sobrar, sempre que possível",
+     "correta": false,
+     "feedbackErro": "Guardar sobra é melhor que nada, mas não define uma meta — falta o antes de gastar."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "meta-com-proposito",
+   "instrucao": "Ordene da meta mais rápida pra mais lenta.",
+   "ancora": "Tempo até a meta = valor ÷ quanto guarda por semana.",
+   "feedbackErro": "Fácil achar que o valor total decide a ordem, mas o que importa é dividir o total pelo guardado por semana.",
+   "verificacao": { "expressao": "300/50", "esperado": 6 },
+   "itens": [
+    { "texto": "R$ 90 guardando R$ 30 por semana", "posicaoCorreta": 1 },
+    { "texto": "R$ 300 guardando R$ 50 por semana", "posicaoCorreta": 2 },
+    { "texto": "R$ 200 guardando R$ 20 por semana", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "meta-com-proposito",
+   "pergunta": "Quanto guardar por semana pra juntar R$ 210 em 6 semanas?",
+   "campo": "moeda",
+   "min": 15,
+   "max": 60,
+   "gabarito": 35,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto da meta (valor ÷ prazo)",
+   "verificacao": { "expressao": "210/6", "esperado": 35 },
+   "feedbackPerto": "Isso mesmo — R$ 210 ÷ 6 semanas = R$ 35.",
+   "feedbackLonge": "R$ 35 por semana. Divida o valor total pelo número de semanas até o prazo."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "meta-com-proposito",
+   "dificuldade": 2,
+   "pergunta": "Guardar R$ 40 por semana, sem saber para quê. Isso é meta?",
+   "ancora": "Falta destino — regularidade e valor não bastam sozinhos.",
+   "alternativas": [
+    {
+     "texto": "Sim, porque o valor é alto",
+     "correta": false,
+     "feedbackErro": "Valor alto não substitui destino — sem saber para quê, ainda falta o principal."
+    },
+    {
+     "texto": "Não, falta o destino e o prazo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque é toda semana",
+     "correta": false,
+     "feedbackErro": "Regularidade é ótima, mas sozinha não faz meta — falta destino e prazo definidos."
+    }
+   ]
+  }
+ ]
+}

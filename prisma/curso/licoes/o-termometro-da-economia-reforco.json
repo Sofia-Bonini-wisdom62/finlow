@@ -1,0 +1,325 @@
+{
+ "slug": "o-termometro-da-economia-reforco",
+ "segmento": "em3",
+ "conceitoPrincipal": "indicadores-e-vida-real",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "indicadores-e-vida-real",
+   "criterio": "Mexe no seu bolso?",
+   "enunciado": "A Selic cair de 15% para 12% ao ano",
+   "resposta": true,
+   "ancora": "Mesmo caindo, mexe: crédito barateia e aplicação rende menos.",
+   "feedbackErro": "O critério não é subir ou cair — é ser referência. Selic menor barateia o crédito e reduz o rendimento de quem aplica. Nos dois sentidos, chega no bolso."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "indicadores-e-vida-real",
+   "criterio": "Mexe no seu bolso?",
+   "enunciado": "O IPCA fechar o ano em 4,6%",
+   "resposta": true,
+   "ancora": "IPCA é a inflação oficial: mede o quanto sua cesta encareceu.",
+   "feedbackErro": "O nome técnico esconde o óbvio: IPCA é a inflação medida pelo IBGE. 4,6% no ano significa sua cesta 4,6% mais cara se a renda não acompanhar."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "indicadores-e-vida-real",
+   "criterio": "Mexe no seu bolso?",
+   "enunciado": "A bolsa de valores bater recorde num único dia",
+   "resposta": false,
+   "ancora": "Um dia de bolsa não muda preço de mercado nem seu salário.",
+   "feedbackErro": "Recorde de um dia é manchete, não termômetro. O que muda seu custo de vida são tendências: inflação, juros e câmbio sustentados por meses."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "cambio-poder-de-compra",
+   "dificuldade": 2,
+   "pergunta": "O real se desvalorizou 20% frente ao dólar. O que acontece com uma assinatura cobrada em dólar?",
+   "ancora": "US$ 10 a R$ 5 = R$ 50; a R$ 6 = R$ 60. Mesmo serviço, 20% a mais.",
+   "verificacao": {
+    "expressao": "10*6 - 10*5",
+    "esperado": 10
+   },
+   "alternativas": [
+    {
+     "texto": "Sobe na mesma proporção da alta do dólar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não muda: você paga em reais no cartão",
+     "correta": false,
+     "feedbackErro": "A fatura vem em reais, mas a conversão é feita pelo câmbio do dia. O valor em dólar é o mesmo; em reais, acompanha a alta."
+    },
+    {
+     "texto": "Cai, porque o serviço barateia lá fora",
+     "correta": false,
+     "feedbackErro": "Lá fora o preço em dólar não mudou. Quem mudou foi o real, que compra menos dólares — para você, o serviço encareceu."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "indicadores-e-vida-real",
+   "dificuldade": 2,
+   "pergunta": "Com a Selic em 15% ao ano, o que acontece com quem tem dinheiro aplicado atrelado a ela?",
+   "ancora": "Juro alto pune quem deve e paga quem aplica. Dois lados da taxa.",
+   "alternativas": [
+    {
+     "texto": "Passa a render mais, seguindo a taxa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Rende menos, porque tudo fica mais caro",
+     "correta": false,
+     "feedbackErro": "Você misturou juro com inflação. A inflação corrói; a Selic remunera. Aplicação atrelada à Selic rende mais quando ela sobe."
+    },
+    {
+     "texto": "Nada muda: aplicação não segue a Selic",
+     "correta": false,
+     "feedbackErro": "Muitas seguem: Tesouro Selic, CDBs e fundos DI rendem perto da taxa básica. Selic a 15% ao ano é quase o dobro do que a 8%."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "comparar-paises",
+   "criterio": "O indicador serve para isso?",
+   "enunciado": "PIB por pessoa comparar países de tamanhos diferentes",
+   "resposta": true,
+   "ancora": "PIB total engana: dividir por habitante permite comparar.",
+   "feedbackErro": "O PIB total da Índia supera o da Suíça, mas dividido pela população a renda média é muito menor. Para comparar países, use o PIB per capita."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "indicadores-e-vida-real",
+   "instrucao": "Ordene: da inflação em alta até a sua parcela.",
+   "ancora": "Inflação → Selic → crédito → parcela. O BC freia preços com juro.",
+   "feedbackErro": "A sequência é a reação em cadeia do juro: a inflação foge da meta, o BC sobe a Selic para frear o consumo, o crédito encarece e a parcela chega maior.",
+   "itens": [
+    {
+     "texto": "A inflação sobe além da meta",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "O Banco Central eleva a Selic",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Os bancos encarecem o crédito",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Sua parcela nova vem mais cara",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "cambio-poder-de-compra",
+   "criterio": "Ganha com o dólar alto?",
+   "enunciado": "O produtor que exporta café",
+   "resposta": true,
+   "ancora": "Exportador vende em dólar e gasta em real: câmbio alto favorece.",
+   "feedbackErro": "Parece que dólar alto é ruim para todos, mas quem vende para fora recebe em dólar. Cada saca exportada vira mais reais no caixa do produtor."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "cambio-poder-de-compra",
+   "criterio": "Ganha com o dólar alto?",
+   "enunciado": "Quem planeja intercâmbio no exterior",
+   "resposta": false,
+   "ancora": "Gastos lá fora são em dólar: câmbio alto encarece o plano.",
+   "feedbackErro": "Curso, moradia e comida serão pagos em moeda estrangeira. Com o dólar 20% mais caro, o mesmo intercâmbio custa 20% mais reais."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "cambio-poder-de-compra",
+   "pergunta": "O dólar foi de R$ 5,00 para R$ 5,80. Quanto custa agora o fone que custava US$ 50?",
+   "campo": "moeda",
+   "min": 200,
+   "max": 400,
+   "gabarito": 290,
+   "toleranciaPct": 20,
+   "fonte": "conversão direta pela cotação do dólar (Banco Central)",
+   "verificacao": {
+    "expressao": "50*5.8",
+    "esperado": 290
+   },
+   "feedbackPerto": "R$ 290: os US$ 50 não mudaram, o real que enfraqueceu. Antes eram R$ 250 — R$ 40 a mais pelo câmbio.",
+   "feedbackLonge": "US$ 50 × R$ 5,80 = R$ 290. O viés comum é ancorar no preço antigo de R$ 250 e subestimar o repasse do câmbio."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "indicadores-e-vida-real",
+   "dificuldade": 2,
+   "pergunta": "O governo gasta mais do que arrecada e a dívida pública cresce. Por que seu crédito pode encarecer?",
+   "ancora": "Governo pagando juro alto puxa para cima os juros do país inteiro.",
+   "alternativas": [
+    {
+     "texto": "Emprestar ao governo rende mais, e você paga o ágio",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O banco repassa a dívida pública aos clientes",
+     "correta": false,
+     "feedbackErro": "A dívida não é fatiada na sua fatura. O mecanismo é de referência: se o título público paga muito, o banco só empresta a você cobrando ainda mais."
+    },
+    {
+     "texto": "Não encarece: a dívida fica com o governo",
+     "correta": false,
+     "feedbackErro": "Os títulos públicos são a régua dos juros. Governo mais arriscado paga taxa maior para se financiar — e toda a cadeia de crédito sobe junto."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "comparar-paises",
+   "dificuldade": 2,
+   "pergunta": "Caíque compara dois países: inflação de 5% num, 40% no outro. Onde o salário fixo perde valor mais rápido?",
+   "ancora": "Com 40% ao ano, um salário parado perde quase um terço da compra.",
+   "alternativas": [
+    {
+     "texto": "No país com 40%: a corrosão segue a inflação",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "No de 5%, porque lá os preços são estáveis",
+     "correta": false,
+     "feedbackErro": "Estabilidade é justamente o que protege o salário. Com 5%, a perda anual é pequena; com 40%, um salário parado perde quase um terço do que compra."
+    },
+    {
+     "texto": "Nos dois igualmente: salário fixo sempre perde",
+     "correta": false,
+     "feedbackErro": "Perde nos dois, mas não igual: a velocidade importa. A 5%, dá tempo de negociar reajuste; a 40%, o poder de compra derrete entre um reajuste e outro."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "indicadores-e-vida-real",
+   "criterio": "O BC sobe o juro para isso?",
+   "enunciado": "Frear a inflação quando os preços disparam",
+   "resposta": true,
+   "ancora": "Juro alto desestimula consumo e crédito: os preços desaceleram.",
+   "feedbackErro": "É a principal ferramenta do Banco Central: juro alto encarece o crédito, o consumo esfria e os preços perdem força. O remédio é amargo, mas é esse."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "indicadores-e-vida-real",
+   "criterio": "Esse indicador mede isso?",
+   "enunciado": "O desemprego mede quem procura trabalho e não acha",
+   "resposta": true,
+   "ancora": "Desemprego conta quem busca vaga sem achar — não quem desistiu.",
+   "feedbackErro": "É isso: quem procura e não encontra. Quem desistiu de procurar nem entra na conta — por isso o número real de sem-trabalho pode ser maior."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "indicadores-e-vida-real",
+   "pergunta": "Depois de rever os indicadores, qual frase fica de pé?",
+   "alternativas": [
+    {
+     "texto": "Cada indicador tem dois lados: juro alto pune quem deve e paga quem aplica.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Dólar alto é sempre ruim para todos os brasileiros.",
+     "correta": false,
+     "feedbackErro": "Quem exporta recebe em dólar e ganha com a alta. O efeito depende do lado do balcão."
+    },
+    {
+     "texto": "Selic e inflação são o mesmo número com nomes diferentes.",
+     "correta": false,
+     "feedbackErro": "Inflação mede preços subindo; Selic é o juro que o BC usa para freá-los."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "indicadores-e-vida-real",
+   "instrucao": "Selic em alta: separe quem ganha e quem perde.",
+   "ancora": "Juro alto remunera quem empresta e pesa em quem deve.",
+   "feedbackErro": "O critério é o lado do juro: quem recebe juro ganha com a alta; quem paga juro perde. Aplicador de um lado, financiado do outro.",
+   "caixas": [
+    {
+     "id": "ganha",
+     "rotulo": "Ganha"
+    },
+    {
+     "id": "perde",
+     "rotulo": "Perde"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Quem tem dinheiro no Tesouro Selic",
+     "caixaCorreta": "ganha"
+    },
+    {
+     "texto": "Quem vai financiar um carro",
+     "caixaCorreta": "perde"
+    },
+    {
+     "texto": "Quem carrega saldo no rotativo",
+     "caixaCorreta": "perde"
+    },
+    {
+     "texto": "Quem vive de renda de aplicações",
+     "caixaCorreta": "ganha"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "indicadores-e-vida-real",
+   "pergunta": "Com inflação de 4,5% ao ano por 2 anos, quanto custará a mensalidade que hoje é R$ 1.000?",
+   "campo": "moeda",
+   "min": 1000,
+   "max": 1300,
+   "gabarito": 1092,
+   "toleranciaPct": 20,
+   "fonte": "IPCA, ~4-5% ao ano (IBGE)",
+   "verificacao": {
+    "expressao": "1000*1.045^2",
+    "esperado": 1092.03,
+    "tolerancia": 0.1
+   },
+   "feedbackPerto": "Perto de R$ 1.092: a inflação do 2º ano incide sobre o preço já reajustado. Composição, de novo.",
+   "feedbackLonge": "Dá R$ 1.092: 4,5% compostos por 2 anos são 9,2%, não 9%. Em prazos curtos a diferença é pequena — em décadas, enorme."
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "comparar-paises",
+   "criterio": "É comparação justa entre países?",
+   "enunciado": "Comparar só o PIB total, ignorando a população",
+   "resposta": false,
+   "ancora": "Sem dividir pela população, país grande sempre parece rico.",
+   "feedbackErro": "PIB total mede o tamanho da economia, não a vida das pessoas. Para comparar bem-estar, olhe PIB per capita, renda e o que ela compra."
+  }
+ ]
+}

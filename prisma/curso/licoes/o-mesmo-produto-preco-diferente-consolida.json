@@ -1,0 +1,312 @@
+{
+ "slug": "o-mesmo-produto-preco-diferente-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "o-mesmo-produto-preco-diferente",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "por-que-o-preco-muda",
+   "criterio": "Sai mais barato por unidade?",
+   "enunciado": "Uma caixa de 10 unidades que custa mais por unidade que comprar avulso",
+   "resposta": false,
+   "ancora": "Nem toda caixa fechada é mais barata por unidade.",
+   "feedbackErro": "A regra geral é caixa fechada sair mais barata. Mas essa caixa específica custa mais por unidade — a regra só vale quando o preço confirma isso."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "por-que-o-preco-muda",
+   "criterio": "Sai mais barato por unidade?",
+   "enunciado": "Comprar direto do produtor que cobra frete caro até sua casa",
+   "resposta": false,
+   "ancora": "Sem intermediário ajuda, mas frete caro pode anular a economia.",
+   "feedbackErro": "Cortar o intermediário costuma baratear. Mas se o frete direto do produtor for caro, ele pode consumir toda a economia."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "por-que-o-preco-muda",
+   "criterio": "Sai mais barato por unidade?",
+   "enunciado": "Um produto perto do vencimento, vendido pelo mesmo preço de sempre",
+   "resposta": false,
+   "ancora": "Vencimento perto só barateia se o preço for de fato reduzido.",
+   "feedbackErro": "É fácil achar que perto do vencimento já significa desconto. Mas só conta se o preço foi realmente reduzido — aqui ficou igual ao de sempre."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "por-que-o-preco-muda",
+   "dificuldade": 3,
+   "pergunta": "Um pacote de 12 unidades custa R$ 30. Dois pacotes de 6 (mesma marca) somam R$ 32. Qual sai mais barata por unidade?",
+   "ancora": "Para as mesmas 12 unidades, o pacote único sai R$ 2 mais barato.",
+   "verificacao": {
+    "expressao": "32-30",
+    "esperado": 2
+   },
+   "alternativas": [
+    {
+     "texto": "Os dois de 6, porque parecem menores e mais baratos",
+     "correta": false,
+     "feedbackErro": "Parecer menor não é o mesmo que custar menos. Somando os dois pacotes de 6, o total é R$ 32 — mais caro que o único de 12."
+    },
+    {
+     "texto": "O pacote único de 12, que custa R$ 2 a menos no total",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Dá na mesma, porque a marca é igual nos dois casos",
+     "correta": false,
+     "feedbackErro": "A marca ser igual não garante preço igual. Comparando os totais para as mesmas 12 unidades, há R$ 2 de diferença."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "lucro-e-prejuizo",
+   "dificuldade": 3,
+   "pergunta": "Uma loja vende um produto por R$ 80 (custo R$ 50), com 10% de desconto no pagamento à vista. Qual o lucro à vista?",
+   "ancora": "R$ 80 com 10% off vira R$ 72; menos R$ 50 de custo, sobra R$ 22.",
+   "verificacao": {
+    "expressao": "80*0.9-50",
+    "esperado": 22
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 30, porque o desconto não muda o custo",
+     "correta": false,
+     "feedbackErro": "R$ 30 seria o lucro sem desconto algum. Mas o desconto reduz o valor recebido pra R$ 72 — o lucro real cai pra R$ 22."
+    },
+    {
+     "texto": "R$ 22, considerando o desconto no valor recebido",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 8, porque é o valor do desconto dado",
+     "correta": false,
+     "feedbackErro": "R$ 8 é só o desconto concedido, não o lucro. O lucro é o valor recebido (R$ 72) menos o custo (R$ 50)."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "por-que-o-preco-muda",
+   "criterio": "Sai mais barato por unidade?",
+   "enunciado": "Pagar frete pra comprar direto do produtor um item bem barato",
+   "resposta": false,
+   "ancora": "Frete fixo pesa mais em itens baratos — pode anular a economia.",
+   "feedbackErro": "Comprar direto costuma economizar. Mas num item barato, o frete fixo pesa proporcionalmente mais e pode consumir toda a vantagem."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "por-que-o-preco-muda",
+   "instrucao": "A economia esperada realmente se confirma?",
+   "ancora": "Só confirma quem faz a conta até o fim, não quem segue a regra geral.",
+   "feedbackErro": "A regra geral costuma valer, mas só é confiável quando a conta final, com todos os custos, confirma a economia.",
+   "caixas": [
+    {
+     "id": "sim",
+     "rotulo": "Confirma"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não confirma"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Caixa fechada mais barata por unidade, comprovado por conta",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Caixa fechada com preço por unidade igual ao avulso",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Direto do produtor, com frete que ainda compensa",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Direto do produtor, com frete maior que a economia",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "lucro-e-prejuizo",
+   "criterio": "Deu lucro no fim?",
+   "enunciado": "Vender por R$ 100 um produto de R$ 70, pagando R$ 35 de conserto antes",
+   "resposta": false,
+   "verificacao": {
+    "expressao": "100-70-35",
+    "esperado": -5
+   },
+   "ancora": "R$ 100 menos R$ 70 de compra menos R$ 35 de conserto: prejuízo.",
+   "feedbackErro": "Olhando só compra e venda, parece lucro de R$ 30. Mas o conserto também é custo — somando tudo, vira prejuízo de R$ 5."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "por-que-o-preco-muda",
+   "dificuldade": 3,
+   "pergunta": "Duas lojas vendem o mesmo tênis: uma cobra R$ 300 à vista; outra, R$ 330 em 3x sem juros. Qual sai mais barata?",
+   "ancora": "R$ 330 parcelado é R$ 30 a mais que os R$ 300 à vista.",
+   "verificacao": {
+    "expressao": "330-300",
+    "esperado": 30
+   },
+   "alternativas": [
+    {
+     "texto": "A parcelada, porque cabe melhor no bolso",
+     "correta": false,
+     "feedbackErro": "Caber no bolso é sobre o valor da parcela, não sobre o total pago. Somando as 3 parcelas, dá R$ 330 — R$ 30 a mais que à vista."
+    },
+    {
+     "texto": "A à vista, que sai R$ 30 mais barata no total",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "As duas custam o mesmo, só muda a forma de pagar",
+     "correta": false,
+     "feedbackErro": "A forma de pagar mudou, mas o total também: R$ 300 e R$ 330 são valores diferentes, não a mesma coisa parcelada."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "lucro-e-prejuizo",
+   "criterio": "Deu lucro no fim?",
+   "enunciado": "Vender 5 produtos com lucro de R$ 10 cada, sendo 1 devolvido e reembolsado",
+   "resposta": true,
+   "verificacao": {
+    "expressao": "5*10-10",
+    "esperado": 40
+   },
+   "ancora": "Mesmo com 1 devolução, sobram R$ 40 de lucro nos outros 4.",
+   "feedbackErro": "Uma devolução assusta e parece anular o resultado. Mas tirando o lucro daquele produto, ainda sobram R$ 40 nos outros quatro vendidos."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "por-que-o-preco-muda",
+   "criterio": "Sai mais barato por unidade?",
+   "enunciado": "Comprar 3 unidades numa promoção 'leve 3 pague 2' do mesmo preço normal",
+   "resposta": true,
+   "ancora": "Pagar por 2 e levar 3 reduz de fato o preço por unidade.",
+   "feedbackErro": "Pode parecer só marketing. Mas pagar por 2 e levar 3 unidades divide o valor pago por mais itens — o preço por unidade cai de verdade."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-mesmo-produto-preco-diferente",
+   "pergunta": "Qual situação mostra quando a regra geral de preço NÃO se confirma?",
+   "alternativas": [
+    {
+     "texto": "Caixa fechada com preço por unidade igual ao avulso",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Comprar no atacado com preço por unidade comprovadamente menor",
+     "correta": false,
+     "feedbackErro": "Aqui a economia é comprovada pela conta — é quando a regra geral se confirma, não quando ela falha."
+    },
+    {
+     "texto": "Aproveitar uma promoção que realmente reduziu o preço",
+     "correta": false,
+     "feedbackErro": "Promoção com preço de fato reduzido é a regra funcionando, não uma exceção a ela."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "lucro-e-prejuizo",
+   "dificuldade": 3,
+   "pergunta": "Um vendedor compra 20 unidades por R$ 15 cada e vende todas por R$ 18. Paga R$ 40 de aluguel da banca no mês. Teve lucro?",
+   "ancora": "R$ 360 de venda menos R$ 300 de compra menos R$ 40 de aluguel = R$ 20.",
+   "verificacao": {
+    "expressao": "20*18-20*15-40",
+    "esperado": 20
+   },
+   "alternativas": [
+    {
+     "texto": "Não, o aluguel consumiu todo o lucro",
+     "correta": false,
+     "feedbackErro": "O aluguel consumiu parte do lucro, R$ 40 dos R$ 60 brutos, mas não todo — ainda sobram R$ 20 de lucro líquido."
+    },
+    {
+     "texto": "Sim, R$ 20 de lucro líquido, mesmo pagando aluguel",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não é possível saber sem o valor de cada venda",
+     "correta": false,
+     "feedbackErro": "Não precisa do valor de cada venda: o total vendido menos o total de custos já dá o resultado."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "por-que-o-preco-muda",
+   "instrucao": "A economia é real ou só aparente?",
+   "ancora": "Só é real a economia confirmada pela conta, não pela aparência.",
+   "feedbackErro": "Rótulos e tamanhos de embalagem sugerem economia, mas só a conta por unidade confirma se ela existe de verdade.",
+   "caixas": [
+    {
+     "id": "real",
+     "rotulo": "Economia real"
+    },
+    {
+     "id": "aparente",
+     "rotulo": "Só aparente"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Preço por unidade comprovadamente menor, com conta feita",
+     "caixaCorreta": "real"
+    },
+    {
+     "texto": "Caixa parece mais barata, mas ninguém fez a conta",
+     "caixaCorreta": "aparente"
+    },
+    {
+     "texto": "Direto do produtor, frete incluso, ainda mais barato",
+     "caixaCorreta": "real"
+    },
+    {
+     "texto": "Rótulo 'econômico' sem comparação de preço por unidade",
+     "caixaCorreta": "aparente"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "lucro-e-prejuizo",
+   "criterio": "Deu lucro no fim?",
+   "enunciado": "Vender por R$ 60 algo que custou R$ 45 de compra e R$ 15 de comissão",
+   "resposta": false,
+   "verificacao": {
+    "expressao": "60-45-15",
+    "esperado": 0
+   },
+   "ancora": "R$ 60 menos R$ 45 menos R$ 15 de comissão: resultado zero.",
+   "feedbackErro": "Parece que sobrou algo, já que vendeu por mais que comprou. Mas somando a comissão paga, o resultado final fica exatamente em zero."
+  }
+ ]
+}

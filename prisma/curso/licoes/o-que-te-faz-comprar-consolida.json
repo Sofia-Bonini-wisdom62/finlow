@@ -1,0 +1,327 @@
+{
+ "slug": "o-que-te-faz-comprar-consolida",
+ "segmento": "em1",
+ "conceitoPrincipal": "o-que-te-faz-comprar",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "gatilho-de-compra",
+   "criterio": "O gatilho invalida a compra?",
+   "enunciado": "Comprar na promoção algo que você já ia comprar",
+   "resposta": false,
+   "ancora": "Gatilho só é problema quando cria a compra — não quando adianta.",
+   "feedbackErro": "O anúncio disparou o momento, mas a decisão existia antes, com uso e preço pesquisados. Aí a promoção trabalha para você — não contra."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "gatilho-de-compra",
+   "criterio": "O gatilho invalida a compra?",
+   "enunciado": "Levar o item que apareceu no caminho do caixa",
+   "resposta": true,
+   "ancora": "Compra que nasce no trajeto é do arranjo da loja, não sua.",
+   "feedbackErro": "Parece pequena demais para importar — e é assim que passa. A compra que não existia até você vê-la é a definição prática de gatilho."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "gatilho-de-compra",
+   "criterio": "Isso existe de verdade?",
+   "enunciado": "Uma compra 100% livre de gatilho e de cultura",
+   "resposta": false,
+   "ancora": "Influência sempre existe. O objetivo é vê-la, não zerá-la.",
+   "feedbackErro": "Até a marca do arroz vem de hábito de família. A meta realista não é decidir no vácuo: é saber qual influência está agindo e se você concorda com ela."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "pros-e-contras",
+   "dificuldade": 3,
+   "pergunta": "Vicente acha um celular 20% mais barato, de marca acusada de trabalho irregular. O que muda na decisão?",
+   "ancora": "Comprar é financiar o modo como o produto foi feito.",
+   "alternativas": [
+    {
+     "texto": "Nada: preço e uso continuam decidindo",
+     "correta": false,
+     "feedbackErro": "Preço e uso seguem na conta, mas a avaliação completa pesa também o social e o ético. Comprar é financiar o modo como o produto foi feito."
+    },
+    {
+     "texto": "O desconto passa a ter um custo que não é seu",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A compra fica proibida em qualquer caso",
+     "correta": false,
+     "feedbackErro": "Critério ético não é lei automática: é peso na balança. A decisão continua sua — o que muda é que o custo invisível agora entrou na conta."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "gatilho-de-compra",
+   "dificuldade": 3,
+   "pergunta": "Presente caro de amigo secreto 'porque todo mundo dá'. Que influência está agindo aí?",
+   "ancora": "Cultura também é gatilho: o grupo fixa o valor por você.",
+   "alternativas": [
+    {
+     "texto": "A cultura do grupo definindo o valor do presente",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A publicidade das lojas em dezembro",
+     "correta": false,
+     "feedbackErro": "A publicidade reforça, mas a regra 'todo mundo dá caro' não veio de anúncio: veio do combinado silencioso do grupo. Cultura também é gatilho."
+    },
+    {
+     "texto": "Uma necessidade real de retribuir",
+     "correta": false,
+     "feedbackErro": "Retribuir é escolha legítima — mas o valor foi definido fora de você. Necessidade não fixa preço; a expectativa do grupo fixou."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "gatilho-de-compra",
+   "criterio": "A pausa de 24h se aplica aqui?",
+   "enunciado": "Esperar um dia para comprar o remédio da receita",
+   "resposta": false,
+   "ancora": "A pausa combate impulso — não necessidade urgente.",
+   "feedbackErro": "A regra da espera testa se a vontade é sua. Remédio receitado não é vontade: é necessidade com prazo. Aplicar a pausa aqui só adiciona risco."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "pros-e-contras",
+   "instrucao": "Toque na ordem de uma decisão à prova de gatilho.",
+   "ancora": "Origem da vontade → uso → custos invisíveis → decisão.",
+   "feedbackErro": "Primeiro identificar a origem da vontade, depois testar o uso, depois pesar custos visíveis e invisíveis. Decidir vem por último — nunca primeiro.",
+   "itens": [
+    {
+     "texto": "Notar de onde veio a vontade",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Checar se o uso existia antes do estímulo",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Pesar preço, ética e impacto do produto",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Comprar, adiar ou desistir — assumindo o motivo",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "gatilho-de-compra",
+   "criterio": "A pausa de 24h se aplica aqui?",
+   "enunciado": "Oferta real do item que você pesquisa há semanas",
+   "resposta": false,
+   "ancora": "Com pesquisa feita, a pausa já aconteceu. Esperar tem custo.",
+   "feedbackErro": "A regra parece absoluta, mas seu trabalho já estava pronto: uso confirmado, preço conhecido. A pausa serve para criar esse estado — não para adiá-lo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "gatilho-de-compra",
+   "criterio": "A pausa de 24h se aplica aqui?",
+   "enunciado": "Vontade forte de algo que você viu pela primeira vez hoje",
+   "resposta": true,
+   "ancora": "Desejo de primeira vista é o caso exato para a pausa.",
+   "feedbackErro": "A força da vontade parece prova de que é real — mas intensidade não é argumento. Vontade nova e forte é o perfil clássico do gatilho fresco."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "gatilho-de-compra",
+   "pergunta": "Lanche por impulso: R$ 14, 3 vezes por semana. Quanto sai em 48 semanas?",
+   "campo": "moeda",
+   "min": 500,
+   "max": 5000,
+   "gabarito": 2016,
+   "toleranciaPct": 20,
+   "fonte": "conta do próprio enunciado (R$ 14 × 3 × 48)",
+   "verificacao": {
+    "expressao": "14*3*48",
+    "esperado": 2016
+   },
+   "feedbackPerto": "R$ 2.016 — um notebook usado saindo em lanches que nem foram planejados.",
+   "feedbackLonge": "R$ 2.016. O viés de sempre: gasto pequeno repetido não dói na hora, então a cabeça nunca fecha a soma do ano."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-do-consumo",
+   "dificuldade": 3,
+   "pergunta": "Trocar de celular todo ano ou a cada 3 anos: o que a conta completa compara?",
+   "ancora": "A conta completa tem três colunas: preço, revenda e resíduo.",
+   "alternativas": [
+    {
+     "texto": "Preço, valor de revenda e lixo eletrônico gerado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só o preço de cada aparelho novo",
+     "correta": false,
+     "feedbackErro": "O preço é a parte visível. Faltam o valor que o antigo ainda tinha e o resíduo que a troca anual multiplica — a conta completa tem três colunas."
+    },
+    {
+     "texto": "A opinião de quem já fez a troca",
+     "correta": false,
+     "feedbackErro": "Relato ajuda a estimar durabilidade, mas não substitui a conta: custo por ano de uso e impacto do descarte são números, não impressões."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "gatilho-de-compra",
+   "dificuldade": 3,
+   "pergunta": "Em qual situação comprar rápido é a decisão certa, não impulso?",
+   "ancora": "Rapidez só é virtude quando a decisão já estava pronta.",
+   "alternativas": [
+    {
+     "texto": "Item pesquisado, uso certo, preço no alvo que você definiu",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando o desconto é grande demais para perder",
+     "correta": false,
+     "feedbackErro": "Tamanho do desconto mede a força do gatilho, não a qualidade da compra. 70% off de algo sem uso ainda é 100% de desperdício."
+    },
+    {
+     "texto": "Quando dá para parcelar sem juros",
+     "correta": false,
+     "feedbackErro": "Parcela sem juros muda como você paga, não se deve comprar. Facilidade de pagamento é lubrificante do impulso, não critério."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "impacto-do-consumo",
+   "criterio": "É consumo consciente?",
+   "enunciado": "Comprar o dobro porque o produto é sustentável",
+   "resposta": false,
+   "ancora": "Consumo consciente é comprar melhor — e geralmente menos.",
+   "feedbackErro": "O selo verde vira gatilho quando justifica excesso. Produzir qualquer coisa gasta recurso; a versão sustentável do desnecessário continua desnecessária."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "impacto-do-consumo",
+   "criterio": "É consumo consciente?",
+   "enunciado": "Usar até o fim antes de substituir",
+   "resposta": true,
+   "ancora": "Estender o uso é o desconto que nenhuma loja anuncia.",
+   "feedbackErro": "Parece só economia, mas é o núcleo do consumo consciente: cada ano a mais de uso divide o custo e o impacto da produção por mais vida útil."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-que-te-faz-comprar",
+   "pergunta": "Fecho da trilha: o que separa decisão de impulso?",
+   "alternativas": [
+    {
+     "texto": "Decisão nasce antes do estímulo e sobrevive à espera; impulso precisa da pressa.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Impulso é comprar coisas baratas sem pensar.",
+     "correta": false,
+     "feedbackErro": "Preço não define impulso: há impulsos caros e decisões baratas. O que define é a origem da vontade."
+    },
+    {
+     "texto": "Decisão boa é a que ninguém influenciou.",
+     "correta": false,
+     "feedbackErro": "Influência sempre existe — grupo, cultura, anúncio. Decidir bem é enxergá-la, não fingir que não está lá."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "pros-e-contras",
+   "instrucao": "Essa conta de compra está completa ou falta custo?",
+   "ancora": "Conta completa tem uso e impacto, não só etiqueta.",
+   "feedbackErro": "Conta completa soma o que a etiqueta não mostra: uso, duração, descarte. Etiqueta e desconto sozinhos são a parte que a loja escolheu mostrar.",
+   "caixas": [
+    {
+     "id": "completa",
+     "rotulo": "Completa"
+    },
+    {
+     "id": "incompleta",
+     "rotulo": "Falta custo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Preço + frete + quanto vou usar",
+     "caixaCorreta": "completa"
+    },
+    {
+     "texto": "Só o preço da etiqueta",
+     "caixaCorreta": "incompleta"
+    },
+    {
+     "texto": "Preço, duração e destino no descarte",
+     "caixaCorreta": "completa"
+    },
+    {
+     "texto": "Desconto comparado ao preço antigo",
+     "caixaCorreta": "incompleta"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "gatilho-de-compra",
+   "criterio": "É gatilho de cultura?",
+   "enunciado": "Sentir que aniversário exige festa cara",
+   "resposta": true,
+   "ancora": "Expectativa social também precifica — e cobra.",
+   "feedbackErro": "Ninguém anunciou nada, e é isso que disfarça: a régua veio do grupo e da cultura. Vale o mesmo teste dos outros gatilhos — de quem é essa vontade?"
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "pros-e-contras",
+   "dificuldade": 3,
+   "pergunta": "Quando a opinião do grupo MERECE peso na sua compra?",
+   "ancora": "Experiência de uso é dado; contagem de donos é prova social.",
+   "alternativas": [
+    {
+     "texto": "Quando o grupo tem experiência de uso do produto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando todos compraram o mesmo modelo",
+     "correta": false,
+     "feedbackErro": "Todos comprando é prova social — mede popularidade, não qualidade. O peso vem da experiência de uso, não da contagem de donos."
+    },
+    {
+     "texto": "Quando o grupo vai ver você usando",
+     "correta": false,
+     "feedbackErro": "Aí o peso é da imagem, não do produto. Pode entrar na conta, mas nomeado: você está pagando por aparência, e é bom saber o preço disso."
+    }
+   ]
+  }
+ ]
+}

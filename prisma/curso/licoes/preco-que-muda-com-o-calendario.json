@@ -1,0 +1,328 @@
+{
+ "slug": "preco-que-muda-com-o-calendario",
+ "segmento": "ef89",
+ "conceitoPrincipal": "preco-que-muda-com-o-calendario",
+ "fraseConceito": "Preço muda com a época do ano — safra, datas comemorativas, promoções — e renda extra pede decisão pensada, não impulso.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "sazonalidade-preco",
+   "criterio": "O preço sobe nessa época?",
+   "enunciado": "Preço do peru perto do Natal",
+   "resposta": true,
+   "ancora": "Mais gente compra o mesmo produto no mesmo período — preço sobe.",
+   "feedbackErro": "Parece coincidência, mas não é. Quando muita gente quer a mesma coisa ao mesmo tempo, a procura empurra o preço pra cima."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "sazonalidade-preco",
+   "criterio": "O preço sobe nessa época?",
+   "enunciado": "Preço da manga na época da safra",
+   "resposta": false,
+   "ancora": "Na safra sobra fruta — mais oferta derruba o preço.",
+   "feedbackErro": "Parece que preço só sobe, e é isso que confunde. Quando a oferta aumenta na safra, o preço cai — é a mesma lógica ao contrário."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "sazonalidade-preco",
+   "criterio": "O preço sobe nessa época?",
+   "enunciado": "Preço de roupa de frio em pleno verão",
+   "resposta": false,
+   "ancora": "Fora de época, a loja quer vender o estoque parado — preço cai.",
+   "feedbackErro": "Parece que roupa de frio é sempre cara, mas fora da estação a loja precisa girar o estoque, e isso derruba o preço."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "sazonalidade-preco",
+   "dificuldade": 1,
+   "pergunta": "Por que a passagem aérea sobe tanto perto do Réveillon?",
+   "ancora": "Muita gente viaja no mesmo período — lugares limitados, preço sobe.",
+   "alternativas": [
+    {
+     "texto": "Muita gente viaja no mesmo período, com lugares limitados",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O combustível do avião fica mais caro só nessa época",
+     "correta": false,
+     "feedbackErro": "O combustível não muda de preço só nessa data. O que sobe é a procura por voos no mesmo período, com assentos limitados."
+    },
+    {
+     "texto": "As companhias fazem manutenção nos aviões nessa época",
+     "correta": false,
+     "feedbackErro": "Manutenção acontece o ano todo, sem relação com a data. O preço sobe porque a procura por viajar aumenta muito nesse período."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "renda-inesperada",
+   "dificuldade": 1,
+   "pergunta": "Ganhou dinheiro extra de aniversário. Qual o primeiro passo antes de gastar?",
+   "ancora": "Parar e decidir com calma evita gasto no impulso do momento.",
+   "alternativas": [
+    {
+     "texto": "Parar e decidir com calma, sem gastar no impulso",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Gastar rápido antes que o valor 'suma da conta'",
+     "correta": false,
+     "feedbackErro": "O dinheiro não some sozinho da conta. A pressa em gastar rápido é o próprio risco que o passo de parar tenta evitar."
+    },
+    {
+     "texto": "Comprar logo aquilo que você sempre quis, por ser 'extra'",
+     "correta": false,
+     "feedbackErro": "Faz sentido usar em algo especial, mas decidir no calor da hora é o risco. O primeiro passo é parar e pensar com calma antes."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "sazonalidade-preco",
+   "criterio": "É mais barato comprar fora dessa época?",
+   "enunciado": "Material escolar em janeiro, perto da volta às aulas",
+   "resposta": false,
+   "ancora": "Perto da volta às aulas, a procura sobe e o preço junto.",
+   "feedbackErro": "Janeiro parece cedo pra volta às aulas, mas a procura já sobe nessa época. Comprar bem antes, fora do pico, costuma sair mais barato."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "sazonalidade-preco",
+   "instrucao": "Ordene do mês mais barato pro mais caro pra comprar chocolate.",
+   "ancora": "Quanto mais perto da data que mais vende chocolate, mais caro fica.",
+   "feedbackErro": "O instinto é olhar o preço do chocolate isolado, mas o que pesa é a proximidade da data que mais vende — a Páscoa.",
+   "itens": [
+    {
+     "texto": "Um mês comum, sem data comemorativa",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Perto do Dia das Mães",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Perto do Natal",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Perto da Páscoa, maior época de chocolate do ano",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "sazonalidade-preco",
+   "criterio": "É bom momento pra comprar mais barato?",
+   "enunciado": "Roupa de banho, no meio do inverno",
+   "resposta": true,
+   "ancora": "Fora da época de uso, a demanda cai e o preço também.",
+   "feedbackErro": "Parece estranho comprar roupa de banho no frio, e é exatamente por isso que fica mais barata: ninguém está procurando."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "renda-inesperada",
+   "criterio": "É decisão pensada sobre dinheiro extra?",
+   "enunciado": "Guardar metade do 13º e decidir o resto em dois dias",
+   "resposta": true,
+   "ancora": "Esperar alguns dias evita decisão no impulso — e ainda guarda parte.",
+   "feedbackErro": "Dois dias parece pouco tempo, mas já tira a decisão do calor do momento. Junto com guardar metade, isso evita gasto por impulso."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "sazonalidade-preco",
+   "pergunta": "Um tênis de R$ 300 tem 20% de desconto na Black Friday. Qual o preço final?",
+   "campo": "moeda",
+   "min": 150,
+   "max": 300,
+   "gabarito": 240,
+   "toleranciaPct": 20,
+   "fonte": "desconto médio de Black Friday, ~20% (padrão de mercado)",
+   "feedbackPerto": "Isso mesmo — R$ 240. Vinte por cento de desconto tiram um quinto do preço original.",
+   "feedbackLonge": "O preço final fica perto de R$ 240. Vinte por cento de R$ 300 são R$ 60 de desconto.",
+   "verificacao": {
+    "expressao": "300*0.8",
+    "esperado": 240
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "renda-inesperada",
+   "dificuldade": 1,
+   "pergunta": "Recebeu um Pix inesperado de R$ 500 de um trabalho extra. O que considerar antes de gastar tudo?",
+   "ancora": "Checar se algo urgente já espera esse dinheiro, tipo dívida.",
+   "alternativas": [
+    {
+     "texto": "Se algo mais urgente já espera esse dinheiro, tipo dívida",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se o valor é grande o suficiente pra comemorar",
+     "correta": false,
+     "feedbackErro": "O tamanho do valor não decide sozinho o que fazer com ele. O que importa primeiro é se existe algo urgente esperando esse dinheiro."
+    },
+    {
+     "texto": "Se dá pra gastar tudo em um dia só",
+     "correta": false,
+     "feedbackErro": "Conseguir gastar rápido não é o critério certo. Antes de gastar, vale checar se existe uma prioridade mais urgente pro valor."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "sazonalidade-preco",
+   "dificuldade": 1,
+   "pergunta": "Por que roupas de frio ficam mais baratas em liquidações no fim do inverno?",
+   "ancora": "A loja precisa abrir espaço pro estoque da próxima estação.",
+   "alternativas": [
+    {
+     "texto": "Porque a loja precisa de espaço pro estoque seguinte",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque o tecido perde qualidade com o tempo",
+     "correta": false,
+     "feedbackErro": "O tecido não estraga sozinho em poucos meses. O motivo real é a loja precisar de espaço pro estoque da estação seguinte."
+    },
+    {
+     "texto": "Porque é uma exigência da lei do consumidor",
+     "correta": false,
+     "feedbackErro": "Não existe lei obrigando liquidação de fim de estação. É estratégia comercial pra girar o estoque antes da próxima coleção."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "sazonalidade-preco",
+   "criterio": "Ajuda a pagar menos?",
+   "enunciado": "Planejar a compra de presentes de Natal em outubro",
+   "resposta": true,
+   "ancora": "Comprar fora do pico de dezembro evita o preço mais alto.",
+   "feedbackErro": "Outubro parece cedo demais pra pensar em Natal, e é justamente por isso que os preços ainda não subiram pela procura de dezembro."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "renda-inesperada",
+   "criterio": "É boa prática com dinheiro inesperado?",
+   "enunciado": "Decidir o destino do valor extra assim que ele cai na conta",
+   "resposta": false,
+   "ancora": "Decidir na hora tira o tempo de avaliar o que realmente importa.",
+   "feedbackErro": "Parece prático resolver logo, mas decidir sem pensar é a porta de entrada pro gasto por impulso — mesmo o padrão que a lição alerta."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "sazonalidade-preco",
+   "pergunta": "Qual frase resume o que você viu sobre preço e calendário?",
+   "alternativas": [
+    {
+     "texto": "Preço muda com a época; dinheiro extra pede decisão pensada, não impulso",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Preço só muda em datas comemorativas oficiais",
+     "correta": false,
+     "feedbackErro": "Safra, entressafra e clima também mudam preço, não só datas oficiais. A sazonalidade vai além do calendário de feriados."
+    },
+    {
+     "texto": "Dinheiro extra deve ser sempre gasto rápido, antes que 'suma'",
+     "correta": false,
+     "feedbackErro": "Gastar rápido é justamente o padrão de risco que a lição alerta. O certo é parar e decidir com calma antes de usar o valor."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "sazonalidade-preco",
+   "instrucao": "É época de alta ou de baixa procura?",
+   "ancora": "Alta procura empurra o preço pra cima; baixa procura deixa cair.",
+   "feedbackErro": "É fácil olhar só o produto, mas o que decide o preço é se muita ou pouca gente quer a mesma coisa nessa época.",
+   "caixas": [
+    {
+     "id": "alta",
+     "rotulo": "Alta procura"
+    },
+    {
+     "id": "baixa",
+     "rotulo": "Baixa procura"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Fogos de artifício perto do Ano Novo",
+     "caixaCorreta": "alta"
+    },
+    {
+     "texto": "Ventilador no meio do inverno",
+     "caixaCorreta": "baixa"
+    },
+    {
+     "texto": "Ingresso de festival, na semana do evento",
+     "caixaCorreta": "alta"
+    },
+    {
+     "texto": "Casaco de frio no auge do verão",
+     "caixaCorreta": "baixa"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "renda-inesperada",
+   "dificuldade": 2,
+   "pergunta": "Um vale-presente de R$ 200 chega sem aviso. Ele expira em 6 meses. O que muda na decisão?",
+   "ancora": "Prazo longo permite esperar e escolher com calma, sem pressa.",
+   "alternativas": [
+    {
+     "texto": "Dá pra esperar e escolher com calma, sem pressa nenhuma",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Precisa ser usado hoje mesmo, senão perde o valor",
+     "correta": false,
+     "feedbackErro": "Seis meses é bastante tempo — não há razão pra usar tudo hoje. Dá pra esperar e escolher com calma dentro desse prazo."
+    },
+    {
+     "texto": "Vale-presente nunca pode ser guardado pra depois",
+     "correta": false,
+     "feedbackErro": "Guardar pra depois é exatamente o que o prazo de 6 meses permite. Não existe essa restrição de uso imediato."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "sazonalidade-preco",
+   "criterio": "É um bom momento pra comprar?",
+   "enunciado": "Ventilador à venda com desconto, ainda no inverno",
+   "resposta": true,
+   "ancora": "Fora da época de uso, a procura cai e o preço acompanha.",
+   "feedbackErro": "Parece estranho comprar ventilador no frio, mas é justamente por isso que ele fica mais barato — ninguém está procurando agora."
+  }
+ ]
+}

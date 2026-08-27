@@ -1,0 +1,154 @@
+{
+ "slug": "quero-ou-preciso",
+ "segmento": "ef12",
+ "conceitoPrincipal": "quero-ou-preciso",
+ "fraseConceito": "Necessidade é o que o corpo precisa pra viver; desejo é o que só dá vontade de ter.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "Isso é uma necessidade?",
+   "enunciado": "Comer",
+   "resposta": true,
+   "ancora": "Comer é preciso pra viver.",
+   "feedbackErro": "Comer também pode ser gostoso, e isso faz parecer desejo. Mas o corpo precisa de comida pra funcionar."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "Isso é uma necessidade?",
+   "enunciado": "Um brinquedo novo",
+   "resposta": false,
+   "ancora": "Brinquedo é gostoso, mas não é preciso pra viver.",
+   "feedbackErro": "Brinquedo dá muita vontade, e vontade forte parece necessidade. Mas dá pra viver sem ele — é desejo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "reaproveitar-e-consertar",
+   "criterio": "Dá pra consertar em vez de jogar fora?",
+   "enunciado": "Um brinquedo com a rodinha solta",
+   "resposta": true,
+   "ancora": "Rodinha solta dá pra colar ou apertar de novo.",
+   "feedbackErro": "Quando quebra uma parte pequena, parece que já era. Mas rodinha solta costuma dar pra consertar."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "reaproveitar-e-consertar",
+   "criterio": "Dá pra consertar em vez de jogar fora?",
+   "enunciado": "Um copo de vidro quebrado em pedaços",
+   "resposta": false,
+   "ancora": "Vidro quebrado em pedaços é perigoso — não dá pra consertar.",
+   "feedbackErro": "Dá vontade de tentar colar tudo de novo. Mas vidro em pedaços corta e não fica seguro — melhor descartar direito."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "reaproveitar-e-consertar",
+   "instrucao": "Dá pra consertar ou tem que jogar fora?",
+   "ancora": "Se dá pra costurar, colar ou apertar, dá pra consertar.",
+   "feedbackErro": "Coisa quebrada parece sempre perdida à primeira vista. Só o que virou perigo ou lixo vai fora.",
+   "caixas": [
+    { "id": "conserta", "rotulo": "Dá pra consertar" },
+    { "id": "joga", "rotulo": "Tem que jogar fora" }
+   ],
+   "itens": [
+    { "texto": "Camiseta com um furinho pequeno", "caixaCorreta": "conserta" },
+    { "texto": "Pilha vazada", "caixaCorreta": "joga" },
+    { "texto": "Boneco com o braço solto", "caixaCorreta": "conserta" },
+    { "texto": "Copo de vidro estilhaçado", "caixaCorreta": "joga" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "É uma necessidade?",
+   "enunciado": "Um lugar pra dormir",
+   "resposta": true,
+   "ancora": "Todo mundo precisa de um lugar seguro pra dormir.",
+   "feedbackErro": "Dormir parece automático, quase invisível como necessidade. Mas ter um lugar seguro pra isso é essencial."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "É uma necessidade?",
+   "enunciado": "O quinto brinquedo da coleção",
+   "resposta": false,
+   "ancora": "Já ter 4 brinquedos parecidos mostra que o 5º é desejo.",
+   "feedbackErro": "Cada brinquedo novo parece importante na hora, e por isso confunde. Se já tem outros parecidos, o próximo é desejo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "desejo-e-necessidade",
+   "dificuldade": 1,
+   "pergunta": "Como saber se algo é necessidade ou desejo?",
+   "ancora": "Necessidade é o que o corpo não pode ficar sem.",
+   "alternativas": [
+    {
+     "texto": "Se dá muita vontade de ter",
+     "correta": false,
+     "feedbackErro": "Vontade forte é normal, mas não é o teste certo — muita coisa que só queremos dá vontade também."
+    },
+    {
+     "texto": "Se dá pra viver sem",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se custa caro",
+     "correta": false,
+     "feedbackErro": "Preço não decide isso — tem necessidade cara, como remédio, e desejo barato, como um docinho."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "desejo-e-necessidade",
+   "instrucao": "Toque na ordem: mais precisamos pro que menos precisamos.",
+   "ancora": "Necessidade básica vem primeiro; desejo vem depois.",
+   "feedbackErro": "Tudo parece importante quando queremos, e isso embaralha a ordem. O que vem primeiro é o que o corpo precisa pra viver.",
+   "itens": [
+    { "texto": "Água", "posicaoCorreta": 1 },
+    { "texto": "Roupa pro frio", "posicaoCorreta": 2 },
+    { "texto": "Brinquedo novo", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "reaproveitar-e-consertar",
+   "criterio": "Dá pra reaproveitar isso pra outra coisa?",
+   "enunciado": "Um pote de vidro vazio",
+   "resposta": true,
+   "ancora": "Pote vazio vira porta-lápis, guarda miçangas, etc.",
+   "feedbackErro": "Pote vazio parece lixo assim que a comida acaba. Mas ele pode virar outro objeto útil em casa."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "desejo-e-necessidade",
+   "instrucao": "É desejo ou é necessidade?",
+   "ancora": "O corpo e a saúde vêm em necessidade; o que só dá vontade é desejo.",
+   "feedbackErro": "Chocolate e calça bonita dão prazer na hora, parecido com precisar. Mas nenhum dos dois é essencial pra saúde.",
+   "caixas": [
+    { "id": "desejo", "rotulo": "Desejo" },
+    { "id": "necessidade", "rotulo": "Necessidade" }
+   ],
+   "itens": [
+    { "texto": "Escovar os dentes", "caixaCorreta": "necessidade" },
+    { "texto": "Um chocolate extra", "caixaCorreta": "desejo" },
+    { "texto": "Ir ao médico quando dói", "caixaCorreta": "necessidade" },
+    { "texto": "Uma calça nova só porque é bonita", "caixaCorreta": "desejo" }
+   ]
+  }
+ ]
+}

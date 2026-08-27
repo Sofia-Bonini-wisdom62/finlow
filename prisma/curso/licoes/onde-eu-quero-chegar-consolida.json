@@ -1,0 +1,250 @@
+{
+ "slug": "onde-eu-quero-chegar-consolida",
+ "segmento": "ef35",
+ "conceitoPrincipal": "onde-eu-quero-chegar",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-objetivo",
+   "criterio": "O prazo muda com adiamento?",
+   "enunciado": "Um objetivo de curto prazo que foi adiado várias vezes vira longo prazo",
+   "resposta": true,
+   "ancora": "Se o tempo total até alcançar cresce, o prazo muda junto.",
+   "feedbackErro": "Parece que a categoria original não muda nunca. Mas se os adiamentos aumentam bastante o tempo total, o objetivo passa a ser de prazo mais longo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "Ainda é necessidade, mesmo caro?",
+   "enunciado": "Comprar o remédio mais caro, quando o mais barato também trata a mesma doença",
+   "resposta": false,
+   "ancora": "A necessidade é tratar a doença — o mais caro vira desejo extra.",
+   "feedbackErro": "Parece necessidade inteira, porque envolve saúde. Mas se o mais barato já resolve o mesmo problema, a diferença de preço é desejo, não necessidade."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-objetivo",
+   "criterio": "Ainda é longo prazo, mesmo barato?",
+   "enunciado": "Juntar R$ 1 por mês, durante 3 anos, pra um objetivo pequeno",
+   "resposta": true,
+   "ancora": "O valor total baixo não muda o tempo — três anos é longo prazo.",
+   "feedbackErro": "Parece curto, porque o valor total é pequeno. Mas o que define o prazo é o tempo até alcançar, e três anos continua sendo longo prazo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "prazo-do-objetivo",
+   "dificuldade": 3,
+   "pergunta": "Théo tem três metas ao mesmo tempo: uma de 1 semana, uma de 4 meses e uma de 2 anos. Qual pede ação primeiro?",
+   "ancora": "Prazo mais curto pede ação mais cedo, mesmo com metas maiores juntas.",
+   "alternativas": [
+    {
+     "texto": "Cuidar primeiro da de 1 semana, sem esquecer as outras",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só a de 2 anos importa, porque é a maior",
+     "correta": false,
+     "feedbackErro": "A meta maior não precisa de ação imediata ainda. A de 1 semana tem o prazo mais apertado — precisa de atenção primeiro."
+    },
+    {
+     "texto": "Ignorar a de 1 semana, porque é pouco dinheiro",
+     "correta": false,
+     "feedbackErro": "Valor baixo não significa que pode esperar. O prazo curto é o que pede ação mais rápida, mesmo sendo um valor pequeno."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "desejo-e-necessidade",
+   "dificuldade": 3,
+   "pergunta": "Duda precisa de um casaco pro frio, mas só olha modelos de marca cara. Onde está o desejo aqui?",
+   "ancora": "A necessidade é o casaco; a marca cara é o desejo dentro dela.",
+   "alternativas": [
+    {
+     "texto": "Na escolha da marca cara, não em ter um casaco",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Em ter um casaco, porque ela poderia ficar sem",
+     "correta": false,
+     "feedbackErro": "Ter um casaco pro frio é necessidade — o que sobra como desejo é a escolha específica da marca cara."
+    },
+    {
+     "texto": "Não existe desejo nessa situação, é tudo necessidade",
+     "correta": false,
+     "feedbackErro": "O casaco em si é necessidade, mas a marca cara específica é escolha — e escolha assim costuma ser desejo, não necessidade."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-objetivo",
+   "criterio": "Vale planejar, mesmo curto?",
+   "enunciado": "Planejar um objetivo de curto prazo, mesmo levando só duas semanas",
+   "resposta": true,
+   "ancora": "Mesmo curto, planejar evita gastar o que seria pro objetivo.",
+   "feedbackErro": "Parece dispensável planejar algo tão rápido. Mas mesmo curto, planejar evita que o dinheiro reservado seja gasto com outra coisa antes da hora."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "prazo-do-objetivo",
+   "instrucao": "Depois de adiamentos, virou médio ou continua curto? Arraste.",
+   "ancora": "Pequenos adiamentos não mudam a categoria; grandes, sim.",
+   "feedbackErro": "Todo adiamento parece mudar a categoria. Mas só quando o tempo total cresce muito é que um objetivo curto passa a ser médio prazo.",
+   "caixas": [
+    { "id": "curto", "rotulo": "Continua curto" },
+    { "id": "medio", "rotulo": "Virou médio" }
+   ],
+   "itens": [
+    { "texto": "Objetivo de 1 semana, adiado pra 2 semanas", "caixaCorreta": "curto" },
+    { "texto": "Objetivo de 1 semana, adiado repetidamente até 5 meses", "caixaCorreta": "medio" },
+    { "texto": "Objetivo de 10 dias, adiado pra 3 semanas", "caixaCorreta": "curto" },
+    { "texto": "Objetivo de 2 semanas, adiado até completar 6 meses", "caixaCorreta": "medio" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "Ainda é desejo, mesmo barato?",
+   "enunciado": "Comprar um adesivo bonito, só porque chamou atenção na loja",
+   "resposta": true,
+   "ancora": "Preço baixo não transforma desejo em necessidade.",
+   "feedbackErro": "Parece necessidade, por custar pouco e parecer inofensivo. Mas o preço baixo não muda o motivo da compra — chamar atenção é desejo, não necessidade."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "prazo-do-objetivo",
+   "dificuldade": 3,
+   "pergunta": "Marcos quer R$ 60. Já tem R$ 12 e junta R$ 6 por semana. Em quantas semanas ele completa?",
+   "ancora": "60 menos 12 é 48; dividido por 6, são 8 semanas.",
+   "verificacao": { "expressao": "(60-12)/6", "esperado": 8 },
+   "alternativas": [
+    {
+     "texto": "8 semanas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "10 semanas",
+     "correta": false,
+     "feedbackErro": "Esse cálculo ignora os R$ 12 que ele já tinha. Falta juntar 48 (60 menos 12); 48 dividido por 6 é 8 semanas."
+    },
+    {
+     "texto": "12 semanas",
+     "correta": false,
+     "feedbackErro": "Esse valor usa o total errado. O que falta juntar é 48 (60 menos 12); dividido por 6, dá 8 semanas."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "Ainda é necessidade, com escolha?",
+   "enunciado": "Escolher entre dois remédios genéricos iguais, o mais barato",
+   "resposta": true,
+   "ancora": "Escolher a opção que resolve igual, mais barata, é necessidade.",
+   "feedbackErro": "Parece que qualquer escolha vira desejo. Mas escolher entre opções que resolvem igual, ficando com a mais barata, continua sendo necessidade — só bem decidida."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-objetivo",
+   "criterio": "Ainda ajuda com prazos misturados?",
+   "enunciado": "Anotar cada objetivo com seu prazo, mesmo tendo vários ao mesmo tempo",
+   "resposta": true,
+   "ancora": "Anotar prazos separados evita perder de vista qual vence primeiro.",
+   "feedbackErro": "Parece trabalho extra ter tantas anotações. Mas com vários objetivos juntos, anotar o prazo de cada um evita perder de vista qual vence primeiro."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "prazo-do-objetivo",
+   "pergunta": "Qual frase resume os três encontros sobre objetivos e prazos?",
+   "alternativas": [
+    {
+     "texto": "O prazo pode mudar, e desejo pode se esconder numa necessidade",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Uma vez definido, o prazo de um objetivo nunca muda",
+     "correta": false,
+     "feedbackErro": "O prazo pode mudar sim — adiamentos grandes o suficiente transformam um objetivo curto em médio ou longo prazo."
+    },
+    {
+     "texto": "Se o item é necessário, qualquer versão dele também é necessidade",
+     "correta": false,
+     "feedbackErro": "O item pode ser necessário, mas escolher a versão mais cara sem motivo é desejo — a necessidade é só a função básica."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "prazo-do-objetivo",
+   "dificuldade": 3,
+   "pergunta": "Bia tem R$ 20 e quer R$ 44, juntando R$ 4 por semana. Quantas semanas faltam?",
+   "ancora": "44 menos 20 é 24; dividido por 4, são 6 semanas.",
+   "verificacao": { "expressao": "(44-20)/4", "esperado": 6 },
+   "alternativas": [
+    {
+     "texto": "6 semanas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "11 semanas",
+     "correta": false,
+     "feedbackErro": "Esse cálculo ignora os R$ 20 que ela já tem. Falta juntar 24 (44 menos 20); dividido por 4, são 6 semanas."
+    },
+    {
+     "texto": "4 semanas",
+     "correta": false,
+     "feedbackErro": "Esse valor confunde o quanto ela junta por semana com a resposta. O certo é dividir os 24 que faltam por 4."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "Ainda é desejo, mesmo parecendo útil?",
+   "enunciado": "Trocar de celular funcionando bem só porque saiu um modelo novo",
+   "resposta": true,
+   "ancora": "Funcionando bem, o celular atual já resolve — trocar é desejo.",
+   "feedbackErro": "Parece necessidade, porque celular é útil no dia a dia. Mas se o atual funciona bem, trocar só pelo modelo novo é desejo."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "desejo-e-necessidade",
+   "instrucao": "É desejo ou necessidade, mesmo sendo caso difícil? Arraste.",
+   "ancora": "O básico que resolve é necessidade; o extra além disso é desejo.",
+   "feedbackErro": "Quando envolve algo necessário, tudo parece necessidade. Mas o que excede o básico que resolve o problema é desejo, não necessidade.",
+   "caixas": [
+    { "id": "desejo", "rotulo": "Desejo" },
+    { "id": "necessidade", "rotulo": "Necessidade" }
+   ],
+   "itens": [
+    { "texto": "Escolher o remédio genérico mais barato que trata igual", "caixaCorreta": "necessidade" },
+    { "texto": "Comprar a versão de luxo do mesmo remédio", "caixaCorreta": "desejo" },
+    { "texto": "Substituir o sapato que furou e machuca o pé", "caixaCorreta": "necessidade" },
+    { "texto": "Trocar de mochila em bom estado por outra da moda", "caixaCorreta": "desejo" }
+   ]
+  }
+ ]
+}

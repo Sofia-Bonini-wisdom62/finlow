@@ -1,0 +1,246 @@
+{
+ "slug": "a-fatura-do-cartao-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "a-fatura-do-cartao",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "ler-a-fatura",
+   "criterio": "Essa informação está na fatura?",
+   "enunciado": "O nome de quem vendeu em cada compra parcelada",
+   "resposta": true,
+   "ancora": "A fatura detalha cada compra, com o nome do estabelecimento.",
+   "feedbackErro": "Parece um dado irrelevante, mas cada linha da fatura traz de onde veio a compra."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "ler-a-fatura",
+   "criterio": "Essa informação está na fatura?",
+   "enunciado": "A senha do cartão",
+   "resposta": false,
+   "ancora": "Senha é sigilo do titular — não aparece impressa na fatura.",
+   "feedbackErro": "Parece que toda informação do cartão está na fatura. Mas a senha é sigilosa e nunca aparece impressa nela."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-do-parcial",
+   "criterio": "Isso é verdade sobre a fatura?",
+   "enunciado": "Pagar o mínimo bloqueia o cartão até o próximo mês",
+   "resposta": false,
+   "ancora": "Pagar o mínimo mantém o cartão liberado, dentro do limite.",
+   "feedbackErro": "Parece punição por não pagar tudo. Mas pagar o mínimo mantém o cartão liberado — o custo vem do juro, não do bloqueio."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "ler-a-fatura",
+   "dificuldade": 2,
+   "pergunta": "Camila vê na fatura a linha Encargos e juros rotativo. O que ela indica?",
+   "ancora": "É o juro cobrado sobre o saldo que ficou sem pagar antes.",
+   "alternativas": [
+    {
+     "texto": "Juros cobrados por saldo não pago em faturas anteriores",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O total de tudo que ela comprou este mês",
+     "correta": false,
+     "feedbackErro": "O total do mês aparece em outra linha da fatura. Encargos é especificamente o juro sobre saldo antigo."
+    },
+    {
+     "texto": "O valor do limite disponível no cartão",
+     "correta": false,
+     "feedbackErro": "Limite disponível é outro campo da fatura. Encargos é o juro cobrado por não ter pago tudo antes."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-do-parcial",
+   "dificuldade": 2,
+   "pergunta": "Fatura de R$ 380. Camila paga R$ 60. Quanto entra no rotativo?",
+   "ancora": "380 menos 60 é 320 — o que sobra vira dívida com juros.",
+   "verificacao": { "expressao": "380-60", "esperado": 320 },
+   "alternativas": [
+    {
+     "texto": "R$ 320",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 60",
+     "correta": false,
+     "feedbackErro": "R$ 60 foi o que ela pagou, não o que sobrou. Subtraia: 380 menos 60 é 320."
+    },
+    {
+     "texto": "R$ 380",
+     "correta": false,
+     "feedbackErro": "R$ 380 seria a fatura inteira sem pagamento. Ela pagou parte — sobram 320."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "ler-a-fatura",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Fatura fechada significa que o cartão para de funcionar",
+   "resposta": false,
+   "ancora": "Fatura fechada só muda pra qual mês a compra entra.",
+   "feedbackErro": "Parece que fechar a fatura trava o cartão. Mas ele continua liberado — as compras novas só entram na fatura seguinte."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "custo-do-parcial",
+   "instrucao": "Isso reduz o custo da próxima fatura? Arraste.",
+   "ancora": "Pagar mais e quitar cedo reduz o saldo que rende juro.",
+   "feedbackErro": "Cor e limite não mudam o custo. O que reduz o juro é pagar mais que o mínimo e não deixar saldo parado no rotativo.",
+   "caixas": [
+    { "id": "reduz", "rotulo": "Reduz o custo" },
+    { "id": "nao", "rotulo": "Não reduz" }
+   ],
+   "itens": [
+    { "texto": "Pagar mais que o valor mínimo", "caixaCorreta": "reduz" },
+    { "texto": "Trocar a cor do cartão", "caixaCorreta": "nao" },
+    { "texto": "Quitar o saldo antes do vencimento", "caixaCorreta": "reduz" },
+    { "texto": "Aumentar o limite do cartão", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-do-parcial",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Pagar um pouco mais que o mínimo já reduz o juro seguinte",
+   "resposta": true,
+   "ancora": "Menos saldo no rotativo significa menos juro no mês seguinte.",
+   "feedbackErro": "Parece que só pagar tudo faz diferença. Mas qualquer valor a mais reduz o saldo que fica rendendo juro no mês seguinte."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-do-parcial",
+   "dificuldade": 2,
+   "pergunta": "Fatura de R$ 380 sem pagamento, rotativo a 14% ao mês. Juro do 1º mês?",
+   "ancora": "14% de 380: divida por 100 e multiplique por 14 — dá 53,20.",
+   "verificacao": { "expressao": "380*0.14", "esperado": 53.2 },
+   "alternativas": [
+    {
+     "texto": "R$ 53,20",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 14",
+     "correta": false,
+     "feedbackErro": "Você trocou 14% por R$ 14 fixos. É percentual sobre 380: o resultado é 53,20."
+    },
+    {
+     "texto": "R$ 266",
+     "correta": false,
+     "feedbackErro": "R$ 266 usaria 70%. A taxa é 14%: 380 dividido por 100, vezes 14, dá 53,20."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "ler-a-fatura",
+   "criterio": "Isso ajuda a entender a fatura?",
+   "enunciado": "Comparar o total desta fatura com o total do mês passado",
+   "resposta": true,
+   "ancora": "Comparar totais mostra se o saldo no rotativo está crescendo.",
+   "feedbackErro": "Olhar só o mês atual parece suficiente. Mas comparar com o mês passado mostra se a dívida no rotativo está aumentando."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-do-parcial",
+   "criterio": "Ajuda a evitar dívida cara?",
+   "enunciado": "Deixar de usar o cartão até quitar o rotativo",
+   "resposta": true,
+   "ancora": "Parar de gastar evita que a dívida cresça enquanto você quita.",
+   "feedbackErro": "Parece drástico demais. Mas continuar comprando enquanto deve no rotativo só soma mais saldo rendendo os mesmos 14%."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "custo-do-parcial",
+   "pergunta": "Qual ideia fecha este encontro?",
+   "alternativas": [
+    {
+     "texto": "A fatura revela onde está o custo — mínimo, rotativo e encargos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Fatura fechada trava o cartão até o pagamento",
+     "correta": false,
+     "feedbackErro": "O cartão continua liberado após fechar a fatura — o que muda é pra qual mês a compra nova entra."
+    },
+    {
+     "texto": "Aumentar o limite reduz o juro do rotativo",
+     "correta": false,
+     "feedbackErro": "O limite muda quanto você pode gastar, não a taxa de juro cobrada sobre o saldo."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "custo-do-parcial",
+   "dificuldade": 3,
+   "pergunta": "Fatura de R$ 850, paga R$ 300. Quanto entra no rotativo?",
+   "ancora": "850 menos 300 é 550 — o que sobra vira dívida com juros.",
+   "verificacao": { "expressao": "850-300", "esperado": 550 },
+   "alternativas": [
+    {
+     "texto": "R$ 550",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 850",
+     "correta": false,
+     "feedbackErro": "R$ 850 seria a fatura inteira, sem pagamento. Ela pagou parte — sobram 550."
+    },
+    {
+     "texto": "R$ 300",
+     "correta": false,
+     "feedbackErro": "R$ 300 é o que ela pagou, não o que sobrou. Subtraia: 850 menos 300 é 550."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "custo-do-parcial",
+   "instrucao": "Toque na ordem, do que mais economiza pro que menos.",
+   "ancora": "Quanto mais você paga, menos saldo sobra pra render juro.",
+   "feedbackErro": "É tentador achar que pagar o mínimo já resolve. Mas quanto mais fica sem pagar, mais saldo rende os 14% do rotativo.",
+   "itens": [
+    { "texto": "Pagar a fatura inteira todo mês", "posicaoCorreta": 1 },
+    { "texto": "Pagar bem mais que o mínimo", "posicaoCorreta": 2 },
+    { "texto": "Pagar exatamente o mínimo", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "ler-a-fatura",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Aumentar o limite do cartão reduz o juro do rotativo",
+   "resposta": false,
+   "ancora": "Limite maior muda o quanto se gasta, não a taxa cobrada.",
+   "feedbackErro": "Parece que limite e juro andam juntos. Mas a taxa do rotativo é fixa — aumentar o limite só permite gastar mais."
+  }
+ ]
+}

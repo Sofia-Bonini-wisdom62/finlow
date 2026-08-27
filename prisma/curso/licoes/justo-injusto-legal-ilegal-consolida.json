@@ -1,0 +1,338 @@
+{
+ "slug": "justo-injusto-legal-ilegal-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "justo-injusto-legal-ilegal",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "criterio": "As duas práticas juntas são legais?",
+   "enunciado": "Cobrar mais no cartão avisando antes, e recusar troca de defeito alegando 'sem troca'",
+   "resposta": false,
+   "ancora": "Cada prática vale por si; a segunda fere um direito garantido.",
+   "feedbackErro": "É fácil achar que se uma parte é permitida, o conjunto todo é permitido. Mas cobrar mais avisando é legal; recusar troca de defeito nunca é."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "criterio": "É legal?",
+   "enunciado": "Cartaz de 'promoção imperdível, só hoje', no mesmo preço há 3 meses",
+   "resposta": false,
+   "ancora": "Propaganda enganosa sobre prazo ou condição é proibida pelo CDC.",
+   "feedbackErro": "A urgência anunciada é o gatilho da venda, e é justamente aí que mora o problema: informar um prazo falso é propaganda enganosa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "criterio": "É legal?",
+   "enunciado": "Cobrar uma pequena diferença no pix, avisando com um cartaz na entrada",
+   "resposta": true,
+   "ancora": "A regra vale para qualquer forma de pagamento, não só cartão.",
+   "feedbackErro": "Pode parecer que só o cartão tem essa exceção prevista em lei. Mas a diferença de preço por forma de pagamento vale para qualquer meio, se avisada antes."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "dificuldade": 3,
+   "pergunta": "Em qual situação a diferença de preço por forma de pagamento deixa de ser legal?",
+   "ancora": "O que descumpre a lei é a falta de aviso antes da compra.",
+   "alternativas": [
+    {
+     "texto": "Quando o preço maior só aparece no caixa, sem aviso antes",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando a diferença é maior que 10%",
+     "correta": false,
+     "feedbackErro": "Não existe um teto percentual fixado em lei para essa diferença. O que a lei exige é a informação clara antes da compra."
+    },
+    {
+     "texto": "Quando o cliente paga em dinheiro",
+     "correta": false,
+     "feedbackErro": "Pagar em dinheiro costuma ser a forma mais barata, não a que torna a prática ilegal. O problema é a falta de aviso, não o meio escolhido."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "dificuldade": 3,
+   "pergunta": "Uma promoção diz 'válida enquanto durar o estoque', e o estoque acaba no mesmo dia. Isso é",
+   "ancora": "Condição clara e verdadeira sobre o limite é permitida.",
+   "alternativas": [
+    {
+     "texto": "Sempre ilegal, promoção deve durar pelo menos uma semana",
+     "correta": false,
+     "feedbackErro": "Não existe duração mínima obrigatória para promoções. O que importa é a condição informada ser verdadeira, não a duração dela."
+    },
+    {
+     "texto": "Legal, se o limite de estoque foi informado com clareza",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ilegal, porque estoque limitado é sempre desculpa",
+     "correta": false,
+     "feedbackErro": "Estoque realmente pode acabar rápido, e isso não é proibido. O problema só existiria se a condição informada fosse falsa."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "criterio": "É uma exceção ao direito de troca?",
+   "enunciado": "Loja física recusar troca por arrependimento, sem defeito",
+   "resposta": true,
+   "ancora": "Arrependimento sem defeito só é garantido fora da loja física.",
+   "feedbackErro": "Parece contradizer tudo que se aprendeu sobre direito de troca. Mas essa é justamente a exceção: em loja física, sem defeito, a troca é cortesia, não obrigação."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "direitos-do-consumidor",
+   "instrucao": "Classifique: direito garantido por lei ou cortesia da loja?",
+   "ancora": "Direito vale mesmo sem a loja querer; cortesia é opção da loja.",
+   "feedbackErro": "As duas parecem trocas normais do dia a dia, e por isso se confundem. A diferença é se a loja pode recusar sem quebrar a lei.",
+   "caixas": [
+    {
+     "id": "direito",
+     "rotulo": "Direito"
+    },
+    {
+     "id": "cortesia",
+     "rotulo": "Cortesia"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Trocar por defeito dentro da garantia",
+     "caixaCorreta": "direito"
+    },
+    {
+     "texto": "Trocar por não gostar da cor, em loja física",
+     "caixaCorreta": "cortesia"
+    },
+    {
+     "texto": "Devolver compra online por arrependimento em 7 dias",
+     "caixaCorreta": "direito"
+    },
+    {
+     "texto": "Aceitar devolução de roupa sem etiqueta, por educação com o cliente",
+     "caixaCorreta": "cortesia"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "direitos-do-consumidor",
+   "criterio": "Essa exigência da loja é válida?",
+   "enunciado": "Exigir a embalagem original para aceitar troca por defeito de fábrica",
+   "resposta": false,
+   "ancora": "Defeito de fábrica dá direito à troca mesmo sem embalagem original.",
+   "feedbackErro": "Pedir a embalagem parece uma exigência administrativa razoável. Mas para defeito de fábrica, a lei garante a troca mesmo sem ela."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "direitos-do-consumidor",
+   "criterio": "Essa exigência da loja é válida?",
+   "enunciado": "Pedir a nota fiscal ou outro comprovante de compra para trocar por defeito",
+   "resposta": true,
+   "ancora": "Comprovante de compra é exigência razoável e válida.",
+   "feedbackErro": "Depois do caso da embalagem, pode parecer que a loja não pode exigir nada. Mas provar que a compra foi feita ali é uma exigência legítima."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "direitos-do-consumidor",
+   "pergunta": "Notebook de R$ 2.400 com defeito, sem solução em 30 dias, devolvido com 5% de correção: quanto?",
+   "campo": "moeda",
+   "min": 2000,
+   "max": 3000,
+   "gabarito": 2520,
+   "toleranciaPct": 20,
+   "fonte": "cálculo de correção sobre devolução, exemplo didático",
+   "feedbackPerto": "Isso mesmo, R$ 2.520. Além do valor pago, a devolução costuma vir com correção sobre o período em que o dinheiro ficou parado.",
+   "feedbackLonge": "R$ 2.520: R$ 2.400 mais 5% de correção. Devolução integral não significa só o valor original — costuma incluir a correção do período.",
+   "verificacao": {
+    "expressao": "2400*1.05",
+    "esperado": 2520
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "dificuldade": 3,
+   "pergunta": "Promoção de 'metade do preço', mas o preço 'de tabela' foi inflado antes só para o desconto parecer maior. Isso é",
+   "ancora": "Inflar o preço antes da promoção falseia o desconto real.",
+   "alternativas": [
+    {
+     "texto": "Ilegal: é propaganda enganosa sobre o desconto real",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Legal, o preço final ainda é mais barato que na concorrência",
+     "correta": false,
+     "feedbackErro": "Ser mais barato que a concorrência não legaliza a prática. O problema é o desconto anunciado ser falso, não o valor final em si."
+    },
+    {
+     "texto": "Injusto, mas não há nada de errado juridicamente",
+     "correta": false,
+     "feedbackErro": "Existe sim um problema jurídico aqui: anunciar um desconto que não é real é propaganda enganosa, proibida por lei."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "resolucao-de-conflitos-de-consumo",
+   "dificuldade": 3,
+   "pergunta": "Diego quis cancelar um curso online no 6º dia, sem assistir a nada. A empresa diz que digital não tem devolução. Isso é",
+   "ancora": "Arrependimento em 7 dias vale para compras online, mesmo digitais.",
+   "alternativas": [
+    {
+     "texto": "Ilegal: 7 dias de arrependimento cobre curso online",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Legal, produtos digitais são sempre exceção",
+     "correta": false,
+     "feedbackErro": "Produto digital não está fora da regra geral. O direito de arrependimento de compras à distância também cobre cursos e conteúdos online."
+    },
+    {
+     "texto": "Depende só da política interna da empresa",
+     "correta": false,
+     "feedbackErro": "A política interna da empresa não pode contrariar um direito garantido por lei — e o arrependimento de 7 dias é um deles."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "criterio": "Essa cláusula é válida, mesmo assinada?",
+   "enunciado": "Cláusula que impede o cliente de reclamar no Procon",
+   "resposta": false,
+   "ancora": "Cláusula abusiva é nula, mesmo com a assinatura do cliente.",
+   "feedbackErro": "A assinatura parece dar validade a qualquer cláusula. Mas cláusulas abusivas, como impedir reclamação a um órgão público, são nulas por lei."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "criterio": "Essa cláusula é válida, mesmo assinada?",
+   "enunciado": "Cláusula que define o prazo de entrega do produto",
+   "resposta": true,
+   "ancora": "Definir prazo de entrega é cláusula comum e válida.",
+   "feedbackErro": "Depois de ver uma cláusula nula, pode parecer que todas são suspeitas. Mas definir prazo de entrega é uma condição normal e válida do contrato."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "dificuldade": null,
+   "pergunta": "Qual frase resume a lição de hoje?",
+   "alternativas": [
+    {
+     "texto": "Toda diferença de preço avisada antes é sempre justa",
+     "correta": false,
+     "feedbackErro": "Avisar antes legaliza a diferença, mas não garante equilíbrio — legal e justo continuam sendo coisas diferentes."
+    },
+    {
+     "texto": "Legal e justo têm limites: vale o direito de fato, não só o aviso ou o contrato",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cláusula assinada em contrato sempre vale, mesmo abusiva",
+     "correta": false,
+     "feedbackErro": "Cláusula abusiva é nula mesmo assinada — a assinatura não legitima o que a lei já proíbe."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "criterio": "É uma exceção válida?",
+   "enunciado": "Feira de artesanato recusar devolver dinheiro de peça feita sob encomenda, sem defeito",
+   "resposta": true,
+   "ancora": "Produto feito sob encomenda tem regras próprias de devolução.",
+   "feedbackErro": "Parece contrariar o direito geral de arrependimento. Mas encomenda personalizada, sem defeito, é uma exceção reconhecida nesse tipo de relação."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "resolucao-de-conflitos-de-consumo",
+   "dificuldade": 3,
+   "pergunta": "Um consumidor venceu no Juizado Especial Cível, mas a empresa não paga. Qual é o passo seguinte?",
+   "ancora": "Sentença não paga pode ser cobrada por execução judicial.",
+   "alternativas": [
+    {
+     "texto": "Pedir a execução da sentença na Justiça",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Aceitar que não há mais nada a fazer",
+     "correta": false,
+     "feedbackErro": "Existe sim um caminho: a sentença pode ser executada judicialmente para forçar o pagamento devido."
+    },
+    {
+     "texto": "Recomeçar o processo do zero no Procon",
+     "correta": false,
+     "feedbackErro": "Voltar ao Procon não é necessário: a sentença judicial já decidiu o caso, falta apenas executá-la."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "instrucao": "Classifique: prática abusiva ou estratégia comercial permitida?",
+   "ancora": "Abusiva restringe a escolha do cliente; permitida oferece opção.",
+   "feedbackErro": "As duas parecem estratégias de venda parecidas. A diferença é se o cliente continua livre para escolher ou é forçado.",
+   "caixas": [
+    {
+     "id": "abusiva",
+     "rotulo": "Abusiva"
+    },
+    {
+     "id": "permitida",
+     "rotulo": "Permitida"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Só vender o produto A se o cliente levar o produto B junto",
+     "caixaCorreta": "abusiva"
+    },
+    {
+     "texto": "Dar desconto para quem levar dois produtos, sem obrigar",
+     "caixaCorreta": "permitida"
+    },
+    {
+     "texto": "Inflar o preço antes de anunciar um desconto falso",
+     "caixaCorreta": "abusiva"
+    },
+    {
+     "texto": "Cobrar mais no cartão, avisando antes da compra",
+     "caixaCorreta": "permitida"
+    }
+   ]
+  }
+ ]
+}

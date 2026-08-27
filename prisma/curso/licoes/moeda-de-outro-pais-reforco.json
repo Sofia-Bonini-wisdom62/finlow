@@ -1,0 +1,324 @@
+{
+ "slug": "moeda-de-outro-pais-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "moeda-de-outro-pais",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "moeda-de-outro-pais",
+   "criterio": "Envolve câmbio (troca de moeda)?",
+   "enunciado": "Sacar reais de um caixa eletrônico em Buenos Aires, usando cartão brasileiro",
+   "resposta": true,
+   "ancora": "O banco converte reais em pesos por trás da operação de saque.",
+   "feedbackErro": "O caixa entrega pesos na hora, e isso confunde. Mas por trás, o banco fez a conversão de reais para pesos: é uma operação de câmbio."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "moeda-de-outro-pais",
+   "criterio": "Envolve câmbio (troca de moeda)?",
+   "enunciado": "Pagar o aluguel de um apartamento no Brasil, tudo em reais",
+   "resposta": false,
+   "ancora": "Sem moeda estrangeira envolvida, não existe conversão.",
+   "feedbackErro": "Parece que toda transação financeira envolve câmbio de algum jeito. Mas aqui, tudo é feito em real: não há conversão de moeda alguma."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "moeda-de-outro-pais",
+   "criterio": "Envolve câmbio (troca de moeda)?",
+   "enunciado": "Comprar um jogo digital de uma loja europeia, cobrado em euros no cartão",
+   "resposta": true,
+   "ancora": "Cobrança em euro sempre passa por conversão para real na fatura.",
+   "feedbackErro": "É uma compra digital, feita em segundos, e por isso parece não ter câmbio. Mas o valor em euro é convertido para real na fatura do cartão."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "calculo-de-cambio",
+   "dificuldade": 2,
+   "pergunta": "O dólar foi de R$ 4,90 para R$ 5,15 em um mês. O que isso significa, na prática?",
+   "ancora": "Real mais fraco encarece o que é comprado em dólar.",
+   "alternativas": [
+    {
+     "texto": "O real perdeu valor; produtos importados ficam mais caros",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O dólar ficou mais barato para o brasileiro",
+     "correta": false,
+     "feedbackErro": "É o contrário: com mais reais sendo necessários por dólar, o dólar ficou mais caro para quem compra em real."
+    },
+    {
+     "texto": "Não muda nada para quem compra em real dentro do Brasil",
+     "correta": false,
+     "feedbackErro": "Para compras 100% nacionais realmente pesa menos. Mas qualquer produto com componente importado tende a sentir o efeito no preço."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "calculo-de-cambio",
+   "dificuldade": 2,
+   "pergunta": "Por que o preço num app de compras internacionais muda de um dia para o outro, sem promoção?",
+   "ancora": "A cotação da moeda estrangeira varia diariamente.",
+   "alternativas": [
+    {
+     "texto": "Porque a cotação da moeda estrangeira varia diariamente",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque a loja aumenta o preço para turistas",
+     "correta": false,
+     "feedbackErro": "Não é uma cobrança direcionada a turistas: a variação vem da cotação do dia, que muda para qualquer comprador."
+    },
+    {
+     "texto": "Porque o produto está saindo de linha",
+     "correta": false,
+     "feedbackErro": "Saída de linha altera preço por outros motivos comerciais, mas a oscilação diária de valor vem da cotação da moeda."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "moeda-de-outro-pais",
+   "criterio": "Câmbio mais caro sempre é ruim?",
+   "enunciado": "Dólar mais caro é ruim para quem recebe em dólar e gasta em real",
+   "resposta": false,
+   "ancora": "Quem recebe em dólar ganha mais reais quando o dólar sobe.",
+   "feedbackErro": "Parece que dólar caro é sempre um problema. Mas para quem recebe pagamento em dólar e converte para real, a alta do dólar significa receber mais reais."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "calculo-de-cambio",
+   "instrucao": "Toque na ordem, do mais barato ao mais caro em reais, para US$ 100.",
+   "ancora": "Quanto maior a cotação, mais reais o mesmo dólar exige.",
+   "feedbackErro": "O produto em dólar não muda de preço, mas em reais ele acompanha a cotação: quanto mais alta, mais caro fica aqui.",
+   "itens": [
+    {
+     "texto": "Dólar a R$ 4,85",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Dólar a R$ 5,10",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Dólar a R$ 5,40",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "calculo-de-cambio",
+   "criterio": "Fica mais barato pagar, nesse caso?",
+   "enunciado": "O dólar subiu de R$ 4,85 para R$ 5,40 e você ainda vai comprar em dólar",
+   "resposta": false,
+   "ancora": "Dólar mais caro exige mais reais para a mesma compra.",
+   "feedbackErro": "Pode parecer que só o valor em dólar importa, e ele não mudou. Mas em reais, a mesma compra em dólar ficou mais cara com a alta da cotação."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "calculo-de-cambio",
+   "criterio": "Fica mais barato pagar, nesse caso?",
+   "enunciado": "O dólar caiu de R$ 5,40 para R$ 4,85 e você ainda vai comprar em dólar",
+   "resposta": true,
+   "ancora": "Dólar mais barato exige menos reais para a mesma compra.",
+   "feedbackErro": "A compra em dólar continua a mesma, e isso confunde. Mas em reais, ela ficou mais barata: a cotação caiu, então precisa de menos reais."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "calculo-de-cambio",
+   "pergunta": "Dólar a R$ 5,20. Uma bicicleta importada custa US$ 350. Quantos reais isso equivale?",
+   "campo": "moeda",
+   "min": 1500,
+   "max": 2500,
+   "gabarito": 1820,
+   "toleranciaPct": 20,
+   "fonte": "cotação de exemplo, R$ 5,20 por dólar",
+   "feedbackPerto": "Isso mesmo, R$ 1.820. O cálculo é sempre multiplicar o valor em dólar pela cotação do dia.",
+   "feedbackLonge": "R$ 1.820: 350 dólares vezes R$ 5,20. Mesmo com casas decimais na cotação, a conta continua sendo uma multiplicação simples.",
+   "verificacao": {
+    "expressao": "350*5.2",
+    "esperado": 1820
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custos-de-cambio",
+   "dificuldade": 2,
+   "pergunta": "Comprando com cartão de crédito internacional, soma-se IOF de 3,5% além da cotação. Qual é o efeito disso?",
+   "ancora": "IOF eleva o custo real acima do valor pela cotação.",
+   "alternativas": [
+    {
+     "texto": "O custo real fica acima do valor calculado só pela cotação",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O IOF é descontado depois, então não afeta o preço mostrado",
+     "correta": false,
+     "feedbackErro": "O IOF entra no cálculo antes de fechar a fatura: ele já soma ao valor que aparece cobrado, não é descontado depois."
+    },
+    {
+     "texto": "O IOF só existe em compras acima de US$ 1.000",
+     "correta": false,
+     "feedbackErro": "Não há esse piso de valor: o IOF incide sobre a operação de câmbio, seja ela grande ou pequena."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custos-de-cambio",
+   "dificuldade": 2,
+   "pergunta": "Heitor comparou o preço de um tênis em dólar no cartão e em reais fixos. Que cuidado ele deve ter com a compra em dólar?",
+   "ancora": "Cotação do cartão e IOF podem variar até o fechamento da fatura.",
+   "alternativas": [
+    {
+     "texto": "Somar o IOF e a cotação do cartão, que varia até fechar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nenhum, o preço em dólar sempre sai mais barato",
+     "correta": false,
+     "feedbackErro": "Não existe garantia de que sai mais barato: cotação, spread do cartão e IOF podem elevar bastante o valor final em reais."
+    },
+    {
+     "texto": "Só verificar a cor do produto disponível",
+     "correta": false,
+     "feedbackErro": "A cor não influencia o custo financeiro da compra. O que pesa no bolso é a cotação somada às taxas do cartão."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custos-de-cambio",
+   "criterio": "Encarece a compra em moeda estrangeira?",
+   "enunciado": "O IOF cobrado em compras internacionais no cartão",
+   "resposta": true,
+   "ancora": "IOF soma ao valor da cotação, elevando o custo final.",
+   "feedbackErro": "O IOF aparece separado na fatura, e por isso parece um detalhe à parte. Mas ele soma ao valor da cotação, elevando o custo final da compra."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custos-de-cambio",
+   "criterio": "Encarece a compra em moeda estrangeira?",
+   "enunciado": "Pagar à vista em reais, dentro do Brasil",
+   "resposta": false,
+   "ancora": "Sem câmbio envolvido, não há IOF de operação de câmbio.",
+   "feedbackErro": "Depois de ver o IOF em compras internacionais, pode parecer que ele aparece em qualquer pagamento. Mas em reais, dentro do país, ele não incide."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "moeda-de-outro-pais",
+   "dificuldade": null,
+   "pergunta": "Qual frase resume o reforço de hoje?",
+   "alternativas": [
+    {
+     "texto": "Câmbio varia todo dia; taxas como IOF somam ao custo de comprar fora",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O IOF só existe para compras muito grandes",
+     "correta": false,
+     "feedbackErro": "Não há piso de valor: o IOF incide sobre a operação de câmbio, independente do tamanho da compra."
+    },
+    {
+     "texto": "Dólar caro é sempre ruim, para todo mundo",
+     "correta": false,
+     "feedbackErro": "Depende de quem recebe e quem paga: dólar caro favorece quem recebe em dólar e converte para real."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custos-de-cambio",
+   "criterio": "Isso reduz o valor recebido na troca?",
+   "enunciado": "O spread cobrado pela casa de câmbio entre compra e venda",
+   "resposta": true,
+   "ancora": "Spread é a margem que a casa de câmbio ganha na troca.",
+   "feedbackErro": "O spread não aparece como uma linha separada de taxa, e por isso passa despercebido. Mas ele reduz o valor recebido na troca de moeda."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "calculo-de-cambio",
+   "dificuldade": 2,
+   "pergunta": "Dólar a R$ 5,00. Um produto de US$ 40 custa quantos reais?",
+   "ancora": "Multiplicar o valor em dólar pela cotação do dia.",
+   "alternativas": [
+    {
+     "texto": "R$ 200",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 45",
+     "correta": false,
+     "feedbackErro": "Esse valor soma dólar com real como se fossem a mesma unidade. É preciso multiplicar pela cotação, não somar."
+    },
+    {
+     "texto": "R$ 40",
+     "correta": false,
+     "feedbackErro": "Esse é o valor em dólar, sem conversão nenhuma. Para saber em reais, multiplica-se pela cotação do dia."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "custos-de-cambio",
+   "instrucao": "Classifique: aumenta o custo internacional ou não influencia?",
+   "ancora": "IOF e spread somam custo; a cor ou o dia da semana não.",
+   "feedbackErro": "Alguns fatores parecem relevantes, mas só custam de verdade quando entram no cálculo financeiro da operação.",
+   "caixas": [
+    {
+     "id": "aumenta",
+     "rotulo": "Aumenta"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não influencia"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "O IOF sobre a operação de câmbio",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "O spread da casa de câmbio",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "A cor do cartão de crédito usado",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "O dia da semana em que a compra foi feita",
+     "caixaCorreta": "nao"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,284 @@
+{
+ "slug": "trabalho-e-profissoes-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "trabalho-e-profissoes",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "trabalho-e-remuneracao",
+   "criterio": "Isso conta como trabalho remunerado?",
+   "enunciado": "Vizinho que lava carros dos moradores por R$15",
+   "resposta": true,
+   "ancora": "Ele cobra R$15 por carro — pagamento por serviço, isso é trabalho.",
+   "feedbackErro": "Lavar carro parece informal, sem crachá nem loja. Mas ele cobra por isso — o critério é receber pagamento, não ter um escritório."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "trabalho-e-remuneracao",
+   "criterio": "Isso conta como trabalho remunerado?",
+   "enunciado": "Adolescente ajudando o pai de graça na horta da família",
+   "resposta": false,
+   "ancora": "Sem pagamento, é ajuda familiar — não é trabalho remunerado.",
+   "feedbackErro": "Dá trabalho de verdade, mas ninguém recebe nada por isso. Sem pagamento, não é trabalho remunerado — é ajuda em família."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "setores-da-economia",
+   "criterio": "Isso é setor primário?",
+   "enunciado": "Apicultor colhendo mel das colmeias",
+   "resposta": true,
+   "ancora": "Tirar o mel direto da colmeia é setor primário.",
+   "feedbackErro": "Envolve cuidado e técnica, e isso lembra indústria. Mas ele tira o mel direto da natureza — isso é setor primário."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "profissoes-na-comunidade",
+   "dificuldade": 2,
+   "pergunta": "Uma oficina troca o óleo e conserta o motor dos carros da rua. Qual profissão atua ali?",
+   "ancora": "Quem repara motor e troca peça é mecânico.",
+   "alternativas": [
+    {
+     "texto": "Mecânico",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Motorista",
+     "correta": false,
+     "feedbackErro": "Motorista dirige o carro, não conserta o motor. Quem repara e troca peça é o mecânico."
+    },
+    {
+     "texto": "Vendedor de carros",
+     "correta": false,
+     "feedbackErro": "Vendedor negocia a venda do carro pronto. Quem troca óleo e conserta motor é o mecânico."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "setores-da-economia",
+   "dificuldade": 2,
+   "pergunta": "Uma fábrica de móveis compra madeira do produtor rural e vende as cadeiras prontas para lojas. Que setor é a fábrica?",
+   "ancora": "Transformar madeira em cadeira é indústria — setor secundário.",
+   "alternativas": [
+    {
+     "texto": "Setor secundário",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Setor primário",
+     "correta": false,
+     "feedbackErro": "O primário é quem tira a madeira da floresta, o produtor rural. A fábrica transforma essa madeira: é secundário."
+    },
+    {
+     "texto": "Setor terciário",
+     "correta": false,
+     "feedbackErro": "O terciário venderia a cadeira pronta na loja. A fábrica é quem transforma a madeira: é secundário."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "setores-da-economia",
+   "criterio": "É setor terciário?",
+   "enunciado": "Loja vendendo as cadeiras já prontas ao cliente",
+   "resposta": true,
+   "ancora": "Vender o produto pronto ao cliente é prestar serviço — terciário.",
+   "feedbackErro": "A cadeira já veio pronta da fábrica, e isso confunde com o secundário. Mas aqui a loja está vendendo, prestando serviço — isso é terciário."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "setores-da-economia",
+   "instrucao": "Essa atividade tira algo da natureza ou já transforma/vende?",
+   "ancora": "Primário tira direto da natureza; o resto transforma ou vende.",
+   "feedbackErro": "O que ainda está bruto, direto da natureza, é primário. Assim que alguém transforma ou vende, já é outro setor.",
+   "caixas": [
+    {
+     "id": "primario",
+     "rotulo": "Setor primário"
+    },
+    {
+     "id": "outro",
+     "rotulo": "Transforma ou vende"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Extrator tirando látex da seringueira",
+     "caixaCorreta": "primario"
+    },
+    {
+     "texto": "Fábrica de pneus transformando o látex",
+     "caixaCorreta": "outro"
+    },
+    {
+     "texto": "Catador de ostras no mangue",
+     "caixaCorreta": "primario"
+    },
+    {
+     "texto": "Restaurante servindo o prato pronto",
+     "caixaCorreta": "outro"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "profissoes-na-comunidade",
+   "criterio": "Essa é uma profissão remunerada?",
+   "enunciado": "Morador que cuida do jardim do vizinho de graça, por amizade",
+   "resposta": false,
+   "ancora": "Sem cobrar nada, é favor entre vizinhos, não profissão.",
+   "feedbackErro": "Ele faz o trabalho de um jardineiro de verdade. Mas sem receber nada, não é profissão — falta o pagamento."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "trabalho-e-remuneracao",
+   "dificuldade": 2,
+   "pergunta": "Dois irmãos lavam o carro da família. Um recebe R$10 do pai; o outro faz de graça. Quem tem trabalho remunerado?",
+   "ancora": "Só quem recebe pagamento pela tarefa tem trabalho remunerado.",
+   "alternativas": [
+    {
+     "texto": "Só o que recebeu R$10",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Os dois, porque os dois lavaram o carro",
+     "correta": false,
+     "feedbackErro": "A tarefa é igual nos dois casos, e isso confunde. Mas só quem recebeu o pagamento teve trabalho remunerado."
+    },
+    {
+     "texto": "Nenhum dos dois, porque é dentro de casa",
+     "correta": false,
+     "feedbackErro": "Ser dentro de casa não anula o pagamento. Quem recebeu R$10 teve trabalho remunerado, mesmo em casa."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "setores-da-economia",
+   "criterio": "É setor secundário?",
+   "enunciado": "Padaria transformando farinha e ovos em bolo",
+   "resposta": true,
+   "ancora": "Transformar ingredientes em bolo é indústria — secundário.",
+   "feedbackErro": "Farinha e ovos vêm da natureza, e isso lembra o primário. Mas aqui eles são transformados em outro produto — isso é secundário."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "profissoes-na-comunidade",
+   "criterio": "É exemplo de profissão?",
+   "enunciado": "Costureira que conserta roupa e cobra por peça",
+   "resposta": true,
+   "ancora": "Cobrar por peça consertada é trabalho remunerado de costureira.",
+   "feedbackErro": "Parece um favor de vizinhança, mas ela cobra por peça — isso é profissão remunerada."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "trabalho-e-profissoes",
+   "pergunta": "O que separa trabalho remunerado de uma simples ajuda?",
+   "alternativas": [
+    {
+     "texto": "O tanto de esforço gasto na tarefa",
+     "correta": false,
+     "feedbackErro": "Esforço não é o critério — arrumar o jardim de graça também cansa e não é trabalho remunerado."
+    },
+    {
+     "texto": "Receber pagamento pela tarefa feita",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A tarefa ser feita fora de casa",
+     "correta": false,
+     "feedbackErro": "Lugar não define nada — dá para ter trabalho remunerado dentro de casa, como consertar roupa por encomenda."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "setores-da-economia",
+   "dificuldade": 2,
+   "pergunta": "Um pescador vende o peixe fresco direto no cais, sem passar por fábrica. Que setor é esse?",
+   "ancora": "Tirar o peixe da água e vender direto é ainda setor primário.",
+   "alternativas": [
+    {
+     "texto": "Setor primário",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Setor secundário",
+     "correta": false,
+     "feedbackErro": "Secundário transformaria o peixe em outro produto, como conserva. Ele só tira e vende fresco: é primário."
+    },
+    {
+     "texto": "Setor terciário",
+     "correta": false,
+     "feedbackErro": "Terciário seria um serviço separado da pesca, como transporte. Aqui é o próprio pescador vendendo o que tirou: é primário."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "trabalho-e-remuneracao",
+   "criterio": "É trabalho remunerado?",
+   "enunciado": "Diarista limpando a casa e recebendo por dia trabalhado",
+   "resposta": true,
+   "ancora": "Receber por dia de limpeza é trabalho remunerado — é diarista.",
+   "feedbackErro": "Pode parecer informal, sem carteira assinada. Mas ela recebe por dia trabalhado — isso é trabalho remunerado."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "profissoes-na-comunidade",
+   "instrucao": "É trabalho remunerado ou ajuda sem pagamento?",
+   "ancora": "O pagamento é o que separa profissão de ajuda.",
+   "feedbackErro": "Ajuda sem cobrar não é profissão; trabalho remunerado sempre envolve receber por uma tarefa.",
+   "caixas": [
+    {
+     "id": "remunerado",
+     "rotulo": "Remunerado"
+    },
+    {
+     "id": "ajuda",
+     "rotulo": "Ajuda sem pagamento"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Eletricista trocando a fiação e cobrando pela visita",
+     "caixaCorreta": "remunerado"
+    },
+    {
+     "texto": "Vizinho emprestando a escada, sem cobrar nada",
+     "caixaCorreta": "ajuda"
+    },
+    {
+     "texto": "Pintor pintando o muro por encomenda",
+     "caixaCorreta": "remunerado"
+    },
+    {
+     "texto": "Amigo ajudando a carregar as compras, de graça",
+     "caixaCorreta": "ajuda"
+    }
+   ]
+  }
+ ]
+}

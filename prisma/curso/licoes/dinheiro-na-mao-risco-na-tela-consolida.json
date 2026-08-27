@@ -1,0 +1,293 @@
+{
+ "slug": "dinheiro-na-mao-risco-na-tela-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "dinheiro-na-mao-risco-na-tela",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-fisico",
+   "criterio": "Isso é um risco do dinheiro físico?",
+   "enunciado": "Pagar em espécie e conferir o troco na hora, junto ao caixa",
+   "resposta": false,
+   "ancora": "Conferir na hora, com o caixa por perto, reduz o risco.",
+   "feedbackErro": "Envolve dinheiro físico, mas conferir na hora e com o vendedor presente é justamente o cuidado que evita perda — não é o próprio risco."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-digital",
+   "criterio": "Isso é um risco de transação digital?",
+   "enunciado": "Usar o cartão físico do banco numa loja com maquininha original",
+   "resposta": false,
+   "ancora": "Cartão físico em maquininha oficial é a transação digital mais padrão.",
+   "feedbackErro": "É uma transação com meio digital envolvido, mas dentro do fluxo padrão e seguro — o risco digital aparece quando algo foge desse padrão."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-fisico",
+   "criterio": "Isso é um risco do dinheiro físico?",
+   "enunciado": "Guardar economias de anos inteiras só em espécie, debaixo do colchão",
+   "resposta": true,
+   "ancora": "Sem registro nem seguro, um único incêndio ou furto apaga tudo.",
+   "feedbackErro": "Parece seguro por estar escondido em casa, mas um incêndio, uma enchente ou um furto elimina tudo de uma vez, sem chance de recuperação."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-digital",
+   "dificuldade": 3,
+   "pergunta": "Alguém usa duas etapas de segurança, mas repassa o código por telefone a um suposto atendente. Por que falhou?",
+   "ancora": "A segunda camada só funciona se o código nunca sair com você.",
+   "alternativas": [
+    {
+     "texto": "Porque a autenticação em duas etapas não funciona de verdade",
+     "correta": false,
+     "feedbackErro": "A tecnologia funcionou — o código foi gerado certo. A falha não foi técnica, foi entregar o código a quem pediu por telefone."
+    },
+    {
+     "texto": "Porque nenhuma proteção resiste se o usuário entrega a chave",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque bancos não usam mais esse tipo de proteção",
+     "correta": false,
+     "feedbackErro": "Bancos continuam usando amplamente essa proteção. O problema não foi a tecnologia — foi o código sair de quem deveria guardá-lo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-fisico",
+   "dificuldade": 3,
+   "pergunta": "Um comerciante recebe uma nota falsa sem perceber. Quando ele costuma descobrir o problema?",
+   "ancora": "Nota falsa só aparece quando alguém tenta usá-la ou o banco recusa.",
+   "alternativas": [
+    {
+     "texto": "Só quando tentar usar ou depositar a nota e ela for recusada",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Na hora, porque toda nota falsa é visivelmente diferente",
+     "correta": false,
+     "feedbackErro": "Notas falsas de qualidade conseguem passar despercebidas no dia a dia — por isso o problema só aparece depois, na tentativa de uso."
+    },
+    {
+     "texto": "Nunca, porque bancos aceitam qualquer nota em espécie",
+     "correta": false,
+     "feedbackErro": "Bancos e máquinas de contagem verificam a autenticidade da nota — é justamente aí que uma nota falsa costuma ser barrada."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "risco-digital",
+   "criterio": "Isso protege uma transação digital?",
+   "enunciado": "Compartilhar a tela do celular por chamada de vídeo com um suposto suporte técnico",
+   "resposta": false,
+   "ancora": "Compartilhar tela dá acesso total a quem está do outro lado.",
+   "feedbackErro": "Parece só mostrar um problema para receber ajuda, mas compartilhar a tela dá a quem vê acesso a senhas, aplicativos de banco e códigos — o oposto de proteção."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "risco-fisico",
+   "instrucao": "Ordene do mais seguro ao menos seguro para levar dinheiro numa festa",
+   "ancora": "O critério: quanto mais fácil de acessar sem você notar, menos seguro.",
+   "feedbackErro": "O instinto é pensar só no valor. O critério real é a facilidade de alguém pegar sem que você perceba na hora.",
+   "itens": [
+    { "texto": "Pagamento por aproximação com o celular travado por senha", "posicaoCorreta": 1 },
+    { "texto": "Pouco dinheiro em espécie, numa carteira pequena no bolso da frente", "posicaoCorreta": 2 },
+    { "texto": "Dinheiro em espécie numa bolsa aberta, pendurada nas costas", "posicaoCorreta": 3 },
+    { "texto": "Dinheiro em espécie solto na mão, andando pela multidão", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "risco-digital",
+   "criterio": "Isso protege uma transação digital?",
+   "enunciado": "Fazer uma compra grande usando o wi-fi aberto de um shopping",
+   "resposta": false,
+   "ancora": "Redes abertas e públicas facilitam a interceptação de dados.",
+   "feedbackErro": "Parece só conveniência para economizar dados móveis, mas uma rede aberta e sem senha facilita que outra pessoa intercepte o que você digita."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "risco-fisico",
+   "criterio": "Isso reduz o risco do dinheiro físico?",
+   "enunciado": "Combinar previamente com a família um valor máximo de dinheiro em espécie em casa",
+   "resposta": true,
+   "ancora": "Um limite combinado evita acúmulo desnecessário de dinheiro exposto.",
+   "feedbackErro": "Não parece uma regra de segurança à primeira vista, mas limitar o quanto fica guardado em espécie reduz o prejuízo possível em caso de furto na casa."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "risco-digital",
+   "pergunta": "Uma vítima de golpe digital perde em média quanto numa fraude de cartão clonado, segundo estimativas do setor?",
+   "campo": "moeda",
+   "min": 200,
+   "max": 3000,
+   "gabarito": 1200,
+   "toleranciaPct": 30,
+   "fonte": "estimativas de entidades de meios de pagamento sobre fraude com cartão, ordem de grandeza",
+   "feedbackPerto": "Perto disso — fraudes de cartão clonado costumam ficar na casa dos milhares de reais até serem percebidas.",
+   "feedbackLonge": "A estimativa fica em torno de R$1.200. O prejuízo cresce enquanto a fraude passa despercebida na fatura."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "risco-fisico",
+   "dificuldade": 3,
+   "pergunta": "Um assaltante rende alguém e exige a senha junto com o cartão físico. Qual é a orientação de segurança nesse caso?",
+   "ancora": "Em risco à integridade física, o dinheiro nunca vale a resistência.",
+   "alternativas": [
+    {
+     "texto": "Entregar o pedido; segurança pessoal vem antes do dinheiro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Recusar e negociar um valor menor para entregar",
+     "correta": false,
+     "feedbackErro": "Negociar prolonga a situação de risco. Em uma abordagem armada, o valor perdido é secundário diante da integridade física."
+    },
+    {
+     "texto": "Fingir não ter cartão para ganhar tempo",
+     "correta": false,
+     "feedbackErro": "Enganar durante uma abordagem de risco pode escalar a violência. A orientação de segurança é cooperar, não resistir ou enganar."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "risco-digital",
+   "dificuldade": 3,
+   "pergunta": "Um app pede para ler SMS logo na instalação, sem explicar por quê. Qual o risco específico disso?",
+   "ancora": "Ler SMS permite capturar códigos de confirmação bancária.",
+   "alternativas": [
+    {
+     "texto": "Pode interceptar o código de confirmação por SMS",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pode deixar o celular mais lento para carregar",
+     "correta": false,
+     "feedbackErro": "Lentidão é um efeito colateral possível, mas secundário. O risco central é o app conseguir ler códigos bancários enviados por mensagem."
+    },
+    {
+     "texto": "Pode consumir mais dados móveis do plano",
+     "correta": false,
+     "feedbackErro": "Consumo de dados é irrelevante perto do risco real: acesso a códigos que autorizam transações na sua conta."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "risco-fisico",
+   "criterio": "Isso é um risco do dinheiro físico?",
+   "enunciado": "Receber o troco de uma compra e guardar direto na carteira fechada",
+   "resposta": false,
+   "ancora": "Guardar de imediato e fechado reduz a exposição do dinheiro.",
+   "feedbackErro": "Envolve dinheiro físico, mas guardar rápido e numa carteira fechada é o comportamento que reduz exposição, não que cria o risco."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "risco-digital",
+   "criterio": "Isso é um risco de transação digital?",
+   "enunciado": "Aceitar uma solicitação de acesso remoto de alguém que ligou se identificando como técnico do banco",
+   "resposta": true,
+   "ancora": "Acesso remoto dá controle total do aparelho a um estranho.",
+   "feedbackErro": "Parece resolver um problema rápido, mas dar acesso remoto a um desconhecido é entregar o controle total do celular, inclusive dos aplicativos de banco."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "risco-digital",
+   "pergunta": "Qual frase resume os casos-limite que você acabou de ver?",
+   "alternativas": [
+    {
+     "texto": "Qualquer proteção técnica é inútil diante de um golpe bem feito",
+     "correta": false,
+     "feedbackErro": "Proteções técnicas funcionam bem na maioria dos casos — elas falham quando a própria pessoa entrega a chave para outro."
+    },
+    {
+     "texto": "A proteção falha quando alguém entrega a chave, não quando a tecnologia falha",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Segurança física e digital seguem exatamente as mesmas regras",
+     "correta": false,
+     "feedbackErro": "As regras se parecem no princípio, mas os riscos práticos são diferentes: um envolve o objeto, o outro envolve dados e acesso remoto."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "risco-fisico",
+   "instrucao": "É risco do dinheiro físico ou do digital?",
+   "ancora": "Físico é sobre o objeto; digital é sobre dados e acesso.",
+   "feedbackErro": "O jeito de separar: perder ou ter roubado o objeto físico é risco físico. Alguém acessando dados ou senhas à distância é risco digital.",
+   "caixas": [
+    { "id": "fisico", "rotulo": "Físico" },
+    { "id": "digital", "rotulo": "Digital" }
+   ],
+   "itens": [
+    { "texto": "Nota de dinheiro se molhando na chuva dentro da mochila", "caixaCorreta": "fisico" },
+    { "texto": "Golpista clonando o cartão numa maquininha adulterada", "caixaCorreta": "digital" },
+    { "texto": "Cofre da loja arrombado durante a madrugada", "caixaCorreta": "fisico" },
+    { "texto": "E-mail falso simulando a fatura do cartão de crédito", "caixaCorreta": "digital" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "risco-digital",
+   "criterio": "Isso protege uma transação digital?",
+   "enunciado": "Desligar o compartilhamento de tela assim que o suporte parecer suspeito",
+   "resposta": true,
+   "ancora": "Cortar o acesso na dúvida evita que o dano avance.",
+   "feedbackErro": "Parece tarde demais se já compartilhou, mas interromper assim que surge suspeita ainda limita o quanto o outro lado consegue ver ou fazer."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "risco-fisico",
+   "dificuldade": 3,
+   "pergunta": "Por que empresas de transporte de valores usam carros blindados e rota variável?",
+   "ancora": "Rota imprevisível dificulta o planejamento de um assalto.",
+   "alternativas": [
+    {
+     "texto": "Porque reduz a chance de um assalto planejado com antecedência",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque a lei exige rota variável para qualquer transporte",
+     "correta": false,
+     "feedbackErro": "Não existe uma lei geral obrigando rota variável para todo transporte. A prática existe porque dificulta a previsibilidade para quem planeja um assalto."
+    },
+    {
+     "texto": "Porque isso reduz o consumo de combustível do veículo",
+     "correta": false,
+     "feedbackErro": "Rota variável tende a aumentar, não reduzir, o percurso. O objetivo não é economia — é segurança contra planejamento de assalto."
+    }
+   ]
+  }
+ ]
+}

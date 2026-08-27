@@ -1,0 +1,327 @@
+{
+ "slug": "seu-dinheiro-sua-responsabilidade-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "seu-dinheiro-sua-responsabilidade",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "planejar-e-decidir",
+   "criterio": "Ainda é planejamento de verdade?",
+   "enunciado": "Guardar dinheiro mas nunca revisar o plano quando a renda muda",
+   "resposta": false,
+   "ancora": "Plano que não se atualiza perde o contato com a realidade.",
+   "feedbackErro": "Guardar dinheiro é ótimo hábito, e por isso parece suficiente. Mas se a renda muda e o plano não é revisado, ele para de refletir a vida real."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "planejar-e-decidir",
+   "criterio": "Ainda é planejamento de verdade?",
+   "enunciado": "Seguir o orçamento à risca mesmo diante de uma emergência real",
+   "resposta": false,
+   "ancora": "Plano bom se ajusta a imprevistos, não os ignora.",
+   "feedbackErro": "Seguir o plano à risca parece disciplina, e geralmente é. Mas ignorar uma emergência real para 'não fugir do orçamento' é rigidez, não planejamento."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "planejar-e-decidir",
+   "criterio": "Ainda é planejamento de verdade?",
+   "enunciado": "Revisar os gastos do mês antes de decidir o orçamento seguinte",
+   "resposta": true,
+   "ancora": "Revisar é o que mantém o plano ligado à realidade.",
+   "feedbackErro": "Pode parecer repetitivo revisar todo mês, mas é essa revisão que corrige o plano antes que ele fique desconectado do que realmente acontece."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "planejar-e-decidir",
+   "dificuldade": 2,
+   "pergunta": "Pedro guarda 20% do salário, mas usa o cartão de crédito sem registrar os gastos. O plano dele está completo?",
+   "ancora": "Guardar sem controlar o resto deixa metade do plano no escuro.",
+   "alternativas": [
+    {
+     "texto": "Não — falta controlar para onde vai o resto do dinheiro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim — guardar 20% já garante o planejamento inteiro",
+     "correta": false,
+     "feedbackErro": "Guardar 20% é uma parte importante, mas sem saber para onde vai o resto, ele pode estar comprometendo o próprio dinheiro guardado com dívida de cartão."
+    },
+    {
+     "texto": "Sim — cartão de crédito não precisa ser registrado",
+     "correta": false,
+     "feedbackErro": "Cartão de crédito é gasto (ou dívida) real, só que adiado. Não registrar é abrir um buraco justamente na parte que mais cresce sem controle."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "aceitar-ou-recusar",
+   "dificuldade": 2,
+   "pergunta": "Uma promoção diz 'compre 2, leve 3' num item que você não usaria o terceiro. Aceitar economiza de verdade?",
+   "ancora": "Só economiza o que você realmente ia gastar de qualquer forma.",
+   "alternativas": [
+    {
+     "texto": "Só se você já ia comprar os 2 mesmo sem a promoção",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, sempre: 3 pelo preço de 2 é economia garantida",
+     "correta": false,
+     "feedbackErro": "Parece economia na conta da loja, mas se o terceiro item não seria comprado de jeito nenhum, você gastou mais do que gastaria — não economizou."
+    },
+    {
+     "texto": "Não, promoção nunca compensa, é sempre pegadinha",
+     "correta": false,
+     "feedbackErro": "Promoção pode compensar, sim — quando o que é oferecido já estava no seu plano de compra. O problema é aceitar só pelo item 'grátis'."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "planejar-e-decidir",
+   "criterio": "Ainda é planejamento de verdade?",
+   "enunciado": "Manter todo o dinheiro rendendo, sem nenhuma reserva de fácil acesso",
+   "resposta": false,
+   "ancora": "Sem reserva líquida, um imprevisto obriga a vender no pior momento.",
+   "feedbackErro": "Deixar tudo rendendo parece maximizar o plano, mas sem parte de fácil acesso, um imprevisto obriga a resgatar no momento errado — isso é falha de planejamento."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "planejar-e-decidir",
+   "instrucao": "Fortalece ou enfraquece o plano?",
+   "ancora": "Fortalece o que revisa e prevê; enfraquece o que ignora.",
+   "feedbackErro": "Ignorar contas e usar limite como renda parecem só 'deixar para depois', mas corroem o plano por dentro — o plano forte revisa e separa reserva.",
+   "caixas": [
+    {
+     "id": "fortalece",
+     "rotulo": "Fortalece"
+    },
+    {
+     "id": "enfraquece",
+     "rotulo": "Enfraquece"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Revisar o orçamento quando o salário muda",
+     "caixaCorreta": "fortalece"
+    },
+    {
+     "texto": "Ignorar contas atrasadas até esquecer delas",
+     "caixaCorreta": "enfraquece"
+    },
+    {
+     "texto": "Ter reserva para 3 a 6 meses de gastos",
+     "caixaCorreta": "fortalece"
+    },
+    {
+     "texto": "Usar o limite do cartão como renda extra",
+     "caixaCorreta": "enfraquece"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "aceitar-ou-recusar",
+   "criterio": "Isso protege o planejamento?",
+   "enunciado": "Recusar financiar um celular novo enquanto o atual funciona bem",
+   "resposta": true,
+   "ancora": "Recusar o que não é necessário mantém a folga do plano.",
+   "feedbackErro": "Celular novo é tentador mesmo com o antigo funcionando, e é aí que mora o teste: aceitar sem necessidade real reduz a folga guardada para outra prioridade."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "planejar-e-decidir",
+   "criterio": "Ainda é planejamento de verdade?",
+   "enunciado": "Cortar todo o lazer do orçamento para guardar o máximo possível",
+   "resposta": false,
+   "ancora": "Plano sem espaço nenhum para bem-estar tende a quebrar.",
+   "feedbackErro": "Guardar o máximo parece o objetivo certo, mas um plano sem espaço para lazer costuma quebrar rápido — a pessoa abandona tudo por falta de fôlego."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "planejar-e-decidir",
+   "pergunta": "Camila ganha R$ 2.400 e decide guardar 15% todo mês. Quanto ela guarda em 8 meses?",
+   "campo": "moeda",
+   "min": 2200,
+   "max": 3400,
+   "gabarito": 2880,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 15% de R$ 2.400 por 8 meses",
+   "feedbackPerto": "Boa estimativa: R$ 2.880 guardados ao longo dos 8 meses.",
+   "feedbackLonge": "São R$ 2.880: 15% de 2.400 é 360 por mês, vezes 8 meses.",
+   "verificacao": {
+    "expressao": "2400*0.15*8",
+    "esperado": 2880
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "aceitar-ou-recusar",
+   "dificuldade": 2,
+   "pergunta": "Um vendedor oferece um seguro extra com pressa: 'só vale aqui no caixa'. O que essa pressa deveria sinalizar?",
+   "ancora": "Pressa para decidir dificulta comparar se cabe no plano.",
+   "alternativas": [
+    {
+     "texto": "Que vale parar e checar se cabe no orçamento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que é oferta exclusiva e deve ser aproveitada na hora",
+     "correta": false,
+     "feedbackErro": "Ofertas 'só agora' são técnica de venda para reduzir o tempo de pensar. Isso não muda se o seguro extra cabe ou faz sentido no seu plano."
+    },
+    {
+     "texto": "Que o produto principal é de má qualidade",
+     "correta": false,
+     "feedbackErro": "A pressa fala sobre a técnica de venda, não sobre a qualidade do produto principal. O que decide é se o gasto extra cabe no planejamento."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "planejar-e-decidir",
+   "dificuldade": 2,
+   "pergunta": "Felipe ganhou um bônus de R$ 800 e já tinha reserva de emergência completa. Qual uso combina mais com planejamento?",
+   "ancora": "Com a reserva pronta, o bônus pode mirar outro objetivo.",
+   "alternativas": [
+    {
+     "texto": "Direcionar para outro objetivo do plano, como investir",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Gastar tudo, porque bônus é dinheiro 'extra'",
+     "correta": false,
+     "feedbackErro": "Bônus parece 'dinheiro de brinde', mas ele também é renda — se a reserva já está completa, ele pode avançar outro objetivo em vez de sumir."
+    },
+    {
+     "texto": "Guardar tudo na reserva, mesmo já estando completa",
+     "correta": false,
+     "feedbackErro": "Reserva completa não precisa crescer mais — travar dinheiro ali sem necessidade tira a chance de avançar outro objetivo do plano."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "planejar-e-decidir",
+   "criterio": "Ainda é planejamento de verdade?",
+   "enunciado": "Manter o mesmo plano de sempre, mesmo depois de uma promoção no trabalho",
+   "resposta": false,
+   "ancora": "Renda maior pede plano revisado, não o mesmo de sempre.",
+   "feedbackErro": "Manter o plano parece disciplina, mas ignorar uma mudança real de renda é deixar de aproveitar (ou prever) uma nova realidade financeira."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "aceitar-ou-recusar",
+   "criterio": "Isso protege o planejamento?",
+   "enunciado": "Recusar aumentar o limite do cartão só porque o banco ofereceu",
+   "resposta": true,
+   "ancora": "Limite maior sem necessidade só aumenta a tentação de gastar.",
+   "feedbackErro": "O banco oferecendo mais limite parece um elogio ao seu crédito, mas aceitar sem necessidade real só aumenta a tentação — recusar protege o plano."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "planejar-e-decidir",
+   "pergunta": "Qual ideia fecha este encontro?",
+   "alternativas": [
+    {
+     "texto": "Planejamento é vivo: revisa, guarda com reserva e recusa o que não cabe",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Um plano bom nunca muda, mesmo quando a renda muda",
+     "correta": false,
+     "feedbackErro": "O plano precisa acompanhar a renda — ignorar uma mudança real o desconecta da vida de verdade."
+    },
+    {
+     "texto": "Toda promoção que parece vantajosa deve ser aceita na hora",
+     "correta": false,
+     "feedbackErro": "O que decide não é a promoção parecer boa, é se ela cabe no que já estava planejado."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "planejar-e-decidir",
+   "instrucao": "Ordene do que mais ao que menos fortalece o plano.",
+   "ancora": "Reserva e revisão constroem; comprar por impulso desconstrói.",
+   "feedbackErro": "Guardar sem checar parece neutro, mas sem revisão o hábito perde eficácia com o tempo — ainda fortalece mais que comprar por impulso, só que menos que revisar.",
+   "itens": [
+    {
+     "texto": "Ter reserva de emergência líquida",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Revisar o orçamento todo mês",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Guardar dinheiro sem nunca checar quanto sobra",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Comprar por impulso e ajustar o plano depois",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "aceitar-ou-recusar",
+   "dificuldade": 3,
+   "pergunta": "Um plano de assinatura anual sai mais barato por mês que o mensal, mas exige pagar tudo de uma vez. Isso é sempre melhor negócio?",
+   "ancora": "Só se o valor à vista couber sem comprometer outras prioridades.",
+   "alternativas": [
+    {
+     "texto": "Não sempre — depende se o valor à vista cabe no plano",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, sempre — o valor por mês é menor no anual",
+     "correta": false,
+     "feedbackErro": "O valor mensal equivalente é menor, de fato. Mas pagar tudo de uma vez pode travar dinheiro que tinha outro destino no seu plano — isso pesa na decisão."
+    },
+    {
+     "texto": "Não, nunca — pagamento anual é sempre armadilha",
+     "correta": false,
+     "feedbackErro": "Pagamento anual pode ser ótimo negócio quando cabe no orçamento sem sacrificar outra prioridade. A resposta depende do plano, não é sempre não."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "planejar-e-decidir",
+   "criterio": "Ainda é planejamento de verdade?",
+   "enunciado": "Comparar o custo de duas operadoras antes de trocar de plano",
+   "resposta": true,
+   "ancora": "Comparar antes de trocar é planejamento simples e eficaz.",
+   "feedbackErro": "Trocar de operadora parece decisão pequena, mas comparar antes evita pagar mais por um serviço parecido — é planejamento no dia a dia."
+  }
+ ]
+}

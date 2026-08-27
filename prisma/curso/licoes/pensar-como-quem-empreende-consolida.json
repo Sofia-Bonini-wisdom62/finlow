@@ -1,0 +1,324 @@
+{
+ "slug": "pensar-como-quem-empreende-consolida",
+ "segmento": "em3",
+ "conceitoPrincipal": "custo-e-preco",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-e-preco",
+   "criterio": "O critério ainda vale aqui?",
+   "enunciado": "Cobrar barato num serviço porque 'não gasta material'",
+   "resposta": false,
+   "ancora": "Em serviço, o custo principal é o seu tempo e a sua habilidade.",
+   "feedbackErro": "Sem insumo visível, o serviço parece custar zero. Mas cada hora vendida barata é uma hora que não volta — tempo é o insumo, e ele tem preço."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "testar-antes-de-investir",
+   "criterio": "O critério ainda vale aqui?",
+   "enunciado": "Testar pequeno mesmo quando a ideia parece óbvia",
+   "resposta": true,
+   "ancora": "Ideia óbvia para você ainda é hipótese para o mercado.",
+   "feedbackErro": "Quanto mais óbvia a ideia parece, menor parece a necessidade do teste — e maior o tombo quando o cliente imaginado não aparece. O teste vale sempre."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-e-preco",
+   "criterio": "O critério ainda vale aqui?",
+   "enunciado": "Vender abaixo do custo para tirar o concorrente do jogo",
+   "resposta": false,
+   "ancora": "Guerra de preço exige caixa para sangrar — quem não tem, quebra antes.",
+   "feedbackErro": "Grandes redes fazem isso com reserva para aguentar meses de perda. Sem esse caixa, a guerra de preço é uma corrida para ver quem quebra primeiro."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-e-preco",
+   "dificuldade": 3,
+   "pergunta": "Otávio cobra R$ 40 por hora de aula e gasta 1 hora de deslocamento por atendimento. Quanto vale a hora real dele?",
+   "ancora": "R$ 40 por 2 horas ocupadas = R$ 20 por hora de verdade.",
+   "verificacao": {
+    "expressao": "40/2",
+    "esperado": 20
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 20: o deslocamento é hora ocupada sem pagamento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 40: deslocamento não é trabalho",
+     "correta": false,
+     "feedbackErro": "Não é aula, mas ocupa uma hora que não pode ser vendida a mais ninguém. Hora bloqueada pelo serviço entra na conta do serviço."
+    },
+    {
+     "texto": "Depende só do gasto com transporte",
+     "correta": false,
+     "feedbackErro": "A passagem é o custo menor. O maior é invisível: a hora presa no trajeto. Aula online ou cliente vizinho dobraria o ganho por hora dele."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-e-preco",
+   "dificuldade": 3,
+   "pergunta": "As vendas dobraram e o lucro desapareceu. Qual causa é a mais típica nesse cenário?",
+   "ancora": "Crescer cria custos por degrau: ajudante, frete, equipamento.",
+   "alternativas": [
+    {
+     "texto": "Custos novos que chegam por degrau: ajudante, frete, máquina",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Impossível: vender mais é sempre lucrar mais",
+     "correta": false,
+     "feedbackErro": "Só se os custos crescessem no mesmo ritmo — e não crescem: dobrar a produção pode exigir ajudante e máquina que a margem antiga não pagava."
+    },
+    {
+     "texto": "O imposto, que dobra sozinho o custo total",
+     "correta": false,
+     "feedbackErro": "Imposto cresce junto da receita, em proporção parecida — ele não vira vilão de repente. O que muda o jogo são os custos em degrau, que chegam inteiros."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "risco-e-oportunidade",
+   "criterio": "Vale abrir o negócio assim?",
+   "enunciado": "Toda a renda da casa dependendo do negócio desde o 1º dia",
+   "resposta": false,
+   "ancora": "Negócio novo oscila. Renda paralela banca a travessia do começo.",
+   "feedbackErro": "Dedicação total parece o caminho mais rápido. Mas os primeiros meses oscilam — sem outra renda cobrindo o básico, a primeira baixa vira desespero e dívida."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "testar-antes-de-investir",
+   "instrucao": "Os pedidos caíram 50%. Toque na ordem da reação.",
+   "ancora": "Dado antes de diagnóstico; diagnóstico antes de decisão.",
+   "feedbackErro": "Decidir antes de entender é chute com pressa. A ordem protege: ouvir o cliente, refazer a conta, testar o ajuste — e só então definir o rumo.",
+   "itens": [
+    {
+     "texto": "Perguntar aos clientes o motivo da queda",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Refazer a conta de custo e preço",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Ajustar produto ou canal e testar de novo",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Decidir: crescer, mudar ou encerrar",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "risco-e-oportunidade",
+   "criterio": "Sinal de encerrar o projeto?",
+   "enunciado": "Três testes ajustados e ninguém disposto a pagar",
+   "resposta": true,
+   "ancora": "Saber parar também é decisão empreendedora — e das mais baratas.",
+   "feedbackErro": "Insistir parece coragem. Mas três testes com ajuste e zero pagante é o mercado respondendo. Parar aqui preserva caixa e energia para a próxima ideia."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "risco-e-oportunidade",
+   "criterio": "Sinal de encerrar o projeto?",
+   "enunciado": "O primeiro concorrente abrindo no mesmo bairro",
+   "resposta": false,
+   "ancora": "Concorrente confirma que existe demanda — diferencie-se, não fuja.",
+   "feedbackErro": "Concorrência assusta, mas prova o mercado: ninguém copia negócio sem cliente. A resposta é diferenciar atendimento, prazo ou produto — não fechar."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-e-preco",
+   "pergunta": "Custo fixo de R$ 300/mês e lucro de R$ 12 por camiseta. Para sobrar R$ 900 no mês, quantas vendas?",
+   "campo": "numero",
+   "min": 20,
+   "max": 300,
+   "gabarito": 100,
+   "toleranciaPct": 20,
+   "fonte": "derivado da própria conta: (300 + 900) ÷ 12",
+   "verificacao": {
+    "expressao": "(300+900)/12",
+    "esperado": 100
+   },
+   "feedbackPerto": "100 camisetas: as 25 primeiras pagam o fixo, as outras 75 constroem os R$ 900. Meta de sobra vira meta de venda.",
+   "feedbackLonge": "São 100. O viés é dividir só a meta (900 ÷ 12 = 75) e esquecer que o custo fixo come primeiro: ele exige mais 25 vendas antes de sobrar algo."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "risco-e-oportunidade",
+   "dificuldade": 3,
+   "pergunta": "Uma ONG de reforço escolar quer depender menos de doações. Qual caminho é o empreendedor?",
+   "ancora": "Negócio social mistura receitas: o pago financia o gratuito.",
+   "alternativas": [
+    {
+     "texto": "Criar um serviço pago que financie as vagas gratuitas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cortar vagas gratuitas até as doações voltarem",
+     "correta": false,
+     "feedbackErro": "Corta o propósito para salvar a estrutura — e segue refém da mesma fonte única. O movimento empreendedor cria receita nova, não encolhe a missão."
+    },
+    {
+     "texto": "Aceitar: projeto social só vive de doação",
+     "correta": false,
+     "feedbackErro": "Muitos negócios sociais vendem produto ou serviço e reinvestem a sobra na causa. Fonte única de renda é fragilidade em qualquer negócio — social também."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "testar-antes-de-investir",
+   "dificuldade": 3,
+   "pergunta": "A cidade inteira abriu loja do mesmo produto da moda. Entrar agora é:",
+   "ancora": "Onda confirma demanda — e derruba a margem de quem chega tarde.",
+   "alternativas": [
+    {
+     "texto": "Arriscado: a demanda existe, mas a margem já caiu",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Garantido: se todos entraram, é dinheiro certo",
+     "correta": false,
+     "feedbackErro": "Todo mundo dentro significa oferta explodindo: preço cai, sobra estoque. Quem lucra com a moda é quem chega cedo ou quem vende algo diferente para ela."
+    },
+    {
+     "texto": "Impossível saber sem abrir a loja e ver",
+     "correta": false,
+     "feedbackErro": "Dá para ler antes de apostar: conte concorrentes, compare preços, observe estoque encalhado. Observar o mercado é um teste — e não custa uma loja."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "testar-antes-de-investir",
+   "criterio": "Leitura de quem empreende?",
+   "enunciado": "Prejuízo pequeno em teste é aprendizado pago",
+   "resposta": true,
+   "ancora": "O teste que falha barato evita a aposta que falharia caro.",
+   "feedbackErro": "Prejuízo parece sempre derrota. Em teste pequeno, ele é o preço da informação: você descobriu que não vende gastando pouco — antes de gastar muito."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-e-preco",
+   "criterio": "Leitura de quem empreende?",
+   "enunciado": "Sucesso se mede pelo tamanho do negócio, não pela sobra",
+   "resposta": false,
+   "ancora": "Negócio grande sem sobra é problema grande. A medida é o lucro.",
+   "feedbackErro": "Tamanho impressiona: mais vendas, mais gente, mais movimento. Mas movimento não paga boleto — negócio saudável é o que sobra depois de todos os custos."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "custo-e-preco",
+   "pergunta": "Depois de três encontros, o que define pensar como quem empreende?",
+   "alternativas": [
+    {
+     "texto": "Contar todos os custos, testar em degraus e saber a hora de parar.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Crescer o mais rápido possível antes que copiem a ideia.",
+     "correta": false,
+     "feedbackErro": "Crescer sem conta foi o que sumiu com o lucro das vendas dobradas — degrau a degrau vence."
+    },
+    {
+     "texto": "Nunca aceitar prejuízo, nem mesmo em teste.",
+     "correta": false,
+     "feedbackErro": "Prejuízo pequeno em teste é informação comprada barata — recusá-lo leva à aposta cega."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "custo-e-preco",
+   "instrucao": "Entra na conta do preço deste serviço?",
+   "ancora": "Entra o que o serviço consome hoje — não o que já foi gasto.",
+   "feedbackErro": "O critério: entra o que a prestação consome (tempo, deslocamento, assinatura). Gasto antigo é custo afundado — dinheiro que não volta não muda o preço.",
+   "caixas": [
+    {
+     "id": "entra",
+     "rotulo": "Entra"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não entra"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Horas de deslocamento até o cliente",
+     "caixaCorreta": "entra"
+    },
+    {
+     "texto": "Curso que você pagou há três anos",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Assinatura mensal do software usado",
+     "caixaCorreta": "entra"
+    },
+    {
+     "texto": "Multa que você pagou uma vez no passado",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "custo-e-preco",
+   "pergunta": "Serviço com 3h de trabalho + 1h de deslocamento. Meta: R$ 30 por hora ocupada. Preço a cobrar?",
+   "campo": "moeda",
+   "min": 60,
+   "max": 200,
+   "gabarito": 120,
+   "toleranciaPct": 20,
+   "fonte": "derivado da própria conta: 4 horas ocupadas × R$ 30",
+   "verificacao": {
+    "expressao": "(3+1)*30",
+    "esperado": 120
+   },
+   "feedbackPerto": "R$ 120: são 4 horas ocupadas, não 3. A hora do trajeto não pode ser vendida a outro cliente — ela entra no preço.",
+   "feedbackLonge": "R$ 120. O viés é cobrar só as horas 'de trabalho' (R$ 90): a hora de deslocamento também fica bloqueada, e hora bloqueada é custo."
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "risco-e-oportunidade",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Formalizado como MEI, você paga uma guia fixa por mês",
+   "resposta": true,
+   "ancora": "MEI: microempreendedor individual — guia mensal fixa de ~R$ 75.",
+   "feedbackErro": "Parece que imposto de empresa é sempre percentual e complicado. No MEI é uma guia fixa mensal (~R$ 75), que inclui INSS — e dá CNPJ e nota fiscal."
+  }
+ ]
+}

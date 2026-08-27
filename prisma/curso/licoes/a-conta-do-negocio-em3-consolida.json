@@ -1,0 +1,353 @@
+{
+ "slug": "a-conta-do-negocio-em3-consolida",
+ "segmento": "em3",
+ "conceitoPrincipal": "a-conta-do-negocio-em3",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "corte-inteligente",
+   "criterio": "O corte aumenta o lucro no ano?",
+   "enunciado": "Demitir quem atende bem para economizar salário",
+   "resposta": false,
+   "ancora": "Atendimento bom é máquina de receita: o corte custa mais que poupa.",
+   "feedbackErro": "O salário some da planilha na hora — esse é o lado visível. O invisível vem depois: cliente mal atendido não volta, e a receita perdida supera a economia."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "sustentavel-que-da-lucro",
+   "criterio": "O corte aumenta o lucro no ano?",
+   "enunciado": "Redesenhar rotas de entrega para gastar menos combustível",
+   "resposta": true,
+   "ancora": "Menos combustível: custo menor e menos emissão, na mesma tacada.",
+   "feedbackErro": "Parece mudança operacional pequena, mas mexe na linha certa: corta custo recorrente sem tocar no produto — e ainda reduz a pegada ambiental do negócio."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "corte-inteligente",
+   "criterio": "O corte aumenta o lucro no ano?",
+   "enunciado": "Adiar a manutenção da máquina principal para poupar agora",
+   "resposta": false,
+   "ancora": "Manutenção adiada vira quebra — e quebra para a produção.",
+   "feedbackErro": "No mês, o caixa agradece. No ano, a máquina cobra: quebra custa conserto de urgência e dias sem produzir. Economia que cria custo maior não é economia."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "corte-inteligente",
+   "dificuldade": 3,
+   "pergunta": "Tainá pode cortar R$ 300/mês da limpeza ou R$ 300/mês de desperdício de insumo. Qual corte escolher?",
+   "ancora": "Empate no valor se desempata pelo efeito sobre a venda.",
+   "alternativas": [
+    {
+     "texto": "Tanto faz: os dois liberam os mesmos R$ 300",
+     "correta": false,
+     "feedbackErro": "No caixa, empatam; no negócio, não. A limpeza compõe a experiência que traz o cliente de volta; o desperdício não compõe nada — só consome."
+    },
+    {
+     "texto": "O desperdício: some o custo sem tocar no que o cliente vê",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A limpeza: ninguém repara nesse detalhe",
+     "correta": false,
+     "feedbackErro": "Repara-se, e rápido — em alimentação, limpeza é quase o produto. Cortar o invisível ao cliente antes do visível é a ordem que protege a receita."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "sustentavel-que-da-lucro",
+   "dificuldade": 3,
+   "pergunta": "Um equipamento eficiente custa R$ 6.000 e economiza R$ 150/mês de energia. Quando essa conta fecha?",
+   "ancora": "6.000 ÷ 150 = 40 meses para se pagar; depois, é economia líquida.",
+   "verificacao": {
+    "expressao": "6000/150",
+    "esperado": 40
+   },
+   "alternativas": [
+    {
+     "texto": "Nunca: 40 meses é tempo demais para valer",
+     "correta": false,
+     "feedbackErro": "Depende do horizonte do negócio: quem planeja ficar anos colhe economia da metade do quarto ano em diante. 'Demais' só para quem pensa só no trimestre."
+    },
+    {
+     "texto": "Em 40 meses; dali em diante, vira sobra todo mês",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Na hora: eficiência não tem custo inicial",
+     "correta": false,
+     "feedbackErro": "Tem, e dos grandes — os R$ 6.000 saem do caixa hoje. O que a eficiência promete é retorno ao longo do tempo, não milagre imediato."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "sustentavel-que-da-lucro",
+   "criterio": "Sustentável e lucrativo ao mesmo tempo?",
+   "enunciado": "Transformar sobras da produção em um produto novo",
+   "resposta": true,
+   "ancora": "Resíduo virou receita: a mesma ação serve às duas contas.",
+   "feedbackErro": "Parece escolha entre planeta e caixa, mas aqui não há dilema: o que iria para o lixo passa a ser vendido. Menos descarte, mais receita — as contas convergem."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "corte-inteligente",
+   "instrucao": "Qual o efeito provável de cada decisão?",
+   "ancora": "Corte bom ataca custo; corte ruim ataca o motivo da compra.",
+   "feedbackErro": "A pergunta antes de todo corte: o cliente percebe? Embalagem igual e desperdício, não — corte livre. Ingrediente do carro-chefe e limpeza do salão, sim.",
+   "caixas": [
+    {
+     "id": "lucro",
+     "rotulo": "Aumenta o lucro"
+    },
+    {
+     "id": "venda",
+     "rotulo": "Derruba a venda"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Embalagem equivalente e mais barata",
+     "caixaCorreta": "lucro"
+    },
+    {
+     "texto": "Zerar o desperdício na cozinha",
+     "caixaCorreta": "lucro"
+    },
+    {
+     "texto": "Ingrediente pior no prato mais pedido",
+     "caixaCorreta": "venda"
+    },
+    {
+     "texto": "Cortar a limpeza do salão",
+     "caixaCorreta": "venda"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "sustentavel-que-da-lucro",
+   "criterio": "Sobrevive no longo prazo?",
+   "enunciado": "Lucrar despejando resíduo no rio da região",
+   "resposta": false,
+   "ancora": "Multa, imagem e fornecedores: o rio cobra com juros.",
+   "feedbackErro": "O lucro imediato é real — e é isca. Multa ambiental, cliente que abandona a marca e comunidade contra o negócio custam mais do que o descarte correto custaria."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "corte-inteligente",
+   "criterio": "Sobrevive no longo prazo?",
+   "enunciado": "Investir em melhoria que só se paga no próximo ano",
+   "resposta": true,
+   "ancora": "Orçamento bom enxerga o ano, não só o mês.",
+   "feedbackErro": "No caixa do mês, é só saída — daí a tentação de vetar. Mas decisão de orçamento se julga no horizonte inteiro: o que se paga e segue rendendo é investimento."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "sustentavel-que-da-lucro",
+   "pergunta": "A troca de lâmpadas baixa a luz de R$ 600 para R$ 420/mês. Quanto economiza em 12 meses?",
+   "campo": "moeda",
+   "min": 500,
+   "max": 5000,
+   "gabarito": 2160,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: (600 − 420) × 12",
+   "verificacao": {
+    "expressao": "(600-420)*12",
+    "esperado": 2160
+   },
+   "feedbackPerto": "R$ 2.160 no ano — R$ 180 por mês que deixam de sair. Eficiência é corte que se repete sozinho.",
+   "feedbackLonge": "R$ 2.160. Quem estima baixo olha um mês só: o viés do curto prazo. Economia recorrente se mede no ano — 12 × R$ 180."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "corte-inteligente",
+   "dificuldade": 3,
+   "pergunta": "Em que caso NÃO cortar um custo é a melhor decisão para o lucro?",
+   "ancora": "Custo que sustenta a venda não é gordura: é músculo.",
+   "alternativas": [
+    {
+     "texto": "Quando o custo sustenta o que faz o cliente voltar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nunca: todo corte melhora o resultado",
+     "correta": false,
+     "feedbackErro": "Melhora a coluna de custos e pode destruir a de receita. Corte em atendimento, qualidade ou limpeza costuma custar mais venda do que poupa dinheiro."
+    },
+    {
+     "texto": "Quando o dono tem apego àquela despesa",
+     "correta": false,
+     "feedbackErro": "Apego não é critério — é o jeito de gordura se disfarçar de músculo. O teste é objetivo: a despesa gera ou protege receita? Se não, é candidata a corte."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "receita-custo-lucro",
+   "dificuldade": 3,
+   "pergunta": "Receita R$ 12.000, fixos R$ 5.000, variáveis R$ 5.800. Qual mudança gera MAIS lucro por mês?",
+   "ancora": "Compare os efeitos em reais: 580 contra 500 contra menos de 480.",
+   "verificacao": {
+    "expressao": "5800*0.1",
+    "esperado": 580
+   },
+   "alternativas": [
+    {
+     "texto": "Cortar 10% dos variáveis: + R$ 580",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cortar 10% dos fixos: + R$ 500",
+     "correta": false,
+     "feedbackErro": "Ajuda, mas perde no número: 10% de 5.000 são 500, contra 580 dos variáveis. Compare sempre o efeito em reais, não a simpatia pela categoria."
+    },
+    {
+     "texto": "Subir a receita em 4%: + R$ 480",
+     "correta": false,
+     "feedbackErro": "Os 4% trazem R$ 480 de receita — mas venda nova carrega custo variável junto, então o lucro sobe ainda menos. Corte de custo cai limpo na sobra."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "corte-inteligente",
+   "criterio": "A conta está completa?",
+   "enunciado": "Comparar preço de compra e custo de operar antes de decidir",
+   "resposta": true,
+   "ancora": "Decisão boa soma a etiqueta e os anos de uso.",
+   "feedbackErro": "Parece exagero para uma compra simples, mas é o cálculo que separa barato de baratinho: o equipamento se paga — ou se cobra — na operação, não na etiqueta."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "corte-inteligente",
+   "criterio": "A conta está completa?",
+   "enunciado": "Julgar um corte só pelo efeito no primeiro mês",
+   "resposta": false,
+   "ancora": "Corte se avalia no ano: alguns poupam agora e custam depois.",
+   "feedbackErro": "O primeiro mês é a foto mais enganosa: manutenção adiada e equipe cortada parecem lucro nela. O filme do ano mostra a quebra, a fila e o cliente que sumiu."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "corte-inteligente",
+   "pergunta": "Qual frase leva a conta do negócio adiante?",
+   "alternativas": [
+    {
+     "texto": "Corto o que não gera valor e meço o custo no tempo, não só na etiqueta.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O corte certo é sempre o maior número do orçamento.",
+     "correta": false,
+     "feedbackErro": "O maior número pode ser o músculo do negócio. Corte se escolhe pelo efeito na venda, não pelo tamanho."
+    },
+    {
+     "texto": "Sustentabilidade e lucro não cabem na mesma conta.",
+     "correta": false,
+     "feedbackErro": "Rota otimizada, resíduo vendido, energia eficiente: três contas em que os dois cresceram juntos."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "sustentavel-que-da-lucro",
+   "instrucao": "Esse desembolso volta para o caixa?",
+   "ancora": "Investimento retorna em economia; gasto puro só sai.",
+   "feedbackErro": "O critério é o retorno futuro: painel e treinamento reduzem custos adiante; multa e juro de atraso são dinheiro que sai sem trazer nada de volta.",
+   "caixas": [
+    {
+     "id": "retorna",
+     "rotulo": "Volta como economia"
+    },
+    {
+     "id": "gasto",
+     "rotulo": "Só sai"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Painel solar que corta a conta de luz",
+     "caixaCorreta": "retorna"
+    },
+    {
+     "texto": "Multa por descarte irregular",
+     "caixaCorreta": "gasto"
+    },
+    {
+     "texto": "Treinamento que reduz erros da equipe",
+     "caixaCorreta": "retorna"
+    },
+    {
+     "texto": "Juros por atrasar o fornecedor",
+     "caixaCorreta": "gasto"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "sustentavel-que-da-lucro",
+   "dificuldade": 3,
+   "pergunta": "Um restaurante só troca rótulos para parecer 'eco', sem mudar nada. Qual é o risco disso no orçamento?",
+   "ancora": "Promessa verde falsa cobra em receita quando é descoberta.",
+   "alternativas": [
+    {
+     "texto": "Nenhum: marketing não mexe no caixa",
+     "correta": false,
+     "feedbackErro": "Mexe pelos dois lados: campanha custa e, quando a farsa aparece, a receita cai. Marketing é aposta de caixa como qualquer outra linha do orçamento."
+    },
+    {
+     "texto": "Ser descoberto e perder clientes — e receita",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pagar imposto extra por usar a palavra 'eco'",
+     "correta": false,
+     "feedbackErro": "Não há imposto sobre a palavra. O custo real é reputacional: cliente traído não volta, e a receita perdida entra na conta como qualquer custo."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "corte-inteligente",
+   "pergunta": "O desperdício custa R$ 1.500/mês. Reduzindo 20% dele, quanto o negócio poupa em 12 meses?",
+   "campo": "moeda",
+   "min": 1000,
+   "max": 10000,
+   "gabarito": 3600,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 1.500 × 0,20 × 12",
+   "verificacao": {
+    "expressao": "1500*0.2*12",
+    "esperado": 3600
+   },
+   "feedbackPerto": "R$ 3.600 no ano, sem vender uma unidade a mais — só parando de jogar dinheiro fora.",
+   "feedbackLonge": "R$ 3.600. Quem responde R$ 300 parou no mês: o viés do curto prazo de novo. Corte recorrente se conta no ano: 300 × 12."
+  }
+ ]
+}

@@ -1,0 +1,278 @@
+{
+ "slug": "querer-e-ilimitado-ter-nao-e-consolida",
+ "segmento": "ef35",
+ "conceitoPrincipal": "querer-e-ilimitado-ter-nao-e",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "desejo-x-necessidade",
+   "criterio": "Pode virar necessidade no contexto?",
+   "enunciado": "Um instrumento musical, pra quem estuda música na escola",
+   "resposta": true,
+   "ancora": "O contexto pode transformar um desejo comum em necessidade.",
+   "feedbackErro": "Pra maioria, instrumento é desejo. Mas se faz parte de um curso, ele passa a ser necessário pra aquela atividade."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "desejo-x-necessidade",
+   "criterio": "Continua sendo desejo, mesmo assim?",
+   "enunciado": "Trocar de celular só porque saiu um modelo mais novo",
+   "resposta": true,
+   "ancora": "Trocar por moda continua desejo, em quase qualquer contexto.",
+   "feedbackErro": "Parece que todo caso pode virar necessidade dependendo do contexto. Mas trocar só porque saiu modelo novo continua sendo desejo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "recursos-limitados",
+   "criterio": "Priorizar é só escolher o mais barato?",
+   "enunciado": "Escolher sempre o mais barato, mesmo quando resolve pior o problema",
+   "resposta": false,
+   "ancora": "Prioridade pesa o que resolve melhor, não só o preço menor.",
+   "feedbackErro": "Parece que prioridade é sinônimo de mais barato. Mas se a opção barata resolve mal, ela pode custar mais no fim."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "desejo-x-necessidade",
+   "dificuldade": 3,
+   "pergunta": "Yasmin usa a bicicleta pra ir à escola porque mora longe e não há ônibus. Pra ela, a bicicleta é desejo ou necessidade?",
+   "ancora": "O contexto de Yasmin transforma a bicicleta em necessidade.",
+   "alternativas": [
+    {
+     "texto": "Necessidade, porque é o único jeito dela chegar à escola",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Desejo, porque bicicleta normalmente não é essencial",
+     "correta": false,
+     "feedbackErro": "Bicicleta costuma ser desejo, é verdade. Mas nesse contexto, sem ônibus e morando longe, ela é o único meio de ir à escola."
+    },
+    {
+     "texto": "Nem desejo nem necessidade, porque bicicleta é lazer",
+     "correta": false,
+     "feedbackErro": "Bicicleta pode ser lazer em outros contextos. Mas aqui ela cumpre uma função essencial: levar Yasmin à escola."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "recursos-limitados",
+   "dificuldade": 3,
+   "pergunta": "Você tem R$ 50. Precisa de R$ 32 pra um remédio e quer um jogo de R$ 25. O que fazer?",
+   "ancora": "50 menos 32 é 18: o que sobra depois do remédio.",
+   "alternativas": [
+    {
+     "texto": "Comprar o remédio e guardar o resto, sem o jogo agora",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Comprar o jogo primeiro, porque sobra pra tudo depois",
+     "correta": false,
+     "feedbackErro": "Depois do jogo, sobrariam R$ 25 — menos que os R$ 32 do remédio. Comprando o jogo primeiro, o remédio ficaria sem dinheiro."
+    },
+    {
+     "texto": "Comprar os dois, já que R$ 50 é mais que R$ 32",
+     "correta": false,
+     "feedbackErro": "R$ 32 é só o remédio. Somado ao jogo de R$ 25, dá R$ 57 — mais do que os R$ 50 que você tem."
+    }
+   ],
+   "verificacao": {
+    "expressao": "50-32",
+    "esperado": 18
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "desejo-x-necessidade",
+   "criterio": "O critério muda se for de outra pessoa?",
+   "enunciado": "Um remédio que não é seu, mas de alguém da sua casa que está doente",
+   "resposta": false,
+   "ancora": "Necessidade de quem mora com você também entra na prioridade.",
+   "feedbackErro": "Parece que só conta a necessidade de você mesmo. Mas a saúde de quem mora com você também pesa nas prioridades da casa."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "desejo-x-necessidade",
+   "instrucao": "É necessidade pra essa pessoa específica?",
+   "ancora": "O contexto da pessoa pode mudar o que é necessidade.",
+   "feedbackErro": "O mesmo item pode ser desejo pra uma pessoa e necessidade pra outra, dependendo da função que cumpre na vida dela.",
+   "caixas": [
+    {
+     "id": "necessidade",
+     "rotulo": "É necessidade"
+    },
+    {
+     "id": "desejo",
+     "rotulo": "É desejo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Um computador pra quem faz aula online obrigatória",
+     "caixaCorreta": "necessidade"
+    },
+    {
+     "texto": "Um computador mais potente só pra jogos",
+     "caixaCorreta": "desejo"
+    },
+    {
+     "texto": "Óculos de grau pra quem não enxerga bem de perto",
+     "caixaCorreta": "necessidade"
+    },
+    {
+     "texto": "Óculos escuros de marca, só pela estética",
+     "caixaCorreta": "desejo"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "recursos-limitados",
+   "criterio": "É um caso-limite onde a prioridade muda?",
+   "enunciado": "Gastar mais numa opção que resolve de vez, em vez da barata repetida",
+   "resposta": true,
+   "ancora": "Às vezes pagar mais uma vez custa menos que repetir o barato.",
+   "feedbackErro": "Parece contrariar a lógica de escolher o mais barato. Mas se a opção cara resolve de vez, ela pode custar menos no total."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "recursos-limitados",
+   "dificuldade": 3,
+   "pergunta": "Um guarda-chuva barato custa R$ 12 e quebra em 2 usos. Um resistente custa R$ 35 e dura 2 anos. Qual prioriza melhor?",
+   "ancora": "35 menos 12 é 23: a diferença de preço inicial.",
+   "alternativas": [
+    {
+     "texto": "O resistente, porque evita comprar o barato várias vezes",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O barato, porque custa menos na primeira compra",
+     "correta": false,
+     "feedbackErro": "Custa menos na primeira vez, mas quebra rápido. Comprado várias vezes em 2 anos, ele pode custar mais que o resistente."
+    },
+    {
+     "texto": "Os dois custam o mesmo ao longo do tempo",
+     "correta": false,
+     "feedbackErro": "Não custam o mesmo: o barato precisaria ser comprado várias vezes em 2 anos, somando mais que os R$ 35 do resistente."
+    }
+   ],
+   "verificacao": {
+    "expressao": "35-12",
+    "esperado": 23
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "desejo-x-necessidade",
+   "criterio": "Desejo e necessidade se misturam aqui?",
+   "enunciado": "Comprar o único tênis confortável pra um problema no pé",
+   "resposta": true,
+   "ancora": "Quando resolve um problema de saúde, o item vira necessidade.",
+   "feedbackErro": "Parece só preferência de modelo, como qualquer outra. Mas se aquele tênis resolve um problema real no pé, não é só desejo."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "recursos-limitados",
+   "criterio": "É priorizar bem, mesmo sendo mais caro?",
+   "enunciado": "Escolher a opção mais cara que evita um problema maior depois",
+   "resposta": true,
+   "ancora": "Evitar um problema maior depois pode justificar o preço maior.",
+   "feedbackErro": "Parece contradizer a ideia de economizar. Mas evitar um problema maior no futuro pode ser a prioridade certa."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "desejo-x-necessidade",
+   "pergunta": "Depois de tudo isso, qual frase é mais completa?",
+   "alternativas": [
+    {
+     "texto": "O contexto pode transformar um desejo comum em necessidade",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O que é necessidade nunca muda, seja qual for a pessoa",
+     "correta": false,
+     "feedbackErro": "Muda sim: o mesmo item pode ser necessidade pra uma pessoa e desejo pra outra, dependendo do contexto."
+    },
+    {
+     "texto": "A opção mais barata sempre prioriza melhor o dinheiro",
+     "correta": false,
+     "feedbackErro": "Nem sempre: se ela quebra rápido e precisa ser comprada de novo, pode custar mais no total do que uma opção duradoura."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "recursos-limitados",
+   "dificuldade": 3,
+   "pergunta": "Você tem R$ 60. Um curso custa R$ 45 e é pré-requisito pra uma bolsa de estudos. Um jogo custa R$ 40. O que priorizar?",
+   "ancora": "O curso abre caminho pra um benefício bem maior.",
+   "alternativas": [
+    {
+     "texto": "O curso, mesmo sobrando pouco pro resto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O jogo, porque custa menos que o curso",
+     "correta": false,
+     "feedbackErro": "Custar menos não significa ser mais importante. O curso abre caminho pra uma bolsa — benefício muito maior que o jogo."
+    },
+    {
+     "texto": "Nenhum dos dois, porque os R$ 60 não fecham a conta",
+     "correta": false,
+     "feedbackErro": "R$ 60 cobrem o curso de R$ 45 sozinho, com folga. O problema seria só tentar comprar os dois juntos."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "desejo-x-necessidade",
+   "criterio": "O contexto muda desejo pra necessidade?",
+   "enunciado": "Um cobertor extra, numa cidade onde o frio fica abaixo de zero",
+   "resposta": true,
+   "ancora": "Frio extremo pode transformar conforto em necessidade real.",
+   "feedbackErro": "Em clima ameno, cobertor extra seria conforto — desejo. Mas com frio abaixo de zero, ele passa a proteger a saúde."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "recursos-limitados",
+   "instrucao": "Ordene como decidir entre duas opções de preços diferentes.",
+   "ancora": "Comparar o total ao longo do tempo, não só o preço de hoje.",
+   "feedbackErro": "Olhar só o preço de hoje esconde o gasto de repetir a opção barata. Comparar o total mostra a prioridade certa.",
+   "itens": [
+    {
+     "texto": "Ver se a mais cara resolve o problema de vez",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Calcular quanto a mais barata custaria repetida com o tempo",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Escolher a que sai mais barata no total",
+     "posicaoCorreta": 3
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,339 @@
+{
+ "slug": "golpe-nao-e-azar",
+ "segmento": "ef89",
+ "conceitoPrincipal": "golpe-nao-e-azar",
+ "fraseConceito": "Golpe segue um padrão: urgência, promessa alta e pedido de dado ou dinheiro. Reconhecer o padrão é proteção, não sorte.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "padrao-do-golpe",
+   "criterio": "É sinal de golpe?",
+   "enunciado": "Mensagem dizendo que sua conta será bloqueada em 1 hora",
+   "resposta": true,
+   "ancora": "Prazo curtíssimo é pressão pra você agir sem checar.",
+   "feedbackErro": "O prazo apertado assusta, e é exatamente pra isso que ele existe. Bloqueio real de banco não avisa com 1 hora — é urgência fabricada."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "protecao-de-dados",
+   "criterio": "É sinal de golpe?",
+   "enunciado": "Ligação do banco pedindo a senha completa do cartão",
+   "resposta": true,
+   "ancora": "Banco nunca pede senha — nem por telefone, nem por mensagem.",
+   "feedbackErro": "Vem de um número parecido com o do banco, e isso convence. Mas nenhuma instituição de verdade pede sua senha completa por telefone."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "padrao-do-golpe",
+   "criterio": "É sinal de golpe?",
+   "enunciado": "SMS pedindo pra clicar num link pra 'liberar' um prêmio que você não concorreu",
+   "resposta": true,
+   "ancora": "Prêmio que você não participou e link pra clicar é isca clássica.",
+   "feedbackErro": "A ideia de ganhar algo grátis distrai da falta de lógica. Você não participou de nada — não existe prêmio real pra 'liberar'."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "padrao-do-golpe",
+   "dificuldade": 1,
+   "pergunta": "Pedro recebeu um Pix de R$ 300 'errado' e pediram pra devolver rápido. O que fazer primeiro?",
+   "ancora": "Checar o extrato garante que o valor realmente entrou.",
+   "alternativas": [
+    {
+     "texto": "Checar o extrato antes de devolver qualquer valor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Devolver rápido, porque parece um erro de boa-fé",
+     "correta": false,
+     "feedbackErro": "O golpe do Pix conta exatamente com essa pressa — o valor pode nem ter entrado de verdade."
+    },
+    {
+     "texto": "Ignorar e bloquear o contato, sem checar nada",
+     "correta": false,
+     "feedbackErro": "Ignorar sem checar também arrisca, porque pode ser um engano real — o certo é conferir primeiro."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "protecao-de-dados",
+   "dificuldade": 1,
+   "pergunta": "Qual dado é mais perigoso vazar, pensando em golpe financeiro?",
+   "ancora": "Senha e código de confirmação abrem a porta direta pra sua conta.",
+   "alternativas": [
+    {
+     "texto": "Senha e código de confirmação (token) do banco",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Seu time de futebol favorito",
+     "correta": false,
+     "feedbackErro": "Isso não abre nenhuma conta nem confirma nenhuma transação — não tem valor pra um golpe financeiro."
+    },
+    {
+     "texto": "A cidade onde você nasceu, sozinha",
+     "correta": false,
+     "feedbackErro": "Sozinha, essa informação não movimenta dinheiro nenhum — o risco real está na senha e no código."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "protecao-de-dados",
+   "criterio": "É sinal de golpe?",
+   "enunciado": "Pedir o código de confirmação que chegou por SMS no seu celular",
+   "resposta": true,
+   "ancora": "Ninguém legítimo pede o código que só você deveria digitar.",
+   "feedbackErro": "Quem liga já sabe seu nome e parte dos dados, e isso passa confiança. Mas pedir o código do SMS é o golpe em ação — ninguém precisa dele além de você."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "protecao-de-dados",
+   "instrucao": "Isso é dado pessoal sensível? Arraste.",
+   "ancora": "Sensível é o que abre porta pra fraude ou roubo de identidade.",
+   "feedbackErro": "Senha e CPF completo abrem conta e crédito em seu nome; cor favorita e nome da rua, sozinhos, não bastam pra isso.",
+   "caixas": [
+    {
+     "id": "sensivel",
+     "rotulo": "Sensível"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Senha do banco",
+     "caixaCorreta": "sensivel"
+    },
+    {
+     "texto": "Cor favorita",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "CPF completo",
+     "caixaCorreta": "sensivel"
+    },
+    {
+     "texto": "Time de futebol que torce",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "padrao-do-golpe",
+   "criterio": "É sinal de golpe?",
+   "enunciado": "Prometer resolver seu problema só se você agir 'agora mesmo'",
+   "resposta": true,
+   "ancora": "Prazo artificial existe pra cortar seu tempo de checagem.",
+   "feedbackErro": "Parece só uma promoção com prazo, algo comum. Mas resolver um 'problema urgente' só se você agir na hora é pressão típica de golpe."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "padrao-do-golpe",
+   "criterio": "É sinal de golpe?",
+   "enunciado": "Pedir tempo pra você checar a informação com calma",
+   "resposta": false,
+   "ancora": "Golpe empurra pressa; pedir calma vai na direção oposta.",
+   "feedbackErro": "Dar tempo é o oposto do que o golpe precisa pra funcionar. Quem sugere checar com calma está reduzindo a pressão, não criando golpe."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "padrao-do-golpe",
+   "pergunta": "O golpe do falso motoboy cobra R$ 35 de reembolso, 3 vezes numa semana. Quanto fatura em 4 semanas?",
+   "campo": "moeda",
+   "min": 100,
+   "max": 1000,
+   "gabarito": 420,
+   "toleranciaPct": 20,
+   "fonte": "cálculo simples sobre o valor médio do golpe",
+   "verificacao": {
+    "expressao": "35*3*4",
+    "esperado": 420
+   },
+   "feedbackPerto": "Isso mesmo — R$ 420. Um golpe pequeno repetido rende bem mais do que parece isolado.",
+   "feedbackLonge": "Dá R$ 420. Cada cobrança parece pequena e inofensiva, mas repetida no mês soma um valor considerável."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "padrao-do-golpe",
+   "dificuldade": 1,
+   "pergunta": "O que os golpes de Pix, de prêmio falso e de falso funcionário têm em comum?",
+   "ancora": "O mesmo padrão se repete disfarçado de histórias diferentes.",
+   "alternativas": [
+    {
+     "texto": "Urgência, promessa vantajosa e pedido de dado ou dinheiro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Todos acontecem só por telefone",
+     "correta": false,
+     "feedbackErro": "O canal muda — SMS, ligação, app — mas o padrão de fundo continua o mesmo: pressa e pedido."
+    },
+    {
+     "texto": "Todos exigem que você saiba muito de tecnologia",
+     "correta": false,
+     "feedbackErro": "Golpe funciona até com pouca tecnologia — ele explora pressa e confiança, não conhecimento técnico."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "protecao-de-dados",
+   "dificuldade": 1,
+   "pergunta": "Por que um dado pessoal vale dinheiro pro golpista?",
+   "ancora": "Com CPF, senha ou código, o golpista finge ser você.",
+   "alternativas": [
+    {
+     "texto": "Com CPF, senha ou código ele finge ser você pra roubar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque dado pessoal é ilegal de se ter, sempre",
+     "correta": false,
+     "feedbackErro": "Ter dado pessoal não é ilegal em si — o problema é usá-lo pra se passar por você e roubar."
+    },
+    {
+     "texto": "Porque toda empresa paga bem por qualquer dado",
+     "correta": false,
+     "feedbackErro": "Empresas legítimas seguem regras pra usar dado. O golpista quer o dado pra fraude direta, não pra venda regulada."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "protecao-de-dados",
+   "criterio": "É sinal de golpe?",
+   "enunciado": "Pedir foto dos dois lados do seu documento por mensagem",
+   "resposta": true,
+   "ancora": "Documento completo por mensagem serve pra abrir conta em seu nome.",
+   "feedbackErro": "Parece um pedido burocrático comum, tipo cadastro. Mas enviar o documento inteiro por mensagem dá material pra abrir conta no seu nome."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "protecao-de-dados",
+   "criterio": "Protege seus dados?",
+   "enunciado": "Usar senha diferente pra cada conta importante",
+   "resposta": true,
+   "ancora": "Senha repetida faz um vazamento abrir várias portas de uma vez.",
+   "feedbackErro": "Trocar de senha toda hora parece trabalho desnecessário. Mas senha única por conta impede que um vazamento só abra tudo de uma vez."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "padrao-do-golpe",
+   "pergunta": "Qual frase resume o que você viu?",
+   "ancora": "Reconhecer o padrão é proteção real — não depende de sorte.",
+   "alternativas": [
+    {
+     "texto": "Golpe é sorte de quem cai — não dá pra reconhecer antes.",
+     "correta": false,
+     "feedbackErro": "Golpe segue padrão reconhecível: pressa, promessa alta e pedido de dado ou dinheiro."
+    },
+    {
+     "texto": "Golpe segue um padrão: pressa, promessa alta e pedido de dado ou dinheiro.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só quem entende de tecnologia cai em golpe digital.",
+     "correta": false,
+     "feedbackErro": "Golpe explora pressa e confiança, não conhecimento técnico — qualquer um pode cair."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "padrao-do-golpe",
+   "instrucao": "Isso é sinal de golpe? Arraste.",
+   "ancora": "Golpe junta pressa, promessa alta ou pedido de dado sensível.",
+   "feedbackErro": "Pressa combinada com promessa alta ou pedido de dado é o padrão do golpe; prazo real e contato verificável não são.",
+   "caixas": [
+    {
+     "id": "golpe",
+     "rotulo": "Sinal de golpe"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Prazo de 10 minutos pra 'não perder' um prêmio",
+     "caixaCorreta": "golpe"
+    },
+    {
+     "texto": "Prazo de 30 dias pra usar um cupom de loja",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Pedido de senha por mensagem de texto",
+     "caixaCorreta": "golpe"
+    },
+    {
+     "texto": "Confirmação de compra pelo aplicativo oficial do banco",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "protecao-de-dados",
+   "dificuldade": 2,
+   "pergunta": "Um site pede CPF, telefone e endereço só pra 'liberar' um cupom. O que checar antes de preencher?",
+   "ancora": "Cupom real não exige tanto dado pessoal sensível junto.",
+   "alternativas": [
+    {
+     "texto": "Se o cupom realmente precisa de tanto dado pra funcionar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se o site tem cores bonitas e design profissional",
+     "correta": false,
+     "feedbackErro": "Visual bonito não garante nada — golpe também investe em aparência confiável."
+    },
+    {
+     "texto": "Se o cupom promete desconto alto",
+     "correta": false,
+     "feedbackErro": "Desconto alto não prova nada sobre a segurança do site — é só o chamariz."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "padrao-do-golpe",
+   "criterio": "É sinal de golpe?",
+   "enunciado": "Ameaçar 'negativar seu nome' se você não pagar em minutos",
+   "resposta": true,
+   "ancora": "Negativação real segue prazo legal, nunca minutos de pressão.",
+   "feedbackErro": "A ameaça de negativação assusta, e é isso que ela busca. Mas cobrança real segue prazo formal — nunca minutos."
+  }
+ ]
+}

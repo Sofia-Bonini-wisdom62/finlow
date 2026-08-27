@@ -1,0 +1,332 @@
+{
+ "slug": "o-que-te-faz-comprar",
+ "segmento": "em1",
+ "conceitoPrincipal": "o-que-te-faz-comprar",
+ "fraseConceito": "Toda compra tem um gatilho: desejo, grupo, publicidade. Decidir bem é enxergar o gatilho antes de pagar.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "gatilho-de-compra",
+   "criterio": "É um gatilho de compra?",
+   "enunciado": "A turma inteira aparece com o mesmo tênis",
+   "resposta": true,
+   "ancora": "Influência do grupo: o desejo nasce fora de você.",
+   "feedbackErro": "Parece só coincidência de gosto, e às vezes é. Mas quando a vontade aparece junto com o grupo, o gatilho é pertencer — não o tênis."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "gatilho-de-compra",
+   "criterio": "É um gatilho de compra?",
+   "enunciado": "O caderno acabou e você precisa de outro",
+   "resposta": false,
+   "ancora": "Necessidade real não é gatilho: existe antes de qualquer anúncio.",
+   "feedbackErro": "É compra, sim — mas movida por uso, não por estímulo. Gatilho é o que cria vontade do nada: promoção, grupo, anúncio. Caderno acabado é necessidade."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "gatilho-de-compra",
+   "criterio": "É um gatilho de compra?",
+   "enunciado": "Anúncio avisando: só hoje, últimas unidades",
+   "resposta": true,
+   "ancora": "Urgência fabricada é o gatilho mais usado da publicidade.",
+   "feedbackErro": "O aviso parece um favor: te poupar de perder a oferta. Mas a pressa é o objetivo — com medo de perder, você decide antes de pensar."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "gatilho-de-compra",
+   "dificuldade": 1,
+   "pergunta": "Caio comprou um fone novo no lançamento, com o antigo funcionando bem. O que pesou mais?",
+   "ancora": "Quando o antigo funciona, o motor da compra é o desejo, não o uso.",
+   "alternativas": [
+    {
+     "texto": "A necessidade de ouvir música",
+     "correta": false,
+     "feedbackErro": "Ouvir música ele já conseguia: o fone antigo funcionava. Quando o uso está garantido, o que empurra a compra é outra coisa — o lançamento e o grupo."
+    },
+    {
+     "texto": "O desejo criado pelo lançamento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O preço menor do modelo novo",
+     "correta": false,
+     "feedbackErro": "Lançamento quase nunca é o momento barato — é o mais caro. Se preço mandasse, ele esperaria alguns meses. O gatilho aqui foi a novidade."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "pros-e-contras",
+   "dificuldade": 1,
+   "pergunta": "Avaliar prós e contras antes de comprar significa o quê, na prática?",
+   "ancora": "Prós e contras incluem dinheiro, uso, impacto — não só vontade.",
+   "alternativas": [
+    {
+     "texto": "Listar tudo de bom que o produto tem",
+     "correta": false,
+     "feedbackErro": "Listar qualidades é metade do trabalho — a metade que a publicidade já fez por você. Falta a outra: o que você abre mão para ter isso."
+    },
+    {
+     "texto": "Pesar o que ganha e o que abre mão",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Conferir se os amigos aprovariam",
+     "correta": false,
+     "feedbackErro": "A opinião do grupo pode entrar na conta, mas como um dado — não como o juiz. Se ela decide sozinha, quem comprou não foi você."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "gatilho-de-compra",
+   "criterio": "Ajuda a decidir melhor?",
+   "enunciado": "Esperar um dia antes de fechar a compra",
+   "resposta": true,
+   "ancora": "A pausa separa o gatilho da necessidade: um deles some em 24 horas.",
+   "feedbackErro": "Parece perder tempo — e a oferta pode acabar, é verdade. Mas se a vontade não sobrevive a um dia, era gatilho. Necessidade real continua lá amanhã."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "pros-e-contras",
+   "instrucao": "Toque na ordem de uma decisão de compra bem feita.",
+   "ancora": "Entender antes de pesar; pesar antes de pagar.",
+   "feedbackErro": "A ordem tentadora é decidir primeiro e justificar depois. O critério: primeiro o porquê (gatilho ou necessidade), depois prós e contras, depois o bolso.",
+   "itens": [
+    {
+     "texto": "Perguntar por que quero isso agora",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Pesar prós, contras e impacto",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Conferir se cabe no meu dinheiro",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Decidir: comprar, adiar ou desistir",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "pros-e-contras",
+   "criterio": "É um bom motivo para comprar?",
+   "enunciado": "Está com 50% de desconto, mas eu não precisava",
+   "resposta": false,
+   "ancora": "Desconto em algo desnecessário não é economia — é gasto novo.",
+   "verificacao": {
+    "expressao": "80*0.5",
+    "esperado": 40
+   },
+   "feedbackErro": "A conta parece boa: metade do preço. Mas economizar é gastar menos do que você gastaria — e você não ia gastar nada. 50% off de R$ 80 ainda são R$ 40 saindo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "pros-e-contras",
+   "criterio": "É um bom motivo para comprar?",
+   "enunciado": "Vou usar quase todo dia e o valor cabe no que tenho",
+   "resposta": true,
+   "ancora": "Uso frequente + cabe no orçamento: os dois filtros que importam.",
+   "feedbackErro": "Parece consumo demais para ser 'bom motivo'? Comprar não é o erro — o erro é comprar sem uso ou sem caber. Aqui os dois critérios passam."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "gatilho-de-compra",
+   "pergunta": "Refrigerante de R$ 6 na cantina, 5 vezes por semana. Quanto dá em 4 semanas?",
+   "campo": "moeda",
+   "min": 30,
+   "max": 400,
+   "gabarito": 120,
+   "toleranciaPct": 20,
+   "fonte": "conta do próprio enunciado (R$ 6 × 5 × 4)",
+   "verificacao": {
+    "expressao": "6*5*4",
+    "esperado": 120
+   },
+   "feedbackPerto": "R$ 120 — o preço de um fone razoável, escondido em compras de R$ 6.",
+   "feedbackLonge": "São R$ 120. O viés aqui é subestimar o gasto pequeno repetido: R$ 6 não dói, então o cérebro não soma."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-do-consumo",
+   "dificuldade": 1,
+   "pergunta": "Duas camisetas iguais: R$ 25 que desbota em meses e R$ 40 que dura anos. Olhar só o preço ignora o quê?",
+   "ancora": "Camiseta boa por mais tempo custa menos por uso — e gera menos lixo.",
+   "alternativas": [
+    {
+     "texto": "A cor e a estampa de cada uma",
+     "correta": false,
+     "feedbackErro": "Gosto importa para escolher o modelo, mas a pergunta é sobre custo. E custo tem duas peças invisíveis na etiqueta: duração e descarte."
+    },
+    {
+     "texto": "Quanto dura e o lixo que gera",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O nome da loja onde comprou",
+     "correta": false,
+     "feedbackErro": "A loja pouco muda o resultado. O que muda é usar 10 vezes ou 100: a barata jogada fora vira gasto novo e resíduo novo."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "gatilho-de-compra",
+   "dificuldade": 2,
+   "pergunta": "Um influenciador diz que o tênis 'mudou o jogo dele'. Como tratar essa fala?",
+   "ancora": "Publi é anúncio com rosto de amigo. Trate como anúncio.",
+   "alternativas": [
+    {
+     "texto": "Como prova de que o tênis é bom",
+     "correta": false,
+     "feedbackErro": "Ele pode até gostar do produto. Mas fala paga não é teste: é roteiro. Prova vem de uso, avaliação independente e comparação — não de carisma."
+    },
+    {
+     "texto": "Como publicidade: ele pode estar sendo pago",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Como opinião neutra de quem entende",
+     "correta": false,
+     "feedbackErro": "Entender ele pode entender. Neutro não é: marcas pagam pela fala e escolhem quem fala. O critério: quem lucra com a sua compra não é fonte neutra."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "gatilho-de-compra",
+   "criterio": "Reduz compra por impulso?",
+   "enunciado": "Deixar de seguir perfis de promoção",
+   "resposta": true,
+   "ancora": "Menos gatilho passando na tela, menos vontade fabricada.",
+   "feedbackErro": "Parece exagero — os perfis às vezes têm oferta útil. Mas cada post é um gatilho treinado para criar vontade. Quem some da tela, some da cabeça."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "gatilho-de-compra",
+   "criterio": "Reduz compra por impulso?",
+   "enunciado": "Comprar rápido antes que a oferta acabe",
+   "resposta": false,
+   "ancora": "Pressa é o gatilho agindo. Impulso adora prazo curto.",
+   "feedbackErro": "Comprar rápido até garante o preço — quando a compra já estava decidida. Fora isso, a pressa é o próprio impulso: o prazo existe para você não pensar."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-que-te-faz-comprar",
+   "pergunta": "Qual frase resume o que você viu aqui?",
+   "alternativas": [
+    {
+     "texto": "Comprar bem é achar o menor preço.",
+     "correta": false,
+     "feedbackErro": "Preço importa, mas vem depois. Primeiro: por que eu quero isso?"
+    },
+    {
+     "texto": "Toda compra tem um gatilho. Ver o gatilho antes de pagar é decidir de verdade.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Publicidade só engana quem é desatento.",
+     "correta": false,
+     "feedbackErro": "Gatilho funciona em todo mundo, atento ou não. A defesa é a pausa, não a atenção."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "gatilho-de-compra",
+   "instrucao": "Gatilho ou necessidade? Arraste cada situação.",
+   "ancora": "Necessidade existe antes do estímulo; gatilho cria a vontade.",
+   "feedbackErro": "Se a vontade nasceu de um estímulo — prazo, grupo, anúncio — é gatilho. Se o uso existia antes, é necessidade.",
+   "caixas": [
+    {
+     "id": "gatilho",
+     "rotulo": "Gatilho"
+    },
+    {
+     "id": "necessidade",
+     "rotulo": "Necessidade"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Frete grátis só na próxima hora",
+     "caixaCorreta": "gatilho"
+    },
+    {
+     "texto": "Óculos de grau com a receita nova",
+     "caixaCorreta": "necessidade"
+    },
+    {
+     "texto": "Unboxing do seu youtuber favorito",
+     "caixaCorreta": "gatilho"
+    },
+    {
+     "texto": "Tênis furado que é o único que você tem",
+     "caixaCorreta": "necessidade"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "pros-e-contras",
+   "dificuldade": 2,
+   "pergunta": "Que pergunta falta na decisão 'é bonito e cabe no meu bolso'?",
+   "ancora": "Bonito e caber são prós. Faltam os contras: uso e troca.",
+   "alternativas": [
+    {
+     "texto": "Se vai continuar na moda",
+     "correta": false,
+     "feedbackErro": "Moda é critério de gosto, e gosto já entrou no 'é bonito'. O buraco da decisão está em outro lugar: o que esse dinheiro deixa de fazer."
+    },
+    {
+     "texto": "O que deixo de fazer com esse mesmo dinheiro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se meus amigos também vão comprar",
+     "correta": false,
+     "feedbackErro": "Essa pergunta adiciona um gatilho, não um critério. A decisão precisa do custo de oportunidade: cada real gasto aqui some de outro plano."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "gatilho-de-compra",
+   "criterio": "É publicidade?",
+   "enunciado": "Sorteio que exige marcar 3 amigos no post",
+   "resposta": true,
+   "ancora": "Sorteio compra seu alcance: você vira o anúncio.",
+   "feedbackErro": "Parece brincadeira de custo zero. Mas a marca está pagando (com o prêmio) para você divulgar — cada marcação é anúncio entregue a um amigo."
+  }
+ ]
+}

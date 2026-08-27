@@ -1,0 +1,290 @@
+{
+ "slug": "emprestado-tem-que-voltar-consolida",
+ "segmento": "ef35",
+ "conceitoPrincipal": "emprestado-tem-que-voltar",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "emprestimo-se-devolve",
+   "criterio": "Isso ainda é empréstimo, nesse caso?",
+   "enunciado": "Emprestar um brinquedo pro primo, combinando que ele fica de vez",
+   "resposta": false,
+   "ancora": "Combinado que fica de vez não é mais empréstimo — virou presente.",
+   "feedbackErro": "Usar a palavra 'emprestar' confunde, mas o combinado importa mais que a palavra. Se ficou de vez, não existe mais devolução pra cobrar."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "emprestimo-se-devolve",
+   "criterio": "Isso ainda é empréstimo, nesse caso?",
+   "enunciado": "Pedir R$ 50 emprestados sabendo que não vai conseguir devolver",
+   "resposta": true,
+   "ancora": "Mesmo sabendo que não vai devolver, o combinado ainda é de devolver.",
+   "feedbackErro": "Saber que não vai devolver não muda o combinado feito. A obrigação de devolver continua existindo — só que já nasce quebrada."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "emprestimo-se-devolve",
+   "criterio": "Isso ainda é empréstimo, nesse caso?",
+   "enunciado": "Usar o cartão da mãe, com ela sabendo e cobrando o valor depois",
+   "resposta": true,
+   "ancora": "Mesmo em família, virou empréstimo quando ficou combinado devolver.",
+   "feedbackErro": "Parece que, sendo da família, não conta como empréstimo de verdade. Mas a combinação de devolver é o que define — e aqui ela existiu."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "emprestimo-se-devolve",
+   "dificuldade": 3,
+   "pergunta": "Um amigo empresta R$ 100 e diz 'devolve quando puder, sem pressa'. Isso muda a obrigação de devolver?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "Não muda a obrigação, só deixa o prazo mais flexível",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Muda: sem prazo marcado, não é mais empréstimo",
+     "correta": false,
+     "feedbackErro": "Faltar prazo marcado não cancela o empréstimo. Sem data, a obrigação continua — só fica sem urgência definida."
+    },
+    {
+     "texto": "Muda: o valor passa a ser considerado presente",
+     "correta": false,
+     "feedbackErro": "Pra virar presente, precisaria ficar claro que não tem volta. 'Devolve quando puder' ainda fala em devolver."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "tipos-de-credito",
+   "dificuldade": 3,
+   "pergunta": "Uma pessoa financia uma moto e usa o cartão pra pagar uma parcela atrasada. O que aconteceu com a dívida dela?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "Trocou uma dívida de financiamento por dívida de cartão",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A dívida do financiamento desapareceu",
+     "correta": false,
+     "feedbackErro": "O financiamento não some por causa de um pagamento único no cartão. Só essa parcela mudou de forma de pagamento."
+    },
+    {
+     "texto": "As duas dívidas se juntaram automaticamente em uma só",
+     "correta": false,
+     "feedbackErro": "Elas continuam separadas: o financiamento segue seu curso, e agora existe também uma fatura de cartão."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "tipos-de-credito",
+   "criterio": "Isso ainda conta como financiamento?",
+   "enunciado": "Pagar um curso técnico aos poucos, direto com a escola, sem banco",
+   "resposta": false,
+   "ancora": "Sem banco e sem bem físico, é mais parecido com parcelamento.",
+   "feedbackErro": "Pagar aos poucos parece igual em qualquer caso. Mas financiamento passa pelo banco e é ligado a um bem — direto com a escola é mais parecido com parcelamento."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "emprestimo-se-devolve",
+   "instrucao": "Essa obrigação de devolver ainda existe?",
+   "ancora": "O que foi combinado como empréstimo continua sendo, mesmo sem papel.",
+   "feedbackErro": "Falta de contrato escrito faz parecer que não vale. Mas o que decide é o combinado: se foi pra devolver, continua sendo — mesmo só falado.",
+   "caixas": [
+    {
+     "id": "existe",
+     "rotulo": "Ainda existe"
+    },
+    {
+     "id": "naoexiste",
+     "rotulo": "Não existe mais"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Dinheiro emprestado com combinação verbal, sem data",
+     "caixaCorreta": "existe"
+    },
+    {
+     "texto": "Presente de aniversário já declarado como presente",
+     "caixaCorreta": "naoexiste"
+    },
+    {
+     "texto": "Empréstimo entre familiares, mesmo sem contrato escrito",
+     "caixaCorreta": "existe"
+    },
+    {
+     "texto": "Troco recebido depois de uma compra",
+     "caixaCorreta": "naoexiste"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "emprestimo-se-devolve",
+   "criterio": "Isso encerra a obrigação de devolver?",
+   "enunciado": "As duas pessoas combinarem, claramente, que o valor virou presente",
+   "resposta": true,
+   "ancora": "Só uma combinação clara de virar presente encerra a obrigação.",
+   "feedbackErro": "Parece que só o tempo passando já cancela a dívida. Mas só uma combinação clara — os dois concordando — encerra mesmo a obrigação."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "emprestimo-se-devolve",
+   "dificuldade": 3,
+   "pergunta": "Uma menina empresta o mesmo valor pros dois irmãos. Um sempre devolve; o outro nunca devolve e some. O que muda?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "Só o irmão confiável continua conseguindo pedir emprestado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Os dois seguem igual, pois o valor emprestado era o mesmo",
+     "correta": false,
+     "feedbackErro": "O valor emprestado foi igual, mas o comportamento depois não. A confiança se constrói pelo que cada um fez."
+    },
+    {
+     "texto": "O irmão que não devolveu fica proibido de qualquer conversa",
+     "correta": false,
+     "feedbackErro": "Não existe proibição de conversar. O que muda é a disposição de emprestar de novo — a confiança, não o diálogo."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "tipos-de-credito",
+   "criterio": "É caso-limite entre os dois?",
+   "enunciado": "Pegar dinheiro do banco, sem destino, em parcelas fixas por anos",
+   "resposta": true,
+   "ancora": "Sem bem amarrado, isso é mais empréstimo do que financiamento.",
+   "feedbackErro": "O prazo longo e as parcelas fixas lembram financiamento, e é aí que mora a confusão. Mas sem um bem amarrado, o que existe é um empréstimo comum."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "emprestimo-se-devolve",
+   "criterio": "Mostra entendimento maduro?",
+   "enunciado": "Pensar antes se vai conseguir devolver, antes de pedir qualquer coisa",
+   "resposta": true,
+   "ancora": "Pensar antes evita criar uma obrigação que não dá pra cumprir.",
+   "feedbackErro": "Parece um passo a mais, sem necessidade. Mas pensar antes evita criar uma dívida — de dinheiro ou de confiança — que depois não dá pra cumprir."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "emprestimo-se-devolve",
+   "dificuldade": 3,
+   "pergunta": "Qual frase é mais precisa depois de tudo isso?",
+   "alternativas": [
+    {
+     "texto": "Sem prazo marcado ou contrato assinado, não existe obrigação de devolver",
+     "correta": false,
+     "feedbackErro": "O que define a obrigação é o combinado, não o papel. Mesmo sem contrato, o que foi combinado continua valendo."
+    },
+    {
+     "texto": "O combinado é o que define se algo precisa ser devolvido, não a palavra usada",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Financiamento, empréstimo e parcelamento são sempre fáceis de distinguir",
+     "correta": false,
+     "feedbackErro": "Alguns casos se parecem e confundem — o que separa é se existe um bem específico amarrado ao crédito."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "tipos-de-credito",
+   "instrucao": "Ordene do que menos passa pelo banco pro que mais passa.",
+   "ancora": "Parcelamento é com a loja; financiamento sempre passa pelo banco.",
+   "feedbackErro": "Parece que todo crédito passa pelo banco do mesmo jeito. Mas o parcelamento direto na loja não precisa de banco — só o financiamento sempre passa.",
+   "itens": [
+    {
+     "texto": "Parcelamento direto na loja",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Cartão de crédito",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Financiamento bancário",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "emprestimo-se-devolve",
+   "instrucao": "Isso encerra a obrigação de devolver?",
+   "ancora": "Só combinação clara ou pagamento encerram — sumir ou o tempo, não.",
+   "feedbackErro": "Parece que o tempo ou o silêncio já resolvem sozinhos. Mas só um acordo claro dos dois lados ou o pagamento de fato encerram a obrigação.",
+   "caixas": [
+    {
+     "id": "encerra",
+     "rotulo": "Encerra"
+    },
+    {
+     "id": "naoencerra",
+     "rotulo": "Não encerra"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "As duas partes combinarem, claramente, que virou presente",
+     "caixaCorreta": "encerra"
+    },
+    {
+     "texto": "A pessoa que devia sumir e não responder mais",
+     "caixaCorreta": "naoencerra"
+    },
+    {
+     "texto": "Muito tempo passar sem ninguém cobrar",
+     "caixaCorreta": "naoencerra"
+    },
+    {
+     "texto": "Pagar o valor combinado, mesmo atrasado",
+     "caixaCorreta": "encerra"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "tipos-de-credito",
+   "pergunta": "Uma geladeira de R$ 1.200 financiada em 10 vezes sem juros. Quanto é cada parcela?",
+   "campo": "moeda",
+   "min": 50,
+   "max": 400,
+   "gabarito": 120,
+   "toleranciaPct": 20,
+   "fonte": "conta direta: valor total dividido pelo número de parcelas",
+   "feedbackPerto": "Isso mesmo — R$ 120 cada. Dividir o total pelas parcelas dá o valor exato.",
+   "feedbackLonge": "R$ 1.200 dividido por 10 dá R$ 120. Sem juros, é só dividir o total pelo número de parcelas.",
+   "verificacao": {
+    "expressao": "1200/10",
+    "esperado": 120
+   }
+  }
+ ]
+}

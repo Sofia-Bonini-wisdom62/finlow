@@ -1,0 +1,335 @@
+{
+ "slug": "atitude-empreendedora-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "atitude-empreendedora",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "atitude-empreendedora",
+   "criterio": "Ainda é atitude empreendedora?",
+   "enunciado": "Insistir numa ideia mesmo depois de ela mostrar sinais claros de que não funciona",
+   "resposta": false,
+   "ancora": "Empreender inclui saber recuar: insistir sem avaliar é teimosia.",
+   "feedbackErro": "Persistência parece sempre virtude. Mas ignorar sinais claros de que algo não funciona é teimosia, não persistência com avaliação."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "mei-formalizacao",
+   "criterio": "Ainda vale a formalização como MEI?",
+   "enunciado": "Um negócio que já fatura bem acima do teto anual permitido",
+   "resposta": false,
+   "ancora": "Acima do teto, MEI deixa de ser a categoria adequada por lei.",
+   "feedbackErro": "Formalizar parece sempre bom, em qualquer faturamento. Mas passar do teto anual tira o negócio da faixa MEI — outra categoria passa a ser exigida por lei."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "atitude-empreendedora",
+   "criterio": "Isso ainda é risco calculado?",
+   "enunciado": "Investir toda a reserva de emergência numa ideia sem testar antes",
+   "resposta": false,
+   "ancora": "Sem testar e sem reserva, deixou de ser calculado — virou aposta.",
+   "feedbackErro": "Parece coragem empreendedora, e a linha é sutil. Mas risco calculado avalia antes de agir; apostar tudo sem testar, sem rede de segurança, é outra coisa."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "atitude-empreendedora",
+   "dificuldade": 3,
+   "pergunta": "Um funcionário cria uma solução ótima, mas implementa sem avisar ninguém e trava um sistema do time. O que faltou?",
+   "ancora": "Faltou avaliar o impacto e comunicar — não a vontade de agir.",
+   "alternativas": [
+    {
+     "texto": "Avaliar o risco e comunicar antes de agir",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ele não teve nenhuma iniciativa",
+     "correta": false,
+     "feedbackErro": "Iniciativa ele teve, e boa — criou a solução sozinho. O problema foi agir sem avaliar o impacto nem avisar quem dependia do sistema."
+    },
+    {
+     "texto": "Ele deveria ter esperado alguém mandar fazer",
+     "correta": false,
+     "feedbackErro": "Esperar mandar contradiz a própria ideia de iniciativa. O que faltou não foi esperar ordem, foi avaliar risco e comunicar antes."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "mei-formalizacao",
+   "dificuldade": 3,
+   "pergunta": "Um MEI cresce e passa a faturar R$ 95.000 no ano, acima do teto de R$ 81.000. O que a lei espera dele?",
+   "ancora": "Acima do teto, o negócio deve migrar para outra categoria jurídica.",
+   "alternativas": [
+    {
+     "texto": "Migrar para uma categoria como microempresa (ME)",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Continuar como MEI normalmente, sem mudar nada",
+     "correta": false,
+     "feedbackErro": "Ultrapassar o teto muda a situação legal do negócio. Continuar como se nada tivesse mudado deixa de cumprir a regra da categoria MEI."
+    },
+    {
+     "texto": "Fechar o negócio, pois MEI não pode crescer",
+     "correta": false,
+     "feedbackErro": "Crescer não obriga a fechar — obriga a mudar de categoria. Faturar mais é o objetivo de qualquer negócio; o MEI é só o ponto de partida."
+    }
+   ],
+   "verificacao": {
+    "expressao": "95000-81000",
+    "esperado": 14000
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "atitude-empreendedora",
+   "criterio": "É verdade sobre risco e iniciativa?",
+   "enunciado": "Testar uma ideia pequena antes de investir tudo nela é atitude empreendedora",
+   "resposta": true,
+   "ancora": "Testar em pequena escala reduz risco sem travar a iniciativa.",
+   "feedbackErro": "Testar parece o oposto de 'ousar'. Mas validar em pequena escala antes de investir tudo é o que separa risco calculado de aposta cega."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "mei-formalizacao",
+   "instrucao": "Ordene do menor para o maior nível de faturamento anual.",
+   "ancora": "Compare cada valor ao teto de R$ 81.000 do MEI.",
+   "feedbackErro": "A ordem segue o valor: R$ 40.000 e R$ 78.000 cabem no teto; R$ 81.000 é o limite exato; R$ 90.000 já ultrapassa e exige migração de categoria.",
+   "itens": [
+    {
+     "texto": "R$ 40.000 no ano",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "R$ 78.000 no ano",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "R$ 81.000 no ano (o teto exato)",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "R$ 90.000 no ano",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "atitude-empreendedora",
+   "criterio": "A conclusão está certa?",
+   "enunciado": "Um funcionário que só age quando é cobrado nunca poderá agir de forma empreendedora",
+   "resposta": false,
+   "ancora": "O padrão muda: agir por conta própria é hábito, não destino fixo.",
+   "feedbackErro": "Parece um traço fixo de personalidade. Mas iniciativa é comportamento que se pratica — quem só reage hoje pode passar a agir por conta própria."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "mei-formalizacao",
+   "criterio": "A conclusão está certa?",
+   "enunciado": "Quem fatura pouco nunca precisa se preocupar com o teto do MEI",
+   "resposta": false,
+   "ancora": "Faturamento cresce; ignorar o teto surpreende quem não acompanha.",
+   "feedbackErro": "Faturar pouco hoje não garante nada sobre amanhã. Ignorar o teto porque 'está longe' pode surpreender quem crescer rápido sem acompanhar os números."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "mei-formalizacao",
+   "pergunta": "Um MEI fatura R$ 6.000/mês, constante. Em 12 meses, a que distância do teto de R$ 81.000 ele fica?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 30000,
+   "gabarito": 9000,
+   "toleranciaPct": 25,
+   "fonte": "cálculo direto: teto anual menos o total faturado em 12 meses",
+   "feedbackPerto": "Perto: R$ 9.000 de folga. Ele fatura 72.000 no ano, contra o teto de 81.000.",
+   "feedbackLonge": "Dá R$ 9.000. Multiplique 6.000 por 12 meses (72.000) e subtraia do teto de 81.000 — essa é a distância que resta.",
+   "verificacao": {
+    "expressao": "81000-6000*12",
+    "esperado": 9000
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "atitude-empreendedora",
+   "dificuldade": 3,
+   "pergunta": "Um autônomo perde um grande cliente e, em vez de reclamar, mapeia 5 possíveis clientes na semana. Isso mostra...",
+   "ancora": "Ele transformou a perda em ação concreta e nova — iniciativa.",
+   "alternativas": [
+    {
+     "texto": "Resiliência com iniciativa: agir diante do problema",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sorte: um cliente vai substituir o outro sozinho",
+     "correta": false,
+     "feedbackErro": "Nada substitui sozinho; ele foi atrás dos 5 possíveis clientes por conta própria. A ação dele é o que resolve, não a sorte."
+    },
+    {
+     "texto": "Um erro: deveria ter tentado recuperar só aquele cliente",
+     "correta": false,
+     "feedbackErro": "Tentar recuperar o cliente é válido, mas não é a única saída. Buscar novas oportunidades também é atitude empreendedora, e reduz a dependência de um só."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "mei-formalizacao",
+   "dificuldade": 3,
+   "pergunta": "Uma MEI recebe uma proposta de virar sócia de uma empresa maior, mantendo o CNPJ de MEI. Isso é possível pela lei?",
+   "ancora": "MEI não pode ser sócio de outra empresa — é regra da categoria.",
+   "alternativas": [
+    {
+     "texto": "Não — MEI não pode ter participação em outra empresa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim — o CNPJ de MEI permite qualquer tipo de sociedade",
+     "correta": false,
+     "feedbackErro": "O CNPJ de MEI tem restrições específicas por lei: ser sócio de outra empresa não é permitido nessa categoria."
+    },
+    {
+     "texto": "Sim, desde que o faturamento continue dentro do teto",
+     "correta": false,
+     "feedbackErro": "O teto de faturamento não resolve essa restrição. A regra que impede é outra: MEI não pode ter participação societária, independente do valor faturado."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "atitude-empreendedora",
+   "criterio": "Verdadeiro?",
+   "enunciado": "Recuar de uma ideia que não funciona também pode ser atitude empreendedora",
+   "resposta": true,
+   "ancora": "Avaliar e mudar de rumo é parte de agir com responsabilidade.",
+   "feedbackErro": "Parece desistência, o contrário de empreender. Mas avaliar os sinais e mudar de rumo é decisão ativa — parte da mesma postura de agir com responsabilidade."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "mei-formalizacao",
+   "criterio": "Verdadeiro?",
+   "enunciado": "Passar do teto do MEI é sinal de que o negócio precisa mudar de categoria, não de que algo deu errado",
+   "resposta": true,
+   "ancora": "Crescer além do teto é sucesso — a categoria é que precisa acompanhar.",
+   "feedbackErro": "Passar do teto soa como problema. Mas é sinal de crescimento: o negócio precisa de uma categoria maior, não de menos faturamento."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "mei-formalizacao",
+   "pergunta": "Qual frase resume os três encontros sobre atitude empreendedora?",
+   "alternativas": [
+    {
+     "texto": "Empreender é agir com iniciativa e risco calculado, avaliando o caminho.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Empreender é nunca recuar de uma ideia, custe o que custar.",
+     "correta": false,
+     "feedbackErro": "Recuar diante de sinais claros também é parte de agir com responsabilidade."
+    },
+    {
+     "texto": "MEI pode crescer sem limite, sempre na mesma categoria.",
+     "correta": false,
+     "feedbackErro": "Passar do teto anual exige migrar de categoria — o MEI tem um limite definido em lei."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "atitude-empreendedora",
+   "instrucao": "É risco calculado ou aposta cega? Arraste.",
+   "ancora": "Calculado avalia e testa antes; aposta arrisca tudo sem checar.",
+   "feedbackErro": "Testar pequeno e guardar reserva são sinais de risco calculado. Apostar tudo de uma vez, sem checar, é aposta cega.",
+   "caixas": [
+    {
+     "id": "calculado",
+     "rotulo": "Calculado"
+    },
+    {
+     "id": "cego",
+     "rotulo": "Aposta cega"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Testar a ideia em pequena escala primeiro",
+     "caixaCorreta": "calculado"
+    },
+    {
+     "texto": "Investir toda a reserva de uma vez, sem testar",
+     "caixaCorreta": "cego"
+    },
+    {
+     "texto": "Guardar uma reserva antes de arriscar",
+     "caixaCorreta": "calculado"
+    },
+    {
+     "texto": "Ignorar sinais de que a ideia não funciona",
+     "caixaCorreta": "cego"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "mei-formalizacao",
+   "dificuldade": 3,
+   "pergunta": "Um MEI faturou R$ 60.000 nos primeiros 9 meses. Mantendo o ritmo, ele ultrapassa o teto anual?",
+   "ancora": "R$ 60.000 ÷ 9 × 12 = 80.000 — fica logo abaixo do teto de 81.000.",
+   "alternativas": [
+    {
+     "texto": "Não, ficaria por volta de R$ 80.000, perto do limite",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, com certeza vai passar de R$ 90.000",
+     "correta": false,
+     "feedbackErro": "Mantendo o ritmo de 60.000 em 9 meses, a projeção anual é 80.000 — perto do teto, mas ainda abaixo, não acima de 90.000."
+    },
+    {
+     "texto": "Não dá pra estimar sem saber os outros meses",
+     "correta": false,
+     "feedbackErro": "Dá para projetar mantendo o ritmo: 60.000 ÷ 9 × 12 = 80.000. É uma estimativa direta, não impossível de calcular."
+    }
+   ],
+   "verificacao": {
+    "expressao": "60000/9*12",
+    "esperado": 80000
+   }
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "atitude-empreendedora",
+   "criterio": "É verdade?",
+   "enunciado": "Um assalariado que nunca propõe nada pode passar a agir de forma mais empreendedora com prática",
+   "resposta": true,
+   "ancora": "Iniciativa é hábito treinável, não um traço fixo de nascença.",
+   "feedbackErro": "Parece que ou a pessoa 'nasce' proativa ou não. Mas iniciativa se pratica: pequenas propostas repetidas constroem o hábito de agir por conta própria."
+  }
+ ]
+}

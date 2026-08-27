@@ -1,0 +1,325 @@
+{
+ "slug": "moeda-de-outro-pais",
+ "segmento": "ef89",
+ "conceitoPrincipal": "moeda-de-outro-pais",
+ "fraseConceito": "O real é a única moeda de curso legal no Brasil; câmbio é a troca por outra moeda, a um preço que muda todo dia.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "moeda-de-outro-pais",
+   "criterio": "Serve para pagar compras no Brasil?",
+   "enunciado": "Dólar americano",
+   "resposta": false,
+   "ancora": "Fora de casas de câmbio, só o real é aceito no comércio daqui.",
+   "feedbackErro": "O dólar tem valor real, e por isso parece que serviria. Mas para usar no Brasil, ele precisa virar real antes, numa casa de câmbio ou banco."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "moeda-de-outro-pais",
+   "criterio": "Serve para pagar compras no Brasil?",
+   "enunciado": "Real, a moeda brasileira",
+   "resposta": true,
+   "ancora": "O real é a única moeda de curso legal para pagamentos no país.",
+   "feedbackErro": "Pode parecer que qualquer moeda forte serve, mas por lei o real é a única moeda de curso legal para pagamentos dentro do Brasil."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "moeda-de-outro-pais",
+   "criterio": "Serve para pagar compras no Brasil?",
+   "enunciado": "Euro, moeda usada em Portugal e outros países da Europa",
+   "resposta": false,
+   "ancora": "Moeda estrangeira precisa ser convertida antes de circular aqui.",
+   "feedbackErro": "O euro vale bastante lá fora, e isso confunde. Mas para gastar no Brasil, ele também precisa ser trocado por reais antes."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "calculo-de-cambio",
+   "dificuldade": 1,
+   "pergunta": "Alguém volta de viagem dos EUA com dólares sobrando. Para usar no Brasil, o que precisa fazer primeiro?",
+   "ancora": "Moeda estrangeira precisa virar real antes de circular aqui.",
+   "alternativas": [
+    {
+     "texto": "Nada, pode gastar direto em qualquer loja",
+     "correta": false,
+     "feedbackErro": "Parece prático gastar direto, mas nenhuma loja comum no Brasil é obrigada a aceitar dólar. Ele precisa virar real primeiro."
+    },
+    {
+     "texto": "Trocar por reais em uma casa de câmbio ou banco",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Esperar o dólar cair de valor antes de usar",
+     "correta": false,
+     "feedbackErro": "Esperar a cotação cair não resolve o problema de aceitação: o dólar continua não sendo moeda de curso legal aqui, caro ou barato."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "calculo-de-cambio",
+   "dificuldade": 1,
+   "pergunta": "O que é 'câmbio', no sentido financeiro?",
+   "ancora": "Câmbio é a troca de uma moeda por outra, a um preço definido.",
+   "alternativas": [
+    {
+     "texto": "O nome de outra moeda",
+     "correta": false,
+     "feedbackErro": "Cada moeda já tem seu próprio nome, como dólar ou euro. Câmbio não é o nome da moeda, é a operação de trocar uma por outra."
+    },
+    {
+     "texto": "A troca de uma moeda por outra, a um preço",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Um imposto cobrado do turista",
+     "correta": false,
+     "feedbackErro": "Existem impostos ligados a operações de câmbio, como o IOF, mas câmbio em si é a troca de moeda, não o imposto sobre ela."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "moeda-de-outro-pais",
+   "criterio": "O valor do câmbio muda todo dia?",
+   "enunciado": "A cotação do dólar em relação ao real",
+   "resposta": true,
+   "ancora": "Câmbio flutua com oferta e demanda, todo dia útil.",
+   "feedbackErro": "Pode parecer um número fixo, tabelado uma vez. Mas a cotação muda dia a dia, e às vezes várias vezes no mesmo dia, conforme o mercado."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "calculo-de-cambio",
+   "instrucao": "Toque na ordem, do dólar mais barato para o mais caro em reais.",
+   "ancora": "Quanto maior o número de reais por dólar, mais caro o dólar.",
+   "feedbackErro": "É tentador achar que número maior é câmbio 'mais forte' para o real. Mas mais reais por dólar significa que o real está mais fraco.",
+   "itens": [
+    {
+     "texto": "R$ 4,00 por dólar",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "R$ 5,00 por dólar",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "R$ 5,50 por dólar",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "calculo-de-cambio",
+   "criterio": "Fica mais caro comprar em dólar?",
+   "enunciado": "O dólar subiu de R$ 5,00 para R$ 5,50",
+   "resposta": true,
+   "ancora": "Dólar mais caro em reais encarece tudo que se compra em dólar.",
+   "feedbackErro": "Pode parecer só um número diferente, mas se o dólar sobe, cada dólar de compra passa a custar mais reais: viagem, produto importado, tudo fica mais caro."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "calculo-de-cambio",
+   "criterio": "Fica mais caro comprar em dólar?",
+   "enunciado": "O dólar caiu de R$ 5,50 para R$ 5,00",
+   "resposta": false,
+   "ancora": "Dólar mais barato em reais significa que o real ficou mais forte.",
+   "feedbackErro": "Com o dólar mais barato, o mesmo produto importado custa menos reais: fica mais barato, não mais caro, para quem compra em real."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "calculo-de-cambio",
+   "pergunta": "Dólar a R$ 5,00. Uma passagem custa US$ 800. Quantos reais isso equivale?",
+   "campo": "moeda",
+   "min": 2000,
+   "max": 6000,
+   "gabarito": 4000,
+   "toleranciaPct": 20,
+   "fonte": "cotação de exemplo didático, R$ 5,00 por dólar",
+   "feedbackPerto": "Isso mesmo, R$ 4.000. É só multiplicar o valor em dólar pela cotação do dia.",
+   "feedbackLonge": "R$ 4.000: 800 dólares vezes R$ 5,00 cada. O cálculo do câmbio é sempre uma multiplicação simples pela cotação.",
+   "verificacao": {
+    "expressao": "800*5",
+    "esperado": 4000
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custos-de-cambio",
+   "dificuldade": 1,
+   "pergunta": "Além da cotação do dólar, o que mais encarece comprar em moeda estrangeira com cartão?",
+   "ancora": "IOF e taxa do cartão somam ao custo da cotação do dia.",
+   "alternativas": [
+    {
+     "texto": "O IOF e a taxa do cartão sobre a compra internacional",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada, o preço final é só a cotação do dia",
+     "correta": false,
+     "feedbackErro": "A cotação é a base do cálculo, mas não é só ela: o IOF e taxas do cartão entram por cima e aumentam o valor final."
+    },
+    {
+     "texto": "O horário em que a compra foi feita",
+     "correta": false,
+     "feedbackErro": "O horário da compra em si não gera custo extra. O que pesa no preço final são a cotação do dia, o IOF e as taxas do cartão."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custos-de-cambio",
+   "dificuldade": 1,
+   "pergunta": "Yasmin trocou 200 dólares por reais numa casa de câmbio e recebeu menos do que 200 vezes a cotação do dia. Por quê?",
+   "ancora": "A casa de câmbio cobra uma diferença entre compra e venda.",
+   "alternativas": [
+    {
+     "texto": "A casa de câmbio errou a conta",
+     "correta": false,
+     "feedbackErro": "Um erro é sempre possível, mas não é a explicação mais comum. Casas de câmbio cobram uma diferença padrão entre comprar e vender moeda."
+    },
+    {
+     "texto": "A casa de câmbio cobra uma diferença (spread) na troca",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O dólar mudou de valor durante a troca",
+     "correta": false,
+     "feedbackErro": "A cotação pode variar ao longo do dia, mas o que normalmente explica a diferença recebida é o spread cobrado pela casa de câmbio."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "moeda-de-outro-pais",
+   "criterio": "Precisa de câmbio para isso?",
+   "enunciado": "Comprar um livro em um site americano, pago em dólar",
+   "resposta": true,
+   "ancora": "Pagamento em moeda estrangeira sempre passa por conversão para real.",
+   "feedbackErro": "O cartão parece 'resolver sozinho', mas por trás ele faz a conversão de dólar para real, e é aí que entram cotação e taxas."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "moeda-de-outro-pais",
+   "criterio": "Precisa de câmbio para isso?",
+   "enunciado": "Comprar o mesmo livro numa loja brasileira, com preço em reais",
+   "resposta": false,
+   "ancora": "Preço já em real: não há conversão de moeda envolvida.",
+   "feedbackErro": "Mesmo sendo um produto parecido com o importado, se o preço já está em reais e a venda é de uma loja brasileira, não existe câmbio envolvido."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "moeda-de-outro-pais",
+   "dificuldade": null,
+   "pergunta": "Qual frase resume o que você aprendeu?",
+   "alternativas": [
+    {
+     "texto": "Só o real vale no Brasil, e o câmbio muda o preço do que vem de fora",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Qualquer moeda forte pode ser usada para pagar no Brasil",
+     "correta": false,
+     "feedbackErro": "Nenhuma moeda estrangeira, por mais forte que seja, tem curso legal aqui: precisa virar real antes."
+    },
+    {
+     "texto": "A cotação do dólar é sempre a mesma, todo santo dia",
+     "correta": false,
+     "feedbackErro": "A cotação varia dia a dia, e às vezes dentro do mesmo dia, conforme o mercado."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "moeda-de-outro-pais",
+   "criterio": "É moeda estrangeira?",
+   "enunciado": "O peso argentino",
+   "resposta": true,
+   "ancora": "Moeda de outro país precisa de câmbio para circular aqui.",
+   "feedbackErro": "É menos conhecido que o dólar, e por isso passa despercebido. Mas o peso argentino também é moeda estrangeira: precisa de câmbio para virar real."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "custos-de-cambio",
+   "dificuldade": 1,
+   "pergunta": "O que é o IOF cobrado em compras internacionais no cartão?",
+   "ancora": "IOF é um imposto que incide sobre a operação de câmbio.",
+   "alternativas": [
+    {
+     "texto": "Um imposto sobre a operação de câmbio",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Uma taxa cobrada só por bancos estrangeiros",
+     "correta": false,
+     "feedbackErro": "O IOF é brasileiro, cobrado pelo governo federal sobre a operação de câmbio, não uma taxa de banco de fora."
+    },
+    {
+     "texto": "O nome de outra moeda usada em cobranças internacionais",
+     "correta": false,
+     "feedbackErro": "IOF não é moeda, é a sigla de um imposto brasileiro que incide sobre operações de câmbio e crédito."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "moeda-de-outro-pais",
+   "instrucao": "Classifique: moeda nacional ou moeda estrangeira?",
+   "ancora": "Moeda estrangeira sempre precisa de câmbio para circular aqui.",
+   "feedbackErro": "Todas parecem 'dinheiro de verdade', mas só uma tem curso legal no Brasil: o real. As outras são estrangeiras.",
+   "caixas": [
+    {
+     "id": "nacional",
+     "rotulo": "Nacional"
+    },
+    {
+     "id": "estrangeira",
+     "rotulo": "Estrangeira"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "O real",
+     "caixaCorreta": "nacional"
+    },
+    {
+     "texto": "O dólar americano",
+     "caixaCorreta": "estrangeira"
+    },
+    {
+     "texto": "O euro",
+     "caixaCorreta": "estrangeira"
+    },
+    {
+     "texto": "A nota de R$ 50",
+     "caixaCorreta": "nacional"
+    }
+   ]
+  }
+ ]
+}

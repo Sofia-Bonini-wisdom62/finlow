@@ -1,0 +1,329 @@
+{
+ "slug": "de-onde-veio-esse-dinheiro",
+ "segmento": "em1",
+ "conceitoPrincipal": "de-onde-veio-esse-dinheiro",
+ "fraseConceito": "Dinheiro é um acordo coletivo: vale porque todos confiam que vale — e cada sociedade inventou o seu.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-acordo",
+   "criterio": "Já serviu como dinheiro?",
+   "enunciado": "Sal, no Império Romano",
+   "resposta": true,
+   "ancora": "Pagava soldados romanos. Daí vem a palavra 'salário'.",
+   "feedbackErro": "Parece estranho porque sal hoje é barato. Mas era raro, durável e todo mundo queria — o suficiente para virar pagamento em Roma."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-acordo",
+   "criterio": "Já serviu como dinheiro?",
+   "enunciado": "Sementes de cacau, entre os astecas",
+   "resposta": true,
+   "ancora": "Cacau comprava comida e roupa no império asteca.",
+   "feedbackErro": "Semente parece só comida, e é isso que engana. Era rara, contável e aceita por todos — os três ingredientes de qualquer dinheiro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-acordo",
+   "criterio": "Já serviu como dinheiro?",
+   "enunciado": "Uma pedra comum que ninguém aceita em troca",
+   "resposta": false,
+   "ancora": "Sem aceitação não há dinheiro. O valor é o acordo, não o objeto.",
+   "feedbackErro": "Até pedra já foi dinheiro (na ilha de Yap), mas só porque todos aceitavam. Sem aceitação coletiva, qualquer objeto é só objeto."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "funcoes-do-dinheiro",
+   "dificuldade": 1,
+   "pergunta": "Antes do dinheiro, a troca era direta: escambo. Por que isso complicava a vida nas feiras?",
+   "ancora": "O dinheiro quebra essa exigência: todo mundo aceita, todos negociam.",
+   "alternativas": [
+    {
+     "texto": "Os dois precisavam querer exatamente o que o outro tinha",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "As mercadorias estragavam antes da troca",
+     "correta": false,
+     "feedbackErro": "Alguns produtos estragavam, sim. Mas o problema aparecia até com panela e tecido: sem coincidência de desejos, a troca simplesmente não acontecia."
+    },
+    {
+     "texto": "Ninguém sabia fazer contas naquela época",
+     "correta": false,
+     "feedbackErro": "Sociedades de escambo contavam muito bem. O nó não era a conta: era achar alguém que quisesse seu produto e tivesse o que você queria."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "dinheiro-e-acordo",
+   "dificuldade": 1,
+   "pergunta": "O que uma coisa precisa ter para funcionar como dinheiro em qualquer sociedade?",
+   "ancora": "Sal, cacau, papel, Pix: muda a forma, não muda o acordo.",
+   "alternativas": [
+    {
+     "texto": "Ser feita de metal precioso",
+     "correta": false,
+     "feedbackErro": "Ouro ajudou por ser raro e durável, mas papel e Pix valem sem grama nenhuma de metal. O que sustenta o valor é a aceitação, não o material."
+    },
+    {
+     "texto": "A confiança de que os outros vão aceitá-la depois",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O rosto de um governante estampado",
+     "correta": false,
+     "feedbackErro": "Muitas moedas tiveram, mas cacau e sal nunca tiveram rosto nenhum. O carimbo oficial ajuda a confiar; a confiança é que é o essencial."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-acordo",
+   "criterio": "Depende de confiança coletiva?",
+   "enunciado": "O valor de uma nota de R$ 50",
+   "resposta": true,
+   "ancora": "O papel custa centavos. Os R$ 50 são o acordo coletivo.",
+   "feedbackErro": "A nota parece valer por si, e é esse o truque. Imprimir custa centavos: o resto do valor existe porque todos aceitam e esperam que continue assim."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "evolucao-do-dinheiro",
+   "instrucao": "Toque na ordem em que essas formas de pagar surgiram.",
+   "ancora": "Escambo, metal, papel, digital: cada etapa facilita a troca.",
+   "feedbackErro": "O critério é a história da praticidade: primeiro a troca direta, depois o metal contável, depois o papel leve, por fim o registro digital sem objeto.",
+   "itens": [
+    {
+     "texto": "Troca direta (escambo)",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Moedas de metal",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Papel-moeda",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Dinheiro digital (Pix, cartão)",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "evolucao-do-dinheiro",
+   "criterio": "Funciona como dinheiro hoje?",
+   "enunciado": "O saldo que aparece no app do seu banco",
+   "resposta": true,
+   "ancora": "Dinheiro não precisa ser físico: o registro carrega o acordo.",
+   "feedbackErro": "Não dá para pegar na mão, e isso confunde. Mas o registro digital paga qualquer coisa em qualquer lugar — é a forma mais nova do mesmo acordo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-acordo",
+   "criterio": "Funciona como dinheiro hoje?",
+   "enunciado": "Pontos de fidelidade de uma única loja",
+   "resposta": false,
+   "ancora": "Só a loja aceita, e ela muda a regra quando quiser.",
+   "feedbackErro": "Pontos compram coisas, e por isso parecem dinheiro. Mas só valem dentro de uma loja, que pode mudar ou cancelar tudo: aceitação restrita não é dinheiro."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "funcoes-do-dinheiro",
+   "pergunta": "Início de 1994: preços subiam ~40% ao mês. Uma compra de R$ 100 custaria quanto 3 meses depois?",
+   "campo": "moeda",
+   "min": 100,
+   "max": 1000,
+   "gabarito": 274,
+   "toleranciaPct": 20,
+   "fonte": "inflação mensal média de ~40% antes do Plano Real (IBGE)",
+   "verificacao": {
+    "expressao": "100*1.4^3",
+    "esperado": 274.4,
+    "tolerancia": 0.05
+   },
+   "feedbackPerto": "Quase o triplo em 3 meses. Quando o dinheiro derrete assim, ele deixa de servir para guardar valor.",
+   "feedbackLonge": "R$ 274: alta de 40% composta triplica rápido. O viés é somar (120%) em vez de multiplicar mês sobre mês."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "funcoes-do-dinheiro",
+   "dificuldade": 1,
+   "pergunta": "Na hiperinflação, Tainá via o mercado remarcar preços todo dia. Que função do dinheiro quebrou primeiro?",
+   "ancora": "Trocar, medir, guardar: guardar é a função mais frágil do dinheiro.",
+   "alternativas": [
+    {
+     "texto": "Guardar valor para o futuro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Servir de meio de troca no dia a dia",
+     "correta": false,
+     "feedbackErro": "As compras do dia ainda saíam em dinheiro — a troca resistia. O que ninguém conseguia mais era segurar o dinheiro de um mês para o outro."
+    },
+    {
+     "texto": "Existir em forma de cédula",
+     "correta": false,
+     "feedbackErro": "Cédulas continuavam circulando, cada vez em maços maiores. O papel estava lá; o que evaporava era o valor que ele deveria guardar."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "evolucao-do-dinheiro",
+   "dificuldade": 1,
+   "pergunta": "Por que o Pix funciona sem papel nenhum trocando de mãos?",
+   "ancora": "Do sal ao Pix, o que circula de verdade é confiança registrada.",
+   "alternativas": [
+    {
+     "texto": "O registro no sistema carrega o mesmo acordo de confiança",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O banco guarda cédulas equivalentes num cofre",
+     "correta": false,
+     "feedbackErro": "Faz sentido imaginar um cofre por trás, mas ele não existe: a maior parte do dinheiro moderno é só registro. O que garante é o sistema, não o papel."
+    },
+    {
+     "texto": "O governo aboliu o dinheiro em papel",
+     "correta": false,
+     "feedbackErro": "Cédulas continuam valendo normalmente. Pix e papel convivem porque os dois carregam o mesmo acordo — só muda o suporte."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "funcoes-do-dinheiro",
+   "criterio": "É um benefício do dinheiro?",
+   "enunciado": "Comparar preços de coisas muito diferentes",
+   "resposta": true,
+   "ancora": "Medida comum de valor: em reais, tudo fica comparável.",
+   "feedbackErro": "Sem dinheiro, quantos peixes vale uma sandália? Cada par de produtos precisaria de um preço próprio. Em reais, uma régua serve para tudo."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "funcoes-do-dinheiro",
+   "criterio": "É um benefício do dinheiro?",
+   "enunciado": "Manter sozinho o seu valor para sempre",
+   "resposta": false,
+   "ancora": "Inflação corrói. Guardar valor é a promessa mais frágil do dinheiro.",
+   "feedbackErro": "Era bom se fosse, mas nenhum dinheiro garante isso: os preços sobem e o mesmo valor compra menos. É uma limitação, não um benefício."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "dinheiro-e-acordo",
+   "pergunta": "Qual destas frases resume a lição?",
+   "alternativas": [
+    {
+     "texto": "Dinheiro é acordo de confiança que mudou de forma: sal, metal, papel, digital.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Dinheiro vale pelo material de que é feito.",
+     "correta": false,
+     "feedbackErro": "A nota de R$ 50 custa centavos para imprimir. O valor está no acordo, não no papel."
+    },
+    {
+     "texto": "Dinheiro digital vale menos que dinheiro em papel.",
+     "correta": false,
+     "feedbackErro": "Valem igual: os dois carregam o mesmo acordo, só muda o suporte."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "dinheiro-e-acordo",
+   "instrucao": "Já foi dinheiro em alguma sociedade?",
+   "ancora": "Vira dinheiro o que é raro, durável e aceito por todos.",
+   "feedbackErro": "O critério não é ser 'valioso' hoje: é ter sido raro, durável e aceito por um grupo. Areia e folha comum falham no raro — qualquer um pega mais.",
+   "caixas": [
+    {
+     "id": "sim",
+     "rotulo": "Já foi dinheiro"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Nunca foi"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Sal, em Roma",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Cacau, entre os astecas",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Areia de praia",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Folhas de árvore comum",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "dinheiro-e-acordo",
+   "dificuldade": 2,
+   "pergunta": "O que o escambo e o Pix têm em comum?",
+   "ancora": "Toda troca, antiga ou digital, exige aceitação das duas pontas.",
+   "alternativas": [
+    {
+     "texto": "Só acontecem se as duas partes aceitam a troca",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Os dois dependem de moeda física",
+     "correta": false,
+     "feedbackErro": "Nenhum dos dois usa moeda física: o escambo troca produtos, o Pix troca registros. O que os une é a aceitação mútua, não o objeto."
+    },
+    {
+     "texto": "Os dois dispensam confiança entre as partes",
+     "correta": false,
+     "feedbackErro": "É o contrário: o escambo exige confiar na outra pessoa, e o Pix, confiar no sistema. Troca sem confiança nenhuma não existe."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "evolucao-do-dinheiro",
+   "criterio": "Isso é verdade?",
+   "enunciado": "A palavra 'salário' vem do sal",
+   "resposta": true,
+   "ancora": "Do latim 'salarium': a ração de sal paga a soldados romanos.",
+   "feedbackErro": "Parece lenda, mas é etimologia: 'salarium' era a parte do pagamento romano ligada ao sal. A história do dinheiro mora até nas palavras."
+  }
+ ]
+}

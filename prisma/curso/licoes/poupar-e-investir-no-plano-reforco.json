@@ -1,0 +1,341 @@
+{
+ "slug": "poupar-e-investir-no-plano-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "poupar-e-investir-no-plano",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar-x-investir",
+   "criterio": "Risco ou baixo risco?",
+   "enunciado": "Aplicar em um fundo que investe em imóveis, com preço variável",
+   "resposta": true,
+   "ancora": "Preço variável indica risco — perfil de investir.",
+   "feedbackErro": "Parece 'só um jeito diferente de guardar'. Mas se o preço da cota varia com o mercado, o risco entra em cena — é investir."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar-x-investir",
+   "criterio": "Risco ou baixo risco?",
+   "enunciado": "Deixar o dinheiro numa conta que rende pouco, mas nunca perde valor",
+   "resposta": false,
+   "ancora": "Sem risco de perda — comportamento de poupar.",
+   "feedbackErro": "Render pouco decepciona, e por isso parece 'ruim'. Mas o que define poupar não é o rendimento — é o baixo risco de perder o valor guardado."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "planejamento-no-tempo",
+   "criterio": "Serve para uma meta de longo prazo?",
+   "enunciado": "Guardar todo mês pensando num intercâmbio daqui a 4 anos",
+   "resposta": true,
+   "ancora": "Meta de anos pede constância mensal, não um esforço único.",
+   "feedbackErro": "Quatro anos parece tempo de sobra para deixar para depois. Mas é justamente essa distância que permite guardar pouco todo mês."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "poupar-x-investir",
+   "dificuldade": 2,
+   "pergunta": "Um amigo diz: 'poupança e Tesouro Direto são a mesma coisa, só muda o nome'. O que responder?",
+   "ancora": "Tesouro pode variar de preço antes do vencimento; poupança, não.",
+   "alternativas": [
+    {
+     "texto": "Concordar: ambos rendem exatamente igual",
+     "correta": false,
+     "feedbackErro": "O rendimento costuma ser diferente, e o comportamento do preço também. Poupança não varia; alguns títulos do Tesouro podem variar."
+    },
+    {
+     "texto": "Discordar: o Tesouro pode variar de preço, a poupança não",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Concordar: os dois são proibidos para menores de idade",
+     "correta": false,
+     "feedbackErro": "Essa regra não é o ponto da diferença entre os dois produtos, e não é isso que caracteriza poupar versus investir."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "planejamento-no-tempo",
+   "dificuldade": 2,
+   "pergunta": "Duas pessoas querem juntar R$ 9.000. Uma tem 3 anos; a outra, 18 meses. Quem precisa guardar mais por mês?",
+   "ancora": "9.000 ÷ 18 = 500; 9.000 ÷ 36 = 250. Prazo curto pede mais por mês.",
+   "verificacao": {
+    "expressao": "9000/18",
+    "esperado": 500
+   },
+   "alternativas": [
+    {
+     "texto": "Quem tem 18 meses, porque o prazo é mais curto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quem tem 3 anos, porque a meta parece mais distante",
+     "correta": false,
+     "feedbackErro": "Prazo mais longo dilui a meta em mais parcelas, o que reduz o valor mensal — 9.000 ÷ 36 dá menos que 9.000 ÷ 18."
+    },
+    {
+     "texto": "As duas guardam o mesmo valor por mês",
+     "correta": false,
+     "feedbackErro": "O total é igual, mas o número de meses não: dividir pelo mesmo total em menos meses exige uma parcela mensal maior."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "poupar-x-investir",
+   "criterio": "Isso é poupar (baixo risco)?",
+   "enunciado": "Guardar dinheiro num título com garantia do governo, sem variação até o resgate",
+   "resposta": true,
+   "ancora": "Sem variação até o resgate — perfil de poupar, com outro nome.",
+   "feedbackErro": "Não se chama poupança, e por isso confunde. Mas sem variação de valor até resgatar, o comportamento é o mesmo de poupar."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "poupar-x-investir",
+   "instrucao": "Poupar ou investir? Arraste cada exemplo, de novo.",
+   "ancora": "O critério continua o mesmo: risco de o valor variar.",
+   "feedbackErro": "Sem risco relevante de o valor cair, é poupar. Com chance real de subir ou cair, é investir — mesmo com nomes diferentes.",
+   "caixas": [
+    {
+     "id": "poupar",
+     "rotulo": "Poupar"
+    },
+    {
+     "id": "investir",
+     "rotulo": "Investir"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Título público que não varia até o vencimento",
+     "caixaCorreta": "poupar"
+    },
+    {
+     "texto": "Fundo imobiliário com cota variável",
+     "caixaCorreta": "investir"
+    },
+    {
+     "texto": "Conta remunerada de baixíssimo risco",
+     "caixaCorreta": "poupar"
+    },
+    {
+     "texto": "Ações de uma empresa de tecnologia",
+     "caixaCorreta": "investir"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "planejamento-no-tempo",
+   "criterio": "Combina mais com poupar do que investir?",
+   "enunciado": "Dinheiro guardado para trocar de celular em 3 meses",
+   "resposta": true,
+   "ancora": "Prazo curto — poupar evita risco de perder valor antes de usar.",
+   "feedbackErro": "Três meses parece pouco tempo para se preocupar com risco. Mas é justamente por ser curto que vale evitar qualquer chance de perda."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "planejamento-no-tempo",
+   "criterio": "Combina mais com poupar do que investir?",
+   "enunciado": "Dinheiro para a faculdade dos filhos, daqui a 12 anos",
+   "resposta": false,
+   "ancora": "Prazo longo comporta mais risco em busca de crescimento maior.",
+   "feedbackErro": "Doze anos parece motivo para 'ser conservador com algo tão importante'. Mas é o prazo longo que permite buscar mais crescimento com risco."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "planejamento-no-tempo",
+   "pergunta": "Para juntar R$ 7.200 em 36 meses, guardando o mesmo valor todo mês, quanto guardar por mês?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 400,
+   "gabarito": 200,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: R$ 7.200 divididos por 36 meses",
+   "verificacao": {
+    "expressao": "7200/36",
+    "esperado": 200
+   },
+   "feedbackPerto": "Isso: R$ 200 por mês. Dividir a meta pelos meses restantes é o caminho.",
+   "feedbackLonge": "Dá R$ 200 por mês: 7.200 ÷ 36. Contar todos os meses até a meta evita subestimar quanto guardar."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "poupar-x-investir",
+   "dificuldade": 2,
+   "pergunta": "Larissa troca de carro em 6 meses. O irmão sugere ações para 'render mais rápido'. O que responder?",
+   "ancora": "Prazo curto com risco alto pode custar a meta inteira.",
+   "alternativas": [
+    {
+     "texto": "Não vale: 6 meses é curto demais para arriscar essa meta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Vale, porque ações sempre rendem mais em qualquer prazo",
+     "correta": false,
+     "feedbackErro": "Ações não garantem retorno em prazos curtos — podem cair bem na hora de vender. Prazo curto pede baixo risco, não aposta."
+    },
+    {
+     "texto": "Tanto faz, prazo curto não interfere na escolha do risco",
+     "correta": false,
+     "feedbackErro": "Interfere, sim: prazo curto reduz o tempo de recuperar uma eventual queda — por isso pede menos risco, não mais."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "planejamento-no-tempo",
+   "dificuldade": 2,
+   "pergunta": "Bruno guarda tudo numa conta de baixo risco há 10 anos, para uma meta de 20 anos. O que ele pode estar perdendo?",
+   "ancora": "Prazo tão longo tem espaço de sobra para investir uma parte.",
+   "alternativas": [
+    {
+     "texto": "Um retorno maior, possível pelo prazo longo que ainda resta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: baixo risco é sempre a melhor escolha no prazo",
+     "correta": false,
+     "feedbackErro": "Não é sempre: em prazos muito longos, ficar só no baixo risco costuma deixar retorno na mesa que o tempo permitiria buscar."
+    },
+    {
+     "texto": "Nada, porque poupança sempre rende mais que investimento",
+     "correta": false,
+     "feedbackErro": "Não é regra: em prazos longos, investimentos de risco moderado costumam superar a poupança na média histórica."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "poupar-x-investir",
+   "criterio": "Isso é investir, não só poupar?",
+   "enunciado": "Comprar cotas de um fundo multimercado, com risco moderado",
+   "resposta": true,
+   "ancora": "Risco moderado ainda é risco — perfil de investir.",
+   "feedbackErro": "Moderado parece 'quase sem risco', e isso confunde. Mas ainda existe chance real de o valor cair — o comportamento é de investir."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "planejamento-no-tempo",
+   "criterio": "Combina mais com poupar do que investir?",
+   "enunciado": "Valor separado para o aluguel do próximo mês",
+   "resposta": true,
+   "ancora": "Precisa estar certo e disponível — perfil de poupar.",
+   "feedbackErro": "Parece dinheiro 'parado à toa'. Mas para uma conta certa do mês que vem, o que importa é estar disponível sem risco de faltar."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "poupar-e-investir-no-plano",
+   "pergunta": "Qual ideia fecha este encontro?",
+   "alternativas": [
+    {
+     "texto": "Quanto mais curto o prazo, menos risco a meta deve correr",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nome do produto define se é poupar ou investir",
+     "correta": false,
+     "feedbackErro": "O que define não é o nome, e sim o risco de o valor variar. Um título pode se chamar de outro jeito e ainda se comportar como poupar."
+    },
+    {
+     "texto": "Poupança rende mais que investimento em qualquer prazo",
+     "correta": false,
+     "feedbackErro": "Não é regra: em prazos longos, investimentos de risco moderado costumam superar a poupança na média histórica."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "poupar-x-investir",
+   "instrucao": "Poupar ou investir? Arraste cada exemplo.",
+   "ancora": "O risco de o valor variar é o que separa as duas categorias.",
+   "feedbackErro": "Sem risco relevante de perder valor, é poupar. Com chance real de subir ou cair, é investir.",
+   "caixas": [
+    {
+     "id": "poupar",
+     "rotulo": "Poupar"
+    },
+    {
+     "id": "investir",
+     "rotulo": "Investir"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Conta que rende pouco, sem risco de perder o valor",
+     "caixaCorreta": "poupar"
+    },
+    {
+     "texto": "Fundo multimercado, com risco moderado",
+     "caixaCorreta": "investir"
+    },
+    {
+     "texto": "Título público sem variação até o vencimento",
+     "caixaCorreta": "poupar"
+    },
+    {
+     "texto": "Cotas de fundo imobiliário, preço variável",
+     "caixaCorreta": "investir"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "planejamento-no-tempo",
+   "dificuldade": 3,
+   "pergunta": "Camila tem duas metas: reserva de emergência e aposentadoria. Ela deveria guardar as duas do mesmo jeito?",
+   "ancora": "Função de cada meta pede estratégia própria dentro do plano.",
+   "alternativas": [
+    {
+     "texto": "Não: a reserva pede baixo risco; a aposentadoria comporta mais",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, as duas devem ficar só em investimentos de risco",
+     "correta": false,
+     "feedbackErro": "A reserva de emergência precisa estar disponível a qualquer momento, sem risco de perda — investimento de risco não serve para ela."
+    },
+    {
+     "texto": "Sim, as duas devem ficar só na poupança",
+     "correta": false,
+     "feedbackErro": "Para a aposentadoria, com prazo bem mais longo, ficar só na poupança costuma deixar retorno na mesa que o tempo permitiria buscar."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "poupar-x-investir",
+   "criterio": "Isso é investir, não só poupar?",
+   "enunciado": "Comprar um título privado que pode não pagar o valor combinado",
+   "resposta": true,
+   "ancora": "Risco de calote é risco de verdade — perfil de investir.",
+   "feedbackErro": "Título soa 'seguro' pelo nome. Mas se existe risco real de não receber de volta, o comportamento é de investir, não de poupar."
+  }
+ ]
+}

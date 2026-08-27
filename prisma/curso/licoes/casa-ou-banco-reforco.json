@@ -1,0 +1,299 @@
+{
+ "slug": "casa-ou-banco-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "casa-ou-banco",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "juros-e-instituicao-confiavel",
+   "criterio": "Rende de verdade, considerando a taxa?",
+   "enunciado": "R$ 1.500 numa conta que rende 100% do CDI (~1% ao mês) por 8 meses",
+   "resposta": true,
+   "ancora": "R$ 1.500 a 1% ao mês por 8 meses rendem cerca de R$ 124.",
+   "feedbackErro": "1% ao mês parece pouco isolado. Mas em 8 meses de juro composto, R$ 1.500 já rendem cerca de R$ 124.",
+   "verificacao": { "expressao": "1500*1.01^8-1500", "esperado": 124.29, "tolerancia": 2 }
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "casa-ou-banco",
+   "criterio": "Rende de verdade, considerando a taxa?",
+   "enunciado": "R$ 300 guardados numa gaveta por 2 anos, sem mexer",
+   "resposta": false,
+   "ancora": "Sem juros, tempo parado não gera nenhum rendimento.",
+   "feedbackErro": "2 anos parece tempo suficiente pra algo crescer. Mas sem juros aplicados, tempo sozinho não rende nada."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "casa-ou-banco",
+   "criterio": "Rende de verdade, considerando a taxa?",
+   "enunciado": "R$ 500 numa conta corrente comum, sem rendimento, por 1 ano",
+   "resposta": false,
+   "ancora": "Conta sem taxa de rendimento não rende, mesmo sendo banco.",
+   "feedbackErro": "Estar no banco não garante rendimento — algumas contas simplesmente não têm juros aplicados."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "casa-ou-banco",
+   "dificuldade": 2,
+   "pergunta": "Qual pergunta você faz pra saber se vale guardar numa instituição, e não em casa?",
+   "ancora": "O que importa é a taxa comparada à inflação, não a aparência do banco.",
+   "alternativas": [
+    {
+     "texto": "Se o prédio do banco é bonito",
+     "correta": false,
+     "feedbackErro": "Aparência não diz nada sobre segurança ou rendimento."
+    },
+    {
+     "texto": "Se a taxa de rendimento supera a inflação do período",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se todo mundo já usa esse banco",
+     "correta": false,
+     "feedbackErro": "Popularidade não garante taxa boa nem segurança."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "juros-e-instituicao-confiavel",
+   "dificuldade": 2,
+   "pergunta": "Heitor tem R$ 900 numa poupança por 10 meses, a 0,5% ao mês composto. Quanto rendeu?",
+   "ancora": "R$ 900 a 0,5% ao mês por 10 meses rendem cerca de R$ 46.",
+   "verificacao": { "expressao": "900*1.005^10-900", "esperado": 46.03, "tolerancia": 2 },
+   "alternativas": [
+    {
+     "texto": "Cerca de R$ 46",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 0, porque poupança 'não conta' como investimento",
+     "correta": false,
+     "feedbackErro": "Poupança é uma instituição confiável e rende, mesmo sendo pouco divulgada como investimento."
+    },
+    {
+     "texto": "Cerca de R$ 450",
+     "correta": false,
+     "feedbackErro": "Esse valor é alto demais pro prazo e pra taxa — 0,5% ao mês não chega perto disso."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "casa-ou-banco",
+   "criterio": "Rendimento maior sempre vence?",
+   "enunciado": "1% ao mês numa instituição pouco confiável, contra 0,5% numa poupança garantida",
+   "resposta": false,
+   "ancora": "Segurança da instituição pesa tanto quanto a taxa de rendimento.",
+   "feedbackErro": "Taxa maior parece sempre melhor. Mas se a instituição não é confiável, o risco de perder tudo anula essa vantagem."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "juros-e-instituicao-confiavel",
+   "instrucao": "Ordene do que rende mais pro que rende menos.",
+   "ancora": "Quanto maior o percentual do CDI, maior o rendimento.",
+   "feedbackErro": "É fácil olhar só o nome do produto. O que ordena é o percentual de rendimento prometido.",
+   "itens": [
+    { "texto": "Conta que rende 120% do CDI", "posicaoCorreta": 1 },
+    { "texto": "Conta que rende 100% do CDI", "posicaoCorreta": 2 },
+    { "texto": "Poupança", "posicaoCorreta": 3 },
+    { "texto": "Conta corrente sem rendimento", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "casa-ou-banco",
+   "criterio": "É o critério certo pra guardar aqui?",
+   "enunciado": "Comparar a taxa de rendimento com a taxa de inflação do período",
+   "resposta": true,
+   "ancora": "Só rendimento acima da inflação preserva valor de verdade.",
+   "feedbackErro": "Comparar taxas parece só matemática de banco. Mas é esse comparativo que diz se o dinheiro realmente cresce."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "casa-ou-banco",
+   "criterio": "É o critério certo pra guardar aqui?",
+   "enunciado": "Escolher pela cor do aplicativo do banco",
+   "resposta": false,
+   "ancora": "Design do app não muda taxa nem segurança do dinheiro.",
+   "feedbackErro": "O app bonito pode parecer sinal de banco moderno. Mas isso não muda a taxa nem a segurança de fato."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "juros-e-instituicao-confiavel",
+   "pergunta": "R$ 2.200 na poupança, a 0,5% ao mês composto. Quanto rende em 6 meses?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 200,
+   "gabarito": 67,
+   "toleranciaPct": 20,
+   "fonte": "taxa média da poupança, ~0,5% ao mês (Banco Central)",
+   "verificacao": { "expressao": "2200*1.005^6-2200", "esperado": 66.83, "tolerancia": 2 },
+   "feedbackPerto": "Isso mesmo — cerca de R$ 67 em 6 meses de juro composto.",
+   "feedbackLonge": "O rendimento é de cerca de R$ 67. Mesmo em poucos meses, o juro composto de 0,5% já aparece."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "casa-ou-banco",
+   "dificuldade": 2,
+   "pergunta": "R$ 1.000 em casa por 1 ano, com inflação de 4,5%. Cerca de quanto de poder de compra ele perdeu?",
+   "ancora": "R$ 1.000 compram, um ano depois, o que R$ 957 comprariam hoje.",
+   "verificacao": { "expressao": "1000 - 1000/1.045", "esperado": 43.06, "tolerancia": 1 },
+   "alternativas": [
+    {
+     "texto": "Cerca de R$ 43",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 0, porque o valor guardado continua R$ 1.000",
+     "correta": false,
+     "feedbackErro": "O número não mudou, mas o que ele compra sim — essa é a perda real de poder de compra."
+    },
+    {
+     "texto": "Cerca de R$ 450",
+     "correta": false,
+     "feedbackErro": "A inflação de 4,5% não corrói quase metade do valor — esse número está bem acima do real."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "juros-e-instituicao-confiavel",
+   "dificuldade": 2,
+   "pergunta": "R$ 1.300 na poupança por 36 meses, a 0,5% ao mês. Cerca de quanto rende no total?",
+   "ancora": "36 meses de juro composto a 0,5% rendem cerca de R$ 256.",
+   "verificacao": { "expressao": "1300*1.005^36-1300", "esperado": 255.68, "tolerancia": 5 },
+   "alternativas": [
+    {
+     "texto": "Cerca de R$ 256",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cerca de R$ 70",
+     "correta": false,
+     "feedbackErro": "Esse valor subestima o efeito composto ao longo de 36 meses seguidos."
+    },
+    {
+     "texto": "Cerca de R$ 650",
+     "correta": false,
+     "feedbackErro": "Esse valor é alto demais — a taxa mensal de 0,5% não chega nem perto disso em 3 anos."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "casa-ou-banco",
+   "criterio": "É sinal de que vale a pena guardar lá?",
+   "enunciado": "A taxa de rendimento é maior que a inflação do período",
+   "resposta": true,
+   "ancora": "Rendimento acima da inflação é sinal de crescimento real.",
+   "feedbackErro": "Taxa positiva já parece suficiente. Mas só superar a inflação garante que o poder de compra aumentou."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "juros-e-instituicao-confiavel",
+   "criterio": "É sinal de que vale a pena guardar lá?",
+   "enunciado": "A instituição promete uma taxa bem acima do mercado, sem explicar por quê",
+   "resposta": false,
+   "ancora": "Taxa fora do padrão sem explicação é sinal de risco, não de vantagem.",
+   "feedbackErro": "Taxa alta parece só uma boa notícia. Mas sem explicação, costuma ser sinal de golpe ou risco escondido."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "casa-ou-banco",
+   "pergunta": "Depois de revisar, qual frase é mais precisa?",
+   "alternativas": [
+    {
+     "texto": "Quanto maior a taxa, melhor a instituição, sem exceção.",
+     "correta": false,
+     "feedbackErro": "Taxa muito acima do mercado, sem explicação, costuma ser sinal de risco, não de vantagem."
+    },
+    {
+     "texto": "Vale guardar onde a taxa supera a inflação e a instituição é confiável.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Guardar em casa e guardar no banco dão sempre no mesmo resultado.",
+     "correta": false,
+     "feedbackErro": "No banco o dinheiro rende; em casa, só perde valor com a inflação."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "casa-ou-banco",
+   "instrucao": "O rendimento supera a inflação de ~4,5% ao ano?",
+   "ancora": "Compare a taxa anualizada com a inflação do período.",
+   "feedbackErro": "Taxa mensal parece pequena isolada. Anualizada, ela pode ficar acima ou abaixo da inflação.",
+   "caixas": [
+    { "id": "supera", "rotulo": "Supera" },
+    { "id": "nao", "rotulo": "Não supera" }
+   ],
+   "itens": [
+    { "texto": "Poupança, ~0,5% ao mês", "caixaCorreta": "supera" },
+    { "texto": "Conta corrente sem rendimento", "caixaCorreta": "nao" },
+    { "texto": "Conta que rende 100% do CDI, ~1% ao mês", "caixaCorreta": "supera" },
+    { "texto": "Dinheiro guardado em casa", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "juros-e-instituicao-confiavel",
+   "dificuldade": 3,
+   "pergunta": "R$ 700 na poupança por 14 meses, a 0,5% ao mês. Cerca de quanto rende?",
+   "ancora": "R$ 700 a 0,5% ao mês por 14 meses rendem cerca de R$ 51.",
+   "verificacao": { "expressao": "700*1.005^14-700", "esperado": 50.62, "tolerancia": 2 },
+   "alternativas": [
+    {
+     "texto": "Cerca de R$ 51",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cerca de R$ 10",
+     "correta": false,
+     "feedbackErro": "Esse valor é baixo demais pro prazo de 14 meses de juro composto."
+    },
+    {
+     "texto": "Cerca de R$ 100",
+     "correta": false,
+     "feedbackErro": "Esse valor é alto demais pra uma taxa de 0,5% ao mês nesse prazo."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "casa-ou-banco",
+   "criterio": "É verdade?",
+   "enunciado": "Uma taxa de rendimento positiva sempre supera a inflação",
+   "resposta": false,
+   "ancora": "Taxas baixas podem ficar abaixo da inflação em anos de alta.",
+   "feedbackErro": "Rendimento positivo parece sempre suficiente. Mas se a inflação sobe mais que a taxa, o poder de compra ainda cai."
+  }
+ ]
+}

@@ -1,0 +1,333 @@
+{
+ "slug": "risco-retorno-e-liquidez-reforco",
+ "segmento": "em2",
+ "conceitoPrincipal": "risco-retorno-e-liquidez",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "criterio": "Essa troca respeita o tripé?",
+   "enunciado": "Abrir mão de liquidez para buscar retorno em meta longa",
+   "resposta": true,
+   "ancora": "Troca clássica: pressa de menos vira retorno de mais.",
+   "feedbackErro": "Qual era o critério? Toda escolha entrega algo em troca de algo. Meta longa não precisa de resgate rápido, então vender a liquidez por retorno é troca limpa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "criterio": "Essa troca respeita o tripé?",
+   "enunciado": "Aceitar mais risco pelo mesmo retorno de antes",
+   "resposta": false,
+   "ancora": "Risco só se aceita pago. Mesmo retorno com mais risco é prejuízo.",
+   "feedbackErro": "Parece só mais uma troca, mas repare: você entregou segurança e não recebeu nada. Risco a mais exige retorno a mais — senão, fique onde estava."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prazo-e-liquidez",
+   "criterio": "Essa troca respeita o tripé?",
+   "enunciado": "Deixar a reserva de emergência travada por 3 anos",
+   "resposta": false,
+   "ancora": "Reserva sem resgate imediato não é reserva.",
+   "feedbackErro": "O retorno maior seduz, mas a função da reserva é liquidez: emergência chega sem avisar e não espera 3 anos. Para esse dinheiro, o resgate na hora manda."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "prazo-e-liquidez",
+   "dificuldade": 2,
+   "pergunta": "Renata tem R$ 1.350 para a formatura em 8 meses. Viu uma aplicação boa que trava por 2 anos. Por que descartar?",
+   "ancora": "Prazo da aplicação maior que o prazo da meta desclassifica.",
+   "alternativas": [
+    {
+     "texto": "O prazo da aplicação passa do prazo da meta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Aplicação travada dá sempre prejuízo",
+     "correta": false,
+     "feedbackErro": "Travar não é prejuízo — costuma até pagar mais. O problema é outro: a festa é em 8 meses e o dinheiro só sai em 24. Boa aplicação, meta errada."
+    },
+    {
+     "texto": "R$ 1.350 é pouco para investir",
+     "correta": false,
+     "feedbackErro": "Não existe valor mínimo para o tripé funcionar. O que desclassifica a opção é o descasamento de prazos, não o tamanho do dinheiro."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "diversificacao",
+   "dificuldade": 2,
+   "pergunta": "Uma carteira tem 4 aplicações — todas ações de bancos. O dono diz que está diversificado. Qual é a falha?",
+   "ancora": "Diversificar é variar o motivo de queda, não o número de nomes.",
+   "alternativas": [
+    {
+     "texto": "Nenhuma: quatro aplicações já é diversificar",
+     "correta": false,
+     "feedbackErro": "Contar nomes é o erro de quem entendeu metade. Se uma crise bancária vier, as quatro caem pelo mesmo motivo, como se fossem uma só."
+    },
+    {
+     "texto": "Os riscos são iguais: se os bancos caírem, cai tudo junto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Faltou concentrar na ação que mais rende",
+     "correta": false,
+     "feedbackErro": "Concentrar é o movimento oposto ao que ele precisa: aumentaria o risco. A correção é variar setores e tipos, não apostar num único cavalo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "diversificacao",
+   "criterio": "Diversificar consegue isso?",
+   "enunciado": "Zerar qualquer chance de perda",
+   "resposta": false,
+   "ancora": "Reduz o risco do conjunto; não existe carteira sem risco.",
+   "feedbackErro": "Diversificar amortece: uma queda não derruba o todo. Mas cada parte segue sujeita a variar — a promessa é perder menos e menos vezes, nunca perder nunca."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "prazo-e-liquidez",
+   "instrucao": "Combine cada aplicação com a meta que ela serve.",
+   "ancora": "Prazo e liquidez da aplicação seguem o prazo da meta.",
+   "feedbackErro": "O erro comum é escolher pelo retorno. Meta perto pede resgate fácil e pouca oscilação; meta longe suporta trava e variação em troca de render mais.",
+   "caixas": [
+    {
+     "id": "curto",
+     "rotulo": "Meta em 6 meses"
+    },
+    {
+     "id": "longo",
+     "rotulo": "Meta em 20 anos"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Resgate no mesmo dia, rende pouco",
+     "caixaCorreta": "curto"
+    },
+    {
+     "texto": "Ações, que oscilam forte",
+     "caixaCorreta": "longo"
+    },
+    {
+     "texto": "Título que vence daqui a 15 anos",
+     "caixaCorreta": "longo"
+    },
+    {
+     "texto": "Aplicação sem multa para sacar amanhã",
+     "caixaCorreta": "curto"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "prazo-e-liquidez",
+   "criterio": "Prazo e meta combinam?",
+   "enunciado": "Viagem de julho guardada em título que vence em 2030",
+   "resposta": false,
+   "ancora": "Resgatar antes do vencimento pode custar parte do valor.",
+   "feedbackErro": "O título é bom; o casamento é ruim. Vender antes do prazo pode significar sair com menos do que entrou — a meta de julho precisa de liquidez em julho."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "prazo-e-liquidez",
+   "criterio": "Prazo e meta combinam?",
+   "enunciado": "Aposentadoria aplicada em título longo, de baixa liquidez",
+   "resposta": true,
+   "ancora": "Meta de décadas casa com prazo longo — e costuma pagar mais.",
+   "feedbackErro": "A trava assusta, mas aqui ela trabalha a favor: você não precisa do dinheiro cedo e é pago a mais justamente por abrir mão da pressa."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "pergunta": "Aplicação rende 1% ao mês. Quanto R$ 2.000 viram em 6 meses, com juros compostos?",
+   "campo": "moeda",
+   "min": 1900,
+   "max": 2600,
+   "gabarito": 2123,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 2.000 × 1,01 elevado a 6",
+   "verificacao": {
+    "expressao": "2000*1.01^6",
+    "esperado": 2123.04,
+    "tolerancia": 0.05
+   },
+   "feedbackPerto": "R$ 2.123: os juros de cada mês rendem no mês seguinte. Composto é isso — pouco por mês, muito no acumulado.",
+   "feedbackLonge": "R$ 2.123. Quem soma 6% direto acha R$ 2.120 e quem chuta alto esquece que 1% é sobre o saldo, não mágica. Composto multiplica, não soma."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "dificuldade": 2,
+   "pergunta": "Duas aplicações pagam 0,9% ao mês. Uma resgata na hora; a outra trava por 1 ano. Qual escolher?",
+   "ancora": "Retorno igual: fique com a liquidez, que aqui sai de graça.",
+   "alternativas": [
+    {
+     "texto": "A travada: aplicação presa sempre rende mais",
+     "correta": false,
+     "feedbackErro": "Costuma render — mas aqui não rende: o retorno é o mesmo. Você entregaria liquidez sem receber nada por ela, e essa troca o tripé reprova."
+    },
+    {
+     "texto": "A de resgate na hora: mesmo retorno com mais liquidez",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Tanto faz: o rendimento é igual nas duas",
+     "correta": false,
+     "feedbackErro": "O rendimento é igual; as aplicações, não. Liquidez tem valor — em empate de retorno, ela é o critério de desempate."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "dificuldade": 2,
+   "pergunta": "Aplicação A variou de −5% a +20% ao ano; B paga 0,8% ao mês, estável. O que dá para concluir?",
+   "ancora": "Amplitude de variação é a medida do risco.",
+   "alternativas": [
+    {
+     "texto": "A é melhor: 20% é o maior número da comparação",
+     "correta": false,
+     "feedbackErro": "O 20% é o teto, não o piso: o mesmo histórico mostra −5%. Comparar só o melhor cenário é olhar metade do risco."
+    },
+    {
+     "texto": "A oscila mais: pode pagar mais e pode perder",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "B esconde golpe, porque nunca varia",
+     "correta": false,
+     "feedbackErro": "Estabilidade com ganho modesto é o comportamento normal de aplicações conservadoras. Golpe é o contrário: retorno alto demais prometido sem variação."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "diversificacao",
+   "criterio": "Reduz o risco do conjunto?",
+   "enunciado": "Espalhar o dinheiro por setores e tipos diferentes",
+   "resposta": true,
+   "ancora": "Riscos que não caem juntos se compensam.",
+   "feedbackErro": "Espalhar parece diluir o ganho, mas o efeito principal é outro: quando um setor cai, o outro segura. O retorno médio fica; o tombo grande some."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "diversificacao",
+   "criterio": "Reduz o risco do conjunto?",
+   "enunciado": "Concentrar tudo na aplicação que mais subiu no ano",
+   "resposta": false,
+   "ancora": "O que mais sobe também pode cair mais. Concentrar amplia o risco.",
+   "feedbackErro": "Seguir o campeão do ano é o instinto — e é correr atrás do risco no ponto mais caro. Subida passada não protege; concentração expõe tudo a uma queda só."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "pergunta": "Qual régua fica com você depois de hoje?",
+   "alternativas": [
+    {
+     "texto": "Antes do retorno, confiro se prazo e liquidez servem à minha meta.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Aplicação travada rende mais, então travo tudo o que tenho.",
+     "correta": false,
+     "feedbackErro": "Travar tudo inclui a reserva — e emergência não espera vencimento. A trava vale quando a meta permite."
+    },
+    {
+     "texto": "Várias aplicações parecidas já contam como diversificar.",
+     "correta": false,
+     "feedbackErro": "Riscos iguais caem juntos, não importa em quantos nomes. Diversificar é variar o motivo da queda."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "prazo-e-liquidez",
+   "instrucao": "Ordene as metas: da que exige mais liquidez à que exige menos.",
+   "ancora": "Quanto mais perto e imprevisível a meta, mais liquidez.",
+   "feedbackErro": "Pense em quando o dinheiro precisa aparecer: emergência é já, a viagem tem data próxima e a aposentadoria pode esperar décadas travada.",
+   "itens": [
+    {
+     "texto": "Reserva de emergência",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Viagem daqui a 1 ano",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Aposentadoria daqui a 30 anos",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "pergunta": "A 0,8% ao mês, quanto R$ 1.000 rendem em 12 meses, só de juros?",
+   "campo": "moeda",
+   "min": 50,
+   "max": 300,
+   "gabarito": 100,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 1.000 × 1,008 elevado a 12, menos os 1.000",
+   "verificacao": {
+    "expressao": "1000*1.008^12-1000",
+    "esperado": 100.34,
+    "tolerancia": 0.05
+   },
+   "feedbackPerto": "Cerca de R$ 100 — uns 10% no ano. Os juros de cada mês também rendem: por isso dá mais que 12 × R$ 8.",
+   "feedbackLonge": "Cerca de R$ 100. O erro clássico é multiplicar 8 × 12 = 96 e parar aí: juros compostos rendem sobre o saldo, não só sobre os 1.000."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "tripe-risco-retorno-liquidez",
+   "dificuldade": 2,
+   "pergunta": "Um perfil promete 5% ao mês 'sem risco' numa plataforma nova. Qual teste aplicar antes de qualquer coisa?",
+   "ancora": "Compare com a taxa básica: muito acima dela, desconfie.",
+   "alternativas": [
+    {
+     "texto": "Comparar a promessa com a Selic, a taxa base do país",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Entrar com pouco dinheiro para testar",
+     "correta": false,
+     "feedbackErro": "É assim que a pirâmide cresce: os primeiros recebem para atrair os próximos. Testar com pouco valida o golpe, não a aplicação."
+    },
+    {
+     "texto": "Ver o número de seguidores e avaliações",
+     "correta": false,
+     "feedbackErro": "Seguidor se compra e avaliação se fabrica. Popularidade não audita promessa: a régua é a taxa básica da economia, não o engajamento."
+    }
+   ]
+  }
+ ]
+}

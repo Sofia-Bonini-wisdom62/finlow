@@ -1,0 +1,295 @@
+{
+ "slug": "golpe-risco-e-promessa-boa-demais-reforco",
+ "segmento": "em2",
+ "conceitoPrincipal": "golpe-risco-e-promessa-boa-demais",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "golpes-comuns",
+   "criterio": "Os sinais apontam golpe?",
+   "enunciado": "Renda extra 'digitando', mas com taxa paga antes",
+   "resposta": true,
+   "ancora": "Qual era a régua? Trabalho de verdade paga você — nunca o contrário.",
+   "feedbackErro": "A 'taxa de cadastro' soa profissional. Mas resgate o critério: emprego real não cobra para começar — pagar para trabalhar já é o golpe inteiro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-vs-golpe",
+   "criterio": "Os sinais apontam golpe?",
+   "enunciado": "Corretora registrada, com o risco escrito no contrato",
+   "resposta": false,
+   "ancora": "Registro + risco declarado: os dois selos do jogo legítimo.",
+   "feedbackErro": "'Risco escrito no contrato' assusta — parece confissão. É o oposto: transparência obrigatória de quem é fiscalizado. O perigo é quem NÃO escreve o risco."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "golpes-comuns",
+   "criterio": "Os sinais apontam golpe?",
+   "enunciado": "Vaga de emprego que pede o número do seu cartão",
+   "resposta": true,
+   "ancora": "Empregador paga salário em conta — não precisa do seu cartão.",
+   "feedbackErro": "Parece parte do cadastro, junto com RG e endereço. Mas repare no que o dado permite: cartão + validade + código movimentam SEU dinheiro. Vaga não pede isso."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-vs-golpe",
+   "dificuldade": 2,
+   "pergunta": "Cripto comprada em corretora regulada caiu 40% num mês. Isso prova que era golpe?",
+   "ancora": "Queda declarada é risco realizado; golpe é a certeza que era falsa.",
+   "alternativas": [
+    {
+     "texto": "Não: alto risco declarado — golpe é outra coisa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim: perda desse tamanho só pode ser fraude",
+     "correta": false,
+     "feedbackErro": "O tamanho da queda não é prova: cripto é volátil e isso É o risco declarado. Fraude se define pela mentira na promessa, não pela dor do resultado."
+    },
+    {
+     "texto": "Não: em corretora regulada nada pode cair",
+     "correta": false,
+     "feedbackErro": "Você acertou o 'não', mas pela razão errada — e ela é perigosa. Regulação não impede queda nenhuma: garante regras e registro, não resultado."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "golpes-comuns",
+   "dificuldade": 2,
+   "pergunta": "Vendendo online, o comprador manda print do 'Pix feito'. Quando entregar o produto?",
+   "ancora": "Print se fabrica em 1 minuto; saldo na SUA conta não se fabrica.",
+   "alternativas": [
+    {
+     "texto": "Só quando o dinheiro aparecer na sua conta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Na hora: comprovante é prova de pagamento",
+     "correta": false,
+     "feedbackErro": "Comprovante verdadeiro é prova — o problema é que print se edita em qualquer celular. A única fonte confiável é o extrato da SUA conta, não a imagem do dele."
+    },
+    {
+     "texto": "Quando o comprador parecer confiável no chat",
+     "correta": false,
+     "feedbackErro": "Simpatia é grátis e golpista profissional é simpático por ofício. Confiança em venda anônima vem de uma fonte só: o dinheiro compensado na conta."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "golpes-comuns",
+   "criterio": "Gatilho clássico de golpe?",
+   "enunciado": "Se passar por banco, governo ou 'central de segurança'",
+   "resposta": true,
+   "ancora": "Autoridade falsa desarma a desconfiança — e ninguém liga avisando.",
+   "feedbackErro": "Uma ligação 'do banco' soa protetora — e o roteiro usa exatamente essa confiança. Regra: desligue e ligue VOCÊ para o número oficial do cartão."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "seguranca-digital",
+   "instrucao": "O que pode compartilhar e o que nunca sai de você?",
+   "ancora": "Chave Pix é endereço público; senha e código SMS são a fechadura.",
+   "feedbackErro": "A régua: o que só RECEBE dinheiro pode circular (chave Pix, banco). O que MOVIMENTA ou destrava a conta — senha, código SMS — não se entrega a ninguém.",
+   "caixas": [
+    { "id": "pode", "rotulo": "Pode compartilhar" },
+    { "id": "nunca", "rotulo": "Nunca" }
+   ],
+   "itens": [
+    { "texto": "Sua chave Pix (e-mail ou celular)", "caixaCorreta": "pode" },
+    { "texto": "Senha do app do banco", "caixaCorreta": "nunca" },
+    { "texto": "Código que chegou por SMS", "caixaCorreta": "nunca" },
+    { "texto": "O nome do banco onde você tem conta", "caixaCorreta": "pode" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "seguranca-digital",
+   "criterio": "Protege a transação?",
+   "enunciado": "Pagar boleto que veio por e-mail sem conferir o emissor",
+   "resposta": false,
+   "ancora": "Boleto falso imita o real: confira o beneficiário antes de pagar.",
+   "feedbackErro": "O boleto parece idêntico — logo, banco e código de barras. O golpe troca só o beneficiário. Na tela de pagamento, leia PARA QUEM o dinheiro vai."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "seguranca-digital",
+   "criterio": "Protege a transação?",
+   "enunciado": "Baixar o app do banco só da loja oficial do celular",
+   "resposta": true,
+   "ancora": "Link de anúncio ou SMS pode entregar app clonado: loja oficial filtra.",
+   "feedbackErro": "Parece detalhe — o app 'é o mesmo'. Não é: app clonado por link captura senha e biometria. A loja oficial verifica o desenvolvedor; o link, não."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "promessa-boa-demais",
+   "pergunta": "'Grupo VIP de sinais' cobra R$ 89 por semana. Quanto custa em um ano?",
+   "campo": "moeda",
+   "min": 500,
+   "max": 20000,
+   "gabarito": 4628,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 89 × 52 semanas",
+   "verificacao": { "expressao": "89*52", "esperado": 4628 },
+   "feedbackPerto": "R$ 4.628 por ano — pagos ANTES de qualquer ganho. O negócio do 'guru' é a assinatura, não o mercado.",
+   "feedbackLonge": "R$ 4.628: 89 × 52. O viés é ler 'só R$ 89' e pensar no mês — cobrança semanal é 52 parcelas, não 12: mais de 4 vezes a conta mental."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "golpes-comuns",
+   "dificuldade": 2,
+   "pergunta": "Vitor caiu num golpe do Pix há 20 minutos. Qual é o primeiro passo?",
+   "ancora": "Banco na hora: há mecanismo de devolução, e tempo é tudo.",
+   "alternativas": [
+    {
+     "texto": "Chamar o banco já: existe pedido de devolução do Pix",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Esperar: o banco estorna sozinho em uns dias",
+     "correta": false,
+     "feedbackErro": "Não há estorno automático: sem o seu registro, o banco nem sabe do golpe. O mecanismo de devolução existe, mas quem aciona é você — e rápido."
+    },
+    {
+     "texto": "Seguir o 'gerente' que ligou oferecendo ajuda",
+     "correta": false,
+     "feedbackErro": "Golpe em dupla: depois da perda vem a 'falsa central' para limpar o resto. Banco nenhum liga pedindo transferência 'de proteção'. Desligue e ligue você."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "piramide",
+   "dificuldade": 2,
+   "pergunta": "Por que a pirâmide paga direitinho nos primeiros meses?",
+   "ancora": "O pagamento inicial é o investimento do golpista em você.",
+   "alternativas": [
+    {
+     "texto": "É a isca: você confia, aumenta e traz amigos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque no começo o negócio ainda lucra",
+     "correta": false,
+     "feedbackErro": "Não há negócio lucrando: o que entra é dinheiro de recruta novo. No início sobra caixa porque a base cresce — a conta só fecha enquanto isso durar."
+    },
+    {
+     "texto": "Por exigência do fiscal nos primeiros meses",
+     "correta": false,
+     "feedbackErro": "Fiscal nenhum acompanha esquema não registrado — pirâmide vive fora do radar até quebrar. O pagamento pontual é estratégia do golpista, não obrigação."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "golpes-comuns",
+   "criterio": "Reflexo certo contra golpe?",
+   "enunciado": "Desligar e ligar você mesmo no número oficial",
+   "resposta": true,
+   "ancora": "Quem liga escolhe o roteiro. Ligando você, escolhe o interlocutor.",
+   "feedbackErro": "Parece grosseria com um 'atendente' educado — e é a defesa perfeita: se a central era real, você a encontra no número oficial. Se era golpe, morreu ali."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "piramide",
+   "criterio": "Reflexo certo contra golpe?",
+   "enunciado": "Confiar porque o convite veio de um amigo",
+   "resposta": false,
+   "ancora": "Pirâmide viaja por vínculo: o amigo também foi enganado.",
+   "feedbackErro": "O amigo não quer te lesar — e é isso que torna o canal perfeito: a boa-fé dele empresta credibilidade ao esquema. Cheque a proposta, não a amizade."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "golpe-risco-e-promessa-boa-demais",
+   "dificuldade": 2,
+   "pergunta": "Chegou proposta de dinheiro fácil. Qual é o reflexo treinado?",
+   "alternativas": [
+    {
+     "texto": "Parar, checar registro e canal oficial — a pressa é o anzol.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Entrar com pouco, só para testar se paga.",
+     "correta": false,
+     "feedbackErro": "O teste é a armadilha: pirâmide paga os primeiros justamente para o 'teste' dar certo. Entrar pouco não mede nada — e te transforma em divulgador."
+    },
+    {
+     "texto": "Aceitar se vier de alguém de confiança.",
+     "correta": false,
+     "feedbackErro": "Confiança não se transfere para a proposta: quem te chamou também acreditou em alguém. A checagem é sobre o esquema, nunca sobre o mensageiro."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "golpes-comuns",
+   "instrucao": "O golpe aconteceu. Ordene a reação.",
+   "ancora": "Banco primeiro (devolução corre contra o relógio), depois o rastro.",
+   "feedbackErro": "O critério é o relógio: banco já, pela devolução do Pix. Senhas fecham a porta; o B.O. documenta; avisar contatos evita a próxima vítima.",
+   "itens": [
+    { "texto": "Acionar o banco e pedir bloqueio", "posicaoCorreta": 1 },
+    { "texto": "Trocar senhas e travar cartões", "posicaoCorreta": 2 },
+    { "texto": "Registrar boletim de ocorrência", "posicaoCorreta": 3 },
+    { "texto": "Avisar contatos, se o perfil foi clonado", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "risco-vs-golpe",
+   "dificuldade": 2,
+   "pergunta": "'Entrei com pouco para testar e está pagando.' O que o teste provou?",
+   "ancora": "Pagar cedo é o truque, não a prova: a isca custa barato ao golpista.",
+   "alternativas": [
+    {
+     "texto": "Nada: pagar os primeiros é parte do golpe",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que o esquema funciona — é dado real",
+     "correta": false,
+     "feedbackErro": "O pagamento é real; o que ele significa é que não é: sai da entrada de novos, não de lucro. Todo esquema quebrado 'estava pagando' até a véspera."
+    },
+    {
+     "texto": "Que é seguro aumentar aos poucos",
+     "correta": false,
+     "feedbackErro": "É a escada desenhada: pagando pouco, você confia; confiando, aumenta; aumentando, traz gente. Cada degrau parece prudente — o conjunto é a queda."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "seguranca-digital",
+   "criterio": "Sinal de app ou site falso?",
+   "enunciado": "Endereço parecido com o oficial, com uma letra a mais",
+   "resposta": true,
+   "ancora": "Domínio quase igual é clonagem: confira letra por letra.",
+   "feedbackErro": "Uma letra passa despercebida de propósito — 'bancco', 'gov-br'. O site clonado copia o visual; o endereço é o único lugar onde ele não mente 100%."
+  }
+ ]
+}

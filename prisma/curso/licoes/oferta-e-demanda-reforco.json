@@ -1,0 +1,270 @@
+{
+ "slug": "oferta-e-demanda-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "oferta-e-demanda",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "diferenciar-oferta-demanda",
+   "criterio": "Isso é oferta, ou é demanda?",
+   "enunciado": "A quantidade de ingressos que ainda não foram vendidos",
+   "resposta": true,
+   "ancora": "Lembra o critério: o que está disponível para vender é oferta.",
+   "feedbackErro": "Ingressos ainda não vendidos são o que está disponível — isso é oferta. Demanda seria quantas pessoas ainda querem comprar."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "diferenciar-oferta-demanda",
+   "criterio": "Isso é oferta, ou é demanda?",
+   "enunciado": "O tamanho da fila de pessoas esperando pra comprar o ingresso",
+   "resposta": false,
+   "ancora": "A fila mostra quanta gente quer comprar: isso é demanda.",
+   "feedbackErro": "Lembra o critério: quem quer comprar é demanda. A fila mostra vontade de comprar, não quantidade disponível."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "impacto-no-preco",
+   "criterio": "Isso costuma mudar o preço?",
+   "enunciado": "Um ingrediente ficar mais raro por causa de uma praga na plantação",
+   "resposta": true,
+   "ancora": "Menos oferta do ingrediente tende a subir o preço dele.",
+   "feedbackErro": "Lembra o critério: menos oferta disponível, com a mesma procura, costuma empurrar o preço para cima."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "diferenciar-oferta-demanda",
+   "dificuldade": 2,
+   "pergunta": "Uma loja tem 50 tênis em estoque e recebe 200 pedidos no mesmo dia. O que os 200 pedidos representam?",
+   "ancora": "Os pedidos mostram quantas pessoas querem comprar: é demanda.",
+   "alternativas": [
+    {
+     "texto": "A demanda por aquele tênis naquele dia",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A oferta que a loja tem disponível",
+     "correta": false,
+     "feedbackErro": "A oferta são os 50 tênis em estoque. Os 200 pedidos mostram quanta gente quer comprar — isso é demanda."
+    },
+    {
+     "texto": "O preço final que cada cliente vai pagar",
+     "correta": false,
+     "feedbackErro": "O número de pedidos não é um valor em dinheiro, é uma contagem de quem quer comprar. Isso é demanda, não preço."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-no-preco",
+   "dificuldade": 2,
+   "pergunta": "Yasmin nota que o preço da melancia caiu bastante em janeiro. Qual explicação combina com oferta e demanda?",
+   "ancora": "Safra de melancia é forte em janeiro: mais oferta baixa o preço.",
+   "alternativas": [
+    {
+     "texto": "Em janeiro a safra de melancia é forte, então há mais oferta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Em janeiro ninguém mais gosta de comer melancia",
+     "correta": false,
+     "feedbackErro": "Não há motivo pra procura sumir em janeiro — é época de calor, quando mais se come melancia. O que muda é a oferta da safra."
+    },
+    {
+     "texto": "O preço de frutas nunca muda ao longo do ano",
+     "correta": false,
+     "feedbackErro": "O preço de fruta varia bastante com a época da safra. Na safra forte, mais oferta costuma baixar o preço."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "diferenciar-oferta-demanda",
+   "criterio": "Isso é oferta, ou é demanda?",
+   "enunciado": "Quantas pessoas se inscreveram pra comprar o ingresso quando abrir a venda",
+   "resposta": false,
+   "ancora": "Quantidade de interessados em comprar é demanda.",
+   "feedbackErro": "É a contagem de quem quer comprar antes mesmo da venda abrir. Isso é demanda; oferta seria o total de ingressos disponíveis."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "impacto-no-preco",
+   "instrucao": "Isso tende a subir o preço, ou tende a baixar o preço?",
+   "ancora": "Menos oferta ou mais demanda sobe; mais oferta ou menos demanda baixa.",
+   "feedbackErro": "Some produto ou aumente quem quer comprar, e o preço sobe; aumente produto ou diminua quem quer comprar, e ele baixa.",
+   "caixas": [
+    {
+     "id": "sobe",
+     "rotulo": "Tende a subir"
+    },
+    {
+     "id": "desce",
+     "rotulo": "Tende a baixar"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Uma praga reduzir a colheita de café pela metade",
+     "caixaCorreta": "sobe"
+    },
+    {
+     "texto": "Uma nova fábrica dobrar a produção de um brinquedo",
+     "caixaCorreta": "desce"
+    },
+    {
+     "texto": "Um produto virar febre nas redes sociais",
+     "caixaCorreta": "sobe"
+    },
+    {
+     "texto": "Um produto sair de moda e ninguém mais quiser",
+     "caixaCorreta": "desce"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "diferenciar-oferta-demanda",
+   "criterio": "Isso é oferta, ou é demanda?",
+   "enunciado": "A quantidade de pães que a padaria decide assar amanhã",
+   "resposta": true,
+   "ancora": "É uma decisão de produção: oferta.",
+   "feedbackErro": "É quanto a padaria vai colocar à venda, então é oferta. Demanda seria quantas pessoas vão querer comprar pão amanhã."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-no-preco",
+   "dificuldade": 2,
+   "pergunta": "Um material de construção fica mais barato após 3 novas fábricas abrirem no país. Por quê?",
+   "ancora": "Mais fábricas produzindo aumentam a oferta do material.",
+   "alternativas": [
+    {
+     "texto": "Porque a oferta do material aumentou",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque menos gente está construindo casas agora",
+     "correta": false,
+     "feedbackErro": "O texto não fala de menos gente construindo, e sim de mais fábricas produzindo. O que aumentou foi a oferta, não uma queda na demanda."
+    },
+    {
+     "texto": "Porque o governo fixou um preço mais baixo por lei",
+     "correta": false,
+     "feedbackErro": "Não há menção a lei nenhuma no caso. A queda de preço vem do aumento de oferta trazido pelas novas fábricas."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "diferenciar-oferta-demanda",
+   "criterio": "Isso é oferta, ou é demanda?",
+   "enunciado": "O tanto de sorvete que a sorveteria consegue produzir por dia",
+   "resposta": true,
+   "ancora": "É a capacidade de produção: oferta.",
+   "feedbackErro": "É quanto a sorveteria consegue colocar à venda, então é oferta. Demanda seria quanto sorvete as pessoas querem comprar."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "impacto-no-preco",
+   "criterio": "Isso costuma mudar o preço?",
+   "enunciado": "Um produto ficar disponível em mais lojas da cidade, sem mudar quem quer comprar",
+   "resposta": true,
+   "ancora": "Mais oferta espalhada baixa o preço, mesmo sem mudar a demanda.",
+   "feedbackErro": "Parece só uma questão de comodidade. Mas mais lojas vendendo aumentam a oferta total, o que tende a baixar o preço."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "oferta-e-demanda",
+   "pergunta": "Qual explicação usa oferta e demanda corretamente?",
+   "alternativas": [
+    {
+     "texto": "O preço só muda por decisão do dono da loja, nada mais",
+     "correta": false,
+     "feedbackErro": "O dono ajusta o preço, mas ele responde ao que muda em volta: quanto tem disponível e quanto as pessoas querem comprar."
+    },
+    {
+     "texto": "Menos oferta ou mais demanda tendem a subir o preço",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Oferta e demanda são a mesma coisa, com nomes diferentes",
+     "correta": false,
+     "feedbackErro": "São lados opostos: oferta é quem produz e vende; demanda é quem quer comprar."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "impacto-no-preco",
+   "instrucao": "Ordene da situação que MAIS baixa o preço à que MENOS baixa.",
+   "ancora": "Muita oferta encontrando pouca demanda é o que mais derruba o preço.",
+   "feedbackErro": "O que mais derruba o preço é muito produto disponível com pouca gente querendo comprar ao mesmo tempo.",
+   "itens": [
+    {
+     "texto": "Muito produto disponível e pouca gente querendo comprar",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Produto normal disponível e um pouco menos de compradores",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Produto disponível igual e a mesma quantidade de compradores",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "diferenciar-oferta-demanda",
+   "dificuldade": 2,
+   "pergunta": "Uma pesquisa mostra que 500 famílias pretendem comprar geladeira nova este ano. Isso é dado de qual lado?",
+   "ancora": "Pretensão de comprar mostra quem quer o produto: demanda.",
+   "alternativas": [
+    {
+     "texto": "Da demanda por geladeiras",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Da oferta de geladeiras no mercado",
+     "correta": false,
+     "feedbackErro": "A pesquisa fala de quem pretende comprar, não de quantas geladeiras existem à venda. Isso é dado de demanda."
+    },
+    {
+     "texto": "Do preço médio da geladeira no mercado",
+     "correta": false,
+     "feedbackErro": "Não há valor em dinheiro nessa informação, só a intenção de compra de 500 famílias. Isso é demanda."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "impacto-no-preco",
+   "criterio": "Isso costuma mudar o preço?",
+   "enunciado": "Uma seca reduzir a quantidade de energia gerada pelas hidrelétricas",
+   "resposta": true,
+   "ancora": "Menos oferta de energia tende a subir a conta de luz.",
+   "feedbackErro": "Parece um problema só das usinas. Mas com menos energia disponível e a mesma demanda, a conta de luz tende a subir."
+  }
+ ]
+}

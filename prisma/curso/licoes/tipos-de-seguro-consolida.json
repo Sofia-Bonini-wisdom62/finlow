@@ -1,0 +1,331 @@
+{
+ "slug": "tipos-de-seguro-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "tipos-de-seguro",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "como-funciona-seguro",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Ter seguro elimina totalmente o risco financeiro de um imprevisto",
+   "resposta": false,
+   "ancora": "Franquia, teto de cobertura e exclusões deixam uma fatia com você.",
+   "feedbackErro": "Seguro reduz bastante o risco, e por isso parece eliminar de vez. Mas franquia, teto e exclusões deixam uma parte do risco sempre com quem contratou."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "como-funciona-seguro",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Quanto mais seguros você contrata, mais protegido fica, sem limite",
+   "resposta": false,
+   "ancora": "Seguros demais, sem espaço no orçamento, criam outro risco.",
+   "feedbackErro": "Mais cobertura parece sempre melhor, mas seguro além do orçamento cria um risco novo: atrasar ou cancelar por falta de dinheiro e perder a proteção."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "tipos-de-seguro",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Seguro residencial cobre qualquer imóvel, mesmo um que a pessoa nem more mais",
+   "resposta": false,
+   "ancora": "Desocupação prolongada pode exigir aviso e mudar a cobertura.",
+   "feedbackErro": "A apólice é feita pensando no uso declarado do imóvel. Deixar de morar nele por muito tempo, sem avisar, pode alterar as condições combinadas na contratação."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "tipos-de-seguro",
+   "dificuldade": 3,
+   "pergunta": "Uma pessoa tem seguro de vida e residencial, sem saúde, e sofre acidente doméstico com internação cara. O que revela?",
+   "ancora": "Os seguros contratados não cobrem o risco que mais pesou.",
+   "alternativas": [
+    {
+     "texto": "Que faltou avaliar o risco de saúde na proteção montada",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que o seguro de vida deveria cobrir a internação",
+     "correta": false,
+     "feedbackErro": "Seguro de vida não cobre despesas médicas em vida — ele paga em caso de morte ou invalidez. Não é falha dele: é um risco diferente do que ele cobre."
+    },
+    {
+     "texto": "Que dois seguros já garantem proteção contra tudo",
+     "correta": false,
+     "feedbackErro": "Dois seguros cobrem dois riscos específicos (casa e morte/invalidez). O acidente com internação mostrou justamente um risco fora dessas duas coberturas."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "como-funciona-seguro",
+   "dificuldade": 3,
+   "pergunta": "Sinistro de R$ 10.000, franquia R$ 1.500, teto de R$ 8.000 para esse dano no contrato. Quanto a seguradora paga?",
+   "ancora": "O teto de R$ 8.000 limita o pagamento, mesmo com prejuízo maior.",
+   "alternativas": [
+    {
+     "texto": "R$ 8.000 — o teto do contrato limita o valor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 8.500 — prejuízo menos a franquia (10.000 − 1.500)",
+     "correta": false,
+     "feedbackErro": "Essa conta ignora o teto de cobertura. Mesmo que a diferença desse R$ 8.500, o contrato limita o pagamento a R$ 8.000 nesse tipo de dano."
+    },
+    {
+     "texto": "R$ 10.000 — o valor cheio do prejuízo",
+     "correta": false,
+     "feedbackErro": "O valor cheio ignora tanto a franquia quanto o teto de cobertura combinados no contrato — os dois reduzem o que a seguradora efetivamente paga."
+    }
+   ],
+   "verificacao": {
+    "expressao": "8000",
+    "esperado": 8000
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "tipos-de-seguro",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Seguro de vida sempre paga a indenização, mesmo se a causa da morte foi omitida na contratação",
+   "resposta": false,
+   "ancora": "Omissão relevante na contratação pode anular o pagamento.",
+   "feedbackErro": "A regra geral é pagar conforme contratado, e por isso parece sempre valer. Mas omissão relevante (doença grave escondida) permite negar a indenização."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "como-funciona-seguro",
+   "instrucao": "Situação composta: ordene do risco menos ao mais coberto pela família.",
+   "ancora": "Item não declarado tem a menor proteção; apólice em dia, a maior.",
+   "feedbackErro": "É comum trocar a ordem, mas franquia alta ainda cobre a maior parte do valor — já o item não declarado pode não ter cobertura nenhuma.",
+   "itens": [
+    {
+     "texto": "Roubo de item de altíssimo valor não declarado",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Dano coberto, mas com franquia alta",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Dano listado na apólice, dentro do teto",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Morte do segurado, com apólice de vida em dia",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "como-funciona-seguro",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Pagar a mensalidade em dia garante, sozinho, que todo sinistro será pago integralmente",
+   "resposta": false,
+   "ancora": "Pagar em dia é necessário, mas franquia, teto e exclusões continuam.",
+   "feedbackErro": "Estar em dia é condição básica, mas não anula franquia, teto nem exclusões do contrato — o pagamento integral depende de tudo isso junto."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "como-funciona-seguro",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Quem nunca acionou o seguro está sempre jogando dinheiro fora",
+   "resposta": false,
+   "ancora": "São anos em que o risco, se acontecesse, estaria coberto.",
+   "feedbackErro": "Parece desperdício quando nada acontece, mas o valor do seguro está em ter ficado protegido durante o período — mesmo sem usar, o risco grande estava coberto."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "como-funciona-seguro",
+   "pergunta": "Sinistro de R$ 12.000, franquia de R$ 2.000, teto de R$ 9.000 para esse dano. Quanto sobra para a pessoa pagar do bolso?",
+   "campo": "moeda",
+   "min": 2000,
+   "max": 5000,
+   "gabarito": 3000,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: prejuízo menos o que a seguradora cobre até o teto",
+   "feedbackPerto": "Perto: R$ 3.000 ficam com a pessoa, porque o teto de R$ 9.000 limita o quanto a seguradora cobre.",
+   "feedbackLonge": "São R$ 3.000. O prejuízo menos a franquia daria R$ 10.000, mas o teto de R$ 9.000 é o que a seguradora efetivamente paga — o resto fica com quem contratou.",
+   "verificacao": {
+    "expressao": "12000-9000",
+    "esperado": 3000
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "tipos-de-seguro",
+   "dificuldade": 3,
+   "pergunta": "Família financiou a casa; o banco exige seguro do imóvel em garantia. Ele substitui o de conteúdo, dos móveis?",
+   "ancora": "Seguro exigido pelo banco geralmente cobre só a estrutura.",
+   "alternativas": [
+    {
+     "texto": "Não — o exigido pelo banco costuma cobrir só a estrutura",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim — qualquer seguro do imóvel já cobre tudo dentro dele",
+     "correta": false,
+     "feedbackErro": "O seguro exigido em financiamentos protege o valor do imóvel em garantia, não os móveis e eletrônicos — para isso é preciso cobertura de conteúdo à parte."
+    },
+    {
+     "texto": "Sim — o banco obriga um seguro completo, com conteúdo",
+     "correta": false,
+     "feedbackErro": "O que o banco exige é a garantia do valor do imóvel financiado. Cobertura de conteúdo é, em geral, contratação separada, por escolha da família."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "como-funciona-seguro",
+   "dificuldade": 3,
+   "pergunta": "Um sinistro é negado porque o segurado omitiu, ao contratar, um sinistro parecido anterior. Isso é abuso da seguradora?",
+   "ancora": "Omitir informação relevante pode anular a cobertura do risco.",
+   "alternativas": [
+    {
+     "texto": "Não — omitir informação relevante pode invalidar a cobertura",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim — a seguradora deveria pagar mesmo com a omissão",
+     "correta": false,
+     "feedbackErro": "A seguradora precifica o risco com base no que o segurado declara. Omitir histórico relevante muda esse cálculo — por isso pode anular o pagamento."
+    },
+    {
+     "texto": "Sim — histórico anterior nunca deveria importar",
+     "correta": false,
+     "feedbackErro": "Histórico anterior é justamente o que ajuda a seguradora a calcular o risco e o preço do seguro — omiti-lo quebra a base do contrato."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "como-funciona-seguro",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Franquia baixa é sempre a melhor escolha, em qualquer situação",
+   "resposta": false,
+   "ancora": "Franquia baixa costuma vir com mensalidade mais alta.",
+   "feedbackErro": "Franquia baixa parece sempre melhor porque você paga menos no sinistro, mas ela costuma ter mensalidade mais cara — quem raramente aciona pode perder no total."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "como-funciona-seguro",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Teto de cobertura nunca aparece em contratos de seguro residencial",
+   "resposta": false,
+   "ancora": "Contratos residenciais também costumam ter teto por tipo de dano.",
+   "feedbackErro": "Seguro de carro é o exemplo mais lembrado, mas contratos residenciais também definem tetos por tipo de dano — vale ler antes de contar com o valor cheio."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "como-funciona-seguro",
+   "pergunta": "Qual frase fecha os três encontros sobre tipos de seguro?",
+   "alternativas": [
+    {
+     "texto": "Seguro reduz o risco, mas franquia, teto e exclusões deixam parte com você",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Contratar qualquer seguro elimina totalmente o risco financeiro",
+     "correta": false,
+     "feedbackErro": "Franquia, teto de cobertura e exclusões deixam uma fatia do risco sempre com quem contratou."
+    },
+    {
+     "texto": "Omitir informação na contratação nunca afeta o pagamento",
+     "correta": false,
+     "feedbackErro": "Omitir informação relevante pode anular a cobertura — a seguradora precifica com base no que foi declarado."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "como-funciona-seguro",
+   "instrucao": "Reduz ou não muda o risco que sobra pra você?",
+   "ancora": "Ampliar cobertura reduz risco; ignorar detalhes do contrato não muda nada.",
+   "feedbackErro": "Pagar em dia e ignorar detalhes parecem ações neutras, mas não reduzem risco nenhum sozinhas — só ampliar cobertura ou diminuir a franquia muda de fato quanto sobra pra você.",
+   "caixas": [
+    {
+     "id": "reduz",
+     "rotulo": "Reduz o risco"
+    },
+    {
+     "id": "mesmo",
+     "rotulo": "Não muda nada"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Contratar cobertura para o item de alto valor",
+     "caixaCorreta": "reduz"
+    },
+    {
+     "texto": "Pagar em dia sem checar exclusões",
+     "caixaCorreta": "mesmo"
+    },
+    {
+     "texto": "Diminuir a franquia, aceitando mensalidade maior",
+     "caixaCorreta": "reduz"
+    },
+    {
+     "texto": "Ignorar o teto de cobertura do contrato",
+     "caixaCorreta": "mesmo"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "tipos-de-seguro",
+   "dificuldade": 3,
+   "pergunta": "Um motorista de aplicativo usa o carro pessoal para trabalhar, mas o seguro foi contratado como 'uso particular'. Em um sinistro na corrida, o que pode acontecer?",
+   "ancora": "Uso divergente do declarado pode levar a negativa de cobertura.",
+   "alternativas": [
+    {
+     "texto": "A seguradora pode negar a cobertura por uso divergente",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada muda: uso particular e de trabalho são iguais",
+     "correta": false,
+     "feedbackErro": "O tipo de uso muda o risco calculado pela seguradora — carro de aplicativo roda muito mais e tem exposição maior. Declarar 'particular' quando é 'trabalho' pode anular o sinistro."
+    },
+    {
+     "texto": "A seguradora paga em dobro, por ser mais arriscado",
+     "correta": false,
+     "feedbackErro": "Uso mais arriscado não gera pagamento maior — gera risco de negativa, porque o contrato foi feito com base numa informação diferente da realidade."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "como-funciona-seguro",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Seguro contratado hoje já cobre um sinistro que aconteceu ontem",
+   "resposta": false,
+   "ancora": "Cobertura vale a partir da vigência do contrato, não retroage.",
+   "feedbackErro": "Parece que contratar rápido resolve qualquer imprevisto recente, mas a cobertura começa a valer a partir da vigência — sinistros anteriores à contratação não entram."
+  }
+ ]
+}

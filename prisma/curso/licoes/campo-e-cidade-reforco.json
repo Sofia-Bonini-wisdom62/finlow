@@ -1,0 +1,248 @@
+{
+ "slug": "campo-e-cidade-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "campo-e-cidade",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "atividade-campo-cidade",
+   "criterio": "Nasce ou é feito no campo?",
+   "enunciado": "Uva colhida no parreiral",
+   "resposta": true,
+   "ancora": "Uva nasce em plantação — atividade típica do campo.",
+   "feedbackErro": "Parece fruta de mercado só. Mas ela nasce na plantação, no campo, antes de chegar às prateleiras."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "atividade-campo-cidade",
+   "criterio": "Nasce ou é feito no campo?",
+   "enunciado": "Sapato montado numa fábrica",
+   "resposta": false,
+   "ancora": "Fábrica fica na cidade — ela monta o que vira produto.",
+   "feedbackErro": "O couro pode vir de animal criado no campo, mas montar o sapato é trabalho de fábrica, na cidade."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "empreender-na-comunidade",
+   "criterio": "É negócio de quem mora perto?",
+   "enunciado": "Uma oficina de bicicletas no bairro",
+   "resposta": true,
+   "ancora": "Oficina de bairro nasce de quem mora perto — é negócio local.",
+   "feedbackErro": "Parece serviço grande demais. Mas uma oficina pequena, do bairro, também é negócio local — empreendedorismo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "setores-da-economia",
+   "dificuldade": 2,
+   "pergunta": "O queijo custa mais na loja da cidade do que o leite custa na fazenda. O que explica isso?",
+   "ancora": "Cada etapa — produzir, transformar, vender — soma valor ao produto.",
+   "alternativas": [
+    {
+     "texto": "Cada etapa soma trabalho e valor ao produto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A loja cobra mais só porque quer",
+     "correta": false,
+     "feedbackErro": "Pode parecer ganância, mas o preço reflete o trabalho de transformar o leite em queijo e de vender."
+    },
+    {
+     "texto": "O leite e o queijo deveriam custar o mesmo",
+     "correta": false,
+     "feedbackErro": "Não deveriam: cada etapa, produzir, transformar e vender, soma valor até o produto final."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "atividade-campo-cidade",
+   "dificuldade": 2,
+   "pergunta": "Uma fazenda cria porcos e depois vende a carne pronta pra churrascaria da cidade. Qual etapa é do campo?",
+   "ancora": "Criar os animais acontece na fazenda, no campo.",
+   "alternativas": [
+    {
+     "texto": "Criar os porcos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Preparar o prato na churrascaria",
+     "correta": false,
+     "feedbackErro": "Preparar e servir o prato é trabalho da cidade, no restaurante — não no campo."
+    },
+    {
+     "texto": "Vender a carne pronta pro cliente",
+     "correta": false,
+     "feedbackErro": "Vender ao cliente final acontece na cidade, no ponto de venda — a criação é que acontece no campo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "setores-da-economia",
+   "criterio": "Uma etapa depende da anterior?",
+   "enunciado": "A loja vende queijo sem que ninguém tenha ordenhado antes",
+   "resposta": false,
+   "ancora": "Sem ordenha não há leite, e sem leite não existe queijo pra vender.",
+   "feedbackErro": "Parece que a loja poderia vender sem essa etapa. Mas sem ordenhar antes, não existe leite pra virar queijo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "atividade-campo-cidade",
+   "instrucao": "Acontece no campo ou na cidade? Arraste.",
+   "ancora": "O campo cria e planta; a cidade transforma, vende e presta serviço.",
+   "feedbackErro": "É fácil trocar as etapas de lugar. Criar e plantar acontece no campo; transformar e vender, na cidade.",
+   "caixas": [
+    { "id": "campo", "rotulo": "Campo" },
+    { "id": "cidade", "rotulo": "Cidade" }
+   ],
+   "itens": [
+    { "texto": "Colheita de laranja", "caixaCorreta": "campo" },
+    { "texto": "Consultório médico", "caixaCorreta": "cidade" },
+    { "texto": "Criação de galinhas", "caixaCorreta": "campo" },
+    { "texto": "Oficina de carros", "caixaCorreta": "cidade" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "empreender-na-comunidade",
+   "criterio": "É um exemplo de empreender?",
+   "enunciado": "Um jovem que conserta celulares em casa, cobrando pelo serviço",
+   "resposta": true,
+   "ancora": "Prestar serviço por conta própria, cobrando por isso, é empreender.",
+   "feedbackErro": "Parece só um favor entre conhecidos. Mas cobrar pelo serviço prestado, por conta própria, já é empreender."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "setores-da-economia",
+   "dificuldade": 2,
+   "pergunta": "Iara notou que o pão fica mais caro na padaria do que a farinha no mercado. O que explica isso?",
+   "ancora": "Transformar farinha em pão exige trabalho, forno e tempo.",
+   "alternativas": [
+    {
+     "texto": "O trabalho de transformar farinha em pão soma valor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A padaria erra o preço de propósito",
+     "correta": false,
+     "feedbackErro": "Não é erro: o preço mais alto reflete o trabalho e os ingredientes usados pra transformar farinha em pão."
+    },
+    {
+     "texto": "Farinha e pão deveriam custar o mesmo",
+     "correta": false,
+     "feedbackErro": "Não deveriam: transformar farinha em pão exige trabalho, forno e tempo, e isso soma valor ao preço."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "atividade-campo-cidade",
+   "criterio": "Acontece no campo?",
+   "enunciado": "Corte de cana pra fazer açúcar",
+   "resposta": true,
+   "ancora": "Cortar cana na plantação é a primeira etapa, no campo.",
+   "feedbackErro": "Parece etapa de fábrica só. Mas cortar a cana na plantação é a primeira etapa, e acontece no campo."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "empreender-na-comunidade",
+   "criterio": "É uma atividade empreendedora?",
+   "enunciado": "Vender marmita feita em casa pros vizinhos",
+   "resposta": true,
+   "ancora": "Preparar e vender comida por conta própria é empreender.",
+   "feedbackErro": "Parece só uma ajuda informal. Mas preparar e vender, cobrando por isso, já é um negócio próprio."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "setores-da-economia",
+   "pergunta": "Qual ideia resume este encontro?",
+   "alternativas": [
+    {
+     "texto": "Cada etapa, do campo até a loja, soma valor ao produto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O preço na loja não tem relação com o trabalho do campo",
+     "correta": false,
+     "feedbackErro": "Tem relação, sim: cada etapa de produção e transformação soma valor até o preço final."
+    },
+    {
+     "texto": "Só empreendimento grande conta como negócio",
+     "correta": false,
+     "feedbackErro": "Consertar celular ou vender marmita em casa também é negócio — o tamanho não define isso."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "atividade-campo-cidade",
+   "dificuldade": 2,
+   "pergunta": "Uma horta cria verduras e um restaurante compra pra fazer os pratos. Qual etapa é do campo?",
+   "ancora": "Plantar e colher a verdura é a etapa que acontece no campo.",
+   "alternativas": [
+    {
+     "texto": "Plantar e colher a verdura",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cozinhar o prato no restaurante",
+     "correta": false,
+     "feedbackErro": "Cozinhar acontece na cozinha do restaurante, na cidade — não no campo."
+    },
+    {
+     "texto": "Servir o prato pro cliente",
+     "correta": false,
+     "feedbackErro": "Servir é a última etapa, na cidade. A etapa do campo é plantar e colher a verdura."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "empreender-na-comunidade",
+   "criterio": "É negócio de quem mora perto?",
+   "enunciado": "Uma manicure que atende em casa, na própria rua",
+   "resposta": true,
+   "ancora": "Prestar serviço no próprio bairro é negócio da comunidade.",
+   "feedbackErro": "Parece só um bico informal. Mas atender e cobrar pelo serviço, mesmo em casa, é negócio local."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "setores-da-economia",
+   "instrucao": "Essa etapa vem antes ou depois da fábrica? Arraste.",
+   "ancora": "Antes da fábrica vem a matéria-prima; depois vem a venda.",
+   "feedbackErro": "É fácil trocar a ordem. A matéria-prima chega antes da fábrica; o produto pronto é vendido depois.",
+   "caixas": [
+    { "id": "antes", "rotulo": "Antes" },
+    { "id": "depois", "rotulo": "Depois" }
+   ],
+   "itens": [
+    { "texto": "Colher o algodão", "caixaCorreta": "antes" },
+    { "texto": "Vender a camisa pronta", "caixaCorreta": "depois" },
+    { "texto": "Criar o carneiro pra tosquiar a lã", "caixaCorreta": "antes" },
+    { "texto": "Expor o casaco na vitrine", "caixaCorreta": "depois" }
+   ]
+  }
+ ]
+}

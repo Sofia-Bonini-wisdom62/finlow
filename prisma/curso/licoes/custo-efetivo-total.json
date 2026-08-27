@@ -1,0 +1,290 @@
+{
+ "slug": "custo-efetivo-total",
+ "segmento": "ef67",
+ "conceitoPrincipal": "custo-efetivo-total",
+ "fraseConceito": "Custo efetivo total é tudo que você paga por um crédito: juros, tarifas e seguros somados.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "Isso faz parte do custo do crédito?",
+   "enunciado": "A taxa de juros anunciada",
+   "resposta": true,
+   "ancora": "Juro é a parte mais visível do custo, mas não é a única.",
+   "feedbackErro": "Você não errou feio: juro é parte do custo. Mas ele sozinho não é o custo todo — falta somar tarifas e seguros."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "Isso faz parte do custo do crédito?",
+   "enunciado": "A tarifa de abertura de cadastro",
+   "resposta": true,
+   "ancora": "Tarifas cobradas junto com o crédito também entram na conta.",
+   "feedbackErro": "Tarifa parece 'só uma taxinha à parte', mas ela é cobrada por causa do crédito — entra na conta do custo total."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "Isso faz parte do custo do crédito?",
+   "enunciado": "O preço do produto comprado à vista, sem parcelar",
+   "resposta": false,
+   "ancora": "Sem crédito envolvido, não tem custo de crédito pra somar.",
+   "feedbackErro": "Preço do produto é custo da compra, não do crédito. Sem parcelamento ou empréstimo, não existe custo efetivo total a calcular."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-efetivo-total",
+   "dificuldade": 1,
+   "pergunta": "Duas propostas de empréstimo têm a mesma taxa de juros. Por que o custo final pode ser diferente?",
+   "ancora": "Mesma taxa não garante o mesmo custo — tarifas e seguros mudam tudo.",
+   "alternativas": [
+    {
+     "texto": "Porque uma pode cobrar mais tarifas e seguros embutidos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque uma delas é sempre mentirosa",
+     "correta": false,
+     "feedbackErro": "Não é mentira — é a soma de outros custos além do juro que muda o total."
+    },
+    {
+     "texto": "Porque o valor emprestado é sempre diferente",
+     "correta": false,
+     "feedbackErro": "O valor pode ser igual; o que muda o custo final são as tarifas e seguros somados ao juro."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-efetivo-total",
+   "dificuldade": 1,
+   "pergunta": "Pra que serve comparar o CET de dois empréstimos, e não só a taxa de juros?",
+   "ancora": "O CET junta tudo num só número pra comparar de verdade.",
+   "alternativas": [
+    {
+     "texto": "Pra saber quanto você realmente vai pagar no total",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pra escolher o banco mais conhecido",
+     "correta": false,
+     "feedbackErro": "Fama do banco não diz nada sobre o custo — o CET sim."
+    },
+    {
+     "texto": "Pra decidir o prazo de pagamento",
+     "correta": false,
+     "feedbackErro": "O CET mostra custo, não prazo — o prazo é escolhido à parte."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "Isso entra no CET?",
+   "enunciado": "O seguro prestamista embutido na parcela",
+   "resposta": true,
+   "ancora": "Seguros cobrados junto ao crédito somam no custo total.",
+   "feedbackErro": "Seguro parece proteção, não custo — mas ele é cobrado dentro da parcela, então entra no CET."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "custo-efetivo-total",
+   "instrucao": "Isso entra na conta do CET?",
+   "ancora": "Só entra no CET o que custa dinheiro de verdade.",
+   "feedbackErro": "CET soma custos em dinheiro: juro, tarifa, seguro. Prazo e aparência não são custo.",
+   "caixas": [
+    {
+     "id": "entra",
+     "rotulo": "Entra no CET"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não entra"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Taxa de juros do empréstimo",
+     "caixaCorreta": "entra"
+    },
+    {
+     "texto": "Tarifa de abertura de cadastro",
+     "caixaCorreta": "entra"
+    },
+    {
+     "texto": "Quanto tempo dura o parcelamento",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "A cor do cartão do banco",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "Isso entra no CET?",
+   "enunciado": "A manutenção mensal cobrada pra manter o crédito ativo",
+   "resposta": true,
+   "ancora": "Qualquer cobrança ligada ao crédito soma no custo total.",
+   "feedbackErro": "Parece uma taxa 'de manutenção', separada do crédito. Mas se ela só existe por causa dele, entra no CET."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-efetivo-total",
+   "dificuldade": 1,
+   "pergunta": "Kaique viu um empréstimo a 2% a.m., mas a parcela ficou mais alta que o esperado. O que ele deveria ter olhado?",
+   "ancora": "Juro anunciado é só uma peça; o CET junta todas.",
+   "alternativas": [
+    {
+     "texto": "O CET completo, não só a taxa de juros anunciada",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O valor da primeira parcela apenas",
+     "correta": false,
+     "feedbackErro": "A primeira parcela pode enganar; o que revela o custo real é o CET completo, com tudo somado."
+    },
+    {
+     "texto": "A cor do contrato",
+     "correta": false,
+     "feedbackErro": "Isso não tem nada a ver com custo — o que importa é o CET."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "O CET ajuda nessa decisão?",
+   "enunciado": "Comparar duas propostas de crédito antes de assinar",
+   "resposta": true,
+   "ancora": "É exatamente pra isso que o CET existe: comparar de forma justa.",
+   "feedbackErro": "Comparar juro parece suficiente, mas sem o CET a comparação fica incompleta — tarifas escondidas mudam o resultado."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "Isso é boa prática antes de um crédito?",
+   "enunciado": "Perguntar o CET antes de assinar o contrato",
+   "resposta": true,
+   "ancora": "Pedir o CET é o jeito de saber o custo real antes de se comprometer.",
+   "feedbackErro": "Parece burocracia extra, e por isso muita gente pula essa pergunta. Mas é o CET que revela se o crédito vale a pena."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "custo-efetivo-total",
+   "pergunta": "Qual frase resume o que é o custo efetivo total?",
+   "alternativas": [
+    {
+     "texto": "É a soma de tudo que você paga pelo crédito: juros, tarifas e seguros",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "É só a taxa de juros anunciada pelo banco",
+     "correta": false,
+     "feedbackErro": "A taxa de juros é só uma parte — o CET soma tudo o mais."
+    },
+    {
+     "texto": "É o valor total que você recebe emprestado",
+     "correta": false,
+     "feedbackErro": "O CET é sobre o que você paga, não sobre o que recebe."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "custo-efetivo-total",
+   "instrucao": "Ordene os empréstimos do mais barato pro mais caro pelo CET.",
+   "ancora": "O CET, não o nome do banco, decide a ordem.",
+   "feedbackErro": "Ordenar pelo juro anunciado pode enganar — o CET já soma tudo, por isso é ele que define a ordem certa.",
+   "itens": [
+    {
+     "texto": "Empréstimo A: CET 3% a.m.",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Empréstimo B: CET 5% a.m.",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Empréstimo C: CET 8% a.m.",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "custo-efetivo-total",
+   "instrucao": "Isso é parte do CET?",
+   "ancora": "Só o que sai do seu bolso por causa do crédito entra no CET.",
+   "feedbackErro": "CET soma cobranças em dinheiro ligadas ao crédito — não experiência ou aparência do banco.",
+   "caixas": [
+    {
+     "id": "sim",
+     "rotulo": "Sim"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "IOF cobrado no empréstimo",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Cor da agência bancária",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Tarifa de TED pra liberar o valor",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Tempo de fila no banco",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "custo-efetivo-total",
+   "pergunta": "Empréstimo de R$ 2.000, juro de 3% a.m. mais R$ 40 de tarifas. Qual o custo total do 1º mês?",
+   "campo": "moeda",
+   "min": 40,
+   "max": 300,
+   "gabarito": 100,
+   "toleranciaPct": 20,
+   "fonte": "soma do juro do mês com as tarifas fixas cobradas",
+   "feedbackPerto": "Isso mesmo — R$ 60 de juro mais R$ 40 de tarifa somam R$ 100 no mês.",
+   "feedbackLonge": "R$ 100: primeiro calcule o juro (R$ 2.000 × 3%) e some as tarifas fixas.",
+   "verificacao": {
+    "expressao": "2000*0.03+40",
+    "esperado": 100
+   }
+  }
+ ]
+}

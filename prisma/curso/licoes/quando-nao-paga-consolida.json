@@ -1,0 +1,250 @@
+{
+ "slug": "quando-nao-paga-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "quando-nao-paga",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "confianca-e-credito",
+   "criterio": "Isso prejudica a confiança de crédito?",
+   "enunciado": "Atrasar por um imprevisto real, mas avisar e propor um plano no mesmo dia",
+   "resposta": false,
+   "ancora": "Avisar e propor plano no mesmo dia evita o dano do atraso.",
+   "feedbackErro": "O atraso aconteceu, mas responder rápido com um plano concreto é o que evita que ele quebre a confiança."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "confianca-e-credito",
+   "criterio": "Isso prejudica a confiança de crédito?",
+   "enunciado": "Pagar a fatura inteira, mas sempre no último minuto do prazo",
+   "resposta": false,
+   "ancora": "Pago dentro do prazo, mesmo no limite, ainda é honrar.",
+   "feedbackErro": "Parece arriscado deixar pro último minuto, mas o que conta pra confiança é cumprir o prazo, mesmo que apertado."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "confianca-e-credito",
+   "criterio": "Isso prejudica a confiança de crédito?",
+   "enunciado": "Renegociar uma dívida e não cumprir o novo acordo também",
+   "resposta": true,
+   "ancora": "Quebrar o acordo renegociado pesa mais que o atraso original.",
+   "feedbackErro": "Renegociar já foi uma segunda chance — não cumprir de novo é o que mais afunda a confiança."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "confianca-e-credito",
+   "dificuldade": 3,
+   "pergunta": "Larissa atrasou uma fatura por imprevisto, avisou no mesmo dia e cumpriu o novo prazo. O que isso mostra?",
+   "ancora": "Honrar não é nunca atrasar — é responder bem quando atrasa.",
+   "alternativas": [
+    {
+     "texto": "Que atrasar sempre quebra a confiança, sem exceção",
+     "correta": false,
+     "feedbackErro": "O atraso existiu, mas a forma como foi tratado é que decide — não é uma regra sem exceção."
+    },
+    {
+     "texto": "Que honrar é responder bem quando atrasa, não nunca atrasar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que o imprevisto anula qualquer cobrança futura",
+     "correta": false,
+     "feedbackErro": "O imprevisto explica o atraso, mas não apaga a dívida — ela continua existindo e precisa ser paga."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "causas-do-endividamento",
+   "dificuldade": 3,
+   "pergunta": "Ela controla bem os gastos fixos, mas usa o cartão sempre que o amigo sugere um programa novo. Qual é a causa real?",
+   "ancora": "O problema está nos gastos extras não planejados.",
+   "alternativas": [
+    {
+     "texto": "Os gastos fixos, que ela já monitora bem",
+     "correta": false,
+     "feedbackErro": "Os gastos fixos já estão sob controle — o problema está nos gastos extras que ela não está contando."
+    },
+    {
+     "texto": "Os gastos extras não planejados, que fogem do controle",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O cartão de crédito em si, que deveria ser cancelado",
+     "correta": false,
+     "feedbackErro": "O cartão não é a causa — é a falta de planejar os gastos extras antes de usá-lo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "confianca-e-credito",
+   "criterio": "Isso prejudica a confiança de crédito?",
+   "enunciado": "Pagar a dívida certinho, mas só depois de ser negativado",
+   "resposta": true,
+   "ancora": "O pagamento tardio resolve a dívida, mas o dano já ocorreu.",
+   "feedbackErro": "Quitar depois é importante e evita piorar, mas não apaga o fato de que a confiança já foi abalada até ali."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "confianca-e-credito",
+   "instrucao": "Isso ainda conta como honrar, mesmo sendo caso-limite?",
+   "ancora": "O que decide é responder bem ao imprevisto, não a rigidez do prazo.",
+   "feedbackErro": "É fácil achar que qualquer desvio quebra a confiança, mas responder e cumprir depois ainda conta como honrar.",
+   "caixas": [
+    { "id": "honra", "rotulo": "Honra" },
+    { "id": "quebra", "rotulo": "Quebra confiança" }
+   ],
+   "itens": [
+    { "texto": "Atrasar por imprevisto, avisar e cumprir o novo prazo", "caixaCorreta": "honra" },
+    { "texto": "Pagar em dia, sempre no último segundo, sem margem", "caixaCorreta": "honra" },
+    { "texto": "Renegociar e quebrar o novo acordo também", "caixaCorreta": "quebra" },
+    { "texto": "Pagar tudo, só depois do nome já negativado", "caixaCorreta": "quebra" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "causas-do-endividamento",
+   "criterio": "Isso ainda é causa de endividamento?",
+   "enunciado": "Uma emergência médica sem reserva, mesmo com gasto sempre controlado",
+   "resposta": true,
+   "ancora": "Falta de reserva, mesmo com gasto controlado, também gera dívida.",
+   "feedbackErro": "Gasto controlado não impede a emergência de acontecer — sem reserva, o imprevisto vira dívida do mesmo jeito."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "fatura-parcial-vira-rotativo",
+   "dificuldade": 3,
+   "pergunta": "Fatura de R$ 900. Paga R$ 300; o resto vai pro rotativo a 14% a.m. Quanto ela deve, com juros, no mês seguinte?",
+   "ancora": "(900 − 300) × 1,14 = R$ 684 devidos no mês seguinte.",
+   "verificacao": { "expressao": "(900-300)*1.14", "esperado": 684 },
+   "alternativas": [
+    {
+     "texto": "R$ 684",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 600",
+     "correta": false,
+     "feedbackErro": "R$ 600 é só o saldo não pago, sem contar os juros que já incidiram sobre ele."
+    },
+    {
+     "texto": "R$ 726",
+     "correta": false,
+     "feedbackErro": "R$ 726 vem de aplicar o juro na fatura inteira antes de descontar o pagamento — mas o juro incide só sobre o saldo restante."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "confianca-e-credito",
+   "criterio": "Isso prejudica a confiança de crédito?",
+   "enunciado": "Quitar a dívida integralmente, mas dois meses depois do combinado",
+   "resposta": true,
+   "ancora": "Pagar tudo depois não apaga o atraso que já prejudicou.",
+   "feedbackErro": "Quitar integralmente é ótimo, mas dois meses de atraso já pesaram na confiança antes do pagamento chegar."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "confianca-e-credito",
+   "criterio": "Ajuda a manter a confiança?",
+   "enunciado": "Renegociar a dívida e cumprir o novo acordo à risca",
+   "resposta": true,
+   "ancora": "Cumprir o novo acordo reconstrói o que o atraso abalou.",
+   "feedbackErro": "Renegociar sozinho não bastaria — é cumprir o que foi combinado depois que reconstrói a confiança."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "quando-nao-paga",
+   "dificuldade": 3,
+   "pergunta": "Depois dos casos-limite, o que realmente define se uma dívida quebra a confiança?",
+   "alternativas": [
+    {
+     "texto": "Só o valor da dívida, quanto maior, pior",
+     "correta": false,
+     "feedbackErro": "O valor pesa, mas o que mais define é a comunicação e o cumprimento do combinado, não só o tamanho."
+    },
+    {
+     "texto": "Como a pessoa comunica e cumpre o que promete, mesmo com atraso",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada disso importa, uma vez negativado o estrago é sempre igual",
+     "correta": false,
+     "feedbackErro": "O estrago não é sempre igual — comunicar e cumprir depois reduz o dano, mesmo após um atraso."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "confianca-e-credito",
+   "instrucao": "Ordene do que mais rápido pra mais devagar reconstrói a confiança.",
+   "ancora": "Cumprir o acordo renegociado reconstrói mais rápido que só pagar tarde.",
+   "feedbackErro": "Quitar sozinho ajuda, mas cumprir um acordo renegociado reconstrói a confiança mais rápido do que só pagar tarde.",
+   "itens": [
+    { "texto": "Renegociar e cumprir o novo acordo", "posicaoCorreta": 1 },
+    { "texto": "Quitar tudo, bem depois do combinado", "posicaoCorreta": 2 },
+    { "texto": "Ficar em silêncio até ser cobrado judicialmente", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "fatura-parcial-vira-rotativo",
+   "pergunta": "Fatura de R$ 850. Paga R$ 350; resto no rotativo a 14% a.m. Quanto deve, com juros, no mês seguinte?",
+   "campo": "moeda",
+   "min": 300,
+   "max": 900,
+   "gabarito": 570,
+   "toleranciaPct": 20,
+   "fonte": "taxa média do rotativo, ~14% ao mês (Banco Central)",
+   "verificacao": { "expressao": "(850-350)*1.14", "esperado": 570 },
+   "feedbackPerto": "Isso mesmo — (850 − 350) × 1,14 = R$ 570.",
+   "feedbackLonge": "R$ 570. O rotativo soma o saldo não pago mais 14% de juros sobre ele."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "confianca-e-credito",
+   "dificuldade": 3,
+   "pergunta": "Uma dívida pequena, nunca comunicada nem paga. Isso prejudica menos a confiança por ser pequena?",
+   "ancora": "O que pesa é a falta de comunicação, não o valor.",
+   "alternativas": [
+    {
+     "texto": "Sim, valor pequeno pesa menos sempre",
+     "correta": false,
+     "feedbackErro": "O valor pode pesar menos no bolso, mas o silêncio sobre uma dívida pequena ainda quebra a confiança."
+    },
+    {
+     "texto": "Não, o que pesa é a falta de comunicação, não o valor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, dívidas pequenas nem contam como dívida",
+     "correta": false,
+     "feedbackErro": "Toda dívida assumida conta, independente do valor — muda o tamanho do prejuízo, não se ela existe."
+    }
+   ]
+  }
+ ]
+}

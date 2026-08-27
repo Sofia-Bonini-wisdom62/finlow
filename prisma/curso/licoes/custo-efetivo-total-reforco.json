@@ -1,0 +1,289 @@
+{
+ "slug": "custo-efetivo-total-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "custo-efetivo-total",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "Isso entra no CET, lembra do critério?",
+   "enunciado": "A tarifa de avaliação do bem dado em garantia",
+   "resposta": true,
+   "ancora": "Toda cobrança ligada à contratação do crédito entra no CET.",
+   "feedbackErro": "Parece uma etapa técnica separada do empréstimo, mas ela só existe por causa dele — entra no CET."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "Isso entra no CET, lembra do critério?",
+   "enunciado": "O valor do produto que a loja já embutiu no preço, sem juro nenhum",
+   "resposta": false,
+   "ancora": "Sem juro nem tarifa de crédito, preço à vista não é custo de crédito.",
+   "feedbackErro": "Preço embutido soa suspeito, mas se não há juro nem tarifa de crédito, não há CET a calcular — é só preço."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "Isso entra no CET, lembra do critério?",
+   "enunciado": "A comissão do correspondente bancário que intermediou o empréstimo",
+   "resposta": true,
+   "ancora": "Comissões ligadas à contratação do crédito somam no custo total.",
+   "feedbackErro": "Comissão parece coisa 'de bastidor', que não chega até você. Mas ela é repassada no custo do crédito — entra no CET."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-efetivo-total",
+   "dificuldade": 2,
+   "pergunta": "Duas propostas têm o mesmo CET, mas prazos diferentes: 12x e 24x. O que muda entre elas, além do prazo?",
+   "ancora": "Mesmo CET, prazos diferentes mudam parcela e total pago.",
+   "alternativas": [
+    {
+     "texto": "O valor da parcela e o total de juros pagos no tempo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada muda, já que o CET é igual",
+     "correta": false,
+     "feedbackErro": "O CET (taxa) pode ser igual, mas prazos maiores costumam somar mais juros no total."
+    },
+    {
+     "texto": "Só muda o banco que oferece",
+     "correta": false,
+     "feedbackErro": "O banco pode ser o mesmo — o que muda de fato é o prazo, a parcela e o total pago."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-efetivo-total",
+   "dificuldade": 2,
+   "pergunta": "Alguém pega um crédito olhando só o CET e ignora se a parcela cabe no orçamento. O que pode dar errado?",
+   "ancora": "CET bom não substitui checar se a parcela cabe no orçamento.",
+   "alternativas": [
+    {
+     "texto": "A parcela pode não caber, mesmo com CET 'barato'",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada, porque CET baixo garante que sempre vale a pena",
+     "correta": false,
+     "feedbackErro": "CET baixo mostra que o crédito é barato, mas não garante que a parcela cabe no bolso todo mês."
+    },
+    {
+     "texto": "O CET vai subir sozinho com o tempo",
+     "correta": false,
+     "feedbackErro": "O CET contratado não muda sozinho — o risco aqui é a parcela não caber."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "CET mais baixo garante a melhor escolha?",
+   "enunciado": "Escolher o crédito só pelo menor CET, sem checar o valor da parcela",
+   "resposta": false,
+   "ancora": "CET baixo é bom sinal, mas não substitui checar se a parcela cabe.",
+   "feedbackErro": "Menor CET parece a decisão óbvia, e quase sempre ajuda. Mas se a parcela não cabe no orçamento, nem o CET mais baixo resolve."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "custo-efetivo-total",
+   "instrucao": "Essa cobrança está embutida no CET desse crédito?",
+   "ancora": "Entrada e característica do bem não são custo de crédito.",
+   "feedbackErro": "CET soma juro, tarifas e encargos do crédito — entrada e característica do bem ficam de fora.",
+   "caixas": [
+    {
+     "id": "sim",
+     "rotulo": "Sim"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Juro de 2,3% ao mês",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Tarifa de avaliação de R$ 187",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Valor da entrada dada no negócio",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Cor do carro financiado",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "Isso muda o CET já contratado?",
+   "enunciado": "Pagar a parcela alguns dias antes do vencimento, por vontade própria",
+   "resposta": false,
+   "ancora": "O CET contratado não muda por pagar antes — já foi fixado no contrato.",
+   "feedbackErro": "Pagar antes parece 'economizar juro'. Mas o CET, como taxa combinada, não muda por isso."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-efetivo-total",
+   "dificuldade": 2,
+   "pergunta": "Alícia comparou dois empréstimos de R$ 3.150, mesmo prazo: CET 2,8% e 3,4% a.m. Qual decisão o CET sustenta?",
+   "ancora": "Mesmo valor emprestado, CET menor custa menos no total.",
+   "alternativas": [
+    {
+     "texto": "Escolher o de 2,8%, que custa menos no total pro mesmo prazo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Escolher o de 3,4%, porque o valor emprestado é igual",
+     "correta": false,
+     "feedbackErro": "Valor emprestado igual não muda o fato de que o CET maior custa mais no total."
+    },
+    {
+     "texto": "Tanto faz, porque o valor pedido é o mesmo",
+     "correta": false,
+     "feedbackErro": "O valor pedido ser igual não anula a diferença de custo — CET maior significa pagar mais no fim."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "O CET sozinho conta a história toda?",
+   "enunciado": "Usar só o CET pra decidir, sem checar se a parcela cabe na renda",
+   "resposta": false,
+   "ancora": "CET mostra custo, não se a parcela cabe — são checagens diferentes.",
+   "feedbackErro": "CET parece a resposta completa, porque junta tudo em um número. Mas ele fala de custo, não de quanto cabe no orçamento."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "Isso ajuda a decidir com critério?",
+   "enunciado": "Pedir o CET de duas propostas antes de decidir qual assinar",
+   "resposta": true,
+   "ancora": "Comparar o CET das opções é o jeito mais direto de decidir.",
+   "feedbackErro": "Parece trabalho extra, e é mesmo um passo a mais. Mas é esse passo que evita escolher pelo juro baixo e pagar caro no total."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "custo-efetivo-total",
+   "pergunta": "O que muda quando você olha o CET, e não só o juro anunciado?",
+   "alternativas": [
+    {
+     "texto": "Você vê o custo real, com tarifas e seguros somados ao juro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Você vê só o valor da primeira parcela",
+     "correta": false,
+     "feedbackErro": "CET não é sobre uma parcela isolada, é sobre o custo total do crédito."
+    },
+    {
+     "texto": "Você garante que a parcela cabe no seu orçamento",
+     "correta": false,
+     "feedbackErro": "CET mostra custo, não garante que cabe na renda — isso é outra checagem."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "custo-efetivo-total",
+   "instrucao": "Ordene os empréstimos do CET mais baixo pro mais alto.",
+   "ancora": "O número do CET já ordena sozinho — não precisa comparar mais nada.",
+   "feedbackErro": "Cada oferta já tem o CET calculado — comparar os números é só ordenar do menor pro maior.",
+   "itens": [
+    {
+     "texto": "CET 1,9% a.m.",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "CET 2,6% a.m.",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "CET 4,1% a.m.",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "custo-efetivo-total",
+   "instrucao": "Essa cobrança soma no CET desse crédito?",
+   "ancora": "Só cobrança em reais entra no CET.",
+   "feedbackErro": "CET soma cobranças em dinheiro do crédito, não características do atendimento.",
+   "caixas": [
+    {
+     "id": "sim",
+     "rotulo": "Sim"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Tarifa de registro de contrato",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Cor do plástico do cartão",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "IOF sobre o valor emprestado",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Tempo de espera no aplicativo",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "custo-efetivo-total",
+   "pergunta": "Empréstimo de R$ 1.500, juro de 2,5% a.m. mais R$ 65 de tarifas no primeiro mês. Qual o custo total desse mês?",
+   "campo": "moeda",
+   "min": 60,
+   "max": 300,
+   "gabarito": 102.5,
+   "toleranciaPct": 20,
+   "fonte": "soma do juro do mês com as tarifas cobradas",
+   "feedbackPerto": "Isso mesmo — R$ 37,50 de juro mais R$ 65 de tarifa somam R$ 102,50.",
+   "feedbackLonge": "R$ 102,50: junte o juro do mês (2,5% de R$ 1.500) com as tarifas fixas de R$ 65.",
+   "verificacao": {
+    "expressao": "1500*0.025+65",
+    "esperado": 102.5
+   }
+  }
+ ]
+}

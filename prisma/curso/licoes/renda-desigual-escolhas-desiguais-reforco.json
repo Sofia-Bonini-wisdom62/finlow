@@ -1,0 +1,328 @@
+{
+ "slug": "renda-desigual-escolhas-desiguais-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "renda-desigual-escolhas-desiguais",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "renda-e-escolha",
+   "criterio": "Depende mais da renda que do gosto?",
+   "enunciado": "Financiar um carro 0km em vez de um usado",
+   "resposta": true,
+   "ancora": "Carro novo tem preço de entrada que filtra quem escolhe.",
+   "feedbackErro": "Parece só preferência entre novo e usado, mas a parcela do 0km exige renda bem maior — só quem tem esse orçamento chega a essa opção."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "renda-e-escolha",
+   "criterio": "Depende mais da renda que do gosto?",
+   "enunciado": "Escolher qual série assistir no fim de semana",
+   "resposta": false,
+   "ancora": "Assistir série não tem custo diferente por opção.",
+   "feedbackErro": "Dá para pensar que toda decisão de lazer envolve dinheiro, mas assistir a uma série ou outra custa o mesmo — aqui manda o gosto, não a renda."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "agentes-economicos",
+   "criterio": "É papel do governo nessa cena?",
+   "enunciado": "Definir a taxa de juros básica da economia",
+   "resposta": true,
+   "ancora": "Juro básico é decisão do Banco Central, órgão do governo.",
+   "feedbackErro": "Parece decisão só dos bancos privados, mas a taxa básica (Selic) é definida pelo Banco Central — órgão do governo, não das lojas ou bancos comerciais."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "renda-e-escolha",
+   "dificuldade": 2,
+   "pergunta": "Duas famílias, renda baixa e alta, compram o mesmo remédio de R$ 80. Para quem ele pesa mais no orçamento?",
+   "ancora": "R$ 80 são bem mais pesados numa renda menor.",
+   "alternativas": [
+    {
+     "texto": "Para a de renda baixa: a mesma compra pesa mais",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Para as duas igual, o preço do remédio não muda",
+     "correta": false,
+     "feedbackErro": "O preço na farmácia é igual para as duas famílias. O que muda é quanto essa compra representa dentro de cada orçamento."
+    },
+    {
+     "texto": "Para a de renda alta, que compra remédios mais caros",
+     "correta": false,
+     "feedbackErro": "A pergunta é sobre este remédio de R$ 80 específico. Nesse caso, ele consome uma fatia bem maior do orçamento de quem ganha menos."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "agentes-economicos",
+   "dificuldade": 2,
+   "pergunta": "Uma seca reduz a safra de arroz. Quem, além do produtor, é afetado por essa mudança?",
+   "ancora": "Preço sobe na cadeia toda: vendedor repassa, comprador paga mais.",
+   "alternativas": [
+    {
+     "texto": "Vendedores e compradores, pela alta no preço do arroz",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só o produtor, que colheu menos",
+     "correta": false,
+     "feedbackErro": "O produtor sente primeiro, mas o preço mais alto se espalha: o vendedor compra mais caro e repassa, e o comprador paga a diferença na prateleira."
+    },
+    {
+     "texto": "Só o governo, que perde arrecadação",
+     "correta": false,
+     "feedbackErro": "O governo pode perder um pouco de arrecadação, mas o efeito mais direto é o preço subindo para vendedores e compradores na ponta."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "agentes-economicos",
+   "criterio": "É papel do governo nessa cena?",
+   "enunciado": "Fixar o preço de venda de um sanduíche numa lanchonete",
+   "resposta": false,
+   "ancora": "Preço de produto comum é do vendedor, não do governo.",
+   "feedbackErro": "Pode parecer que tudo que envolve preço passa pelo governo, mas fixar o valor de um sanduíche comum é decisão da lanchonete, com base nos custos dela."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "agentes-economicos",
+   "instrucao": "Uma seca reduz a colheita. Ordene o efeito na cadeia, do 1º ao 4º.",
+   "ancora": "O choque começa no produtor e se espalha pela cadeia até o comprador.",
+   "feedbackErro": "É comum pular direto para o preço na prateleira, mas antes disso o vendedor sente o custo maior de compra — a ordem importa para entender por que o preço sobe.",
+   "itens": [
+    {
+     "texto": "Produtor colhe menos arroz que o esperado",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Vendedor paga mais caro pelo arroz disponível",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Vendedor repassa o aumento no preço da prateleira",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Comprador paga mais pelo mesmo pacote de arroz",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "renda-e-escolha",
+   "criterio": "Depende mais da renda que do gosto?",
+   "enunciado": "Contratar internet de fibra óptica de alta velocidade",
+   "resposta": true,
+   "ancora": "Plano mais caro filtra quem tem orçamento para ele.",
+   "feedbackErro": "Pode parecer questão de gosto por velocidade, mas o preço do plano mais rápido é o que decide quem consegue contratar — isso é renda."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "renda-e-escolha",
+   "criterio": "Depende mais da renda que do gosto?",
+   "enunciado": "Escolher entre acordar cedo ou tarde no fim de semana",
+   "resposta": false,
+   "ancora": "Dormir mais ou menos não tem preço nenhum.",
+   "feedbackErro": "Parece rotina ligada ao estilo de vida de cada família, mas a hora de acordar no fim de semana não custa nada — não é renda que decide aqui."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "agentes-economicos",
+   "pergunta": "O governo isenta de imposto um remédio essencial que custava R$ 60. Se o imposto era de 18%, quanto cai o preço final?",
+   "campo": "moeda",
+   "min": 5,
+   "max": 20,
+   "gabarito": 10.8,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 18% de R$ 60 de imposto embutido",
+   "feedbackPerto": "Boa estimativa: o preço cai perto de R$ 10,80, o valor do imposto que deixou de ser cobrado.",
+   "feedbackLonge": "São R$ 10,80. Multiplique 60 por 0,18 — é o jeito de achar quanto do preço final era só imposto.",
+   "verificacao": {
+    "expressao": "60*0.18",
+    "esperado": 10.8
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "renda-e-escolha",
+   "dificuldade": 2,
+   "pergunta": "Uma cidade tem um único posto de gasolina. Quem sente mais o efeito de um aumento de preço nele?",
+   "ancora": "Quem depende do carro para trabalhar sente o impacto direto no bolso.",
+   "alternativas": [
+    {
+     "texto": "Quem depende do carro para trabalhar, no dia a dia",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quem usa carro só em viagens raras ao ano",
+     "correta": false,
+     "feedbackErro": "Quem usa pouco sente o efeito, mas de forma bem menor. O impacto maior recai sobre quem abastece com frequência para trabalhar."
+    },
+    {
+     "texto": "Ninguém: o preço da gasolina é igual para todos",
+     "correta": false,
+     "feedbackErro": "O preço por litro é igual para todos, sim. Mas o efeito no orçamento é diferente: pesa mais para quem depende do carro todos os dias."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "agentes-economicos",
+   "dificuldade": 2,
+   "pergunta": "Uma prefeitura cria um imposto novo sobre delivery. Quem provavelmente vai pagar essa conta, no fim?",
+   "ancora": "Impostos sobre serviço costumam ser repassados ao preço final.",
+   "alternativas": [
+    {
+     "texto": "O comprador, no preço final do delivery",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só o aplicativo de entrega, sem repassar nada",
+     "correta": false,
+     "feedbackErro": "Aplicativos de entrega funcionam com margem apertada e costumam repassar custos novos — dificilmente absorvem um imposto sozinhos."
+    },
+    {
+     "texto": "Só o restaurante, sem mudar o preço do prato",
+     "correta": false,
+     "feedbackErro": "O restaurante também sente o custo, mas o padrão comum é repassar ao menos parte do imposto novo para quem compra."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "renda-e-escolha",
+   "criterio": "Depende mais da renda que do gosto?",
+   "enunciado": "Escolher qual marca de sabonete comprar no mercado",
+   "resposta": false,
+   "ancora": "Sabonete de marcas diferentes custa quase o mesmo.",
+   "feedbackErro": "Marcas de sabonete têm preços próximos, então essa escolha costuma ser sobre cheiro ou embalagem — não é a renda que separa quem escolhe qual."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "agentes-economicos",
+   "criterio": "É papel do governo nessa cena?",
+   "enunciado": "Regular a qualidade da água distribuída nas casas",
+   "resposta": true,
+   "ancora": "Regular serviços essenciais é função do poder público.",
+   "feedbackErro": "Parece função só da empresa que distribui a água, mas quem regula e fiscaliza a qualidade desse serviço essencial é o governo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "agentes-economicos",
+   "pergunta": "Qual ideia fecha este encontro?",
+   "alternativas": [
+    {
+     "texto": "Um choque de preço se espalha pela cadeia; renda decide quem sente mais",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só o produtor sente qualquer mudança de preço na cadeia",
+     "correta": false,
+     "feedbackErro": "O choque começa no produtor, mas se espalha: vendedor e comprador sentem o efeito na sequência."
+    },
+    {
+     "texto": "Imposto sobre serviço nunca chega ao preço final pago",
+     "correta": false,
+     "feedbackErro": "É comum que parte (ou todo) o imposto novo seja repassado ao preço que o comprador paga."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "renda-e-escolha",
+   "instrucao": "Ordene o quanto cada gasto pesa numa renda de R$ 1.500 (do mais leve ao mais pesado).",
+   "ancora": "Compare o valor do gasto com o tamanho da renda total.",
+   "feedbackErro": "É fácil confundir tamanho absoluto com peso relativo: R$ 300 numa renda de 1.500 pesa mais que R$ 300 numa de 6.000 — mas aqui a renda é a mesma, então o valor maior pesa mais.",
+   "itens": [
+    {
+     "texto": "Conta de luz de R$ 90",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Plano de celular de R$ 150",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Mensalidade escolar de R$ 300",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Parcela de um financiamento de R$ 450",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "agentes-economicos",
+   "instrucao": "É papel do governo ou do vendedor nessa cena?",
+   "ancora": "Governo regula e cobra imposto; vendedor precifica e negocia.",
+   "feedbackErro": "Cobrar imposto e fiscalizar são do governo. Definir o preço de venda e negociar prazo são decisões de quem vende.",
+   "caixas": [
+    {
+     "id": "governo",
+     "rotulo": "Governo"
+    },
+    {
+     "id": "vendedor",
+     "rotulo": "Vendedor"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Fiscalizar a validade dos produtos na prateleira",
+     "caixaCorreta": "governo"
+    },
+    {
+     "texto": "Definir o preço de venda de uma calça",
+     "caixaCorreta": "vendedor"
+    },
+    {
+     "texto": "Cobrar imposto sobre a venda de eletrônicos",
+     "caixaCorreta": "governo"
+    },
+    {
+     "texto": "Negociar o prazo de pagamento com o cliente",
+     "caixaCorreta": "vendedor"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "renda-e-escolha",
+   "criterio": "Depende mais da renda que do gosto?",
+   "enunciado": "Comprar um presente de aniversário mais elaborado",
+   "resposta": true,
+   "ancora": "Presente mais caro exige renda maior para caber no plano.",
+   "feedbackErro": "Presente parece questão de carinho, e é — mas o quanto se pode gastar nele é limitado pela renda disponível no mês."
+  }
+ ]
+}

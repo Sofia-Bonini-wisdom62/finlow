@@ -1,0 +1,327 @@
+{
+ "slug": "quem-move-a-economia-reforco",
+ "segmento": "em3",
+ "conceitoPrincipal": "agentes-economicos",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "circulacao-da-renda",
+   "criterio": "A renda circula aqui?",
+   "enunciado": "Aposentadoria do INSS gasta no mercado do bairro",
+   "resposta": true,
+   "ancora": "Transferência do governo vira consumo — e consumo vira renda local.",
+   "feedbackErro": "Benefício parece dinheiro 'dado', fora do jogo. Mas ele é gasto quase inteiro no comércio — em muitas cidades, o INSS é a maior renda que circula."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "circulacao-da-renda",
+   "criterio": "A renda circula aqui?",
+   "enunciado": "Poupança no banco emprestada para uma empresa crescer",
+   "resposta": true,
+   "ancora": "Poupança no banco vira crédito: outro caminho do mesmo giro.",
+   "feedbackErro": "Dinheiro poupado parece parado. No banco, ele é emprestado para quem investe ou consome — a poupança de um financia o movimento do outro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "circulacao-da-renda",
+   "criterio": "A renda circula aqui?",
+   "enunciado": "Fábrica parada por falta de compradores",
+   "resposta": false,
+   "ancora": "Sem venda não há salário novo nem pedido novo: o giro trava ali.",
+   "feedbackErro": "A fábrica existir parece bastar. Mas sem comprador ela não fatura, não paga hora extra, não encomenda insumo — capacidade parada não é renda circulando."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "circulacao-da-renda",
+   "dificuldade": 2,
+   "pergunta": "A maior fábrica da cidade demite 200 pessoas. Fora os demitidos, quem sente primeiro?",
+   "ancora": "A renda que sumiu era o faturamento de alguém: o comércio sente já.",
+   "alternativas": [
+    {
+     "texto": "O comércio onde essas 200 famílias gastavam",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ninguém: demissão é problema de quem saiu",
+     "correta": false,
+     "feedbackErro": "A renda dos demitidos era o faturamento do mercado, da farmácia, do salão. Corte de salário em massa vira queda de venda na esquina em semanas."
+    },
+    {
+     "texto": "Só o governo, que perde o imposto da fábrica",
+     "correta": false,
+     "feedbackErro": "A arrecadação cai também, mas depois e diluída. O primeiro elo atingido é o consumo local — o comércio nota antes de a prefeitura fechar a conta."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "agentes-economicos",
+   "dificuldade": 2,
+   "pergunta": "Além de cobrar imposto e comprar muito, o que mais o governo faz no mercado?",
+   "ancora": "Regras do jogo: salário mínimo, defesa do consumidor, concorrência.",
+   "alternativas": [
+    {
+     "texto": "Define regras: mínimo, defesa do consumidor, concorrência",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: o mercado funciona sozinho, sem regra",
+     "correta": false,
+     "feedbackErro": "Sem regra, quem tem mais força impõe o contrato que quiser. Piso salarial, rótulo obrigatório e lei antimonopólio existem para o jogo ter juiz."
+    },
+    {
+     "texto": "Administra o caixa e os preços de cada empresa",
+     "correta": false,
+     "feedbackErro": "O governo regula setores e tributa, mas não gerencia empresa privada. A regra vale para todos; a gestão é de cada dono — são papéis diferentes."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "distribuicao-de-renda",
+   "criterio": "É transferência de renda?",
+   "enunciado": "Bolsa Família e BPC pagos pelo governo",
+   "resposta": true,
+   "ancora": "Transferência: renda que o imposto recolhe e redistribui direto.",
+   "feedbackErro": "Parece gasto sem retorno. É redistribuição: o imposto arrecadado vira renda de quem tem pouco — e essa renda volta ao giro no comércio do bairro."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "circulacao-da-renda",
+   "instrucao": "Ordene o efeito de uma obra pública no bairro.",
+   "ancora": "Gasto público vira salário, que vira venda, que vira pedido e vaga.",
+   "feedbackErro": "Siga a renda passando de mão: a obra paga operários, os operários compram no bairro, o comércio encomenda mais e os fornecedores contratam.",
+   "itens": [
+    {
+     "texto": "O governo contrata a obra e paga salários",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Operários gastam no comércio do bairro",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Comerciantes encomendam mais dos fornecedores",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Fornecedores contratam para dar conta",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "distribuicao-de-renda",
+   "criterio": "Reduz a desigualdade?",
+   "enunciado": "Imposto maior sobre renda alta virando serviço público",
+   "resposta": true,
+   "ancora": "Progressivo: quem pode mais paga mais; o serviço libera renda.",
+   "feedbackErro": "Parece só arrecadação. O desenho importa: cobrar proporcionalmente mais de quem tem mais e devolver em escola e saúde transfere renda de cima para baixo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "distribuicao-de-renda",
+   "criterio": "Reduz a desigualdade?",
+   "enunciado": "Imposto embutido no preço do arroz, igual para todos",
+   "resposta": false,
+   "ancora": "Imposto no consumo pesa mais em quem ganha menos: é regressivo.",
+   "feedbackErro": "Valor igual soa justo. Mas os mesmos reais de imposto são fatia enorme de uma renda pequena e migalha de uma renda alta — igualdade de valor, não de peso."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "distribuicao-de-renda",
+   "pergunta": "R$ 200 de imposto embutidos no consumo básico do mês. Que % da renda de quem ganha R$ 1.600?",
+   "campo": "percentual",
+   "min": 1,
+   "max": 40,
+   "gabarito": 12.5,
+   "toleranciaPct": 20,
+   "fonte": "derivado da própria conta: 200 dividido por 1.600",
+   "verificacao": {
+    "expressao": "200/1600*100",
+    "esperado": 12.5
+   },
+   "feedbackPerto": "12,5% da renda. Para quem ganha R$ 16.000, os mesmos R$ 200 são 1,25% — o imposto igual pesa dez vezes mais embaixo.",
+   "feedbackLonge": "São 12,5% (200 ÷ 1.600). O viés é olhar o valor em reais e não a proporção: R$ 200 'iguais' mordem fatias muito diferentes de cada renda."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "distribuicao-de-renda",
+   "dificuldade": 2,
+   "pergunta": "Duas cidades com a mesma renda total: na A, bem distribuída; na B, concentrada. O que esperar?",
+   "ancora": "Renda espalhada vira consumo variado; concentrada, vira pouco giro.",
+   "alternativas": [
+    {
+     "texto": "A: comércio mais variado e consumo básico mais forte",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "B: renda concentrada gera mais investimento local",
+     "correta": false,
+     "feedbackErro": "O investimento de poucos não substitui o consumo de muitos — e costuma sair da cidade atrás de retorno. O comércio local vive da renda espalhada."
+    },
+    {
+     "texto": "Nenhuma diferença: a renda total é igual",
+     "correta": false,
+     "feedbackErro": "O total igual esconde quem pode gastar: mil famílias consumindo movimentam mais lojas, serviços e empregos que uma fortuna única parada."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "agentes-economicos",
+   "dificuldade": 2,
+   "pergunta": "Um bairro decide comprar do comércio local por 6 meses. Isso é poder econômico?",
+   "ancora": "Compra coletiva direciona renda: consumidor junto tem força.",
+   "alternativas": [
+    {
+     "texto": "Sim: a compra coletiva direciona renda e sustenta vagas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não: consumidor não muda nada, nem em grupo",
+     "correta": false,
+     "feedbackErro": "Individualmente o efeito é pequeno; somado, decide quem sobrevive. Faturamento é a soma das escolhas de compra — mudar as escolhas muda o destino da renda."
+    },
+    {
+     "texto": "Só se virar lei aprovada pela prefeitura",
+     "correta": false,
+     "feedbackErro": "Não precisa de lei para redirecionar o próprio gasto. O poder do consumidor age direto no caixa — a lei é outro instrumento, de outro agente."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "distribuicao-de-renda",
+   "criterio": "Leitura correta?",
+   "enunciado": "Quem recebe auxílio também move a economia ao gastar",
+   "resposta": true,
+   "ancora": "Renda baixa gasta quase tudo — e gasto é o combustível do giro.",
+   "feedbackErro": "Parece que só salário 'ganho' conta. Para o comércio, o real do auxílio compra igual — e quem tem pouco gasta quase 100% do que recebe, girando rápido."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "distribuicao-de-renda",
+   "criterio": "Leitura correta?",
+   "enunciado": "Desigualdade alta é problema só de quem está embaixo",
+   "resposta": false,
+   "ancora": "Mercado menor, tensão maior: desigualdade cobra de todos.",
+   "feedbackErro": "Quem está em cima parece imune. Mas desigualdade alta encolhe o mercado consumidor, pressiona a violência e trava o país — a conta chega em todos os andares."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "agentes-economicos",
+   "pergunta": "O que este encontro acrescentou sobre quem move a economia?",
+   "alternativas": [
+    {
+     "texto": "Renda distribuída circula mais; imposto pode concentrar ou redistribuir.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O governo trava o giro sempre que cobra imposto.",
+     "correta": false,
+     "feedbackErro": "Depende do desenho: progressivo redistribui; embutido no arroz, pesa nos de baixo. O imposto é ferramenta, não vilão fixo."
+    },
+    {
+     "texto": "O que importa é a renda total do país, não quem a recebe.",
+     "correta": false,
+     "feedbackErro": "Mesma renda total, giros opostos: a cidade A e a cidade B provaram o contrário."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "distribuicao-de-renda",
+   "instrucao": "Este imposto pesa proporcionalmente em quem?",
+   "ancora": "No consumo básico, pesa embaixo; sobre renda e herança, em cima.",
+   "feedbackErro": "O critério é a fatia da renda comprometida: imposto embutido no essencial morde mais quem ganha pouco; alíquota sobre renda alta e herança morde o topo.",
+   "caixas": [
+    {
+     "id": "baixa",
+     "rotulo": "Mais na renda baixa"
+    },
+    {
+     "id": "alta",
+     "rotulo": "Mais na renda alta"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Imposto embutido na conta de luz",
+     "caixaCorreta": "baixa"
+    },
+    {
+     "texto": "Imposto sobre grandes heranças",
+     "caixaCorreta": "alta"
+    },
+    {
+     "texto": "Imposto no preço do gás de cozinha",
+     "caixaCorreta": "baixa"
+    },
+    {
+     "texto": "Alíquota maior para salários altos",
+     "caixaCorreta": "alta"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "distribuicao-de-renda",
+   "dificuldade": 2,
+   "pergunta": "Por que um aumento do salário mínimo mexe tanto com o comércio popular?",
+   "ancora": "Quem ganha pouco gasta quase tudo: aumento na base vira venda na hora.",
+   "alternativas": [
+    {
+     "texto": "Quem ganha pouco gasta quase tudo — o aumento vira consumo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque o comércio é obrigado a repassar o valor",
+     "correta": false,
+     "feedbackErro": "Não há repasse obrigatório de venda. O canal é outro: milhões de rendas na base sobem juntas e viram compra no mercado, na loja, na farmácia."
+    },
+    {
+     "texto": "Não mexe: mínimo é assunto de quem contrata",
+     "correta": false,
+     "feedbackErro": "Mexe dos dois lados: é custo para quem contrata e renda para milhões que gastam quase tudo — o comércio popular sente o segundo efeito primeiro."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "distribuicao-de-renda",
+   "criterio": "Isso é verdade?",
+   "enunciado": "No Brasil, os 10% mais ricos ficam com cerca de 40% da renda",
+   "resposta": true,
+   "ancora": "IBGE: o décimo do topo concentra ~40% da renda das famílias.",
+   "feedbackErro": "Parece exagero, mas é a estatística oficial: o décimo mais rico fica com cerca de 40% da renda domiciliar — uma das maiores concentrações do mundo."
+  }
+ ]
+}

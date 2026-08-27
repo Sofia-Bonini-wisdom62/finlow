@@ -1,0 +1,335 @@
+{
+ "slug": "preco-justo-pesquisar-e-negociar-consolida",
+ "segmento": "em1",
+ "conceitoPrincipal": "preco-justo-pesquisar-e-negociar",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "negociacao",
+   "criterio": "Dá para negociar aqui?",
+   "enunciado": "A mensalidade, na hora de cancelar a assinatura",
+   "resposta": true,
+   "ancora": "Reter cliente custa menos que caçar outro — use isso a favor.",
+   "feedbackErro": "Cancelamento é onde a empresa mais cede: setores de retenção têm desconto engatilhado. Transferência do conceito: negociar não é só em loja."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-total",
+   "criterio": "Muda o quanto sai do seu bolso?",
+   "enunciado": "Impressora barata que usa cartucho caríssimo",
+   "resposta": true,
+   "ancora": "Custo total inclui usar, não só comprar: tinta, energia, peças.",
+   "feedbackErro": "A compra não acaba no caixa. Um ano de cartucho pode custar mais que a impressora — o custo de usar faz parte do custo total."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "pesquisa-de-preco",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Pesquisar vale o mesmo esforço em qualquer compra",
+   "resposta": false,
+   "ancora": "Pesquisa custa seu tempo: pesa mais quanto maior a compra.",
+   "feedbackErro": "Seu tempo também é recurso. Uma hora para economizar R$ 2 é conta que não fecha; a mesma hora numa compra de R$ 2.000 se paga muitas vezes."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "pesquisa-de-preco",
+   "dificuldade": 3,
+   "pergunta": "Passar uma tarde pesquisando para economizar R$ 3 no shampoo. O que essa conta ignora?",
+   "ancora": "A pesquisa tem custo invisível: as horas de quem pesquisa.",
+   "alternativas": [
+    {
+     "texto": "Que o tempo gasto vale mais que a economia",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: economizar é sempre obrigatório",
+     "correta": false,
+     "feedbackErro": "Economizar é meio, não fim. Se a tarde vale mais que R$ 3 — e vale —, a 'economia' saiu cara. Calibre o esforço pelo tamanho da compra."
+    },
+    {
+     "texto": "Que shampoo não varia de preço",
+     "correta": false,
+     "feedbackErro": "Varia, sim — mas centavos. O problema não é a variação existir: é o custo de caçá-la superar o que ela devolve."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "pesquisa-de-preco",
+   "dificuldade": 3,
+   "pergunta": "No carro usado de R$ 38 mil, o anúncio avisa: 'preço fechado'. A pesquisa ainda serve para quê?",
+   "ancora": "Mesmo sem conversa, a pesquisa diz se o 'fechado' está caro.",
+   "alternativas": [
+    {
+     "texto": "Para saber se R$ 38 mil está acima do mercado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Para nada: preço fechado encerra o assunto",
+     "correta": false,
+     "feedbackErro": "Encerra a negociação, não a comparação. Se a tabela aponta R$ 34 mil, o 'fechado' está R$ 4 mil caro — e há outros carros no mundo."
+    },
+    {
+     "texto": "Só para carros novos, que têm tabela",
+     "correta": false,
+     "feedbackErro": "Usados têm referência ainda mais consultada — tabela Fipe e anúncios aos milhares. É neles que a pesquisa mais protege, porque cada carro é único."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "negociacao",
+   "criterio": "Dá para negociar aqui?",
+   "enunciado": "Taxa de matrícula definida em edital público",
+   "resposta": false,
+   "ancora": "Valor de edital é regra publicada: igual para todos, sem balcão.",
+   "feedbackErro": "Caso-limite: onde o preço nasce de norma pública, não há margem nem dono para ceder. Negociar aqui não é possível nem apropriado."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "negociacao",
+   "instrucao": "Negociar resolve — ou o caso pede outra saída?",
+   "ancora": "Desconto se negocia; direito se exige; tabela se compara.",
+   "feedbackErro": "Três caminhos diferentes: preço com margem se negocia; produto com defeito é direito garantido, não favor; preço de aplicativo se compara entre apps.",
+   "caixas": [
+    {
+     "id": "negociar",
+     "rotulo": "Negociar"
+    },
+    {
+     "id": "outra",
+     "rotulo": "Outra saída"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Academia na renovação do plano anual",
+     "caixaCorreta": "negociar"
+    },
+    {
+     "texto": "Troca do produto que veio com defeito",
+     "caixaCorreta": "outra"
+    },
+    {
+     "texto": "Internet, com a oferta da rival na mão",
+     "caixaCorreta": "negociar"
+    },
+    {
+     "texto": "Tarifa mostrada pelo app de transporte",
+     "caixaCorreta": "outra"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-total",
+   "criterio": "É a compra de menor custo total?",
+   "enunciado": "Levar 3 pelo preço de 2 do que você não usa",
+   "resposta": false,
+   "ancora": "Desconto no desnecessário não é economia — é gasto fantasiado.",
+   "feedbackErro": "A promoção compara com o preço de 3, mas sua base certa é R$ 0 — você não ia comprar. Pagar 2 pelo que não usa é 100% de desperdício."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-total",
+   "criterio": "É a compra de menor custo total?",
+   "enunciado": "Usado em bom estado em vez do novo parcelado com juros",
+   "resposta": true,
+   "ancora": "Usado bom elimina duas camadas: a do 'novo' e a dos juros.",
+   "feedbackErro": "Transferência do conceito: custo total compara alternativas, não só lojas. O usado que atende custa menos duas vezes — no preço e no prazo."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-total",
+   "pergunta": "O ar B custa R$ 400 a mais e gasta R$ 25 a menos de luz por mês. Em quantos meses empata?",
+   "campo": "numero",
+   "min": 1,
+   "max": 60,
+   "gabarito": 16,
+   "toleranciaPct": 20,
+   "fonte": "conta do próprio enunciado (400 ÷ 25)",
+   "verificacao": {
+    "expressao": "400/25",
+    "esperado": 16
+   },
+   "feedbackPerto": "16 meses. Depois disso, cada mês é lucro do B — custo total se mede no tempo de uso.",
+   "feedbackLonge": "400 ÷ 25 = 16 meses. O viés é olhar só o preço de compra: eficiência é desconto mensal disfarçado."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "pesquisa-de-preco",
+   "dificuldade": 3,
+   "pergunta": "Débora achou o notebook R$ 400 mais barato num site sem CNPJ e sem avaliações. E agora?",
+   "ancora": "Risco é custo: golpe de R$ 2.600 anula economia de R$ 400.",
+   "alternativas": [
+    {
+     "texto": "Tratar o risco como custo: barato demais pode custar tudo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Fechar rápido, antes que o preço suba",
+     "correta": false,
+     "feedbackErro": "Pressa é exatamente o que o golpe precisa. Site sem CNPJ, sem histórico e muito abaixo do mercado reúne os três sinais clássicos de fraude."
+    },
+    {
+     "texto": "Pagar por Pix para garantir desconto extra",
+     "correta": false,
+     "feedbackErro": "Pix instantâneo para desconhecido é dinheiro sem volta — cartão ao menos permite contestar. Quanto pior o sinal, mais protegido deve ser o pagamento."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "negociacao",
+   "dificuldade": 3,
+   "pergunta": "Na feira, o artesão já cobra quase só o custo do material. Pechinchar mais é o quê?",
+   "ancora": "Negociar é apropriado quando há margem — não quando há aperto.",
+   "alternativas": [
+    {
+     "texto": "Inapropriado: o desconto sairia do sustento dele",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Esperto: desconto arrancado é sempre vitória",
+     "correta": false,
+     "feedbackErro": "Vitória sobre quem? Sem margem, seu desconto vira almoço a menos na casa dele. O 'quando apropriado' do conceito existe para essa cena."
+    },
+    {
+     "texto": "Obrigatório: feira existe para pechinchar",
+     "correta": false,
+     "feedbackErro": "Feira admite conversa, não a exige. Negociação pressupõe os dois lados podendo ceder — quem está no limite do custo não pode."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-total",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Custo total pode incluir tempo, risco e uso",
+   "resposta": true,
+   "ancora": "A conta madura soma o que não está na etiqueta.",
+   "feedbackErro": "É o salto do conceito: além de frete e juros, pesam as horas gastas, o risco do golpe e o custo de usar. A etiqueta é só a primeira linha da conta."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "pesquisa-de-preco",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Achou o menor preço à vista? A comparação acabou",
+   "resposta": false,
+   "ancora": "Faltam as outras linhas: prazo, risco, custo de usar.",
+   "feedbackErro": "O menor preço à vista é um candidato, não o vencedor. Antes de fechar: a loja é confiável? O prazo serve? Quanto custa manter? A conta toda decide."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "preco-justo-pesquisar-e-negociar",
+   "pergunta": "Quando pesquisar e negociar funciona de verdade?",
+   "alternativas": [
+    {
+     "texto": "Na compra grande, somando uso e risco — sem apertar quem não tem margem.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Em toda compra, do chiclete ao carro, com a mesma energia.",
+     "correta": false,
+     "feedbackErro": "Pesquisa tem custo: seu tempo. Gaste-o onde a economia possível o recompensa."
+    },
+    {
+     "texto": "Nunca: o preço anunciado é sempre final.",
+     "correta": false,
+     "feedbackErro": "Retenção cede, serviço orça, usado conversa. Onde há margem, há negociação possível."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "custo-total",
+   "pergunta": "Panela elétrica: R$ 189 à vista ou 9 parcelas de R$ 24,50. Quanto a mais no parcelado?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 100,
+   "gabarito": 31.5,
+   "toleranciaPct": 20,
+   "fonte": "conta do próprio enunciado (9 × 24,50 − 189)",
+   "verificacao": {
+    "expressao": "24.5*9-189",
+    "esperado": 31.5
+   },
+   "feedbackPerto": "R$ 31,50 — cerca de 17% a mais. Números quebrados escondem melhor: multiplique sempre.",
+   "feedbackLonge": "9 × R$ 24,50 = R$ 220,50, contra R$ 189: R$ 31,50 de diferença. Parcela quebrada é onde a âncora da parcela mais confunde."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "custo-total",
+   "instrucao": "Escolhendo entre a impressora barata e a cara: toque na ordem.",
+   "ancora": "Compra → uso por ano → total no tempo → decisão.",
+   "feedbackErro": "A ordem vai do visível ao invisível: preço de compra, depois o custo de usar por ano, depois a soma no tempo de vida — e só então a escolha.",
+   "itens": [
+    {
+     "texto": "Anotar o preço de compra das duas",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Somar o custo dos cartuchos por ano",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Comparar o total no tempo de uso",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Escolher a de menor custo no fim",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "custo-total",
+   "dificuldade": 3,
+   "pergunta": "O mercado perto custa 8% mais que o atacadão do outro lado da cidade. Quando o perto vence?",
+   "ancora": "Ônibus, tempo e cansaço entram na conta contra os 8%.",
+   "alternativas": [
+    {
+     "texto": "Quando chegar lá custa mais que os 8% de diferença",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nunca: 8% é 8%, e ponto",
+     "correta": false,
+     "feedbackErro": "Numa compra de R$ 100, os 8% são R$ 8. Se o ônibus custa R$ 9 e a viagem toma 2 horas, o 'barato' saiu mais caro — a conta inclui o caminho."
+    },
+    {
+     "texto": "Sempre: perto é melhor por definição",
+     "correta": false,
+     "feedbackErro": "Na compra grande do mês, 8% podem ser R$ 60 — aí a viagem se paga. Não há resposta fixa: há a conta de cada caso."
+    }
+   ]
+  }
+ ]
+}

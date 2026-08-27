@@ -1,0 +1,335 @@
+{
+ "slug": "por-que-custa-o-que-custa-consolida",
+ "segmento": "em1",
+ "conceitoPrincipal": "por-que-custa-o-que-custa",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fatores-de-preco",
+   "criterio": "Isso mexe no preço?",
+   "enunciado": "Aluguel do salão, no preço do corte de cabelo",
+   "resposta": true,
+   "ancora": "Serviço também tem camadas: ponto, luz, tempo de quem corta.",
+   "feedbackErro": "O conceito transfere: serviço não tem fábrica, mas tem custos — aluguel, energia, o tempo do profissional. Tudo isso se empilha no preço do corte."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fatores-de-preco",
+   "criterio": "Isso mexe no preço?",
+   "enunciado": "Dólar subiu e a peça do produto é importada",
+   "resposta": true,
+   "ancora": "Custo em dólar, preço em real: o câmbio entra na pilha.",
+   "feedbackErro": "Parece assunto de noticiário, mas é custo: se a peça é paga em dólar e o dólar sobe, produzir encarece — e o aumento caminha até a prateleira."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-e-lucro",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Todo aumento de custo pode ser repassado ao preço",
+   "resposta": false,
+   "ancora": "Repasse tem teto: o preço que concorrência e cliente aceitam.",
+   "feedbackErro": "Quem vende adoraria repassar tudo, mas o mercado limita: se o concorrente segurou o preço, repassar demais espanta o cliente. Às vezes o custo come o lucro."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-e-lucro",
+   "dificuldade": 3,
+   "pergunta": "Um mercado vende arroz abaixo do custo e a loja lota. Por que isso pode ser racional?",
+   "ancora": "O arroz é isca: o prejuízo dele volta na margem do resto.",
+   "alternativas": [
+    {
+     "texto": "O arroz atrai gente que leva o resto com margem cheia",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não pode: vender no prejuízo nunca compensa",
+     "correta": false,
+     "feedbackErro": "Numa unidade isolada, não compensa mesmo. Mas o mercado vende carrinhos, não itens: o prejuízo do arroz compra a presença do cliente nas outras gôndolas."
+    },
+    {
+     "texto": "Arroz não tem custo relevante para o mercado",
+     "correta": false,
+     "feedbackErro": "Tem custo, como tudo: compra, transporte, estoque. A jogada não é custo zero — é aceitar perder num item para ganhar no conjunto."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "fatores-de-preco",
+   "dificuldade": 3,
+   "pergunta": "Dois cafés na mesma calçada: expresso a R$ 6 num, R$ 14 no outro. Os dois vivem cheios. O que o caro vende?",
+   "ancora": "Percepção também é produto: ambiente, marca, status.",
+   "alternativas": [
+    {
+     "texto": "Ambiente, marca e status — e há quem pague por isso",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Um café secretamente muito melhor",
+     "correta": false,
+     "feedbackErro": "Pode haver diferença de grão, mas não de R$ 8 por xícara. O que sustenta o preço não está só na bebida: está no que o lugar diz sobre quem senta ali."
+    },
+    {
+     "texto": "Nada: os clientes do caro foram enganados",
+     "correta": false,
+     "feedbackErro": "Engano exige mentira, e o cardápio está à vista. Quem paga R$ 14 sabe do R$ 6 ao lado — escolhe pagar pelo conjunto. Percepção de valor é fator real."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "fatores-de-preco",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Banana e diamante têm preço pela mesma lógica",
+   "resposta": true,
+   "ancora": "Oferta, procura e custo precificam tudo — do quilo ao quilate.",
+   "feedbackErro": "Parece absurdo comparar, mas a régua é a mesma: quanto custa obter, quanta gente quer, quanto existe disponível. O diamante só muda as quantidades."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "fatores-de-preco",
+   "instrucao": "Da geada ao balcão: toque na ordem do repasse.",
+   "ancora": "O choque viaja a cadeia: campo, atacado, padaria, xícara.",
+   "feedbackErro": "O aumento percorre a cadeia na ordem da produção: a safra encolhe, o atacado disputa sacas raras, a padaria paga mais — e o cafezinho fecha a conta.",
+   "itens": [
+    {
+     "texto": "Geada derruba a safra do café",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Sacas raras sobem no atacado",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "A padaria paga mais pelo pó",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "O cafezinho sobe no balcão",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "fatores-de-preco",
+   "criterio": "É aumento abusivo?",
+   "enunciado": "Água a R$ 40 na cidade alagada, sem outra opção",
+   "resposta": true,
+   "ancora": "Emergência sem alternativa não é demanda — é gente encurralada.",
+   "feedbackErro": "Oferta e demanda descrevem mercados com escolha. Na calamidade, quem compra não pode esperar nem buscar concorrente — a lei chama esse aumento de abuso."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "fatores-de-preco",
+   "criterio": "É aumento abusivo?",
+   "enunciado": "Hotel mais caro na semana do festival, com vagas na cidade",
+   "resposta": false,
+   "ancora": "Procura em pico com alternativas à vista: dinâmica normal.",
+   "feedbackErro": "Parece a cena da enchente, mas falta o ingrediente do abuso: aqui há escolha. Dá para reservar antes, ficar mais longe ou não ir. Com alternativa, é mercado."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-e-lucro",
+   "pergunta": "Uma loja compra a jaqueta por R$ 48 e vende com 75% em cima. Qual o preço final?",
+   "campo": "moeda",
+   "min": 48,
+   "max": 150,
+   "gabarito": 84,
+   "toleranciaPct": 20,
+   "fonte": "conta do próprio enunciado (R$ 48 × 1,75)",
+   "verificacao": {
+    "expressao": "48*1.75",
+    "esperado": 84
+   },
+   "feedbackPerto": "R$ 84. Margem de 75% parece enorme — mas aluguel, imposto e vendedor moram dentro dela.",
+   "feedbackLonge": "R$ 84: 75% de R$ 48 são R$ 36, somados ao custo. O deslize clássico é ancorar num 'quase dobro' sem fazer a fração sobre a base certa."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "fatores-de-preco",
+   "dificuldade": 3,
+   "pergunta": "O streaming aumentou 20% e quase ninguém cancelou. O que isso revela sobre o preço?",
+   "ancora": "Sem substituto à altura, a procura aguenta o aumento.",
+   "alternativas": [
+    {
+     "texto": "Sem substituto à altura, dá para subir sem perder cliente",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que o custo do serviço subiu 20% junto",
+     "correta": false,
+     "feedbackErro": "Pode ter subido algo, mas o teste do aumento não foi o custo — foi a reação. A empresa mediu quantos sairiam; como poucos saíram, o preço novo ficou."
+    },
+    {
+     "texto": "Que assinante não olha para preço",
+     "correta": false,
+     "feedbackErro": "Olha, sim — e cancelaria por um aumento em algo dispensável. Ficar mesmo pagando mais revela falta de alternativa equivalente, não desatenção."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "fatores-de-preco",
+   "dificuldade": 3,
+   "pergunta": "Otávio quer abrir a sexta barbearia da mesma rua. O que a concorrência impõe ao preço dele?",
+   "ancora": "Cinco vizinhos são um teto: acima dele, só entregando mais.",
+   "alternativas": [
+    {
+     "texto": "Um teto: cobrar bem acima exige oferecer algo a mais",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: cada dono escolhe seu preço livremente",
+     "correta": false,
+     "feedbackErro": "Escolher, ele pode — cliente pagar é outra história. Com cinco alternativas na mesma calçada, preço fora da faixa vira cadeira vazia em uma semana."
+    },
+    {
+     "texto": "Que ele cubra o menor preço da rua, sempre",
+     "correta": false,
+     "feedbackErro": "Competir só por preço é corrida para o fundo: alguém quebra primeiro. Ele pode cobrar mais — se entregar corte, ambiente ou horário que justifiquem."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "fatores-de-preco",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Concorrência de verdade encolhe lucro abusivo",
+   "resposta": true,
+   "ancora": "Onde há disputa real, margem exagerada vira cliente perdido.",
+   "feedbackErro": "É o mecanismo central: lucro muito acima do custo atrai concorrente, que cobra menos e rouba cliente. Abuso duradouro pede um ingrediente: falta de opção."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "fatores-de-preco",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Quando a procura explode, o custo de produzir sobe junto",
+   "resposta": false,
+   "ancora": "Procura mexe no preço sem tocar no custo — são forças separadas.",
+   "feedbackErro": "Preço subiu, então custa mais fazer? Não: o produto custa o mesmo de ontem. Procura e custo empurram o preço por portas diferentes."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "por-que-custa-o-que-custa",
+   "pergunta": "Para fechar: quando um preço alto é legítimo?",
+   "alternativas": [
+    {
+     "texto": "Quando cobre custos reais e o cliente tem alternativa de escolha.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nunca: preço alto é sempre exploração.",
+     "correta": false,
+     "feedbackErro": "Custo alto, imposto e inovação produzem preços altos legítimos. O problema não é a altura — é a falta de saída."
+    },
+    {
+     "texto": "Sempre: quem vende decide o que vale.",
+     "correta": false,
+     "feedbackErro": "Sem alternativa para quem compra, preço vira imposição — e em emergência a lei limita isso."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "fatores-de-preco",
+   "instrucao": "Mercado funcionando ou abuso?",
+   "ancora": "O divisor é a alternativa: com escolha, mercado; sem, abuso.",
+   "feedbackErro": "Pergunte: quem compra pode esperar, comparar ou desistir? Se sim, é dinâmica de preço. Se a urgência é vital e não há opção, é abuso — e a lei intervém.",
+   "caixas": [
+    {
+     "id": "mercado",
+     "rotulo": "Mercado"
+    },
+    {
+     "id": "abuso",
+     "rotulo": "Abuso"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Sorvete mais caro no calor de janeiro",
+     "caixaCorreta": "mercado"
+    },
+    {
+     "texto": "Único posto triplica a gasolina na greve",
+     "caixaCorreta": "abuso"
+    },
+    {
+     "texto": "Passagem cara na véspera de feriado",
+     "caixaCorreta": "mercado"
+    },
+    {
+     "texto": "Gerador pelo triplo só durante o apagão",
+     "caixaCorreta": "abuso"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "custo-e-lucro",
+   "pergunta": "Custa R$ 60 para a loja e sai por R$ 99. Quantos % em cima do custo?",
+   "campo": "percentual",
+   "min": 10,
+   "max": 120,
+   "gabarito": 65,
+   "toleranciaPct": 20,
+   "fonte": "conta do próprio enunciado ((99 − 60) ÷ 60)",
+   "verificacao": {
+    "expressao": "(99-60)/60*100",
+    "esperado": 65
+   },
+   "feedbackPerto": "65% — e a fatia ainda alimenta aluguel, imposto e salário antes de virar lucro.",
+   "feedbackLonge": "65%: R$ 39 sobre a base de R$ 60. Atenção à base — sobre os R$ 99 daria 39%, e essa troca de base é o erro que infla ou encolhe qualquer margem."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "fatores-de-preco",
+   "dificuldade": 3,
+   "pergunta": "Lojas do mesmo shopping cobram preços muito parecidos. O que explica?",
+   "ancora": "Disputa lado a lado força os preços a convergir.",
+   "alternativas": [
+    {
+     "texto": "A concorrência colada aproxima os preços",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Elas combinam os preços entre si, o que é normal",
+     "correta": false,
+     "feedbackErro": "Combinar preço tem nome: cartel — e é crime. A semelhança legítima nasce da disputa: quem cobra acima da vizinha de corredor perde a venda na hora."
+    },
+    {
+     "texto": "Os custos delas são idênticos ao centavo",
+     "correta": false,
+     "feedbackErro": "Custos variam: aluguel de canto, marca, equipe. O que iguala a etiqueta não é a planilha de custos — é o cliente comparando a três vitrines de distância."
+    }
+   ]
+  }
+ ]
+}

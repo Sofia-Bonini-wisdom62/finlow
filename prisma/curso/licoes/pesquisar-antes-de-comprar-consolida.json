@@ -1,0 +1,286 @@
+{
+ "slug": "pesquisar-antes-de-comprar-consolida",
+ "segmento": "ef35",
+ "conceitoPrincipal": "pesquisar-antes-de-comprar",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "onde-pesquisar",
+   "criterio": "Vale a pena pesquisar aqui?",
+   "enunciado": "Ir de ônibus (R$ 5) até outro bairro pra economizar R$ 2 num sorvete",
+   "resposta": false,
+   "ancora": "Quando o custo de pesquisar é maior que a economia, não compensa.",
+   "feedbackErro": "Pesquisar sempre parece bom hábito. Mas se o ônibus custa R$ 5 pra economizar R$ 2, o esforço custa mais do que economiza."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "onde-pesquisar",
+   "criterio": "Vale a pena pesquisar aqui?",
+   "enunciado": "Comparar preços de uma bicicleta em três lugares antes de comprar",
+   "resposta": true,
+   "ancora": "Em compras caras, a diferença entre lugares costuma ser grande.",
+   "feedbackErro": "Pesquisar dá trabalho, mesmo pra item caro. Mas numa bicicleta, poucos por cento de diferença já representam dezenas de reais."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-beneficio",
+   "criterio": "O caro tem melhor custo-benefício?",
+   "enunciado": "Uma mochila cara que quebra no mesmo tempo que a barata",
+   "resposta": false,
+   "ancora": "Preço alto só compensa se trouxer mais duração ou qualidade.",
+   "feedbackErro": "Preço alto costuma sugerir qualidade maior. Mas se as duas quebram no mesmo tempo, pagar mais não trouxe nenhum benefício extra."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "onde-pesquisar",
+   "dificuldade": 3,
+   "pergunta": "Um site vende um jogo por R$ 40 mais R$ 15 de frete. Na loja da cidade, custa R$ 50, sem frete. Onde compensa?",
+   "ancora": "40 mais 15 é 55: o preço final do site com frete.",
+   "alternativas": [
+    {
+     "texto": "Na loja da cidade, por R$ 50",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "No site, porque R$ 40 é menor que R$ 50",
+     "correta": false,
+     "feedbackErro": "R$ 40 é só o preço do jogo, sem o frete. Somando o frete de R$ 15, o site fica em R$ 55 — mais caro que a loja."
+    },
+    {
+     "texto": "Tanto faz, porque os dois têm o mesmo custo final",
+     "correta": false,
+     "feedbackErro": "Não têm: o site fecha em R$ 55 com o frete, e a loja em R$ 50. A diferença é de R$ 5."
+    }
+   ],
+   "verificacao": {
+    "expressao": "40+15",
+    "esperado": 55
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-beneficio",
+   "dificuldade": 3,
+   "pergunta": "Bruno hesitou entre um tênis de R$ 90 que dura 1 ano e outro de R$ 150 que dura 3 anos. Qual tem melhor custo-benefício?",
+   "ancora": "150 dividido por 3 é 50: o custo por ano do mais caro.",
+   "alternativas": [
+    {
+     "texto": "O de R$ 150, porque custa menos por ano de uso",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O de R$ 90, porque o valor pago de uma vez é menor",
+     "correta": false,
+     "feedbackErro": "O valor de uma vez é menor mesmo. Mas dividido pelo tempo de uso, R$ 90 por ano custa mais que R$ 50 por ano do outro tênis."
+    },
+    {
+     "texto": "Os dois, porque a soma dos dois preços é igual",
+     "correta": false,
+     "feedbackErro": "A soma não é o que importa aqui. O que decide é o preço dividido pelo tempo de uso: R$ 90 contra R$ 50 por ano."
+    }
+   ],
+   "verificacao": {
+    "expressao": "150/3",
+    "esperado": 50
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-beneficio",
+   "criterio": "Vale mesmo comparar aqui?",
+   "enunciado": "Comparar o preço de um chiclete de R$ 1 antes de comprar",
+   "resposta": false,
+   "ancora": "Pra valores muito pequenos, a diferença de preço quase não muda nada.",
+   "feedbackErro": "Parece sempre bom comparar. Mas num chiclete de R$ 1, mesmo achando mais barato, a diferença é pequena demais pra valer o esforço."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "custo-beneficio",
+   "instrucao": "Vale a pena pesquisar ou comparar aqui?",
+   "ancora": "Vale a pena quando o valor em jogo é maior que o esforço.",
+   "feedbackErro": "O esforço de comparar só compensa quando a diferença de preço é maior que o custo de pesquisar.",
+   "caixas": [
+    {
+     "id": "vale",
+     "rotulo": "Vale a pena"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não vale a pena"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Comparar preços antes de comprar um celular",
+     "caixaCorreta": "vale"
+    },
+    {
+     "texto": "Ir a outro bairro pra economizar R$ 1 num picolé",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Pesquisar preços de um curso caro em duas escolas",
+     "caixaCorreta": "vale"
+    },
+    {
+     "texto": "Perder a manhã toda pra economizar R$ 2 num lápis",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "onde-pesquisar",
+   "criterio": "Isso é pesquisa bem feita?",
+   "enunciado": "Comparar o preço à vista, mas esquecer do preço parcelado",
+   "resposta": false,
+   "ancora": "Comparação completa olha à vista e parcelado, não só um dos dois.",
+   "feedbackErro": "Comparar o preço à vista já é um passo. Mas esquecer o parcelado pode esconder juros que tornam a opção mais cara no total."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-beneficio",
+   "dificuldade": 3,
+   "pergunta": "Duas lanternas: uma de R$ 18 dura 10 horas de pilha; outra de R$ 24 dura 20 horas. Qual rende mais por hora?",
+   "ancora": "18 dividido por 10 é 1,80: o custo por hora da mais barata.",
+   "alternativas": [
+    {
+     "texto": "A de R$ 24, porque custa menos por hora de luz",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A de R$ 18, porque o preço de compra é menor",
+     "correta": false,
+     "feedbackErro": "O preço de compra é menor mesmo. Mas dividido pelas horas de uso, ela custa R$ 1,80 por hora contra R$ 1,20 da outra."
+    },
+    {
+     "texto": "As duas rendem igual por hora de uso",
+     "correta": false,
+     "feedbackErro": "Não rendem igual: dividindo o preço pelas horas, uma custa R$ 1,80 por hora e a outra R$ 1,20 — a diferença é real."
+    }
+   ],
+   "verificacao": {
+    "expressao": "18/10",
+    "esperado": 1.8
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "onde-pesquisar",
+   "criterio": "O critério de pesquisar ainda vale aqui?",
+   "enunciado": "Escolher entre dois lugares que vendem exatamente pelo mesmo preço",
+   "resposta": false,
+   "ancora": "Se o preço é igual nos dois lugares, pesquisar não muda a escolha.",
+   "feedbackErro": "Pesquisar parece sempre necessário. Mas se os dois preços já são iguais, comparar não traz nenhuma vantagem a mais — outros fatores decidem."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-beneficio",
+   "criterio": "Isso é pensar em custo-benefício?",
+   "enunciado": "Escolher o produto mais caro só porque a embalagem é mais bonita",
+   "resposta": false,
+   "ancora": "Embalagem bonita não garante mais duração nem mais qualidade.",
+   "feedbackErro": "Embalagem bonita chama atenção na hora da escolha. Mas custo-benefício compara preço com duração e qualidade, não com aparência."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "onde-pesquisar",
+   "pergunta": "Depois de tudo isso, qual frase é mais completa?",
+   "alternativas": [
+    {
+     "texto": "Pesquisar vale quando o esforço é menor que o ganho",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pesquisar preço sempre vale, não importa o valor",
+     "correta": false,
+     "feedbackErro": "Nem sempre: se o valor é muito baixo, o esforço de pesquisar pode custar mais que a economia."
+    },
+    {
+     "texto": "O produto mais caro sempre tem melhor custo-benefício",
+     "correta": false,
+     "feedbackErro": "Nem sempre: só compensa pagar mais se durar mais ou tiver mais qualidade — não é automático."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "onde-pesquisar",
+   "dificuldade": 3,
+   "pergunta": "Um relógio custa R$ 60 na loja e R$ 52 no site, mas o frete do site é R$ 10. Onde compensa comprar?",
+   "ancora": "52 mais 10 é 62: o preço final do site com frete.",
+   "alternativas": [
+    {
+     "texto": "Na loja, por R$ 60",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "No site, porque R$ 52 é o menor número",
+     "correta": false,
+     "feedbackErro": "R$ 52 é só o preço do relógio. Somando o frete de R$ 10, o site fecha em R$ 62 — mais caro que a loja."
+    },
+    {
+     "texto": "Tanto faz, o valor final é igual nos dois",
+     "correta": false,
+     "feedbackErro": "Não é igual: a loja fecha em R$ 60 e o site em R$ 62 com o frete. A diferença é de R$ 2."
+    }
+   ],
+   "verificacao": {
+    "expressao": "52+10",
+    "esperado": 62
+   }
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "custo-beneficio",
+   "instrucao": "Ordene os passos pra decidir entre dois produtos parecidos.",
+   "ancora": "Preço total, depois duração, depois a divisão dos dois.",
+   "feedbackErro": "Pular direto pro preço menor ignora o frete e a duração. O critério completo pede as três etapas, nessa ordem.",
+   "itens": [
+    {
+     "texto": "Descobrir o preço total de cada um, com frete se houver",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Descobrir quanto tempo cada um dura",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Escolher o que custa menos por tempo de uso",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custo-beneficio",
+   "criterio": "É um caso-limite do custo-benefício?",
+   "enunciado": "Dois produtos idênticos, mesma marca e tamanho, com preços diferentes",
+   "resposta": false,
+   "ancora": "Se são idênticos, não há custo-benefício a comparar — só o preço.",
+   "feedbackErro": "Parece sempre precisar comparar custo-benefício. Mas se os produtos são idênticos, a única diferença real é o preço — escolha o menor, sem mais critérios."
+  }
+ ]
+}

@@ -1,0 +1,298 @@
+{
+ "slug": "fazendo-o-orcamento-fechar-consolida",
+ "segmento": "ef35",
+ "conceitoPrincipal": "fazendo-o-orcamento-fechar",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "receita-maior-que-despesa",
+   "criterio": "Isso ainda vale, nesse caso?",
+   "enunciado": "Orçamento fechar positivo um mês e negativo no seguinte, receita igual",
+   "resposta": true,
+   "ancora": "O sinal pode mudar mês a mês, mesmo com receita igual.",
+   "feedbackErro": "Parece que receita igual deveria sempre dar o mesmo resultado. Mas o que muda o sinal é a despesa de cada mês."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "gasto-individual-x-grupo",
+   "criterio": "Isso ainda vale, nesse caso?",
+   "enunciado": "Um gasto de grupo virar individual, só porque alguém pagou na hora",
+   "resposta": false,
+   "ancora": "Quem pagou na hora pode ser reembolsado — não muda de quem é o gasto.",
+   "feedbackErro": "Pagar tudo na hora parece transformar o gasto em individual. Mas se o custo será dividido depois, ele continua sendo de grupo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "montar-orcamento",
+   "criterio": "Isso ainda vale, nesse caso?",
+   "enunciado": "Orçamento planejado falhar por um gasto que ninguém pôs na lista",
+   "resposta": true,
+   "ancora": "Gasto esquecido na lista é a causa mais comum de orçamento furar.",
+   "feedbackErro": "Parece que planejar bem já garante que nada vai dar errado. Mas o gasto esquecido, fora da lista, é a causa mais comum de falha."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "receita-maior-que-despesa",
+   "dificuldade": 3,
+   "pergunta": "Um clube recebe R$ 500 por mês e tem R$ 480 de despesas fixas. Um mês surge gasto extra de R$ 30. Como fecha?",
+   "ancora": "500 menos 480 menos 30 é -10 — falta esse valor.",
+   "alternativas": [
+    {
+     "texto": "Negativo, faltando R$ 10",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Positivo, porque as mensalidades continuam entrando",
+     "correta": false,
+     "feedbackErro": "As mensalidades entram sempre. Mas somando o fixo com o extra, o total passa a receita em R$ 10."
+    },
+    {
+     "texto": "Zero, porque o extra é pequeno perto do total",
+     "correta": false,
+     "feedbackErro": "O tamanho do extra não muda o cálculo: R$ 480 mais R$ 30 é R$ 510, acima dos R$ 500."
+    }
+   ],
+   "verificacao": {
+    "expressao": "500-480-30",
+    "esperado": -10
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "gasto-individual-x-grupo",
+   "dificuldade": 3,
+   "pergunta": "Numa viagem, uma pessoa paga o combustível sozinha, mas todos vão usar o carro igualmente. É gasto individual?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "Não — é gasto de grupo, mesmo pago por uma pessoa só",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque só uma pessoa tirou o dinheiro do bolso",
+     "correta": false,
+     "feedbackErro": "Quem tira o dinheiro na hora não define de quem é o gasto — o que define é quem usa o benefício."
+    },
+    {
+     "texto": "Sim, porque foi decisão dela pagar sozinha",
+     "correta": false,
+     "feedbackErro": "A decisão de adiantar é dela, mas o uso do combustível é de todos — por isso o gasto é do grupo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "montar-orcamento",
+   "criterio": "É sinal de rever o orçamento?",
+   "enunciado": "Um gasto recorrente que sempre fica de fora da lista, mês após mês",
+   "resposta": true,
+   "ancora": "Gasto repetido fora da lista é sinal de orçamento mal ajustado.",
+   "feedbackErro": "Um gasto esquecido uma vez parece só um deslize. Mas se ele se repete todo mês fora da lista, é sinal claro."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "gasto-individual-x-grupo",
+   "instrucao": "Continua sendo gasto de grupo?",
+   "ancora": "O que define é quem usa e divide o custo — não quem paga primeiro.",
+   "feedbackErro": "Parece que quem paga primeiro é o dono do gasto. Mas o que define é quem realmente vai usar e dividir depois.",
+   "caixas": [
+    {
+     "id": "grupo",
+     "rotulo": "De grupo"
+    },
+    {
+     "id": "individual",
+     "rotulo": "Individual"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "O lanche pago por uma pessoa, dividido entre todos depois",
+     "caixaCorreta": "grupo"
+    },
+    {
+     "texto": "O presente comprado por uma pessoa, sem mais ninguém contribuir",
+     "caixaCorreta": "individual"
+    },
+    {
+     "texto": "O aluguel do espaço, adiantado e reembolsado pelos outros",
+     "caixaCorreta": "grupo"
+    },
+    {
+     "texto": "A roupa comprada por uma pessoa, só pra ela usar",
+     "caixaCorreta": "individual"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "receita-maior-que-despesa",
+   "criterio": "Fecha negativo, parecendo positivo?",
+   "enunciado": "Sobrar dinheiro no mês, mas ainda existir conta atrasada de antes",
+   "resposta": true,
+   "ancora": "A sobra do mês não apaga uma dívida que já existia antes.",
+   "feedbackErro": "Sobrar dinheiro no mês parece sinal de que está tudo certo. Mas se existe conta atrasada de antes, o resultado continua negativo."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "receita-maior-que-despesa",
+   "dificuldade": 3,
+   "pergunta": "Família recebe R$ 2.000 por mês, tem R$ 1.750 de despesas fixas e mais R$ 300 numa emergência médica. O que aconteceu?",
+   "ancora": "2000 menos 1750 menos 300 é -50 — o quanto faltou.",
+   "alternativas": [
+    {
+     "texto": "Faltaram R$ 50 — o orçamento fechou negativo esse mês",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sobraram R$ 250, pois emergência não conta como fixa",
+     "correta": false,
+     "feedbackErro": "A emergência não é fixa, mas ainda é despesa real do mês. Somando tudo, o total passa a receita."
+    },
+    {
+     "texto": "Zero, porque emergência sempre consome toda a sobra",
+     "correta": false,
+     "feedbackErro": "Nem toda emergência consome exatamente a sobra. Aqui o total ficou R$ 50 acima da receita."
+    }
+   ],
+   "verificacao": {
+    "expressao": "2000-1750-300",
+    "esperado": -50
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "montar-orcamento",
+   "criterio": "Conta como planejamento, mesmo simples?",
+   "enunciado": "Anotar num papel os 3 maiores gastos esperados do mês, sem nada mais",
+   "resposta": true,
+   "ancora": "Simples ainda é planejamento, se lista os gastos antes.",
+   "feedbackErro": "Parece simples demais pra valer como planejamento de verdade. Mas o que define orçamento é listar os gastos antes."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "gasto-individual-x-grupo",
+   "criterio": "Entende bem como dividir?",
+   "enunciado": "Perceber que quem usa mais de um recurso deveria contribuir mais",
+   "resposta": true,
+   "ancora": "Dividir proporcional ao uso pode ser mais justo que dividir igual.",
+   "feedbackErro": "Dividir sempre igual parece o mais simples e justo. Mas quando o uso é bem diferente, contribuir proporcional pode ser mais justo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "gasto-individual-x-grupo",
+   "dificuldade": 3,
+   "pergunta": "Depois de tudo isso, qual frase é mais precisa?",
+   "alternativas": [
+    {
+     "texto": "Sobrar dinheiro no mês já resolve totalmente o orçamento",
+     "correta": false,
+     "feedbackErro": "Pode sobrar no mês e existir uma dívida antiga pendente — o resultado geral continua negativo até ela ser paga."
+    },
+    {
+     "texto": "O que define gasto de grupo é quem usa e divide o custo, não quem paga primeiro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só um orçamento detalhado e complexo conta como planejamento de verdade",
+     "correta": false,
+     "feedbackErro": "Mesmo uma lista simples, feita antes do gasto acontecer, já conta como planejamento."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "receita-maior-que-despesa",
+   "instrucao": "Ordene da situação mais arriscada pra mais segura.",
+   "ancora": "Quanto maior a folga entre receita e despesa, mais segura a situação.",
+   "feedbackErro": "Parece que só não ficar negativo já é seguro o bastante. Mas sem folga nenhuma, qualquer imprevisto pequeno já derruba o orçamento.",
+   "itens": [
+    {
+     "texto": "Receita igual à despesa, sem nenhuma folga",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Receita um pouco maior que a despesa",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Receita bem maior que a despesa, com boa sobra",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "gasto-individual-x-grupo",
+   "instrucao": "O que define se o gasto é de grupo?",
+   "ancora": "O que define é uso e divisão do custo — não quem pagou primeiro.",
+   "feedbackErro": "Parece que pagar primeiro ou o local da compra deveriam importar. Mas o que define é quem usa e se o custo é dividido.",
+   "caixas": [
+    {
+     "id": "define",
+     "rotulo": "Define"
+    },
+    {
+     "id": "naodefine",
+     "rotulo": "Não define"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Quem vai usar o que foi comprado",
+     "caixaCorreta": "define"
+    },
+    {
+     "texto": "Quem tirou o dinheiro do bolso primeiro",
+     "caixaCorreta": "naodefine"
+    },
+    {
+     "texto": "Se o custo será dividido entre várias pessoas",
+     "caixaCorreta": "define"
+    },
+    {
+     "texto": "Onde a compra foi feita",
+     "caixaCorreta": "naodefine"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "receita-maior-que-despesa",
+   "pergunta": "Família recebe R$ 1.500 e tem R$ 1.380 de despesas fixas, sem imprevistos. Quanto sobra?",
+   "campo": "moeda",
+   "min": 20,
+   "max": 300,
+   "gabarito": 120,
+   "toleranciaPct": 20,
+   "fonte": "conta direta: receita menos despesas fixas",
+   "feedbackPerto": "Isso mesmo — R$ 120 de sobra. Receita menos despesas fixas.",
+   "feedbackLonge": "R$ 1.500 menos R$ 1.380 dá R$ 120. É só subtrair as despesas fixas da receita.",
+   "verificacao": {
+    "expressao": "1500-1380",
+    "esperado": 120
+   }
+  }
+ ]
+}

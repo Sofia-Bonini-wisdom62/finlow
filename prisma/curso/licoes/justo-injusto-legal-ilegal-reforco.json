@@ -1,0 +1,320 @@
+{
+ "slug": "justo-injusto-legal-ilegal-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "justo-injusto-legal-ilegal",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "criterio": "Isso é legal?",
+   "enunciado": "Cobrar tarifa de boleto vencido, sem prever isso no contrato assinado",
+   "resposta": false,
+   "ancora": "Cobrança fora do combinado no contrato não pode ser criada depois.",
+   "feedbackErro": "A tarifa até pode existir em outros contratos, e isso confunde. Mas se não estava prevista no que o cliente assinou, criar a cobrança depois é ilegal."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "criterio": "Isso é legal?",
+   "enunciado": "Cobrar taxa de entrega maior à noite, informada na tela antes do pedido",
+   "resposta": true,
+   "ancora": "Variação de preço divulgada antes da compra é permitida.",
+   "feedbackErro": "Preço diferente para o mesmo serviço parece estranho à primeira vista. Mas avisado com clareza antes do pedido, essa variação está dentro da lei."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "criterio": "Isso é legal?",
+   "enunciado": "Impedir a entrada de um cliente por causa da roupa, sem motivo de segurança",
+   "resposta": false,
+   "ancora": "Restringir acesso sem motivo legítimo é prática discriminatória.",
+   "feedbackErro": "A loja pode ter regras de conduta, e isso é razoável. Mas barrar alguém só pela roupa, sem risco real de segurança, é discriminação, proibida por lei."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "dificuldade": 2,
+   "pergunta": "Um app cobra taxa maior à noite, mostrada na tela antes do pedido. Isso é",
+   "ancora": "O que legaliza a variação é o aviso antes, não a ausência dela.",
+   "alternativas": [
+    {
+     "texto": "Ilegal, porque muda o preço da mesma coisa",
+     "correta": false,
+     "feedbackErro": "O preço mudar por horário não é, por si só, proibido. O que a lei exige é que essa variação apareça antes de o cliente confirmar o pedido."
+    },
+    {
+     "texto": "Legal, porque a variação é informada antes da compra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Injusto e ilegal, porque penaliza quem só pode pedir à noite",
+     "correta": false,
+     "feedbackErro": "Pode incomodar quem só consegue pedir à noite, e isso é uma crítica válida. Mas informada antes, a prática continua dentro da lei."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "dificuldade": 2,
+   "pergunta": "Uma loja avisa em cartaz 'não fazemos devolução', mas o produto veio com defeito de fábrica. Isso é",
+   "ancora": "Cartaz prévio não anula um direito garantido por lei.",
+   "alternativas": [
+    {
+     "texto": "Legal, porque o cartaz avisa antes da compra",
+     "correta": false,
+     "feedbackErro": "Avisar antes funciona para diferenças de preço, mas não para apagar um direito. Defeito de fábrica garante troca mesmo com o cartaz."
+    },
+    {
+     "texto": "Ilegal: cartaz não retira o direito de troca por defeito",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Legal, mas só se o defeito for pequeno",
+     "correta": false,
+     "feedbackErro": "O tamanho do defeito pode mudar a solução oferecida, mas não apaga o direito à troca ou ao conserto garantido por lei."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "criterio": "Aviso prévio legaliza qualquer cobrança?",
+   "enunciado": "Colocar um cartaz avisando que não aceita reclamação de produto com defeito",
+   "resposta": false,
+   "ancora": "Aviso prévio não anula direito garantido por lei.",
+   "feedbackErro": "Avisar antes funciona para diferenças de preço combinadas. Mas não serve para retirar um direito que a lei já garante, como o de reclamar de defeito."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "direitos-do-consumidor",
+   "instrucao": "Toque na ordem, do prazo mais curto para o mais longo.",
+   "ancora": "Quanto mais durável o produto, maior o prazo de garantia legal.",
+   "feedbackErro": "É tentador achar que todo prazo de consumidor é igual. Mas a lei separa: arrependimento é mais curto, garantia de duráveis é mais longa.",
+   "itens": [
+    {
+     "texto": "Arrepender-se de uma compra feita pela internet",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Reclamar de defeito em produto não durável, como um alimento",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Reclamar de defeito em produto durável, como um liquidificador",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "direitos-do-consumidor",
+   "criterio": "Esse prazo está certo, pela lei?",
+   "enunciado": "7 dias para se arrepender de uma compra feita pela internet",
+   "resposta": true,
+   "ancora": "Direito de arrependimento nas compras à distância é de 7 dias.",
+   "feedbackErro": "O prazo parece curto, e por isso gera dúvida. Mas 7 dias corridos, contados do recebimento, é exatamente o que a lei garante para compra online."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "direitos-do-consumidor",
+   "criterio": "Esse prazo está certo, pela lei?",
+   "enunciado": "90 dias de garantia para o pão comprado na padaria",
+   "resposta": false,
+   "ancora": "Produto não durável tem garantia legal de 30 dias, não 90.",
+   "feedbackErro": "90 dias é o prazo certo para produto durável, e isso confunde. Um alimento é não durável: a garantia legal dele é de 30 dias."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "direitos-do-consumidor",
+   "pergunta": "Fogão de R$ 1.800 com defeito, sem conserto em 35 dias: quanto o consumidor recebe de volta?",
+   "campo": "moeda",
+   "min": 1000,
+   "max": 2000,
+   "gabarito": 1800,
+   "toleranciaPct": 20,
+   "fonte": "CDC, art. 18 — devolução integral do valor pago",
+   "feedbackPerto": "Isso mesmo, R$ 1.800. Depois do prazo de conserto vencido, o consumidor pode escolher devolução integral, troca ou desconto.",
+   "feedbackLonge": "R$ 1.800: o valor total pago. Passado o prazo de 30 dias sem solução, a devolução deve ser do valor integral, e não parcial."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "resolucao-de-conflitos-de-consumo",
+   "dificuldade": 2,
+   "pergunta": "Depois de reclamar no Procon e não ter resposta em 30 dias, qual é o próximo passo mais indicado?",
+   "ancora": "O Juizado Especial Cível resolve causas simples sem advogado.",
+   "alternativas": [
+    {
+     "texto": "Juizado Especial Cível, sem advogado até certo valor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Esperar mais seis meses por uma resposta",
+     "correta": false,
+     "feedbackErro": "Esperar prolonga o problema sem necessidade. Existe uma via judicial simples, feita para casos assim, sem precisar de tanto tempo."
+    },
+    {
+     "texto": "Publicar o CPF da empresa em redes sociais",
+     "correta": false,
+     "feedbackErro": "Divulgar dados pode até gerar pressão, mas não resolve formalmente o caso e pode trazer problema jurídico para quem publica."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "resolucao-de-conflitos-de-consumo",
+   "dificuldade": 2,
+   "pergunta": "Camila só recebeu resposta automática do banco sobre cobrança indevida. Que órgão registra a reclamação, fora do banco?",
+   "ancora": "Órgãos reguladores existem para reclamações não resolvidas.",
+   "alternativas": [
+    {
+     "texto": "O Banco Central, pelo canal de reclamações",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A própria gerência do banco, de novo",
+     "correta": false,
+     "feedbackErro": "Voltar ao mesmo canal que já falhou raramente muda o resultado. Existe um órgão regulador feito para reclamações contra bancos."
+    },
+    {
+     "texto": "Não existe órgão para isso, é preciso aceitar",
+     "correta": false,
+     "feedbackErro": "Existe sim um canal formal e gratuito para esse tipo de reclamação, fora da própria instituição financeira."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "direitos-do-consumidor",
+   "criterio": "Isso conta como prática abusiva?",
+   "enunciado": "Venda casada: só vender o produto se o cliente levar outro junto",
+   "resposta": true,
+   "ancora": "Obrigar a compra de um segundo item é prática vedada por lei.",
+   "feedbackErro": "Pode parecer só uma estratégia comercial comum. Mas obrigar a compra de um item para liberar outro é prática abusiva, proibida pelo CDC."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "direitos-do-consumidor",
+   "criterio": "Isso conta como prática abusiva?",
+   "enunciado": "Oferecer desconto para quem levar dois produtos, sem obrigar",
+   "resposta": false,
+   "ancora": "Oferecer é diferente de obrigar — a escolha continua do cliente.",
+   "feedbackErro": "Parece parecido com a venda casada, e por isso confunde. Mas aqui o cliente continua livre para levar só um item: a escolha não foi tirada dele."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "dificuldade": null,
+   "pergunta": "Qual frase resume melhor o reforço de hoje?",
+   "alternativas": [
+    {
+     "texto": "Avisar antes torna legal qualquer cobrança",
+     "correta": false,
+     "feedbackErro": "Aviso prévio legaliza variação de preço, mas não apaga direitos garantidos por lei, como troca por defeito."
+    },
+    {
+     "texto": "Aviso prévio não legaliza o que a lei proíbe; há prazos e canais formais",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só a Justiça resolve problema de consumidor",
+     "correta": false,
+     "feedbackErro": "Antes da Justiça existem canais mais rápidos, como o próprio Procon."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "criterio": "Avisar antes torna isso legal?",
+   "enunciado": "Um cartaz dizendo que a loja não troca produto por arrependimento em compra física",
+   "resposta": true,
+   "ancora": "Arrependimento sem defeito só é direito em compra à distância.",
+   "feedbackErro": "Parece igual ao caso do defeito, mas confunde. Arrependimento sem defeito em loja física nunca foi direito garantido; o cartaz só formaliza a política da loja."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "direitos-do-consumidor",
+   "dificuldade": 2,
+   "pergunta": "Compra online por arrependimento: qual o prazo para devolver, contando do recebimento?",
+   "ancora": "7 dias corridos, contados do recebimento do produto.",
+   "alternativas": [
+    {
+     "texto": "7 dias",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "30 dias",
+     "correta": false,
+     "feedbackErro": "30 dias é o prazo de garantia de produto não durável, não o de arrependimento em compra online."
+    },
+    {
+     "texto": "90 dias",
+     "correta": false,
+     "feedbackErro": "90 dias é o prazo de garantia de produto durável, não o de arrependimento em compra online."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "direitos-do-consumidor",
+   "instrucao": "Classifique: prazo de garantia ou de arrependimento?",
+   "ancora": "Garantia cobre defeito; arrependimento cobre mudança de ideia.",
+   "feedbackErro": "Os dois têm prazos parecidos e por isso se confundem: garantia é sobre o produto ter defeito; arrependimento é sobre mudar de ideia em compra à distância.",
+   "caixas": [
+    {
+     "id": "garantia",
+     "rotulo": "Garantia"
+    },
+    {
+     "id": "arrependimento",
+     "rotulo": "Arrependimento"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "30 dias para produto não durável com defeito",
+     "caixaCorreta": "garantia"
+    },
+    {
+     "texto": "7 dias para desistir de compra feita por telefone",
+     "caixaCorreta": "arrependimento"
+    },
+    {
+     "texto": "90 dias para produto durável com defeito",
+     "caixaCorreta": "garantia"
+    },
+    {
+     "texto": "7 dias para devolver compra feita pela internet, sem motivo",
+     "caixaCorreta": "arrependimento"
+    }
+   ]
+  }
+ ]
+}

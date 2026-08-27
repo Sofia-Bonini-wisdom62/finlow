@@ -1,0 +1,335 @@
+{
+ "slug": "o-custo-depois-da-compra-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "o-custo-depois-da-compra",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "Aparece depois da compra?",
+   "enunciado": "Ração e vacina do cachorro, mês a mês",
+   "resposta": true,
+   "ancora": "Custo de posse: cresce enquanto você tiver o animal.",
+   "feedbackErro": "Adotar não tem preço de loja, e por isso parece 'grátis'. Mas ração e vacina aparecem todo mês, enquanto o cachorro estiver com você."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "Aparece depois da compra?",
+   "enunciado": "A taxa de adoção paga no ato, no abrigo",
+   "resposta": false,
+   "ancora": "Taxa de adoção é custo de aquisição, pago uma vez.",
+   "feedbackErro": "Parece diferente por vir de um abrigo, não de uma loja. Mas é cobrada uma vez, no momento de levar o animal — é custo de aquisição."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "Aparece depois da compra?",
+   "enunciado": "Troca de tela do console depois de cair no chão",
+   "resposta": true,
+   "ancora": "Dano pelo uso é custo de posse — nasce depois da compra.",
+   "feedbackErro": "O console já estava pago, e por isso parece que a conta acabou. Mas o estrago pelo uso é conta nova, criada depois — típico custo de posse."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-de-posse",
+   "dificuldade": 2,
+   "pergunta": "Camila pagou R$ 1.200 num console e mais R$ 180 por ano de assinatura online. Em 3 anos, total gasto?",
+   "ancora": "1.200 + (180 × 3) = R$ 1.740.",
+   "verificacao": {
+    "expressao": "1200+180*3",
+    "esperado": 1740
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 1.200",
+     "correta": false,
+     "feedbackErro": "É só o preço do console. A assinatura de R$ 180 por ano, repetida em 3 anos, também entra na conta: R$ 540 a mais."
+    },
+    {
+     "texto": "R$ 1.740",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 1.380",
+     "correta": false,
+     "feedbackErro": "Você contou só 1 ano de assinatura (R$ 180) em vez de 3. Multiplique: 180 × 3 = 540, mais o console: R$ 1.740."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-da-producao",
+   "dificuldade": 2,
+   "pergunta": "Uma marca paga um selo de 'produção responsável' e cobra mais caro. Isso garante impacto menor?",
+   "ancora": "Selo vale o que a fiscalização por trás dele vale.",
+   "alternativas": [
+    {
+     "texto": "Sim, sempre — selo é prova definitiva",
+     "correta": false,
+     "feedbackErro": "Selo ajuda, mas alguns são só marketing sem fiscalização séria. Vale checar quem certifica e o que exatamente ele controla."
+    },
+    {
+     "texto": "Não necessariamente — depende de quem certifica",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, selo nunca significa nada",
+     "correta": false,
+     "feedbackErro": "Alguns selos são sérios e mudam práticas de verdade. O erro é achar que todo selo garante isso sem checar quem está por trás."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "É custo que aparece depois da compra?",
+   "enunciado": "Taxa de manutenção anual do cartão de crédito",
+   "resposta": true,
+   "ancora": "Cobrada todo ano, mesmo sem nenhuma compra nova.",
+   "feedbackErro": "O cartão foi liberado sem custo na hora, e isso confunde. Mas o banco cobra manutenção todo ano — típico custo de posse."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "custo-de-posse",
+   "instrucao": "Toque na ordem: do custo anual maior ao menor, com um cachorro.",
+   "ancora": "Multiplique cada valor pelas vezes que se repete no ano.",
+   "feedbackErro": "O olho vai para o valor mensal maior, mas o que importa é o total no ano: ração (R$ 1.440) supera plano de saúde, vacina e brinquedos.",
+   "itens": [
+    {
+     "texto": "Ração mensal — R$ 120 por mês",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Plano de saúde pet — R$ 60 por mês",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Vacinas anuais — R$ 300 por ano",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Brinquedos — R$ 15 por mês",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "É custo de posse?",
+   "enunciado": "Consertar o zíper da jaqueta depois de seis meses de uso",
+   "resposta": true,
+   "ancora": "Conserto pelo desgaste é custo de manter, não de comprar.",
+   "feedbackErro": "A jaqueta já foi paga inteira. Mas o uso desgasta o zíper, e consertá-lo é conta que nasce depois, pela posse."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "É custo de posse?",
+   "enunciado": "Pagar a etiqueta com nome gravado, junto com a jaqueta",
+   "resposta": false,
+   "ancora": "Serviço cobrado junto da compra é custo de aquisição.",
+   "feedbackErro": "Parece um extra separado, e é mesmo um valor a mais. Mas é cobrado no momento da compra, junto com o produto — não depois dela."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-de-posse",
+   "pergunta": "Jaqueta de R$ 400 gasta cerca de R$ 25 por ano em consertos. Soma em 4 anos?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 400,
+   "gabarito": 100,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: R$ 25 ao ano × 4 anos de uso",
+   "verificacao": {
+    "expressao": "25*4",
+    "esperado": 100
+   },
+   "feedbackPerto": "Isso: R$ 100 em consertos — um quarto do preço da jaqueta, só para mantê-la em uso.",
+   "feedbackLonge": "Dá R$ 100. É fácil pensar só no valor de um ano; multiplique pelos 4 anos para ver o total acumulado."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-de-posse",
+   "dificuldade": 2,
+   "pergunta": "Fone A custa R$ 160 e dura 8 meses. Fone B custa R$ 300 e dura 20 meses, sem custo extra. Qual custa menos por mês?",
+   "ancora": "300 ÷ 20 = R$ 15/mês contra R$ 20/mês do fone A.",
+   "verificacao": {
+    "expressao": "300/20",
+    "esperado": 15
+   },
+   "alternativas": [
+    {
+     "texto": "Fone A, porque custa menos para comprar",
+     "correta": false,
+     "feedbackErro": "O preço na loja é menor, e é isso que chama atenção. Mas dividido pelos meses de uso, o A custa R$ 20/mês contra R$ 15/mês do B."
+    },
+    {
+     "texto": "Fone B: R$ 15 por mês contra R$ 20 do A",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Os dois custam o mesmo por mês de uso",
+     "correta": false,
+     "feedbackErro": "300 ÷ 20 dá R$ 15 por mês; 160 ÷ 8 dá R$ 20. A diferença é real: dividir pelo tempo de uso muda a comparação."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-da-producao",
+   "dificuldade": 2,
+   "pergunta": "Um tênis famoso custa R$ 800, mas fabricá-lo custa R$ 60. Para onde vai a diferença?",
+   "ancora": "Marketing, distribuição e lucro somam bem mais que a fábrica.",
+   "alternativas": [
+    {
+     "texto": "Só para o lucro, sem nenhum custo social envolvido",
+     "correta": false,
+     "feedbackErro": "O lucro é parte, mas não é tudo: marketing e distribuição também pesam. E isso não garante nada sobre o que sobrou para quem fabricou."
+    },
+    {
+     "texto": "Marketing, distribuição e lucro — nem sempre a fábrica",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Para pagar melhor quem fabricou o tênis",
+     "correta": false,
+     "feedbackErro": "É o contrário do mais comum: o valor pago à fábrica costuma ser a menor fatia do preço final, não a maior."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "É custo de posse?",
+   "enunciado": "O plano de dados do celular, cobrado todo mês",
+   "resposta": true,
+   "ancora": "Mensalidade recorrente — cobra enquanto você usar o serviço.",
+   "feedbackErro": "O celular já foi pago à vista ou financiado, e isso confunde. Mas o plano de dados cobra todo mês, separado — é custo de posse."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "É custo de posse?",
+   "enunciado": "O valor da entrada financiada do notebook",
+   "resposta": false,
+   "ancora": "Entrada é parte do preço de compra, não custo posterior.",
+   "feedbackErro": "Parece separada por vir isolada da parcela. Mas entrada compõe o preço de aquisição do notebook, não o custo de mantê-lo depois."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-custo-depois-da-compra",
+   "pergunta": "Qual ideia fecha este encontro?",
+   "alternativas": [
+    {
+     "texto": "O custo de ter algo continua depois da compra — e a origem também pesa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Assinatura mensal não conta como gasto de posse",
+     "correta": false,
+     "feedbackErro": "Conta sim: é o exemplo mais claro de custo de posse, porque se repete enquanto você tiver o produto ou serviço."
+    },
+    {
+     "texto": "Preço mais caro sempre garante produção mais justa",
+     "correta": false,
+     "feedbackErro": "Não garante: preço alto pode ser marca e lucro, sem nenhuma relação com melhores condições de trabalho."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "custo-de-posse",
+   "instrucao": "Custo de comprar ou custo de manter? Arraste.",
+   "ancora": "Custo de manter se repete pelo uso; o de comprar é uma vez.",
+   "feedbackErro": "O que se paga uma vez, no ato, é custo de comprar; o que se repete pelo uso, é custo de manter.",
+   "caixas": [
+    {
+     "id": "comprar",
+     "rotulo": "Custo de comprar"
+    },
+    {
+     "id": "manter",
+     "rotulo": "Custo de manter"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Taxa de ativação do plano do celular",
+     "caixaCorreta": "comprar"
+    },
+    {
+     "texto": "Conta de dados que estourou o pacote",
+     "caixaCorreta": "manter"
+    },
+    {
+     "texto": "Preço pago no caixa do console",
+     "caixaCorreta": "comprar"
+    },
+    {
+     "texto": "Assinatura do serviço de nuvem do jogo",
+     "caixaCorreta": "manter"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "impacto-da-producao",
+   "dificuldade": 3,
+   "pergunta": "Uma marca reduz o preço da camiseta cortando o uso de água no tingimento. Isso é igual a explorar mão de obra?",
+   "ancora": "Reduzir insumo não é o mesmo que reduzir direito de trabalhador.",
+   "alternativas": [
+    {
+     "texto": "Não: reduzir insumo é diferente de reduzir direito de quem trabalha",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, os dois são igualmente ruins sempre",
+     "correta": false,
+     "feedbackErro": "Igualar tudo esconde a diferença: economizar água num processo é ajuste técnico; cortar salário ou segurança é outro problema, mais grave."
+    },
+    {
+     "texto": "Sim, cortar água sempre piora a qualidade do tecido",
+     "correta": false,
+     "feedbackErro": "Usar menos água não piora o tecido por si só — existem processos mais eficientes. A pergunta é sobre pessoas, não sobre qualidade."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custo-de-posse",
+   "criterio": "É custo de posse?",
+   "enunciado": "Pagar o seguro do notebook contra roubo, todo ano",
+   "resposta": true,
+   "ancora": "Renovado todo ano — cobra enquanto você mantiver o serviço.",
+   "feedbackErro": "O notebook já foi pago uma vez, e isso confunde. Mas o seguro se renova a cada ano — é custo de posse, não de aquisição."
+  }
+ ]
+}

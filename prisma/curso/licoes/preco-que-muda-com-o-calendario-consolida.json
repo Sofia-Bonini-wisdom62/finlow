@@ -1,0 +1,327 @@
+{
+ "slug": "preco-que-muda-com-o-calendario-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "preco-que-muda-com-o-calendario",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "sazonalidade-preco",
+   "criterio": "É a mesma lógica de data comemorativa?",
+   "enunciado": "Preço do tomate subindo por causa de seca na entressafra",
+   "resposta": false,
+   "ancora": "Entressafra e clima mexem no preço sem ligação com data.",
+   "feedbackErro": "Parece a mesma sazonalidade das festas, mas aqui quem manda é o clima na entressafra, não nenhuma data do calendário."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "sazonalidade-preco",
+   "criterio": "É a mesma lógica de data comemorativa?",
+   "enunciado": "Preço do ingresso de show subindo na semana do evento",
+   "resposta": true,
+   "ancora": "Procura alta perto do evento funciona como a de uma data comemorativa.",
+   "feedbackErro": "Não é feriado nem data fixa, e é aí que confunde. Mas a procura concentrada perto do evento sobe o preço do mesmo jeito."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "sazonalidade-preco",
+   "criterio": "É a mesma lógica de data comemorativa?",
+   "enunciado": "Preço do combustível variando com o dólar, sem relação com estação",
+   "resposta": false,
+   "ancora": "Câmbio mexe no preço o ano todo, sem relação com estação ou data.",
+   "feedbackErro": "O preço muda com frequência, e isso lembra sazonalidade. Mas aqui quem decide é o câmbio, não a época do ano ou uma data comemorativa."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "renda-inesperada",
+   "dificuldade": 3,
+   "pergunta": "Um valor inesperado cobre uma emergência que vai surgir em 2 meses. Gastar agora faz sentido?",
+   "ancora": "Usar antes tira do dinheiro a função que ele já tinha.",
+   "alternativas": [
+    {
+     "texto": "Não — usar antes tira a função que esse dinheiro já tinha",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque dinheiro parado perde valor com o tempo",
+     "correta": false,
+     "feedbackErro": "Perder valor com o tempo é real, mas pequeno perto de ficar sem cobrir a emergência já prevista. A função do valor vem primeiro."
+    },
+    {
+     "texto": "Sim, desde que seja uma compra pequena",
+     "correta": false,
+     "feedbackErro": "O tamanho da compra não muda o problema: qualquer uso antecipado reduz o que sobra pra emergência que já se sabe que vem."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "sazonalidade-preco",
+   "dificuldade": 3,
+   "pergunta": "Em qual caso esperar a baixa temporada NÃO compensa?",
+   "ancora": "Se o produto sai de linha, não vai ter baixa temporada pra esperar.",
+   "alternativas": [
+    {
+     "texto": "Quando o produto sai de linha e não volta a ser vendido",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando o produto é caro",
+     "correta": false,
+     "feedbackErro": "Preço alto não impede esperar a baixa temporada — geralmente até reforça a vantagem. O problema é quando o produto simplesmente some da loja."
+    },
+    {
+     "texto": "Quando a loja é uma rede grande",
+     "correta": false,
+     "feedbackErro": "O tamanho da loja não muda se o produto vai ou não entrar em baixa temporada. O que impede esperar é o produto sair de linha."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "sazonalidade-preco",
+   "criterio": "A regra de esperar a baixa ainda vale?",
+   "enunciado": "Um remédio de uso contínuo que você não pode ficar sem",
+   "resposta": false,
+   "ancora": "Necessidade não espera calendário — saúde foge da lógica sazonal.",
+   "feedbackErro": "A lógica de esperar parece sempre válida pra economizar, mas necessidade de saúde não pode esperar o calendário decidir por ela."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "sazonalidade-preco",
+   "instrucao": "Ordene de quando MENOS até quando MAIS vale esperar o preço cair.",
+   "ancora": "Quanto menor a urgência real, mais vale esperar o preço cair.",
+   "feedbackErro": "O instinto é olhar só o preço do item, mas o que ordena aqui é a urgência real de cada compra, não o valor dela.",
+   "itens": [
+    {
+     "texto": "Remédio de uso contínuo",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Presente de aniversário de um mês",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Troca de celular que ainda funciona",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Roupa de frio comprada no verão",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "renda-inesperada",
+   "criterio": "A regra de decidir com calma serve aqui?",
+   "enunciado": "Receber um valor extra pequeno, tipo troco de R$ 8",
+   "resposta": false,
+   "ancora": "Valor pequeno não pede o mesmo processo de um valor grande.",
+   "feedbackErro": "A regra de parar e pensar parece valer pra qualquer valor extra, mas pra um troco pequeno, esse processo todo pesa mais do que ajuda."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "sazonalidade-preco",
+   "criterio": "É caso em que comprar fora NÃO compensa?",
+   "enunciado": "Ingresso de show comprado com meses de antecedência, lote mais barato",
+   "resposta": false,
+   "ancora": "Comprar no lote antecipado ainda é o exemplo clássico que compensa.",
+   "feedbackErro": "Parece uma exceção por não ser o exemplo clássico de sazonalidade, mas comprar antecipado, no lote mais barato, ainda segue a mesma lógica que compensa."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "renda-inesperada",
+   "pergunta": "De um bônus de R$ 1.360, você guarda 30% e usa o resto. Quanto sobra pra guardar?",
+   "campo": "moeda",
+   "min": 200,
+   "max": 600,
+   "gabarito": 408,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto sobre o valor recebido",
+   "feedbackPerto": "Isso mesmo — R$ 408. Trinta por cento de R$ 1.360 são a parte guardada.",
+   "feedbackLonge": "O valor guardado fica perto de R$ 408. Trinta por cento de R$ 1.360 é a conta direta pra chegar lá.",
+   "verificacao": {
+    "expressao": "1360*0.3",
+    "esperado": 408
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "sazonalidade-preco",
+   "dificuldade": 3,
+   "pergunta": "Uma bicicleta sobe de preço todo outubro, por causa do Dia das Crianças. Comprar em agosto é sempre mais barato?",
+   "ancora": "Geralmente sim, mas vale comparar com o preço de outros meses também.",
+   "alternativas": [
+    {
+     "texto": "Geralmente sim, mas vale comparar com outros meses",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, sempre, sem nenhuma exceção",
+     "correta": false,
+     "feedbackErro": "'Sempre, sem exceção' ignora que outros fatores também mexem no preço. O ideal é comparar agosto com outros meses antes de decidir."
+    },
+    {
+     "texto": "Não, o preço é igual o ano inteiro",
+     "correta": false,
+     "feedbackErro": "Se o preço fosse igual o ano todo, não haveria pico em outubro. A procura do Dia das Crianças é justamente o que empurra o preço pra cima nesse mês."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "renda-inesperada",
+   "dificuldade": 3,
+   "pergunta": "Um dinheiro extra chega junto com uma dívida vencendo essa semana. O que muda na decisão de 'esperar'?",
+   "ancora": "A dívida com juros correndo pesa mais do que esperar por calma.",
+   "alternativas": [
+    {
+     "texto": "A dívida com juros correndo pesa mais que esperar por calma",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada muda, a regra de esperar continua igual",
+     "correta": false,
+     "feedbackErro": "Uma dívida com juros correndo muda o cálculo: cada dia de espera custa mais. A urgência real pode pedir decisão mais rápida."
+    },
+    {
+     "texto": "Muda só o valor a guardar, não a pressa",
+     "correta": false,
+     "feedbackErro": "Não é só o valor guardado que muda — a urgência real da dívida com juros correndo também pede uma decisão mais rápida."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "sazonalidade-preco",
+   "criterio": "A lógica de época vale com urgência?",
+   "enunciado": "Trocar um aquecedor quebrado no meio do inverno",
+   "resposta": false,
+   "ancora": "Urgência real anula a lógica de esperar a baixa temporada.",
+   "feedbackErro": "Esperar parece sempre a escolha certa pra economizar, mas sem aquecedor no frio a necessidade é imediata — a espera não cabe aqui."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "renda-inesperada",
+   "criterio": "Vale a regra de esperar e decidir aqui?",
+   "enunciado": "Um valor extra que precisa ser usado até o fim do dia",
+   "resposta": false,
+   "ancora": "Prazo real e curto muda o processo, mas checar antes ainda importa.",
+   "feedbackErro": "Prazo curto parece cancelar qualquer checagem, mas mesmo rápido, vale confirmar se a regra é real antes de usar o valor."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "sazonalidade-preco",
+   "pergunta": "Qual frase resume quando a lógica de calendário e calma NÃO se aplica direto?",
+   "alternativas": [
+    {
+     "texto": "Urgência real, seja de saúde ou de dívida com juros, muda a decisão",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A regra de esperar vale pra qualquer situação, sem exceção",
+     "correta": false,
+     "feedbackErro": "Remédio de uso contínuo e dívida com juros correndo são exemplos de quando esperar deixa de valer a pena."
+    },
+    {
+     "texto": "Dinheiro extra deve sempre esperar alguns dias, mesmo com dívida vencendo",
+     "correta": false,
+     "feedbackErro": "Uma dívida vencendo com juros correndo pesa mais que a calma de esperar. A urgência real muda a prioridade da decisão."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "sazonalidade-preco",
+   "instrucao": "A urgência real anula a lógica de esperar?",
+   "ancora": "Necessidade de saúde anula; vontade sem prazo real não anula.",
+   "feedbackErro": "É fácil achar que toda espera compensa, mas necessidade de saúde muda essa conta completamente.",
+   "caixas": [
+    {
+     "id": "anula",
+     "rotulo": "Anula a espera"
+    },
+    {
+     "id": "naoanula",
+     "rotulo": "Não anula a espera"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Remédio que acaba hoje e não pode faltar",
+     "caixaCorreta": "anula"
+    },
+    {
+     "texto": "Trocar um tênis só porque saiu modelo novo",
+     "caixaCorreta": "naoanula"
+    },
+    {
+     "texto": "Aquecedor quebrado em dia de frio intenso",
+     "caixaCorreta": "anula"
+    },
+    {
+     "texto": "Presente de aniversário de um mês",
+     "caixaCorreta": "naoanula"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "renda-inesperada",
+   "dificuldade": 3,
+   "pergunta": "Um valor extra chega e, no mesmo dia, o aluguel vence. Vale esperar dias pra decidir o uso?",
+   "ancora": "Compromisso já vencendo no dia pesa mais do que esperar por calma.",
+   "alternativas": [
+    {
+     "texto": "Não — o aluguel vencendo no dia pede prioridade imediata",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, esperar sempre é a escolha mais segura",
+     "correta": false,
+     "feedbackErro": "Esperar é bom quando não existe compromisso vencendo. Aqui, o aluguel do dia muda a urgência da decisão."
+    },
+    {
+     "texto": "Sim, porque dinheiro extra nunca deve pagar contas fixas",
+     "correta": false,
+     "feedbackErro": "Não existe essa regra — dinheiro extra pode, sim, cobrir um compromisso urgente como o aluguel vencendo."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "sazonalidade-preco",
+   "criterio": "A regra de esperar a baixa ainda vale?",
+   "enunciado": "Ingresso de um show único, que não vai se repetir",
+   "resposta": false,
+   "ancora": "Evento único não tem baixa temporada — ou compra agora, ou perde.",
+   "feedbackErro": "Parece igual a qualquer outra compra que pode esperar, mas um evento que não se repete não tem 'depois' pra aproveitar preço menor."
+  }
+ ]
+}

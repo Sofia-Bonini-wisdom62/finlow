@@ -1,0 +1,246 @@
+{
+ "slug": "as-pecas-do-credito-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "as-pecas-do-credito",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "elementos-do-credito",
+   "criterio": "É elemento do crédito?",
+   "enunciado": "O número de parcelas combinado no contrato",
+   "resposta": true,
+   "ancora": "Número de parcelas é elemento central: define o prazo.",
+   "feedbackErro": "Parece só um detalhe do contrato. Mas o número de parcelas é o que define, na prática, o prazo do crédito."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "elementos-do-credito",
+   "criterio": "É elemento do crédito?",
+   "enunciado": "O logotipo estampado no cartão",
+   "resposta": false,
+   "ancora": "Logotipo é estética; não muda taxa, prazo nem custo.",
+   "feedbackErro": "Parece parte importante do cartão, mas é só visual — não influencia juros, taxa nem prazo do crédito."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-credito",
+   "criterio": "É crédito de curto prazo?",
+   "enunciado": "Empréstimo consignado pago ao longo de 4 anos",
+   "resposta": false,
+   "ancora": "4 anos é prazo longo — mesmo com taxa baixa do consignado.",
+   "feedbackErro": "Taxa baixa faz parecer rápido e fácil. Mas o que define o prazo é o tempo combinado: 4 anos é longo prazo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "elementos-do-credito",
+   "dificuldade": 2,
+   "pergunta": "Duas propostas têm a mesma taxa de juros. O que ainda pode mudar o custo total?",
+   "ancora": "Prazo diferente muda quantos meses o juro incide.",
+   "alternativas": [
+    {
+     "texto": "O prazo: mais meses de juro rodando muda o total",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada, taxa igual sempre dá custo igual",
+     "correta": false,
+     "feedbackErro": "Taxa igual garante o custo por mês, não o total — prazo diferente muda quantos meses o juro incide."
+    },
+    {
+     "texto": "A cor do contrato",
+     "correta": false,
+     "feedbackErro": "Detalhe visual não influencia custo nenhum — o que muda o total é elemento financeiro, como o prazo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "prazo-do-credito",
+   "dificuldade": 2,
+   "pergunta": "Crédito com parcelas menores e mais numerosas tende a ter prazo mais...?",
+   "ancora": "Mais parcelas significam mais meses até quitar tudo.",
+   "alternativas": [
+    {
+     "texto": "Longo, porque dividir em mais parcelas estende o tempo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Curto, porque parcela pequena é rápida de pagar",
+     "correta": false,
+     "feedbackErro": "Parcela pequena parece rápida, mas se são muitas, o tempo total esticou — isso é prazo mais longo."
+    },
+    {
+     "texto": "Não dá pra saber sem o valor total",
+     "correta": false,
+     "feedbackErro": "O valor total não muda essa relação: mais parcelas sempre significam mais tempo, qualquer que seja o valor."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-credito",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Elementos como taxa e prazo aparecem só em empréstimo bancário",
+   "resposta": false,
+   "ancora": "Todo crédito tem taxa e prazo, não só o bancário.",
+   "feedbackErro": "Parece um recurso exclusivo do banco. Mas crediário de loja e financiamento também têm taxa e prazo definidos."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "prazo-do-credito",
+   "instrucao": "Toque na ordem, do prazo mais curto pro mais longo.",
+   "ancora": "Meses primeiro, depois anos — do mais curto ao mais longo.",
+   "feedbackErro": "É fácil confundir número de parcelas com prazo curto. O que ordena é o tempo total: meses antes de anos.",
+   "itens": [
+    { "texto": "Parcelamento no cartão, 3x", "posicaoCorreta": 1 },
+    { "texto": "Empréstimo pessoal, 6 meses", "posicaoCorreta": 2 },
+    { "texto": "Financiamento de moto, 4 anos", "posicaoCorreta": 3 },
+    { "texto": "Financiamento de imóvel, 25 anos", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "elementos-do-credito",
+   "criterio": "Isso é um elemento do crédito?",
+   "enunciado": "O IOF cobrado sobre o valor emprestado",
+   "resposta": true,
+   "ancora": "IOF é imposto que soma ao custo total do crédito.",
+   "feedbackErro": "Parece só uma taxa a mais no papel. Mas o IOF é um imposto real que entra na conta do custo total."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "elementos-do-credito",
+   "dificuldade": 2,
+   "pergunta": "Financiamento de moto: R$ 2.400 a 1,2% ao mês. Juro do 1º mês?",
+   "ancora": "1,2% de 2.400: divida por 100 e multiplique por 1,2 — dá 28,80.",
+   "verificacao": { "expressao": "2400*0.012", "esperado": 28.8 },
+   "alternativas": [
+    {
+     "texto": "R$ 28,80",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 12",
+     "correta": false,
+     "feedbackErro": "Você tratou 1,2% como R$ 12 fixos. É percentual sobre 2.400: o resultado é 28,80."
+    },
+    {
+     "texto": "R$ 288",
+     "correta": false,
+     "feedbackErro": "R$ 288 seria 12%. O símbolo % engana: 1,2% de 2.400 são 28,80, não 288."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-credito",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Longo prazo pode ter juro total maior mesmo com taxa menor",
+   "resposta": true,
+   "ancora": "Prazo longo acumula mais meses de juro somado.",
+   "feedbackErro": "Taxa menor parece garantir custo menor sempre. Mas prazo longo soma mais meses de juro — o total pode ficar maior."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "elementos-do-credito",
+   "criterio": "Ajuda a entender o crédito?",
+   "enunciado": "Comparar só a parcela, sem olhar quantos meses ela dura",
+   "resposta": false,
+   "ancora": "Parcela sem prazo esconde o custo total real do crédito.",
+   "feedbackErro": "A parcela parece o dado mais direto. Mas sem saber quantos meses ela dura, não dá pra saber o custo total."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "elementos-do-credito",
+   "pergunta": "Qual ideia fecha este encontro?",
+   "alternativas": [
+    {
+     "texto": "Taxa, prazo e número de parcelas juntos definem o custo real",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Parcela pequena sempre significa crédito mais barato",
+     "correta": false,
+     "feedbackErro": "Parcela pequena pode significar só mais parcelas — o prazo mais longo pode custar mais no total."
+    },
+    {
+     "texto": "Só crédito bancário tem taxa e prazo definidos",
+     "correta": false,
+     "feedbackErro": "Crediário de loja e financiamento também têm taxa e prazo — não é exclusividade do banco."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "elementos-do-credito",
+   "dificuldade": 3,
+   "pergunta": "Empréstimo de R$ 900 a 3% ao mês. Juro do 1º mês?",
+   "ancora": "3% de 900: divida por 100 e multiplique por 3 — dá 27.",
+   "verificacao": { "expressao": "900*0.03", "esperado": 27 },
+   "alternativas": [
+    {
+     "texto": "R$ 27",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 3",
+     "correta": false,
+     "feedbackErro": "Você tratou 3% como R$ 3 fixos. É percentual sobre 900: o resultado é 27."
+    },
+    {
+     "texto": "R$ 270",
+     "correta": false,
+     "feedbackErro": "R$ 270 seria 30%. O símbolo % engana: 3% de 900 são 27, não 270."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-credito",
+   "criterio": "É verdade?",
+   "enunciado": "IOF é cobrado só em crédito de longo prazo",
+   "resposta": false,
+   "ancora": "IOF pode incidir em crédito de qualquer prazo.",
+   "feedbackErro": "Parece um imposto exclusivo de contrato longo. Mas o IOF pode incidir também em crédito de curto prazo."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "elementos-do-credito",
+   "instrucao": "É elemento do crédito ou não? Arraste.",
+   "ancora": "Taxa, prazo e IOF definem custo; bandeira e nome, não.",
+   "feedbackErro": "Bandeira e nome do gerente não mudam o custo. Taxa, prazo e IOF são o que realmente define o crédito.",
+   "caixas": [
+    { "id": "elemento", "rotulo": "É elemento" },
+    { "id": "nao", "rotulo": "Não é" }
+   ],
+   "itens": [
+    { "texto": "Taxa de juros", "caixaCorreta": "elemento" },
+    { "texto": "IOF cobrado no contrato", "caixaCorreta": "elemento" },
+    { "texto": "Bandeira do cartão (Visa, Master)", "caixaCorreta": "nao" },
+    { "texto": "Nome do gerente da conta", "caixaCorreta": "nao" }
+   ]
+  }
+ ]
+}

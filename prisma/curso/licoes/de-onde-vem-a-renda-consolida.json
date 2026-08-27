@@ -1,0 +1,300 @@
+{
+ "slug": "de-onde-vem-a-renda-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "de-onde-vem-a-renda",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "de-onde-vem-a-renda",
+   "criterio": "Conta como renda, mesmo sendo caso raro?",
+   "enunciado": "O valor de uma herança recebida uma única vez",
+   "resposta": true,
+   "ancora": "Herança é entrada real de dinheiro, mesmo única e sem vir de trabalho.",
+   "feedbackErro": "Não vem de trabalho nem se repete, e por isso parece 'fora da categoria'. Mas é uma entrada real de dinheiro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "de-onde-vem-a-renda",
+   "criterio": "Conta como renda, mesmo sendo caso raro?",
+   "enunciado": "Um cartão de crédito usado até o limite",
+   "resposta": false,
+   "ancora": "Crédito usado é dívida a pagar — dinheiro emprestado, não ganho.",
+   "feedbackErro": "Dinheiro fica disponível pra gastar, e por isso pode parecer renda. Mas é dinheiro emprestado que terá de ser devolvido."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "de-onde-vem-a-renda",
+   "criterio": "Conta como renda, mesmo sendo caso raro?",
+   "enunciado": "O valor de um benefício social pago pelo governo a famílias de baixa renda",
+   "resposta": true,
+   "ancora": "Benefício social é transferência de renda, mesmo sem vir de trabalho.",
+   "feedbackErro": "Não vem de trabalho, e por isso parece 'diferente' de renda. Mas entra como dinheiro disponível pra família gastar."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "de-onde-vem-a-renda",
+   "dificuldade": 3,
+   "pergunta": "Uma família soma salário CLT, benefício social e bicos esporádicos. Qual o maior risco dessa mistura no planejamento?",
+   "ancora": "Misturar fontes exige diferenciar o garantido do incerto.",
+   "alternativas": [
+    {
+     "texto": "Tratar as três fontes como igualmente garantidas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não poder contar com nenhuma das três fontes",
+     "correta": false,
+     "feedbackErro": "Todas contam de fato como renda real — o risco não é ignorá-las, é tratá-las como se tivessem a mesma garantia."
+    },
+    {
+     "texto": "O benefício social não ser considerado renda de jeito nenhum",
+     "correta": false,
+     "feedbackErro": "Benefício social é renda, sim — o erro de planejamento está em tratar renda incerta como certa."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "de-onde-vem-a-renda",
+   "dificuldade": 3,
+   "pergunta": "Um servidor estável larga aulas particulares por falta de tempo. O que isso revela sobre depender só da renda formal?",
+   "ancora": "Fontes extras somam folga, mesmo quando a renda formal já é estável.",
+   "alternativas": [
+    {
+     "texto": "Que renda estável também se beneficia de fontes extras",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que renda formal sozinha nunca é suficiente pra viver",
+     "correta": false,
+     "feedbackErro": "Não é sobre insuficiência — é sobre como fontes extras dão mais folga pra lidar com imprevistos."
+    },
+    {
+     "texto": "Que renda informal é sempre mais importante que a formal",
+     "correta": false,
+     "feedbackErro": "Não é mais importante — é complementar. A formal segue sendo a base mais garantida."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "de-onde-vem-a-renda",
+   "criterio": "É sempre verdade no emprego público?",
+   "enunciado": "Todo emprego público garante estabilidade total, sem nenhuma exceção",
+   "resposta": false,
+   "ancora": "Comissionados e temporários não têm a estabilidade de concursados.",
+   "feedbackErro": "A ideia de 'emprego público = estável' é comum, e quase sempre verdadeira pros concursados. Mas há exceções."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "de-onde-vem-a-renda",
+   "instrucao": "Essa entrada conta como renda, mesmo sendo um caso incomum?",
+   "ancora": "Pergunte: é dinheiro novo agora, ou já era seu e precisa devolver?",
+   "feedbackErro": "Renda é entrada nova de recurso disponível; dívida e resgate do que já era seu não são entrada nova.",
+   "caixas": [
+    {
+     "id": "renda",
+     "rotulo": "É renda"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é renda"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Herança recebida uma única vez",
+     "caixaCorreta": "renda"
+    },
+    {
+     "texto": "Limite usado do cartão de crédito",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Benefício social pago mensalmente pelo governo",
+     "caixaCorreta": "renda"
+    },
+    {
+     "texto": "Saque do FGTS, que já era seu, guardado pelo empregador",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "de-onde-vem-a-renda",
+   "criterio": "É verdade?",
+   "enunciado": "Renda esporádica nunca deve ser considerada no planejamento financeiro da família",
+   "resposta": false,
+   "ancora": "Pode e deve ser considerada — como reforço, não base garantida.",
+   "feedbackErro": "Parece prudente descartar de vez o que não é garantido. Mas ignorar renda esporádica joga fora dinheiro real."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "de-onde-vem-a-renda",
+   "dificuldade": 3,
+   "pergunta": "Uma professora concursada vende artesanato com renda irregular. Como decidir uma mensalidade de curso fixa?",
+   "ancora": "Gasto recorrente deve caber na renda garantida, não no melhor cenário.",
+   "alternativas": [
+    {
+     "texto": "Basear a decisão no fixo, com o artesanato como reforço",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Basear a decisão no melhor mês de vendas do artesanato",
+     "correta": false,
+     "feedbackErro": "O melhor mês não se repete sempre — basear um gasto recorrente nele arrisca faltar dinheiro nos meses fracos."
+    },
+    {
+     "texto": "Não considerar o fixo, já que o artesanato pode render mais",
+     "correta": false,
+     "feedbackErro": "Ignorar o salário fixo joga fora a parte mais garantida da renda."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "de-onde-vem-a-renda",
+   "criterio": "Renda informal pode pesar mais no plano?",
+   "enunciado": "Uma família onde a renda informal é maior e mais constante que a formal, apesar de sem registro",
+   "resposta": true,
+   "ancora": "O que importa é a constância real, não o rótulo formal ou informal.",
+   "feedbackErro": "Formal geralmente parece mais confiável que informal, e é aí que mora a pegadinha."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "de-onde-vem-a-renda",
+   "criterio": "Isso é sempre verdade?",
+   "enunciado": "Diversificar as fontes de renda da família sempre reduz o risco financeiro",
+   "resposta": false,
+   "ancora": "Diversificar ajuda quase sempre, mas fonte incerta não reduz risco.",
+   "feedbackErro": "Diversificar parece sempre bom, e na maior parte das vezes é. Mas se todas as fontes novas forem igualmente incertas, o risco não cai."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "de-onde-vem-a-renda",
+   "pergunta": "Depois dos três encontros, qual é a visão mais completa sobre de onde vem a renda de uma família?",
+   "alternativas": [
+    {
+     "texto": "Vem de fontes diversas com graus diferentes de garantia, a respeitar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Vem sempre de um único emprego principal, formal e estável",
+     "correta": false,
+     "feedbackErro": "Muitas famílias combinam formal, informal, frequente e esporádica."
+    },
+    {
+     "texto": "Toda renda deve ser tratada como igualmente garantida no orçamento",
+     "correta": false,
+     "feedbackErro": "Tratar tudo como igualmente garantido é o erro mais comum."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "de-onde-vem-a-renda",
+   "instrucao": "Essa entrada é renda nova, ou é dinheiro que já era seu voltando?",
+   "ancora": "A pergunta: isso aumenta o que você tem, ou devolve o que já era seu?",
+   "feedbackErro": "Renda nova aumenta o total disponível; dinheiro que já era seu só muda de lugar, não aumenta nada.",
+   "caixas": [
+    {
+     "id": "nova",
+     "rotulo": "Renda nova"
+    },
+    {
+     "id": "proprio",
+     "rotulo": "Já era seu"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Herança recebida",
+     "caixaCorreta": "nova"
+    },
+    {
+     "texto": "Saque do FGTS",
+     "caixaCorreta": "proprio"
+    },
+    {
+     "texto": "Comissão de uma venda",
+     "caixaCorreta": "nova"
+    },
+    {
+     "texto": "Devolução de um empréstimo feito a alguém",
+     "caixaCorreta": "proprio"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "de-onde-vem-a-renda",
+   "instrucao": "Ordene da fonte de renda mais garantida pra mais incerta.",
+   "ancora": "Não é sobre o valor recebido, é a chance de continuar recebendo.",
+   "feedbackErro": "A garantia cai conforme o vínculo fica menos formal e mais dependente de demanda variável.",
+   "itens": [
+    {
+     "texto": "Salário de servidor concursado",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Salário CLT de empresa privada",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Renda de autônomo com clientes fixos",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Renda de bico sem clientes fixos",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "de-onde-vem-a-renda",
+   "dificuldade": 3,
+   "pergunta": "Uma família muda de cidade por emprego público estável, largando rendas informais. Isso envolve o quê, além do salário?",
+   "ancora": "Toda troca de fontes de renda tem lado que se ganha e se abre mão.",
+   "alternativas": [
+    {
+     "texto": "Trocar renda diversificada por uma fonte única, previsível",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não envolve nenhuma troca real, só ganho",
+     "correta": false,
+     "feedbackErro": "Largar as rendas informais é uma perda real, mesmo que o novo emprego compense."
+    },
+    {
+     "texto": "É sempre uma decisão pior do que manter as informais",
+     "correta": false,
+     "feedbackErro": "Não é sempre pior — estabilidade tem valor real. O ponto é que é uma troca, com perdas e ganhos."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,287 @@
+{
+ "slug": "o-mesmo-produto-preco-diferente",
+ "segmento": "ef67",
+ "conceitoPrincipal": "o-mesmo-produto-preco-diferente",
+ "fraseConceito": "O mesmo produto muda de preço conforme quantidade, intermediários e embalagem — e essa diferença define lucro ou prejuízo.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "por-que-o-preco-muda",
+   "criterio": "Isso explica o preço ser diferente?",
+   "enunciado": "Comprar uma caixa com 12 em vez de 1 por vez",
+   "resposta": true,
+   "ancora": "Quantidade maior costuma baixar o preço por unidade.",
+   "feedbackErro": "Parece só embalagem diferente. Mas comprar em quantidade maior costuma reduzir o preço por unidade — é motivo real pra diferença."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "por-que-o-preco-muda",
+   "criterio": "Isso explica o preço ser diferente?",
+   "enunciado": "A cor da embalagem ser azul ou verde",
+   "resposta": false,
+   "ancora": "Cor não muda custo de produzir, transportar ou vender.",
+   "feedbackErro": "Pode parecer que qualquer diferença visual explica algo. Mas a cor da embalagem não muda nenhum custo real do produto."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "por-que-o-preco-muda",
+   "criterio": "Isso explica o preço ser diferente?",
+   "enunciado": "Comprar direto da fábrica, sem passar pela loja",
+   "resposta": true,
+   "ancora": "Sem intermediário, menos margens somadas ao preço final.",
+   "feedbackErro": "Parece só outro jeito de comprar. Mas cada intermediário cobra sua margem — sem eles no caminho, o preço tende a ser menor."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "por-que-o-preco-muda",
+   "dificuldade": 1,
+   "pergunta": "Um pacote de 1kg de arroz custa R$ 6. O saco de 5kg custa R$ 25. Por que o quilo sai mais barato no saco maior?",
+   "ancora": "R$ 25 ÷ 5kg = R$ 5 o quilo — menor que os R$ 6 do pacote pequeno.",
+   "verificacao": {
+    "expressao": "25/5",
+    "esperado": 5
+   },
+   "alternativas": [
+    {
+     "texto": "Porque o arroz do saco grande é de qualidade pior",
+     "correta": false,
+     "feedbackErro": "Não é sobre qualidade — os dois podem ser do mesmo arroz. O preço menor por quilo vem de comprar mais de uma vez só."
+    },
+    {
+     "texto": "Porque comprar em quantidade maior reduz o custo por unidade",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque o preço do arroz varia todo dia, sem motivo",
+     "correta": false,
+     "feedbackErro": "A diferença não é aleatória: dividindo R$ 25 por 5kg, dá R$ 5 o quilo — abaixo do pacote pequeno, e isso tem motivo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "lucro-e-prejuizo",
+   "dificuldade": 1,
+   "pergunta": "Uma loja compra uma camiseta por R$ 40 e vende por R$ 55. Qual foi o lucro?",
+   "ancora": "R$ 55 vendido menos R$ 40 de custo = R$ 15 de lucro.",
+   "verificacao": {
+    "expressao": "55-40",
+    "esperado": 15
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 95",
+     "correta": false,
+     "feedbackErro": "Você somou o preço de compra com o de venda. Lucro é a diferença entre os dois, não a soma."
+    },
+    {
+     "texto": "R$ 15",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 40",
+     "correta": false,
+     "feedbackErro": "R$ 40 foi só o custo da compra. O lucro é o que sobra depois de descontar esse custo do valor de venda."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "por-que-o-preco-muda",
+   "criterio": "Explica o preço mudar?",
+   "enunciado": "Comprar sem passar por nenhum intermediário",
+   "resposta": true,
+   "ancora": "Sem intermediário, menos gente ganha margem no caminho.",
+   "feedbackErro": "Parece só outra forma de comprar. Mas cada intermediário cobra sua margem — sem eles, o preço final tende a ser menor."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "por-que-o-preco-muda",
+   "instrucao": "Isso explica o preço variar, ou não tem relação?",
+   "ancora": "Quantidade e intermediários mudam o preço; cor e horário não.",
+   "feedbackErro": "É fácil incluir qualquer diferença na lista. Mas só entra o que muda o custo de produzir, transportar ou vender.",
+   "caixas": [
+    {
+     "id": "explica",
+     "rotulo": "Explica a diferença"
+    },
+    {
+     "id": "naoexplica",
+     "rotulo": "Não explica"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Comprar no atacado, em quantidade grande",
+     "caixaCorreta": "explica"
+    },
+    {
+     "texto": "A cor da embalagem do produto",
+     "caixaCorreta": "naoexplica"
+    },
+    {
+     "texto": "Comprar direto do produtor, sem loja no meio",
+     "caixaCorreta": "explica"
+    },
+    {
+     "texto": "O dia da semana em que a loja abre",
+     "caixaCorreta": "naoexplica"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "lucro-e-prejuizo",
+   "criterio": "Deu prejuízo?",
+   "enunciado": "Comprar por R$ 30 e vender por R$ 28",
+   "resposta": true,
+   "verificacao": {
+    "expressao": "28-30",
+    "esperado": -2
+   },
+   "ancora": "Vendeu por menos do que pagou — prejuízo de R$ 2.",
+   "feedbackErro": "R$ 28 e R$ 30 parecem quase empatados. Mas vender abaixo do que custou é prejuízo, mesmo que a diferença seja pequena."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "por-que-o-preco-muda",
+   "dificuldade": 1,
+   "pergunta": "Um suco custa R$ 4 na garrafinha de 300ml e R$ 8 na garrafa de 2 litros. Qual é mais barato por litro?",
+   "ancora": "A garrafa de 2 litros sai a R$ 4 o litro; a pequena, bem mais.",
+   "verificacao": {
+    "expressao": "8/2",
+    "esperado": 4
+   },
+   "alternativas": [
+    {
+     "texto": "A garrafinha de 300ml, porque custa menos no total",
+     "correta": false,
+     "feedbackErro": "Custar menos no total não é o mesmo que custar menos por litro. A garrafinha é menor, por isso custa menos no total — mas o litro sai mais caro nela."
+    },
+    {
+     "texto": "A garrafa de 2 litros, porque custa menos por litro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "As duas custam o mesmo por litro",
+     "correta": false,
+     "feedbackErro": "Não é o mesmo valor: a garrafa grande sai a R$ 4 o litro, e a pequena, bem mais cara por litro."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "lucro-e-prejuizo",
+   "criterio": "Deu lucro?",
+   "enunciado": "Vender por exatamente o mesmo preço que comprou",
+   "resposta": false,
+   "ancora": "Preço de venda igual ao de custo não gera lucro nem prejuízo.",
+   "feedbackErro": "Parece neutro, nem bom nem ruim, e é isso mesmo. Sem diferença entre custo e venda, não há lucro — lucro exige vender por mais do que custou."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "por-que-o-preco-muda",
+   "criterio": "Explica o preço mudar?",
+   "enunciado": "Comprar um produto na promoção de fim de estoque",
+   "resposta": true,
+   "ancora": "Fim de estoque muda o motivo comercial do preço.",
+   "feedbackErro": "Parece só sorte de encontrar barato. Mas o motivo comercial é real: a loja quer liberar espaço, e isso explica o preço menor."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-mesmo-produto-preco-diferente",
+   "pergunta": "Qual frase resume o que você viu?",
+   "alternativas": [
+    {
+     "texto": "O preço de um produto só muda por acaso",
+     "correta": false,
+     "feedbackErro": "O preço muda por motivos concretos: quantidade, intermediários, embalagem — não por acaso."
+    },
+    {
+     "texto": "Quantidade, intermediários e embalagem explicam preços diferentes",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Lucro é sempre a metade do preço de venda",
+     "correta": false,
+     "feedbackErro": "Lucro não tem proporção fixa. Ele é o que sobra do valor de venda depois de descontar todos os custos."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "por-que-o-preco-muda",
+   "instrucao": "Ordene do que mais barateia ao que menos barateia o preço.",
+   "ancora": "Menos intermediários e mais quantidade, mais barato.",
+   "feedbackErro": "A ordem segue quantas margens e intermediários existem no caminho — direto do produtor tem menos, unidade avulsa tem mais.",
+   "itens": [
+    {
+     "texto": "Comprar direto do produtor",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Comprar no atacado",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Comprar uma unidade na loja de bairro",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "lucro-e-prejuizo",
+   "dificuldade": 2,
+   "pergunta": "Uma banca compra revistas por R$ 8 e vende por R$ 8. No fim do mês, sobraram revistas vencidas, jogadas fora. O resultado foi...?",
+   "ancora": "Vender pelo custo não gera lucro, e ainda houve perda com o vencido.",
+   "alternativas": [
+    {
+     "texto": "Lucro, porque vendeu pelo mesmo preço que comprou",
+     "correta": false,
+     "feedbackErro": "Vender pelo preço de custo não gera lucro. E ainda tem as revistas jogadas fora, que custaram e não venderam — isso é prejuízo."
+    },
+    {
+     "texto": "Prejuízo, pelas revistas vencidas que não venderam",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nem lucro nem prejuízo, pois vendeu no preço de custo",
+     "correta": false,
+     "feedbackErro": "Isso valeria se todas tivessem sido vendidas. Mas parte virou lixo sem vender, e esse custo também entra na conta."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "por-que-o-preco-muda",
+   "criterio": "Explica o preço mudar?",
+   "enunciado": "O tamanho da fonte escrita na embalagem",
+   "resposta": false,
+   "ancora": "Fonte não muda custo de produção, transporte ou venda.",
+   "feedbackErro": "Pode parecer detalhe de marketing que afeta o preço. Mas o tamanho da fonte não muda nenhum custo real do produto."
+  }
+ ]
+}

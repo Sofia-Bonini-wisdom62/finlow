@@ -1,0 +1,328 @@
+{
+ "slug": "risco-rendimento-e-liquidez-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "risco-rendimento-e-liquidez",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-retorno-liquidez",
+   "criterio": "Risco maior explica o retorno maior?",
+   "enunciado": "CDB de banco médio pagando mais que o Tesouro Direto",
+   "resposta": true,
+   "ancora": "Banco menor paga mais para compensar risco de crédito maior.",
+   "feedbackErro": "Parece só um banco sendo generoso, mas ele paga mais porque tem risco de crédito maior que o Tesouro (garantido pelo governo) — o prêmio compensa o risco."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-retorno-liquidez",
+   "criterio": "Risco maior explica o retorno maior?",
+   "enunciado": "Criptomoeda variando 15% no mesmo dia",
+   "resposta": true,
+   "ancora": "Alta volatilidade é o preço do potencial de retorno alto.",
+   "feedbackErro": "A variação assusta, mas é exatamente isso que caracteriza um ativo de alto risco: grandes chances de ganho vêm com grandes chances de perda no mesmo dia."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-retorno-liquidez",
+   "criterio": "Risco maior explica o retorno maior?",
+   "enunciado": "Fundo multimercado rendendo mais que a poupança",
+   "resposta": true,
+   "ancora": "Risco moderado tende a pagar mais que a aplicação mais segura.",
+   "feedbackErro": "Fundo multimercado parece 'só mais um fundo', mas ele assume mais risco que poupança — e por isso, historicamente, tende a pagar mais."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-retorno-liquidez",
+   "dificuldade": 2,
+   "pergunta": "Dois CDBs de bancos diferentes prometem 110% e 180% do CDI. Por que o segundo pode ser mais arriscado?",
+   "ancora": "Prêmio bem acima do mercado costuma refletir risco maior do emissor.",
+   "alternativas": [
+    {
+     "texto": "Um banco menos sólido paga mais para atrair investidor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque 180% do CDI é sempre golpe, nunca real",
+     "correta": false,
+     "feedbackErro": "Taxas altas existem em bancos menores legítimos, não é golpe automático. O alerta é quando o prêmio foge muito da média sem explicação nenhuma."
+    },
+    {
+     "texto": "Porque CDB nunca tem nenhuma garantia",
+     "correta": false,
+     "feedbackErro": "CDB tem garantia do FGC até um limite. A diferença de taxa vem do risco de crédito do banco, não da ausência de garantia."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "confiabilidade-investimento",
+   "dificuldade": 2,
+   "pergunta": "Uma 'consultoria' oferece retorno de 8% ao mês, sem contrato nem CNPJ visível. O que falta checar primeiro?",
+   "ancora": "Sem CNPJ e registro, não há a quem recorrer se der errado.",
+   "alternativas": [
+    {
+     "texto": "Se existe CNPJ e registro em órgão regulador",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se o consultor fala bem e parece confiante",
+     "correta": false,
+     "feedbackErro": "Confiança na fala é fácil de treinar e não prova nada sobre legitimidade. O que prova é documento: CNPJ e registro em órgão fiscalizador."
+    },
+    {
+     "texto": "Se outros amigos já indicaram esse consultor",
+     "correta": false,
+     "feedbackErro": "Indicação de amigo é como pirâmides se espalham — quem indicou pode nem saber que está exposto. Confiabilidade se verifica em documento, não em boca a boca."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-investimento",
+   "criterio": "Isso reduz o risco de golpe?",
+   "enunciado": "Verificar o CNPJ da empresa no site da Receita Federal",
+   "resposta": true,
+   "ancora": "CNPJ ativo e histórico público reduzem chance de fraude.",
+   "feedbackErro": "Parece burocracia sem efeito prático, mas checar o CNPJ mostra se a empresa existe de fato e há quanto tempo — informação que golpes tentam esconder."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "risco-retorno-liquidez",
+   "instrucao": "Ordene do que resgata mais rápido para o mais demorado.",
+   "ancora": "Liquidez cai conforme o prazo de resgate cresce.",
+   "feedbackErro": "É fácil trocar CDB com carência pelo Tesouro Selic, mas o Tesouro tem liquidez diária; o CDB trava até completar os 90 dias combinados.",
+   "itens": [
+    {
+     "texto": "Conta corrente",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Tesouro Selic",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "CDB com carência de 90 dias",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Imóvel para revenda",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-investimento",
+   "criterio": "Isso reduz o risco de golpe?",
+   "enunciado": "Assinar contrato sem ler porque 'todo mundo assina assim'",
+   "resposta": false,
+   "ancora": "Não ler o contrato aumenta o risco, não reduz.",
+   "feedbackErro": "Seguir o que todo mundo faz parece seguro, mas não ler o contrato é abrir mão de saber prazos, taxas e garantias — isso aumenta o risco, não reduz."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "risco-retorno-liquidez",
+   "criterio": "Risco maior explica o retorno maior?",
+   "enunciado": "Ação de empresa recém-aberta na bolsa pagando dividendo alto",
+   "resposta": true,
+   "ancora": "Empresa nova tem histórico curto — risco maior, prêmio maior.",
+   "feedbackErro": "O dividendo alto parece prêmio de sorte, mas empresas recém-abertas têm histórico curto e resultado incerto — o retorno maior compensa esse risco extra."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "risco-retorno-liquidez",
+   "pergunta": "CDB rende 110% do CDI. Com o CDI perto de 15% a.a., quanto rendem R$ 2.000 em 1 ano (aprox.)?",
+   "campo": "moeda",
+   "min": 2000,
+   "max": 2800,
+   "gabarito": 2330,
+   "toleranciaPct": 20,
+   "fonte": "CDI próximo à Selic, 15% ao ano (Banco Central)",
+   "feedbackPerto": "Boa estimativa: por volta de R$ 2.330, já com o adicional dos 110% do CDI.",
+   "feedbackLonge": "Dá R$ 2.330. O CDI a 15% a.a. rendendo 110% dele vira 16,5% a.a. sobre os R$ 2.000.",
+   "verificacao": {
+    "expressao": "2000*(1+0.15*1.1)",
+    "esperado": 2330
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "confiabilidade-investimento",
+   "dificuldade": 2,
+   "pergunta": "Um app promete 'renda garantida' de R$ 500/mês investindo R$ 1.000, sem explicar a origem do lucro. O que fazer antes?",
+   "ancora": "Sem explicação clara da origem do lucro, o risco de golpe é alto.",
+   "alternativas": [
+    {
+     "texto": "Entender de onde vem o retorno e checar o registro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Investir o mínimo só para testar se cai o pagamento",
+     "correta": false,
+     "feedbackErro": "Testar com pouco parece prudente, mas pirâmides pagam os primeiros de propósito, com o dinheiro de quem entra depois — 'funcionar uma vez' não prova nada."
+    },
+    {
+     "texto": "Confiar porque o app tem muitas avaliações 5 estrelas",
+     "correta": false,
+     "feedbackErro": "Avaliações podem ser compradas ou forjadas, e é uma tática comum de golpe. O que prova legitimidade é a origem clara do lucro e o registro oficial."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "risco-retorno-liquidez",
+   "dificuldade": 2,
+   "pergunta": "Rogério tem R$ 5.000 e vai precisar em 8 meses para uma viagem. Qual opção erra o critério principal?",
+   "ancora": "Prazo de 8 meses pede algo líquido nesse período.",
+   "alternativas": [
+    {
+     "texto": "Imóvel de aluguel, que ele venderia se precisasse",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Tesouro Selic, resgatável quando precisar",
+     "correta": false,
+     "feedbackErro": "O Tesouro Selic tem liquidez diária, exatamente o que o prazo de 8 meses pede — essa opção não erra o critério."
+    },
+    {
+     "texto": "CDB com liquidez diária de banco grande",
+     "correta": false,
+     "feedbackErro": "CDB com liquidez diária resgata a qualquer momento, sem perda relevante — também não erra o critério de prazo."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "risco-retorno-liquidez",
+   "criterio": "Risco maior explica o retorno maior?",
+   "enunciado": "Debênture de empresa endividada pagando 200% do CDI",
+   "resposta": true,
+   "ancora": "Empresa mais endividada paga mais para atrair quem aceita o risco.",
+   "feedbackErro": "200% do CDI parece exagero de golpe, mas empresas endividadas de fato pagam prêmios altos para compensar quem topa o risco de calote."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-investimento",
+   "criterio": "Isso reduz o risco de golpe?",
+   "enunciado": "Desconfiar de retorno fixo muito acima da média do mercado",
+   "resposta": true,
+   "ancora": "Retorno fixo alto demais é a bandeira vermelha mais comum.",
+   "feedbackErro": "Desconfiar parece exagero quando a promessa é convincente, mas retorno fixo muito acima da média é justamente o padrão mais repetido em golpes."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "risco-retorno-liquidez",
+   "pergunta": "Qual ideia fecha este encontro?",
+   "alternativas": [
+    {
+     "texto": "Prêmio alto de retorno compra risco ou menos liquidez, e pede checar registro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quanto mais alto o retorno prometido, mais seguro é o investimento",
+     "correta": false,
+     "feedbackErro": "É o contrário: retorno muito alto costuma vir junto com risco maior, não com segurança."
+    },
+    {
+     "texto": "CDB nunca tem risco, porque é o banco quem garante",
+     "correta": false,
+     "feedbackErro": "CDB tem risco de crédito do banco emissor; a garantia do FGC cobre só até um limite, não elimina o risco."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "risco-retorno-liquidez",
+   "instrucao": "Ordene do menor para o maior risco.",
+   "ancora": "Concentração e histórico curto aumentam o risco.",
+   "feedbackErro": "É fácil trocar ação por cripto recém-lançada, mas cripto nova tem histórico ainda menor e mais volátil — o risco mais alto fica no fim da fila.",
+   "itens": [
+    {
+     "texto": "Tesouro Selic",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "CDB de banco grande",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Ação de uma única empresa pequena",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Criptomoeda recém-lançada",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "confiabilidade-investimento",
+   "instrucao": "Sinal de golpe ou de legitimidade?",
+   "ancora": "Legitimidade se prova em documento e transparência, não em promessa.",
+   "feedbackErro": "Promessas grandes e recrutamento são o padrão de golpe. Registro, CNPJ e relatórios auditados são o padrão de quem tem nada a esconder.",
+   "caixas": [
+    {
+     "id": "golpe",
+     "rotulo": "Sinal de golpe"
+    },
+    {
+     "id": "legitimo",
+     "rotulo": "Sinal de legitimidade"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Pede para recrutar novos investidores para lucrar",
+     "caixaCorreta": "golpe"
+    },
+    {
+     "texto": "Tem CNPJ ativo e registro na CVM",
+     "caixaCorreta": "legitimo"
+    },
+    {
+     "texto": "Promete retorno fixo de 30% ao mês",
+     "caixaCorreta": "golpe"
+    },
+    {
+     "texto": "Publica relatórios de resultado auditados",
+     "caixaCorreta": "legitimo"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "risco-retorno-liquidez",
+   "criterio": "Risco maior explica o retorno maior?",
+   "enunciado": "Fundo imobiliário concentrado em um único shopping",
+   "resposta": true,
+   "ancora": "Concentração em um imóvel só eleva o risco — e o prêmio esperado.",
+   "feedbackErro": "Parece só 'mais um fundo imobiliário', mas depender de um único imóvel é risco concentrado — por isso costuma pagar mais que fundos diversificados."
+  }
+ ]
+}

@@ -1,0 +1,339 @@
+{
+ "slug": "de-onde-vem-a-sua-renda-consolida",
+ "segmento": "em3",
+ "conceitoPrincipal": "de-onde-vem-a-sua-renda",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "vinculo-e-protecao",
+   "criterio": "O formal ganha sempre?",
+   "enunciado": "Há casos em que o informal recebe mais por mês que o CLT",
+   "resposta": true,
+   "ancora": "No mês, o informal pode ganhar mais — a diferença está no invisível.",
+   "feedbackErro": "A régua do ano favorece o CLT, mas não apaga o fato: no mês, o bico pode pagar mais. O que ele nunca paga é FGTS, INSS e o dia em que o trabalho falta."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "vinculo-e-protecao",
+   "criterio": "A proteção tem exceção?",
+   "enunciado": "Servidor concursado pode ser demitido a qualquer momento",
+   "resposta": false,
+   "ancora": "Estabilidade após estágio probatório: demissão só com processo.",
+   "feedbackErro": "Nenhuma proteção é absoluta — falta grave derruba até concursado. Mas 'a qualquer momento' é falso: a regra é estabilidade, e a exceção exige processo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "direitos-trabalhistas",
+   "criterio": "Direito vale sem papel?",
+   "enunciado": "Sem registro, provar o vínculo na Justiça garante os direitos",
+   "resposta": true,
+   "ancora": "Vínculo é fato, não papel: provado, os direitos valem para trás.",
+   "feedbackErro": "Sem carteira parece sem direito, e é isso que o patrão irregular espera. Mas a Justiça olha os fatos: rotina, chefe e pagamento provados geram tudo retroativo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "vinculo-e-protecao",
+   "dificuldade": 3,
+   "pergunta": "Um PJ fatura R$ 4.000, paga 11% de imposto e mais R$ 320 de INSS por fora. Quanto sobra no mês?",
+   "ancora": "R$ 4.000 − R$ 440 de imposto − R$ 320 de INSS = R$ 3.240.",
+   "verificacao": {
+    "expressao": "4000-4000*0.11-320",
+    "esperado": 3240,
+    "tolerancia": 0.01
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 3.680",
+     "correta": false,
+     "feedbackErro": "Você descontou só o INSS (R$ 320). Faltou o imposto: 11% de R$ 4.000 são R$ 440. No PJ, os dois saem do mesmo bolso — o seu."
+    },
+    {
+     "texto": "R$ 3.240",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 3.560",
+     "correta": false,
+     "feedbackErro": "Você descontou só o imposto (R$ 440) e esqueceu o INSS. Sem os R$ 320 da contribuição não há aposentadoria — e o líquido real é R$ 3.240."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "informalidade",
+   "dificuldade": 3,
+   "pergunta": "Para muita gente, informalidade não é escolha. O que mais empurra para ela?",
+   "ancora": "Onde não há vaga formal, informal é a porta que existe.",
+   "alternativas": [
+    {
+     "texto": "Preguiça de assinar contrato",
+     "correta": false,
+     "feedbackErro": "Culpar o indivíduo é o atalho fácil. Mas informal costuma trabalhar mais horas por menos — o que falta não é vontade, é vaga formal onde ele vive."
+    },
+    {
+     "texto": "Falta de vagas formais onde a pessoa vive",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Vontade de não pagar nenhum imposto",
+     "correta": false,
+     "feedbackErro": "Existe quem escolha por isso — casos reais. Mas a maioria aceitaria carteira se houvesse vaga: o motor da informalidade em massa é estrutural, não fiscal."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "vinculo-e-protecao",
+   "criterio": "A regra tem limite?",
+   "enunciado": "Todo contrato PJ é precarização disfarçada",
+   "resposta": false,
+   "ancora": "PJ com vários clientes e preço próprio é empresa de verdade.",
+   "feedbackErro": "Depois de tanta pejotização, generalizar é tentador. Mas o critério é a realidade: quem tem vários clientes, agenda e preço próprios é negócio, não disfarce."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "direitos-trabalhistas",
+   "instrucao": "Sem registro e demitido: toque na ordem dos passos.",
+   "ancora": "Primeiro a prova, depois a ajuda, depois a ação. Papel vence discurso.",
+   "feedbackErro": "Correr para a ação sem prova é chegar desarmado. A ordem protege: provas juntadas → orientação de sindicato ou advogado → ação pedindo o vínculo → verbas.",
+   "itens": [
+    {
+     "texto": "Reunir provas: mensagens, pagamentos, testemunhas",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Procurar sindicato ou advogado trabalhista",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Entrar com ação pedindo o vínculo",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Receber as verbas reconhecidas",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "direitos-trabalhistas",
+   "criterio": "A proteção CLT se aplica aqui?",
+   "enunciado": "Estágio remunerado dá direito a FGTS e 13º",
+   "resposta": false,
+   "ancora": "Estágio tem lei própria: bolsa e recesso, sem FGTS nem 13º.",
+   "feedbackErro": "Estagiário trabalha e recebe, então parece mini-CLT. Mas a lei do estágio é outra: garante bolsa, recesso e limite de jornada — FGTS e 13º ficam de fora."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "vinculo-e-protecao",
+   "criterio": "A proteção CLT se aplica aqui?",
+   "enunciado": "MEI em dia pode se aposentar por idade pelo INSS",
+   "resposta": true,
+   "ancora": "Não é CLT, mas a guia do MEI compra a proteção básica do INSS.",
+   "feedbackErro": "A pergunta engana: MEI não é CLT, mas a proteção do INSS não é exclusiva do CLT. A guia mensal em dia garante aposentadoria por idade e auxílios."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "vinculo-e-protecao",
+   "pergunta": "Três anos sem registro ganhando R$ 2.100. Quanto de FGTS (8%) deixou de ser depositado?",
+   "campo": "moeda",
+   "min": 1000,
+   "max": 15000,
+   "gabarito": 6048,
+   "toleranciaPct": 20,
+   "fonte": "alíquota do FGTS, 8% do salário (lei do FGTS/Caixa)",
+   "verificacao": {
+    "expressao": "2100*0.08*36",
+    "esperado": 6048,
+    "tolerancia": 0.01
+   },
+   "feedbackPerto": "Isso: R$ 6.048 que deveriam estar guardados em seu nome. É o tamanho do rombo silencioso de 3 anos sem registro.",
+   "feedbackLonge": "R$ 168/mês × 36 meses = R$ 6.048. O viés aqui é o do invisível: o que nunca apareceu no bolso parece que nunca existiu — mas era seu por lei."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "vinculo-e-protecao",
+   "dificuldade": 3,
+   "pergunta": "Otávio escolhe: CLT de R$ 3.200 ou PJ de R$ 4.100 com R$ 1.000 de custos mensais. No ano, quem paga mais?",
+   "ancora": "CLT: R$ 42.667 com 13º e terço. PJ líquido: R$ 3.100 × 12 = R$ 37.200.",
+   "verificacao": {
+    "expressao": "3200*12+3200+3200/3-(4100-1000)*12",
+    "esperado": 5466.67,
+    "tolerancia": 0.01
+   },
+   "alternativas": [
+    {
+     "texto": "O PJ: R$ 900 a mais por mês",
+     "correta": false,
+     "feedbackErro": "Os R$ 900 são o bruto contra o salário — comparação torta. Tirando os R$ 1.000 de custos, o PJ líquido cai a R$ 3.100, e o CLT ainda soma 13º e terço."
+    },
+    {
+     "texto": "O CLT: fecha o ano R$ 5.467 à frente",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Empatam quando os custos entram na conta",
+     "correta": false,
+     "feedbackErro": "Colocar os custos na conta foi o passo certo — mas eles não empatam nada: R$ 42.667 contra R$ 37.200. O 13º e o terço desempatam com folga."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "direitos-trabalhistas",
+   "dificuldade": 3,
+   "pergunta": "Uma empresa corta custos trocando contratados por trabalho de aplicativo. Quem paga essa conta no fim?",
+   "ancora": "O custo da proteção não some: migra da empresa para pessoas e Estado.",
+   "alternativas": [
+    {
+     "texto": "Ninguém: é só a empresa ficando eficiente",
+     "correta": false,
+     "feedbackErro": "A eficiência é real no balanço da empresa. Mas o custo da proteção não evaporou — foi transferido para o trabalhador sem rede e, depois, para o caixa público."
+    },
+    {
+     "texto": "O trabalhador agora e a sociedade depois",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só as empresas concorrentes menores",
+     "correta": false,
+     "feedbackErro": "Concorrentes sofrem pressão, é verdade — competitividade importa. Mas a conta principal cai em quem perdeu a proteção e em quem banca o amparo: todos nós."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "vinculo-e-protecao",
+   "criterio": "Quando NÃO há vínculo?",
+   "enunciado": "Freela eventual, para vários clientes, exige carteira assinada",
+   "resposta": false,
+   "ancora": "Serviço eventual e autônomo não é vínculo — é prestação de serviço.",
+   "feedbackErro": "Nem todo trabalho é emprego. Vínculo pede rotina, subordinação e pagamento habituais. O freela genuíno — vários clientes, agenda própria — fica fora da CLT."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "direitos-trabalhistas",
+   "criterio": "O combinado revoga a lei?",
+   "enunciado": "Direitos valem menos se o combinado foi 'sem carteira'",
+   "resposta": false,
+   "ancora": "Direito trabalhista é lei: acordo de boca não apaga o que ela garante.",
+   "feedbackErro": "'Você aceitou assim' soa como argumento, e patrões usam. Mas direito trabalhista é irrenunciável: o combinado ilegal não vale, e o vínculo provado vale tudo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "de-onde-vem-a-sua-renda",
+   "dificuldade": 3,
+   "pergunta": "Qual régua fica desta trilha sobre renda?",
+   "alternativas": [
+    {
+     "texto": "Formal ou informal tanto faz: o que importa é o valor do mês.",
+     "correta": false,
+     "feedbackErro": "O mês é vitrine. O ano, os custos e a proteção são a loja inteira."
+    },
+    {
+     "texto": "Olho o ano, os custos e a proteção — e reconheço quando o vínculo é disfarce.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Todo trabalho sem carteira assinada é ilegal.",
+     "correta": false,
+     "feedbackErro": "Autônomo, MEI e PJ de verdade são legais. Ilegal é o emprego disfarçado deles."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "vinculo-e-protecao",
+   "instrucao": "Arraste: nessa relação existe vínculo de emprego?",
+   "ancora": "Vínculo = rotina, chefe e pagamento habituais — com ou sem papel.",
+   "feedbackErro": "O papel assinado não decide; a rotina decide. Horário fixo, chefe e habitualidade formam vínculo mesmo sem registro; serviço pontual e autônomo real, não.",
+   "caixas": [
+    {
+     "id": "vinculo",
+     "rotulo": "Tem vínculo"
+    },
+    {
+     "id": "sem",
+     "rotulo": "Não tem"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Garçom fixo, com horário e chefe, sem registro",
+     "caixaCorreta": "vinculo"
+    },
+    {
+     "texto": "Eletricista chamado uma vez para um reparo",
+     "caixaCorreta": "sem"
+    },
+    {
+     "texto": "Vendedora que cumpre escala e meta da loja",
+     "caixaCorreta": "vinculo"
+    },
+    {
+     "texto": "Designer com cinco clientes e preço próprio",
+     "caixaCorreta": "sem"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "direitos-trabalhistas",
+   "dificuldade": 3,
+   "pergunta": "Por que a Justiça do Trabalho olha os fatos, e não só o contrato PJ assinado?",
+   "ancora": "A realidade do trabalho define o vínculo — princípio da primazia.",
+   "alternativas": [
+    {
+     "texto": "Porque contrato escrito não vale nada",
+     "correta": false,
+     "feedbackErro": "Contrato vale, e muito — quando bate com a realidade. O que não vale é o papel usado para esconder um emprego de fato. O fato vence o disfarce, não o contrato."
+    },
+    {
+     "texto": "Porque a realidade do trabalho define o vínculo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque o juiz sempre decide pelo empregado",
+     "correta": false,
+     "feedbackErro": "Trabalhador também perde ação — quando os fatos não mostram vínculo. O critério não é torcida: é rotina, subordinação e habitualidade provadas."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "direitos-trabalhistas",
+   "criterio": "É verdade?",
+   "enunciado": "Seguro-desemprego vale para quem pede demissão",
+   "resposta": false,
+   "ancora": "É para demissão sem justa causa — pedir demissão não dá direito.",
+   "feedbackErro": "O nome sugere 'para quem ficou sem emprego', e a confusão é comum. Mas o seguro cobre a perda involuntária: quem escolhe sair abre mão das parcelas."
+  }
+ ]
+}

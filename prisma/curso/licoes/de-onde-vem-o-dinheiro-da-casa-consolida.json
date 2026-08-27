@@ -1,0 +1,250 @@
+{
+ "slug": "de-onde-vem-o-dinheiro-da-casa-consolida",
+ "segmento": "ef35",
+ "conceitoPrincipal": "de-onde-vem-o-dinheiro-da-casa",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fontes-de-renda",
+   "criterio": "É uma fonte de renda da casa?",
+   "enunciado": "Mesada dada pelos pais, sem ligação com trabalho",
+   "resposta": true,
+   "ancora": "Mesada é dinheiro que entra em casa, mesmo sem vir de trabalho.",
+   "feedbackErro": "Parece só uma mesada de criança, sem peso. Mas é dinheiro real que entra em casa — ainda é fonte de renda."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "renda-minima",
+   "criterio": "O direito vale só pra quem não trabalha?",
+   "enunciado": "Quem trabalha, mas ganha muito pouco, também pode ter direito a complemento",
+   "resposta": true,
+   "ancora": "O direito cobre quem trabalha e ganha pouco, não só o desempregado.",
+   "feedbackErro": "Parece que trabalhar já tira o direito. Mas quem ganha muito pouco, mesmo trabalhando, também pode ter direito a complemento."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fontes-de-renda",
+   "criterio": "É uma fonte de renda válida?",
+   "enunciado": "Vender um videogame emprestado por um amigo, sem avisar",
+   "resposta": false,
+   "ancora": "Vender algo que não é seu não é renda — é um problema.",
+   "feedbackErro": "Parece dinheiro ganho igual a qualquer venda. Mas vender algo que não é seu, sem avisar, não é fonte de renda — é um problema."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "fontes-de-renda",
+   "dificuldade": 3,
+   "pergunta": "Uma família recebe salário, aluguel de imóvel e, no mês, um empréstimo do banco. Quantas são fontes de renda de verdade?",
+   "ancora": "Salário e aluguel são renda; o empréstimo precisa ser devolvido.",
+   "alternativas": [
+    {
+     "texto": "2: o salário e o aluguel",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "3, incluindo o empréstimo",
+     "correta": false,
+     "feedbackErro": "O empréstimo não conta: precisa ser devolvido ao banco. Só o salário e o aluguel são renda de verdade."
+    },
+    {
+     "texto": "1, só o salário conta",
+     "correta": false,
+     "feedbackErro": "O aluguel também é renda: é dinheiro que entra todo mês sem precisar ser devolvido, igual ao salário."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "renda-minima",
+   "dificuldade": 3,
+   "pergunta": "Uma pessoa trabalha meio período e ganha menos do que o necessário pra viver. O que garante o direito à renda mínima?",
+   "ancora": "O direito complementa o valor de quem trabalha, mas ganha pouco.",
+   "alternativas": [
+    {
+     "texto": "Ela pode ter direito a um complemento de renda",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ela perde o direito por já ter um trabalho",
+     "correta": false,
+     "feedbackErro": "Ter um trabalho não elimina o direito quando o valor ganho fica abaixo do necessário pra viver."
+    },
+    {
+     "texto": "Nada muda, porque trabalhar já elimina o direito",
+     "correta": false,
+     "feedbackErro": "Muda, sim: o direito existe justamente pra completar quando o que se ganha trabalhando não é suficiente."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "fontes-de-renda",
+   "criterio": "É fonte de renda legítima?",
+   "enunciado": "Vender doces feitos em casa nos fins de semana",
+   "resposta": true,
+   "ancora": "Vender o que você mesmo produz é uma fonte de renda legítima.",
+   "feedbackErro": "Parece pequeno demais pra contar como renda de verdade. Mas vender o que você mesmo produz é uma fonte de renda legítima."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "fontes-de-renda",
+   "instrucao": "Mesmo em casos que confundem, é renda legítima ou não? Arraste.",
+   "ancora": "Legítima vem do que é seu; o resto é de outra pessoa.",
+   "feedbackErro": "É fácil achar que qualquer venda conta. Mas vender ou pegar o que não é seu não é fonte de renda legítima.",
+   "caixas": [
+    { "id": "legitima", "rotulo": "Legítima" },
+    { "id": "naolegitima", "rotulo": "Não legítima" }
+   ],
+   "itens": [
+    { "texto": "Mesada dada pelos pais", "caixaCorreta": "legitima" },
+    { "texto": "Vender algo emprestado, sem avisar o dono", "caixaCorreta": "naolegitima" },
+    { "texto": "Vender doces feitos em casa", "caixaCorreta": "legitima" },
+    { "texto": "Pegar dinheiro da carteira de alguém sem pedir", "caixaCorreta": "naolegitima" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "renda-minima",
+   "criterio": "É verdade, sobre renda mínima?",
+   "enunciado": "Ele pode se somar ao salário de quem ganha pouco, não substituir",
+   "resposta": true,
+   "ancora": "O complemento soma ao que já se ganha, não troca o salário por ele.",
+   "feedbackErro": "Parece que um substitui o outro. Mas o complemento se soma ao salário de quem ganha pouco, não o substitui."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "fontes-de-renda",
+   "dificuldade": 3,
+   "pergunta": "Otávio recebe R$ 40 de mesada, ganha R$ 60 num sorteio e pega R$ 50 emprestado da irmã. Quanto é renda de verdade?",
+   "ancora": "40 mais 60 é 100 — o empréstimo de R$ 50 não conta, precisa voltar.",
+   "verificacao": { "expressao": "40+60", "esperado": 100 },
+   "alternativas": [
+    {
+     "texto": "R$ 100: a mesada e o prêmio",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 150, somando tudo",
+     "correta": false,
+     "feedbackErro": "Os R$ 50 emprestados precisam voltar pra irmã — não são renda. A renda de verdade soma R$ 100."
+    },
+    {
+     "texto": "R$ 50, só o empréstimo",
+     "correta": false,
+     "feedbackErro": "O empréstimo é justamente o que não conta como renda, porque precisa ser devolvido. A renda real é R$ 100."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "renda-minima",
+   "criterio": "O direito depende da idade da pessoa?",
+   "enunciado": "Toda pessoa tem direito, em qualquer fase da vida",
+   "resposta": true,
+   "ancora": "O direito à renda mínima não depende da idade de quem precisa.",
+   "feedbackErro": "Parece que só adultos teriam esse direito. Mas ele vale em qualquer fase da vida, não depende da idade."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "fontes-de-renda",
+   "criterio": "É uma fonte de renda legítima?",
+   "enunciado": "Revender por um preço maior algo comprado barato, com o dono sabendo",
+   "resposta": true,
+   "ancora": "Revender algo próprio, com transparência, é fonte de renda legítima.",
+   "feedbackErro": "Parece estranho lucrar em cima de uma compra. Mas revender algo próprio, com transparência, é uma fonte de renda legítima."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "fontes-de-renda",
+   "pergunta": "Qual frase resume a transferência que você fez?",
+   "alternativas": [
+    {
+     "texto": "Nem todo dinheiro que entra é renda; e a renda mínima vale além do desemprego",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só quem está desempregado tem direito a complemento de renda",
+     "correta": false,
+     "feedbackErro": "Não é só isso: quem trabalha e ganha pouco também pode ter direito a complemento."
+    },
+    {
+     "texto": "Vender qualquer coisa, mesmo sem ser sua, conta como fonte de renda",
+     "correta": false,
+     "feedbackErro": "Não conta: vender algo que não é seu não é uma fonte de renda legítima, é um problema."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "renda-minima",
+   "dificuldade": 3,
+   "pergunta": "Uma mãe recebe R$ 1200 de salário e mais R$ 300 de complemento de renda mínima, por ganhar pouco. Qual é o total de renda naquele mês?",
+   "ancora": "1200 mais 300 é 1500 — o complemento se soma ao salário.",
+   "verificacao": { "expressao": "1200+300", "esperado": 1500 },
+   "alternativas": [
+    {
+     "texto": "R$ 1.500",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 1.200, só o salário conta",
+     "correta": false,
+     "feedbackErro": "O complemento também é renda: ele se soma ao salário, não é descartado. O total é R$ 1.500."
+    },
+    {
+     "texto": "R$ 900, subtraindo os dois valores",
+     "correta": false,
+     "feedbackErro": "Os dois valores se somam, não se subtraem — o complemento existe pra aumentar a renda, não diminuir."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "fontes-de-renda",
+   "criterio": "É fonte de renda legítima?",
+   "enunciado": "Encontrar uma carteira perdida e ficar com o dinheiro sem tentar devolver",
+   "resposta": false,
+   "ancora": "Dinheiro de outra pessoa não vira renda só por ter sido encontrado.",
+   "feedbackErro": "Parece um golpe de sorte, e por isso confunde. Mas o dinheiro é de outra pessoa — ficar com ele não é fonte de renda legítima."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "fontes-de-renda",
+   "instrucao": "Precisa devolver ou pode ficar com o dinheiro? Arraste.",
+   "ancora": "Empréstimo e o que é de outra pessoa precisam voltar; renda de verdade fica com você.",
+   "feedbackErro": "É fácil achar que todo dinheiro em mãos é seu. Mas empréstimo e achado de outra pessoa precisam ser devolvidos.",
+   "caixas": [
+    { "id": "devolver", "rotulo": "Precisa devolver" },
+    { "id": "ficar", "rotulo": "Pode ficar" }
+   ],
+   "itens": [
+    { "texto": "Dinheiro emprestado do banco", "caixaCorreta": "devolver" },
+    { "texto": "Salário do trabalho", "caixaCorreta": "ficar" },
+    { "texto": "Carteira perdida encontrada na rua", "caixaCorreta": "devolver" },
+    { "texto": "Prêmio de sorteio", "caixaCorreta": "ficar" }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,298 @@
+{
+ "slug": "custo-de-oportunidade",
+ "segmento": "ef89",
+ "conceitoPrincipal": "custo-de-oportunidade",
+ "fraseConceito": "Custo de oportunidade é a melhor alternativa que você abre mão ao escolher outra coisa.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Isso é um custo de oportunidade?",
+   "enunciado": "O passeio que você não fez porque gastou com um tênis",
+   "resposta": true,
+   "ancora": "Custo de oportunidade é a melhor alternativa que você abriu mão.",
+   "feedbackErro": "O tênis é o que você ganhou, e por isso parece o centro da história. Mas o custo de oportunidade é o passeio que ficou de lado."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Isso é um custo de oportunidade?",
+   "enunciado": "O preço que você pagou pelo tênis",
+   "resposta": false,
+   "ancora": "O preço é o custo direto — não o que você deixou de fazer.",
+   "feedbackErro": "É o número que mais chama atenção na compra. Mas o custo de oportunidade é sobre a alternativa abandonada, não sobre o preço pago."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Isso é um custo de oportunidade?",
+   "enunciado": "O rendimento que o dinheiro teria na poupança, se não fosse gasto",
+   "resposta": true,
+   "ancora": "O que o dinheiro deixou de render também é uma alternativa abandonada.",
+   "feedbackErro": "Rendimento parece coisa só de quem investe. Mas o que o dinheiro deixaria de render também é uma alternativa que você abriu mão."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-de-oportunidade",
+   "dificuldade": 1,
+   "pergunta": "O que é, de fato, o custo de oportunidade de uma escolha?",
+   "ancora": "É sempre a melhor alternativa que ficou pra trás.",
+   "alternativas": [
+    {
+     "texto": "O valor em dinheiro que você pagou",
+     "correta": false,
+     "feedbackErro": "O preço pago é o custo direto, não o custo de oportunidade."
+    },
+    {
+     "texto": "A melhor alternativa que você deixou de aproveitar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O tempo que você gastou decidindo",
+     "correta": false,
+     "feedbackErro": "O tempo de decisão é outra coisa; o custo de oportunidade é sobre a alternativa abandonada."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "escolha-intertemporal",
+   "dificuldade": 1,
+   "pergunta": "Gabriel tinha R$ 150 e gastou tudo hoje, em vez de guardar 6 meses na poupança. Qual foi o custo de oportunidade?",
+   "ancora": "Os R$ 150 renderiam cerca de R$ 5 em 6 meses na poupança.",
+   "verificacao": { "expressao": "150*1.005^6-150", "esperado": 4.56, "tolerancia": 0.5 },
+   "alternativas": [
+    {
+     "texto": "Os R$ 150 gastos",
+     "correta": false,
+     "feedbackErro": "Esse é o valor gasto, não o custo de oportunidade da escolha."
+    },
+    {
+     "texto": "Os cerca de R$ 5 que o dinheiro renderia em 6 meses",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada, porque ele já tinha decidido gastar",
+     "correta": false,
+     "feedbackErro": "Toda escolha tem um custo de oportunidade, mesmo quando parece óbvia."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Guardar tem custo de oportunidade?",
+   "enunciado": "Guardar R$ 100 na poupança em vez de gastar num passeio",
+   "resposta": true,
+   "ancora": "O custo de oportunidade de guardar é o passeio que você não fez.",
+   "feedbackErro": "Parece que só gastar tem custo. Mas guardar também tem: você abre mão do passeio que faria com esse dinheiro."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "escolha-intertemporal",
+   "instrucao": "Ordene de quem prioriza mais o presente pro futuro.",
+   "ancora": "Quanto mais se guarda, mais peso vai pro futuro.",
+   "feedbackErro": "Não é sobre o valor guardado isolado — é sobre a proporção entre gastar agora e guardar pro futuro.",
+   "itens": [
+    { "texto": "Gastar tudo assim que recebe", "posicaoCorreta": 1 },
+    { "texto": "Guardar uma pequena parte, gastar o resto logo", "posicaoCorreta": 2 },
+    { "texto": "Guardar metade, gastar a outra aos poucos", "posicaoCorreta": 3 },
+    { "texto": "Guardar quase tudo, gastando só o essencial", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Existe custo de oportunidade aqui?",
+   "enunciado": "Escolher entre dois filmes no mesmo horário, de graça",
+   "resposta": true,
+   "ancora": "Mesmo sem gastar dinheiro, você abre mão do outro filme.",
+   "feedbackErro": "Sem dinheiro envolvido, parece que não tem custo. Mas você ainda abre mão do outro filme — isso também conta."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "escolha-intertemporal",
+   "criterio": "É uma escolha intertemporal?",
+   "enunciado": "Decidir entre gastar hoje ou guardar pra usar daqui a um ano",
+   "resposta": true,
+   "ancora": "Escolha intertemporal é comparar presente e futuro.",
+   "feedbackErro": "Pode parecer só uma decisão de consumo comum. Mas comparar usar agora ou depois é a definição do termo."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-de-oportunidade",
+   "pergunta": "R$ 80 gastos hoje em vez de aplicados na poupança por 12 meses. Qual o custo de oportunidade em juros?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 50,
+   "gabarito": 5,
+   "toleranciaPct": 20,
+   "fonte": "taxa média da poupança, ~0,5% ao mês (Banco Central)",
+   "verificacao": { "expressao": "80*1.005^12-80", "esperado": 4.93, "tolerancia": 1 },
+   "feedbackPerto": "Isso mesmo — cerca de R$ 5 de rendimento perdido.",
+   "feedbackLonge": "O custo de oportunidade é de cerca de R$ 5 — o que os R$ 80 renderiam em 12 meses na poupança."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "escolha-intertemporal",
+   "dificuldade": 2,
+   "pergunta": "Guardar R$ 50/mês por 3 anos, a 0,5% ao mês, ou gastar tudo agora. Qual o custo de oportunidade de gastar?",
+   "ancora": "R$ 50/mês por 36 meses acumulam cerca de R$ 1.967 com juros.",
+   "verificacao": { "expressao": "50*((1.005^36-1)/0.005)", "esperado": 1966.81, "tolerancia": 50 },
+   "alternativas": [
+    {
+     "texto": "Cerca de R$ 1.967, o valor acumulado com juros",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 0, porque o dinheiro seria gasto de qualquer jeito",
+     "correta": false,
+     "feedbackErro": "Gastar tem sim um custo de oportunidade — o que o dinheiro renderia se guardado."
+    },
+    {
+     "texto": "Cerca de R$ 1.800, só a soma dos valores guardados",
+     "correta": false,
+     "feedbackErro": "Essa soma ignora o rendimento dos juros compostos ao longo dos 36 meses."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-de-oportunidade",
+   "dificuldade": 2,
+   "pergunta": "Fim de semana: trabalhar meio período por R$ 120, ou sair com amigos de graça. Qual o custo de oportunidade de sair?",
+   "ancora": "É o que você deixa de ganhar, não o que você gasta.",
+   "alternativas": [
+    {
+     "texto": "R$ 0, porque sair não custa nada",
+     "correta": false,
+     "feedbackErro": "Não gastar dinheiro não é custo zero — você abre mão dos R$ 120 que ganharia trabalhando."
+    },
+    {
+     "texto": "Os R$ 120 que deixou de ganhar trabalhando",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O tempo do passeio com os amigos",
+     "correta": false,
+     "feedbackErro": "O tempo é o que você ganha ao sair — o custo é o que você abriu mão de ganhar."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Isso ajuda a ver esse custo?",
+   "enunciado": "Perguntar 'o que eu deixo de fazer se escolher isso?'",
+   "resposta": true,
+   "ancora": "Essa pergunta é o jeito mais direto de achar o custo de oportunidade.",
+   "feedbackErro": "Parece uma pergunta genérica demais. Mas é ela que revela a melhor alternativa abandonada em cada escolha."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "escolha-intertemporal",
+   "criterio": "Isso ajuda numa escolha intertemporal?",
+   "enunciado": "Comparar o quanto o dinheiro renderia esperando com o quanto vale gasto agora",
+   "resposta": true,
+   "ancora": "Comparar as duas pontas orienta a escolha entre presente e futuro.",
+   "feedbackErro": "Parece complicado demais pro dia a dia. Mas é essa comparação que mostra se vale mais esperar ou gastar agora."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "custo-de-oportunidade",
+   "pergunta": "Qual frase resume o que você viu nesta lição?",
+   "alternativas": [
+    {
+     "texto": "Custo de oportunidade só existe quando envolve dinheiro.",
+     "correta": false,
+     "feedbackErro": "Mesmo escolhas de graça, como entre dois filmes, têm custo de oportunidade."
+    },
+    {
+     "texto": "Toda escolha tem um custo de oportunidade: a melhor alternativa deixada de lado.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O melhor é sempre guardar tudo, nunca gastar.",
+     "correta": false,
+     "feedbackErro": "Guardar também tem custo de oportunidade — o que você deixa de aproveitar agora."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "custo-de-oportunidade",
+   "instrucao": "É o custo de oportunidade da escolha?",
+   "ancora": "O custo de oportunidade é sempre a melhor alternativa abandonada.",
+   "feedbackErro": "Preço e detalhes do produto não são custo de oportunidade — ele é sempre a alternativa que ficou de lado.",
+   "caixas": [
+    { "id": "sim", "rotulo": "É" },
+    { "id": "nao", "rotulo": "Não é" }
+   ],
+   "itens": [
+    { "texto": "A viagem que você não fez, pra comprar um celular", "caixaCorreta": "sim" },
+    { "texto": "O preço do celular", "caixaCorreta": "nao" },
+    { "texto": "O rendimento que o dinheiro teria guardado", "caixaCorreta": "sim" },
+    { "texto": "A cor do celular escolhido", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "escolha-intertemporal",
+   "dificuldade": 3,
+   "pergunta": "R$ 300 gastos hoje ou guardados por 24 meses a 0,5% ao mês. Qual o custo de oportunidade de gastar?",
+   "ancora": "R$ 300 a 0,5% ao mês por 24 meses rendem cerca de R$ 38.",
+   "verificacao": { "expressao": "300*1.005^24-300", "esperado": 38.15, "tolerancia": 2 },
+   "alternativas": [
+    {
+     "texto": "Cerca de R$ 38",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 0, já que o valor seria gasto de qualquer forma",
+     "correta": false,
+     "feedbackErro": "Gastar sempre tem um custo de oportunidade: o rendimento que se perde."
+    },
+    {
+     "texto": "Cerca de R$ 150",
+     "correta": false,
+     "feedbackErro": "Esse valor é alto demais pra uma taxa de 0,5% ao mês nesse prazo."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "É verdade?",
+   "enunciado": "Só existe custo de oportunidade quando você perde dinheiro de verdade",
+   "resposta": false,
+   "ancora": "Existe mesmo quando a alternativa abandonada não envolve dinheiro.",
+   "feedbackErro": "Parece que só perda financeira conta. Mas tempo e outras alternativas abandonadas também são custo de oportunidade."
+  }
+ ]
+}

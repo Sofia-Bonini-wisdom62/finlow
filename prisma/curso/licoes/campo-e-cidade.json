@@ -1,0 +1,245 @@
+{
+ "slug": "campo-e-cidade",
+ "segmento": "ef35",
+ "conceitoPrincipal": "campo-e-cidade",
+ "fraseConceito": "O campo produz alimento e matéria-prima; a cidade transforma e vende — um depende do outro.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "atividade-campo-cidade",
+   "criterio": "É produzido no campo?",
+   "enunciado": "Leite tirado da vaca",
+   "resposta": true,
+   "ancora": "Leite vem da criação de animais no campo, antes de chegar à cidade.",
+   "feedbackErro": "Parece que só carne vem do campo. Mas o leite também é produzido lá, na fazenda, antes de chegar à cidade."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "atividade-campo-cidade",
+   "criterio": "É produzido no campo?",
+   "enunciado": "Camiseta costurada numa fábrica",
+   "resposta": false,
+   "ancora": "Fábrica fica na cidade — ela transforma o que o campo produz.",
+   "feedbackErro": "O algodão pode vir do campo, mas quem corta e costura a camiseta é a fábrica, na cidade."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "empreender-na-comunidade",
+   "criterio": "É um negócio da vizinhança?",
+   "enunciado": "A padaria que fica na esquina",
+   "resposta": true,
+   "ancora": "Padaria de bairro é um negócio local, feito por gente da comunidade.",
+   "feedbackErro": "Parece grande demais pra contar. Mas um negócio pequeno, tocado por gente do bairro, também é empreendedorismo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "atividade-campo-cidade",
+   "dificuldade": 1,
+   "pergunta": "De onde vem o arroz que chega até o mercado?",
+   "ancora": "O arroz nasce na lavoura, no campo, antes de chegar às prateleiras.",
+   "alternativas": [
+    {
+     "texto": "Da lavoura, no campo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "De uma fábrica de roupas",
+     "correta": false,
+     "feedbackErro": "Fábrica de roupas produz tecido e roupa, não alimento. O arroz nasce na lavoura, no campo."
+    },
+    {
+     "texto": "De um banco",
+     "correta": false,
+     "feedbackErro": "Banco lida com dinheiro, não planta nada. O arroz vem da lavoura, no campo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "setores-da-economia",
+   "dificuldade": 1,
+   "pergunta": "Quem planta o algodão, quem tece a camisa e quem vende na loja fazem parte de quê?",
+   "ancora": "Cada etapa depende da anterior até o produto ficar pronto.",
+   "alternativas": [
+    {
+     "texto": "Etapas diferentes que dependem umas das outras",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O mesmo trabalho, feito três vezes",
+     "correta": false,
+     "feedbackErro": "Plantar, tecer e vender são tarefas bem diferentes entre si — não é o mesmo trabalho repetido."
+    },
+    {
+     "texto": "Trabalhos que não têm nenhuma ligação",
+     "correta": false,
+     "feedbackErro": "Eles têm ligação, sim: sem o algodão plantado não existe tecido nem camisa pra vender."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "setores-da-economia",
+   "criterio": "Campo e cidade dependem um do outro?",
+   "enunciado": "O caminhão leva o leite da fazenda até o mercado",
+   "resposta": true,
+   "ancora": "O transporte liga o que o campo produz ao que a cidade vende.",
+   "feedbackErro": "Parece só um trajeto comum. Mas é esse transporte que liga a produção do campo à venda na cidade."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "atividade-campo-cidade",
+   "instrucao": "É do campo ou da cidade? Arraste.",
+   "ancora": "Campo produz alimento e matéria-prima; cidade fabrica e vende.",
+   "feedbackErro": "É fácil confundir onde cada coisa acontece. O campo planta e cria; a cidade transforma e vende esses produtos.",
+   "caixas": [
+    { "id": "campo", "rotulo": "Campo" },
+    { "id": "cidade", "rotulo": "Cidade" }
+   ],
+   "itens": [
+    { "texto": "Plantação de milho", "caixaCorreta": "campo" },
+    { "texto": "Loja de roupas", "caixaCorreta": "cidade" },
+    { "texto": "Criação de gado", "caixaCorreta": "campo" },
+    { "texto": "Fábrica de sapatos", "caixaCorreta": "cidade" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "empreender-na-comunidade",
+   "criterio": "É um exemplo de empreendedorismo?",
+   "enunciado": "Um vizinho que vende bolo na porta de casa",
+   "resposta": true,
+   "ancora": "Vender algo por conta própria, mesmo pequeno, é empreender.",
+   "feedbackErro": "Parece pequeno demais pra contar. Mas vender por conta própria, em qualquer tamanho, já é empreender."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "setores-da-economia",
+   "dificuldade": 1,
+   "pergunta": "Rafael viu que o café passa por três mãos até virar pó no mercado. O que isso mostra?",
+   "ancora": "Plantar, torrar e embalar são setores que trabalham juntos.",
+   "alternativas": [
+    {
+     "texto": "Setores diferentes trabalhando juntos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só um setor fazendo tudo sozinho",
+     "correta": false,
+     "feedbackErro": "Três etapas diferentes, com gente diferente em cada uma — não é um setor só fazendo tudo."
+    },
+    {
+     "texto": "Um trabalho que não depende de ninguém",
+     "correta": false,
+     "feedbackErro": "Cada etapa depende da anterior: sem plantar não há o que torrar, sem torrar não há o que embalar."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "atividade-campo-cidade",
+   "criterio": "É produzido no campo?",
+   "enunciado": "Ovos postos pelas galinhas na granja",
+   "resposta": true,
+   "ancora": "Granja fica no campo — é lá que os ovos são produzidos.",
+   "feedbackErro": "Parece que só verduras vêm do campo. Mas a criação de galinhas e a produção de ovos também acontecem lá."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "empreender-na-comunidade",
+   "criterio": "É uma atividade empreendedora?",
+   "enunciado": "Montar uma banca de frutas na feira",
+   "resposta": true,
+   "ancora": "Montar e tocar o próprio negócio é empreender, do tamanho que for.",
+   "feedbackErro": "Parece pequeno demais pra ser negócio. Mas montar e tocar sua própria banca já é empreender."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "atividade-campo-cidade",
+   "pergunta": "Qual frase resume o que você viu?",
+   "alternativas": [
+    {
+     "texto": "O campo produz e a cidade transforma e vende — um depende do outro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O campo e a cidade não têm nenhuma ligação entre si",
+     "correta": false,
+     "feedbackErro": "Eles têm ligação forte: o que o campo produz vira produto vendido na cidade."
+    },
+    {
+     "texto": "Só existe empreendedorismo em negócios grandes",
+     "correta": false,
+     "feedbackErro": "Negócio pequeno, como a banca da feira, também é empreendedorismo — o tamanho não é o critério."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "setores-da-economia",
+   "dificuldade": 2,
+   "pergunta": "O pão da padaria usa trigo plantado no campo. Isso é exemplo de quê?",
+   "ancora": "A ligação entre campo, fábrica e loja forma uma cadeia de produção.",
+   "alternativas": [
+    {
+     "texto": "Ligação entre setores diferentes",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Um só setor fazendo tudo sozinho",
+     "correta": false,
+     "feedbackErro": "São vários setores: quem planta o trigo, quem faz a farinha e quem assa o pão são diferentes."
+    },
+    {
+     "texto": "Coincidência sem nenhuma explicação",
+     "correta": false,
+     "feedbackErro": "Não é coincidência: sem o trigo do campo, não existiria farinha nem pão pra vender."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "empreender-na-comunidade",
+   "criterio": "É um negócio da comunidade?",
+   "enunciado": "Uma costureira que faz ajustes de roupa em casa",
+   "resposta": true,
+   "ancora": "Prestar serviço por conta própria, em casa, também é empreender.",
+   "feedbackErro": "Parece só um favor entre vizinhos. Mas cobrar pelo serviço, por conta própria, já é um negócio."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "atividade-campo-cidade",
+   "instrucao": "Toque na ordem até o leite virar queijo na loja.",
+   "ancora": "Do campo até a loja, cada etapa depende da anterior.",
+   "feedbackErro": "É tentador pular direto pra loja. Mas antes é preciso ordenhar, transportar e transformar o leite em queijo.",
+   "itens": [
+    { "texto": "Ordenhar a vaca", "posicaoCorreta": 1 },
+    { "texto": "Levar o leite pra fábrica", "posicaoCorreta": 2 },
+    { "texto": "Fazer o queijo", "posicaoCorreta": 3 },
+    { "texto": "Vender na loja", "posicaoCorreta": 4 }
+   ]
+  }
+ ]
+}

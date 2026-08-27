@@ -1,0 +1,340 @@
+{
+ "slug": "colchao-e-apolice-reforco",
+ "segmento": "em2",
+ "conceitoPrincipal": "colchao-e-apolice",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "reserva-de-emergencia",
+   "criterio": "A reserva dá conta, sem seguro?",
+   "enunciado": "Conserto de R$ 320 no notebook",
+   "resposta": true,
+   "ancora": "Qual era o critério? Tamanho × frequência: pequeno é com a reserva.",
+   "feedbackErro": "Lembre o critério: prejuízo que o colchão paga sem quebrar é caso dele. R$ 320 doem, mas não derrubam — seguro aqui custaria mais que resolve."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "seguro-transfere-risco",
+   "criterio": "A reserva dá conta, sem seguro?",
+   "enunciado": "Cirurgia de emergência particular, R$ 38 mil",
+   "resposta": false,
+   "ancora": "Prejuízo desse porte engole reservas: é risco para transferir.",
+   "feedbackErro": "Até reservas boas somam uns poucos meses de gastos — R$ 38 mil passam por cima. Risco grande e raro é o que plano de saúde e seguro existem para absorver."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "reserva-de-emergencia",
+   "criterio": "A reserva dá conta, sem seguro?",
+   "enunciado": "Três meses sem renda entre um trabalho e outro",
+   "resposta": true,
+   "ancora": "Atravessar meses sem renda é a missão nº 1 da reserva de 3 a 6 meses.",
+   "feedbackErro": "Ficar sem renda parece grande demais para o colchão — mas é exatamente o cenário para o qual ele foi dimensionado: 3 a 6 meses de gastos cobrem a travessia."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "termos-do-seguro",
+   "dificuldade": 2,
+   "pergunta": "Vidro quebrado: conserto de R$ 900, franquia de R$ 1.800, prêmio em dia. Vale acionar o seguro?",
+   "ancora": "Dano abaixo da franquia é do segurado — prêmio pago não muda isso.",
+   "verificacao": {
+    "expressao": "1800-900",
+    "esperado": 900
+   },
+   "alternativas": [
+    {
+     "texto": "Não: abaixo da franquia, quem paga é você mesmo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim: o prêmio em dia dá direito a qualquer conserto",
+     "correta": false,
+     "feedbackErro": "O prêmio mantém a cobertura viva — você acertou essa parte. Mas cobertura tem piso: a franquia. Dano de R$ 900 contra franquia de R$ 1.800 nem abre chamado."
+    },
+    {
+     "texto": "Não: acionar o seguro cancela a apólice",
+     "correta": false,
+     "feedbackErro": "Acionar não cancela apólice — sinistro coberto é direito do segurado. O motivo real de não acionar aqui é aritmético: o dano está abaixo da franquia."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "direitos-e-deveres",
+   "dificuldade": 2,
+   "pergunta": "A seguradora negou a indenização: o aviso do roubo chegou 40 dias depois do prazo. O que o caso ilustra?",
+   "ancora": "Segurado tem deveres — avisar no prazo é um deles. Descumpriu, perdeu.",
+   "alternativas": [
+    {
+     "texto": "Segurado também tem deveres, como avisar no prazo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Seguradora pode negar qualquer pedido que quiser",
+     "correta": false,
+     "feedbackErro": "Não pode: negativa exige base contratual, e órgãos como a Susep fiscalizam. Aqui houve base — o prazo de aviso descumprido. Deveres valem para os dois lados."
+    },
+    {
+     "texto": "Indenização só sai na justiça, com advogado",
+     "correta": false,
+     "feedbackErro": "A via normal é administrativa: sinistro avisado no prazo, com prêmio em dia e cobertura válida, paga sem juiz. O que travou este caso foi o dever descumprido."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "termos-do-seguro",
+   "criterio": "Isso é verdade?",
+   "enunciado": "A apólice é o contrato que diz o que está coberto",
+   "resposta": true,
+   "ancora": "Ler a apólice antes evita descobrir exclusões no dia do sinistro.",
+   "feedbackErro": "Apólice soa como sinônimo de 'seguro', mas é mais específico: é o documento com coberturas, exclusões, franquia e prazos. O que não está nela, não existe."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "termos-do-seguro",
+   "instrucao": "No sinistro coberto, quem paga cada parte da conta?",
+   "ancora": "Até a franquia: você. Acima dela, dentro da cobertura: a seguradora.",
+   "feedbackErro": "A divisão vem do contrato: o segurado banca a franquia e tudo o que for exclusão; a seguradora banca o que passa da franquia dentro da cobertura da apólice.",
+   "caixas": [
+    {
+     "id": "voce",
+     "rotulo": "Você"
+    },
+    {
+     "id": "seguradora",
+     "rotulo": "Seguradora"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Dano coberto acima da franquia",
+     "caixaCorreta": "seguradora"
+    },
+    {
+     "texto": "Valor até o limite da franquia",
+     "caixaCorreta": "voce"
+    },
+    {
+     "texto": "Prejuízo listado como exclusão",
+     "caixaCorreta": "voce"
+    },
+    {
+     "texto": "Perda total prevista na apólice",
+     "caixaCorreta": "seguradora"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "direitos-e-deveres",
+   "criterio": "A indenização sai nesse caso?",
+   "enunciado": "Dano que a apólice lista como exclusão",
+   "resposta": false,
+   "ancora": "Exclusão é a fronteira da cobertura: fora dela, o custo é seu.",
+   "feedbackErro": "Pagar prêmio todo mês cria a sensação de 'tudo coberto'. Mas a cobertura é uma lista, não um cheque em branco — e as exclusões estão escritas na apólice."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "direitos-e-deveres",
+   "criterio": "A indenização sai nesse caso?",
+   "enunciado": "Sinistro coberto, avisado no prazo, prêmio em dia",
+   "resposta": true,
+   "ancora": "Deveres cumpridos, direito líquido: a indenização é contratual.",
+   "feedbackErro": "Não depende de boa vontade da empresa: cumpridos os deveres do segurado, pagar é obrigação contratual da seguradora — e a Susep fiscaliza o cumprimento."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-da-protecao",
+   "pergunta": "Seguro de celular por R$ 42 ao mês: quanto você paga de prêmio em 2 anos?",
+   "campo": "moeda",
+   "min": 200,
+   "max": 3000,
+   "gabarito": 1008,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 42 × 24 meses",
+   "verificacao": {
+    "expressao": "42*24",
+    "esperado": 1008
+   },
+   "feedbackPerto": "R$ 1.008 — talvez perto do valor do próprio aparelho usado. É esta conta que decide se o seguro vale: prêmio total × prejuízo possível.",
+   "feedbackLonge": "R$ 1.008 em 2 anos. A parcela pequena esconde o total: 'só R$ 42' repetido 24 vezes vira um celular quase inteiro."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "reserva-de-emergencia",
+   "dificuldade": 2,
+   "pergunta": "Quem vive de renda variável, como freelancer, dimensiona a reserva como?",
+   "ancora": "Renda incerta pede colchão maior: mais perto de 6 meses que de 3.",
+   "alternativas": [
+    {
+     "texto": "Mira mais perto de 6 meses do que de 3",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Reserva menor: quem ganha variável se ajusta rápido",
+     "correta": false,
+     "feedbackErro": "A flexibilidade existe, mas joga contra: meses fracos podem emendar. Quanto menos previsível a entrada, mais meses de colchão a travessia exige."
+    },
+    {
+     "texto": "Igual a todo mundo: 3 meses é o padrão universal",
+     "correta": false,
+     "feedbackErro": "Os '3 a 6 meses' são uma faixa, não um número único. Estabilidade de renda é o que posiciona você nela: CLT estável fica perto do 3; renda variável, do 6."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-da-protecao",
+   "dificuldade": 2,
+   "pergunta": "Duas apólices iguais: franquia alta com prêmio baixo, ou franquia baixa com prêmio alto. Quem deve preferir a primeira?",
+   "ancora": "Franquia alta só é barata para quem tem reserva que a cubra.",
+   "alternativas": [
+    {
+     "texto": "Quem tem reserva capaz de cobrir a franquia",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quem não tem nenhuma reserva guardada",
+     "correta": false,
+     "feedbackErro": "Sem colchão, a franquia alta vira dívida no dia do sinistro — o prêmio economizado sai caro. Colchão e apólice se dimensionam juntos, não separados."
+    },
+    {
+     "texto": "Tanto faz: no total, o custo é sempre o mesmo",
+     "correta": false,
+     "feedbackErro": "Os desenhos distribuem risco de formas diferentes: um cobra mais todo mês, o outro cobra no sinistro. Qual pesa menos depende de quem paga — e da reserva."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "direitos-e-deveres",
+   "criterio": "Protege o patrimônio de verdade?",
+   "enunciado": "Guardar a apólice sem nunca ler as exclusões",
+   "resposta": false,
+   "ancora": "Proteção desconhecida falha na hora H: leia antes de precisar.",
+   "feedbackErro": "Contratar já parece o trabalho todo. Mas quem descobre as exclusões no dia do sinistro descobre tarde — o contrato se lê com calma, antes do susto."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "reserva-de-emergencia",
+   "criterio": "Protege o patrimônio de verdade?",
+   "enunciado": "Recompor a reserva logo depois de usá-la",
+   "resposta": true,
+   "ancora": "Reserva usada é reserva vazia: recompor é parte do plano.",
+   "feedbackErro": "Depois do susto, a tentação é relaxar — 'já passou'. Mas o colchão gasto não protege do próximo imprevisto: a recomposição é a continuação da proteção."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "colchao-e-apolice",
+   "dificuldade": 2,
+   "pergunta": "Antes de assinar um seguro, o que você confere primeiro?",
+   "alternativas": [
+    {
+     "texto": "Cobertura, franquia e meus deveres — o preço vem depois disso.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só o prêmio: quanto mais barato, melhor o seguro.",
+     "correta": false,
+     "feedbackErro": "Prêmio baixo com cobertura furada custa caro no sinistro. Preço se compara depois de saber o que cada apólice cobre."
+    },
+    {
+     "texto": "A fama da seguradora: marca grande dispensa contrato.",
+     "correta": false,
+     "feedbackErro": "Marca não muda o que vale no papel: exclusões e franquia da SUA apólice. Contrato se lê, de qualquer empresa."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "direitos-e-deveres",
+   "instrucao": "O sinistro aconteceu. Ordene o que o segurado faz.",
+   "ancora": "Conferir cobertura, avisar no prazo, pagar franquia, receber.",
+   "feedbackErro": "A ordem segue o contrato: primeiro saber se há cobertura, depois cumprir o dever de avisar no prazo; a franquia entra no acerto e a indenização fecha o ciclo.",
+   "itens": [
+    {
+     "texto": "Conferir a cobertura na apólice",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Avisar a seguradora dentro do prazo",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Pagar a franquia, se houver",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Receber a indenização",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "reserva-de-emergencia",
+   "pergunta": "Custo de vida de R$ 2.800 e meta de 6 meses: qual o tamanho da reserva?",
+   "campo": "moeda",
+   "min": 5000,
+   "max": 40000,
+   "gabarito": 16800,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 2.800 × 6 meses",
+   "verificacao": {
+    "expressao": "2800*6",
+    "esperado": 16800
+   },
+   "feedbackPerto": "R$ 16.800. Meta de 6 meses é a dose para renda instável — e se monta em parcelas, não de uma vez.",
+   "feedbackLonge": "R$ 16.800: custo mensal × 6. O viés é calcular sobre a renda ou sobre um valor 'que parece bastante' — a base é o gasto real do mês."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "termos-do-seguro",
+   "dificuldade": 2,
+   "pergunta": "Para que serve a franquia, do ponto de vista do sistema?",
+   "ancora": "Franquia filtra o pequeno: sem ela, todo prêmio custaria muito mais.",
+   "alternativas": [
+    {
+     "texto": "Evitar acionamentos por danos pequenos, baixando o prêmio",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Gerar lucro extra sem função para o segurado",
+     "correta": false,
+     "feedbackErro": "Ela tem função que te beneficia: sem franquia, cada arranhão viraria processo de sinistro e o prêmio de todos subiria. O filtro barateia a proteção."
+    },
+    {
+     "texto": "Punir os segurados que dirigem mal",
+     "correta": false,
+     "feedbackErro": "A franquia vale igual para todos, com ou sem culpa. Quem ajusta o preço ao comportamento é o perfil de risco no cálculo do prêmio, não a franquia."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,286 @@
+{
+ "slug": "do-sal-ao-pix",
+ "segmento": "ef67",
+ "conceitoPrincipal": "do-sal-ao-pix",
+ "fraseConceito": "O dinheiro mudou de forma — sal, metal, papel, Pix — mas sempre foi um acordo sobre o que vale a troca.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "formas-do-dinheiro",
+   "criterio": "Isso já funcionou como dinheiro?",
+   "enunciado": "Sal, entre soldados romanos",
+   "resposta": true,
+   "ancora": "Soldados recebiam parte da paga em sal — daí vem a palavra 'salário'.",
+   "feedbackErro": "Parece só tempero de cozinha, mas o sal era raro, durava e todo mundo aceitava trocar por ele — por isso funcionava como dinheiro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "formas-do-dinheiro",
+   "criterio": "Isso já funcionou como dinheiro?",
+   "enunciado": "Sementes de cacau, entre os astecas",
+   "resposta": true,
+   "ancora": "Cacau era moeda na Mesoamérica, antes dos europeus.",
+   "feedbackErro": "O cacau também virava bebida e alimento, e por isso parece só mercadoria. Mas era raro, durava seco e era aceito por todos — servia como dinheiro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "formas-do-dinheiro",
+   "criterio": "Isso já funcionou como dinheiro?",
+   "enunciado": "Uma nota de R$ 50 rasgada, mas inteira",
+   "resposta": true,
+   "ancora": "Nota rasgada ainda vale: o Banco Central troca por novas.",
+   "feedbackErro": "O papel parece sem valor de tão gasto, mas o que garante o valor não é o estado físico da nota, é quem emite: o Banco Central continua reconhecendo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "formas-do-dinheiro",
+   "dificuldade": 1,
+   "pergunta": "Sal, gado e moedas de metal viraram dinheiro em épocas diferentes. O que tinham em comum?",
+   "ancora": "Raro, durável, aceito por todos — isso vira dinheiro.",
+   "alternativas": [
+    {
+     "texto": "Eram bonitos de guardar em casa",
+     "correta": false,
+     "feedbackErro": "Beleza não é o critério: muita coisa bonita nunca serviu de dinheiro. O que importa é durar, ser raro e todos aceitarem trocar por isso."
+    },
+    {
+     "texto": "Eram raros, duráveis e aceitos por todo mundo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Eram distribuídos de graça pelo governo",
+     "correta": false,
+     "feedbackErro": "Nenhum desses três surgiu de doação estatal — gado e sal circulavam por troca direta, sem um governo emitindo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "formas-do-dinheiro",
+   "dificuldade": 1,
+   "pergunta": "O Pix trocou o papel pela tela do celular. O que ele manteve da função do dinheiro?",
+   "ancora": "Papel, metal ou digital: o que importa é ser aceito por todos.",
+   "alternativas": [
+    {
+     "texto": "Ser aceito por todo mundo como forma de pagar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ser feito de metal ou papel",
+     "correta": false,
+     "feedbackErro": "O material mudou — o Pix não é físico. O que não mudou é ser aceito universalmente como pagamento."
+    },
+    {
+     "texto": "Ficar guardado dentro de uma carteira",
+     "correta": false,
+     "feedbackErro": "Pix não fica em carteira nenhuma, é só dado digital. Isso mostra que a forma física nunca foi o essencial do dinheiro."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "formas-do-dinheiro",
+   "criterio": "Isso é uma permanência, não uma mudança?",
+   "enunciado": "Precisar ser aceito por todos para funcionar como pagamento",
+   "resposta": true,
+   "ancora": "A forma muda (sal, papel, Pix); a aceitação geral não.",
+   "feedbackErro": "Dá pra pensar que só a tecnologia importa, mas o que sempre foi exigido é a aceitação geral: sem isso, nada vira dinheiro, nem o Pix."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "formas-do-dinheiro",
+   "instrucao": "Isso ainda é usado como pagamento hoje, ou já foi superado?",
+   "ancora": "Papel e Pix seguem valendo; sal e escambo, não.",
+   "feedbackErro": "O critério não é a época em que surgiu, é se ainda circula como pagamento hoje. Papel e Pix seguem valendo; sal e escambo direto não.",
+   "caixas": [
+    {
+     "id": "atual",
+     "rotulo": "Ainda em uso"
+    },
+    {
+     "id": "superado",
+     "rotulo": "Já foi superado"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Cédulas de papel",
+     "caixaCorreta": "atual"
+    },
+    {
+     "texto": "Sal como forma de pagar",
+     "caixaCorreta": "superado"
+    },
+    {
+     "texto": "Pix",
+     "caixaCorreta": "atual"
+    },
+    {
+     "texto": "Escambo direto de mercadorias",
+     "caixaCorreta": "superado"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "preco-e-contexto",
+   "criterio": "O contexto explica esse preço maior?",
+   "enunciado": "Água de coco custar mais na praia do que no mercado do bairro",
+   "resposta": true,
+   "ancora": "Mesmo produto, preço maior onde a procura sobe.",
+   "feedbackErro": "O coco em si não muda de custo — o que muda é o contexto: na praia, quem quer água de coco não tem outra opção por perto."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "preco-e-contexto",
+   "dificuldade": 1,
+   "pergunta": "Por que um guarda-chuva fica mais caro no mesmo mercado, num dia de chuva forte?",
+   "ancora": "Preço reflete quanto as pessoas topam pagar, não o custo.",
+   "alternativas": [
+    {
+     "texto": "Porque a procura aumenta e vale mais pra quem precisa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque o guarda-chuva fica mais pesado com a chuva",
+     "correta": false,
+     "feedbackErro": "O peso do guarda-chuva não muda com o tempo lá fora. Quem muda é a procura das pessoas por ele."
+    },
+    {
+     "texto": "Porque existe uma lei que fixa preço maior em dias de chuva",
+     "correta": false,
+     "feedbackErro": "Não existe essa lei. Quem sobe o preço é o próprio comerciante, respondendo à procura maior."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "formas-do-dinheiro",
+   "criterio": "Isso muda só a forma, não o valor?",
+   "enunciado": "Trocar cédulas de papel por um pagamento via Pix",
+   "resposta": true,
+   "ancora": "Mudança de forma: R$ 50 em papel ou Pix seguem valendo R$ 50.",
+   "feedbackErro": "Pode parecer que o Pix 'vale menos' por não ser físico, mas o valor de R$ 50 é o mesmo — só a forma de transportar esse valor mudou."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "preco-e-contexto",
+   "criterio": "O contexto explica o preço maior?",
+   "enunciado": "Um ingresso de show custar mais perto da data do evento",
+   "resposta": true,
+   "ancora": "Perto do evento, mais procura empurra o preço pra cima.",
+   "feedbackErro": "O ingresso continua sendo o mesmo assento. O que sobe é a procura de quem deixou pra última hora, e isso é contexto, não custo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "formas-do-dinheiro",
+   "pergunta": "Qual frase resume o que você viu sobre dinheiro e valor?",
+   "alternativas": [
+    {
+     "texto": "O dinheiro sempre foi feito de papel e metal",
+     "correta": false,
+     "feedbackErro": "Sal, cacau e Pix mostram que a forma varia bastante — papel e metal são só duas entre várias."
+    },
+    {
+     "texto": "O dinheiro muda de forma, mas seu valor depende do contexto social",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O preço de um produto só depende do custo de fabricação",
+     "correta": false,
+     "feedbackErro": "O guarda-chuva no dia de chuva mostra o contrário: o custo de fabricar não mudou, o preço sim."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "formas-do-dinheiro",
+   "instrucao": "Ordene do meio de pagamento mais antigo ao mais recente.",
+   "ancora": "Do escambo ao Pix: a forma evolui, a função de mediar trocas continua.",
+   "feedbackErro": "A ordem segue a linha do tempo real: trocar produto por produto veio primeiro; pagamento digital é a etapa mais recente.",
+   "itens": [
+    {
+     "texto": "Escambo (troca direta de mercadorias)",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Metais preciosos (ouro, prata)",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Papel-moeda (cédulas)",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Pagamento digital (Pix)",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "preco-e-contexto",
+   "instrucao": "O preço muda pelo contexto, ou pelo custo de produzir?",
+   "ancora": "Contexto muda o quanto se paga; custo muda o quanto custou.",
+   "feedbackErro": "Custo de produção sobe o preço em qualquer lugar; contexto muda o preço do mesmo produto, sem mudar quanto custou fazer.",
+   "caixas": [
+    {
+     "id": "contexto",
+     "rotulo": "Contexto"
+    },
+    {
+     "id": "custo",
+     "rotulo": "Custo de produção"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Água mineral mais cara dentro do estádio",
+     "caixaCorreta": "contexto"
+    },
+    {
+     "texto": "Preço do pão subir com o custo do trigo",
+     "caixaCorreta": "custo"
+    },
+    {
+     "texto": "Entrada de festival mais cara perto da data",
+     "caixaCorreta": "contexto"
+    },
+    {
+     "texto": "Preço do carro subir com o custo do aço",
+     "caixaCorreta": "custo"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "formas-do-dinheiro",
+   "criterio": "É moeda com curso legal no Brasil hoje?",
+   "enunciado": "Um boi dado para quitar dívida entre vizinhos, sem registro",
+   "resposta": false,
+   "ancora": "É escambo informal, sem curso legal garantido por lei.",
+   "feedbackErro": "O boi tem valor real, mas moeda com curso legal é só a garantida pelo Banco Central; trocas informais não valem como pagamento oficial."
+  }
+ ]
+}

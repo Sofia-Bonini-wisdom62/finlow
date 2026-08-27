@@ -1,0 +1,300 @@
+{
+ "slug": "de-graca-nao-e-de-graca-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "de-graca-nao-e-de-graca",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "criterio": "Tem custo escondido, mesmo incomum?",
+   "enunciado": "Um software de código aberto, mantido por voluntários, sem anúncio nem venda de dados",
+   "resposta": false,
+   "ancora": "Sem ninguém lucrando por trás, é 'grátis' de verdade.",
+   "feedbackErro": "Depois de tantos exemplos com pegadinha, parece seguro desconfiar de tudo. Mas software livre de voluntários é caso raro sem custo escondido."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "criterio": "Tem custo escondido, mesmo incomum?",
+   "enunciado": "Uma feira de troca de roupas usadas, sem dinheiro envolvido",
+   "resposta": false,
+   "ancora": "Troca direta, sem dado, anúncio ou venda por trás, não esconde custo.",
+   "feedbackErro": "Envolve consumo e roupa, e por isso pode parecer disfarce de venda. Mas sendo troca direta, não há custo escondido."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "criterio": "Tem custo escondido, mesmo incomum?",
+   "enunciado": "Um programa social gratuito custeado com impostos que todos pagam",
+   "resposta": true,
+   "ancora": "Custeado por impostos: todos pagam juntos, não é grátis de fato.",
+   "feedbackErro": "Parece grátis porque ninguém paga na hora de usar. Mas o programa é sustentado por impostos pagos pela sociedade."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "dificuldade": 3,
+   "pergunta": "Um app 100% grátis com anúncios, outro a R$ 9,90/mês sem anúncio nem coleta de dados. Qual é 'mais barata' de verdade?",
+   "ancora": "'Grátis com anúncio' x 'pago sem anúncio': pesa dados, não só reais.",
+   "alternativas": [
+    {
+     "texto": "Depende do valor que você dá pra atenção e dados",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A grátis é sempre mais barata, porque não cobra dinheiro",
+     "correta": false,
+     "feedbackErro": "Não cobrar dinheiro não é o mesmo que não cobrar nada — atenção e dados também têm valor."
+    },
+    {
+     "texto": "A paga é sempre melhor, porque envolve dinheiro de verdade",
+     "correta": false,
+     "feedbackErro": "Pagar em dinheiro não garante que vale mais — depende do que cada uma pede em troca."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "dificuldade": 3,
+   "pergunta": "Uma empresa reduz preço com material mais barato, que dura menos. Isso é mais barato pra quem, no fim das contas?",
+   "ancora": "Preço baixo pode transferir custo pra recompra futura e o ambiente.",
+   "alternativas": [
+    {
+     "texto": "Mais barato pra empresa, mas caro pra recompra e natureza",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Mais barato pra todo mundo envolvido, sem exceção",
+     "correta": false,
+     "feedbackErro": "Preço menor não cobre o custo de comprar de novo mais cedo, nem o impacto ambiental do descarte maior."
+    },
+    {
+     "texto": "Só afeta a empresa, ninguém mais sente o efeito",
+     "correta": false,
+     "feedbackErro": "O efeito chega em quem compra de novo antes do esperado e na natureza, que recebe mais descarte."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "criterio": "Isso é sempre verdade sobre 'grátis'?",
+   "enunciado": "Toda oferta gratuita esconde algum tipo de custo",
+   "resposta": false,
+   "ancora": "Bens públicos e doações reais são exceções — nem tudo esconde custo.",
+   "feedbackErro": "Depois de ver tantos exemplos com pegadinha, parece regra geral. Mas doação real e bens públicos são exceções reais."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "instrucao": "O custo aqui é claro ou escondido, mesmo que exista?",
+   "ancora": "O problema não é pagar — é pagar sem saber.",
+   "feedbackErro": "Escondido é quando você não sabe que está pagando; claro é quando o custo é conhecido e aceito, ou não existe.",
+   "caixas": [
+    {
+     "id": "escondido",
+     "rotulo": "Escondido"
+    },
+    {
+     "id": "claro",
+     "rotulo": "Claro ou inexistente"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "App grátis financiado por anúncios direcionados aos seus dados",
+     "caixaCorreta": "escondido"
+    },
+    {
+     "texto": "Imposto que financia um posto de saúde gratuito",
+     "caixaCorreta": "claro"
+    },
+    {
+     "texto": "Assinatura com teste grátis que vira cobrança automática sem aviso claro",
+     "caixaCorreta": "escondido"
+    },
+    {
+     "texto": "Doação voluntária que mantém uma biblioteca comunitária",
+     "caixaCorreta": "claro"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "criterio": "É forma válida de achar custo escondido?",
+   "enunciado": "Checar se o serviço sobrevive sem anúncio, assinatura futura ou venda de dados",
+   "resposta": true,
+   "ancora": "Sem nenhuma dessas três fontes, o serviço é livre de custo escondido.",
+   "feedbackErro": "Parece um teste informal demais pra confiar. Mas checar essas três fontes cobre a maioria dos jeitos de monetizar algo 'grátis'."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "dificuldade": 3,
+   "pergunta": "Uma escola oferece merenda gratuita a todos, sem nada em troca. Isso desmente 'nada é de graça'?",
+   "ancora": "Merenda escolar tem custo real, pago coletivamente — só muda de forma.",
+   "alternativas": [
+    {
+     "texto": "Não desmente — o custo existe, pago via impostos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, prova que existe algo de graça, sem custo nenhum",
+     "correta": false,
+     "feedbackErro": "O custo existe: vem dos impostos pagos pela sociedade. Não é individual, mas não é zero."
+    },
+    {
+     "texto": "Não, porque a escola está tendo prejuízo com isso",
+     "correta": false,
+     "feedbackErro": "Não é prejuízo — é um custo planejado, pago com dinheiro público arrecadado antes."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "criterio": "Vale pagar pra fugir do custo escondido?",
+   "enunciado": "Pagar por um app sem anúncio, pra não abrir mão dos próprios dados",
+   "resposta": true,
+   "ancora": "Às vezes pagar em dinheiro é mais barato que pagar com dados.",
+   "feedbackErro": "Pagar parece sempre pior do que usar de graça. Mas se o 'grátis' cobra seus dados, pagar pode sair mais barato no total."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "criterio": "Isso é verdade sobre custo escondido?",
+   "enunciado": "Existe caso em que a oferta é realmente livre de qualquer custo, mesmo escondido",
+   "resposta": true,
+   "ancora": "Doação genuína e bem público de fato não escondem custo.",
+   "feedbackErro": "Depois de tanto insistir que 'nada é de graça', parece contraditório admitir exceção. Mas essas exceções existem de verdade."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "pergunta": "Qual é a versão mais completa da lição sobre ofertas 'grátis'?",
+   "alternativas": [
+    {
+     "texto": "Quase sempre alguém paga — dinheiro, dados, atenção ou impostos — com exceções",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Toda oferta gratuita, sem exceção, esconde um custo",
+     "correta": false,
+     "feedbackErro": "Existem exceções reais: doação genuína e bens públicos de fato não escondem custo."
+    },
+    {
+     "texto": "O importante é sempre escolher a opção paga, nunca a grátis",
+     "correta": false,
+     "feedbackErro": "Pagar não é garantia de nada — o que importa é identificar quem paga o quê."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "instrucao": "O custo aqui é coletivo, via impostos, ou individual e escondido?",
+   "ancora": "A diferença não é se existe custo, é quem paga e se sabe disso.",
+   "feedbackErro": "Coletivo é pago por todos via impostos, de forma conhecida; individual escondido é quando só você paga, sem perceber.",
+   "caixas": [
+    {
+     "id": "coletivo",
+     "rotulo": "Coletivo"
+    },
+    {
+     "id": "individual",
+     "rotulo": "Individual e escondido"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Posto de saúde gratuito",
+     "caixaCorreta": "coletivo"
+    },
+    {
+     "texto": "App que vende seus dados sem avisar claramente",
+     "caixaCorreta": "individual"
+    },
+    {
+     "texto": "Escola pública gratuita",
+     "caixaCorreta": "coletivo"
+    },
+    {
+     "texto": "Teste grátis que vira cobrança automática sem aviso",
+     "caixaCorreta": "individual"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "instrucao": "Ordene do caso mais genuinamente livre de custo pro mais escondido.",
+   "ancora": "Quanto mais oculto o pagamento, mais no fim da lista.",
+   "feedbackErro": "Não é sobre qual parece mais legal — é sobre quão visível está quem paga o quê.",
+   "itens": [
+    {
+     "texto": "Doação voluntária sem contrapartida",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Bem público financiado por impostos conhecidos",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "App grátis com anúncios direcionados",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Assinatura que cobra automático após teste, sem aviso",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "de-graca-nao-e-de-graca",
+   "dificuldade": 3,
+   "pergunta": "Uma ONG distribui sementes de graça pra hortas. O que diferencia isso de um app 'grátis' com anúncio?",
+   "ancora": "Doação sem monetizar atenção ou dados é o mais próximo do 'grátis'.",
+   "alternativas": [
+    {
+     "texto": "Aqui ninguém monetiza a atenção ou os dados de quem recebe",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada diferencia, os dois são estratégias de marketing",
+     "correta": false,
+     "feedbackErro": "ONG sem fins lucrativos distribuindo sementes não vende espaço publicitário nem coleta dados."
+    },
+    {
+     "texto": "A diferença é só o valor do produto doado",
+     "correta": false,
+     "feedbackErro": "Não é sobre o valor do item — é sobre se existe alguém lucrando com atenção ou dados."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,153 @@
+{
+ "slug": "quero-ou-preciso-reforco",
+ "segmento": "ef12",
+ "conceitoPrincipal": "quero-ou-preciso",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "Isso é preciso pra viver?",
+   "enunciado": "Escovar os dentes",
+   "resposta": true,
+   "ancora": "Escovar os dentes cuida da saúde — é necessidade.",
+   "feedbackErro": "Escovar dente é chato às vezes, e coisa chata não parece 'precisar'. Mas cuidar da saúde da boca é necessidade."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "Isso é preciso pra viver?",
+   "enunciado": "Ter um bicho de pelúcia novo",
+   "resposta": false,
+   "ancora": "Pelúcia nova é gostosa de ganhar, mas não é preciso pra viver.",
+   "feedbackErro": "Pelúcia nova dá um carinho especial, e isso confunde com precisar. Mas dá pra viver sem ela — é desejo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "reaproveitar-e-consertar",
+   "criterio": "Dá pra consertar em vez de jogar fora?",
+   "enunciado": "Uma mochila com o zíper emperrado",
+   "resposta": true,
+   "ancora": "Zíper emperrado costuma destravar ou trocar.",
+   "feedbackErro": "Zíper que trava parece que quebrou de vez. Mas na maioria das vezes dá pra destravar ou trocar a peça."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "reaproveitar-e-consertar",
+   "criterio": "Dá pra consertar em vez de jogar fora?",
+   "enunciado": "Uma fruta já toda mofada",
+   "resposta": false,
+   "ancora": "Fruta mofada não dá pra recuperar — vai pro lixo.",
+   "feedbackErro": "Dá vontade de aproveitar o que ainda parece bom por fora. Mas fruta mofada não é segura pra comer."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "desejo-e-necessidade",
+   "instrucao": "É desejo ou é necessidade?",
+   "ancora": "O que protege ou mantém saudável é necessidade.",
+   "feedbackErro": "'Todo mundo tem' parece virar necessidade. Mas o que decide é se o corpo precisa disso — não se os outros têm.",
+   "caixas": [
+    { "id": "desejo", "rotulo": "Desejo" },
+    { "id": "necessidade", "rotulo": "Necessidade" }
+   ],
+   "itens": [
+    { "texto": "Um casaco quando está frio", "caixaCorreta": "necessidade" },
+    { "texto": "O boneco que todo mundo tem", "caixaCorreta": "desejo" },
+    { "texto": "Beber água quando tem sede", "caixaCorreta": "necessidade" },
+    { "texto": "Trocar de celular porque saiu um novo", "caixaCorreta": "desejo" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "reaproveitar-e-consertar",
+   "criterio": "Dá pra reaproveitar pra outra coisa?",
+   "enunciado": "Uma caixa de sapato vazia",
+   "resposta": true,
+   "ancora": "Caixa de sapato vira caixa de brinquedo, de guardar cartas.",
+   "feedbackErro": "Caixa vazia parece só embalagem pronta pro lixo. Mas dá pra virar outro objeto útil em casa."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "É uma necessidade?",
+   "enunciado": "Um par de sapatos quando o antigo furou",
+   "resposta": true,
+   "ancora": "Sapato furado não protege mais o pé — precisa trocar.",
+   "feedbackErro": "Trocar de sapato parece sempre desejo de ter algo novo. Mas quando o antigo furou e não protege mais, virou necessidade."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "reaproveitar-e-consertar",
+   "dificuldade": 2,
+   "pergunta": "Antes de jogar um brinquedo quebrado fora, o que vale a pena checar?",
+   "ancora": "Sempre olhar primeiro se dá conserto.",
+   "alternativas": [
+    {
+     "texto": "Se ainda tem a cor bonita",
+     "correta": false,
+     "feedbackErro": "Cor não muda se dá pra consertar ou não. O que importa é se a quebra tem conserto."
+    },
+    {
+     "texto": "Se dá pra consertar a parte quebrada",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se já brincou bastante com ele",
+     "correta": false,
+     "feedbackErro": "Já ter brincado bastante não decide isso — o que decide é se o conserto é possível."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "desejo-e-necessidade",
+   "instrucao": "Toque na ordem: mais precisamos pro que menos precisamos.",
+   "ancora": "Necessidade básica vem primeiro.",
+   "feedbackErro": "Sapato e boneco parecem parecidos, os dois são pra usar. Mas sapato protege o pé — vem antes do boneco.",
+   "itens": [
+    { "texto": "Casaco no frio", "posicaoCorreta": 1 },
+    { "texto": "Sapato pra sair", "posicaoCorreta": 2 },
+    { "texto": "Boneco novo", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "reaproveitar-e-consertar",
+   "criterio": "Dá pra consertar em vez de jogar fora?",
+   "enunciado": "Uma calça rasgada no joelho",
+   "resposta": true,
+   "ancora": "Calça rasgada dá pra remendar ou virar bermuda.",
+   "feedbackErro": "Rasgo parece definitivo, tipo 'já era'. Mas dá pra remendar, ou até cortar e virar outra roupa."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "desejo-e-necessidade",
+   "instrucao": "É desejo ou é necessidade?",
+   "ancora": "O que cuida do corpo é necessidade; o resto costuma ser desejo.",
+   "feedbackErro": "'Mais caro' parece importante, mas preço não decide necessidade. O que decide é se o corpo precisa disso.",
+   "caixas": [
+    { "id": "desejo", "rotulo": "Desejo" },
+    { "id": "necessidade", "rotulo": "Necessidade" }
+   ],
+   "itens": [
+    { "texto": "Tomar banho", "caixaCorreta": "necessidade" },
+    { "texto": "Ganhar um segundo videogame", "caixaCorreta": "desejo" },
+    { "texto": "Ter um cobertor no frio", "caixaCorreta": "necessidade" },
+    { "texto": "Ter o brinquedo mais caro da loja", "caixaCorreta": "desejo" }
+   ]
+  }
+ ]
+}
