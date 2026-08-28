@@ -13,7 +13,7 @@ Construir uma nova tela onde se pode registrar novos objetivos financeiros para
 guardar dinheiro para eles, uma coisa meio sonho.
 
 > Entregue na etapa V2-4 do Redesign Fin v2: `/objetivos`, com o modelo
-> `Objetivo` cifrado, "+ Guardar R$ 50" e barra colorida. Detalhes na seção
+> `Objetivo` cifrado, "+ Guardar" e barra colorida. Detalhes na seção
 > "Redesign Fin v2" abaixo; pendência que segue viva lá: remover/editar
 > objetivo não tem desenho.
 
@@ -295,6 +295,8 @@ chegarem, é troca de arquivo, não de código.
   `lib/objetivo-repo.ts` com retentativa no "+ Guardar" (rajada de toques é
   o caso normal), escrita atrás do consentimento do Painel (R8), cores
   girando por card, aviso do Fin "cofrinho é bolso seu". Entrada pelo Menu.
+  ⚠️ O passo fixo de R$ 50 desta entrega **caiu em 28/08/2026** a pedido da
+  fundadora — ver *Objetivos: quanto guardar virou campo livre*, abaixo.
   ⚠️ Pendência de design: o desenho não tem caminho de **remover nem
   editar** objetivo (nome/meta) — sem rota DELETE de propósito, rota sem
   tela é porta morta. Quando desenhar, a rota nasce junto — e não precisa
@@ -530,6 +532,62 @@ banco veio cada extrato importado.
 > bloco que existe justamente para impedir que o arquivo saia com dado dos
 > outros. Agora a checagem casa os parênteses e lê só o argumento daquela
 > consulta.
+
+## ~~Objetivos: quanto guardar virou campo livre~~ ✅ 28/08/2026
+
+Pedido da fundadora: *"na tela de objetivos só dá pra registrar de 50 em 50
+reais, consegue colocar input livre?"*
+
+> ⚠️ **Muda uma decisão registrada, e ela cai neste mesmo commit.** O passo fixo
+> era desenho do protótipo v2, com o porquê escrito no código: *"guardar é gesto
+> repetido, não formulário"*. A intenção era boa e o custo não tinha sido posto
+> na mesa: guardar R$ 30 era **impossível**, e R$ 400 eram oito toques. Um passo
+> que não divide o valor da pessoa não é atalho, é aritmética.
+>
+> **O que mudou:** o "+ Guardar" abre um campo, ela escreve quanto quer e
+> confirma. Os R$ 50 não sumiram — viraram sugestão junto de R$ 100 e R$ 200, e
+> **preenchem o campo em vez de gravar sozinhos**, que é o que preserva a rajada
+> de toques de quem guarda sempre o mesmo valor. O botão fechado deixou de
+> prometer um número ("+ Guardar R$ 50" com campo livre atrás seria o rótulo
+> mentindo sobre o toque, item 7 da avaliação de UX), e o campo mostra quanto
+> falta para a meta como leitura, não como limite: passar da meta é escolha
+> dela.
+>
+> **A rota não precisou afrouxar nada — ela já aceitava qualquer valor.** O
+> passo de R$ 50 estava preso só na tela, e é por isso que este é um conserto
+> pequeno com um arquivo novo: campo livre traz junto a parte que o passo fixo
+> não tinha, que é **valor recusado**. Passo fixo nunca é inválido; texto
+> digitado é inválido o tempo todo.
+>
+> **Por isso a regra virou uma só, em [`lib/objetivo.ts`](../lib/objetivo.ts)**
+> (puro e sem banco, o mesmo par de `personalidade.ts` × `personalidade-repo.ts`
+> — a tela é componente de cliente, e importar o repositório traria o Prisma
+> para o navegador). A tela recusa **antes** de mandar, com o motivo escrito em
+> português; a rota recusa porque a tela não é autoridade nenhuma — o `fetch`
+> que chega ali pode não ter vindo dela. Duas cópias da mesma regra divergem, e
+> a divergência aparece do pior jeito: o campo aceita, o servidor devolve 400, e
+> a pessoa lê "Valor inválido" sem ter feito nada de errado.
+>
+> **Um defeito antigo caiu junto, e ele é da mesma família.** A tela lia número
+> com `Number(texto.replace(",", "."))`, que transforma **"1.000,00" em
+> "1.000.00" e devolve `NaN`**: quem digitasse a meta com ponto de milhar levava
+> "Meta inválida" tendo escrito certo. É exatamente o defeito que `paraNumero`
+> foi escrita para resolver no Painel — e que esta tela não usava. Com valores
+> de adulto (mil, dois mil), o ponto de milhar é o jeito natural de escrever.
+>
+> **Guardado por `scripts/testar-objetivos.mts`** (sem banco, sem build): o
+> jeito brasileiro de escrever dinheiro, as recusas com motivo legível, o
+> arredondamento em centavos (sem ele, três depósitos deixam o saldo com quinze
+> casas e a barra passa a mentir) e seis conferências que olham o CÓDIGO das
+> duas pontas — que o depósito saia do CAMPO e não de uma constante (um
+> `guardar: 50` literal é o passo fixo de volta com outro nome), que as duas
+> usem `lerValor`, que a sugestão só preencha (sem `type="button"` o chip dentro
+> do `<form>` **envia** o formulário) e que o consentimento do Painel (R8)
+> continue de pé. Conferido contra o código mutilado: as cinco mutações são
+> pegas, inclusive a volta do passo fixo.
+>
+> **O que segue pendente é o de sempre:** remover e editar objetivo continuam
+> sem desenho, e a rota segue sem DELETE de propósito.
 
 ## ~~A data de um lançamento, lida do mesmo jeito em toda parte~~ ✅ 28/08/2026
 
