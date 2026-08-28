@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Plus, Trash2 } from "lucide-react"
 import type { TransacaoData, CategoriaData } from "@/types/painel"
 import { brl, dataCurta, paraNumero } from "@/lib/formato"
+import { hojeNoCalendario } from "@/lib/dia"
 import { ModalBase, inputPainel, botaoPrimario } from "./ModalBase"
 
 interface Props {
@@ -14,17 +15,18 @@ interface Props {
   avancado?: boolean
 }
 
-function hojeISO(): string {
-  return new Date().toISOString().split("T")[0]
-}
-
+// O dia de HOJE é o do calendário de quem está lançando, não o do UTC: às 22h
+// de 30 de setembro em São Paulo, `toISOString()` — que era o que estava aqui —
+// responde "1º de outubro", e o gasto ia para o mês seguinte enquanto a pessoa
+// ainda jantava. O servidor grava esse dia às 12:00Z e o lê de volta em UTC
+// (`lib/dia.ts`), então o dia que ela escolheu é o dia que ela vê.
 export function TransacoesCard({ transacoes, categorias, onMudou, avancado }: Props) {
   const [modalAberto, setModalAberto] = useState(false)
   const [descricao, setDescricao] = useState("")
   const [valor, setValor] = useState("")
   const [tipo, setTipo] = useState<"receita" | "despesa">("despesa")
   const [categoriaId, setCategoriaId] = useState("")
-  const [data, setData] = useState(hojeISO())
+  const [data, setData] = useState(hojeNoCalendario())
   const [escopo, setEscopo] = useState<"pessoal" | "trabalho">("pessoal")
   const [salvando, setSalvando] = useState(false)
   const [erro, setErro] = useState<string | null>(null)
@@ -34,7 +36,7 @@ export function TransacoesCard({ transacoes, categorias, onMudou, avancado }: Pr
     setValor("")
     setTipo("despesa")
     setCategoriaId("")
-    setData(hojeISO())
+    setData(hojeNoCalendario())
     setEscopo("pessoal")
     setErro(null)
     setModalAberto(true)

@@ -11,6 +11,7 @@ import {
   metricasPerfil,
   type TransacaoCalc,
 } from "@/lib/financas"
+import { competenciaDoOrdinal, noMes, ordinalMes } from "@/lib/dia"
 
 export const dynamic = "force-dynamic"
 
@@ -23,13 +24,11 @@ function mesComDadosAntes(
   const limite = ate.ano * 12 + ate.mes
   let melhor = 0
   for (const t of calc) {
-    const dt = t.data instanceof Date ? t.data : new Date(t.data)
-    const ordinal = dt.getFullYear() * 12 + dt.getMonth() + 1
+    const ordinal = ordinalMes(t.data)
     if (ordinal < limite && ordinal > melhor) melhor = ordinal
   }
   if (melhor === 0) return null
-  const mes = ((melhor - 1) % 12) + 1
-  return { mes, ano: Math.floor((melhor - mes) / 12) }
+  return competenciaDoOrdinal(melhor)
 }
 
 // GET /api/analises?mes=7&ano=2026&escopo=trabalho
@@ -76,10 +75,7 @@ export async function GET(req: NextRequest) {
       tetos: cruzarComGasto(
         tetos,
         calc
-          .filter((t) => {
-            const d = t.data instanceof Date ? t.data : new Date(t.data)
-            return t.tipo === "despesa" && d.getUTCMonth() + 1 === mes && d.getUTCFullYear() === ano
-          })
+          .filter((t) => t.tipo === "despesa" && noMes(t.data, mes, ano))
           .map((t) => ({
             nomeCategoria: t.categoria?.nome ?? null,
             valor: typeof t.valor === "string" ? parseFloat(t.valor) : t.valor,

@@ -138,6 +138,24 @@ receitas × despesas · fluxo de caixa diário · tetos de orçamento cruzados c
 gasto real · projeção de patrimônio 1/5/10 anos (flag) · quatro métricas de
 saúde (taxa de economia, controle orçamentário, reserva, consistência).
 
+**A data de um lançamento é dia de calendário, e quem a lê é `lib/dia.ts`**
+(28/08/2026). Antes cada arquivo escolhia: `financas.ts` agrupava por mês em
+hora local, `dataCurta()` escrevia o dia em UTC, e as duas só concordavam
+porque a Vercel roda em UTC — num fuso a oeste a mesma linha é somada em julho
+e rotulada como agosto, sem erro nenhum aparecer. O ciclo agora fecha em três
+passos e o arquivo é dono dos três: o dia é **escolhido** no calendário de quem
+lança (`hojeNoCalendario`), **gravado** ancorado ao meio-dia UTC (`ancorarDia`,
+que os três caminhos de escrita — extrato, chat e Painel — chamam) e **lido** em
+UTC. `mesDeReferencia` é a única resposta para "de que mês a tela fala":
+`ultimoMesComMovimento`, no caminho da IA, virou a busca no banco que a chama.
+
+Ficam FORA da regra, de propósito: `criadoEm` e "há 2 minutos" (instante, não
+dia), a regra que para a curva do fluxo diário em hoje, e o dia da **ofensiva e
+das missões**, que continua sendo o de São Paulo (`inicioDoDiaSP`) — em UTC a
+virada aconteceria às 21h do dia 31. `scripts/testar-fuso.mts` roda a mesma
+aritmética em cinco fusos (UTC−11 a UTC+14) exigindo resultado idêntico, e
+protege as exceções para que ninguém as "conserte" depois.
+
 ### 2.8 Perfil
 
 Retrato de um minuto: rosca do último mês **com movimento** (não o corrente),

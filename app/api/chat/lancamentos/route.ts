@@ -4,6 +4,7 @@ import { criarTransacao } from "@/lib/financeiro-repo"
 import { creditar } from "@/lib/pontos"
 import { mapearCategorias } from "@/lib/extrato/categorias"
 import { lancamentosValidos } from "@/lib/ia"
+import { ancorarDia } from "@/lib/dia"
 
 export const dynamic = "force-dynamic"
 
@@ -60,8 +61,11 @@ export async function POST(req: NextRequest) {
           valor: i.valor,
           tipo: i.tipo,
           categoriaId: mapa.get(i.categoria) ?? null,
-          // meio-dia para o fuso não empurrar o lançamento para o dia anterior
-          data: new Date(`${i.data}T12:00:00`),
+          // Meio-dia UTC, pela mesma função que o extrato usa. A âncora
+          // estava escrita aqui à mão e sem o sufixo Z — meio-dia LOCAL, que
+          // num servidor a leste de UTC+12 empurra o lançamento para o dia
+          // anterior, exatamente o que o meio-dia existia para impedir.
+          data: ancorarDia(i.data),
           escopo,
         })
       )

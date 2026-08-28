@@ -5,6 +5,26 @@
 // não há integração bancária. "Patrimônio" é o acumulado de (receitas − despesas)
 // ao longo do histórico, não saldo real de conta. Os índices (Saúde Financeira,
 // Consistência) são heurísticas explicitadas em cada função, não padrões de mercado.
+//
+// SOBRE A DATA: quem lê o dia de um lançamento é `lib/dia.ts`, e só ele. Este
+// arquivo agrupava por mês com `getMonth()` (hora local) enquanto o rótulo da
+// tela saía de `dataCurta()`, que lê em UTC — as duas só concordavam porque o
+// servidor roda em UTC. A divergência estava registrada como pendência no
+// backlog e fechou em 28/08/2026. `hoje`/`agora` continuam em hora local aqui:
+// relógio é instante, não dia de calendário.
+
+import {
+  chaveMes as chaveDoMes,
+  competenciaDoOrdinal,
+  dataInvalida,
+  diaDoMes,
+  diasNoMes,
+  noMes,
+  ordinalMes,
+  type Competencia,
+} from "./dia"
+
+export type { Competencia }
 
 export interface TransacaoCalc {
   valor: string | number
@@ -43,12 +63,11 @@ function d(v: string | Date): Date {
 }
 
 function chaveMes(data: Date): string {
-  return `${data.getFullYear()}-${String(data.getMonth() + 1).padStart(2, "0")}`
+  return chaveDoMes(data)
 }
 
 // Corte por competência: as Análises são sempre "a situação ATÉ o mês selecionado".
 // Sem isso, escolher março mostrava gráficos que já contavam julho.
-export interface Competencia { mes: number; ano: number }
 
 function ateChave(ate: Competencia): string {
   return `${ate.ano}-${String(ate.mes).padStart(2, "0")}`
@@ -61,13 +80,13 @@ function dentroDoCorte(data: Date, ate?: Competencia): boolean {
 /**
  * O último mês COM movimento — a competência de que a tela fala.
  *
- * NÃO SE CHAMA `ultimoMesComMovimento`, E O NOME É DE PROPÓSITO. Existe uma
- * função com esse nome em `lib/contexto-financeiro.ts`: ela responde a mesma
- * pergunta para a IA, indo ao BANCO e lendo a data em UTC. Esta aqui é pura,
- * roda sobre a lista já carregada e lê a data como o resto deste arquivo lê.
- * Duas implementações da mesma pergunta é o que ainda não dá para resolver
- * (ver a ressalva de fuso abaixo); duas com o MESMO nome seria a próxima
- * pessoa importando a errada sem perceber.
+ * É A ÚNICA IMPLEMENTAÇÃO DESTA PERGUNTA. Havia uma segunda em
+ * `lib/contexto-financeiro.ts` (`ultimoMesComMovimento`), que ia ao banco e lia
+ * a data em UTC enquanto esta lia em hora local: as duas concordavam por
+ * acidente de servidor, e o comentário de lá dizia que juntá-las dependia do
+ * projeto de uniformizar o fuso. O projeto aconteceu, então a de lá passou a
+ * chamar esta. O nome diferente continua, porque a de lá também vai ao banco
+ * buscar a lista — o que ela faz a mais é isso, e só isso.
  *
  * Não é o mês corrente. No dia 1º o mês corrente está vazio por definição, e
  * quem tem meses de histórico veria a rosca oca e "entrou R$ 0,00" no mesmo
@@ -78,25 +97,21 @@ function dentroDoCorte(data: Date, ate?: Competencia): boolean {
  * MORA AQUI, E NÃO NA ROTA, PARA QUE SÓ EXISTA UMA RESPOSTA. A rosca, as
  * entradas e as saídas do Perfil são três leituras do MESMO mês; se cada uma
  * escolhesse o seu, a tela diria "suas saídas em julho" ao lado de um "saiu"
- * que somou agosto. Quem escolhe é esta função, e ela lê a data do mesmo jeito
- * que `indicadores` e `gastosPorCategoria` leem — `getMonth()` local, não
- * `getUTCMonth()`. A versão anterior (privada da rota do Perfil) lia em UTC, e
- * as duas só concordam porque o servidor roda em UTC: em qualquer fuso a oeste,
- * um lançamento gravado à meia-noite do dia 1º escolheria agosto para o rótulo
- * e cairia em julho na soma. A divergência UTC × local de `financas.ts` inteiro
- * é anterior a isto e continua registrada como pendência.
+ * que somou agosto.
+ *
+ * `hoje` é o único fallback e é lido em hora LOCAL de propósito: ele só entra
+ * quando não há lançamento nenhum, e aí a pergunta não é mais sobre a data de
+ * um lançamento — é "em que mês estamos", que é relógio de parede.
  */
 export function mesDeReferencia(todas: TransacaoCalc[], hoje = new Date()): Competencia {
   let maior = 0
   for (const t of todas) {
-    const dt = d(t.data)
-    if (isNaN(dt.getTime())) continue
-    const ordinal = dt.getFullYear() * 12 + dt.getMonth() + 1
+    if (dataInvalida(t.data)) continue
+    const ordinal = ordinalMes(t.data)
     if (ordinal > maior) maior = ordinal
   }
   if (maior === 0) return { mes: hoje.getMonth() + 1, ano: hoje.getFullYear() }
-  const mes = ((maior - 1) % 12) + 1
-  return { mes, ano: Math.floor((maior - mes) / 12) }
+  return competenciaDoOrdinal(maior)
 }
 
 // ---------- indicadores rápidos (topo das Análises) ----------
@@ -131,7 +146,7 @@ export function indicadores(todas: TransacaoCalc[], mes: number, ano: number): I
     if (!poupanca && dentroDoCorte(dt, { mes, ano })) acumulado += ehReceita ? v : -v
 
     // demais: só o mês selecionado
-    if (dt.getMonth() + 1 !== mes || dt.getFullYear() !== ano) continue
+    if (!noMes(dt, mes, ano)) continue
     lancamentosNoMes++
 
     if (poupanca) {
@@ -228,7 +243,7 @@ export function gastosPorCategoria(todas: TransacaoCalc[], mes: number, ano: num
     // "onde seu dinheiro foi" — dinheiro guardado não FOI a lugar nenhum.
     if (ehPoupanca(t)) continue
     const dt = d(t.data)
-    if (dt.getMonth() + 1 !== mes || dt.getFullYear() !== ano) continue
+    if (!noMes(dt, mes, ano)) continue
 
     const v = n(t.valor)
     total += v
@@ -436,23 +451,28 @@ export interface PontoDia {
 }
 
 export function fluxoCaixaDiario(todas: TransacaoCalc[], mes: number, ano: number): PontoDia[] {
-  const diasNoMes = new Date(ano, mes, 0).getDate()
-  const porDia = new Array(diasNoMes + 1).fill(0) as number[]
+  const totalDeDias = diasNoMes(mes, ano)
+  const porDia = new Array(totalDeDias + 1).fill(0) as number[]
 
   for (const t of todas) {
     const dt = d(t.data)
-    if (dt.getMonth() + 1 !== mes || dt.getFullYear() !== ano) continue
-    porDia[dt.getDate()] += n(t.valor) * (t.tipo === "receita" ? 1 : -1)
+    if (!noMes(dt, mes, ano)) continue
+    porDia[diaDoMes(dt)] += n(t.valor) * (t.tipo === "receita" ? 1 : -1)
   }
 
   // No mês corrente a curva para em hoje. Desenhar até o dia 31 criava uma reta
   // horizontal no futuro que parecia informação ("meu saldo estabilizou") sendo
   // só ausência de dado.
+  //
+  // `hoje` em hora local, não em UTC: aqui a pergunta é "que dia é hoje para
+  // quem está olhando", que é relógio de parede — não a data de um lançamento.
+  // O pior caso da diferença é a curva parar um dia antes ou depois na virada
+  // do dia, contra um gráfico do mês inteiro voltar a mostrar futuro.
   const hoje = new Date()
   const ultimoDia =
     hoje.getMonth() + 1 === mes && hoje.getFullYear() === ano
-      ? Math.min(hoje.getDate(), diasNoMes)
-      : diasNoMes
+      ? Math.min(hoje.getDate(), totalDeDias)
+      : totalDeDias
 
   const pontos: PontoDia[] = []
   let saldo = 0

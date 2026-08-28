@@ -11,6 +11,7 @@ import {
   TIPOS_INVESTIMENTO,
 } from "@/lib/investimento-repo"
 import { marcosProjecao, serieProjecao, TAXA_PADRAO_MES } from "@/lib/projecao"
+import { chaveMes } from "@/lib/dia"
 
 export const dynamic = "force-dynamic"
 
@@ -25,7 +26,7 @@ export const dynamic = "force-dynamic"
 function sobraMensalMedia(transacoes: { valor: number; tipo: string; data: Date }[]): number {
   const porMes = new Map<string, number>()
   for (const t of transacoes) {
-    const chave = `${t.data.getFullYear()}-${String(t.data.getMonth() + 1).padStart(2, "0")}`
+    const chave = chaveMes(t.data)
     porMes.set(chave, (porMes.get(chave) ?? 0) + (t.tipo === "receita" ? t.valor : -t.valor))
   }
   const ultimos = [...porMes.keys()].sort().slice(-6).map((k) => porMes.get(k)!)

@@ -1,4 +1,5 @@
 import type { TransacaoCalc, MetricasPerfil } from "@/lib/financas"
+import { chaveMes } from "@/lib/dia"
 
 /**
  * O eixo que posiciona a biblioteca da Trilha.
@@ -78,8 +79,7 @@ export function derivarSituacoes(
   const porMes = new Map<string, number>()
   for (const t of calc) {
     if (t.tipo !== "receita") continue
-    const d = t.data instanceof Date ? t.data : new Date(t.data)
-    const chave = `${d.getUTCFullYear()}-${d.getUTCMonth()}`
+    const chave = chaveMes(t.data)
     porMes.set(chave, (porMes.get(chave) ?? 0) + Number(t.valor))
   }
   const rendas = [...porMes.values()]
@@ -105,8 +105,7 @@ export function derivarSituacoes(
   else {
     const saldoMes = new Map<string, number>()
     for (const t of calc) {
-      const d = t.data instanceof Date ? t.data : new Date(t.data)
-      const chave = `${d.getUTCFullYear()}-${d.getUTCMonth()}`
+      const chave = chaveMes(t.data)
       const v = Number(t.valor) * (t.tipo === "receita" ? 1 : -1)
       saldoMes.set(chave, (saldoMes.get(chave) ?? 0) + v)
     }

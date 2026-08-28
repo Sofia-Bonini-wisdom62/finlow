@@ -67,13 +67,14 @@ o gráfico de rosca e os 4 botões que tem atualmente.
 > `indicadores` um mês diferente do da rosca derruba a conferência de
 > competência única.
 >
-> ⚠️ **Pendência que fica registrada, e é maior que esta tela:**
+> ~~⚠️ **Pendência que fica registrada, e é maior que esta tela:**
 > `lib/financas.ts` agrupa por mês com `getMonth()` (hora local) enquanto
 > `dataCurta()` em [`lib/formato.ts`](../lib/formato.ts) lê o dia em UTC de
 > propósito — a data de um lançamento é dia de calendário, não instante. Hoje
 > ninguém sente porque a Vercel roda em UTC. Uniformizar a biblioteca inteira
 > para UTC é projeto próprio, com teste próprio, e não cabia dentro de um
-> trabalho de tela.
+> trabalho de tela.~~ ✅ **28/08/2026** — o projeto foi feito. Ver *A data de um
+> lançamento, lida do mesmo jeito em toda parte*, no fim deste arquivo.
 
 ## Conector Open Finance
 
@@ -529,6 +530,69 @@ banco veio cada extrato importado.
 > bloco que existe justamente para impedir que o arquivo saia com dado dos
 > outros. Agora a checagem casa os parênteses e lê só o argumento daquela
 > consulta.
+
+## ~~A data de um lançamento, lida do mesmo jeito em toda parte~~ ✅ 28/08/2026
+
+Não é pedido novo: é a pendência que a *Tela de perfil* registrou em 24/08 e
+que ela mesma chamou de "maior que esta tela". `lib/financas.ts` agrupava por
+mês com `getMonth()` (hora local) enquanto `dataCurta()` escrevia o dia com
+`getUTCDate()`. A divergência não estava em dois arquivos: `situacoes.ts`,
+`contexto-financeiro.ts` e a rota das Análises tinham escolhido UTC por conta
+própria, `vazamento.ts`, `investimentos` e o filtro de mês do repositório
+tinham escolhido local, e a rota das Análises usava **as duas** — local para
+achar o mês anterior com dados, UTC para cruzar os tetos de orçamento.
+
+> **O que sustentava a conta do dinheiro era uma variável de ambiente.** As duas
+> leituras só concordam porque a Vercel roda em UTC. Num fuso a oeste, o
+> lançamento do dia 1º cai no mês ANTERIOR na soma e continua aparecendo como
+> dia 1º no rótulo: a tela diz "suas saídas em agosto" sobre números de julho, e
+> nada quebra — compila, renderiza, ninguém loga. Não era hipótese distante: as
+> linhas gravadas pelo Painel estão no banco às **00:00Z**, e ali bastam as três
+> horas de Brasília para o mês virar.
+>
+> **A regra ficou uma só, e mora em [`lib/dia.ts`](../lib/dia.ts):** a data de um
+> lançamento é DIA DE CALENDÁRIO, não instante. Quem gastou no dia 21 gastou no
+> dia 21 em qualquer fuso. O ciclo fecha em três passos, e o arquivo é dono dos
+> três: escolhido no calendário de quem lança (`hojeNoCalendario`, no navegador
+> dela), gravado ancorado ao **meio-dia UTC** (`ancorarDia`), lido em UTC. O que
+> ela escolheu é o que ela lê de volta.
+>
+> **O meio-dia não é enfeite:** é a folga de ±11h que a meia-noite não tem. O
+> caminho do extrato já ancorava assim, com o motivo escrito; o do chat ancorava
+> **quase** — `T12:00:00` sem o `Z`, que é meio-dia local e escorrega para o dia
+> anterior a leste de UTC+12 — e o do Painel gravava meia-noite, que escorrega
+> em qualquer fuso negativo. Agora os três chamam a mesma função.
+>
+> **Duas contas viraram uma.** `ultimoMesComMovimento` (o caminho da IA) e
+> `mesDeReferencia` (o caminho das telas) respondiam a mesma pergunta com
+> leituras de data diferentes; o comentário de lá dizia, com todas as letras,
+> que juntá-las dependia deste projeto. A primeira agora chama a segunda: o que
+> ela faz a mais é ir ao banco. Duas respostas para "de que mês estamos falando"
+> é o app dizer "julho" para a IA e "agosto" na tela da mesma pessoa.
+>
+> **O "hoje" ficou de fora, e isso é decisão, não esquecimento.** Relógio de
+> parede não é data de lançamento: `criadoEm`, "há 2 minutos" e a regra de parar
+> a curva do fluxo no dia de hoje seguem em hora local. A ofensiva e as missões
+> também continuam contando o dia em **São Paulo** (`inicioDoDiaSP`) — a virada
+> de um streak é evento na vida da pessoa, e em UTC a cota viraria às 21h do dia
+> 31. O teste protege as duas exceções para que ninguém as "conserte" depois.
+>
+> De quebra, o dia sugerido nas duas telas de lançamento parou de sair de
+> `toISOString()`, que é o dia UTC: às 22h de 30 de setembro em São Paulo, o
+> Painel oferecia **1º de outubro**, e o gasto ia para o mês seguinte enquanto a
+> pessoa ainda jantava.
+>
+> **Guardado por `scripts/testar-fuso.mts`** (roda sem banco, sem build): a
+> mesma aritmética em **cinco fusos**, de UTC−11 a UTC+14, exigindo resultado
+> idêntico — um teste só em UTC não veria nada, porque UTC é justamente o fuso
+> em que o defeito não aparece. Metade dele olha o CÓDIGO: recusa leitura de
+> calendário fora de `lib/dia.ts` nos dez arquivos que mexem com dinheiro,
+> exige a âncora nos três caminhos de escrita e deixa `hoje`/`agora` em paz —
+> guard que acusa código correto ensina a próxima pessoa a desligá-lo.
+> Conferido contra o código mutilado: devolver o `getMonth()` local a
+> `financas.ts` derruba quatro casos em **America/Sao_Paulo**, tirar o `Z` da
+> âncora derruba sete em Kiritimati, e voltar o `toISOString()` do "hoje"
+> derruba dois nos fusos a oeste.
 
 ---
 

@@ -9,6 +9,7 @@ import { calcularAjuste } from "@/lib/extrato/ajuste"
 import { mapearCategorias, nomeDaCategoria } from "@/lib/extrato/categorias"
 import { ErroExtrato, type ExtratoParseado, type ConteudoExtrato } from "@/types/extrato"
 import { estimarCustoBRL } from "@/lib/custo"
+import { ancorarDia } from "@/lib/dia"
 
 /** ~1 MB de texto cobre extrato de 3 meses com folga. */
 const LIMITE_TEXTO = 1_000_000
@@ -215,7 +216,7 @@ export async function POST(req: NextRequest) {
      * lido, não o que casa.
      */
     const paraComparar = extrato.transacoes.map((t) => ({
-      data: new Date(`${t.data}T12:00:00Z`),
+      data: ancorarDia(t.data),
       tipo: t.valor >= 0 ? "receita" : "despesa",
       valor: Math.abs(t.valor),
       descricao: t.descricaoLimpa,
@@ -258,9 +259,10 @@ export async function POST(req: NextRequest) {
         categoriaId: mapaCat.get(t.categoria) ?? null,
         // Meio-dia, não meia-noite: gravado como 00:00 UTC, o dia 21 vira dia
         // 20 em qualquer fuso negativo — e o lançamento do dia 1º cai no mês
-        // anterior em qualquer conta feita no navegador. O caminho do chat já
-        // fazia isto; este aqui, que importa centenas de linhas, não fazia.
-        data: new Date(`${t.data}T12:00:00Z`),
+        // anterior em qualquer conta feita no navegador. A âncora virou função
+        // (`lib/dia.ts`) porque três caminhos de escrita a repetiam, e um
+        // deles a repetia errado.
+        data: ancorarDia(t.data),
       }))
     )
 
