@@ -35,11 +35,6 @@ export function diaDeHoje(agora: Date = new Date()): Date {
   return inicioDoDiaSP(agora)
 }
 
-/** Distância em dias entre duas datas de dia (ambas à meia-noite SP). */
-function distanciaEmDias(a: Date, b: Date): number {
-  return Math.round((a.getTime() - b.getTime()) / 86_400_000)
-}
-
 export interface Ofensiva {
   /** Dias seguidos até hoje (ou até ontem, se hoje ainda não teve uso). */
   atual: number

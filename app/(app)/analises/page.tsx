@@ -132,7 +132,9 @@ export default function AnalisesPage() {
     }
   }, [mes, ano, escopo])
 
-  useEffect(() => { carregar() }, [carregar])
+  // Disparo numa microtask: a regra de hooks proíbe setState síncrono no
+  // corpo do efeito, e um tick de atraso não muda nada visível.
+  useEffect(() => { Promise.resolve().then(carregar) }, [carregar])
 
   if (!logado) {
     return (

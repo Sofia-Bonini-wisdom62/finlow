@@ -7,7 +7,14 @@ um app para adolescentes que já não existia).
 
 Legenda: ✅ pronto · 🔧 em desenvolvimento · 📋 planejado · 🚫 fora deste repo
 
-Última revisão: 27/08/2026 — o **curso escolar v2** entrou no repositório: 321
+Última revisão: 28/08/2026 — o lint do repositório voltou a zero: as regras
+novas do react-hooks (v6, via eslint-config-next) acusavam 23 arquivos, e cada
+um foi corrigido preservando comportamento (disparo de fetch em microtask,
+reset guardado por transição no render, derivação no lugar de estado), com
+`pnpm build`, `tsc` e as 27 baterias locais verdes. Na mesma passada, a
+lição-piloto do curso v2 ganhou a `fraseConceito` que faltava — a frase é o
+próprio fecho aprovado da lição — e o curso ficou 107/107 conceitos com
+definição. Antes disso, em 27/08/2026 — o **curso escolar v2** entrou no repositório: 321
 lições, 107 conceitos e 5.268 itens no formato de 15 perguntas sem tela de
 leitura, com o contrato cobrado por código e as contas recalculadas (seção
 *Curso escolar v2* abaixo). O conteúdo está íntegro e **ainda não é jogável** —

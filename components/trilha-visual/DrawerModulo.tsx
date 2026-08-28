@@ -10,7 +10,6 @@ interface DrawerModuloProps {
   no: NoTrilha | null
   numero: number | null
   aberto: boolean
-  intensidade: "sobria" | "expressiva"
   onFechar: () => void
   /** Entra no módulo. Qual lição servir é decisão do servidor. */
   onComecar: (no: NoTrilha) => void
@@ -35,7 +34,6 @@ export default function DrawerModulo({
   no,
   numero,
   aberto,
-  intensidade,
   onFechar,
   onComecar,
   custoDeEnergia = false,
@@ -44,13 +42,18 @@ export default function DrawerModulo({
   const [motivoSel, setMotivoSel] = useState<string>("")
   const [motivoLivre, setMotivoLivre] = useState("")
 
-  useEffect(() => {
+  // Reset no render, guardado pela transição, em vez de num efeito: é o
+  // padrão da doc do React para estado que acompanha prop, e fechar o drawer
+  // limpa o rascunho no MESMO render, sem um frame com o diálogo velho.
+  const [estavaAberto, setEstavaAberto] = useState(aberto)
+  if (aberto !== estavaAberto) {
+    setEstavaAberto(aberto)
     if (!aberto) {
       setDialogoAberto(false)
       setMotivoSel("")
       setMotivoLivre("")
     }
-  }, [aberto])
+  }
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

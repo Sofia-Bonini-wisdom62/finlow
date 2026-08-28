@@ -234,11 +234,15 @@ socorro.
 
 ## Lacunas de conteúdo conhecidas
 
-- **`quando-a-divida-vira-problema` não tem `fraseConceito`.** É a lição-piloto,
-  escrita antes de o campo existir, e é a única das 321 sem ele. O conceito
-  entra no banco com `frase: null`. O validador avisa a cada rodada, de
-  propósito, e não bloqueia — parar o seed de 320 lições por uma frase de 140
-  caracteres seria pior. Falta alguém com a voz do produto escrevê-la.
+- ~~`quando-a-divida-vira-problema` não tem `fraseConceito`.~~ **Fechada em
+  28/08/2026.** A lição-piloto era a única das 321 sem o campo (foi escrita
+  antes de ele existir). A frase adotada é a alternativa correta do próprio
+  fecho da piloto — "A dívida cresce sozinha pelos juros. Ataque a de maior
+  taxa, não a maior." — porque, pela §3 da arquitetura, o fecho JÁ é o card
+  salvo em "Meus conceitos": é voz aprovada, não autoria nova. Se a fundadora
+  preferir outra formulação, é editar o campo no JSON e re-semear. O aviso do
+  validador para o caso segue existindo para a próxima lição que nascer sem
+  frase.
 
 ## Decisões pendentes (§13 da arquitetura)
 

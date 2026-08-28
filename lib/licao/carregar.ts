@@ -62,9 +62,9 @@ export type CursoCarregado = {
   /**
    * Aparecem, não bloqueiam.
    *
-   * A distinção existe por um caso concreto: `quando-a-divida-vira-problema` é
-   * a lição-piloto, escrita antes de `fraseConceito` existir, e é a única das
-   * 321 sem o campo. Tratar isso como erro pararia o seed das outras 320 por
+   * A distinção nasceu de um caso concreto: a lição-piloto ficou sem
+   * `fraseConceito` por ter sido escrita antes de o campo existir (fechado em
+   * 28/08/2026). Tratar a falta como erro pararia o seed das outras 320 por
    * causa de uma frase de 140 caracteres — e tratar como nada faria a lacuna
    * sumir de vista. Fica visível a cada rodada até alguém escrever a frase.
    */

@@ -140,7 +140,6 @@ export default function TrilhaContainer({ trilha, trilhas, usuario, diaNovo = fa
         no={noSelecionado}
         numero={noSelecionado ? numeros[noSelecionado.moduloId] ?? null : null}
         aberto={drawerAberto}
-        intensidade="sobria"
         onFechar={fecharDrawer}
         onComecar={comecar}
         custoDeEnergia={usuario.energia !== null}

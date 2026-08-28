@@ -11,8 +11,10 @@ export function Reveal({ children, className = "" }: { children: React.ReactNode
     const el = ref.current
     if (!el) return
     if (typeof IntersectionObserver === "undefined") {
-      setVisivel(true)
-      return
+      // Navegador sem IO: revela no próximo tick. Efeito não grava estado de
+      // forma síncrona, e a transição de 0.7s roda igual nos dois caminhos.
+      const t = setTimeout(() => setVisivel(true), 0)
+      return () => clearTimeout(t)
     }
     const io = new IntersectionObserver(
       (entries) => {

@@ -63,7 +63,9 @@ export default function MemoriaPage() {
     }
   }
 
-  useEffect(() => { carregar() }, [])
+  // Disparo numa microtask: a regra de hooks proíbe setState síncrono no
+  // corpo do efeito, e um tick de atraso não muda nada visível.
+  useEffect(() => { Promise.resolve().then(carregar) }, [])
 
   async function alternar() {
     const alvo = !ligada

@@ -54,11 +54,12 @@ export function DistribuicaoGastosChart({ transacoes }: { transacoes: TransacaoD
 
   // As paradas saem do valor real, não do pct arredondado. Somando inteiros
   // arredondados o total dava 99% ou 101% e a última fatia fechava torta.
-  let acumulado = 0
+  // A soma refaz o prefixo a cada fatia em vez de acumular numa variável:
+  // são poucas categorias, e render não pode reatribuir o que capturou.
   const paradas = fatias.map((f, i) => {
-    const inicio = (acumulado / total) * 100
-    acumulado += f.total
-    const fim = i === fatias.length - 1 ? 100 : (acumulado / total) * 100
+    const antes = fatias.slice(0, i).reduce((s, x) => s + x.total, 0)
+    const inicio = (antes / total) * 100
+    const fim = i === fatias.length - 1 ? 100 : ((antes + f.total) / total) * 100
     const cor = !destaque || f.nome === destaque ? f.cor : "var(--fl-divider)"
     return `${cor} ${inicio.toFixed(3)}% ${fim.toFixed(3)}%`
   })

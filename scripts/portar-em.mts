@@ -19,6 +19,9 @@ import { writeFileSync } from "node:fs"
 import { TRILHA_ENSINO_MEDIO } from "../prisma/trilha-em-fonte.js"
 import { EDITORIAL_EM } from "../prisma/editorial-em.js"
 
+// `any` de propósito: este script varre a fonte BRUTA campo a campo, e tipar
+// o bruto esconderia exatamente os buracos que ele existe para acusar.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Bruto = Record<string, any>
 
 const erros: string[] = []

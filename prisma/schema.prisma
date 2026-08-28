@@ -1083,10 +1083,10 @@ model Conceito {
 
   /// A definição em ≤140 caracteres, extraída do `fraseConceito` do encontro 1.
   ///
-  /// Nulo é estado real e não falta de seed: `quando-a-divida-vira-problema` é
-  /// a lição-piloto, escrita antes do campo existir, e é a única das 321 sem a
-  /// frase. `scripts/validar-licoes.mts` avisa a cada rodada até alguém
-  /// escrevê-la — ver o aviso em lib/licao/carregar.ts.
+  /// Opcional porque lição pode nascer sem a frase (aconteceu com a piloto,
+  /// escrita antes de o campo existir; fechada em 28/08/2026). Quando falta,
+  /// `scripts/validar-licoes.mts` avisa a cada rodada sem bloquear o seed —
+  /// ver o aviso em lib/licao/carregar.ts.
   frase    String?
 
   /// Códigos da matriz BCB cobertos (ex.: "EM13LF26"). 230 distintos no curso.

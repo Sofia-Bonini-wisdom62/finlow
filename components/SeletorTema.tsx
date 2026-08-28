@@ -15,7 +15,12 @@ export function SeletorTema() {
   // "sistema" no servidor e trocar na hidratação piscaria a seleção.
   const [tema, setTema] = useState<Tema | null>(null)
 
-  useEffect(() => setTema(lerTema()), [])
+  // A leitura fica num efeito porque no initializer o localStorage não existe
+  // no servidor, e chutar um valor lá diverge na hidratação. O set vai numa
+  // microtask: a regra de hooks proíbe setState síncrono no efeito.
+  useEffect(() => {
+    Promise.resolve().then(() => setTema(lerTema()))
+  }, [])
 
   // Em "sistema", seguir o SO ao vivo — se a pessoa muda o tema do aparelho
   // com o app aberto, a tela acompanha sem precisar recarregar.

@@ -33,7 +33,10 @@ export default function LoginPage() {
   useEffect(() => {
     const codigo = new URLSearchParams(window.location.search).get("error")
     if (!codigo) return
-    setErro(ERROS_OAUTH[codigo] ?? "Não deu pra entrar com o Google. Tenta de novo?")
+    // Numa microtask: a regra de hooks proíbe setState síncrono no efeito.
+    Promise.resolve().then(() =>
+      setErro(ERROS_OAUTH[codigo] ?? "Não deu pra entrar com o Google. Tenta de novo?")
+    )
   }, [])
 
   async function handleSubmit(e: React.FormEvent) {

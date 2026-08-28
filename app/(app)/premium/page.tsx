@@ -174,8 +174,10 @@ export default function PremiumPage() {
     }
   }, [])
 
+  // Disparo numa microtask: a regra de hooks proíbe setState síncrono no
+  // corpo do efeito, e um tick de atraso não muda nada visível.
   useEffect(() => {
-    void buscar()
+    Promise.resolve().then(buscar)
   }, [buscar])
 
   async function assinar() {
