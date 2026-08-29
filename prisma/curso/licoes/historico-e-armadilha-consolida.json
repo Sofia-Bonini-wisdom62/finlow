@@ -1,0 +1,272 @@
+{
+ "slug": "historico-e-armadilha-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "historico-e-armadilha",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cadastro-positivo",
+   "criterio": "Ainda melhora o histórico, caso raro?",
+   "enunciado": "Pagar uma dívida judicial antiga, anos depois do vencimento original",
+   "resposta": true,
+   "ancora": "Quitar tarde melhora o histórico dali em diante.",
+   "feedbackErro": "Pode parecer que pagar tarde não conta, mas quitar atualiza o registro pra 'quitado', ajudando o histórico depois."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cadastro-positivo",
+   "criterio": "Ainda melhora o histórico, caso raro?",
+   "enunciado": "Um empréstimo tomado e pago em dia pelo titular, mesmo com um avalista que tem nome sujo",
+   "resposta": true,
+   "ancora": "O histórico é do próprio pagador, não do avalista.",
+   "feedbackErro": "Pode parecer que o avalista 'contamina' o histórico, mas o cadastro registra quem tomou e pagou o crédito, não terceiros."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cadastro-positivo",
+   "criterio": "Ainda melhora o histórico, caso raro?",
+   "enunciado": "Uma conta com valor tão pequeno que a pessoa nem lembra de ter pago",
+   "resposta": true,
+   "ancora": "Todo pagamento registrado conta, grande ou pequeno.",
+   "feedbackErro": "Valor pequeno pode parecer irrelevante, mas o cadastro registra pagamentos independente do tamanho — todo comportamento de pagamento conta."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "cadastro-positivo",
+   "dificuldade": 3,
+   "pergunta": "Alguém sempre pagou em dia, mas nunca pegou crédito na vida. O histórico dela no cadastro é forte?",
+   "ancora": "Histórico forte precisa de operações registradas ao longo do tempo.",
+   "alternativas": [
+    {
+     "texto": "Sim, porque nunca atrasou nada",
+     "correta": false,
+     "feedbackErro": "Nunca atrasar é bom, mas o cadastro precisa de movimentação registrada pra formar histórico — sem nenhum crédito tomado, não há muito o que registrar ainda."
+    },
+    {
+     "texto": "Não necessariamente: falta informação registrada",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, porque quem nunca usou crédito é visto como mau pagador",
+     "correta": false,
+     "feedbackErro": "Não é visto como mau pagador — é visto como alguém sem histórico suficiente ainda, o que é diferente de ter um histórico ruim."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "armadilha-publicitaria",
+   "dificuldade": 3,
+   "pergunta": "Um anúncio de 'desconto de 50%' usa base que a loja nunca praticou. Isso ainda ajuda a decidir a compra?",
+   "ancora": "Desconto só vale quando a base de comparação é real.",
+   "alternativas": [
+    {
+     "texto": "Sim, porque qualquer desconto anunciado é real",
+     "correta": false,
+     "feedbackErro": "Nem todo desconto anunciado reflete um preço praticado de verdade — se a base é inflada, o '50%' não representa economia real nenhuma."
+    },
+    {
+     "texto": "Não, o desconto perde sentido com base falsa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, a porcentagem sempre é o valor real",
+     "correta": false,
+     "feedbackErro": "A porcentagem só faz sentido se a base de comparação for verdadeira — inflada, ela vira só um número que não representa economia nenhuma."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "armadilha-publicitaria",
+   "criterio": "A pressa NÃO deveria mudar a decisão?",
+   "enunciado": "Um produto essencial, que a pessoa já ia comprar de qualquer jeito, anunciado com prazo apertado",
+   "resposta": true,
+   "ancora": "Se a compra já era necessária, a pressa não muda o mérito.",
+   "feedbackErro": "Todo prazo apertado parece exigir reação, mas se o produto já era necessário, a pressa do anúncio não deveria pesar."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "cadastro-positivo",
+   "instrucao": "Isso registra o histórico do próprio pagador, ou de outra pessoa?",
+   "ancora": "O cadastro é individual: registra só quem tomou o crédito.",
+   "feedbackErro": "O critério é de quem é a operação de crédito: só o comportamento do titular daquela dívida específica entra no histórico dele.",
+   "caixas": [
+    {
+     "id": "proprio",
+     "rotulo": "Do próprio pagador"
+    },
+    {
+     "id": "outro",
+     "rotulo": "De outra pessoa"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Financiamento pago em dia pelo próprio titular",
+     "caixaCorreta": "proprio"
+    },
+    {
+     "texto": "Dívida do avalista, não relacionada a esse crédito",
+     "caixaCorreta": "outro"
+    },
+    {
+     "texto": "Atraso do titular numa fatura de cartão",
+     "caixaCorreta": "proprio"
+    },
+    {
+     "texto": "Nome sujo do cônjuge, em dívida separada",
+     "caixaCorreta": "outro"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "armadilha-publicitaria",
+   "criterio": "Desconto alto e confiável, mesmo assim?",
+   "enunciado": "Um desconto de 70% comparado a um preço 'de tabela' que ninguém nunca pagou naquela loja",
+   "resposta": false,
+   "ancora": "Base de comparação falsa não vira economia de verdade.",
+   "feedbackErro": "Parece economia enorme, mas se a base é um preço inflado nunca praticado, o desconto real pode ser bem menor."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "cadastro-positivo",
+   "dificuldade": 3,
+   "pergunta": "Loja anuncia 'de R$800 por R$400', mas o produto sempre custou R$450. Qual o desconto real sobre o preço de verdade?",
+   "ancora": "(450−400)÷450×100 ≈ 11%: o desconto sobre o preço real.",
+   "verificacao": {
+    "expressao": "(450-400)/450*100",
+    "esperado": 11.11,
+    "tolerancia": 0.1
+   },
+   "alternativas": [
+    {
+     "texto": "50%, como o anúncio diz",
+     "correta": false,
+     "feedbackErro": "50% é calculado sobre um preço de R$800 que a loja nunca praticou. O desconto real precisa ser calculado sobre o preço que ela de fato cobrava."
+    },
+    {
+     "texto": "Cerca de 11%, sobre o preço de R$450 real",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "0%, porque desconto inflado não vale nada",
+     "correta": false,
+     "feedbackErro": "Não é bem 0% — o preço caiu de R$450 pra R$400 de verdade, então existe um desconto real, só que bem menor que os 50% anunciados."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "cadastro-positivo",
+   "criterio": "Bom histórico NÃO garante aprovação?",
+   "enunciado": "Um pedido de crédito negado por renda insuficiente, mesmo com histórico de pagamentos impecável",
+   "resposta": true,
+   "ancora": "Renda insuficiente pode negar crédito mesmo com histórico bom.",
+   "feedbackErro": "Pode parecer que bom histórico garante aprovação, mas o banco pesa vários fatores, e renda baixa pode negar mesmo assim."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "armadilha-publicitaria",
+   "criterio": "Comparar a base evita essa armadilha?",
+   "enunciado": "Checar se o preço 'original' riscado no anúncio já foi praticado de verdade alguma vez",
+   "resposta": true,
+   "ancora": "Checar o preço 'original' revela se o desconto é real.",
+   "feedbackErro": "Pode parecer um passo extra desnecessário, mas checar se o preço riscado já foi praticado de verdade é exatamente o que revela se o desconto é real."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "cadastro-positivo",
+   "pergunta": "Depois desses casos-limite, qual frase é mais completa?",
+   "alternativas": [
+    {
+     "texto": "O cadastro positivo registra até dívidas de parentes próximos",
+     "correta": false,
+     "feedbackErro": "O registro é individual — só entra o que está no nome de quem de fato tomou aquele crédito."
+    },
+    {
+     "texto": "Histórico não garante tudo sozinho; desconto só vale com base real",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Todo desconto anunciado reflete o preço que a loja praticava antes",
+     "correta": false,
+     "feedbackErro": "Nem sempre — a base de comparação pode ser inflada, tornando o desconto anunciado maior do que o real."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "armadilha-publicitaria",
+   "pergunta": "Uma loja anuncia 'de R$600 por R$450', mas o preço real de sempre era R$500. Qual o desconto real, em %?",
+   "campo": "percentual",
+   "min": 5,
+   "max": 30,
+   "gabarito": 10,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto sobre o preço realmente praticado",
+   "verificacao": {
+    "expressao": "(500-450)/500*100",
+    "esperado": 10
+   },
+   "feedbackPerto": "Isso mesmo: (500−450)÷500×100 = 10%. Bem menor que os 25% que o anúncio sugere ao comparar com R$600.",
+   "feedbackLonge": "O desconto real é de 10%. É fácil calcular sobre o preço 'de tabela' inflado (R$600) em vez do preço que a loja realmente praticava (R$500)."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "cadastro-positivo",
+   "instrucao": "Ordene do que menos influencia o histórico ao que mais influencia.",
+   "ancora": "Terceiros não afetam; o comportamento do titular sempre entra.",
+   "feedbackErro": "O critério é de quem é o comportamento: terceiros não afetam o histórico individual; o comportamento do próprio titular, mesmo um atraso, sempre entra.",
+   "itens": [
+    {
+     "texto": "Dívida de um vizinho, sem nenhuma relação com o titular",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Nome sujo de um parente, em dívida separada",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Um atraso pontual do próprio titular, já quitado",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Anos de pagamento consistente do próprio titular",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "armadilha-publicitaria",
+   "criterio": "É urgência real, e não armadilha?",
+   "enunciado": "Um evento com um número físico limitado de ingressos, à venda até esgotar",
+   "resposta": true,
+   "ancora": "Limite físico real é urgência genuína, não fictícia.",
+   "feedbackErro": "Pode parecer tática comum, mas limite físico e concreto, como número fixo de ingressos, é urgência real, não fabricada."
+  }
+ ]
+}

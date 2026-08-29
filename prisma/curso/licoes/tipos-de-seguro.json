@@ -1,0 +1,332 @@
+{
+ "slug": "tipos-de-seguro",
+ "segmento": "ef89",
+ "conceitoPrincipal": "tipos-de-seguro",
+ "fraseConceito": "Seguro é uma troca: você paga um valor fixo e pequeno todo mês para não arcar sozinho com um prejuízo grande e raro.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "como-funciona-seguro",
+   "criterio": "Isso é função de um seguro?",
+   "enunciado": "Pagar um valor fixo todo mês para se proteger de um prejuízo grande",
+   "resposta": true,
+   "ancora": "Valor pequeno certo por prejuízo grande incerto: isso é seguro.",
+   "feedbackErro": "Parece só mais uma conta mensal, mas essa troca de um valor pequeno e certo por proteção contra um prejuízo grande e raro é exatamente o que define um seguro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "como-funciona-seguro",
+   "criterio": "Isso é função de um seguro?",
+   "enunciado": "Garantir que nada de ruim nunca vai acontecer",
+   "resposta": false,
+   "ancora": "Seguro não evita o problema, cobre o prejuízo dele.",
+   "feedbackErro": "Seguro dá a impressão de proteção total, mas ele não impede o acidente ou o roubo — ele cobre o prejuízo financeiro depois que o problema já aconteceu."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "como-funciona-seguro",
+   "criterio": "Isso é função de um seguro?",
+   "enunciado": "Receber de volta tudo que pagou de mensalidade, se nunca usar",
+   "resposta": false,
+   "ancora": "Você paga pela proteção do período, não por um resgate.",
+   "feedbackErro": "Parece injusto não ter volta, mas o valor pago é pela proteção durante o período, não um depósito — se não usa, a cobertura foi prestada do mesmo jeito."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "tipos-de-seguro",
+   "dificuldade": 1,
+   "pergunta": "Qual seguro cobre o prejuízo de a sua casa pegar fogo?",
+   "ancora": "Seguro residencial cobre danos ao imóvel e ao que está nele.",
+   "alternativas": [
+    {
+     "texto": "Seguro residencial",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Seguro de vida",
+     "correta": false,
+     "feedbackErro": "Seguro de vida cobre a família em caso de morte do segurado, não danos à casa. Para incêndio no imóvel, o que cobre é o seguro residencial."
+    },
+    {
+     "texto": "Seguro de automóvel",
+     "correta": false,
+     "feedbackErro": "O seguro de automóvel protege o carro, não a casa. Para incêndio no imóvel, o que se aplica é o seguro residencial."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "tipos-de-seguro",
+   "dificuldade": 1,
+   "pergunta": "Qual seguro protege financeiramente a família de alguém, em caso de morte do segurado?",
+   "ancora": "Seguro de vida entrega indenização aos beneficiários indicados.",
+   "alternativas": [
+    {
+     "texto": "Seguro de vida",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Seguro saúde",
+     "correta": false,
+     "feedbackErro": "Seguro saúde (plano de saúde) cobre tratamentos e consultas em vida. O que protege financeiramente a família após a morte do segurado é o seguro de vida."
+    },
+    {
+     "texto": "Seguro residencial",
+     "correta": false,
+     "feedbackErro": "Seguro residencial protege o imóvel contra danos. Proteção financeira da família após a morte é papel do seguro de vida."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "como-funciona-seguro",
+   "criterio": "Isso é função de um seguro?",
+   "enunciado": "Pagar uma diferença (franquia) quando você aciona o seguro do carro",
+   "resposta": true,
+   "ancora": "Franquia é a parte que você paga; o seguro cobre o restante.",
+   "feedbackErro": "Parece contradizer a ideia de proteção, mas a franquia é a parte combinada do prejuízo que fica com você — reduz a mensalidade e evita acionamentos pequenos."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "como-funciona-seguro",
+   "instrucao": "Toque na ordem dos passos para acionar um seguro.",
+   "ancora": "Aviso vem antes da avaliação, que vem antes do pagamento.",
+   "feedbackErro": "É comum achar que a indenização sai assim que o prejuízo acontece, mas a seguradora sempre avalia o caso antes de pagar — pular essa etapa não existe.",
+   "itens": [
+    {
+     "texto": "O prejuízo acontece (acidente, roubo, dano)",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Você comunica a seguradora",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "A seguradora avalia o caso",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "O valor é pago, descontada a franquia",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "como-funciona-seguro",
+   "criterio": "Isso é função de um seguro?",
+   "enunciado": "Cobrar mais de quem tem mais risco de acidente, como jovens recém-habilitados",
+   "resposta": true,
+   "ancora": "Seguradora precifica pelo risco de quem contrata.",
+   "feedbackErro": "Parece injusto cobrar diferente por idade, mas a seguradora calcula o preço com base no risco estatístico de cada grupo — mais risco, mensalidade mais alta."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "tipos-de-seguro",
+   "criterio": "O seguro certo é esse?",
+   "enunciado": "Usar o seguro de automóvel para cobrir o roubo de uma bicicleta",
+   "resposta": false,
+   "ancora": "Bicicleta não é coberta pelo seguro do carro.",
+   "feedbackErro": "Os dois são veículos, e por isso parece servir. Mas o seguro de automóvel cobre o carro da apólice — bicicleta entra em seguro residencial ou apólice própria."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "como-funciona-seguro",
+   "pergunta": "Um seguro de carro custa R$ 150/mês. Quanto uma pessoa paga em 1 ano?",
+   "campo": "moeda",
+   "min": 1500,
+   "max": 2200,
+   "gabarito": 1800,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: R$ 150 × 12 meses",
+   "feedbackPerto": "Boa estimativa: R$ 1.800 pagos ao longo do ano.",
+   "feedbackLonge": "São R$ 1.800: 150 vezes 12 meses.",
+   "verificacao": {
+    "expressao": "150*12",
+    "esperado": 1800
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "tipos-de-seguro",
+   "dificuldade": 1,
+   "pergunta": "Uma família aluga uma casa e quer proteger os móveis e eletrônicos de dentro dela contra roubo. Qual seguro atende isso?",
+   "ancora": "Seguro residencial cobre os bens dentro do imóvel, não só a estrutura.",
+   "alternativas": [
+    {
+     "texto": "Seguro residencial, com cobertura de conteúdo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Seguro de vida, porque protege a família",
+     "correta": false,
+     "feedbackErro": "Seguro de vida protege financeiramente em caso de morte do segurado, não os bens dentro de casa. Para móveis e eletrônicos, o certo é o seguro residencial."
+    },
+    {
+     "texto": "Nenhum seguro cobre imóvel alugado",
+     "correta": false,
+     "feedbackErro": "Quem aluga também pode contratar seguro residencial para os próprios bens — não é preciso ser dono do imóvel para proteger o que está dentro dele."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "como-funciona-seguro",
+   "dificuldade": 1,
+   "pergunta": "Duas apólices custam o mesmo, mas uma tem franquia de R$ 500 e outra de R$ 2.000. Qual detalhe isso muda?",
+   "ancora": "Franquia maior significa mais gasto na hora de acionar o seguro.",
+   "alternativas": [
+    {
+     "texto": "Quanto você paga do bolso ao acionar o seguro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada, franquia é só um número no papel",
+     "correta": false,
+     "feedbackErro": "Franquia é o valor que sai do seu bolso quando o sinistro acontece — não é um número decorativo, é dinheiro real na hora do acionamento."
+    },
+    {
+     "texto": "O tempo que a seguradora demora para pagar",
+     "correta": false,
+     "feedbackErro": "Franquia não define prazo de pagamento, define quanto do prejuízo fica com você antes da seguradora cobrir o restante."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "como-funciona-seguro",
+   "criterio": "Isso é função de um seguro?",
+   "enunciado": "Pagar menos de seguro por não ter acionado nos anos anteriores",
+   "resposta": true,
+   "ancora": "Bônus por não acionar reduz o preço da mensalidade.",
+   "feedbackErro": "Parece que quem paga e não usa 'perdeu', mas seguradoras costumam reduzir o preço de quem tem histórico sem acionamento — o chamado bônus."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "tipos-de-seguro",
+   "criterio": "O seguro certo é esse?",
+   "enunciado": "Usar o seguro residencial para cobrir uma consulta médica",
+   "resposta": false,
+   "ancora": "Consulta médica é coberta por plano de saúde, não residencial.",
+   "feedbackErro": "Os dois protegem contra imprevistos, e é aí que confunde. Mas seguro residencial cobre o imóvel; consulta médica é assunto de plano de saúde."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "como-funciona-seguro",
+   "pergunta": "Qual frase resume a lição?",
+   "alternativas": [
+    {
+     "texto": "Seguro troca um valor fixo pequeno por proteção contra prejuízo grande e raro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Contratar seguro garante que o problema nunca vai acontecer",
+     "correta": false,
+     "feedbackErro": "Seguro não evita o problema — ele cobre o prejuízo financeiro depois que ele acontece."
+    },
+    {
+     "texto": "Todo tipo de seguro cobre qualquer bem, não importa qual",
+     "correta": false,
+     "feedbackErro": "Cada seguro cobre o que está descrito na apólice: carro, casa, vida e saúde protegem coisas diferentes."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "tipos-de-seguro",
+   "instrucao": "Esse seguro cobre isso?",
+   "ancora": "Cada seguro cobre só o que está descrito na própria apólice.",
+   "feedbackErro": "É fácil misturar os tipos porque todos 'protegem'. Mas cada apólice cobre um risco específico: carro cobre carro, casa cobre casa, vida cobre a família, saúde cobre tratamento.",
+   "caixas": [
+    {
+     "id": "cobre",
+     "rotulo": "Cobre"
+    },
+    {
+     "id": "naocobre",
+     "rotulo": "Não cobre"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Seguro de vida cobrindo o assalto ao carro",
+     "caixaCorreta": "naocobre"
+    },
+    {
+     "texto": "Seguro residencial cobrindo um vazamento no piso",
+     "caixaCorreta": "cobre"
+    },
+    {
+     "texto": "Seguro saúde cobrindo uma cirurgia de emergência",
+     "caixaCorreta": "cobre"
+    },
+    {
+     "texto": "Seguro de automóvel cobrindo o conserto da geladeira",
+     "caixaCorreta": "naocobre"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "como-funciona-seguro",
+   "dificuldade": 2,
+   "pergunta": "Um sinistro de R$ 3.000 acontece, com franquia de R$ 800. Quanto a seguradora paga?",
+   "ancora": "3.000 menos os 800 da franquia: a seguradora cobre 2.200.",
+   "alternativas": [
+    {
+     "texto": "R$ 2.200",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 3.000",
+     "correta": false,
+     "feedbackErro": "R$ 3.000 seria sem franquia nenhuma. A franquia de R$ 800 fica com você — a seguradora cobre o restante: 3.000 menos 800."
+    },
+    {
+     "texto": "R$ 800",
+     "correta": false,
+     "feedbackErro": "R$ 800 é a franquia, a parte que fica com você, não o que a seguradora paga. Ela cobre o prejuízo menos a franquia: 3.000 − 800 = 2.200."
+    }
+   ],
+   "verificacao": {
+    "expressao": "3000-800",
+    "esperado": 2200
+   }
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "como-funciona-seguro",
+   "criterio": "Isso é função de um seguro?",
+   "enunciado": "Escolher não renovar o seguro depois de anos sem usar",
+   "resposta": true,
+   "ancora": "É escolha válida, mas troca proteção por economia na mensalidade.",
+   "feedbackErro": "Parece contraditório abrir mão da proteção justamente por nunca ter precisado, mas é uma decisão possível — só que troca a segurança contra prejuízo grande pela economia da mensalidade."
+  }
+ ]
+}

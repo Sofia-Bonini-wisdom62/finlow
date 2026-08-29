@@ -1,0 +1,339 @@
+{
+ "slug": "quando-a-divida-vira-problema-reforco",
+ "segmento": "em3",
+ "conceitoPrincipal": "divida-que-cresce-sozinha",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "criterio": "Essa dívida cresce sozinha?",
+   "enunciado": "Boleto vencido com mora de 1% ao mês correndo",
+   "resposta": true,
+   "ancora": "Mora é juro pelo tempo: corre enquanto o atraso durar.",
+   "feedbackErro": "Parece valor parado porque a conta já venceu. Mas a mora é cobrada por mês de atraso: cada 30 dias sem pagar, o total sobe de novo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "criterio": "Essa dívida cresce sozinha?",
+   "enunciado": "Parcelamento em 10x sem juros, pago em dia",
+   "resposta": false,
+   "ancora": "Sem juros e em dia, o total é fixo: compromisso, não bola de neve.",
+   "feedbackErro": "Dever 10 parcelas assusta, e é isso que engana. Mas o critério é a taxa: sem juros correndo, o total não muda — só o atraso mudaria isso."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "criterio": "Essa dívida cresce sozinha?",
+   "enunciado": "Saldo devedor no cheque especial há dois meses",
+   "resposta": true,
+   "ancora": "Cheque especial cobra ~8% ao mês sobre o que ficou descoberto.",
+   "feedbackErro": "Por vir junto do saldo da conta, ele parece extensão do seu dinheiro. É empréstimo automático a ~8% ao mês — dos mais caros do país."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "dificuldade": 2,
+   "pergunta": "Tarcísio deixou R$ 1.850 no rotativo a 14% ao mês por 2 meses, sem pagar nada. Quanto deve agora?",
+   "ancora": "R$ 1.850 × 1,14 × 1,14 = R$ 2.404. O 2º mês incide sobre o 1º.",
+   "verificacao": {
+    "expressao": "1850*1.14^2",
+    "esperado": 2404.26,
+    "tolerancia": 0.5
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 2.404",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 2.368",
+     "correta": false,
+     "feedbackErro": "Você somou 14% + 14% sobre o valor inicial. Juro composto é diferente: o segundo mês incide sobre o saldo já aumentado, não sobre os R$ 1.850."
+    },
+    {
+     "texto": "R$ 2.109",
+     "correta": false,
+     "feedbackErro": "Essa é a dívida após UM mês. Passaram dois: o segundo 14% entra em cima dos R$ 2.109, e o total vai a R$ 2.404."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "dificuldade": 2,
+   "pergunta": "Conta de R$ 620 com 45 dias de atraso: multa de 2% e mora de 1% ao mês, proporcional. Quanto só de encargos?",
+   "ancora": "Multa R$ 12,40 (uma vez) + mora R$ 9,30 (1,5 mês) = R$ 21,70.",
+   "verificacao": {
+    "expressao": "620*0.02 + 620*0.01*1.5",
+    "esperado": 21.7
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 18,60",
+     "correta": false,
+     "feedbackErro": "Você contou multa + 1 mês de mora e parou. A mora é proporcional ao tempo: 45 dias são 1,5 mês, então são R$ 9,30 de mora, não R$ 6,20."
+    },
+    {
+     "texto": "R$ 21,70",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 27,90",
+     "correta": false,
+     "feedbackErro": "Você fez a multa acompanhar o tempo. Multa é cobrança única pelo atraso; só a mora cresce com os dias. O tempo multiplica uma, não as duas."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "criterio": "Sinal de endividamento excessivo?",
+   "enunciado": "Parcelas somando mais de 30% da renda do mês",
+   "resposta": true,
+   "ancora": "Acima de ~30% da renda em parcelas, qualquer imprevisto derruba.",
+   "feedbackErro": "Estar em dia disfarça o risco. Com um terço da renda comprometido, basta um mês ruim para o atraso começar — e aí os juros assumem o controle."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "prioridade-por-taxa",
+   "instrucao": "Renda apertada este mês: o que atacar primeiro?",
+   "ancora": "Urgência é a taxa: o que cresce rápido não pode esperar.",
+   "feedbackErro": "O critério é a velocidade de crescimento. Rotativo e cheque especial dobram em meses; consignado e parcelado sem juros esperam sem explodir.",
+   "caixas": [
+    {
+     "id": "urgente",
+     "rotulo": "Atacar já"
+    },
+    {
+     "id": "espera",
+     "rotulo": "Pode esperar"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Rotativo do cartão a 14% ao mês",
+     "caixaCorreta": "urgente"
+    },
+    {
+     "texto": "Consignado a 1,8% ao mês",
+     "caixaCorreta": "espera"
+    },
+    {
+     "texto": "Cheque especial a 8% ao mês",
+     "caixaCorreta": "urgente"
+    },
+    {
+     "texto": "Parcelado sem juros, em dia",
+     "caixaCorreta": "espera"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "prioridade-por-taxa",
+   "criterio": "Prioridade certa?",
+   "enunciado": "Quitar o consignado de 1,8% antes do cheque especial de 8%",
+   "resposta": false,
+   "ancora": "8% cresce mais de 4 vezes mais rápido que 1,8%. Ele vem antes.",
+   "verificacao": {
+    "expressao": "8/1.8",
+    "esperado": 4.44,
+    "tolerancia": 0.01
+   },
+   "feedbackErro": "O consignado desconta na folha e por isso incomoda mais. Mas ele é das linhas mais baratas; o cheque especial, a 8%, é o incêndio da vez."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "prioridade-por-taxa",
+   "criterio": "Prioridade certa?",
+   "enunciado": "Usar a restituição do IR para abater a dívida de maior taxa",
+   "resposta": true,
+   "ancora": "Dinheiro extra rende mais matando o juro mais alto.",
+   "feedbackErro": "Gastar a restituição parece merecido — e é aí que ela evapora. Abatida na dívida mais cara, ela 'rende' a própria taxa da dívida, todo mês."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "pergunta": "R$ 2.000 esquecidos no cheque especial, sem pagar nada. Quanto viram em 6 meses?",
+   "campo": "moeda",
+   "min": 2000,
+   "max": 6000,
+   "gabarito": 3174,
+   "toleranciaPct": 20,
+   "fonte": "taxa média do cheque especial, ~8% ao mês (Banco Central)",
+   "verificacao": {
+    "expressao": "2000*1.08^6",
+    "esperado": 3173.75,
+    "tolerancia": 1
+   },
+   "feedbackPerto": "Cerca de R$ 3.174 — quase 60% a mais em meio ano, sem você comprar nada novo.",
+   "feedbackLonge": "São ~R$ 3.174. O erro comum é somar 8% seis vezes (48%, R$ 2.960): juro composto multiplica mês sobre mês, não soma."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "renegociacao",
+   "dificuldade": 2,
+   "pergunta": "No acordo, a parcela cai de R$ 400 (10 meses) para R$ 250 (24 meses). O que mudou de verdade?",
+   "ancora": "10 × R$ 400 = R$ 4.000. 24 × R$ 250 = R$ 6.000. Alívio de R$ 2.000?",
+   "verificacao": {
+    "expressao": "250*24 - 400*10",
+    "esperado": 2000
+   },
+   "alternativas": [
+    {
+     "texto": "O alívio no mês custou R$ 2.000 a mais no total",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ficou mais barato: a parcela caiu R$ 150",
+     "correta": false,
+     "feedbackErro": "A parcela mede o aperto do mês, não o preço da dívida. Some tudo: R$ 4.000 viraram R$ 6.000. O alívio existe — e tem custo."
+    },
+    {
+     "texto": "Nada: a dívida quitada é a mesma",
+     "correta": false,
+     "feedbackErro": "A dívida de origem é a mesma, mas o que sai do seu bolso não: 24 parcelas de R$ 250 somam R$ 2.000 a mais que o plano antigo."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "renegociacao",
+   "dificuldade": 2,
+   "pergunta": "Além do bolso de quem deve, o que o endividamento excessivo em massa causa na economia?",
+   "ancora": "Inadimplência alta encarece o crédito e esfria o consumo de todos.",
+   "alternativas": [
+    {
+     "texto": "Menos consumo e crédito mais caro para todo mundo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: dívida é problema privado de cada família",
+     "correta": false,
+     "feedbackErro": "Começa privado, mas soma: milhões pagando juros consomem menos, o comércio vende menos e o banco cobra mais de todos pelo risco."
+    },
+    {
+     "texto": "Queda geral de preços, porque ninguém compra",
+     "correta": false,
+     "feedbackErro": "A lógica da demanda existe, mas o efeito típico não é deflação: é comércio encolhendo, emprego caindo e crédito mais caro pelo risco."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "renegociacao",
+   "criterio": "Ajuda a sair da dívida?",
+   "enunciado": "Fechar acordo olhando só o tamanho da nova parcela",
+   "resposta": false,
+   "ancora": "Parcela pequena com prazo longo pode custar o dobro no total.",
+   "feedbackErro": "Caber no mês é condição necessária, e por isso seduz. Mas o acordo se avalia pelo custo total: parcela leve esticada pode dobrar o que você paga."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "renegociacao",
+   "criterio": "Ajuda a sair da dívida?",
+   "enunciado": "Comparar o custo total (CET) antes de assinar o acordo",
+   "resposta": true,
+   "ancora": "CET: custo efetivo total — juros, tarifas e seguros, tudo junto.",
+   "feedbackErro": "Parece burocracia, mas o CET é o único número que soma tudo o que o crédito cobra. É ele que permite comparar duas propostas de verdade."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "pergunta": "Qual critério você leva deste encontro?",
+   "alternativas": [
+    {
+     "texto": "Compare taxa e custo total: parcela pequena pode sair caro.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Renegociar sempre diminui o que você paga no fim.",
+     "correta": false,
+     "feedbackErro": "Renegociar alivia o mês; o total pode subir. Foi o caso das 24 parcelas: R$ 2.000 a mais."
+    },
+    {
+     "texto": "Dívida em dia nunca é problema.",
+     "correta": false,
+     "feedbackErro": "Parcelas em dia comendo mais de 30% da renda já são sinal de alerta — um imprevisto derruba."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "renegociacao",
+   "instrucao": "Toque na ordem dos passos para renegociar bem.",
+   "ancora": "Primeiro os números, depois o que cabe, então a proposta.",
+   "feedbackErro": "Propor antes de saber quanto cabe leva a acordo que estoura. A ordem protege: números de cada dívida, seu limite mensal, proposta, papel assinado.",
+   "itens": [
+    {
+     "texto": "Levantar saldo, taxa e atraso de cada dívida",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Definir o valor que cabe no seu mês",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Propor ao credor com data e comprovante",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Guardar o acordo por escrito",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "renegociacao",
+   "pergunta": "Acordo de 18 parcelas de R$ 300 quita uma dívida de R$ 3.600. Quanto você paga a mais?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 4000,
+   "gabarito": 1800,
+   "toleranciaPct": 20,
+   "fonte": "derivado da própria conta: 18 × R$ 300 menos os R$ 3.600 devidos",
+   "verificacao": {
+    "expressao": "300*18 - 3600",
+    "esperado": 1800
+   },
+   "feedbackPerto": "R$ 1.800 — metade da dívida original, só de custo do parcelamento. Esse número precisa aparecer antes da assinatura.",
+   "feedbackLonge": "São R$ 1.800: 18 × 300 = R$ 5.400 pagos por R$ 3.600 devidos. O viés é olhar a parcela 'pequena' e não somar as 18."
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "renegociacao",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Nome limpo no cadastro significa dívida quitada",
+   "resposta": false,
+   "ancora": "O acordo firmado já limpa o nome — a dívida segue sendo paga.",
+   "feedbackErro": "O cadastro registra a pendência, não o saldo. Assinado o acordo, o nome sai da lista; se as parcelas atrasarem, dívida e restrição voltam."
+  }
+ ]
+}

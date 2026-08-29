@@ -1,0 +1,328 @@
+{
+ "slug": "negocio-novo-doacao-e-voluntariado-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "risco-de-negocio-novo",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-de-negocio-novo",
+   "criterio": "Esse negócio está pronto para crescer?",
+   "enunciado": "Vender 50 unidades por mês há 3 meses, sem saber quanto custaria produzir 200",
+   "resposta": false,
+   "ancora": "Vender bem em pequena escala não garante que a escala maior sustente.",
+   "feedbackErro": "Três meses de venda estável parecem prova suficiente de sucesso. Mas sem saber o custo de produzir 200, crescer pode virar prejuízo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-de-negocio-novo",
+   "criterio": "Esse negócio está pronto para crescer?",
+   "enunciado": "Ter vendido bem em uma única feira, sem repetir em outro lugar",
+   "resposta": false,
+   "ancora": "Um resultado isolado não prova que a demanda se repete.",
+   "feedbackErro": "Vender bem numa feira anima, e parece prova de mercado. Mas um resultado único, sem repetição em outro contexto, ainda não garante nada."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-de-negocio-novo",
+   "criterio": "Esse negócio está pronto para crescer?",
+   "enunciado": "Ter testado o produto em 3 públicos diferentes com resultado parecido",
+   "resposta": true,
+   "ancora": "Resultado repetido em públicos diferentes indica demanda real.",
+   "feedbackErro": "Um teste isolado é pouco confiável, e isso é verdade. Mas repetir o resultado em públicos diferentes já indica uma demanda mais sólida."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-de-negocio-novo",
+   "dificuldade": 3,
+   "pergunta": "Brownies: lucro de R$ 2 por unidade, 100 por mês. Dono dobra o preço achando que dobra o lucro. Qual o risco?",
+   "ancora": "Dobrar o preço pode afastar clientes e reduzir o volume vendido.",
+   "alternativas": [
+    {
+     "texto": "Perder clientes do preço atual, vendendo menos que o dobro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nenhum, dobrar o preço sempre dobra o lucro",
+     "correta": false,
+     "feedbackErro": "Dobrar o preço não dobra o lucro automaticamente: se as vendas caírem, o resultado final pode até piorar."
+    },
+    {
+     "texto": "O único risco é o sabor do brownie mudar",
+     "correta": false,
+     "feedbackErro": "O sabor não muda com o preço. O risco real é a reação dos clientes ao valor mais alto."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-de-negocio-novo",
+   "dificuldade": 3,
+   "pergunta": "Em qual situação vender abaixo do custo pode fazer sentido, mesmo sendo prejuízo direto?",
+   "ancora": "Testar rapidamente a demanda pode justificar um prejuízo pontual.",
+   "alternativas": [
+    {
+     "texto": "Para testar rápido se existe demanda real por algo novo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nunca faz sentido vender abaixo do custo",
+     "correta": false,
+     "feedbackErro": "Existem casos válidos, como testar demanda rápido ou reduzir perda de itens perecíveis, mesmo com prejuízo pontual."
+    },
+    {
+     "texto": "Sempre que o dono quiser agradar os clientes",
+     "correta": false,
+     "feedbackErro": "Agradar clientes não é motivo financeiro suficiente. O que justifica vender no prejuízo é um objetivo estratégico claro, como testar demanda."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "risco-de-negocio-novo",
+   "criterio": "É exceção à regra de calcular custo?",
+   "enunciado": "Doar produtos de vencimento próximo, sem cobrar, para reduzir a perda total",
+   "resposta": true,
+   "ancora": "Aqui o objetivo não é lucro, é reduzir prejuízo — outra lógica.",
+   "feedbackErro": "Parece contradizer a regra de sempre calcular preço acima do custo. Mas doar um produto perto do vencimento evita perder o valor dele por inteiro."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "doacao-e-voluntariado",
+   "instrucao": "Toque na ordem, do que exige menos tempo para o que exige mais.",
+   "ancora": "Doação de bem parado exige quase nada; coordenar exige rotina.",
+   "feedbackErro": "É fácil achar que toda ajuda pede o mesmo esforço. Mas doar algo parado no armário exige bem menos tempo do que coordenar um projeto inteiro.",
+   "itens": [
+    {
+     "texto": "Doar uma peça de roupa parada no armário",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Doar um valor fixo mensal, sem acompanhar a instituição",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Ser voluntário 2 horas por semana numa ONG",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Coordenar como voluntário um projeto social, várias horas por semana",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "doacao-e-voluntariado",
+   "criterio": "Ainda é voluntariado, nesse caso-limite?",
+   "enunciado": "Empresa libera o funcionário, com salário mantido, para atuar numa ONG",
+   "resposta": true,
+   "ancora": "O que descaracteriza é receber da ação social, não o salário normal.",
+   "feedbackErro": "Manter o salário durante a ação parece contradizer a ideia de trabalho não remunerado. Mas o salário vem do emprego normal, não da ONG."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "doacao-e-voluntariado",
+   "criterio": "Ainda é voluntariado, nesse caso-limite?",
+   "enunciado": "Pessoa recebe desconto no aluguel em troca de cuidar do jardim comunitário",
+   "resposta": false,
+   "ancora": "Receber vantagem em troca do trabalho tira o caráter voluntário.",
+   "feedbackErro": "Cuidar de jardim comunitário soa como ajuda típica. Mas receber desconto no aluguel em troca é uma contrapartida: deixa de ser voluntário."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "risco-de-negocio-novo",
+   "pergunta": "Sucos: custo R$ 3,20, venda R$ 6,00. 220 copos, custo fixo R$ 150. Lucro do mês?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 800,
+   "gabarito": 466,
+   "toleranciaPct": 20,
+   "fonte": "cálculo de margem e custo fixo do próprio negócio",
+   "feedbackPerto": "Isso mesmo, R$ 466. É a margem por copo vezes a quantidade, menos o custo fixo do mês.",
+   "feedbackLonge": "R$ 466: margem de R$ 2,80 por copo vezes 220 copos dá R$ 616; menos R$ 150 de custo fixo, sobra R$ 466.",
+   "verificacao": {
+    "expressao": "220*(6.00-3.20) - 150",
+    "esperado": 466
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "doacao-e-voluntariado",
+   "dificuldade": 3,
+   "pergunta": "Uma pessoa quer transformar seu voluntariado numa ONG formal, virando 'negócio social'. O que muda na lógica financeira?",
+   "ancora": "Formalizar a ação social exige captação de recursos contínua.",
+   "alternativas": [
+    {
+     "texto": "Passa a precisar de captação de recursos contínua",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada muda, ONG não lida com dinheiro nenhum",
+     "correta": false,
+     "feedbackErro": "Toda ONG, mesmo sem fins lucrativos, precisa de dinheiro para funcionar: aluguel, materiais, equipe."
+    },
+    {
+     "texto": "O trabalho deixa de precisar de qualquer planejamento",
+     "correta": false,
+     "feedbackErro": "Formalizar exige mais planejamento, não menos: passa a haver prestação de contas e sustentabilidade financeira a cuidar."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "risco-de-negocio-novo",
+   "dificuldade": 3,
+   "pergunta": "Gustavo é voluntário numa campanha e quer usar o lucro do negócio dele para comprar e doar mais agasalhos. Isso é",
+   "ancora": "Doação da empresa é separada do trabalho voluntário com o tempo.",
+   "alternativas": [
+    {
+     "texto": "Uma doação da empresa, separada do voluntariado dele",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A mesma coisa que ser voluntário, só que com dinheiro",
+     "correta": false,
+     "feedbackErro": "São ações diferentes: usar lucro para comprar e doar é doação; dar o próprio tempo na campanha é voluntariado."
+    },
+    {
+     "texto": "Impossível, negócio e doação não podem se misturar",
+     "correta": false,
+     "feedbackErro": "É perfeitamente possível: uma empresa pode destinar parte do lucro a uma doação, sem nenhum impedimento."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "risco-de-negocio-novo",
+   "criterio": "Ainda é risco, mesmo em fase avançada?",
+   "enunciado": "Crescer a produção sem testar se a estrutura aguenta a demanda maior",
+   "resposta": true,
+   "ancora": "Crescer sem testar a estrutura pode comprometer a qualidade e o caixa.",
+   "feedbackErro": "Um negócio já rodando parece imune a esse tipo de risco. Mas crescer sem testar a estrutura pode comprometer qualidade, prazo e caixa."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "risco-de-negocio-novo",
+   "criterio": "Ainda é risco, mesmo em fase avançada?",
+   "enunciado": "Manter o mesmo controle de custo desde o início até o crescimento",
+   "resposta": false,
+   "ancora": "Manter o controle de custo reduz risco, não é risco.",
+   "feedbackErro": "Depois de ver tantos riscos de crescimento, pode parecer que manter uma prática antiga também é arriscado. Mas manter o controle de custo protege o negócio."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "risco-de-negocio-novo",
+   "dificuldade": null,
+   "pergunta": "Qual frase resume a consolidação de hoje?",
+   "alternativas": [
+    {
+     "texto": "O critério não muda: calcule custo e teste antes de crescer",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Vender abaixo do custo nunca se justifica, em nenhuma situação",
+     "correta": false,
+     "feedbackErro": "Existem exceções válidas, como testar demanda rápido ou evitar perder totalmente um produto perto do vencimento."
+    },
+    {
+     "texto": "Receber qualquer vantagem em troca do trabalho ainda é voluntariado",
+     "correta": false,
+     "feedbackErro": "Receber uma vantagem em troca do trabalho, mesmo pequena, tira o caráter voluntário da ação."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "risco-de-negocio-novo",
+   "criterio": "É exceção válida ao cálculo de custo?",
+   "enunciado": "Vender um lote de produtos perto do vencimento por qualquer valor, para não perder tudo",
+   "resposta": true,
+   "ancora": "Recuperar parte do valor é melhor que perder o produto inteiro.",
+   "feedbackErro": "Vender abaixo do custo parece sempre errado. Mas perto do vencimento, recuperar uma parte do valor é melhor do que perder o produto inteiro."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "doacao-e-voluntariado",
+   "dificuldade": 3,
+   "pergunta": "Uma empresa dá um dia de folga remunerada para o funcionário atuar numa ONG. Isso é considerado voluntariado de quem?",
+   "ancora": "O funcionário atua como voluntário; a folga é benefício da empresa.",
+   "alternativas": [
+    {
+     "texto": "Do funcionário, que oferece o próprio tempo na ONG",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Da empresa, porque ela paga o dia de folga",
+     "correta": false,
+     "feedbackErro": "A empresa oferece o benefício da folga, mas quem entrega tempo e trabalho na ONG, sem receber dela, é o funcionário."
+    },
+    {
+     "texto": "De ninguém, porque envolve pagamento do salário",
+     "correta": false,
+     "feedbackErro": "O salário vem do emprego normal, não da ONG: isso não retira o caráter voluntário do trabalho feito lá."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "risco-de-negocio-novo",
+   "instrucao": "Classifique: situação normal ou caso-limite que exige atenção?",
+   "ancora": "Casos-limite fogem da regra simples e pedem análise extra.",
+   "feedbackErro": "A maioria das decisões segue a regra simples de custo e teste; algumas exigem pensar no contexto específico.",
+   "caixas": [
+    {
+     "id": "normal",
+     "rotulo": "Situação normal"
+    },
+    {
+     "id": "limite",
+     "rotulo": "Caso-limite"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Calcular custo antes de definir o preço de venda",
+     "caixaCorreta": "normal"
+    },
+    {
+     "texto": "Vender abaixo do custo para não perder produto vencendo",
+     "caixaCorreta": "limite"
+    },
+    {
+     "texto": "Testar em pequena escala antes de produzir muito",
+     "caixaCorreta": "normal"
+    },
+    {
+     "texto": "Dobrar o preço esperando dobrar o lucro automaticamente",
+     "caixaCorreta": "limite"
+    }
+   ]
+  }
+ ]
+}

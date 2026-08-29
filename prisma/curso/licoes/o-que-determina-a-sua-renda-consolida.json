@@ -1,0 +1,327 @@
+{
+ "slug": "o-que-determina-a-sua-renda-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "o-que-determina-a-sua-renda",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "determinantes-da-renda",
+   "criterio": "É fator estrutural, não conjuntural?",
+   "enunciado": "A cidade nunca ter tido faculdade de engenharia",
+   "resposta": true,
+   "ancora": "Ausência histórica de curso é estrutural, não vai mudar sozinha.",
+   "feedbackErro": "Parece um detalhe do momento, mas é uma característica antiga da cidade — isso é estrutural, diferente de uma crise que passa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "determinantes-da-renda",
+   "criterio": "É fator estrutural, não conjuntural?",
+   "enunciado": "Uma pandemia que fecha o comércio por alguns meses",
+   "resposta": false,
+   "ancora": "Choque temporário: afeta a renda, mas tende a passar.",
+   "feedbackErro": "O impacto foi enorme, e por isso parece definitivo. Mas o comércio reabre depois — é fator conjuntural, não uma característica fixa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "capital-humano",
+   "criterio": "É capital humano transferível?",
+   "enunciado": "Saber liderar uma equipe pequena",
+   "resposta": true,
+   "ancora": "Liderança é habilidade que vale em quase qualquer função.",
+   "feedbackErro": "Parece exclusivo de um cargo de chefia. Mas liderar é habilidade que atravessa empregos diferentes — capital humano transferível."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "determinantes-da-renda",
+   "dificuldade": 3,
+   "pergunta": "Cidade com uma só fábrica reduz turno por queda temporária de pedidos. A renda cai por fator...",
+   "ancora": "Queda temporária de pedidos é conjuntural, mesmo pesando muito.",
+   "alternativas": [
+    {
+     "texto": "Conjuntural: o motivo é a variação passageira de pedidos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Estrutural: a cidade depende de uma única fábrica",
+     "correta": false,
+     "feedbackErro": "Depender de uma fábrica só é, sim, um traço estrutural da cidade — mas não é a causa apontada nesta queda específica de renda."
+    },
+    {
+     "texto": "Pessoal: os trabalhadores perderam qualificação",
+     "correta": false,
+     "feedbackErro": "Nada no enunciado fala em perda de qualificação. A causa descrita é a queda temporária de pedidos — fator conjuntural, não pessoal."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "capital-humano",
+   "dificuldade": 3,
+   "pergunta": "Um profissional tem 10 anos de experiência numa técnica que a tecnologia tornou obsoleta. O capital humano dele...",
+   "ancora": "Capital humano também perde valor quando a demanda muda.",
+   "alternativas": [
+    {
+     "texto": "Perdeu valor de mercado, mesmo sendo real e antigo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Continua o mesmo, porque experiência nunca perde valor",
+     "correta": false,
+     "feedbackErro": "Experiência costuma valer, mas não sempre: se a técnica ficou obsoleta, a demanda por ela cai — e o valor de mercado cai junto."
+    },
+    {
+     "texto": "Aumentou, porque quanto mais anos, mais capital humano",
+     "correta": false,
+     "feedbackErro": "Tempo de experiência ajuda, em geral. Mas aqui o problema é a demanda: uma técnica obsoleta perde valor mesmo com muitos anos de prática."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "determinantes-da-renda",
+   "criterio": "É determinante pessoal da renda?",
+   "enunciado": "Trocar de área depois de perceber que a antiga estava saturada",
+   "resposta": true,
+   "ancora": "Reagir a um cenário com uma escolha própria ainda é fator pessoal.",
+   "feedbackErro": "A saturação da área é um fator externo, e isso confunde. Mas a decisão de trocar de área é escolha da pessoa — conta como fator pessoal."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "determinantes-da-renda",
+   "instrucao": "Toque na ordem: do fator mais permanente ao mais temporário.",
+   "ancora": "Estrutural dura anos; conjuntural passa; pessoal muda na hora.",
+   "feedbackErro": "Estrutural é o mais difícil de mudar (leva anos); conjuntural tende a passar sozinho; pessoal pode mudar assim que a pessoa decidir.",
+   "itens": [
+    {
+     "texto": "Região sem nenhuma universidade próxima",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Setor em crise por alguns meses",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Empresa contratando por um projeto temporário",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Pessoa decidir estudar à noite",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "capital-humano",
+   "criterio": "É capital humano transferível?",
+   "enunciado": "Saber usar uma máquina específica de uma única fábrica",
+   "resposta": false,
+   "ancora": "Habilidade específica demais tem pouco valor fora daquele lugar.",
+   "feedbackErro": "É habilidade de verdade, e isso confunde. Mas se só serve numa máquina de uma fábrica, ela transfere pouco valor para outros empregos."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "capital-humano",
+   "criterio": "É capital humano transferível?",
+   "enunciado": "Saber se comunicar bem por escrito",
+   "resposta": true,
+   "ancora": "Comunicação escrita serve em quase qualquer função.",
+   "feedbackErro": "Parece genérica demais para valer como habilidade. Mas escrever bem é pedido em quase toda vaga — alto valor de transferência."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "capital-humano",
+   "pergunta": "Um técnico com certificação extra ganha cerca de 25% a mais. Sobre R$ 2.600, é quanto a mais?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 1200,
+   "gabarito": 650,
+   "toleranciaPct": 20,
+   "fonte": "diferença média de renda por certificação técnica, ordem de grandeza",
+   "verificacao": {
+    "expressao": "2600*0.25",
+    "esperado": 650
+   },
+   "feedbackPerto": "Perto: R$ 650 a mais. Certificação técnica costuma abrir diferença assim.",
+   "feedbackLonge": "Dá R$ 650: 25% de 2.600. Divida por 4 é o mesmo que multiplicar por 25% — outro caminho para o mesmo resultado."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "determinantes-da-renda",
+   "dificuldade": 3,
+   "pergunta": "Cidade A investiu em internet rápida há 5 anos; B não. Hoje A tem mais empresas de tecnologia. Efeito de qual fator?",
+   "ancora": "Investimento antigo que ainda molda o presente é estrutural.",
+   "alternativas": [
+    {
+     "texto": "Estrutural: infraestrutura acumulada ao longo do tempo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Conjuntural: é um efeito passageiro deste ano",
+     "correta": false,
+     "feedbackErro": "Cinco anos de vantagem acumulada não é passageiro. É estrutural: a infraestrutura mudou a base econômica da cidade de forma duradoura."
+    },
+    {
+     "texto": "Pessoal: depende de cada morador ter estudado tecnologia",
+     "correta": false,
+     "feedbackErro": "O esforço individual de cada morador até ajuda, mas a causa apontada no enunciado é a infraestrutura da cidade — fator estrutural."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "capital-humano",
+   "dificuldade": 3,
+   "pergunta": "Renato tem capital humano alto, mas mora numa região em crise conjuntural. O que ajuda mais agora?",
+   "ancora": "Fator externo pesado pede habilidade que atravessa fronteira.",
+   "alternativas": [
+    {
+     "texto": "Uma habilidade que ele ofereça remotamente, fora da região",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Esperar a crise passar sem mudar nada",
+     "correta": false,
+     "feedbackErro": "Esperar é possível, mas não usa o capital humano que ele já tem. Uma habilidade que atravesse a crise local ajuda mais agora."
+    },
+    {
+     "texto": "Aceitar qualquer trabalho, mesmo sem usar a formação",
+     "correta": false,
+     "feedbackErro": "Pode ser necessário no curto prazo, mas desperdiça o capital humano que ele acumulou. Buscar algo que use a formação rende mais."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "determinantes-da-renda",
+   "criterio": "É fator estrutural, não conjuntural?",
+   "enunciado": "A falta histórica de saneamento básico numa região",
+   "resposta": true,
+   "ancora": "Problema antigo e persistente — traço estrutural da região.",
+   "feedbackErro": "Parece um problema atual isolado, mas é histórico e se mantém — isso caracteriza fator estrutural, não algo passageiro."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "capital-humano",
+   "criterio": "É capital humano transferível?",
+   "enunciado": "Saber resolver problemas em equipe sob pressão",
+   "resposta": true,
+   "ancora": "Habilidade comportamental pedida em quase qualquer área.",
+   "feedbackErro": "Parece 'genérica demais' para contar como habilidade real. Mas resolver problema em equipe é competência buscada em setores bem diferentes."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-que-determina-a-sua-renda",
+   "pergunta": "Fechando os três encontros, o que fica?",
+   "alternativas": [
+    {
+     "texto": "Renda combina fator pessoal, estrutural e conjuntural — nenhum decide sozinho",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Fator conjuntural é sempre permanente, como um traço da região",
+     "correta": false,
+     "feedbackErro": "É o contrário: conjuntural é temporário, como uma crise ou sazonalidade. O que é permanente é o fator estrutural."
+    },
+    {
+     "texto": "Capital humano nunca perde valor com o tempo",
+     "correta": false,
+     "feedbackErro": "Pode perder, sim: quando a demanda por uma técnica cai, mesmo anos de experiência perdem valor de mercado."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "determinantes-da-renda",
+   "instrucao": "Estrutural (fixo) ou conjuntural (passageiro)? Arraste.",
+   "ancora": "Estrutural leva anos para mudar; conjuntural tende a passar.",
+   "feedbackErro": "O que é traço antigo e difícil de mudar é estrutural. O que é choque temporário, mesmo forte, é conjuntural.",
+   "caixas": [
+    {
+     "id": "estrutural",
+     "rotulo": "Estrutural"
+    },
+    {
+     "id": "conjuntural",
+     "rotulo": "Conjuntural"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Região sem nenhuma estrada asfaltada até a capital",
+     "caixaCorreta": "estrutural"
+    },
+    {
+     "texto": "Queda de vendas por uma greve de dois meses",
+     "caixaCorreta": "conjuntural"
+    },
+    {
+     "texto": "Falta histórica de escolas técnicas na cidade",
+     "caixaCorreta": "estrutural"
+    },
+    {
+     "texto": "Alta temporária do dólar por um evento internacional",
+     "caixaCorreta": "conjuntural"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "capital-humano",
+   "dificuldade": 3,
+   "pergunta": "Duas pessoas têm o mesmo curso, mas uma trabalha numa região em crescimento. O capital humano das duas é igual?",
+   "ancora": "Capital humano é igual; o retorno que ele gera pode ser diferente.",
+   "alternativas": [
+    {
+     "texto": "Sim: o conhecimento é igual, mas o retorno em renda pode variar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não: quem mora em região em crescimento tem mais capital humano",
+     "correta": false,
+     "feedbackErro": "A região não muda o que a pessoa sabe — o capital humano das duas é o mesmo. O que muda é o retorno em renda que esse saber gera."
+    },
+    {
+     "texto": "Não: capital humano só existe em regiões desenvolvidas",
+     "correta": false,
+     "feedbackErro": "Capital humano é o conhecimento da pessoa, existe em qualquer lugar. O que a região muda é a demanda e o retorno por ele."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "determinantes-da-renda",
+   "criterio": "É determinante pessoal da renda?",
+   "enunciado": "Uma nova ponte que encurta o caminho até a região industrial",
+   "resposta": false,
+   "ancora": "Obra pública é fator estrutural, decidido fora do indivíduo.",
+   "feedbackErro": "Facilita muito a vida de quem usa a ponte, e isso parece pessoal. Mas a obra em si é decisão pública — fator estrutural da região."
+  }
+ ]
+}

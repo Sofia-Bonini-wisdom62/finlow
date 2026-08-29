@@ -1,0 +1,294 @@
+{
+ "slug": "de-onde-vem-a-renda",
+ "segmento": "ef67",
+ "conceitoPrincipal": "de-onde-vem-a-renda",
+ "fraseConceito": "Renda é todo dinheiro que entra: salário, bico, aluguel recebido, negócio próprio — regular ou não.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "de-onde-vem-a-renda",
+   "criterio": "Isso é uma fonte de renda?",
+   "enunciado": "O salário mensal de um emprego com carteira assinada",
+   "resposta": true,
+   "ancora": "Salário é a fonte de renda mais comum e frequente.",
+   "feedbackErro": "Parece óbvio demais pra errar, mas confirma o critério: salário fixo é renda formal e frequente."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "de-onde-vem-a-renda",
+   "criterio": "Isso é uma fonte de renda?",
+   "enunciado": "Vender brigadeiro de vez em quando pra juntar um dinheiro extra",
+   "resposta": true,
+   "ancora": "Renda esporádica e informal também é renda — só não é regular.",
+   "feedbackErro": "Por não ser fixo nem todo mês, parece 'não contar'. Mas qualquer dinheiro que entra é renda — esporádica e informal, nesse caso."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "de-onde-vem-a-renda",
+   "criterio": "Isso é uma fonte de renda?",
+   "enunciado": "O dinheiro guardado no cofrinho, sem nenhuma entrada nova",
+   "resposta": false,
+   "ancora": "Dinheiro parado, sem nova entrada, é poupança — não é renda.",
+   "feedbackErro": "Envolve dinheiro, e por isso confunde com renda. Mas renda é o que entra de novo; o que já está guardado é poupança."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "de-onde-vem-a-renda",
+   "dificuldade": 1,
+   "pergunta": "Uma família tem salário do pai e venda ocasional de roupas usadas da mãe. Por que contar as duas rendas?",
+   "ancora": "O orçamento da família soma toda renda que entra, formal e informal.",
+   "alternativas": [
+    {
+     "texto": "Porque o orçamento depende da soma de todas as entradas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque só a renda formal conta de verdade",
+     "correta": false,
+     "feedbackErro": "Renda informal também entra no orçamento — o dinheiro da venda de roupas ajuda a pagar contas do mesmo jeito."
+    },
+    {
+     "texto": "Porque só o maior salário deve ser considerado",
+     "correta": false,
+     "feedbackErro": "Ignorar a renda menor esconde parte real do dinheiro disponível pra família."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "de-onde-vem-a-renda",
+   "dificuldade": 1,
+   "pergunta": "Qual a principal diferença entre renda frequente e renda esporádica?",
+   "ancora": "Frequência, não valor, separa renda regular de esporádica.",
+   "alternativas": [
+    {
+     "texto": "A frequente entra em intervalos regulares; a esporádica, não",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A frequente é sempre maior em valor",
+     "correta": false,
+     "feedbackErro": "Valor não é o critério — o que diferencia é a regularidade, não o tamanho."
+    },
+    {
+     "texto": "A esporádica nunca pode ser contada no orçamento",
+     "correta": false,
+     "feedbackErro": "Ela pode e deve ser contada, só que com mais cautela, já que não é garantida todo mês."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "de-onde-vem-a-renda",
+   "criterio": "Isso é uma renda formal?",
+   "enunciado": "O salário de uma professora de escola municipal",
+   "resposta": true,
+   "ancora": "Registro em carteira e vínculo formal tornam essa renda formal.",
+   "feedbackErro": "Trabalhar pro governo pode parecer diferente de 'ter carteira assinada'. Mas o vínculo formal existe do mesmo jeito."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "de-onde-vem-a-renda",
+   "instrucao": "É renda frequente ou esporádica?",
+   "ancora": "A pergunta é: isso volta a acontecer em um intervalo previsível?",
+   "feedbackErro": "Frequente se repete em intervalos certos; esporádica aparece sem previsão de quando volta.",
+   "caixas": [
+    {
+     "id": "frequente",
+     "rotulo": "Frequente"
+    },
+    {
+     "id": "esporadica",
+     "rotulo": "Esporádica"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Salário mensal fixo",
+     "caixaCorreta": "frequente"
+    },
+    {
+     "texto": "Bico de pintar uma casa, feito uma vez",
+     "caixaCorreta": "esporadica"
+    },
+    {
+     "texto": "Mesada recebida toda semana",
+     "caixaCorreta": "frequente"
+    },
+    {
+     "texto": "Prêmio ganho num sorteio",
+     "caixaCorreta": "esporadica"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "de-onde-vem-a-renda",
+   "criterio": "Isso é um emprego público?",
+   "enunciado": "Trabalhar como enfermeiro num hospital do governo, aprovado em concurso",
+   "resposta": true,
+   "ancora": "Concurso público e vínculo com o governo definem o emprego público.",
+   "feedbackErro": "É um trabalho como outro qualquer no dia a dia, e por isso passa despercebido. Mas o vínculo via concurso é o que define emprego público."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "de-onde-vem-a-renda",
+   "dificuldade": 1,
+   "pergunta": "Isadora tem salário fixo mais gorjetas que variam todo mês. Como tratar as gorjetas no orçamento?",
+   "ancora": "Renda variável entra no orçamento, mas com mais cautela que a fixa.",
+   "alternativas": [
+    {
+     "texto": "Como renda extra, contando com cautela porque varia",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ignorar, porque não é salário fixo",
+     "correta": false,
+     "feedbackErro": "Ignorar joga fora dinheiro real que entra — só precisa ser tratado com mais cautela."
+    },
+    {
+     "texto": "Contar sempre o valor mais alto que já recebeu",
+     "correta": false,
+     "feedbackErro": "Contar pelo valor mais alto é otimismo perigoso — o seguro é contar com cautela."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "de-onde-vem-a-renda",
+   "criterio": "Isso é um emprego privado?",
+   "enunciado": "Trabalhar numa padaria de um dono, sem vínculo com o governo",
+   "resposta": true,
+   "ancora": "Empresa privada, sem vínculo com o Estado — emprego privado.",
+   "feedbackErro": "Padaria pequena parece 'diferente' de uma grande empresa, mas o critério é o mesmo: sem vínculo com o governo, é privado."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "de-onde-vem-a-renda",
+   "criterio": "Isso ajuda a entender a renda?",
+   "enunciado": "Listar todas as fontes de dinheiro que entram, mesmo as pequenas e variáveis",
+   "resposta": true,
+   "ancora": "Listar tudo, mesmo pequeno, dá o retrato real do que entra.",
+   "feedbackErro": "Parece trabalho demais pra fontes pequenas. Mas somadas, elas fazem diferença real no que a família tem pra gastar."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "de-onde-vem-a-renda",
+   "pergunta": "Qual frase resume melhor de onde vem a renda de uma família?",
+   "alternativas": [
+    {
+     "texto": "De várias fontes formais, informais, frequentes e esporádicas juntas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só do salário fixo de quem trabalha com carteira assinada",
+     "correta": false,
+     "feedbackErro": "Renda informal e esporádica também contam — ignorá-las esconde parte real do dinheiro disponível."
+    },
+    {
+     "texto": "Só de empregos públicos, que são mais seguros",
+     "correta": false,
+     "feedbackErro": "Empregos privados, bicos e negócios próprios também são fontes reais de renda."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "de-onde-vem-a-renda",
+   "instrucao": "É emprego público ou privado?",
+   "ancora": "A pergunta é: quem é o empregador — o Estado ou o setor privado?",
+   "feedbackErro": "Público tem vínculo com o governo, geralmente via concurso; privado depende de empresas ou trabalho autônomo.",
+   "caixas": [
+    {
+     "id": "publico",
+     "rotulo": "Público"
+    },
+    {
+     "id": "privado",
+     "rotulo": "Privado"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Policial militar do estado",
+     "caixaCorreta": "publico"
+    },
+    {
+     "texto": "Vendedor de uma loja de roupas",
+     "caixaCorreta": "privado"
+    },
+    {
+     "texto": "Professor de universidade federal",
+     "caixaCorreta": "publico"
+    },
+    {
+     "texto": "Motorista de aplicativo autônomo",
+     "caixaCorreta": "privado"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "de-onde-vem-a-renda",
+   "instrucao": "Ordene da renda mais previsível pra menos previsível.",
+   "ancora": "Não é sobre o valor — é sobre a chance de ela se repetir.",
+   "feedbackErro": "Previsibilidade cai conforme a renda depende menos de um contrato fixo.",
+   "itens": [
+    {
+     "texto": "Salário mensal fixo",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Comissão que varia com as vendas",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Bico ocasional de fim de semana",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Prêmio de sorteio, sem previsão",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "de-onde-vem-a-renda",
+   "pergunta": "Salário fixo de R$ 2.000 mais renda extra média de R$ 300 com vendas. Qual a renda total do mês?",
+   "campo": "moeda",
+   "min": 1500,
+   "max": 3000,
+   "gabarito": 2300,
+   "toleranciaPct": 20,
+   "fonte": "soma do salário fixo com a média da renda extra",
+   "feedbackPerto": "Isso mesmo — somando as duas fontes, R$ 2.300 é a renda média do mês.",
+   "feedbackLonge": "R$ 2.300: some o salário fixo com a média da renda extra mensal.",
+   "verificacao": {
+    "expressao": "2000+300",
+    "esperado": 2300
+   }
+  }
+ ]
+}

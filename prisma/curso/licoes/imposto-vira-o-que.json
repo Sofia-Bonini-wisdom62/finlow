@@ -1,0 +1,343 @@
+{
+ "slug": "imposto-vira-o-que",
+ "segmento": "ef89",
+ "conceitoPrincipal": "imposto-vira-o-que",
+ "fraseConceito": "Imposto pago vira escola, posto de saúde e rua asfaltada — e o cidadão que acompanha o gasto público decide melhor no voto.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "É financiado por imposto?",
+   "enunciado": "A escola pública do seu bairro",
+   "resposta": true,
+   "ancora": "Escola pública funciona com dinheiro arrecadado em impostos.",
+   "feedbackErro": "É comum achar que escola 'não custa nada'. Mas o prédio, o salário do professor e a merenda vêm da arrecadação de impostos."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "É financiado por imposto?",
+   "enunciado": "Um posto de gasolina particular",
+   "resposta": false,
+   "ancora": "Empresa privada se sustenta com o que vende, não com imposto.",
+   "feedbackErro": "O posto até paga imposto sobre o que vende. Mas ele mesmo é sustentado pelo lucro da venda, não é financiado com dinheiro público."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "É financiado por imposto?",
+   "enunciado": "O asfalto da rua onde você mora",
+   "resposta": true,
+   "ancora": "Obra pública como asfalto é paga com verba de impostos.",
+   "feedbackErro": "A rua parece 'já estar ali', sem custo aparente. Mas pavimentar e manter o asfalto é obra paga com dinheiro público arrecadado."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "imposto-financia-servico",
+   "dificuldade": 1,
+   "pergunta": "Uma compra de R$ 100 tem cerca de 18% de ICMS embutido no preço. Quanto disso é imposto?",
+   "ancora": "18% de R$ 100 = R$ 18 de imposto embutido no preço.",
+   "verificacao": {
+    "expressao": "100*0.18",
+    "esperado": 18.0
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 1,80",
+     "correta": false,
+     "feedbackErro": "Você calculou 1,8%, não 18%. Para achar 18%, divida por 100 e multiplique por 18: dá R$ 18."
+    },
+    {
+     "texto": "R$ 18",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 82",
+     "correta": false,
+     "feedbackErro": "R$ 82 seria o valor sem o imposto. O imposto embutido, sozinho, são os R$ 18 de 18%."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "participacao-cidada",
+   "dificuldade": 1,
+   "pergunta": "Pra que serve acompanhar o orçamento público, além de votar a cada 4 anos?",
+   "ancora": "Acompanhar o gasto é o que permite cobrar resultado o ano todo.",
+   "alternativas": [
+    {
+     "texto": "Pra cobrar se o dinheiro arrecadado virou serviço de verdade",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pra nada — só o voto muda alguma coisa",
+     "correta": false,
+     "feedbackErro": "O voto decide quem administra, mas acompanhar o gasto é o que permite cobrar durante o mandato todo."
+    },
+    {
+     "texto": "Pra pagar menos imposto no ano seguinte",
+     "correta": false,
+     "feedbackErro": "Acompanhar o orçamento não muda o valor do imposto — o que muda é a cobrança sobre como ele é usado."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "É financiado por imposto?",
+   "enunciado": "O salário de um professor de escola municipal",
+   "resposta": true,
+   "ancora": "Salário de servidor público vem da arrecadação de impostos.",
+   "feedbackErro": "O contracheque parece só um pagamento comum, igual outro qualquer. Mas o salário de servidor público sai direto da arrecadação de impostos."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "imposto-financia-servico",
+   "instrucao": "É serviço público financiado por imposto? Arraste.",
+   "ancora": "Público é mantido com imposto; privado é pago direto por quem usa.",
+   "feedbackErro": "Hospital do SUS e iluminação de rua são pagos com imposto; escola e academia particulares se sustentam com mensalidade de quem usa.",
+   "caixas": [
+    {
+     "id": "publico",
+     "rotulo": "Público"
+    },
+    {
+     "id": "privado",
+     "rotulo": "Privado"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Hospital público (SUS)",
+     "caixaCorreta": "publico"
+    },
+    {
+     "texto": "Escola particular",
+     "caixaCorreta": "privado"
+    },
+    {
+     "texto": "Iluminação da rua",
+     "caixaCorreta": "publico"
+    },
+    {
+     "texto": "Academia particular",
+     "caixaCorreta": "privado"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "Vira serviço público?",
+   "enunciado": "O IPTU pago pelo dono de um imóvel",
+   "resposta": true,
+   "ancora": "IPTU financia boa parte dos serviços do município.",
+   "feedbackErro": "IPTU parece só uma taxa sobre ter um imóvel. Mas essa arrecadação financia boa parte dos serviços que o município oferece."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "Vira serviço público?",
+   "enunciado": "A mensalidade paga numa escola particular",
+   "resposta": false,
+   "ancora": "Mensalidade paga o serviço privado direto, sem virar imposto.",
+   "feedbackErro": "A escola até paga imposto sobre o que arrecada. Mas a mensalidade em si vai pra escola, não é imposto nem vira serviço público."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "imposto-financia-servico",
+   "pergunta": "Uma prefeitura arrecada R$ 200.000 de impostos num mês. Se 25% vai pra saúde, quanto é isso?",
+   "campo": "moeda",
+   "min": 10000,
+   "max": 100000,
+   "gabarito": 50000,
+   "toleranciaPct": 20,
+   "fonte": "proporção ilustrativa de repasse — percentual real varia por município",
+   "verificacao": {
+    "expressao": "200000*0.25",
+    "esperado": 50000.0
+   },
+   "feedbackPerto": "Isso mesmo — R$ 50.000. É essa fatia que vira posto de saúde, remédio e equipe funcionando.",
+   "feedbackLonge": "Dá R$ 50.000. Um quarto do total parece pouco isolado, mas é o que sustenta posto de saúde e equipe no bairro."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "imposto-financia-servico",
+   "dificuldade": 1,
+   "pergunta": "Por que pagar imposto tem relação direta com ter posto de saúde funcionando?",
+   "ancora": "Salário, remédio e estrutura do posto saem da arrecadação.",
+   "alternativas": [
+    {
+     "texto": "Porque a arrecadação financia salário, remédio e estrutura",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque imposto e saúde são coisas sem nenhuma relação",
+     "correta": false,
+     "feedbackErro": "Existe relação direta: sem arrecadação, falta dinheiro pra manter equipe e remédio no posto."
+    },
+    {
+     "texto": "Porque o posto de saúde só funciona com doação de empresas",
+     "correta": false,
+     "feedbackErro": "Doação pode ajudar em casos pontuais, mas a manutenção regular do posto vem da arrecadação de impostos."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "participacao-cidada",
+   "dificuldade": 1,
+   "pergunta": "O que é participação cidadã no sistema financeiro público?",
+   "ancora": "É acompanhar e cobrar como o dinheiro arrecadado é gasto.",
+   "alternativas": [
+    {
+     "texto": "Acompanhar e cobrar como o dinheiro arrecadado é gasto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pagar todos os impostos em dia, e nada além disso",
+     "correta": false,
+     "feedbackErro": "Pagar em dia é obrigação — participação cidadã vai além, é acompanhar e cobrar o uso do dinheiro."
+    },
+    {
+     "texto": "Esperar que o governo decida sozinho o que é melhor",
+     "correta": false,
+     "feedbackErro": "Esperar em silêncio é o oposto de participar — cidadania ativa cobra e acompanha o gasto público."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "É financiado por imposto?",
+   "enunciado": "O salário de um policial militar",
+   "resposta": true,
+   "ancora": "Segurança pública é serviço mantido com dinheiro de imposto.",
+   "feedbackErro": "A farda e a viatura parecem vir 'do governo' de forma abstrata. Mas o salário do policial sai da mesma arrecadação de impostos de sempre."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "participacao-cidada",
+   "criterio": "Ajuda a fiscalizar o gasto público?",
+   "enunciado": "Acompanhar o orçamento da prefeitura, disponível online",
+   "resposta": true,
+   "ancora": "Orçamento público é aberto — acompanhar é exercício de cidadania.",
+   "feedbackErro": "Parece burocracia distante do dia a dia. Mas o orçamento é público e acompanhá-lo é uma forma concreta de fiscalizar o gasto."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "imposto-financia-servico",
+   "pergunta": "Qual frase resume o que você viu?",
+   "ancora": "Imposto vira serviço; acompanhar o gasto é parte da cidadania.",
+   "alternativas": [
+    {
+     "texto": "Imposto só serve pra sustentar o governo, sem retorno pra população.",
+     "correta": false,
+     "feedbackErro": "Imposto financia escola, saúde e rua — retorno concreto pra população."
+    },
+    {
+     "texto": "Imposto vira serviço público, e acompanhar o gasto é parte de ser cidadão.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só quem trabalha registrado paga imposto.",
+     "correta": false,
+     "feedbackErro": "Imposto também está embutido em compras do dia a dia, via ICMS e outros tributos."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "imposto-financia-servico",
+   "instrucao": "É financiado com imposto? Arraste.",
+   "ancora": "Financiado é o que a população usa sem pagar direto pelo serviço.",
+   "feedbackErro": "Hospital público e escola municipal são usados sem cobrança direta; loja e clínica particular cobram de quem usa, na hora.",
+   "caixas": [
+    {
+     "id": "financiado",
+     "rotulo": "Financiado por imposto"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Escola municipal",
+     "caixaCorreta": "financiado"
+    },
+    {
+     "texto": "Loja de roupas",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Hospital público",
+     "caixaCorreta": "financiado"
+    },
+    {
+     "texto": "Clínica odontológica particular",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "participacao-cidada",
+   "dificuldade": 2,
+   "pergunta": "Uma cidade publica online quanto gastou com merenda escolar no ano. Pra que isso serve?",
+   "ancora": "Dado aberto permite comparar o gasto com o resultado entregue.",
+   "alternativas": [
+    {
+     "texto": "Pra qualquer um comparar o gasto com o resultado entregue",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só pra cumprir uma exigência sem uso prático",
+     "correta": false,
+     "feedbackErro": "Publicar tem uso prático real: qualquer pessoa pode comparar o valor gasto com a qualidade do serviço."
+    },
+    {
+     "texto": "Só pra jornalistas usarem em reportagens",
+     "correta": false,
+     "feedbackErro": "O dado é aberto pra qualquer cidadão, não só pra imprensa — acompanhar é direito de todos."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "É financiado por imposto?",
+   "enunciado": "O salário de um bombeiro do corpo de bombeiros",
+   "resposta": true,
+   "ancora": "Serviço de emergência público é mantido com arrecadação.",
+   "feedbackErro": "O socorro parece 'gratuito' por não cobrar na hora. Mas o salário do bombeiro vem da mesma arrecadação de impostos."
+  }
+ ]
+}

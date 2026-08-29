@@ -1,0 +1,323 @@
+{
+ "slug": "fonte-confiavel-e-a-sua-opiniao-reforco",
+ "segmento": "em1",
+ "conceitoPrincipal": "fonte-confiavel-e-a-sua-opiniao",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "quem-publica",
+   "criterio": "Passa no filtro da checagem?",
+   "enunciado": "Notícia com autor, data e link para o dado do BC",
+   "resposta": true,
+   "ancora": "Autor + data + dado rastreável: o filtro da lição, completo.",
+   "feedbackErro": "Nenhuma fonte é perfeita, mas essa entrega o que o filtro pede: dá para saber quem escreveu, quando, e conferir o número na origem. É o padrão-ouro possível."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "quem-publica",
+   "criterio": "Passa no filtro da checagem?",
+   "enunciado": "Texto pago por empresa, publicado como se fosse notícia",
+   "resposta": false,
+   "ancora": "Publicidade sem etiqueta falha no 'o que ganha quem publica'.",
+   "feedbackErro": "O formato de notícia empresta credibilidade, e é essa a jogada. Conteúdo pago sem aviso esconde o interesse — exatamente o que o filtro existe para expor."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "quem-publica",
+   "criterio": "Passa no filtro da checagem?",
+   "enunciado": "Áudio 'de um economista' encaminhado sem nome",
+   "resposta": false,
+   "ancora": "Título sem nome não é credencial: é personagem.",
+   "feedbackErro": "A voz confiante e o vocabulário técnico impressionam. Mas 'um economista' sem nome não pode ser conferido nem cobrado — o filtro para na primeira pergunta."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "quem-publica",
+   "dificuldade": 2,
+   "pergunta": "Qual era o filtro da lição anterior para avaliar dicas de dinheiro?",
+   "ancora": "Quem publica → o que ganha → onde está o dado original.",
+   "alternativas": [
+    {
+     "texto": "Quem publica, o que ganha, onde está o dado original",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quantos seguidores e curtidas a fonte tem",
+     "correta": false,
+     "feedbackErro": "Popularidade apareceu na lição como armadilha, não como critério: alcance mede emoção. O filtro tinha três perguntas — e nenhuma era sobre curtidas."
+    },
+    {
+     "texto": "Se a dica combina com o que você já acredita",
+     "correta": false,
+     "feedbackErro": "Concordar é o critério mais confortável e o mais perigoso: viés de confirmação. O filtro da lição checava a fonte, não a sua simpatia por ela."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "fato-ou-opiniao",
+   "dificuldade": 2,
+   "pergunta": "Um artigo de opinião assinado defende novo imposto. O que o separa de uma notícia?",
+   "ancora": "Opinião defende tese declarada; notícia relata o fato apurado.",
+   "alternativas": [
+    {
+     "texto": "Ele defende abertamente uma tese; a notícia relata",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Opinião não pode citar números verdadeiros",
+     "correta": false,
+     "feedbackErro": "Pode e deve: opinião honesta se apoia em fatos checáveis. A diferença não está nos números usados, mas no objetivo — convencer versus informar."
+    },
+    {
+     "texto": "Notícia é sempre neutra e nunca erra",
+     "correta": false,
+     "feedbackErro": "Notícia também erra e escolhe ângulo. A diferença é o compromisso declarado: relatar o apurado — e corrigir quando falha — em vez de defender uma tese."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "quem-publica",
+   "criterio": "Muda a confiança no conteúdo?",
+   "enunciado": "Descobrir quem financia o site que publicou",
+   "resposta": true,
+   "ancora": "Quem paga a conta ajuda a explicar o que o site conclui.",
+   "feedbackErro": "Parece detalhe de bastidor, mas é o coração do filtro: um site financiado por quem vende o produto avaliado tem interesse direto na sua conclusão."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "onde-checar",
+   "instrucao": "Onde se checa cada assunto?",
+   "ancora": "BC: bancos, taxas, Pix. CVM: corretoras e fundos.",
+   "feedbackErro": "O critério é o território de cada regulador: taxas bancárias e Pix são do Banco Central; registro de corretoras e fundos de investimento é da CVM.",
+   "caixas": [
+    {
+     "id": "bc",
+     "rotulo": "Banco Central"
+    },
+    {
+     "id": "cvm",
+     "rotulo": "CVM"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "A taxa Selic atual",
+     "caixaCorreta": "bc"
+    },
+    {
+     "texto": "Registro de uma corretora",
+     "caixaCorreta": "cvm"
+    },
+    {
+     "texto": "Taxas médias do cheque especial",
+     "caixaCorreta": "bc"
+    },
+    {
+     "texto": "Se um fundo de investimento é registrado",
+     "caixaCorreta": "cvm"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "onde-checar",
+   "criterio": "Dá para conferir no regulador?",
+   "enunciado": "A autorização de uma plataforma para operar",
+   "resposta": true,
+   "ancora": "Registro e autorização são públicos: consulta grátis no regulador.",
+   "feedbackErro": "Parece informação interna, mas é pública por lei: BC e CVM mantêm listas de quem pode operar — e de quem já foi punido. Cinco minutos de busca."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "onde-checar",
+   "criterio": "Dá para conferir no regulador?",
+   "enunciado": "Se um investimento vai subir no mês que vem",
+   "resposta": false,
+   "ancora": "Regulador registra e fiscaliza; o futuro, ninguém registra.",
+   "feedbackErro": "Seria ótimo, mas nem o regulador sabe o amanhã. Ele confirma o que existe e quem é autorizado — previsão é sempre aposta, venha de quem vier."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "onde-checar",
+   "pergunta": "Uma aplicação que acompanha a Selic (~15% ao ano): quanto rendem R$ 1.000 em um ano?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 1000,
+   "gabarito": 150,
+   "toleranciaPct": 20,
+   "fonte": "Selic ~15% ao ano (Banco Central)",
+   "verificacao": {
+    "expressao": "1000*0.15",
+    "esperado": 150
+   },
+   "feedbackPerto": "R$ 150. Essa é a régua pública: qualquer promessa muito acima dela exige prova — ou é risco escondido, ou é golpe.",
+   "feedbackLonge": "R$ 150 (15%). Sem a régua da Selic na cabeça, qualquer '10% ao mês' parece plausível — é por essa porta que o golpe entra."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "fato-ou-opiniao",
+   "dificuldade": 2,
+   "pergunta": "Bianca vai escrever para o jornal da escola uma notícia sobre os juros do rotativo. Primeiro passo?",
+   "ancora": "Texto sobre dinheiro começa no dado primário, não na opinião alheia.",
+   "alternativas": [
+    {
+     "texto": "Buscar a taxa média atual no site do Banco Central",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Perguntar a taxa num grupo de WhatsApp",
+     "correta": false,
+     "feedbackErro": "O grupo devolve palpites, e notícia não se apoia em palpite. O dado que sustenta o texto está publicado na fonte oficial — é lá que se começa."
+    },
+    {
+     "texto": "Aproveitar o número de um vídeo antigo",
+     "correta": false,
+     "feedbackErro": "Além do interesse do influencer, taxa envelhece: o número do vídeo pode estar defasado. Notícia usa dado atual da origem, com data citada."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "quem-publica",
+   "dificuldade": 2,
+   "pergunta": "A mesma pesquisa aparece em dois sites com números diferentes. O que fazer?",
+   "ancora": "Divergência entre versões se resolve na origem, nunca na média.",
+   "alternativas": [
+    {
+     "texto": "Ir ao estudo original e conferir o número lá",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ficar com o site de visual mais bonito",
+     "correta": false,
+     "feedbackErro": "Design não erra menos — só erra mais bonito. Um dos dois copiou errado, e a única forma de saber qual é voltar ao estudo de origem."
+    },
+    {
+     "texto": "Usar a média dos dois números",
+     "correta": false,
+     "feedbackErro": "Média de um número certo com um errado dá um número errado novo. Divergência não se negocia: se resolve na fonte primária."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "quem-publica",
+   "criterio": "É sinal de golpe?",
+   "enunciado": "Garantia de lucro alto, rápido e 'sem risco'",
+   "resposta": true,
+   "ancora": "Lucro alto sem risco não existe no sistema regulado. A tríade avisa.",
+   "feedbackErro": "A promessa é desenhada para parecer oportunidade única. Mas retorno alto e garantido viola a regra básica: quem paga mais, paga pelo risco maior."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "quem-publica",
+   "criterio": "É sinal de golpe?",
+   "enunciado": "Rentabilidade informada junto com os riscos",
+   "resposta": false,
+   "ancora": "Mostrar o risco é obrigação de quem opera dentro da regra.",
+   "feedbackErro": "Falar de risco parece coisa de produto ruim, mas é o contrário: quem mostra o risco está informando. Golpe nunca apresenta o lado que perde."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "quem-publica",
+   "pergunta": "Que hábito este reforço deixa?",
+   "alternativas": [
+    {
+     "texto": "Conferir na fonte original e comparar com a régua pública antes de acreditar.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Confiar no primeiro resultado da busca.",
+     "correta": false,
+     "feedbackErro": "Posição na busca se compra com anúncio. Ordem de chegada não é critério de verdade."
+    },
+    {
+     "texto": "Números dispensam checagem; só opiniões enganam.",
+     "correta": false,
+     "feedbackErro": "Número errado, velho ou fora de contexto engana melhor que opinião. Checa-se o número também."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "onde-checar",
+   "instrucao": "Boato financeiro chegou no grupo. Ordene sua reação.",
+   "ancora": "Segurar, checar, responder com fonte: nessa ordem.",
+   "feedbackErro": "O critério é não virar elo da corrente: primeiro não repassar, depois conferir na fonte oficial, e só então voltar ao grupo — com o link checado.",
+   "itens": [
+    {
+     "texto": "Segurar o dedo: não repassar ainda",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Conferir o assunto na fonte oficial",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Responder no grupo com o link checado",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "onde-checar",
+   "criterio": "É papel dos reguladores?",
+   "enunciado": "Publicar taxas e registros para consulta de qualquer pessoa",
+   "resposta": true,
+   "ancora": "BC, CVM, Susep e Previc existem também para isso: dado público e grátis.",
+   "feedbackErro": "Parece serviço para especialistas, mas é público por definição: qualquer pessoa consulta taxas, registros e alertas nos sites dos reguladores, sem pagar."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "onde-checar",
+   "dificuldade": 2,
+   "pergunta": "Por que a Previc entra na checagem de um fundo de pensão de empresa?",
+   "ancora": "Cada regulador tem seu território; previdência fechada é da Previc.",
+   "alternativas": [
+    {
+     "texto": "É ela que regula os fundos de pensão de empresas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ela garante que o fundo sempre dê lucro",
+     "correta": false,
+     "feedbackErro": "Nenhum regulador garante lucro — eles fiscalizam regras e registros. Fundo regulado ainda pode render mal; o que não pode é operar fora da lei."
+    },
+    {
+     "texto": "Ela dispensa a leitura do regulamento",
+     "correta": false,
+     "feedbackErro": "A Previc confirma que o fundo é legal, não que é bom para você. Taxas, prazos e condições continuam no regulamento — e leitura ninguém terceiriza."
+    }
+   ]
+  }
+ ]
+}

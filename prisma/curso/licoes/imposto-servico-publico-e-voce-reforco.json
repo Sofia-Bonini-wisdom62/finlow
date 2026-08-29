@@ -1,0 +1,325 @@
+{
+ "slug": "imposto-servico-publico-e-voce-reforco",
+ "segmento": "em3",
+ "conceitoPrincipal": "imposto-servico-publico-e-voce",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "imposto-embutido",
+   "criterio": "Tem tributo nessa operação?",
+   "enunciado": "O boleto da internet de R$ 99",
+   "resposta": true,
+   "ancora": "Serviço de telecom: parte do boleto já é tributo recolhido.",
+   "feedbackErro": "Boleto parece só mensalidade, sem loja nem etiqueta. Mas serviço também é consumo: internet e telefonia carregam tributo embutido em toda fatura."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "imposto-embutido",
+   "criterio": "Tem tributo nessa operação?",
+   "enunciado": "Vender seu videogame usado a um colega",
+   "resposta": false,
+   "ancora": "Venda casual entre pessoas não gera tributo de consumo.",
+   "feedbackErro": "A lógica 'toda venda tem imposto' quase acerta. Mas o tributo de consumo incide na atividade comercial; venda casual de usado entre pessoas fica fora."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "imposto-embutido",
+   "criterio": "Tem tributo nessa operação?",
+   "enunciado": "O salário de quem trabalha com carteira assinada",
+   "resposta": true,
+   "ancora": "INSS e IR saem na fonte: renda também é base de tributo.",
+   "feedbackErro": "Quem pensa 'imposto é coisa de compra' esquece o contracheque. Sobre a renda descontam INSS e, acima da faixa isenta, IR — antes de o dinheiro chegar."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "justica-tributaria",
+   "dificuldade": 2,
+   "pergunta": "Duas famílias pagam R$ 260 de tributo na mesma cesta. As rendas: R$ 2.000 e R$ 20.000. Para quem pesa mais?",
+   "ancora": "Mesmo valor, pesos diferentes: 13% de uma renda, 1,3% da outra.",
+   "verificacao": {
+    "expressao": "260/2000*100",
+    "esperado": 13
+   },
+   "alternativas": [
+    {
+     "texto": "Para a família de R$ 2.000: 13% da renda dela",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pesa igual: as duas pagaram os mesmos R$ 260",
+     "correta": false,
+     "feedbackErro": "Em reais, sim — e é isso que engana. Peso se mede contra a renda: R$ 260 são 13% de R$ 2.000 e só 1,3% de R$ 20.000. Imposto no consumo é regressivo."
+    },
+    {
+     "texto": "Para a de R$ 20.000, que consome mais no total",
+     "correta": false,
+     "feedbackErro": "Quem ganha mais até gasta mais em reais. Mas o peso é a fração da renda comprometida: na família de R$ 2.000, a mesma cesta morde dez vezes mais."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "sonegacao",
+   "dificuldade": 2,
+   "pergunta": "Uma loja vendeu R$ 12.500 sem nota, com alíquota de 20%. Quanto deixou de chegar ao cofre público?",
+   "ancora": "20% de R$ 12.500 = R$ 2.500 que faltam em escola e saúde.",
+   "verificacao": {
+    "expressao": "12500*0.2",
+    "esperado": 2500
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 2.500",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 250",
+     "correta": false,
+     "feedbackErro": "A conta era essa, mas escorregou uma casa: R$ 250 seriam 2%. Com alíquota de 20%, o desvio é dez vezes maior — R$ 2.500 fora do cofre."
+    },
+    {
+     "texto": "R$ 12.500",
+     "correta": false,
+     "feedbackErro": "A venda inteira não some do cofre: a loja fica com o valor do produto. O que o público perde é o tributo dela — 20%, ou R$ 2.500."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "justica-tributaria",
+   "criterio": "Deixa o sistema mais justo?",
+   "enunciado": "Alíquotas maiores para rendas maiores",
+   "resposta": true,
+   "ancora": "Progressividade: quem pode mais contribui com fração maior.",
+   "feedbackErro": "Parece punir o sucesso — crítica comum. Mas o critério de justiça tributária é capacidade: cobrar fração maior de quem pode mais alivia quem o consumo já morde."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "imposto-embutido",
+   "instrucao": "Arraste cada tributo para a base sobre a qual ele cobra.",
+   "ancora": "Consumo cobra no preço; renda cobra no contracheque.",
+   "feedbackErro": "O critério é a base: se o tributo viaja escondido num preço, é consumo; se sai do que você ganha antes de chegar à mão, é renda.",
+   "caixas": [
+    {
+     "id": "consumo",
+     "rotulo": "Sobre o consumo"
+    },
+    {
+     "id": "renda",
+     "rotulo": "Sobre a renda"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "O embutido no preço da gasolina",
+     "caixaCorreta": "consumo"
+    },
+    {
+     "texto": "O IR descontado do salário",
+     "caixaCorreta": "renda"
+    },
+    {
+     "texto": "O tributo dentro da conta de celular",
+     "caixaCorreta": "consumo"
+    },
+    {
+     "texto": "O INSS da folha de pagamento",
+     "caixaCorreta": "renda"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "sonegacao",
+   "criterio": "Isso é sonegação?",
+   "enunciado": "Loja dar desconto para pagamento em dinheiro",
+   "resposta": false,
+   "ancora": "Desconto é legal. Ilegal é não registrar a venda.",
+   "feedbackErro": "A suspeita tem fundamento: às vezes o desconto esconde venda sem nota. Mas o crime é não registrar; o desconto em si é decisão comercial permitida."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "sonegacao",
+   "criterio": "Isso é sonegação?",
+   "enunciado": "Restaurante só emitir nota quando o cliente pede",
+   "resposta": true,
+   "ancora": "Nota é obrigação em toda venda, não favor sob demanda.",
+   "feedbackErro": "Parece cortesia opcional, já que ninguém pediu. Mas a emissão é obrigatória em toda venda: o que não vira nota vira tributo retido no caixa da casa."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "imposto-embutido",
+   "pergunta": "Uma família gasta R$ 2.400 por mês em consumo. Quantos reais desse total são tributo embutido?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 2400,
+   "gabarito": 800,
+   "toleranciaPct": 20,
+   "fonte": "tributos embutidos no consumo, ~1/3 do preço médio (IBPT/Receita Federal)",
+   "verificacao": {
+    "expressao": "2400/3",
+    "esperado": 800
+   },
+   "feedbackPerto": "Cerca de R$ 800 — um terço do carrinho. É mais do que muita gente paga de aluguel, e viaja invisível nos preços.",
+   "feedbackLonge": "Por volta de R$ 800: ~1/3 do consumo é tributo. Chutar baixo é o viés da invisibilidade — o que não aparece na etiqueta parece não existir."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "fiscalizacao-cidada",
+   "dificuldade": 2,
+   "pergunta": "Tainá achou no portal da transparência uma obra paga e parada há um ano. Qual atitude tem mais força?",
+   "ancora": "Dado + protocolo: denúncia registrada obriga resposta oficial.",
+   "alternativas": [
+    {
+     "texto": "Levar o dado à ouvidoria ou ao Tribunal de Contas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Postar a revolta e torcer para viralizar",
+     "correta": false,
+     "feedbackErro": "Visibilidade pressiona, e às vezes funciona. Mas post não gera prazo legal de resposta; protocolo na ouvidoria ou no Tribunal de Contas, sim."
+    },
+    {
+     "texto": "Deixar para lá: obra parada é normal",
+     "correta": false,
+     "feedbackErro": "É comum, mas normalizar é o que mantém assim. O dinheiro parado ali saiu de cada compra sua — cobrar a entrega é a contrapartida de quem pagou."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "arrecadacao-e-servico",
+   "dificuldade": 2,
+   "pergunta": "Numa cidade, metade do comércio vende sem nota. O que tende a acontecer com quem paga tudo certo?",
+   "ancora": "A conta dos serviços não encolhe: redistribui para quem paga.",
+   "alternativas": [
+    {
+     "texto": "Acaba pagando mais para cobrir o buraco",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada muda: o governo apenas gasta menos",
+     "correta": false,
+     "feedbackErro": "Cortar gasto acontece — em serviço que falta na ponta. E a tendência seguinte é alíquota maior para repor o caixa, cobrada de quem já pagava certo."
+    },
+    {
+     "texto": "Paga menos, porque sobra dinheiro no comércio",
+     "correta": false,
+     "feedbackErro": "O dinheiro sobra no caixa de quem sonegou, não no seu. O custo de escola, saúde e rua continua — e é rateado entre os que emitem nota."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "fiscalizacao-cidada",
+   "criterio": "Você tem esse direito?",
+   "enunciado": "Saber quanto a prefeitura pagou em uma obra",
+   "resposta": true,
+   "ancora": "Lei de Acesso à Informação: gasto público é dado público.",
+   "feedbackErro": "Parece informação interna de governo. Não é: pela Lei de Acesso à Informação, qualquer pessoa consulta contratos e valores, sem precisar justificar."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "arrecadacao-e-servico",
+   "criterio": "Você tem esse direito?",
+   "enunciado": "Abater do imposto um serviço público que falhou",
+   "resposta": false,
+   "ancora": "Serviço ruim não gera desconto — gera cobrança e fiscalização.",
+   "feedbackErro": "Seria justo num contrato privado, e daí vem a confusão. Tributo não é mensalidade cancelável: o caminho contra a falha é ouvidoria, controle e voto."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "imposto-servico-publico-e-voce",
+   "dificuldade": 2,
+   "pergunta": "O que este segundo encontro acrescentou?",
+   "alternativas": [
+    {
+     "texto": "Imposto no consumo pesa mais no pobre — e fiscalizar é papel de quem paga.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quem paga certo não precisa fiscalizar nada.",
+     "correta": false,
+     "feedbackErro": "Pagar é metade do ciclo. Sem cobrança, o dinheiro chega ao cofre e pode não virar serviço."
+    },
+    {
+     "texto": "Sonegação prejudica só o governo.",
+     "correta": false,
+     "feedbackErro": "O governo repassa o buraco: falta serviço e sobra conta para quem emite nota."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "fiscalizacao-cidada",
+   "instrucao": "Toque na ordem de uma cobrança cidadã que funciona.",
+   "ancora": "Dado → protocolo → prazo → instância de controle.",
+   "feedbackErro": "A força da cobrança vem da sequência: primeiro o dado concreto, depois o registro com protocolo, o prazo de resposta e, se nada mudar, o controle externo.",
+   "itens": [
+    {
+     "texto": "Encontrar o dado no portal da transparência",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Registrar a denúncia e guardar o protocolo",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Acompanhar a resposta dentro do prazo",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Acionar o Tribunal de Contas se nada mudar",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "imposto-embutido",
+   "pergunta": "De cada R$ 100 da conta de luz, quantos reais são tributos e encargos?",
+   "campo": "numero",
+   "min": 0,
+   "max": 80,
+   "gabarito": 40,
+   "toleranciaPct": 20,
+   "fonte": "tributos e encargos na energia elétrica, ~40% da conta (Aneel)",
+   "feedbackPerto": "Cerca de R$ 40 — quase metade da conta não é energia. Poucos serviços mostram tão bem o tributo invisível.",
+   "feedbackLonge": "Por volta de R$ 40 de cada R$ 100. Quem chuta baixo repete o viés da invisibilidade: como vem tudo somado na fatura, o tributo parece pequeno."
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "justica-tributaria",
+   "criterio": "Torna o sistema mais justo?",
+   "enunciado": "Aumentar o tributo embutido em tudo que se compra",
+   "resposta": false,
+   "ancora": "Subir o consumo aperta mais quem ganha menos: efeito regressivo.",
+   "feedbackErro": "Arrecadaria mais, verdade. Mas pelo caminho que mais pesa no pobre: quem consome a renda inteira sente o aumento inteiro. Justiça pede o eixo da renda."
+  }
+ ]
+}

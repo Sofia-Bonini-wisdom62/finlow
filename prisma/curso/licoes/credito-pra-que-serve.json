@@ -1,0 +1,294 @@
+{
+ "slug": "credito-pra-que-serve",
+ "segmento": "ef67",
+ "conceitoPrincipal": "credito-pra-que-serve",
+ "fraseConceito": "Crédito é usar dinheiro de outra pessoa hoje, com o compromisso de devolver mais no futuro.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "credito-pra-que-serve",
+   "criterio": "Isso é usar crédito?",
+   "enunciado": "Comprar um tênis parcelado em 5x no cartão",
+   "resposta": true,
+   "ancora": "Parcelar é usar dinheiro que o banco adianta — isso é crédito.",
+   "feedbackErro": "Parece só uma forma de pagar, e é isso que engana. Mas parcelar é o banco adiantando o dinheiro pra loja — isso é crédito, com prazo pra devolver."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "credito-pra-que-serve",
+   "criterio": "Isso é usar crédito?",
+   "enunciado": "Pagar a conta de luz com o dinheiro que já está na poupança",
+   "resposta": false,
+   "ancora": "Sem pedir dinheiro emprestado, não tem crédito envolvido.",
+   "feedbackErro": "Pagar contas parece sempre igual, mas aqui não: o dinheiro já era seu. Crédito só existe quando alguém adianta o que você ainda não tem."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "credito-pra-que-serve",
+   "criterio": "Isso é usar crédito?",
+   "enunciado": "Pedir um empréstimo no banco pra abrir uma banca de doces",
+   "resposta": true,
+   "ancora": "Empréstimo pra negócio também é crédito — o banco adianta o capital.",
+   "feedbackErro": "Parece diferente por ser pra um negócio, não uma compra pessoal. Mas o mecanismo é o mesmo: o banco adianta dinheiro, e você devolve com juros."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "credito-pra-que-serve",
+   "dificuldade": 1,
+   "pergunta": "Uma família precisa trocar o fogão quebrado, mas só tem metade do valor. Pra que serve o crédito aqui?",
+   "ancora": "Crédito cobre a diferença entre precisar agora e ter só depois.",
+   "alternativas": [
+    {
+     "texto": "Cobrir a diferença entre o que ela tem e o que precisa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Para ela gastar mais do que precisa",
+     "correta": false,
+     "feedbackErro": "Compras novas pioram a dívida. Mas aqui o crédito só cobre o que falta pro fogão — não é gasto extra."
+    },
+    {
+     "texto": "Para garantir que o fogão não vai quebrar de novo",
+     "correta": false,
+     "feedbackErro": "Crédito não protege o produto de quebrar — ele só adianta o dinheiro pra comprar."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "credito-pra-que-serve",
+   "dificuldade": 1,
+   "pergunta": "Quem costuma oferecer crédito pras famílias e pequenos negócios?",
+   "ancora": "Bancos, financeiras e cooperativas são os agentes autorizados.",
+   "alternativas": [
+    {
+     "texto": "Bancos e outras instituições financeiras autorizadas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Qualquer pessoa que tenha dinheiro guardado",
+     "correta": false,
+     "feedbackErro": "Qualquer pessoa pode emprestar informalmente, mas isso não é o mesmo que ser um agente financeiro autorizado."
+    },
+    {
+     "texto": "Só lojas que vendem eletrônicos",
+     "correta": false,
+     "feedbackErro": "Lojas oferecem crediário, mas quem de fato empresta o dinheiro costuma ser um banco ou financeira por trás."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "credito-pra-que-serve",
+   "criterio": "É um agente financeiro?",
+   "enunciado": "Uma cooperativa de crédito",
+   "resposta": true,
+   "ancora": "Cooperativas de crédito também emprestam dinheiro, como os bancos.",
+   "feedbackErro": "Cooperativa não tem cara de banco, e por isso confunde. Mas ela é regulada do mesmo jeito e também empresta dinheiro aos seus membros."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "credito-pra-que-serve",
+   "instrucao": "É um jeito de conseguir crédito?",
+   "ancora": "Crédito é sempre alguém emprestando, com prazo pra devolver.",
+   "feedbackErro": "Só é crédito quando alguém empresta dinheiro (ou seu equivalente) pra pagar depois. Troca e pagamento à vista não têm essa espera.",
+   "caixas": [
+    {
+     "id": "credito",
+     "rotulo": "É crédito"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é crédito"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Financiamento de uma moto no banco",
+     "caixaCorreta": "credito"
+    },
+    {
+     "texto": "Pagar à vista com o salário do mês",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Cartão de crédito usado no limite",
+     "caixaCorreta": "credito"
+    },
+    {
+     "texto": "Trocar figurinhas repetidas com um colega",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "credito-pra-que-serve",
+   "criterio": "É um agente financeiro?",
+   "enunciado": "A financeira que aprova o crediário da loja de móveis",
+   "resposta": true,
+   "ancora": "Financeiras são instituições que existem pra emprestar dinheiro.",
+   "feedbackErro": "Ela fica atrás do balcão da loja, e por isso passa despercebida. Mas quem aprova o crediário é uma financeira — um agente financeiro de verdade."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "credito-pra-que-serve",
+   "dificuldade": 1,
+   "pergunta": "Yasmin quer abrir uma barraca de suco, mas falta dinheiro pros equipamentos. Que papel o crédito cumpre aqui?",
+   "ancora": "Crédito adianta capital pra negócios — sem garantir o resultado.",
+   "alternativas": [
+    {
+     "texto": "Adianta o capital pra ela começar o negócio agora",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Garante que o negócio vai dar lucro",
+     "correta": false,
+     "feedbackErro": "Nenhum crédito garante lucro — ele só adianta o dinheiro; o resultado do negócio depende de outras coisas."
+    },
+    {
+     "texto": "Substitui a necessidade de ela pagar depois",
+     "correta": false,
+     "feedbackErro": "O crédito não elimina o pagamento futuro — ele só adianta o valor; devolver com juros continua sendo necessário."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "credito-pra-que-serve",
+   "criterio": "Veio de uma instituição financeira?",
+   "enunciado": "O dinheiro que a mãe emprestou pro filho pagar o busão",
+   "resposta": false,
+   "ancora": "Empréstimo em família é crédito informal, fora do banco.",
+   "feedbackErro": "Também é um empréstimo, e por isso confunde. Mas não veio de banco nem financeira — é crédito informal, fora do sistema financeiro."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "credito-pra-que-serve",
+   "criterio": "O crédito resolve isso?",
+   "enunciado": "A falta de dinheiro pra comprar algo necessário agora",
+   "resposta": true,
+   "ancora": "É exatamente o papel do crédito: cobrir a espera entre precisar e ter.",
+   "feedbackErro": "Parece bom demais pra ser verdade, e por isso gera dúvida. Mas cobrir essa espera é exatamente pra que o crédito serve — com o custo de devolver mais depois."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "credito-pra-que-serve",
+   "pergunta": "Qual frase resume pra que serve o crédito?",
+   "alternativas": [
+    {
+     "texto": "Adiantar dinheiro pra cobrir a espera entre precisar e ter, via bancos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sempre a melhor forma de comprar qualquer coisa",
+     "correta": false,
+     "feedbackErro": "Crédito não é sempre a melhor forma — ele tem custo. Serve pra cobrir uma diferença real, não qualquer compra."
+    },
+    {
+     "texto": "Um jeito de ganhar dinheiro extra",
+     "correta": false,
+     "feedbackErro": "Crédito não gera dinheiro extra — ele adianta um valor que precisa ser devolvido, com juros."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "credito-pra-que-serve",
+   "instrucao": "Ordene do crédito mais informal pro mais regulado.",
+   "ancora": "Do combinado boca a boca até o banco, o grau de regulação aumenta.",
+   "feedbackErro": "A ordem não é sobre o valor emprestado, é sobre quanto aquilo é regulado — do informal ao institucional.",
+   "itens": [
+    {
+     "texto": "Fiado na padaria",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Empréstimo com um conhecido, com juros combinados",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Crediário numa loja",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Financiamento bancário",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "credito-pra-que-serve",
+   "instrucao": "Quem oferece isso é um agente financeiro regulado?",
+   "ancora": "Regulação é o critério — não o tamanho nem a tecnologia.",
+   "feedbackErro": "Autorização é o que separa: bancos e fintechs reguladas contam; combinados entre amigos, não.",
+   "caixas": [
+    {
+     "id": "sim",
+     "rotulo": "Sim"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Fintech autorizada a emprestar",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Grupo de amigos que faz rateio de despesas",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Banco digital",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Colega que empresta o lanche",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "credito-pra-que-serve",
+   "pergunta": "Uma reforma custa R$ 1.200. A família tem R$ 750 guardados. Quanto o crédito precisa cobrir?",
+   "campo": "moeda",
+   "min": 100,
+   "max": 2000,
+   "gabarito": 450,
+   "toleranciaPct": 20,
+   "fonte": "diferença entre o custo da reforma e o valor guardado",
+   "feedbackPerto": "Isso mesmo — R$ 450 é a parte que falta, e é isso que o crédito cobre.",
+   "feedbackLonge": "R$ 450: subtraia o que já foi guardado do custo total. É só essa diferença que precisa de crédito.",
+   "verificacao": {
+    "expressao": "1200-750",
+    "esperado": 450
+   }
+  }
+ ]
+}

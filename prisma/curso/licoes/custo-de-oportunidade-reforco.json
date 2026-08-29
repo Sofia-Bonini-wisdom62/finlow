@@ -1,0 +1,298 @@
+{
+ "slug": "custo-de-oportunidade-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "custo-de-oportunidade",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Ainda conta como custo de oportunidade?",
+   "enunciado": "O rendimento perdido de R$ 220 guardados por 8 meses na poupança, em vez de gastos",
+   "resposta": true,
+   "ancora": "R$ 220 a 0,5% ao mês por 8 meses rendem cerca de R$ 9.",
+   "feedbackErro": "8 meses parece pouco tempo pra fazer diferença. Mas o rendimento perdido, cerca de R$ 9, ainda conta como custo de oportunidade.",
+   "verificacao": { "expressao": "220*1.005^8-220", "esperado": 8.96, "tolerancia": 1 }
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Ainda conta como custo de oportunidade?",
+   "enunciado": "O arrependimento de ter comprado algo que você não gostou",
+   "resposta": false,
+   "ancora": "Arrependimento é sentimento; o custo é a alternativa concreta.",
+   "feedbackErro": "Parece a mesma coisa, já que os dois vêm de uma escolha ruim. Mas custo de oportunidade é a alternativa concreta perdida."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Ainda conta como custo de oportunidade?",
+   "enunciado": "A opção que ficaria em segundo lugar, se você tivesse escolhido diferente",
+   "resposta": true,
+   "ancora": "É sempre a melhor alternativa deixada de lado — a segunda opção.",
+   "feedbackErro": "Pode parecer só mais uma opção descartada entre várias. Mas é justamente a segunda melhor que define o custo de oportunidade."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-de-oportunidade",
+   "dificuldade": 2,
+   "pergunta": "Entre 3 opções, qual vira o custo de oportunidade da escolhida?",
+   "ancora": "É sempre a melhor das outras duas, nunca a pior.",
+   "alternativas": [
+    {
+     "texto": "A pior das outras duas",
+     "correta": false,
+     "feedbackErro": "Custo de oportunidade é sempre a melhor alternativa que ficou de fora, não a pior."
+    },
+    {
+     "texto": "A melhor das outras duas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A média das outras duas",
+     "correta": false,
+     "feedbackErro": "Não existe 'média de alternativas' — o custo de oportunidade é sempre a melhor delas."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "escolha-intertemporal",
+   "dificuldade": 2,
+   "pergunta": "Aline gastou R$ 90 hoje em vez de guardar 10 meses na poupança. Qual foi o custo de oportunidade?",
+   "ancora": "R$ 90 a 0,5% ao mês por 10 meses rendem cerca de R$ 5.",
+   "verificacao": { "expressao": "90*1.005^10-90", "esperado": 4.6, "tolerancia": 0.5 },
+   "alternativas": [
+    {
+     "texto": "Cerca de R$ 5, o rendimento perdido",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Os R$ 90 gastos",
+     "correta": false,
+     "feedbackErro": "Esse é o valor gasto, não o custo de oportunidade."
+    },
+    {
+     "texto": "R$ 0, porque ela precisava do dinheiro",
+     "correta": false,
+     "feedbackErro": "Precisar do dinheiro não elimina o custo de oportunidade — só pode justificar a escolha."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "É a melhor alternativa deixada de lado?",
+   "enunciado": "A pior das opções que você não escolheu",
+   "resposta": false,
+   "ancora": "Custo de oportunidade é sempre a melhor alternativa, não a pior.",
+   "feedbackErro": "Toda opção não escolhida parece 'custo', e por isso confunde. Mas só a melhor delas conta."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "escolha-intertemporal",
+   "instrucao": "Ordene de quem mais valoriza o presente pro futuro.",
+   "ancora": "Quanto mais tempo de espera aceito, mais peso vai pro futuro.",
+   "feedbackErro": "O valor final parece o que importa. Mas o que ordena aqui é o tempo de espera que a pessoa aceita.",
+   "itens": [
+    { "texto": "Trocar um bônus futuro maior por um valor menor hoje", "posicaoCorreta": 1 },
+    { "texto": "Esperar 1 mês por 10% a mais", "posicaoCorreta": 2 },
+    { "texto": "Esperar 6 meses por 30% a mais", "posicaoCorreta": 3 },
+    { "texto": "Esperar 2 anos, guardando tudo, por um valor bem maior", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "É o critério certo pra achar o custo?",
+   "enunciado": "Perguntar qual seria a segunda melhor opção",
+   "resposta": true,
+   "ancora": "A segunda melhor opção é exatamente o custo de oportunidade.",
+   "feedbackErro": "Pode parecer que qualquer opção descartada serve. Mas o critério certo é sempre a segunda melhor."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "escolha-intertemporal",
+   "criterio": "É o critério certo pra decidir?",
+   "enunciado": "Comparar só o valor de hoje, sem olhar quanto tempo falta pra outra opção",
+   "resposta": false,
+   "ancora": "Sem o tempo, a comparação fica incompleta.",
+   "feedbackErro": "Parece que só o valor final decide. Mas sem considerar o tempo, a comparação fica incompleta."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-de-oportunidade",
+   "pergunta": "R$ 130 gastos hoje em vez de aplicados na poupança por 9 meses. Qual o custo de oportunidade em juros?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 50,
+   "gabarito": 6,
+   "toleranciaPct": 20,
+   "fonte": "taxa média da poupança, ~0,5% ao mês (Banco Central)",
+   "verificacao": { "expressao": "130*1.005^9-130", "esperado": 5.97, "tolerancia": 1 },
+   "feedbackPerto": "Isso mesmo — cerca de R$ 6 de rendimento perdido.",
+   "feedbackLonge": "O custo de oportunidade é de cerca de R$ 6 — o que os R$ 130 renderiam em 9 meses."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "escolha-intertemporal",
+   "dificuldade": 2,
+   "pergunta": "Guardar R$ 60/mês por 30 meses, a 0,5% ao mês, em vez de gastar aos poucos. Qual o valor acumulado?",
+   "ancora": "R$ 60/mês por 30 meses acumulam cerca de R$ 1.937 com juros.",
+   "verificacao": { "expressao": "60*((1.005^30-1)/0.005)", "esperado": 1936.8, "tolerancia": 50 },
+   "alternativas": [
+    {
+     "texto": "Cerca de R$ 1.937",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cerca de R$ 1.800, só a soma guardada",
+     "correta": false,
+     "feedbackErro": "Essa soma ignora o rendimento dos juros compostos ao longo dos 30 meses."
+    },
+    {
+     "texto": "R$ 0, porque seria gasto de qualquer jeito",
+     "correta": false,
+     "feedbackErro": "Gastar aos poucos ainda tem custo de oportunidade — o rendimento que se perde."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-de-oportunidade",
+   "dificuldade": 2,
+   "pergunta": "Dois estágios, mesmo salário: um perto, outro longe, com 1h a mais de trânsito. Qual o custo do longe?",
+   "ancora": "É o tempo livre perdido no trânsito, não o salário.",
+   "alternativas": [
+    {
+     "texto": "O salário do estágio perto, já que é o mesmo valor",
+     "correta": false,
+     "feedbackErro": "Salário igual não é a diferença — o custo aqui é o tempo perdido no trânsito."
+    },
+    {
+     "texto": "O tempo livre perdido no trânsito todo dia",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nenhum, já que o salário é igual nos dois",
+     "correta": false,
+     "feedbackErro": "Salário igual não zera o custo — o tempo perdido no trânsito também é uma alternativa abandonada."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "É sinal de achar o custo certo?",
+   "enunciado": "Você aponta a segunda melhor opção, não qualquer opção descartada",
+   "resposta": true,
+   "ancora": "O sinal certo é apontar exatamente a segunda melhor opção.",
+   "feedbackErro": "Apontar qualquer opção descartada parece suficiente. Mas o sinal certo é apontar exatamente a segunda melhor."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "escolha-intertemporal",
+   "criterio": "É sinal de boa escolha intertemporal?",
+   "enunciado": "Decidir só pelo que parece melhor agora, sem calcular o que se perde depois",
+   "resposta": false,
+   "ancora": "Ignorar o futuro é sinal de decisão mal feita.",
+   "feedbackErro": "Decidir rápido parece prático. Mas ignorar o que se perde depois é sinal de que a escolha não considerou o tempo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "custo-de-oportunidade",
+   "pergunta": "Depois de revisar, qual frase está mais certa?",
+   "alternativas": [
+    {
+     "texto": "Qualquer opção descartada é o custo de oportunidade.",
+     "correta": false,
+     "feedbackErro": "Só a melhor opção descartada conta, não qualquer uma."
+    },
+    {
+     "texto": "É a melhor alternativa perdida, e o tempo pesa nas escolhas.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só existe custo de oportunidade em decisões financeiras grandes.",
+     "correta": false,
+     "feedbackErro": "Existe em qualquer escolha, até pequena ou sem dinheiro envolvido."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "custo-de-oportunidade",
+   "instrucao": "É a melhor alternativa perdida?",
+   "ancora": "Só a melhor alternativa descartada conta como custo de oportunidade.",
+   "feedbackErro": "Confundir qualquer opção descartada com a melhor é o erro mais comum aqui.",
+   "caixas": [
+    { "id": "sim", "rotulo": "É" },
+    { "id": "nao", "rotulo": "Não é" }
+   ],
+   "itens": [
+    { "texto": "A segunda melhor opção entre as descartadas", "caixaCorreta": "sim" },
+    { "texto": "A pior opção entre as descartadas", "caixaCorreta": "nao" },
+    { "texto": "O rendimento que seria a melhor alternativa", "caixaCorreta": "sim" },
+    { "texto": "Uma opção aleatória que nem foi cogitada", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "escolha-intertemporal",
+   "dificuldade": 3,
+   "pergunta": "R$ 400 gastos hoje ou guardados por 18 meses a 0,5% ao mês. Qual o custo de oportunidade de gastar?",
+   "ancora": "R$ 400 a 0,5% ao mês por 18 meses rendem cerca de R$ 38.",
+   "verificacao": { "expressao": "400*1.005^18-400", "esperado": 37.57, "tolerancia": 2 },
+   "alternativas": [
+    {
+     "texto": "Cerca de R$ 38",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 0",
+     "correta": false,
+     "feedbackErro": "Gastar hoje tem sim um custo: o rendimento que se perde ao longo dos 18 meses."
+    },
+    {
+     "texto": "Cerca de R$ 150",
+     "correta": false,
+     "feedbackErro": "Esse valor é alto demais pra uma taxa de 0,5% ao mês nesse prazo."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "É verdade?",
+   "enunciado": "Decisões pequenas do dia a dia não têm custo de oportunidade",
+   "resposta": false,
+   "ancora": "Toda escolha, grande ou pequena, tem uma alternativa deixada de lado.",
+   "feedbackErro": "Parece que só decisões grandes contam. Mas até escolher entre dois lanches tem uma alternativa deixada de lado."
+  }
+ ]
+}

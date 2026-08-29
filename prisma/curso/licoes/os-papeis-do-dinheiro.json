@@ -1,0 +1,249 @@
+{
+ "slug": "os-papeis-do-dinheiro",
+ "segmento": "ef35",
+ "conceitoPrincipal": "os-papeis-do-dinheiro",
+ "fraseConceito": "Cada papel financeiro — recibo, cupom, boleto, extrato — tem uma função e traz informações específicas.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "tipo-de-documento",
+   "criterio": "É um cupom fiscal?",
+   "enunciado": "O papel impresso na loja com a lista de tudo que você comprou",
+   "resposta": true,
+   "ancora": "Cupom fiscal lista os itens comprados e o valor de cada um.",
+   "feedbackErro": "Parece só um papel qualquer da loja. Mas esse é justamente o cupom fiscal: ele lista os itens comprados e quanto cada um custou."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "tipo-de-documento",
+   "criterio": "É um boleto?",
+   "enunciado": "O papel que mostra um código de barras pra pagar uma conta",
+   "resposta": true,
+   "ancora": "Boleto tem código de barras e serve pra pagar contas.",
+   "feedbackErro": "Parece só um papel com números aleatórios. Mas o código de barras é justamente o que identifica um boleto pra pagamento."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "info-no-documento",
+   "criterio": "Essa informação está no cupom?",
+   "enunciado": "O nome de cada produto comprado",
+   "resposta": true,
+   "ancora": "Cupom fiscal detalha cada item comprado, um por um.",
+   "feedbackErro": "Parece que o cupom só mostra o total. Mas ele detalha cada produto, um por linha, com nome e preço."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "tipo-de-documento",
+   "dificuldade": 1,
+   "pergunta": "Qual documento serve pra provar que você já pagou uma conta?",
+   "ancora": "Recibo é a prova de que um pagamento já aconteceu.",
+   "alternativas": [
+    {
+     "texto": "O recibo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O boleto ainda não pago",
+     "correta": false,
+     "feedbackErro": "Boleto é o pedido de pagamento, antes de ser pago. Quem prova que já foi pago é o recibo."
+    },
+    {
+     "texto": "A lista de compras da mão",
+     "correta": false,
+     "feedbackErro": "Uma lista escrita à mão não prova nada oficialmente. Quem prova o pagamento é o recibo, entregue por quem recebeu."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "info-no-documento",
+   "dificuldade": 1,
+   "pergunta": "Num boleto, onde você encontra a data limite pra pagar sem multa?",
+   "ancora": "O vencimento é o campo que traz a data limite do boleto.",
+   "alternativas": [
+    {
+     "texto": "No campo de vencimento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "No código de barras",
+     "correta": false,
+     "feedbackErro": "O código de barras serve pra leitura no banco, não mostra a data escrita. A data de vencimento aparece em outro campo."
+    },
+    {
+     "texto": "No nome de quem emitiu o boleto",
+     "correta": false,
+     "feedbackErro": "O nome de quem emitiu diz só quem está cobrando. A data limite pra pagar sem multa fica no campo de vencimento."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "tipo-de-documento",
+   "criterio": "É um extrato bancário?",
+   "enunciado": "A lista de tudo que entrou e saiu da sua conta no banco",
+   "resposta": true,
+   "ancora": "Extrato mostra o histórico de entradas e saídas da conta.",
+   "feedbackErro": "Parece só um relatório qualquer do banco. Mas essa lista de entradas e saídas é exatamente o que se chama de extrato bancário."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "tipo-de-documento",
+   "instrucao": "Prova pagamento ou pede pagamento? Arraste.",
+   "ancora": "Recibo e cupom provam; boleto e fatura pedem que se pague.",
+   "feedbackErro": "Todos parecem 'papéis de dinheiro' iguais. O que separa é o momento: um prova que já foi pago, o outro ainda está cobrando.",
+   "caixas": [
+    { "id": "prova", "rotulo": "Prova pagamento" },
+    { "id": "pede", "rotulo": "Pede pagamento" }
+   ],
+   "itens": [
+    { "texto": "Recibo", "caixaCorreta": "prova" },
+    { "texto": "Boleto ainda não pago", "caixaCorreta": "pede" },
+    { "texto": "Cupom fiscal de uma compra à vista", "caixaCorreta": "prova" },
+    { "texto": "Fatura do cartão, recém-chegada", "caixaCorreta": "pede" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "info-no-documento",
+   "criterio": "Essa informação está no recibo?",
+   "enunciado": "O valor exato que foi pago",
+   "resposta": true,
+   "ancora": "Recibo sempre mostra o valor pago, é sua função principal.",
+   "feedbackErro": "Parece que o recibo é só uma assinatura qualquer. Mas mostrar o valor exato pago é justamente a função principal dele."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "tipo-de-documento",
+   "dificuldade": 1,
+   "pergunta": "Você recebeu um boleto de R$ 45 e pagou certinho no banco. Qual documento comprova esse pagamento?",
+   "ancora": "Depois do pagamento, o banco gera um comprovante — essa é a prova.",
+   "alternativas": [
+    {
+     "texto": "O comprovante de pagamento gerado pelo banco",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O próprio boleto, do jeito que veio antes de pagar",
+     "correta": false,
+     "feedbackErro": "O boleto original só mostra a cobrança pedida. Quem comprova que ele foi pago é o comprovante gerado depois, pelo banco."
+    },
+    {
+     "texto": "O cupom fiscal da loja onde o boleto foi impresso",
+     "correta": false,
+     "feedbackErro": "O cupom fiscal registra uma compra na loja, não o pagamento de um boleto. Quem comprova o pagamento é o comprovante do banco."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "info-no-documento",
+   "criterio": "Essa informação está no extrato?",
+   "enunciado": "A data exata de cada movimentação na conta",
+   "resposta": true,
+   "ancora": "Extrato mostra a data de cada entrada ou saída registrada.",
+   "feedbackErro": "Parece que o extrato só mostra o saldo final. Mas ele detalha a data de cada movimentação, uma por uma."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "tipo-de-documento",
+   "criterio": "Ajuda a organizar as finanças?",
+   "enunciado": "Guardar os recibos e cupons das compras importantes",
+   "resposta": true,
+   "ancora": "Guardar comprovantes ajuda a provar pagamentos e trocar produtos.",
+   "feedbackErro": "Parece papelada sem função. Mas guardar recibos e cupons ajuda a provar pagamentos e facilita trocar um produto, se precisar."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "tipo-de-documento",
+   "pergunta": "Qual frase resume o que você viu hoje?",
+   "alternativas": [
+    {
+     "texto": "Cada papel financeiro tem uma função — provar, cobrar ou registrar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Boleto e recibo servem exatamente pra mesma coisa",
+     "correta": false,
+     "feedbackErro": "São opostos: boleto pede pagamento, recibo prova que ele já aconteceu."
+    },
+    {
+     "texto": "O extrato só serve pra mostrar o saldo final da conta",
+     "correta": false,
+     "feedbackErro": "O extrato mostra bem mais que o saldo final — ele detalha cada entrada e saída, com data."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "tipo-de-documento",
+   "dificuldade": 2,
+   "pergunta": "Qual documento serve especificamente pra pedir um pagamento futuro?",
+   "ancora": "Boleto é o pedido de pagamento antes dele acontecer.",
+   "alternativas": [
+    {
+     "texto": "O boleto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O recibo",
+     "correta": false,
+     "feedbackErro": "Recibo é sobre um pagamento que já aconteceu, não um pedido futuro. Quem pede pagamento futuro é o boleto."
+    },
+    {
+     "texto": "O extrato bancário",
+     "correta": false,
+     "feedbackErro": "Extrato mostra o que já aconteceu na conta, não pede pagamento nenhum. O boleto é quem faz esse pedido."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "info-no-documento",
+   "criterio": "Isso está no cupom fiscal?",
+   "enunciado": "O nome do banco onde você tem conta",
+   "resposta": false,
+   "ancora": "Cupom é da loja e da compra — não menciona seu banco.",
+   "feedbackErro": "Parece que qualquer papel de dinheiro menciona o banco. Mas o cupom fiscal é sobre a compra na loja — não traz informação do seu banco."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "tipo-de-documento",
+   "instrucao": "Mostra o que você comprou ou o que aconteceu na conta? Arraste.",
+   "ancora": "Cupom e recibo falam da compra; extrato fala da conta.",
+   "feedbackErro": "Todos parecem registros de dinheiro parecidos. O que separa é o foco: um é sobre a compra, o outro é sobre a movimentação bancária.",
+   "caixas": [
+    { "id": "comprou", "rotulo": "O que comprou" },
+    { "id": "conta", "rotulo": "O que aconteceu na conta" }
+   ],
+   "itens": [
+    { "texto": "Cupom fiscal", "caixaCorreta": "comprou" },
+    { "texto": "Extrato bancário", "caixaCorreta": "conta" },
+    { "texto": "Recibo de uma compra", "caixaCorreta": "comprou" },
+    { "texto": "Histórico de saques e depósitos", "caixaCorreta": "conta" }
+   ]
+  }
+ ]
+}

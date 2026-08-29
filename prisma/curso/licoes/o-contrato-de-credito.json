@@ -1,0 +1,339 @@
+{
+ "slug": "o-contrato-de-credito",
+ "segmento": "ef89",
+ "conceitoPrincipal": "o-contrato-de-credito",
+ "fraseConceito": "O contrato de crédito tem termos próprios, e o CET soma juros, tarifas e seguros para mostrar o custo real do empréstimo.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "o-contrato-de-credito",
+   "criterio": "Isso aparece no contrato de crédito?",
+   "enunciado": "A taxa de juros mensal",
+   "resposta": true,
+   "ancora": "A taxa de juros é uma cláusula obrigatória do contrato.",
+   "feedbackErro": "Pode parecer informação de folheto, fora do contrato. Mas a taxa de juros mensal é cláusula obrigatória, e precisa estar escrita nele."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "o-contrato-de-credito",
+   "criterio": "Isso aparece no contrato de crédito?",
+   "enunciado": "O nome do vizinho do cliente",
+   "resposta": false,
+   "ancora": "Contrato trata das partes envolvidas no crédito, não de terceiros.",
+   "feedbackErro": "Contrato de crédito parece exigir muitos dados pessoais, e isso confunde. Mas ele trata só das partes do negócio: quem empresta e quem toma."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "o-contrato-de-credito",
+   "criterio": "Isso aparece no contrato de crédito?",
+   "enunciado": "O CET, Custo Efetivo Total",
+   "resposta": true,
+   "ancora": "O CET é informação obrigatória em qualquer contrato de crédito.",
+   "feedbackErro": "O CET parece um detalhe técnico à parte. Mas por lei ele é informação obrigatória, e precisa aparecer no contrato de crédito."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-efetivo-total",
+   "dificuldade": 1,
+   "pergunta": "O que é o CET de um empréstimo?",
+   "ancora": "CET soma juros e todas as taxas do crédito.",
+   "alternativas": [
+    {
+     "texto": "O custo total do crédito, somando juros e todas as taxas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só a taxa de juros mensal informada",
+     "correta": false,
+     "feedbackErro": "A taxa de juros é uma parte do cálculo. O CET vai além: soma também tarifas e seguros embutidos no contrato."
+    },
+    {
+     "texto": "O valor total das parcelas, sem os juros",
+     "correta": false,
+     "feedbackErro": "O valor das parcelas já inclui os juros embutidos. O CET é o custo total do crédito, juros e taxas somados."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-efetivo-total",
+   "dificuldade": 1,
+   "pergunta": "Por que dois empréstimos com a mesma taxa de juros podem ter CET diferente?",
+   "ancora": "Tarifas e seguros extras elevam o CET além dos juros.",
+   "alternativas": [
+    {
+     "texto": "Porque um cobra taxa extra, seguro ou tarifa, e o outro não",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque um é mais rápido de aprovar que o outro",
+     "correta": false,
+     "feedbackErro": "A velocidade de aprovação não entra no cálculo do custo. O que muda o CET são taxas e seguros extras cobrados."
+    },
+    {
+     "texto": "Porque o CET não existe, é só a taxa de juros com outro nome",
+     "correta": false,
+     "feedbackErro": "O CET é um cálculo próprio, diferente da taxa de juros: ele soma tarifas e seguros que a taxa sozinha não mostra."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "o-contrato-de-credito",
+   "criterio": "É igual à taxa de juros anunciada?",
+   "enunciado": "O CET de um empréstimo",
+   "resposta": false,
+   "ancora": "CET soma juros e taxas; quase sempre é maior que a taxa anunciada.",
+   "feedbackErro": "Os dois números parecem a mesma coisa, com nomes diferentes. Mas o CET soma juros, tarifas e seguros: costuma ser maior que a taxa anunciada."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "termos-do-contrato",
+   "instrucao": "Classifique: parte do contrato ou não?",
+   "ancora": "Contrato trata de valores, prazos e taxas do crédito.",
+   "feedbackErro": "Algumas informações parecem relevantes na hora da compra, mas não fazem parte do que o contrato de crédito regula.",
+   "caixas": [
+    {
+     "id": "contrato",
+     "rotulo": "Parte do contrato"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Valor das parcelas",
+     "caixaCorreta": "contrato"
+    },
+    {
+     "texto": "Prazo de pagamento",
+     "caixaCorreta": "contrato"
+    },
+    {
+     "texto": "Opinião do vendedor sobre o produto",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Taxa de juros mensal",
+     "caixaCorreta": "contrato"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "termos-do-contrato",
+   "criterio": "É um termo comum em contrato de crédito?",
+   "enunciado": "Carência",
+   "resposta": true,
+   "ancora": "Carência é o prazo antes da primeira parcela vencer.",
+   "feedbackErro": "É uma palavra pouco usada no dia a dia, e isso confunde. Mas carência é um termo comum: define o prazo antes da primeira parcela vencer."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "termos-do-contrato",
+   "criterio": "É um termo comum em contrato de crédito?",
+   "enunciado": "Prazo de garantia do produto, dentro do contrato de empréstimo",
+   "resposta": false,
+   "ancora": "Garantia do produto é outro contrato: o de compra, não o de crédito.",
+   "feedbackErro": "Os dois documentos podem vir juntos na hora da compra financiada, e por isso se misturam. Mas a garantia é do produto, tratada em outro contrato."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-efetivo-total",
+   "pergunta": "Empréstimo de R$ 1.000 a 3% ao mês, mais R$ 30 de tarifa fixa. Custo total no fim do 1º mês?",
+   "campo": "moeda",
+   "min": 1000,
+   "max": 1200,
+   "gabarito": 1060,
+   "toleranciaPct": 20,
+   "fonte": "cálculo padrão de juros simples de 1 mês mais tarifa",
+   "feedbackPerto": "Isso mesmo, R$ 1.060. É o valor com juros do mês, mais a tarifa fixa cobrada à parte.",
+   "feedbackLonge": "R$ 1.060: R$ 1.000 com 3% de juros dá R$ 1.030; somando a tarifa de R$ 30, chega a R$ 1.060.",
+   "verificacao": {
+    "expressao": "1000*1.03+30",
+    "esperado": 1060
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-efetivo-total",
+   "dificuldade": 1,
+   "pergunta": "Duas propostas de empréstimo, mesma taxa de juros. Qual detalhe muda o CET entre elas?",
+   "ancora": "Seguro cobrado em uma das propostas eleva o CET dela.",
+   "alternativas": [
+    {
+     "texto": "O seguro prestamista cobrado só em uma delas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A cor do cartão usado para receber o valor",
+     "correta": false,
+     "feedbackErro": "Detalhes visuais como a cor do cartão não entram em nenhum cálculo de custo do crédito."
+    },
+    {
+     "texto": "O dia da semana em que foi contratado",
+     "correta": false,
+     "feedbackErro": "O dia da contratação não altera o custo do crédito. O que muda o CET são taxas e seguros embutidos."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "o-contrato-de-credito",
+   "dificuldade": 1,
+   "pergunta": "Bianca escolheu um empréstimo só pela taxa de juros anunciada. O que ela também deveria ter checado?",
+   "ancora": "O CET revela custos que a taxa isolada não mostra.",
+   "alternativas": [
+    {
+     "texto": "O CET completo, incluindo tarifas e seguros",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A cor da fachada da agência bancária",
+     "correta": false,
+     "feedbackErro": "A aparência da agência não tem relação nenhuma com o custo do crédito contratado."
+    },
+    {
+     "texto": "Se o gerente que atendeu era simpático",
+     "correta": false,
+     "feedbackErro": "Simpatia no atendimento não altera o custo do contrato. O que importa é o CET completo, com todas as taxas."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "o-contrato-de-credito",
+   "criterio": "Ajuda a comparar empréstimos de verdade?",
+   "enunciado": "Olhar só a taxa de juros anunciada",
+   "resposta": false,
+   "ancora": "A taxa isolada esconde tarifas e seguros embutidos.",
+   "feedbackErro": "A taxa de juros é o número mais divulgado, e por isso parece suficiente. Mas sozinha, ela esconde tarifas e seguros que pesam no custo real."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "o-contrato-de-credito",
+   "criterio": "Ajuda a comparar empréstimos de verdade?",
+   "enunciado": "Olhar o CET dos dois empréstimos",
+   "resposta": true,
+   "ancora": "O CET soma todos os custos, permitindo comparação real.",
+   "feedbackErro": "Comparar dois números parece simples demais para ser confiável. Mas como o CET soma todos os custos, ele é a comparação mais justa entre propostas."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-contrato-de-credito",
+   "dificuldade": null,
+   "pergunta": "Qual frase resume o contrato de crédito?",
+   "alternativas": [
+    {
+     "texto": "O contrato tem termos próprios, e o CET mostra o custo real do crédito",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A taxa de juros anunciada já mostra o custo total do crédito",
+     "correta": false,
+     "feedbackErro": "A taxa isolada não mostra tarifas e seguros embutidos: o CET é quem soma tudo isso."
+    },
+    {
+     "texto": "Contrato de crédito e garantia do produto são o mesmo documento",
+     "correta": false,
+     "feedbackErro": "São documentos diferentes: um trata do empréstimo, o outro da garantia do produto comprado."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "termos-do-contrato",
+   "criterio": "É um termo comum em contrato de crédito?",
+   "enunciado": "Vencimento antecipado",
+   "resposta": true,
+   "ancora": "Permite ao credor cobrar o saldo todo se o cliente atrasar.",
+   "feedbackErro": "Soa como um termo raro de usar. Mas vencimento antecipado é cláusula comum: permite ao credor cobrar tudo de uma vez se o cliente atrasar."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "custo-efetivo-total",
+   "dificuldade": 1,
+   "pergunta": "Um empréstimo tem seguro prestamista embutido. O que esse seguro costuma cobrir?",
+   "ancora": "Seguro prestamista costuma cobrir morte ou invalidez do tomador.",
+   "alternativas": [
+    {
+     "texto": "Quitação da dívida em caso de morte ou invalidez do cliente",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Reembolso se o cliente se arrepender da compra",
+     "correta": false,
+     "feedbackErro": "Arrependimento é tratado por outro direito, não pelo seguro prestamista, que cobre morte ou invalidez."
+    },
+    {
+     "texto": "Desconto automático na taxa de juros do mês seguinte",
+     "correta": false,
+     "feedbackErro": "O seguro não altera a taxa de juros: ele garante a quitação da dívida em situações específicas, como morte."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "custo-efetivo-total",
+   "instrucao": "Classifique: entra no cálculo do CET ou não?",
+   "ancora": "Tarifas e seguros entram; detalhes sem custo não entram.",
+   "feedbackErro": "Alguns itens têm custo real embutido no contrato; outros são só características do atendimento.",
+   "caixas": [
+    {
+     "id": "entra",
+     "rotulo": "Entra no CET"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não entra"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Tarifa de cadastro",
+     "caixaCorreta": "entra"
+    },
+    {
+     "texto": "Seguro prestamista contratado",
+     "caixaCorreta": "entra"
+    },
+    {
+     "texto": "Cor do contrato impresso",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Simpatia do atendente",
+     "caixaCorreta": "nao"
+    }
+   ]
+  }
+ ]
+}

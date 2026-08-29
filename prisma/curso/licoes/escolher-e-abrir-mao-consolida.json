@@ -1,0 +1,328 @@
+{
+ "slug": "escolher-e-abrir-mao-consolida",
+ "segmento": "em1",
+ "conceitoPrincipal": "escolher-e-abrir-mao",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "O custo de oportunidade decide aqui?",
+   "enunciado": "Escolher entre duas opções idênticas em tudo",
+   "resposta": false,
+   "ancora": "Alternativas iguais: nada relevante fica para trás. Caso-limite.",
+   "feedbackErro": "O conceito parece valer sempre, mas ele exige diferença entre as opções. Se tanto faz, o custo da escolha é zero — pode decidir no cara ou coroa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "O custo de oportunidade decide aqui?",
+   "enunciado": "Recusar um turno extra de trabalho para descansar",
+   "resposta": true,
+   "ancora": "Descanso vale — e custa o turno. Escolha consciente, não errada.",
+   "feedbackErro": "Descansar parece fora da economia, mas é troca clássica: o turno recusado tem preço conhecido. Escolher o descanso pode ser ótimo — sabendo o custo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-afundado",
+   "criterio": "O custo de oportunidade decide aqui?",
+   "enunciado": "Continuar num curso ruim 'porque já paguei'",
+   "resposta": true,
+   "ancora": "O pago não volta (custo afundado); perde-se o tempo dali em diante.",
+   "feedbackErro": "O 'já paguei' domina a cabeça, mas o dinheiro foi e não volta em nenhum cenário. O que ainda está em jogo é seu tempo — e ele tem alternativas melhores."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-afundado",
+   "dificuldade": 3,
+   "pergunta": "Você pagou R$ 80 num curso online que se revelou ruim. Continuar 'para não perder o dinheiro' ignora o quê?",
+   "ancora": "Custo afundado: dinheiro que já foi não deve decidir o próximo passo.",
+   "alternativas": [
+    {
+     "texto": "Que os R$ 80 já se foram; em jogo está seu tempo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que o curso pode melhorar no final",
+     "correta": false,
+     "feedbackErro": "Até pode — mas essa aposta deveria se sustentar sozinha, por evidência. Usar os R$ 80 como argumento é deixar o passado votar numa decisão do futuro."
+    },
+    {
+     "texto": "Que todo curso dá reembolso automático",
+     "correta": false,
+     "feedbackErro": "Reembolso depende de prazo e regra — às vezes existe, às vezes não. O ponto do raciocínio é outro: mesmo sem reembolso, insistir só soma perda de tempo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "inflacao-no-bolso",
+   "dificuldade": 3,
+   "pergunta": "Com inflação alta, antecipar compras planejadas costuma valer. Quando isso NÃO vale?",
+   "ancora": "Antecipar com crédito caro troca inflação de 5% por juros de 14%.",
+   "alternativas": [
+    {
+     "texto": "Quando é preciso pegar crédito caro para antecipar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando o item é de uso certo e não estraga",
+     "correta": false,
+     "feedbackErro": "Esse é justamente o cenário em que antecipar funciona: uso garantido, sem perda de validade. A exceção mora no financiamento, não no produto."
+    },
+    {
+     "texto": "Quando o preço sobe mais que a poupança rende",
+     "correta": false,
+     "feedbackErro": "Se o preço sobe mais do que seu dinheiro rende, antecipar ganha força — é o argumento a favor, não contra. O limite aparece quando entra juro de crédito."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Compensa decidir na hora?",
+   "enunciado": "Promoção 'só hoje' de algo fora do seu plano",
+   "resposta": false,
+   "ancora": "Urgência fabricada impede a conta do custo de oportunidade.",
+   "feedbackErro": "O desconto é real e o relógio pressiona — é assim que funciona. Mas item fora do plano barato ainda é gasto não planejado: a pressa é parte do preço."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "custo-afundado",
+   "instrucao": "Já foi, ou ainda está em jogo?",
+   "ancora": "Decida pelo que ainda está em jogo; o que já foi não vota.",
+   "feedbackErro": "O critério é a reversibilidade: gasto feito e não recuperável é custo afundado; o que a próxima escolha pode ganhar ou perder é custo de oportunidade.",
+   "caixas": [
+    {
+     "id": "afundado",
+     "rotulo": "Custo afundado"
+    },
+    {
+     "id": "emjogo",
+     "rotulo": "Ainda em jogo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Ingresso do show cancelado, sem reembolso",
+     "caixaCorreta": "afundado"
+    },
+    {
+     "texto": "A vaga do curso que fecha amanhã",
+     "caixaCorreta": "emjogo"
+    },
+    {
+     "texto": "Meses já pagos da academia que você largou",
+     "caixaCorreta": "afundado"
+    },
+    {
+     "texto": "O sábado que a maratona de série vai consumir",
+     "caixaCorreta": "emjogo"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-afundado",
+   "criterio": "Deve pesar na decisão?",
+   "enunciado": "O que você já gastou e não recupera",
+   "resposta": false,
+   "ancora": "Custo afundado é igual em todos os cenários — logo, não decide nenhum.",
+   "feedbackErro": "Dói ignorar dinheiro gasto, e o cérebro odeia 'desperdiçar'. Mas o valor perdido é o mesmo se você continuar ou parar — o que muda está à frente."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "Deve pesar na decisão?",
+   "enunciado": "O que cada caminho rende daqui para a frente",
+   "resposta": true,
+   "ancora": "Só o futuro diferencia as opções — é ele que a escolha compra.",
+   "feedbackErro": "Parece frieza olhar só para a frente, mas é o único lugar onde a decisão tem efeito. Compare futuros; o passado já está pago em qualquer caso."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "inflacao-no-bolso",
+   "pergunta": "Aplicação rendeu 6% no ano; a inflação foi 5%. Qual o ganho real (acima da inflação) de R$ 1.000?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 100,
+   "gabarito": 10,
+   "toleranciaPct": 20,
+   "fonte": "conta: ganho real = 1,06 ÷ 1,05 − 1",
+   "verificacao": {
+    "expressao": "1000*(1.06/1.05-1)",
+    "esperado": 9.52,
+    "tolerancia": 0.05
+   },
+   "feedbackPerto": "Uns R$ 10 — quase nada. Render 6% com inflação de 5% é andar quase parado: o que importa é a diferença.",
+   "feedbackLonge": "Só R$ 9,52. O viés é olhar o rendimento cheio (R$ 60) e esquecer que a inflação comeu R$ 50 dele por dentro."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "escolha-no-tempo",
+   "dificuldade": 3,
+   "pergunta": "Vicente pode vender doces já (R$ 300/mês) ou fazer um curso que promete renda maior daqui a dois anos. O que comparar?",
+   "ancora": "Escolha intertemporal se compara no total: valores e espera juntos.",
+   "verificacao": {
+    "expressao": "300*24",
+    "esperado": 7200
+   },
+   "alternativas": [
+    {
+     "texto": "O total de cada caminho, contando o tempo de espera",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só o dinheiro imediato dos doces",
+     "correta": false,
+     "feedbackErro": "O imediato é metade da conta: ignora o que o curso pode render depois. Decidir só pelo agora é o viés que o custo de oportunidade existe para corrigir."
+    },
+    {
+     "texto": "Só a promessa futura do curso",
+     "correta": false,
+     "feedbackErro": "Promessa futura precisa ser pesada contra os R$ 7.200 que os doces rendem em dois anos — e contra o risco de não se cumprir. Futuro também entra com desconto."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "sazonalidade",
+   "dificuldade": 3,
+   "pergunta": "Quando 'comprar na baixa da estação' se torna uma má escolha?",
+   "ancora": "Desconto sazonal só compensa se guardar não custar mais que ele.",
+   "alternativas": [
+    {
+     "texto": "Quando guardar o item custa mais que o desconto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando o desconto passa de 20%",
+     "correta": false,
+     "feedbackErro": "Desconto grande não invalida a compra — reforça. O limite não está no tamanho do desconto, mas no custo de carregar o item até a hora de usar."
+    },
+    {
+     "texto": "Sempre: preço baixo indica produto ruim",
+     "correta": false,
+     "feedbackErro": "Na baixa da estação, o produto é o mesmo da alta — muda a procura, não a qualidade. Suspeitar de todo preço baixo é jogar fora a sazonalidade a seu favor."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "O critério ainda se aplica?",
+   "enunciado": "Gasto essencial e urgente, como um remédio",
+   "resposta": false,
+   "ancora": "Sem alternativa real, não há o que abrir mão: pague e siga.",
+   "feedbackErro": "Tecnicamente todo gasto tem alternativa, mas remédio urgente não tem substituto aceitável. Onde a escolha é forçada, a conta de oportunidade não muda nada."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-de-oportunidade",
+   "criterio": "O critério ainda se aplica?",
+   "enunciado": "Decidir entre guardar, gastar ou investir uma sobra",
+   "resposta": true,
+   "ancora": "Três caminhos vivos para o mesmo dinheiro: cenário ideal do critério.",
+   "feedbackErro": "É exatamente aqui que o conceito trabalha: alternativas reais, futuros diferentes. Cada destino da sobra tem um custo — os outros dois."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "custo-afundado",
+   "pergunta": "Qual ideia fecha os três encontros?",
+   "alternativas": [
+    {
+     "texto": "Decida pelo que ainda está em jogo: alternativas futuras, não o gasto passado.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O custo que importa é o que já saiu do bolso.",
+     "correta": false,
+     "feedbackErro": "O que já saiu é custo afundado: igual em todos os cenários, não decide nenhum."
+    },
+    {
+     "texto": "Quem calcula custo de oportunidade não pode se divertir.",
+     "correta": false,
+     "feedbackErro": "Calcular não proíbe nada: só revela o preço. Diversão escolhida com o custo à vista vale mais."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "custo-afundado",
+   "dificuldade": 3,
+   "pergunta": "Uma empresa mantém um projeto ruim 'porque já investiu milhões'. Qual é o nome do erro?",
+   "ancora": "O erro dos milhões é o mesmo dos R$ 80 do curso: o passado votando.",
+   "alternativas": [
+    {
+     "texto": "Custo afundado guiando a decisão",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Custo de oportunidade bem calculado",
+     "correta": false,
+     "feedbackErro": "Se fosse bem calculado, compararia os futuros possíveis — e provavelmente mandaria parar. A empresa está olhando o retrovisor, não a estrada."
+    },
+    {
+     "texto": "Sazonalidade mal prevista",
+     "correta": false,
+     "feedbackErro": "Sazonalidade trata de picos de procura no calendário — outro assunto. Aqui o problema é deixar o dinheiro já gasto mandar na próxima decisão."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custo-afundado",
+   "criterio": "É sinal de decisão madura?",
+   "enunciado": "Largar no meio algo que não vale mais a pena",
+   "resposta": true,
+   "ancora": "Insistir só pelo que já foi gasto é dobrar a perda.",
+   "feedbackErro": "Largar soa como fraqueza — 'quem começa termina'. Mas terminar algo ruim só para honrar o gasto passado custa o dobro: o que foi e o que ainda vai."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "escolha-no-tempo",
+   "instrucao": "Ordene da escolha mais fácil de desfazer à mais travada.",
+   "ancora": "Quanto mais difícil voltar atrás, mais cuidado antes de assinar.",
+   "feedbackErro": "O critério é o custo de voltar atrás: assinatura mensal cancela em um clique; a bicicleta se revende com pequena perda; o plano anual prende até o fim.",
+   "itens": [
+    {
+     "texto": "Assinar um streaming mensal",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Comprar uma bicicleta usada",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Fechar plano anual sem cancelamento",
+     "posicaoCorreta": 3
+    }
+   ]
+  }
+ ]
+}

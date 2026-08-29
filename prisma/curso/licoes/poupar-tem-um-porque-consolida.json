@@ -1,0 +1,332 @@
+{
+ "slug": "poupar-tem-um-porque-consolida",
+ "segmento": "em2",
+ "conceitoPrincipal": "poupar-tem-um-porque",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "meta-de-poupanca",
+   "criterio": "Faz sentido no plano?",
+   "enunciado": "Poupar para a meta devendo rotativo a 14% ao mês",
+   "resposta": false,
+   "ancora": "Dívida a 14% cresce mais que qualquer meta rende: quite antes.",
+   "feedbackErro": "Poupar parece sempre virtude, e é aí que o caso engana. Rendendo ~0,5% e devendo 14%, cada mês poupando custa caro — primeiro a dívida, depois a meta."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "aposta-nao-e-investimento",
+   "criterio": "Faz sentido no plano?",
+   "enunciado": "Apostar R$ 30 do lazer, contando o valor como perdido",
+   "resposta": true,
+   "ancora": "Como lazer orçado e dado por perdido, é gasto — não investimento.",
+   "feedbackErro": "O reflexo é vetar toda aposta. Mas o critério é o papel: no orçamento de lazer, dada por perdida, é gasto de diversão — vira problema se vira plano de ganho."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "meta-de-poupanca",
+   "criterio": "Faz sentido no plano?",
+   "enunciado": "Adiar a meta um mês para completar a reserva de emergência",
+   "resposta": true,
+   "ancora": "Sem reserva, o primeiro susto derruba a meta. Emergência vem antes.",
+   "feedbackErro": "Adiar parece desistir. É o contrário: a reserva protege a meta — sem ela, o primeiro imprevisto saca tudo o que a meta já juntou."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "meta-de-poupanca",
+   "dificuldade": 3,
+   "pergunta": "Vitor tem R$ 3.000: meta de 5 anos, reserva zerada, nenhuma dívida. Qual divisão faz mais sentido?",
+   "ancora": "Reserva primeiro: ela existe para a meta nunca ser sacada.",
+   "alternativas": [
+    {
+     "texto": "Montar a reserva primeiro e começar a meta com o resto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Tudo na meta, porque 5 anos rendem mais",
+     "correta": false,
+     "feedbackErro": "Render mais é verdade — até o primeiro imprevisto, que sacaria a meta com perda e no pior momento. A reserva existe para a meta não ser tocada."
+    },
+    {
+     "texto": "Metade em aposta, para acelerar os 5 anos",
+     "correta": false,
+     "feedbackErro": "Cinco anos dão tempo para juros compostos, não para sorteio. Aposta não acelera plano: adiciona a chance de recomeçar do zero."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "meta-de-poupanca",
+   "dificuldade": 3,
+   "pergunta": "Quando guardar dinheiro deixa de ser a melhor decisão?",
+   "ancora": "Guardar a 0,5% devendo a 14% é perder 13,5% ao mês na diferença.",
+   "verificacao": {
+    "expressao": "14-0.5",
+    "esperado": 13.5
+   },
+   "alternativas": [
+    {
+     "texto": "Quando há dívida cara correndo ou falta o essencial",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando o valor possível por mês é pequeno",
+     "correta": false,
+     "feedbackErro": "Valor pequeno ainda constrói: R$ 40/mês são R$ 480/ano. Poupar só perde a vez quando algo mais caro corre contra você — juros altos ou o essencial."
+    },
+    {
+     "texto": "Nunca: guardar é sempre a melhor escolha",
+     "correta": false,
+     "feedbackErro": "Quase sempre — mas devendo a 14% ao mês, guardar a 0,5% é pagar caro para parecer prudente. O critério compara taxas, não intenções."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "aposta-nao-e-investimento",
+   "criterio": "Isso é investimento?",
+   "enunciado": "'Trader' que promete dobrar seu dinheiro em 30 dias",
+   "resposta": false,
+   "ancora": "Dobrar em prazo curto e garantido é golpe, não investimento.",
+   "feedbackErro": "Usa vocabulário de investimento, e é isso que disfarça. Dobrar em 30 dias é 100% ao mês — nenhum ativo legítimo paga isso com garantia."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "meta-de-poupanca",
+   "instrucao": "Sobrou R$ 400. Ordene o destino, do primeiro ao último.",
+   "ancora": "Dívida cara → reserva → meta → extras. A ordem protege o plano.",
+   "feedbackErro": "A ordem não é a do desejo, é a do custo: a dívida a 14% cresce contra você; a reserva evita novas dívidas; a meta constrói; o extra fecha.",
+   "itens": [
+    {
+     "texto": "Quitar o rotativo do cartão",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Completar a reserva de emergência",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Parcela da meta de longo prazo",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Lazer extra do mês",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "aposta-nao-e-investimento",
+   "criterio": "Faz sentido no plano?",
+   "enunciado": "Pausar a reserva de emergência para apostar na 'sorte do mês'",
+   "resposta": false,
+   "ancora": "Trocar o previsível pelo sorteado desmonta o plano inteiro.",
+   "feedbackErro": "Parece só uma pausa. Mas troca o dinheiro que segura o plano por um sorteio — se vier o imprevisto, a conta chega sem a reserva e com a perda."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "meta-de-poupanca",
+   "criterio": "Faz sentido no plano?",
+   "enunciado": "Usar 13º ou bônus para adiantar a meta atrasada",
+   "resposta": true,
+   "ancora": "Dinheiro extra é o melhor acelerador de meta — ainda não tem dono.",
+   "feedbackErro": "Parece que extra é para gastar, afinal 'não estava no plano'. Mas é justamente por não ter destino que ele adianta a meta sem apertar nenhum mês."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "meta-de-poupanca",
+   "pergunta": "R$ 200/mês a 0,5% ao mês: quanto os juros somam além dos R$ 4.800 em 2 anos?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 2000,
+   "gabarito": 286,
+   "toleranciaPct": 20,
+   "fonte": "rendimento da poupança, ~0,5% ao mês (Banco Central)",
+   "verificacao": {
+    "expressao": "200*((1.005^24-1)/0.005)-4800",
+    "esperado": 286.4,
+    "tolerancia": 1
+   },
+   "feedbackPerto": "Cerca de R$ 286 — pouco em 2 anos. No prazo curto, quem constrói é o depósito; juros brilham no longo.",
+   "feedbackLonge": "Uns R$ 286. O viés é superestimar juros no curto prazo: a 0,5% ao mês, quem faz o bolo em 2 anos ainda é o depósito, não o rendimento."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "aposta-nao-e-investimento",
+   "dificuldade": 3,
+   "pergunta": "Meta em dia, reserva pronta. Um colega chama para 'investir' em rifa premiada. E agora?",
+   "ancora": "Plano em dia muda o quanto você pode perder — não o que a rifa é.",
+   "alternativas": [
+    {
+     "texto": "Recusar como investimento; se entrar, que seja lazer orçado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Entrar, porque o plano está em dia e sobra espaço",
+     "correta": false,
+     "feedbackErro": "Plano em dia libera dinheiro para lazer — não muda a natureza da rifa. Entrar pode; chamar de investimento, não. O nome define quanto você aceita perder."
+    },
+    {
+     "texto": "Entrar com valor alto, já que a chance é 'quase certa'",
+     "correta": false,
+     "feedbackErro": "'Quase certa' é a frase de venda de todo sorteio. A chance real é a proporção de números vendidos — e valor alto em sorteio é perda alta provável."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "prazo-da-meta",
+   "dificuldade": 3,
+   "pergunta": "Faltam 2 meses para a meta e o dinheiro está numa aplicação que oscila. O que o prazo pede?",
+   "ancora": "Perto da data, oscilação vira risco sem tempo de recuperação.",
+   "alternativas": [
+    {
+     "texto": "Migrar para algo estável: perto do prazo, oscilar é risco",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Manter, porque no longo prazo tudo se recupera",
+     "correta": false,
+     "feedbackErro": "'Longo prazo' era o argumento de anos atrás — agora restam 2 meses. Recuperação precisa de tempo, e tempo é o que a meta não tem mais."
+    },
+    {
+     "texto": "Apostar a diferença se a aplicação cair",
+     "correta": false,
+     "feedbackErro": "Cobrir queda com sorteio soma dois riscos no pior momento. Se faltar pouco, o caminho é ajustar prazo ou valor — variáveis que você controla."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "prazo-da-meta",
+   "criterio": "Faz sentido no plano?",
+   "enunciado": "Meta longa numa aplicação que oscila, com a reserva à parte",
+   "resposta": true,
+   "ancora": "Com reserva pronta e prazo longo, oscilar no caminho é tolerável.",
+   "feedbackErro": "Oscilação assusta em qualquer prazo. Mas com anos pela frente e emergências cobertas pela reserva, a queda de um mês não obriga a vender — o tempo dilui."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "aposta-nao-e-investimento",
+   "criterio": "Isso é investimento?",
+   "enunciado": "Grupo no app que promete renda fixa de 10% ao mês",
+   "resposta": false,
+   "ancora": "10% ao mês 'fixo' não existe no mercado legal — é pirâmide.",
+   "feedbackErro": "'Renda fixa' soa oficial. Mas a renda fixa real paga na casa de 1% ao mês; 10% fixo só se sustenta pagando uns com o dinheiro dos outros — até acabar."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "poupar-tem-um-porque",
+   "pergunta": "Fechando os três encontros, qual frase resume?",
+   "alternativas": [
+    {
+     "texto": "Poupar tem ordem: dívida cara e reserva antes da meta; sorteio nunca é plano.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Guardar é sempre o primeiro passo, em qualquer situação.",
+     "correta": false,
+     "feedbackErro": "Devendo a 14% ao mês, guardar a 0,5% custa caro. A ordem começa na dívida cara."
+    },
+    {
+     "texto": "Aposta vira plano quando o resto está em dia.",
+     "correta": false,
+     "feedbackErro": "Com tudo em dia ela pode ser lazer orçado — plano de ganho, nunca: é sorteio."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "meta-de-poupanca",
+   "instrucao": "O que vem antes da meta e o que vem depois?",
+   "ancora": "Antes: o que protege. Depois: o que é desejo.",
+   "feedbackErro": "Dívida cara corrói e reserva protege — os dois vêm antes. Celular e lazer são metas legítimas, mas entram depois que a base está de pé.",
+   "caixas": [
+    {
+     "id": "antes",
+     "rotulo": "Vem antes"
+    },
+    {
+     "id": "depois",
+     "rotulo": "Vem depois"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Quitar rotativo do cartão",
+     "caixaCorreta": "antes"
+    },
+    {
+     "texto": "Reserva de emergência",
+     "caixaCorreta": "antes"
+    },
+    {
+     "texto": "Troca de celular",
+     "caixaCorreta": "depois"
+    },
+    {
+     "texto": "Passeio no feriado",
+     "caixaCorreta": "depois"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "aposta-nao-e-investimento",
+   "dificuldade": 3,
+   "pergunta": "Chegaram R$ 2.000 de herança; plano em dia, sem dívidas. Qual é o pior destino?",
+   "ancora": "Renda 'garantida' de 8% ao mês não é opção ruim: é golpe.",
+   "alternativas": [
+    {
+     "texto": "Buscar a 'renda garantida' de 8% ao mês de um grupo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Adiantar parcelas da meta de longo prazo",
+     "correta": false,
+     "feedbackErro": "Esse é um dos bons destinos: dinheiro sem dono acelera a meta sem apertar nenhum mês. O pior destino é o que promete o impossível."
+    },
+    {
+     "texto": "Reforçar a reserva de emergência",
+     "correta": false,
+     "feedbackErro": "Reforçar a reserva é destino legítimo, ainda mais se ela está no mínimo. O pior é o 'garantido' de 8% ao mês — promessa que nenhum ativo legal cumpre."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "aposta-nao-e-investimento",
+   "criterio": "Isso é investimento?",
+   "enunciado": "Consórcio 'com contemplação garantida' vendido no zap",
+   "resposta": false,
+   "ancora": "Contemplação de consórcio é sorteio ou lance — garantia é golpe.",
+   "feedbackErro": "Consórcio de verdade existe e é regulado — mas ninguém pode garantir contemplação, porque ela sai por sorteio ou lance. A garantia é o sinal do golpe."
+  }
+ ]
+}

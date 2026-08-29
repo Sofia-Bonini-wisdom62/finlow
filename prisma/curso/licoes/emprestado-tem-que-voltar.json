@@ -1,0 +1,291 @@
+{
+ "slug": "emprestado-tem-que-voltar",
+ "segmento": "ef35",
+ "conceitoPrincipal": "emprestado-tem-que-voltar",
+ "fraseConceito": "Pegar emprestado cria a obrigação de devolver — é isso que mantém a confiança entre as pessoas.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "emprestimo-se-devolve",
+   "criterio": "Isso precisa ser devolvido?",
+   "enunciado": "O lápis que você pediu emprestado pro colega",
+   "resposta": true,
+   "ancora": "Emprestado é o oposto de dado — sempre volta pra quem emprestou.",
+   "feedbackErro": "Parece um detalhe pequeno, de um lápis só. Mas emprestar significa que a coisa continua sendo de quem emprestou, e por isso ela volta."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "emprestimo-se-devolve",
+   "criterio": "Isso precisa ser devolvido?",
+   "enunciado": "O presente de aniversário que você ganhou",
+   "resposta": false,
+   "ancora": "Presente muda de dono — não existe combinação de devolver.",
+   "feedbackErro": "Parece parecido com emprestar, porque também é alguém te dando algo. Mas presente não tem prazo nem combinação de volta — ele passa a ser seu de vez."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "emprestimo-se-devolve",
+   "criterio": "Isso precisa ser devolvido?",
+   "enunciado": "O dinheiro que a mãe emprestou pro lanche, pra devolver no sábado",
+   "resposta": true,
+   "ancora": "Teve combinação de devolver — isso é o que define o empréstimo.",
+   "feedbackErro": "Como foi a própria mãe, parece que não conta como empréstimo de verdade. Mas teve combinação de devolver — é isso que define, não quem emprestou."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "emprestimo-se-devolve",
+   "dificuldade": 1,
+   "pergunta": "Rafael pegou R$ 20 emprestados do irmão e não devolveu. O que isso quebra?",
+   "ancora": "Combinar devolver e não cumprir é o que mais abala a confiança.",
+   "alternativas": [
+    {
+     "texto": "A confiança do irmão pra emprestar de novo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O valor do dinheiro, que perde a validade",
+     "correta": false,
+     "feedbackErro": "Dinheiro não perde validade por atraso. O que se perde é a confiança de quem emprestou."
+    },
+    {
+     "texto": "A obrigação de devolver, que deixa de existir",
+     "correta": false,
+     "feedbackErro": "A obrigação continua existindo mesmo sem pagar — só a confiança é que já foi abalada."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "tipos-de-credito",
+   "dificuldade": 1,
+   "pergunta": "Comprar um tênis em 3 vezes no cartão é qual tipo de crédito?",
+   "ancora": "O cartão paga a loja e você paga o cartão, dividido.",
+   "alternativas": [
+    {
+     "texto": "Parcelamento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Financiamento",
+     "correta": false,
+     "feedbackErro": "Financiamento é pra compras grandes, como casa ou carro, com contrato específico — não é o caso do tênis."
+    },
+    {
+     "texto": "Empréstimo em dinheiro",
+     "correta": false,
+     "feedbackErro": "Empréstimo é quando alguém te dá dinheiro pra usar como quiser. Aqui o cartão paga a loja direto — isso é parcelamento."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "tipos-de-credito",
+   "criterio": "É um tipo de crédito?",
+   "enunciado": "O financiamento usado pra comprar uma casa aos poucos",
+   "resposta": true,
+   "ancora": "Financiamento é crédito pra bens grandes, pagos aos poucos.",
+   "feedbackErro": "Parece só uma forma de comprar casa, sem ligação com crédito. Mas é justamente isso: pegar dinheiro emprestado do banco pra pagar aos poucos."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "tipos-de-credito",
+   "instrucao": "É empréstimo ou parcelamento?",
+   "ancora": "Empréstimo dá dinheiro; parcelamento divide o pagamento de uma compra.",
+   "feedbackErro": "As duas envolvem pagar aos poucos, e por isso confundem. Mas empréstimo coloca dinheiro na sua mão; parcelamento só divide o preço de uma compra.",
+   "caixas": [
+    {
+     "id": "emprestimo",
+     "rotulo": "Empréstimo"
+    },
+    {
+     "id": "parcelamento",
+     "rotulo": "Parcelamento"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Pegar dinheiro no banco pra usar como quiser",
+     "caixaCorreta": "emprestimo"
+    },
+    {
+     "texto": "Pagar uma bicicleta em 6 vezes no cartão",
+     "caixaCorreta": "parcelamento"
+    },
+    {
+     "texto": "Pedir dinheiro emprestado pra pagar uma dívida",
+     "caixaCorreta": "emprestimo"
+    },
+    {
+     "texto": "Dividir o valor de um videogame em 4 partes",
+     "caixaCorreta": "parcelamento"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "emprestimo-se-devolve",
+   "criterio": "Ajuda a manter a confiança?",
+   "enunciado": "Combinar a data de devolver antes de pegar emprestado",
+   "resposta": true,
+   "ancora": "Combinar antes evita mal-entendido e protege a relação.",
+   "feedbackErro": "Parece um detalhe chato de combinar antes. Mas é essa combinação que evita confusão e mantém a confiança de quem emprestou."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "emprestimo-se-devolve",
+   "dificuldade": 1,
+   "pergunta": "Duas amigas pegam R$ 10 emprestadas. Uma devolve na data combinada, outra esquece. O que muda entre elas?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "A que devolveu pode pedir emprestado de novo mais fácil",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada muda, porque o valor emprestado era o mesmo",
+     "correta": false,
+     "feedbackErro": "O valor foi igual, mas o comportamento não. Quem devolve na data mantém a confiança; quem esquece, perde."
+    },
+    {
+     "texto": "A que esqueceu fica proibida de usar dinheiro pra sempre",
+     "correta": false,
+     "feedbackErro": "Não existe essa proibição para sempre. O que acontece é que fica mais difícil pedir emprestado de novo."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "tipos-de-credito",
+   "criterio": "É característica do cartão de crédito?",
+   "enunciado": "Permite comprar agora e pagar só no mês seguinte",
+   "resposta": true,
+   "ancora": "Essa é a função central do cartão: adiar o pagamento.",
+   "feedbackErro": "Pode parecer que todo crédito faz isso igual. Mas essa é a característica que define o cartão de crédito: comprar agora, pagar depois."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "emprestimo-se-devolve",
+   "criterio": "Ajuda a manter a confiança?",
+   "enunciado": "Devolver o que pegou emprestado, mesmo sem ninguém cobrar",
+   "resposta": true,
+   "ancora": "Devolver por conta própria é o que mais fortalece a confiança.",
+   "feedbackErro": "Sem cobrança, parece que dá pra deixar pra depois. Mas devolver sem esperar cobrança é o que mais fortalece a confiança de quem emprestou."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "emprestimo-se-devolve",
+   "dificuldade": 3,
+   "pergunta": "Qual frase resume o que você viu?",
+   "alternativas": [
+    {
+     "texto": "Pegar emprestado é como ganhar, o dinheiro passa a ser seu",
+     "correta": false,
+     "feedbackErro": "Ganhar não tem devolução. Emprestado sempre tem combinação de voltar."
+    },
+    {
+     "texto": "Emprestado tem que voltar — é isso que mantém a confiança",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Todo tipo de crédito funciona exatamente do mesmo jeito",
+     "correta": false,
+     "feedbackErro": "Empréstimo, financiamento e parcelamento têm diferenças — cada um serve pra uma situação."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "tipos-de-credito",
+   "instrucao": "Ordene pelo tempo até pagar tudo: do mais rápido pro mais demorado.",
+   "ancora": "Quanto mais parcelas, mais tempo até quitar tudo.",
+   "feedbackErro": "Parece que o número de parcelas não importa, só o total. Mas quanto mais parcelas, mais tempo o pagamento se estende.",
+   "itens": [
+    {
+     "texto": "Pagar à vista, sem parcelar",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Parcelar em 3 vezes no cartão",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Financiar um bem por 24 meses",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "emprestimo-se-devolve",
+   "instrucao": "Isso fortalece ou quebra a confiança?",
+   "ancora": "Confiança cresce com combinado cumprido, quebra com promessa quebrada.",
+   "feedbackErro": "Parece que só devolver já resolve tudo. Mas avisar antes, quando algo muda, também conta — o que quebra é prometer e sumir.",
+   "caixas": [
+    {
+     "id": "fortalece",
+     "rotulo": "Fortalece"
+    },
+    {
+     "id": "quebra",
+     "rotulo": "Quebra"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Devolver na data combinada",
+     "caixaCorreta": "fortalece"
+    },
+    {
+     "texto": "Sumir sem explicar por que não devolveu",
+     "caixaCorreta": "quebra"
+    },
+    {
+     "texto": "Avisar antes se não vai conseguir devolver a tempo",
+     "caixaCorreta": "fortalece"
+    },
+    {
+     "texto": "Prometer devolver e não cumprir, sem avisar",
+     "caixaCorreta": "quebra"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "tipos-de-credito",
+   "pergunta": "Um videogame de R$ 600 parcelado em 4 vezes sem juros. Quanto é cada parcela?",
+   "campo": "moeda",
+   "min": 50,
+   "max": 300,
+   "gabarito": 150,
+   "toleranciaPct": 20,
+   "fonte": "conta direta: valor total dividido pelo número de parcelas",
+   "feedbackPerto": "Isso mesmo — R$ 150 cada. Dividir o total pelas parcelas dá o valor exato.",
+   "feedbackLonge": "R$ 600 dividido por 4 dá R$ 150 cada parcela. É só dividir o total pelo número de vezes.",
+   "verificacao": {
+    "expressao": "600/4",
+    "esperado": 150
+   }
+  }
+ ]
+}

@@ -1,0 +1,272 @@
+{
+ "slug": "guardar-ou-render",
+ "segmento": "ef67",
+ "conceitoPrincipal": "guardar-ou-render",
+ "fraseConceito": "Poupar é guardar; investir é fazer esse dinheiro render — a caderneta de poupança faz as duas coisas.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-investir",
+   "criterio": "É 'poupar', guardar sem fazer render?",
+   "enunciado": "Guardar uma moeda de R$1 dentro de um cofrinho de vidro",
+   "resposta": true,
+   "ancora": "Separar e guardar sem rendimento: isso é poupar.",
+   "feedbackErro": "Guardar no cofrinho parece igual a qualquer outra forma de guardar, mas sem juros, esse dinheiro nunca cresce sozinho — é só poupar, no sentido mais simples."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-investir",
+   "criterio": "É 'poupar', guardar sem fazer render?",
+   "enunciado": "Colocar R$100 na caderneta de poupança, que paga juros todo mês",
+   "resposta": false,
+   "ancora": "Isso já é investir: o valor guardado passa a render.",
+   "feedbackErro": "Pode parecer só 'guardar em outro lugar', mas a poupança paga juros — o dinheiro cresce sozinho, e isso caracteriza investir, não só poupar."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-investir",
+   "criterio": "É 'poupar', guardar sem fazer render?",
+   "enunciado": "Deixar dinheiro parado na carteira, sem gastar",
+   "resposta": true,
+   "ancora": "Parado sem render — é poupar, sem proteção de conta.",
+   "feedbackErro": "Fica seguro de gastar por impulso, mas parado na carteira o dinheiro não cresce nenhum centavo — é poupar sem nenhuma proteção extra."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "poupar-vs-investir",
+   "dificuldade": 1,
+   "pergunta": "Qual a diferença entre guardar dinheiro no cofrinho e guardar na caderneta de poupança?",
+   "ancora": "Cofrinho guarda; poupança guarda e ainda rende juros.",
+   "alternativas": [
+    {
+     "texto": "Nenhuma, os dois guardam o dinheiro do mesmo jeito",
+     "correta": false,
+     "feedbackErro": "Guardar é igual, sim — a diferença aparece depois: um dos dois faz o valor crescer sozinho com o tempo."
+    },
+    {
+     "texto": "Na poupança rende juros; no cofrinho fica parado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "No cofrinho, o dinheiro rende mais rápido",
+     "correta": false,
+     "feedbackErro": "É o oposto: o cofrinho não paga nada. Quem rende é a poupança, mesmo que devagar."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "poupar-vs-investir",
+   "dificuldade": 1,
+   "pergunta": "R$1.000 guardados na poupança por um mês, a 0,5% ao mês. Quanto rendeu?",
+   "ancora": "R$1.000 × 0,5% = R$5 de rendimento no mês.",
+   "verificacao": {
+    "expressao": "1000*0.005",
+    "esperado": 5
+   },
+   "alternativas": [
+    {
+     "texto": "R$5",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$50",
+     "correta": false,
+     "feedbackErro": "R$50 seria 5%, não 0,5%. A taxa da poupança é bem menor — confira a vírgula."
+    },
+    {
+     "texto": "R$500",
+     "correta": false,
+     "feedbackErro": "Isso seria metade do valor guardado, uma taxa de 50%. A poupança rende bem menos que isso: 0,5% ao mês."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-investir",
+   "criterio": "O dinheiro cresce sozinho aqui?",
+   "enunciado": "Uma quantia guardada dentro de um envelope, na gaveta",
+   "resposta": false,
+   "ancora": "Envelope na gaveta não paga juros nenhum — é poupar sem render.",
+   "feedbackErro": "Pode parecer 'guardado com segurança', mas envelope na gaveta não paga juros — pra crescer sozinho, precisaria estar em algo como a poupança."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "reserva-para-imprevistos",
+   "instrucao": "Isso é um bom motivo pra usar a reserva de emergência?",
+   "ancora": "Reserva é pra imprevisto essencial, não desejo do momento.",
+   "feedbackErro": "O critério é se a situação é inesperada e essencial. Promoção e lançamento são desejos previsíveis, não emergências.",
+   "caixas": [
+    {
+     "id": "sim",
+     "rotulo": "Bom motivo"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é o motivo da reserva"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "O carro quebrou e precisa de conserto urgente",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Uma promoção de tênis que acaba hoje",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Perda do emprego, sem renda por um tempo",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Vontade de comprar o lançamento de um jogo",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "reserva-para-imprevistos",
+   "criterio": "Isso é o papel da reserva financeira?",
+   "enunciado": "Cobrir o conserto urgente do encanamento de casa, sem pedir empréstimo",
+   "resposta": true,
+   "ancora": "Reserva cobre imprevisto essencial sem precisar de dívida.",
+   "feedbackErro": "Pode parecer que reserva é só pra guardar sem mexer, mas seu papel é justamente cobrir esse tipo de imprevisto essencial sem precisar de empréstimo."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "poupar-vs-investir",
+   "dificuldade": 1,
+   "pergunta": "Alguém guarda dinheiro embaixo do colchão em vez de na poupança. O que ela perde?",
+   "ancora": "Embaixo do colchão não rende; na poupança, cresce sozinho.",
+   "alternativas": [
+    {
+     "texto": "Perde só a segurança física do dinheiro",
+     "correta": false,
+     "feedbackErro": "A segurança física é um problema real, mas não é a única perda — tem outra coisa que ela deixa de ganhar."
+    },
+    {
+     "texto": "Perde o rendimento que a poupança pagaria com o tempo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não perde nada, o valor guardado é o mesmo",
+     "correta": false,
+     "feedbackErro": "O valor nominal parece igual, mas na poupança esse dinheiro cresceria mês a mês — embaixo do colchão, fica sempre do mesmo tamanho."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "reserva-para-imprevistos",
+   "criterio": "Evita um imprevisto virar dívida cara?",
+   "enunciado": "Uma reserva guardada evitando recorrer ao cheque especial numa emergência",
+   "resposta": true,
+   "ancora": "Cheque especial cobra ~8% ao mês; reserva evita essa dívida.",
+   "feedbackErro": "Pode parecer que a reserva só 'existe parada', mas seu valor prático aparece exatamente aqui: evitar dívida cara na hora do aperto."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-investir",
+   "criterio": "O dinheiro rende sozinho aqui?",
+   "enunciado": "Uma quantia depositada na caderneta de poupança, rendendo todo mês",
+   "resposta": true,
+   "ancora": "Rendendo todo mês, esse dinheiro está investido, não só guardado.",
+   "feedbackErro": "Pode parecer só 'outro lugar pra guardar', mas render todo mês é a marca de investir, mesmo sendo pouco."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "poupar-vs-investir",
+   "pergunta": "Qual frase resume a diferença vista?",
+   "alternativas": [
+    {
+     "texto": "Poupar é guardar; investir, como na poupança, faz render — reserva evita aperto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Guardar dinheiro em qualquer lugar rende do mesmo jeito",
+     "correta": false,
+     "feedbackErro": "Cofrinho, carteira e poupança guardam, mas só a poupança faz o valor crescer com juros — não são iguais."
+    },
+    {
+     "texto": "Reserva de emergência serve pra aproveitar promoções",
+     "correta": false,
+     "feedbackErro": "Promoção é desejo previsível, não emergência. A reserva é pra imprevisto que ameaça o essencial."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "poupar-vs-investir",
+   "pergunta": "R$2.000 guardados na poupança por 1 mês, a 0,5% ao mês. Quanto rendeu?",
+   "campo": "moeda",
+   "min": 5,
+   "max": 30,
+   "gabarito": 10,
+   "toleranciaPct": 20,
+   "fonte": "taxa média da poupança, ~0,5% ao mês",
+   "verificacao": {
+    "expressao": "2000*0.005",
+    "esperado": 10
+   },
+   "feedbackPerto": "Isso mesmo: R$2.000 × 0,5% = R$10 no mês. Pouco, mas é rendimento — muito mais que os R$0 do cofrinho.",
+   "feedbackLonge": "O rendimento é R$10. É fácil confundir 0,5% com 5% e calcular dez vezes mais que o real."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "reserva-para-imprevistos",
+   "instrucao": "Ordene da situação menos urgente pra usar a reserva à mais urgente.",
+   "ancora": "A urgência cresce do desejo até a perda de renda.",
+   "feedbackErro": "O critério é o quanto o essencial da vida está ameaçado — desejo de consumo fica no fim da fila, perda de renda vai na frente.",
+   "itens": [
+    {
+     "texto": "Vontade de trocar de celular por um mais novo",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Uma conta de luz um pouco mais alta que o normal",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "O fogão quebrou e a família precisa cozinhar",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Perda repentina da fonte principal de renda",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "poupar-vs-investir",
+   "criterio": "Caracteriza investir, não só poupar?",
+   "enunciado": "Um valor guardado numa conta que não paga juro nenhum",
+   "resposta": false,
+   "ancora": "Sem juro, é só poupar — guardar sem fazer o valor crescer.",
+   "feedbackErro": "Pode parecer investimento por estar 'numa conta', mas sem pagamento de juros, o dinheiro não cresce sozinho — continua sendo só poupança parada."
+  }
+ ]
+}

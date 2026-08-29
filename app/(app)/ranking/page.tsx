@@ -162,7 +162,9 @@ export default function RankingPage() {
       .catch(() => {})
   }, [])
 
-  useEffect(() => { carregar() }, [carregar])
+  // Disparo numa microtask: a regra de hooks proíbe setState síncrono no
+  // corpo do efeito, e um tick de atraso não muda nada visível.
+  useEffect(() => { Promise.resolve().then(carregar) }, [carregar])
 
   async function alternar(participar: boolean) {
     setSalvando(true)

@@ -1,0 +1,250 @@
+{
+ "slug": "o-que-e-estar-endividado",
+ "segmento": "ef35",
+ "conceitoPrincipal": "o-que-e-estar-endividado",
+ "fraseConceito": "Estar endividado é dever mais do que você tem agora — e pensar antes de comprar evita isso.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "o-que-e-divida",
+   "criterio": "Isso é uma dívida?",
+   "enunciado": "Pedir R$ 10 emprestados e prometer devolver",
+   "resposta": true,
+   "ancora": "Dever é isso: pegar algo e ter que devolver depois.",
+   "feedbackErro": "Parece só um empréstimo comum entre amigos. Mas assim que você promete devolver, já está devendo — isso é estar endividado."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "o-que-e-divida",
+   "criterio": "Isso é uma dívida?",
+   "enunciado": "Comprar um lanche com o dinheiro que já é seu",
+   "resposta": false,
+   "ancora": "Gastar o que é seu não cria dívida nenhuma.",
+   "feedbackErro": "Parece gasto, e todo gasto lembra dívida. Mas só existe dívida quando você usa dinheiro de outra pessoa e precisa devolver."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "consumo-consciente",
+   "criterio": "Isso ajuda a não se endividar?",
+   "enunciado": "Pensar antes de comprar se você realmente precisa",
+   "resposta": true,
+   "ancora": "Parar pra pensar evita gastar mais do que se tem.",
+   "feedbackErro": "Parece só enrolação antes de comprar. Mas pensar antes é o que evita comprar por impulso e ficar sem dinheiro depois."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "o-que-e-divida",
+   "dificuldade": 1,
+   "pergunta": "Pedro pegou R$ 20 emprestados do irmão para comprar um jogo. O que ele agora tem?",
+   "ancora": "Emprestado sempre volta: quem pega fica devendo até pagar.",
+   "alternativas": [
+    {
+     "texto": "Uma dívida com o irmão",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Um presente do irmão",
+     "correta": false,
+     "feedbackErro": "Presente não precisa ser devolvido. Como Pedro prometeu devolver o valor, isso é um empréstimo — ele ficou devendo."
+    },
+    {
+     "texto": "Um troco a receber",
+     "correta": false,
+     "feedbackErro": "Troco é dinheiro que sobra numa compra. Pedro recebeu dinheiro emprestado, não troco — ele tem uma dívida."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "consumo-consciente",
+   "dificuldade": 1,
+   "pergunta": "Ana viu um brinquedo novo na loja, mas só tinha dinheiro pro almoço da semana. O que é consumo consciente aqui?",
+   "ancora": "Consumo consciente é esperar juntar, não pedir emprestado.",
+   "alternativas": [
+    {
+     "texto": "Comprar o brinquedo e pedir dinheiro emprestado depois",
+     "correta": false,
+     "feedbackErro": "Comprar assim resolve na hora, mas cria uma dívida pro almoço da semana. Consumo consciente é pensar no depois, não só no agora."
+    },
+    {
+     "texto": "Esperar e guardar dinheiro pro brinquedo depois",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Trocar o almoço por lanche mais barato pra sobrar",
+     "correta": false,
+     "feedbackErro": "Cortar do necessário parece resolver, mas troca uma falta por outra. Consumo consciente é esperar, não sacrificar o que já é preciso."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "o-que-e-divida",
+   "criterio": "Isso é uma dívida?",
+   "enunciado": "Guardar dinheiro no cofrinho para comprar depois",
+   "resposta": false,
+   "ancora": "Guardar é o oposto de dever — evita pedir emprestado.",
+   "feedbackErro": "Parece que juntar dinheiro tem a ver com dívida. Mas guardar é o oposto: você está evitando pedir emprestado, não devendo nada."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "o-que-e-divida",
+   "instrucao": "Isso é dívida ou não? Arraste.",
+   "ancora": "Dívida é sempre dinheiro ou algo que falta devolver.",
+   "feedbackErro": "É fácil confundir gastar com dever. Dívida só existe quando falta devolver algo a alguém.",
+   "caixas": [
+    { "id": "divida", "rotulo": "É dívida" },
+    { "id": "nao", "rotulo": "Não é dívida" }
+   ],
+   "itens": [
+    { "texto": "Pedir R$ 5 emprestados pra colega", "caixaCorreta": "divida" },
+    { "texto": "Ganhar R$ 5 de presente da avó", "caixaCorreta": "nao" },
+    { "texto": "Dever o troco de um lanche que faltou pagar", "caixaCorreta": "divida" },
+    { "texto": "Pagar o lanche na hora, com dinheiro contado certo", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "consumo-consciente",
+   "criterio": "Isso ajuda a não se endividar?",
+   "enunciado": "Comparar o preço em duas lojas antes de comprar",
+   "resposta": true,
+   "ancora": "Comparar preços evita gastar mais do que precisa.",
+   "feedbackErro": "Parece só perda de tempo antes de comprar. Mas comparar preços mostra a opção mais barata, e isso sobra dinheiro pro resto."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "o-que-e-divida",
+   "dificuldade": 1,
+   "pergunta": "Duda tinha R$ 30. Pegou R$ 10 emprestados da mãe pra completar uma compra de R$ 40. Quanto ela deve agora?",
+   "ancora": "40 menos 30 é 10 — o valor que faltou e virou dívida.",
+   "verificacao": { "expressao": "40-30", "esperado": 10 },
+   "alternativas": [
+    {
+     "texto": "R$ 10",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 40",
+     "correta": false,
+     "feedbackErro": "R$ 40 é o preço total da compra, não o quanto falta pagar. Ela já tinha R$ 30 — só faltavam R$ 10, que foram emprestados."
+    },
+    {
+     "texto": "R$ 30",
+     "correta": false,
+     "feedbackErro": "R$ 30 é o que Duda já tinha, não o que ela deve. O que falta e foi emprestado são R$ 10."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "consumo-consciente",
+   "criterio": "Isso é consumo consciente?",
+   "enunciado": "Comprar um brinquedo só porque todo mundo tem",
+   "resposta": false,
+   "ancora": "Copiar os outros não é motivo — é impulso, não necessidade.",
+   "feedbackErro": "Parece motivo válido, porque todo mundo faz assim. Mas comprar só por comparação é impulso — consumo consciente pensa na sua própria necessidade."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "o-que-e-divida",
+   "criterio": "Isso ajuda a sair da dívida?",
+   "enunciado": "Guardar parte da mesada até pagar o que deve",
+   "resposta": true,
+   "ancora": "Separar um pouco por vez é o caminho pra quitar a dívida.",
+   "feedbackErro": "Parece pouco pra resolver rápido. Mas guardar aos poucos, sem gastar tudo, é o jeito de juntar até pagar o que deve."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-que-e-divida",
+   "pergunta": "Qual frase resume o que você viu hoje?",
+   "alternativas": [
+    {
+     "texto": "Estar endividado é dever algo que ainda falta devolver",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só existe dívida quando o valor é muito grande",
+     "correta": false,
+     "feedbackErro": "Tamanho não define dívida. Mesmo R$ 5 emprestados já é dever algo — dívida é sobre existir, não sobre ser grande."
+    },
+    {
+     "texto": "Comprar por impulso nunca vira dívida",
+     "correta": false,
+     "feedbackErro": "Comprar por impulso é justamente o que mais leva a pedir emprestado depois. É uma das causas mais comuns de dívida."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "consumo-consciente",
+   "dificuldade": 2,
+   "pergunta": "Léo quer um tênis nas cores da moda. Qual pergunta ajuda mais antes de comprar?",
+   "ancora": "A pergunta certa é sempre sobre precisar, não sobre querer.",
+   "alternativas": [
+    {
+     "texto": "Eu realmente preciso ou só quero porque é moda?",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quantas cores diferentes esse tênis tem?",
+     "correta": false,
+     "feedbackErro": "Cor não decide se é preciso comprar. A pergunta que ajuda é sobre necessidade, não sobre estilo."
+    },
+    {
+     "texto": "Meus amigos vão gostar dessa escolha?",
+     "correta": false,
+     "feedbackErro": "A opinião dos amigos não paga a conta. O que importa é se você precisa do produto, não se ele agrada aos outros."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "o-que-e-divida",
+   "criterio": "Isso é uma dívida?",
+   "enunciado": "Usar o cartão de crédito da mãe sem avisar, prometendo repor depois",
+   "resposta": true,
+   "ancora": "Usar e prometer repor é exatamente ficar devendo.",
+   "feedbackErro": "Parece só um empréstimo informal dentro de casa. Mas usar dinheiro que não é seu, prometendo devolver, é dívida do mesmo jeito."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "consumo-consciente",
+   "instrucao": "Isso é pensar antes de comprar? Arraste.",
+   "ancora": "Pensar antes é comparar preço, tempo e o que já se tem.",
+   "feedbackErro": "Comprar rápido parece aproveitar a oportunidade. Mas pensar antes é checar se o dinheiro alcança e se dá pra esperar.",
+   "caixas": [
+    { "id": "sim", "rotulo": "Sim" },
+    { "id": "nao", "rotulo": "Não" }
+   ],
+   "itens": [
+    { "texto": "Perguntar se dá pra esperar até a próxima mesada", "caixaCorreta": "sim" },
+    { "texto": "Comprar na hora pra não perder a promoção", "caixaCorreta": "nao" },
+    { "texto": "Ver se o dinheiro guardado é suficiente", "caixaCorreta": "sim" },
+    { "texto": "Pedir emprestado sem saber quando paga", "caixaCorreta": "nao" }
+   ]
+  }
+ ]
+}

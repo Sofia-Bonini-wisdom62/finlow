@@ -1,0 +1,337 @@
+{
+ "slug": "publicidade-por-dentro-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "publicidade-por-dentro",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "publicidade-implicita-explicita",
+   "criterio": "É publicidade sem anúncio comum?",
+   "enunciado": "Vídeo de unboxing feito com produto enviado de graça pela marca",
+   "resposta": true,
+   "ancora": "Produto enviado pela marca já configura parceria de divulgação.",
+   "feedbackErro": "Parece só curiosidade de quem recebeu algo novo, mas produto enviado pela marca pra divulgar já é parceria — e conta como publicidade."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "publicidade-implicita-explicita",
+   "criterio": "É publicidade sem anúncio comum?",
+   "enunciado": "Resenha independente, comprada com o próprio dinheiro do criador",
+   "resposta": false,
+   "ancora": "Sem produto ou pagamento da marca, é opinião independente.",
+   "feedbackErro": "Envolve elogiar ou criticar um produto, e isso lembra publicidade. Mas sem receber nada da marca, é opinião independente, não publicidade."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "publicidade-implicita-explicita",
+   "criterio": "É publicidade sem anúncio comum?",
+   "enunciado": "Cena de filme com o carro de uma montadora em destaque, por contrato",
+   "resposta": true,
+   "ancora": "Contrato com a montadora torna o destaque do carro publicidade.",
+   "feedbackErro": "Parece só parte do enredo do filme, mas existindo contrato pago com a montadora, o destaque do carro é publicidade implícita."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "dificuldade": 2,
+   "pergunta": "Thiago viu 'apenas hoje' num site que mostra esse aviso todo santo dia. O que isso revela?",
+   "ancora": "Usar 'só hoje' todo dia mostra que a urgência é inventada.",
+   "alternativas": [
+    {
+     "texto": "Que a urgência é falsa — usada todo dia perde o sentido",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que o site erra o texto do anúncio sem querer",
+     "correta": false,
+     "feedbackErro": "Repetir o mesmo aviso todo dia não é erro de digitação. É um padrão proposital pra criar urgência falsa, sempre."
+    },
+    {
+     "texto": "Que o produto realmente muda de preço todo dia",
+     "correta": false,
+     "feedbackErro": "Se o aviso aparece igual todo dia, não há mudança real de preço nenhuma. O que existe é o gatilho repetido de urgência."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "publicidade-implicita-explicita",
+   "dificuldade": 2,
+   "pergunta": "Um streamer joga sem parar, sem falar que é patrocinado por aquela empresa de jogos. É publicidade implícita?",
+   "ancora": "Se ele foi pago ou recebeu o jogo pra isso, sim, é publicidade.",
+   "alternativas": [
+    {
+     "texto": "Sim, se ele foi pago ou recebeu o jogo pra isso",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, porque ele não fala diretamente do jogo",
+     "correta": false,
+     "feedbackErro": "Não precisa falar sobre o jogo pra ser publicidade. Jogar de forma visível, sendo pago pra isso, já cumpre esse papel."
+    },
+    {
+     "texto": "Não, porque streaming é sempre espontâneo",
+     "correta": false,
+     "feedbackErro": "Streaming pode, sim, ser combinado com uma marca. Se existe pagamento ou produto recebido, deixa de ser espontâneo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "criterio": "É gatilho de prova social?",
+   "enunciado": "'Mais de 5 mil pessoas compraram esse mês' embaixo do produto",
+   "resposta": true,
+   "ancora": "Número de vendas vira prova social — 'todo mundo compra, eu também'.",
+   "feedbackErro": "Parece uma informação neutra de estoque vendido, mas o efeito real é fazer você pensar que, se todo mundo compra, você também deveria."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "publicidade-implicita-explicita",
+   "instrucao": "É publicidade explícita ou implícita?",
+   "ancora": "Explícita se identifica; implícita se mistura ao conteúdo comum.",
+   "feedbackErro": "O botão de pular parece só uma opção de navegação, mas o anúncio antes dele já se identifica — é explícita, mesmo com opção de pular.",
+   "caixas": [
+    {
+     "id": "explicita",
+     "rotulo": "Explícita"
+    },
+    {
+     "id": "implicita",
+     "rotulo": "Implícita"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Anúncio em vídeo com botão 'pular em 5s'",
+     "caixaCorreta": "explicita"
+    },
+    {
+     "texto": "Podcast em que o apresentador menciona o app, pago por ele",
+     "caixaCorreta": "implicita"
+    },
+    {
+     "texto": "Faixa 'publicidade' escrita num outdoor",
+     "caixaCorreta": "explicita"
+    },
+    {
+     "texto": "Personagem de desenho usando sempre o mesmo tênis de marca",
+     "caixaCorreta": "implicita"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "criterio": "É desconto real, comparado ao de sempre?",
+   "enunciado": "Preço 'promocional' que é o mesmo vendido o ano inteiro",
+   "resposta": false,
+   "ancora": "Se o preço nunca muda, chamar de promoção é só rótulo.",
+   "feedbackErro": "A palavra 'promoção' parece garantir economia, mas se o valor é sempre esse mesmo, não existe desconto real ali, só o nome."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "publicidade-implicita-explicita",
+   "criterio": "É obrigação avisar que é publicidade?",
+   "enunciado": "Amigo recomendando produto comprado com o próprio dinheiro",
+   "resposta": false,
+   "ancora": "Recomendação sem pagamento da marca não é publicidade.",
+   "feedbackErro": "Recomendar algo que gostou parece igual a publicidade, mas sem receber nada da marca por isso, é só opinião, sem obrigação de aviso."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "pergunta": "Um tênis 'de R$ 420 por R$ 294'. Qual o desconto em %?",
+   "campo": "percentual",
+   "min": 15,
+   "max": 45,
+   "gabarito": 30,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto sobre o preço anunciado",
+   "feedbackPerto": "Isso mesmo — 30%. Os R$ 126 de diferença são essa fatia do preço original.",
+   "feedbackLonge": "O desconto fica perto de 30%. Divida a diferença de R$ 126 pelo preço original de R$ 420.",
+   "verificacao": {
+    "expressao": "(420-294)/420*100",
+    "esperado": 30
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "publicidade-implicita-explicita",
+   "dificuldade": 2,
+   "pergunta": "Como saber se um vídeo 'eu testei e amei' é publicidade paga?",
+   "ancora": "Procurar 'publi' ou aviso de patrocínio na descrição resolve.",
+   "alternativas": [
+    {
+     "texto": "Procurar por 'publi', 'parceria' ou aviso na descrição",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ver se o vídeo tem muitas visualizações",
+     "correta": false,
+     "feedbackErro": "Vídeos populares podem ou não ser publicidade — visualizações não indicam isso. O aviso na descrição é a informação confiável."
+    },
+    {
+     "texto": "Ver se quem fala parece animado de verdade",
+     "correta": false,
+     "feedbackErro": "Animação na fala não distingue publicidade de opinião real. O que confirma é o aviso de parceria na descrição do vídeo."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "dificuldade": 2,
+   "pergunta": "Propaganda de perfume mostra um casal se apaixonando, sem falar do cheiro. Que gatilho é esse?",
+   "ancora": "Vende uma sensação de romance, não as características do produto.",
+   "alternativas": [
+    {
+     "texto": "Emoção e fantasia — vender sensação, não características",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Comparação técnica com outros perfumes",
+     "correta": false,
+     "feedbackErro": "Nenhuma comparação técnica aparece na cena descrita. O gatilho ativado é emocional: a fantasia do romance, não dados do produto."
+    },
+    {
+     "texto": "Informação sobre a durabilidade do perfume",
+     "correta": false,
+     "feedbackErro": "Durabilidade não é mencionada em nenhum momento da cena. O que ela vende é a sensação romântica, não um dado técnico."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "publicidade-implicita-explicita",
+   "criterio": "Ajuda a separar opinião de publicidade?",
+   "enunciado": "Perguntar 'quem pagou por esse conteúdo aparecer pra mim?'",
+   "resposta": true,
+   "ancora": "A pergunta revela se existe interesse pago por trás do conteúdo.",
+   "feedbackErro": "Parece uma pergunta boba de se fazer, mas é justamente ela que revela se existe dinheiro por trás do que está sendo mostrado."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "criterio": "É prova de que o preço está bom?",
+   "enunciado": "O selo vermelho de 'oferta' na página do produto",
+   "resposta": false,
+   "ancora": "Selo é só design — não garante que o preço caiu de verdade.",
+   "feedbackErro": "O selo vermelho parece uma garantia visual de economia, mas é só um elemento de design — não prova nenhum desconto real."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "pergunta": "Qual frase resume como reconhecer publicidade disfarçada e gatilhos falsos?",
+   "alternativas": [
+    {
+     "texto": "Checar quem pagou pelo conteúdo e comparar preços revela o que é real",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Produto recebido de graça nunca precisa de aviso de parceria",
+     "correta": false,
+     "feedbackErro": "Receber o produto de graça pra divulgar já é uma troca por publicidade, e isso exige aviso, mesmo sem pagamento em dinheiro."
+    },
+    {
+     "texto": "Selo de 'oferta' sempre garante que o preço realmente caiu",
+     "correta": false,
+     "feedbackErro": "Selo é só um elemento visual de design. Só comparar com o preço praticado antes prova se o desconto é real."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "publicidade-implicita-explicita",
+   "instrucao": "É opinião paga ou opinião independente?",
+   "ancora": "Paga tem produto ou dinheiro da marca; independente, não.",
+   "feedbackErro": "Elogiar um produto não define nada sozinho — o que separa é se existe produto ou pagamento da marca por trás daquela opinião.",
+   "caixas": [
+    {
+     "id": "paga",
+     "rotulo": "Opinião paga"
+    },
+    {
+     "id": "independente",
+     "rotulo": "Opinião independente"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Vídeo com produto enviado de graça pela marca",
+     "caixaCorreta": "paga"
+    },
+    {
+     "texto": "Resenha feita com produto comprado pelo próprio criador",
+     "caixaCorreta": "independente"
+    },
+    {
+     "texto": "Post marcado como 'parceria paga'",
+     "caixaCorreta": "paga"
+    },
+    {
+     "texto": "Comentário de um amigo, sem nenhum produto recebido",
+     "caixaCorreta": "independente"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "publicidade-implicita-explicita",
+   "dificuldade": 3,
+   "pergunta": "Um site 'comparativo' de perfumes recebe comissão de cada venda pelo link dele. Isso muda algo?",
+   "ancora": "Comissão por venda cria interesse, mesmo parecendo neutro.",
+   "alternativas": [
+    {
+     "texto": "Sim — comissão cria interesse, mesmo parecendo neutro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, comparativo é sempre imparcial por definição",
+     "correta": false,
+     "feedbackErro": "O nome 'comparativo' não garante imparcialidade nenhuma. Receber comissão por venda cria um interesse que pode pesar na recomendação."
+    },
+    {
+     "texto": "Não, comissão só existe em lojas físicas",
+     "correta": false,
+     "feedbackErro": "Comissão por venda existe também em links e sites online. O ponto é que ela cria interesse, mesmo o site parecendo neutro."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "criterio": "É gatilho, não informação real do preço?",
+   "enunciado": "Cronômetro de oferta que reinicia sozinho ao atualizar a página",
+   "resposta": true,
+   "ancora": "Cronômetro que reinicia sozinho não é prazo real, é gatilho.",
+   "feedbackErro": "O relógio correndo parece um prazo de verdade, mas reiniciar sozinho mostra que é só um gatilho visual, sem prazo real por trás."
+  }
+ ]
+}

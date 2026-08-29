@@ -1,0 +1,348 @@
+{
+ "slug": "aposentadoria-comeca-hoje-reforco",
+ "segmento": "em2",
+ "conceitoPrincipal": "aposentadoria-comeca-hoje",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "tempo-e-o-maior-aporte",
+   "criterio": "Faz diferença no valor final?",
+   "enunciado": "Antecipar o início dos 35 para os 25",
+   "resposta": true,
+   "ancora": "Dez anos a mais de composto quase dobram cada real aplicado.",
+   "verificacao": {
+    "expressao": "1.005^120",
+    "esperado": 1.819,
+    "tolerancia": 0.01
+   },
+   "feedbackErro": "Qual era o critério? O tempo multiplica. A 0,5% ao mês, dez anos viram fator 1,82: o mesmo aporte quase dobra só por ter chegado antes."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "tempo-e-o-maior-aporte",
+   "criterio": "Faz diferença no valor final?",
+   "enunciado": "Contar com uma herança que talvez venha",
+   "resposta": false,
+   "ancora": "Plano de aposentadoria não se apoia em dinheiro incerto.",
+   "feedbackErro": "Se a herança vier, ótimo — ela soma. Mas o que talvez aconteça não entra na conta do que você terá aos 65. O plano usa o que depende de você: aporte e tempo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "previdencia-publica-privada",
+   "criterio": "Conta para a aposentadoria pública?",
+   "enunciado": "Recolher INSS por conta própria, sem patrão",
+   "resposta": true,
+   "ancora": "Autônomo e MEI recolhem sozinhos e somam tempo de contribuição.",
+   "feedbackErro": "Sem carteira assinada parece que o sistema não te vê — e é aí que muita gente se perde. Quem recolhe como autônomo ou MEI conta tempo e garante benefício igual."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "tempo-e-o-maior-aporte",
+   "dificuldade": 2,
+   "pergunta": "R$ 200/mês desde os 20, ou R$ 400/mês desde os 30: aos 40, a 0,5% ao mês, quem tem mais?",
+   "ancora": "R$ 92 mil x R$ 65 mil: dez anos de composto vencem o dobro de aporte.",
+   "verificacao": {
+    "expressao": "200*((1.005^240-1)/0.005) - 400*((1.005^120-1)/0.005)",
+    "esperado": 26856,
+    "tolerancia": 2
+   },
+   "alternativas": [
+    {
+     "texto": "Quem dobrou o aporte começando aos 30",
+     "correta": false,
+     "feedbackErro": "Dobrar o aporte impressiona, e em juro simples empataria. No composto, os depósitos dos 20 anos renderam por mais tempo: R$ 92 mil contra R$ 65 mil."
+    },
+    {
+     "texto": "Quem começou aos 20, mesmo aportando metade",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Empatam: o total depositado é igual",
+     "correta": false,
+     "feedbackErro": "O total do bolso é igual, R$ 48 mil de cada — você acertou essa parte. Mas o composto paga pelo tempo de estrada: os aportes antigos rendem sobre rendimento."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "previdencia-publica-privada",
+   "dificuldade": 2,
+   "pergunta": "O INSS tem um teto de benefício. O que isso significa para quem ganha bem acima dele?",
+   "ancora": "O benefício público para no teto; acima disso é por sua conta.",
+   "alternativas": [
+    {
+     "texto": "O benefício não passa do teto; o resto exige plano próprio",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Recebe proporcional ao salário, sem limite",
+     "correta": false,
+     "feedbackErro": "É o que a lógica do 'paguei mais, recebo mais' sugere. Mas o regime público tem limite máximo: acima do teto, a diferença de renda não volta como benefício."
+    },
+    {
+     "texto": "Fica dispensado de contribuir com o INSS",
+     "correta": false,
+     "feedbackErro": "A contribuição continua obrigatória para quem trabalha, com teto de desconto. O que o teto limita é o benefício lá na frente — daí a previdência complementar."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "previdencia-publica-privada",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Plano de previdência privada é garantido pelo governo",
+   "resposta": false,
+   "ancora": "Privado é contrato com instituição: compare taxas, regras e solidez.",
+   "feedbackErro": "A palavra 'previdência' passa essa impressão. Mas o plano privado é produto de empresa: quem protege você é ler taxa, regra de resgate e saúde da instituição."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "tempo-e-o-maior-aporte",
+   "instrucao": "Todos põem R$ 48 mil do bolso. Toque em quem termina com mais.",
+   "ancora": "Mesmo dinheiro do bolso: quanto mais anos rendendo, maior o fim.",
+   "verificacao": {
+    "expressao": "100*12*40",
+    "esperado": 48000
+   },
+   "feedbackErro": "O instinto compara o aporte mensal, e o maior parece vencer. Mas os três depositam os mesmos R$ 48 mil — quem espalhou por 40 anos deu mais tempo ao composto.",
+   "itens": [
+    {
+     "texto": "R$ 100 por mês durante 40 anos",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "R$ 200 por mês durante 20 anos",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "R$ 400 por mês durante 10 anos",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "previdencia-publica-privada",
+   "criterio": "Conta tempo de contribuição?",
+   "enunciado": "Trabalhar recebendo por fora, sem registro",
+   "resposta": false,
+   "ancora": "Sem recolhimento, o sistema não vê o trabalho: o tempo não conta.",
+   "feedbackErro": "O dinheiro entra igual, e é isso que disfarça o custo. Mas sem a guia recolhida esses anos somem da sua contagem — e fazem falta na hora de pedir o benefício."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "previdencia-publica-privada",
+   "criterio": "Conta tempo de contribuição?",
+   "enunciado": "Pagar o boleto mensal do MEI em dia",
+   "resposta": true,
+   "ancora": "O boleto do MEI já embute o INSS: cada mês pago é mês contado.",
+   "feedbackErro": "Parece só um imposto do CNPJ, mas dentro do boleto do MEI vai a contribuição previdenciária. Quem paga em dia está construindo aposentadoria pública."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "tempo-e-o-maior-aporte",
+   "pergunta": "R$ 200/mês por 20 anos a 0,5% ao mês: quanto vem só dos juros, além do depositado?",
+   "campo": "moeda",
+   "min": 5000,
+   "max": 120000,
+   "gabarito": 44408,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 200 × fator de 240 meses a 0,5% ao mês, menos os depósitos",
+   "verificacao": {
+    "expressao": "200*((1.005^240-1)/0.005)-200*240",
+    "esperado": 44408,
+    "tolerancia": 2
+   },
+   "feedbackPerto": "R$ 44 mil de juros sobre R$ 48 mil depositados: o rendimento quase empata com o bolso. Mais tempo, e ele passa na frente.",
+   "feedbackLonge": "R$ 44.408. O erro comum é estimar juros como uma fração pequena do depositado. Em 20 anos de composto, eles quase igualam o próprio aporte."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "previdencia-publica-privada",
+   "dificuldade": 2,
+   "pergunta": "A expectativa de vida no Brasil passa dos 76 anos e segue subindo. Qual o efeito direto na previdência?",
+   "ancora": "Vida mais longa = mais anos de benefício a pagar por pessoa.",
+   "alternativas": [
+    {
+     "texto": "Cada aposentado recebe por mais anos, e a conta cresce",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O benefício mensal sobe junto, automaticamente",
+     "correta": false,
+     "feedbackErro": "Viver mais não aumenta o valor mensal — aumenta a quantidade de meses pagos. É essa duração maior que pressiona o sistema e motivou as reformas."
+    },
+    {
+     "texto": "Nada muda: cada um recebe só o que depositou",
+     "correta": false,
+     "feedbackErro": "Esse seria o modelo de conta individual. O INSS é repartição: quem trabalha paga quem já se aposentou — e beneficiários vivendo mais esticam a conta coletiva."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "estrategias-de-poupanca",
+   "dificuldade": 2,
+   "pergunta": "Dois planos privados iguais, mas um cobra 2% ao ano de taxa e o outro 0,5%. Em décadas, o que acontece?",
+   "ancora": "Taxa é juro contra você: 1,5 ponto ao ano composto vira bolo enorme.",
+   "alternativas": [
+    {
+     "texto": "A diferença de taxa vira diferença grande no acumulado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Diferença tão pequena não muda o resultado",
+     "correta": false,
+     "feedbackErro": "No ano, parece troco. Mas a taxa desconta todo ano sobre o total — o mesmo mecanismo composto que multiplica seu dinheiro trabalha contra você aqui."
+    },
+    {
+     "texto": "O plano de taxa maior rende mais, por ser mais caro",
+     "correta": false,
+     "feedbackErro": "Preço alto não compra rendimento: a taxa sai do seu bolso antes de qualquer resultado. Entre planos iguais, o de custo menor entrega mais no fim."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "estrategias-de-poupanca",
+   "criterio": "Deixa o plano mais sólido?",
+   "enunciado": "Somar poupança própria ao benefício público",
+   "resposta": true,
+   "ancora": "Duas fontes de renda na velhice seguram melhor que uma.",
+   "feedbackErro": "Parece redundância, já que o INSS existe. Mas o público tem teto e regras que mudam: a poupança própria é a parte do plano que fica sob o seu controle."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "estrategias-de-poupanca",
+   "criterio": "Deixa o plano mais sólido?",
+   "enunciado": "Sacar o acumulado para trocar de celular",
+   "resposta": false,
+   "ancora": "Resgate no meio do caminho zera os juros que mais renderiam.",
+   "feedbackErro": "O valor parece pequeno diante do total, e é isso que engana: o que sai hoje deixa de multiplicar por décadas. Desejo de consumo se paga com outro dinheiro."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "aposentadoria-comeca-hoje",
+   "dificuldade": 2,
+   "pergunta": "Qual conclusão sobrevive à conta que você refez hoje?",
+   "alternativas": [
+    {
+     "texto": "Começar cedo com metade vence começar tarde com o dobro.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Dobrar o aporte mais tarde compensa qualquer atraso.",
+     "correta": false,
+     "feedbackErro": "R$ 400 desde os 30 perderam de R$ 200 desde os 20. O composto paga pelos anos, e anos não se compram depois."
+    },
+    {
+     "texto": "Sem carteira assinada, não existe aposentadoria pública.",
+     "correta": false,
+     "feedbackErro": "Autônomo e MEI recolhem por conta própria e contam tempo igual. Ficar de fora é escolha, não destino."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "previdencia-publica-privada",
+   "instrucao": "Esse trabalho soma tempo para o benefício do INSS?",
+   "ancora": "Conta o que recolhe contribuição — com ou sem patrão.",
+   "feedbackErro": "O critério não é ter chefe, é ter recolhimento: carteira assinada e MEI em dia contam; trabalho sem guia paga fica invisível para o sistema.",
+   "caixas": [
+    {
+     "id": "conta",
+     "rotulo": "Conta tempo"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não conta"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Emprego com carteira assinada",
+     "caixaCorreta": "conta"
+    },
+    {
+     "texto": "MEI com boleto mensal em dia",
+     "caixaCorreta": "conta"
+    },
+    {
+     "texto": "Bico recebido por fora, sem guia",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Renda de aluguel, sem contribuição",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "tempo-e-o-maior-aporte",
+   "pergunta": "R$ 250 por mês, por 10 anos, a 0,5% ao mês: quanto acumula ao final?",
+   "campo": "moeda",
+   "min": 20000,
+   "max": 80000,
+   "gabarito": 40970,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 250 × fator de 120 meses a 0,5% ao mês",
+   "verificacao": {
+    "expressao": "250*((1.005^120-1)/0.005)",
+    "esperado": 40970,
+    "tolerancia": 2
+   },
+   "feedbackPerto": "R$ 41 mil — R$ 30 mil do bolso e R$ 11 mil de juros. Em 10 anos o composto já aparece; em 30, domina.",
+   "feedbackLonge": "R$ 40.970. Quem multiplica 250 × 120 acha R$ 30 mil e para no juro zero. O rendimento mensal sobre o saldo acrescenta mais de um terço."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "tempo-e-o-maior-aporte",
+   "dificuldade": 2,
+   "pergunta": "Por que adiar o início dos 20 para os 28 custa mais do que 'só oito anos de aportes'?",
+   "ancora": "Os anos cortados são os que mais tempo teriam para multiplicar.",
+   "alternativas": [
+    {
+     "texto": "Os aportes perdidos eram os de maior tempo de rendimento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque a taxa de juros sobe com a idade",
+     "correta": false,
+     "feedbackErro": "A taxa não olha sua idade — ela é a mesma. O que muda é o tempo que cada depósito fica rendendo: os primeiros aportes são os campeões de multiplicação."
+    },
+    {
+     "texto": "Não custa: dá para repor os mesmos valores depois",
+     "correta": false,
+     "feedbackErro": "Repor o valor, dá. Repor os anos de rendimento, não: o depósito feito aos 28 nunca alcança o que o mesmo depósito feito aos 20 teria virado."
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,250 @@
+{
+ "slug": "onde-eu-quero-chegar",
+ "segmento": "ef35",
+ "conceitoPrincipal": "onde-eu-quero-chegar",
+ "fraseConceito": "Cada objetivo tem um prazo — curto, médio ou longo — e vale mais quando você separa desejo de necessidade.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-objetivo",
+   "criterio": "É curto prazo?",
+   "enunciado": "Juntar dinheiro pra comprar um sorvete nesta semana",
+   "resposta": true,
+   "ancora": "Curto prazo é o que dá pra alcançar em poucos dias ou semanas.",
+   "feedbackErro": "Parece pequeno demais pra ter prazo definido. Mas alcançar em poucos dias já é, sim, um objetivo de curto prazo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-objetivo",
+   "criterio": "É longo prazo?",
+   "enunciado": "Juntar dinheiro por vários anos pra comprar um computador",
+   "resposta": true,
+   "ancora": "Longo prazo é o que leva anos pra juntar.",
+   "feedbackErro": "Parece só um sonho distante, sem categoria. Mas juntar por anos é justamente a definição de um objetivo de longo prazo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "É uma necessidade?",
+   "enunciado": "Comprar um caderno novo pra escola",
+   "resposta": true,
+   "ancora": "Necessidade é o que você precisa pra viver ou estudar bem.",
+   "feedbackErro": "Parece só mais uma compra comum. Mas material escolar é necessário pros estudos — por isso é necessidade, não desejo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "prazo-do-objetivo",
+   "dificuldade": 1,
+   "pergunta": "Rita quer comprar uma bicicleta em 6 meses, juntando um pouco por mês. Que tipo de objetivo é esse?",
+   "ancora": "Meses de juntar dinheiro é o território do médio prazo.",
+   "alternativas": [
+    {
+     "texto": "Médio prazo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Curto prazo",
+     "correta": false,
+     "feedbackErro": "Curto prazo é coisa de dias ou semanas. Seis meses juntando aos poucos já é médio prazo."
+    },
+    {
+     "texto": "Longo prazo",
+     "correta": false,
+     "feedbackErro": "Longo prazo costuma levar anos. Seis meses é tempo médio — nem tão rápido, nem tão distante."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "desejo-e-necessidade",
+   "dificuldade": 1,
+   "pergunta": "Qual desses é um desejo, e não uma necessidade?",
+   "ancora": "Desejo é o que você quer; necessidade é o que falta pra viver bem.",
+   "alternativas": [
+    {
+     "texto": "Um brinquedo novo que você viu na loja",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Um par de sapatos pra substituir o que rasgou",
+     "correta": false,
+     "feedbackErro": "Substituir um sapato rasgado é necessidade — você precisa dele pra usar no dia a dia."
+    },
+    {
+     "texto": "Material pra fazer um trabalho da escola",
+     "correta": false,
+     "feedbackErro": "Material pra tarefa escolar é necessidade — sem ele, você não consegue fazer o trabalho."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-objetivo",
+   "criterio": "É curto prazo?",
+   "enunciado": "Juntar dinheiro por 3 anos pra comprar um computador",
+   "resposta": false,
+   "ancora": "Três anos é tempo de sobra pra ser longo prazo, não curto.",
+   "feedbackErro": "Parece que qualquer meta pequena de valor é curto prazo. Mas o que define o prazo é o tempo pra alcançar — três anos é longo prazo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "prazo-do-objetivo",
+   "instrucao": "É curto ou longo prazo? Arraste.",
+   "ancora": "Dias e semanas são curto prazo; anos são longo prazo.",
+   "feedbackErro": "É fácil confundir quando o valor é pequeno ou grande. O que decide o prazo é o tempo até alcançar, não o valor.",
+   "caixas": [
+    { "id": "curto", "rotulo": "Curto prazo" },
+    { "id": "longo", "rotulo": "Longo prazo" }
+   ],
+   "itens": [
+    { "texto": "Comprar um chocolate nesta semana", "caixaCorreta": "curto" },
+    { "texto": "Juntar pra uma viagem daqui a 2 anos", "caixaCorreta": "longo" },
+    { "texto": "Comprar um lanche amanhã", "caixaCorreta": "curto" },
+    { "texto": "Juntar pra faculdade daqui a vários anos", "caixaCorreta": "longo" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "É uma necessidade?",
+   "enunciado": "Comprar remédio quando você está doente",
+   "resposta": true,
+   "ancora": "Cuidar da saúde é necessidade, não desejo.",
+   "feedbackErro": "Parece só mais um gasto do dia a dia. Mas remédio pra tratar uma doença é necessidade — cuida de algo essencial."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "prazo-do-objetivo",
+   "dificuldade": 1,
+   "pergunta": "Diego junta R$ 5 por semana pra um objetivo de R$ 20. Em quantas semanas ele chega lá?",
+   "ancora": "20 dividido por 5 é 4 — o número de semanas pra juntar tudo.",
+   "verificacao": { "expressao": "20/5", "esperado": 4 },
+   "alternativas": [
+    {
+     "texto": "4 semanas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "5 semanas",
+     "correta": false,
+     "feedbackErro": "Você usou o valor da semana como se fosse a resposta. O certo é dividir o total pelo valor semanal: 20 dividido por 5 é 4."
+    },
+    {
+     "texto": "20 semanas",
+     "correta": false,
+     "feedbackErro": "Esse valor ignora que ele junta R$ 5 por vez, não R$ 1. Dividindo 20 por 5, chega em 4 semanas."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "É um desejo?",
+   "enunciado": "Querer o tênis mais novo da marca favorita, mesmo o antigo servindo bem",
+   "resposta": true,
+   "ancora": "Se o antigo ainda serve, o novo é desejo, não necessidade.",
+   "feedbackErro": "Parece necessidade, porque envolve um item de uso. Mas se o antigo ainda serve bem, trocar por um mais novo é desejo, não necessidade."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-objetivo",
+   "criterio": "Ajuda a alcançar objetivo longo?",
+   "enunciado": "Guardar um pouco todo mês, mesmo sendo um valor pequeno",
+   "resposta": true,
+   "ancora": "Pouco todo mês, somado por muito tempo, forma um valor grande.",
+   "feedbackErro": "Parece pouco demais pra fazer diferença. Mas um valor pequeno, guardado todo mês por muito tempo, soma um total grande no fim."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "prazo-do-objetivo",
+   "pergunta": "Qual frase resume o que você viu hoje?",
+   "alternativas": [
+    {
+     "texto": "Todo objetivo tem um prazo, e nem tudo que se quer é necessário",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Curto, médio e longo prazo dependem só do valor do objetivo",
+     "correta": false,
+     "feedbackErro": "O prazo depende do tempo pra alcançar, não do valor. Um objetivo barato também pode ser de longo prazo."
+    },
+    {
+     "texto": "Desejo e necessidade são a mesma coisa, com nomes diferentes",
+     "correta": false,
+     "feedbackErro": "São opostos: necessidade é o que falta pra viver bem; desejo é o que você quer além disso."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "prazo-do-objetivo",
+   "dificuldade": 2,
+   "pergunta": "Qual desses é um objetivo de médio prazo?",
+   "ancora": "Médio prazo fica entre semanas e anos — geralmente meses.",
+   "alternativas": [
+    {
+     "texto": "Juntar pra um videogame em 4 meses",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Comprar um doce amanhã",
+     "correta": false,
+     "feedbackErro": "Um dia é curtíssimo prazo — bem diferente dos meses de um objetivo de médio prazo."
+    },
+    {
+     "texto": "Juntar pra faculdade em vários anos",
+     "correta": false,
+     "feedbackErro": "Vários anos é longo prazo. Médio prazo fica no meio — geralmente meses, não anos."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "É uma necessidade?",
+   "enunciado": "Comprar uma mochila nova porque a velha rasgou toda",
+   "resposta": true,
+   "ancora": "Substituir o que quebrou pra usar de novo é necessidade.",
+   "feedbackErro": "Parece desejo, porque envolve comprar algo novo. Mas quando o item quebrou e você precisa dele, substituir é necessidade."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "desejo-e-necessidade",
+   "instrucao": "É desejo ou necessidade? Arraste.",
+   "ancora": "Necessidade resolve algo essencial; desejo é sobre querer mais.",
+   "feedbackErro": "Tudo parece importante na hora de decidir. O que separa é se falta algo essencial (necessidade) ou se é só vontade de ter mais (desejo).",
+   "caixas": [
+    { "id": "desejo", "rotulo": "Desejo" },
+    { "id": "necessidade", "rotulo": "Necessidade" }
+   ],
+   "itens": [
+    { "texto": "Um brinquedo novo, só porque é bonito", "caixaCorreta": "desejo" },
+    { "texto": "Um casaco pro frio", "caixaCorreta": "necessidade" },
+    { "texto": "Um jogo novo, mesmo já tendo vários", "caixaCorreta": "desejo" },
+    { "texto": "Um remédio receitado pelo médico", "caixaCorreta": "necessidade" }
+   ]
+  }
+ ]
+}

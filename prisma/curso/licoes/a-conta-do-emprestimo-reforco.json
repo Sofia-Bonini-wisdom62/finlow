@@ -1,0 +1,349 @@
+{
+ "slug": "a-conta-do-emprestimo-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "a-conta-do-emprestimo",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "preco-do-emprestimo",
+   "criterio": "Gera dívida com juros?",
+   "enunciado": "Adiantar o salário do mês no app do banco",
+   "resposta": true,
+   "ancora": "Antecipação é empréstimo: o banco cobra pelo adiantamento.",
+   "feedbackErro": "Parece só receber antes o que já é seu. Mas o banco cobra pelo tempo: entre o adiantamento e o salário cair, correm juros — é crédito."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-total-do-credito",
+   "criterio": "Gera dívida com juros?",
+   "enunciado": "Parcelar o celular no carnê da loja",
+   "resposta": true,
+   "ancora": "Carnê é financiamento: o preço embute juros pelos meses de espera.",
+   "feedbackErro": "O carnê não fala em 'taxa', e isso disfarça. Mas some as parcelas e compare com o preço à vista: a diferença é juro, só que sem crachá."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "preco-do-emprestimo",
+   "criterio": "Gera dívida com juros?",
+   "enunciado": "Ganhar 10% de desconto por pagar à vista",
+   "resposta": false,
+   "ancora": "Desconto reduz o preço. Ninguém pagou por você — não há dívida.",
+   "feedbackErro": "Desconto mexe no preço, não cria obrigação futura: você pagou menos e a história acabou ali. Dívida exige alguém adiantando dinheiro por você."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "financiamento-estudantil",
+   "dificuldade": 2,
+   "pergunta": "Financiamento cobre um curso de R$ 500 por mês durante 48 meses. Quanto vira dívida ao fim, sem contar juros?",
+   "ancora": "48 meses × R$ 500 = R$ 24.000. A dívida cresce a cada mensalidade.",
+   "verificacao": {
+    "expressao": "48*500",
+    "esperado": 24000
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 24.000",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 6.000",
+     "correta": false,
+     "feedbackErro": "R$ 6.000 é só um ano (12 × 500). O curso tem 4 anos: 48 mensalidades pagas pelo banco entram na conta — R$ 24.000."
+    },
+    {
+     "texto": "R$ 500",
+     "correta": false,
+     "feedbackErro": "R$ 500 é uma mensalidade. O banco paga TODAS as 48, e cada uma vira dívida sua: 48 × 500 = R$ 24.000."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "preco-do-emprestimo",
+   "dificuldade": 2,
+   "pergunta": "R$ 1.500 emprestados a 3% ao mês, juro só sobre o valor inicial. Quanto de juro em 4 meses?",
+   "ancora": "3% de 1.500 = R$ 45 por mês. Em 4 meses: R$ 180.",
+   "verificacao": {
+    "expressao": "1500*0.03*4",
+    "esperado": 180
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 180",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 45",
+     "correta": false,
+     "feedbackErro": "R$ 45 é o juro de UM mês (3% de 1.500). O empréstimo durou 4: multiplique — 45 × 4 = 180."
+    },
+    {
+     "texto": "R$ 600",
+     "correta": false,
+     "feedbackErro": "Você usou 10% ao mês. A taxa é 3%: 1.500 ÷ 100 × 3 = 45 por mês, R$ 180 nos quatro."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-total-do-credito",
+   "criterio": "É verdade sobre o custo?",
+   "enunciado": "Quem paga em mais parcelas devolve mais no total",
+   "resposta": true,
+   "ancora": "Mais meses = mais tempo de juro rodando. O total sobe.",
+   "feedbackErro": "Parece que só muda o ritmo, não o preço. Mas juro cobra por mês: alongar o prazo multiplica os meses em que ele incide sobre a dívida."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "custo-total-do-credito",
+   "instrucao": "Entra no custo do empréstimo? Arraste.",
+   "ancora": "Custo é o que você paga ALÉM do que pegou.",
+   "feedbackErro": "O valor pego você devolve, mas ele não é custo — custo é o extra: juros e tarifas. Desconto por antecipar reduz o custo, não aumenta.",
+   "caixas": [
+    {
+     "id": "entra",
+     "rotulo": "Entra no custo"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não entra"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Juros de cada mês",
+     "caixaCorreta": "entra"
+    },
+    {
+     "texto": "Tarifa de contratação",
+     "caixaCorreta": "entra"
+    },
+    {
+     "texto": "O valor que você pegou",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Desconto por antecipar parcelas",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "preco-do-emprestimo",
+   "criterio": "A conta fecha?",
+   "enunciado": "R$ 900 no cheque especial a 8% custam R$ 72 no mês",
+   "resposta": true,
+   "ancora": "8 de cada 100: R$ 72 em R$ 900. Caro para um quebra-galho.",
+   "verificacao": {
+    "expressao": "900*0.08",
+    "esperado": 72
+   },
+   "feedbackErro": "A conta fecha: 900 ÷ 100 × 8 = 72. Num mês parece pouco; em três, já são R$ 216 — mais que muita parcela de empréstimo pessoal."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-total-do-credito",
+   "criterio": "A conta fecha?",
+   "enunciado": "Antecipar parcelas com desconto reduz o custo total",
+   "resposta": true,
+   "ancora": "Antecipar corta meses de juro. Por lei, tem desconto proporcional.",
+   "feedbackErro": "Parece que pagar antes é pagar a mesma coisa mais cedo. Não é: cada parcela antecipada perde os juros dos meses que não vão mais correr."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-total-do-credito",
+   "pergunta": "R$ 600 no cheque especial a 8% ao mês, esquecidos por 3 meses. Quanto vira a dívida?",
+   "campo": "moeda",
+   "min": 600,
+   "max": 1200,
+   "gabarito": 756,
+   "toleranciaPct": 20,
+   "fonte": "taxa média do cheque especial, ~8% ao mês (Banco Central)",
+   "verificacao": {
+    "expressao": "600*1.08^3",
+    "esperado": 755.83,
+    "tolerancia": 0.01
+   },
+   "feedbackPerto": "Perto: R$ 756. Em 3 meses, o limite cobrou R$ 156 — 26% do valor.",
+   "feedbackLonge": "Dá R$ 756. A cabeça soma 8% + 8% + 8% (24%), mas juro compõe: cada mês incide sobre o anterior — 26% no total."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "financiamento-estudantil",
+   "dificuldade": 2,
+   "pergunta": "A parcela do financiamento de Sabrina, após formar, é R$ 350. O que falta para saber o total a devolver?",
+   "ancora": "Total = parcela × número de parcelas. Sem os dois, não há conta.",
+   "verificacao": {
+    "expressao": "350*60",
+    "esperado": 21000
+   },
+   "alternativas": [
+    {
+     "texto": "O número de parcelas do contrato",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A mensalidade que a faculdade cobra hoje",
+     "correta": false,
+     "feedbackErro": "A mensalidade explica o tamanho do empréstimo, mas o total a devolver é outra conta: parcela × número de parcelas, com os juros dentro."
+    },
+    {
+     "texto": "Nada: R$ 350 já é o custo do financiamento",
+     "correta": false,
+     "feedbackErro": "R$ 350 é o pedaço mensal, não o custo. 60 parcelas dariam R$ 21.000; 120, R$ 42.000. Sem o número de parcelas, o total é mistério."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-total-do-credito",
+   "dificuldade": 2,
+   "pergunta": "Uma loja vende a mesma TV por R$ 1.800 à vista ou em 12x de R$ 180. Quanto de juro há no parcelado?",
+   "ancora": "12 × 180 = 2.160. Contra 1.800 à vista: R$ 360 de juro embutido.",
+   "verificacao": {
+    "expressao": "12*180-1800",
+    "esperado": 360
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 360 — 20% a mais que o preço à vista",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Zero: o anúncio diz 'sem juros'",
+     "correta": false,
+     "feedbackErro": "O anúncio compara a parcela com o preço cheio. Multiplique: 12 × 180 = 2.160, contra 1.800 à vista. O juro está no total, não na etiqueta."
+    },
+    {
+     "texto": "R$ 180 — o valor de uma parcela",
+     "correta": false,
+     "feedbackErro": "Uma parcela é o pedaço, não a diferença. Compare os totais: 2.160 no parcelado, 1.800 à vista — R$ 360 de distância."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "financiamento-estudantil",
+   "criterio": "Verdadeiro?",
+   "enunciado": "No financiamento estudantil, a dívida só nasce na formatura",
+   "resposta": false,
+   "ancora": "Nasce na matrícula; a formatura só inicia a cobrança.",
+   "feedbackErro": "A cobrança começa depois de formado, e isso engana. Mas cada mensalidade que o banco paga já entra na sua conta desde o primeiro mês."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "preco-do-emprestimo",
+   "criterio": "Verdadeiro?",
+   "enunciado": "R$ 3.000 a 1,8% ao mês geram R$ 54 de juro no 1º mês",
+   "resposta": true,
+   "ancora": "1,8% de R$ 3.000 = R$ 54. É a faixa do consignado.",
+   "verificacao": {
+    "expressao": "3000*0.018",
+    "esperado": 54
+   },
+   "feedbackErro": "Fecha: 3.000 ÷ 100 × 1,8 = 54. O caminho é sempre o mesmo: divida por 100 e multiplique pela taxa."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "custo-total-do-credito",
+   "pergunta": "Qual ideia fecha este encontro?",
+   "alternativas": [
+    {
+     "texto": "Prazo também é preço: mais parcelas, mais meses de juro no total.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se a parcela cabe no bolso, o empréstimo é bom negócio.",
+     "correta": false,
+     "feedbackErro": "Caber no bolso é o mínimo. As 12x de R$ 180 cabem melhor que R$ 1.800 à vista — e custam R$ 360 a mais."
+    },
+    {
+     "texto": "Antecipar parcelas é perder dinheiro já combinado.",
+     "correta": false,
+     "feedbackErro": "É o contrário: antecipar corta meses de juro e tem desconto garantido por lei."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "custo-total-do-credito",
+   "instrucao": "Mesmo valor emprestado. Ordene do menor ao maior custo total.",
+   "ancora": "Multiplique parcela × quantidade. O total é o que compara.",
+   "feedbackErro": "A parcela menor engana: 18 × 70 = R$ 1.260, o mais caro da lista. Total = parcela × quantidade, sempre.",
+   "verificacao": {
+    "expressao": "12*95-10*105",
+    "esperado": 90
+   },
+   "itens": [
+    {
+     "texto": "R$ 1.000 à vista",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "10 parcelas de R$ 105",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "12 parcelas de R$ 95",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "18 parcelas de R$ 70",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "custo-total-do-credito",
+   "pergunta": "Um fogão custa R$ 1.500 à vista ou 10x de R$ 174. Quantos % a mais custa o parcelado?",
+   "campo": "percentual",
+   "min": 0,
+   "max": 60,
+   "gabarito": 16,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 10 × 174 = R$ 1.740 contra R$ 1.500 à vista",
+   "verificacao": {
+    "expressao": "(10*174-1500)/1500*100",
+    "esperado": 16
+   },
+   "feedbackPerto": "Isso: 16% a mais. R$ 240 de juro escondido nas parcelas 'pequenas'.",
+   "feedbackLonge": "São 16%: o parcelado soma 1.740, R$ 240 acima dos 1.500. O olho compara parcelas; a conta compara totais."
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "financiamento-estudantil",
+   "criterio": "Verdade?",
+   "enunciado": "Trancar o curso apaga a dívida do financiamento",
+   "resposta": false,
+   "ancora": "Trancar pausa o curso; o que o banco já pagou continua devido.",
+   "feedbackErro": "O trancamento para as mensalidades novas, mas as que o banco já pagou viraram dívida — o contrato continua e os prazos também."
+  }
+ ]
+}

@@ -48,11 +48,21 @@ export function HistoricoConversas({
   const [erro, setErro] = useState<string | null>(null)
   const [conversas, setConversas] = useState<ConversaResumo[]>([])
 
+  // Loading e erro resetam no render, guardados pela transição de abertura
+  // (padrão da doc do React): efeito não grava estado de forma síncrona, e o
+  // "Carregando" aparece no mesmo frame em que o painel abre.
+  const [estavaAberto, setEstavaAberto] = useState(aberto)
+  if (aberto !== estavaAberto) {
+    setEstavaAberto(aberto)
+    if (aberto) {
+      setCarregando(true)
+      setErro(null)
+    }
+  }
+
   useEffect(() => {
     if (!aberto) return
     let cancelado = false
-    setCarregando(true)
-    setErro(null)
     fetch("/api/chat/conversas")
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
       .then((d) => { if (!cancelado) setConversas(d.conversas ?? []) })

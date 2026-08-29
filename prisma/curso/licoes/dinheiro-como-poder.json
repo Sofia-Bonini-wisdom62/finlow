@@ -1,0 +1,295 @@
+{
+ "slug": "dinheiro-como-poder",
+ "segmento": "ef89",
+ "conceitoPrincipal": "dinheiro-como-poder",
+ "fraseConceito": "Dinheiro não é só troca: também dá status, poder de decisão e domínio sobre pessoas.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-status",
+   "criterio": "O dinheiro está dando poder aqui?",
+   "enunciado": "Usar tênis de marca para ganhar respeito no grupo",
+   "resposta": true,
+   "ancora": "Poder de status: o objeto fala antes de você.",
+   "feedbackErro": "Parece só sobre estilo, mas a marca comunica status — e status é uma forma de poder social."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-status",
+   "criterio": "O dinheiro está dando poder aqui?",
+   "enunciado": "Pagar a passagem de ônibus no cartão de transporte",
+   "resposta": false,
+   "ancora": "Aqui o dinheiro só paga uma tarifa — sem status envolvido.",
+   "feedbackErro": "Toda compra usa dinheiro, mas nem toda compra vira poder. Pagar o ônibus não muda como os outros te veem."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-status",
+   "criterio": "O dinheiro está dando poder aqui?",
+   "enunciado": "Decidir o cardápio da casa porque é quem paga as contas",
+   "resposta": true,
+   "ancora": "Poder de decisão: quem paga, escolhe — isso também é poder.",
+   "feedbackErro": "Pagar as contas parece só uma obrigação, mas dá a quem paga a palavra final nas escolhas da casa."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "formacao-de-preco",
+   "dificuldade": 1,
+   "pergunta": "Por que um tênis de marca custa muito mais que um parecido, sem marca?",
+   "ancora": "O preço embute publicidade e status, não só material.",
+   "alternativas": [
+    {
+     "texto": "A fábrica usa material bem mais caro",
+     "correta": false,
+     "feedbackErro": "Às vezes o material pesa, mas aqui a diferença de preço vem principalmente da marca e da publicidade em volta dela, não do tecido."
+    },
+    {
+     "texto": "A marca soma publicidade e status ao preço final",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O governo cobra imposto maior só para marcas famosas",
+     "correta": false,
+     "feedbackErro": "O imposto é o mesmo para tênis parecidos. Quem separa o preço aqui é a marca, não uma regra tributária diferente."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "dinheiro-e-status",
+   "dificuldade": 1,
+   "pergunta": "Numa saída em grupo, por que quem paga a conta às vezes decide onde vai todo mundo?",
+   "ancora": "Pagar dá o direito de escolher — é poder na prática.",
+   "alternativas": [
+    {
+     "texto": "Porque pagar dá a ele o direito de decidir",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque ele é sempre o mais popular do grupo",
+     "correta": false,
+     "feedbackErro": "Ser popular ajuda a convencer, mas o que garante a decisão aqui é ter pago — não a popularidade."
+    },
+    {
+     "texto": "Porque existe uma lei que obriga isso",
+     "correta": false,
+     "feedbackErro": "Não existe regra nenhuma. O que acontece é um costume social: quem paga, na prática, manda."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "formacao-de-preco",
+   "criterio": "Isso muda o preço de um produto?",
+   "enunciado": "Uma marca virar moda entre os adolescentes",
+   "resposta": true,
+   "ancora": "Mais gente querendo = mais demanda = preço sobe.",
+   "feedbackErro": "Vira moda parece só um gosto passageiro, mas mais gente querendo o mesmo produto aumenta a demanda — e isso empurra o preço para cima."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "dinheiro-e-status",
+   "instrucao": "Ordene do maior poder de decisão ao menor",
+   "ancora": "Quanto mais pessoas dependem da escolha, maior o poder.",
+   "feedbackErro": "É tentador ordenar pelo valor em reais. Mas o critério aqui é quantas pessoas a decisão afeta — não o tamanho da quantia.",
+   "itens": [
+    { "texto": "Dono da empresa decide o salário de 200 funcionários", "posicaoCorreta": 1 },
+    { "texto": "Pai decide o cardápio do jantar da família", "posicaoCorreta": 2 },
+    { "texto": "Cliente escolhe o sabor do salgado na cantina", "posicaoCorreta": 3 },
+    { "texto": "Amigo empresta R$2 para comprar um doce", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-status",
+   "criterio": "Isso é dinheiro controlando alguém?",
+   "enunciado": "Cortar a mesada até o filho aceitar uma regra da casa",
+   "resposta": true,
+   "ancora": "Controlar o dinheiro do outro é controlar as escolhas dele.",
+   "feedbackErro": "Parece só disciplina, mas usar o dinheiro como condição para obedecer é o poder do dinheiro agindo sobre a escolha do outro."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-status",
+   "criterio": "Isso é dinheiro controlando alguém?",
+   "enunciado": "Dar um presente de aniversário para um amigo, sem pedir nada",
+   "resposta": false,
+   "ancora": "Presente sem condição não controla ninguém — é troca livre.",
+   "feedbackErro": "Dinheiro trocou de mãos, mas sem exigir nada em troca. Controle exige uma condição — aqui não existe nenhuma."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "formacao-de-preco",
+   "pergunta": "Um boné custa R$40 para fabricar e distribuir. Com marca famosa, vira quanto na loja?",
+   "campo": "moeda",
+   "min": 40,
+   "max": 400,
+   "gabarito": 200,
+   "toleranciaPct": 20,
+   "fonte": "margem média de marcas de streetwear sobre o custo, ordem de grandeza (varejo de moda)",
+   "verificacao": { "expressao": "40*5", "esperado": 200 },
+   "feedbackPerto": "Isso mesmo — a marca costuma multiplicar o preço por cerca de 5 vezes o custo.",
+   "feedbackLonge": "Fica perto de R$200. A marca não soma um valor fixo: ela multiplica o preço bruto por status."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "dinheiro-e-status",
+   "dificuldade": 1,
+   "pergunta": "Uma marca paga caro para Aline postar o produto dela. O que a marca está comprando, além do produto?",
+   "ancora": "A confiança dos seguidores em Aline vale dinheiro.",
+   "alternativas": [
+    {
+     "texto": "A confiança que os seguidores têm nela",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só a publicidade do produto, como um outdoor",
+     "correta": false,
+     "feedbackErro": "Um outdoor mostra o produto, mas não tem a confiança pessoal que os seguidores depositam em Aline — é isso que a marca paga a mais."
+    },
+    {
+     "texto": "Nada, influenciadores divulgam de graça",
+     "correta": false,
+     "feedbackErro": "O contrário: divulgação de marca famosa costuma ser bem paga, exatamente porque a confiança do público tem valor comercial."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "formacao-de-preco",
+   "dificuldade": 1,
+   "pergunta": "Duas lojas vendem o mesmo tênis, mas uma cobra R$50 a mais. O que MAIS explica isso?",
+   "ancora": "Fama e clientes dispostos a pagar mais elevam o preço.",
+   "alternativas": [
+    {
+     "texto": "Essa loja tem mais fama e clientes dispostos a pagar mais",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O tênis mais caro sempre tem sola diferente",
+     "correta": false,
+     "feedbackErro": "Pode acontecer, mas nesse caso é o mesmo tênis. A diferença de preço vem da reputação da loja, não de uma peça diferente."
+    },
+    {
+     "texto": "A loja mais barata sempre paga menos imposto",
+     "correta": false,
+     "feedbackErro": "O imposto sobre o mesmo produto costuma ser igual para as duas lojas. Quem muda o preço aqui é a fama, não o fisco."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "formacao-de-preco",
+   "criterio": "O preço mudou por oferta ou demanda?",
+   "enunciado": "Ingresso de show esgotar e revendedores cobrarem o triplo",
+   "resposta": true,
+   "ancora": "Menos ingresso disponível, mais gente querendo: preço sobe.",
+   "feedbackErro": "Parece só ganância do revendedor, mas o motivo de fundo é clássico: oferta fixa e demanda alta empurram o preço para cima."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "formacao-de-preco",
+   "criterio": "O preço mudou por oferta ou demanda?",
+   "enunciado": "Preço do cigarro subir depois de um novo imposto",
+   "resposta": false,
+   "ancora": "Aqui quem mudou o preço foi o governo, não o mercado.",
+   "feedbackErro": "O preço mudou de fato, e é fácil confundir. Mas a causa foi uma decisão tributária — oferta e demanda continuaram as mesmas."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "dinheiro-e-status",
+   "pergunta": "Qual frase resume o que você viu sobre dinheiro e poder?",
+   "alternativas": [
+    {
+     "texto": "O preço de um produto depende só do custo de fabricação",
+     "correta": false,
+     "feedbackErro": "O custo pesa, mas marca, fama e o quanto se quer o produto pesam tanto ou mais."
+    },
+    {
+     "texto": "Dinheiro dá status e poder de decisão; preço reflete o quanto se quer algo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quem tem mais dinheiro decide por lei o que os outros fazem",
+     "correta": false,
+     "feedbackErro": "Não é lei — é costume social. Quem paga tende a decidir, mas nenhuma regra formal obriga isso."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "dinheiro-e-status",
+   "instrucao": "Isso é sobre poder do dinheiro ou preço de mercado?",
+   "ancora": "Poder é sobre pessoas decidindo; preço é sobre o mercado.",
+   "feedbackErro": "Confundir é comum porque os dois envolvem dinheiro. Poder aparece quando alguém controla escolhas de outra pessoa; preço aparece quando o mercado ajusta valores.",
+   "caixas": [
+    { "id": "poder", "rotulo": "Poder" },
+    { "id": "preco", "rotulo": "Preço de mercado" }
+   ],
+   "itens": [
+    { "texto": "Chefe decide o horário de todo o setor", "caixaCorreta": "poder" },
+    { "texto": "Loja aumenta o valor na Black Friday por causa da procura", "caixaCorreta": "preco" },
+    { "texto": "Avô só empresta o carro se o neto tirar boas notas", "caixaCorreta": "poder" },
+    { "texto": "Preço do combustível sobe com a alta do petróleo", "caixaCorreta": "preco" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "dinheiro-e-status",
+   "criterio": "Isso é dinheiro comprando status?",
+   "enunciado": "Comprar um carro caro para impressionar os vizinhos",
+   "resposta": true,
+   "ancora": "O carro fala por status, não só por transporte.",
+   "feedbackErro": "Parece só sobre ir de um lugar a outro, mas escolher o carro caro para impressionar é comprar status, não deslocamento."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "formacao-de-preco",
+   "dificuldade": 1,
+   "pergunta": "Por que remédios genéricos costumam ser mais baratos que os de marca?",
+   "ancora": "Sem gasto de marketing e marca, o preço cai.",
+   "alternativas": [
+    {
+     "texto": "Porque não gastam com marca e publicidade como os de marca",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque têm uma fórmula quimicamente mais fraca",
+     "correta": false,
+     "feedbackErro": "Por lei, o genérico tem o mesmo princípio ativo na mesma dose. A diferença de preço não vem da fórmula."
+    },
+    {
+     "texto": "Porque pagam menos imposto que os remédios de marca",
+     "correta": false,
+     "feedbackErro": "O imposto sobre remédios não muda por causa da marca. Quem barateia o genérico é a ausência de gasto com marketing."
+    }
+   ]
+  }
+ ]
+}

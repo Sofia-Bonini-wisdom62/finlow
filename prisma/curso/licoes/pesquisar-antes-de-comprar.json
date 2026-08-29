@@ -1,0 +1,275 @@
+{
+ "slug": "pesquisar-antes-de-comprar",
+ "segmento": "ef35",
+ "conceitoPrincipal": "pesquisar-antes-de-comprar",
+ "fraseConceito": "Pesquisar preços em lugares diferentes antes de comprar mostra onde o mesmo produto custa menos.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "onde-pesquisar",
+   "criterio": "Ajuda a pagar menos?",
+   "enunciado": "Perguntar o preço em duas lojas antes de comprar",
+   "resposta": true,
+   "ancora": "Comparar preços mostra onde o mesmo produto custa menos.",
+   "feedbackErro": "Parece perda de tempo ir a duas lojas. Mas comparar antes é o único jeito de saber onde o mesmo produto sai mais barato."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "onde-pesquisar",
+   "criterio": "Ajuda a pagar menos?",
+   "enunciado": "Comprar sempre na primeira loja que você entra",
+   "resposta": false,
+   "ancora": "A primeira loja pode não ter o menor preço.",
+   "feedbackErro": "A primeira loja é mais rápida, e por isso parece a melhor escolha. Mas sem comparar, você não sabe se outra vende mais barato."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-beneficio",
+   "criterio": "Vale mais a pena?",
+   "enunciado": "A caneta mais barata, que para de escrever em 2 dias",
+   "resposta": false,
+   "ancora": "Preço baixo que dura pouco pode sair mais caro no fim.",
+   "feedbackErro": "O preço baixo parece a vitória na hora da compra. Mas se a caneta dura pouco, você compra de novo — e gasta mais no total."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "onde-pesquisar",
+   "dificuldade": 1,
+   "pergunta": "Rafael quer comprar um caderno. Qual é o melhor jeito de saber onde ele custa menos?",
+   "ancora": "Comparar preços em mais de um lugar revela o menor.",
+   "alternativas": [
+    {
+     "texto": "Olhar o preço em mais de uma papelaria antes de decidir",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Comprar logo no primeiro lugar que ele passar",
+     "correta": false,
+     "feedbackErro": "É mais rápido, e por isso parece prático. Mas sem comparar, ele pode pagar mais caro sem perceber."
+    },
+    {
+     "texto": "Escolher pela cor mais bonita da capa",
+     "correta": false,
+     "feedbackErro": "A cor não muda o quanto o caderno custa. Para pagar menos, o que importa é comparar o preço em lugares diferentes."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-beneficio",
+   "dificuldade": 1,
+   "pergunta": "Duas mochilas: uma custa menos e rasga em um mês. A outra custa mais e dura o ano todo. Qual compensa mais?",
+   "ancora": "Preço baixo que dura pouco custa mais no fim do ano.",
+   "alternativas": [
+    {
+     "texto": "A mais cara, porque dura o ano inteiro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A mais barata, porque custa menos hoje",
+     "correta": false,
+     "feedbackErro": "Custar menos hoje parece vantagem. Mas se ela rasga rápido, você compra outra — e gasta mais ao longo do ano."
+    },
+    {
+     "texto": "As duas, porque o preço não importa",
+     "correta": false,
+     "feedbackErro": "O preço importa sim. O que muda a escolha é olhar também quanto tempo cada uma dura, não só o preço de hoje."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-beneficio",
+   "criterio": "É um bom motivo pra pagar mais?",
+   "enunciado": "Um tênis mais caro que dura o dobro do tempo",
+   "resposta": true,
+   "ancora": "Durar mais pode compensar um preço maior.",
+   "feedbackErro": "Pagar mais parece sempre ruim à primeira vista. Mas se o tênis dura o dobro, o preço maior pode sair mais barato por mês de uso."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "onde-pesquisar",
+   "instrucao": "É um jeito de pesquisar preço? Arraste.",
+   "ancora": "Pesquisar é comparar em mais de um lugar antes de decidir.",
+   "feedbackErro": "Olhar cor ou embalagem não muda o preço. Pesquisar é comparar o valor cobrado em lugares diferentes.",
+   "caixas": [
+    {
+     "id": "pesquisa",
+     "rotulo": "É pesquisa"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é pesquisa"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Perguntar o preço em duas lojas diferentes",
+     "caixaCorreta": "pesquisa"
+    },
+    {
+     "texto": "Olhar o preço numa loja e numa outra pela internet",
+     "caixaCorreta": "pesquisa"
+    },
+    {
+     "texto": "Escolher pela cor da embalagem",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Comprar sem olhar o preço",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-beneficio",
+   "criterio": "É um bom motivo pra pesquisar?",
+   "enunciado": "Um brinquedo caro que você vai comprar",
+   "resposta": true,
+   "ancora": "Quanto mais caro, mais vale a pena comparar preços.",
+   "feedbackErro": "Pesquisar sempre ajuda, mas importa mais quando o valor é alto: aí a diferença de preço entre lugares pesa mais no bolso."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "onde-pesquisar",
+   "dificuldade": 1,
+   "pergunta": "Numa loja o suco custa R$ 4. Numa banca perto de casa, custa R$ 3. Onde comprar economiza quanto?",
+   "ancora": "4 menos 3 é 1: essa é a economia de comparar preços.",
+   "alternativas": [
+    {
+     "texto": "R$ 1, comprando na banca",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 4, comprando na loja",
+     "correta": false,
+     "feedbackErro": "R$ 4 é o preço da loja, não a economia. Para saber quanto se economiza, subtraia um preço do outro: 4 menos 3 é 1."
+    },
+    {
+     "texto": "R$ 7, somando os dois preços",
+     "correta": false,
+     "feedbackErro": "Somar os preços não mostra economia nenhuma. Para comparar, subtraia: o preço maior menos o menor, ou seja, 4 menos 3."
+    }
+   ],
+   "verificacao": {
+    "expressao": "4-3",
+    "esperado": 1
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "custo-beneficio",
+   "criterio": "Isso ajuda a decidir melhor?",
+   "enunciado": "Olhar só o preço, sem pensar em qualidade",
+   "resposta": false,
+   "ancora": "Preço sozinho não conta a história toda.",
+   "feedbackErro": "Olhar o preço parece suficiente, porque é o número mais visível. Mas ignorar a qualidade pode fazer você pagar de novo em pouco tempo."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "onde-pesquisar",
+   "criterio": "Isso é pesquisar antes de comprar?",
+   "enunciado": "Comparar o preço do mesmo brinquedo em duas lojas do shopping",
+   "resposta": true,
+   "ancora": "Comparar o mesmo item em lugares diferentes é pesquisar.",
+   "feedbackErro": "Andar até outra loja dá trabalho, e por isso parece desnecessário. Mas é justamente esse esforço que revela onde o preço é menor."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "onde-pesquisar",
+   "pergunta": "Qual frase resume o que você viu hoje?",
+   "alternativas": [
+    {
+     "texto": "Pesquisar em vários lugares mostra onde o preço é menor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O preço mais baixo é sempre a melhor escolha",
+     "correta": false,
+     "feedbackErro": "Nem sempre: se durar pouco, sai mais caro no fim. Comparar preço com qualidade é o que decide melhor."
+    },
+    {
+     "texto": "Pesquisar preço é perda de tempo",
+     "correta": false,
+     "feedbackErro": "Parece perda de tempo, mas é o que revela quanto você pode economizar antes de pagar."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "onde-pesquisar",
+   "instrucao": "Ordene do primeiro ao último passo pra pesquisar preço.",
+   "ancora": "Primeiro compara, só depois decide onde comprar.",
+   "feedbackErro": "A ordem importa: decidir antes de comparar anula a pesquisa. Primeiro veja os preços, só depois escolha onde comprar.",
+   "itens": [
+    {
+     "texto": "Ver o preço em mais de uma loja",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Comparar os preços encontrados",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Escolher onde comprar",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "custo-beneficio",
+   "dificuldade": 2,
+   "pergunta": "Um livro mais caro dura anos; o mais barato rasga rápido. Qual tem melhor custo-benefício?",
+   "ancora": "Durar mais compensa o preço maior ao longo do tempo.",
+   "alternativas": [
+    {
+     "texto": "O mais caro, porque dura muito mais tempo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O mais barato, porque custa menos agora",
+     "correta": false,
+     "feedbackErro": "Custar menos agora parece vantagem imediata. Mas se ele rasga rápido, você compra de novo — e gasta mais ao longo do tempo."
+    },
+    {
+     "texto": "Os dois têm o mesmo custo-benefício",
+     "correta": false,
+     "feedbackErro": "Não são iguais: um dura muito mais que o outro pelo mesmo tipo de uso. Isso muda o custo-benefício."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "onde-pesquisar",
+   "criterio": "Isso é pesquisar preço?",
+   "enunciado": "Perguntar pra um amigo quanto ele pagou no mesmo brinquedo",
+   "resposta": true,
+   "ancora": "Perguntar o preço que outra pessoa pagou também é comparar.",
+   "feedbackErro": "Parece só uma conversa, sem função de pesquisa. Mas descobrir quanto alguém pagou é outra forma de comparar preços antes de decidir."
+  }
+ ]
+}

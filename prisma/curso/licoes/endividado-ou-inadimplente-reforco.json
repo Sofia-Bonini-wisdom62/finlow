@@ -1,0 +1,295 @@
+{
+ "slug": "endividado-ou-inadimplente-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "endividado-ou-inadimplente",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "endividado-vs-inadimplente",
+   "criterio": "Essa pessoa está inadimplente?",
+   "enunciado": "Renegociou a dívida e paga as novas parcelas certinho",
+   "resposta": false,
+   "ancora": "Renegociar e cumprir o novo prazo tira a pessoa da inadimplência.",
+   "feedbackErro": "Qual era o critério? Não é o passado da dívida, é o cumprimento do prazo atual — e o novo acordo está sendo pago em dia."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "endividado-vs-inadimplente",
+   "criterio": "Essa pessoa está inadimplente?",
+   "enunciado": "Esqueceu de pagar o IPVA e o prazo já venceu há 40 dias",
+   "resposta": true,
+   "ancora": "Prazo vencido sem pagamento é o critério de sempre.",
+   "feedbackErro": "Qual era o critério? Não é o tipo de dívida, é o vencimento sem pagamento — e aqui já passou 40 dias do prazo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "credito-verde",
+   "criterio": "Isso é um exemplo de crédito verde?",
+   "enunciado": "Linha de crédito com taxa reduzida para comprar uma bicicleta elétrica de uso urbano",
+   "resposta": true,
+   "ancora": "Substituir transporte poluente por elétrico é o critério ambiental.",
+   "feedbackErro": "Qual era o critério? Não é o valor do crédito, é o projeto financiado ter impacto ambiental positivo — e trocar carro por bike elétrica reduz emissões."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "endividado-vs-inadimplente",
+   "dificuldade": 2,
+   "pergunta": "Um empréstimo de R$5.000 tem 3 parcelas pagas e 2 vencidas há 45 dias, sem pagamento. Qual é o status da pessoa?",
+   "ancora": "Parcelas vencidas sem pagamento já configuram inadimplência.",
+   "verificacao": { "expressao": "5000/5*3", "esperado": 3000 },
+   "alternativas": [
+    {
+     "texto": "Endividada, porque ainda tem 3 parcelas pagas em dia",
+     "correta": false,
+     "feedbackErro": "As 3 parcelas pagas mostram bom histórico anterior, mas não apagam o problema atual: 2 parcelas vencidas sem pagamento já configuram inadimplência."
+    },
+    {
+     "texto": "Inadimplente, pelas 2 parcelas vencidas sem pagamento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nenhum dos dois, porque o empréstimo ainda não terminou",
+     "correta": false,
+     "feedbackErro": "O contrato não precisar ter terminado para haver inadimplência — basta uma parcela vencer sem pagamento no meio do caminho."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "credito-verde",
+   "dificuldade": 2,
+   "pergunta": "Uma fábrica troca máquinas por outras que gastam menos energia, com crédito de taxa especial. O que garante ser verde?",
+   "ancora": "A condição de taxa está atrelada ao ganho ambiental do projeto.",
+   "alternativas": [
+    {
+     "texto": "O fato de a fábrica ser uma empresa grande e conhecida",
+     "correta": false,
+     "feedbackErro": "O porte da empresa não define o tipo de crédito. O que garante ser verde é a condição especial atrelada ao ganho ambiental do projeto."
+    },
+    {
+     "texto": "A taxa reduzida estar condicionada à economia de energia",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "As máquinas novas custarem mais caro que as antigas",
+     "correta": false,
+     "feedbackErro": "O preço das máquinas não é o critério do crédito verde. O que importa é a taxa estar ligada ao benefício ambiental do projeto financiado."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "endividado-vs-inadimplente",
+   "criterio": "Isso sozinho já é inadimplência?",
+   "enunciado": "Ter três cartões de crédito diferentes, todos com fatura paga em dia",
+   "resposta": false,
+   "ancora": "Quantidade de dívidas não é o critério — atraso é.",
+   "feedbackErro": "Ter vários cartões parece um sinal de risco, mas se todas as faturas são pagas no prazo, não existe inadimplência — só endividamento controlado."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "endividado-vs-inadimplente",
+   "instrucao": "Ordene da situação mais leve à mais grave",
+   "ancora": "O critério é o tempo de atraso, não o número de dívidas.",
+   "feedbackErro": "O número de dívidas engana. O critério aqui é sempre o tempo de atraso — quanto mais tempo sem pagar, mais grave.",
+   "itens": [
+    { "texto": "Duas dívidas pequenas, ambas pagas em dia", "posicaoCorreta": 1 },
+    { "texto": "Uma fatura vencida há 10 dias, dentro da carência do contrato", "posicaoCorreta": 2 },
+    { "texto": "Um boleto vencido há 3 meses, sem contato com o credor", "posicaoCorreta": 3 },
+    { "texto": "Processo de cobrança judicial após 1 ano sem pagamento", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "endividado-vs-inadimplente",
+   "criterio": "Isso sozinho já é inadimplência?",
+   "enunciado": "Pedir um novo empréstimo para pagar uma dívida antiga em dia",
+   "resposta": false,
+   "ancora": "Trocar de dívida não é atraso — o pagamento continua em dia.",
+   "feedbackErro": "Parece um sinal de aperto financeiro, e pode ser. Mas trocar uma dívida por outra, mantendo os pagamentos em dia, ainda não é inadimplência."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "credito-verde",
+   "criterio": "Isso é um exemplo de crédito verde?",
+   "enunciado": "Cartão de crédito comum, sem nenhuma condição ligada a projeto ambiental",
+   "resposta": false,
+   "ancora": "Sem condição ambiental atrelada, não é crédito verde.",
+   "feedbackErro": "É crédito, mas de uso livre e sem exigência de projeto ambiental — falta justamente o critério que define o crédito verde."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "endividado-vs-inadimplente",
+   "pergunta": "Uma dívida de R$2.500 fica inadimplente com mora de 1,5% ao mês. Quanto soma em 8 meses?",
+   "campo": "moeda",
+   "min": 2500,
+   "max": 3200,
+   "gabarito": 2800,
+   "toleranciaPct": 20,
+   "fonte": "taxa padrão de mora contratual, ~1,5% ao mês (uso comum em contratos)",
+   "verificacao": { "expressao": "2500 + 2500*0.015*8", "esperado": 2800 },
+   "feedbackPerto": "Isso mesmo, R$2.800 — a mora soma 1,5% do valor original a cada mês de atraso.",
+   "feedbackLonge": "Fica perto de R$2.800. A mora segue soma simples: o mesmo valor extra a cada mês parado, sem compor sobre si mesma."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "endividado-vs-inadimplente",
+   "dificuldade": 2,
+   "pergunta": "Marcelo deve R$8 mil e paga tudo em dia há 2 anos. Um banco nega novo empréstimo. Qual o motivo mais provável?",
+   "ancora": "Bancos também avaliam o quanto da renda já está comprometida.",
+   "alternativas": [
+    {
+     "texto": "O sistema considera quanto da renda já está comprometida",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ele com certeza está inadimplente e não sabe",
+     "correta": false,
+     "feedbackErro": "O enunciado deixa claro que ele paga tudo em dia — não há indício de atraso. A negativa vem de outro critério, não da inadimplência."
+    },
+    {
+     "texto": "Pessoas endividadas nunca conseguem novo crédito",
+     "correta": false,
+     "feedbackErro": "Endividado em dia consegue crédito normalmente, dependendo da análise. A negativa aqui está ligada ao comprometimento da renda, não a uma regra absoluta."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "credito-verde",
+   "dificuldade": 2,
+   "pergunta": "Um banco lança crédito verde para trocar lenha por biodigestor. Por que essa troca reduz o impacto ambiental?",
+   "ancora": "O biodigestor reaproveita resíduo em vez de queimar madeira nativa.",
+   "alternativas": [
+    {
+     "texto": "Porque reaproveita resíduo em vez de queimar madeira",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque biodigestores são mais baratos que fogão a lenha",
+     "correta": false,
+     "feedbackErro": "O preço do equipamento não é o critério ambiental. O ganho vem de reaproveitar resíduo em vez de desmatar para lenha."
+    },
+    {
+     "texto": "Porque o governo proíbe o uso de lenha em qualquer produção",
+     "correta": false,
+     "feedbackErro": "Não existe proibição geral desse tipo. O incentivo do crédito verde é reduzir o desmatamento associado à lenha, não cumprir uma proibição."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "endividado-vs-inadimplente",
+   "criterio": "Isso sozinho já é inadimplência?",
+   "enunciado": "Receber uma cobrança por engano, de uma conta já paga",
+   "resposta": false,
+   "ancora": "Cobrança indevida não é o mesmo que atraso real.",
+   "feedbackErro": "Parece inadimplência por causa da cobrança, mas se a conta já foi paga, não houve atraso de verdade — é um erro a ser corrigido, não uma dívida em aberto."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "credito-verde",
+   "criterio": "Isso é um exemplo de crédito verde?",
+   "enunciado": "Linha de crédito com taxa menor para construir um sistema de reúso de água em uma indústria",
+   "resposta": true,
+   "ancora": "Reúso de água reduz consumo de um recurso natural escasso.",
+   "feedbackErro": "Parece um investimento industrial comum, mas a taxa reduzida existe porque o projeto reduz o consumo de água, um recurso natural."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "endividado-vs-inadimplente",
+   "pergunta": "Depois desses casos, qual frase resume melhor o critério usado?",
+   "alternativas": [
+    {
+     "texto": "Ter várias dívidas ao mesmo tempo já é inadimplência",
+     "correta": false,
+     "feedbackErro": "Vimos que quantidade não é o critério — o que conta é se algum pagamento venceu sem ser feito."
+    },
+    {
+     "texto": "O critério é sempre o prazo: vencido e não pago é inadimplência",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Crédito verde é qualquer empréstimo feito por um banco público",
+     "correta": false,
+     "feedbackErro": "O tipo de banco não define o crédito verde — o que define é a condição ligada a um projeto de impacto ambiental."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "endividado-vs-inadimplente",
+   "instrucao": "É só endividamento ou já é inadimplência?",
+   "ancora": "O critério que separa é sempre o atraso confirmado.",
+   "feedbackErro": "O jeito de separar: parcelas em dia, mesmo muitas, são só endividamento. Uma parcela vencida sem pagamento já é inadimplência.",
+   "caixas": [
+    { "id": "endividado", "rotulo": "Só endividamento" },
+    { "id": "inadimplente", "rotulo": "Inadimplência" }
+   ],
+   "itens": [
+    { "texto": "Cartão parcelado, todas as faturas pagas até hoje", "caixaCorreta": "endividado" },
+    { "texto": "Aluguel atrasado há 2 meses, sem acordo com o proprietário", "caixaCorreta": "inadimplente" },
+    { "texto": "Financiamento de moto com débito automático funcionando", "caixaCorreta": "endividado" },
+    { "texto": "Empréstimo consignado com desconto que falhou 3 vezes seguidas", "caixaCorreta": "inadimplente" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "credito-verde",
+   "criterio": "Isso é um exemplo de crédito verde?",
+   "enunciado": "Crédito com taxa reduzida para trocar iluminação comum por lâmpadas de LED numa fábrica",
+   "resposta": true,
+   "ancora": "Reduzir consumo de energia é um ganho ambiental direto.",
+   "feedbackErro": "Parece uma reforma qualquer, mas trocar por LED reduz o consumo de energia da fábrica — é esse ganho ambiental que justifica a taxa menor."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "endividado-vs-inadimplente",
+   "dificuldade": 2,
+   "pergunta": "Por que uma empresa endividada pode continuar operando normalmente por anos, sem virar inadimplente?",
+   "ancora": "Enquanto os pagamentos seguem no prazo, a dívida não vira atraso.",
+   "alternativas": [
+    {
+     "texto": "Porque ela mantém os pagamentos das dívidas dentro do prazo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque empresas grandes nunca são consideradas inadimplentes",
+     "correta": false,
+     "feedbackErro": "O porte da empresa não garante nada — qualquer empresa vira inadimplente se deixar de pagar no prazo, seja grande ou pequena."
+    },
+    {
+     "texto": "Porque dívidas de empresas não vencem, só as de pessoas físicas",
+     "correta": false,
+     "feedbackErro": "Dívidas empresariais têm prazo de vencimento como qualquer outra. O que evita a inadimplência é o pagamento em dia, não o tipo de devedor."
+    }
+   ]
+  }
+ ]
+}

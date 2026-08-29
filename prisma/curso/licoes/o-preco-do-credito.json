@@ -1,0 +1,337 @@
+{
+ "slug": "o-preco-do-credito",
+ "segmento": "em3",
+ "conceitoPrincipal": "o-preco-do-credito",
+ "fraseConceito": "O preço real de um empréstimo é o CET — juros, tarifas, seguros e impostos juntos — e ele aparece no total pago, não na parcela.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cet",
+   "criterio": "Encarece o empréstimo?",
+   "enunciado": "A tarifa de cadastro cobrada na contratação",
+   "resposta": true,
+   "ancora": "Tudo que você paga além do valor emprestado entra no custo.",
+   "feedbackErro": "A tarifa parece taxa administrativa fora da dívida. Mas sai do seu bolso por causa do contrato — por isso a lei manda somá-la no CET."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cet",
+   "criterio": "Encarece o empréstimo?",
+   "enunciado": "O seguro embutido na parcela",
+   "resposta": true,
+   "ancora": "Seguro dentro da parcela é custo do crédito: entra no CET.",
+   "feedbackErro": "'É só um seguro' — mas ele foi somado à sua parcela por causa do empréstimo. Se encarece o que você paga, faz parte do preço do crédito."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cet",
+   "criterio": "Encarece o empréstimo?",
+   "enunciado": "Quitar o empréstimo antes do prazo",
+   "resposta": false,
+   "ancora": "Antecipar dá desconto proporcional dos juros: é direito seu.",
+   "feedbackErro": "Parece que pagar antes 'quebra o contrato' e gera custo. É o contrário: a lei garante desconto dos juros futuros quando você antecipa parcelas."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "cet",
+   "dificuldade": 1,
+   "pergunta": "Dois bancos anunciam juros de 2% ao mês. Num deles a parcela sai maior. O que explica a diferença?",
+   "ancora": "Taxa igual, CET diferente: tarifas e seguro moram fora da taxa.",
+   "alternativas": [
+    {
+     "texto": "Tarifas e seguro embutidos: o CET é maior",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Erro de cálculo de um dos bancos",
+     "correta": false,
+     "feedbackErro": "Seria cômodo, mas os sistemas não erram essa conta. A diferença é de composição: um contrato carrega tarifas e seguro que a taxa anunciada não mostra."
+    },
+    {
+     "texto": "Impostos que só um dos bancos paga",
+     "correta": false,
+     "feedbackErro": "O IOF incide igual nos dois contratos. O que varia de banco para banco são tarifas e seguros — e é para somar tudo isso que o CET existe."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "prazo-e-total",
+   "dificuldade": 1,
+   "pergunta": "Você pega R$ 1.000 e devolve 10 parcelas de R$ 130. Quanto pagou pelo crédito?",
+   "ancora": "10 × R$ 130 = R$ 1.300. O aluguel do dinheiro custou R$ 300.",
+   "verificacao": {
+    "expressao": "130*10-1000",
+    "esperado": 300
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 300",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 130",
+     "correta": false,
+     "feedbackErro": "R$ 130 é o tamanho de uma parcela, não o custo. O preço do crédito é o total devolvido menos o recebido: 1.300 − 1.000 = R$ 300."
+    },
+    {
+     "texto": "R$ 1.300",
+     "correta": false,
+     "feedbackErro": "R$ 1.300 é tudo que sai do seu bolso — mas R$ 1.000 desses você recebeu. O custo é só a diferença: R$ 300."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "cet",
+   "criterio": "Está no CET?",
+   "enunciado": "O IOF cobrado no contrato",
+   "resposta": true,
+   "ancora": "CET junta juros, IOF, tarifas e seguros num número só.",
+   "feedbackErro": "Imposto parece assunto do governo, fora do banco. Mas quem paga o IOF é você, por causa do contrato — então ele entra na soma do custo efetivo total."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "cet",
+   "instrucao": "Toque na ordem: do crédito mais caro para o mais barato.",
+   "ancora": "Quanto menor a garantia do banco, mais cara a taxa.",
+   "feedbackErro": "A ordem é a da taxa: rotativo ~14%, cheque especial ~8%, crédito pessoal ~5%, consignado ~1,8% ao mês. Onde o banco tem garantia, o preço despenca.",
+   "itens": [
+    {
+     "texto": "Rotativo do cartão de crédito",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Cheque especial da conta",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Crédito pessoal sem garantia",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Consignado descontado em folha",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "prazo-e-total",
+   "criterio": "É o jeito certo de comparar?",
+   "enunciado": "Escolher o empréstimo pela menor parcela",
+   "resposta": false,
+   "ancora": "Parcela menor com prazo longo pode custar mais no total.",
+   "feedbackErro": "A parcela é o que aperta o mês, faz sentido olhá-la. Mas ela se fabrica esticando o prazo — e cada mês a mais é juro a mais. Compare o total pago."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "cet",
+   "criterio": "É o jeito certo de comparar?",
+   "enunciado": "Colocar o CET das propostas lado a lado",
+   "resposta": true,
+   "ancora": "CET contra CET, no mesmo prazo: a única comparação justa.",
+   "feedbackErro": "Parece exagero técnico para um empréstimo simples. Mas só o CET soma tudo que você vai pagar — comparar qualquer outro número é comparar metades."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "prazo-e-total",
+   "pergunta": "Você pega R$ 2.000 e paga 12 parcelas de R$ 220. Quantos reais o crédito custou além dos R$ 2.000?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 2000,
+   "gabarito": 640,
+   "toleranciaPct": 20,
+   "fonte": "conta com os valores do enunciado: 12 × R$ 220 − R$ 2.000",
+   "verificacao": {
+    "expressao": "220*12-2000",
+    "esperado": 640
+   },
+   "feedbackPerto": "R$ 640 — quase um terço a mais do que você recebeu. É esse número que a parcela 'que cabe' esconde.",
+   "feedbackLonge": "12 × 220 = R$ 2.640; menos os R$ 2.000, sobram R$ 640 de custo. O viés é ancorar na parcela pequena e nunca multiplicar pelo prazo."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "cadastro-positivo",
+   "dificuldade": 1,
+   "pergunta": "Caio paga as contas em dia há três anos. O que o cadastro positivo faz com esse histórico?",
+   "ancora": "Histórico bom vira nota de risco — e taxa é o preço do risco.",
+   "alternativas": [
+    {
+     "texto": "Mostra que ele é bom pagador e pode baixar sua taxa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Serve só para negativar quem atrasa",
+     "correta": false,
+     "feedbackErro": "Essa é a lista dos inadimplentes — o cadastro negativo. O positivo registra o contrário: as contas pagas em dia, que jogam a favor de quem paga."
+    },
+    {
+     "texto": "Nada: banco decide só pela renda",
+     "correta": false,
+     "feedbackErro": "Renda importa: mostra quanto cabe. Mas quem prevê se você vai pagar é o histórico — e é ele que o cadastro positivo apresenta ao banco."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "capacidade-pagamento",
+   "dificuldade": 1,
+   "pergunta": "Renda de R$ 2.000 por mês. Pela regra de comprometer no máximo 30% com parcelas, qual é o teto?",
+   "ancora": "30% de R$ 2.000 = R$ 600. Acima disso, o mês não fecha.",
+   "verificacao": {
+    "expressao": "2000*0.3",
+    "esperado": 600
+   },
+   "alternativas": [
+    {
+     "texto": "Parcelas até R$ 600",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Parcelas até R$ 1.000",
+     "correta": false,
+     "feedbackErro": "Metade da renda em dívida sufoca: aluguel, comida e luz disputam o resto. A referência de segurança é 30% — R$ 600 para essa renda."
+    },
+    {
+     "texto": "Qualquer valor que o banco aprovar",
+     "correta": false,
+     "feedbackErro": "O banco aprova olhando o risco dele, não a sua sobra. Cabe a você aplicar o teto dos 30% antes de assinar."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "cet",
+   "criterio": "É o número que decide?",
+   "enunciado": "A taxa de juros do anúncio na vitrine",
+   "resposta": false,
+   "ancora": "Anúncio mostra a taxa; o contrato cobra o CET.",
+   "feedbackErro": "A taxa chama atenção porque é o número em destaque. Mas deixa de fora tarifas, seguro e IOF — o número completo é o CET, e é ele que você paga."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "cet",
+   "criterio": "É o número que decide?",
+   "enunciado": "O CET das ofertas, medido no mesmo prazo",
+   "resposta": true,
+   "ancora": "Custo efetivo total: o único número que soma tudo.",
+   "feedbackErro": "Parece sigla de banco para complicar. É o contrário: o CET foi criado para simplificar — um número único com juros, tarifas, seguros e impostos."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-preco-do-credito",
+   "dificuldade": 1,
+   "pergunta": "Qual frase resume o preço do crédito?",
+   "alternativas": [
+    {
+     "texto": "O preço do crédito é o CET e o total pago — não a parcela nem o anúncio.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se a parcela cabe no bolso, o negócio é bom.",
+     "correta": false,
+     "feedbackErro": "Parcela pequena com prazo longo é custo alto fatiado fino."
+    },
+    {
+     "texto": "Todo empréstimo custa a mesma coisa.",
+     "correta": false,
+     "feedbackErro": "Rotativo ~14% e consignado ~1,8% ao mês: quase 8 vezes de diferença."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "cet",
+   "instrucao": "Arraste: entra no CET ou fica fora?",
+   "ancora": "CET soma custos do contrato; o principal não é custo.",
+   "feedbackErro": "O CET reúne o que você paga por causa do contrato: juros, IOF, tarifas. O valor emprestado você devolve, mas não é custo; conta de casa nem é do contrato.",
+   "caixas": [
+    {
+     "id": "entra",
+     "rotulo": "Entra no CET"
+    },
+    {
+     "id": "fora",
+     "rotulo": "Fica fora"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Os juros do contrato",
+     "caixaCorreta": "entra"
+    },
+    {
+     "texto": "O IOF da operação",
+     "caixaCorreta": "entra"
+    },
+    {
+     "texto": "O valor que você pegou emprestado",
+     "caixaCorreta": "fora"
+    },
+    {
+     "texto": "As contas normais da sua casa",
+     "caixaCorreta": "fora"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "cet",
+   "dificuldade": 1,
+   "pergunta": "Por que o consignado tem a menor taxa entre os empréstimos pessoais?",
+   "ancora": "Desconto direto na folha: risco de calote quase zero.",
+   "alternativas": [
+    {
+     "texto": "A parcela sai direto do salário: risco quase zero",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O governo paga parte dos juros",
+     "correta": false,
+     "feedbackErro": "Não há subsídio: a taxa cai porque o banco desconta da folha antes de o dinheiro chegar a você. Menos risco de calote, menos preço."
+    },
+    {
+     "texto": "É cortesia para clientes antigos",
+     "correta": false,
+     "feedbackErro": "Tempo de conta pouco importa aqui. O que derruba a taxa é a garantia de receber — o desconto automático no contracheque."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "cet",
+   "criterio": "Ajuda a pagar menos?",
+   "enunciado": "Pedir a planilha com o CET antes de assinar",
+   "resposta": true,
+   "ancora": "O banco é obrigado a informar o CET antes da contratação.",
+   "feedbackErro": "Parece pedido chato que trava o negócio. Mas informar o CET é obrigação do banco — e é com ele na mão que você compara e negocia."
+  }
+ ]
+}

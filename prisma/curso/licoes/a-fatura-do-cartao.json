@@ -1,0 +1,247 @@
+{
+ "slug": "a-fatura-do-cartao",
+ "segmento": "ef67",
+ "conceitoPrincipal": "a-fatura-do-cartao",
+ "fraseConceito": "A fatura mostra total, mínimo e juros — pagar só o mínimo faz o resto virar dívida cara.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "ler-a-fatura",
+   "criterio": "Essa informação está na fatura?",
+   "enunciado": "O valor total que você gastou no mês",
+   "resposta": true,
+   "ancora": "O total soma todas as compras do mês, parceladas ou não.",
+   "feedbackErro": "Parece só um resumo qualquer, mas é o valor exato de tudo que entrou na fatura naquele mês."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "ler-a-fatura",
+   "criterio": "Essa informação está na fatura?",
+   "enunciado": "O nome da loja onde o cartão foi fabricado",
+   "resposta": false,
+   "ancora": "A fatura mostra onde você comprou, não onde o cartão nasceu.",
+   "feedbackErro": "Parece um dado técnico do cartão. Mas a fatura lista suas compras — de onde o plástico veio não aparece nela."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-do-parcial",
+   "criterio": "Isso é verdade sobre a fatura?",
+   "enunciado": "Pagar só o valor mínimo evita cobrança de juros",
+   "resposta": false,
+   "ancora": "Mínimo evita atraso; o resto que sobra vira rotativo com juros.",
+   "feedbackErro": "Pagar o mínimo mantém seu nome limpo, e isso confunde. Mas o valor que falta entra no rotativo e cobra juros no mês seguinte."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "ler-a-fatura",
+   "dificuldade": 1,
+   "pergunta": "Na fatura, o que mostra quantas parcelas ainda faltam de uma compra parcelada?",
+   "ancora": "A linha da compra traz algo como 3/10 — parcela atual sobre total.",
+   "alternativas": [
+    {
+     "texto": "O número ao lado da compra, tipo 3 de 10",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A data de vencimento da fatura",
+     "correta": false,
+     "feedbackErro": "Vencimento diz quando pagar a fatura do mês, não quantas parcelas faltam de uma compra."
+    },
+    {
+     "texto": "O limite total do cartão",
+     "correta": false,
+     "feedbackErro": "O limite é o teto de gasto do cartão — não muda por causa de uma compra parcelada específica."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-do-parcial",
+   "dificuldade": 1,
+   "pergunta": "Fatura de R$ 300. Você paga só o mínimo de R$ 45. Quanto fica sem pagar?",
+   "ancora": "300 menos 45 é 255 — o que sobra pra virar rotativo.",
+   "verificacao": { "expressao": "300-45", "esperado": 255 },
+   "alternativas": [
+    {
+     "texto": "R$ 255",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 45",
+     "correta": false,
+     "feedbackErro": "R$ 45 é o mínimo que você pagou, não o que sobrou. Subtraia: 300 menos 45 é 255."
+    },
+    {
+     "texto": "R$ 300",
+     "correta": false,
+     "feedbackErro": "R$ 300 seria a fatura inteira, sem nenhum pagamento. Você pagou R$ 45 — sobram 255."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-do-parcial",
+   "criterio": "Isso é verdade?",
+   "enunciado": "O total da fatura de outubro pode já incluir juros de setembro",
+   "resposta": true,
+   "ancora": "Se sobrou saldo no rotativo, o juro do mês anterior entra no total.",
+   "feedbackErro": "Parece que cada fatura só mostra o mês atual. Mas se ficou saldo no rotativo, o juro dele entra somado no total seguinte."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "ler-a-fatura",
+   "instrucao": "Essa informação ajuda a entender o custo? Arraste.",
+   "ancora": "Custo se entende por taxa e mínimo — cor e bandeira não mudam preço.",
+   "feedbackErro": "Detalhes visuais chamam atenção, mas não mudam o custo. O que define o custo são a taxa de juros e o valor mínimo.",
+   "caixas": [
+    { "id": "ajuda", "rotulo": "Ajuda a entender" },
+    { "id": "nao", "rotulo": "Não ajuda" }
+   ],
+   "itens": [
+    { "texto": "Taxa de juros do rotativo", "caixaCorreta": "ajuda" },
+    { "texto": "Cor do cartão", "caixaCorreta": "nao" },
+    { "texto": "Valor do pagamento mínimo", "caixaCorreta": "ajuda" },
+    { "texto": "Nome da bandeira (Visa, Master)", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-do-parcial",
+   "criterio": "Isso é verdade?",
+   "enunciado": "O valor que sobra do mínimo entra no rotativo e rende juros",
+   "resposta": true,
+   "ancora": "É exatamente isso: o restante vira dívida com juros no rotativo.",
+   "feedbackErro": "Parece só um saldo pendente qualquer. Mas esse restante entra no rotativo, a linha de crédito mais cara do país."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-do-parcial",
+   "dificuldade": 2,
+   "pergunta": "Fatura de R$ 300 sem pagar nada. Rotativo a 14% ao mês. Quanto de juro no 1º mês?",
+   "ancora": "14% de 300: divida por 100 e multiplique por 14 — dá 42.",
+   "verificacao": { "expressao": "300*0.14", "esperado": 42 },
+   "alternativas": [
+    {
+     "texto": "R$ 42",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 14",
+     "correta": false,
+     "feedbackErro": "Você trocou 14% por R$ 14 fixos. É percentual sobre o total: 300 dividido por 100, vezes 14, dá 42."
+    },
+    {
+     "texto": "R$ 140",
+     "correta": false,
+     "feedbackErro": "R$ 140 seria quase metade da fatura. O símbolo % engana: 14% de 300 são 42, não 140."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "ler-a-fatura",
+   "criterio": "Isso ajuda a entender a fatura?",
+   "enunciado": "Olhar só o valor mínimo, sem olhar o total",
+   "resposta": false,
+   "ancora": "Olhar só o mínimo esconde o tamanho real da dívida.",
+   "feedbackErro": "O mínimo parece a informação mais prática, e chama atenção primeiro. Mas sem o total, você não vê o tamanho real do que deve."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-do-parcial",
+   "criterio": "Ajuda a evitar dívida cara?",
+   "enunciado": "Pagar a fatura inteira sempre que possível",
+   "resposta": true,
+   "ancora": "Fatura paga inteira não gera juro nenhum.",
+   "feedbackErro": "Parece que qualquer pagamento já ajuda. Mas só o total inteiro evita todo o juro do rotativo — pagar em parte, não."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "ler-a-fatura",
+   "pergunta": "Qual frase resume a lição?",
+   "alternativas": [
+    {
+     "texto": "A fatura mostra total, mínimo e juros — o mínimo não livra do rotativo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pagando o mínimo em dia, a fatura nunca gera juro",
+     "correta": false,
+     "feedbackErro": "Pagar o mínimo evita o atraso, não o juro. O que sobra entra no rotativo e cresce a 14% ao mês."
+    },
+    {
+     "texto": "O valor mínimo é o valor real da fatura",
+     "correta": false,
+     "feedbackErro": "O mínimo é só uma fração do que você deve. O valor real é o total da fatura."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "custo-do-parcial",
+   "dificuldade": 2,
+   "pergunta": "Fatura de R$ 500, você paga R$ 200. Quanto entra no rotativo?",
+   "ancora": "500 menos 200 é 300 — o que sobra vira dívida com juros.",
+   "verificacao": { "expressao": "500-200", "esperado": 300 },
+   "alternativas": [
+    {
+     "texto": "R$ 300",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 200",
+     "correta": false,
+     "feedbackErro": "R$ 200 é o que você pagou, não o que sobrou. Subtraia: 500 menos 200 é 300."
+    },
+    {
+     "texto": "R$ 500",
+     "correta": false,
+     "feedbackErro": "R$ 500 seria a fatura inteira, sem nenhum pagamento. Você já pagou parte — sobram 300."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "ler-a-fatura",
+   "criterio": "Isso é verdade?",
+   "enunciado": "A 'melhor data de compra' é o mesmo que o vencimento da fatura",
+   "resposta": false,
+   "ancora": "A melhor data ajuda a comprar; o vencimento é quando pagar.",
+   "feedbackErro": "Os nomes parecem a mesma coisa, e por isso confundem. A melhor data indica quando comprar pra ganhar mais prazo; vencimento é a data de pagar."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "custo-do-parcial",
+   "instrucao": "Toque na ordem, do mais barato ao mais caro.",
+   "ancora": "Sem juro é sempre mais barato que deixar saldo no rotativo.",
+   "feedbackErro": "É fácil achar que parcelar já é caro. Mas sem juro custa o mesmo de sempre; o rotativo é que cobra o preço mais alto de todos.",
+   "itens": [
+    { "texto": "Pagar a fatura inteira", "posicaoCorreta": 1 },
+    { "texto": "Parcelar em 5x sem juros no cartão", "posicaoCorreta": 2 },
+    { "texto": "Pagar o mínimo e deixar o resto no rotativo", "posicaoCorreta": 3 }
+   ]
+  }
+ ]
+}

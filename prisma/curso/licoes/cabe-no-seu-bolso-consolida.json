@@ -1,0 +1,298 @@
+{
+ "slug": "cabe-no-seu-bolso-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "cabe-no-seu-bolso",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cabe-no-seu-bolso",
+   "criterio": "Ainda cabe, considerando tudo?",
+   "enunciado": "Parcela de R$ 400 numa renda de R$ 2.000, mais R$ 2.400 por ano de material guardados por mês",
+   "resposta": true,
+   "ancora": "R$400 + R$200 do material = 30% exatos — no limite do teto.",
+   "feedbackErro": "Somando a parcela ao valor mensal reservado pro material, dá exatamente 30% — ainda no limite do teto, não acima dele.",
+   "verificacao": { "expressao": "(400 + 2400/12)/2000*100", "esperado": 30 }
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cabe-no-seu-bolso",
+   "criterio": "Ainda cabe, considerando tudo?",
+   "enunciado": "Parcela de R$ 500 numa renda extra de R$ 3.000 que só aparece a cada 2 meses",
+   "resposta": false,
+   "ancora": "A renda média real é R$ 1.500 por mês — a parcela é 33,3% dela.",
+   "feedbackErro": "No mês que o dinheiro cai, parece folgado. Mas dividido pelos 2 meses, a renda média é R$ 1.500 — e a parcela passa dos 30%.",
+   "verificacao": { "expressao": "500/(3000/2)*100", "esperado": 33.33, "tolerancia": 0.1 }
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cabe-no-seu-bolso",
+   "criterio": "Ainda cabe, considerando tudo?",
+   "enunciado": "Empréstimo informal do irmão, sem data pra devolver e sem juros",
+   "resposta": true,
+   "ancora": "Sem juros e sem prazo fixo, não pressiona o orçamento mês a mês.",
+   "feedbackErro": "Parece dívida como qualquer outra, e por isso preocupa. Mas sem juros e sem prazo, ela não empurra o orçamento como um crédito formal."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "cabe-no-seu-bolso",
+   "dificuldade": 3,
+   "pergunta": "Quando a regra dos 30% sozinha não é suficiente pra decidir?",
+   "ancora": "Renda variável e gastos anuais escondidos pedem uma conta extra.",
+   "alternativas": [
+    {
+     "texto": "Quando a renda é variável ou tem gastos anuais escondidos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando a taxa de juros é baixa",
+     "correta": false,
+     "feedbackErro": "Taxa baixa não elimina a necessidade de checar a renda real disponível."
+    },
+    {
+     "texto": "Quando o crédito é parcelado em poucas vezes",
+     "correta": false,
+     "feedbackErro": "Poucas parcelas não mudam se a parcela cabe ou não na renda do mês."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "juros-por-tipo-de-credito",
+   "dificuldade": 3,
+   "pergunta": "Otávio troca um rotativo de R$1.000 (14% a.m., 1 mês) por um consignado em 20x a 1,8%. Economiza?",
+   "ancora": "20x a 1,8% somam 42,9% de juros — mais que 14% do rotativo em 1 mês.",
+   "verificacao": { "expressao": "1.018^20", "esperado": 1.4287, "tolerancia": 0.01 },
+   "alternativas": [
+    {
+     "texto": "Sim, porque a taxa é bem menor",
+     "correta": false,
+     "feedbackErro": "A taxa mensal é menor, mas 20 meses de juros compostos superam 1 mês de rotativo."
+    },
+    {
+     "texto": "Depende do prazo: 20x pode custar mais que 1 mês de rotativo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, porque consignado sempre custa mais",
+     "correta": false,
+     "feedbackErro": "Consignado costuma ser mais barato — o problema aqui é só o prazo, não o tipo de crédito."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "juros-por-tipo-de-credito",
+   "criterio": "Trocar de crédito sempre economiza?",
+   "enunciado": "Trocar uma taxa menor por um prazo bem mais longo",
+   "resposta": false,
+   "ancora": "Prazo longo pode anular a vantagem da taxa menor.",
+   "feedbackErro": "A troca parece sempre boa quando a taxa cai. Mas esticar demais o prazo pode fazer o total pago crescer mesmo com juros menores."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "cabe-no-seu-bolso",
+   "instrucao": "Ordene do que mais aperta pro que menos aperta o orçamento.",
+   "ancora": "Mesma parcela, apertos diferentes — o que muda é a renda disponível.",
+   "feedbackErro": "R$ 400 parece o dado principal, e não é: o que aperta é a proporção sobre o que sobra em cada caso.",
+   "itens": [
+    { "texto": "R$ 400 numa renda de R$ 1.000 que caiu pra R$ 700", "posicaoCorreta": 1 },
+    { "texto": "R$ 400 numa renda de R$ 1.600, com R$ 800 já comprometidos", "posicaoCorreta": 2 },
+    { "texto": "R$ 400 numa renda de R$ 2.000, sem outros compromissos", "posicaoCorreta": 3 },
+    { "texto": "R$ 400 numa renda de R$ 4.000, com bônus trimestral de R$ 1.000", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "cabe-no-seu-bolso",
+   "criterio": "Isso muda se a parcela cabe?",
+   "enunciado": "Um gasto anual grande, como material escolar, que ninguém guardou mês a mês",
+   "resposta": true,
+   "ancora": "Gasto anual não guardado é compromisso escondido que reduz a sobra.",
+   "feedbackErro": "Parece um problema à parte, fora do cálculo mensal. Mas se ninguém guardou nada pra ele, ele vai comer o orçamento do mês em que chegar."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "juros-por-tipo-de-credito",
+   "criterio": "Isso muda se a parcela cabe?",
+   "enunciado": "O nome do banco que oferece o crédito",
+   "resposta": false,
+   "ancora": "O nome do banco não muda a taxa nem a renda disponível.",
+   "feedbackErro": "O nome passa confiança, e é por isso que parece importar. Mas o que decide se cabe é a taxa e a renda, não a marca."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "cabe-no-seu-bolso",
+   "pergunta": "Renda de R$ 1.800, com R$ 3.600 de gasto anual dividido em 12. Qual o teto real de parcela (30%)?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 600,
+   "gabarito": 450,
+   "toleranciaPct": 20,
+   "fonte": "regra dos 30% aplicada sobre a renda disponível, após reservas fixas",
+   "verificacao": { "expressao": "(1800 - 3600/12)*0.3", "esperado": 450 },
+   "feedbackPerto": "Isso mesmo — R$ 450, calculado sobre os R$ 1.500 que sobram depois da reserva anual.",
+   "feedbackLonge": "O teto real é R$ 450. Antes de aplicar os 30%, tire a reserva mensal do gasto anual (R$ 300) da renda."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "cabe-no-seu-bolso",
+   "dificuldade": 3,
+   "pergunta": "Duas parcelas cabem separadamente nos 30%, mas juntas passariam do teto. O que fazer?",
+   "ancora": "O teto vale sobre o total comprometido, não sobre cada crédito.",
+   "alternativas": [
+    {
+     "texto": "Contratar as duas, já que cada uma sozinha cabe",
+     "correta": false,
+     "feedbackErro": "Cada uma cabe isolada, mas o teto é sobre o total comprometido, não sobre cada crédito separado."
+    },
+    {
+     "texto": "Somar as duas parcelas e comparar o total com o teto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Contratar só a que tem a taxa mais baixa",
+     "correta": false,
+     "feedbackErro": "Taxa baixa não resolve: somada à outra, ela ainda pode estourar o teto."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "juros-por-tipo-de-credito",
+   "dificuldade": 3,
+   "pergunta": "Quando vale trocar uma dívida cara por uma mais barata, mesmo pagando multa pra sair da primeira?",
+   "ancora": "A multa é custo único; compare com a economia de juros no prazo.",
+   "alternativas": [
+    {
+     "texto": "Nunca, porque pagar multa é sempre prejuízo",
+     "correta": false,
+     "feedbackErro": "A multa é um custo único; se a economia de juros for maior que ela, ainda compensa trocar."
+    },
+    {
+     "texto": "Quando a economia de juros supera o valor da multa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sempre, já que qualquer taxa menor compensa",
+     "correta": false,
+     "feedbackErro": "Se a multa for maior que a economia esperada, a troca sai no prejuízo."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "cabe-no-seu-bolso",
+   "criterio": "Isso é um caso em que o 'cabe' engana?",
+   "enunciado": "Duas parcelas pequenas que, juntas, passam do teto de 30%",
+   "resposta": true,
+   "ancora": "Isoladas, cabem; somadas, estouram — o teto é sobre o total.",
+   "feedbackErro": "Cada parcela sozinha parece OK, e é aí que mora o engano. O teto vale para a soma de tudo que está comprometido."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "juros-por-tipo-de-credito",
+   "criterio": "A taxa menor engana neste caso?",
+   "enunciado": "Taxa menor num prazo bem mais longo que o original",
+   "resposta": true,
+   "ancora": "Prazo longo pode fazer o total superar a dívida mais cara e curta.",
+   "feedbackErro": "Taxa menor parece vitória garantida. Mas em prazo longo demais, os juros compostos podem cobrar mais no total."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "cabe-no-seu-bolso",
+   "pergunta": "Depois dos casos-limite, qual frase é mais completa?",
+   "alternativas": [
+    {
+     "texto": "Basta olhar a taxa: a menor sempre cabe melhor no bolso.",
+     "correta": false,
+     "feedbackErro": "Taxa menor em prazo muito longo pode custar mais no total — o prazo também entra na conta."
+    },
+    {
+     "texto": "Cabe no bolso quem soma compromissos, olha a renda real e o custo total",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se cada parcela cabe sozinha, o conjunto sempre cabe.",
+     "correta": false,
+     "feedbackErro": "Parcelas somadas podem estourar o teto mesmo quando cada uma, isolada, parece caber."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "cabe-no-seu-bolso",
+   "instrucao": "Entra no cálculo dos 30%?",
+   "ancora": "Entra o que já é compromisso: contrato, prazo, juros ou reserva planejada.",
+   "feedbackErro": "Um sonho ou um empréstimo informal sem prazo não pressionam o orçamento como um contrato — por isso ficam de fora.",
+   "caixas": [
+    { "id": "entra", "rotulo": "Entra" },
+    { "id": "nao", "rotulo": "Não entra" }
+   ],
+   "itens": [
+    { "texto": "Parcela de um crediário ativo", "caixaCorreta": "entra" },
+    { "texto": "Gasto anual dividido por 12 e guardado todo mês", "caixaCorreta": "entra" },
+    { "texto": "Dinheiro emprestado sem juros e sem data", "caixaCorreta": "nao" },
+    { "texto": "Sonho de comprar algo no futuro, sem contrato", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "juros-por-tipo-de-credito",
+   "dificuldade": 3,
+   "pergunta": "R$ 1.200 no rotativo por 2 meses (14% a.m.) vs. consignado em 15x (1,8% a.m.). Qual pesa mais?",
+   "ancora": "2 meses de rotativo somam R$ 359,52; 15 meses de consignado somam R$ 368,19.",
+   "verificacao": { "expressao": "1200*1.018^15 - 1200*1.14^2", "esperado": 8.67, "tolerancia": 0.5 },
+   "alternativas": [
+    {
+     "texto": "O rotativo, porque a taxa mensal é maior",
+     "correta": false,
+     "feedbackErro": "A taxa mensal é maior, mas só por 2 meses — o prazo curto limita o total."
+    },
+    {
+     "texto": "O consignado, porque 15 meses de juros somam mais que 2 meses de rotativo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Os dois pesam exatamente igual",
+     "correta": false,
+     "feedbackErro": "São próximos, mas não iguais — o consignado passa o rotativo por causa do prazo bem mais longo."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "cabe-no-seu-bolso",
+   "criterio": "É verdade?",
+   "enunciado": "O teto de 30% é fixo e nunca muda com a situação",
+   "resposta": false,
+   "ancora": "O teto é um guia geral — renda instável pede mais folga.",
+   "feedbackErro": "30% funciona como referência, mas não é lei fixa: renda variável ou gastos escondidos pedem uma margem menor."
+  }
+ ]
+}

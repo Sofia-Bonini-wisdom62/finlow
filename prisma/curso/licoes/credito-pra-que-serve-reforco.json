@@ -1,0 +1,293 @@
+{
+ "slug": "credito-pra-que-serve-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "credito-pra-que-serve",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "credito-pra-que-serve",
+   "criterio": "Isso ainda conta como crédito?",
+   "enunciado": "Financiar uma bicicleta em 10x na loja de esportes",
+   "resposta": true,
+   "ancora": "Financiamento é crédito: o banco por trás da loja adianta o valor.",
+   "feedbackErro": "O nome muda — 'financiamento' em vez de 'empréstimo' — mas o mecanismo é o mesmo: alguém adianta o dinheiro e você paga depois, com juros."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "credito-pra-que-serve",
+   "criterio": "Isso ainda conta como crédito?",
+   "enunciado": "Usar o 13º salário guardado pra comprar um computador",
+   "resposta": false,
+   "ancora": "Dinheiro que já é seu, mesmo guardado por meses, não é crédito.",
+   "feedbackErro": "Parece crédito por envolver uma compra grande e planejada. Mas o 13º já é dinheiro seu — sem empréstimo, não tem crédito."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "credito-pra-que-serve",
+   "criterio": "Isso ainda conta como crédito?",
+   "enunciado": "Pedir consignado no banco pra reformar a cozinha",
+   "resposta": true,
+   "ancora": "Consignado desconta direto na folha, mas continua sendo empréstimo.",
+   "feedbackErro": "O desconto automático no salário confunde, parece 'já pago'. Mas antes disso o banco emprestou o valor — é crédito."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "credito-pra-que-serve",
+   "dificuldade": 2,
+   "pergunta": "Deixar de pagar o aluguel no prazo e pagar depois com multa. Isso é um caso de crédito?",
+   "ancora": "Crédito exige alguém emprestando antes; atraso é só multa por atraso.",
+   "alternativas": [
+    {
+     "texto": "Não — não houve empréstimo, só atraso com penalidade",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque o pagamento também foi adiado",
+     "correta": false,
+     "feedbackErro": "Adiar o pagamento parece igual a pegar crédito, mas aqui ninguém emprestou nada: foi atraso, e a multa não é juro de empréstimo."
+    },
+    {
+     "texto": "Sim, porque tem penalidade por atraso",
+     "correta": false,
+     "feedbackErro": "Ter penalidade não define crédito: crédito exige que alguém adiante o dinheiro antes — aqui isso não aconteceu."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "credito-pra-que-serve",
+   "dificuldade": 2,
+   "pergunta": "Um aplicativo de fintech aprova empréstimos sem agência física. Ele conta como agente financeiro?",
+   "ancora": "O que conta é a autorização pra operar, não ter agência.",
+   "alternativas": [
+    {
+     "texto": "Sim, se for autorizado a operar como instituição financeira",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, porque não tem agência física",
+     "correta": false,
+     "feedbackErro": "Prédio não é o que define — regulação, sim: fintechs autorizadas são agentes financeiros mesmo sem agência."
+    },
+    {
+     "texto": "Só conta se for ligada a um banco tradicional",
+     "correta": false,
+     "feedbackErro": "Fintechs podem operar de forma independente, com autorização própria — não precisam de um banco por trás."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "credito-pra-que-serve",
+   "criterio": "Ainda é um agente financeiro?",
+   "enunciado": "Uma casa de penhores licenciada",
+   "resposta": true,
+   "ancora": "Casas de penhores também são reguladas como agentes de crédito.",
+   "feedbackErro": "Parece só uma loja de usados, e por isso confunde. Mas casas de penhores licenciadas são reguladas e oferecem crédito com garantia."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "credito-pra-que-serve",
+   "instrucao": "É um exemplo de crédito, mesmo informal?",
+   "ancora": "Crédito pode ser formal ou informal — o que importa é alguém adiantar.",
+   "feedbackErro": "Fiado também é crédito, mesmo sem banco: alguém confia e adianta. Já vale-benefício e troca de plano não envolvem nada emprestado.",
+   "caixas": [
+    {
+     "id": "credito",
+     "rotulo": "É crédito"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é crédito"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Comprar fiado na padaria do bairro",
+     "caixaCorreta": "credito"
+    },
+    {
+     "texto": "Usar o vale-alimentação da empresa pra comprar mercado",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Fazer um empréstimo consignado",
+     "caixaCorreta": "credito"
+    },
+    {
+     "texto": "Trocar de plano de celular sem custo",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "credito-pra-que-serve",
+   "criterio": "Ainda é um agente financeiro?",
+   "enunciado": "Cooperativa que só empresta pra quem é sócio dela",
+   "resposta": true,
+   "ancora": "Restringir pra cooperados não tira o status de agente regulado.",
+   "feedbackErro": "A regra de 'só pra sócios' parece uma exceção que tira a instituição da categoria. Mas cooperativas de crédito continuam reguladas e são agentes financeiros."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "credito-pra-que-serve",
+   "dificuldade": 2,
+   "pergunta": "Théo tem R$ 340 guardados; a bicicleta custa R$ 890. O crédito resolve qual parte da conta?",
+   "ancora": "R$ 890 − R$ 340 = R$ 550: é essa diferença que o crédito cobre.",
+   "alternativas": [
+    {
+     "texto": "A diferença de R$ 550 entre o que ele tem e o preço",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O valor total da bicicleta",
+     "correta": false,
+     "feedbackErro": "Ele já tem R$ 340 — o crédito não precisa cobrir o preço inteiro, só o que falta."
+    },
+    {
+     "texto": "O tempo que ele vai usar a bicicleta",
+     "correta": false,
+     "feedbackErro": "Tempo de uso não é o que o crédito resolve; ele resolve a falta de dinheiro agora."
+    }
+   ],
+   "verificacao": {
+    "expressao": "890-340",
+    "esperado": 550
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "credito-pra-que-serve",
+   "criterio": "É um agente financeiro regulado?",
+   "enunciado": "O primo que empresta dinheiro no boca a boca, cobrando juros",
+   "resposta": false,
+   "ancora": "Cobrar juros não torna alguém um agente financeiro regulado.",
+   "feedbackErro": "Cobrar juros parece coisa de banco, e é aí que engana. Mas sem autorização e regulação, é empréstimo informal."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "credito-pra-que-serve",
+   "criterio": "Essa é a função do crédito?",
+   "enunciado": "Usar crédito pra comprar o que quiser, sem olhar se cabe no orçamento",
+   "resposta": false,
+   "ancora": "O crédito cobre uma diferença real — não substitui checar o que cabe.",
+   "feedbackErro": "Como o crédito libera dinheiro na hora, parece dar liberdade total de compra. Mas se não cabe no orçamento, o problema só é adiado."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "credito-pra-que-serve",
+   "pergunta": "Depois desse encontro, qual frase está mais certa sobre o crédito?",
+   "alternativas": [
+    {
+     "texto": "Cobre a diferença entre ter e precisar, oferecido por agentes regulados",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ele é sempre formal, feito só em banco físico",
+     "correta": false,
+     "feedbackErro": "Fintechs e cooperativas também oferecem crédito regulado, sem agência física."
+    },
+    {
+     "texto": "Ele serve pra comprar o que quiser, sem limite",
+     "correta": false,
+     "feedbackErro": "Crédito cobre uma diferença real — usar sem limite só adia o problema, com juros."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "credito-pra-que-serve",
+   "instrucao": "Ordene do crédito com menos garantia pro que exige mais confiança.",
+   "ancora": "Quanto menor a garantia, mais o banco exige antes de aprovar.",
+   "feedbackErro": "A ordem segue o quanto o banco precisa confiar em quem pede — não o valor emprestado.",
+   "itens": [
+    {
+     "texto": "Cartão de crédito com limite pequeno",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Empréstimo pessoal sem garantia",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Financiamento de veículo com o próprio veículo como garantia",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "credito-pra-que-serve",
+   "instrucao": "Essa cobrança está ligada a crédito informal?",
+   "ancora": "Sem contrato nem registro, o crédito foge da proteção do sistema.",
+   "feedbackErro": "Juros cobrados fora de instituição registrada, sem contrato claro, são sinal de crédito informal.",
+   "caixas": [
+    {
+     "id": "informal",
+     "rotulo": "Informal"
+    },
+    {
+     "id": "formal",
+     "rotulo": "Formal"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Empréstimo com um conhecido, sem contrato",
+     "caixaCorreta": "informal"
+    },
+    {
+     "texto": "Financiamento aprovado por um banco digital",
+     "caixaCorreta": "formal"
+    },
+    {
+     "texto": "Dinheiro emprestado por um agiota do bairro",
+     "caixaCorreta": "informal"
+    },
+    {
+     "texto": "Consignado descontado direto na folha",
+     "caixaCorreta": "formal"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "credito-pra-que-serve",
+   "pergunta": "Uma bicicleta custa R$ 780. A pessoa já juntou R$ 260. Quanto falta cobrir com crédito?",
+   "campo": "moeda",
+   "min": 100,
+   "max": 1500,
+   "gabarito": 520,
+   "toleranciaPct": 20,
+   "fonte": "diferença entre o preço e o valor já guardado",
+   "feedbackPerto": "Isso mesmo — R$ 520 é o que falta, e é isso que o crédito cobre.",
+   "feedbackLonge": "R$ 520: subtraia o que já foi guardado do preço total.",
+   "verificacao": {
+    "expressao": "780-260",
+    "esperado": 520
+   }
+  }
+ ]
+}

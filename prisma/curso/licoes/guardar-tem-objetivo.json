@@ -1,0 +1,239 @@
+{
+ "slug": "guardar-tem-objetivo",
+ "segmento": "ef35",
+ "conceitoPrincipal": "guardar-tem-objetivo",
+ "fraseConceito": "Guardar dinheiro com um objetivo em mente ajuda a conseguir o que você quer, em vez de gastar tudo na hora.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "guardar-com-objetivo",
+   "criterio": "É guardar com um objetivo?",
+   "enunciado": "Juntar moedas no cofrinho para comprar um jogo",
+   "resposta": true,
+   "ancora": "Guardar pensando em algo específico é ter objetivo.",
+   "feedbackErro": "Parece só guardar moeda por guardar, mas o jogo em mente é o objetivo — é isso que muda tudo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "guardar-com-objetivo",
+   "criterio": "É guardar com um objetivo?",
+   "enunciado": "Deixar o troco jogado na gaveta, sem pensar em nada",
+   "resposta": false,
+   "ancora": "Sem um objetivo, isso é só esquecer dinheiro por aí.",
+   "feedbackErro": "O dinheiro até fica guardado, mas sem um objetivo por trás, não conta como juntar de verdade."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar-e-nao-gastar",
+   "criterio": "Isso é poupar?",
+   "enunciado": "Gastar toda a mesada no mesmo dia em que ela chega",
+   "resposta": false,
+   "ancora": "Poupar é guardar parte para depois, não gastar tudo na hora.",
+   "feedbackErro": "Parece só um jeito de usar o dinheiro, mas gastar tudo de uma vez é consumir, não poupar."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "guardar-com-objetivo",
+   "dificuldade": 1,
+   "pergunta": "Heitor quer um skate de R$ 120. Ele já juntou R$ 40. Quanto falta pra completar o objetivo?",
+   "ancora": "120 menos 40 é 80 — é isso que ainda falta guardar.",
+   "verificacao": { "expressao": "120-40", "esperado": 80 },
+   "alternativas": [
+    {
+     "texto": "R$ 40",
+     "correta": false,
+     "feedbackErro": "R$ 40 é o que ele já tem guardado, não o que falta. Subtraia: 120 menos 40 é 80."
+    },
+    {
+     "texto": "R$ 80",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 120",
+     "correta": false,
+     "feedbackErro": "R$ 120 é o preço do skate inteiro, sem contar o que ele já guardou. Falta só a diferença: 80."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "poupar-e-nao-gastar",
+   "dificuldade": 1,
+   "pergunta": "Toda semana sobram R$ 5 depois dos gastos. Qual é o jeito de poupar de verdade?",
+   "ancora": "Guardar a sobra separada é o que garante que ela vira poupança.",
+   "alternativas": [
+    {
+     "texto": "Guardar os R$ 5 num lugar separado, toda semana",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Deixar os R$ 5 misturados com o resto do dinheiro",
+     "correta": false,
+     "feedbackErro": "O dinheiro continua existindo, mas misturado ele some nos gastos do dia a dia."
+    },
+    {
+     "texto": "Gastar os R$ 5 porque é pouco e não faz diferença",
+     "correta": false,
+     "feedbackErro": "Parece pouco, mas juntando toda semana o valor cresce — é a soma que faz diferença."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "prazo-da-reserva",
+   "criterio": "É guardar pensando no futuro?",
+   "enunciado": "Separar dinheiro toda semana pensando na viagem de julho",
+   "resposta": true,
+   "ancora": "Guardar mirando numa data futura é reserva com prazo.",
+   "feedbackErro": "Parece só guardar, mas quando existe uma data no futuro guiando, é reserva com prazo definido."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "guardar-com-objetivo",
+   "instrucao": "Isso é guardar com objetivo? Arraste.",
+   "ancora": "Tem objetivo quando existe um plano por trás do dinheiro guardado.",
+   "feedbackErro": "O que muda não é guardar ou gastar sozinho, é ter um plano por trás do dinheiro guardado.",
+   "caixas": [
+    { "id": "sim", "rotulo": "É guardar com objetivo" },
+    { "id": "nao", "rotulo": "Não é" }
+   ],
+   "itens": [
+    { "texto": "Juntar dinheiro toda semana para comprar uma bicicleta", "caixaCorreta": "sim" },
+    { "texto": "Gastar a mesada inteira em doces no mesmo dia", "caixaCorreta": "nao" },
+    { "texto": "Guardar parte do dinheiro do lanche para o passeio da escola", "caixaCorreta": "sim" },
+    { "texto": "Deixar moedas se perderem no fundo da mochila", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "poupar-e-nao-gastar",
+   "criterio": "É um jeito de poupar?",
+   "enunciado": "Comprar um brinquedo caro assim que ele chama atenção na loja",
+   "resposta": false,
+   "ancora": "Comprar na hora é consumir; poupar é guardar antes de decidir.",
+   "feedbackErro": "Comprar parece inofensivo quando dá vontade, mas ceder na hora é gastar — poupar é guardar antes."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "prazo-da-reserva",
+   "dificuldade": 1,
+   "pergunta": "Um passeio da escola custa R$ 60 e acontece daqui a 6 semanas. Quanto guardar por semana?",
+   "ancora": "60 dividido por 6 semanas é 10 por semana.",
+   "verificacao": { "expressao": "60/6", "esperado": 10 },
+   "alternativas": [
+    {
+     "texto": "R$ 10 por semana",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 6 por semana",
+     "correta": false,
+     "feedbackErro": "Você trocou o valor total pelo número de semanas. É o contrário: 60 dividido por 6 dá 10."
+    },
+    {
+     "texto": "R$ 60 numa semana só",
+     "correta": false,
+     "feedbackErro": "Guardar tudo de uma vez é possível, mas a pergunta pede o valor por semana, que é 10."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "guardar-com-objetivo",
+   "criterio": "Ajuda a alcançar o objetivo?",
+   "enunciado": "Guardar o dinheiro num pote que só se abre quando o valor completa",
+   "resposta": true,
+   "ancora": "Dificultar mexer no dinheiro ajuda a não gastar antes da hora.",
+   "feedbackErro": "Parece só um detalhe, mas um pote difícil de abrir evita a tentação de pegar o dinheiro cedo demais."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "poupar-e-nao-gastar",
+   "criterio": "Isso ajuda a poupar?",
+   "enunciado": "Anotar quanto já foi guardado toda semana",
+   "resposta": true,
+   "ancora": "Ver o progresso ajuda a continuar guardando até o fim.",
+   "feedbackErro": "Anotar parece um detalhe extra, mas ver o quanto já foi guardado ajuda a não desistir no meio do caminho."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "guardar-com-objetivo",
+   "pergunta": "Qual frase resume o que você aprendeu?",
+   "alternativas": [
+    {
+     "texto": "Guardar dinheiro só serve se você nunca gastar nada",
+     "correta": false,
+     "feedbackErro": "Guardar não é nunca gastar — é separar parte com um objetivo, e gastar o resto normalmente."
+    },
+    {
+     "texto": "Guardar dinheiro com um objetivo ajuda a conseguir o que você quer",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O valor guardado não importa, só a vontade de guardar",
+     "correta": false,
+     "feedbackErro": "A vontade ajuda a começar, mas sem separar um valor de verdade, o objetivo não sai do lugar."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "prazo-da-reserva",
+   "instrucao": "Toque na ordem, do que junta mais rápido pro que demora mais.",
+   "ancora": "Quanto maior o valor do objetivo, mais tempo leva pra guardar.",
+   "feedbackErro": "O tempo não depende de gostar mais ou menos da coisa, depende do valor: quanto maior o preço, mais semanas de guardar.",
+   "itens": [
+    { "texto": "Juntar para um chiclete de R$ 2", "posicaoCorreta": 1 },
+    { "texto": "Juntar para um livro de R$ 20", "posicaoCorreta": 2 },
+    { "texto": "Juntar para uma bicicleta de R$ 200", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "guardar-com-objetivo",
+   "instrucao": "Tem um objetivo por trás? Arraste.",
+   "ancora": "Objetivo é saber pra que está guardando, não só guardar.",
+   "feedbackErro": "Guardar sem saber pra quê é só acumular. Ter um objetivo é saber exatamente pra que serve aquele dinheiro.",
+   "caixas": [
+    { "id": "sim", "rotulo": "Tem objetivo" },
+    { "id": "nao", "rotulo": "Não tem" }
+   ],
+   "itens": [
+    { "texto": "Guardar R$ 5 por semana para o presente de aniversário da mãe", "caixaCorreta": "sim" },
+    { "texto": "Guardar moedas sem saber pra quê, só porque sim", "caixaCorreta": "nao" },
+    { "texto": "Juntar dinheiro do lanche pra comprar um jogo em 2 meses", "caixaCorreta": "sim" },
+    { "texto": "Deixar dinheiro parado numa gaveta, esquecido", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "poupar-e-nao-gastar",
+   "criterio": "É poupar?",
+   "enunciado": "Guardar metade do dinheiro do aniversário e gastar a outra metade",
+   "resposta": true,
+   "ancora": "Poupar não precisa ser tudo — guardar uma parte já é poupar.",
+   "feedbackErro": "Parece que só conta se guardar tudo, mas poupar é guardar parte — mesmo que gaste o resto."
+  }
+ ]
+}

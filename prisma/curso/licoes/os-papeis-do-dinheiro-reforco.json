@@ -1,0 +1,249 @@
+{
+ "slug": "os-papeis-do-dinheiro-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "os-papeis-do-dinheiro",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "tipo-de-documento",
+   "criterio": "É uma fatura de cartão?",
+   "enunciado": "O papel mensal que lista todas as compras feitas no cartão",
+   "resposta": true,
+   "ancora": "Fatura reúne as compras do cartão feitas no período.",
+   "feedbackErro": "Parece um resumo qualquer do banco. Mas essa lista mensal de compras no cartão é justamente a fatura."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "tipo-de-documento",
+   "criterio": "É uma nota promissória?",
+   "enunciado": "Um papel que promete pagar uma dívida numa data futura, assinado",
+   "resposta": true,
+   "ancora": "Nota promissória é uma promessa de pagamento por escrito, assinada.",
+   "feedbackErro": "Parece só um papel de anotação qualquer. Mas essa promessa de pagamento assinada é exatamente uma nota promissória."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "info-no-documento",
+   "criterio": "Está na fatura do cartão?",
+   "enunciado": "O valor mínimo que pode ser pago sem atrasar",
+   "resposta": true,
+   "ancora": "Fatura sempre mostra o valor mínimo, além do total.",
+   "feedbackErro": "Parece que a fatura só mostra o total gasto. Mas ela também traz o valor mínimo, separado do total."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "tipo-de-documento",
+   "dificuldade": 2,
+   "pergunta": "Léo emprestou dinheiro pro colega, que assinou um papel prometendo pagar em 30 dias. Que documento é esse?",
+   "ancora": "Promessa de pagamento assinada, com prazo, é nota promissória.",
+   "alternativas": [
+    {
+     "texto": "Uma nota promissória",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Um cupom fiscal",
+     "correta": false,
+     "feedbackErro": "Cupom fiscal registra uma compra numa loja, não uma promessa entre pessoas. O papel assinado prometendo pagar é a nota promissória."
+    },
+    {
+     "texto": "Um extrato bancário",
+     "correta": false,
+     "feedbackErro": "Extrato mostra movimentações de uma conta bancária, não uma promessa assinada entre duas pessoas. Isso é uma nota promissória."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "info-no-documento",
+   "dificuldade": 2,
+   "pergunta": "Na fatura do cartão, onde você vê os juros cobrados por não pagar tudo antes?",
+   "ancora": "Encargos é o campo específico dos juros cobrados na fatura.",
+   "alternativas": [
+    {
+     "texto": "No campo de encargos ou juros do rotativo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "No total das compras do mês",
+     "correta": false,
+     "feedbackErro": "O total das compras é só a soma do que foi gasto. Os juros aparecem separados, num campo próprio de encargos."
+    },
+    {
+     "texto": "No nome do banco emissor do cartão",
+     "correta": false,
+     "feedbackErro": "O nome do banco identifica quem emitiu o cartão, não mostra valores cobrados. Os juros ficam no campo de encargos."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "tipo-de-documento",
+   "criterio": "É um extrato bancário?",
+   "enunciado": "O papel que a loja entrega junto com o produto, mostrando o preço",
+   "resposta": false,
+   "ancora": "Isso é cupom fiscal — extrato é da conta bancária.",
+   "feedbackErro": "Parece extrato, porque também mostra valores. Mas esse papel da loja é o cupom fiscal — extrato é a lista de movimentações da sua conta."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "info-no-documento",
+   "instrucao": "Essa informação está na fatura do cartão? Arraste.",
+   "ancora": "Fatura mostra valores e datas de pagamento, não dados sigilosos.",
+   "feedbackErro": "Senha e origem do cartão parecem dados relevantes, mas não aparecem na fatura por segurança. O que a fatura traz são valores e datas.",
+   "caixas": [
+    { "id": "esta", "rotulo": "Está na fatura" },
+    { "id": "naoesta", "rotulo": "Não está" }
+   ],
+   "itens": [
+    { "texto": "Valor mínimo pra pagamento", "caixaCorreta": "esta" },
+    { "texto": "Senha do cartão", "caixaCorreta": "naoesta" },
+    { "texto": "Data de vencimento", "caixaCorreta": "esta" },
+    { "texto": "Nome da loja onde o cartão foi comprado", "caixaCorreta": "naoesta" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "info-no-documento",
+   "criterio": "Está na nota promissória?",
+   "enunciado": "A data em que o pagamento prometido deve acontecer",
+   "resposta": true,
+   "ancora": "Nota promissória sempre traz a data prometida do pagamento.",
+   "feedbackErro": "Parece que a promessa é só de boa fé, sem data marcada. Mas a nota promissória sempre inclui a data em que o pagamento deve acontecer."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "tipo-de-documento",
+   "dificuldade": 2,
+   "pergunta": "Sua fatura mostra total de R$ 90 e mínimo de R$ 18. Quanto ficaria no rotativo se você pagasse só o mínimo?",
+   "ancora": "90 menos 18 é 72 — o que sobra pro rotativo pagando só o mínimo.",
+   "verificacao": { "expressao": "90-18", "esperado": 72 },
+   "alternativas": [
+    {
+     "texto": "R$ 72",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 18",
+     "correta": false,
+     "feedbackErro": "R$ 18 é o valor que você pagou, não o que sobrou. Subtraia do total: 90 menos 18 é 72."
+    },
+    {
+     "texto": "R$ 90",
+     "correta": false,
+     "feedbackErro": "R$ 90 seria o total sem nenhum pagamento. Como o mínimo de 18 foi pago, sobram 72 no rotativo."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "info-no-documento",
+   "criterio": "Está no extrato bancário?",
+   "enunciado": "O nome de cada loja onde você usou o cartão de débito",
+   "resposta": true,
+   "ancora": "Extrato detalha cada movimentação, incluindo onde foi feita.",
+   "feedbackErro": "Parece que o extrato só soma valores, sem detalhe. Mas ele lista cada movimentação, incluindo o nome de onde foi feita."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "tipo-de-documento",
+   "criterio": "Ajuda a organizar as finanças?",
+   "enunciado": "Comparar a fatura do cartão com o extrato da conta todo mês",
+   "resposta": true,
+   "ancora": "Comparar os dois ajuda a notar cobranças estranhas ou esquecidas.",
+   "feedbackErro": "Parece trabalho repetido, já que os dois falam de dinheiro. Mas comparar fatura e extrato ajuda a notar cobranças estranhas ou pagamentos esquecidos."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "tipo-de-documento",
+   "pergunta": "Qual ideia fecha este encontro?",
+   "alternativas": [
+    {
+     "texto": "Cada documento guarda uma informação específica, no seu campo certo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Todos os papéis financeiros mostram exatamente as mesmas informações",
+     "correta": false,
+     "feedbackErro": "Cada um mostra informações diferentes: fatura traz mínimo e encargos, extrato traz movimentações, nota promissória traz uma promessa assinada."
+    },
+    {
+     "texto": "A senha do cartão aparece impressa na fatura, por segurança",
+     "correta": false,
+     "feedbackErro": "É o contrário: por segurança, a senha nunca aparece impressa em nenhum documento, nem na fatura."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "info-no-documento",
+   "dificuldade": 3,
+   "pergunta": "Onde você confirma se uma cobrança na fatura realmente é sua?",
+   "ancora": "Comparar detalhamento com a memória das compras confirma cobranças.",
+   "alternativas": [
+    {
+     "texto": "Comparando com o extrato e as compras que lembra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Olhando só o total da fatura, sem detalhar",
+     "correta": false,
+     "feedbackErro": "O total sozinho não mostra de onde vem cada cobrança. É preciso olhar o detalhamento, comparando com o que você lembra ter comprado."
+    },
+    {
+     "texto": "Perguntando pro banco qual é a senha do cartão",
+     "correta": false,
+     "feedbackErro": "A senha não tem relação com confirmar cobranças. O que ajuda é comparar o detalhamento da fatura com suas compras."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "info-no-documento",
+   "criterio": "Está na nota promissória?",
+   "enunciado": "O código de barras pra pagar no banco",
+   "resposta": false,
+   "ancora": "Código de barras é do boleto — nota promissória não tem isso.",
+   "feedbackErro": "Parece que todo papel de cobrança tem código de barras. Mas nota promissória é um documento assinado entre pessoas, sem código de barras."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "tipo-de-documento",
+   "instrucao": "Está na fatura do cartão ou no extrato bancário? Arraste.",
+   "ancora": "Fatura é sobre o cartão; extrato é sobre a conta inteira.",
+   "feedbackErro": "Os dois falam de dinheiro, e por isso confundem. Mas fatura é específica do cartão de crédito; extrato cobre tudo que passa pela conta.",
+   "caixas": [
+    { "id": "fatura", "rotulo": "Fatura do cartão" },
+    { "id": "extrato", "rotulo": "Extrato bancário" }
+   ],
+   "itens": [
+    { "texto": "Valor mínimo pra pagar", "caixaCorreta": "fatura" },
+    { "texto": "Saques feitos no caixa eletrônico", "caixaCorreta": "extrato" },
+    { "texto": "Encargos do rotativo", "caixaCorreta": "fatura" },
+    { "texto": "Depósitos recebidos na conta", "caixaCorreta": "extrato" }
+   ]
+  }
+ ]
+}

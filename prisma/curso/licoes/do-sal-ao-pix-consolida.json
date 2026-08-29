@@ -1,0 +1,267 @@
+{
+ "slug": "do-sal-ao-pix-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "do-sal-ao-pix",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "formas-do-dinheiro",
+   "criterio": "Cumpre os 3 critérios de dinheiro?",
+   "enunciado": "Uma criptomoeda sem nenhuma comunidade disposta a aceitá-la em troca",
+   "resposta": false,
+   "ancora": "Falta aceitação — sem quem aceite, não é dinheiro.",
+   "feedbackErro": "A tecnologia por trás pode ser sofisticada, mas sem ninguém topando aceitar em troca de bens e serviços, ela não cumpre a função de dinheiro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "formas-do-dinheiro",
+   "criterio": "Cumpre os 3 critérios de dinheiro?",
+   "enunciado": "Pontos de milhagem aceitos só dentro de uma única companhia aérea",
+   "resposta": false,
+   "ancora": "Aceito só num lugar não é aceitação geral.",
+   "feedbackErro": "Pontos de milhagem têm valor real, sim. Mas só dentro daquele sistema fechado — fora dali, ninguém troca nada por eles, e isso os tira da categoria de dinheiro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "formas-do-dinheiro",
+   "criterio": "Cumpre os 3 critérios de dinheiro?",
+   "enunciado": "Real digital emitido e garantido pelo Banco Central",
+   "resposta": true,
+   "ancora": "Emissor reconhecido, aceito amplamente — cumpre os três.",
+   "feedbackErro": "Por não ter forma física, pode parecer 'menos dinheiro' que uma cédula. Mas o que garante o valor é o Banco Central por trás, exatamente como no papel."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "formas-do-dinheiro",
+   "dificuldade": 3,
+   "pergunta": "Uma comunidade cria uma 'moeda social' só para trocas dentro do bairro. Quando ela deixa de funcionar como dinheiro?",
+   "ancora": "Moeda limitada a um território só cai se ali param de aceitá-la.",
+   "alternativas": [
+    {
+     "texto": "Quando ninguém de fora do bairro aceita trocar por ela",
+     "correta": false,
+     "feedbackErro": "Moeda social funciona justamente porque circula só dentro de um território combinado — isso não a invalida, é o próprio desenho dela."
+    },
+    {
+     "texto": "Quando quem está dentro do bairro para de aceitá-la",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando ela não é feita de papel oficial",
+     "correta": false,
+     "feedbackErro": "O material nunca foi o critério — sal e Pix mostram isso. O que derruba uma moeda social é a comunidade parar de aceitá-la, não o material dela."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "formas-do-dinheiro",
+   "dificuldade": 3,
+   "pergunta": "Um jogo online usa 'créditos' que só valem dentro das suas regras. Isso é dinheiro, no sentido econômico?",
+   "ancora": "Falta aceitação ampla fora do sistema fechado do jogo.",
+   "alternativas": [
+    {
+     "texto": "Sim, tem valor de mercado, dá pra revender fora",
+     "correta": false,
+     "feedbackErro": "Revender fora é uma exceção, não a regra — a maioria desses créditos só circula dentro das regras do próprio jogo, sem aceitação geral fora dali."
+    },
+    {
+     "texto": "Não, porque a aceitação se limita ao universo daquele jogo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, porque crédito digital nunca teve valor real",
+     "correta": false,
+     "feedbackErro": "Ter valor real não é o problema — Pix e real digital também são só dados, e funcionam como dinheiro porque são aceitos amplamente."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "formas-do-dinheiro",
+   "criterio": "A forma NÃO importa pro valor aqui?",
+   "enunciado": "Duas notas de R$100, uma nova e uma surrada, comprando exatamente a mesma coisa",
+   "resposta": true,
+   "ancora": "Estado físico não altera o valor de troca da nota.",
+   "feedbackErro": "A nota surrada parece 'valer menos' de tão gasta, mas na hora da troca as duas compram exatamente o mesmo — a forma física não pesa no valor."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "formas-do-dinheiro",
+   "instrucao": "Isso tem aceitação ampla, ou só dentro de um grupo fechado?",
+   "ancora": "Real e Pix circulam amplos; ficha e moeda de jogo, não.",
+   "feedbackErro": "O critério é onde a aceitação vale: se é só dentro de um sistema fechado (lavanderia, jogo), não é dinheiro no sentido pleno, mesmo tendo valor ali dentro.",
+   "caixas": [
+    {
+     "id": "ampla",
+     "rotulo": "Aceitação ampla"
+    },
+    {
+     "id": "fechada",
+     "rotulo": "Só em grupo fechado"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Real, em qualquer comércio do país",
+     "caixaCorreta": "ampla"
+    },
+    {
+     "texto": "Ficha de lavanderia, só naquela lavanderia",
+     "caixaCorreta": "fechada"
+    },
+    {
+     "texto": "Pix, entre contas bancárias no Brasil",
+     "caixaCorreta": "ampla"
+    },
+    {
+     "texto": "Moeda de um jogo, só dentro do próprio jogo",
+     "caixaCorreta": "fechada"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "preco-e-contexto",
+   "criterio": "Contexto explica preço, sem mudar custo?",
+   "enunciado": "Uma pintura sem valor de material caro vendida por milhões, por ser de um artista famoso",
+   "resposta": true,
+   "ancora": "Custo do material é baixo; o preço vem do nome do artista.",
+   "feedbackErro": "O material da pintura é simples, é verdade. Mas o preço não vem do custo de produção — vem do valor social atribuído ao nome do artista."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "preco-e-contexto",
+   "dificuldade": 3,
+   "pergunta": "Uma edição rara de um gibi antigo vale muito mais que uma nova, mesmo custando o mesmo pra imprimir. Por quê?",
+   "ancora": "Raridade e procura definem o preço; o custo não importa aqui.",
+   "alternativas": [
+    {
+     "texto": "Porque o papel do gibi antigo é de melhor qualidade",
+     "correta": false,
+     "feedbackErro": "A qualidade do papel não é o que separa os dois — muitas vezes o antigo tem papel pior. O que sobe o preço é outra coisa."
+    },
+    {
+     "texto": "Porque restam poucas cópias e há gente disposta a pagar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque gibis antigos custam mais para imprimir hoje",
+     "correta": false,
+     "feedbackErro": "O enunciado já diz que o custo de impressão é o mesmo. O que separa os dois preços é raridade e procura, não custo de produção."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "formas-do-dinheiro",
+   "criterio": "Caso-limite: NÃO funciona como dinheiro?",
+   "enunciado": "Um cupom de desconto que só o próprio comprador pode usar, intransferível",
+   "resposta": true,
+   "ancora": "Sem circular entre pessoas, falta a função de meio de troca.",
+   "feedbackErro": "Ele tem valor pra quem comprou, sim. Mas dinheiro precisa poder circular de pessoa pra pessoa — um cupom intransferível trava nisso."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "preco-e-contexto",
+   "criterio": "O contexto explica o preço maior?",
+   "enunciado": "Um mesmo modelo de caneta custar mais quando tem o nome de uma marca de luxo gravado",
+   "resposta": true,
+   "ancora": "A caneta escreve igual; o extra é o valor social da marca.",
+   "feedbackErro": "É fácil achar que só a função importa e não o nome — mas o mercado de luxo mostra que o nome sozinho justifica um preço maior pela mesma função."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "formas-do-dinheiro",
+   "pergunta": "Depois de ver os casos-limite, qual frase é a mais precisa?",
+   "alternativas": [
+    {
+     "texto": "Qualquer coisa rara e durável já é dinheiro",
+     "correta": false,
+     "feedbackErro": "Falta aceitação ampla — pontos de milhagem e moeda de jogo são raros e às vezes duráveis, mas não circulam livremente fora do seu sistema."
+    },
+    {
+     "texto": "Só é dinheiro pleno o raro, durável e aceito fora de grupo fechado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O preço de algo raro nunca depende de quem está disposto a pagar",
+     "correta": false,
+     "feedbackErro": "O gibi raro mostra o oposto: o preço sobe justamente pela procura de quem topa pagar por algo escasso."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "preco-e-contexto",
+   "pergunta": "Uma bebida de R$5 no mercado é vendida a R$14 dentro de um festival. Qual o aumento percentual?",
+   "campo": "percentual",
+   "min": 50,
+   "max": 300,
+   "gabarito": 180,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto sobre os dois preços",
+   "verificacao": {
+    "expressao": "(14-5)/5*100",
+    "esperado": 180
+   },
+   "feedbackPerto": "Isso mesmo: (14-5)/5 × 100 = 180%. É o contexto do festival que sustenta esse aumento, não o custo da bebida.",
+   "feedbackLonge": "O aumento é de 180%: a diferença de R$9 dividida pelo preço original de R$5. Fácil errar comparando só a diferença em reais, sem dividir pelo valor de base."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "formas-do-dinheiro",
+   "instrucao": "Ordene do que tem aceitação mais restrita à mais ampla.",
+   "ancora": "A aceitação cresce de um único lugar até referência global.",
+   "feedbackErro": "O critério é o alcance de quem aceita aquele valor em troca, não o valor numérico nem a idade de cada um.",
+   "itens": [
+    {
+     "texto": "Ficha de uma lavanderia específica",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Vale-compra de uma rede de lojas",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Real, moeda nacional",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Dólar, aceito em várias moedas internacionais como referência",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "formas-do-dinheiro",
+   "criterio": "Deixa de ser dinheiro sem aceitação?",
+   "enunciado": "Uma nota de moeda de um país que não existe mais, sem banco central por trás",
+   "resposta": true,
+   "ancora": "Sem emissor nem aceitação, a nota vira peça de coleção.",
+   "feedbackErro": "A nota continua existindo fisicamente, mas sem um Banco Central por trás e sem aceitação geral, ela perde a função de dinheiro — vira objeto histórico."
+  }
+ ]
+}

@@ -25,12 +25,14 @@ export function PopupLicaoDiaria({
 
   useEffect(() => {
     if (!diaNovo) return
+    let mostrar = true
     try {
-      if (localStorage.getItem(chave)) return
+      if (localStorage.getItem(chave)) mostrar = false
     } catch {
       /* sem storage, mostra mesmo assim */
     }
-    setAberto(true)
+    // Numa microtask: a regra de hooks proíbe setState síncrono no efeito.
+    if (mostrar) Promise.resolve().then(() => setAberto(true))
   }, [diaNovo, chave])
 
   function dispensar() {

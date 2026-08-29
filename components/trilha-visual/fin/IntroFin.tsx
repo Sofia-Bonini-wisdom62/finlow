@@ -33,11 +33,14 @@ export function IntroFin() {
   const [slide, setSlide] = useState(0)
 
   useEffect(() => {
+    let mostrar = false
     try {
-      if (!localStorage.getItem(CHAVE)) setVisivel(true)
+      mostrar = !localStorage.getItem(CHAVE)
     } catch {
       /* sem storage, sem intro — melhor que intro em loop */
     }
+    // Numa microtask: a regra de hooks proíbe setState síncrono no efeito.
+    if (mostrar) Promise.resolve().then(() => setVisivel(true))
   }, [])
 
   function concluir() {

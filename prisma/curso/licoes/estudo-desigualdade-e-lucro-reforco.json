@@ -1,0 +1,275 @@
+{
+ "slug": "estudo-desigualdade-e-lucro-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "estudo-desigualdade-e-lucro",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "lucro-receita-despesa",
+   "criterio": "Lembra: isso conta como despesa?",
+   "enunciado": "Frete pra buscar as embalagens dos doces",
+   "resposta": true,
+   "ancora": "Frete pra viabilizar produção é despesa, mesmo indireto.",
+   "feedbackErro": "Pode parecer 'custo à parte', mas qualquer gasto necessário pra produzir e vender entra na despesa, inclusive frete."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "lucro-receita-despesa",
+   "criterio": "Lembra: isso conta como despesa?",
+   "enunciado": "O valor investido em uma máquina nova pro negócio",
+   "resposta": true,
+   "ancora": "Comprar máquina também é despesa no caixa daquele mês.",
+   "feedbackErro": "Dá pra achar que 'investir' é diferente de 'gastar', mas no caixa do mês, comprar a máquina é uma saída — conta como despesa daquele período."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "lucro-receita-despesa",
+   "criterio": "Lembra: isso conta como despesa?",
+   "enunciado": "O valor total que os clientes pagaram no mês",
+   "resposta": false,
+   "ancora": "Isso é receita, o que entra — não despesa, o que sai.",
+   "feedbackErro": "É fácil misturar os dois porque ambos giram em torno do caixa. Mas o que os clientes pagam é receita; despesa é o que o negócio gasta pra produzir e vender."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "lucro-receita-despesa",
+   "dificuldade": 2,
+   "pergunta": "Uma lanchonete faturou R$2.150 em receita e teve R$1.480 em despesas no mês. Qual foi o lucro?",
+   "ancora": "R$2.150 de receita menos R$1.480 de despesa = R$670 de lucro.",
+   "verificacao": {
+    "expressao": "2150-1480",
+    "esperado": 670
+   },
+   "alternativas": [
+    {
+     "texto": "R$670",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$2.150",
+     "correta": false,
+     "feedbackErro": "Esse é o total que entrou, sem descontar o que saiu pra produzir e vender."
+    },
+    {
+     "texto": "R$3.630",
+     "correta": false,
+     "feedbackErro": "Somar receita e despesa não faz sentido aqui — lucro é a diferença entre elas, não a soma."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "escolaridade-e-renda",
+   "dificuldade": 2,
+   "pergunta": "Duas pessoas começam no mesmo cargo: uma com curso técnico, outra só ensino médio. Quem tende a ganhar mais?",
+   "ancora": "Mais qualificação tende a pesar já na entrada.",
+   "alternativas": [
+    {
+     "texto": "Tende a ser parecido, porque é o mesmo cargo de entrada",
+     "correta": false,
+     "feedbackErro": "Mesmo em cargos de entrada, quem tem qualificação extra costuma negociar ou já entrar em faixa salarial mais alta — a tendência aponta diferença, não igualdade."
+    },
+    {
+     "texto": "Tende a ser maior pra quem tem o curso técnico",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Tende a ser menor pra quem tem o curso técnico",
+     "correta": false,
+     "feedbackErro": "É o oposto do padrão observado — mais qualificação tende a puxar o salário inicial pra cima, não pra baixo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "desigualdade-de-renda",
+   "criterio": "É causa, e não só efeito, do ciclo?",
+   "enunciado": "Crianças de famílias com renda baixa tendo menos acesso a cursos extracurriculares",
+   "resposta": true,
+   "ancora": "Menos acesso extra na infância vira menos renda depois.",
+   "feedbackErro": "Parece efeito passageiro, mas menos acesso a atividades extras na infância tende a virar menos renda no futuro — o ciclo se alimenta."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "desigualdade-de-renda",
+   "instrucao": "Isso ajuda a diminuir, ou tende a manter a desigualdade?",
+   "ancora": "O que abre porta reduz o ciclo; o que depende de rede o mantém.",
+   "feedbackErro": "O critério é se a oportunidade depende de dinheiro ou rede prévia (mantém o ciclo) ou está aberta por mérito e necessidade (ajuda a reduzir).",
+   "caixas": [
+    {
+     "id": "diminui",
+     "rotulo": "Ajuda a diminuir"
+    },
+    {
+     "id": "mantem",
+     "rotulo": "Tende a manter"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Bolsas de estudo pra quem tem renda familiar baixa",
+     "caixaCorreta": "diminui"
+    },
+    {
+     "texto": "Vagas de estágio conseguidas só por indicação de conhecidos",
+     "caixaCorreta": "mantem"
+    },
+    {
+     "texto": "Programas de qualificação profissional gratuitos",
+     "caixaCorreta": "diminui"
+    },
+    {
+     "texto": "Escolas particulares caras com melhor preparo pra universidade",
+     "caixaCorreta": "mantem"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "escolaridade-e-renda",
+   "criterio": "Isso reforça o vínculo estudo-renda?",
+   "enunciado": "Alguém com pós-graduação disputando uma vaga de coordenação, com salário mais alto que a de assistente",
+   "resposta": true,
+   "ancora": "Formação extra abrindo vaga com salário maior de novo.",
+   "feedbackErro": "Pode parecer que só a experiência conta em cargos de coordenação, mas a formação extra costuma pesar tanto quanto, ou mais, nessa disputa."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "lucro-receita-despesa",
+   "dificuldade": 2,
+   "pergunta": "Um brechó teve receita de R$3.320 e despesa de R$3.890 no mês. O que isso significa?",
+   "ancora": "R$3.320 − R$3.890 = -R$570: prejuízo no mês.",
+   "verificacao": {
+    "expressao": "3320-3890",
+    "esperado": -570
+   },
+   "alternativas": [
+    {
+     "texto": "Lucro de R$570",
+     "correta": false,
+     "feedbackErro": "O resultado é negativo, não positivo — a despesa foi maior que a receita nesse mês."
+    },
+    {
+     "texto": "Prejuízo de R$570",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O negócio empatou no mês",
+     "correta": false,
+     "feedbackErro": "Empate seria receita igual à despesa. Aqui a despesa superou a receita em R$570 — isso é prejuízo, não empate."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "desigualdade-de-renda",
+   "criterio": "Tende a reduzir a distância de renda?",
+   "enunciado": "Uma política pública de crédito facilitado só pra quem já tem imóvel como garantia",
+   "resposta": false,
+   "ancora": "Crédito só pra quem já tem imóvel exclui quem mais precisa.",
+   "feedbackErro": "Parece neutro porque é 'crédito pra todo mundo com garantia', mas exigir imóvel de entrada já filtra fora quem tem renda mais baixa — isso mantém a distância."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "escolaridade-e-renda",
+   "criterio": "Ilustra o vínculo estudo-renda?",
+   "enunciado": "Um curso de idiomas concluído abrindo vaga em uma empresa que paga mais que a média do setor",
+   "resposta": true,
+   "ancora": "Curso concluído, salário acima da média — padrão se repete.",
+   "feedbackErro": "Pode parecer sorte de vaga, mas cursos concluídos costumam pesar na hora da empresa decidir a faixa salarial oferecida."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "lucro-receita-despesa",
+   "pergunta": "Qual frase captura melhor o que os três exemplos mostraram?",
+   "alternativas": [
+    {
+     "texto": "Prejuízo se despesa supera receita; qualificação eleva renda; a distância pesa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Despesa maior que receita ainda é lucro, só que menor",
+     "correta": false,
+     "feedbackErro": "Despesa maior que receita é prejuízo, não lucro menor — o sinal do resultado vira negativo."
+    },
+    {
+     "texto": "O vínculo entre estudo e renda vale só pra quem já nasceu rico",
+     "correta": false,
+     "feedbackErro": "A tendência escolaridade-renda aparece em qualquer família, não só nas que já têm renda alta — é isso que bolsas e programas tentam ampliar."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "lucro-receita-despesa",
+   "pergunta": "Uma banca de churros teve R$1.860 de receita e R$1.240 de despesa no mês. Qual foi o lucro?",
+   "campo": "moeda",
+   "min": 200,
+   "max": 1200,
+   "gabarito": 620,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto sobre os valores informados",
+   "verificacao": {
+    "expressao": "1860-1240",
+    "esperado": 620
+   },
+   "feedbackPerto": "Isso mesmo: R$1.860 − R$1.240 = R$620 de lucro no mês.",
+   "feedbackLonge": "O lucro é R$620. É fácil errar somando os dois valores, ou esquecendo de descontar toda a despesa da receita."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "escolaridade-e-renda",
+   "instrucao": "Ordene do menor pro maior tempo de escolarização formal.",
+   "ancora": "Cada etapa soma tempo de formação e renda potencial.",
+   "feedbackErro": "O critério é tempo de formação acumulado, não qual é 'melhor' — cada etapa vem depois da anterior na trajetória escolar.",
+   "itens": [
+    {
+     "texto": "Ensino fundamental completo",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Ensino médio completo",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Curso técnico ou tecnólogo",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Pós-graduação",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "desigualdade-de-renda",
+   "criterio": "É efeito da desigualdade na sociedade?",
+   "enunciado": "Bairros de renda mais alta tendo linhas de ônibus mais frequentes que bairros de renda mais baixa",
+   "resposta": true,
+   "ancora": "Investimento em transporte tende a seguir a renda do bairro.",
+   "feedbackErro": "Pode parecer só uma questão de logística de rota, mas o padrão de investimento segue de perto a renda média de cada bairro."
+  }
+ ]
+}

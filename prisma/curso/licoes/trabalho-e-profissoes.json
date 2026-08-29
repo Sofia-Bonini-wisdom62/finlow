@@ -1,0 +1,285 @@
+{
+ "slug": "trabalho-e-profissoes",
+ "segmento": "ef35",
+ "conceitoPrincipal": "trabalho-e-profissoes",
+ "fraseConceito": "Trabalho é a atividade que gera remuneração; a profissão liga esse trabalho a um setor da economia.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "trabalho-e-remuneracao",
+   "criterio": "É trabalho remunerado?",
+   "enunciado": "Padeiro vendendo o pão que assou",
+   "resposta": true,
+   "ancora": "Ele troca o pão que fez por dinheiro — isso é trabalho remunerado.",
+   "feedbackErro": "Parece só rotina de padaria, mas tem troca por dinheiro no meio: isso é trabalho remunerado, ligado à profissão de padeiro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "trabalho-e-remuneracao",
+   "criterio": "É trabalho remunerado?",
+   "enunciado": "Criança arrumando o próprio quarto",
+   "resposta": false,
+   "ancora": "Arrumar o próprio quarto não gera pagamento — não é profissão.",
+   "feedbackErro": "Dá trabalho, mas ninguém paga por isso e não é uma profissão. Trabalho remunerado envolve receber por uma tarefa feita para outra pessoa."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "trabalho-e-remuneracao",
+   "criterio": "É trabalho remunerado?",
+   "enunciado": "Motorista levando passageiros de ônibus",
+   "resposta": true,
+   "ancora": "A empresa paga o motorista para dirigir o ônibus.",
+   "feedbackErro": "Dirigir parece só uma tarefa do dia, mas o motorista recebe salário por isso — é a profissão dele."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "profissoes-na-comunidade",
+   "dificuldade": 1,
+   "pergunta": "Dona Iracema costura roupas e vende na feira do bairro. Qual é a profissão dela?",
+   "ancora": "Ela transforma tecido em roupa e vende — profissão de costureira.",
+   "alternativas": [
+    {
+     "texto": "Professora",
+     "correta": false,
+     "feedbackErro": "Professora ensina em sala de aula. Iracema corta e costura tecido — outra profissão."
+    },
+    {
+     "texto": "Costureira",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Vendedora de frutas",
+     "correta": false,
+     "feedbackErro": "Vendedora de frutas vende o que não fabricou. Iracema fez a roupa com as próprias mãos: é costureira."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "setores-da-economia",
+   "dificuldade": 1,
+   "pergunta": "Quem planta e colhe milho na roça trabalha em qual setor da economia?",
+   "ancora": "Tirar alimento direto da terra é o setor primário.",
+   "alternativas": [
+    {
+     "texto": "Setor primário",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Setor secundário",
+     "correta": false,
+     "feedbackErro": "O secundário transforma matéria-prima em produto, como uma fábrica. Plantar e colher tira o alimento direto da terra: é primário."
+    },
+    {
+     "texto": "Setor terciário",
+     "correta": false,
+     "feedbackErro": "O terciário presta serviço, como vender ou entregar. Quem planta e colhe está tirando o alimento da terra: é primário."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "setores-da-economia",
+   "criterio": "É setor primário?",
+   "enunciado": "Padaria fabricando pão com farinha",
+   "resposta": false,
+   "ancora": "Transformar farinha em pão é indústria — setor secundário.",
+   "feedbackErro": "Tem alimento envolvido, e isso confunde com a roça. Mas a padaria transforma a farinha em outro produto — isso é setor secundário, não primário."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "setores-da-economia",
+   "instrucao": "Arraste: tira direto da natureza ou fabrica/vende algo?",
+   "ancora": "Primário tira da natureza; o resto transforma ou vende.",
+   "feedbackErro": "O que sai pronto da terra ou do mar é primário. O que passa por fábrica, loja ou serviço já é outro setor.",
+   "caixas": [
+    {
+     "id": "primario",
+     "rotulo": "Setor primário"
+    },
+    {
+     "id": "outro",
+     "rotulo": "Fabrica ou vende"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Pescador puxando a rede no mar",
+     "caixaCorreta": "primario"
+    },
+    {
+     "texto": "Fábrica de sapatos costurando o couro",
+     "caixaCorreta": "outro"
+    },
+    {
+     "texto": "Garimpeiro tirando ouro do rio",
+     "caixaCorreta": "primario"
+    },
+    {
+     "texto": "Cabeleireiro cortando cabelo no salão",
+     "caixaCorreta": "outro"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "profissoes-na-comunidade",
+   "criterio": "Essa pessoa exerce uma profissão?",
+   "enunciado": "Vizinho que conserta computadores por encomenda",
+   "resposta": true,
+   "ancora": "Ele presta um serviço e recebe por isso — é uma profissão (técnico).",
+   "feedbackErro": "Parece um favor entre vizinhos, mas ele cobra pelo conserto — isso é profissão, mesmo sem loja própria."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "trabalho-e-remuneracao",
+   "dificuldade": 1,
+   "pergunta": "Qual dessas é a definição correta de trabalho remunerado?",
+   "ancora": "Trabalho remunerado é receber pagamento por um serviço ou produto.",
+   "alternativas": [
+    {
+     "texto": "Qualquer atividade que exija esforço físico",
+     "correta": false,
+     "feedbackErro": "Esforço físico não é o critério: estudar cansa e não é trabalho remunerado. O que define é receber pagamento pela atividade."
+    },
+    {
+     "texto": "Uma atividade que gera pagamento por um produto ou serviço",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Qualquer tarefa feita dentro de casa",
+     "correta": false,
+     "feedbackErro": "Tarefa de casa pode não ter pagamento nenhum, como lavar a louça da família. Trabalho remunerado exige receber por isso."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "setores-da-economia",
+   "criterio": "É setor terciário?",
+   "enunciado": "Entregador levando o pedido até a casa do cliente",
+   "resposta": true,
+   "ancora": "Entregar um serviço para outra pessoa é setor terciário.",
+   "feedbackErro": "Ele carrega uma coisa física, e isso lembra indústria. Mas o que ele faz é prestar um serviço de entrega — isso é setor terciário."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "profissoes-na-comunidade",
+   "criterio": "É um exemplo de profissão da comunidade?",
+   "enunciado": "Feirante vendendo verduras toda semana",
+   "resposta": true,
+   "ancora": "Vender toda semana, com clientes fixos, é profissão de feirante.",
+   "feedbackErro": "Pode parecer só uma banca simples, mas ele vive dessa venda semanal — isso é profissão, a de feirante."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "trabalho-e-profissoes",
+   "pergunta": "Qual frase resume o que você viu sobre trabalho e profissões?",
+   "alternativas": [
+    {
+     "texto": "Trabalho é qualquer coisa que dá cansaço",
+     "correta": false,
+     "feedbackErro": "Cansaço não é o critério — arrumar o próprio quarto cansa e não é trabalho remunerado."
+    },
+    {
+     "texto": "Trabalho remunerado gera pagamento e está ligado a uma profissão e um setor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só quem trabalha em fábrica tem profissão",
+     "correta": false,
+     "feedbackErro": "Feirante, motorista e costureira também têm profissão — profissão existe nos três setores."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "trabalho-e-remuneracao",
+   "dificuldade": 1,
+   "pergunta": "Qual destas atividades é trabalho remunerado?",
+   "ancora": "Receber pagamento por uma tarefa é o que define trabalho remunerado.",
+   "alternativas": [
+    {
+     "texto": "Estudar para a prova de matemática",
+     "correta": false,
+     "feedbackErro": "Estudar exige esforço mas não gera pagamento — não é trabalho remunerado."
+    },
+    {
+     "texto": "Pedreiro construindo um muro por encomenda",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Brincar de bola no fim de semana",
+     "correta": false,
+     "feedbackErro": "Brincar é lazer, sem pagamento envolvido — não conta como trabalho remunerado."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "setores-da-economia",
+   "criterio": "É setor secundário?",
+   "enunciado": "Marcenaria transformando madeira em cadeira",
+   "resposta": true,
+   "ancora": "Transformar madeira em móvel é indústria — setor secundário.",
+   "feedbackErro": "A madeira vem da natureza, e isso lembra o setor primário. Mas aqui ela é transformada em outro produto — isso é setor secundário."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "profissoes-na-comunidade",
+   "instrucao": "É profissão remunerada ou é lazer sem pagamento?",
+   "ancora": "Profissão remunerada envolve pagamento por um serviço.",
+   "feedbackErro": "Lazer não gera pagamento; profissão sim — o critério é receber por uma tarefa feita para outra pessoa.",
+   "caixas": [
+    {
+     "id": "profissao",
+     "rotulo": "Profissão"
+    },
+    {
+     "id": "lazer",
+     "rotulo": "Lazer"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Encanador consertando cano por encomenda",
+     "caixaCorreta": "profissao"
+    },
+    {
+     "texto": "Passeio de bicicleta no parque",
+     "caixaCorreta": "lazer"
+    },
+    {
+     "texto": "Cabeleireira cortando cabelo na loja",
+     "caixaCorreta": "profissao"
+    },
+    {
+     "texto": "Jogo de cartas entre amigos",
+     "caixaCorreta": "lazer"
+    }
+   ]
+  }
+ ]
+}

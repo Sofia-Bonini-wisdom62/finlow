@@ -1,0 +1,340 @@
+{
+ "slug": "de-onde-vem-a-sua-renda-reforco",
+ "segmento": "em3",
+ "conceitoPrincipal": "de-onde-vem-a-sua-renda",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "vinculo-e-protecao",
+   "criterio": "O vínculo muda a proteção?",
+   "enunciado": "PJ que fatura R$ 4.200 tem os mesmos direitos de um CLT",
+   "resposta": false,
+   "ancora": "PJ é empresa contratando empresa: sem férias, 13º ou FGTS por lei.",
+   "feedbackErro": "O valor alto sugere segurança, e aí mora a confusão. PJ pode ganhar mais — mas férias, 13º, FGTS e seguro-desemprego não existem no contrato dele."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "vinculo-e-protecao",
+   "criterio": "O vínculo muda a proteção?",
+   "enunciado": "MEI que paga a guia mensal conta tempo de aposentadoria",
+   "resposta": true,
+   "ancora": "A guia do MEI inclui INSS: paga em dia, garante os benefícios básicos.",
+   "feedbackErro": "MEI parece informal com CNPJ, mas não é: a guia mensal já carrega o INSS. Quem paga em dia conta tempo de aposentadoria e tem auxílio-doença."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "vinculo-e-protecao",
+   "criterio": "O vínculo muda a proteção?",
+   "enunciado": "Quem sempre recebeu por fora pode sacar seguro-desemprego",
+   "resposta": false,
+   "ancora": "Seguro-desemprego nasce do registro: sem carteira, não há parcela.",
+   "feedbackErro": "Trabalhou de verdade, deveria valer — a lógica é justa. Mas o seguro é pago com base no vínculo registrado: o que ficou por fora não existe para o sistema."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "vinculo-e-protecao",
+   "dificuldade": 2,
+   "pergunta": "Um CLT paga R$ 2.640 por mês. Somando 13º e o terço de férias, quanto entra no ano?",
+   "ancora": "R$ 2.640 × 13 = R$ 34.320, mais R$ 880 do terço: R$ 35.200.",
+   "verificacao": {
+    "expressao": "2640*12+2640+2640/3",
+    "esperado": 35200,
+    "tolerancia": 0.01
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 31.680",
+     "correta": false,
+     "feedbackErro": "Essa é a conta de 12 salários — o mês vezes doze. Faltaram o 13º (R$ 2.640) e o terço de férias (R$ 880). No CLT, o ano tem mais que 12 pagamentos."
+    },
+    {
+     "texto": "R$ 35.200",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 34.320",
+     "correta": false,
+     "feedbackErro": "Você lembrou do 13º — 13 salários — mas esqueceu o terço de férias: 1/3 de R$ 2.640 são R$ 880. O pacote CLT completo é 13 salários + terço."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "determinantes-da-renda",
+   "dificuldade": 2,
+   "pergunta": "Numa crise, quem procura emprego aceita salários menores. Qual é o mecanismo?",
+   "ancora": "Conjuntura: mais gente disputando menos vagas derruba o valor.",
+   "alternativas": [
+    {
+     "texto": "As pessoas passam a se esforçar menos",
+     "correta": false,
+     "feedbackErro": "Na crise as pessoas se esforçam até mais. O salário cai por fora delas: é a disputa por poucas vagas que dá poder a quem contrata. Conjuntura, não caráter."
+    },
+    {
+     "texto": "Mais candidatos por vaga derrubam o valor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O governo reduz o salário mínimo",
+     "correta": false,
+     "feedbackErro": "O mínimo nominal não cai — a lei impede. O que cai é o salário acima do mínimo, achatado pela fila de candidatos. O mecanismo é o mercado, não o decreto."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "determinantes-da-renda",
+   "criterio": "Depende só do trabalhador?",
+   "enunciado": "O salário que uma região paga pelo mesmo ofício",
+   "resposta": false,
+   "ancora": "O mesmo ofício paga diferente por região: estrutura antes do esforço.",
+   "feedbackErro": "Parece que basta ser bom no que faz. Mas o mesmo eletricista ganha diferente em capital e interior: custo de vida, demanda e setor local definem o teto."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "direitos-trabalhistas",
+   "instrucao": "Arraste: é garantido por lei no CLT ou depende de acordo?",
+   "ancora": "Lei vale para todos; benefício de acordo vale onde foi negociado.",
+   "feedbackErro": "O contracheque mistura tudo, e aí vem o erro. FGTS e férias são lei — ninguém negocia. Vale-alimentação e plano de saúde são conquista de acordo ou convenção.",
+   "caixas": [
+    {
+     "id": "lei",
+     "rotulo": "Garantido por lei"
+    },
+    {
+     "id": "acordo",
+     "rotulo": "Depende de acordo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "FGTS depositado pela empresa",
+     "caixaCorreta": "lei"
+    },
+    {
+     "texto": "Vale-alimentação todo mês",
+     "caixaCorreta": "acordo"
+    },
+    {
+     "texto": "Férias de 30 dias com 1/3",
+     "caixaCorreta": "lei"
+    },
+    {
+     "texto": "Plano de saúde da empresa",
+     "caixaCorreta": "acordo"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "vinculo-e-protecao",
+   "criterio": "A conta anual muda a comparação?",
+   "enunciado": "No ano, CLT de R$ 2.700 empata com bico de R$ 3.000",
+   "resposta": true,
+   "ancora": "Os dois fecham em R$ 36.000 — mas só um tem FGTS e INSS junto.",
+   "verificacao": {
+    "expressao": "2700*12+2700+2700/3-3000*12",
+    "esperado": 0,
+    "tolerancia": 0.01
+   },
+   "feedbackErro": "R$ 300 a mais por mês parecem imbatíveis. Mas 13º e terço fecham a diferença: R$ 36.000 dos dois lados. E o CLT ainda soma FGTS e INSS por fora."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "informalidade",
+   "criterio": "Isso é precarização?",
+   "enunciado": "Virar PJ para o mesmo chefe, na mesma mesa, sem direitos",
+   "resposta": true,
+   "ancora": "Pejotização: o mesmo trabalho de antes, sem as proteções do vínculo.",
+   "feedbackErro": "O contrato existe e o salário sobe, então parece upgrade. Mas se rotina, chefe e mesa são os mesmos, só os direitos saíram da conta — isso é precarizar."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "vinculo-e-protecao",
+   "pergunta": "FGTS é 8% do salário. Sobre 12 salários de R$ 2.400, quanto a empresa deposita no ano?",
+   "campo": "moeda",
+   "min": 500,
+   "max": 6000,
+   "gabarito": 2304,
+   "toleranciaPct": 20,
+   "fonte": "alíquota do FGTS, 8% do salário (lei do FGTS/Caixa)",
+   "verificacao": {
+    "expressao": "2400*0.08*12",
+    "esperado": 2304,
+    "tolerancia": 0.01
+   },
+   "feedbackPerto": "Isso: R$ 2.304 num ano, depositados pela empresa, fora do seu salário. É quase um 13º extra que o informal não vê.",
+   "feedbackLonge": "São R$ 2.304 (R$ 192/mês × 12). O erro comum é o viés do invisível: como não passa pelo bolso, o FGTS parece pequeno — ou parece não existir."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "vinculo-e-protecao",
+   "dificuldade": 2,
+   "pergunta": "Larissa recebeu proposta para sair do CLT de R$ 3.000 e virar PJ por R$ 3.600. O que entra na conta dela?",
+   "ancora": "No PJ, INSS, 13º, férias e imposto passam a sair do bolso dela.",
+   "alternativas": [
+    {
+     "texto": "Só o aumento de R$ 600 por mês",
+     "correta": false,
+     "feedbackErro": "Os R$ 600 são reais — mas só um lado da balança. 13º e terço que somem valem uns R$ 330/mês, e INSS e imposto do PJ saem do bolso dela. A conta aperta."
+    },
+    {
+     "texto": "INSS, férias e 13º que agora saem do bolso dela",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: PJ paga menos imposto, sempre compensa",
+     "correta": false,
+     "feedbackErro": "O imposto do PJ pode até ser menor — esse pedaço é verdade. Mas 'sempre compensa' ignora férias sem pagamento, 13º inexistente e INSS por conta própria."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "informalidade",
+   "dificuldade": 2,
+   "pergunta": "Por que a informalidade alta sai cara para a sociedade inteira, não só para o informal?",
+   "ancora": "Menos contribuintes hoje = mais gasto social amanhã, para todos.",
+   "alternativas": [
+    {
+     "texto": "Porque informais consomem menos no comércio",
+     "correta": false,
+     "feedbackErro": "Renda instável até reduz consumo, é verdade. Mas o custo maior é outro: quem não contribui hoje envelhece desprotegido — e o amparo sai do bolso de todos."
+    },
+    {
+     "texto": "Menos contribuição hoje vira mais gasto público depois",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não sai caro: cada um cuida da própria vida",
+     "correta": false,
+     "feedbackErro": "Parece justo no papel. Na prática ninguém envelhece sozinho: saúde e assistência de quem não contribuiu são pagas pelo caixa comum — a conta chega para todos."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "vinculo-e-protecao",
+   "criterio": "Proteção se compra depois?",
+   "enunciado": "Ganhar bem por fora dispensa contribuir para o INSS",
+   "resposta": false,
+   "ancora": "Aposentadoria e auxílio-doença exigem contribuição antes, não depois.",
+   "feedbackErro": "Com renda alta, parece dar para se virar sozinho. Mas auxílio-doença e aposentadoria pedem carência: quem começa a contribuir na urgência chega tarde."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "direitos-trabalhistas",
+   "criterio": "É verdade, mesmo incômoda?",
+   "enunciado": "Direitos trabalhistas encarecem a contratação para a empresa",
+   "resposta": true,
+   "ancora": "Encargos pesam de verdade — o debate é equilibrar proteção e custo.",
+   "feedbackErro": "Soa a discurso de patrão, mas é fato: encargos encarecem a folha. Negar isso enfraquece o debate real — como manter proteção sem travar a contratação."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "de-onde-vem-a-sua-renda",
+   "dificuldade": 2,
+   "pergunta": "O que mudou na sua régua depois deste encontro?",
+   "alternativas": [
+    {
+     "texto": "Comparar o salário do mês basta para escolher um trabalho.",
+     "correta": false,
+     "feedbackErro": "O mês esconde 13º, terço, FGTS e INSS. A régua certa é o ano + a proteção."
+    },
+    {
+     "texto": "Comparo o ano inteiro e o que o vínculo protege — não só o mês.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "PJ é sempre golpe; CLT é sempre a melhor escolha.",
+     "correta": false,
+     "feedbackErro": "PJ de verdade, com vários clientes, pode valer. O golpe é o PJ disfarçado de CLT."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "vinculo-e-protecao",
+   "instrucao": "Toque na ordem: maior renda anual primeiro.",
+   "ancora": "CLT: R$ 38.667 no ano. Bico: R$ 37.800. PJ: R$ 37.200.",
+   "verificacao": {
+    "expressao": "2900*12+2900+2900/3",
+    "esperado": 38666.67,
+    "tolerancia": 0.01
+   },
+   "feedbackErro": "O maior mensal não vence: só o CLT multiplica por mais que 12. R$ 2.900 × 13 + terço = R$ 38.667; os outros dois são o mês × 12, e pronto.",
+   "itens": [
+    {
+     "texto": "CLT de R$ 2.900 por mês",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Bico de R$ 3.150 por mês",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "PJ de R$ 3.100 por mês",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "direitos-trabalhistas",
+   "criterio": "É direito de lei?",
+   "enunciado": "Vale-transporte para chegar ao trabalho",
+   "resposta": true,
+   "ancora": "Vale-transporte é lei; vale-alimentação, não — pegadinha clássica.",
+   "feedbackErro": "Os dois 'vales' parecem irmãos, mas só um é lei: o transporte. O da alimentação depende de acordo coletivo — por isso nem toda empresa oferece."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "informalidade",
+   "dificuldade": 2,
+   "pergunta": "Nas plataformas de entrega e transporte, qual é o debate trabalhista central hoje?",
+   "ancora": "Autonomia real ou subordinação sem direitos: essa é a disputa.",
+   "alternativas": [
+    {
+     "texto": "Se o aplicativo deve pagar em dinheiro ou Pix",
+     "correta": false,
+     "feedbackErro": "Forma de pagamento é detalhe operacional. A disputa de fundo é outra: esse trabalhador é autônomo de verdade ou subordinado sem proteção?"
+    },
+    {
+     "texto": "Se há vínculo e que proteção mínima é devida",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se motorista pode trabalhar aos domingos",
+     "correta": false,
+     "feedbackErro": "Jornada importa, mas é consequência. Antes vem a pergunta que define tudo: existe vínculo? Dela derivam INSS, seguro e limite de jornada."
+    }
+   ]
+  }
+ ]
+}

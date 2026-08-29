@@ -1,0 +1,327 @@
+{
+ "slug": "publicidade-por-dentro-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "publicidade-por-dentro",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "publicidade-implicita-explicita",
+   "criterio": "Ainda conta como publicidade nesse caso?",
+   "enunciado": "Crítico de cinema pago pelo estúdio pra escrever resenha, sem avisar",
+   "resposta": true,
+   "ancora": "Pagamento do estúdio, sem aviso, é publicidade escondida.",
+   "feedbackErro": "Parece opinião profissional de crítico, e é aí que engana. Recebendo do estúdio sem avisar, vira publicidade disfarçada de crítica."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "publicidade-implicita-explicita",
+   "criterio": "Ainda conta como publicidade nesse caso?",
+   "enunciado": "Pessoa comum contando no story que gostou de um lugar",
+   "resposta": false,
+   "ancora": "Sem pagamento nem produto recebido, é opinião, não publicidade.",
+   "feedbackErro": "Contar que gostou de algo lembra o formato de publi, mas sem nenhum pagamento ou produto recebido, continua sendo só opinião pessoal."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "publicidade-implicita-explicita",
+   "criterio": "Ainda conta como publicidade nesse caso?",
+   "enunciado": "Comparativo 'independente' de celulares, feito por site com comissão",
+   "resposta": true,
+   "ancora": "Comissão por venda cria interesse — deixa de ser comparação neutra.",
+   "feedbackErro": "O nome 'independente' passa confiança, mas ganhar comissão por cada venda pelo link cria um interesse que o rótulo não mostra."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "dificuldade": 3,
+   "pergunta": "Um produto sobe de preço todo dia só pra depois mostrar 'economia' no dia da promoção. Isso é o quê?",
+   "ancora": "Preço inflado antes cria uma sensação de desconto que não existe.",
+   "alternativas": [
+    {
+     "texto": "Preço ancorado, criado só pra parecer desconto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Um erro comum no sistema de preços da loja",
+     "correta": false,
+     "feedbackErro": "Subir o preço todo dia antes de uma promoção não é acidente de sistema. É uma prática proposital pra fabricar a sensação de desconto."
+    },
+    {
+     "texto": "Uma forma de compensar a inflação do período",
+     "correta": false,
+     "feedbackErro": "Inflação de verdade não sobe e desce todo dia no mesmo padrão. Esse movimento serve pra criar a sensação artificial de desconto na promoção."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "publicidade-implicita-explicita",
+   "dificuldade": 3,
+   "pergunta": "Em qual caso avisar 'publi' NÃO muda o efeito da publicidade implícita?",
+   "ancora": "Aviso escondido no fim de um texto longo quase não é percebido.",
+   "alternativas": [
+    {
+     "texto": "Quando o aviso fica escondido no fim de um texto longo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando o aviso vem logo no início do vídeo",
+     "correta": false,
+     "feedbackErro": "Aviso logo no início é justamente o que ajuda a perceber a publicidade antes de se envolver com o conteúdo. Isso muda o efeito."
+    },
+    {
+     "texto": "Quando o produto aparece só uma vez na cena",
+     "correta": false,
+     "feedbackErro": "Aparecer uma vez só já pode ser percebido, se estiver visível. O problema real é o aviso ficar escondido, não a quantidade de vezes."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "criterio": "Um preço 'ancorado' sempre engana?",
+   "enunciado": "Loja que vendia por R$ 300 semana passada e agora cobra R$ 220",
+   "resposta": false,
+   "ancora": "Se o valor anterior foi real, a comparação é honesta.",
+   "feedbackErro": "Todo preço 'de X por Y' parece suspeito à primeira vista, mas se o valor anterior foi realmente praticado, a comparação é honesta."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "publicidade-implicita-explicita",
+   "instrucao": "Ordene do mais fácil pro mais difícil de perceber como publicidade.",
+   "ancora": "Quanto mais publicidade se mistura ao conteúdo, mais difícil ver.",
+   "feedbackErro": "O instinto é achar que todo anúncio é igual fácil de ver, mas quanto mais ele se mistura ao conteúdo comum, mais difícil fica perceber.",
+   "itens": [
+    {
+     "texto": "Comercial de TV tradicional",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Post com a tag 'publi' visível",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Vídeo de opinião sem aviso, produto enviado de graça",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Produto usado várias vezes numa série, sem marcação",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "criterio": "O gatilho funciona sabendo como age?",
+   "enunciado": "Saber que a contagem é falsa, mas comprar rápido 'por garantia'",
+   "resposta": true,
+   "ancora": "Saber do gatilho não anula o efeito — por isso parar antes ajuda.",
+   "feedbackErro": "Conhecer o truque parece suficiente pra não cair nele, mas o efeito emocional continua funcionando mesmo sabendo — por isso vale parar antes de agir."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "publicidade-implicita-explicita",
+   "criterio": "É caso em que reclamar não cabe?",
+   "enunciado": "Anúncio identificado como publicidade, com exagero óbvio de humor",
+   "resposta": true,
+   "ancora": "Anúncio identificado com humor exagerado não é o mesmo que esconder.",
+   "feedbackErro": "Exagero chama atenção e pode incomodar, mas anúncio identificado com humor óbvio é diferente de esconder que é publicidade — isso não é engano."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "pergunta": "Preço 'ancorado' em R$ 540, real de sempre R$ 450, promoção de R$ 450. Qual desconto real, em %?",
+   "campo": "percentual",
+   "min": 0,
+   "max": 10,
+   "gabarito": 0,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto comparando com o preço real anterior",
+   "feedbackPerto": "Isso mesmo — zero. O preço 'promocional' é idêntico ao de sempre; só o rótulo mudou.",
+   "feedbackLonge": "O desconto real é zero. Comparar com o preço 'ancorado' engana; o que importa é o preço praticado antes de verdade.",
+   "verificacao": {
+    "expressao": "(450-450)/450*100",
+    "esperado": 0
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "publicidade-implicita-explicita",
+   "dificuldade": 3,
+   "pergunta": "Uma marca paga um criador só pra ele NÃO falar mal do produto, sem pedir elogio. Isso ainda é publicidade?",
+   "ancora": "Pagamento por silêncio também é influência comprada.",
+   "alternativas": [
+    {
+     "texto": "Sim — pagamento por silêncio também é influência comprada",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, porque ele não elogiou nada em troca",
+     "correta": false,
+     "feedbackErro": "Não precisa haver elogio pra existir influência comprada. Pagar pelo silêncio já é uma forma de moldar o que aparece pro público."
+    },
+    {
+     "texto": "Não, porque publicidade exige propaganda ativa",
+     "correta": false,
+     "feedbackErro": "Publicidade não exige sempre uma fala ativa de elogio. Pagar pra evitar críticas já influencia a percepção do público sobre o produto."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "dificuldade": 3,
+   "pergunta": "Um site muda o preço mostrado conforme quantas vezes você visitou a página. Que prática é essa?",
+   "ancora": "Explora a ansiedade de quem já demonstrou interesse.",
+   "alternativas": [
+    {
+     "texto": "Personalização de preço, pela ansiedade de quem interessou",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Erro de sistema que muda preços aleatoriamente",
+     "correta": false,
+     "feedbackErro": "Mudar o preço conforme o histórico de visitas não é aleatório nem erro. É uma prática proposital de personalização de preço."
+    },
+    {
+     "texto": "Ajuste de preço pela variação do dólar",
+     "correta": false,
+     "feedbackErro": "O dólar não muda conforme quantas vezes uma pessoa visita uma página. O que decide aqui é o histórico de interesse dela mesma."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "publicidade-implicita-explicita",
+   "criterio": "Vale perguntar 'quem pagou' aqui também?",
+   "enunciado": "Comparativo de produtos por site especializado, com links de afiliado",
+   "resposta": true,
+   "ancora": "Links de afiliado criam interesse, mesmo parecendo neutro.",
+   "feedbackErro": "Parece que 'especializado' já garante neutralidade, mas links de afiliado criam interesse comercial, mesmo em conteúdo bem produzido."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "criterio": "Parar antes ajuda sabendo do gatilho?",
+   "enunciado": "Fechar a aba e voltar depois de 10 minutos, quando bate a pressa",
+   "resposta": true,
+   "ancora": "Parar por alguns minutos tira a decisão do calor do gatilho.",
+   "feedbackErro": "Saber que é gatilho parece suficiente, mas o efeito emocional continua — por isso o hábito de parar por minutos ainda faz diferença."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "publicidade-implicita-explicita",
+   "pergunta": "Qual frase resume os limites do que você aprendeu sobre publicidade e gatilhos?",
+   "alternativas": [
+    {
+     "texto": "Anúncio identificado pode enganar; saber do gatilho não anula seu efeito",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Anúncio identificado nunca pode ser considerado enganoso",
+     "correta": false,
+     "feedbackErro": "Um anúncio identificado ainda pode usar preço ancorado de forma enganosa. Estar identificado não garante honestidade total."
+    },
+    {
+     "texto": "Saber como um gatilho funciona já anula o efeito dele",
+     "correta": false,
+     "feedbackErro": "Conhecer o gatilho não desliga o efeito emocional dele. Por isso parar antes de agir ainda é necessário, mesmo sabendo do truque."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "instrucao": "É gatilho emocional ou preço mais baixo de verdade?",
+   "ancora": "Gatilho mexe com emoção; preço real se compara ao de antes.",
+   "feedbackErro": "Parece que qualquer aviso de oferta é prova de preço bom, mas só a comparação com o valor cobrado antes confirma isso de verdade.",
+   "caixas": [
+    {
+     "id": "gatilho",
+     "rotulo": "Gatilho emocional"
+    },
+    {
+     "id": "real",
+     "rotulo": "Preço real"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Contador regressivo que nunca termina de verdade",
+     "caixaCorreta": "gatilho"
+    },
+    {
+     "texto": "Preço comparado com o valor cobrado no mês passado",
+     "caixaCorreta": "real"
+    },
+    {
+     "texto": "'Só restam 2' sem nenhuma informação de estoque real",
+     "caixaCorreta": "gatilho"
+    },
+    {
+     "texto": "Cupom que abate um valor fixo confirmado no carrinho",
+     "caixaCorreta": "real"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "gatilhos-emocionais-preco",
+   "dificuldade": 3,
+   "pergunta": "Um anúncio identificado mostra um preço 'imperdível' igual ao de sempre. Isso é enganoso?",
+   "ancora": "Identificar o anúncio não livra de usar preço ancorado.",
+   "alternativas": [
+    {
+     "texto": "Sim — identificar o anúncio não livra de usar preço ancorado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, anúncio identificado é sempre confiável",
+     "correta": false,
+     "feedbackErro": "Estar identificado como anúncio garante transparência sobre a intenção, mas não sobre o preço mostrado ser realmente um desconto."
+    },
+    {
+     "texto": "Não, só é enganoso quem esconde que é anúncio",
+     "correta": false,
+     "feedbackErro": "Esconder que é anúncio é um problema à parte. Usar preço ancorado falso é enganoso mesmo com o anúncio bem identificado."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "publicidade-implicita-explicita",
+   "criterio": "É publicidade sem mostrar o produto?",
+   "enunciado": "Podcast em que só se fala bem da marca, sem mostrar nada",
+   "resposta": true,
+   "ancora": "Falar bem, sendo pago, já é publicidade, com ou sem imagem.",
+   "feedbackErro": "Sem imagem parece só uma conversa qualquer, mas se existe pagamento por trás de falar bem da marca, isso já é publicidade."
+  }
+ ]
+}

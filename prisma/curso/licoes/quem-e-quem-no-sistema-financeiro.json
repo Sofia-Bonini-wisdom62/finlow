@@ -1,0 +1,338 @@
+{
+ "slug": "quem-e-quem-no-sistema-financeiro",
+ "segmento": "ef89",
+ "conceitoPrincipal": "quem-e-quem-no-sistema-financeiro",
+ "fraseConceito": "O Sistema Financeiro Nacional tem Banco Central, bancos, cooperativas e financeiras — cada um com papel e limite de confiança.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "instituicoes-sfn",
+   "criterio": "Pode receber seu dinheiro em conta?",
+   "enunciado": "Um banco comercial autorizado pelo Banco Central",
+   "resposta": true,
+   "ancora": "Autorização do Banco Central garante que é instituição de fato.",
+   "feedbackErro": "Parece burocracia sem importância, mas a autorização do Banco Central é o que separa banco de verdade de qualquer promessa vazia."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "instituicoes-sfn",
+   "criterio": "Pode receber seu dinheiro em conta?",
+   "enunciado": "Alguém que promete 'render 10% ao mês garantido' pelo WhatsApp",
+   "resposta": false,
+   "ancora": "Sem autorização do Banco Central, é risco de golpe, não banco.",
+   "feedbackErro": "A promessa de retorno alto parece atraente, mas sem registro no Banco Central, não é instituição financeira — é sinal de golpe."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "instituicoes-sfn",
+   "criterio": "Pode receber seu dinheiro em conta?",
+   "enunciado": "Uma cooperativa de crédito registrada",
+   "resposta": true,
+   "ancora": "Cooperativa registrada faz parte do sistema, como um banco.",
+   "feedbackErro": "Cooperativa parece 'menor' que banco, e por isso gera dúvida, mas estando registrada, ela também pode receber e movimentar seu dinheiro."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "instituicoes-sfn",
+   "dificuldade": 1,
+   "pergunta": "Qual é o papel do Banco Central no sistema financeiro?",
+   "ancora": "Fiscaliza e define regras, sem administrar contas de pessoas.",
+   "alternativas": [
+    {
+     "texto": "Fiscalizar bancos e definir regras, sem administrar conta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Guardar o dinheiro de cada pessoa numa conta central",
+     "correta": false,
+     "feedbackErro": "O Banco Central não guarda dinheiro de pessoas físicas. Ele fiscaliza os bancos e define as regras que eles precisam seguir."
+    },
+    {
+     "texto": "Definir o preço de cada produto vendido no país",
+     "correta": false,
+     "feedbackErro": "Preço de produtos não é papel do Banco Central. Ele cuida das regras do sistema financeiro, não do comércio em geral."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "confiabilidade-provedor",
+   "dificuldade": 1,
+   "pergunta": "Como checar se uma instituição financeira é confiável antes de usar?",
+   "ancora": "Ver se está registrada e autorizada pelo Banco Central resolve.",
+   "alternativas": [
+    {
+     "texto": "Ver se ela está registrada e autorizada pelo Banco Central",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ver se o aplicativo tem um visual bonito",
+     "correta": false,
+     "feedbackErro": "Um app bem desenhado não prova registro nenhum. O que garante confiabilidade é a autorização oficial do Banco Central."
+    },
+    {
+     "texto": "Ver se um influenciador recomendou o serviço",
+     "correta": false,
+     "feedbackErro": "Recomendação de influenciador não substitui registro oficial. O que confirma confiabilidade é a autorização do Banco Central."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "instituicoes-sfn",
+   "criterio": "Faz parte do sistema financeiro?",
+   "enunciado": "Uma financeira que empresta dinheiro, registrada no Banco Central",
+   "resposta": true,
+   "ancora": "Registro no Banco Central inclui a financeira no sistema oficial.",
+   "feedbackErro": "Financeira parece 'diferente' de banco, e é aí que confunde. Estando registrada no Banco Central, ela também é parte do sistema financeiro."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "instituicoes-sfn",
+   "instrucao": "Faz parte do sistema financeiro ou não?",
+   "ancora": "Registro no Banco Central ou na CVM inclui no sistema oficial.",
+   "feedbackErro": "Parece que só banco tradicional conta, mas cooperativa e corretora registradas também fazem parte do sistema financeiro oficial.",
+   "caixas": [
+    {
+     "id": "sfn",
+     "rotulo": "Faz parte"
+    },
+    {
+     "id": "naosfn",
+     "rotulo": "Não faz parte"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Banco digital autorizado a operar",
+     "caixaCorreta": "sfn"
+    },
+    {
+     "texto": "Grupo de rifa organizado num grupo de WhatsApp",
+     "caixaCorreta": "naosfn"
+    },
+    {
+     "texto": "Cooperativa de crédito registrada",
+     "caixaCorreta": "sfn"
+    },
+    {
+     "texto": "Esquema que promete 'triplicar' o dinheiro em uma semana",
+     "caixaCorreta": "naosfn"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-provedor",
+   "criterio": "É um sinal de alerta de golpe?",
+   "enunciado": "Prometer rendimento fixo alto, sem nenhum risco, 'garantido'",
+   "resposta": true,
+   "ancora": "Rendimento garantido e alto junto não existe em instituição real.",
+   "feedbackErro": "A promessa soa boa demais pra ser ruim, e é aí que engana. Retorno alto sem nenhum risco não existe em instituição financeira de verdade."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "instituicoes-sfn",
+   "criterio": "É supervisionada pelo Banco Central?",
+   "enunciado": "Uma corretora de investimentos registrada na CVM e no Banco Central",
+   "resposta": true,
+   "ancora": "Registro duplo confirma que está dentro do sistema oficial.",
+   "feedbackErro": "Corretora parece um mundo separado dos bancos, mas registrada na CVM e no Banco Central, ela segue as mesmas regras oficiais."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "instituicoes-sfn",
+   "pergunta": "O FGC cobre até R$ 250 mil por CPF por banco. Com R$ 180 mil guardados, quanto fica sem proteção?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 50000,
+   "gabarito": 0,
+   "toleranciaPct": 20,
+   "fonte": "limite de cobertura do FGC, R$ 250 mil por CPF por instituição",
+   "feedbackPerto": "Isso mesmo — zero. Abaixo do limite do FGC, o valor total fica protegido.",
+   "feedbackLonge": "A resposta é zero. Até R$ 250 mil por instituição, o FGC cobre o valor inteiro se o banco quebrar.",
+   "verificacao": {
+    "expressao": "180000-180000",
+    "esperado": 0
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "confiabilidade-provedor",
+   "dificuldade": 1,
+   "pergunta": "Por que vale checar se uma fintech tem registro no Banco Central antes de usar?",
+   "ancora": "Só instituições registradas seguem regras de proteção ao cliente.",
+   "alternativas": [
+    {
+     "texto": "Porque só instituições registradas seguem regras de proteção",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque fintechs registradas têm aplicativo mais bonito",
+     "correta": false,
+     "feedbackErro": "O visual do aplicativo não tem relação com o registro. O que o registro garante são regras de proteção ao cliente que valem de verdade."
+    },
+    {
+     "texto": "Porque só fintech registrada pode ter atendimento 24h",
+     "correta": false,
+     "feedbackErro": "Atendimento 24h é escolha de cada empresa, registrada ou não. O que o registro garante são as regras de proteção ao cliente."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "instituicoes-sfn",
+   "dificuldade": 1,
+   "pergunta": "Qual a diferença entre um banco e uma cooperativa de crédito?",
+   "ancora": "Na cooperativa, os clientes também são donos e dividem o resultado.",
+   "alternativas": [
+    {
+     "texto": "Na cooperativa, os clientes também são donos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cooperativa não é fiscalizada pelo Banco Central",
+     "correta": false,
+     "feedbackErro": "Cooperativa registrada também é fiscalizada pelo Banco Central, igual banco. A diferença real está em quem é dono do negócio."
+    },
+    {
+     "texto": "Banco sempre cobra taxas menores que cooperativa",
+     "correta": false,
+     "feedbackErro": "Não existe essa regra fixa de quem cobra menos. A diferença central é que na cooperativa os clientes também são donos."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "instituicoes-sfn",
+   "criterio": "Ajuda a reconhecer instituição real?",
+   "enunciado": "Checar o registro no site do Banco Central antes de abrir conta",
+   "resposta": true,
+   "ancora": "O registro oficial confirma que a instituição existe de verdade.",
+   "feedbackErro": "Parece um passo extra chato antes de abrir conta, mas é justamente essa checagem que confirma se a instituição existe de fato."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-provedor",
+   "criterio": "É prova de confiabilidade?",
+   "enunciado": "O número de seguidores da página da empresa nas redes sociais",
+   "resposta": false,
+   "ancora": "Seguidores não substituem registro oficial — são coisas diferentes.",
+   "feedbackErro": "Muitos seguidores passam confiança à primeira vista, mas isso não é registro oficial nenhum — são coisas completamente diferentes."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "instituicoes-sfn",
+   "pergunta": "Qual frase resume o que você viu sobre instituições financeiras?",
+   "alternativas": [
+    {
+     "texto": "Registro no Banco Central separa instituição de verdade de promessa de golpe",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Qualquer aplicativo bonito já é uma instituição confiável",
+     "correta": false,
+     "feedbackErro": "Visual bonito não prova nada sobre confiabilidade. O que garante é o registro oficial no Banco Central."
+    },
+    {
+     "texto": "Só bancos grandes fazem parte do Sistema Financeiro Nacional",
+     "correta": false,
+     "feedbackErro": "Cooperativas e financeiras registradas também fazem parte do sistema. O tamanho da instituição não é o que decide isso."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "instituicoes-sfn",
+   "instrucao": "É instituição do sistema ou é golpe?",
+   "ancora": "Registro oficial separa instituição real de golpe disfarçado.",
+   "feedbackErro": "Parece difícil diferenciar à primeira vista, mas o registro no Banco Central ou na CVM é o que separa instituição real de golpe.",
+   "caixas": [
+    {
+     "id": "sistema",
+     "rotulo": "Instituição do sistema"
+    },
+    {
+     "id": "golpe",
+     "rotulo": "Golpe"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Banco tradicional com agência física",
+     "caixaCorreta": "sistema"
+    },
+    {
+     "texto": "Grupo fechado prometendo triplicar o dinheiro",
+     "caixaCorreta": "golpe"
+    },
+    {
+     "texto": "Corretora registrada na CVM",
+     "caixaCorreta": "sistema"
+    },
+    {
+     "texto": "Pessoa cobrando 'taxa de liberação' de um prêmio",
+     "caixaCorreta": "golpe"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "confiabilidade-provedor",
+   "dificuldade": 2,
+   "pergunta": "Uma pessoa oferece 'empréstimo fácil, sem burocracia', só pelo WhatsApp. O que checar primeiro?",
+   "ancora": "Checar se existe CNPJ e registro oficial evita cair em golpe.",
+   "alternativas": [
+    {
+     "texto": "Se existe CNPJ e registro oficial por trás da oferta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se a resposta pelo WhatsApp é rápida",
+     "correta": false,
+     "feedbackErro": "Rapidez na resposta não prova nada sobre a legitimidade. O que importa é existir CNPJ e registro oficial por trás da oferta."
+    },
+    {
+     "texto": "Se a pessoa tem muitos contatos salvos",
+     "correta": false,
+     "feedbackErro": "Número de contatos não tem relação com ser instituição de verdade. O que confirma é o CNPJ e o registro oficial da oferta."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-provedor",
+   "criterio": "É prova de que o dinheiro está seguro?",
+   "enunciado": "O aplicativo aparecer em primeiro lugar numa busca no Google",
+   "resposta": false,
+   "ancora": "Posição na busca é sobre marketing, não sobre registro oficial.",
+   "feedbackErro": "Aparecer em primeiro lugar parece prova de confiança, mas isso é resultado de anúncio ou popularidade, não de registro oficial."
+  }
+ ]
+}

@@ -1030,3 +1030,164 @@ model AcessoTrilhaTurma {
 
   @@unique([turmaId, tipo, refId])
 }
+
+// ============================================================================
+// CURSO ESCOLAR v2 — card flow v2 (arquitetura pedagógica v1, §6 e §7)
+// ============================================================================
+//
+// POR QUE ISTO NÃO ENTROU EM `Modulo`/`Tela`, QUE É ONDE VAI ACABAR MORANDO
+//
+// A §7 do doc de arquitetura prevê que a lição nova seja um `Modulo` com
+// `Tela.tipo` valendo o PAPEL (sonda, construcao, …). É o destino certo, e os
+// campos nulos que este bloco acrescenta em `Tela` existem justamente para que
+// a fusão depois não precise de migração destrutiva.
+//
+// Só que semear agora em `Modulo` DESTRUIRIA conteúdo no ar. Os seeds fazem
+// upsert por slug, e 20 dos 321 slugs do curso novo já existem como módulos de
+// Ensino Médio em produção — `quando-a-divida-vira-problema`,
+// `o-preco-do-credito`, `fonte-confiavel` e outros 17. Um `--aplicar` gravaria
+// por cima das 20 aulas vivas e apagaria as telas delas (o seed recria telas,
+// não faz diff). Não é coincidência: são os MESMOS conceitos reescritos no
+// formato novo, ou seja, são exatamente a substituição — e substituição é
+// decisão com player pronto atrás, não efeito colateral de um seed.
+//
+// Some-se a isso que `lib/licoes.ts` agrupa lição por TIPO de tela. Os tipos
+// novos não caem em nenhum ramo do `agrupar()` e todos escorreriam para o
+// balde de "aplicacao": o corredor no ar passaria a montar lições erradas nos
+// módulos convertidos, sem erro nenhum aparecendo.
+//
+// Enquanto o player v2 não existe (Tarefa B), o curso vive aqui, ninguém lê,
+// e a trilha no ar segue intacta. O caminho da fusão está em
+// `docs/backlog-curso-v2.md`.
+
+/// Um conceito do currículo — a unidade de aprendizagem do v2.
+///
+/// A §6.1 do doc troca o eixo: o progresso deixa de ser `ProgressoModulo`
+/// (que mede presença) e passa a ser o domínio DO CONCEITO, medido por caixa
+/// de Leitner. A cadeia curricular fica habilidade da matriz BCB → conceito →
+/// itens, com evidência de acerto atrás.
+///
+/// As tabelas DESSA evidência — `DominioConceito` (as caixas) e
+/// `TentativaItem` (cada resposta) — ainda não existem, de propósito. Elas são
+/// dado do usuário, e `lib/dados-exportacao.ts` obriga todo modelo ligado a
+/// `User` a ser classificado como exportável ou não: criá-las agora exigiria
+/// decidir a portabilidade de um dado que nada escreve, e a rota passaria a
+/// entregar array vazio num arquivo de privacidade. O próprio arquivo diz que a
+/// hora de decidir é quando alguém sabe a resposta — ou seja, ao construir o
+/// motor. Definição pronta em `docs/backlog-curso-v2.md`, itens 2 e 6.
+model Conceito {
+  id       String @id @default(cuid())
+  slug     String @unique
+  nome     String
+  segmento String // ef12 | ef35 | ef67 | ef89 | em1 | em2 | em3
+
+  /// A definição em ≤140 caracteres, extraída do `fraseConceito` do encontro 1.
+  ///
+  /// Opcional porque lição pode nascer sem a frase (aconteceu com a piloto,
+  /// escrita antes de o campo existir; fechada em 28/08/2026). Quando falta,
+  /// `scripts/validar-licoes.mts` avisa a cada rodada sem bloquear o seed —
+  /// ver o aviso em lib/licao/carregar.ts.
+  frase    String?
+
+  /// Códigos da matriz BCB cobertos (ex.: "EM13LF26"). 230 distintos no curso.
+  habilidades   String[] @default([])
+  unidade       String
+  /// Slugs de outros conceitos. A §6.4 quer que o pré-requisito passe a ser de
+  /// CONCEITO, não de módulo — é o que dissolve o impasse corredor × biblioteca.
+  preRequisitos String[] @default([])
+
+  licoes LicaoCurso[]
+
+  @@index([segmento])
+}
+
+/// Uma lição do curso: um dos três encontros de um conceito.
+///
+/// Chama-se `LicaoCurso`, e não `Licao`, porque "lição" já significa outra
+/// coisa neste banco: em `ProgressoLicao` é uma das 4 fatias derivadas das
+/// telas de um `Modulo` (lib/licoes.ts), que não é tabela e não tem slug. Duas
+/// coisas diferentes com o mesmo nome em `db.licao` e `db.progressoLicao`
+/// seriam confundidas na primeira consulta escrita com pressa.
+///
+/// OS TRÊS ENCONTROS (§14) são o que separa isto de "a mesma prova três
+/// vezes": apresentação (o conceito nasce), reforço (resgate dias depois) e
+/// consolidação (transferência e casos-limite). Nenhum enunciado se repete
+/// entre eles, e quem garante isso é o validador, não a boa vontade.
+model LicaoCurso {
+  id       String @id @default(cuid())
+  slug     String @unique
+  titulo   String
+  segmento String
+
+  conceitoSlug String
+  /// Ligado por SLUG e não por id porque o slug é o que existe na fonte
+  /// (`prisma/curso/modulos.json`), e resolver para id no seed criaria uma
+  /// ordem de inserção obrigatória — um upsert fora de ordem gravaria vínculo
+  /// errado em silêncio. Vem de `slugBase`, o único campo que fecha 107/107
+  /// contra `conceitos.json` nos dois sentidos.
+  conceito     Conceito @relation(fields: [conceitoSlug], references: [slug], onDelete: Cascade)
+
+  encontro        Int // 1 apresentação · 2 reforço · 3 consolidação
+  tipoEncontro    String // apresentacao | reforco | consolida
+  dificuldadeAlvo Int
+  ordem           Int
+  blocoId         String?
+  blocoRotulo     String?
+  nivel           String   @default("iniciante")
+  habilidades     String[] @default([])
+
+  /// Rótulo editorial do conceito, como a lição o nomeia. NÃO É CHAVE.
+  ///
+  /// Diverge de `conceitoSlug` em 15 lições (5 conceitos × 3 encontros) que
+  /// seguem a lição-piloto e usam um nome semântico — "divida-que-cresce-sozinha"
+  /// no lugar de "quando-a-divida-vira-problema". É a mesma natureza do
+  /// `ItemAvaliativo.conceitoId`, que tem 299 valores livres para 107
+  /// conceitos. Tratar qualquer um dos dois como FK quebra o seed.
+  conceitoPrincipal String
+
+  /// Custo somado dos formatos, em segundos. Teto de 140s, cobrado no seed.
+  custoSeg Float
+
+  itens ItemAvaliativo[]
+
+  @@unique([segmento, ordem])
+  @@index([conceitoSlug, encontro])
+  @@index([segmento, ordem])
+}
+
+/// Um item avaliável. É a peça que o motor de repetição espaçada sorteia.
+///
+/// TODA TELA DO v2 É UM ITEM — não existe tela de leitura (§3). O conteúdo
+/// conceitual mora no feedback de erro e na âncora pós-resposta, nunca em um
+/// parágrafo. É por isso que 5.268 itens cabem em 321 lições de ~2 minutos.
+model ItemAvaliativo {
+  id      String     @id @default(cuid())
+  licaoId String
+  licao   LicaoCurso @relation(fields: [licaoId], references: [id], onDelete: Cascade)
+
+  /// Fora da fila da lição: os 3 itens por lição que só a revisão consome.
+  ///
+  /// Existem para que o reencontro NÃO devolva uma pergunta já respondida —
+  /// senão a repetição espaçada mede memória da resposta e vira teatro (§6.2).
+  /// São 963 no curso, 3 por lição, 9 por conceito.
+  reserva Boolean @default(false)
+  ordem   Int
+
+  papel   String // sonda | construcao | pratica | aplicacao | fluencia | fecho | reserva
+  formato String // binaria | escolha3 | classificar | ordenar | estimativa | caca_erro | fecho
+
+  /// Rótulo editorial de subconceito, livre. NÃO é FK — ver LicaoCurso.conceitoPrincipal.
+  conceitoId  String
+  dificuldade Int?
+
+  /// O contrato do formato (§4): enunciado, alternativas, feedbacks, âncora,
+  /// e `verificacao` quando o gabarito vem de uma conta.
+  conteudo Json
+
+  /// Desliga distrator morto sem apagar o histórico de tentativas (§10).
+  ativo Boolean @default(true)
+
+  @@unique([licaoId, reserva, ordem])
+  @@index([licaoId, reserva, ordem])
+  @@index([conceitoId, formato])
+}

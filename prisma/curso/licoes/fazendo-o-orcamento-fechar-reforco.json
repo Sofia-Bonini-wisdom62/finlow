@@ -1,0 +1,298 @@
+{
+ "slug": "fazendo-o-orcamento-fechar-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "fazendo-o-orcamento-fechar",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "receita-maior-que-despesa",
+   "criterio": "Isso deixa o orçamento no positivo?",
+   "enunciado": "Receber R$ 150 e gastar R$ 130 num mês com despesa extra imprevista",
+   "resposta": true,
+   "ancora": "Mesmo com imprevisto, sobrou R$ 20 — o orçamento fechou positivo.",
+   "feedbackErro": "O imprevisto assusta e parece que já estraga as contas. Mas o que importa é o total: gastando menos do que recebeu, ainda sobrou."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "receita-maior-que-despesa",
+   "criterio": "Isso deixa o orçamento no positivo?",
+   "enunciado": "Receber R$ 150 e gastar R$ 165, mesmo tendo planejado direitinho",
+   "resposta": false,
+   "ancora": "Planejar não garante fechar positivo se o gasto real passar a receita.",
+   "feedbackErro": "Parece que ter planejado já resolve tudo. Mas se o gasto de verdade passou da receita, o orçamento fecha no negativo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "receita-maior-que-despesa",
+   "criterio": "Isso deixa o orçamento no positivo?",
+   "enunciado": "Guardar R$ 10 todo mês, mesmo gastando o resto da mesada inteira",
+   "resposta": true,
+   "ancora": "Guardar antes de gastar o resto ainda deixa o orçamento fechado.",
+   "feedbackErro": "Parece contraditório guardar e gastar o resto todo. Mas separar o que guarda antes é uma forma de fechar com folga."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "receita-maior-que-despesa",
+   "dificuldade": 2,
+   "pergunta": "Diego recebe R$ 140 por mês. Num mês, gastou R$ 95 em coisas planejadas e R$ 30 num imprevisto. Como fechou?",
+   "ancora": "140 menos 95 menos 30 é 15 — a sobra final.",
+   "alternativas": [
+    {
+     "texto": "Positivo, com R$ 15 de sobra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Negativo, porque teve um imprevisto",
+     "correta": false,
+     "feedbackErro": "O imprevisto somou ao gasto, mas o total ainda ficou abaixo da receita. Sobraram R$ 15."
+    },
+    {
+     "texto": "Zero, porque imprevisto sempre consome toda a sobra",
+     "correta": false,
+     "feedbackErro": "Nem todo imprevisto consome tudo. Aqui, mesmo com ele, ainda sobrou R$ 15 — não zerou."
+    }
+   ],
+   "verificacao": {
+    "expressao": "140-95-30",
+    "esperado": 15
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "montar-orcamento",
+   "dificuldade": 2,
+   "pergunta": "No meio do mês, o gasto real de Ana já passou o que ela tinha planejado pro mês inteiro. O que fazer primeiro?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "Rever a lista e cortar o que ainda pode esperar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Continuar gastando igual, já que a lista já foi feita",
+     "correta": false,
+     "feedbackErro": "Seguir a lista original não ajuda quando o gasto real já passou do previsto."
+    },
+    {
+     "texto": "Esperar o mês acabar pra só então descobrir o que houve",
+     "correta": false,
+     "feedbackErro": "Esperar até o fim só adia o problema. Rever a lista no meio do mês dá tempo de corrigir."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "montar-orcamento",
+   "criterio": "É bom motivo pra rever o orçamento?",
+   "enunciado": "O gasto real está passando bem do que foi planejado",
+   "resposta": true,
+   "ancora": "Gasto real acima do planejado é o sinal pra rever.",
+   "feedbackErro": "Parece que revisar só serve no fim do mês. Mas perceber que o gasto real já passou do planejado é o sinal de que vale revisar."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "gasto-individual-x-grupo",
+   "instrucao": "É gasto individual ou de grupo?",
+   "ancora": "O que é usado e pago só por você é individual; dividido, é do grupo.",
+   "feedbackErro": "Parece que gasto em grupo é só o que acontece com mais gente por perto. Mas o que importa é se o custo é dividido.",
+   "caixas": [
+    {
+     "id": "individual",
+     "rotulo": "Individual"
+    },
+    {
+     "id": "grupo",
+     "rotulo": "Grupo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "O caderno novo que só você usa",
+     "caixaCorreta": "individual"
+    },
+    {
+     "texto": "O transporte combinado, dividido entre colegas",
+     "caixaCorreta": "grupo"
+    },
+    {
+     "texto": "O corte de cabelo, só seu",
+     "caixaCorreta": "individual"
+    },
+    {
+     "texto": "A comida comprada pra dividir num piquenique",
+     "caixaCorreta": "grupo"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "receita-maior-que-despesa",
+   "criterio": "Isso deixa o orçamento no negativo?",
+   "enunciado": "Gastar R$ 5 a mais do que recebeu, mesmo sendo pouco",
+   "resposta": true,
+   "ancora": "Qualquer valor acima da receita já deixa o orçamento negativo.",
+   "feedbackErro": "Parece pouco demais pra fazer diferença. Mas mesmo R$ 5 a mais que a receita já deixa o orçamento negativo."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "receita-maior-que-despesa",
+   "dificuldade": 2,
+   "pergunta": "Beatriz recebe R$ 200. Guarda R$ 40 antes de gastar e usa o resto em despesas, gastando tudo. Como fechou o orçamento?",
+   "ancora": "200 menos 160 gastos é 40 — o valor guardado de sobra.",
+   "alternativas": [
+    {
+     "texto": "Positivo, com R$ 40 guardados de sobra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Negativo, porque ela gastou o resto inteiro",
+     "correta": false,
+     "feedbackErro": "Gastar o resto inteiro, depois de guardar, ainda fecha as contas: os R$ 40 guardados são sobra."
+    },
+    {
+     "texto": "Zero, porque não sobrou nada pra gastar depois",
+     "correta": false,
+     "feedbackErro": "Não sobrar pra gastar é diferente de zerar o orçamento. Os R$ 40 guardados contam como sobra."
+    }
+   ],
+   "verificacao": {
+    "expressao": "200-160",
+    "esperado": 40
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "montar-orcamento",
+   "criterio": "Ajuda a manter o orçamento sob controle?",
+   "enunciado": "Comparar toda semana o gasto real com o que foi planejado",
+   "resposta": true,
+   "ancora": "Comparar toda semana pega desvios antes que eles cresçam.",
+   "feedbackErro": "Parece que só olhar no fim do mês já basta. Mas comparar toda semana pega desvios cedo, antes de crescerem."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "gasto-individual-x-grupo",
+   "criterio": "Evita pagar mais que sua parte?",
+   "enunciado": "Dividir o gasto de grupo pelo número certo, sem esquecer ninguém",
+   "resposta": true,
+   "ancora": "Dividir certo evita que sobre parte pra quem já pagou.",
+   "feedbackErro": "Parece um detalhe sem importância, contar direito quem participa. Mas esquecer uma pessoa faz os outros pagarem mais."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "montar-orcamento",
+   "dificuldade": 3,
+   "pergunta": "Qual frase resume melhor o que você viu hoje?",
+   "alternativas": [
+    {
+     "texto": "Um imprevisto sempre estraga o orçamento do mês",
+     "correta": false,
+     "feedbackErro": "Um imprevisto pesa, mas se o total ainda ficar abaixo da receita, o orçamento continua fechando."
+    },
+    {
+     "texto": "Revisar o orçamento no meio do caminho evita que ele feche no negativo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Gasto de grupo não precisa ser dividido igual entre todos",
+     "correta": false,
+     "feedbackErro": "Dividir sem contar todo mundo direito faz alguns pagarem mais do que a parte que lhes cabe."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "receita-maior-que-despesa",
+   "instrucao": "Ordene do orçamento mais negativo pro mais positivo.",
+   "ancora": "Quanto menor a despesa comparada à receita, mais positivo o orçamento.",
+   "feedbackErro": "Parece que só a despesa maior importa, sem comparar com a receita. Mas o que decide o sinal é a diferença entre as duas.",
+   "itens": [
+    {
+     "texto": "Receita R$ 100, despesa R$ 130",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Receita R$ 100, despesa R$ 100",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Receita R$ 100, despesa R$ 60",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "gasto-individual-x-grupo",
+   "instrucao": "É gasto individual ou de grupo?",
+   "ancora": "O que só você paga e usa é individual; o que é repartido é de grupo.",
+   "feedbackErro": "Parece que estar num passeio com mais gente já torna tudo gasto de grupo. Mas o que importa é se o custo é dividido.",
+   "caixas": [
+    {
+     "id": "individual",
+     "rotulo": "Individual"
+    },
+    {
+     "id": "grupo",
+     "rotulo": "Grupo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "O ingresso de cinema, só seu",
+     "caixaCorreta": "individual"
+    },
+    {
+     "texto": "O táxi dividido entre 3 amigos",
+     "caixaCorreta": "grupo"
+    },
+    {
+     "texto": "O livro que só você vai ler",
+     "caixaCorreta": "individual"
+    },
+    {
+     "texto": "A pizza pedida pra compartilhar entre todos",
+     "caixaCorreta": "grupo"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "receita-maior-que-despesa",
+   "pergunta": "Rodrigo recebe R$ 180 e planeja gastar R$ 155. Quanto deveria sobrar?",
+   "campo": "moeda",
+   "min": 5,
+   "max": 60,
+   "gabarito": 25,
+   "toleranciaPct": 20,
+   "fonte": "conta direta: receita menos despesa planejada",
+   "feedbackPerto": "Isso mesmo — R$ 25 de sobra. Receita menos despesa planejada.",
+   "feedbackLonge": "R$ 180 menos R$ 155 dá R$ 25. É só subtrair a despesa planejada da receita.",
+   "verificacao": {
+    "expressao": "180-155",
+    "esperado": 25
+   }
+  }
+ ]
+}

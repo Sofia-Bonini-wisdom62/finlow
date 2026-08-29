@@ -1,0 +1,294 @@
+{
+ "slug": "dinheiro-na-mao-risco-na-tela",
+ "segmento": "ef89",
+ "conceitoPrincipal": "dinheiro-na-mao-risco-na-tela",
+ "fraseConceito": "Dinheiro físico e dinheiro digital têm riscos diferentes — e cada um pede um cuidado diferente.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-fisico",
+   "criterio": "Isso é um risco do dinheiro físico?",
+   "enunciado": "Carregar todo o dinheiro da viagem solto no bolso de trás",
+   "resposta": true,
+   "ancora": "Dinheiro à vista e de fácil acesso atrai furto.",
+   "feedbackErro": "Parece só praticidade, mas dinheiro solto e visível é o alvo mais fácil para um furto — o bolso de trás é o primeiro lugar que um batedor de carteira olha."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-digital",
+   "criterio": "Isso é um risco de transação digital?",
+   "enunciado": "Clicar num link de promoção recebido por mensagem de um número desconhecido",
+   "resposta": true,
+   "ancora": "Link de origem desconhecida é a porta de entrada do golpe.",
+   "feedbackErro": "A promoção parece uma oportunidade boa demais, e é exatamente essa pressa que o golpe explora — o link pode levar a uma página falsa que rouba seus dados."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-fisico",
+   "criterio": "Isso é um risco do dinheiro físico?",
+   "enunciado": "Guardar uma reserva de dinheiro em espécie escondida em casa",
+   "resposta": false,
+   "ancora": "Guardado e escondido em casa, o risco de furto cai bastante.",
+   "feedbackErro": "Envolve dinheiro físico, mas guardado e fora de vista não está exposto a furto imediato como dinheiro carregado à mostra."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-digital",
+   "dificuldade": 1,
+   "pergunta": "Um site pede a senha do banco para 'liberar um prêmio'. Qual é o maior risco real aqui?",
+   "ancora": "Banco nunca pede senha por fora do aplicativo oficial.",
+   "alternativas": [
+    {
+     "texto": "O prêmio pode demorar para cair na conta",
+     "correta": false,
+     "feedbackErro": "Não existe prêmio de verdade aqui. O problema não é demora — é entregar a senha para quem vai esvaziar a conta."
+    },
+    {
+     "texto": "A senha digitada pode ser usada para roubar a conta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O site pode ficar lento depois do cadastro",
+     "correta": false,
+     "feedbackErro": "Lentidão é o menor dos problemas. O risco real é a senha caindo nas mãos de quem criou a página falsa."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-fisico",
+   "dificuldade": 1,
+   "pergunta": "Por que sacar uma quantia grande de dinheiro à noite, num caixa isolado, é mais arriscado?",
+   "ancora": "Pouca gente por perto reduz a chance de socorro em caso de assalto.",
+   "alternativas": [
+    {
+     "texto": "Porque caixas eletrônicos travam mais à noite",
+     "correta": false,
+     "feedbackErro": "O funcionamento do caixa não muda com o horário. O risco maior é outro: a exposição em um lugar vazio."
+    },
+    {
+     "texto": "Porque um lugar vazio e escuro facilita um assalto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque o banco cobra uma taxa extra à noite",
+     "correta": false,
+     "feedbackErro": "Não existe taxa por horário de saque. O que muda à noite, num lugar isolado, é a segurança do ambiente."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "risco-digital",
+   "criterio": "Isso protege uma transação digital?",
+   "enunciado": "Usar a mesma senha simples em todos os aplicativos",
+   "resposta": false,
+   "ancora": "Uma senha vazada abre todas as contas de uma vez.",
+   "feedbackErro": "Repetir a senha parece prático, mas se um único aplicativo vazar os dados, quem descobrir a senha consegue entrar em todas as suas contas."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "risco-fisico",
+   "instrucao": "Ordene do mais seguro ao menos seguro para guardar dinheiro",
+   "ancora": "O critério: quanto mais gente tem acesso fácil, menor a segurança.",
+   "feedbackErro": "O instinto é pensar só no valor guardado. O critério real é quantas pessoas conseguem acessar o dinheiro sem você perceber.",
+   "itens": [
+    { "texto": "Conta bancária com senha e autenticação em duas etapas", "posicaoCorreta": 1 },
+    { "texto": "Cofre trancado dentro de casa", "posicaoCorreta": 2 },
+    { "texto": "Gaveta destrancada do quarto", "posicaoCorreta": 3 },
+    { "texto": "Carteira no bolso de trás em um ônibus lotado", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "risco-digital",
+   "criterio": "Isso protege uma transação digital?",
+   "enunciado": "Conferir se o site tem o cadeado de segurança antes de digitar o cartão",
+   "resposta": true,
+   "ancora": "O cadeado indica que a conexão está criptografada.",
+   "feedbackErro": "Pode parecer um detalhe pequeno, mas o cadeado mostra que os dados digitados viajam protegidos — sem ele, qualquer informação pode ser interceptada."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "risco-fisico",
+   "criterio": "Isso reduz o risco do dinheiro físico?",
+   "enunciado": "Dividir o dinheiro da viagem em dois lugares diferentes da mala",
+   "resposta": true,
+   "ancora": "Se um lugar for revistado ou furtado, o outro continua seguro.",
+   "feedbackErro": "Não parece mudar nada à primeira vista, mas separar o dinheiro limita a perda: um furto localizado não leva tudo de uma vez."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "risco-digital",
+   "pergunta": "De cada 100 mensagens de golpe por celular, quantas pessoas costumam cair no golpe?",
+   "campo": "numero",
+   "min": 1,
+   "max": 40,
+   "gabarito": 10,
+   "toleranciaPct": 30,
+   "fonte": "estimativas de órgãos de defesa do consumidor sobre golpes digitais, ordem de grandeza",
+   "feedbackPerto": "Perto disso — cerca de 1 em cada 10 pessoas chega a clicar ou responder a esse tipo de golpe.",
+   "feedbackLonge": "A estimativa fica perto de 10 em 100. Golpes em massa funcionam pela quantidade: poucos precisam cair para valer o esforço de quem manda."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "risco-fisico",
+   "dificuldade": 1,
+   "pergunta": "Pedro perdeu a carteira com dinheiro em espécie na rua. O que ele NÃO recupera de jeito nenhum?",
+   "ancora": "Dinheiro em espécie não tem dono registrado — quem acha, fica.",
+   "alternativas": [
+    {
+     "texto": "O dinheiro em espécie que estava dentro dela",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O documento de identidade, que pode ser refeito",
+     "correta": false,
+     "feedbackErro": "O documento dá trabalho, mas pode ser refeito na repartição. O que se perde de vez, sem chance de estorno, é o dinheiro vivo."
+    },
+    {
+     "texto": "O cartão do banco, que pode ser bloqueado",
+     "correta": false,
+     "feedbackErro": "Um cartão pode ser bloqueado a distância assim que percebido o sumiço. Dinheiro em espécie não tem esse botão de emergência."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "risco-digital",
+   "dificuldade": 1,
+   "pergunta": "Uma compra online pede só o número do cartão, sem CVV nem confirmação. O que isso indica?",
+   "ancora": "Loja séria sempre confere mais de um dado do cartão.",
+   "alternativas": [
+    {
+     "texto": "Que o site é rápido e bem projetado",
+     "correta": false,
+     "feedbackErro": "Rapidez não é o ponto — sites confiáveis sempre pedem o CVV, exatamente para confirmar que quem está comprando tem o cartão em mãos."
+    },
+    {
+     "texto": "Que o site pode ser uma fraude mal disfarçada",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que o site está oferecendo um desconto exclusivo",
+     "correta": false,
+     "feedbackErro": "Não é um benefício — é um sinal de alerta. Pedir menos dados do que o padrão do mercado costuma indicar fraude, não vantagem."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "risco-fisico",
+   "criterio": "Isso é um risco do dinheiro físico?",
+   "enunciado": "Contar o dinheiro em público, na fila do caixa eletrônico",
+   "resposta": true,
+   "ancora": "Mostrar quanto você carrega chama atenção indevida.",
+   "feedbackErro": "Parece só conferir o troco, mas contar dinheiro à vista de estranhos revela quanto você carrega — informação que um golpista pode usar."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "risco-digital",
+   "criterio": "Isso é um risco de transação digital?",
+   "enunciado": "Fazer login no aplicativo do banco usando a rede wi-fi de casa",
+   "resposta": false,
+   "ancora": "Wi-fi doméstico e conhecido não expõe seus dados como uma rede aberta.",
+   "feedbackErro": "É acesso remoto, mas numa rede que você controla e conhece — o risco de interceptação é bem menor que numa rede pública aberta."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "risco-digital",
+   "pergunta": "Qual frase resume o cuidado com dinheiro físico e digital?",
+   "alternativas": [
+    {
+     "texto": "Dinheiro digital é sempre mais seguro que o físico",
+     "correta": false,
+     "feedbackErro": "Cada um tem riscos próprios: o físico se perde com furto; o digital, com golpes e senhas fracas."
+    },
+    {
+     "texto": "Cada tipo de dinheiro pede um cuidado diferente e específico",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só quem carrega muito dinheiro em espécie corre risco",
+     "correta": false,
+     "feedbackErro": "Riscos digitais atingem qualquer pessoa com celular, mesmo sem carregar dinheiro em espécie."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "risco-fisico",
+   "instrucao": "É risco do dinheiro físico ou do digital?",
+   "ancora": "Físico envolve o objeto dinheiro; digital envolve dados e acesso.",
+   "feedbackErro": "O jeito de separar: se o risco é perder o objeto (furto, extravio), é físico. Se é alguém acessar seus dados ou senha, é digital.",
+   "caixas": [
+    { "id": "fisico", "rotulo": "Físico" },
+    { "id": "digital", "rotulo": "Digital" }
+   ],
+   "itens": [
+    { "texto": "Carteira esquecida em cima do balcão da loja", "caixaCorreta": "fisico" },
+    { "texto": "Aplicativo falso imitando o banco de verdade", "caixaCorreta": "digital" },
+    { "texto": "Troco entregue errado numa compra no mercado", "caixaCorreta": "fisico" },
+    { "texto": "Cartão salvo automaticamente num site desconhecido", "caixaCorreta": "digital" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "risco-digital",
+   "criterio": "Isso protege uma transação digital?",
+   "enunciado": "Ativar a notificação de compra por mensagem no celular",
+   "resposta": true,
+   "ancora": "A notificação avisa rápido se uma compra não foi sua.",
+   "feedbackErro": "Não impede o golpe de acontecer, mas avisa na hora — quanto mais cedo você percebe, mais rápido consegue bloquear e contestar."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "risco-fisico",
+   "dificuldade": 1,
+   "pergunta": "Por que levar pouco dinheiro em espécie para um show lotado é uma prática recomendada?",
+   "ancora": "Menos dinheiro à vista significa menos prejuízo em caso de furto.",
+   "alternativas": [
+    {
+     "texto": "Porque limita o prejuízo possível em caso de furto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque shows não aceitam pagamento em espécie",
+     "correta": false,
+     "feedbackErro": "Muitos locais ainda aceitam dinheiro em espécie normalmente. A recomendação não é sobre aceitação, é sobre limitar a perda possível."
+    },
+    {
+     "texto": "Porque dinheiro em espécie perde valor mais rápido",
+     "correta": false,
+     "feedbackErro": "O valor do dinheiro não muda pelo local onde está. O ponto é a exposição ao furto num ambiente lotado."
+    }
+   ]
+  }
+ ]
+}

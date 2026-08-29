@@ -1,0 +1,274 @@
+{
+ "slug": "planejada-ou-por-impulso-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "planejada-ou-por-impulso",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "planejada-x-impulso",
+   "criterio": "Qual era o critério mesmo?",
+   "enunciado": "Fazer a lista, mas comprar coisas que não estão nela",
+   "resposta": false,
+   "ancora": "O critério não é só ter lista, é seguir o que foi pensado.",
+   "feedbackErro": "Ter lista parece já resolver o problema. Mas se você compra coisas fora dela, o plano não foi realmente seguido."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "planejada-x-impulso",
+   "criterio": "Qual era o critério mesmo?",
+   "enunciado": "Pensar por alguns segundos antes de decidir comprar",
+   "resposta": false,
+   "ancora": "Poucos segundos ainda é decisão rápida, sinal de impulso.",
+   "feedbackErro": "Pensar por segundos já parece planejamento. Mas o critério é ter pensado antes de estar na loja, não durante a decisão."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "recusar-oferta",
+   "criterio": "Qual era o critério mesmo?",
+   "enunciado": "Recusar qualquer oferta, mesmo as que já estavam no seu plano",
+   "resposta": false,
+   "ancora": "O critério é recusar o que está fora do plano, não tudo.",
+   "feedbackErro": "Recusar tudo parece disciplina total. Mas o critério certo é recusar só o que está fora do que você já tinha planejado comprar."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "planejada-x-impulso",
+   "dificuldade": 2,
+   "pergunta": "Fernanda fez uma lista com 3 itens, mas comprou 5. O que isso mostra?",
+   "ancora": "Fazer lista é só o começo do planejamento.",
+   "alternativas": [
+    {
+     "texto": "Que ela não seguiu o plano, mesmo tendo feito a lista",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que ela planejou muito bem a compra",
+     "correta": false,
+     "feedbackErro": "Fazer a lista é só o começo do planejamento. Comprar 2 itens a mais que o combinado mostra que o plano não foi seguido até o fim."
+    },
+    {
+     "texto": "Que os 2 itens extras também eram planejados",
+     "correta": false,
+     "feedbackErro": "Se não estavam escritos na lista antes, eles não eram parte do plano — foram decisões de última hora."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "recusar-oferta",
+   "dificuldade": 2,
+   "pergunta": "Numa loja, oferecem um segundo produto pela metade do preço, se você levar junto. O que decide se vale aceitar?",
+   "ancora": "O critério é se o segundo produto já era necessário.",
+   "alternativas": [
+    {
+     "texto": "Se o segundo produto também é algo que você já ia comprar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se o desconto parece grande, sem pensar em mais nada",
+     "correta": false,
+     "feedbackErro": "Um desconto grande chama atenção rápido. Mas se o produto extra não estava no plano, o 'desconto' é um gasto novo, não economia."
+    },
+    {
+     "texto": "Se a loja está anunciando a promoção com cartazes",
+     "correta": false,
+     "feedbackErro": "Cartazes chamativos são parte da venda, não do seu plano. O que decide é se você já precisava daquele segundo item."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "planejada-x-impulso",
+   "criterio": "Isso é seguir o planejamento?",
+   "enunciado": "Trocar um item da lista por outro parecido, mas mais barato",
+   "resposta": true,
+   "ancora": "Ajustar dentro do que já era necessário ainda é planejar.",
+   "feedbackErro": "Trocar parece fugir do plano original. Mas se o novo item cobre a mesma necessidade por menos dinheiro, isso é planejamento, não impulso."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "recusar-oferta",
+   "instrucao": "É um bom motivo pra aceitar a oferta?",
+   "ancora": "Bom motivo é o produto já estar no seu plano.",
+   "feedbackErro": "Desconto e insistência do vendedor não substituem o plano. O motivo bom é precisar mesmo do produto.",
+   "caixas": [
+    {
+     "id": "bom",
+     "rotulo": "Bom motivo"
+    },
+    {
+     "id": "ruim",
+     "rotulo": "Não é bom motivo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "O produto já estava na sua lista de compras",
+     "caixaCorreta": "bom"
+    },
+    {
+     "texto": "O vendedor disse que é a última unidade",
+     "caixaCorreta": "ruim"
+    },
+    {
+     "texto": "Você realmente precisa substituir algo gasto",
+     "caixaCorreta": "bom"
+    },
+    {
+     "texto": "A oferta só vale hoje, segundo o vendedor",
+     "caixaCorreta": "ruim"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "planejada-x-impulso",
+   "criterio": "Isso é sinal de compra planejada?",
+   "enunciado": "Ter esperado alguns dias entre a ideia e a compra",
+   "resposta": true,
+   "ancora": "Esperar dá tempo de pensar se realmente precisa.",
+   "feedbackErro": "Esperar parece só demora sem função. Mas esse tempo entre a ideia e a compra é o que separa o plano do impulso."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "planejada-x-impulso",
+   "dificuldade": 2,
+   "pergunta": "Você tinha R$ 30 pra material. Comprou o da lista por R$ 22 e mais uma caneta de R$ 6, fora do plano. Quanto sobrou?",
+   "ancora": "30 menos 22 menos 6 é 2: o que sobrou de verdade.",
+   "alternativas": [
+    {
+     "texto": "R$ 2",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 8",
+     "correta": false,
+     "feedbackErro": "R$ 8 seria a sobra sem contar a caneta extra. Mas ela também saiu do seu bolso: 30 menos 22 menos 6 é 2."
+    },
+    {
+     "texto": "R$ 14",
+     "correta": false,
+     "feedbackErro": "Esse valor soma os dois gastos ao contrário. A conta certa é 30 menos 22 menos 6, que dá 2."
+    }
+   ],
+   "verificacao": {
+    "expressao": "30-22-6",
+    "esperado": 2
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "recusar-oferta",
+   "criterio": "Isso é uma boa forma de recusar?",
+   "enunciado": "Fingir que não ouviu o vendedor e sair andando sem responder",
+   "resposta": false,
+   "ancora": "Recusar com educação funciona melhor do que ignorar.",
+   "feedbackErro": "Ignorar parece a saída mais fácil. Mas responder com educação, dizendo que não estava no plano, é mais claro e mais respeitoso."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "planejada-x-impulso",
+   "criterio": "Isso mostra controle sobre o impulso?",
+   "enunciado": "Ver um brinquedo, sentir vontade, e esperar até pensar melhor",
+   "resposta": true,
+   "ancora": "O controle está em esperar, não em não sentir vontade.",
+   "feedbackErro": "Sentir vontade não é o problema — todo mundo sente. O controle está em esperar antes de decidir, em vez de comprar na hora."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "recusar-oferta",
+   "pergunta": "Depois de rever, qual frase está mais certa?",
+   "alternativas": [
+    {
+     "texto": "Recusar bem é dizer não ao que está fora do plano",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Fazer lista já garante que a compra foi planejada",
+     "correta": false,
+     "feedbackErro": "A lista ajuda, mas só garante planejamento se você realmente seguir o que está nela."
+    },
+    {
+     "texto": "Desconto grande é sempre motivo suficiente pra comprar",
+     "correta": false,
+     "feedbackErro": "Desconto não substitui necessidade. Se o produto não estava no plano, ele só torna o gasto extra menor, não zero."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "planejada-x-impulso",
+   "instrucao": "Ordene o que acontece numa compra por impulso.",
+   "ancora": "Ver, sentir vontade, comprar — tudo sem pensar antes.",
+   "feedbackErro": "Pular a etapa de pensar antes é o que caracteriza o impulso. A sequência mostra decisão rápida, sem plano.",
+   "itens": [
+    {
+     "texto": "Ver o produto sem ter planejado antes",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Sentir vontade na hora",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Comprar sem pensar no plano",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "recusar-oferta",
+   "dificuldade": 2,
+   "pergunta": "Uma loja oferece 3 produtos pelo preço de 2, mas você só precisa de 1. Qual é a melhor escolha?",
+   "ancora": "Precisar de 1 não muda só porque o pacote tem 3.",
+   "alternativas": [
+    {
+     "texto": "Levar só o 1 que você precisa, mesmo sem o desconto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Levar os 3, porque a conta por unidade fica menor",
+     "correta": false,
+     "feedbackErro": "O preço por unidade cai, é verdade. Mas comprar 2 produtos a mais que você não precisa não é economia — é gasto extra."
+    },
+    {
+     "texto": "Levar os 3 e guardar 2 pra usar depois",
+     "correta": false,
+     "feedbackErro": "Guardar pra depois parece resolver, mas só se você já tivesse planejado usar os 3. Sem essa necessidade, ainda é fora do plano."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "recusar-oferta",
+   "criterio": "Isso é ceder ao impulso, e não à oferta?",
+   "enunciado": "Comprar algo só porque outras pessoas na fila também compraram",
+   "resposta": true,
+   "ancora": "Seguir o que os outros fazem, sem plano próprio, também é impulso.",
+   "feedbackErro": "Parece só estar acompanhando a fila. Mas decidir por causa dos outros, sem ter planejado, também é comprar por impulso."
+  }
+ ]
+}

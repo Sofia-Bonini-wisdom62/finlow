@@ -1,0 +1,333 @@
+{
+ "slug": "o-termometro-da-economia",
+ "segmento": "em3",
+ "conceitoPrincipal": "indicadores-e-vida-real",
+ "fraseConceito": "Selic, inflação, câmbio e PIB são termômetros: medem a economia e mexem no seu crédito, no seu preço e no seu salário.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "indicadores-e-vida-real",
+   "criterio": "Mexe no seu bolso?",
+   "enunciado": "A Selic subir de 10% para 15% ao ano",
+   "resposta": true,
+   "ancora": "Selic é a taxa de referência: crédito e parcelas ficam mais caros.",
+   "feedbackErro": "Parece assunto de banco, e é — mas os juros do seu parcelado, do carro e da casa seguem a Selic. Ela subindo, tudo isso encarece."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cambio-poder-de-compra",
+   "criterio": "Mexe no seu bolso?",
+   "enunciado": "O dólar passar de R$ 5,00 para R$ 6,00",
+   "resposta": true,
+   "ancora": "Trigo, combustível e eletrônicos são cotados em dólar.",
+   "feedbackErro": "Você não compra dólar, mas compra pão e gasolina — e trigo e petróleo são cotados em dólar. Câmbio alto chega à prateleira em semanas."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "indicadores-e-vida-real",
+   "criterio": "Mexe no seu bolso?",
+   "enunciado": "O governo lançar cédulas com desenho novo",
+   "resposta": false,
+   "ancora": "Mudar a estampa não muda o valor nem os preços.",
+   "feedbackErro": "A nota nova chama atenção, mas vale o mesmo que a antiga. O que muda seu poder de compra é inflação, juro e câmbio — não a estampa do papel."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "indicadores-e-vida-real",
+   "dificuldade": 1,
+   "pergunta": "A inflação do ano foi 5% e seu salário não mudou. O que aconteceu com você?",
+   "ancora": "Mesmos R$ 100, cesta 5% mais cara: você compra ~5% menos.",
+   "verificacao": {
+    "expressao": "100/1.05",
+    "esperado": 95.24,
+    "tolerancia": 0.1
+   },
+   "alternativas": [
+    {
+     "texto": "Seu dinheiro passou a comprar menos coisas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: o número na sua conta continua igual",
+     "correta": false,
+     "feedbackErro": "O número é o mesmo, e é isso que engana. Inflação não tira dinheiro da conta — tira o que ele compra. R$ 100 seguem lá, valendo menos."
+    },
+    {
+     "texto": "Você perdeu 5% do saldo guardado no banco",
+     "correta": false,
+     "feedbackErro": "O saldo não some: R$ 100 continuam R$ 100. A perda é no poder de compra — a mesma cesta agora custa R$ 105. Perda real, invisível no extrato."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "indicadores-e-vida-real",
+   "dificuldade": 1,
+   "pergunta": "A Selic subiu. O que tende a acontecer com um financiamento pedido agora?",
+   "ancora": "A Selic é o piso dos juros: subiu, todo crédito tende a subir.",
+   "alternativas": [
+    {
+     "texto": "Fica mais caro: os juros seguem a taxa básica",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Fica mais barato: o banco já lucra com a Selic",
+     "correta": false,
+     "feedbackErro": "O banco lucra aplicando na Selic alta — e por isso só empresta se cobrar acima dela. Selic é o piso: subiu o piso, sobe o crédito."
+    },
+    {
+     "texto": "Nada muda: a Selic só vale para o governo",
+     "correta": false,
+     "feedbackErro": "Ela nasce nos títulos do governo, é verdade. Mas serve de referência para todos os juros do país: cartão, financiamento e empréstimo partem dela."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "indicadores-e-vida-real",
+   "criterio": "É isso que o PIB mede?",
+   "enunciado": "A soma do que o país produziu no ano",
+   "resposta": true,
+   "ancora": "PIB é a produção de bens e serviços. Crescendo, gera empregos.",
+   "feedbackErro": "É isso mesmo que ele mede: tudo o que o país produziu em bens e serviços. PIB em alta costuma significar mais vagas; em queda, demissões."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "cambio-poder-de-compra",
+   "instrucao": "Monte a corrente: do dólar em alta até o seu lanche.",
+   "ancora": "Câmbio → insumo importado → preço na loja → seu poder de compra.",
+   "feedbackErro": "A ordem é a da cadeia: o dólar sobe, o insumo importado encarece, o produto final sobe e só então seu dinheiro compra menos. O câmbio vem sempre antes.",
+   "itens": [
+    {
+     "texto": "O dólar sobe",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "O trigo importado fica mais caro",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "O pão sobe na padaria",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Seu lanche consome mais do seu dinheiro",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "cambio-poder-de-compra",
+   "criterio": "Encarece com o dólar alto?",
+   "enunciado": "Um celular importado",
+   "resposta": true,
+   "ancora": "Produto importado é pago em dólar: câmbio alto, preço alto.",
+   "feedbackErro": "O preço na loja está em reais, mas a fábrica cobrou em dólar. Se o dólar subiu, a loja paga mais para repor — e repassa para a etiqueta."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "cambio-poder-de-compra",
+   "criterio": "Encarece com o dólar alto?",
+   "enunciado": "O corte de cabelo no salão do bairro",
+   "resposta": false,
+   "ancora": "Serviço local quase não usa insumo importado. O câmbio pesa pouco.",
+   "feedbackErro": "O câmbio mexe no que é importado ou exportado. Um corte de cabelo é trabalho local: o dólar até chega lá (energia, produtos), mas fraco e devagar."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "indicadores-e-vida-real",
+   "pergunta": "Com inflação de 5% ao ano, quanto custará daqui a um ano a compra de R$ 200?",
+   "campo": "moeda",
+   "min": 190,
+   "max": 260,
+   "gabarito": 210,
+   "toleranciaPct": 20,
+   "fonte": "IPCA, inflação oficial, ~4-5% ao ano (IBGE)",
+   "verificacao": {
+    "expressao": "200*1.05",
+    "esperado": 210
+   },
+   "feedbackPerto": "Isso: R$ 210. Parece pouco em um ano — o problema é que a inflação nunca tira férias e compõe ano após ano.",
+   "feedbackLonge": "São R$ 210: 5% sobre R$ 200. O erro comum é o viés de exagero — inflação de um dígito corrói devagar, mas todo ano."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "comparar-paises",
+   "dificuldade": 2,
+   "pergunta": "Na Argentina, a inflação já passou de 100% ao ano; no Brasil, ficou perto de 5%. O que muda no dia a dia de lá?",
+   "ancora": "Com 100% ao ano, o preço dobra: guardar papel-moeda é perder metade.",
+   "alternativas": [
+    {
+     "texto": "Deixar dinheiro parado vira prejuízo em semanas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: os salários sobem junto, no mesmo dia",
+     "correta": false,
+     "feedbackErro": "Alguns salários são reajustados, mas sempre depois dos preços. Nesse intervalo, quem vive de salário perde — e quanto maior a inflação, maior a perda."
+    },
+    {
+     "texto": "Só muda a vida de quem viaja para fora",
+     "correta": false,
+     "feedbackErro": "Câmbio afeta viajante; inflação afeta todo mundo que compra comida no país. Com 100% ao ano, o supermercado remarca preços toda semana."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "indicadores-e-vida-real",
+   "dificuldade": 2,
+   "pergunta": "O desemprego do país subiu. Por que isso ameaça até quem está empregado?",
+   "ancora": "Desemprego alto = menos consumo = menos vendas = mais cortes.",
+   "alternativas": [
+    {
+     "texto": "Menos gente comprando: vendas caem e vagas somem",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não ameaça: só afeta quem já perdeu a vaga",
+     "correta": false,
+     "feedbackErro": "Quem perdeu sente primeiro, mas para de consumir — e a loja que vendia para ele corta também. Desemprego se espalha pela economia como corrente."
+    },
+    {
+     "texto": "Ameaça apenas os empregos do governo",
+     "correta": false,
+     "feedbackErro": "O governo arrecada menos, é verdade. Mas o efeito maior é privado: sem renda circulando, comércio e serviços vendem menos e cortam vagas."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "indicadores-e-vida-real",
+   "criterio": "Esse indicador mede isso?",
+   "enunciado": "A inflação mede quanto o país produziu",
+   "resposta": false,
+   "ancora": "Produção é PIB. Inflação mede a subida média dos preços.",
+   "feedbackErro": "Os dois saem no mesmo noticiário, e a confusão é comum. PIB conta a produção; inflação conta o quanto os preços subiram. Termômetros diferentes."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "indicadores-e-vida-real",
+   "criterio": "Vale conferir antes de decidir?",
+   "enunciado": "Olhar a Selic antes de parcelar uma compra grande",
+   "resposta": true,
+   "ancora": "Selic alta = parcela cara. O indicador orienta o momento.",
+   "feedbackErro": "Parece exagero para uma compra, mas é onde o termômetro serve: com Selic alta, os juros do parcelamento pesam mais — talvez seja hora de juntar à vista."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "indicadores-e-vida-real",
+   "pergunta": "Qual frase resume o termômetro da economia?",
+   "alternativas": [
+    {
+     "texto": "Indicadores são números do noticiário, sem efeito na vida real.",
+     "correta": false,
+     "feedbackErro": "A Selic define sua parcela; a inflação, seu poder de compra. Chegam no bolso."
+    },
+    {
+     "texto": "Selic, inflação, câmbio e PIB medem a economia — e mexem no seu bolso.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só o dólar importa: os outros indicadores são para economistas.",
+     "correta": false,
+     "feedbackErro": "O câmbio pesa nos importados, mas Selic e inflação mexem em todo preço e crédito."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "cambio-poder-de-compra",
+   "instrucao": "Quem sente rápido o dólar mais caro?",
+   "ancora": "Quanto mais importado no produto, mais rápido o câmbio chega.",
+   "feedbackErro": "O critério é o insumo: produto com peça ou cotação em dólar remarca rápido; serviço local, feito de trabalho daqui, quase não sente.",
+   "caixas": [
+    {
+     "id": "rapido",
+     "rotulo": "Sente rápido"
+    },
+    {
+     "id": "pouco",
+     "rotulo": "Sente pouco"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Preço do notebook importado",
+     "caixaCorreta": "rapido"
+    },
+    {
+     "texto": "Passagem aérea internacional",
+     "caixaCorreta": "rapido"
+    },
+    {
+     "texto": "Mensalidade da escola do bairro",
+     "caixaCorreta": "pouco"
+    },
+    {
+     "texto": "Aula de violão com professor local",
+     "caixaCorreta": "pouco"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "indicadores-e-vida-real",
+   "dificuldade": 2,
+   "pergunta": "Por que a dívida pública alta pode encarecer o crédito de todo mundo?",
+   "ancora": "Governo endividado paga juro alto — e puxa todos os juros do país.",
+   "alternativas": [
+    {
+     "texto": "Ele disputa o mesmo dinheiro e paga juro maior",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O banco cobra imposto extra para cobrir a dívida",
+     "correta": false,
+     "feedbackErro": "Imposto pode subir, mas o canal direto é outro: emprestar ao governo rende muito e é seguro, então emprestar a você precisa render ainda mais."
+    },
+    {
+     "texto": "Não encarece: a dívida é só problema do governo",
+     "correta": false,
+     "feedbackErro": "Os títulos públicos são a base dos juros do país. Se o governo paga caro para se financiar, ninguém empresta a você por menos."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "indicadores-e-vida-real",
+   "criterio": "É função da Selic?",
+   "enunciado": "Servir de referência para os juros do país",
+   "resposta": true,
+   "ancora": "É a taxa básica: os outros juros se calculam a partir dela.",
+   "feedbackErro": "É exatamente a função: a Selic é o ponto de partida de todos os juros — do financiamento ao rendimento da sua aplicação."
+  }
+ ]
+}

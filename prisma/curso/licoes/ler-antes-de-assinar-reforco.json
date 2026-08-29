@@ -1,0 +1,335 @@
+{
+ "slug": "ler-antes-de-assinar-reforco",
+ "segmento": "em1",
+ "conceitoPrincipal": "ler-antes-de-assinar",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "assinatura-obriga",
+   "criterio": "Ainda te obriga?",
+   "enunciado": "O contrato de 12 meses que você esqueceu que existe",
+   "resposta": true,
+   "ancora": "Contrato não expira por esquecimento: a cobrança corre igual.",
+   "feedbackErro": "O esquecimento é humano; a cobrança, automática: vence, atrasa, vira juros — sem lembrete obrigatório. Manter a lista dos contratos ativos é parte de ler."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "assinatura-obriga",
+   "criterio": "Ainda te obriga?",
+   "enunciado": "A cláusula da página 9, em letra miúda, que você pulou",
+   "resposta": true,
+   "ancora": "Letra miúda vale — por isso a leitura vai até o fim.",
+   "feedbackErro": "Parece pegadinha, e às vezes é — mas legal: só cláusula que limita direito exige destaque. O resto vale miúdo. Abusiva é outra conversa, e quem decide é o juiz."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "assinatura-obriga",
+   "criterio": "Ainda te obriga?",
+   "enunciado": "A mensalidade promocional que o contrato manda dobrar no 7º mês",
+   "resposta": true,
+   "ancora": "Aumento programado em cláusula é obrigação sua também.",
+   "feedbackErro": "A propaganda vendeu o preço baixo; o contrato programou o alto. Promoção com prazo escrita em cláusula não é golpe — é cláusula que ninguém leu."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "mapa-do-contrato",
+   "dificuldade": 2,
+   "pergunta": "Do primeiro encontro: quais eram as quatro perguntas a fazer antes de assinar?",
+   "ancora": "Quanto custa, quando vence, até quando dura, como sair.",
+   "alternativas": [
+    {
+     "texto": "Quanto custa, quando vence, quanto dura, como sair",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quem indicou, quem assina junto, quem fiscaliza",
+     "correta": false,
+     "feedbackErro": "São perguntas de contexto, não de contrato. O filtro do encontro anterior mirava as cláusulas que mudam o seu bolso: valor, vencimento, duração e saída."
+    },
+    {
+     "texto": "Qual o lucro da empresa e o salário do vendedor",
+     "correta": false,
+     "feedbackErro": "O lucro alheio não muda a sua obrigação. As quatro perguntas eram sobre o que você paga e por quanto tempo — e sobre o preço de mudar de ideia."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "documento-e-prova",
+   "dificuldade": 2,
+   "pergunta": "Fatura do cartão: total R$ 487,90, mínimo R$ 73,18. Pagando R$ 400, o que acontece?",
+   "ancora": "Sobram R$ 87,90 no rotativo, a ~14% ao mês.",
+   "verificacao": {
+    "expressao": "487.90-400",
+    "esperado": 87.9
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 87,90 viram rotativo e rendem juros",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: acima do mínimo, a fatura zera",
+     "correta": false,
+     "feedbackErro": "O mínimo só evita o atraso e a multa. O que passa dele continua devido: os R$ 87,90 entram no rotativo e chegam maiores na próxima fatura."
+    },
+    {
+     "texto": "Os R$ 87,90 somem na fatura seguinte",
+     "correta": false,
+     "feedbackErro": "Dívida de cartão não evapora: o saldo restante migra para o rotativo — a linha mais cara do país, ~14% ao mês — e volta com juros no mês seguinte."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "documento-e-prova",
+   "criterio": "É inconsistência para contestar?",
+   "enunciado": "Tarifa no extrato que não existe no seu pacote de conta",
+   "resposta": true,
+   "ancora": "Só vale a tarifa contratada. Fora do pacote: conteste com protocolo.",
+   "feedbackErro": "Tarifa parece oficial e intocável — não é. Compare o extrato com o contrato do pacote: linha sem correspondência é erro ou cobrança indevida. Banco também erra."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "documento-e-prova",
+   "instrucao": "Linha por linha da fatura: pagar ou contestar?",
+   "ancora": "Linha com contrato e compra por trás, paga; sem lastro, contesta.",
+   "feedbackErro": "O critério é o cruzamento: cobrança que corresponde ao que você contratou e usou se paga; linha sem compra ou de serviço já cancelado se contesta, com registro.",
+   "caixas": [
+    {
+     "id": "paga",
+     "rotulo": "Confere e paga"
+    },
+    {
+     "id": "contesta",
+     "rotulo": "Contesta antes"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Compra que você fez, no valor certo",
+     "caixaCorreta": "paga"
+    },
+    {
+     "texto": "A mesma compra lançada duas vezes",
+     "caixaCorreta": "contesta"
+    },
+    {
+     "texto": "Assinatura cancelada no mês passado",
+     "caixaCorreta": "contesta"
+    },
+    {
+     "texto": "Anuidade prevista no contrato do cartão",
+     "caixaCorreta": "paga"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "assinatura-obriga",
+   "criterio": "Confere com o combinado?",
+   "enunciado": "Nota promissória de R$ 350 para uma dívida de R$ 300",
+   "resposta": false,
+   "ancora": "Promissória vale pelo número escrito: R$ 50 de presente.",
+   "verificacao": {
+    "expressao": "350-300",
+    "esperado": 50
+   },
+   "feedbackErro": "Na pressa de resolver, R$ 50 parecem detalhe. Mas promissória é título executável pelo valor escrito: assinou 350, deve 350. O papel manda — confira antes."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "documento-e-prova",
+   "criterio": "Confere com o combinado?",
+   "enunciado": "Recibo de aluguel no valor exato do contrato de locação",
+   "resposta": true,
+   "ancora": "Papéis contando a mesma história: cruzamento fechado, prova feita.",
+   "feedbackErro": "Aqui não há pegadinha, e reconhecer isso também é leitura: recibo e contrato batem. Confere, arquiva e segue — contestação é para quando os papéis divergem."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "documento-e-prova",
+   "pergunta": "Conta de R$ 350 paga 1 mês após vencer, com multa de 2% e mora de 1% ao mês. Total a pagar?",
+   "campo": "moeda",
+   "min": 350,
+   "max": 450,
+   "gabarito": 360.5,
+   "toleranciaPct": 20,
+   "fonte": "conta: 350 × 1,02 + 350 × 0,01",
+   "verificacao": {
+    "expressao": "350*1.02+350*0.01",
+    "esperado": 360.5
+   },
+   "feedbackPerto": "R$ 360,50: R$ 7 de multa (uma vez) e R$ 3,50 de mora (pelo mês). Os dois números estavam escritos no rodapé do boleto.",
+   "feedbackLonge": "R$ 360,50. O erro clássico é somar '3% ao mês': a multa de 2% é única; só a mora de 1% se repete. O rodapé do boleto explica — quem lê confere a conta."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "direito-do-consumidor",
+   "dificuldade": 2,
+   "pergunta": "Caíque quer sair da academia no 3º mês. O contrato de 12 meses não fala em multa de saída. E aí?",
+   "ancora": "Multa que não está em cláusula não se cobra.",
+   "alternativas": [
+    {
+     "texto": "Sem cláusula de multa, não há multa a pagar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A academia define o valor na hora da saída",
+     "correta": false,
+     "feedbackErro": "Seria confortável para ela — e ilegal. Obrigação nasce de cláusula escrita e aceita: o contrato silencioso não dá à empresa o poder de inventar cobrança depois."
+    },
+    {
+     "texto": "Paga-se por padrão metade do que falta",
+     "correta": false,
+     "feedbackErro": "Não existe 'multa padrão' automática: cada contrato define a sua — e este não definiu. Quem cobra tem que apontar a cláusula; sem ela, a saída é livre."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "direito-do-consumidor",
+   "dificuldade": 2,
+   "pergunta": "Você provou a jaqueta na loja física, levou, e no dia seguinte se arrependeu. A loja deve aceitar?",
+   "ancora": "Os 7 dias valem para compra a distância; na loja, troca é cortesia.",
+   "alternativas": [
+    {
+     "texto": "Não é obrigada: 7 dias valem para compra a distância",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim: todo consumidor tem 7 dias em qualquer compra",
+     "correta": false,
+     "feedbackErro": "Os 7 dias existem porque na internet você compra sem ver. Na loja você viu e provou antes: sem defeito, devolução vira política da loja, não obrigação."
+    },
+    {
+     "texto": "Sim, mas apenas como troca por outro produto",
+     "correta": false,
+     "feedbackErro": "Troca obrigatória é para defeito, em qualquer compra. Sem defeito e com compra presencial, nem troca é dever — muitas lojas fazem por escolha, não por lei."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "direito-do-consumidor",
+   "criterio": "Reclamação bem encaminhada?",
+   "enunciado": "Contestar por telefone anotando protocolo, data e nome",
+   "resposta": true,
+   "ancora": "Protocolo é o recibo da reclamação: sem ele, a ligação não existiu.",
+   "feedbackErro": "Ligar resolve rápido, mas evapora: sem protocolo, não há prova da conversa. Com número, data e nome do atendente, sua reclamação vira registro cobrável."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "direito-do-consumidor",
+   "criterio": "Reclamação bem encaminhada?",
+   "enunciado": "Parar de pagar tudo até a empresa corrigir uma linha errada",
+   "resposta": false,
+   "ancora": "Contesta-se a linha errada; o resto se paga em dia.",
+   "feedbackErro": "A raiva faz sentido; o método, não: parar tudo suja seu nome e cria dívida real com juros. Conteste o item, pague o resto — a lei protege quem está em dia."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "documento-e-prova",
+   "pergunta": "Qual rotina fica deste reforço?",
+   "alternativas": [
+    {
+     "texto": "Cruzar cada cobrança com o contrato e registrar toda contestação.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Depois de assinar, pagar o que vier sem conferir.",
+     "correta": false,
+     "feedbackErro": "Sistemas erram e cobram errado todos os dias. Quem cruza fatura com contrato paga só o que deve."
+    },
+    {
+     "texto": "Cláusula esquecida perde a validade com o tempo.",
+     "correta": false,
+     "feedbackErro": "Contrato não caduca por esquecimento: a obrigação corre igual — e com juros."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "documento-e-prova",
+   "instrucao": "Monte a conferência mensal das suas contas.",
+   "ancora": "Abrir, cruzar, marcar, contestar: a rotina de quem não paga errado.",
+   "feedbackErro": "A ordem é da leitura para a ação: primeiro os documentos do mês, depois o cruzamento com os contratos, depois marcar divergências — e contestar só o que não bateu.",
+   "itens": [
+    {
+     "texto": "Abrir fatura e extrato do mês",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Cruzar cada linha com contratos e compras",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Marcar o que não bateu",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Contestar as divergências com protocolo",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "direito-do-consumidor",
+   "criterio": "O prazo é esse?",
+   "enunciado": "7 dias para desistir de compra feita pela internet",
+   "resposta": true,
+   "ancora": "CDC, art. 49: 7 dias a contar do recebimento, sem justificar.",
+   "feedbackErro": "Parece generoso demais para ser lei, mas é: compra a distância tem 7 dias de arrependimento a partir do recebimento, com devolução do valor pago. Direito, não favor."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "mapa-do-contrato",
+   "dificuldade": 2,
+   "pergunta": "Contrato de 14 páginas e o vendedor apressando: 'é tudo padrão'. Qual a resposta certa?",
+   "ancora": "'Padrão' descreve o modelo, não o efeito: assinado, obriga igual.",
+   "alternativas": [
+    {
+     "texto": "Levar para ler com calma antes de assinar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Assinar: cláusula padrão não pesa",
+     "correta": false,
+     "feedbackErro": "'Padrão' só diz que o texto é repetido — o efeito sobre você é individual e integral. E pressa de vendedor nunca é urgência sua: quem apressa, esconde."
+    },
+    {
+     "texto": "Ler somente a página do valor",
+     "correta": false,
+     "feedbackErro": "Valor é uma das quatro perguntas. Multa, renovação e prazo moram nas páginas do meio — exatamente onde a leitura costuma desistir."
+    }
+   ]
+  }
+ ]
+}

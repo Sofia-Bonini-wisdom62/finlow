@@ -1,0 +1,347 @@
+{
+ "slug": "a-conta-do-negocio-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "a-conta-do-negocio",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "preco-de-venda",
+   "criterio": "Isso ainda dá lucro?",
+   "enunciado": "Vender abaixo do custo variável para 'não deixar o estoque parado'",
+   "resposta": false,
+   "ancora": "Abaixo do custo variável, cada venda tira dinheiro do caixa.",
+   "feedbackErro": "Parece melhor vender barato do que não vender nada. Mas se o preço nem cobre o custo variável, cada unidade vendida aumenta o prejuízo — vale mais não vender."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custos-do-negocio",
+   "criterio": "Isso ainda é custo fixo?",
+   "enunciado": "Aluguel com cláusula de reajuste conforme o faturamento do mês",
+   "resposta": false,
+   "ancora": "Se varia com a venda, deixou de ser fixo — virou custo variável.",
+   "feedbackErro": "O nome 'aluguel' engana, porque quase sempre é fixo. Mas o que define a categoria é o comportamento: se o valor muda com o faturamento, é variável."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "orcamento-do-negocio",
+   "criterio": "O orçamento ainda fecha?",
+   "enunciado": "Lucro no papel, mas o dinheiro das vendas só entra 60 dias depois",
+   "resposta": true,
+   "ancora": "O orçamento fecha em lucro; o caixa pode faltar antes de entrar.",
+   "feedbackErro": "Lucro no papel parece garantir tudo. Mas o orçamento pode fechar positivo enquanto o caixa fica vazio, esperando o prazo de recebimento."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "orcamento-do-negocio",
+   "dificuldade": 3,
+   "pergunta": "Um negócio lucra R$ 2.000/mês no papel, mas paga fornecedor em 30 dias e recebe do cliente em 90. Risco maior?",
+   "ancora": "Falta de caixa: o dinheiro sai antes de entrar, mesmo com lucro.",
+   "alternativas": [
+    {
+     "texto": "Falta de caixa para pagar o fornecedor antes de receber",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O lucro estar errado, porque a conta não fecha",
+     "correta": false,
+     "feedbackErro": "O lucro de R$ 2.000 pode estar certo — é uma questão de tempo, não de valor. O problema é o descompasso entre pagar e receber."
+    },
+    {
+     "texto": "Não pagar imposto nenhum sobre o lucro",
+     "correta": false,
+     "feedbackErro": "Isso não muda com o prazo de recebimento. O risco real aqui é o caixa ficar vazio nos 60 dias de diferença entre pagar e receber."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custos-do-negocio",
+   "dificuldade": 3,
+   "pergunta": "Padaria: R$ 3.000 de custo fixo, R$ 4 de custo por pão, vendido a R$ 7. Quantos pães zeram o fixo?",
+   "ancora": "Margem por pão: 7−4=3. 3.000 ÷ 3 = 1.000 pães.",
+   "alternativas": [
+    {
+     "texto": "1.000 pães",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "750 pães",
+     "correta": false,
+     "feedbackErro": "750 viria de dividir pelo preço de venda (3.000 ÷ 4), não pela margem. Primeiro ache a margem: 7 − 4 = 3, depois 3.000 ÷ 3."
+    },
+    {
+     "texto": "429 pães",
+     "correta": false,
+     "feedbackErro": "429 viria de dividir pelo custo variável isolado. Use a margem por unidade — preço menos custo — não o custo sozinho: 3.000 ÷ 3 = 1.000."
+    }
+   ],
+   "verificacao": {
+    "expressao": "3000/(7-4)",
+    "esperado": 1000
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "preco-de-venda",
+   "criterio": "É verdade sobre o preço?",
+   "enunciado": "Baixar o preço sempre aumenta o lucro total, se vender mais",
+   "resposta": false,
+   "ancora": "Só se a margem por unidade continuar cobrindo o custo fixo.",
+   "feedbackErro": "Vender mais parece sempre compensar o preço menor. Mas com margem menor, seria preciso vender bem mais só para cobrir o mesmo custo fixo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "orcamento-do-negocio",
+   "instrucao": "Mesmo lucro. Ordene do caixa mais folgado ao mais apertado.",
+   "ancora": "Quanto antes o dinheiro entra, mais folga o caixa tem.",
+   "feedbackErro": "Lucro igual, prazos diferentes: receber à vista dá folga total; receber em 90 dias aperta o caixa por mais tempo, mesmo com o mesmo lucro no papel.",
+   "itens": [
+    {
+     "texto": "Recebe à vista, paga fornecedor em 30 dias",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Recebe em 15 dias, paga em 30 dias",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Recebe em 45 dias, paga em 30 dias",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Recebe em 90 dias, paga em 30 dias",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custos-do-negocio",
+   "criterio": "A conta está certa?",
+   "enunciado": "Com margem de R$ 5 por unidade e custo fixo de R$ 2.500, precisa vender 500 unidades para zerar o fixo",
+   "resposta": true,
+   "ancora": "2.500 ÷ 5 = 500. Ponto de equilíbrio: onde a margem cobre o fixo.",
+   "feedbackErro": "Fecha: 2.500 dividido por 5 dá 500. Esse é o ponto de equilíbrio — vender menos que isso ainda dá prejuízo no mês.",
+   "verificacao": {
+    "expressao": "2500/5",
+    "esperado": 500
+   }
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "preco-de-venda",
+   "criterio": "É verdade?",
+   "enunciado": "Dois produtos com a mesma margem em reais sempre dão o mesmo retorno percentual",
+   "resposta": false,
+   "ancora": "Margem igual em reais pode ser percentual bem diferente.",
+   "feedbackErro": "R$ 10 de margem parece igual em qualquer produto. Mas sobre um custo de R$ 20 é 50%; sobre um custo de R$ 100 é 10% — retornos bem diferentes."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "orcamento-do-negocio",
+   "pergunta": "Receita de R$ 8.000, custo fixo R$ 2.500, variável de 40% da receita. Qual o lucro do mês?",
+   "campo": "moeda",
+   "min": 1000,
+   "max": 6000,
+   "gabarito": 2300,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: receita − custo fixo − custo variável (40% da receita)",
+   "feedbackPerto": "Isso: R$ 2.300. O variável de 40% (R$ 3.200) some junto com o fixo.",
+   "feedbackLonge": "Dá R$ 2.300. Calcule o variável primeiro (40% de 8.000 = 3.200), some ao fixo (2.500) e subtraia tudo da receita.",
+   "verificacao": {
+    "expressao": "8000-2500-0.4*8000",
+    "esperado": 2300
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custos-do-negocio",
+   "dificuldade": 3,
+   "pergunta": "Loja pode trocar aluguel fixo de R$ 2.000 por 8% do faturamento. Com R$ 30.000, qual opção custa menos?",
+   "ancora": "8% de 30.000 = 2.400, mais caro que os R$ 2.000 fixos.",
+   "alternativas": [
+    {
+     "texto": "O aluguel fixo de R$ 2.000",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O aluguel de 8% do faturamento",
+     "correta": false,
+     "feedbackErro": "8% de R$ 30.000 dá R$ 2.400 — R$ 400 a mais que o fixo. A opção variável só compensa com faturamento bem menor."
+    },
+    {
+     "texto": "As duas custam exatamente o mesmo",
+     "correta": false,
+     "feedbackErro": "Não são iguais: 8% de 30.000 é 2.400, contra os 2.000 fixos. A diferença de R$ 400 pesa no lucro do mês."
+    }
+   ],
+   "verificacao": {
+    "expressao": "0.08*30000-2000",
+    "esperado": 400
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "orcamento-do-negocio",
+   "dificuldade": 3,
+   "pergunta": "Lucro de R$ 1.800 no papel, mas R$ 900 ainda não caiu na conta. Quanto dá pra gastar agora com segurança?",
+   "ancora": "Só o que já está em caixa: R$ 1.800 − 900 = R$ 900.",
+   "alternativas": [
+    {
+     "texto": "R$ 900 — só o que já entrou de fato",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 1.800 — o lucro total do mês",
+     "correta": false,
+     "feedbackErro": "R$ 1.800 é o lucro no papel, mas parte dele ainda não chegou ao caixa. Gastar o total antes de receber é o caminho para faltar dinheiro."
+    },
+    {
+     "texto": "R$ 2.700 — soma do lucro com o valor a receber",
+     "correta": false,
+     "feedbackErro": "Somar os dois conta o mesmo dinheiro duas vezes. O valor a receber já está dentro do lucro de R$ 1.800, não é extra."
+    }
+   ],
+   "verificacao": {
+    "expressao": "1800-900",
+    "esperado": 900
+   }
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "preco-de-venda",
+   "criterio": "Verdadeiro?",
+   "enunciado": "Vender sempre abaixo do custo variável quebra o negócio mais rápido que não vender",
+   "resposta": true,
+   "ancora": "Vender com prejuízo por unidade soma perdas a cada venda.",
+   "feedbackErro": "Parece contraintuitivo: vender parece sempre melhor que não vender. Mas se o preço nem cobre o custo direto, cada venda cava um buraco maior no caixa."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "orcamento-do-negocio",
+   "criterio": "Verdadeiro?",
+   "enunciado": "Lucro no papel garante que sempre há dinheiro em caixa para pagar as contas",
+   "resposta": false,
+   "ancora": "Prazos de pagar e receber podem esvaziar o caixa mesmo com lucro.",
+   "feedbackErro": "É a confusão mais comum de quem começa um negócio. Lucro é receita menos custo; caixa é o dinheiro que já entrou — os dois contam histórias diferentes."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "orcamento-do-negocio",
+   "pergunta": "Qual frase resume os três encontros sobre a conta do negócio?",
+   "alternativas": [
+    {
+     "texto": "Custos, margem e prazo de caixa juntos decidem se o negócio se sustenta.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Lucro no papel já garante dinheiro disponível no caixa.",
+     "correta": false,
+     "feedbackErro": "Prazos de pagar e receber podem esvaziar o caixa mesmo com lucro no papel."
+    },
+    {
+     "texto": "Vender mais sempre aumenta o lucro, não importa o preço.",
+     "correta": false,
+     "feedbackErro": "Abaixo do custo variável, vender mais só aumenta o prejuízo."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "custos-do-negocio",
+   "instrucao": "Aumenta o risco de faltar caixa? Arraste.",
+   "ancora": "Receber tarde e pagar cedo aperta o caixa; o contrário folga.",
+   "feedbackErro": "Prazo longo para receber e curto para pagar aperta o caixa. Receber à vista ou negociar prazo maior com fornecedor folga.",
+   "caixas": [
+    {
+     "id": "aumenta",
+     "rotulo": "Aumenta risco"
+    },
+    {
+     "id": "reduz",
+     "rotulo": "Reduz risco"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Receber do cliente em 90 dias",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "Negociar 60 dias para pagar o fornecedor",
+     "caixaCorreta": "reduz"
+    },
+    {
+     "texto": "Pagar o fornecedor à vista",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "Receber do cliente à vista",
+     "caixaCorreta": "reduz"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "orcamento-do-negocio",
+   "dificuldade": 3,
+   "pergunta": "Custo fixo de R$ 4.000, margem de R$ 8 por unidade. Quantas unidades para um lucro de R$ 2.000 além do fixo?",
+   "ancora": "(4.000+2.000) ÷ 8 = 750 unidades cobrem fixo e ainda deixam 2.000.",
+   "alternativas": [
+    {
+     "texto": "750 unidades",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "500 unidades",
+     "correta": false,
+     "feedbackErro": "500 só cobre o custo fixo (4.000 ÷ 8), sem sobrar lucro. Some o lucro desejado ao fixo antes de dividir pela margem."
+    },
+    {
+     "texto": "250 unidades",
+     "correta": false,
+     "feedbackErro": "250 seria só o lucro extra (2.000 ÷ 8), esquecendo o fixo. Some fixo e lucro desejado: (4.000+2.000) ÷ 8 = 750."
+    }
+   ],
+   "verificacao": {
+    "expressao": "(4000+2000)/8",
+    "esperado": 750
+   }
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "preco-de-venda",
+   "criterio": "É verdade?",
+   "enunciado": "Dois produtos com a mesma margem percentual sempre trazem o mesmo lucro em reais",
+   "resposta": false,
+   "ancora": "Percentual igual sobre custos diferentes gera reais diferentes.",
+   "feedbackErro": "Margem percentual igual soa como resultado igual. Mas 30% sobre um custo de R$ 10 são R$ 3; sobre R$ 100 são R$ 30 — o mesmo percentual, reais bem diferentes."
+  }
+ ]
+}

@@ -1,0 +1,328 @@
+{
+ "slug": "o-que-determina-a-sua-renda",
+ "segmento": "ef89",
+ "conceitoPrincipal": "o-que-determina-a-sua-renda",
+ "fraseConceito": "Renda nasce do que você domina (capital humano), do lugar onde nasceu e da economia do momento — não só do esforço.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "determinantes-da-renda",
+   "criterio": "Isso muda a renda de alguém?",
+   "enunciado": "Fazer um curso técnico que a cidade não oferecia antes",
+   "resposta": true,
+   "ancora": "Nova habilidade abre vaga nova — determinante pessoal de renda.",
+   "feedbackErro": "Parece só currículo, mas é isso que muda o jogo: quem aprende o que falta no mercado local passa a competir por vagas que antes nem existiam para ela."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "determinantes-da-renda",
+   "criterio": "Isso muda a renda de alguém?",
+   "enunciado": "Torcer para o time de futebol favorito vencer",
+   "resposta": false,
+   "ancora": "Time vencer não muda salário, habilidade nem emprego de ninguém.",
+   "feedbackErro": "Parece bobagem perguntar, mas ajuda a treinar o filtro: resultado de jogo não muda habilidade, contrato nem economia de quem torce."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "determinantes-da-renda",
+   "criterio": "Isso muda a renda de alguém?",
+   "enunciado": "Uma fábrica da cidade fechar e demitir 300 pessoas",
+   "resposta": true,
+   "ancora": "Fábrica fechando derruba renda de toda a região — fator conjuntural.",
+   "feedbackErro": "Parece problema só de quem foi demitido. Mas menos gente empregada gasta menos, e o comércio ao redor também sente a renda cair."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "determinantes-da-renda",
+   "dificuldade": 1,
+   "pergunta": "Dois vizinhos, mesma formação. Um ganha mais porque mora perto de fábricas que pagam melhor. Esse é um fator...",
+   "ancora": "O lugar onde a pessoa está muda a renda — é fator estrutural.",
+   "alternativas": [
+    {
+     "texto": "Pessoal: depende só do esforço de cada um",
+     "correta": false,
+     "feedbackErro": "Os dois têm a mesma formação e esforço parecido — o que muda é o entorno. Isso aponta para fator estrutural, não pessoal."
+    },
+    {
+     "texto": "Estrutural: o lugar onde moram oferece salários diferentes",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Conjuntural: é um momento passageiro da economia",
+     "correta": false,
+     "feedbackErro": "Conjuntural seria algo temporário, como uma crise. Aqui o fator é fixo: a região tem indústrias que pagam mais — isso é estrutural."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "capital-humano",
+   "dificuldade": 1,
+   "pergunta": "Duas pessoas fazem o mesmo trabalho. Uma fez curso de aperfeiçoamento; a outra, não. O que isso costuma mudar?",
+   "ancora": "Mais capital humano tende a abrir espaço para renda maior.",
+   "alternativas": [
+    {
+     "texto": "Nada: os dois ganham exatamente o mesmo salário",
+     "correta": false,
+     "feedbackErro": "Às vezes o salário demora a mudar, mas a tendência do mercado é remunerar melhor quem tem mais formação para a mesma função."
+    },
+    {
+     "texto": "A chance de ganhar mais ou assumir tarefas melhores",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O tipo de sangue de cada trabalhador",
+     "correta": false,
+     "feedbackErro": "Isso é biologia, sem relação com o que a pergunta trata. Capital humano é conhecimento e habilidade, não característica do corpo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "determinantes-da-renda",
+   "criterio": "É determinante pessoal da renda?",
+   "enunciado": "O idioma extra que alguém aprendeu sozinho",
+   "resposta": true,
+   "ancora": "Habilidade nova é escolha e esforço individual — fator pessoal.",
+   "feedbackErro": "Parece pequeno, mas é exatamente o que conta como pessoal: veio de escolha e esforço próprios, não do lugar ou da economia."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "determinantes-da-renda",
+   "instrucao": "Toque na ordem: do fator mais amplo ao mais individual.",
+   "ancora": "Do país inteiro até a escolha de uma única pessoa.",
+   "feedbackErro": "A ordem vai do que afeta todo mundo ao que depende só de você: economia do país, depois região, depois formação pessoal.",
+   "itens": [
+    {
+     "texto": "Recessão que atinge o país inteiro",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Falta de indústrias na região onde mora",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Empresa da cidade abrir vagas novas",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Curso que a pessoa decidiu fazer",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "capital-humano",
+   "criterio": "É capital humano?",
+   "enunciado": "Saber consertar computadores por conta própria",
+   "resposta": true,
+   "ancora": "Conhecimento aplicável ao trabalho é capital humano.",
+   "feedbackErro": "Parece hobby, mas é exatamente isso: conhecimento que pode virar trabalho remunerado é capital humano, aprendido formal ou sozinho."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "capital-humano",
+   "criterio": "É capital humano?",
+   "enunciado": "A idade da pessoa no documento de identidade",
+   "resposta": false,
+   "ancora": "Idade é dado, não conhecimento ou habilidade aprendida.",
+   "feedbackErro": "Parece ligado à experiência, mas o que conta como capital humano é o que a pessoa aprendeu, não quantos anos ela tem de vida."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "capital-humano",
+   "pergunta": "Quem faz curso técnico ganha, em média, cerca de 20% a mais que sem curso. Sobre R$ 1.800, é quanto a mais?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 1000,
+   "gabarito": 360,
+   "toleranciaPct": 20,
+   "fonte": "diferença média de renda por qualificação, ordem de grandeza (IBGE)",
+   "verificacao": {
+    "expressao": "1800*0.2",
+    "esperado": 360
+   },
+   "feedbackPerto": "Perto: R$ 360 a mais. É a diferença que qualificação costuma abrir, em média.",
+   "feedbackLonge": "Dá R$ 360: 20% de 1.800. É fácil esquecer que percentual incide sobre o valor total, não sobre um número fixo."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "determinantes-da-renda",
+   "dificuldade": 1,
+   "pergunta": "Uma seca destrói a safra numa cidade agrícola. O que acontece com a renda da região?",
+   "ancora": "Choque externo (clima) derruba renda mesmo sem culpa de ninguém.",
+   "alternativas": [
+    {
+     "texto": "Cai, porque o fator é conjuntural: um choque temporário",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não muda, porque a formação de cada um é a mesma",
+     "correta": false,
+     "feedbackErro": "A formação de cada um não mudou, é verdade. Mas o evento externo (a seca) derruba a renda da região inteira, mesmo sem culpa pessoal."
+    },
+    {
+     "texto": "Sobe, porque falta de produto aumenta o preço para todos",
+     "correta": false,
+     "feedbackErro": "O preço de quem ainda tem produto pode subir, mas quem perdeu a safra perde renda — o efeito líquido na região costuma ser negativo."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "capital-humano",
+   "dificuldade": 1,
+   "pergunta": "Bianca aprendeu inglês sozinha, com vídeos gratuitos. Isso conta como investimento em capital humano?",
+   "ancora": "O que importa é o conhecimento gerado, não quanto custou.",
+   "alternativas": [
+    {
+     "texto": "Sim: ela ganhou habilidade que pode virar renda maior",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, porque não pagou por um curso formal",
+     "correta": false,
+     "feedbackErro": "O preço do aprendizado não define se é capital humano. O que conta é a habilidade nova, seja ela paga ou gratuita."
+    },
+    {
+     "texto": "Não, porque idioma não tem relação com trabalho",
+     "correta": false,
+     "feedbackErro": "Idioma abre vaga em empresas que atendem outros países e em turismo. É habilidade com efeito direto sobre oportunidades de renda."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "determinantes-da-renda",
+   "criterio": "É determinante pessoal da renda?",
+   "enunciado": "O curso de eletricista que alguém decidiu concluir",
+   "resposta": true,
+   "ancora": "Escolha e esforço individuais — determinante pessoal.",
+   "feedbackErro": "Existem fatores fora do controle da pessoa, e isso é real. Mas escolher fazer o curso e concluí-lo é decisão individual — fator pessoal."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "capital-humano",
+   "criterio": "É capital humano?",
+   "enunciado": "A quantidade de dinheiro guardada no banco",
+   "resposta": false,
+   "ancora": "Dinheiro guardado é capital financeiro, não capital humano.",
+   "feedbackErro": "Os dois são 'capital', e isso confunde. Mas capital humano é conhecimento e habilidade da pessoa; dinheiro guardado é capital financeiro."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-que-determina-a-sua-renda",
+   "pergunta": "Qual frase resume o que você viu?",
+   "alternativas": [
+    {
+     "texto": "Renda vem de fatores pessoais, do lugar e da economia — juntos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Renda depende só do esforço individual de cada pessoa",
+     "correta": false,
+     "feedbackErro": "Esforço pesa, mas região e economia também mudam a renda — dois vizinhos com mesmo esforço podem ganhar bem diferente."
+    },
+    {
+     "texto": "Capital humano é só o dinheiro guardado no banco",
+     "correta": false,
+     "feedbackErro": "Capital humano é conhecimento e habilidade da pessoa. Dinheiro guardado é outro tipo de capital, o financeiro."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "determinantes-da-renda",
+   "instrucao": "Fator pessoal ou fator estrutural/conjuntural? Arraste.",
+   "ancora": "Pessoal vem da escolha individual; o resto vem de fora dela.",
+   "feedbackErro": "O que a pessoa decide e aprende é fator pessoal. O que vem da região ou da economia, sem depender dela, é estrutural ou conjuntural.",
+   "caixas": [
+    {
+     "id": "pessoal",
+     "rotulo": "Fator pessoal"
+    },
+    {
+     "id": "fora",
+     "rotulo": "Estrutural ou conjuntural"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Curso de idiomas concluído por escolha própria",
+     "caixaCorreta": "pessoal"
+    },
+    {
+     "texto": "Inflação alta reduzindo o poder de compra do país",
+     "caixaCorreta": "fora"
+    },
+    {
+     "texto": "Falta de faculdades na cidade onde mora",
+     "caixaCorreta": "fora"
+    },
+    {
+     "texto": "Certificado tirado num curso profissionalizante",
+     "caixaCorreta": "pessoal"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "capital-humano",
+   "dificuldade": 2,
+   "pergunta": "Uma vaga exige inglês e Excel avançado. Quem só tem Excel ganha menos que quem tem os dois. Por quê?",
+   "ancora": "Mais habilidades exigidas cobertas, mais valor no mercado.",
+   "alternativas": [
+    {
+     "texto": "Porque tem menos capital humano para a vaga completa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque trabalha menos horas por dia",
+     "correta": false,
+     "feedbackErro": "A pergunta não fala em carga horária, e sim em habilidades exigidas. A diferença de renda vem do capital humano incompleto para a vaga."
+    },
+    {
+     "texto": "Porque mora mais longe do trabalho",
+     "correta": false,
+     "feedbackErro": "Distância pode pesar no custo de transporte, mas não é o que o enunciado descreve. Aqui, falta uma habilidade pedida pela vaga."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "determinantes-da-renda",
+   "criterio": "É determinante pessoal da renda?",
+   "enunciado": "Uma crise mundial que reduz vagas em todos os países",
+   "resposta": false,
+   "ancora": "Crise mundial é fator conjuntural, fora do controle de qualquer um.",
+   "feedbackErro": "Afeta a renda de todo mundo, e por isso parece 'geral demais' para não ser pessoal. Mas justamente por atingir todos, é fator conjuntural."
+  }
+ ]
+}

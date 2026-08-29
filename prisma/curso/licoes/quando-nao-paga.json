@@ -1,0 +1,251 @@
+{
+ "slug": "quando-nao-paga",
+ "segmento": "ef67",
+ "conceitoPrincipal": "quando-nao-paga",
+ "fraseConceito": "Quando não se paga, a dívida cresce com juros, o nome fica negativado, e a confiança de quem emprestou se perde.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "confianca-e-credito",
+   "criterio": "Isso prejudica a confiança de crédito?",
+   "enunciado": "Pagar o empréstimo do amigo na data combinada",
+   "resposta": false,
+   "ancora": "Pagar em dia constrói confiança, não prejudica.",
+   "feedbackErro": "Cumprir o combinado é exatamente o que sustenta a confiança — o contrário do que prejudica."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "confianca-e-credito",
+   "criterio": "Isso prejudica a confiança de crédito?",
+   "enunciado": "Atrasar o pagamento do cartão sem avisar",
+   "resposta": true,
+   "ancora": "Atraso sem aviso é o que mais quebra a confiança.",
+   "feedbackErro": "Atrasar acontece, mas fazer isso sem avisar tira do credor a chance de entender e negociar — é isso que quebra a confiança."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fatura-parcial-vira-rotativo",
+   "criterio": "Isso prejudica a confiança de crédito?",
+   "enunciado": "Pagar só parte da fatura, achando que 'já ajuda'",
+   "resposta": true,
+   "ancora": "Pagar parte evita o atraso, mas o resto vira dívida cara.",
+   "feedbackErro": "Ajuda a não atrasar, e por isso parece seguro. Mas o valor que sobra entra no rotativo e cresce contra você."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "fatura-parcial-vira-rotativo",
+   "dificuldade": 1,
+   "pergunta": "Camila pagou só R$ 100 dos R$ 500 da fatura. O que acontece com o resto?",
+   "ancora": "O que não foi pago vira rotativo e passa a render juros altos.",
+   "alternativas": [
+    {
+     "texto": "Some, porque parte já foi paga",
+     "correta": false,
+     "feedbackErro": "Pagar parte não apaga o resto — os R$ 400 continuam existindo e passam a render juros."
+    },
+    {
+     "texto": "Vai para o rotativo e passa a render juros altos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Fica congelado até o mês seguinte, sem juros",
+     "correta": false,
+     "feedbackErro": "Não fica parado: o saldo não pago vira rotativo, a linha de crédito mais cara do país."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "causas-do-endividamento",
+   "dificuldade": 1,
+   "pergunta": "Qual dessas é a causa de endividamento mais comum?",
+   "ancora": "Gastar sem perceber o quanto já comprometeu é a causa mais comum.",
+   "alternativas": [
+    {
+     "texto": "Gastar mais do que a renda permite, sem perceber",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ter qualquer cartão de crédito",
+     "correta": false,
+     "feedbackErro": "O cartão em si não endivida ninguém — o que endivida é gastar mais do que se ganha, com ou sem cartão."
+    },
+    {
+     "texto": "Guardar dinheiro todo mês",
+     "correta": false,
+     "feedbackErro": "Guardar dinheiro reduz o risco de dívida, não causa endividamento."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "causas-do-endividamento",
+   "criterio": "Isso é causa direta de endividamento?",
+   "enunciado": "Não saber quanto já gastou no mês",
+   "resposta": true,
+   "ancora": "Perder o controle do gasto é o início mais comum da dívida.",
+   "feedbackErro": "Não é a compra em si que endivida, é não saber o total — assim o gasto passa da renda sem ninguém perceber."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "confianca-e-credito",
+   "instrucao": "Classifique: honra a dívida ou quebra a confiança?",
+   "ancora": "Honrar é cumprir ou avisar antes; quebrar é sumir ou prometer à toa.",
+   "feedbackErro": "Avisar antes de atrasar ainda é honrar a dívida — o que quebra confiança é sumir sem explicação.",
+   "caixas": [
+    { "id": "honra", "rotulo": "Honra" },
+    { "id": "quebra", "rotulo": "Quebra confiança" }
+   ],
+   "itens": [
+    { "texto": "Pagar o combinado na data certa", "caixaCorreta": "honra" },
+    { "texto": "Sumir sem explicar o atraso", "caixaCorreta": "quebra" },
+    { "texto": "Avisar antes que vai atrasar e negociar prazo", "caixaCorreta": "honra" },
+    { "texto": "Prometer pagar e não aparecer", "caixaCorreta": "quebra" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "causas-do-endividamento",
+   "criterio": "Isso é causa de endividamento?",
+   "enunciado": "Comprar parcelado sem somar quanto isso compromete por mês",
+   "resposta": true,
+   "ancora": "As parcelas somadas é que revelam o compromisso real.",
+   "feedbackErro": "Cada parcela sozinha parece pequena, mas somadas elas podem passar da renda do mês — e é aí que a dívida nasce."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "fatura-parcial-vira-rotativo",
+   "dificuldade": 1,
+   "pergunta": "Fatura de R$ 600. Paga R$ 200, o resto vai pro rotativo a 14% ao mês. Quanto o rotativo cobra?",
+   "ancora": "(600 − 200) × 14% = R$ 56 de juros no mês seguinte.",
+   "verificacao": { "expressao": "(600-200)*0.14", "esperado": 56 },
+   "alternativas": [
+    {
+     "texto": "R$ 56",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 84",
+     "correta": false,
+     "feedbackErro": "R$ 84 seria 14% do valor total da fatura — mas o juro incide só sobre o que ficou sem pagar."
+    },
+    {
+     "texto": "R$ 28",
+     "correta": false,
+     "feedbackErro": "R$ 28 seria 14% do valor pago — mas o juro incide sobre o que sobrou sem pagar, não sobre o que já foi quitado."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "confianca-e-credito",
+   "criterio": "Isso prejudica a confiança de crédito?",
+   "enunciado": "Ter o nome negativado por conta não paga",
+   "resposta": true,
+   "ancora": "Nome negativado é o registro formal de confiança quebrada.",
+   "feedbackErro": "É exatamente esse o efeito: o nome negativado avisa outros credores que aquela dívida não foi honrada."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "confianca-e-credito",
+   "criterio": "Ajuda a manter a confiança?",
+   "enunciado": "Avisar com antecedência que não vai conseguir pagar em dia",
+   "resposta": true,
+   "ancora": "Avisar antes muda tudo: dá chance de negociar sem quebrar a confiança.",
+   "feedbackErro": "Parece admitir um problema, e por isso incomoda. Mas avisar antes é o que preserva a confiança, mesmo sem pagar em dia."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "quando-nao-paga",
+   "dificuldade": 1,
+   "pergunta": "Qual frase resume o que acontece quando não se paga?",
+   "alternativas": [
+    {
+     "texto": "Nada muda até o valor todo ser cobrado de uma vez.",
+     "correta": false,
+     "feedbackErro": "Muda desde o primeiro dia: o saldo não pago já passa a render juros no rotativo."
+    },
+    {
+     "texto": "A dívida cresce com juros, o nome é negativado e a confiança se perde.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só prejudica quem atrasa a fatura inteira.",
+     "correta": false,
+     "feedbackErro": "Pagar só parte da fatura já ativa o rotativo — não é preciso atrasar tudo para o problema começar."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "confianca-e-credito",
+   "instrucao": "Ordene do que mais preserva à que mais quebra a confiança.",
+   "ancora": "Avisar antes preserva; sumir sem explicar quebra mais.",
+   "feedbackErro": "É fácil achar que qualquer atraso quebra igual, mas avisar antes muda completamente o resultado.",
+   "itens": [
+    { "texto": "Pagar em dia, como combinado", "posicaoCorreta": 1 },
+    { "texto": "Avisar antes que vai atrasar", "posicaoCorreta": 2 },
+    { "texto": "Sumir sem explicar o atraso", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "fatura-parcial-vira-rotativo",
+   "pergunta": "Fatura de R$ 400. Paga R$ 150. Resto no rotativo a 14% a.m. Quanto de juros?",
+   "campo": "moeda",
+   "min": 10,
+   "max": 100,
+   "gabarito": 35,
+   "toleranciaPct": 20,
+   "fonte": "taxa média do rotativo, ~14% ao mês (Banco Central)",
+   "verificacao": { "expressao": "(400-150)*0.14", "esperado": 35 },
+   "feedbackPerto": "Isso mesmo — (400 − 150) × 14% = R$ 35.",
+   "feedbackLonge": "R$ 35. O juro do rotativo incide só sobre o que ficou sem pagar, não sobre a fatura inteira."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "causas-do-endividamento",
+   "dificuldade": 1,
+   "pergunta": "O que mais ajuda a evitar endividamento por gasto sem controle?",
+   "ancora": "Acompanhar o gasto revela o limite antes de passar dele.",
+   "alternativas": [
+    {
+     "texto": "Acompanhar quanto já gastou durante o mês",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Evitar olhar a fatura até ela chegar",
+     "correta": false,
+     "feedbackErro": "Não olhar não impede o gasto de crescer — só adia a surpresa até não dar mais pra ajustar nada."
+    },
+    {
+     "texto": "Usar vários cartões diferentes",
+     "correta": false,
+     "feedbackErro": "Vários cartões espalham o gasto e dificultam ainda mais enxergar o total comprometido."
+    }
+   ]
+  }
+ ]
+}

@@ -1,5 +1,6 @@
 "use client"
 
+import { createElement } from "react"
 import {
   Check,
   Lock,
@@ -77,7 +78,6 @@ export default function NoTrilha({
   onSelecionar,
   cor,
 }: NoTrilhaProps) {
-  const Icone = iconePorNo(no)
   const isTravado = no.estado === "travado"
   const isAtual = no.estado === "atual"
   const isConcluido = no.estado === "concluido"
@@ -163,7 +163,14 @@ export default function NoTrilha({
           ...anelDuplo,
         }}
       >
-        <Icone size={iconSize} style={{ color: iconColor }} aria-hidden="true" />
+        {/* createElement, e não <Icone/>: o lint de hooks trata valor
+            calculado no render usado como tag JSX como componente novo,
+            mas iconePorNo só ESCOLHE um componente de módulo. */}
+        {createElement(iconePorNo(no), {
+          size: iconSize,
+          style: { color: iconColor },
+          "aria-hidden": true,
+        })}
 
         {/* selo de promoção */}
         {no.promovidoPelaIa && (

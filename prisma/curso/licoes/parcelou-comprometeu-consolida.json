@@ -1,0 +1,274 @@
+{
+ "slug": "parcelou-comprometeu-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "parcelou-comprometeu",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "criterio": "Compromete os próximos meses?",
+   "enunciado": "Ter uma parcela pequena que cabe fácil dentro do que já sobra todo mês",
+   "resposta": true,
+   "ancora": "Compromete, só que pouco — caber na sobra não apaga o compromisso.",
+   "feedbackErro": "Caber na sobra deixa a parcela confortável, mas o compromisso continua existindo: aquela renda já tem destino certo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "estilos-de-vida-com-dinheiro",
+   "criterio": "Mostra controle sobre o dinheiro?",
+   "enunciado": "Parcelar em muitas vezes só pra pagar menos por mês, sem olhar o total",
+   "resposta": false,
+   "ancora": "Focar só na parcela baixa, sem ver o total, é o oposto de controle.",
+   "feedbackErro": "Parece cuidado, porque a parcela fica pequena. Mas ignorar o total pago no fim é justamente o que falta pra ser controle real."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "criterio": "Compromete os próximos meses?",
+   "enunciado": "Somar duas parcelas de compras diferentes que terminam no mesmo mês",
+   "resposta": false,
+   "ancora": "Terminar juntas reduz o compromisso dali pra frente, não aumenta.",
+   "feedbackErro": "As parcelas ainda pesam até acabarem. Mas o fato de as duas terminarem juntas é o que LIBERA renda a partir do mês seguinte."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "dificuldade": 3,
+   "pergunta": "Uma TV custa R$ 2.400 à vista ou R$ 2.640 em 12x de R$ 220, com juros. Qual é o efeito real de parcelar aqui?",
+   "ancora": "Compromete a renda por 12 meses E ainda paga R$ 240 a mais no total.",
+   "verificacao": {
+    "expressao": "220*12 - 2400",
+    "esperado": 240
+   },
+   "alternativas": [
+    {
+     "texto": "Compromete a renda por 12 meses e custa R$ 240 a mais",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só compromete a renda, sem mudar o valor total pago",
+     "correta": false,
+     "feedbackErro": "Os juros do parcelamento fazem o total subir: R$ 220 vezes 12 dá R$ 2.640, R$ 240 a mais que o preço à vista."
+    },
+    {
+     "texto": "Só encarece, sem comprometer a renda dos próximos meses",
+     "correta": false,
+     "feedbackErro": "As 12 parcelas seguem cobrando renda mês a mês. O parcelamento aqui compromete o orçamento E encarece a compra."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "estilos-de-vida-com-dinheiro",
+   "dificuldade": 3,
+   "pergunta": "Duas pessoas parcelam o mesmo valor. Uma tem 10% da renda comprometida; a outra, 60%. O que isso revela?",
+   "ancora": "A folga que sobra pra imprevistos varia muito entre as duas.",
+   "alternativas": [
+    {
+     "texto": "A pessoa com 60% tem bem menos folga pra imprevistos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "As duas estão exatamente na mesma situação financeira",
+     "correta": false,
+     "feedbackErro": "O valor mensal pode até ser igual, mas o percentual da renda muda tudo: 60% comprometido deixa muito menos espaço de manobra."
+    },
+    {
+     "texto": "A pessoa com 10% está desperdiçando dinheiro parado",
+     "correta": false,
+     "feedbackErro": "Ter menos renda comprometida não é desperdício, é folga. É justamente essa folga que protege contra imprevistos."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "criterio": "Compromete os próximos meses?",
+   "enunciado": "Trocar uma parcela de 10x por uma de 5x do mesmo valor total, sem juros",
+   "resposta": true,
+   "ancora": "Ainda compromete — só que por menos tempo, com parcela maior.",
+   "feedbackErro": "Reduzir o número de vezes não apaga o compromisso, só concentra ele: a renda segue reservada, agora em menos meses."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "instrucao": "Considerando o caso completo, isso é um risco real pro orçamento?",
+   "ancora": "Risco real é quando o total comprometido se aproxima da renda.",
+   "feedbackErro": "O risco real aparece quando a soma dos compromissos fica perto ou passa do que a renda permite, não pelo número de parcelas isolado.",
+   "caixas": [
+    {
+     "id": "risco",
+     "rotulo": "Risco real"
+    },
+    {
+     "id": "controlado",
+     "rotulo": "Ainda controlado"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "60% da renda comprometida com parcelas e mensalidades",
+     "caixaCorreta": "risco"
+    },
+    {
+     "texto": "15% da renda comprometida, com reserva guardada",
+     "caixaCorreta": "controlado"
+    },
+    {
+     "texto": "Assumir uma parcela nova sem saber o total já comprometido",
+     "caixaCorreta": "risco"
+    },
+    {
+     "texto": "20% da renda comprometida, checado todo mês",
+     "caixaCorreta": "controlado"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "estilos-de-vida-com-dinheiro",
+   "criterio": "Mostra controle sobre o dinheiro?",
+   "enunciado": "Recusar uma parcela nova porque o total já passa de 30% da renda",
+   "resposta": true,
+   "ancora": "Usar um limite (como 30%) pra decidir mostra controle real.",
+   "feedbackErro": "Recusar pode parecer perder uma oportunidade. Mas usar um limite claro pra decidir é exatamente o que caracteriza controle sobre o dinheiro."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "estilos-de-vida-com-dinheiro",
+   "dificuldade": 3,
+   "pergunta": "Em qual situação uma parcela nova NÃO representa risco real ao orçamento?",
+   "ancora": "Quando cabe folgada na renda disponível, sem estourar o limite.",
+   "alternativas": [
+    {
+     "texto": "Quando ela cabe folgada dentro do que já sobra de renda",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando a pessoa promete pagar em dia todo mês",
+     "correta": false,
+     "feedbackErro": "Prometer pagar em dia não muda o quanto a parcela pesa na renda. O que reduz o risco é ela caber na folga real, não a promessa."
+    },
+    {
+     "texto": "Quando o produto parcelado é considerado essencial",
+     "correta": false,
+     "feedbackErro": "Ser essencial não muda o efeito no orçamento: mesmo um gasto necessário compromete renda se não houver folga pra ele."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "criterio": "Compromete os próximos meses?",
+   "enunciado": "Ter 3 parcelas pequenas que juntas somam 70% da renda mensal",
+   "resposta": true,
+   "ancora": "Juntas, mesmo pequenas isoladamente, já tomam quase toda a renda.",
+   "feedbackErro": "Olhar cada parcela separada engana. Juntas, elas tomam 70% da renda — um compromisso alto, mesmo parecendo pequeno uma a uma."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "estilos-de-vida-com-dinheiro",
+   "criterio": "Mostra controle sobre o dinheiro?",
+   "enunciado": "Somar o percentual da renda já comprometido antes de aceitar mais uma parcela",
+   "resposta": true,
+   "ancora": "Olhar o percentual total, não só a parcela isolada, é controle real.",
+   "feedbackErro": "Olhar só a parcela nova esconde o quadro completo. Somar o percentual total comprometido é o que de fato mostra controle."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "parcelou-comprometeu",
+   "pergunta": "Qual frase resume melhor o caso completo?",
+   "alternativas": [
+    {
+     "texto": "Parcela que cabe na sobra do mês nunca é um risco",
+     "correta": false,
+     "feedbackErro": "Mesmo cabendo, ela ainda compromete renda — o risco cresce quando várias parcelas somadas se aproximam do limite."
+    },
+    {
+     "texto": "O que importa é o total comprometido frente à renda, não uma parcela isolada",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Juros do parcelamento nunca mudam o valor final pago",
+     "correta": false,
+     "feedbackErro": "Juros aumentam o total pago em relação ao preço à vista — como nos R$ 240 a mais da TV parcelada com juros."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "instrucao": "Ordene da situação de MAIOR risco ao orçamento à de menor risco.",
+   "ancora": "O que mais pesa é o percentual total da renda já comprometido.",
+   "feedbackErro": "O risco cresce com o percentual total comprometido, não com o número de parcelas isolado.",
+   "itens": [
+    {
+     "texto": "70% da renda comprometida com várias parcelas somadas",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "30% da renda comprometida, sem reserva guardada",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "15% da renda comprometida, com reserva guardada",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "estilos-de-vida-com-dinheiro",
+   "dificuldade": 3,
+   "pergunta": "Por que dois estilos de vida com a mesma renda podem ter riscos financeiros bem diferentes?",
+   "ancora": "O que muda o risco é o percentual da renda que cada um compromete.",
+   "alternativas": [
+    {
+     "texto": "Porque o percentual de renda comprometida muda entre eles",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque um dos dois sempre ganha mais do que aparenta",
+     "correta": false,
+     "feedbackErro": "A renda é a mesma para os dois — isso não muda. O que muda o risco é quanto cada um compromete dessa renda igual."
+    },
+    {
+     "texto": "Porque o risco financeiro é sempre igual pra qualquer renda",
+     "correta": false,
+     "feedbackErro": "O risco não depende só do valor da renda, depende de quanto dela já está comprometido com parcelas e mensalidades."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "parcelamento-compromete-futuro",
+   "criterio": "Compromete os próximos meses?",
+   "enunciado": "Ter uma parcela de 5% da renda, junto com uma reserva de 3 meses de gastos guardada",
+   "resposta": true,
+   "ancora": "Ainda compromete — a reserva reduz o risco, não o compromisso.",
+   "feedbackErro": "Ter reserva ajuda muito a enfrentar imprevistos, mas não apaga o compromisso da parcela: ele continua existindo, só que com mais segurança em volta."
+  }
+ ]
+}

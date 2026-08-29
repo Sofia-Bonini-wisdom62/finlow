@@ -1,0 +1,298 @@
+{
+ "slug": "de-onde-vem-a-renda-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "de-onde-vem-a-renda",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "de-onde-vem-a-renda",
+   "criterio": "Lembra do critério — isso é renda?",
+   "enunciado": "Receber de volta um empréstimo que você tinha feito a um amigo",
+   "resposta": false,
+   "ancora": "Receber de volta o que já era seu não é renda nova — é devolução.",
+   "feedbackErro": "Dinheiro entrando parece sempre renda, e é aí que engana. Mas devolução do que você já tinha não é uma entrada nova."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "de-onde-vem-a-renda",
+   "criterio": "Lembra do critério — isso é renda?",
+   "enunciado": "O valor do aluguel recebido por um imóvel da família",
+   "resposta": true,
+   "ancora": "Aluguel é renda: entra regularmente sem exigir trabalho direto.",
+   "feedbackErro": "Não vem de trabalho no sentido comum, e por isso pode passar despercebido. Mas é dinheiro entrando com regularidade."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "de-onde-vem-a-renda",
+   "criterio": "Lembra do critério — isso é renda?",
+   "enunciado": "Um cashback de 2% recebido numa compra no cartão",
+   "resposta": true,
+   "ancora": "Cashback é dinheiro voltando pra sua conta — pequena renda esporádica.",
+   "feedbackErro": "Parece só um desconto disfarçado, e em parte é. Mas o valor entra de volta na sua conta como dinheiro."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "de-onde-vem-a-renda",
+   "dificuldade": 2,
+   "pergunta": "Um autônomo tem renda que varia bastante mês a mês. Qual o maior desafio de planejar com renda variável?",
+   "ancora": "O desafio da renda variável é a imprevisibilidade, não a ausência.",
+   "alternativas": [
+    {
+     "texto": "Não saber quanto vai entrar pra planejar gastos fixos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não ter renda nenhuma na maioria dos meses",
+     "correta": false,
+     "feedbackErro": "Renda variável não significa renda ausente — ela existe, só que muda de valor mês a mês."
+    },
+    {
+     "texto": "Ser sempre menor que a de um funcionário público",
+     "correta": false,
+     "feedbackErro": "Renda variável pode ser maior ou menor — o desafio real é a imprevisibilidade, não o tamanho."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "de-onde-vem-a-renda",
+   "dificuldade": 2,
+   "pergunta": "Uma pessoa trabalha registrada de dia e faz entregas por aplicativo à noite. Como classificar a renda das entregas?",
+   "ancora": "Formalidade depende do vínculo registrado, não do esforço.",
+   "alternativas": [
+    {
+     "texto": "Renda frequente, mas informal — sem carteira assinada",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Renda formal, porque ela trabalha bastante",
+     "correta": false,
+     "feedbackErro": "Quantidade de trabalho não define formalidade — o que define é o vínculo registrado, que as entregas não têm."
+    },
+    {
+     "texto": "Não conta como renda por ser fora do emprego principal",
+     "correta": false,
+     "feedbackErro": "Todo dinheiro que entra conta como renda, seja do emprego principal ou de um trabalho extra."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "de-onde-vem-a-renda",
+   "criterio": "Isso muda o fato de ser emprego público?",
+   "enunciado": "Um servidor público que trabalha numa empresa estatal, não diretamente no governo",
+   "resposta": false,
+   "ancora": "Empresas estatais também são vínculo público, mesmo como empresa.",
+   "feedbackErro": "Empresa estatal se parece com empresa privada no dia a dia, e por isso confunde. Mas o vínculo é com o Estado."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "de-onde-vem-a-renda",
+   "instrucao": "Essa entrada de dinheiro é renda de verdade?",
+   "ancora": "A pergunta é: é dinheiro novo entrando, ou seu dinheiro de volta?",
+   "feedbackErro": "Renda é entrada nova de dinheiro; receber de volta o que já era seu não conta como renda nova.",
+   "caixas": [
+    {
+     "id": "renda",
+     "rotulo": "É renda"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é renda"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Cashback recebido numa compra",
+     "caixaCorreta": "renda"
+    },
+    {
+     "texto": "Devolução de um empréstimo feito a um amigo",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Comissão de uma venda feita por fora do emprego fixo",
+     "caixaCorreta": "renda"
+    },
+    {
+     "texto": "Saque do próprio dinheiro guardado na poupança",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "de-onde-vem-a-renda",
+   "criterio": "É boa forma de tratar renda esporádica?",
+   "enunciado": "Contar com o valor de um bico esporádico como se fosse garantido todo mês",
+   "resposta": false,
+   "ancora": "Renda esporádica não é garantida — contar como fixa arrisca o mês.",
+   "feedbackErro": "Já que o bico rendeu bem uma vez, parece razoável esperar de novo. Mas esporádico é o que não tem garantia de repetir."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "de-onde-vem-a-renda",
+   "dificuldade": 2,
+   "pergunta": "Otávio ganha R$ 1.850 fixos registrado, mais média de R$ 420 por fora. Como planejar uma conta fixa como aluguel?",
+   "ancora": "Contas fixas devem se basear na renda mais garantida, não na otimista.",
+   "alternativas": [
+    {
+     "texto": "Baseando o aluguel no fixo de R$ 1.850, mais seguro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Somando os dois e considerando R$ 2.270 como garantidos",
+     "correta": false,
+     "feedbackErro": "A renda extra varia mês a mês — tratar a soma toda como garantida arrisca faltar dinheiro num mês fraco."
+    },
+    {
+     "texto": "Ignorando o valor fixo e só contando com o extra",
+     "correta": false,
+     "feedbackErro": "O valor fixo é justamente a parte mais segura — ignorá-lo não faz sentido pra planejar contas fixas."
+    }
+   ],
+   "verificacao": {
+    "expressao": "1850+420",
+    "esperado": 2270
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "de-onde-vem-a-renda",
+   "criterio": "É diferença real entre os dois?",
+   "enunciado": "No setor público, a demissão sem justa causa de um concursado é mais rara do que no setor privado",
+   "resposta": true,
+   "ancora": "Estabilidade após concurso é característica real do serviço público.",
+   "feedbackErro": "Pode parecer generalização sem base, mas é uma diferença real de proteção do vínculo."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "de-onde-vem-a-renda",
+   "criterio": "Isso ajuda a família a se planejar?",
+   "enunciado": "Separar no orçamento o que é renda garantida do que é renda variável",
+   "resposta": true,
+   "ancora": "Separar as duas dá mais segurança pra planejar contas fixas.",
+   "feedbackErro": "Parece complicação desnecessária quando o dinheiro já está tudo junto na conta. Mas separar evita comprometer contas fixas com dinheiro incerto."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "de-onde-vem-a-renda",
+   "pergunta": "O que esse encontro acrescentou ao que já era sabido sobre renda?",
+   "alternativas": [
+    {
+     "texto": "Que renda variável exige outro planejamento, e nem tudo que entra é renda nova",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que só emprego público garante renda de verdade",
+     "correta": false,
+     "feedbackErro": "Emprego privado, bicos e negócios próprios também são renda real."
+    },
+    {
+     "texto": "Que qualquer dinheiro que aparece na conta é renda",
+     "correta": false,
+     "feedbackErro": "Devolução de empréstimo e saque da poupança entram na conta, mas não são renda nova."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "de-onde-vem-a-renda",
+   "instrucao": "Isso é renda formal ou informal?",
+   "ancora": "O registro — carteira, contrato, concurso — separa formal de informal.",
+   "feedbackErro": "Formal tem registro e proteção trabalhista; informal não tem esse vínculo registrado.",
+   "caixas": [
+    {
+     "id": "formal",
+     "rotulo": "Formal"
+    },
+    {
+     "id": "informal",
+     "rotulo": "Informal"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Salário com carteira assinada",
+     "caixaCorreta": "formal"
+    },
+    {
+     "texto": "Diarista sem registro",
+     "caixaCorreta": "informal"
+    },
+    {
+     "texto": "Servidor público concursado",
+     "caixaCorreta": "formal"
+    },
+    {
+     "texto": "Venda de doces sem nota fiscal",
+     "caixaCorreta": "informal"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "de-onde-vem-a-renda",
+   "instrucao": "Ordene da renda mais estável pra menos estável.",
+   "ancora": "Não é sobre quem ganha mais — é sobre a garantia de a renda continuar.",
+   "feedbackErro": "Estabilidade cai conforme o vínculo fica menos formal e menos garantido.",
+   "itens": [
+    {
+     "texto": "Servidor público concursado",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Empregado CLT de empresa grande",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Autônomo com clientes fixos",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Bico eventual sem clientes fixos",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "de-onde-vem-a-renda",
+   "pergunta": "Um autônomo teve rendas de R$ 1.400, R$ 1.850 e R$ 1.200 em três meses. Qual foi a média mensal?",
+   "campo": "moeda",
+   "min": 1000,
+   "max": 2500,
+   "gabarito": 1483.33,
+   "toleranciaPct": 20,
+   "fonte": "média das três rendas mensais registradas",
+   "feedbackPerto": "Isso mesmo — somando os três meses e dividindo por 3, dá cerca de R$ 1.483.",
+   "feedbackLonge": "Cerca de R$ 1.483: some os três valores e divida por 3 meses.",
+   "verificacao": {
+    "expressao": "(1400+1850+1200)/3",
+    "esperado": 1483.33,
+    "tolerancia": 1
+   }
+  }
+ ]
+}

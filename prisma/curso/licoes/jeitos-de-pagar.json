@@ -1,0 +1,238 @@
+{
+ "slug": "jeitos-de-pagar",
+ "segmento": "ef35",
+ "conceitoPrincipal": "jeitos-de-pagar",
+ "fraseConceito": "Existem vários jeitos de pagar — dinheiro, cartão, pix, carnê — e cada um tem vantagens e riscos diferentes.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "meios-de-pagamento",
+   "criterio": "É um meio de pagamento?",
+   "enunciado": "Pagar com pix, direto do celular",
+   "resposta": true,
+   "ancora": "Pix transfere dinheiro na hora, direto entre contas.",
+   "feedbackErro": "Parece só um app, mas pix é forma de pagamento — o dinheiro sai da sua conta na hora."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "meios-de-pagamento",
+   "criterio": "É um meio de pagamento?",
+   "enunciado": "Pagar mostrando só o número da casa",
+   "resposta": false,
+   "ancora": "Endereço não move dinheiro nenhum — não é forma de pagar.",
+   "feedbackErro": "Endereço identifica onde você mora, não move dinheiro nenhum — isso não é pagamento."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "vista-ou-prazo",
+   "criterio": "É pagar à vista?",
+   "enunciado": "Pagar um brinquedo todo de uma vez, na hora da compra",
+   "resposta": true,
+   "ancora": "Pagar tudo de uma vez, na hora, é pagamento à vista.",
+   "feedbackErro": "Pode parecer só 'pagar', mas quando é tudo de uma vez na hora da compra, isso é especificamente à vista."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "meios-de-pagamento",
+   "dificuldade": 1,
+   "pergunta": "Dos jeitos de pagar, qual funciona sem precisar de internet nem celular?",
+   "ancora": "Notas e moedas na mão não dependem de internet nem aparelho.",
+   "alternativas": [
+    {
+     "texto": "Dinheiro em espécie",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pix",
+     "correta": false,
+     "feedbackErro": "Pix precisa de internet e de um celular ou computador conectado — sem eles, não funciona."
+    },
+    {
+     "texto": "Cartão de débito",
+     "correta": false,
+     "feedbackErro": "Cartão de débito também depende de uma máquina conectada à internet pra aprovar o pagamento."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "vantagens-e-desvantagens",
+   "dificuldade": 1,
+   "pergunta": "Qual é uma vantagem de pagar em dinheiro, na hora, comparado ao cartão?",
+   "ancora": "Só dá pra gastar o que está na mão — isso trava o gasto.",
+   "alternativas": [
+    {
+     "texto": "Você não corre o risco de gastar mais do que tem na carteira",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O dinheiro nunca pode ser perdido ou roubado",
+     "correta": false,
+     "feedbackErro": "Dinheiro físico pode, sim, ser perdido ou roubado — essa não é uma vantagem dele."
+    },
+    {
+     "texto": "Ele rende juros enquanto está na carteira",
+     "correta": false,
+     "feedbackErro": "Dinheiro parado na carteira não rende nada — quem rende é o que fica guardado numa conta."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "vista-ou-prazo",
+   "criterio": "É pagamento a prazo?",
+   "enunciado": "Comprar um tênis e pagar em 3 vezes no cartão",
+   "resposta": true,
+   "ancora": "Dividir o pagamento em datas futuras é comprar a prazo.",
+   "feedbackErro": "Parece só uma forma de pagar, mas dividir em parcelas futuras é exatamente o que define a prazo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "meios-de-pagamento",
+   "instrucao": "Isso é um meio de pagamento? Arraste.",
+   "ancora": "Meio de pagamento é o que efetivamente transfere o dinheiro.",
+   "feedbackErro": "Objetos do dia a dia parecem relacionados, mas só conta como meio de pagamento o que de fato transfere dinheiro.",
+   "caixas": [
+    { "id": "sim", "rotulo": "É pagamento" },
+    { "id": "nao", "rotulo": "Não é" }
+   ],
+   "itens": [
+    { "texto": "Cartão de débito", "caixaCorreta": "sim" },
+    { "texto": "Carteira vazia", "caixaCorreta": "nao" },
+    { "texto": "Carnê da loja", "caixaCorreta": "sim" },
+    { "texto": "Lista de compras", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "vantagens-e-desvantagens",
+   "criterio": "É uma desvantagem?",
+   "enunciado": "O cheque pode demorar dias para compensar na conta",
+   "resposta": true,
+   "ancora": "Compensação lenta é uma desvantagem real do cheque.",
+   "feedbackErro": "Parece só um detalhe burocrático, mas essa demora é justamente uma desvantagem de usar cheque."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "vista-ou-prazo",
+   "dificuldade": 1,
+   "pergunta": "Uma bicicleta custa R$ 300. Pagando em 5 vezes iguais no cartão, qual o valor de cada parcela?",
+   "ancora": "300 dividido por 5 parcelas iguais dá 60 cada.",
+   "verificacao": { "expressao": "300/5", "esperado": 60 },
+   "alternativas": [
+    {
+     "texto": "R$ 60",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 50",
+     "correta": false,
+     "feedbackErro": "50 seria dividir por 6 parcelas, não por 5. A conta certa é 300 dividido por 5, que dá 60."
+    },
+    {
+     "texto": "R$ 100",
+     "correta": false,
+     "feedbackErro": "100 seria dividir por 3 parcelas. Dividindo 300 por 5 parcelas, cada uma fica em 60."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "meios-de-pagamento",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Pix e cartão de débito tiram o dinheiro direto da conta, na hora",
+   "resposta": true,
+   "ancora": "Ambos debitam o valor da conta imediatamente, sem esperar.",
+   "feedbackErro": "Parece que só um dos dois faz isso, mas pix e débito descontam o valor da conta na mesma hora."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "vantagens-e-desvantagens",
+   "criterio": "Ajuda a não gastar demais?",
+   "enunciado": "Usar sempre o cartão de crédito, mesmo sem saber quanto já gastou no mês",
+   "resposta": false,
+   "ancora": "Sem acompanhar o gasto, o crédito facilita gastar mais do que devia.",
+   "feedbackErro": "O cartão parece prático, e é. Mas sem acompanhar o quanto já gastou, é fácil passar do que cabe no bolso."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "meios-de-pagamento",
+   "pergunta": "Qual frase resume o que você aprendeu sobre jeitos de pagar?",
+   "alternativas": [
+    {
+     "texto": "Todo jeito de pagar é igual, muda só o nome",
+     "correta": false,
+     "feedbackErro": "Cada meio de pagamento tem regras diferentes — prazo, risco e como o dinheiro sai da sua mão."
+    },
+    {
+     "texto": "Cada jeito de pagar tem vantagens, desvantagens e prazos diferentes",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pagar a prazo é sempre melhor que pagar à vista",
+     "correta": false,
+     "feedbackErro": "Depende: parcelar pode ajudar a caber no bolso, mas pagar à vista evita comprometer o futuro."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "vista-ou-prazo",
+   "instrucao": "Toque na ordem, do prazo mais curto pro mais longo.",
+   "ancora": "Mais parcelas significa mais tempo até quitar tudo.",
+   "feedbackErro": "O número de parcelas define o prazo — quanto mais parcelas, mais tempo até pagar tudo.",
+   "itens": [
+    { "texto": "Pagar à vista, tudo de uma vez", "posicaoCorreta": 1 },
+    { "texto": "Pagar em 3 parcelas", "posicaoCorreta": 2 },
+    { "texto": "Pagar em 10 parcelas", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "meios-de-pagamento",
+   "instrucao": "Serve pra pagar sem precisar de conta em banco? Arraste.",
+   "ancora": "Dinheiro e vale físico não dependem de conta bancária.",
+   "feedbackErro": "Pix e cartão sempre passam por uma conta ou banco — dinheiro e vale físico não precisam disso.",
+   "caixas": [
+    { "id": "sim", "rotulo": "Não precisa" },
+    { "id": "nao", "rotulo": "Precisa" }
+   ],
+   "itens": [
+    { "texto": "Dinheiro em espécie", "caixaCorreta": "sim" },
+    { "texto": "Pix", "caixaCorreta": "nao" },
+    { "texto": "Cartão de crédito", "caixaCorreta": "nao" },
+    { "texto": "Vale-presente físico da loja", "caixaCorreta": "sim" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "vantagens-e-desvantagens",
+   "criterio": "É uma vantagem?",
+   "enunciado": "O carnê tem data certa de vencimento em papel, fácil de esquecer",
+   "resposta": false,
+   "ancora": "Isso é desvantagem: fácil esquecer e atrasar o pagamento.",
+   "feedbackErro": "Ter a data no papel parece organizado, mas é fácil perder o carnê ou esquecer — isso é desvantagem."
+  }
+ ]
+}

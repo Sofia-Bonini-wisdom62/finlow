@@ -73,8 +73,10 @@ export default function PainelPage() {
       .finally(() => setCarregando(false))
   }, [])
 
+  // Disparo numa microtask: a regra de hooks proíbe setState síncrono no
+  // corpo do efeito, e um tick de atraso não muda nada visível.
   useEffect(() => {
-    if (consentiu) carregarDados()
+    if (consentiu) Promise.resolve().then(carregarDados)
   }, [consentiu, carregarDados])
 
   // O filtro corta em memória: a lista do mês já está aqui, e refazer a

@@ -1,0 +1,327 @@
+{
+ "slug": "poupar-e-investir-no-plano-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "poupar-e-investir-no-plano",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar-x-investir",
+   "criterio": "Ainda é poupar, mesmo rendendo mais?",
+   "enunciado": "Um título público sem variação de preço, mas que rende mais que a poupança",
+   "resposta": true,
+   "ancora": "Rendimento maior não muda a categoria — o que importa é o risco.",
+   "feedbackErro": "Render mais parece 'promoção demais para ser seguro'. Mas sem variação de preço até o resgate, o comportamento ainda é de poupar."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "poupar-x-investir",
+   "criterio": "Ainda é poupar, mesmo rendendo mais?",
+   "enunciado": "Uma cota de fundo que rendeu bem no último ano, mas pode cair",
+   "resposta": false,
+   "ancora": "Rendimento passado não elimina o risco futuro — é investir.",
+   "feedbackErro": "O histórico bom tranquiliza, e isso confunde com poupar. Mas a possibilidade de cair continua existindo — o risco define, não o passado."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "planejamento-no-tempo",
+   "criterio": "O prazo permite assumir mais risco?",
+   "enunciado": "Guardar para uma viagem que pode ser adiada, sem data fixa",
+   "resposta": false,
+   "ancora": "Sem data certa, o valor deve poder sair a qualquer momento.",
+   "feedbackErro": "Sem prazo definido parece 'tempo de sobra' para arriscar. Mas justamente por poder precisar do dinheiro a qualquer hora, o risco deve ser baixo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "poupar-x-investir",
+   "dificuldade": 3,
+   "pergunta": "Um produto promete 'sem risco' e rendimento bem acima da poupança e do Tesouro. Isso deveria fazer você desconfiar?",
+   "ancora": "Retorno muito acima do mercado, sem risco, é sinal de alerta.",
+   "alternativas": [
+    {
+     "texto": "Retorno alto sem risco correspondente pede checagem",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: produtos assim aparecem o tempo todo no mercado sério",
+     "correta": false,
+     "feedbackErro": "Produtos sérios cobram risco por retorno mais alto — é assim que o mercado funciona. 'Sem risco e retorno alto' foge dessa regra."
+    },
+    {
+     "texto": "Nada, desde que o banco seja conhecido",
+     "correta": false,
+     "feedbackErro": "O nome do banco não muda a regra de risco e retorno. Vale desconfiar da combinação em si, seja qual for a instituição."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "planejamento-no-tempo",
+   "dificuldade": 3,
+   "pergunta": "Uma meta de 8 anos está guardada toda em investimento de alto risco. Faltando 6 meses para o prazo, o que fazer?",
+   "ancora": "Perto do prazo, reduzir risco protege o que já foi construído.",
+   "alternativas": [
+    {
+     "texto": "Migrar aos poucos para opções de baixo risco",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Manter tudo em alto risco até o último dia",
+     "correta": false,
+     "feedbackErro": "Perto do prazo, uma queda forte não tem mais tempo de se recuperar. Manter risco alto até o fim arrisca a meta inteira."
+    },
+    {
+     "texto": "Sacar tudo imediatamente e guardar em dinheiro físico",
+     "correta": false,
+     "feedbackErro": "Sacar tudo de uma vez pode significar vender no pior momento. O caminho mais seguro é migrar aos poucos, não de forma abrupta."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "poupar-x-investir",
+   "criterio": "Ainda é poupar, mesmo rendendo mais?",
+   "enunciado": "Um CDB de banco pequeno, com rendimento maior e mesmo risco baixo, coberto pelo FGC",
+   "resposta": true,
+   "ancora": "Cobertura de garantia mantém o risco baixo — perfil de poupar.",
+   "feedbackErro": "Banco pequeno soa mais arriscado, e isso confunde. Mas com a garantia do FGC dentro do limite, o risco continua baixo — é poupar."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "poupar-x-investir",
+   "instrucao": "Toque na ordem: do que tem menos risco ao que tem mais risco.",
+   "ancora": "Garantia e variação de preço decidem a ordem, não o nome do produto.",
+   "feedbackErro": "CDB garantido tem risco baixo; ações de uma empresa só, risco alto — o critério é sempre o mesmo: chance de o valor cair.",
+   "itens": [
+    {
+     "texto": "CDB garantido pelo FGC",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Título público com variação até o vencimento",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Fundo misto, parte em ações",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Ações de uma única empresa pequena",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "planejamento-no-tempo",
+   "criterio": "O prazo permite assumir mais risco?",
+   "enunciado": "Guardar para a faculdade de um bebê recém-nascido",
+   "resposta": true,
+   "ancora": "Prazo de quase 18 anos comporta risco moderado no início.",
+   "feedbackErro": "Falar de criança pequena dá vontade de ser conservador logo de cara. Mas o prazo longuíssimo é justamente o que permite mais risco no início."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "planejamento-no-tempo",
+   "criterio": "O prazo permite assumir mais risco?",
+   "enunciado": "Guardar para pagar um exame médico marcado para o mês que vem",
+   "resposta": false,
+   "ancora": "Data certa e próxima — o valor precisa estar garantido.",
+   "feedbackErro": "Parece pouco dinheiro para se preocupar com risco. Mas com data certa tão próxima, qualquer perda pode comprometer o compromisso."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "planejamento-no-tempo",
+   "pergunta": "Para juntar R$ 10.800 em 45 meses, guardando o mesmo valor todo mês, quanto guardar por mês?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 400,
+   "gabarito": 240,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: R$ 10.800 divididos por 45 meses",
+   "verificacao": {
+    "expressao": "10800/45",
+    "esperado": 240
+   },
+   "feedbackPerto": "Isso: R$ 240 por mês. Dividir a meta pelos meses restantes é o caminho.",
+   "feedbackLonge": "Dá R$ 240 por mês: 10.800 ÷ 45. Contar todos os meses exatos evita subestimar o valor mensal."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "poupar-x-investir",
+   "dificuldade": 3,
+   "pergunta": "Alguém propõe diversificar: metade em poupança, metade em ações de uma empresa. Isso reduz risco de verdade?",
+   "ancora": "Diversificar de verdade espalha entre vários ativos, não só dois.",
+   "alternativas": [
+    {
+     "texto": "Reduz pouco: uma única ação ainda concentra risco",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, dois produtos já bastam para diversificar",
+     "correta": false,
+     "feedbackErro": "Usar dois produtos ajuda um pouco, mas concentrar a parte de risco numa única empresa ainda deixa metade do dinheiro muito exposto."
+    },
+    {
+     "texto": "Não, porque poupança e ações nunca podem estar juntas",
+     "correta": false,
+     "feedbackErro": "Podem estar juntas, sim — a combinação de baixo e alto risco é comum. O problema aqui é concentrar a parte de risco numa só ação."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "planejamento-no-tempo",
+   "dificuldade": 3,
+   "pergunta": "Duas metas de 20 anos: uma 100% em baixo risco; outra, parte em risco moderado. Qual chega mais longe?",
+   "ancora": "Em prazos muito longos, risco moderado tende a compensar mais.",
+   "alternativas": [
+    {
+     "texto": "A que tem parte em risco moderado, pelo prazo longo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "As duas chegam ao mesmo lugar, o prazo não muda isso",
+     "correta": false,
+     "feedbackErro": "O prazo muda bastante: 20 anos é tempo suficiente para o risco moderado se pagar, na média histórica, acima do baixo risco puro."
+    },
+    {
+     "texto": "A 100% em baixo risco, porque nunca tem perda no caminho",
+     "correta": false,
+     "feedbackErro": "Não ter perda parece sempre melhor, mas ao longo de 20 anos o baixo risco puro costuma render menos que uma parte em risco moderado."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "poupar-x-investir",
+   "criterio": "Ainda é poupar, mesmo rendendo mais?",
+   "enunciado": "Uma conta digital sem variação de valor, que paga mais que a poupança tradicional",
+   "resposta": true,
+   "ancora": "O que importa é o risco de perda, não o nome do produto.",
+   "feedbackErro": "Render mais que a poupança tradicional parece 'demais para confiar'. Mas sem variação de valor, o comportamento continua sendo de poupar."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "planejamento-no-tempo",
+   "criterio": "O prazo permite assumir mais risco?",
+   "enunciado": "Guardar para a entrada de um imóvel, faltando 8 anos",
+   "resposta": true,
+   "ancora": "Prazo de anos ainda comporta uma parte em risco moderado.",
+   "feedbackErro": "Comprar imóvel soa 'grande demais para arriscar'. Mas 8 anos ainda dá tempo de recuperar quedas — comporta risco moderado, com cautela."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "poupar-e-investir-no-plano",
+   "pergunta": "Fechando os três encontros, o que fica?",
+   "alternativas": [
+    {
+     "texto": "Risco, não o nome do produto, separa poupar de investir — o prazo decide a dose",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Rendimento muito acima do mercado, sem risco, é sempre confiável",
+     "correta": false,
+     "feedbackErro": "É o contrário: mercado cobra risco por retorno mais alto. Retorno alto sem risco correspondente pede desconfiança, não confiança."
+    },
+    {
+     "texto": "Perto do prazo final, deve-se aumentar o risco para recuperar tempo",
+     "correta": false,
+     "feedbackErro": "É o oposto: perto do prazo, reduzir risco protege o que já foi construído — não há mais tempo de recuperar uma queda forte."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "poupar-x-investir",
+   "instrucao": "Poupar ou investir? Arraste cada exemplo.",
+   "ancora": "Risco de perda decide, não o nome nem o rendimento anunciado.",
+   "feedbackErro": "Sem risco relevante de perder valor, é poupar, mesmo rendendo bem. Com chance real de cair, é investir.",
+   "caixas": [
+    {
+     "id": "poupar",
+     "rotulo": "Poupar"
+    },
+    {
+     "id": "investir",
+     "rotulo": "Investir"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "CDB garantido pelo FGC, sem variação",
+     "caixaCorreta": "poupar"
+    },
+    {
+     "texto": "Ações de uma empresa pequena",
+     "caixaCorreta": "investir"
+    },
+    {
+     "texto": "Título público sem variação até o vencimento",
+     "caixaCorreta": "poupar"
+    },
+    {
+     "texto": "Fundo misto com parte em ações",
+     "caixaCorreta": "investir"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "planejamento-no-tempo",
+   "dificuldade": 3,
+   "pergunta": "Um jovem começa a guardar para a aposentadoria aos 16 anos, com risco moderado. Qual a maior vantagem sobre começar aos 35?",
+   "ancora": "Tempo extra multiplica o efeito de cada aporte guardado antes.",
+   "alternativas": [
+    {
+     "texto": "Muito mais tempo para o dinheiro crescer com risco moderado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nenhuma: a idade de início não muda o resultado final",
+     "correta": false,
+     "feedbackErro": "Muda bastante: cada ano a mais de aporte e crescimento composto pesa no resultado final, mesmo com valores mensais pequenos."
+    },
+    {
+     "texto": "Só a vantagem de gastar menos tempo pensando no assunto",
+     "correta": false,
+     "feedbackErro": "A vantagem real é financeira, não de tempo gasto pensando: começar cedo dá mais anos para o dinheiro crescer com risco moderado."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "poupar-x-investir",
+   "criterio": "Ainda é poupar, mesmo rendendo mais?",
+   "enunciado": "Um fundo que promete rendimento fixo mensal, sem explicar de onde vem o retorno",
+   "resposta": false,
+   "ancora": "Falta de transparência sobre a origem do retorno é sinal de risco.",
+   "feedbackErro": "Prometer rendimento fixo soa como poupar. Mas sem explicação clara de onde vem o dinheiro, o risco de perda total não pode ser descartado."
+  }
+ ]
+}

@@ -20,6 +20,9 @@
 import { MODULOS_EM } from "../prisma/modulos-em.js"
 import { calcular, avaliarFaixa, interpolar } from "../lib/resultado.js"
 
+// `any` de propósito: este script varre a fonte BRUTA campo a campo, e tipar
+// o bruto esconderia exatamente os buracos que ele existe para acusar.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Bruto = Record<string, any>
 
 let falhas = 0

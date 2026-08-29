@@ -1,0 +1,338 @@
+{
+ "slug": "aposentadoria-comeca-hoje-consolida",
+ "segmento": "em2",
+ "conceitoPrincipal": "aposentadoria-comeca-hoje",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "quando-nao-comecar",
+   "criterio": "Vale começar o longo prazo já?",
+   "enunciado": "Com saldo rodando no rotativo a 14% ao mês",
+   "resposta": false,
+   "ancora": "Nenhuma aplicação paga 14% ao mês: quitar a dívida cara vem antes.",
+   "feedbackErro": "Começar cedo é a regra — mas ela tem exceção. Enquanto o rotativo cobra 14% ao mês, cada real investido a 0,5% perde de lavada. Mate a dívida, depois invista."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "quando-nao-comecar",
+   "criterio": "Vale começar o longo prazo já?",
+   "enunciado": "Sem nenhuma reserva de emergência montada",
+   "resposta": false,
+   "ancora": "Sem reserva, o primeiro imprevisto saca o plano dos 65 anos.",
+   "feedbackErro": "A pressa de investir é boa aliada, mas a ordem importa: sem reserva, uma emergência força o resgate do dinheiro longo — e o composto interrompido não volta."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "quando-nao-comecar",
+   "criterio": "Vale começar o longo prazo já?",
+   "enunciado": "Com pouco dinheiro, mas dívidas zeradas e reserva pronta",
+   "resposta": true,
+   "ancora": "Base pronta, qualquer valor serve: o tempo faz o resto.",
+   "feedbackErro": "Esperar 'sobrar de verdade' é a armadilha de sempre. Com a base feita, R$ 50 já compram décadas de juros — e o hábito vale mais que o valor inicial."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "quando-nao-comecar",
+   "dificuldade": 3,
+   "pergunta": "Otávio, 24, tem R$ 300 sobrando: deve R$ 1.200 no rotativo e quer investir a 0,8% ao mês. O que fazer?",
+   "ancora": "A dívida custa R$ 168/mês; investir renderia R$ 9,60. Não há empate.",
+   "verificacao": {
+    "expressao": "1200*0.14 - 1200*0.008",
+    "esperado": 158.4,
+    "tolerancia": 0.1
+   },
+   "alternativas": [
+    {
+     "texto": "Quitar o rotativo: nada rende os 14% que ele cobra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Dividir: metade na dívida, metade investida",
+     "correta": false,
+     "feedbackErro": "Dividir parece equilibrado, mas os lados não pesam igual: a metade investida rende 0,8% enquanto a dívida restante segue cobrando 14%. O saldo é prejuízo."
+    },
+    {
+     "texto": "Investir tudo: aposentadoria não pode esperar",
+     "correta": false,
+     "feedbackErro": "A urgência do longo prazo é real, e é ela que engana aqui. Pagar a dívida de 14% É o melhor investimento disponível: retorno garantido que nenhum fundo paga."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-no-longo-prazo",
+   "dificuldade": 3,
+   "pergunta": "Um plano promete 'aposentadoria garantida com 2% ao mês, fixos'. Qual é o sinal de alerta?",
+   "ancora": "2% fixos ao mês ≈ 27% ao ano — quase o dobro da Selic. Não fecha.",
+   "verificacao": {
+    "expressao": "1.02^12",
+    "esperado": 1.268,
+    "tolerancia": 0.01
+   },
+   "alternativas": [
+    {
+     "texto": "Promessa fixa muito acima da taxa básica da economia",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Aposentadoria não pode ser investida em plano nenhum",
+     "correta": false,
+     "feedbackErro": "Pode e costuma ser: previdência complementar é produto legítimo. O problema não é investir para os 65 — é a garantia de retorno que nenhum mercado sustenta."
+    },
+    {
+     "texto": "O prazo longo, que aumenta qualquer risco",
+     "correta": false,
+     "feedbackErro": "Para metas de aposentadoria, o prazo longo é aliado, não ameaça. O que denuncia a proposta é o retorno fixo irreal, não a duração do plano."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "risco-no-longo-prazo",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Inflação de 5% ao ano corrói um plano que rende 4%",
+   "resposta": true,
+   "ancora": "Render abaixo da inflação é perder poder de compra todo ano.",
+   "feedbackErro": "O saldo cresce em reais, e isso esconde a perda: se os preços sobem 5% e o plano paga 4%, cada ano você compra menos com o total. A meta é render acima do IPCA."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "quando-nao-comecar",
+   "instrucao": "Monte a ordem certa: o que vem antes de travar dinheiro longo?",
+   "ancora": "Base primeiro: dívida cara e reserva antecedem o longo prazo.",
+   "feedbackErro": "A vontade de ver o composto rodar atropela a ordem. Dívida de juros altos e reserva de emergência são a fundação; sem elas, o plano longo desmonta no 1º susto.",
+   "caixas": [
+    {
+     "id": "antes",
+     "rotulo": "Vem antes"
+    },
+    {
+     "id": "depois",
+     "rotulo": "Vem depois"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Quitar dívida de juros altos",
+     "caixaCorreta": "antes"
+    },
+    {
+     "texto": "Montar a reserva de emergência",
+     "caixaCorreta": "antes"
+    },
+    {
+     "texto": "Travar dinheiro por 30 anos",
+     "caixaCorreta": "depois"
+    },
+    {
+     "texto": "Subir o aporte de longo prazo",
+     "caixaCorreta": "depois"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "quando-nao-comecar",
+   "criterio": "É motivo real para adiar?",
+   "enunciado": "\"Sou jovem demais para pensar nisso\"",
+   "resposta": false,
+   "ancora": "Juventude é a maior vantagem do plano, não um impedimento.",
+   "feedbackErro": "Parece cedo porque os 65 estão longe — mas é a distância que multiplica. Adiar por ser jovem é jogar fora exatamente o recurso que só o jovem tem: tempo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "quando-nao-comecar",
+   "criterio": "É motivo real para adiar?",
+   "enunciado": "\"O dinheiro fica preso e posso precisar dele\"",
+   "resposta": false,
+   "ancora": "Para precisar existe a reserva; o longo prazo é outro bolso.",
+   "feedbackErro": "O medo é legítimo — e já tem solução no plano: a reserva líquida cobre o 'posso precisar'. O dinheiro dos 65 só trava depois que essa porta está aberta."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "longevidade",
+   "pergunta": "Quem se aposenta aos 65 e vive até os 85 recebe benefício por quantos meses?",
+   "campo": "numero",
+   "min": 60,
+   "max": 600,
+   "gabarito": 240,
+   "toleranciaPct": 20,
+   "fonte": "expectativa de vida aos 65 no Brasil, perto dos 85 anos (IBGE)",
+   "verificacao": {
+    "expressao": "20*12",
+    "esperado": 240
+   },
+   "feedbackPerto": "240 meses — duas décadas de pagamento por pessoa. É essa duração que pressiona o sistema e explica as reformas.",
+   "feedbackLonge": "São 240 meses. O viés é subestimar a longevidade: quem chega aos 65 vive, em média, até perto dos 85 — e o plano precisa durar isso tudo."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "estrategias-de-poupanca",
+   "dificuldade": 3,
+   "pergunta": "Quando somar um plano privado ao INSS deixa de compensar?",
+   "ancora": "Custo acima do ganho extra = complemento que só complementa a taxa.",
+   "alternativas": [
+    {
+     "texto": "Quando as taxas cobradas comem o rendimento extra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nunca: complementar sempre melhora o resultado",
+     "correta": false,
+     "feedbackErro": "Complementar costuma ajudar — mas não por mágica. Um plano de taxas altas pode render menos que opções simples; o rótulo 'previdência' não dispensa a conta."
+    },
+    {
+     "texto": "Sempre: o INSS sozinho basta para qualquer um",
+     "correta": false,
+     "feedbackErro": "Para renda até o teto, o INSS pode bastar. Acima dele, ou para quem quer margem, o complemento faz papel real — desde que o custo caiba no benefício que traz."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "tempo-e-o-maior-aporte",
+   "dificuldade": 3,
+   "pergunta": "Uma herança de R$ 20 mil chega aos 25 anos. Pensando nos 65, qual destino aproveita melhor o tempo?",
+   "ancora": "R$ 20 mil aos 25 viram ~R$ 219 mil aos 65 a 0,5% ao mês.",
+   "verificacao": {
+    "expressao": "20000*1.005^480",
+    "esperado": 219149,
+    "tolerancia": 5
+   },
+   "alternativas": [
+    {
+     "texto": "Aplicar logo e deixar o composto correr 40 anos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Guardar parado até decidir com calma, sem pressa",
+     "correta": false,
+     "feedbackErro": "Calma para decidir é saudável — parado por anos, não: a inflação desconta 4-5% ao ano do dinheiro sem aplicação. Decida rápido onde começar simples."
+    },
+    {
+     "texto": "Gastar agora e repor aos poucos ao longo da vida",
+     "correta": false,
+     "feedbackErro": "Repor o valor até dá; repor o efeito, não. R$ 20 mil aos 25 valem ~R$ 219 mil aos 65 — reposições tardias nunca alcançam essa multiplicação."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "risco-no-longo-prazo",
+   "criterio": "Sobrevive à inflação e ao tempo?",
+   "enunciado": "Dinheiro guardado no colchão por 40 anos",
+   "resposta": false,
+   "ancora": "Com IPCA de 4-5% a.a., o valor parado cai à metade em ~16 anos.",
+   "verificacao": {
+    "expressao": "1.045^16",
+    "esperado": 2.02,
+    "tolerancia": 0.01
+   },
+   "feedbackErro": "Parado parece seguro: o número não muda. Mas os preços mudam — a 4,5% ao ano, em uns 16 anos tudo custa o dobro e o colchão compra metade."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "risco-no-longo-prazo",
+   "criterio": "Sobrevive à inflação e ao tempo?",
+   "enunciado": "Plano de longo prazo rendendo acima do IPCA",
+   "resposta": true,
+   "ancora": "Ganho real é isso: render mais do que os preços sobem.",
+   "feedbackErro": "Render 'pouco acima da inflação' soa modesto, mas é o que importa: cada ponto acima do IPCA é poder de compra novo, e o composto multiplica isso por décadas."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "aposentadoria-comeca-hoje",
+   "dificuldade": 3,
+   "pergunta": "Qual critério você leva para as decisões reais?",
+   "alternativas": [
+    {
+     "texto": "Base primeiro — dívida cara e reserva —, depois o longo prazo, o quanto antes.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Investir vem primeiro; a dívida pequena espera.",
+     "correta": false,
+     "feedbackErro": "Rotativo a 14% ao mês cresce mais que qualquer aplicação rende. Dívida cara na frente, sempre."
+    },
+    {
+     "texto": "Perdi o começo, então o composto já não trabalha para mim.",
+     "correta": false,
+     "feedbackErro": "A 0,5% ao mês, 20 anos ainda multiplicam cada aporte por 3,3. Tarde é melhor que nunca — por muito."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "quando-nao-comecar",
+   "instrucao": "Sobraram R$ 500 no mês. Ordene o destino, do primeiro ao último.",
+   "ancora": "Dívida cara, base líquida, só então o longo prazo.",
+   "feedbackErro": "A ordem não é de gosto, é de taxa e função: o rotativo cobra mais do que tudo rende; a reserva evita o próximo rotativo; o que sobra vai para os 65.",
+   "itens": [
+    {
+     "texto": "Quitar o saldo no rotativo",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Completar a reserva de emergência",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Aportar no plano de longo prazo",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "risco-no-longo-prazo",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Plano que rende igual à inflação faz o dinheiro crescer",
+   "resposta": false,
+   "ancora": "Empatar com a inflação preserva; crescer exige render acima dela.",
+   "feedbackErro": "O saldo em reais aumenta, e essa é a ilusão. Se o rendimento só acompanha os preços, o poder de compra fica no mesmo lugar: proteção, sim; crescimento, não."
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "risco-no-longo-prazo",
+   "pergunta": "R$ 1.000 parados no colchão, inflação de 4,5% ao ano: que poder de compra resta em 10 anos?",
+   "campo": "moeda",
+   "min": 200,
+   "max": 1000,
+   "gabarito": 644,
+   "toleranciaPct": 20,
+   "fonte": "IPCA em torno de 4-5% ao ano (IBGE)",
+   "verificacao": {
+    "expressao": "1000/1.045^10",
+    "esperado": 643.9,
+    "tolerancia": 0.5
+   },
+   "feedbackPerto": "Cerca de R$ 644: um terço do valor evaporou sem o dinheiro sair do lugar. Parado não é neutro — é derretendo devagar.",
+   "feedbackLonge": "Restam ~R$ 644 de poder de compra. O viés é olhar o número na nota, que não muda, e esquecer que são os preços ao redor que sobem."
+  }
+ ]
+}

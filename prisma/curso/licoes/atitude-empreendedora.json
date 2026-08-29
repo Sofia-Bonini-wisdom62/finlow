@@ -1,0 +1,332 @@
+{
+ "slug": "atitude-empreendedora",
+ "segmento": "ef89",
+ "conceitoPrincipal": "atitude-empreendedora",
+ "fraseConceito": "Atitude empreendedora é ver um problema e agir para resolvê-lo — dentro ou fora de um negócio próprio.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "atitude-empreendedora",
+   "criterio": "É atitude empreendedora?",
+   "enunciado": "Notar um problema no bairro e criar um jeito de resolvê-lo",
+   "resposta": true,
+   "ancora": "Empreender é enxergar um problema e agir para resolvê-lo.",
+   "feedbackErro": "Parece só observação, sem ligação direta com dinheiro. Mas essa é a raiz de empreender: perceber uma necessidade e criar uma solução para ela."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "atitude-empreendedora",
+   "criterio": "É atitude empreendedora?",
+   "enunciado": "Um funcionário propor um jeito melhor de organizar o estoque",
+   "resposta": true,
+   "ancora": "Atitude empreendedora existe dentro do emprego, não só fora dele.",
+   "feedbackErro": "Empreendedorismo parece coisa de quem abre negócio próprio. Mas propor melhorias e assumir iniciativa no trabalho também é atitude empreendedora."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "mei-formalizacao",
+   "criterio": "É atitude empreendedora?",
+   "enunciado": "Esperar que o chefe diga exatamente o que fazer a cada minuto",
+   "resposta": false,
+   "ancora": "Isso é o oposto: empreender pede iniciativa, não espera de ordens.",
+   "feedbackErro": "Seguir instruções é parte de qualquer trabalho, e não é errado. Mas a atitude empreendedora é justamente sair desse modo — antecipar e agir sem esperar mandar."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "atitude-empreendedora",
+   "dificuldade": 1,
+   "pergunta": "Um autônomo, um assalariado e um dono de empresa podem ter atitude empreendedora. O que os une?",
+   "ancora": "Iniciativa, resolver problemas e assumir riscos — em qualquer papel.",
+   "alternativas": [
+    {
+     "texto": "Iniciativa para resolver problemas, mesmo com riscos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ter registrado uma empresa em nome próprio",
+     "correta": false,
+     "feedbackErro": "Ter empresa registrada é uma forma de atuar, não a definição do comportamento. Um assalariado também pode agir com iniciativa e resolver problemas."
+    },
+    {
+     "texto": "Trabalhar sozinho, sem depender de ninguém",
+     "correta": false,
+     "feedbackErro": "Empreender não exige trabalhar sozinho — muita gente empreende em equipe ou dentro de uma empresa. O que conta é a postura diante dos problemas."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "mei-formalizacao",
+   "dificuldade": 1,
+   "pergunta": "Um MEI (Microempreendedor Individual) formalizado tem, por lei, qual direito garantido?",
+   "ancora": "MEI formalizado tem acesso a benefícios do INSS, como aposentadoria.",
+   "alternativas": [
+    {
+     "texto": "Aposentadoria e outros benefícios do INSS",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Isenção de todo tipo de imposto",
+     "correta": false,
+     "feedbackErro": "MEI paga uma taxa mensal fixa (o DAS), que já cobre parte dos impostos — não é isenção total. Ele continua contribuindo."
+    },
+    {
+     "texto": "Garantia de lucro mínimo mensal pelo governo",
+     "correta": false,
+     "feedbackErro": "O governo não garante lucro de negócio nenhum. O que o MEI garante por lei é o acesso a direitos como INSS, não resultado financeiro."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "atitude-empreendedora",
+   "criterio": "É verdade?",
+   "enunciado": "Assumir risco calculado faz parte de agir com atitude empreendedora",
+   "resposta": true,
+   "ancora": "Toda iniciativa nova envolve risco — a diferença é calcular.",
+   "feedbackErro": "Risco soa perigoso, e por isso parece o oposto de uma boa atitude. Mas empreender é justamente avaliar o risco e decidir agir mesmo assim, de forma calculada."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "atitude-empreendedora",
+   "instrucao": "Toque na ordem de quem age de forma mais empreendedora.",
+   "ancora": "Do que só espera ordens até quem cria a própria solução.",
+   "feedbackErro": "A ordem vai do mais passivo ao mais proativo: esperar instrução, cumprir a tarefa, sugerir melhoria e, por fim, criar uma solução nova.",
+   "itens": [
+    {
+     "texto": "Espera a ordem do chefe para cada tarefa",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Cumpre bem a tarefa que foi combinada",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Sugere uma melhoria no processo do time",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Cria uma solução nova para um problema do time",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "mei-formalizacao",
+   "criterio": "É um direito do MEI?",
+   "enunciado": "Emitir nota fiscal para vender para outras empresas",
+   "resposta": true,
+   "ancora": "MEI formalizado pode emitir nota fiscal — abre portas comerciais.",
+   "feedbackErro": "Parece burocracia chata, sem benefício claro. Mas emitir nota fiscal é um direito do MEI formalizado, e é o que permite vender para empresas maiores."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "atitude-empreendedora",
+   "criterio": "É atitude empreendedora?",
+   "enunciado": "Continuar fazendo do mesmo jeito porque 'sempre foi assim'",
+   "resposta": false,
+   "ancora": "Isso é acomodação — o oposto de buscar melhorar algo.",
+   "feedbackErro": "Manter rotina não é errado por si só. Mas repetir sem questionar, só porque 'sempre foi assim', é o contrário de buscar um jeito melhor de fazer."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "mei-formalizacao",
+   "pergunta": "Em 2026, o teto de faturamento anual do MEI é R$ 81.000. Qual a média mensal permitida?",
+   "campo": "moeda",
+   "min": 3000,
+   "max": 10000,
+   "gabarito": 6750,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: teto anual dividido por 12 meses",
+   "feedbackPerto": "Isso: R$ 6.750 por mês, em média, para não passar do teto anual.",
+   "feedbackLonge": "Dá R$ 6.750. Divida o teto anual pelos 12 meses: 81.000 ÷ 12 — essa é a média que mantém o MEI dentro do limite.",
+   "verificacao": {
+    "expressao": "81000/12",
+    "esperado": 6750
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "atitude-empreendedora",
+   "dificuldade": 1,
+   "pergunta": "Fabiano percebeu que os vizinhos reclamavam de não ter padaria por perto e passou a vender pão em casa. Isso é...",
+   "ancora": "Ele viu um problema comum e criou uma solução para ele.",
+   "alternativas": [
+    {
+     "texto": "Atitude empreendedora: viu um problema e agiu",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sorte: ele só estava no lugar certo na hora certa",
+     "correta": false,
+     "feedbackErro": "Sorte não explica a ação de vender pão. O que houve foi perceber uma necessidade real e decidir agir para resolvê-la."
+    },
+    {
+     "texto": "Um hobby sem relação com empreender",
+     "correta": false,
+     "feedbackErro": "Pode ter começado pequeno, mas resolver um problema real do bairro com uma solução organizada é exatamente atitude empreendedora."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "mei-formalizacao",
+   "dificuldade": 1,
+   "pergunta": "Uma pessoa vende doces sem registrar MEI. O que ela perde ao não formalizar?",
+   "ancora": "Sem MEI, fica sem nota fiscal, sem INSS e sem CNPJ.",
+   "alternativas": [
+    {
+     "texto": "Acesso a benefícios do INSS e a emissão de nota fiscal",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O direito de vender seus produtos",
+     "correta": false,
+     "feedbackErro": "Vender informalmente ainda é possível, embora arriscado. O que se perde é a proteção legal: nota fiscal, INSS e outros direitos do MEI."
+    },
+    {
+     "texto": "Nada muda: formalizar é só uma opção sem efeito prático",
+     "correta": false,
+     "feedbackErro": "Formalizar tem efeito real: sem MEI, não há acesso a aposentadoria pelo INSS nem à emissão legal de nota fiscal para vender mais."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "atitude-empreendedora",
+   "criterio": "Verdadeiro?",
+   "enunciado": "Atitude empreendedora só existe em quem tem uma empresa própria",
+   "resposta": false,
+   "ancora": "Existe em qualquer papel: assalariado, autônomo ou dono de negócio.",
+   "feedbackErro": "É a confusão mais comum sobre o tema. A atitude — iniciativa, resolver problemas, assumir riscos — aparece dentro de um emprego tanto quanto num negócio."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "mei-formalizacao",
+   "criterio": "Verdadeiro?",
+   "enunciado": "MEI formalizado tem direitos garantidos por lei, como quem tem carteira assinada",
+   "resposta": true,
+   "ancora": "A lei garante direitos ao MEI, ainda que diferentes dos de um CLT.",
+   "feedbackErro": "É fácil achar que só quem tem carteira assinada tem proteção. Mas o MEI formalizado tem direitos próprios garantidos por lei, como acesso ao INSS."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "atitude-empreendedora",
+   "pergunta": "Qual frase resume esta lição?",
+   "alternativas": [
+    {
+     "texto": "Atitude empreendedora é agir diante de problemas, em qualquer tipo de trabalho.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só quem abre uma empresa própria pode ser empreendedor.",
+     "correta": false,
+     "feedbackErro": "A atitude aparece também dentro de um emprego: iniciativa não exige CNPJ."
+    },
+    {
+     "texto": "MEI é isento de todo tipo de imposto e obrigação.",
+     "correta": false,
+     "feedbackErro": "MEI paga uma taxa mensal fixa e tem obrigações — não é isenção total."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "atitude-empreendedora",
+   "instrucao": "É atitude empreendedora? Arraste cada exemplo.",
+   "ancora": "Empreender é agir diante de um problema, com iniciativa.",
+   "feedbackErro": "Propor, criar e resolver são atitudes empreendedoras. Só copiar sem pensar ou esperar ordem o tempo todo não é.",
+   "caixas": [
+    {
+     "id": "sim",
+     "rotulo": "É"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Criar um serviço para um problema do bairro",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Copiar a tarefa de outra pessoa sem entender",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Propor uma solução nova no trabalho",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Esperar ordem para cada passo do dia",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "mei-formalizacao",
+   "dificuldade": 2,
+   "pergunta": "Um MEI fatura R$ 5.000 no mês. Isso ultrapassa a média mensal do teto anual de R$ 81.000?",
+   "ancora": "81.000 ÷ 12 = 6.750. R$ 5.000 fica abaixo da média permitida.",
+   "alternativas": [
+    {
+     "texto": "Não — está abaixo da média de R$ 6.750",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim — qualquer valor acima de R$ 5.000 estoura o teto",
+     "correta": false,
+     "feedbackErro": "O teto é anual, não mensal fixo em R$ 5.000. A média permitida é 81.000 ÷ 12 = 6.750 — R$ 5.000 fica dentro."
+    },
+    {
+     "texto": "Não é possível saber sem o faturamento anual completo",
+     "correta": false,
+     "feedbackErro": "Dá para comparar com a média mensal do teto: 81.000 ÷ 12 = 6.750. R$ 5.000 está dentro dessa média."
+    }
+   ],
+   "verificacao": {
+    "expressao": "81000/12",
+    "esperado": 6750
+   }
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "atitude-empreendedora",
+   "criterio": "É verdade?",
+   "enunciado": "Assumir todo e qualquer risco, sem avaliar, é atitude empreendedora",
+   "resposta": false,
+   "ancora": "Risco sem avaliação é imprudência, não atitude empreendedora.",
+   "feedbackErro": "Parece corajoso assumir qualquer risco. Mas empreender pede risco calculado — avaliar antes de agir, não simplesmente arriscar tudo sem pensar."
+  }
+ ]
+}

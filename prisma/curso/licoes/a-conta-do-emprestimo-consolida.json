@@ -1,0 +1,356 @@
+{
+ "slug": "a-conta-do-emprestimo-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "a-conta-do-emprestimo",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "preco-do-emprestimo",
+   "criterio": "Ainda é dívida com juros?",
+   "enunciado": "Consignado descontado direto da folha de pagamento",
+   "resposta": true,
+   "ancora": "Descontado sozinho, continua empréstimo com juros.",
+   "feedbackErro": "O desconto some do contracheque sem esforço, e parece não ser dívida. Mas o dinheiro entrou como empréstimo — os juros continuam correndo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-total-do-credito",
+   "criterio": "Isso tem custo, mesmo sem juro no nome?",
+   "enunciado": "Empréstimo anunciado 'sem juros', com tarifa de abertura de R$ 150",
+   "resposta": true,
+   "ancora": "Tarifa é custo, mesmo sem juro no nome. Some tudo antes de comparar.",
+   "feedbackErro": "O anúncio destaca 'sem juros', e isso distrai. Mas a tarifa fixa sai do seu bolso do mesmo jeito — é custo, ainda que não se chame juro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-total-do-credito",
+   "criterio": "Quitar antes sempre economiza?",
+   "enunciado": "Quitar hoje um contrato com multa de saída maior que o juro que restava",
+   "resposta": false,
+   "ancora": "Quitar cedo economiza, salvo se a multa passar o juro poupado.",
+   "feedbackErro": "A regra geral funciona quase sempre: antecipar corta juro futuro. Mas se a multa de saída for maior que o juro que sobrava, quitar antes custa mais, não menos."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "financiamento-estudantil",
+   "dificuldade": 3,
+   "pergunta": "Rafael tomou R$ 450/mês por 40 meses de financiamento estudantil. R$ 18.000 é o total a devolver?",
+   "ancora": "18.000 é só o principal; falta somar os juros das parcelas futuras.",
+   "alternativas": [
+    {
+     "texto": "Não — falta somar os juros cobrados depois da formatura",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim — R$ 18.000 é exatamente o que ele vai devolver",
+     "correta": false,
+     "feedbackErro": "R$ 18.000 é a soma das mensalidades que o banco pagou pela faculdade. O contrato ainda cobra juros nas parcelas pós-formatura — o total sobe."
+    },
+    {
+     "texto": "Não — falta contar mais mensalidades da faculdade",
+     "correta": false,
+     "feedbackErro": "As 40 mensalidades já estão nos R$ 18.000. O que falta somar são os juros do financiamento, não mais parcelas de curso."
+    }
+   ],
+   "verificacao": {
+    "expressao": "450*40",
+    "esperado": 18000
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-total-do-credito",
+   "dificuldade": 3,
+   "pergunta": "Dois empréstimos de R$ 2.000: um a 2% por 10 meses, outro a 4% por 5 meses. Qual custa menos de juro?",
+   "ancora": "2.000×0,02×10 = 2.000×0,04×5 = 400. O prazo compensou a taxa.",
+   "alternativas": [
+    {
+     "texto": "O de 4% por 5 meses, porque a taxa maior custa sempre mais",
+     "correta": false,
+     "feedbackErro": "A taxa maior custa mais por mês, mas o prazo menor reduz quantos meses ela incide. Aqui os dois juros somam R$ 400 — empatam."
+    },
+    {
+     "texto": "O de 2% por 10 meses, porque a taxa é menor",
+     "correta": false,
+     "feedbackErro": "A taxa menor ajuda, mas 10 meses de juro correndo compensam a diferença. Fazendo a conta, os dois chegam ao mesmo R$ 400."
+    },
+    {
+     "texto": "Nenhum: os dois custam R$ 400 de juro",
+     "correta": true,
+     "feedbackErro": null
+    }
+   ],
+   "verificacao": {
+    "expressao": "2000*0.02*10 - 2000*0.04*5",
+    "esperado": 0
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "financiamento-estudantil",
+   "criterio": "É verdade sobre o financiamento?",
+   "enunciado": "Trocar de curso na mesma faculdade zera a dívida já contratada",
+   "resposta": false,
+   "ancora": "Trocar de curso não apaga a dívida do que já foi pago.",
+   "feedbackErro": "Mudar de curso parece um recomeço, e é — para a grade curricular. Para o contrato de crédito, não: as mensalidades já pagas pelo banco seguem sendo sua dívida."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "custo-total-do-credito",
+   "instrucao": "Mesmo valor pego. Ordene do menor ao maior custo total.",
+   "ancora": "Total = parcela × quantidade. Prazo maior quase sempre custa mais.",
+   "feedbackErro": "A parcela pequena confunde: 24×90 dá R$ 2.160, o mais caro. Multiplique parcela por quantidade sempre, antes de comparar.",
+   "itens": [
+    {
+     "texto": "R$ 1.800 à vista",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "12 parcelas de R$ 165",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "18 parcelas de R$ 116",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "24 parcelas de R$ 90",
+     "posicaoCorreta": 4
+    }
+   ],
+   "verificacao": {
+    "expressao": "24*90-18*116",
+    "esperado": 72
+   }
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "preco-do-emprestimo",
+   "criterio": "A conta fecha?",
+   "enunciado": "R$ 2.500 a 1,8% ao mês (consignado) custam R$ 45 de juro no 1º mês",
+   "resposta": true,
+   "ancora": "1,8% de 2.500 = 45. Consignado está entre as taxas mais baratas.",
+   "feedbackErro": "A conta bate: 2.500 ÷ 100 × 1,8 = 45. Consignado é uma das taxas mais baixas do mercado — mesmo assim ainda é juro correndo todo mês.",
+   "verificacao": {
+    "expressao": "2500*0.018",
+    "esperado": 45
+   }
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-total-do-credito",
+   "criterio": "A conta fecha?",
+   "enunciado": "Renegociar uma dívida sempre reduz o valor total a pagar",
+   "resposta": false,
+   "ancora": "Alongar o prazo pode subir o total, mesmo com parcela menor.",
+   "feedbackErro": "A parcela menor parece alívio, e o nome 'renegociação' sugere ganho. Mas alongar o prazo soma mais meses de juro — o total pode crescer, não cair."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-total-do-credito",
+   "pergunta": "Empréstimo de R$ 3.000 a 3% ao mês, juro composto, quitado só em 8 meses. Quanto vira a dívida?",
+   "campo": "moeda",
+   "min": 3000,
+   "max": 6000,
+   "gabarito": 3800,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: juros compostos de 3% ao mês sobre R$ 3.000",
+   "feedbackPerto": "Perto: R$ 3.800. Em 8 meses, o saldo cresceu 27% sem nenhuma compra nova.",
+   "feedbackLonge": "Dá R$ 3.800. Somar 3% oito vezes (24%) erra por pouco: juro composto cobra sobre o saldo já maior — 27% no total.",
+   "verificacao": {
+    "expressao": "3000*1.03^8",
+    "esperado": 3800.31,
+    "tolerancia": 1
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "financiamento-estudantil",
+   "dificuldade": 3,
+   "pergunta": "Um financiamento estudantil permite trancar 1 semestre sem gerar mensalidade nova. O que NÃO muda com o trancamento?",
+   "ancora": "O trancamento pausa mensalidades novas; as antigas continuam devidas.",
+   "alternativas": [
+    {
+     "texto": "O total já pago pelo banco antes do trancamento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O número de mensalidades ainda por vir depois da volta",
+     "correta": false,
+     "feedbackErro": "Isso muda: o trancamento empurra as mensalidades futuras para depois — o curso só continua ao voltar."
+    },
+    {
+     "texto": "A data em que a cobrança das parcelas começa",
+     "correta": false,
+     "feedbackErro": "Isso pode mudar: trancar atrasa a formatura, e a cobrança só começa depois de formado — a data se desloca."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "preco-do-emprestimo",
+   "dificuldade": 3,
+   "pergunta": "Consignado a 1,8% a.m. ou cheque especial a 8% a.m., ambos R$ 1.000 por 1 mês. Diferença de juro?",
+   "ancora": "8% de 1.000 = 80. 1,8% de 1.000 = 18. Diferença: R$ 62.",
+   "alternativas": [
+    {
+     "texto": "R$ 62 — o consignado custa bem menos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 98 — soma das duas taxas",
+     "correta": false,
+     "feedbackErro": "Somar as taxas mistura os dois empréstimos em um só. A pergunta é a diferença entre eles: 80 menos 18, não a soma."
+    },
+    {
+     "texto": "R$ 6,20 — diferença das taxas em pontos",
+     "correta": false,
+     "feedbackErro": "6,2 é a diferença das taxas em pontos percentuais, não em reais. Aplique cada taxa sobre R$ 1.000 e subtraia os resultados."
+    }
+   ],
+   "verificacao": {
+    "expressao": "1000*0.08 - 1000*0.018",
+    "esperado": 62
+   }
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "financiamento-estudantil",
+   "criterio": "Verdadeiro?",
+   "enunciado": "Financiamento estudantil sempre cobra juro maior que o cheque especial",
+   "resposta": false,
+   "ancora": "É o contrário: financiamento estudantil costuma ter juro bem menor.",
+   "feedbackErro": "A ideia de que crédito educativo é caro é comum, e engana. Na prática, o financiamento estudantil tem uma das taxas mais baixas — bem abaixo do cheque especial."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-total-do-credito",
+   "criterio": "Verdadeiro?",
+   "enunciado": "Prazo maior sempre significa parcela menor e custo total maior",
+   "resposta": true,
+   "ancora": "Dividir em mais vezes reduz a parcela e soma mais meses de juro.",
+   "feedbackErro": "É tentador achar que só a parcela mensal importa. Mas mais meses de contrato significam mais meses de juro incidindo — o total sobe junto com o prazo.",
+   "verificacao": {
+    "expressao": "24*90-12*165",
+    "esperado": 180
+   }
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "custo-total-do-credito",
+   "pergunta": "Qual frase resume os três encontros sobre empréstimo?",
+   "alternativas": [
+    {
+     "texto": "Toda dívida tem um preço: taxa, prazo e tarifas juntos definem o total.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A parcela menor é sempre a escolha mais barata.",
+     "correta": false,
+     "feedbackErro": "Parcela pequena espalha o custo no tempo — o total pode ficar maior, não menor."
+    },
+    {
+     "texto": "Renegociar uma dívida sempre custa menos no final.",
+     "correta": false,
+     "feedbackErro": "Renegociar pode alongar o prazo e aumentar o total, mesmo com parcela mais leve."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "custo-total-do-credito",
+   "instrucao": "Aumenta o custo total do empréstimo? Arraste.",
+   "ancora": "Custo total sobe com juro, tarifa e prazo maior.",
+   "feedbackErro": "Taxa, tarifa e prazo maior empurram o custo para cima. Pagar mais rápido faz o oposto: corta meses de juro.",
+   "caixas": [
+    {
+     "id": "aumenta",
+     "rotulo": "Aumenta"
+    },
+    {
+     "id": "reduz",
+     "rotulo": "Reduz"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Alongar o número de parcelas",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "Antecipar parcelas com desconto",
+     "caixaCorreta": "reduz"
+    },
+    {
+     "texto": "Tarifa de abertura de crédito",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "Trocar rotativo por consignado",
+     "caixaCorreta": "reduz"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "preco-do-emprestimo",
+   "dificuldade": 3,
+   "pergunta": "Empréstimo de R$ 4.000 a 2,5% a.m. por 6 meses, juro simples sobre o valor pego. Total de juros?",
+   "ancora": "2,5% de 4.000 = 100 por mês. Em 6 meses: R$ 600.",
+   "alternativas": [
+    {
+     "texto": "R$ 600",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 100",
+     "correta": false,
+     "feedbackErro": "R$ 100 é o juro de um único mês. O contrato dura 6: multiplique — 100 × 6 = 600."
+    },
+    {
+     "texto": "R$ 1.000",
+     "correta": false,
+     "feedbackErro": "Esse valor usaria uma taxa maior que 2,5%. Refaça: 4.000 ÷ 100 × 2,5 = 100 por mês, vezes 6 meses."
+    }
+   ],
+   "verificacao": {
+    "expressao": "4000*0.025*6",
+    "esperado": 600
+   }
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "financiamento-estudantil",
+   "criterio": "Verdade?",
+   "enunciado": "O contrato de financiamento pode ser transferido para outra pessoa sem aviso ao banco",
+   "resposta": false,
+   "ancora": "Mudar quem deve exige o banco: contrato não troca de mãos sozinho.",
+   "feedbackErro": "Parece só um combinado entre as partes. Mas a dívida tem nome e CPF definidos no contrato — trocar exige formalizar com o banco, não é automático."
+  }
+ ]
+}

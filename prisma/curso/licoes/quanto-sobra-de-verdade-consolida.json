@@ -1,0 +1,343 @@
+{
+ "slug": "quanto-sobra-de-verdade-consolida",
+ "segmento": "em2",
+ "conceitoPrincipal": "quanto-sobra-de-verdade",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "liquido-real",
+   "criterio": "A conta fecha?",
+   "enunciado": "Render 4% líquidos com inflação de 6% foi ganho",
+   "resposta": false,
+   "ancora": "4 − 6 = −2: o saldo subiu e a compra caiu. Perda real.",
+   "verificacao": {
+    "expressao": "4-6",
+    "esperado": -2
+   },
+   "feedbackErro": "O extrato mostra mais dinheiro, e isso convence. Mas os preços correram na frente: 4% de rendimento contra 6% de inflação é perder 2% de compra."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "funcao-do-dinheiro",
+   "criterio": "A conta fecha?",
+   "enunciado": "Deixar a reserva onde rende menos, mas sai na hora",
+   "resposta": true,
+   "ancora": "Para emergência, liquidez manda; rendimento é desempate.",
+   "feedbackErro": "Depois de aprender a caçar o líquido real, parece erro aceitar render menos. Mas reserva tem outro juiz: sair na hora, sem perda. Rendimento decide o resto."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custos",
+   "criterio": "A conta fecha?",
+   "enunciado": "Pagar 2% de taxa num fundo que rende igual a um de 0,3%",
+   "resposta": false,
+   "ancora": "Mesmo bruto, custo maior: pagar mais pelo mesmo resultado.",
+   "feedbackErro": "A taxa parece o preço de um serviço melhor. Mas se o rendimento entregue é igual, os 1,7 pontos extras de taxa são só líquido a menos, todo ano."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "liquido-real",
+   "dificuldade": 3,
+   "pergunta": "Talita compara: CDB a 1% ao mês com IR de 20%, ou isento a 0,85% ao mês. Qual rende mais líquido?",
+   "ancora": "1% menos 20% de IR = 0,8%. O isento de 0,85% vence.",
+   "verificacao": {
+    "expressao": "1*0.8",
+    "esperado": 0.8
+   },
+   "alternativas": [
+    {
+     "texto": "O isento: 0,85% contra 0,8% líquidos do CDB",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O CDB, porque 1% é maior que 0,85%",
+     "correta": false,
+     "feedbackErro": "1% ganha no bruto — mas 20% de IR deixam 0,8% líquido, abaixo dos 0,85% isentos. A régua é sempre o líquido."
+    },
+    {
+     "texto": "Empata: a diferença é pequena demais",
+     "correta": false,
+     "feedbackErro": "0,05 ponto ao mês parece nada, mas compõe: em anos de aplicação, vira dinheiro visível. Pequeno e repetido não é empate."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "funcao-do-dinheiro",
+   "dificuldade": 3,
+   "pergunta": "Em qual situação o rendimento líquido maior NÃO deve decidir a escolha?",
+   "ancora": "Função vem antes de rendimento quando o prazo de saque importa.",
+   "alternativas": [
+    {
+     "texto": "Quando o dinheiro é a reserva e o resgate é lento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando a diferença de rendimento é grande",
+     "correta": false,
+     "feedbackErro": "Diferença grande de líquido é exatamente quando ele decide. A exceção é função: dinheiro de emergência precisa sair rápido — aí liquidez vem antes."
+    },
+    {
+     "texto": "Nunca: o líquido maior sempre decide",
+     "correta": false,
+     "feedbackErro": "Quase sempre — mas reserva presa num resgate de 30 dias falha na hora do imprevisto. Função vem antes de rendimento quando a data de saque importa."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "imposto-e-prazo",
+   "criterio": "A conta fecha?",
+   "enunciado": "Planejar o resgate para depois de 2 anos e pagar IR menor",
+   "resposta": true,
+   "ancora": "Alíquota cai com o tempo: resgate planejado paga 15%, não 22,5%.",
+   "feedbackErro": "Parece manobra de especialista. É só calendário: o IR é regressivo, e quem pode escolher a data do resgate escolhe também a alíquota."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "liquido-real",
+   "instrucao": "Quatro resultados de um ano. Ordene do melhor ao pior.",
+   "ancora": "Ganho real: +8, +5, +1 e −1. A dupla de números decide junta.",
+   "verificacao": {
+    "expressao": "12-4",
+    "esperado": 8
+   },
+   "feedbackErro": "Nem o maior rendimento nem a menor inflação decidem sozinhos: subtraia um do outro. 5% com inflação de 6% é o único que perde compra.",
+   "itens": [
+    {
+     "texto": "Rendeu 12% com inflação de 4%",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Rendeu 9% com inflação de 4%",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Rendeu 6% com inflação de 5%",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Rendeu 5% com inflação de 6%",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "plano-e-revisao",
+   "criterio": "A conta fecha?",
+   "enunciado": "Vender a renda variável na primeira queda do mês",
+   "resposta": false,
+   "ancora": "Quem define a saída é o plano, não o susto do mês.",
+   "feedbackErro": "Queda dói e o impulso é estancar. Mas vender na baixa transforma oscilação em perda definitiva — se o prazo é longo, o plano manda esperar."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "plano-e-revisao",
+   "criterio": "A conta fecha?",
+   "enunciado": "Meta batida antes do prazo: revisar e definir a próxima",
+   "resposta": true,
+   "ancora": "Revisão também serve ao sucesso: meta batida pede destino novo.",
+   "feedbackErro": "Parece que revisão só existe para consertar problema. Mas dinheiro que chegou sem destino novo volta a ser saldo disponível — e saldo disponível evapora."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "liquido-real",
+   "pergunta": "R$ 5.000 renderam 12% no ano; IR de 15% e inflação de 5%. Ganho real, em reais?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 600,
+   "gabarito": 260,
+   "toleranciaPct": 20,
+   "fonte": "aritmética: 12% menos IR de 15%, menos IPCA de 5%",
+   "verificacao": {
+    "expressao": "5000*0.12*0.85-5000*0.05",
+    "esperado": 260
+   },
+   "feedbackPerto": "R$ 260 de ganho real — menos da metade dos R$ 600 anunciados. É o tamanho normal da mordida.",
+   "feedbackLonge": "Cerca de R$ 260: 600 brutos − 90 de IR − 250 de inflação. O viés é parar no bruto — a propaganda também para aí."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "plano-e-revisao",
+   "dificuldade": 3,
+   "pergunta": "O plano previa 60% fixa e 40% variável. A variável subiu e virou 55% do total. O que a revisão faz?",
+   "ancora": "Rebalancear: devolver a divisão que o prazo do plano pediu.",
+   "alternativas": [
+    {
+     "texto": "Reequilibrar: voltar perto da divisão que o plano definiu",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: o que sobe deve ficar como está",
+     "correta": false,
+     "feedbackErro": "Deixar correr concentra o risco justamente no que mais oscila. A divisão do plano foi feita para o seu prazo — a revisão devolve o desenho."
+    },
+    {
+     "texto": "Colocar tudo na variável, que provou ser melhor",
+     "correta": false,
+     "feedbackErro": "Subida passada não garante a próxima — e 'provou ser melhor' é o raciocínio que compra topo. O plano decide a dose, não o retrovisor."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "liquido-real",
+   "dificuldade": 3,
+   "pergunta": "'Esse fundo rende 14% há 3 anos', diz o gerente. O que falta para a frase virar decisão?",
+   "ancora": "Sem custos, IR, inflação e prazo, 14% é propaganda, não análise.",
+   "alternativas": [
+    {
+     "texto": "Custos, imposto, inflação — e se o prazo combina",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: 14% por 3 anos é prova suficiente",
+     "correta": false,
+     "feedbackErro": "Passado não é contrato: os 14% são brutos, de anos que já foram. Sem taxas, IR, inflação e prazo, a frase é propaganda, não análise."
+    },
+    {
+     "texto": "Saber quanto o gerente ganha de comissão",
+     "correta": false,
+     "feedbackErro": "A comissão importa, mas aparece dentro das taxas do fundo — é lá que se lê o custo. O que decide é o líquido real e a adequação ao seu prazo."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "liquido-real",
+   "criterio": "A conta fecha?",
+   "enunciado": "Comparar isento com tributado sem descontar o IR",
+   "resposta": false,
+   "ancora": "Réguas diferentes: traga os dois ao líquido antes de comparar.",
+   "feedbackErro": "Os dois números parecem prontos para comparar — estão na mesma unidade. Mas um ainda vai pagar IR e o outro não: desconte primeiro, compare depois."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "plano-e-revisao",
+   "criterio": "A conta fecha?",
+   "enunciado": "Plano revisado a cada 6 meses, com metas anotadas",
+   "resposta": true,
+   "ancora": "Revisar em data marcada tira a decisão do impulso.",
+   "feedbackErro": "Parece rigidez desnecessária. Mas quem revisa em data marcada decide com calma e números; quem revisa 'quando lembra' decide no susto das notícias."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "quanto-sobra-de-verdade",
+   "pergunta": "Fechando os três encontros, o que fica?",
+   "alternativas": [
+    {
+     "texto": "Decida pelo líquido real e pela função — e revise em datas marcadas.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O rendimento bruto dos últimos anos garante o futuro.",
+     "correta": false,
+     "feedbackErro": "Passado bruto não é contrato: custos, IR, inflação e prazo decidem."
+    },
+    {
+     "texto": "A reserva de emergência deve caçar o maior rendimento.",
+     "correta": false,
+     "feedbackErro": "Na reserva, liquidez manda; rendimento é critério de desempate."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "funcao-do-dinheiro",
+   "instrucao": "Quem decide aqui: liquidez ou líquido real?",
+   "ancora": "Dinheiro com data próxima obedece à liquidez.",
+   "feedbackErro": "Reserva e gasto do mês precisam sair na hora: liquidez manda. Nas metas longas, quem manda é o rendimento líquido real.",
+   "caixas": [
+    {
+     "id": "liquidez",
+     "rotulo": "Liquidez manda"
+    },
+    {
+     "id": "liquido",
+     "rotulo": "Líquido real manda"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Reserva de emergência",
+     "caixaCorreta": "liquidez"
+    },
+    {
+     "texto": "Meta de 10 anos",
+     "caixaCorreta": "liquido"
+    },
+    {
+     "texto": "Dinheiro do conserto deste mês",
+     "caixaCorreta": "liquidez"
+    },
+    {
+     "texto": "Sobras para o longo prazo",
+     "caixaCorreta": "liquido"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "liquido-real",
+   "dificuldade": 3,
+   "pergunta": "Aplicação rendeu 16% brutos; taxa de 2%, IR de 15%, inflação de 5%. Ganho real aproximado?",
+   "ancora": "16 − 2 = 14; menos 15% de IR ≈ 11,9; menos 5 ≈ 6,9%.",
+   "verificacao": {
+    "expressao": "(16-2)*0.85-5",
+    "esperado": 6.9
+   },
+   "alternativas": [
+    {
+     "texto": "Perto de 7%",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Perto de 11%",
+     "correta": false,
+     "feedbackErro": "Faltou a taxa ou a inflação. O caminho: 16 − 2 = 14; menos 15% de IR = 11,9; menos 5 de inflação ≈ 6,9."
+    },
+    {
+     "texto": "Perto de 16%",
+     "correta": false,
+     "feedbackErro": "16% é a vitrine. Taxa, IR e inflação transformam em ~7% reais — menos da metade do anunciado."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "imposto-e-prazo",
+   "criterio": "A conta fecha?",
+   "enunciado": "Resgatar sem urgência aos 8 meses, pagando IR de 20%",
+   "resposta": false,
+   "ancora": "Sem pressa, esperar a alíquota cair deixa mais com você.",
+   "feedbackErro": "Se não há urgência, o calendário joga a seu favor: aos 2 anos o IR cai para 15%. Resgatar cedo sem motivo é doar alíquota."
+  }
+ ]
+}

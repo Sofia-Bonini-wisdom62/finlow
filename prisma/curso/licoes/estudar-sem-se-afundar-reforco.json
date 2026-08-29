@@ -1,0 +1,339 @@
+{
+ "slug": "estudar-sem-se-afundar-reforco",
+ "segmento": "em3",
+ "conceitoPrincipal": "estudar-sem-se-afundar",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "portas-de-entrada",
+   "criterio": "Qual era a ordem das portas?",
+   "enunciado": "Financiamento vem antes de tentar bolsa e vaga pública",
+   "resposta": false,
+   "ancora": "A ordem protege: primeiro o que não cria dívida, sempre.",
+   "feedbackErro": "A pressa inverte a fila — financiamento aprova em dias, bolsa exige processo. Mas assinar antes de tentar o gratuito é comprar o que talvez fosse de graça."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "portas-de-entrada",
+   "criterio": "Qual era a ordem das portas?",
+   "enunciado": "A nota do Enem abre porta gratuita e porta com bolsa",
+   "resposta": true,
+   "ancora": "Uma prova, três destinos: SiSU, ProUni e até o FIES usam o Enem.",
+   "feedbackErro": "Parece que cada programa tem sua prova, mas a chave é uma só. A mesma nota disputa vaga pública no SiSU e bolsa no ProUni — estudar para o Enem paga duas vezes."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-do-financiamento",
+   "criterio": "Dívida de estudo é diferente?",
+   "enunciado": "A dívida do FIES some se o diploma não der emprego",
+   "resposta": false,
+   "ancora": "O contrato não depende do seu emprego: formado, a cobrança vem.",
+   "feedbackErro": "Seria justo, mas não é o contrato. Há regras que suavizam parcelas conforme a renda — só que a dívida em si não se cancela por falta de emprego."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "portas-de-entrada",
+   "dificuldade": 2,
+   "pergunta": "Mensalidade de R$ 1.240 com bolsa de 35%. Quanto você paga por mês?",
+   "ancora": "Paga-se os 65% restantes: R$ 1.240 × 0,65 = R$ 806.",
+   "verificacao": {
+    "expressao": "1240*0.65",
+    "esperado": 806,
+    "tolerancia": 0.01
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 806",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 434",
+     "correta": false,
+     "feedbackErro": "R$ 434 é o tamanho do desconto (35%), não da mensalidade. Você paga o que sobra: 65% de R$ 1.240 = R$ 806. Bolsa de X% significa pagar (100 − X)%."
+    },
+    {
+     "texto": "R$ 868",
+     "correta": false,
+     "feedbackErro": "Você aplicou 30% de desconto, não 35%. Com 35%, sobram 65%: R$ 1.240 × 0,65 = R$ 806. Cinco pontos de bolsa valem R$ 62 por mês — R$ 2.976 no curso."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-do-financiamento",
+   "dificuldade": 2,
+   "pergunta": "Oferta A: juros de 0,8% ao mês. Oferta B: 'sem juros', mas mensalidade maior. Como decidir?",
+   "ancora": "Compare o total pago do início ao fim — só ele revela juro escondido.",
+   "alternativas": [
+    {
+     "texto": "Pelo total pago do início ao fim em cada uma",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pelo rótulo: 'sem juros' vence sempre",
+     "correta": false,
+     "feedbackErro": "O rótulo é marketing. Mensalidade maior pode carregar o juro embutido no preço — 'sem juros' de fachada. O total pago desmascara qualquer rótulo."
+    },
+    {
+     "texto": "Pela parcela do primeiro mês",
+     "correta": false,
+     "feedbackErro": "A primeira parcela é a isca: começa baixa e o total explode no prazo longo. Uma parcela não conta a história inteira — a soma de todas conta."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-do-financiamento",
+   "criterio": "Juro zero = custo zero?",
+   "enunciado": "Parcelado 'sem juros' pode ter o juro embutido no preço",
+   "resposta": true,
+   "ancora": "Peça o preço à vista: a diferença é o juro que 'não existia'.",
+   "feedbackErro": "Se fosse impossível, ninguém anunciaria tanto. O truque: inflar o preço base e parcelar 'sem juros'. O teste é um só — quanto sai à vista, com desconto?"
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "custo-do-financiamento",
+   "instrucao": "Arraste: isso reduz o custo do curso ou só adia o pagamento?",
+   "ancora": "Reduzir corta o total; adiar empurra — e costuma engordar — o total.",
+   "feedbackErro": "Alívio no mês não é economia. Bolsa e desconto diminuem o que você pagará na vida; financiamento e prazo maior só mudam a data — com juros de carona.",
+   "caixas": [
+    {
+     "id": "reduz",
+     "rotulo": "Reduz o custo"
+    },
+    {
+     "id": "adia",
+     "rotulo": "Só adia"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Bolsa de 40% da faculdade",
+     "caixaCorreta": "reduz"
+    },
+    {
+     "texto": "FIES para pagar depois de formado",
+     "caixaCorreta": "adia"
+    },
+    {
+     "texto": "Desconto por pagar até o dia 5",
+     "caixaCorreta": "reduz"
+    },
+    {
+     "texto": "Esticar o prazo das parcelas",
+     "caixaCorreta": "adia"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "portas-de-entrada",
+   "criterio": "A conta da bolsa fecha?",
+   "enunciado": "Bolsa de 50% num curso de R$ 1.180 economiza R$ 28.320 em 4 anos",
+   "resposta": true,
+   "ancora": "R$ 590 por mês × 48 meses: bolsa é dinheiro grande no total.",
+   "verificacao": {
+    "expressao": "1180*0.5*48",
+    "esperado": 28320,
+    "tolerancia": 0.01
+   },
+   "feedbackErro": "R$ 590 de desconto parecem modestos no boleto. Multiplicados por 48 meses viram R$ 28.320 — o preço de um carro. Bolsa se mede no total, não no mês."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "permanencia",
+   "criterio": "Permanência entra na conta?",
+   "enunciado": "Passagem e material podem decidir se você termina o curso",
+   "resposta": true,
+   "ancora": "Muita evasão vem do custo de ficar, não da mensalidade.",
+   "feedbackErro": "Parecem despesas pequenas perto da mensalidade. Mas são elas que faltam no fim do mês: boa parte da evasão é passagem, comida e material — não o boleto grande."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-do-financiamento",
+   "pergunta": "Você financia R$ 36.000 e paga 120 parcelas de R$ 415. Quanto sai no total?",
+   "campo": "moeda",
+   "min": 30000,
+   "max": 90000,
+   "gabarito": 49800,
+   "toleranciaPct": 20,
+   "fonte": "condições simuladas de financiamento estudantil (simulador FIES/Caixa)",
+   "verificacao": {
+    "expressao": "415*120",
+    "esperado": 49800,
+    "tolerancia": 0.01
+   },
+   "feedbackPerto": "Isso: R$ 49.800 — quase R$ 14 mil de juros pelo direito de pagar depois. É o preço do tempo, e ele precisa estar na decisão.",
+   "feedbackLonge": "120 × R$ 415 = R$ 49.800. O viés da parcela: R$ 415 parecem inofensivos, e o total de 10 anos fica invisível. Multiplique antes de assinar."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "portas-de-entrada",
+   "dificuldade": 2,
+   "pergunta": "Vinícius pode ter bolsa de 50% ou financiar 100%. A família cobre metade da mensalidade. Por que a bolsa tende a vencer?",
+   "ancora": "Metade paga hoje, sem juros, custa menos que o total pago com juros.",
+   "alternativas": [
+    {
+     "texto": "Porque a bolsa vira dívida menor no futuro",
+     "correta": false,
+     "feedbackErro": "Bolsa não vira dívida nenhuma — esse é justamente o ponto dela. Quem gera cobrança futura é o financiamento. Metade à vista hoje contra o todo com juros depois."
+    },
+    {
+     "texto": "Pagar metade hoje custa menos que tudo com juros",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque o financiamento exige nota maior",
+     "correta": false,
+     "feedbackErro": "Os dois olham o Enem, e a régua de nota não é o ponto. A diferença é financeira: a bolsa encerra o assunto no boleto do mês; o financiamento cobra por anos."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "permanencia",
+   "dificuldade": 2,
+   "pergunta": "O dinheiro apertou no meio do curso financiado. Qual é o primeiro movimento?",
+   "ancora": "Renegociar antes de atrasar preserva acordo, nome e matrícula.",
+   "alternativas": [
+    {
+     "texto": "Sumir e deixar as parcelas para depois",
+     "correta": false,
+     "feedbackErro": "Sumir alivia a semana e afunda o semestre: juros e multa correm, o nome suja e a matrícula trava. Silêncio é a opção mais cara de todas."
+    },
+    {
+     "texto": "Renegociar com a instituição antes de atrasar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Trancar o curso sem avisar ninguém",
+     "correta": false,
+     "feedbackErro": "Trancar pode até entrar no plano — mas negociado. Sem aviso, a dívida do que já passou continua correndo e você perde as condições que a conversa garantiria."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "portas-de-entrada",
+   "criterio": "A ordem das portas mudou?",
+   "enunciado": "Com pressa de começar, vale pular direto ao financiamento",
+   "resposta": false,
+   "ancora": "Pressa é má conselheira de dívida longa: a ordem continua valendo.",
+   "feedbackErro": "Um semestre de espera parece um ano perdido. Mas dívida de 10 anos assinada na pressa cobra caro: a tentativa de bolsa e vaga custa semanas, não anos."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "portas-de-entrada",
+   "criterio": "Bolsa é só para gênios?",
+   "enunciado": "Só medalhista de olimpíada consegue bolsa em faculdade privada",
+   "resposta": false,
+   "ancora": "Bolsa institucional, convênio e desconto de nota: portas comuns.",
+   "feedbackErro": "O mito do gênio afasta quem mais precisa perguntar. Faculdades dão bolsa por nota do Enem, convênio com empresa e pontualidade — critérios pouco anunciados."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "estudar-sem-se-afundar",
+   "dificuldade": 2,
+   "pergunta": "Qual régua você leva deste encontro?",
+   "alternativas": [
+    {
+     "texto": "Parcela que cabe no mês é sinal de bom negócio.",
+     "correta": false,
+     "feedbackErro": "Parcela pequena por prazo longo esconde total grande. A régua é a soma."
+    },
+    {
+     "texto": "Comparo o total pago: bolsa reduz; financiar adia e engorda.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Estudar sem pagar nada é impossível no Brasil.",
+     "correta": false,
+     "feedbackErro": "SiSU, ProUni e assistência estudantil existem — e usam a nota que você já tem."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "custo-do-financiamento",
+   "instrucao": "Toque na ordem: do caminho mais barato ao mais caro no total.",
+   "ancora": "Bolsa cheia < meia bolsa < FIES < banco: o juro define a fila.",
+   "feedbackErro": "A régua é o total pago na vida, não a facilidade de conseguir. Bolsa integral custa zero; meia bolsa, metade; FIES soma juro baixo; banco, juro alto.",
+   "itens": [
+    {
+     "texto": "Bolsa integral",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Bolsa de 50%, resto pago em dia",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "FIES a juros baixos",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Financiamento bancário comum",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "portas-de-entrada",
+   "criterio": "É verdade?",
+   "enunciado": "O ProUni usa a nota do Enem para dar bolsa em faculdade privada",
+   "resposta": true,
+   "ancora": "Enem + renda dentro do limite = bolsa parcial ou integral na privada.",
+   "feedbackErro": "É fácil trocar as siglas: SiSU dá vaga pública, ProUni dá bolsa na privada — os dois pela nota do Enem. Confundi-los custa uma inscrição perdida."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "permanencia",
+   "dificuldade": 2,
+   "pergunta": "O que o 'custo de permanência' de um curso inclui?",
+   "ancora": "Tudo que sustenta você estudando: transporte, material, moradia, comida.",
+   "alternativas": [
+    {
+     "texto": "Só a mensalidade do curso",
+     "correta": false,
+     "feedbackErro": "A mensalidade é o custo de entrada. Permanência é o resto: passagem, comida, material, moradia — o que decide se dá para continuar até o fim."
+    },
+    {
+     "texto": "Transporte, material, moradia e alimentação",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Apenas as taxas de matrícula",
+     "correta": false,
+     "feedbackErro": "Matrícula se paga uma vez por semestre; permanência se paga todo dia. É o gasto diário e repetido que derruba mais gente do que o boleto grande."
+    }
+   ]
+  }
+ ]
+}

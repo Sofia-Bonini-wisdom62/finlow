@@ -1,0 +1,327 @@
+{
+ "slug": "o-que-determina-a-sua-renda-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "o-que-determina-a-sua-renda",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "determinantes-da-renda",
+   "criterio": "Isso muda a renda de alguém?",
+   "enunciado": "O porto da cidade abrir e trazer empresas de logística",
+   "resposta": true,
+   "ancora": "Nova infraestrutura muda o mercado de trabalho local.",
+   "feedbackErro": "Um porto parece coisa de governo, distante do bolso das pessoas. Mas ele traz empresas e vagas novas, o que muda a renda de toda a região."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "determinantes-da-renda",
+   "criterio": "Isso muda a renda de alguém?",
+   "enunciado": "Trocar a cor da parede do quarto",
+   "resposta": false,
+   "ancora": "Decoração não muda habilidade, emprego nem economia de ninguém.",
+   "feedbackErro": "Serve para treinar o filtro: mudar a parede não altera capital humano, região onde mora nem o momento da economia."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "capital-humano",
+   "criterio": "É capital humano?",
+   "enunciado": "Saber programar depois de um curso online gratuito",
+   "resposta": true,
+   "ancora": "Habilidade aprendida, mesmo sem custo, ainda é capital humano.",
+   "feedbackErro": "Parece que só conta o que se paga caro. Mas o critério é a habilidade em si: programar abre vagas, curso pago ou não."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "determinantes-da-renda",
+   "dificuldade": 2,
+   "pergunta": "Uma cidade turística tem baixa renda no inverno e alta no verão, com as mesmas pessoas trabalhando. Que fator é esse?",
+   "ancora": "Sazonalidade é fator conjuntural: muda com a época do ano.",
+   "alternativas": [
+    {
+     "texto": "Pessoal: quem trabalha no verão se esforça mais",
+     "correta": false,
+     "feedbackErro": "São as mesmas pessoas nos dois períodos. O que muda não é o esforço delas, e sim o movimento de turistas — fator conjuntural."
+    },
+    {
+     "texto": "Conjuntural: a demanda por turismo varia com a estação",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Estrutural: a cidade sempre teve essa formação econômica",
+     "correta": false,
+     "feedbackErro": "Estrutural seria algo fixo, como a base de indústrias da região. Aqui o que varia é sazonal — muda com a época do ano, não é permanente."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "capital-humano",
+   "dificuldade": 2,
+   "pergunta": "Dois entregadores, mesma moto. Um fez curso de atendimento e ganhou gorjetas maiores. O que isso mostra?",
+   "ancora": "Habilidade extra pode gerar renda mesmo sem mudar de função.",
+   "alternativas": [
+    {
+     "texto": "Que capital humano pode aumentar renda na mesma função",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que a moto dele é mais nova",
+     "correta": false,
+     "feedbackErro": "O enunciado diz que a moto é a mesma. A diferença de renda veio do curso de atendimento — habilidade, não equipamento."
+    },
+    {
+     "texto": "Que ele trabalha em bairro mais rico",
+     "correta": false,
+     "feedbackErro": "O enunciado não fala em bairro diferente. A causa apontada é o curso que ele fez — um ganho de capital humano."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "determinantes-da-renda",
+   "criterio": "É determinante pessoal da renda?",
+   "enunciado": "Terminar o ensino médio à noite, trabalhando de dia",
+   "resposta": true,
+   "ancora": "Escolha e esforço para concluir estudos — fator pessoal.",
+   "feedbackErro": "Envolve dificuldades reais do entorno, mas a decisão de concluir e o esforço para isso são individuais — conta como fator pessoal."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "determinantes-da-renda",
+   "instrucao": "Toque na ordem: do fator mais amplo ao mais individual, de novo.",
+   "ancora": "De uma crise nacional até a escolha de estudar à noite.",
+   "feedbackErro": "A ordem vai do que afeta o país inteiro ao que depende de uma pessoa: crise, depois setor da cidade, depois escolha pessoal.",
+   "itens": [
+    {
+     "texto": "Alta do dólar encarecendo tudo no país",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Setor de turismo fraco na cidade",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Loja do bairro contratando mais gente",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Pessoa concluir o curso técnico à noite",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "capital-humano",
+   "criterio": "É capital humano?",
+   "enunciado": "Saber primeiros socorros por ter feito um curso da Cruz Vermelha",
+   "resposta": true,
+   "ancora": "Conhecimento aplicável, útil em várias profissões — capital humano.",
+   "feedbackErro": "Parece voluntariado sem relação com trabalho. Mas é habilidade valorizada em vagas de saúde, educação e eventos — capital humano real."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "capital-humano",
+   "criterio": "É capital humano?",
+   "enunciado": "O número de seguidores numa rede social",
+   "resposta": false,
+   "ancora": "Seguidores são audiência, não conhecimento ou habilidade aprendida.",
+   "feedbackErro": "Pode virar renda em certos casos, e isso confunde. Mas seguidor não é habilidade aprendida — é alcance, categoria diferente de capital humano."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "capital-humano",
+   "pergunta": "Quem fala dois idiomas ganha, em média, cerca de 15% a mais. Sobre R$ 2.400, é quanto a mais?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 1000,
+   "gabarito": 360,
+   "toleranciaPct": 20,
+   "fonte": "diferença média de renda por idioma extra, ordem de grandeza",
+   "verificacao": {
+    "expressao": "2400*0.15",
+    "esperado": 360
+   },
+   "feedbackPerto": "Perto: R$ 360 a mais. Um idioma extra pesa de verdade na renda média.",
+   "feedbackLonge": "Dá R$ 360: 15% de 2.400. Divida por 100 e multiplique pela taxa — o caminho vale para qualquer percentual."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "determinantes-da-renda",
+   "dificuldade": 2,
+   "pergunta": "Uma nova lei reduz o imposto sobre contratação de jovens numa cidade. Isso tende a...",
+   "ancora": "Mudança de política pública é fator estrutural, não pessoal.",
+   "alternativas": [
+    {
+     "texto": "Aumentar as contratações e a renda dos jovens da cidade",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não mudar nada, porque depende só do esforço de cada jovem",
+     "correta": false,
+     "feedbackErro": "O esforço individual continua importando, mas a lei muda a régua para todos: fica mais barato contratar, o que tende a abrir vagas."
+    },
+    {
+     "texto": "Reduzir a renda, porque menos imposto reduz serviço público",
+     "correta": false,
+     "feedbackErro": "Esse efeito pode existir a longo prazo, mas o enunciado pergunta sobre o efeito direto na contratação — que tende a subir com custo menor."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "capital-humano",
+   "dificuldade": 2,
+   "pergunta": "Diego fez faculdade cara, mas em área sem vagas na região dele. Ele tem capital humano alto e renda baixa. Por quê?",
+   "ancora": "Capital humano precisa encontrar demanda para virar renda.",
+   "alternativas": [
+    {
+     "texto": "Porque o mercado local não demanda essa formação",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque faculdade cara nunca compensa",
+     "correta": false,
+     "feedbackErro": "O custo da faculdade não é a causa aqui — o problema descrito é a falta de vagas na região para essa formação específica."
+    },
+    {
+     "texto": "Porque capital humano não influencia renda",
+     "correta": false,
+     "feedbackErro": "Capital humano costuma influenciar, sim. O caso de Diego mostra a exceção: sem demanda local, mesmo formação alta não vira renda."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "determinantes-da-renda",
+   "criterio": "É determinante pessoal da renda?",
+   "enunciado": "A queda de juros decidida pelo Banco Central",
+   "resposta": false,
+   "ancora": "Decisão de política econômica é fator estrutural, fora do indivíduo.",
+   "feedbackErro": "Afeta o crédito e o consumo de cada pessoa, e por isso parece pessoal. Mas a decisão em si vem de fora — é fator estrutural da economia."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "capital-humano",
+   "criterio": "É capital humano?",
+   "enunciado": "A herança recebida de um parente",
+   "resposta": false,
+   "ancora": "Herança é patrimônio transferido, não conhecimento aprendido.",
+   "feedbackErro": "Herança muda a vida financeira, e isso confunde com capital humano. Mas ela não é habilidade aprendida — é outro tipo de recurso."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-que-determina-a-sua-renda",
+   "pergunta": "Qual ideia fecha este encontro?",
+   "alternativas": [
+    {
+     "texto": "Capital humano só vira renda se houver demanda por ele",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sazonalidade é fator estrutural, permanente na economia",
+     "correta": false,
+     "feedbackErro": "Sazonalidade muda com a época do ano — é fator conjuntural, temporário, diferente de algo fixo como a base de indústrias da região."
+    },
+    {
+     "texto": "Política econômica nunca afeta a renda das famílias",
+     "correta": false,
+     "feedbackErro": "Afeta, sim: juros, impostos e leis de contratação mudam vagas e crédito disponíveis para as famílias."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "determinantes-da-renda",
+   "instrucao": "Fator pessoal ou fator estrutural/conjuntural? Arraste.",
+   "ancora": "O que a pessoa decide é pessoal; o resto vem de fora.",
+   "feedbackErro": "Cursos e escolhas de estudo são pessoais. Leis, juros e sazonalidade do turismo vêm de fora do controle individual.",
+   "caixas": [
+    {
+     "id": "pessoal",
+     "rotulo": "Fator pessoal"
+    },
+    {
+     "id": "fora",
+     "rotulo": "Estrutural ou conjuntural"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Curso de programação concluído à noite",
+     "caixaCorreta": "pessoal"
+    },
+    {
+     "texto": "Queda de turismo fora de temporada",
+     "caixaCorreta": "fora"
+    },
+    {
+     "texto": "Redução de juros decidida pelo governo",
+     "caixaCorreta": "fora"
+    },
+    {
+     "texto": "Certificado de atendimento tirado por conta própria",
+     "caixaCorreta": "pessoal"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "capital-humano",
+   "dificuldade": 3,
+   "pergunta": "Duas pessoas com o mesmo diploma ganham rendas diferentes numa mesma cidade. O que mais pode explicar isso?",
+   "ancora": "Diploma igual não garante experiência, rede ou desempenho iguais.",
+   "alternativas": [
+    {
+     "texto": "Experiência, desempenho ou contatos além do diploma",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: com o mesmo diploma, a renda tem que ser igual",
+     "correta": false,
+     "feedbackErro": "O diploma é só uma parte do capital humano. Experiência, desempenho e rede de contatos também pesam na renda final."
+    },
+    {
+     "texto": "Só a sorte, sem nenhuma explicação possível",
+     "correta": false,
+     "feedbackErro": "Sorte existe, mas não é a única explicação disponível: experiência e desempenho no trabalho também diferenciam rendas parecidas."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "determinantes-da-renda",
+   "criterio": "É determinante pessoal da renda?",
+   "enunciado": "A falta de transporte público até o polo industrial da cidade",
+   "resposta": false,
+   "ancora": "Infraestrutura da cidade é fator estrutural, fora do indivíduo.",
+   "feedbackErro": "Atrapalha a vida de quem precisa chegar ao trabalho, e isso parece pessoal. Mas a causa é estrutural: falta de transporte público."
+  }
+ ]
+}

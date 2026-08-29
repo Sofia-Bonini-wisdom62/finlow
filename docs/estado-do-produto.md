@@ -7,7 +7,20 @@ um app para adolescentes que já não existia).
 
 Legenda: ✅ pronto · 🔧 em desenvolvimento · 📋 planejado · 🚫 fora deste repo
 
-Última revisão: 24/08/2026 — a exportação LGPD passou a entregar TUDO, que é o
+Última revisão: 28/08/2026 — o lint do repositório voltou a zero: as regras
+novas do react-hooks (v6, via eslint-config-next) acusavam 23 arquivos, e cada
+um foi corrigido preservando comportamento (disparo de fetch em microtask,
+reset guardado por transição no render, derivação no lugar de estado), com
+`pnpm build`, `tsc` e as 27 baterias locais verdes. Na mesma passada, a
+lição-piloto do curso v2 ganhou a `fraseConceito` que faltava — a frase é o
+próprio fecho aprovado da lição — e o curso ficou 107/107 conceitos com
+definição. Antes disso, em 27/08/2026 — o **curso escolar v2** entrou no repositório: 321
+lições, 107 conceitos e 5.268 itens no formato de 15 perguntas sem tela de
+leitura, com o contrato cobrado por código e as contas recalculadas (seção
+*Curso escolar v2* abaixo). O conteúdo está íntegro e **ainda não é jogável** —
+não há player para os seis formatos novos, e por isso ele não substituiu a
+trilha escolar que está no ar, embora essa substituição já seja a decisão
+tomada. Antes disso, em 24/08/2026 — a exportação LGPD passou a entregar TUDO, que é o
 que ela sempre prometeu no topo da própria rota (seção *Portabilidade LGPD*
 abaixo): memórias, conversas, orçamentos, onboarding, XP, insights, progresso de
 lição, ofensiva, perfil e recomendações da trilha entraram, e a lista agora é
@@ -66,6 +79,45 @@ seguem entregues.
 | 4 | Projeção de patrimônio 1/5/10 anos | ✅ | `lib/projecao.ts`, card nas Análises |
 | 4 | Separação gasto pessoal × trabalho | ✅ | `Transacao.escopo`, filtros no Painel/Análises |
 | 5 | Landing B2B + captação de leads | ✅ | `/empresas`, `/api/empresas/lead`, contagem em ops/metrics |
+
+## Curso escolar v2 — card flow v2 (27/08/2026)
+
+O conteúdo que **substitui** a trilha escolar de EF e EM. Formato novo: 15
+perguntas por lição, zero telas de leitura, a explicação morando no feedback de
+erro. Cada conceito é visto três vezes — apresentação, reforço e consolidação —
+sem nenhum enunciado se repetindo entre os encontros. Pedagogia em
+[`arquitetura-pedagogica.md`](arquitetura-pedagogica.md).
+
+| Promessa | Status | Onde |
+|---|---|---|
+| 321 lições · 107 conceitos · 5.268 itens, contrato conferido por código | ✅ no repositório | `prisma/curso/` |
+| Contrato de formato, custo por segmento e limites duros | ✅ | `lib/licao/formatos.ts` |
+| Validador: limites, composição tela a tela, 689 contas recalculadas | ✅ | `lib/licao/validar.ts`, `scripts/validar-licoes.mts` |
+| Integridade referencial + enunciado repetido entre encontros | ✅ | `lib/licao/carregar.ts` |
+| Schema do conceito, da lição e do item | ✅ | `Conceito`, `LicaoCurso`, `ItemAvaliativo` |
+| Seed idempotente, simulação por padrão | ✅ | `scripts/semear-curso.mts` |
+| **Semeado no banco** | 📋 | nunca rodou com `--aplicar` — item 0 do backlog |
+| **Player dos 6 formatos** | 📋 | não existe. Sem ele o conteúdo é inalcançável |
+| **Motor de repetição espaçada** | 📋 | `DominioConceito`/`TentativaItem` ainda nem no schema — são dado do usuário e a decisão de portabilidade vai junto de quem as escreve |
+| **Substituição da trilha EF/EM antiga** | 📋 | depende do player — ver as 20 colisões de slug |
+
+| Segmento | Conceitos | Lições | Itens |
+|---|---|---|---|
+| `ef12` | 5 | 15 | 165 |
+| `ef35` | 22 | 66 | 990 |
+| `ef67` | 23 | 69 | 1.035 |
+| `ef89` | 33 | 99 | 1.782 |
+| `em1` · `em2` · `em3` | 24 | 72 | 1.296 |
+
+**A honestidade que este arquivo existe para preservar:** o conteúdo está
+íntegro e **ninguém consegue jogá-lo**. As 321 lições não substituíram nada
+ainda, e a trilha da seção seguinte continua sendo a que está no ar. O curso v2
+mora em tabelas próprias justamente para que isso continue verdade até o player
+existir — 20 dos 321 slugs colidem com módulos de EM vivos, e um seed em
+`Modulo` apagaria as telas deles. A fila está em
+[`backlog-curso-v2.md`](backlog-curso-v2.md).
+
+Os 16 conceitos da trilha **adulta** não foram produzidos nesta rodada.
 
 ## Trilha de Ensino Fundamental (06/08/2026, semeada em 07/08)
 

@@ -1,0 +1,299 @@
+{
+ "slug": "fazendo-a-conta-do-rendimento-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "fazendo-a-conta-do-rendimento",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "calculo-de-rendimento",
+   "criterio": "Isso aumenta o dinheiro guardado?",
+   "enunciado": "Render 0,8% ao mês num CDB de R$300",
+   "resposta": true,
+   "ancora": "0,8% de R$300 é R$2,40 a mais no mês.",
+   "verificacao": { "expressao": "300*0.008", "esperado": 2.4 },
+   "feedbackErro": "Qual era o critério? O que entra na conta soma; e 0,8% de R$300 é, sim, dinheiro extra entrando."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "taxas-no-rendimento",
+   "criterio": "Isso aumenta o dinheiro guardado?",
+   "enunciado": "Pagar taxa de corretagem para comprar uma ação",
+   "resposta": false,
+   "ancora": "Taxa de corretagem é custo pago antes de qualquer rendimento.",
+   "feedbackErro": "Qual era o critério? Corretagem sai do seu bolso para viabilizar a compra — é gasto, não é rendimento."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "calculo-de-rendimento",
+   "criterio": "Isso aumenta o dinheiro guardado?",
+   "enunciado": "Receber dividendos de uma ação todo trimestre",
+   "resposta": true,
+   "ancora": "Dividendo é parte do lucro distribuído, somando ao total.",
+   "feedbackErro": "Qual era o critério? Dividendo é dinheiro entrando na sua conta — mesmo vindo trimestralmente, ele soma ao total guardado."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "calculo-de-rendimento",
+   "dificuldade": 2,
+   "pergunta": "Guardando R$800 a 0,9% ao mês, quanto rende no primeiro mês?",
+   "ancora": "0,9% de R$800 é R$7,20.",
+   "verificacao": { "expressao": "800*0.009", "esperado": 7.2 },
+   "alternativas": [
+    {
+     "texto": "R$7,20",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$72",
+     "correta": false,
+     "feedbackErro": "Esse valor sai se você calcular 9% em vez de 0,9%. A casa decimal muda o resultado por 10 vezes."
+    },
+    {
+     "texto": "R$0,72",
+     "correta": false,
+     "feedbackErro": "Aqui a casa decimal andou para o lado errado. 0,9% de R$800 é R$7,20, não um décimo disso."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "taxas-no-rendimento",
+   "dificuldade": 2,
+   "pergunta": "Um fundo rende 1,3% ao mês bruto, mas cobra taxa de administração de 0,4% ao mês. Qual o rendimento líquido?",
+   "ancora": "1,3% menos 0,4% de taxa sobra 0,9% líquido.",
+   "verificacao": { "expressao": "1.3-0.4", "esperado": 0.9 },
+   "alternativas": [
+    {
+     "texto": "0,9% ao mês",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "1,3% ao mês",
+     "correta": false,
+     "feedbackErro": "Esse é o rendimento bruto, antes da taxa. Falta subtrair a taxa de administração para chegar no líquido."
+    },
+    {
+     "texto": "1,7% ao mês",
+     "correta": false,
+     "feedbackErro": "Esse valor soma a taxa em vez de subtrair. A taxa de administração desconta do rendimento, não se soma a ele."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "taxas-no-rendimento",
+   "criterio": "Isso reduz o rendimento final?",
+   "enunciado": "Isenção de imposto de renda numa aplicação de LCI",
+   "resposta": false,
+   "ancora": "Isenção significa que não há desconto de imposto aqui.",
+   "feedbackErro": "Parece uma regra sobre impostos, e é — mas isenção quer dizer justamente que esse desconto específico não existe nessa aplicação."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "calculo-de-rendimento",
+   "instrucao": "Ordene do rendimento líquido maior ao menor por ano",
+   "ancora": "O critério é a taxa efetiva de cada opção, comparada de verdade.",
+   "feedbackErro": "O quanto cada aplicação parece segura não muda a ordem. O critério aqui é sempre a taxa efetiva anual comparada entre as opções.",
+   "itens": [
+    { "texto": "Título público pós-fixado, rendendo perto da Selic", "posicaoCorreta": 1 },
+    { "texto": "CDB de banco médio, rendendo perto do CDI", "posicaoCorreta": 2 },
+    { "texto": "Poupança, com rendimento mais baixo entre os três", "posicaoCorreta": 3 },
+    { "texto": "Conta corrente, sem nenhum rendimento", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "taxas-no-rendimento",
+   "criterio": "Isso reduz o rendimento final?",
+   "enunciado": "Come-cotas, imposto antecipado cobrado duas vezes ao ano em fundos",
+   "resposta": true,
+   "ancora": "O come-cotas desconta parte do rendimento antes do resgate.",
+   "feedbackErro": "O nome estranho confunde, mas o come-cotas é justamente um desconto automático de imposto sobre o rendimento acumulado."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "calculo-de-rendimento",
+   "criterio": "Isso aumenta o dinheiro guardado?",
+   "enunciado": "Sacar o rendimento assim que cai na conta, todo mês",
+   "resposta": false,
+   "ancora": "Sacar tira o rendimento do total que fica guardado.",
+   "feedbackErro": "Houve rendimento, sim, mas ao sacar na mesma hora, esse valor sai do que está guardado — o saldo guardado não cresce."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "calculo-de-rendimento",
+   "pergunta": "R$1.500 guardados a 0,9% ao mês. Quanto rende só no primeiro mês, em reais?",
+   "campo": "moeda",
+   "min": 5,
+   "max": 50,
+   "gabarito": 13.5,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto de juros sobre o valor investido",
+   "verificacao": { "expressao": "1500*0.009", "esperado": 13.5 },
+   "feedbackPerto": "Isso mesmo, R$13,50 — 0,9% de R$1.500.",
+   "feedbackLonge": "Fica em R$13,50. Multiplique o valor guardado pela taxa do período; cuidado com a casa decimal."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "taxas-no-rendimento",
+   "dificuldade": 2,
+   "pergunta": "Juliana investe R$700 a 1,1% ao mês, com taxa de administração de 0,3% ao mês. Quanto sobra de rendimento?",
+   "ancora": "1,1% menos 0,3% de taxa: 0,8% de R$700 é R$5,60.",
+   "verificacao": { "expressao": "700*(0.011-0.003)", "esperado": 5.6 },
+   "alternativas": [
+    {
+     "texto": "R$5,60",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$7,70",
+     "correta": false,
+     "feedbackErro": "Esse valor ignora a taxa de administração — é 1,1% de R$700 sem descontar nada. Falta subtrair a taxa do rendimento bruto."
+    },
+    {
+     "texto": "R$2,10",
+     "correta": false,
+     "feedbackErro": "Esse é só o valor da taxa cobrada, não o rendimento que sobra. O rendimento líquido é o bruto menos a taxa."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "calculo-de-rendimento",
+   "dificuldade": 2,
+   "pergunta": "Dois investimentos renderam R$80 no mês. Um partiu de R$2.000, outro de R$8.000. Qual teve melhor desempenho percentual?",
+   "ancora": "R$80 sobre R$2.000 é 4%; sobre R$8.000 é 1%.",
+   "verificacao": { "expressao": "80/2000", "esperado": 0.04 },
+   "alternativas": [
+    {
+     "texto": "O que partiu de R$2.000, com 4% no mês",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O que partiu de R$8.000, porque é mais dinheiro",
+     "correta": false,
+     "feedbackErro": "O tamanho do capital não define o desempenho sozinho. Sobre R$8.000, os mesmos R$80 representam uma fatia bem menor."
+    },
+    {
+     "texto": "Os dois, porque o valor em reais foi igual",
+     "correta": false,
+     "feedbackErro": "Reais iguais não significam percentuais iguais. O desempenho se mede dividindo o ganho pelo capital de cada um."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "calculo-de-rendimento",
+   "criterio": "Isso aumenta o dinheiro guardado?",
+   "enunciado": "Juros simples aplicados só sobre o valor original investido",
+   "resposta": true,
+   "ancora": "Ainda é rendimento, só que sem compor sobre os juros anteriores.",
+   "feedbackErro": "Rende menos que o composto, e por isso confunde. Mas juros simples ainda somam dinheiro ao total guardado a cada período."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "taxas-no-rendimento",
+   "criterio": "Isso reduz o rendimento final?",
+   "enunciado": "Tarifa de TED cobrada para resgatar o investimento na conta",
+   "resposta": true,
+   "ancora": "A tarifa de transferência desconta do valor final recebido.",
+   "feedbackErro": "Parece uma tarifa bancária qualquer, mas ela é descontada no momento do resgate — reduz exatamente o que chega até você."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "calculo-de-rendimento",
+   "pergunta": "Depois desses cálculos, qual frase resume melhor o critério?",
+   "alternativas": [
+    {
+     "texto": "Quem investiu mais dinheiro sempre teve o melhor rendimento",
+     "correta": false,
+     "feedbackErro": "Vimos o contrário: o capital de partida muda o percentual, e quem investiu menos pode ter tido o melhor desempenho."
+    },
+    {
+     "texto": "Rendimento percentual, não o valor em reais, mostra o desempenho real",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Taxas de administração não afetam o rendimento líquido",
+     "correta": false,
+     "feedbackErro": "Vimos taxas descontando diretamente do rendimento bruto em cada cálculo — elas afetam sim o valor final."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "taxas-no-rendimento",
+   "instrucao": "Isso reduz ou não reduz o rendimento final?",
+   "ancora": "Descontos reduzem; isenções e ausência de taxa não reduzem.",
+   "feedbackErro": "O jeito de separar: se existe um desconto sendo aplicado, reduz. Se é a ausência de um desconto, não reduz.",
+   "caixas": [
+    { "id": "reduz", "rotulo": "Reduz" },
+    { "id": "naoreduz", "rotulo": "Não reduz" }
+   ],
+   "itens": [
+    { "texto": "Come-cotas cobrado semestralmente", "caixaCorreta": "reduz" },
+    { "texto": "Isenção de IR numa aplicação isenta", "caixaCorreta": "naoreduz" },
+    { "texto": "Taxa de performance sobre o que exceder a meta do fundo", "caixaCorreta": "reduz" },
+    { "texto": "Ausência de taxa de administração no Tesouro Direto", "caixaCorreta": "naoreduz" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "taxas-no-rendimento",
+   "criterio": "Isso reduz o rendimento final?",
+   "enunciado": "Taxa de custódia da B3 cobrada sobre títulos públicos",
+   "resposta": true,
+   "ancora": "A custódia é um desconto periódico sobre o saldo investido.",
+   "feedbackErro": "Parece uma cobrança pequena e distante, mas incide diretamente sobre o saldo investido, reduzindo o rendimento acumulado."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "calculo-de-rendimento",
+   "dificuldade": 2,
+   "pergunta": "Ao comparar dois rendimentos, por que o percentual conta mais do que o valor final em reais?",
+   "ancora": "O percentual já embute o tamanho do capital de partida.",
+   "alternativas": [
+    {
+     "texto": "Porque o percentual já leva em conta o capital investido",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque reais e percentual são sempre a mesma coisa",
+     "correta": false,
+     "feedbackErro": "Não são a mesma coisa: o mesmo valor em reais pode representar percentuais bem diferentes, dependendo do capital de partida."
+    },
+    {
+     "texto": "Porque só bancos usam valor em reais para comparar",
+     "correta": false,
+     "feedbackErro": "Qualquer pessoa pode comparar em reais — o problema não é quem compara, é que essa comparação sozinha esconde o desempenho real."
+    }
+   ]
+  }
+ ]
+}

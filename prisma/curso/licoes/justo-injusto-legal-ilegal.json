@@ -1,0 +1,325 @@
+{
+ "slug": "justo-injusto-legal-ilegal",
+ "segmento": "ef89",
+ "conceitoPrincipal": "justo-injusto-legal-ilegal",
+ "fraseConceito": "Legal é o que a lei permite; justo é o equilíbrio entre as partes — nem tudo legal é justo.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "criterio": "Isso é legal?",
+   "enunciado": "Cobrar mais caro para quem paga no cartão de crédito",
+   "resposta": true,
+   "ancora": "Lei permite preço diferente por forma de pagamento, se avisado antes.",
+   "feedbackErro": "Parece extorsão, e por isso soa proibido. Mas a lei de 2017 autoriza cobrar mais no cartão, contanto que o preço maior esteja informado antes da compra."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "criterio": "Isso é legal?",
+   "enunciado": "Vender o mesmo produto mais caro para quem parece ter mais dinheiro",
+   "resposta": false,
+   "ancora": "Preço não pode variar por quem compra, só pela forma de pagamento.",
+   "feedbackErro": "Cobrar mais por forma de pagamento é permitido. Mas mudar o preço conforme quem está comprando é discriminação, proibida pelo Código de Defesa do Consumidor."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "criterio": "Isso é legal?",
+   "enunciado": "Anunciar um preço na vitrine e cobrar outro, maior, no caixa",
+   "resposta": false,
+   "ancora": "O preço anunciado é uma oferta: o lojista é obrigado a cumprir.",
+   "feedbackErro": "A loja pode errar a etiqueta, e isso parece só um deslize. Mas pelo CDC, o preço anunciado vale como oferta: ela é obrigada a vender por aquele valor."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "dificuldade": 1,
+   "pergunta": "Uma loja cobra R$ 50 a mais de quem paga no cartão, sem avisar antes. Isso é",
+   "ancora": "Sem aviso prévio, a diferença de preço vira cobrança oculta.",
+   "alternativas": [
+    {
+     "texto": "Legal, porque o cartão tem taxa para a loja",
+     "correta": false,
+     "feedbackErro": "A loja realmente paga uma taxa ao operador do cartão. Mas isso não dá o direito de cobrar mais sem avisar o cliente antes da compra."
+    },
+    {
+     "texto": "Ilegal, porque o preço maior não foi informado antes",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Injusto, mas legal, porque o cartão custa caro para a loja",
+     "correta": false,
+     "feedbackErro": "O custo do cartão é real. O problema aqui não é a diferença em si, e sim cobrá-la sem avisar — isso torna a prática ilegal, não só injusta."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "dificuldade": 1,
+   "pergunta": "Uma financeira cobra 14% ao mês no rotativo, dentro da lei. Isso é",
+   "ancora": "Legal e justo não são sinônimos: a lei é o piso, não o teto.",
+   "alternativas": [
+    {
+     "texto": "Sempre justo, porque está dentro da lei",
+     "correta": false,
+     "feedbackErro": "Estar dentro da lei é necessário, mas não garante equilíbrio. Um cliente que não entendeu a taxa pode sair prejudicado mesmo com tudo legal."
+    },
+    {
+     "texto": "Legal, mas pode ser injusto para quem não entendeu a taxa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sempre ilegal, porque a taxa é considerada abusiva",
+     "correta": false,
+     "feedbackErro": "O rotativo tem taxa alta, mas não é proibido por lei. O que preocupa não é a legalidade, e sim se o cliente entendeu no que estava entrando."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "criterio": "É a mesma coisa?",
+   "enunciado": "Ser legal e ser justo",
+   "resposta": false,
+   "ancora": "Lei é o mínimo comum; justiça pode exigir mais que a lei.",
+   "feedbackErro": "As duas normalmente andam juntas, e é aí que mora a armadilha: uma prática pode cumprir toda a lei e ainda tratar alguém de forma desigual."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "direitos-do-consumidor",
+   "instrucao": "Produto com defeito: toque na ordem certa dos passos para resolver.",
+   "ancora": "A lei incentiva resolver direto; a Justiça é o último recurso.",
+   "feedbackErro": "Pular direto para o processo parece mais rápido, mas o caminho formal começa na loja: Procon e Justiça existem para quando a conversa não resolve.",
+   "itens": [
+    {
+     "texto": "Reclamar direto na loja, com nota fiscal em mãos",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Buscar o SAC ou a ouvidoria da empresa",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Registrar reclamação no Procon",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Acionar o Juizado Especial Cível",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "direitos-do-consumidor",
+   "criterio": "É direito garantido do consumidor?",
+   "enunciado": "Trocar um produto só porque não gostou da cor, em loja física",
+   "resposta": false,
+   "ancora": "Arrependimento sem defeito só é garantido fora da loja física.",
+   "feedbackErro": "Parece um direito básico, mas a troca por arrependimento sem defeito só é obrigatória em compras online ou por telefone, dentro de 7 dias."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "direitos-do-consumidor",
+   "criterio": "É direito garantido do consumidor?",
+   "enunciado": "Devolver um produto comprado pela internet, em até 7 dias, sem justificar",
+   "resposta": true,
+   "ancora": "Direito de arrependimento nas compras à distância: 7 dias, sem motivo.",
+   "feedbackErro": "Compra online tem um direito a mais que a loja física: nos primeiros 7 dias, dá para devolver mesmo sem defeito, só por ter mudado de ideia."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "direitos-do-consumidor",
+   "pergunta": "Celular com defeito: quantos dias a loja tem, por lei, para consertar antes da troca?",
+   "campo": "numero",
+   "min": 1,
+   "max": 90,
+   "gabarito": 30,
+   "toleranciaPct": 20,
+   "fonte": "prazo legal de reparo de vício — CDC, art. 18, parágrafo 1º",
+   "feedbackPerto": "Isso mesmo, 30 dias. Passado esse prazo, quem escolhe o que fazer com o defeito é o consumidor, não a loja.",
+   "feedbackLonge": "O prazo é de 30 dias corridos. Depois disso, quem decide entre troca, devolução do dinheiro ou desconto passa a ser o consumidor."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "resolucao-de-conflitos-de-consumo",
+   "dificuldade": 1,
+   "pergunta": "A loja se recusa a resolver um problema simples de troca. Qual é o passo mais eficaz agora?",
+   "ancora": "Reclamação formal em órgão de defesa do consumidor tem mais peso.",
+   "alternativas": [
+    {
+     "texto": "Postar uma reclamação nas redes sociais e parar por aí",
+     "correta": false,
+     "feedbackErro": "Expor o caso pode pressionar a empresa, mas sozinho não abre um processo formal. O Procon é o canal que obriga a empresa a responder."
+    },
+    {
+     "texto": "Registrar reclamação formal no Procon",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Desistir e nunca mais comprar na loja",
+     "correta": false,
+     "feedbackErro": "Evitar a loja protege você no futuro, mas não resolve o problema já pago. Existe um caminho formal para cobrar a solução."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "dificuldade": 1,
+   "pergunta": "Rennan pediu conserto de um fone com defeito. Passaram 40 dias e a loja só oferece troca por outro igual. Isso é",
+   "ancora": "Passados os 30 dias, a escolha do que fazer é do consumidor.",
+   "alternativas": [
+    {
+     "texto": "Legal, porque a troca já resolve o problema",
+     "correta": false,
+     "feedbackErro": "A troca resolve, mas não é a loja quem decide isso sozinha depois do prazo. Passados 30 dias sem conserto, quem escolhe é o consumidor."
+    },
+    {
+     "texto": "Ilegal: passados os 30 dias, a escolha é do consumidor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Injusto, mas legal, porque não existe prazo definido em lei",
+     "correta": false,
+     "feedbackErro": "Existe sim um prazo definido: 30 dias para o conserto. Depois disso, a lei muda quem decide o próximo passo."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "criterio": "É legal, mesmo sendo questionável?",
+   "enunciado": "Cobrar mais caro no boleto do que no pix, avisando antes",
+   "resposta": true,
+   "ancora": "Diferença de preço por forma de pagamento é permitida, se informada.",
+   "feedbackErro": "Pode parecer estranho ter preços diferentes, mas quando avisado com clareza antes da compra, isso é permitido por lei desde 2017."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "direitos-do-consumidor",
+   "criterio": "É justo, mesmo sendo legal?",
+   "enunciado": "Cobrar juros altos de quem não tem outro banco disponível na região",
+   "resposta": false,
+   "ancora": "Legal não é sinônimo de equilibrado — a falta de escolha pesa.",
+   "feedbackErro": "A cobrança pode estar dentro da lei, e por isso parece correta. Mas quando o cliente não tem alternativa real, o acordo pesa só para um lado."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "dificuldade": null,
+   "pergunta": "Qual frase resume o que você viu hoje?",
+   "alternativas": [
+    {
+     "texto": "Se é legal, é sempre justo",
+     "correta": false,
+     "feedbackErro": "A lei é o mínimo exigido, não a garantia de equilíbrio entre as partes."
+    },
+    {
+     "texto": "Legal é o mínimo da lei; justo pode exigir mais, com caminhos formais",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só existe solução para o consumidor na Justiça",
+     "correta": false,
+     "feedbackErro": "Antes da Justiça, existem caminhos mais rápidos: a própria loja e o Procon."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "criterio": "É legal?",
+   "enunciado": "Recusar a venda para um cliente que já processou a loja antes",
+   "resposta": false,
+   "ancora": "Vender não pode depender de quem já processou a empresa.",
+   "feedbackErro": "Pode parecer razoável a loja se proteger, mas recusar venda por esse motivo é discriminação, proibida pelo Código de Defesa do Consumidor."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "dificuldade": 1,
+   "pergunta": "Um contrato tem letras minúsculas demais para ler sem lupa. Isso é",
+   "ancora": "Informação precisa ser clara e legível para o consumidor.",
+   "alternativas": [
+    {
+     "texto": "Ilegal, porque dificulta a informação clara ao consumidor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Legal, contrato sempre foi assim",
+     "correta": false,
+     "feedbackErro": "É comum ver contratos assim, mas isso não torna a prática correta: a lei exige clareza na informação ao consumidor."
+    },
+    {
+     "texto": "Injusto, mas nada pode ser feito",
+     "correta": false,
+     "feedbackErro": "Dá para reclamar formalmente: informação ilegível fere o direito à informação clara, previsto no CDC."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "justo-injusto-legal-ilegal",
+   "instrucao": "Classifique: legal ou ilegal?",
+   "ancora": "O que muda é a transparência e o cumprimento da oferta feita.",
+   "feedbackErro": "O que separa legal de ilegal aqui não é a cobrança em si, e sim avisar antes e cumprir o que foi oferecido.",
+   "caixas": [
+    {
+     "id": "legal",
+     "rotulo": "Legal"
+    },
+    {
+     "id": "ilegal",
+     "rotulo": "Ilegal"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Cobrar mais no cartão, avisando antes",
+     "caixaCorreta": "legal"
+    },
+    {
+     "texto": "Recusar troca de produto com defeito na garantia",
+     "caixaCorreta": "ilegal"
+    },
+    {
+     "texto": "Anunciar um preço e cobrar outro, maior, no caixa",
+     "caixaCorreta": "ilegal"
+    },
+    {
+     "texto": "Dar desconto para pagamento à vista",
+     "caixaCorreta": "legal"
+    }
+   ]
+  }
+ ]
+}

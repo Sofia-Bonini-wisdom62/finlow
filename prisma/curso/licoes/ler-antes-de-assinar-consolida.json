@@ -1,0 +1,327 @@
+{
+ "slug": "ler-antes-de-assinar-consolida",
+ "segmento": "em1",
+ "conceitoPrincipal": "ler-antes-de-assinar",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "assinatura-obriga",
+   "criterio": "Vale mesmo assim?",
+   "enunciado": "Cláusula assinada que contraria o Código do Consumidor",
+   "resposta": false,
+   "ancora": "Cláusula abusiva é nula mesmo assinada: a lei fica acima do papel.",
+   "feedbackErro": "O escrito manda — até o limite da lei. Assinatura não valida abuso: cláusula que corta direito básico do CDC cai no Procon ou na Justiça, com contrato e tudo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "assinatura-obriga",
+   "criterio": "Vale mesmo assim?",
+   "enunciado": "Contrato assinado na pressão do 'é só hoje'",
+   "resposta": true,
+   "ancora": "Pressa não anula assinatura. A defesa barata acontece antes da caneta.",
+   "feedbackErro": "Parece injusto, e é. Mas 'fui apressado' raramente desfaz contrato: coação que anula é ameaça grave, difícil de provar. Contra pressão, a saída é não assinar."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "documento-e-prova",
+   "criterio": "Vale mesmo assim?",
+   "enunciado": "A gravação da ligação em que o atendente prometeu isenção",
+   "resposta": true,
+   "ancora": "Prova não é só papel: gravação, e-mail e chat também obrigam.",
+   "feedbackErro": "'Só vale o escrito' é atalho, não lei: vale o que se prova. Central grava, chat registra, e-mail arquiva — peça o protocolo e guarde. Papel é a prova clássica."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "mapa-do-contrato",
+   "dificuldade": 3,
+   "pergunta": "Empréstimo anuncia 'juros de 1,9% ao mês', mas o CET (custo total) marca 2,8%. Por quê?",
+   "ancora": "O CET soma tudo: juros, tarifas, seguro e imposto. Compare por ele.",
+   "alternativas": [
+    {
+     "texto": "Tarifas, seguro e imposto embutidos entram no CET",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Erro de cálculo: prevalece a taxa anunciada",
+     "correta": false,
+     "feedbackErro": "Os 1,9% são reais, mas só a fatia 'juros'. Tarifa, seguro e IOF também saem do seu bolso, e o CET existe para somar o custo inteiro. O anúncio mostra a isca."
+    },
+    {
+     "texto": "O CET é estimativa sem valor prático",
+     "correta": false,
+     "feedbackErro": "O CET é o número que a regra obriga a informar, feito para comparar ofertas. Entre dois empréstimos, vence o de menor CET — não o de menor anúncio."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "mapa-do-contrato",
+   "dificuldade": 3,
+   "pergunta": "Plano com renovação automática chega ao fim dos 12 meses e ninguém faz nada. O que acontece?",
+   "ancora": "Renovação automática recomeça o contrato nas condições da cláusula.",
+   "alternativas": [
+    {
+     "texto": "Recomeça sozinho, nas condições que a cláusula fixar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Termina: todo contrato acaba no prazo final",
+     "correta": false,
+     "feedbackErro": "Sem cláusula de renovação, sim. Com ela, o silêncio é aceite: o plano recomeça — às vezes sem o desconto do 1º ano. A data final merece alarme no celular."
+    },
+    {
+     "texto": "Vira mensal, sempre mais barato",
+     "correta": false,
+     "feedbackErro": "Virar mensal só acontece se a cláusula disser isso — e mensal costuma ser a versão mais cara. O que acontece no fim está escrito, não é padrão."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "direito-do-consumidor",
+   "criterio": "Dá para sair depois de assinar?",
+   "enunciado": "Quitar o empréstimo antes do prazo, com desconto dos juros",
+   "resposta": true,
+   "ancora": "Antecipar quitação com abatimento proporcional dos juros é direito.",
+   "feedbackErro": "Parece favor do banco, mas é regra: antecipar parcelas obriga o desconto proporcional dos juros embutidos. Peça o boleto de quitação e confira o abatimento."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "direito-do-consumidor",
+   "instrucao": "Mesmo assinada: a cláusula vale ou é nula?",
+   "ancora": "Cláusula pode criar custo; não pode confiscar o pago nem calar você.",
+   "feedbackErro": "O teste é o CDC: multa dentro do teto e fidelidade com benefício em troca valem; perder tudo que pagou ou abrir mão de reclamar, nenhuma assinatura valida.",
+   "caixas": [
+    {
+     "id": "vale",
+     "rotulo": "Vale"
+    },
+    {
+     "id": "nula",
+     "rotulo": "Nula"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Multa de atraso de 2%",
+     "caixaCorreta": "vale"
+    },
+    {
+     "texto": "Perder todas as parcelas já pagas ao desistir",
+     "caixaCorreta": "nula"
+    },
+    {
+     "texto": "Fidelidade de 12 meses com desconto em troca",
+     "caixaCorreta": "vale"
+    },
+    {
+     "texto": "Proibição de reclamar no Procon",
+     "caixaCorreta": "nula"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "direito-do-consumidor",
+   "criterio": "É cláusula que o juiz derruba?",
+   "enunciado": "Obrigar você a processar só na comarca da sede, longe de você",
+   "resposta": true,
+   "ancora": "Foro longe do consumidor mata a defesa na prática: abusiva.",
+   "feedbackErro": "Parece detalhe de rodapé. Mas obrigar a brigar a mil quilômetros, na prática, cancela seu direito de defesa — por isso essa cláusula cai, mesmo assinada."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "direito-do-consumidor",
+   "criterio": "É cláusula que o juiz derruba?",
+   "enunciado": "Multa de fidelidade proporcional, com desconto real em troca",
+   "resposta": false,
+   "ancora": "Amarra com contrapartida vale: é o outro lado do desconto.",
+   "feedbackErro": "Nem toda amarra é abuso: você ganhou desconto pelo compromisso de ficar, e a multa proporcional é o preço de quebrá-lo. Nula é a amarra sem nada em troca."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "direito-do-consumidor",
+   "pergunta": "Faltam 10 parcelas de R$ 120, com R$ 20 de juros embutidos em cada. Quitar hoje custa quanto?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 1200,
+   "gabarito": 1000,
+   "toleranciaPct": 20,
+   "fonte": "conta: 10 × (120 − 20), abatimento dos juros futuros",
+   "verificacao": {
+    "expressao": "10*(120-20)",
+    "esperado": 1000
+   },
+   "feedbackPerto": "R$ 1.000: os R$ 200 de juros futuros saem da conta — abatimento que é seu direito na quitação antecipada.",
+   "feedbackLonge": "R$ 1.000, não R$ 1.200. O viés é pagar o valor de tabela: cada parcela futura carrega juros que você não deve mais ao antecipar. Peça o cálculo com abatimento."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "documento-e-prova",
+   "dificuldade": 3,
+   "pergunta": "Yasmin recebeu cobrança de uma dívida quitada há um ano — e guardou o comprovante. Melhor caminho?",
+   "ancora": "Dívida paga não se paga duas vezes: o comprovante encerra a conversa.",
+   "alternativas": [
+    {
+     "texto": "Enviar o comprovante e exigir a baixa da cobrança",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pagar de novo para proteger o nome",
+     "correta": false,
+     "feedbackErro": "O medo do nome sujo é a alavanca dessa cobrança. Com comprovante, a força é dela: responder com a prova trava a negativação; pagar de novo premia o erro."
+    },
+    {
+     "texto": "Ignorar: cobrança errada desiste sozinha",
+     "correta": false,
+     "feedbackErro": "Enquanto você espera, o nome pode ser negativado sem razão. Responder com comprovante e protocolo trava o erro — e ainda gera prova para indenização."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "assinatura-obriga",
+   "dificuldade": 3,
+   "pergunta": "Vai emprestar R$ 300 a um amigo. O que muda se escreverem um papel simples com valor e data?",
+   "ancora": "Documento particular assinado é prova válida — cartório é reforço.",
+   "alternativas": [
+    {
+     "texto": "O combinado vira prova, cobrável sem depender da amizade",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: papel sem cartório não vale",
+     "correta": false,
+     "feedbackErro": "Cartório dá força extra, não existência: documento particular datado e assinado já é prova válida entre as partes. O que não se cobra é a conversa sem registro."
+    },
+    {
+     "texto": "Ofende: amizade dispensa registro",
+     "correta": false,
+     "feedbackErro": "O papel protege a amizade, não o contrário: memória de combinado é a origem clássica da briga. Clareza escrita é respeito — dos dois lados."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "documento-e-prova",
+   "criterio": "Serve como prova?",
+   "enunciado": "O e-mail em que a empresa confirma o cancelamento",
+   "resposta": true,
+   "ancora": "Registro digital identificado e datado conta como prova.",
+   "feedbackErro": "Sem carimbo, parece fraco — não é. E-mail com remetente, data e conteúdo é registro: se a cobrança continuar, ele mostra que o cancelamento existiu e quando."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "documento-e-prova",
+   "criterio": "Serve como prova?",
+   "enunciado": "O combinado que só existe na memória de vocês dois",
+   "resposta": false,
+   "ancora": "Memória não se executa: cada um lembra a própria versão.",
+   "feedbackErro": "Os dois podem estar de boa-fé e lembrar diferente — é assim que as brigas começam. Registro não é desconfiança: é proteção para as duas versões."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "assinatura-obriga",
+   "pergunta": "Fechando os três encontros: qual é a leitura madura de um contrato?",
+   "alternativas": [
+    {
+     "texto": "O escrito manda até o limite da lei — e prova é tudo que registra.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Assinou, aceitou: nada mais se discute.",
+     "correta": false,
+     "feedbackErro": "Cláusula abusiva cai mesmo assinada. A lei fica acima do papel."
+    },
+    {
+     "texto": "Com uma boa empresa, papel é burocracia.",
+     "correta": false,
+     "feedbackErro": "Atendente muda, sistema erra. Sem registro, sua versão vale pouco."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "direito-do-consumidor",
+   "instrucao": "A empresa não resolveu. Ordene a escalada da reclamação.",
+   "ancora": "Cada degrau exige o registro do anterior.",
+   "feedbackErro": "A escalada tem lastro: o protocolo do SAC abre a ouvidoria; SAC e ouvidoria documentados sustentam consumidor.gov, Procon e, por fim, a Justiça.",
+   "itens": [
+    {
+     "texto": "SAC da empresa, guardando o protocolo",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Ouvidoria, citando o número do SAC",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "consumidor.gov.br ou Procon",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Justiça, com todas as provas juntas",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "documento-e-prova",
+   "dificuldade": 3,
+   "pergunta": "Chegou um boleto que parece o da sua parcela. O que denuncia um boleto adulterado?",
+   "ancora": "Confira o beneficiário antes de pagar: é ele que o golpe não imita.",
+   "alternativas": [
+    {
+     "texto": "Beneficiário diferente de quem você deve",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Ter código de barras prova que é real",
+     "correta": false,
+     "feedbackErro": "Qualquer boleto, falso ou não, tem código de barras — ele é só o endereço do pagamento. A pergunta é para quem o dinheiro vai: leia o nome do beneficiário."
+    },
+    {
+     "texto": "O valor exato garante que é legítimo",
+     "correta": false,
+     "feedbackErro": "Golpista muitas vezes sabe o valor da sua parcela — vazamento de dados existe. O que ele não controla é o beneficiário verdadeiro: cheque o nome antes de pagar."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "documento-e-prova",
+   "criterio": "É prova que sustenta?",
+   "enunciado": "Print de conversa com data, nome e número visíveis",
+   "resposta": true,
+   "ancora": "Print identificado é registro — mais forte com a conversa original.",
+   "feedbackErro": "Print se edita, e a outra parte vai dizer isso. Por isso some as provas: print, conversa original no aparelho, protocolo. Um reforça o outro — e o conjunto convence."
+  }
+ ]
+}

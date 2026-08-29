@@ -1,0 +1,328 @@
+{
+ "slug": "poupar-tem-um-porque-reforco",
+ "segmento": "em2",
+ "conceitoPrincipal": "poupar-tem-um-porque",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "meta-de-poupanca",
+   "criterio": "É poupar com objetivo?",
+   "enunciado": "Guardar R$ 85 por mês para um fone de R$ 510",
+   "resposta": true,
+   "ancora": "Qual era o critério? Valor, prazo e destino — aqui tem os três.",
+   "verificacao": {
+    "expressao": "85*6",
+    "esperado": 510
+   },
+   "feedbackErro": "R$ 85 parece número quebrado demais para ser plano. Mas o critério não pede número redondo: pede valor, prazo e destino — aqui são 6 meses até o fone."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "meta-de-poupanca",
+   "criterio": "É poupar com objetivo?",
+   "enunciado": "Juntar 'o máximo possível', sem data para usar",
+   "resposta": false,
+   "ancora": "'O máximo possível' não é valor; 'algum dia' não é prazo.",
+   "feedbackErro": "A intenção é boa e o esforço é real. Mas sem número não há como medir o mês, e sem data não há como saber se chegou. Meta é número mais data."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "aposta-nao-e-investimento",
+   "criterio": "Isso é investimento?",
+   "enunciado": "Entrar num bolão de loteria com os colegas do estágio",
+   "resposta": false,
+   "ancora": "Dividir a aposta divide o custo — o sorteio continua sorteio.",
+   "feedbackErro": "Em grupo parece mais racional: sai barato e alguém 'sempre ganha'. Mas o mecanismo não muda — resultado sorteado, sem nada rendendo por trás."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "meta-de-poupanca",
+   "dificuldade": 2,
+   "pergunta": "Otávio guardava R$ 90/mês para uma meta de R$ 1.080. No 4º mês, sacou tudo numa promoção. O que falhou?",
+   "ancora": "Meta guardada junto do dinheiro de gastos vira saldo disponível.",
+   "verificacao": {
+    "expressao": "90*12",
+    "esperado": 1080
+   },
+   "alternativas": [
+    {
+     "texto": "Faltou separar a meta do dinheiro de gastos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O valor mensal estava alto demais",
+     "correta": false,
+     "feedbackErro": "R$ 90 cabiam: ele guardou 3 meses sem aperto. O saque não veio de falta de dinheiro, veio de o dinheiro da meta estar ao alcance do impulso."
+    },
+    {
+     "texto": "A meta era grande demais para valer a pena",
+     "correta": false,
+     "feedbackErro": "R$ 1.080 em 12 meses é meta comum e possível. O que quebrou o plano foi o acesso fácil, não o tamanho do objetivo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "aposta-nao-e-investimento",
+   "dificuldade": 2,
+   "pergunta": "Por que aposta não entra num plano de poupança, mesmo quando alguém ganhou ontem?",
+   "ancora": "O ganho de um não muda o sorteio dos próximos.",
+   "alternativas": [
+    {
+     "texto": "O ganho de um não muda a chance sorteada dos outros",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque ninguém nunca ganha nada em aposta",
+     "correta": false,
+     "feedbackErro": "Gente ganha, sim — e é isso que sustenta a propaganda. O problema é o conjunto: as regras garantem que a soma dos apostadores perca."
+    },
+    {
+     "texto": "Porque o valor apostado é sempre pequeno",
+     "correta": false,
+     "feedbackErro": "Há aposta de qualquer tamanho. O que a exclui do plano é o mecanismo: sorteio não tem rendimento, e plano se faz com o previsível."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "aposta-nao-e-investimento",
+   "criterio": "Isso é investimento?",
+   "enunciado": "Guardar todo mês num CDB que rende perto da Selic",
+   "resposta": true,
+   "ancora": "Rendimento combinado, perto de 15% ao ano: dinheiro trabalhando.",
+   "feedbackErro": "A sigla assusta e parece coisa de especialista. Mas CDB é só um empréstimo ao banco com rendimento combinado — previsível, o oposto de sorteio."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "prazo-da-meta",
+   "instrucao": "Ordene as metas: do prazo mais curto ao mais longo.",
+   "ancora": "Prazo define o plano — e onde o dinheiro deve ficar.",
+   "feedbackErro": "Não é o valor que ordena, é a data. Presente antes do fone, fone antes do intercâmbio, intercâmbio antes da faculdade.",
+   "itens": [
+    {
+     "texto": "Presente de aniversário em 2 meses",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Fone novo em 7 meses",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Intercâmbio em 3 anos",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Faculdade paga em 6 anos",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "meta-de-poupanca",
+   "criterio": "É poupar com objetivo?",
+   "enunciado": "Transferir R$ 65 para outra conta assim que recebe",
+   "resposta": true,
+   "ancora": "Separar da conta do dia a dia protege a meta do impulso.",
+   "feedbackErro": "Parece só mudar dinheiro de lugar. Mas é o lugar que decide: fora da conta de gastos, a meta não disputa espaço com o lanche e a promoção."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "aposta-nao-e-investimento",
+   "criterio": "Isso é investimento?",
+   "enunciado": "Comprar caixas-surpresa no jogo para lucrar revendendo",
+   "resposta": false,
+   "ancora": "Caixa-surpresa é sorteio dentro do jogo — aposta com outra roupa.",
+   "feedbackErro": "Tem mercado de revenda, e isso dá cara de negócio. Mas o item que vem na caixa é sorteado — você paga por uma chance, não por um rendimento."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "meta-de-poupanca",
+   "pergunta": "Meta de R$ 1.740 em 12 meses. Quanto por mês, sem contar rendimento?",
+   "campo": "moeda",
+   "min": 50,
+   "max": 500,
+   "gabarito": 145,
+   "toleranciaPct": 20,
+   "fonte": "aritmética da meta: R$ 1.740 ÷ 12",
+   "verificacao": {
+    "expressao": "1740/12",
+    "esperado": 145
+   },
+   "feedbackPerto": "R$ 145 por mês. Número quebrado não atrapalha — o que sustenta a meta é caber no orçamento.",
+   "feedbackLonge": "R$ 145: 1.740 ÷ 12. O atalho comum é chutar redondo (100 ou 200) — mas quem define a parcela é a divisão, não o hábito."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "aposta-nao-e-investimento",
+   "dificuldade": 2,
+   "pergunta": "A meta é de 5 anos. Um amigo diz: 'poupança rende pouco, aposta rende mais'. Qual é o erro dele?",
+   "ancora": "Aposta não tem rendimento para entrar na comparação.",
+   "alternativas": [
+    {
+     "texto": "Comparar rendimento com sorteio, como se fossem iguais",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nenhum: prazo longo permite arriscar em aposta",
+     "correta": false,
+     "feedbackErro": "Prazo longo permite investimentos de mais risco — que seguem sendo investimentos. Aposta não entra na régua: não tem rendimento esperado, tem sorteio."
+    },
+    {
+     "texto": "A poupança rende mais do que ele pensa",
+     "correta": false,
+     "feedbackErro": "A poupança rende pouco mesmo, ~0,5% ao mês. O erro dele não está nesse número, está na comparação: aposta não tem rendimento para comparar."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "meta-de-poupanca",
+   "dificuldade": 2,
+   "pergunta": "Sobraram R$ 260 do estágio. A meta do intercâmbio está atrasada. O que fazer com eles?",
+   "ancora": "Meta atrasada tem prioridade sobre o extra e sobre a sorte.",
+   "alternativas": [
+    {
+     "texto": "Cobrir o atraso da meta antes de qualquer extra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Apostar para recuperar o atraso de uma vez",
+     "correta": false,
+     "feedbackErro": "Recuperar de uma vez é a promessa que atrai quem está atrasado. Mas aposta pode aprofundar o atraso — e o plano não pode depender de sorteio."
+    },
+    {
+     "texto": "Gastar, porque dinheiro extra não é da meta",
+     "correta": false,
+     "feedbackErro": "Extra parece fora do plano, mas o plano está atrasado — e dinheiro é o mesmo em qualquer bolso. Meta atrasada vem antes do supérfluo."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "meta-de-poupanca",
+   "criterio": "Ajuda a chegar na meta?",
+   "enunciado": "Revisar a cada 3 meses se o valor mensal ainda cabe",
+   "resposta": true,
+   "ancora": "Plano bom se ajusta: revisar evita abandonar no primeiro aperto.",
+   "feedbackErro": "Mexer no plano parece fraqueza. É o contrário: quem revisa ajusta a parcela e continua; quem não revisa quebra o plano no primeiro mês difícil."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "aposta-nao-e-investimento",
+   "criterio": "Ajuda a chegar na meta?",
+   "enunciado": "Dobrar a aposta depois de perder, para 'empatar'",
+   "resposta": false,
+   "ancora": "Perda em sorteio não se recupera apostando mais — se aprofunda.",
+   "feedbackErro": "Empatar parece questão de insistir. Mas cada aposta nova tem a mesma chance contra você — dobrar o valor só dobra o tamanho da perda provável."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "poupar-tem-um-porque",
+   "pergunta": "Depois deste reforço, qual frase fica?",
+   "alternativas": [
+    {
+     "texto": "Meta é número mais data, longe do gasto — e sorteio não entra no plano.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Guardar muito num mês compensa não guardar nos outros.",
+     "correta": false,
+     "feedbackErro": "Constância vale mais que pico: a meta se sustenta na parcela possível de todo mês."
+    },
+    {
+     "texto": "Aposta vale como plano se for com dinheiro que sobrou.",
+     "correta": false,
+     "feedbackErro": "Com sobra ou sem sobra, o mecanismo é o mesmo: sorteio não tem rendimento."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "prazo-da-meta",
+   "instrucao": "Meta de curto ou de longo prazo?",
+   "ancora": "Até 1 ano é curto; acima disso, o plano muda de forma.",
+   "feedbackErro": "O que separa as caixas é a data, não o valor. Material de janeiro e presente de dezembro cabem no ano; notebook e habilitação, não.",
+   "caixas": [
+    {
+     "id": "curto",
+     "rotulo": "Até 1 ano"
+    },
+    {
+     "id": "longo",
+     "rotulo": "Mais de 1 ano"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Material escolar de janeiro",
+     "caixaCorreta": "curto"
+    },
+    {
+     "texto": "Troca de notebook em 3 anos",
+     "caixaCorreta": "longo"
+    },
+    {
+     "texto": "Presente de fim de ano",
+     "caixaCorreta": "curto"
+    },
+    {
+     "texto": "Habilitação daqui a 2 anos",
+     "caixaCorreta": "longo"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "aposta-nao-e-investimento",
+   "pergunta": "Apostando R$ 25 por semana durante um ano, quanto sai do bolso?",
+   "campo": "moeda",
+   "min": 100,
+   "max": 5000,
+   "gabarito": 1300,
+   "toleranciaPct": 20,
+   "fonte": "aritmética: R$ 25 × 52 semanas",
+   "verificacao": {
+    "expressao": "25*52",
+    "esperado": 1300
+   },
+   "feedbackPerto": "R$ 1.300 no ano — o custo certo de um resultado sorteado.",
+   "feedbackLonge": "R$ 1.300: 25 × 52. Aposta pequena parece grátis — o viés é olhar a semana e ignorar o ano."
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "aposta-nao-e-investimento",
+   "criterio": "Isso é investimento?",
+   "enunciado": "Rifa de celular do grêmio, 'quase certeza' de ganhar",
+   "resposta": false,
+   "ancora": "Rifa é sorteio, mesmo com poucos números vendidos.",
+   "feedbackErro": "'Quase certeza' é sensação, não conta: a chance é a proporção de números. Rifa pode ser apoio ao grêmio — investimento é que não é."
+  }
+ ]
+}

@@ -1,0 +1,154 @@
+{
+ "slug": "mais-caro-mais-barato",
+ "segmento": "ef12",
+ "conceitoPrincipal": "mais-caro-mais-barato",
+ "fraseConceito": "Preço é o número que diz se algo custa mais ou menos que outra coisa.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "mais-caro-mais-barato",
+   "criterio": "Custa mais que a bala de R$0,50?",
+   "enunciado": "O chiclete (R$ 1,00)",
+   "resposta": true,
+   "ancora": "R$ 1,00 é mais que R$ 0,50. O chiclete é mais caro.",
+   "feedbackErro": "Os dois são pequenos e baratos, por isso parecem iguais. Mas R$ 1,00 é o dobro de R$ 0,50 — o chiclete custa mais."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "mais-caro-mais-barato",
+   "criterio": "Custa mais que a bala de R$0,50?",
+   "enunciado": "A bala de goma (R$ 0,30)",
+   "resposta": false,
+   "ancora": "R$ 0,30 é menos que R$ 0,50. A bala de goma é mais barata.",
+   "feedbackErro": "Os dois valores são pequenos, fácil achar que dá no mesmo. Mas R$ 0,30 é menor — a bala de goma custa menos."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "moedas-e-notas",
+   "criterio": "Dá pra pagar só com moeda?",
+   "enunciado": "A bala (R$ 0,50)",
+   "resposta": true,
+   "ancora": "R$ 0,50 é 1 moeda de 50 centavos. Não precisa de nota.",
+   "feedbackErro": "R$ 0,50 é pouco, mas existe moeda pra esse valor — a de 50 centavos. Não precisa trocar por nota."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "moedas-e-notas",
+   "criterio": "Dá pra pagar só com moeda?",
+   "enunciado": "O brinquedo (R$ 20,00)",
+   "resposta": false,
+   "ancora": "R$ 20 é valor de nota. Moeda é pra valores pequenos.",
+   "feedbackErro": "R$ 20 parece que dá pra juntar em moedas. Mas usamos nota pra valores maiores — moeda é pros pequenos."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "mais-caro-mais-barato",
+   "instrucao": "Custa mais ou menos que R$ 5?",
+   "ancora": "R$5 é a régua. Abaixo é menos, acima é mais.",
+   "feedbackErro": "Alguns preços ficam pertinho de R$5, e aí é fácil errar o lado. Compare cada preço com R$5.",
+   "caixas": [
+    { "id": "mais", "rotulo": "Mais que R$5" },
+    { "id": "menos", "rotulo": "Menos que R$5" }
+   ],
+   "itens": [
+    { "texto": "Chiclete (R$ 1,00)", "caixaCorreta": "menos" },
+    { "texto": "Sorvete (R$ 6,00)", "caixaCorreta": "mais" },
+    { "texto": "Bala (R$ 0,50)", "caixaCorreta": "menos" },
+    { "texto": "Brinquedo (R$ 20,00)", "caixaCorreta": "mais" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "mais-caro-mais-barato",
+   "criterio": "É mais barato que o sorvete (R$6)?",
+   "enunciado": "A pipoca (R$ 4,00)",
+   "resposta": true,
+   "ancora": "R$4 é menos que R$6. A pipoca é mais barata.",
+   "feedbackErro": "Pipoca e sorvete são dois lanches parecidos, dá pra achar que custam igual. Mas R$4 é menor que R$6."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "mais-caro-mais-barato",
+   "criterio": "Custa mais que a bicicleta (R$300)?",
+   "enunciado": "O tênis (R$ 80,00)",
+   "resposta": false,
+   "ancora": "R$80 é bem menos que R$300.",
+   "feedbackErro": "R$80 é um valor alto pro dia a dia, dá pra achar que é o maior de todos. Mas R$300 ainda é bem maior."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "mais-caro-mais-barato",
+   "dificuldade": 1,
+   "pergunta": "O que ajuda a saber se algo é mais caro ou mais barato?",
+   "ancora": "O preço é o número que diz quanto custa.",
+   "alternativas": [
+    {
+     "texto": "O tamanho do brinquedo",
+     "correta": false,
+     "feedbackErro": "Tamanho engana: coisa grande pode custar pouco. O que decide é o número do preço, não o tamanho."
+    },
+    {
+     "texto": "O número escrito no preço",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A cor da embalagem",
+     "correta": false,
+     "feedbackErro": "Cor bonita chama atenção, mas não muda o preço. O que decide é sempre o número na etiqueta."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "mais-caro-mais-barato",
+   "instrucao": "Toque na ordem do mais barato pro mais caro.",
+   "ancora": "Ordem pelo preço: menor número primeiro.",
+   "feedbackErro": "É fácil ordenar pelo tamanho da coisa, não pelo preço. Aqui o que manda é o número: menor preço primeiro.",
+   "itens": [
+    { "texto": "Bala (R$ 0,50)", "posicaoCorreta": 1 },
+    { "texto": "Chiclete (R$ 1,00)", "posicaoCorreta": 2 },
+    { "texto": "Sorvete (R$ 6,00)", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "mais-caro-mais-barato",
+   "instrucao": "Isso custa mais ou menos que R$2?",
+   "ancora": "R$2 é a régua: compare cada preço com ela.",
+   "feedbackErro": "R$2 é a linha. Preço menor fica de um lado, maior fica do outro.",
+   "caixas": [
+    { "id": "mais", "rotulo": "Mais que R$2" },
+    { "id": "menos", "rotulo": "Menos que R$2" }
+   ],
+   "itens": [
+    { "texto": "Figurinha (R$ 0,25)", "caixaCorreta": "menos" },
+    { "texto": "Suco (R$ 3,00)", "caixaCorreta": "mais" },
+    { "texto": "Goma de mascar (R$ 1,00)", "caixaCorreta": "menos" },
+    { "texto": "Salgadinho (R$ 2,50)", "caixaCorreta": "mais" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "mais-caro-mais-barato",
+   "criterio": "Custa menos que R$3?",
+   "enunciado": "O picolé (R$ 2,00)",
+   "resposta": true,
+   "ancora": "R$2 é menos que R$3.",
+   "feedbackErro": "R$2 e R$3 são valores próximos, dá pra confundir. Mas R$2 ainda é menor."
+  }
+ ]
+}

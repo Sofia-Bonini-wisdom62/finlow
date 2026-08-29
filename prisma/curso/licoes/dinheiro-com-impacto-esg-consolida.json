@@ -1,0 +1,285 @@
+{
+ "slug": "dinheiro-com-impacto-esg-consolida",
+ "segmento": "em2",
+ "conceitoPrincipal": "dinheiro-com-impacto-esg",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "criterio-nao-rotulo",
+   "criterio": "Dá para confiar sem checar mais?",
+   "enunciado": "Fundo com 'ESG' no nome e carteira que ninguém vê",
+   "resposta": false,
+   "ancora": "Nome é rótulo; a confiança mora na carteira aberta e auditada.",
+   "feedbackErro": "O nome no fundo dá aparência de certificação — e é só batismo. Sem a lista de ativos pública, não há como saber o que o 'ESG' do título compra."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "criterio-nao-rotulo",
+   "criterio": "Dá para confiar sem checar mais?",
+   "enunciado": "Selo com auditoria externa e critérios públicos",
+   "resposta": true,
+   "ancora": "Verificação independente + critério aberto: o padrão-ouro da prova.",
+   "feedbackErro": "Desconfiar de tudo igualmente apaga a diferença entre pose e prova. Auditoria externa com critério público é exatamente o que torna um selo confiável."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "criterio-nao-rotulo",
+   "criterio": "Dá para confiar sem checar mais?",
+   "enunciado": "Ranking de sustentabilidade feito pela própria marca",
+   "resposta": false,
+   "ancora": "Quem se avalia sozinho sempre passa: falta a independência.",
+   "feedbackErro": "Ranking soa técnico, com nota e tabela — mas o autor é o avaliado. Sem terceiro independente, é autoelogio formatado como dado."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "esg-na-analise",
+   "dificuldade": 3,
+   "pergunta": "Empresa exemplar nas três lentes, mas cara e muito endividada. Investir só pelo ESG?",
+   "ancora": "ESG entra na análise — não substitui preço, dívida e risco.",
+   "alternativas": [
+    {
+     "texto": "Não: ESG soma à análise, não a substitui",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim: empresa ESG não quebra",
+     "correta": false,
+     "feedbackErro": "Boas práticas reduzem certos riscos — multa, escândalo, processo. Não anulam os outros: dívida alta e preço esticado quebram empresa exemplar também."
+    },
+    {
+     "texto": "Sim: impacto vem antes de número",
+     "correta": false,
+     "feedbackErro": "Se o investimento afundar, o impacto afunda junto — e o seu dinheiro. Dá para exigir os dois: prática séria E fundamentos sólidos. Um não dispensa o outro."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "impacto-no-consumo",
+   "dificuldade": 3,
+   "pergunta": "'Uma pessoa boicotando não muda nada.' O critério ESG no consumo é inútil, então?",
+   "ancora": "O voto individual é pequeno; a soma move mercado e regulação.",
+   "alternativas": [
+    {
+     "texto": "Não: escolhas somadas movem mercado e lei",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim: um cliente a menos não aparece no caixa",
+     "correta": false,
+     "feedbackErro": "No caixa de hoje, não aparece mesmo — o argumento acerta aí. Mas mercado se move por tendência: marcas mapeiam o consumo que cresce e correm atrás dele."
+    },
+    {
+     "texto": "Sim: só a lei muda empresa",
+     "correta": false,
+     "feedbackErro": "A lei pesa, mas quem pressiona a lei? Consumo, escândalo e investidor cobrando. Esperar só a regulação é abrir mão da parte do jogo que é sua."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "esg-na-analise",
+   "criterio": "A lente ESG cabe nessa decisão?",
+   "enunciado": "Escolher entre dois empregos, avaliando o empregador",
+   "resposta": true,
+   "ancora": "Transferência total: S e G valem para onde você vende seu trabalho.",
+   "feedbackErro": "ESG parece assunto de quem tem dinheiro sobrando — mas seu trabalho é seu maior ativo. Avaliar como a empresa trata gente e presta contas é a mesma lente."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "risco-esg",
+   "instrucao": "Risco ESG real ou ruído? Classifique.",
+   "ancora": "Real tem fonte, padrão e reincidência; ruído tem só barulho.",
+   "feedbackErro": "Pese a evidência: processo em série e multa reincidente são padrão documentado. Post anônimo e boato sem fonte são ruído até que virem dado.",
+   "caixas": [
+    { "id": "risco", "rotulo": "Risco real" },
+    { "id": "ruido", "rotulo": "Ruído" }
+   ],
+   "itens": [
+    { "texto": "Processos trabalhistas em série", "caixaCorreta": "risco" },
+    { "texto": "Post anônimo atacando o CEO", "caixaCorreta": "ruido" },
+    { "texto": "Multa ambiental reincidente", "caixaCorreta": "risco" },
+    { "texto": "Boato de rede social sem fonte", "caixaCorreta": "ruido" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "esg-na-analise",
+   "criterio": "Critério ESG bem aplicado?",
+   "enunciado": "Vetar a empresa por uma manchete, sem apurar",
+   "resposta": false,
+   "ancora": "Uma notícia abre a investigação — não encerra o julgamento.",
+   "feedbackErro": "A indignação rápida parece rigor moral, mas julga com um dado só. Manchete se apura: fonte, resposta da empresa, padrão. Critério sem método vira humor."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "esg-na-analise",
+   "criterio": "Critério ESG bem aplicado?",
+   "enunciado": "Comparar relatórios de vários anos antes de decidir",
+   "resposta": true,
+   "ancora": "Tendência vale mais que foto: prática se prova no tempo.",
+   "feedbackErro": "Parece exagero para uma escolha simples — mas é o único jeito de separar compromisso de campanha: quem melhora ano após ano tem prática, não pose."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "impacto-no-consumo",
+   "pergunta": "Conta de luz de R$ 180 cai 15% com a energia solar da vizinhança. Qual o novo valor?",
+   "campo": "moeda",
+   "min": 50,
+   "max": 300,
+   "gabarito": 153,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 180 × 0,85",
+   "verificacao": { "expressao": "180*0.85", "esperado": 153 },
+   "feedbackPerto": "R$ 153. Escolha ambiental com retorno financeiro direto — quando as duas réguas apontam juntas, a decisão fica fácil.",
+   "feedbackLonge": "R$ 153: 180 × 0,85. O viés é subtrair 15 reais em vez de 15% — porcentagem opera sobre o valor, não sobre a unidade."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "esg-na-analise",
+   "dificuldade": 3,
+   "pergunta": "Helena aceita render um pouco menos num fundo que comprova impacto. Escolha irracional?",
+   "ancora": "Preferência informada não é erro: ela sabe o que paga e por quê.",
+   "alternativas": [
+    {
+     "texto": "Não: ela paga por um valor que o retorno não mede",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim: investimento se mede só pelo retorno",
+     "correta": false,
+     "feedbackErro": "Retorno é central, mas não é o único valor que existe. O erro seria pagar sem saber — Helena sabe o custo e escolhe. Isso é critério, não irracionalidade."
+    },
+    {
+     "texto": "Sim: fundo de impacto rende sempre menos",
+     "correta": false,
+     "feedbackErro": "A generalização é falsa: há fundos de impacto competitivos e comuns medíocres. E, no caso dela, nem importa — a escolha foi consciente do custo real."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "esg-na-analise",
+   "dificuldade": 3,
+   "pergunta": "Fundo de impacto com resgate em 60 dias: serve para a reserva de emergência?",
+   "ancora": "Cada dinheiro tem função: reserva pede liquidez antes de tudo.",
+   "alternativas": [
+    {
+     "texto": "Não: reserva pede resgate na hora, impacto vai noutro bolso",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim: 60 dias passam rápido",
+     "correta": false,
+     "feedbackErro": "Emergência não espera 60 dias: é amanhã, com juros. Reserva presa vira rotativo no susto — e aí o 'impacto' custa 14% ao mês no cartão."
+    },
+    {
+     "texto": "Sim, se o selo for auditado",
+     "correta": false,
+     "feedbackErro": "A auditoria prova o impacto, não a liquidez — e o defeito aqui é a liquidez. Selo nenhum faz 60 dias virarem resgate imediato. Função errada, fundo certo."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "esg-na-analise",
+   "criterio": "Transferiu bem o critério?",
+   "enunciado": "Cobrar da própria empresa o que exige das marcas",
+   "resposta": true,
+   "ancora": "Coerência é a prova final: a lente vale nos dois lados do balcão.",
+   "feedbackErro": "Parece fora do tema 'dinheiro' — mas trabalho é sua principal fonte dele. Aplicar a lente onde você passa o dia é a transferência mais real do critério."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "esg-na-analise",
+   "criterio": "Transferiu bem o critério?",
+   "enunciado": "Usar a lente ESG só quando não custa nada",
+   "resposta": false,
+   "ancora": "Critério que some quando custa não era critério: era conveniência.",
+   "feedbackErro": "É o padrão mais comum — e o mais inútil: só 'pesa' quando não pesa. Critério de verdade aparece justamente no empate difícil, quando algo se abre mão."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "dinheiro-com-impacto-esg",
+   "dificuldade": 3,
+   "pergunta": "Quando a lente ESG decide sozinha?",
+   "alternativas": [
+    {
+     "texto": "Nunca: ela soma com preço, risco e liquidez — é lente, não veredito.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sempre: impacto comprovado dispensa o resto da análise.",
+     "correta": false,
+     "feedbackErro": "Dispensar preço e risco quebra até o investidor mais bem-intencionado — e o impacto morre junto com o aporte."
+    },
+    {
+     "texto": "Quando o rendimento empata: aí só o rótulo basta.",
+     "correta": false,
+     "feedbackErro": "No empate, a lente ajuda a desempatar — mas com prova, não com rótulo. Carteira aberta e selo auditado seguem obrigatórios."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "criterio-nao-rotulo",
+   "instrucao": "Ordene o check-up ESG antes de investir.",
+   "ancora": "Do dado bruto à decisão: ler, verificar, comparar, decidir.",
+   "feedbackErro": "O fluxo vai do dado à decisão: o que a empresa publica, quem confirma de fora, o setor como régua — e só então o veredito, junto com preço e risco.",
+   "itens": [
+    { "texto": "Ler relatório e metas da empresa", "posicaoCorreta": 1 },
+    { "texto": "Checar auditoria independente", "posicaoCorreta": 2 },
+    { "texto": "Comparar com outras do setor", "posicaoCorreta": 3 },
+    { "texto": "Decidir, somando preço e risco", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "esg-na-analise",
+   "pergunta": "Fundo cobra taxa de 1,2% ao ano sobre R$ 10.000. Quanto em reais no ano?",
+   "campo": "moeda",
+   "min": 20,
+   "max": 600,
+   "gabarito": 120,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 10.000 × 0,012",
+   "verificacao": { "expressao": "10000*0.012", "esperado": 120 },
+   "feedbackPerto": "R$ 120 ao ano. Taxa também é critério: fundo 'de impacto' com taxa gorda impacta primeiro o seu bolso.",
+   "feedbackLonge": "R$ 120: 1,2% de 10 mil. O viés é ignorar taxa por parecer pequena — % anual repetido corrói retorno como juro ao contrário."
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "greenwashing",
+   "criterio": "Cheiro de greenwashing?",
+   "enunciado": "Meta 'carbono zero' sem prazo nem medição",
+   "resposta": true,
+   "ancora": "Meta sem prazo é promessa sem cobrança possível.",
+   "feedbackErro": "'Carbono zero' soa como o compromisso máximo — mas sem data nem número ninguém pode cobrar. Meta séria diz quanto, até quando e quem confere."
+  }
+ ]
+}

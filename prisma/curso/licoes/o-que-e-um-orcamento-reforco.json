@@ -1,0 +1,249 @@
+{
+ "slug": "o-que-e-um-orcamento-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "o-que-e-um-orcamento",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "orcamento-serve",
+   "criterio": "Serve pra planejar o dinheiro?",
+   "enunciado": "Decidir gastos só na hora, sem planejar antes",
+   "resposta": false,
+   "ancora": "Sem planejar antes, não existe orçamento, só gasto solto.",
+   "feedbackErro": "Parece prático decidir na hora. Mas sem planejar antes, não há orçamento — é gasto solto, sem controle do que sobra."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "receita-despesa",
+   "criterio": "Isso é receita?",
+   "enunciado": "Encontrar uma nota de R$ 5 caída no chão",
+   "resposta": true,
+   "ancora": "Todo dinheiro que passa a ser seu é receita.",
+   "feedbackErro": "Parece sorte, não uma entrada de dinheiro combinada. Mas qualquer valor que passa a ser seu, mesmo achado, conta como receita."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "receita-despesa",
+   "criterio": "Isso é despesa?",
+   "enunciado": "Emprestar dinheiro pro colega, esperando de volta",
+   "resposta": false,
+   "ancora": "Emprestar não é gasto — o dinheiro deve voltar pra você.",
+   "feedbackErro": "Parece despesa, porque o dinheiro sai do bolso na hora. Mas como você espera receber de volta, não é gasto definitivo — não é despesa."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "orcamento-serve",
+   "dificuldade": 2,
+   "pergunta": "Sofia fez um orçamento, mas nunca olha ele de novo depois de pronto. Isso ainda ajuda?",
+   "ancora": "Orçamento feito uma vez só ajuda se for revisado depois.",
+   "alternativas": [
+    {
+     "texto": "Pouco, porque orçamento precisa ser acompanhado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, o orçamento já resolve tudo assim que é feito",
+     "correta": false,
+     "feedbackErro": "Fazer é só o primeiro passo. Sem acompanhar depois, ela não percebe se os gastos estão saindo do planejado."
+    },
+    {
+     "texto": "Sim, porque o dinheiro se organiza sozinho depois",
+     "correta": false,
+     "feedbackErro": "Dinheiro não se organiza sozinho. É o acompanhamento constante que faz o orçamento continuar valendo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "receita-despesa",
+   "dificuldade": 2,
+   "pergunta": "Rafa ganhou R$ 18 de recompensa por ajudar em casa. Isso entra no orçamento como o quê?",
+   "ancora": "O que entra é receita, seja mesada, prêmio ou recompensa.",
+   "alternativas": [
+    {
+     "texto": "Receita, porque é dinheiro entrando",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Despesa, porque envolveu trabalho",
+     "correta": false,
+     "feedbackErro": "O trabalho explica de onde veio, mas o que importa pro orçamento é a direção do dinheiro: ele entrou, então é receita."
+    },
+    {
+     "texto": "Nem receita nem despesa, porque não foi mesada",
+     "correta": false,
+     "feedbackErro": "Todo dinheiro que entra é receita, tenha vindo de mesada, recompensa ou venda. A origem não muda a categoria."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "registrar-orcamento",
+   "criterio": "Ajuda a registrar o orçamento?",
+   "enunciado": "Anotar só as despesas grandes e ignorar as pequenas",
+   "resposta": false,
+   "ancora": "Gastos pequenos somados também afetam o total.",
+   "feedbackErro": "Parece razoável focar só no que pesa mais. Mas gastos pequenos, somados ao longo do mês, também mudam o quanto sobra de verdade."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "receita-despesa",
+   "instrucao": "É receita ou despesa? Arraste.",
+   "ancora": "Independente da origem, o que entra é receita e o que sai, despesa.",
+   "feedbackErro": "A origem do dinheiro confunde — prêmio, achado ou compra parecem categorias diferentes. O que decide é só a direção: entrar ou sair.",
+   "caixas": [
+    { "id": "receita", "rotulo": "Receita" },
+    { "id": "despesa", "rotulo": "Despesa" }
+   ],
+   "itens": [
+    { "texto": "Recompensa por tirar nota boa", "caixaCorreta": "receita" },
+    { "texto": "Compra de um caderno novo", "caixaCorreta": "despesa" },
+    { "texto": "Dinheiro achado no bolso da calça", "caixaCorreta": "receita" },
+    { "texto": "Assinatura de um aplicativo de jogo", "caixaCorreta": "despesa" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "registrar-orcamento",
+   "criterio": "É um bom jeito de registrar?",
+   "enunciado": "Separar num caderno o que é receita e o que é despesa",
+   "resposta": true,
+   "ancora": "Separar por categoria facilita ver de onde vem cada valor.",
+   "feedbackErro": "Parece trabalho extra sem necessidade. Mas separar por categoria é o que deixa claro de onde vem e pra onde vai cada valor."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "registrar-orcamento",
+   "dificuldade": 2,
+   "pergunta": "Receita da semana foi R$ 27. Despesas: R$ 9 de lanche e R$ 6 de figurinha. Quanto sobrou?",
+   "ancora": "27 menos 9 menos 6 é 12 — o que sobrou na semana.",
+   "verificacao": { "expressao": "27-9-6", "esperado": 12 },
+   "alternativas": [
+    {
+     "texto": "R$ 12",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 18",
+     "correta": false,
+     "feedbackErro": "Esse valor esquece uma das despesas. Some as duas: 9 mais 6 é 15; 27 menos 15 é 12."
+    },
+    {
+     "texto": "R$ 15",
+     "correta": false,
+     "feedbackErro": "R$ 15 é a soma das despesas, não o que sobrou. Falta subtrair da receita: 27 menos 15 é 12."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "orcamento-serve",
+   "criterio": "É uma vantagem do orçamento?",
+   "enunciado": "Perceber, no meio do mês, que os gastos já passaram do planejado",
+   "resposta": true,
+   "ancora": "Perceber cedo dá tempo de ajustar antes do fim do mês.",
+   "feedbackErro": "Parece só uma má notícia, sem vantagem nenhuma. Mas perceber cedo dá tempo de cortar gastos antes que o mês termine no negativo."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "registrar-orcamento",
+   "criterio": "Ajuda a manter o orçamento em dia?",
+   "enunciado": "Deixar pra anotar tudo de uma vez, só no fim do mês",
+   "resposta": false,
+   "ancora": "Deixar acumular aumenta a chance de esquecer gastos.",
+   "feedbackErro": "Parece mais prático fazer tudo de uma vez. Mas deixar acumular aumenta a chance de esquecer gastos pequenos pelo caminho."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "orcamento-serve",
+   "pergunta": "Qual ideia fecha este encontro?",
+   "alternativas": [
+    {
+     "texto": "Orçamento só funciona se for acompanhado, não só feito uma vez",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só mesada conta como receita no orçamento",
+     "correta": false,
+     "feedbackErro": "Qualquer dinheiro que entra é receita — prêmio, achado ou venda contam do mesmo jeito."
+    },
+    {
+     "texto": "Gastos pequenos não precisam ser anotados",
+     "correta": false,
+     "feedbackErro": "Gastos pequenos somam ao longo do mês e mudam o quanto realmente sobra — também precisam ser anotados."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "orcamento-serve",
+   "dificuldade": 3,
+   "pergunta": "No fim da semana, a despesa ficou maior que a receita. O que isso mostra?",
+   "ancora": "Despesa maior que receita é o orçamento no negativo.",
+   "alternativas": [
+    {
+     "texto": "Que o orçamento da semana ficou negativo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que sobrou dinheiro pra guardar",
+     "correta": false,
+     "feedbackErro": "Sobrar é o oposto — acontece quando a receita é maior que a despesa, não quando a despesa é maior."
+    },
+    {
+     "texto": "Que a receita não foi anotada direito",
+     "correta": false,
+     "feedbackErro": "Não indica erro de anotação. Mostra, sim, que os gastos passaram do que entrou naquela semana."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "receita-despesa",
+   "criterio": "Isso é despesa?",
+   "enunciado": "Guardar dinheiro no cofrinho, sem gastar nada",
+   "resposta": false,
+   "ancora": "Guardar não é gasto — o dinheiro continua sendo seu.",
+   "feedbackErro": "Parece que o dinheiro 'saiu' pro cofrinho. Mas ele continua seu, só guardado — não é despesa, porque nada foi gasto."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "receita-despesa",
+   "instrucao": "É receita ou despesa? Arraste.",
+   "ancora": "Receita entra, despesa sai — não importa o motivo.",
+   "feedbackErro": "Venda, presente ou compra parecem categorias diferentes. O que importa é a direção: entra é receita, sai é despesa.",
+   "caixas": [
+    { "id": "receita", "rotulo": "Receita" },
+    { "id": "despesa", "rotulo": "Despesa" }
+   ],
+   "itens": [
+    { "texto": "Dinheiro recebido por vender desenhos", "caixaCorreta": "receita" },
+    { "texto": "Compra de um livro de história", "caixaCorreta": "despesa" },
+    { "texto": "Dinheiro ganho de presente de aniversário", "caixaCorreta": "receita" },
+    { "texto": "Ingresso pro parque", "caixaCorreta": "despesa" }
+   ]
+  }
+ ]
+}

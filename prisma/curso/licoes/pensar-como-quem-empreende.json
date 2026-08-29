@@ -1,0 +1,336 @@
+{
+ "slug": "pensar-como-quem-empreende",
+ "segmento": "em3",
+ "conceitoPrincipal": "custo-e-preco",
+ "fraseConceito": "Empreender é resolver um problema de alguém cobrando um preço que cubra os custos — e testar pequeno antes de apostar grande.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-e-preco",
+   "criterio": "É pensar como quem empreende?",
+   "enunciado": "Calcular o custo antes de definir o preço",
+   "resposta": true,
+   "ancora": "Sem saber o custo, o preço é chute — e chute dá prejuízo.",
+   "feedbackErro": "Parece burocracia, mas é a base: quem não sabe quanto gasta para produzir não sabe se está lucrando ou pagando para trabalhar."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-e-preco",
+   "criterio": "É pensar como quem empreende?",
+   "enunciado": "Copiar o preço do concorrente sem fazer conta",
+   "resposta": false,
+   "ancora": "O custo dele não é o seu. Preço copiado pode ser prejuízo seu.",
+   "feedbackErro": "Olhar o concorrente é útil como referência. Mas ele pode pagar menos pelos insumos — o preço que dá lucro para ele pode ser prejuízo para você."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "testar-antes-de-investir",
+   "criterio": "É pensar como quem empreende?",
+   "enunciado": "Começar pequeno para testar se alguém compra",
+   "resposta": true,
+   "ancora": "Teste pequeno: errar barato antes de investir alto.",
+   "feedbackErro": "Parece falta de ambição, mas é o contrário: o teste pequeno mostra se existe cliente antes de você comprometer dinheiro grande. Errar barato ensina igual."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-e-preco",
+   "dificuldade": 1,
+   "pergunta": "Um brigadeiro custa R$ 1,00 de ingredientes e é vendido a R$ 3,00. O lucro por unidade é R$ 2,00?",
+   "ancora": "Falta o resto: embalagem, gás, transporte e o seu tempo.",
+   "alternativas": [
+    {
+     "texto": "Não: faltam embalagem, gás e o tempo de fazer",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim: preço menos ingrediente é o lucro",
+     "correta": false,
+     "feedbackErro": "Essa conta esquece os custos escondidos: embalagem, gás, transporte, taxa de venda. O que sobra de verdade é menor que os R$ 2,00 aparentes."
+    },
+    {
+     "texto": "Não dá para saber lucro de coisa pequena",
+     "correta": false,
+     "feedbackErro": "Dá, e é obrigatório: lucro é preço menos TODOS os custos, em qualquer tamanho. Negócio pequeno sem essa conta quebra igual aos grandes."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-e-preco",
+   "dificuldade": 1,
+   "pergunta": "Vender 100 brigadeiros a R$ 3,00 com custo total de R$ 180. Quanto sobra?",
+   "ancora": "Receita R$ 300 - custo R$ 180 = R$ 120 de lucro.",
+   "verificacao": {
+    "expressao": "100*3-180",
+    "esperado": 120
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 120",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 300",
+     "correta": false,
+     "feedbackErro": "R$ 300 é a receita: tudo o que entrou. Lucro é o que sobra depois de pagar os custos — receita menos os R$ 180."
+    },
+    {
+     "texto": "R$ 180",
+     "correta": false,
+     "feedbackErro": "R$ 180 é o custo, o que saiu para produzir. O lucro é a diferença entre o que entrou (R$ 300) e esse valor."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-e-preco",
+   "criterio": "É custo do negócio?",
+   "enunciado": "As horas que você passa produzindo",
+   "resposta": true,
+   "ancora": "Seu tempo tem valor. Negócio que não paga seu tempo dá prejuízo.",
+   "feedbackErro": "É o custo mais esquecido. Se você gasta 5 horas e 'lucra' R$ 20, pagou-se R$ 4 por hora. Conte o tempo como custo para saber se o negócio vale."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "testar-antes-de-investir",
+   "instrucao": "Coloque na ordem: da ideia à primeira venda.",
+   "ancora": "Problema → conta → teste pequeno → venda com escuta.",
+   "feedbackErro": "A ordem protege seu dinheiro: primeiro o problema que alguém pagaria para resolver, depois a conta, depois o teste pequeno. Produzir antes de calcular é aposta.",
+   "itens": [
+    {
+     "texto": "Perceber um problema que as pessoas têm",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Calcular custo e definir o preço",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Produzir uma quantidade pequena",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Vender e ouvir quem comprou",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "risco-e-oportunidade",
+   "criterio": "Sinal de oportunidade?",
+   "enunciado": "Muita gente reclamando de um problema sem solução por perto",
+   "resposta": true,
+   "ancora": "Reclamação repetida é demanda esperando alguém atender.",
+   "feedbackErro": "Onde há reclamação constante, há gente disposta a pagar por solução. Oportunidade não é ideia genial: é problema real sem quem resolva."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "risco-e-oportunidade",
+   "criterio": "Sinal de oportunidade?",
+   "enunciado": "Um produto que só você acha incrível",
+   "resposta": false,
+   "ancora": "Negócio vive de cliente, não do gosto do dono.",
+   "feedbackErro": "Gostar do que faz ajuda, mas não sustenta: quem paga é o cliente. Antes de apostar, verifique se outras pessoas querem — e quanto pagariam."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-e-preco",
+   "pergunta": "Custo de R$ 2,00 por unidade e preço de R$ 5,00. Quantas vendas para juntar R$ 150 de lucro?",
+   "campo": "numero",
+   "min": 10,
+   "max": 150,
+   "gabarito": 50,
+   "toleranciaPct": 20,
+   "fonte": "derivado da própria conta: lucro unitário de R$ 3,00 (preço menos custo)",
+   "verificacao": {
+    "expressao": "150/(5-2)",
+    "esperado": 50
+   },
+   "feedbackPerto": "50 vendas: cada unidade deixa R$ 3,00, e 150 ÷ 3 = 50. Meta de lucro vira meta de vendas.",
+   "feedbackLonge": "São 50: o lucro por unidade é R$ 3,00 (5 - 2), não os R$ 5,00 do preço. O viés é contar a receita como se fosse lucro."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "risco-e-oportunidade",
+   "dificuldade": 2,
+   "pergunta": "Bianca quer abrir um brechó social, com lucro revertido para o bairro. O que continua obrigatório?",
+   "ancora": "Impacto social não dispensa conta: sem sobra, o projeto para.",
+   "alternativas": [
+    {
+     "texto": "Cobrir os custos: sem sobra, nem o social se sustenta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: projeto social não precisa de contas",
+     "correta": false,
+     "feedbackErro": "Precisa até mais: se a receita não cobre aluguel e reposição, o brechó fecha e o bairro perde o benefício. Impacto exige sustentação."
+    },
+    {
+     "texto": "Cobrar o preço mais alto que o mercado aceitar",
+     "correta": false,
+     "feedbackErro": "Maximizar preço contraria a proposta social e pode afastar o público. O obrigatório é outro: receita que cubra os custos e mantenha a porta aberta."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "testar-antes-de-investir",
+   "dificuldade": 2,
+   "pergunta": "O primeiro mês do negócio deu prejuízo. Qual reação é a de quem pensa como empreendedor?",
+   "ancora": "Erro vira dado: descubra a causa antes de decidir o rumo.",
+   "alternativas": [
+    {
+     "texto": "Investigar a causa: preço baixo, custo alto ou pouca venda?",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Desistir: prejuízo prova que a ideia era ruim",
+     "correta": false,
+     "feedbackErro": "Um mês é teste, não veredito. Prejuízo inicial é comum — vira problema quando se repete sem você entender a causa e ajustar."
+    },
+    {
+     "texto": "Dobrar a produção para compensar a perda",
+     "correta": false,
+     "feedbackErro": "Produzir mais com a mesma conta errada multiplica o prejuízo. Primeiro descubra onde a conta falha; depois, escale."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-e-preco",
+   "criterio": "Comportamento empreendedor?",
+   "enunciado": "Anotar tudo o que entra e sai do caixa",
+   "resposta": true,
+   "ancora": "Registro é o painel do negócio: sem ele, você dirige no escuro.",
+   "feedbackErro": "Parece detalhe chato, mas é o hábito que separa quem sabe do que acha. Sem registro, o lucro é sensação — e sensação paga boleto errado."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-e-preco",
+   "criterio": "Comportamento empreendedor?",
+   "enunciado": "Misturar o dinheiro do negócio com o da mesada",
+   "resposta": false,
+   "ancora": "Caixa separado: só assim você sabe se o negócio se paga.",
+   "feedbackErro": "Misturando, o negócio pode estar no prejuízo sem você ver — a mesada cobre o buraco. Separe os bolsos para o resultado aparecer de verdade."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "custo-e-preco",
+   "pergunta": "Qual frase resume pensar como quem empreende?",
+   "alternativas": [
+    {
+     "texto": "Ideia boa basta: o resto se resolve vendendo.",
+     "correta": false,
+     "feedbackErro": "Sem conta de custo e teste, a ideia boa vira prejuízo organizado."
+    },
+    {
+     "texto": "Conheça o custo, teste pequeno e deixe o cliente confirmar a ideia.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Lucro é tudo o que entra no caixa ao vender.",
+     "correta": false,
+     "feedbackErro": "O que entra é receita. Lucro é o que sobra depois de todos os custos — inclusive seu tempo."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "custo-e-preco",
+   "instrucao": "É custo da venda de doces ou não?",
+   "ancora": "Custo é o que sai do caixa para produzir e vender.",
+   "feedbackErro": "O critério: custo é o que você gasta para produzir e vender. O preço é o que entra; elogio e curtida não pagam ingrediente.",
+   "caixas": [
+    {
+     "id": "custo",
+     "rotulo": "É custo"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é custo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Chocolate e leite condensado",
+     "caixaCorreta": "custo"
+    },
+    {
+     "texto": "Embalagem de cada docinho",
+     "caixaCorreta": "custo"
+    },
+    {
+     "texto": "O valor cobrado do cliente",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Curtidas no post de divulgação",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "custo-e-preco",
+   "dificuldade": 2,
+   "pergunta": "O custo por unidade sobe de R$ 2,00 para R$ 2,50 e o preço fica em R$ 5,00. E o lucro unitário?",
+   "ancora": "Lucro unitário cai de R$ 3,00 para R$ 2,50.",
+   "verificacao": {
+    "expressao": "(5-2.5)-(5-2)",
+    "esperado": -0.5
+   },
+   "alternativas": [
+    {
+     "texto": "Cai R$ 0,50: todo custo a mais sai do lucro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: o preço continua o mesmo",
+     "correta": false,
+     "feedbackErro": "Preço parado com custo subindo é lucro encolhendo. A diferença entre os dois é que importa — e ela caiu R$ 0,50."
+    },
+    {
+     "texto": "Sobe, porque o produto ficou mais valioso",
+     "correta": false,
+     "feedbackErro": "Custo maior não torna o produto mais valioso para o cliente. Para o caixa, é o contrário: mesma receita, gasto maior, sobra menor."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "risco-e-oportunidade",
+   "criterio": "Desafio de ter negócio próprio?",
+   "enunciado": "Renda que varia de um mês para o outro",
+   "resposta": true,
+   "ancora": "Sem salário fixo, o caixa precisa de reserva para os meses fracos.",
+   "feedbackErro": "É um dos desafios centrais: cliente oscila, renda oscila. Quem empreende precisa de reserva e de conta feita para atravessar mês fraco."
+  }
+ ]
+}

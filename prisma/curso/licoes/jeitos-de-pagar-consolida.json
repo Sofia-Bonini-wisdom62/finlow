@@ -1,0 +1,250 @@
+{
+ "slug": "jeitos-de-pagar-consolida",
+ "segmento": "ef35",
+ "conceitoPrincipal": "jeitos-de-pagar",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "meios-de-pagamento",
+   "criterio": "É um meio de pagamento?",
+   "enunciado": "Guardar pontos de fidelidade pra trocar por desconto depois",
+   "resposta": false,
+   "ancora": "Pontos reduzem o valor, mas não substituem o pagamento em si.",
+   "feedbackErro": "Parece pagamento porque 'compra' coisas, mas os pontos só abatem o valor — o pagamento ainda precisa de outro meio."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "meios-de-pagamento",
+   "criterio": "É um meio de pagamento?",
+   "enunciado": "Trocar figurinhas por um lanche na cantina da escola",
+   "resposta": true,
+   "ancora": "Trocar uma coisa por outra também é forma de pagar: escambo.",
+   "feedbackErro": "Parece só uma trocinha entre amigos, mas trocar bens por bens também é uma forma de pagamento: o escambo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "vista-ou-prazo",
+   "criterio": "É pagar à vista?",
+   "enunciado": "Pagar a entrada agora e o resto em 3 vezes depois",
+   "resposta": false,
+   "ancora": "Se sobra parte pra pagar depois, a compra toda é a prazo.",
+   "feedbackErro": "A entrada parece à vista, mas se ainda falta pagar parcelas depois, a compra inteira conta como a prazo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "vista-ou-prazo",
+   "dificuldade": 3,
+   "pergunta": "Um videogame custa R$ 900. Dando R$ 300 de entrada e o resto em 4 parcelas iguais, quanto vale cada uma?",
+   "ancora": "900 menos 300 de entrada é 600; dividido por 4 parcelas dá 150.",
+   "verificacao": { "expressao": "(900-300)/4", "esperado": 150 },
+   "alternativas": [
+    {
+     "texto": "R$ 150",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 225",
+     "correta": false,
+     "feedbackErro": "225 seria dividir os R$ 900 inteiros por 4, esquecendo a entrada. O que falta é 600, dividido por 4 dá 150."
+    },
+    {
+     "texto": "R$ 300",
+     "correta": false,
+     "feedbackErro": "300 é o valor da entrada, não da parcela. O restante, 600, dividido por 4 dá 150."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "meios-de-pagamento",
+   "dificuldade": 3,
+   "pergunta": "Numa cidade sem sinal de internet, qual meio de pagamento NÃO vai funcionar?",
+   "ancora": "Pix depende de conexão; sem sinal, a transferência não se completa.",
+   "alternativas": [
+    {
+     "texto": "Pix",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Dinheiro em espécie",
+     "correta": false,
+     "feedbackErro": "Dinheiro funciona em qualquer lugar, com ou sem internet — não é ele que depende de sinal."
+    },
+    {
+     "texto": "Troca direta de produtos",
+     "correta": false,
+     "feedbackErro": "Trocar produto por produto também não depende de internet — o problema é só com pagamentos digitais."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "vantagens-e-desvantagens",
+   "criterio": "É uma desvantagem?",
+   "enunciado": "Parcelar sem juros trava parte do seu dinheiro em compromissos futuros",
+   "resposta": true,
+   "ancora": "Mesmo sem juros, parcelas comprometem o dinheiro dos meses seguintes.",
+   "feedbackErro": "Sem juros parece só vantagem, mas cada parcela futura reduz o que sobra pra outras coisas nesse mês."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "vista-ou-prazo",
+   "instrucao": "Ainda é considerado pagar a prazo? Arraste.",
+   "ancora": "A prazo é qualquer parte do pagamento empurrada pra depois da compra.",
+   "feedbackErro": "O que importa não é o número de parcelas, é se alguma parte fica pra pagar depois da compra.",
+   "caixas": [
+    { "id": "sim", "rotulo": "É a prazo" },
+    { "id": "nao", "rotulo": "É à vista" }
+   ],
+   "itens": [
+    { "texto": "Dar entrada e pagar o resto em 2 parcelas", "caixaCorreta": "sim" },
+    { "texto": "Pagar tudo de uma vez, mesmo que seja com pix", "caixaCorreta": "nao" },
+    { "texto": "Comprar hoje e prometer pagar só no mês que vem, tudo de uma vez", "caixaCorreta": "sim" },
+    { "texto": "Pagar o valor total na hora, em dinheiro", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "meios-de-pagamento",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Cartão de crédito sempre precisa de internet pra funcionar",
+   "resposta": false,
+   "ancora": "Máquinas mais antigas conseguem aprovar por telefone, sem internet.",
+   "feedbackErro": "A maioria usa internet hoje, mas algumas máquinas ainda conseguem aprovar por linha telefônica, sem internet."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "vista-ou-prazo",
+   "dificuldade": 3,
+   "pergunta": "Duas lojas vendem o mesmo tênis de R$ 300: uma à vista, outra em 6x sem informar juro. Qual pergunta falta pra decidir?",
+   "ancora": "Parcelar sem avisar juro pode esconder um total maior.",
+   "alternativas": [
+    {
+     "texto": "Se o total das 6 parcelas ainda soma R$ 300",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Qual loja fica mais perto de casa",
+     "correta": false,
+     "feedbackErro": "Distância pode importar depois, mas primeiro é preciso saber se o parcelado custa o mesmo total."
+    },
+    {
+     "texto": "Qual das duas tem a embalagem mais bonita",
+     "correta": false,
+     "feedbackErro": "Embalagem não muda o valor pago — o que decide é se o total parcelado ainda é R$ 300."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "meios-de-pagamento",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Trocar figurinha por figurinha é pagamento, mesmo sem dinheiro envolvido",
+   "resposta": true,
+   "ancora": "Escambo é pagamento sem dinheiro — troca de bem por bem.",
+   "feedbackErro": "Parece só brincadeira porque não tem dinheiro no meio, mas trocar bens é uma forma antiga de pagamento."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "vantagens-e-desvantagens",
+   "criterio": "Ajuda a escolher melhor?",
+   "enunciado": "Escolher sempre a opção com mais parcelas, sem comparar o total",
+   "resposta": false,
+   "ancora": "Mais parcelas parece mais fácil, mas o total pode ficar maior.",
+   "feedbackErro": "Parcelas menores parecem mais fáceis no dia a dia, mas sem comparar o total, você pode pagar bem mais no fim."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "meios-de-pagamento",
+   "pergunta": "Depois de tudo isso, qual é a ideia mais completa sobre jeitos de pagar?",
+   "alternativas": [
+    {
+     "texto": "Só existe pagamento quando tem dinheiro ou cartão envolvido",
+     "correta": false,
+     "feedbackErro": "Trocar bens (escambo) também é pagamento — dinheiro e cartão são só dois entre vários jeitos."
+    },
+    {
+     "texto": "Cada meio tem condições próprias, e comparar o total decide o que compensa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quantas parcelas tem já diz se a compra é boa ou ruim",
+     "correta": false,
+     "feedbackErro": "O número de parcelas sozinho não diz nada — o que importa é o total pago, comparado ao valor à vista."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "vista-ou-prazo",
+   "dificuldade": 3,
+   "pergunta": "Uma bicicleta de R$ 480, com R$ 180 de entrada e o resto em 6 parcelas. Qual o valor de cada parcela?",
+   "ancora": "480 menos 180 de entrada é 300; dividido por 6 parcelas dá 50.",
+   "verificacao": { "expressao": "(480-180)/6", "esperado": 50 },
+   "alternativas": [
+    {
+     "texto": "R$ 50",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 80",
+     "correta": false,
+     "feedbackErro": "80 seria dividir os R$ 480 inteiros por 6, esquecendo a entrada. Restam 300, e 300 dividido por 6 dá 50."
+    },
+    {
+     "texto": "R$ 180",
+     "correta": false,
+     "feedbackErro": "180 é o valor da entrada, não da parcela. O restante, 300, dividido por 6 dá 50."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "meios-de-pagamento",
+   "instrucao": "Depende de conexão com a internet? Arraste.",
+   "ancora": "Pagamentos digitais dependem de conexão; dinheiro e troca não.",
+   "feedbackErro": "O que muda não é se é 'moderno', é se precisa de internet pra confirmar — dinheiro e troca nunca precisam.",
+   "caixas": [
+    { "id": "sim", "rotulo": "Depende" },
+    { "id": "nao", "rotulo": "Não depende" }
+   ],
+   "itens": [
+    { "texto": "Pix", "caixaCorreta": "sim" },
+    { "texto": "Dinheiro em espécie", "caixaCorreta": "nao" },
+    { "texto": "Cartão de crédito na maioria das lojas hoje", "caixaCorreta": "sim" },
+    { "texto": "Troca direta de produtos", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "vantagens-e-desvantagens",
+   "criterio": "É uma vantagem?",
+   "enunciado": "Ter o total das parcelas maior que o preço à vista, sem juro declarado",
+   "resposta": false,
+   "ancora": "Total maior sem juro declarado é sinal de custo escondido.",
+   "feedbackErro": "Parece só uma forma diferente de pagar, mas total maior sem juro declarado é desvantagem, não vantagem."
+  }
+ ]
+}

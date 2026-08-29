@@ -1,0 +1,342 @@
+{
+ "slug": "preco-que-muda-com-o-calendario-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "preco-que-muda-com-o-calendario",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "sazonalidade-preco",
+   "criterio": "Segue a lógica de oferta e procura?",
+   "enunciado": "Preço do abacaxi caindo bastante em janeiro, no pico da safra",
+   "resposta": true,
+   "ancora": "Mais oferta na safra derruba o preço — a lógica de sempre.",
+   "feedbackErro": "Parece contraintuitivo um preço cair tanto assim, mas na safra a oferta dispara e o preço cede na mesma proporção."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "sazonalidade-preco",
+   "criterio": "Segue a lógica de oferta e procura?",
+   "enunciado": "Preço do brinquedo continuando alto ainda em fevereiro, após o Natal",
+   "resposta": false,
+   "ancora": "Passada a data, a procura cai — o preço tende a ceder também.",
+   "feedbackErro": "O preço alto de dezembro parece 'grudar', mas sem a procura de fim de ano, ele deveria ceder — se não cede, foge da lógica."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "sazonalidade-preco",
+   "criterio": "Segue a lógica de oferta e procura?",
+   "enunciado": "Preço do ovo de chocolate subindo semanas antes da Páscoa",
+   "resposta": true,
+   "ancora": "A procura sobe antes da data — o preço acompanha antecipado.",
+   "feedbackErro": "Parece cedo demais pra subir antes da data em si, mas a procura já aumenta com antecedência, e o preço acompanha."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "renda-inesperada",
+   "dificuldade": 2,
+   "pergunta": "Beatriz recebeu R$ 1.140 de restituição do Imposto de Renda. Qual pergunta ajuda mais?",
+   "ancora": "Checar se o valor resolve algo importante guia a decisão.",
+   "alternativas": [
+    {
+     "texto": "Esse valor muda algo importante nas minhas dívidas ou metas?",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quanto dá pra gastar sem sentir o impacto?",
+     "correta": false,
+     "feedbackErro": "Gastar 'sem sentir' não é o critério que orienta a melhor escolha. A pergunta que importa é se o valor resolve algo maior nas metas."
+    },
+    {
+     "texto": "Quanto os amigos gastariam num valor desses?",
+     "correta": false,
+     "feedbackErro": "O que outras pessoas fariam não decide o seu caso. A pergunta central é se esse valor resolve algo importante pra você."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "sazonalidade-preco",
+   "dificuldade": 2,
+   "pergunta": "Uma loja anuncia 'preço baixo por tempo limitado' fora de qualquer data. O que checar?",
+   "ancora": "Comparar com o preço praticado antes revela se o desconto é real.",
+   "alternativas": [
+    {
+     "texto": "Se esse preço é realmente mais baixo que o praticado antes",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se o produto está disponível em outras cores",
+     "correta": false,
+     "feedbackErro": "Cor disponível não diz nada sobre o preço ser bom ou não. O que prova o desconto é comparar com o valor praticado antes."
+    },
+    {
+     "texto": "Se a promoção tem um cronômetro na tela",
+     "correta": false,
+     "feedbackErro": "Cronômetro é só um gatilho visual de pressa, não prova de preço bom. O que confirma o desconto é o histórico de preço do produto."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "sazonalidade-preco",
+   "criterio": "A pressa tem justificativa real?",
+   "enunciado": "Comprar rápido porque a contagem regressiva está acabando",
+   "resposta": false,
+   "ancora": "Contagem regressiva é gatilho de pressa, não prova de preço bom.",
+   "feedbackErro": "O relógio correndo parece uma prova concreta de urgência, mas é só um recurso visual — não garante que o preço realmente vai subir."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "renda-inesperada",
+   "instrucao": "É decisão pensada ou decisão por impulso?",
+   "ancora": "Pensada dá um tempo antes de agir; impulso age no calor do momento.",
+   "feedbackErro": "Parece que qualquer ação rápida é impulso, mas o que separa é dar um tempo pra avaliar antes de decidir, mesmo que seja curto.",
+   "caixas": [
+    {
+     "id": "pensada",
+     "rotulo": "Decisão pensada"
+    },
+    {
+     "id": "impulso",
+     "rotulo": "Decisão por impulso"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Esperar alguns dias antes de decidir o uso do valor",
+     "caixaCorreta": "pensada"
+    },
+    {
+     "texto": "Comprar o primeiro anúncio de oferta que aparece",
+     "caixaCorreta": "impulso"
+    },
+    {
+     "texto": "Comparar se o valor resolve uma dívida cara",
+     "caixaCorreta": "pensada"
+    },
+    {
+     "texto": "Gastar tudo porque 'nunca tinha tanto assim'",
+     "caixaCorreta": "impulso"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "sazonalidade-preco",
+   "criterio": "Vale esperar mais um pouco pra comprar?",
+   "enunciado": "Sandália de dedo, três semanas antes do verão, preço de fábrica",
+   "resposta": true,
+   "ancora": "Ainda falta a procura do verão chegar — o preço deve subir mais.",
+   "feedbackErro": "Três semanas parece pouco tempo pra fazer diferença, mas é antes do pico de procura do verão — esperar ainda compensa."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "renda-inesperada",
+   "criterio": "É pressa disfarçada de golpe?",
+   "enunciado": "Mensagem dizendo que o Pix recebido 'precisa' ser usado em 24h",
+   "resposta": true,
+   "ancora": "Prazo apertado sem checagem é gatilho clássico de golpe.",
+   "feedbackErro": "Parece uma regra legítima do banco, mas nenhuma instituição séria exige uso imediato — é um gatilho pra você não checar direito."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "sazonalidade-preco",
+   "pergunta": "Um livro de R$ 68 tem 35% de desconto na Black Friday. Qual o preço final?",
+   "campo": "moeda",
+   "min": 30,
+   "max": 68,
+   "gabarito": 44.2,
+   "toleranciaPct": 20,
+   "fonte": "desconto comum de Black Friday, ~35% em livrarias",
+   "feedbackPerto": "Isso mesmo — R$ 44,20. Trinta e cinco por cento saem de cima do preço cheio.",
+   "feedbackLonge": "O preço final fica perto de R$ 44,20. Trinta e cinco por cento de R$ 68 são cerca de R$ 24 de desconto.",
+   "verificacao": {
+    "expressao": "68*0.65",
+    "esperado": 44.2,
+    "tolerancia": 0.1
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "renda-inesperada",
+   "dificuldade": 2,
+   "pergunta": "R$ 680 de bônus caem na conta. R$ 220 é de uma conta atrasada com juros. O que muda mais?",
+   "ancora": "Quitando os R$ 220 atrasados, sobram R$ 460 livres de juros correndo.",
+   "alternativas": [
+    {
+     "texto": "Quitar os R$ 220 atrasados primeiro, sobrando R$ 460 livres",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Guardar tudo e decidir sobre a dívida depois",
+     "correta": false,
+     "feedbackErro": "Adiar a decisão deixa os juros da conta atrasada correndo mais tempo. Quitar agora estanca esse custo antes de qualquer outra escolha."
+    },
+    {
+     "texto": "Dividir os R$ 680 em partes iguais pra cada gasto",
+     "correta": false,
+     "feedbackErro": "Dividir em partes iguais ignora que a dívida atrasada tem juros correndo. Ela pesa mais que qualquer outro uso do valor."
+    }
+   ],
+   "verificacao": {
+    "expressao": "680-220",
+    "esperado": 460
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "sazonalidade-preco",
+   "dificuldade": 2,
+   "pergunta": "Um posto anuncia gasolina mais barata só às terças. Isso é sazonalidade de calendário?",
+   "ancora": "É estratégia comercial pontual, não efeito de época do ano.",
+   "alternativas": [
+    {
+     "texto": "Não — é estratégia comercial, não efeito de calendário",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque envolve um dia fixo da semana",
+     "correta": false,
+     "feedbackErro": "Ter um dia fixo não é a mesma coisa que sazonalidade de época do ano. Isso é estratégia comercial recorrente, não safra ou data comemorativa."
+    },
+    {
+     "texto": "Sim, todo desconto recorrente é sazonalidade",
+     "correta": false,
+     "feedbackErro": "Nem todo desconto que se repete é sazonalidade. Sazonalidade liga o preço à época do ano, não a um dia fixo de estratégia comercial."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "sazonalidade-preco",
+   "criterio": "Reduz o preço pago no fim das contas?",
+   "enunciado": "Anotar num calendário quando cada produto fica mais barato",
+   "resposta": true,
+   "ancora": "Saber a época certa de comprar cada coisa evita pagar o pico do preço.",
+   "feedbackErro": "Parece trabalho extra sem necessidade, mas saber a época certa de cada produto é o que permite escolher quando comprar mais barato."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "renda-inesperada",
+   "criterio": "Protege de gastar mal o valor extra?",
+   "enunciado": "Definir de antemão: metade guarda, metade decide depois",
+   "resposta": true,
+   "ancora": "Uma regra fixa evita decidir tudo no calor do momento.",
+   "feedbackErro": "Parece rígido demais pra um valor 'extra', mas ter uma regra pronta é o que evita decidir tudo no impulso quando o dinheiro chega."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "renda-inesperada",
+   "pergunta": "Qual frase resume o cuidado com preço sazonal e dinheiro inesperado?",
+   "alternativas": [
+    {
+     "texto": "Checar a época e ter uma regra pronta evita pagar caro e gastar por impulso",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Contagem regressiva sempre indica um preço realmente bom",
+     "correta": false,
+     "feedbackErro": "Contagem regressiva é gatilho de pressa, não prova de preço bom — ela pode até se repetir todo dia sem mudar nada."
+    },
+    {
+     "texto": "Dinheiro extra deve seguir a mesma regra de qualquer troco pequeno",
+     "correta": false,
+     "feedbackErro": "Valor grande pede mais cuidado que um troco pequeno. A regra de parar e decidir com calma vale mais quanto maior for o valor."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "renda-inesperada",
+   "instrucao": "É uso pensado ou gasto por impulso do dinheiro extra?",
+   "ancora": "Pensado espera e compara; impulso age assim que o valor chega.",
+   "feedbackErro": "É fácil achar que qualquer gasto rápido é impulso, mas o que separa é ter parado pra avaliar antes, mesmo que por pouco tempo.",
+   "caixas": [
+    {
+     "id": "pensado",
+     "rotulo": "Uso pensado"
+    },
+    {
+     "id": "impulso",
+     "rotulo": "Gasto por impulso"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Comparar se o valor quita uma dívida cara",
+     "caixaCorreta": "pensado"
+    },
+    {
+     "texto": "Gastar tudo no primeiro anúncio que aparece",
+     "caixaCorreta": "impulso"
+    },
+    {
+     "texto": "Esperar alguns dias antes de decidir o destino",
+     "caixaCorreta": "pensado"
+    },
+    {
+     "texto": "Comprar por 'nunca ter tido tanto assim'",
+     "caixaCorreta": "impulso"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "sazonalidade-preco",
+   "dificuldade": 3,
+   "pergunta": "Uma loja baixa o preço de sorvete só em dias muito quentes. Isso é sazonalidade de calendário?",
+   "ancora": "É sazonalidade de clima do dia, não de época do calendário.",
+   "alternativas": [
+    {
+     "texto": "Não — depende do clima do dia, não de uma época fixa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque o preço muda com frequência",
+     "correta": false,
+     "feedbackErro": "Mudar com frequência não é a mesma coisa que seguir uma época do calendário. Aqui quem decide é o clima daquele dia específico."
+    },
+    {
+     "texto": "Sim, verão sempre baixa o preço do sorvete",
+     "correta": false,
+     "feedbackErro": "O exemplo não fala do verão inteiro, só de dias muito quentes dentro dele. O gatilho é o clima do dia, não a estação toda."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "renda-inesperada",
+   "criterio": "É golpe disfarçado de urgência?",
+   "enunciado": "Mensagem pedindo para 'confirmar' um Pix recebido clicando num link",
+   "resposta": true,
+   "ancora": "Pix recebido não precisa de confirmação por link — é golpe clássico.",
+   "feedbackErro": "Parece burocracia normal de banco, e é aí que engana. Pix recebido já está na conta; nenhum link de 'confirmação' é necessário."
+  }
+ ]
+}

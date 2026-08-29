@@ -1,0 +1,339 @@
+{
+ "slug": "moeda-de-outro-pais-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "moeda-de-outro-pais",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "moeda-de-outro-pais",
+   "criterio": "Isso é câmbio, mesmo sem casa de câmbio?",
+   "enunciado": "Um app de viagem cobra a hospedagem em euros, mostrando o total já em reais na tela final",
+   "resposta": true,
+   "ancora": "A conversão acontece nos bastidores, mesmo sem casa de câmbio.",
+   "feedbackErro": "Como o app já entrega o total em reais, parece que não houve câmbio. Mas essa conversão de euro para real aconteceu nos bastidores da cobrança."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "moeda-de-outro-pais",
+   "criterio": "Isso é câmbio, mesmo sem casa de câmbio?",
+   "enunciado": "Guardar dólares em espécie, sem nunca trocar por reais",
+   "resposta": false,
+   "ancora": "Ter a moeda parada não é câmbio; câmbio é o ato de trocar.",
+   "feedbackErro": "Ter dólares parece já envolver alguma operação financeira. Mas câmbio é o ato de trocar uma moeda por outra: guardar parado não é isso."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "moeda-de-outro-pais",
+   "criterio": "Isso é câmbio, mesmo sem casa de câmbio?",
+   "enunciado": "Um streaming cobrado em dólar que vira débito em reais na fatura, todo mês",
+   "resposta": true,
+   "ancora": "Cobrança recorrente em dólar também passa por conversão mensal.",
+   "feedbackErro": "Por ser uma cobrança automática e repetida, parece só um débito comum. Mas todo mês acontece uma nova conversão de dólar para real."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "moeda-de-outro-pais",
+   "dificuldade": 3,
+   "pergunta": "Em qual situação NÃO existe conversão de câmbio envolvida?",
+   "ancora": "Sem moeda estrangeira na operação, não há câmbio.",
+   "alternativas": [
+    {
+     "texto": "Pagar em reais, numa loja brasileira, por produto nacional",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Assinar um streaming cobrado em dólar",
+     "correta": false,
+     "feedbackErro": "Mesmo sendo uma assinatura simples, o valor em dólar precisa ser convertido para real todo mês: há câmbio envolvido."
+    },
+    {
+     "texto": "Comprar em euro, mesmo mostrando o total em real depois",
+     "correta": false,
+     "feedbackErro": "O total já aparecer em real não elimina a conversão: ela só aconteceu antes de a tela mostrar o valor final."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custos-de-cambio",
+   "dificuldade": 3,
+   "pergunta": "Um cartão promete 'sem IOF' em compras internacionais. Isso elimina todo custo extra do câmbio?",
+   "ancora": "Spread do cartão pode continuar existindo mesmo sem IOF.",
+   "alternativas": [
+    {
+     "texto": "Não: o spread embutido na cotação do cartão continua",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, sem IOF o preço final é igual à cotação, sem diferença",
+     "correta": false,
+     "feedbackErro": "Mesmo sem o imposto, o cartão pode aplicar uma cotação própria, com margem embutida: o valor final ainda pode ficar acima da cotação de mercado."
+    },
+    {
+     "texto": "Sim, porque o IOF é a única taxa que existe em câmbio",
+     "correta": false,
+     "feedbackErro": "O IOF é só um dos custos possíveis. O spread cobrado na cotação usada pelo cartão é outro, independente do imposto."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custos-de-cambio",
+   "criterio": "É uma exceção à regra geral?",
+   "enunciado": "Free shops de aeroportos internacionais aceitarem várias moedas, sem conversão prévia",
+   "resposta": true,
+   "ancora": "Free shops fixam preços em mais de uma moeda, por exceção.",
+   "feedbackErro": "Parece contrariar a regra de que só o real vale no Brasil. Mas free shops são uma exceção reconhecida, com preços fixados em mais de uma moeda."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "moeda-de-outro-pais",
+   "instrucao": "Classifique: envolve câmbio ou não?",
+   "ancora": "Câmbio exige moeda estrangeira em algum ponto da operação.",
+   "feedbackErro": "Todas envolvem pagamento, mas só algumas trocam uma moeda por outra em algum momento.",
+   "caixas": [
+    {
+     "id": "envolve",
+     "rotulo": "Envolve"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não envolve"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Pagar o boleto de luz em reais",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Comprar um curso online cobrado em dólar",
+     "caixaCorreta": "envolve"
+    },
+    {
+     "texto": "Trocar dinheiro numa casa de câmbio para uma viagem",
+     "caixaCorreta": "envolve"
+    },
+    {
+     "texto": "Receber salário em reais e gastar em reais",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custos-de-cambio",
+   "criterio": "O valor pode variar até fechar a fatura?",
+   "enunciado": "Uma compra em dólar no cartão de crédito, cobrada só na fatura do mês seguinte",
+   "resposta": true,
+   "ancora": "A cotação usada é a do fechamento, que pode diferir da compra.",
+   "feedbackErro": "Muita gente acha que o valor mostrado na hora da compra é o final. Mas a cotação usada de fato costuma ser a do fechamento da fatura, que pode variar."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custos-de-cambio",
+   "criterio": "O valor pode variar até fechar a fatura?",
+   "enunciado": "Uma compra já paga à vista, em reais, dentro do Brasil",
+   "resposta": false,
+   "ancora": "Sem câmbio envolvido, o valor pago não sofre nova conversão.",
+   "feedbackErro": "Depois de ver a variação em compras no cartão internacional, pode parecer regra geral. Mas em real, à vista, o valor pago já é o final."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custos-de-cambio",
+   "pergunta": "US$ 500 em compras, cartão cobra R$ 5,30 mais IOF de 3,5%. Quantos reais saem da fatura?",
+   "campo": "moeda",
+   "min": 2000,
+   "max": 3200,
+   "gabarito": 2743,
+   "toleranciaPct": 20,
+   "fonte": "cálculo padrão de compra internacional no cartão",
+   "feedbackPerto": "Isso mesmo, cerca de R$ 2.743. Primeiro converte pela cotação, depois soma o IOF por cima.",
+   "feedbackLonge": "R$ 2.743: 500 vezes R$ 5,30 dá R$ 2.650; com 3,5% de IOF por cima, chega a R$ 2.742,75.",
+   "verificacao": {
+    "expressao": "500*5.3*1.035",
+    "esperado": 2743,
+    "tolerancia": 1
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custos-de-cambio",
+   "dificuldade": 3,
+   "pergunta": "Uma loja anuncia preço 'sem taxa de câmbio' para pagamento em dólar direto. Isso é possível de verdade?",
+   "ancora": "Algum custo de conversão quase sempre está embutido em algum ponto.",
+   "alternativas": [
+    {
+     "texto": "Não: algum custo de câmbio está embutido no preço ou na taxa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, existem lojas sem nenhum custo de câmbio",
+     "correta": false,
+     "feedbackErro": "Alguém sempre arca com o custo da conversão: se não é uma taxa visível, está embutido no preço ou na cotação usada."
+    },
+    {
+     "texto": "Sim, porque câmbio só existe em casas de câmbio físicas",
+     "correta": false,
+     "feedbackErro": "Câmbio acontece em qualquer conversão de moeda, incluindo dentro de cartões e plataformas online, não só em casas físicas."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "calculo-de-cambio",
+   "dificuldade": 3,
+   "pergunta": "Larissa recebeu um pagamento em dólar e decide quando converter para real. Além da cotação, o que mais deve pesar?",
+   "ancora": "Taxas da plataforma ou banco também afetam o valor final.",
+   "alternativas": [
+    {
+     "texto": "As taxas cobradas pela plataforma ou banco na conversão",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A cor do aplicativo do banco usado",
+     "correta": false,
+     "feedbackErro": "Detalhes visuais do aplicativo não afetam o valor recebido. O que pesa são as taxas cobradas na operação de conversão."
+    },
+    {
+     "texto": "O dia da semana, que não influencia a cotação",
+     "correta": false,
+     "feedbackErro": "A cotação pode variar em qualquer dia útil, inclusive entre dias da semana. O que garante o mesmo valor não é o dia, e sim travar a cotação."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custos-de-cambio",
+   "criterio": "O custo pode ficar escondido no meio?",
+   "enunciado": "Uma compra internacional que soma cotação do dia, spread do cartão e IOF",
+   "resposta": true,
+   "ancora": "Cada etapa soma um custo que nem sempre aparece somado.",
+   "feedbackErro": "Cada taxa aparece separada, pequena, e por isso parece pouco. Mas cotação, spread e IOF juntos podem elevar bastante o custo final."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custos-de-cambio",
+   "criterio": "O custo pode ficar escondido no meio?",
+   "enunciado": "Uma compra em reais, de uma loja nacional, sem nenhuma conversão",
+   "resposta": false,
+   "ancora": "Sem câmbio, não há cotação, spread nem IOF de operação cambial.",
+   "feedbackErro": "Depois de tantas camadas de custo em compras internacionais, pode parecer que sempre existe algo escondido. Mas sem câmbio, não há essas taxas."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "moeda-de-outro-pais",
+   "dificuldade": null,
+   "pergunta": "Qual frase resume a consolidação de hoje?",
+   "alternativas": [
+    {
+     "texto": "Câmbio pode estar escondido em compras que parecem só 'em real'",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só existe câmbio quando se vai numa casa de câmbio física",
+     "correta": false,
+     "feedbackErro": "Câmbio acontece em qualquer conversão de moeda, incluindo dentro de cartões e assinaturas cobradas em moeda estrangeira."
+    },
+    {
+     "texto": "Cartão 'sem IOF' elimina todo custo extra da compra internacional",
+     "correta": false,
+     "feedbackErro": "Sem o imposto, ainda pode existir spread embutido na cotação usada pelo cartão."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custos-de-cambio",
+   "criterio": "Existe custo de câmbio, mesmo sem IOF?",
+   "enunciado": "Uma compra internacional feita com cartão isento de IOF",
+   "resposta": true,
+   "ancora": "O spread da cotação do cartão pode continuar existindo.",
+   "feedbackErro": "Sem o imposto, parece que o custo desapareceu de vez. Mas o spread embutido na cotação usada pelo cartão pode continuar existindo."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "moeda-de-outro-pais",
+   "dificuldade": 3,
+   "pergunta": "Em qual situação o preço mostrado já em reais ainda passou por câmbio?",
+   "ancora": "Preço final em real não significa ausência de conversão.",
+   "alternativas": [
+    {
+     "texto": "Quando a cobrança original era em moeda estrangeira",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando o produto é vendido só no Brasil, em reais",
+     "correta": false,
+     "feedbackErro": "Produto nacional, vendido e cobrado em reais desde o início, não passa por conversão nenhuma."
+    },
+    {
+     "texto": "Nunca — se o preço final está em reais, não houve câmbio",
+     "correta": false,
+     "feedbackErro": "O preço final em reais pode ser resultado de uma conversão anterior, feita a partir de uma cobrança original em moeda estrangeira."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "calculo-de-cambio",
+   "instrucao": "Classifique: real mais forte ou mais fraco frente ao dólar?",
+   "ancora": "Cotação menor é real mais forte; cotação maior é real mais fraco.",
+   "feedbackErro": "O número da cotação sobe ou desce, e isso indica a força do real frente ao dólar.",
+   "caixas": [
+    {
+     "id": "forte",
+     "rotulo": "Real mais forte"
+    },
+    {
+     "id": "fraco",
+     "rotulo": "Real mais fraco"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Dólar caiu de R$ 5,40 para R$ 4,90",
+     "caixaCorreta": "forte"
+    },
+    {
+     "texto": "Dólar subiu de R$ 4,90 para R$ 5,40",
+     "caixaCorreta": "fraco"
+    },
+    {
+     "texto": "Cotação em queda ao longo do mês",
+     "caixaCorreta": "forte"
+    },
+    {
+     "texto": "Cotação em alta ao longo do mês",
+     "caixaCorreta": "fraco"
+    }
+   ]
+  }
+ ]
+}

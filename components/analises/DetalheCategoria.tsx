@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { X } from "lucide-react"
 import { brl, dataCurta } from "@/lib/formato"
 
@@ -50,33 +50,44 @@ interface Props {
 }
 
 export function DetalheCategoria({ fatia, mes, ano, onFechar, itens: itensProntos }: Props) {
-  const [carregando, setCarregando] = useState(false)
+  const buscaRemota = Boolean(fatia && !itensProntos)
+
+  // Lista pronta é derivação pura das props: filtra no render, sem estado nem
+  // efeito. O estado abaixo só existe para o modo que busca no servidor.
+  const prontosFiltrados = useMemo(() => {
+    if (!fatia || !itensProntos) return null
+    return itensProntos
+      .filter((t) => t.tipo === "despesa" && (t.categoria?.nome ?? "Sem categoria") === fatia.nome)
+      .sort((a, b) => Math.abs(b.valor) - Math.abs(a.valor))
+  }, [fatia, itensProntos])
+
+  const [carregando, setCarregando] = useState(buscaRemota)
   const [erro, setErro] = useState<string | null>(null)
-  const [itens, setItens] = useState<Transacao[]>([])
+  const [buscados, setBuscados] = useState<Transacao[]>([])
+
+  // O reset de loading e erro acontece no render, guardado pela transição de
+  // categoria ou mês (padrão da doc do React para estado que acompanha prop):
+  // efeito não pode gravar estado de forma síncrona, e aqui o spinner ainda
+  // aparece no mesmo frame da troca.
+  const chaveAtual = `${fatia?.nome ?? ""}|${mes}|${ano}`
+  const [chave, setChave] = useState(chaveAtual)
+  if (chaveAtual !== chave) {
+    setChave(chaveAtual)
+    setBuscados([])
+    setErro(null)
+    setCarregando(buscaRemota)
+  }
 
   useEffect(() => {
-    if (!fatia) return
-    if (itensProntos) {
-      setItens(
-        itensProntos
-          .filter((t) => t.tipo === "despesa" && (t.categoria?.nome ?? "Sem categoria") === fatia.nome)
-          .sort((a, b) => Math.abs(b.valor) - Math.abs(a.valor))
-      )
-      setCarregando(false)
-      setErro(null)
-      return
-    }
+    if (!fatia || itensProntos) return
     let cancelado = false
-    setCarregando(true)
-    setErro(null)
-    setItens([])
 
     fetch(`/api/painel/transacoes?mes=${mes}&ano=${ano}`)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
       .then((d) => {
         if (cancelado) return
         const todas: Transacao[] = d.transacoes ?? []
-        setItens(
+        setBuscados(
           todas
             .filter((t) => t.tipo === "despesa" && (t.categoria?.nome ?? "Outros") === fatia.nome)
             .sort((a, b) => Math.abs(b.valor) - Math.abs(a.valor))
@@ -98,6 +109,7 @@ export function DetalheCategoria({ fatia, mes, ano, onFechar, itens: itensPronto
 
   if (!fatia) return null
 
+  const itens = prontosFiltrados ?? buscados
   const somaListada = itens.reduce((s, t) => s + Math.abs(t.valor), 0)
 
   return (

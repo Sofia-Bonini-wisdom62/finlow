@@ -1,0 +1,184 @@
+{
+ "slug": "hoje-mes-que-vem-ano-que-vem-consolida",
+ "segmento": "ef12",
+ "conceitoPrincipal": "hoje-mes-que-vem-ano-que-vem",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prazos",
+   "criterio": "Ainda é hoje, mesmo à noite?",
+   "enunciado": "Escovar os dentes antes de dormir, tarde da noite",
+   "resposta": true,
+   "ancora": "Mesmo à noite, ainda é o mesmo dia — continua sendo hoje.",
+   "feedbackErro": "De noite parece 'quase amanhã', e isso confunde. Mas enquanto não vira o dia, ainda é hoje."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prazos",
+   "criterio": "É mês que vem, sem contar semanas?",
+   "enunciado": "Esperar até o próximo aniversário de um amigo, daqui 5 semanas",
+   "resposta": true,
+   "ancora": "5 semanas ainda está na faixa de mês que vem.",
+   "feedbackErro": "Contar em 'aniversário' em vez de semanas confunde o prazo. Mas 5 semanas é a mesma coisa: mês que vem."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "prazos",
+   "criterio": "Isso vira ano que vem?",
+   "enunciado": "Guardar dinheiro por 10 meses pra um presente grande",
+   "resposta": true,
+   "ancora": "10 meses está bem mais perto de um ano — vira ano que vem.",
+   "feedbackErro": "10 meses ainda soa como 'meses', e isso confunde com mês que vem. Mas está perto de completar um ano."
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "planejar",
+   "criterio": "Plano fica fraco guardando só às vezes?",
+   "enunciado": "Guardar dinheiro só quando lembra, sem dia certo",
+   "resposta": true,
+   "ancora": "Sem um ritmo certo, o plano fica fraco pra alcançar o objetivo.",
+   "feedbackErro": "Guardar de vez em quando parece melhor que nada, e de fato ajuda um pouco. Mas sem ritmo certo, o plano fica fraco."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "prazos",
+   "instrucao": "Nesses casos, é hoje ou é de esperar?",
+   "ancora": "Mesmo à noite ou de manhãzinha, o que é do mesmo dia é hoje.",
+   "feedbackErro": "O horário dentro do dia não muda o prazo — o que importa é se ainda está no mesmo dia ou exige semanas de espera.",
+   "caixas": [
+    {
+     "id": "hoje",
+     "rotulo": "Hoje"
+    },
+    {
+     "id": "depois",
+     "rotulo": "Mês ou ano que vem"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Guardar a mochila arrumada pra amanhã cedo",
+     "caixaCorreta": "hoje"
+    },
+    {
+     "texto": "Guardar dinheiro 11 meses pra uma bicicleta",
+     "caixaCorreta": "depois"
+    },
+    {
+     "texto": "Comer a fruta que sobrou do almoço, à noite",
+     "caixaCorreta": "hoje"
+    },
+    {
+     "texto": "Guardar dinheiro 7 semanas pra um jogo",
+     "caixaCorreta": "depois"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "planejar",
+   "criterio": "Esse plano funciona guardando pouco?",
+   "enunciado": "Guardar só 1 moeda por semana, durante o ano todo, pra um presente caro",
+   "resposta": true,
+   "ancora": "Pouco, repetido por muito tempo, também soma o suficiente.",
+   "feedbackErro": "1 moeda parece pouco demais pra valer o esforço, e por isso parece que não funciona. Mas repetido o ano todo, o total soma bastante."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "planejar",
+   "criterio": "Ainda é plano, mesmo variando o valor?",
+   "enunciado": "Guardar mais quando sobra e menos quando não sobra, mas sempre guardar algo",
+   "resposta": true,
+   "ancora": "Guardar algo toda vez, mesmo variando o valor, ainda é um plano.",
+   "feedbackErro": "Variar o valor parece bagunçado, e isso confunde com não ter plano. Mas o que importa é guardar sempre algo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "hoje-mes-que-vem-ano-que-vem",
+   "pergunta": "Quando um plano de guardar dinheiro deixa de funcionar bem?",
+   "alternativas": [
+    {
+     "texto": "Quando guarda um valor diferente a cada semana",
+     "correta": false,
+     "feedbackErro": "Guardar valores diferentes ainda funciona, desde que sempre guarde algo."
+    },
+    {
+     "texto": "Quando guarda só de vez em quando, sem nenhum ritmo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando o objetivo é pra daqui um ano",
+     "correta": false,
+     "feedbackErro": "Objetivos de ano que vem também dão certo, desde que o plano tenha ritmo de guardar."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "prazos",
+   "criterio": "Isso é hoje?",
+   "enunciado": "Arrumar os brinquedos antes do jantar",
+   "resposta": true,
+   "ancora": "Acontece no mesmo dia — é hoje.",
+   "feedbackErro": "Tarefas do fim do dia ainda contam como hoje, porque ainda é o mesmo dia."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "planejar",
+   "instrucao": "Isso é plano ou é só sorte?",
+   "ancora": "Plano é o que você decide sempre; sorte é o que acontece por acaso.",
+   "feedbackErro": "Sorte também traz dinheiro, mas não dá pra contar com ela — plano é o que você repete de propósito.",
+   "caixas": [
+    {
+     "id": "plano",
+     "rotulo": "Plano"
+    },
+    {
+     "id": "sorte",
+     "rotulo": "Sorte"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Guardar dinheiro toda semana pra um presente",
+     "caixaCorreta": "plano"
+    },
+    {
+     "texto": "Ganhar dinheiro de presente sem esperar",
+     "caixaCorreta": "sorte"
+    },
+    {
+     "texto": "Separar parte da mesada todo mês",
+     "caixaCorreta": "plano"
+    },
+    {
+     "texto": "Encontrar uma moeda perdida na rua",
+     "caixaCorreta": "sorte"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "prazos",
+   "criterio": "É ano que vem, mesmo contando em dias?",
+   "enunciado": "Guardar dinheiro por 300 dias pra uma bicicleta",
+   "resposta": true,
+   "ancora": "300 dias é quase um ano inteiro — é ano que vem.",
+   "feedbackErro": "Contar em dias em vez de meses confunde o prazo. Mas 300 dias é quase um ano — ano que vem."
+  }
+ ]
+}

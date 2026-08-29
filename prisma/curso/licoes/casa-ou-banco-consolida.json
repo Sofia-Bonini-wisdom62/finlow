@@ -1,0 +1,299 @@
+{
+ "slug": "casa-ou-banco-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "casa-ou-banco",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "casa-ou-banco",
+   "criterio": "Ainda vale a pena, considerando tudo?",
+   "enunciado": "R$ 2.000 guardados em casa por 3 anos, com inflação de 4,5% ao ano",
+   "resposta": false,
+   "ancora": "R$ 2.000 em casa por 3 anos compram o equivalente a R$ 1.753 hoje.",
+   "feedbackErro": "O número em reais não mudou, e por isso parece que nada aconteceu. Mas o poder de compra caiu para cerca de R$ 1.753.",
+   "verificacao": { "expressao": "2000/1.045^3", "esperado": 1752.59, "tolerancia": 2 }
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "juros-e-instituicao-confiavel",
+   "criterio": "Ainda vale a pena, considerando tudo?",
+   "enunciado": "R$ 1.000 numa conta a 90% do CDI (~0,9% ao mês) por 5 meses, numa instituição registrada",
+   "resposta": true,
+   "ancora": "Rende cerca de R$ 46 em 5 meses, e a instituição é confiável.",
+   "feedbackErro": "5 meses parece pouco tempo pra fazer diferença. Mas rende cerca de R$ 46, numa instituição registrada e confiável.",
+   "verificacao": { "expressao": "1000*1.009^5-1000", "esperado": 45.82, "tolerancia": 2 }
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "juros-e-instituicao-confiavel",
+   "criterio": "Ainda vale a pena, considerando tudo?",
+   "enunciado": "R$ 5.000 numa instituição que promete 5% ao mês, sem registro no Banco Central",
+   "resposta": false,
+   "ancora": "Taxa alta sem registro oficial é sinal clássico de golpe.",
+   "feedbackErro": "5% ao mês parece ótimo perto da poupança. Mas sem registro no Banco Central, o risco de perder tudo anula o rendimento."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "casa-ou-banco",
+   "dificuldade": 3,
+   "pergunta": "Quando guardar em casa pode fazer mais sentido que guardar no banco?",
+   "ancora": "Uso imediato, sem tempo de o rendimento fazer diferença.",
+   "alternativas": [
+    {
+     "texto": "Nunca — banco sempre é melhor",
+     "correta": false,
+     "feedbackErro": "Uma reserva pequena, de uso imediato, pode fazer sentido em casa."
+    },
+    {
+     "texto": "Numa quantia pequena, de uso imediato, sem tempo de render",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando a inflação está muito alta",
+     "correta": false,
+     "feedbackErro": "Inflação alta é exatamente quando guardar em casa mais corrói o valor — o oposto disso."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "juros-e-instituicao-confiavel",
+   "dificuldade": 3,
+   "pergunta": "Valentina tem R$ 1.800: poupança por 24 meses ou em casa, com inflação de 4,5% ao ano. O que preserva melhor o valor?",
+   "ancora": "Em 24 meses, a poupança rende cerca de R$ 229.",
+   "verificacao": { "expressao": "1800*1.005^24-1800", "esperado": 228.89, "tolerancia": 5 },
+   "alternativas": [
+    {
+     "texto": "Poupança, porque rende mais do que a inflação corrói em casa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Em casa, porque o valor nominal não muda",
+     "correta": false,
+     "feedbackErro": "Nominal igual não é o mesmo que valer o mesmo — a inflação corrói o poder de compra."
+    },
+    {
+     "texto": "As duas dão no mesmo, porque o período é igual",
+     "correta": false,
+     "feedbackErro": "Mesmo período, resultados bem diferentes: uma rende, a outra só perde valor."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "juros-e-instituicao-confiavel",
+   "criterio": "Taxa alta sempre é vantagem?",
+   "enunciado": "Taxa de 5% ao mês, numa instituição sem registro no Banco Central",
+   "resposta": false,
+   "ancora": "Sem registro oficial, taxa alta é bandeira vermelha de golpe.",
+   "feedbackErro": "O número chama atenção, e é pra isso que serve. Taxa muito acima do mercado sem registro é sinal clássico de fraude."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "casa-ou-banco",
+   "instrucao": "Ordene do que preserva mais valor pro que preserva menos, em 2 anos.",
+   "ancora": "Quem rende mais preserva mais; quem não rende, a inflação corrói.",
+   "feedbackErro": "Todos começam com o mesmo valor. O que muda o resultado final é a taxa de cada opção.",
+   "itens": [
+    { "texto": "R$ 1.000 numa conta a 100% do CDI, ~1% ao mês", "posicaoCorreta": 1 },
+    { "texto": "R$ 1.000 na poupança, ~0,5% ao mês", "posicaoCorreta": 2 },
+    { "texto": "R$ 1.000 numa conta sem rendimento", "posicaoCorreta": 3 },
+    { "texto": "R$ 1.000 em casa, com inflação de 4,5% ao ano", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "casa-ou-banco",
+   "criterio": "Isso muda a decisão de onde guardar?",
+   "enunciado": "O dinheiro é uma reserva pra usar amanhã, não pro ano que vem",
+   "resposta": true,
+   "ancora": "Uso imediato pesa menos o rendimento e mais o acesso rápido.",
+   "feedbackErro": "Parece que o critério é sempre o mesmo. Mas pra usar amanhã, acesso importa mais que o rendimento de poucos dias."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "juros-e-instituicao-confiavel",
+   "criterio": "Isso muda a decisão de onde guardar?",
+   "enunciado": "A instituição está registrada e fiscalizada pelo Banco Central",
+   "resposta": true,
+   "ancora": "Registro oficial é o que garante que a instituição é confiável.",
+   "feedbackErro": "Pode parecer só burocracia. Mas é o registro que garante que a instituição responde por aquele dinheiro."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "juros-e-instituicao-confiavel",
+   "pergunta": "R$ 700 numa poupança, a 0,5% ao mês composto. Quanto rende em 8 meses?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 100,
+   "gabarito": 28,
+   "toleranciaPct": 20,
+   "fonte": "taxa média da poupança, ~0,5% ao mês (Banco Central)",
+   "verificacao": { "expressao": "700*1.005^8-700", "esperado": 28.49, "tolerancia": 2 },
+   "feedbackPerto": "Isso mesmo — cerca de R$ 28 em 8 meses de juro composto.",
+   "feedbackLonge": "O rendimento é de cerca de R$ 28. Mesmo pouco, cada mês soma sobre o saldo anterior."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "casa-ou-banco",
+   "dificuldade": 3,
+   "pergunta": "Metade de R$ 1.400 fica na poupança 8 meses; metade fica em casa, sem necessidade. Qual é o erro do plano?",
+   "ancora": "A metade em casa perde valor à toa, sem motivo de acesso imediato.",
+   "alternativas": [
+    {
+     "texto": "Nenhum — dividir sempre reduz o risco",
+     "correta": false,
+     "feedbackErro": "Dividir reduz risco de uma parte, mas a metade em casa segue perdendo valor sem necessidade."
+    },
+    {
+     "texto": "Deixar em casa a parte que não precisa de acesso imediato",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Colocar tudo na poupança, por falta de reserva de emergência",
+     "correta": false,
+     "feedbackErro": "O erro apontado é outro: dinheiro parado sem necessidade, perdendo valor à toa."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "juros-e-instituicao-confiavel",
+   "dificuldade": 3,
+   "pergunta": "R$ 2.500 na poupança por 20 meses, a 0,5% ao mês. Cerca de quanto rende no total?",
+   "ancora": "20 meses de juro composto a 0,5% rendem cerca de R$ 262.",
+   "verificacao": { "expressao": "2500*1.005^20-2500", "esperado": 262.24, "tolerancia": 5 },
+   "alternativas": [
+    {
+     "texto": "Cerca de R$ 262",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cerca de R$ 50",
+     "correta": false,
+     "feedbackErro": "Esse valor subestima o efeito composto ao longo de 20 meses seguidos."
+    },
+    {
+     "texto": "Cerca de R$ 625",
+     "correta": false,
+     "feedbackErro": "Esse valor é alto demais — a taxa mensal de 0,5% não chega nem perto disso."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "casa-ou-banco",
+   "criterio": "É um caso em que casa faz sentido?",
+   "enunciado": "Uma reserva pequena, de uso em poucos dias",
+   "resposta": true,
+   "ancora": "Uso muito próximo não dá tempo de o rendimento fazer diferença.",
+   "feedbackErro": "Parece contradizer a regra geral, e por isso confunde. Mas em prazo muito curto, o rendimento é irrelevante."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "juros-e-instituicao-confiavel",
+   "criterio": "É um caso em que a taxa alta engana?",
+   "enunciado": "Taxa muito acima do mercado, numa instituição sem registro oficial",
+   "resposta": true,
+   "ancora": "Taxa alta sem registro é o padrão clássico de golpe financeiro.",
+   "feedbackErro": "O número bom chama atenção, e é pra isso que serve. Sem registro oficial, costuma esconder um golpe."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "casa-ou-banco",
+   "pergunta": "Depois dos casos-limite, qual frase é mais completa?",
+   "alternativas": [
+    {
+     "texto": "Guardar em casa nunca faz sentido, em nenhuma situação.",
+     "correta": false,
+     "feedbackErro": "Pra uso muito próximo, sem tempo de render, guardar em casa pode fazer sentido."
+    },
+    {
+     "texto": "Vale guardar onde rende mais que a inflação, numa instituição registrada.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Taxa alta é sempre motivo pra confiar na instituição.",
+     "correta": false,
+     "feedbackErro": "Taxa alta sem registro oficial é sinal clássico de golpe, não de confiança."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "casa-ou-banco",
+   "instrucao": "Faz sentido guardar assim?",
+   "ancora": "O prazo e a confiança da instituição decidem, não só o rendimento.",
+   "feedbackErro": "Pensar só no rendimento esconde o resto: prazo curto e instituição confiável também pesam na decisão.",
+   "caixas": [
+    { "id": "faz", "rotulo": "Faz sentido" },
+    { "id": "nao", "rotulo": "Não faz sentido" }
+   ],
+   "itens": [
+    { "texto": "Dinheiro do troco do dia, em casa", "caixaCorreta": "faz" },
+    { "texto": "Reserva de 2 anos, em casa, perdendo pra inflação", "caixaCorreta": "nao" },
+    { "texto": "Reserva de 2 anos, numa poupança confiável", "caixaCorreta": "faz" },
+    { "texto": "Reserva grande numa instituição sem registro", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "juros-e-instituicao-confiavel",
+   "dificuldade": 3,
+   "pergunta": "R$ 1.600 numa conta a 100% do CDI (~1% ao mês) por 15 meses. Cerca de quanto rende?",
+   "ancora": "R$ 1.600 a 1% ao mês por 15 meses rendem cerca de R$ 258.",
+   "verificacao": { "expressao": "1600*1.01^15-1600", "esperado": 257.55, "tolerancia": 5 },
+   "alternativas": [
+    {
+     "texto": "Cerca de R$ 258",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cerca de R$ 24",
+     "correta": false,
+     "feedbackErro": "Esse valor ignora o efeito do juro composto ao longo de 15 meses."
+    },
+    {
+     "texto": "Cerca de R$ 500",
+     "correta": false,
+     "feedbackErro": "Esse valor é alto demais pra uma taxa de 1% ao mês nesse prazo."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "casa-ou-banco",
+   "criterio": "É verdade?",
+   "enunciado": "Diversificar entre poupança e um pouco em casa elimina todo o risco",
+   "resposta": false,
+   "ancora": "Diversificar reduz risco, mas não elimina o risco da parte em casa.",
+   "feedbackErro": "Diversificar ajuda bastante, mas 'eliminar todo o risco' é forte demais: a parte em casa ainda perde pra inflação."
+  }
+ ]
+}

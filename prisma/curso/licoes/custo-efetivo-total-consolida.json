@@ -1,0 +1,296 @@
+{
+ "slug": "custo-efetivo-total-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "custo-efetivo-total",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "Isso entra no CET, mesmo em caso raro?",
+   "enunciado": "Uma multa por quitar o empréstimo antes do prazo combinado",
+   "resposta": false,
+   "ancora": "O CET é calculado na contratação; custo de quitar antes fica de fora.",
+   "feedbackErro": "Parece mais uma cobrança do contrato, e por isso parece entrar. Mas o CET é fixado na contratação — encargo condicional ao futuro fica fora."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "Isso entra no CET, mesmo em caso raro?",
+   "enunciado": "O valor do IOF sobre o crédito contratado",
+   "resposta": true,
+   "ancora": "IOF é encargo obrigatório do crédito — sempre soma no CET.",
+   "feedbackErro": "IOF parece imposto 'separado', mas por ser obrigatório e ligado ao crédito, ele soma no CET desde a contratação."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "Isso entra no CET, mesmo em caso raro?",
+   "enunciado": "A variação cambial de um empréstimo em dólar, que só se sabe depois",
+   "resposta": false,
+   "ancora": "O que só se conhece depois de contratar fica fora do CET.",
+   "feedbackErro": "É um custo real do crédito, e por isso parece que deveria entrar. Mas o CET é informado antes, com base no que já é conhecido."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-efetivo-total",
+   "dificuldade": 3,
+   "pergunta": "Um crédito tem CET menor mas seguro caro à parte. Outro tem CET maior, sem exigência externa. Qual é mais barato?",
+   "ancora": "Com custo obrigatório fora do CET, some os dois pra comparar direito.",
+   "alternativas": [
+    {
+     "texto": "Não dá pra saber só pelo CET — some o seguro externo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O de CET menor, sempre",
+     "correta": false,
+     "feedbackErro": "Sempre não: se o seguro exigido por fora for caro, o total pode superar o do CET maior."
+    },
+    {
+     "texto": "O de CET maior, porque já inclui tudo",
+     "correta": false,
+     "feedbackErro": "CET maior incluir mais itens é bom sinal, mas não garante ser mais barato — depende da soma real."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-efetivo-total",
+   "dificuldade": 3,
+   "pergunta": "Um vendedor diz que o CET é só uma formalidade, e o que importa é a parcela. Qual é o problema nessa frase?",
+   "ancora": "Parcela baixa esconde o custo total quando o prazo é longo.",
+   "alternativas": [
+    {
+     "texto": "Parcela baixa pode esconder prazo longo e custo total alto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não tem problema, parcela é o que mais importa",
+     "correta": false,
+     "feedbackErro": "Parcela baixa alivia o mês, mas pode significar prazo maior e mais juro no total — o CET revela isso."
+    },
+    {
+     "texto": "O problema é que ele não falou o nome do banco",
+     "correta": false,
+     "feedbackErro": "O nome do banco não é o ponto — o ponto é que ignorar o CET esconde o custo total real."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "Isso é sempre verdade sobre o CET?",
+   "enunciado": "Um crédito com CET mais alto nunca pode valer a pena",
+   "resposta": false,
+   "ancora": "Prazo curto e liberdade de quitar cedo às vezes compensam CET maior.",
+   "feedbackErro": "Parece regra segura: CET maior, sempre pior. Mas em certos casos, um CET maior com menos amarras pode valer mais."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "custo-efetivo-total",
+   "instrucao": "Esse custo entra no CET informado na contratação?",
+   "ancora": "Custo certo na largada entra; custo condicional ao futuro, não.",
+   "feedbackErro": "CET entra o que é certo e conhecido na contratação; o que depende de uma escolha ou evento futuro fica fora.",
+   "caixas": [
+    {
+     "id": "entra",
+     "rotulo": "Entra"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não entra"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "IOF sobre o valor emprestado",
+     "caixaCorreta": "entra"
+    },
+    {
+     "texto": "Multa por atraso que só existe se a pessoa atrasar",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Tarifa de cadastro cobrada no início",
+     "caixaCorreta": "entra"
+    },
+    {
+     "texto": "Custo de uma renegociação futura, ainda não decidida",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "É verdade?",
+   "enunciado": "Comparar só a taxa de juros de dois créditos com prazos muito diferentes é suficiente",
+   "resposta": false,
+   "ancora": "Prazos diferentes mudam o total pago, mesmo com juro parecido.",
+   "feedbackErro": "Comparar juro parece direto ao ponto. Mas prazos diferentes fazem o total pago variar bastante."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-efetivo-total",
+   "dificuldade": 3,
+   "pergunta": "R$ 4.200 a 2,1% a.m. em 18 meses, ou os mesmos R$ 4.200 a 2,1% em 36 meses: qual sai mais caro no total?",
+   "ancora": "Mesma taxa, mais tempo: mais juro acumulado no total.",
+   "alternativas": [
+    {
+     "texto": "O de 36 meses, porque os juros incidem por mais tempo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Os dois custam exatamente o mesmo",
+     "correta": false,
+     "feedbackErro": "Mesma taxa mensal não significa mesmo total: mais meses de juro rodando aumentam o total pago."
+    },
+    {
+     "texto": "O de 18 meses, porque a parcela é maior",
+     "correta": false,
+     "feedbackErro": "Parcela maior não é custo maior — é o tempo total de juro rodando que aumenta o total pago."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "É armadilha de olhar só a parcela?",
+   "enunciado": "Escolher o prazo mais longo pra ter a menor parcela possível, sem checar o CET",
+   "resposta": true,
+   "ancora": "Parcela pequena por prazo longo costuma esconder o maior custo total.",
+   "feedbackErro": "Parcela menor parece só alívio no orçamento, sem pegadinha. Mas esticar o prazo costuma aumentar bastante o total pago."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "Isso é sempre verdade?",
+   "enunciado": "O CET é suficiente pra decidir tudo sobre um crédito, sem pensar em mais nada",
+   "resposta": false,
+   "ancora": "CET mostra custo; falta checar se a parcela cabe e a necessidade.",
+   "feedbackErro": "O CET parece a palavra final, porque junta tudo em um número. Mas ainda falta checar se a parcela cabe na renda."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "custo-efetivo-total",
+   "pergunta": "Depois dos três encontros, qual é o uso mais completo do CET?",
+   "alternativas": [
+    {
+     "texto": "Comparar custo total, sempre junto com prazo, parcela e necessidade",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Usá-lo como único critério pra qualquer decisão de crédito",
+     "correta": false,
+     "feedbackErro": "Sozinho, o CET não garante que a parcela cabe nem que o crédito é necessário."
+    },
+    {
+     "texto": "Ignorá-lo quando a parcela já parece boa",
+     "correta": false,
+     "feedbackErro": "Parcela boa pode esconder prazo longo e custo alto — ignorar o CET é o erro que ele evita."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "custo-efetivo-total",
+   "instrucao": "Esse custo entra no CET contratado?",
+   "ancora": "CET soma o certo, não o condicional.",
+   "feedbackErro": "O que é certo na contratação entra; o que depende de um evento futuro incerto, não.",
+   "caixas": [
+    {
+     "id": "entra",
+     "rotulo": "Entra"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não entra"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Tarifa de abertura",
+     "caixaCorreta": "entra"
+    },
+    {
+     "texto": "Multa condicional a um atraso futuro",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "IOF do crédito",
+     "caixaCorreta": "entra"
+    },
+    {
+     "texto": "Custo de uma possível renegociação",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "custo-efetivo-total",
+   "instrucao": "Ordene do custo mais previsível pro mais incerto.",
+   "ancora": "Fixo e certo primeiro; condicional e incerto por último.",
+   "feedbackErro": "O que está garantido no contrato vem antes do que só acontece se um evento, como atraso, ocorrer.",
+   "itens": [
+    {
+     "texto": "Tarifa de cadastro, fixa",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Juro contratado, fixo",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Multa por atraso, só se atrasar",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "custo-efetivo-total",
+   "dificuldade": 3,
+   "pergunta": "Uma família decide pelo CET mais baixo; outra, pela parcela mais baixa. Quem decide com mais critério?",
+   "ancora": "CET revela o custo total; parcela isolada pode esconder prazo e custo.",
+   "alternativas": [
+    {
+     "texto": "A que olha o CET, porque ele já soma o custo total",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A que olha a parcela, porque é o que sai do bolso todo mês",
+     "correta": false,
+     "feedbackErro": "A parcela sai do bolso, mas sozinha ela esconde o prazo e o total pago."
+    },
+    {
+     "texto": "As duas decidem igual, pois olham números do contrato",
+     "correta": false,
+     "feedbackErro": "Não é igual: CET soma o custo total; parcela isolada pode esconder um prazo longo e caro."
+    }
+   ]
+  }
+ ]
+}

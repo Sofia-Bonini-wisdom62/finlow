@@ -1,0 +1,286 @@
+{
+ "slug": "historico-e-armadilha",
+ "segmento": "ef67",
+ "conceitoPrincipal": "historico-e-armadilha",
+ "fraseConceito": "Cadastro positivo mostra seu histórico de pagamentos; armadilhas publicitárias tentam te fazer ignorar esse cuidado.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cadastro-positivo",
+   "criterio": "Isso entra no cadastro positivo?",
+   "enunciado": "Pagar a fatura do cartão em dia, todo mês",
+   "resposta": true,
+   "ancora": "Pagamentos em dia constroem histórico positivo.",
+   "feedbackErro": "Pagar em dia pode parecer 'não gerar registro', mas é exatamente esse comportamento que constrói um histórico positivo no cadastro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cadastro-positivo",
+   "criterio": "Isso entra no cadastro positivo?",
+   "enunciado": "Um atraso de 3 dias numa conta de luz",
+   "resposta": true,
+   "ancora": "Atrasos também entram — bons e maus comportamentos.",
+   "feedbackErro": "Pode parecer que só o que é positivo entra no nome do cadastro. Mas o cadastro positivo registra o histórico completo, incluindo atrasos."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cadastro-positivo",
+   "criterio": "Isso entra no cadastro positivo?",
+   "enunciado": "A cor do cartão de crédito que a pessoa escolheu",
+   "resposta": false,
+   "ancora": "Cor do cartão não tem relação com pagamento.",
+   "feedbackErro": "Pode parecer um dado qualquer sobre o cartão, mas o cadastro positivo só registra comportamento de pagamento — cor não tem relação nenhuma com isso."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "cadastro-positivo",
+   "dificuldade": 1,
+   "pergunta": "Pra que serve, na prática, o cadastro positivo?",
+   "ancora": "O cadastro é um histórico: quem paga em dia ganha crédito mais fácil.",
+   "alternativas": [
+    {
+     "texto": "Pra registrar o histórico e ajudar o banco a avaliar o risco",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pra listar só quem está com o nome sujo",
+     "correta": false,
+     "feedbackErro": "Isso é o cadastro negativo, que registra só dívidas em atraso. O cadastro positivo registra o histórico completo, bom e ruim."
+    },
+    {
+     "texto": "Pra definir o limite do cartão automaticamente, sem análise",
+     "correta": false,
+     "feedbackErro": "O cadastro é uma informação a mais na análise, não decide o limite sozinho — quem define o limite é a instituição, olhando vários fatores."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "armadilha-publicitaria",
+   "dificuldade": 1,
+   "pergunta": "Um anúncio destaca '12x sem juros' bem grande, e o preço à vista pequeno embaixo. Qual é a armadilha aqui?",
+   "ancora": "Parcela visível e preço escondido: nota só a parte barata.",
+   "alternativas": [
+    {
+     "texto": "Nenhuma, 12x sem juros é sempre a melhor opção",
+     "correta": false,
+     "feedbackErro": "Parcelar sem juros parece sempre vantajoso, mas o anúncio pode estar escondendo um preço à vista maior que o de outros lugares — vale comparar."
+    },
+    {
+     "texto": "Destacar a parcela pra distrair do preço total do produto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O anúncio estar em letras grandes demais pra ler",
+     "correta": false,
+     "feedbackErro": "O tamanho da letra do '12x sem juros' não é o problema — é justamente ela ser grande e chamativa, escondendo o preço total pequeno, embaixo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "cadastro-positivo",
+   "criterio": "É vantagem de bom histórico no cadastro?",
+   "enunciado": "Conseguir taxas de juros menores por ser visto como cliente de menos risco",
+   "resposta": true,
+   "ancora": "Bom histórico reduz o risco visto pelo banco.",
+   "feedbackErro": "Pode parecer que o cadastro só serve pra 'ser visto', mas na prática ele influencia direto a taxa de juros oferecida a quem tem bom histórico."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "armadilha-publicitaria",
+   "instrucao": "Isso é uma armadilha publicitária, ou uma informação clara?",
+   "ancora": "Armadilha esconde ou distrai; clara mostra sem pressa forçada.",
+   "feedbackErro": "O critério é se a peça esconde algo importante ou cria pressa artificial pra decidir rápido. Informação clara mostra tudo, sem pressa forçada.",
+   "caixas": [
+    {
+     "id": "armadilha",
+     "rotulo": "Armadilha"
+    },
+    {
+     "id": "clara",
+     "rotulo": "Informação clara"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Anúncio que mostra só a parcela, sem o preço total",
+     "caixaCorreta": "armadilha"
+    },
+    {
+     "texto": "Anúncio que mostra o preço total e o parcelado lado a lado",
+     "caixaCorreta": "clara"
+    },
+    {
+     "texto": "'Vagas limitadas' repetido várias vezes pra apressar a decisão",
+     "caixaCorreta": "armadilha"
+    },
+    {
+     "texto": "Contrato com a taxa de juros escrita em destaque",
+     "caixaCorreta": "clara"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "armadilha-publicitaria",
+   "criterio": "É tática pra apressar a compra?",
+   "enunciado": "Um contador regressivo na tela dizendo que a oferta acaba em 10 minutos",
+   "resposta": true,
+   "ancora": "Contador regressivo cria urgência artificial.",
+   "feedbackErro": "Pode parecer só um detalhe visual do anúncio, mas o contador é desenhado pra apressar a decisão antes que dê tempo de comparar preços."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "cadastro-positivo",
+   "dificuldade": 1,
+   "pergunta": "Duas pessoas pedem o mesmo empréstimo: uma com histórico em dia, outra com atrasos. O que tende a ocorrer?",
+   "ancora": "Histórico em dia reduz o risco visto, e o risco menor baixa a taxa.",
+   "alternativas": [
+    {
+     "texto": "As duas recebem exatamente a mesma taxa de juros",
+     "correta": false,
+     "feedbackErro": "O histórico registrado no cadastro costuma pesar na análise — dificilmente as taxas saem iguais entre um bom e um mau pagador."
+    },
+    {
+     "texto": "Quem tem histórico melhor tende a taxa menor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quem tem mais atrasos tende a taxa menor, por precisar mais",
+     "correta": false,
+     "feedbackErro": "É o oposto do que costuma acontecer: mais atraso significa mais risco pro banco, e risco maior costuma vir com taxa maior, não menor."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "armadilha-publicitaria",
+   "criterio": "Comparar o total evita a armadilha?",
+   "enunciado": "Calcular quanto custa o produto inteiro parcelado antes de aceitar a oferta",
+   "resposta": true,
+   "ancora": "Comparar o total revela se o '12x sem juros' compensa.",
+   "feedbackErro": "Pode parecer passo extra desnecessário, mas é essa conta que revela se a parcela pequena esconde um preço maior no total."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "cadastro-positivo",
+   "criterio": "Mostra o cadastro funcionando bem?",
+   "enunciado": "Um histórico de pagamentos em dia ajudando a aprovar um financiamento mais rápido",
+   "resposta": true,
+   "ancora": "Histórico bom facilitando aprovação mais rápida.",
+   "feedbackErro": "Pode parecer coincidência a aprovação ser mais rápida, mas é o histórico de pagamento em dia que reduz a análise de risco e agiliza o processo."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "cadastro-positivo",
+   "pergunta": "Qual frase resume o que você viu?",
+   "alternativas": [
+    {
+     "texto": "Pagar em dia constrói histórico bom; parcela pode esconder preço maior",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cadastro positivo só registra quem está com o nome sujo",
+     "correta": false,
+     "feedbackErro": "É o cadastro negativo que foca só em quem está com o nome sujo. O positivo registra o histórico completo."
+    },
+    {
+     "texto": "Anúncio de 12x sem juros nunca esconde nada",
+     "correta": false,
+     "feedbackErro": "O anúncio da parcela pequena pode, sim, esconder um preço à vista maior — por isso vale sempre comparar o total."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "cadastro-positivo",
+   "instrucao": "Ordene do que mais melhora o histórico ao que mais piora.",
+   "ancora": "O histórico piora conforme o atraso se estende e vira algo mais sério.",
+   "feedbackErro": "O critério é a gravidade e a duração do atraso: pagar em dia constrói o melhor histórico; cobrança judicial é o pior cenário registrado.",
+   "itens": [
+    {
+     "texto": "Pagar todas as contas em dia, todo mês",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Atrasar uma conta por poucos dias, mas quitar logo",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Deixar uma dívida em aberto por vários meses",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Ter o nome enviado pra cobrança judicial",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "armadilha-publicitaria",
+   "instrucao": "Isso ajuda, ou tenta te apressar na decisão de compra?",
+   "ancora": "Informa ajuda a decidir; urgência tenta cortar o tempo.",
+   "feedbackErro": "O critério é se a informação ajuda a comparar com calma, ou se cria pressa artificial pra você decidir sem pensar.",
+   "caixas": [
+    {
+     "id": "ajuda",
+     "rotulo": "Ajuda a decidir"
+    },
+    {
+     "id": "apressa",
+     "rotulo": "Tenta apressar"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Comparação de preço entre lojas diferentes",
+     "caixaCorreta": "ajuda"
+    },
+    {
+     "texto": "'Só restam 2 unidades' piscando na tela",
+     "caixaCorreta": "apressa"
+    },
+    {
+     "texto": "Ficha técnica completa do produto",
+     "caixaCorreta": "ajuda"
+    },
+    {
+     "texto": "Cronômetro contando o fim da promoção",
+     "caixaCorreta": "apressa"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "cadastro-positivo",
+   "criterio": "É consequência de mau histórico?",
+   "enunciado": "Ter o pedido de crédito negado por causa de atrasos frequentes registrados",
+   "resposta": true,
+   "ancora": "Atrasos frequentes podem levar à negativa do crédito.",
+   "feedbackErro": "Pode parecer que a negativa vem só da renda declarada, mas o histórico de atrasos registrado no cadastro também pesa bastante nessa decisão."
+  }
+ ]
+}

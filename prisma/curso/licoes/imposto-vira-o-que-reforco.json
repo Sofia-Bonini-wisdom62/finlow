@@ -1,0 +1,332 @@
+{
+ "slug": "imposto-vira-o-que-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "imposto-vira-o-que",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "Ainda vira serviço público?",
+   "enunciado": "Uma universidade federal, com bolsas de pesquisa",
+   "resposta": true,
+   "ancora": "Universidade federal e suas bolsas saem da arrecadação pública.",
+   "feedbackErro": "Universidade parece funcionar 'sozinha', pela tradição do nome. Mas estrutura, professor e bolsa de pesquisa saem de verba pública."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "Ainda vira serviço público?",
+   "enunciado": "Um hospital privado conveniado, cobrando plano de saúde",
+   "resposta": false,
+   "ancora": "Cobrar do plano privado é receita própria, não é gasto de imposto.",
+   "feedbackErro": "Ele atende gente do SUS às vezes, e isso confunde. Mas quando cobra do plano de saúde privado, a receita é dele, não vem de imposto."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "Ainda vira serviço público?",
+   "enunciado": "Reforma de uma praça feita pela prefeitura",
+   "resposta": true,
+   "ancora": "Obra pública em espaço da cidade é paga com verba de imposto.",
+   "feedbackErro": "A praça parece 'sempre ter estado ali', sem custo visível. Mas reformar banco, iluminação e grama é obra paga com dinheiro público."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "imposto-financia-servico",
+   "dificuldade": 2,
+   "pergunta": "Um carro de R$ 40.000 paga 4% de IPVA. Quanto é o valor do imposto?",
+   "ancora": "4% de R$ 40.000 = R$ 1.600 de IPVA no ano.",
+   "verificacao": {
+    "expressao": "40000*0.04",
+    "esperado": 1600.0
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 160",
+     "correta": false,
+     "feedbackErro": "Você calculou 0,4%, não 4%. Para achar 4%, divida por 100 e multiplique por 4: dá R$ 1.600."
+    },
+    {
+     "texto": "R$ 1.600",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 4.000",
+     "correta": false,
+     "feedbackErro": "R$ 4.000 seria 10% do valor. A alíquota do exemplo é 4%: 4 para cada 100 de R$ 40.000."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "participacao-cidada",
+   "dificuldade": 2,
+   "pergunta": "Uma prefeitura abre consulta pública sobre onde investir o orçamento de obras. O que isso representa?",
+   "ancora": "Consulta pública é canal direto de participação na decisão do gasto.",
+   "alternativas": [
+    {
+     "texto": "Canal de participação direta do cidadão na decisão do gasto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Apenas uma formalidade sem peso nenhum na decisão final",
+     "correta": false,
+     "feedbackErro": "Consulta pública real pesa na priorização das obras — ignorá-la é abrir mão desse canal de influência."
+    },
+    {
+     "texto": "Uma forma de reduzir o valor do imposto cobrado",
+     "correta": false,
+     "feedbackErro": "A consulta não muda o valor arrecadado — ela decide onde aplicar o que já foi arrecadado."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "Ainda vira serviço público?",
+   "enunciado": "Bolsa de estudo integral numa faculdade particular, paga pelo governo",
+   "resposta": true,
+   "ancora": "Verba pública paga a bolsa — gasto de imposto em escola privada.",
+   "feedbackErro": "A faculdade é particular, e isso confunde. Mas se quem paga a mensalidade é o governo, o dinheiro usado é o mesmo imposto arrecadado."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "imposto-financia-servico",
+   "instrucao": "Ordene do imposto que você sente mais direto ao que sente menos.",
+   "ancora": "Quanto mais frequente, mais você sente o imposto no dia a dia.",
+   "feedbackErro": "ICMS aparece em toda compra; imposto sobre lucro de empresa é o mais distante do bolso de quem consome.",
+   "itens": [
+    {
+     "texto": "ICMS embutido em cada compra do dia a dia",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "IPVA pago uma vez por ano, se tem carro",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "IR retido no salário, acima da faixa de isenção",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Imposto sobre lucro, pago pelas empresas",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "Aumenta a arrecadação?",
+   "enunciado": "Comprar um produto com nota fiscal emitida",
+   "resposta": true,
+   "ancora": "Nota fiscal registra a venda e garante o recolhimento do imposto.",
+   "feedbackErro": "A nota parece só um comprovante pra trocar o produto depois. Mas ela registra a venda oficialmente, garantindo que o imposto seja recolhido."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "Aumenta a arrecadação?",
+   "enunciado": "Comprar 'por fora', sem nota, mais barato",
+   "resposta": false,
+   "ancora": "Sem nota, o imposto daquela venda não é recolhido.",
+   "feedbackErro": "O preço menor parece uma vantagem clara na hora. Mas sem nota fiscal, aquele imposto simplesmente não entra na arrecadação."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "imposto-financia-servico",
+   "pergunta": "Um salário de R$ 3.200 tem 7,5% retido de IR na faixa. Quanto fica retido?",
+   "campo": "moeda",
+   "min": 50,
+   "max": 800,
+   "gabarito": 240,
+   "toleranciaPct": 20,
+   "fonte": "alíquota simplificada da 1ª faixa tributável do IR",
+   "verificacao": {
+    "expressao": "3200*0.075",
+    "esperado": 240.0
+   },
+   "feedbackPerto": "Isso mesmo — R$ 240. Esse valor retido é o que vira, entre outras coisas, serviço público.",
+   "feedbackLonge": "Dá R$ 240. É uma fração do salário que sai direto na fonte, antes mesmo do dinheiro chegar à conta."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "participacao-cidada",
+   "dificuldade": 2,
+   "pergunta": "Duas cidades arrecadam o mesmo valor de imposto. Uma tem fila enorme no posto de saúde, outra não. O que explica isso?",
+   "ancora": "Arrecadar igual não garante gasto gerido do mesmo jeito.",
+   "alternativas": [
+    {
+     "texto": "Diferença em como o dinheiro arrecadado é gerido e gasto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A cidade com fila arrecadou menos, na prática",
+     "correta": false,
+     "feedbackErro": "O exemplo já diz que as duas arrecadam o mesmo valor — a diferença está na gestão do gasto, não na arrecadação."
+    },
+    {
+     "texto": "Fila em posto de saúde não tem relação com dinheiro público",
+     "correta": false,
+     "feedbackErro": "Tem relação direta: falta de médico, remédio ou estrutura vem justamente de como o dinheiro é aplicado."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "participacao-cidada",
+   "dificuldade": 2,
+   "pergunta": "Por que só pagar imposto em dia não garante bom serviço público de volta?",
+   "ancora": "A gestão do gasto pesa tanto quanto o valor arrecadado.",
+   "alternativas": [
+    {
+     "texto": "Porque a gestão do gasto importa tanto quanto a arrecadação",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque imposto pago em dia nunca gera nenhum retorno",
+     "correta": false,
+     "feedbackErro": "Gera retorno, sim — o ponto é que o retorno depende também de como o dinheiro é gerido, não só de ser pago em dia."
+    },
+    {
+     "texto": "Porque o valor arrecadado é sempre insuficiente",
+     "correta": false,
+     "feedbackErro": "Insuficiência de valor é um problema possível, mas o alerta principal aqui é a gestão do que já foi arrecadado."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "Ainda vira serviço público?",
+   "enunciado": "Merenda escolar distribuída em escola municipal",
+   "resposta": true,
+   "ancora": "Merenda escolar é paga com verba pública repassada à escola.",
+   "feedbackErro": "A merenda parece 'brinde' natural da escola, sem custo. Mas o alimento é comprado com verba pública repassada especificamente pra isso."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "participacao-cidada",
+   "criterio": "É participação cidadã?",
+   "enunciado": "Comparecer a uma audiência pública sobre o orçamento",
+   "resposta": true,
+   "ancora": "Audiência pública é espaço formal de participação no orçamento.",
+   "feedbackErro": "Parece um evento burocrático distante da vida real. Mas é um espaço formal onde o cidadão pode questionar e influenciar o orçamento."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "imposto-financia-servico",
+   "pergunta": "Qual frase resume o que você reforçou hoje?",
+   "ancora": "Arrecadação e gestão do gasto caminham juntas, uma completa a outra.",
+   "alternativas": [
+    {
+     "texto": "Arrecadar mais imposto já garante, sozinho, serviço melhor.",
+     "correta": false,
+     "feedbackErro": "Arrecadar mais não basta — a gestão do gasto também define o resultado."
+    },
+    {
+     "texto": "Arrecadar bem não basta — gerir e acompanhar o gasto garante o serviço de volta.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Serviço privado sempre é pago com dinheiro de imposto.",
+     "correta": false,
+     "feedbackErro": "Serviço privado se sustenta com o que cobra de quem usa, não com imposto."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "imposto-financia-servico",
+   "dificuldade": 2,
+   "pergunta": "Um posto de saúde recebe verba, mas o remédio nunca chega ao paciente. Onde pode estar o problema?",
+   "ancora": "Falha pode estar na gestão do repasse, não na arrecadação em si.",
+   "alternativas": [
+    {
+     "texto": "Na gestão do repasse entre a verba e a compra do remédio",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só pode ser falta de arrecadação de imposto na cidade",
+     "correta": false,
+     "feedbackErro": "O enunciado já diz que a verba chegou — o problema está em algum ponto depois disso, na gestão."
+    },
+    {
+     "texto": "O problema é sempre do paciente que não buscou o remédio",
+     "correta": false,
+     "feedbackErro": "Se o remédio nunca chega ao posto, a falha está antes disso, na cadeia de compra e distribuição."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "imposto-financia-servico",
+   "criterio": "Ainda vira serviço público?",
+   "enunciado": "Coleta de lixo feita pela prefeitura no seu bairro",
+   "resposta": true,
+   "ancora": "Coleta de lixo é serviço público mantido com imposto municipal.",
+   "feedbackErro": "O caminhão passa toda semana, e isso parece 'automático'. Mas o serviço é contratado e pago com verba pública do município."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "participacao-cidada",
+   "instrucao": "É forma de participação cidadã? Arraste.",
+   "ancora": "Participação é agir sobre a decisão, não só receber informação.",
+   "feedbackErro": "Comparecer a audiência e enviar proposta em consulta pública são ação; só ler notícia sobre o assunto é informação passiva.",
+   "caixas": [
+    {
+     "id": "participacao",
+     "rotulo": "É participação"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Enviar proposta numa consulta pública de orçamento",
+     "caixaCorreta": "participacao"
+    },
+    {
+     "texto": "Só ler uma notícia sobre o orçamento da cidade",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Comparecer a uma audiência pública e falar",
+     "caixaCorreta": "participacao"
+    },
+    {
+     "texto": "Comentar sobre política só entre amigos",
+     "caixaCorreta": "nao"
+    }
+   ]
+  }
+ ]
+}

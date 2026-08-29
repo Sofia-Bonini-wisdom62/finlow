@@ -91,7 +91,9 @@ function construirPath(pontos: Ponto[]): string {
   return d
 }
 
-function usarLayout(trilha: Trilha, intensidade: "sobria" | "expressiva") {
+// Prefixo "use" obrigatório: a função consome useMemo, e o lint de hooks só
+// reconhece hook customizado pelo nome.
+function useLayoutDaTrilha(trilha: Trilha, intensidade: "sobria" | "expressiva") {
   return useMemo(() => {
     const T = tamanhos(intensidade)
     const entradas: (EntradaNo | EntradaDivisor | EntradaBau)[] = []
@@ -257,7 +259,7 @@ export default function Caminho({
   onSelecionarNo,
   onAbrirBau,
 }: CaminhoProps) {
-  const layout = usarLayout(trilha, intensidade)
+  const layout = useLayoutDaTrilha(trilha, intensidade)
 
   if (carregando) {
     return (

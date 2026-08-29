@@ -1,0 +1,325 @@
+{
+ "slug": "o-contrato-de-credito-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "o-contrato-de-credito",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "O CET real é maior do que parece?",
+   "enunciado": "Contrato anuncia 'juros de 1,9% ao mês', mas soma tarifa de cadastro e seguro obrigatório",
+   "resposta": true,
+   "ancora": "Tarifa e seguro somados elevam o CET bem acima dos 1,9%.",
+   "feedbackErro": "O número anunciado é o de juros, e parece o número final. Mas somando tarifa e seguro, o custo real fica bem acima dos 1,9%."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "O CET real é maior do que parece?",
+   "enunciado": "Contrato anuncia 'sem tarifa nenhuma', só juros de 2,5% ao mês, confirmado no CET",
+   "resposta": false,
+   "ancora": "Sem tarifas ou seguros embutidos, o CET pode igualar a taxa de juros.",
+   "feedbackErro": "Depois de ver tantos contratos com custo escondido, pode parecer que sempre há algo a mais. Mas aqui o próprio CET confirma que não há."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "O CET real é maior do que parece?",
+   "enunciado": "Contrato com juros baixos, mas multa de 15% para quitação antecipada",
+   "resposta": true,
+   "ancora": "Multa alta de quitação pode pesar mais que os juros mensais.",
+   "feedbackErro": "Juros baixos parecem garantir um contrato barato. Mas uma multa de 15% para quitar antes pode custar muito mais que os juros no fim das contas."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "custo-efetivo-total",
+   "dificuldade": 3,
+   "pergunta": "Em qual situação a taxa de juros anunciada É igual ao CET?",
+   "ancora": "Sem tarifa, seguro ou custo extra, taxa e CET coincidem.",
+   "alternativas": [
+    {
+     "texto": "Quando não existe tarifa, seguro ou custo extra no contrato",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sempre, CET e taxa de juros são a mesma coisa",
+     "correta": false,
+     "feedbackErro": "Na maioria dos contratos existe alguma tarifa ou seguro embutido, o que já torna o CET maior que a taxa isolada."
+    },
+    {
+     "texto": "Nunca, CET é sempre maior por definição",
+     "correta": false,
+     "feedbackErro": "Não é impossível serem iguais: quando não há nenhum custo extra além dos juros, o CET coincide com a taxa anunciada."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "termos-do-contrato",
+   "dificuldade": 3,
+   "pergunta": "Um contrato promete 'parcelas fixas', mas o valor muda todo mês por causa de um índice de correção. Isso é",
+   "ancora": "Parcela 'fixa' que varia contradiz a informação dada ao cliente.",
+   "alternativas": [
+    {
+     "texto": "Uma informação enganosa — parcela fixa não deveria variar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Normal, parcela fixa pode variar sim, sem problema",
+     "correta": false,
+     "feedbackErro": "Se o valor muda mês a mês, ele não é fixo de fato: chamar de 'fixa' uma parcela que varia é informação enganosa."
+    },
+    {
+     "texto": "Só um erro de digitação, sem nenhuma importância",
+     "correta": false,
+     "feedbackErro": "Não é um detalhe menor: informar 'parcela fixa' quando ela varia afeta diretamente o planejamento financeiro do cliente."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "termos-do-contrato",
+   "criterio": "Vale mesmo se desfavorável ao cliente?",
+   "enunciado": "Cláusula que permite ao banco mudar a taxa de juros no meio do contrato, sem aviso",
+   "resposta": false,
+   "ancora": "Mudança unilateral sem aviso fere o direito à informação clara.",
+   "feedbackErro": "O contrato assinado parece autorizar qualquer cláusula nele. Mas mudar a taxa no meio do caminho, sem aviso, fere o direito à informação clara."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "custo-efetivo-total",
+   "instrucao": "Toque na ordem, do contrato mais barato para o mais caro, pelo CET.",
+   "ancora": "O CET, não a taxa de juros isolada, compara o custo real.",
+   "feedbackErro": "É tentador comparar só pela taxa de juros anunciada. Mas o CET, que soma tudo, é o número que realmente compara o custo entre contratos.",
+   "itens": [
+    {
+     "texto": "CET de 2,1% ao mês",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "CET de 2,8% ao mês",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "CET de 3,4% ao mês",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "termos-do-contrato",
+   "criterio": "Esse contrato exige atenção redobrada?",
+   "enunciado": "Cláusula de vencimento antecipado combinada com multa alta de quitação",
+   "resposta": true,
+   "ancora": "As duas cláusulas juntas restringem bastante a saída do cliente.",
+   "feedbackErro": "Cada cláusula sozinha já existe em muitos contratos comuns. Mas as duas juntas restringem bastante a capacidade do cliente de sair da dívida."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "termos-do-contrato",
+   "criterio": "Esse contrato exige atenção redobrada?",
+   "enunciado": "Contrato com prazo de carência de 30 dias e nenhuma tarifa extra",
+   "resposta": false,
+   "ancora": "Sem cláusulas restritivas ou custos extras, o contrato é mais simples.",
+   "feedbackErro": "Depois de ver contratos com cláusulas pesadas, qualquer prazo pode parecer suspeito. Mas carência simples, sem tarifa extra, não exige atenção redobrada."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-efetivo-total",
+   "pergunta": "R$ 2.200 a 1,8% ao mês, tarifa R$ 60, seguro R$ 35. Custo no fim do 1º mês?",
+   "campo": "moeda",
+   "min": 2200,
+   "max": 2600,
+   "gabarito": 2335,
+   "toleranciaPct": 20,
+   "fonte": "cálculo padrão de juros simples de 1 mês mais tarifa e seguro",
+   "feedbackPerto": "Isso mesmo, cerca de R$ 2.335. Primeiro os juros sobre o valor, depois soma tarifa e seguro.",
+   "feedbackLonge": "R$ 2.335: R$ 2.200 com 1,8% de juros dá R$ 2.239,60; somando R$ 60 de tarifa e R$ 35 de seguro, chega a R$ 2.334,60.",
+   "verificacao": {
+    "expressao": "2200*1.018+60+35",
+    "esperado": 2334.6,
+    "tolerancia": 1
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-efetivo-total",
+   "dificuldade": 3,
+   "pergunta": "CET igual em duas propostas, mas só uma tem multa de quitação de 12%. Qual critério extra deveria pesar?",
+   "ancora": "A chance de querer quitar antes muda a proposta mais vantajosa.",
+   "alternativas": [
+    {
+     "texto": "A chance de querer quitar a dívida antes do prazo combinado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nenhum, CET igual significa contratos idênticos em tudo",
+     "correta": false,
+     "feedbackErro": "CET igual mostra custo total parecido no prazo normal, mas cláusulas como multa de quitação ainda podem diferenciar os contratos."
+    },
+    {
+     "texto": "A cor da instituição financeira escolhida",
+     "correta": false,
+     "feedbackErro": "Cor da marca não tem nenhum efeito sobre o custo ou as condições reais do contrato de crédito."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "o-contrato-de-credito",
+   "dificuldade": 3,
+   "pergunta": "Wagner escolheu o CET mais baixo, mas viu depois uma cláusula agressiva de vencimento antecipado. O que faltou fazer?",
+   "ancora": "Ler todas as cláusulas evita surpresas que o CET não mostra.",
+   "alternativas": [
+    {
+     "texto": "Ler todas as cláusulas do contrato, não só comparar o CET",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada, CET baixo já garante o melhor contrato sempre",
+     "correta": false,
+     "feedbackErro": "CET baixo mostra bom custo no prazo normal, mas não revela cláusulas de risco, como vencimento antecipado agressivo."
+    },
+    {
+     "texto": "Confiar só na palavra do gerente sobre o contrato",
+     "correta": false,
+     "feedbackErro": "A palavra do gerente não substitui a leitura das cláusulas: o que vale de fato é o que está escrito no contrato assinado."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "termos-do-contrato",
+   "criterio": "Pode se esconder atrás de um CET bom?",
+   "enunciado": "Uma cláusula de multa alta para quitação antecipada",
+   "resposta": true,
+   "ancora": "CET bom não revela cláusulas restritivas como multa de saída.",
+   "feedbackErro": "Um CET baixo passa a impressão de contrato seguro por inteiro. Mas ele não mostra cláusulas como multa alta para quitar antes do prazo."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "Pode se esconder atrás de um CET bom?",
+   "enunciado": "O prazo total de pagamento, já informado dentro do CET",
+   "resposta": false,
+   "ancora": "O prazo total já faz parte do cálculo que compõe o CET.",
+   "feedbackErro": "Depois de ver cláusulas escondidas, pode parecer que tudo está oculto. Mas o prazo total já entra no próprio cálculo que forma o CET."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-contrato-de-credito",
+   "dificuldade": null,
+   "pergunta": "Qual frase resume a consolidação de hoje?",
+   "alternativas": [
+    {
+     "texto": "Com CET parecido, leia as cláusulas: multa de quitação também pesa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "CET baixo garante que não existe nenhuma cláusula de risco",
+     "correta": false,
+     "feedbackErro": "CET mostra o custo no prazo normal, mas não revela cláusulas como vencimento antecipado ou multa de quitação."
+    },
+    {
+     "texto": "Parcela chamada de 'fixa' nunca pode variar de valor, por lei",
+     "correta": false,
+     "feedbackErro": "O problema não é a lei proibir variação, e sim o contrato informar 'fixa' uma parcela que na prática muda."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "custo-efetivo-total",
+   "criterio": "É exceção com CET igual à taxa de juros?",
+   "enunciado": "Contrato sem tarifa de cadastro, sem seguro e sem qualquer taxa extra",
+   "resposta": true,
+   "ancora": "Sem custo extra nenhum, o CET pode igualar a taxa de juros.",
+   "feedbackErro": "A regra geral é o CET ficar acima da taxa de juros. Mas sem nenhuma tarifa ou seguro embutido, os dois números podem coincidir."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "termos-do-contrato",
+   "dificuldade": 3,
+   "pergunta": "Um contrato de crédito consignado desconta a parcela direto do salário. Isso muda o risco do contrato para o credor?",
+   "ancora": "Desconto direto reduz o risco de inadimplência do credor.",
+   "alternativas": [
+    {
+     "texto": "Sim, reduz o risco de inadimplência e costuma baixar a taxa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não muda nada, o risco é sempre igual em qualquer crédito",
+     "correta": false,
+     "feedbackErro": "O desconto direto na folha reduz a chance de o pagamento não acontecer, o que normalmente diminui o risco do credor."
+    },
+    {
+     "texto": "Aumenta o risco, o cliente perde o controle do pagamento",
+     "correta": false,
+     "feedbackErro": "Perder o controle direto não é a leitura usual: o desconto automático garante o pagamento, reduzindo o risco de calote."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "custo-efetivo-total",
+   "instrucao": "Classifique: reduz o custo do crédito ou aumenta o custo do crédito?",
+   "ancora": "Prazo maior costuma aumentar o total pago em juros.",
+   "feedbackErro": "Algumas escolhas do contrato reduzem o custo total; outras, mesmo parecendo boas, aumentam.",
+   "caixas": [
+    {
+     "id": "reduz",
+     "rotulo": "Reduz custo"
+    },
+    {
+     "id": "aumenta",
+     "rotulo": "Aumenta custo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Escolher o prazo mais curto possível",
+     "caixaCorreta": "reduz"
+    },
+    {
+     "texto": "Aceitar seguro prestamista sem necessidade",
+     "caixaCorreta": "aumenta"
+    },
+    {
+     "texto": "Comparar o CET de várias propostas antes de assinar",
+     "caixaCorreta": "reduz"
+    },
+    {
+     "texto": "Esticar o prazo de pagamento ao máximo",
+     "caixaCorreta": "aumenta"
+    }
+   ]
+  }
+ ]
+}

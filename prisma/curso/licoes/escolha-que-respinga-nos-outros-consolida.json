@@ -1,0 +1,290 @@
+{
+ "slug": "escolha-que-respinga-nos-outros-consolida",
+ "segmento": "ef35",
+ "conceitoPrincipal": "escolha-que-respinga-nos-outros",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "escolha-com-impacto",
+   "criterio": "Isso ainda vale, nesse limite?",
+   "enunciado": "Reduzir seu consumo de água, mesmo se o vazamento do prédio continuar",
+   "resposta": true,
+   "ancora": "O esforço individual ainda vale, mesmo com problema maior existindo.",
+   "feedbackErro": "Parece que, se o vazamento continua, o esforço individual não teve efeito. Mas reduzir o próprio consumo ainda vale — o vazamento precisa ser resolvido à parte."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "conflito-de-consumo",
+   "criterio": "Isso ainda vale, nesse limite?",
+   "enunciado": "Duas pessoas discordarem do sorvete que cada uma vai comer sozinha",
+   "resposta": false,
+   "ancora": "Sabor de consumo individual não é conflito — é gosto pessoal.",
+   "feedbackErro": "Parece uma discordância sobre consumo, e por isso confunde. Mas como cada um vai comer o seu, sem dividir nada, não existe conflito real."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "escolha-com-impacto",
+   "criterio": "Isso ainda vale, nesse limite?",
+   "enunciado": "Toda a família topar gastar mais num mês especial, sem forçar ninguém",
+   "resposta": false,
+   "ancora": "Quando todos concordam de verdade, não existe prejuízo forçado.",
+   "feedbackErro": "Parece que gastar mais sempre gera algum prejuízo. Mas quando é um acordo real, sem ninguém forçado, não há prejuízo — foi escolha de todos."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "escolha-com-impacto",
+   "dificuldade": 3,
+   "pergunta": "Um bairro economiza energia, menos uma casa com ar-condicionado o dia todo, achando que não muda nada. Está certo?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "Não — o esforço de todos só funciona se for de todos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque uma casa realmente não muda nada no total",
+     "correta": false,
+     "feedbackErro": "Uma casa isolada parece pouco. Mas o raciocínio 'não faço diferença', multiplicado por muitas casas, anula o esforço coletivo."
+    },
+    {
+     "texto": "Sim, porque energia não é um recurso compartilhado",
+     "correta": false,
+     "feedbackErro": "Energia elétrica também tem limite de rede e efeito ambiental compartilhado — não é isolado de cada casa."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "conflito-de-consumo",
+   "dificuldade": 3,
+   "pergunta": "Dois sócios discordam: gastar o lucro em propaganda ou guardar como reserva. É conflito de consumo?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "Sim, porque os dois disputam o destino do mesmo dinheiro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, porque é dinheiro do negócio, não de consumo pessoal",
+     "correta": false,
+     "feedbackErro": "Conflito de consumo não precisa ser sobre gasto pessoal — é sobre disputar o destino de um recurso compartilhado."
+    },
+    {
+     "texto": "Não, porque os dois concordam que é lucro da empresa",
+     "correta": false,
+     "feedbackErro": "Concordar que o dinheiro é da empresa não resolve o conflito: eles ainda discordam sobre o que fazer com ele."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "conflito-de-consumo",
+   "criterio": "Ainda é conflito, sem briga aberta?",
+   "enunciado": "Um colega guardar mágoa, calado, achando que paga mais que os outros",
+   "resposta": true,
+   "ancora": "Conflito existe mesmo sem discussão aberta.",
+   "feedbackErro": "Sem briga visível, parece que não há problema nenhum. Mas o desconforto guardado por sentir injustiça já é sinal de conflito."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "escolha-com-impacto",
+   "instrucao": "O esforço individual ainda vale, com esse limite?",
+   "ancora": "Vale quando existe mudança real de comportamento — mesmo pequena.",
+   "feedbackErro": "Parece que só vale se resolver o problema inteiro sozinho. Mas mudar o próprio comportamento sempre vale.",
+   "caixas": [
+    {
+     "id": "vale",
+     "rotulo": "Vale"
+    },
+    {
+     "id": "naovale",
+     "rotulo": "Não vale"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Reduzir o próprio lixo, mesmo se o bairro não reciclar",
+     "caixaCorreta": "vale"
+    },
+    {
+     "texto": "Economizar água, mesmo com vazamento não resolvido no prédio",
+     "caixaCorreta": "vale"
+    },
+    {
+     "texto": "Prometer economizar e continuar gastando igual",
+     "caixaCorreta": "naovale"
+    },
+    {
+     "texto": "Dizer que vai ajudar e nunca cumprir a parte combinada",
+     "caixaCorreta": "naovale"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "conflito-de-consumo",
+   "criterio": "É jeito maduro de lidar com conflito?",
+   "enunciado": "Reconhecer que a outra pessoa também tem um ponto válido, discordando",
+   "resposta": true,
+   "ancora": "Reconhecer o ponto do outro abre caminho pra resolver de verdade.",
+   "feedbackErro": "Parece que resolver é sempre uma pessoa 'ganhar' a discussão. Mas reconhecer o ponto do outro é o que abre caminho pra uma solução."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "escolha-com-impacto",
+   "dificuldade": 3,
+   "pergunta": "Uma cidade taxa quem usa muita água na seca. Família rica prefere pagar e gastar igual. Resolve o problema coletivo?",
+   "ancora": null,
+   "alternativas": [
+    {
+     "texto": "A água continua faltando pros outros, mesmo com a taxa paga",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque pagar a taxa já compensa o gasto extra",
+     "correta": false,
+     "feedbackErro": "A taxa compensa financeiramente, mas não devolve a água gasta. Numa seca, o problema é a quantidade, não só o dinheiro."
+    },
+    {
+     "texto": "Sim, porque a taxa vira dinheiro pra todo mundo usar depois",
+     "correta": false,
+     "feedbackErro": "Mesmo virando dinheiro, isso não resolve a falta de água agora. O recurso escasso continua sendo consumido em excesso."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "conflito-de-consumo",
+   "criterio": "É jeito justo pros dois lados?",
+   "enunciado": "Uma decisão tomada só por quem manda no grupo, sem ouvir o resto",
+   "resposta": false,
+   "ancora": "Decisão sem ouvir todo mundo tende a deixar alguém prejudicado.",
+   "feedbackErro": "Parece rápido e prático deixar quem manda decidir sozinho. Mas sem ouvir os outros lados, a chance de prejuízo é bem maior."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "escolha-com-impacto",
+   "criterio": "Mostra entendimento sobre o coletivo?",
+   "enunciado": "Perceber que 'só eu', somado a muita gente, muda o resultado geral",
+   "resposta": true,
+   "ancora": "O efeito coletivo nasce da soma de escolhas individuais.",
+   "feedbackErro": "Parece que uma escolha sozinha nunca muda nada de fato. Mas o efeito coletivo é exatamente a soma de muitas escolhas parecidas."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "escolha-com-impacto",
+   "dificuldade": 3,
+   "pergunta": "Depois de tudo isso, qual frase é mais precisa?",
+   "alternativas": [
+    {
+     "texto": "Se o problema é grande demais, o esforço individual não serve pra nada",
+     "correta": false,
+     "feedbackErro": "O esforço individual ainda vale — é a soma dele com o de outros que resolve o problema maior."
+    },
+    {
+     "texto": "Toda escolha financeira soma a um efeito maior, coletivo, mesmo pequena",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Conflito de consumo só existe quando alguém erra sozinho",
+     "correta": false,
+     "feedbackErro": "Muitos conflitos nascem de decisões tomadas sem ouvir todo mundo, não de um erro isolado."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "escolha-com-impacto",
+   "instrucao": "Ordene do efeito mais fácil de perceber pro mais difícil.",
+   "ancora": "Efeitos coletivos, somados de muita gente, são mais difíceis de notar.",
+   "feedbackErro": "Parece que todo efeito é igualmente fácil de notar. Mas quando o resultado depende da soma de muita gente, fica mais difícil de perceber.",
+   "itens": [
+    {
+     "texto": "Deixar a luz acesa à toa",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Gastar além do combinado na mesada da família",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Um hábito pequeno somado ao de muita gente na cidade",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "conflito-de-consumo",
+   "instrucao": "Ajuda a resolver um conflito de forma justa?",
+   "ancora": "Ouvir e reconhecer ajuda; decidir sozinho ou ignorar, não.",
+   "feedbackErro": "Parece mais rápido decidir sozinho e seguir em frente. Mas ouvir os dois lados resolve de forma mais justa.",
+   "caixas": [
+    {
+     "id": "ajuda",
+     "rotulo": "Ajuda"
+    },
+    {
+     "id": "naoajuda",
+     "rotulo": "Não ajuda"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Ouvir os dois lados antes de decidir",
+     "caixaCorreta": "ajuda"
+    },
+    {
+     "texto": "Deixar só quem manda decidir sozinho",
+     "caixaCorreta": "naoajuda"
+    },
+    {
+     "texto": "Reconhecer que o outro também tem um ponto válido",
+     "caixaCorreta": "ajuda"
+    },
+    {
+     "texto": "Ignorar o desconforto de quem se sente prejudicado",
+     "caixaCorreta": "naoajuda"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "escolha-com-impacto",
+   "pergunta": "Rua com 8 casas reduz R$ 400 do gasto de água no mês. Dividido igual, quanto cada casa economiza?",
+   "campo": "moeda",
+   "min": 5,
+   "max": 100,
+   "gabarito": 50,
+   "toleranciaPct": 20,
+   "fonte": "conta direta: valor total dividido pelo número de casas",
+   "feedbackPerto": "Isso mesmo — R$ 50 por casa. Um esforço coletivo, dividido, mostra o ganho de cada um.",
+   "feedbackLonge": "R$ 400 dividido por 8 casas dá R$ 50. É a mesma lógica: dividir o total pelo número de quem participa.",
+   "verificacao": {
+    "expressao": "400/8",
+    "esperado": 50
+   }
+  }
+ ]
+}

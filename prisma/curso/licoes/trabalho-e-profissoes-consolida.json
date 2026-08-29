@@ -1,0 +1,284 @@
+{
+ "slug": "trabalho-e-profissoes-consolida",
+ "segmento": "ef35",
+ "conceitoPrincipal": "trabalho-e-profissoes",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "trabalho-e-remuneracao",
+   "criterio": "Isso conta como trabalho remunerado?",
+   "enunciado": "Youtuber que grava vídeos e ganha com anúncios",
+   "resposta": true,
+   "ancora": "Ganhar com anúncios é pagamento por um trabalho — profissão digital.",
+   "feedbackErro": "Sem chefe nem loja, parece só hobby. Mas ele recebe dinheiro por causa dos vídeos — isso é trabalho remunerado."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "trabalho-e-remuneracao",
+   "criterio": "Isso conta como trabalho remunerado?",
+   "enunciado": "Aluno que resolve a lição de casa do colega, sem cobrar nada",
+   "resposta": false,
+   "ancora": "Sem pagamento, é ajuda entre colegas, não trabalho.",
+   "feedbackErro": "Ele usou conhecimento e tempo de verdade. Mas sem receber nada, falta o critério do pagamento — não é trabalho remunerado."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "setores-da-economia",
+   "criterio": "É setor primário, mesmo com máquina?",
+   "enunciado": "Agricultor usando trator para colher a soja",
+   "resposta": true,
+   "ancora": "Usar trator não muda o setor: ainda é tirar direto da terra.",
+   "feedbackErro": "Trator parece indústria, e isso confunde. Mas a atividade continua sendo tirar o alimento da terra — isso é setor primário."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "setores-da-economia",
+   "dificuldade": 3,
+   "pergunta": "Fazenda planta soja, vende o grão a uma fábrica de óleo, que vende o óleo pronto ao mercado. Quantos setores aparecem?",
+   "ancora": "Plantar é primário, virar óleo é secundário, vender é terciário.",
+   "alternativas": [
+    {
+     "texto": "Só o primário, porque tudo começa na plantação",
+     "correta": false,
+     "feedbackErro": "A plantação é só o início. A fábrica transforma o grão (secundário) e o mercado vende o óleo (terciário) — os três aparecem."
+    },
+    {
+     "texto": "Os três setores: primário, secundário e terciário",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só o secundário, porque é a fábrica que faz o produto final",
+     "correta": false,
+     "feedbackErro": "A fábrica é uma etapa, mas a soja vem do primário e o mercado vende no terciário. Os três setores aparecem juntos."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "profissoes-na-comunidade",
+   "dificuldade": 3,
+   "pergunta": "Uma pessoa cuida da horta da própria casa nos fins de semana, só para a família comer. Isso é uma profissão?",
+   "ancora": "Sem venda nem pagamento, é atividade doméstica, não profissão.",
+   "alternativas": [
+    {
+     "texto": "Sim, porque ela produz alimento como um agricultor",
+     "correta": false,
+     "feedbackErro": "Produzir alimento não basta: um agricultor vende ou é contratado para isso. Aqui é só para a própria família, sem pagamento."
+    },
+    {
+     "texto": "Não, porque não há venda nem pagamento envolvido",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque exige o mesmo esforço de um trabalho no campo",
+     "correta": false,
+     "feedbackErro": "O esforço pode ser parecido, mas isso não define profissão. Falta alguém pagando ou comprando o que ela produz."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "setores-da-economia",
+   "criterio": "Isso já deixou de ser setor primário?",
+   "enunciado": "Fábrica transformando o grão de soja em óleo de cozinha",
+   "resposta": true,
+   "ancora": "Transformar grão em óleo é indústria — vira setor secundário.",
+   "feedbackErro": "A soja ainda lembra a fazenda, e isso confunde. Mas assim que vira óleo processado, deixou de ser primário — é secundário."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "setores-da-economia",
+   "instrucao": "Nessa cadeia do algodão, cada etapa é primário ou não?",
+   "ancora": "Só a colheita direto da natureza é primário; o resto já transformou.",
+   "feedbackErro": "É fácil achar que tudo que envolve algodão é primário. Mas assim que alguém transforma ou vende, o setor muda.",
+   "caixas": [
+    {
+     "id": "primario",
+     "rotulo": "Setor primário"
+    },
+    {
+     "id": "outro",
+     "rotulo": "Transforma ou vende"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Colher o algodão no campo",
+     "caixaCorreta": "primario"
+    },
+    {
+     "texto": "Tecelagem transformando algodão em tecido",
+     "caixaCorreta": "outro"
+    },
+    {
+     "texto": "Extrair sal da água do mar",
+     "caixaCorreta": "primario"
+    },
+    {
+     "texto": "Loja de roupas vendendo a camiseta pronta",
+     "caixaCorreta": "outro"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "profissoes-na-comunidade",
+   "criterio": "Remunerado mesmo sem loja física?",
+   "enunciado": "Cozinheira que vende marmita pelo celular, direto de casa",
+   "resposta": true,
+   "ancora": "Vender marmita e cobrar por isso é trabalho remunerado.",
+   "feedbackErro": "Sem placa nem endereço comercial, parece informal. Mas ela cobra pela marmita — isso continua sendo trabalho remunerado."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "trabalho-e-remuneracao",
+   "dificuldade": 3,
+   "pergunta": "Um pai paga R$5 de mesada ao filho todo sábado, sem pedir nenhuma tarefa em troca. Isso é trabalho remunerado do filho?",
+   "ancora": "Sem tarefa entregue em troca do dinheiro, não é trabalho — é mesada.",
+   "alternativas": [
+    {
+     "texto": "Sim, porque o filho recebe dinheiro toda semana",
+     "correta": false,
+     "feedbackErro": "Receber dinheiro toda semana lembra salário, e isso confunde. Mas falta a tarefa entregue em troca — sem isso, é mesada, não trabalho."
+    },
+    {
+     "texto": "Não, falta uma tarefa entregue em troca do dinheiro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, toda criança que recebe mesada já trabalha em casa",
+     "correta": false,
+     "feedbackErro": "Nem toda mesada exige tarefa — aqui o pai não pediu nada em troca. Sem tarefa, não é trabalho remunerado."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "setores-da-economia",
+   "criterio": "É setor terciário mesmo sem loja física?",
+   "enunciado": "Motorista de aplicativo levando passageiros pelo celular",
+   "resposta": true,
+   "ancora": "Prestar o serviço de transporte, com ou sem loja, é setor terciário.",
+   "feedbackErro": "Sem escritório nem placa, parece diferente de um serviço tradicional. Mas ele presta um serviço de transporte — isso é terciário."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "profissoes-na-comunidade",
+   "criterio": "É profissão mesmo em poucas horas?",
+   "enunciado": "Universitário que dá aula particular de matemática duas vezes por semana, cobrando por hora",
+   "resposta": true,
+   "ancora": "Poucas horas não impedem: ele cobra por hora — é professor particular.",
+   "feedbackErro": "Poucas horas por semana parece bico, não profissão de verdade. Mas ele cobra por hora de aula — isso já é trabalho remunerado."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "trabalho-e-profissoes",
+   "pergunta": "Qual situação NÃO é trabalho remunerado?",
+   "alternativas": [
+    {
+     "texto": "Cozinheira vendendo marmita pelo celular",
+     "correta": false,
+     "feedbackErro": "Ela cobra pela marmita — isso é trabalho remunerado, mesmo sem loja."
+    },
+    {
+     "texto": "Filho recebendo mesada sem nenhuma tarefa em troca",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Universitário dando aula particular cobrando por hora",
+     "correta": false,
+     "feedbackErro": "Cobrar por hora de aula é trabalho remunerado, mesmo em poucas horas por semana."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "setores-da-economia",
+   "dificuldade": 3,
+   "pergunta": "Uma peixaria compra o peixe já limpo do pescador e revende fatiado ao cliente. Que setor é a peixaria?",
+   "ancora": "Ela não pesca nem transforma o peixe — só revende: é terciário.",
+   "alternativas": [
+    {
+     "texto": "Setor terciário",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Setor primário",
+     "correta": false,
+     "feedbackErro": "Primário seria quem pescou. A peixaria compra pronto e revende: é terciário."
+    },
+    {
+     "texto": "Setor secundário",
+     "correta": false,
+     "feedbackErro": "Secundário transformaria o peixe em outro produto, como enlatado. Ela só revende fatiado: é terciário."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "trabalho-e-remuneracao",
+   "criterio": "Remunerado mesmo sendo curto?",
+   "enunciado": "Vizinho que troca uma lâmpada e cobra R$10 pela visita",
+   "resposta": true,
+   "ancora": "Curto ou longo, o que importa é o pagamento pelo serviço.",
+   "feedbackErro": "Durar poucos minutos faz parecer que não conta. Mas ele cobrou pela visita — isso é trabalho remunerado."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "profissoes-na-comunidade",
+   "instrucao": "É profissão remunerada ou favor sem cobrança?",
+   "ancora": "Cobrar pelo serviço é o que define profissão remunerada.",
+   "feedbackErro": "Fazer um favor de boa vontade não vira profissão; falta o pagamento pelo serviço prestado.",
+   "caixas": [
+    {
+     "id": "remunerado",
+     "rotulo": "Remunerada"
+    },
+    {
+     "id": "favor",
+     "rotulo": "Favor sem cobrança"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Encanador cobrando pela visita de emergência",
+     "caixaCorreta": "remunerado"
+    },
+    {
+     "texto": "Amigo emprestando a furadeira, de graça",
+     "caixaCorreta": "favor"
+    },
+    {
+     "texto": "Manicure cobrando por unha feita em casa",
+     "caixaCorreta": "remunerado"
+    },
+    {
+     "texto": "Vizinha regando as plantas de quem viajou, sem cobrar",
+     "caixaCorreta": "favor"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,300 @@
+{
+ "slug": "cabe-no-seu-bolso",
+ "segmento": "ef89",
+ "conceitoPrincipal": "cabe-no-seu-bolso",
+ "fraseConceito": "Antes de contratar um crédito, compare a taxa de juros e veja se a parcela cabe no seu orçamento do mês.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cabe-no-seu-bolso",
+   "criterio": "Cabe no orçamento do mês?",
+   "enunciado": "Parcela de R$ 180 numa renda de R$ 900",
+   "resposta": true,
+   "ancora": "R$ 180 são 20% de R$ 900 — dentro da faixa segura de até 30%.",
+   "feedbackErro": "R$ 180 parece alto isolado. Mas é 20% de R$ 900, dentro da faixa segura, e ainda sobra dinheiro pro resto do mês."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cabe-no-seu-bolso",
+   "criterio": "Cabe no orçamento do mês?",
+   "enunciado": "Parcela de R$ 360 numa renda de R$ 900",
+   "resposta": false,
+   "ancora": "R$ 360 são 40% de R$ 900 — passa da faixa segura.",
+   "feedbackErro": "Pagável parcela por parcela parece a sensação. Mas 40% da renda passa da faixa segura e aperta o resto do orçamento."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "cabe-no-seu-bolso",
+   "criterio": "Cabe no orçamento do mês?",
+   "enunciado": "Parcela de R$ 250 numa renda de R$ 1.000, com R$ 800 já em contas fixas",
+   "resposta": false,
+   "ancora": "Sobram R$ 200 depois das contas fixas — a parcela de R$ 250 não cabe.",
+   "feedbackErro": "25% da renda parece tranquilo, e é isso que engana. Mas as contas fixas já tomaram R$ 800 — sobram só R$ 200, menos que a parcela.",
+   "verificacao": { "expressao": "1000-800-250", "esperado": -50 }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "cabe-no-seu-bolso",
+   "dificuldade": 1,
+   "pergunta": "Qual é o critério mais confiável pra saber se uma parcela cabe no seu bolso?",
+   "ancora": "R$ 300 são 10% de R$ 3.000, mas 33% de R$ 900 — a proporção decide.",
+   "verificacao": { "expressao": "300/3000*100", "esperado": 10 },
+   "alternativas": [
+    {
+     "texto": "O tamanho da parcela em reais",
+     "correta": false,
+     "feedbackErro": "O valor sozinho não diz nada: R$ 300 cabem numa renda alta e sufocam numa renda baixa."
+    },
+    {
+     "texto": "A parcela comparada à renda e ao que já está comprometido",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se a loja aprovou o crediário na hora",
+     "correta": false,
+     "feedbackErro": "Aprovação olha seu histórico, não o seu orçamento. Loja aprovar não garante que a parcela cabe."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "juros-por-tipo-de-credito",
+   "dificuldade": 1,
+   "pergunta": "Rafaela precisa de R$ 500. Qual opção custa menos juros no mês?",
+   "ancora": "1,8% ao mês em R$ 500 são R$ 9 — bem menos que 8% ou 14%.",
+   "verificacao": { "expressao": "500*0.018", "esperado": 9 },
+   "alternativas": [
+    {
+     "texto": "Cheque especial, a 8% ao mês",
+     "correta": false,
+     "feedbackErro": "8% parece baixo perto do rotativo, mas ainda é bem mais caro que o consignado."
+    },
+    {
+     "texto": "Empréstimo consignado, a 1,8% ao mês",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Rotativo do cartão, a 14% ao mês",
+     "correta": false,
+     "feedbackErro": "O rotativo é a linha de crédito mais cara do país — nunca é a opção mais barata."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "juros-por-tipo-de-credito",
+   "criterio": "É o crédito mais caro?",
+   "enunciado": "Rotativo do cartão, a 14% ao mês",
+   "resposta": true,
+   "ancora": "14% ao mês é a maior taxa entre os créditos comuns.",
+   "feedbackErro": "Pode parecer só mais uma opção do cartão. Mas o rotativo cobra a maior taxa entre os créditos de uso comum."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "juros-por-tipo-de-credito",
+   "instrucao": "Toque na ordem da taxa, do mais caro pro mais barato.",
+   "ancora": "A ordem segue a taxa: 14% > 8% > 5% > 1,8%.",
+   "feedbackErro": "É tentador ordenar pelo valor da parcela, mas o que define o custo real é a taxa mensal.",
+   "itens": [
+    { "texto": "Rotativo do cartão — 14% ao mês", "posicaoCorreta": 1 },
+    { "texto": "Cheque especial — 8% ao mês", "posicaoCorreta": 2 },
+    { "texto": "Crediário da loja — 5% ao mês", "posicaoCorreta": 3 },
+    { "texto": "Consignado — 1,8% ao mês", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "cabe-no-seu-bolso",
+   "criterio": "Antes de assinar, você já checou?",
+   "enunciado": "Quanto sobra da renda depois das contas fixas",
+   "resposta": true,
+   "ancora": "Ver o que sobra é o primeiro passo — a parcela só pode vir daí.",
+   "feedbackErro": "Parece óbvio demais pra ser o critério, mas é exatamente isso: sem saber o que sobra, não dá pra saber se a parcela cabe."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "cabe-no-seu-bolso",
+   "criterio": "Antes de assinar, você já checou?",
+   "enunciado": "Se a loja tem uma promoção boa esse mês",
+   "resposta": false,
+   "ancora": "Promoção não é critério de orçamento — é gatilho de venda.",
+   "feedbackErro": "A promoção é real e o desconto ajuda. Mas ela não diz se a parcela cabe na sua renda — só o orçamento diz isso."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "cabe-no-seu-bolso",
+   "pergunta": "Renda de R$ 1.200. Seguindo a regra dos 30%, qual o teto de parcela por mês?",
+   "campo": "moeda",
+   "min": 0,
+   "max": 1200,
+   "gabarito": 360,
+   "toleranciaPct": 20,
+   "fonte": "regra dos 30% de comprometimento de renda (uso comum em educação financeira)",
+   "verificacao": { "expressao": "1200*0.3", "esperado": 360 },
+   "feedbackPerto": "Isso mesmo — R$ 360 é o teto seguro para não sufocar o resto do orçamento.",
+   "feedbackLonge": "O teto é R$ 360 (30% de R$ 1.200). Passar disso é o começo do efeito bola de neve das dívidas."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "cabe-no-seu-bolso",
+   "dificuldade": 2,
+   "pergunta": "A parcela cabe na renda de agora, mas o mês que vem tem prova e menos horas de trabalho. E aí?",
+   "ancora": "Planejar pela pior renda evita que a parcela vire problema depois.",
+   "alternativas": [
+    {
+     "texto": "Contratar, já que cabe na renda de agora",
+     "correta": false,
+     "feedbackErro": "Caber agora não garante caber depois, quando a renda cair."
+    },
+    {
+     "texto": "Calcular a parcela sobre o mês de renda mais baixa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Esperar a prova passar para decidir",
+     "correta": false,
+     "feedbackErro": "Esperar só adia a decisão. O que resolve é planejar pela renda mais baixa, não pela mais alta."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "juros-por-tipo-de-credito",
+   "dificuldade": 2,
+   "pergunta": "Mesmos R$ 600: rotativo a 14% ou consignado a 1,8%. Qual custa mais no mês?",
+   "ancora": "R$ 600 no rotativo custam R$ 84; no consignado, R$ 10,80.",
+   "verificacao": { "expressao": "600*0.14", "esperado": 84 },
+   "alternativas": [
+    {
+     "texto": "Consignado, porque desconta direto da folha",
+     "correta": false,
+     "feedbackErro": "O desconto automático não define o custo — a taxa que define."
+    },
+    {
+     "texto": "Rotativo, porque a taxa é bem mais alta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "As duas custam o mesmo, porque o valor é igual",
+     "correta": false,
+     "feedbackErro": "Mesmo valor emprestado não é mesmo custo. Quem define o custo é a taxa, não o valor."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "cabe-no-seu-bolso",
+   "criterio": "Isso ajuda a saber se cabe no bolso?",
+   "enunciado": "Olhar quanto sobra depois das contas fixas, não só a renda total",
+   "resposta": true,
+   "ancora": "Renda total engana; o que sobra é o que paga a parcela.",
+   "feedbackErro": "Renda total dá uma ideia geral, mas as contas fixas já comem parte dela. O que sobra depois decide se a parcela cabe."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "juros-por-tipo-de-credito",
+   "criterio": "Isso ajuda a saber se cabe no bolso?",
+   "enunciado": "Comparar só o valor da parcela, sem olhar a taxa",
+   "resposta": false,
+   "ancora": "Parcela parecida pode esconder taxas bem diferentes.",
+   "feedbackErro": "A parcela parece o dado mais direto, e por isso engana. Prazos diferentes deixam parcelas parecidas mesmo com taxas bem diferentes."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "cabe-no-seu-bolso",
+   "pergunta": "Qual frase resume o que você viu nesta lição?",
+   "alternativas": [
+    {
+     "texto": "Se a loja aprovou, o crédito cabe no seu bolso.",
+     "correta": false,
+     "feedbackErro": "Aprovação olha seu histórico, não o seu orçamento."
+    },
+    {
+     "texto": "Cabe no bolso quem cabe na sobra da renda e tem a taxa mais baixa possível.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O valor da parcela é o único dado que importa.",
+     "correta": false,
+     "feedbackErro": "Parcela sozinha não conta a história toda — taxa e prazo mudam o custo total."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "juros-por-tipo-de-credito",
+   "instrucao": "Acima de 4% ao mês é caro ou barato?",
+   "ancora": "Acima de 4% ao mês pesa rápido no bolso.",
+   "feedbackErro": "É fácil achar caro só pelo nome do crédito. O que decide é o número: acima de 4% ao mês já pesa rápido.",
+   "caixas": [
+    { "id": "caro", "rotulo": "Caro" },
+    { "id": "barato", "rotulo": "Barato" }
+   ],
+   "itens": [
+    { "texto": "Rotativo — 14% ao mês", "caixaCorreta": "caro" },
+    { "texto": "Consignado — 1,8% ao mês", "caixaCorreta": "barato" },
+    { "texto": "Crediário — 5% ao mês", "caixaCorreta": "caro" },
+    { "texto": "Financiamento de veículo — 1,2% ao mês", "caixaCorreta": "barato" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "cabe-no-seu-bolso",
+   "dificuldade": 3,
+   "pergunta": "Renda variável: alguns meses R$ 800, outros R$ 1.400. Sobre qual valor calcular o teto?",
+   "ancora": "Parcela travada, renda variável: planeje pelo pior mês.",
+   "verificacao": { "expressao": "800*0.3", "esperado": 240 },
+   "alternativas": [
+    {
+     "texto": "Sobre a média dos dois valores",
+     "correta": false,
+     "feedbackErro": "No mês ruim, você não tem a média — tem R$ 800. A média mistura o mês bom com o mês ruim."
+    },
+    {
+     "texto": "Sobre o menor valor, R$ 800",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sobre o maior valor, R$ 1.400",
+     "correta": false,
+     "feedbackErro": "Calcular pelo melhor mês garante aperto exatamente no mês em que sobra menos."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "juros-por-tipo-de-credito",
+   "criterio": "É verdade?",
+   "enunciado": "Juros mais baixo sempre significa prazo mais curto",
+   "resposta": false,
+   "ancora": "Taxa e prazo são coisas diferentes — uma não define a outra.",
+   "feedbackErro": "Consignado tem taxa baixa e pode ter prazo longo. Taxa mede o custo por período; prazo mede a duração."
+  }
+ ]
+}

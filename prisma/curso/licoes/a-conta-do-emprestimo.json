@@ -1,0 +1,353 @@
+{
+ "slug": "a-conta-do-emprestimo",
+ "segmento": "ef89",
+ "conceitoPrincipal": "a-conta-do-emprestimo",
+ "fraseConceito": "Empréstimo é dinheiro alugado: você devolve o que pegou mais os juros. A conta do custo total dá para fazer antes de assinar.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "financiamento-estudantil",
+   "criterio": "Isso é um empréstimo?",
+   "enunciado": "Financiamento estudantil para pagar a faculdade",
+   "resposta": true,
+   "ancora": "É crédito: a faculdade recebe agora, você paga depois, com juros.",
+   "feedbackErro": "Parece ajuda do governo, e às vezes o juro é baixo mesmo. Mas é crédito: cada mensalidade paga vira dívida que você quita depois de formado."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "financiamento-estudantil",
+   "criterio": "Isso é um empréstimo?",
+   "enunciado": "Bolsa de estudos ganha por desempenho",
+   "resposta": false,
+   "ancora": "Bolsa não se devolve. Empréstimo, sim — com juros.",
+   "feedbackErro": "A confusão é comum porque os dois pagam a faculdade. A diferença: bolsa é conquista e não gera dívida; financiamento gera, e cobra juros."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "preco-do-emprestimo",
+   "criterio": "Isso é um empréstimo?",
+   "enunciado": "Usar o limite do cheque especial da conta",
+   "resposta": true,
+   "ancora": "É empréstimo automático — e um dos mais caros: ~8% ao mês.",
+   "feedbackErro": "Como o dinheiro já aparece na conta, não parece empréstimo. Mas é: o banco cobra juros por cada dia que você ficar usando o limite."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "preco-do-emprestimo",
+   "dificuldade": 1,
+   "pergunta": "Você pega R$ 1.000 emprestados a 2% ao mês. Quanto paga de juros no primeiro mês?",
+   "ancora": "2% de R$ 1.000 = R$ 20. Juro é percentual sobre o que você deve.",
+   "verificacao": {
+    "expressao": "1000*0.02",
+    "esperado": 20
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 2",
+     "correta": false,
+     "feedbackErro": "Você leu 2% como R$ 2 fixos. Percentual incide sobre o valor: divida 1.000 por 100 e multiplique por 2 — dá R$ 20."
+    },
+    {
+     "texto": "R$ 20",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 200",
+     "correta": false,
+     "feedbackErro": "R$ 200 seriam 20%. O símbolo % engana: 2% é 2 para cada 100, então R$ 20 em R$ 1.000."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "financiamento-estudantil",
+   "dificuldade": 1,
+   "pergunta": "No financiamento estudantil, você não paga nada durante o curso. Por que a dívida existe mesmo assim?",
+   "ancora": "A cobrança espera você se formar. A dívida, não: ela já nasceu.",
+   "alternativas": [
+    {
+     "texto": "Alguém pagou a faculdade por você e vai cobrar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não existe: só vira dívida se você reprovar",
+     "correta": false,
+     "feedbackErro": "Reprovar pode alongar o contrato, mas a dívida nasce na matrícula: cada mensalidade que o banco paga entra na sua conta."
+    },
+    {
+     "texto": "A faculdade segura o diploma até você pagar",
+     "correta": false,
+     "feedbackErro": "O diploma é seu ao concluir o curso. O que fica pendente é o contrato de crédito: parcelas que começam depois da formatura."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "custo-total-do-credito",
+   "criterio": "A conta do empréstimo fecha?",
+   "enunciado": "Devolver só o valor que pegou quita a dívida",
+   "resposta": false,
+   "ancora": "Empréstimo = valor pego + juros. O aluguel do dinheiro sempre entra.",
+   "feedbackErro": "Seria justo num empréstimo entre amigos. Num banco, não: o juro é o preço do serviço, e ele entra na conta desde o primeiro dia."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "preco-do-emprestimo",
+   "instrucao": "Toque na ordem do juro: do mais barato ao mais caro.",
+   "ancora": "Cada linha de crédito tem um preço. Compare taxas antes de assinar.",
+   "feedbackErro": "A ordem certa é a das taxas: estudantil e consignado são as pontas baratas; cheque especial e rotativo, as mais caras. Quem não compara paga sem saber.",
+   "itens": [
+    {
+     "texto": "Financiamento estudantil — juro perto de zero",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Consignado — 1,8% ao mês",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Cheque especial — 8% ao mês",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Rotativo do cartão — 14% ao mês",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "preco-do-emprestimo",
+   "criterio": "O juro está certo?",
+   "enunciado": "R$ 500 no cheque especial a 8% custam R$ 40 no mês",
+   "resposta": true,
+   "ancora": "8% de R$ 500 = R$ 40. Por mês. É o preço de usar o limite.",
+   "verificacao": {
+    "expressao": "500*0.08",
+    "esperado": 40
+   },
+   "feedbackErro": "A conta fecha: 8 para cada 100 dá 40 em 500. O cheque especial parece pequeno porque é 'só um mês' — mas é das taxas mais altas do país."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "custo-total-do-credito",
+   "criterio": "Custa o mesmo?",
+   "enunciado": "Pagar 10x de R$ 120 ou R$ 1.000 à vista",
+   "resposta": false,
+   "ancora": "10 × R$ 120 = R$ 1.200. O parcelado esconde R$ 200 de juros.",
+   "verificacao": {
+    "expressao": "10*120",
+    "esperado": 1200
+   },
+   "feedbackErro": "A parcela pequena disfarça. Multiplique sempre: 10 vezes 120 dá 1.200 — você paga 200 a mais pelo mesmo valor. Esse é o custo total do crédito."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-total-do-credito",
+   "pergunta": "R$ 1.000 no cheque especial, 6 meses sem cobrir o saldo. Quanto vira a dívida?",
+   "campo": "moeda",
+   "min": 1000,
+   "max": 3000,
+   "gabarito": 1587,
+   "toleranciaPct": 20,
+   "fonte": "taxa média do cheque especial, ~8% ao mês (Banco Central)",
+   "verificacao": {
+    "expressao": "1000*1.08^6",
+    "esperado": 1587,
+    "tolerancia": 1
+   },
+   "feedbackPerto": "Na faixa: cerca de R$ 1.587. Em meio ano, o limite 'de emergência' já cobrou 59% do valor.",
+   "feedbackLonge": "Dá R$ 1.587. A cabeça soma 8% seis vezes (48%), mas juro compõe: cada mês cobra sobre o mês anterior — 59% no total."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "financiamento-estudantil",
+   "dificuldade": 1,
+   "pergunta": "Otávio quer financiar um curso de R$ 400 por mês. O que ele deve olhar antes de assinar?",
+   "ancora": "Total a devolver e parcela pós-curso. Assinar sem isso é aposta.",
+   "alternativas": [
+    {
+     "texto": "O total a devolver e a parcela depois de formado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só o valor da mensalidade que o banco vai cobrir",
+     "correta": false,
+     "feedbackErro": "A mensalidade importa, mas é o presente. O contrato cobra no futuro: sem saber o total e a parcela final, você assina no escuro."
+    },
+    {
+     "texto": "Se os amigos dele também vão financiar",
+     "correta": false,
+     "feedbackErro": "A decisão dos amigos não muda o seu contrato. O que muda sua vida financeira é o total a devolver e quando a cobrança começa."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-total-do-credito",
+   "dificuldade": 1,
+   "pergunta": "Empréstimo de R$ 1.200: 12x de R$ 120 ou 6x de R$ 220. Qual custa menos no total?",
+   "ancora": "12×120 = R$ 1.440; 6×220 = R$ 1.320. Menos tempo, menos juro.",
+   "verificacao": {
+    "expressao": "12*120 - 6*220",
+    "esperado": 120
+   },
+   "alternativas": [
+    {
+     "texto": "As 6 parcelas: R$ 1.320 no total",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "As 12 parcelas: R$ 1.440 no total",
+     "correta": false,
+     "feedbackErro": "A parcela de R$ 120 pesa menos no mês, e isso conta. Mas custo é o total: 12×120 dá R$ 1.440 — R$ 120 a mais que a outra opção."
+    },
+    {
+     "texto": "Tanto faz: o valor emprestado é o mesmo",
+     "correta": false,
+     "feedbackErro": "O valor pego é igual, mas o tempo não é. Juro cobra pelo tempo: quanto mais parcelas, mais meses de juro no preço final."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "financiamento-estudantil",
+   "criterio": "Verdadeiro?",
+   "enunciado": "Financiamento estudantil é crédito, não bolsa",
+   "resposta": true,
+   "ancora": "Crédito para estudar: paga depois, com contrato e juros.",
+   "feedbackErro": "O nome confunde porque os dois vêm de programas de educação. Bolsa não volta; financiamento volta com juros — essa é a linha que separa."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "preco-do-emprestimo",
+   "criterio": "Verdadeiro?",
+   "enunciado": "R$ 2.000 a 2% ao mês rendem R$ 40 de juro no 1º mês",
+   "resposta": true,
+   "ancora": "2% de R$ 2.000 = R$ 40. Percentual sempre sobre o saldo devido.",
+   "verificacao": {
+    "expressao": "2000*0.02",
+    "esperado": 40
+   },
+   "feedbackErro": "A conta fecha: 2 para cada 100 são 40 em 2.000. Na dúvida, divida por 100 e multiplique pela taxa — é o caminho de todo percentual."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "custo-total-do-credito",
+   "pergunta": "Qual frase resume a lição?",
+   "alternativas": [
+    {
+     "texto": "Empréstimo tem preço: compare a taxa e calcule o total antes de assinar.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Parcela pequena é sinal de empréstimo barato.",
+     "correta": false,
+     "feedbackErro": "Parcela pequena só espalha o custo: 12×120 custa mais que 6×220."
+    },
+    {
+     "texto": "Financiamento estudantil é um presente do governo.",
+     "correta": false,
+     "feedbackErro": "É crédito: a cobrança espera a formatura, mas a dívida existe desde a matrícula."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "preco-do-emprestimo",
+   "instrucao": "É empréstimo ou não? Arraste cada item.",
+   "ancora": "Empréstimo: dinheiro de terceiro agora, devolução com juro depois.",
+   "feedbackErro": "O que se devolve com juros é empréstimo. Bolsa e desconto reduzem o que você paga — não criam dívida nenhuma.",
+   "caixas": [
+    {
+     "id": "emprestimo",
+     "rotulo": "Empréstimo"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Cheque especial usado por uma semana",
+     "caixaCorreta": "emprestimo"
+    },
+    {
+     "texto": "Bolsa integral por boas notas",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Financiamento do curso técnico",
+     "caixaCorreta": "emprestimo"
+    },
+    {
+     "texto": "Desconto por pagar à vista",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "custo-total-do-credito",
+   "dificuldade": 2,
+   "pergunta": "Pegou R$ 600 a 5% ao mês e quitou após 2 meses. Juro cobrado só sobre os R$ 600. Total?",
+   "ancora": "R$ 30 de juro por mês, dois meses: 600 + 60 = 660.",
+   "verificacao": {
+    "expressao": "600 + 600*0.05*2",
+    "esperado": 660
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 660",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 630",
+     "correta": false,
+     "feedbackErro": "Você contou um mês só de juro. Foram dois: 5% de 600 são R$ 30 por mês, R$ 60 no total."
+    },
+    {
+     "texto": "R$ 610",
+     "correta": false,
+     "feedbackErro": "R$ 5 por mês seria juro em reais fixos. É percentual: 5% de 600 são R$ 30 por mês."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "financiamento-estudantil",
+   "criterio": "Verdade?",
+   "enunciado": "Quem financia os estudos começa a carreira devendo",
+   "resposta": true,
+   "ancora": "Não é ruim em si: é troca — estudo agora, parcela depois.",
+   "feedbackErro": "Soa pesado, mas é o desenho do contrato: as parcelas começam após a formatura. Vale quando o curso aumenta a renda mais do que a parcela pesa."
+  }
+ ]
+}

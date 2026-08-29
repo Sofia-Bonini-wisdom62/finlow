@@ -1,0 +1,270 @@
+{
+ "slug": "o-que-e-risco-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "o-que-e-risco",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-cotidiano",
+   "criterio": "Isso é um risco?",
+   "enunciado": "Guardar dinheiro embaixo do colchão achando mais seguro que o banco",
+   "resposta": true,
+   "ancora": "Achar mais seguro não muda o risco real de perda, roubo ou incêndio.",
+   "feedbackErro": "A sensação de segurança engana. O colchão não tem trava, seguro nem registro — o risco de perder tudo é maior que no banco."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-cotidiano",
+   "criterio": "Isso é um risco?",
+   "enunciado": "Ter plano de saúde e mesmo assim ficar doente",
+   "resposta": false,
+   "ancora": "Ficar doente é o imprevisto; o plano existe pra cobrir o custo dele.",
+   "feedbackErro": "Ficar doente não é, sozinho, um risco financeiro aqui: o plano já cobre o custo. O risco seria adoecer sem nenhuma cobertura."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-de-prejuizo",
+   "criterio": "Pode gerar prejuízo financeiro?",
+   "enunciado": "Colocar toda a reserva de emergência em ações",
+   "resposta": true,
+   "ancora": "Ação oscila; se precisar do dinheiro na baixa, o prejuízo é real.",
+   "feedbackErro": "A reserva de emergência precisa estar disponível a qualquer momento. Em ações, o valor pode estar baixo justo na hora do imprevisto."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-cotidiano",
+   "dificuldade": 3,
+   "pergunta": "Um carro novo tem mais itens de segurança que um usado. Isso elimina o risco de acidente?",
+   "ancora": "Reduz a chance e a gravidade, mas não elimina o risco por completo.",
+   "alternativas": [
+    {
+     "texto": "Sim, carro novo elimina totalmente o risco de acidente",
+     "correta": false,
+     "feedbackErro": "Nenhum item de segurança apaga o risco por completo. Ele reduz a chance e a gravidade, mas acidente ainda pode acontecer."
+    },
+    {
+     "texto": "Não, reduz o risco, mas não o elimina por completo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, os itens de segurança não mudam nada no risco",
+     "correta": false,
+     "feedbackErro": "Os itens fazem diferença real na chance e na gravidade de um acidente. Só não chegam a eliminar o risco por completo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-de-prejuizo",
+   "dificuldade": 3,
+   "pergunta": "Rennan tem plano de saúde, mas nenhuma reserva em dinheiro. Onde ainda sobra risco financeiro?",
+   "ancora": "Plano cobre a saúde; não cobre aluguel atrasado ou geladeira quebrada.",
+   "alternativas": [
+    {
+     "texto": "Não sobra risco nenhum, porque o plano cobre tudo",
+     "correta": false,
+     "feedbackErro": "O plano cobre gastos de saúde, mas não cobre um mês sem renda, aluguel atrasado ou uma geladeira que quebra."
+    },
+    {
+     "texto": "Em imprevistos que o plano de saúde não cobre",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só se ele cancelar o plano de saúde",
+     "correta": false,
+     "feedbackErro": "O risco de outros imprevistos já existe mesmo com o plano ativo — cancelar só somaria mais um risco, não é a causa do problema."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "risco-cotidiano",
+   "criterio": "Isso é um risco?",
+   "enunciado": "Usar capacete e mesmo assim sofrer uma queda de moto",
+   "resposta": false,
+   "ancora": "A queda é o evento; o capacete já reduziu a gravidade dela.",
+   "feedbackErro": "A queda em si é o evento de risco que já aconteceu. O capacete não é o risco — ele é o que reduziu o tamanho do estrago."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "risco-de-prejuizo",
+   "instrucao": "A proteção cobre bem esse risco, ou ainda sobra risco real?",
+   "ancora": "Proteção parcial deixa uma parte do risco de fora — vale checar.",
+   "feedbackErro": "O que decide é o que a proteção realmente cobre. Se ela deixa de fora justamente a parte mais provável, ainda sobra risco.",
+   "caixas": [
+    {
+     "id": "sobra",
+     "rotulo": "Ainda sobra risco"
+    },
+    {
+     "id": "coberto",
+     "rotulo": "Risco bem coberto"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Ter seguro do carro, mas sem cobertura para roubo",
+     "caixaCorreta": "sobra"
+    },
+    {
+     "texto": "Ter plano de saúde, mas sem reserva para o aluguel",
+     "caixaCorreta": "sobra"
+    },
+    {
+     "texto": "Ter seguro do carro com cobertura para roubo incluída",
+     "caixaCorreta": "coberto"
+    },
+    {
+     "texto": "Ter reserva que cobre 6 meses dos gastos da casa",
+     "caixaCorreta": "coberto"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "risco-cotidiano",
+   "criterio": "Isso é um risco?",
+   "enunciado": "Assinar um contrato em um idioma que você não entende, sem tradução",
+   "resposta": true,
+   "ancora": "Sem entender o texto, você pode aceitar cláusulas que prejudicam você.",
+   "feedbackErro": "Não entender o idioma parece só um detalhe. Mas sem saber o que está escrito, dá pra assinar algo que te prejudica sem perceber."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "risco-de-prejuizo",
+   "dificuldade": 3,
+   "pergunta": "Diversificar investimentos reduz risco em qual situação?",
+   "ancora": "Se um investimento vai mal, os outros seguram parte da perda.",
+   "alternativas": [
+    {
+     "texto": "Quando todos os investimentos escolhidos sobem juntos",
+     "correta": false,
+     "feedbackErro": "Se todos sobem juntos, é sorte de mercado, não o efeito da diversificação. Ela funciona é quando um vai mal e outro compensa."
+    },
+    {
+     "texto": "Quando um investimento vai mal e outro compensa parte",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando todo o dinheiro está em um único lugar seguro",
+     "correta": false,
+     "feedbackErro": "Isso é o oposto de diversificar — é concentrar. Diversificar significa espalhar entre lugares diferentes."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "risco-cotidiano",
+   "criterio": "Isso é um risco?",
+   "enunciado": "Ter reserva de emergência guardada em um investimento que rende, mas não pode ser resgatado por 2 anos",
+   "resposta": true,
+   "ancora": "Reserva precisa estar disponível; travada, ela falha na função.",
+   "feedbackErro": "Render mais parece uma vantagem. Mas o papel da reserva é estar disponível na hora do imprevisto — travada por 2 anos, ela não cumpre isso."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "risco-de-prejuizo",
+   "criterio": "Pode gerar prejuízo financeiro?",
+   "enunciado": "Ter seguro do celular, mas perder o comprovante de compra exigido para acionar",
+   "resposta": true,
+   "ancora": "Sem o comprovante, a seguradora pode negar o pagamento.",
+   "feedbackErro": "Ter o seguro parece resolver tudo, mas cada proteção tem suas condições. Sem o comprovante exigido, o pagamento pode ser negado."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-que-e-risco",
+   "pergunta": "Qual frase resume melhor risco e proteção juntos?",
+   "alternativas": [
+    {
+     "texto": "Toda proteção elimina o risco por completo, sempre",
+     "correta": false,
+     "feedbackErro": "Proteção reduz o risco, mas quase sempre deixa alguma brecha — por limite de cobertura, prazo ou condição."
+    },
+    {
+     "texto": "Proteção reduz o risco, mas raramente o elimina de vez",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sem nenhum risco, proteção não faz falta nenhuma",
+     "correta": false,
+     "feedbackErro": "Quase toda decisão financeira carrega algum risco. A proteção existe justamente para reduzir o efeito desse risco que sempre existe."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "risco-de-prejuizo",
+   "instrucao": "Ordene da situação com MAIS risco restante à com MENOS risco restante.",
+   "ancora": "Quanto menos proteção cobre, mais risco fica de fora.",
+   "feedbackErro": "O que decide é quanto da situação a proteção realmente cobre, não se existe alguma proteção.",
+   "itens": [
+    {
+     "texto": "Sem seguro e sem reserva nenhuma",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Com seguro do carro, mas sem reserva de emergência",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Com seguro do carro e reserva de emergência guardada",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "risco-cotidiano",
+   "dificuldade": 3,
+   "pergunta": "Um extintor de incêndio em casa elimina o risco de incêndio?",
+   "ancora": "Ele reduz o dano se o incêndio começar; não evita ele começar.",
+   "alternativas": [
+    {
+     "texto": "Sim, com extintor o risco de incêndio deixa de existir",
+     "correta": false,
+     "feedbackErro": "O extintor age depois que o fogo já começou. Ele não impede que um incêndio comece, só ajuda a controlar o estrago."
+    },
+    {
+     "texto": "Não, ele ajuda a controlar o fogo, mas não evita começar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, extintor não muda nada na situação de incêndio",
+     "correta": false,
+     "feedbackErro": "Extintor faz diferença real: reduz o tamanho do dano quando o fogo já começou. O que ele não faz é evitar o início do incêndio."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "risco-de-prejuizo",
+   "criterio": "Pode gerar prejuízo financeiro?",
+   "enunciado": "Fazer um seguro que cobre exatamente o tipo de imprevisto que você mais teme",
+   "resposta": false,
+   "ancora": "Seguro bem escolhido reduz risco, não é fonte de perda.",
+   "feedbackErro": "Contratar seguro custa uma mensalidade, mas o próprio seguro cobrindo o imprevisto certo é proteção, não é o que gera o prejuízo."
+  }
+ ]
+}

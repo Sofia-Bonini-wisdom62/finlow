@@ -1,0 +1,284 @@
+{
+ "slug": "o-mundo-mexe-no-seu-bolso-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "o-mundo-mexe-no-seu-bolso",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "eventos-e-bolso",
+   "criterio": "Mexe no bolso, mesmo distante?",
+   "enunciado": "Uma guerra em outro continente encarecer o petróleo",
+   "resposta": true,
+   "ancora": "Petróleo mais caro sobe combustível e transporte aqui também.",
+   "feedbackErro": "Parece um conflito bem longe de casa. Mas petróleo mais caro sobe o combustível, e isso encarece transporte de tudo que você compra."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "para-que-servem-bancos",
+   "criterio": "É mesmo função do banco?",
+   "enunciado": "Um banco decidir o valor do salário mínimo do país",
+   "resposta": false,
+   "ancora": "Salário mínimo é decisão do governo, não função de banco.",
+   "feedbackErro": "Banco mexe bastante com dinheiro, e por isso confunde. Mas decidir salário mínimo é função do governo, não do banco."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "eventos-e-bolso",
+   "criterio": "Mexe no bolso, mesmo distante?",
+   "enunciado": "Uma eleição em outro país, sem relação comercial com o seu",
+   "resposta": false,
+   "ancora": "Sem relação comercial, o efeito no seu preço tende a ser nulo.",
+   "feedbackErro": "Nem todo evento fora do país chega ao seu bolso. Sem relação comercial com esse país, o efeito sobre preços aqui tende a ser nulo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "eventos-e-bolso",
+   "dificuldade": 3,
+   "pergunta": "O dólar sobe e uma safra recorde derruba o preço dos grãos, juntos. Um importado de grão fica mais caro ou barato?",
+   "ancora": "Depende de qual efeito pesa mais: câmbio ou safra.",
+   "alternativas": [
+    {
+     "texto": "Sempre mais caro, porque o dólar subiu",
+     "correta": false,
+     "feedbackErro": "O dólar puxa pra cima, mas a safra recorde puxa pra baixo ao mesmo tempo — o resultado final depende de qual efeito pesa mais."
+    },
+    {
+     "texto": "Depende de qual dos dois efeitos pesa mais no preço final",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sempre mais barato, porque a safra foi recorde",
+     "correta": false,
+     "feedbackErro": "A safra puxa pra baixo, mas o dólar mais caro puxa pra cima ao mesmo tempo — não dá pra garantir que baratear vence."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "para-que-servem-bancos",
+   "dificuldade": 3,
+   "pergunta": "Uma pessoa tem dinheiro guardado no banco, mas o banco quebra. O que costuma proteger parte desse valor?",
+   "ancora": "Um fundo garantidor cobre parte do valor guardado, até um limite.",
+   "alternativas": [
+    {
+     "texto": "Nada, o dinheiro guardado sempre se perde totalmente",
+     "correta": false,
+     "feedbackErro": "Não é bem assim: existe um fundo garantidor que cobre parte do valor guardado, até um limite, mesmo com o banco quebrando."
+    },
+    {
+     "texto": "Um fundo garantidor, que cobre o valor até um limite",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O próprio governo devolve o valor total sem limite nenhum",
+     "correta": false,
+     "feedbackErro": "Não é o governo diretamente, e não é sem limite: existe um fundo garantidor com um teto de cobertura por pessoa."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "eventos-e-bolso",
+   "criterio": "Mexe no bolso, mesmo distante?",
+   "enunciado": "Uma praga destruir parte da colheita de trigo em outro continente",
+   "resposta": true,
+   "ancora": "Menos trigo disponível no mundo sobe o preço até aqui.",
+   "feedbackErro": "Parece um problema só de quem plantou lá. Mas trigo é comercializado no mundo todo — menos oferta lá sobe o preço até aqui."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "para-que-servem-bancos",
+   "instrucao": "É função do banco comum ou do Banco Central?",
+   "ancora": "Banco comum atende pessoas; Banco Central regula o sistema todo.",
+   "feedbackErro": "Os nomes parecidos confundem. Mas emprestar e guardar dinheiro de pessoas é banco comum; controlar juros e emitir moeda é Banco Central.",
+   "caixas": [
+    {
+     "id": "comum",
+     "rotulo": "Banco comum"
+    },
+    {
+     "id": "central",
+     "rotulo": "Banco Central"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Emprestar dinheiro para uma família comprar um carro",
+     "caixaCorreta": "comum"
+    },
+    {
+     "texto": "Definir a taxa básica de juros do país",
+     "caixaCorreta": "central"
+    },
+    {
+     "texto": "Guardar o salário de quem trabalha",
+     "caixaCorreta": "comum"
+    },
+    {
+     "texto": "Emitir o dinheiro que circula no país",
+     "caixaCorreta": "central"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "eventos-e-bolso",
+   "criterio": "Mexe no bolso sem afetar seu emprego?",
+   "enunciado": "O preço do frete internacional cair pela metade",
+   "resposta": true,
+   "ancora": "Frete mais barato reduz o custo de produtos importados.",
+   "feedbackErro": "Parece só logística de empresa, sem ligação com você. Mas frete mais barato reduz o custo de produtos importados, mesmo sem tocar no seu emprego."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "eventos-e-bolso",
+   "dificuldade": 3,
+   "pergunta": "Uma cidade turística depende de visitantes de outro país. Uma crise lá reduz as viagens. O que ocorre no comércio local?",
+   "ancora": "Menos visitantes gastando é menos receita pro comércio local.",
+   "alternativas": [
+    {
+     "texto": "Nada muda, turista de fora não afeta comércio local",
+     "correta": false,
+     "feedbackErro": "Se a cidade depende desses visitantes, o gasto deles sustenta parte do comércio — menos visitantes é menos receita local."
+    },
+    {
+     "texto": "O comércio local tende a perder receita",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O comércio local sempre ganha, porque sobra mais produto",
+     "correta": false,
+     "feedbackErro": "Sobrar produto sem vender não é ganho — é perda de receita. Com menos visitantes comprando, o comércio tende a vender menos."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "para-que-servem-bancos",
+   "criterio": "É mesmo função do banco?",
+   "enunciado": "Um banco financiar uma fábrica que depois gera empregos na cidade",
+   "resposta": true,
+   "ancora": "Financiar empresas é função do banco, com efeito indireto no emprego.",
+   "feedbackErro": "Parece um assunto só entre banco e empresa. Mas financiar a fábrica é função do banco, e o efeito no emprego da cidade é consequência real disso."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "eventos-e-bolso",
+   "criterio": "Mexe no bolso, mesmo distante?",
+   "enunciado": "Um país vizinho baixar impostos sobre um produto que você não compra",
+   "resposta": false,
+   "ancora": "Sem relação com o que você compra, não há efeito no seu bolso.",
+   "feedbackErro": "Nem todo evento econômico chega até você. Se o produto não faz parte do que você compra ou usa, esse efeito específico não muda seu bolso."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-mundo-mexe-no-seu-bolso",
+   "pergunta": "Qual situação mostra um evento distante que NÃO chega a afetar seu bolso?",
+   "alternativas": [
+    {
+     "texto": "Uma eleição sem nenhuma relação comercial com seu país",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Uma guerra que encarece o petróleo no mundo todo",
+     "correta": false,
+     "feedbackErro": "Petróleo mais caro sobe combustível e transporte em quase todo lugar — isso chega até seu bolso."
+    },
+    {
+     "texto": "Uma praga que reduz a colheita de um grão comercializado globalmente",
+     "correta": false,
+     "feedbackErro": "Grão comercializado globalmente tem preço ligado ao mercado mundial — menos oferta lá sobe o preço aqui também."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "para-que-servem-bancos",
+   "dificuldade": 3,
+   "pergunta": "Dois bancos oferecem o mesmo empréstimo, mas com taxas de juros diferentes. Isso muda o valor final pago?",
+   "ancora": "Taxa mais alta significa pagar mais de juros no total.",
+   "alternativas": [
+    {
+     "texto": "Não, o valor emprestado é o que importa, não a taxa",
+     "correta": false,
+     "feedbackErro": "O valor emprestado é só o ponto de partida. A taxa de juros define quanto a mais será pago até o fim, e isso muda bastante o total."
+    },
+    {
+     "texto": "Sim, taxa mais alta aumenta o valor final pago",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não, todo banco cobra exatamente a mesma taxa",
+     "correta": false,
+     "feedbackErro": "Bancos diferentes cobram taxas diferentes, sim. Comparar essa taxa é o que muda o valor final do empréstimo."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "eventos-e-bolso",
+   "instrucao": "O efeito chega até você, ou fica restrito a quem foi direto afetado?",
+   "ancora": "Só chega até você o que muda preço, emprego ou renda que te toca.",
+   "feedbackErro": "Eventos grandes chamam atenção, mas só afetam seu bolso quando mudam algo que você compra, seu emprego ou sua renda.",
+   "caixas": [
+    {
+     "id": "chega",
+     "rotulo": "Chega até você"
+    },
+    {
+     "id": "restrito",
+     "rotulo": "Fica restrito"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Petróleo mais caro subindo o combustível daqui",
+     "caixaCorreta": "chega"
+    },
+    {
+     "texto": "Um imposto local em outro país, sobre produto que você não usa",
+     "caixaCorreta": "restrito"
+    },
+    {
+     "texto": "Uma praga que reduz a oferta mundial de um grão que você consome",
+     "caixaCorreta": "chega"
+    },
+    {
+     "texto": "Uma eleição sem qualquer relação comercial com seu país",
+     "caixaCorreta": "restrito"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "para-que-servem-bancos",
+   "criterio": "É mesmo função do banco?",
+   "enunciado": "Um banco cobrar salário mínimo dos seus próprios funcionários",
+   "resposta": false,
+   "ancora": "Pagar salário aos empregados é gestão interna, não função financeira dele pro cliente.",
+   "feedbackErro": "Todo empregador paga salário aos seus funcionários — isso não é uma função financeira especial do banco pro público, é gestão interna comum."
+  }
+ ]
+}

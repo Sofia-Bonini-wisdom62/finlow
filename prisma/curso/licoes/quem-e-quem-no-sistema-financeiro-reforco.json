@@ -1,0 +1,327 @@
+{
+ "slug": "quem-e-quem-no-sistema-financeiro-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "quem-e-quem-no-sistema-financeiro",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "instituicoes-sfn",
+   "criterio": "Responde ao Bacen sem ser banco?",
+   "enunciado": "Instituição de pagamento que emite cartão pré-pago, registrada",
+   "resposta": true,
+   "ancora": "Instituição de pagamento registrada também responde ao Bacen.",
+   "feedbackErro": "Parece só uma 'empresa de cartão' comum, mas estando registrada, ela também segue as regras e a fiscalização do Banco Central."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "instituicoes-sfn",
+   "criterio": "Responde ao Bacen sem ser banco?",
+   "enunciado": "Grupo fechado de investimento que só aceita indicação de amigos",
+   "resposta": false,
+   "ancora": "Fechado e por indicação é padrão clássico de esquema, não registro.",
+   "feedbackErro": "Parece mais seguro por ser só entre conhecidos, mas 'só por indicação' é justamente o padrão clássico de esquema sem registro oficial."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "instituicoes-sfn",
+   "criterio": "Responde ao Bacen sem ser banco?",
+   "enunciado": "Sociedade de crédito direto — fintech de empréstimo — autorizada",
+   "resposta": true,
+   "ancora": "Autorizada pelo Bacen, essa fintech também está no sistema.",
+   "feedbackErro": "Fintech parece 'diferente' de instituição tradicional, mas estando autorizada, ela responde às mesmas regras do Banco Central."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "confiabilidade-provedor",
+   "dificuldade": 2,
+   "pergunta": "Camila viu uma 'consultoria' prometendo dobrar o dinheiro em 30 dias, sem CNPJ visível. O que checar primeiro?",
+   "ancora": "Registro oficial nos órgãos reguladores é o primeiro filtro.",
+   "alternativas": [
+    {
+     "texto": "Se existe registro oficial da empresa nos órgãos reguladores",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se o site da consultoria é bem desenhado",
+     "correta": false,
+     "feedbackErro": "Um site bonito não substitui registro nenhum. O primeiro filtro real é checar se existe registro oficial nos órgãos reguladores."
+    },
+    {
+     "texto": "Se muitas pessoas comentam bem nas redes sociais",
+     "correta": false,
+     "feedbackErro": "Comentários positivos podem ser falsos ou pagos. O que confirma legitimidade é o registro oficial nos órgãos reguladores."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "instituicoes-sfn",
+   "dificuldade": 2,
+   "pergunta": "Uma corretora de seguros vende apólices de várias seguradoras. Ela é regulada por quem?",
+   "ancora": "A Susep é o órgão que fiscaliza o mercado de seguros no Brasil.",
+   "alternativas": [
+    {
+     "texto": "Pela Susep, o órgão que fiscaliza o mercado de seguros",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pelo Banco Central, do mesmo jeito que um banco",
+     "correta": false,
+     "feedbackErro": "Banco Central cuida do sistema bancário, não de seguros. Quem fiscaliza corretoras e seguradoras é a Susep."
+    },
+    {
+     "texto": "Por nenhum órgão — seguro é um mercado livre",
+     "correta": false,
+     "feedbackErro": "O mercado de seguros não fica sem fiscalização nenhuma. A Susep regula corretoras e seguradoras no país."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "instituicoes-sfn",
+   "criterio": "Está dentro do sistema regulado?",
+   "enunciado": "Uma administradora de consórcio autorizada pelo Banco Central",
+   "resposta": true,
+   "ancora": "Autorização do Bacen inclui a administradora no sistema oficial.",
+   "feedbackErro": "Consórcio parece um mundo à parte dos bancos, mas administradoras autorizadas seguem as mesmas regras do sistema financeiro oficial."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "confiabilidade-provedor",
+   "instrucao": "Ordene do sinal mais grave pro menos grave de golpe.",
+   "ancora": "Promessa de retorno garantido é o sinal mais grave de todos.",
+   "feedbackErro": "O instinto é olhar o visual do site primeiro, mas o sinal mais grave é sempre a promessa de retorno alto e garantido sem risco.",
+   "itens": [
+    {
+     "texto": "Promete rendimento fixo alto, sem nenhum risco",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Pede indicação de novos investidores pra pagar quem já entrou",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Não tem CNPJ nem endereço físico visível",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Site sem certificado de segurança, sem cadeado",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "instituicoes-sfn",
+   "criterio": "Precisa de autorização do Bacen?",
+   "enunciado": "Uma fintech que guarda saldo dos clientes e faz transferências",
+   "resposta": true,
+   "ancora": "Guardar saldo e transferir exige autorização do Bacen.",
+   "feedbackErro": "Fintech parece livre de burocracia por ser digital, mas guardar saldo e fazer transferência exige autorização do Banco Central, sim."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-provedor",
+   "criterio": "É prova de segurança?",
+   "enunciado": "O aplicativo aparecer bem posicionado na loja de apps",
+   "resposta": false,
+   "ancora": "Posição na loja de apps é sobre marketing, não registro oficial.",
+   "feedbackErro": "Boa posição na loja passa a sensação de confiança, mas isso é resultado de marketing e download, não de registro oficial checado."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "instituicoes-sfn",
+   "pergunta": "O FGC cobre R$ 250 mil por instituição. Com R$ 320 mil num banco, quanto fica desprotegido?",
+   "campo": "moeda",
+   "min": 10000,
+   "max": 100000,
+   "gabarito": 70000,
+   "toleranciaPct": 20,
+   "fonte": "limite de cobertura do FGC, R$ 250 mil por instituição",
+   "feedbackPerto": "Isso mesmo — R$ 70 mil. É o que passa do limite de cobertura do FGC.",
+   "feedbackLonge": "O valor desprotegido fica perto de R$ 70 mil. Subtraia o limite de R$ 250 mil do total de R$ 320 mil.",
+   "verificacao": {
+    "expressao": "320000-250000",
+    "esperado": 70000
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "confiabilidade-provedor",
+   "dificuldade": 2,
+   "pergunta": "Uma plataforma nova oferece Pix com taxa bem menor que os bancos. Isso já garante segurança?",
+   "ancora": "Taxa baixa não substitui checar se ela é regulada.",
+   "alternativas": [
+    {
+     "texto": "Não — taxa baixa não substitui checar se ela é regulada",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, taxa baixa prova que ela é eficiente e segura",
+     "correta": false,
+     "feedbackErro": "Eficiência de custo não é prova de segurança regulatória. O que garante segurança é checar se a plataforma é registrada."
+    },
+    {
+     "texto": "Sim, quem cobra menos sempre é mais confiável",
+     "correta": false,
+     "feedbackErro": "Preço baixo pode até ser estratégia legítima ou isca de golpe. Só o registro oficial confirma se ela é confiável."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "instituicoes-sfn",
+   "dificuldade": 2,
+   "pergunta": "Qual instituição normalmente oferece as menores taxas de juros num empréstimo?",
+   "ancora": "Cooperativa tem juros menores por dividir resultado com donos.",
+   "alternativas": [
+    {
+     "texto": "Cooperativa de crédito, por dividir resultado entre os donos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Financeira especializada em crédito rápido",
+     "correta": false,
+     "feedbackErro": "Crédito rápido costuma vir com taxa mais alta, não mais baixa. A cooperativa tende a oferecer juros menores por dividir o resultado."
+    },
+    {
+     "texto": "Corretora de investimentos",
+     "correta": false,
+     "feedbackErro": "Corretora de investimentos não é o canal típico de empréstimo. Cooperativas costumam oferecer as taxas mais baixas nesse caso."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "instituicoes-sfn",
+   "criterio": "Ajuda a achar instituição regulamentada?",
+   "enunciado": "Buscar o nome da empresa no registro do Banco Central ou da CVM",
+   "resposta": true,
+   "ancora": "A busca no registro oficial confirma se a empresa é regulamentada.",
+   "feedbackErro": "Parece um passo técnico demais pra fazer sozinho, mas a busca no registro oficial é simples e confirma se a empresa é regulamentada."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-provedor",
+   "criterio": "Substitui checar o registro oficial?",
+   "enunciado": "Ter conhecido a empresa por indicação de um parente de confiança",
+   "resposta": false,
+   "ancora": "Indicação de confiança não é a mesma coisa que registro checado.",
+   "feedbackErro": "Indicação de alguém querido passa segurança, mas não é a mesma coisa que checar o registro oficial da empresa por conta própria."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "confiabilidade-provedor",
+   "pergunta": "Qual frase resume como avaliar a confiabilidade de um provedor financeiro?",
+   "alternativas": [
+    {
+     "texto": "Registro oficial checado vale mais que taxa baixa, indicação ou visual bonito",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Taxa de juros baixa já é prova suficiente de confiabilidade",
+     "correta": false,
+     "feedbackErro": "Taxa baixa pode ser estratégia legítima ou isca. O que confirma confiabilidade é o registro oficial checado."
+    },
+    {
+     "texto": "Indicação de um parente substitui checar o registro da empresa",
+     "correta": false,
+     "feedbackErro": "Indicação passa confiança pessoal, mas não é registro oficial. Vale sempre checar por conta própria antes de usar."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "confiabilidade-provedor",
+   "instrucao": "É sinal de golpe ou é regra normal do sistema?",
+   "ancora": "Promessa de retorno garantido sem risco é sempre o sinal maior.",
+   "feedbackErro": "Nem toda exigência é golpe — pedir documento é normal. O sinal real de golpe é prometer retorno alto e garantido sem risco.",
+   "caixas": [
+    {
+     "id": "golpe",
+     "rotulo": "Sinal de golpe"
+    },
+    {
+     "id": "normal",
+     "rotulo": "Regra normal"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Prometer retorno alto e garantido, sem nenhum risco",
+     "caixaCorreta": "golpe"
+    },
+    {
+     "texto": "Pedir documento de identidade pra abrir conta",
+     "caixaCorreta": "normal"
+    },
+    {
+     "texto": "Pagar quem entrou com dinheiro de quem entra depois",
+     "caixaCorreta": "golpe"
+    },
+    {
+     "texto": "Cobrar taxa de manutenção informada em contrato",
+     "caixaCorreta": "normal"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "instituicoes-sfn",
+   "dificuldade": 3,
+   "pergunta": "Uma fintech muda de nome toda vez que aparece uma reclamação grande online. O que isso sugere?",
+   "ancora": "Trocar de nome pra escapar de reclamação é padrão de golpe.",
+   "alternativas": [
+    {
+     "texto": "Que ela pode estar fugindo do histórico de reclamações",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que ela está apenas se modernizando com o mercado",
+     "correta": false,
+     "feedbackErro": "Modernização não explica trocar de nome toda vez que surge uma reclamação grande. Esse padrão é mais compatível com fuga do histórico."
+    },
+    {
+     "texto": "Que ela cresceu e virou uma marca maior",
+     "correta": false,
+     "feedbackErro": "Crescimento de marca não costuma vir junto com troca de nome a cada reclamação. Esse padrão sugere fuga do próprio histórico."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-provedor",
+   "criterio": "Substitui checar o registro da empresa?",
+   "enunciado": "Ver um vídeo de um desconhecido dizendo que 'testou e é confiável'",
+   "resposta": false,
+   "ancora": "Depoimento de desconhecido não substitui registro oficial checado.",
+   "feedbackErro": "Um depoimento parece prova real de confiança, mas vem de alguém sem checagem — o registro oficial é o que realmente confirma."
+  }
+ ]
+}

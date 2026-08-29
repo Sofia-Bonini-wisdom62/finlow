@@ -1,0 +1,329 @@
+{
+ "slug": "formal-informal-precarizado",
+ "segmento": "ef89",
+ "conceitoPrincipal": "formal-informal-precarizado",
+ "fraseConceito": "Trabalho formal garante direitos como FGTS e INSS; informal dá liberdade mas tira a rede de proteção quando falta renda ou saúde.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "direitos-formais",
+   "criterio": "É trabalho formal?",
+   "enunciado": "Carteira assinada numa loja de roupas",
+   "resposta": true,
+   "ancora": "Registro em carteira é o que define vínculo formal.",
+   "feedbackErro": "Loja de roupas parece trabalho comum, sem categoria especial. Mas o que define formal não é o ramo, é ter carteira assinada e registro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "direitos-formais",
+   "criterio": "É trabalho formal?",
+   "enunciado": "Entregar comida por aplicativo, sem contrato de trabalho",
+   "resposta": false,
+   "ancora": "Sem carteira nem contrato, o vínculo é informal, mesmo com regras.",
+   "feedbackErro": "O app organiza horário e cobra regras, e isso parece emprego. Mas sem carteira assinada, não existe o vínculo formal nem os direitos dele."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "direitos-formais",
+   "criterio": "É trabalho formal?",
+   "enunciado": "Empregada doméstica com carteira assinada",
+   "resposta": true,
+   "ancora": "Carteira assinada garante os mesmos direitos, seja qual for a função.",
+   "feedbackErro": "Trabalho doméstico às vezes é visto como informal por hábito. Mas com carteira assinada, tem os mesmos direitos de qualquer outro vínculo formal."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "direitos-formais",
+   "dificuldade": 1,
+   "pergunta": "Bruna trabalha com carteira assinada ganhando R$ 2.000. Quanto o patrão deposita de FGTS por mês?",
+   "ancora": "8% de R$ 2.000 = R$ 160. É o percentual do FGTS sobre o salário.",
+   "verificacao": {
+    "expressao": "2000*0.08",
+    "esperado": 160.0
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 16",
+     "correta": false,
+     "feedbackErro": "Você leu 8% como se fosse R$ 8 fixos. É percentual sobre o salário: 8% de 2.000 dá R$ 160."
+    },
+    {
+     "texto": "R$ 160",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 200",
+     "correta": false,
+     "feedbackErro": "R$ 200 seriam 10%. O FGTS é 8%: para cada R$ 100 do salário, R$ 8 vão pro fundo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "precarizacao-trabalho",
+   "dificuldade": 1,
+   "pergunta": "O que o trabalhador informal perde, na prática, ao não ter carteira assinada?",
+   "ancora": "Sem carteira, ficam de fora FGTS, férias e aposentadoria automática.",
+   "alternativas": [
+    {
+     "texto": "Acesso a FGTS, férias remuneradas e aposentadoria automática",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Liberdade pra escolher o próprio horário de trabalho",
+     "correta": false,
+     "feedbackErro": "Liberdade de horário costuma ser ganho do informal, não perda — o que falta é a rede de proteção."
+    },
+    {
+     "texto": "O direito de trabalhar em mais de um lugar ao mesmo tempo",
+     "correta": false,
+     "feedbackErro": "Isso pode acontecer nos dois regimes. O que muda de fato é o acesso a FGTS, férias e aposentadoria."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "direitos-formais",
+   "criterio": "É trabalho formal?",
+   "enunciado": "Motorista de aplicativo cadastrado só na plataforma, sem CLT",
+   "resposta": false,
+   "ancora": "Cadastro no app não é vínculo trabalhista — falta carteira e direitos.",
+   "feedbackErro": "O cadastro parece formal porque exige documento e aprovação. Mas sem carteira assinada não há vínculo CLT nem os direitos que vêm com ele."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "direitos-formais",
+   "instrucao": "Isso é proteção do trabalho formal? Arraste.",
+   "ancora": "Formal garante rede automática; informal exige organização própria.",
+   "feedbackErro": "Formal tem proteção embutida por lei; no informal, o trabalhador só tem essas proteções se contratar por conta própria.",
+   "caixas": [
+    {
+     "id": "formal",
+     "rotulo": "Trabalho formal"
+    },
+    {
+     "id": "informal",
+     "rotulo": "Trabalho informal"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "FGTS depositado todo mês",
+     "caixaCorreta": "formal"
+    },
+    {
+     "texto": "Nenhuma cobertura automática se ficar doente",
+     "caixaCorreta": "informal"
+    },
+    {
+     "texto": "Férias remuneradas garantidas por lei",
+     "caixaCorreta": "formal"
+    },
+    {
+     "texto": "Renda que pode sumir de um mês pro outro",
+     "caixaCorreta": "informal"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "direitos-formais",
+   "criterio": "É proteção do trabalho formal?",
+   "enunciado": "Seguro-desemprego se demitido sem justa causa",
+   "resposta": true,
+   "ancora": "Seguro-desemprego é exclusivo de quem tem carteira assinada.",
+   "feedbackErro": "Parece ajuda geral do governo pra quem perdeu emprego. Mas é benefício ligado à carteira assinada, não existe pra quem é informal."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "precarizacao-trabalho",
+   "criterio": "É proteção do trabalho formal?",
+   "enunciado": "Poder recusar um cliente sem dar satisfação",
+   "resposta": false,
+   "ancora": "Isso é liberdade comum do informal, não proteção do formal.",
+   "feedbackErro": "Parece um benefício por ser flexível. Mas essa liberdade é característica do trabalho por conta própria, não uma proteção do vínculo formal."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "precarizacao-trabalho",
+   "pergunta": "Um autônomo fatura R$ 3.000 no mês e paga sozinho 20% de INSS. Quanto sobra líquido?",
+   "campo": "moeda",
+   "min": 1500,
+   "max": 3000,
+   "gabarito": 2400,
+   "toleranciaPct": 20,
+   "fonte": "alíquota de INSS para contribuinte individual, ~20% (INSS)",
+   "verificacao": {
+    "expressao": "3000 - 3000*0.20",
+    "esperado": 2400.0
+   },
+   "feedbackPerto": "Isso mesmo — R$ 2.400. O autônomo banca sozinho o que no formal o patrão dividiria.",
+   "feedbackLonge": "Dá R$ 2.400. No formal essa contribuição é descontada e completada pelo patrão; no informal, o custo cai todo sobre quem trabalha."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "precarizacao-trabalho",
+   "dificuldade": 1,
+   "pergunta": "Qual é a principal troca ao aceitar trabalho informal, na maioria dos casos?",
+   "ancora": "Mais liberdade de horário costuma vir com menos rede automática.",
+   "alternativas": [
+    {
+     "texto": "Mais liberdade de horário, menos rede de proteção automática",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Mais direitos garantidos, porém menos liberdade",
+     "correta": false,
+     "feedbackErro": "É o contrário: o informal costuma reduzir direitos automáticos, não aumentar."
+    },
+    {
+     "texto": "Salário sempre maior, sem nenhuma troca envolvida",
+     "correta": false,
+     "feedbackErro": "Não existe troca sem custo — o que o informal costuma tirar é a proteção automática, não o salário."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "precarizacao-trabalho",
+   "dificuldade": 1,
+   "pergunta": "Rafael entrega por aplicativo 12 horas por dia, sem folga fixa e sem contrato. Isso é...",
+   "ancora": "Carga alta sem nenhuma proteção formal é precarização.",
+   "alternativas": [
+    {
+     "texto": "Empreendedorismo saudável, porque ele é 'seu próprio patrão'",
+     "correta": false,
+     "feedbackErro": "Autonomia real supõe escolha de ritmo — 12 horas sem folga não é escolha livre, é pressão por renda."
+    },
+    {
+     "texto": "Precarização: carga alta sem nenhuma proteção formal",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Trabalho formal disfarçado de liberdade",
+     "correta": false,
+     "feedbackErro": "Não é formal disfarçado — é informal mesmo, sem carteira nem direitos, e por isso mais arriscado."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "direitos-formais",
+   "criterio": "É trabalho formal?",
+   "enunciado": "Carteira assinada com registro no eSocial",
+   "resposta": true,
+   "ancora": "Registro oficial no eSocial é o retrato do vínculo formal hoje.",
+   "feedbackErro": "eSocial é um nome pouco familiar, mas é só o sistema que registra a carteira assinada — presença nele confirma o vínculo formal."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "precarizacao-trabalho",
+   "criterio": "É sinal de precarização?",
+   "enunciado": "Trabalhar sem nenhum limite de horas e sem folga fixa",
+   "resposta": true,
+   "ancora": "Jornada sem limite nem folga é o núcleo da precarização.",
+   "feedbackErro": "Pode parecer só dedicação ou esforço extra. Mas jornada sem limite e sem folga é justamente o que caracteriza trabalho precarizado."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "direitos-formais",
+   "pergunta": "Qual frase resume a lição de hoje?",
+   "ancora": "Formal: proteção automática. Informal: liberdade e cuidado próprio.",
+   "alternativas": [
+    {
+     "texto": "Trabalho informal é sempre pior que o formal, em qualquer situação.",
+     "correta": false,
+     "feedbackErro": "Tem troca real: liberdade de um lado, proteção automática do outro."
+    },
+    {
+     "texto": "Formal dá direitos automáticos; informal troca por liberdade e cuidado próprio.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Direitos trabalhistas não têm nenhuma relação com dinheiro.",
+     "correta": false,
+     "feedbackErro": "FGTS, férias e INSS são valores reais que pesam no bolso."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "direitos-formais",
+   "instrucao": "Toque na ordem de quem tem mais proteção automática.",
+   "ancora": "Quem contribui de forma automática tem mais rede quando precisa.",
+   "feedbackErro": "A ordem segue a automaticidade da contribuição: CLT desconta sozinho; MEI e autônomo dependem da própria disciplina.",
+   "itens": [
+    {
+     "texto": "Empregado com carteira assinada (CLT)",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "MEI que paga o INSS voluntariamente",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Autônomo sem nenhuma contribuição",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "precarizacao-trabalho",
+   "dificuldade": 2,
+   "pergunta": "Uma vaga oferece 'liberdade total', mas paga por tarefa, sem previsão de valor mensal. É sinal de quê?",
+   "ancora": "Sem valor mensal previsível, a 'liberdade' pode virar insegurança.",
+   "alternativas": [
+    {
+     "texto": "Precarização disfarçada de liberdade",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Uma boa oportunidade, já que dá pra trabalhar quando quiser",
+     "correta": false,
+     "feedbackErro": "Escolher horário é bom, mas sem previsão de renda mensal o risco financeiro fica todo com o trabalhador."
+    },
+    {
+     "texto": "Uma vaga formal comum, só com nome diferente",
+     "correta": false,
+     "feedbackErro": "Sem contrato nem carteira, não é formal — é informal com um nome mais atraente."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "direitos-formais",
+   "criterio": "É direito do trabalho formal?",
+   "enunciado": "Aviso prévio em caso de demissão sem justa causa",
+   "resposta": true,
+   "ancora": "Aviso prévio avisa com antecedência — só existe com carteira assinada.",
+   "feedbackErro": "Parece só uma formalidade de aviso. Mas é direito garantido pra quem tem carteira, e dá tempo pra se organizar antes da demissão."
+  }
+ ]
+}

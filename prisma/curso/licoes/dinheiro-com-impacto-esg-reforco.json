@@ -1,0 +1,300 @@
+{
+ "slug": "dinheiro-com-impacto-esg-reforco",
+ "segmento": "em2",
+ "conceitoPrincipal": "dinheiro-com-impacto-esg",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "tres-letras",
+   "criterio": "Isso é falha do S, de social?",
+   "enunciado": "Fornecedor com jornada de 14 horas sem pausa",
+   "resposta": true,
+   "ancora": "Qual era a lente? Pessoas apontam para o S — até na cadeia de fora.",
+   "feedbackErro": "Resgate o critério: quem sofre o efeito direto? Aqui é o trabalhador — lente S. E fornecedor conta: a responsabilidade segue a cadeia, não para no muro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "tres-letras",
+   "criterio": "Isso é falha do S, de social?",
+   "enunciado": "Caixa dois para esconder pagamento a político",
+   "resposta": false,
+   "ancora": "Dinheiro fora do balanço é fraude de transparência: lente G.",
+   "feedbackErro": "Corrupção prejudica a sociedade, e o S tenta te puxar. Mas o critério é o efeito direto: aqui a falha é de contas e decisão — governança, o G."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "tres-letras",
+   "criterio": "Isso é falha do S, de social?",
+   "enunciado": "Vazamento químico contaminando o lençol freático",
+   "resposta": false,
+   "ancora": "Dano físico à água é lente E — reveja o critério do efeito direto.",
+   "feedbackErro": "Gente beberá essa água, e o S parece caber. Mas a régua era o efeito direto: contaminação da natureza é E — o S mede relações de trabalho e consumo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "greenwashing",
+   "dificuldade": 2,
+   "pergunta": "Rótulo diz 'eco' e '100% natural', sem selo nem dado. O que isso indica?",
+   "ancora": "Greenwashing: fama verde sem prova — exija número, selo e prazo.",
+   "alternativas": [
+    {
+     "texto": "Provável greenwashing: verde sem prova nenhuma",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Compromisso real: ninguém mente em rótulo",
+     "correta": false,
+     "feedbackErro": "Rótulo tem menos fiscalização do que parece: 'eco' e 'natural' não são termos controlados. O que se fiscaliza é selo certificado e dado publicado — exija-os."
+    },
+    {
+     "texto": "Nada: rótulo nunca diz coisa útil",
+     "correta": false,
+     "feedbackErro": "Diz, quando traz o verificável: selo independente, número, certificação. O ceticismo total joga fora justamente a informação que separa prática de pose."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "credito-esg",
+   "dificuldade": 2,
+   "pergunta": "Um banco cobra juros menores de empresas que cumprem metas ambientais. Por quê?",
+   "ancora": "Meta cumprida = menos multa e processo = menos risco de calote.",
+   "alternativas": [
+    {
+     "texto": "Menos risco: quem cumpre meta dá menos prejuízo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Caridade: o banco abre mão de lucrar",
+     "correta": false,
+     "feedbackErro": "Banco não abre mão de lucro por bondade. A taxa menor é conta fria: empresa com metas cumpridas tem menos multa, processo e crise — paga o empréstimo em dia."
+    },
+    {
+     "texto": "Marketing: a taxa não muda de verdade",
+     "correta": false,
+     "feedbackErro": "O produto existe e a taxa muda no contrato — crédito com meta ambiental é mercado real. O que merece atenção é se a meta é auditada, não se a taxa é real."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "greenwashing",
+   "criterio": "Isso prova prática ESG?",
+   "enunciado": "Selo de certificadora independente, com auditoria",
+   "resposta": true,
+   "ancora": "Independência é a chave: quem verifica não pode ser quem anuncia.",
+   "feedbackErro": "Desconfiar de tudo parece rigor, mas trava a decisão. Selo independente auditado é o tipo de prova que o critério pede — checável fora da empresa."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "greenwashing",
+   "instrucao": "Ordene da fonte mais confiável para a menos.",
+   "ancora": "Quanto mais independente de quem vende, mais confiável o dado.",
+   "feedbackErro": "O critério é a independência: auditoria externa não depende da marca; meta pública se cobra; anúncio e post pago dizem o que a marca quer ouvir de si.",
+   "itens": [
+    { "texto": "Relatório auditado por terceiros", "posicaoCorreta": 1 },
+    { "texto": "Meta pública com número e prazo", "posicaoCorreta": 2 },
+    { "texto": "Anúncio institucional da marca", "posicaoCorreta": 3 },
+    { "texto": "Post de influenciador pago", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "greenwashing",
+   "criterio": "Sinal de greenwashing?",
+   "enunciado": "Termo vago, tipo 'amigo da natureza', sem número",
+   "resposta": true,
+   "ancora": "Adjetivo sem dado é o uniforme do greenwashing.",
+   "feedbackErro": "Soa inofensivo, quase poético — e é isso que funciona. Termo fofo sem número não assume compromisso nenhum: não dá para cobrar o que não foi medido."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "greenwashing",
+   "criterio": "Sinal de greenwashing?",
+   "enunciado": "Relatório anual com emissões medidas e meta",
+   "resposta": false,
+   "ancora": "Número medido e meta datada são o oposto do vago: dá para cobrar.",
+   "feedbackErro": "A desconfiança geral te pegou: nem tudo é pose. Relatório com medição e meta é compromisso público checável — se descumprir, há dado para cobrar."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "impacto-no-consumo",
+   "pergunta": "Trocar 3 garrafas PET por semana pela retornável evita quantas num ano?",
+   "campo": "numero",
+   "min": 50,
+   "max": 600,
+   "gabarito": 156,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 3 × 52 semanas",
+   "verificacao": { "expressao": "3*52", "esperado": 156 },
+   "feedbackPerto": "156 garrafas por pessoa. Multiplicado por uma escola inteira, o hábito vira tonelada — impacto de consumo é soma.",
+   "feedbackLonge": "156: 3 × 52 semanas. O viés é pensar no mês (12) e esquecer que o ano tem 52 semanas — hábito semanal se multiplica mais do que parece."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "criterio-nao-rotulo",
+   "dificuldade": 2,
+   "pergunta": "Débora comparou um fundo 'sustentável' e um comum: rendem igual. O que checar antes de escolher o verde?",
+   "ancora": "Carteira é a prova: a lista do que o fundo compra de verdade.",
+   "alternativas": [
+    {
+     "texto": "A carteira: quais empresas o fundo compra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O nome: 'sustentável' é termo controlado",
+     "correta": false,
+     "feedbackErro": "Há regras, mas a fiscalização não alcança tudo — e 'sustentável' no nome já abrigou carteira igualzinha à comum. A lista de ativos é pública: leia a real."
+    },
+    {
+     "texto": "Nada: rendendo igual, tanto faz o resto",
+     "correta": false,
+     "feedbackErro": "Se o critério dela é impacto, 'tanto faz' abandona o critério. Rendimento igual é a chance de escolher alinhado sem custo — desde que o verde seja real."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "tres-letras",
+   "dificuldade": 2,
+   "pergunta": "Uma marca zera o plástico, mas mantém fornecedor com trabalho degradante. Como fica a avaliação?",
+   "ancora": "As três lentes andam juntas: E bom não compensa S falho.",
+   "alternativas": [
+    {
+     "texto": "Incompleta: o avanço no E não quita o S",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Aprovada: o ambiental compensa o resto",
+     "correta": false,
+     "feedbackErro": "Não há sistema de compensação entre lentes: cada uma mede um dano diferente. Plástico zerado não devolve a dignidade de quem produz — o S segue em aberto."
+    },
+    {
+     "texto": "Reprovada em tudo: o E nem conta",
+     "correta": false,
+     "feedbackErro": "Conta, sim: o avanço ambiental é real e deve ser reconhecido. O erro é o inverso — deixar que ele encubra a falha social. Avaliação séria mostra os dois."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "criterio-nao-rotulo",
+   "criterio": "Critério, não rótulo?",
+   "enunciado": "Checar o selo antes de pagar mais pelo 'eco'",
+   "resposta": true,
+   "ancora": "Pagar mais só se a prova existir: é o critério em ação.",
+   "feedbackErro": "Checar parece desconfiança chata — é proteção: o sobrepreço 'verde' sem selo é o lucro do greenwashing. Prova primeiro, prêmio depois."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "criterio-nao-rotulo",
+   "criterio": "Critério, não rótulo?",
+   "enunciado": "Pagar 30% a mais pela embalagem que ficou verde",
+   "resposta": false,
+   "ancora": "Cor não é compromisso: sem dado, o sobrepreço premia o marketing.",
+   "feedbackErro": "A intenção é ótima — o alvo é que está errado. Sem selo nem número, os 30% pagam o design, não o impacto. Redirecione o valor para quem comprova."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "dinheiro-com-impacto-esg",
+   "dificuldade": 2,
+   "pergunta": "O que separa prática ESG de marketing verde?",
+   "alternativas": [
+    {
+     "texto": "A prova: dado medido, meta com prazo e verificação independente.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O tom do anúncio e a cor da embalagem.",
+     "correta": false,
+     "feedbackErro": "Estética é o terreno do marketing — qualquer um pinta de verde. Compromisso se mede em número auditado, não em paleta."
+    },
+    {
+     "texto": "O preço: o sustentável de verdade custa sempre mais.",
+     "correta": false,
+     "feedbackErro": "Preço alto não certifica nada — greenwashing adora cobrar caro. Há prática séria barata e pose cara: a régua é a prova, não a etiqueta."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "tres-letras",
+   "instrucao": "E ou G? Classifique.",
+   "ancora": "E: efeito na natureza. G: como se decide e presta contas.",
+   "feedbackErro": "Volte ao efeito direto: lixo eletrônico e energia tocam o ambiente (E); conselho e balanço tocam a estrutura de decisão (G).",
+   "caixas": [
+    { "id": "e", "rotulo": "E (ambiental)" },
+    { "id": "g", "rotulo": "G (governança)" }
+   ],
+   "itens": [
+    { "texto": "Conselho sem nenhum membro independente", "caixaCorreta": "g" },
+    { "texto": "Descarte irregular de lixo eletrônico", "caixaCorreta": "e" },
+    { "texto": "Fraude no balanço anual", "caixaCorreta": "g" },
+    { "texto": "Meta de energia 100% renovável", "caixaCorreta": "e" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "risco-esg",
+   "pergunta": "Multa ambiental de R$ 2,4 milhões sobre lucro de R$ 30 milhões: quantos % do lucro?",
+   "campo": "percentual",
+   "min": 1,
+   "max": 50,
+   "gabarito": 8,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 2,4 ÷ 30",
+   "verificacao": { "expressao": "2.4/30*100", "esperado": 8 },
+   "feedbackPerto": "8% do lucro do ano numa multa só. É por isso que analista trata falha ESG como risco financeiro, não como detalhe.",
+   "feedbackLonge": "8%: 2,4 ÷ 30. O viés é ver 'milhões' e achar que empresa grande nem sente — proporção é o que mede a dor, não o valor absoluto."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "tres-letras",
+   "dificuldade": 2,
+   "pergunta": "Por que analisar o G mesmo quando só o ambiental te interessa?",
+   "ancora": "Sem governança séria, até o relatório verde pode ser inventado.",
+   "alternativas": [
+    {
+     "texto": "Mal governada, a empresa mente também sobre o E",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não precisa: as letras são independentes",
+     "correta": false,
+     "feedbackErro": "Separadas na sigla, conectadas na prática: é a governança que garante que o dado ambiental publicado seja verdadeiro. G frouxo contamina as outras lentes."
+    },
+    {
+     "texto": "Porque o G é a letra mais importante",
+     "correta": false,
+     "feedbackErro": "Não há hierarquia fixa — o peso varia por setor e caso. O motivo real é outro: o G é o guardião da credibilidade dos números das três lentes."
+    }
+   ]
+  }
+ ]
+}

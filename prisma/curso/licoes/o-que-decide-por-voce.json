@@ -1,0 +1,271 @@
+{
+ "slug": "o-que-decide-por-voce",
+ "segmento": "ef67",
+ "conceitoPrincipal": "o-que-decide-por-voce",
+ "fraseConceito": "Decisões de compra nascem tanto de emoções e vieses internos quanto de propaganda e pressão social externas.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fatores-internos",
+   "criterio": "Isso decidiu a compra por você?",
+   "enunciado": "Comprar um tênis só porque estava com raiva de uma prova ruim",
+   "resposta": true,
+   "ancora": "A raiva do momento pesou mais que a real necessidade.",
+   "feedbackErro": "Parece só um capricho pontual. Mas comprar puxado pela raiva do momento é a emoção decidindo, não a necessidade real do tênis."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fatores-internos",
+   "criterio": "Isso decidiu a compra por você?",
+   "enunciado": "Comprar um caderno novo porque o antigo acabou",
+   "resposta": false,
+   "ancora": "Necessidade real, sem emoção nem pressão social envolvida.",
+   "feedbackErro": "Pode parecer que toda compra tem um motivo escondido. Mas repor um caderno que acabou é necessidade prática, sem viés nem pressão."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "influencia-externa",
+   "criterio": "Isso decidiu a compra por você?",
+   "enunciado": "Comprar um lanche porque todos os amigos estavam comprando",
+   "resposta": true,
+   "ancora": "A pressão do grupo pesou mais que a fome real.",
+   "feedbackErro": "Parece só acompanhar a turma sem querer nada além disso. Mas comprar pra não ficar de fora é a pressão do grupo decidindo por você."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "fatores-internos",
+   "dificuldade": 1,
+   "pergunta": "Alguém compra um doce só porque está triste, mesmo sem fome. Qual fator pesou mais nessa compra?",
+   "ancora": "A emoção do momento pesou mais que a necessidade real.",
+   "alternativas": [
+    {
+     "texto": "A necessidade real de comer algo",
+     "correta": false,
+     "feedbackErro": "A pessoa não estava com fome, então a necessidade não foi o motivo. O que pesou foi o estado emocional do momento."
+    },
+    {
+     "texto": "A emoção do momento, não a necessidade",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O preço baixo do doce",
+     "correta": false,
+     "feedbackErro": "O preço não foi mencionado como motivo. O enunciado deixa claro que foi a tristeza, uma emoção, que levou à compra."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "influencia-externa",
+   "dificuldade": 1,
+   "pergunta": "Um anúncio mostra um influenciador usando um produto e diz 'todo mundo tem'. Que tipo de influência é essa?",
+   "ancora": "Publicidade que usa a pressão social como argumento de venda.",
+   "alternativas": [
+    {
+     "texto": "Só informação neutra sobre o produto",
+     "correta": false,
+     "feedbackErro": "Dizer 'todo mundo tem' não é informação neutra — é um argumento de venda que usa a pressão social pra convencer."
+    },
+    {
+     "texto": "Publicidade usando pressão social",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não é nenhum tipo de influência, é só notícia",
+     "correta": false,
+     "feedbackErro": "Um anúncio pago com influenciador não é notícia neutra — é publicidade construída pra influenciar a decisão de compra."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "fatores-internos",
+   "criterio": "Isso é um atalho mental (viés)?",
+   "enunciado": "Achar que um produto é bom só porque a embalagem parece cara",
+   "resposta": true,
+   "ancora": "Julgar qualidade pela aparência é um atalho mental comum.",
+   "feedbackErro": "Parece observação razoável, e é isso que confunde. Mas julgar qualidade só pela embalagem é um atalho mental — nem sempre é verdade."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "fatores-internos",
+   "instrucao": "A decisão veio de dentro ou de fora da pessoa?",
+   "ancora": "Emoção e viés vêm de dentro; propaganda e grupo vêm de fora.",
+   "feedbackErro": "Os dois tipos levam à mesma compra, e por isso confundem. Mas emoção e viés nascem dentro da pessoa; propaganda e grupo vêm de fora.",
+   "caixas": [
+    {
+     "id": "dentro",
+     "rotulo": "De dentro"
+    },
+    {
+     "id": "fora",
+     "rotulo": "De fora"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Comprar por impulso, num momento de ansiedade",
+     "caixaCorreta": "dentro"
+    },
+    {
+     "texto": "Comprar porque um anúncio repetiu o produto várias vezes",
+     "caixaCorreta": "fora"
+    },
+    {
+     "texto": "Comprar pra não ficar de fora do grupo de amigos",
+     "caixaCorreta": "fora"
+    },
+    {
+     "texto": "Comprar achando que 'merece' depois de um dia difícil",
+     "caixaCorreta": "dentro"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "influencia-externa",
+   "criterio": "É influência externa?",
+   "enunciado": "Ver um produto sendo usado por vários criadores que você segue",
+   "resposta": true,
+   "ancora": "Repetição em redes sociais é influência externa real.",
+   "feedbackErro": "Parece só coincidência de ver o mesmo produto. Mas ver vários criadores usando o mesmo item é influência externa, mesmo sem anúncio explícito."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "fatores-internos",
+   "dificuldade": 1,
+   "pergunta": "Alguém sempre gasta mais no fim de semana, cansado e sem paciência pra pesquisar preço. Isso é um padrão de quê?",
+   "ancora": "O estado emocional e o cansaço afetam a decisão de compra.",
+   "alternativas": [
+    {
+     "texto": "Falta de dinheiro no fim de semana",
+     "correta": false,
+     "feedbackErro": "O enunciado não fala em falta de dinheiro, e sim em cansaço e falta de paciência — isso aponta pro estado emocional, não pro saldo."
+    },
+    {
+     "texto": "Estado emocional afetando a decisão de compra",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Coincidência sem nenhuma explicação",
+     "correta": false,
+     "feedbackErro": "Um padrão que se repete todo fim de semana não é coincidência — é o cansaço e a falta de paciência pesando na decisão."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "influencia-externa",
+   "criterio": "É influência externa?",
+   "enunciado": "Escolher uma marca porque o pai e a mãe sempre compraram ela",
+   "resposta": true,
+   "ancora": "Hábito de família também é influência externa que molda escolha.",
+   "feedbackErro": "Parece só um gosto pessoal formado sozinho. Mas repetir o que a família sempre comprou é influência externa, vinda do ambiente em casa."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "fatores-internos",
+   "criterio": "Isso decidiu a compra por você?",
+   "enunciado": "Comparar o preço em duas lojas antes de decidir",
+   "resposta": false,
+   "ancora": "Comparar preço é decisão racional, não viés nem impulso.",
+   "feedbackErro": "Parece que qualquer passo antes de comprar conta como viés. Mas comparar preço é o oposto: decisão racional, sem emoção nem pressão."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-que-decide-por-voce",
+   "pergunta": "Qual frase resume o que você viu?",
+   "alternativas": [
+    {
+     "texto": "Toda decisão de compra é sempre puramente racional",
+     "correta": false,
+     "feedbackErro": "Emoções, vieses e pressão social também pesam nas compras — nem toda decisão é puramente racional."
+    },
+    {
+     "texto": "Emoções internas e influências externas também decidem por você",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só a publicidade paga influencia as pessoas",
+     "correta": false,
+     "feedbackErro": "Amigos, família e o próprio estado emocional influenciam tanto quanto a publicidade paga, às vezes até mais."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "influencia-externa",
+   "instrucao": "Ordene da influência mais forte à mais fraca nessa cena.",
+   "ancora": "Confiança pessoal pesa mais que anúncio ou detalhe visual.",
+   "feedbackErro": "A força da influência muda com a proximidade: amigo de confiança pesa mais que anúncio anônimo, que pesa mais que um detalhe visual qualquer.",
+   "itens": [
+    {
+     "texto": "Um amigo próximo dizendo 'compra, é ótimo'",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Um anúncio genérico na internet",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "A cor da vitrine da loja",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "fatores-internos",
+   "dificuldade": 2,
+   "pergunta": "Alguém compra um jogo caro no dia em que recebeu uma notícia boa, 'para comemorar'. O que motivou a compra?",
+   "ancora": "O estado emocional positivo do momento motivou a compra.",
+   "alternativas": [
+    {
+     "texto": "Só a necessidade de ter aquele jogo",
+     "correta": false,
+     "feedbackErro": "Não há menção de necessidade — a compra foi ligada diretamente à comemoração, ou seja, ao momento emocional."
+    },
+    {
+     "texto": "O estado emocional positivo do momento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O preço estar mais baixo que o normal",
+     "correta": false,
+     "feedbackErro": "O enunciado não fala em desconto — o motivo citado foi comemorar, o que aponta pra emoção, não pro preço."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "influencia-externa",
+   "criterio": "É influência externa?",
+   "enunciado": "Decidir não comprar algo depois de pesquisar sozinho os prós e contras",
+   "resposta": false,
+   "ancora": "Pesquisa própria e decisão sozinha não é influência externa.",
+   "feedbackErro": "Parece que toda compra envolve influência de fora. Mas pesquisar sozinho e decidir com base nisso é decisão própria, sem pressão externa."
+  }
+ ]
+}

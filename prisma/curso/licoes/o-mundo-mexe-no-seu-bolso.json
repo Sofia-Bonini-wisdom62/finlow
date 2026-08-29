@@ -1,0 +1,271 @@
+{
+ "slug": "o-mundo-mexe-no-seu-bolso",
+ "segmento": "ef67",
+ "conceitoPrincipal": "o-mundo-mexe-no-seu-bolso",
+ "fraseConceito": "Eventos da cidade ao mundo mudam preços e empregos; bancos existem para guardar, emprestar e movimentar esse dinheiro.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "eventos-e-bolso",
+   "criterio": "Isso mexe no seu bolso?",
+   "enunciado": "Uma fábrica da cidade contratar 200 pessoas novas",
+   "resposta": true,
+   "ancora": "Mais gente empregada, mais renda circulando na cidade.",
+   "feedbackErro": "Parece só notícia da fábrica. Mas mais gente empregada significa mais renda circulando, o que chega até o comércio local."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "eventos-e-bolso",
+   "criterio": "Isso mexe no seu bolso?",
+   "enunciado": "O time de futebol da cidade perder um jogo",
+   "resposta": false,
+   "ancora": "Resultado de jogo não muda emprego, renda nem preço.",
+   "feedbackErro": "Dói torcer e perder, mas isso não muda salário, emprego nem preço de nada — não é um evento com efeito financeiro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "para-que-servem-bancos",
+   "criterio": "Isso mexe no seu bolso?",
+   "enunciado": "Um banco emprestar dinheiro pra abrir um mercado novo no bairro",
+   "resposta": true,
+   "ancora": "Empréstimo bancário cria negócio, vagas e movimento no bairro.",
+   "feedbackErro": "Parece um assunto só do dono do mercado. Mas esse empréstimo cria vagas de trabalho e movimenta dinheiro no bairro inteiro."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "eventos-e-bolso",
+   "dificuldade": 1,
+   "pergunta": "Uma seca faz faltar chuva para as plantações da região. O que costuma acontecer com o preço dos alimentos?",
+   "ancora": "Menos produção, mesma procura: o preço tende a subir.",
+   "alternativas": [
+    {
+     "texto": "Cai, porque sobra menos gente comprando",
+     "correta": false,
+     "feedbackErro": "A seca não reduz quem compra comida, e sim quem produz. Com menos oferta e a mesma procura, o preço tende a subir."
+    },
+    {
+     "texto": "Sobe, porque a oferta de alimentos diminui",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não muda nada, o preço de comida é sempre igual",
+     "correta": false,
+     "feedbackErro": "O preço de comida varia bastante, sim. Quando falta chuva e a colheita cai, a oferta menor costuma empurrar o preço pra cima."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "para-que-servem-bancos",
+   "dificuldade": 1,
+   "pergunta": "Para que serve, principalmente, um banco?",
+   "ancora": "Guardar, emprestar e movimentar dinheiro entre pessoas e empresas.",
+   "alternativas": [
+    {
+     "texto": "Só para guardar dinheiro trancado, sem nenhum uso",
+     "correta": false,
+     "feedbackErro": "Guardar é uma parte, mas o banco também empresta e movimenta esse dinheiro — ele não fica só trancado."
+    },
+    {
+     "texto": "Para guardar, emprestar e movimentar dinheiro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Para imprimir o dinheiro que circula no país",
+     "correta": false,
+     "feedbackErro": "Imprimir dinheiro é função do Banco Central, não dos bancos comuns. Eles guardam, emprestam e movimentam o que já existe."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "eventos-e-bolso",
+   "criterio": "Isso mexe no seu bolso?",
+   "enunciado": "O governo aumentar um imposto sobre produtos importados",
+   "resposta": true,
+   "ancora": "Imposto maior sobe o preço final pro consumidor.",
+   "feedbackErro": "Parece decisão distante, só do governo. Mas imposto sobre importado sobe o preço final, e quem paga a diferença é quem compra."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "eventos-e-bolso",
+   "instrucao": "Isso afeta o bolso da família, ou não afeta?",
+   "ancora": "O que muda emprego, renda ou preço afeta; o resto, não.",
+   "feedbackErro": "Notícia chamativa nem sempre afeta o bolso. Só conta o que muda emprego, renda ou preço de algo que você compra.",
+   "caixas": [
+    {
+     "id": "afeta",
+     "rotulo": "Afeta o bolso"
+    },
+    {
+     "id": "naoafeta",
+     "rotulo": "Não afeta"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Uma empresa grande da cidade fechar",
+     "caixaCorreta": "afeta"
+    },
+    {
+     "texto": "A cor do uniforme dos garis mudar",
+     "caixaCorreta": "naoafeta"
+    },
+    {
+     "texto": "O preço do combustível subir no mundo todo",
+     "caixaCorreta": "afeta"
+    },
+    {
+     "texto": "Um jogador de futebol trocar de time",
+     "caixaCorreta": "naoafeta"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "para-que-servem-bancos",
+   "criterio": "É função de um banco?",
+   "enunciado": "Guardar o dinheiro das pessoas com segurança",
+   "resposta": true,
+   "ancora": "Guardar dinheiro com segurança é função central do banco.",
+   "feedbackErro": "Parece óbvio demais pra perguntar. Mas é justamente essa a função mais básica: guardar o dinheiro das pessoas com segurança."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "eventos-e-bolso",
+   "dificuldade": 1,
+   "pergunta": "Uma pandemia fecha lojas físicas por meses. O que costuma acontecer com o emprego no comércio da cidade?",
+   "ancora": "Lojas fechadas reduzem ou cortam vagas — o emprego cai.",
+   "alternativas": [
+    {
+     "texto": "Aumenta, porque tem mais gente em casa",
+     "correta": false,
+     "feedbackErro": "Mais gente em casa não cria vaga de trabalho. Com as lojas fechadas, o comércio corta vagas, e o emprego cai."
+    },
+    {
+     "texto": "Cai, porque muitas lojas reduzem ou fecham vagas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não muda nada, o emprego é independente das lojas",
+     "correta": false,
+     "feedbackErro": "O emprego no comércio depende diretamente das lojas funcionando. Com elas fechadas, as vagas desse setor caem junto."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "para-que-servem-bancos",
+   "criterio": "É função de um banco?",
+   "enunciado": "Emprestar dinheiro para quem quer abrir um negócio",
+   "resposta": true,
+   "ancora": "Empréstimo para negócios é função central dos bancos.",
+   "feedbackErro": "Pode parecer favor pessoal do banco. Mas emprestar pra financiar negócios é uma das funções centrais que sustentam o próprio banco."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "eventos-e-bolso",
+   "criterio": "Isso mexe no seu bolso?",
+   "enunciado": "Uma ponte nova reduzir o tempo de entrega dos produtos na cidade",
+   "resposta": true,
+   "ancora": "Entrega mais rápida reduz custo de transporte e pode baixar preços.",
+   "feedbackErro": "Parece só uma obra de infraestrutura. Mas entrega mais rápida barateia o transporte, e isso pode chegar ao preço final que você paga."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-mundo-mexe-no-seu-bolso",
+   "pergunta": "Qual frase resume o que você viu?",
+   "alternativas": [
+    {
+     "texto": "Só decisões do seu bairro afetam seu bolso",
+     "correta": false,
+     "feedbackErro": "Eventos de fora do bairro, até do mundo, também mudam preço e emprego — não é só o que acontece perto."
+    },
+    {
+     "texto": "Eventos locais e globais afetam o bolso; banco guarda e empresta dinheiro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Bancos só servem para imprimir dinheiro",
+     "correta": false,
+     "feedbackErro": "Imprimir dinheiro é função do Banco Central. Os bancos comuns guardam, emprestam e movimentam o dinheiro que já existe."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "eventos-e-bolso",
+   "instrucao": "Ordene do que afeta mais ao que afeta menos o bolso da família.",
+   "ancora": "Impacto direto na renda pesa mais que mudança estética.",
+   "feedbackErro": "Perder emprego muda a renda inteira; gasolina mais cara pesa, mas é parcial; decoração de loja não muda nada financeiro.",
+   "itens": [
+    {
+     "texto": "Perder o emprego principal da casa",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "O preço da gasolina subir 5%",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Uma loja do bairro trocar a decoração",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "para-que-servem-bancos",
+   "dificuldade": 2,
+   "pergunta": "Por que uma pessoa costuma guardar dinheiro no banco em vez de em casa?",
+   "ancora": "No banco costuma haver mais segurança, e o dinheiro pode render.",
+   "alternativas": [
+    {
+     "texto": "Porque em casa o dinheiro rende mais",
+     "correta": false,
+     "feedbackErro": "Dinheiro parado em casa não rende nada. No banco, além de mais seguro, ele pode render com o tempo."
+    },
+    {
+     "texto": "Porque no banco costuma ter mais segurança e pode render",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque é obrigatório por lei guardar tudo no banco",
+     "correta": false,
+     "feedbackErro": "Não existe essa obrigação. As pessoas escolhem o banco pela segurança e pela chance de o dinheiro render."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "eventos-e-bolso",
+   "criterio": "Isso mexe no seu bolso?",
+   "enunciado": "Uma empresa de outro país vender aqui com preço mais baixo",
+   "resposta": true,
+   "ancora": "Concorrência de fora pode baixar o preço geral do produto.",
+   "feedbackErro": "Parece um assunto só de empresas grandes. Mas mais concorrência, mesmo vinda de fora, tende a baixar o preço que você paga."
+  }
+ ]
+}

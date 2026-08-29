@@ -1,0 +1,300 @@
+{
+ "slug": "credito-pra-que-serve-consolida",
+ "segmento": "ef67",
+ "conceitoPrincipal": "credito-pra-que-serve",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "credito-pra-que-serve",
+   "criterio": "Isso conta como crédito?",
+   "enunciado": "Adiantamento de salário direto com o empregador, sem juros",
+   "resposta": true,
+   "ancora": "Mesmo sem juros, é dinheiro adiantado a descontar — ainda é crédito.",
+   "feedbackErro": "Sem juros parece 'não ser nada', mas o que define crédito é adiantar e descontar depois."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "credito-pra-que-serve",
+   "criterio": "Isso conta como crédito?",
+   "enunciado": "Um benefício do governo que não precisa ser devolvido",
+   "resposta": false,
+   "ancora": "Sem exigência de devolver, não é crédito — é benefício.",
+   "feedbackErro": "Envolve dinheiro do governo chegando até a família, e por isso parece um empréstimo público. Mas sem a obrigação de devolver, não é crédito."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "credito-pra-que-serve",
+   "criterio": "Esse é o uso que o crédito deveria ter?",
+   "enunciado": "Usar crédito rotativo todo mês pra cobrir gastos que já sabia que viriam",
+   "resposta": false,
+   "ancora": "Crédito cobre imprevistos e diferenças pontuais, não gasto todo mês.",
+   "feedbackErro": "Tecnicamente ainda é crédito, e por isso parece certo marcar 'sim'. Mas usá-lo todo mês pra algo previsível só empurra o problema."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "credito-pra-que-serve",
+   "dificuldade": 3,
+   "pergunta": "Uma família troca um empréstimo caro de agiota por consignado no banco. O que essa troca resolve?",
+   "ancora": "Trocar crédito caro e informal por um formal e barato é válido.",
+   "alternativas": [
+    {
+     "texto": "Troca crédito informal e caro por formal e mais barato",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Elimina a dívida da família",
+     "correta": false,
+     "feedbackErro": "A dívida continua existindo, só muda de credor e de custo — não desaparece."
+    },
+    {
+     "texto": "Torna o agiota um agente financeiro regulado",
+     "correta": false,
+     "feedbackErro": "O agiota continua fora da regulação — quem muda é o credor da família, que passa a ser o banco."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "credito-pra-que-serve",
+   "dificuldade": 3,
+   "pergunta": "Uma pessoa sem nenhuma fonte de renda pede crédito pra abrir um negócio arriscado. Qual é o risco real aqui?",
+   "ancora": "Crédito pra negócio exige capacidade real de pagar, não só boa ideia.",
+   "alternativas": [
+    {
+     "texto": "Ela pode não pagar as parcelas, mesmo com boa ideia",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O banco vai perder o dinheiro, então não é problema dela",
+     "correta": false,
+     "feedbackErro": "O risco recai sobre quem pegou emprestado — nome sujo, cobrança, juros aumentando."
+    },
+    {
+     "texto": "Negócio nunca deveria usar crédito",
+     "correta": false,
+     "feedbackErro": "Crédito pra negócio é legítimo e comum — o problema aqui é pedir sem ter como pagar."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "credito-pra-que-serve",
+   "criterio": "Nome de 'financeira' já regulariza?",
+   "enunciado": "Um agiota que se chama de 'financeira' mas não tem registro no Banco Central",
+   "resposta": false,
+   "ancora": "O nome não regula nada — só o registro no Banco Central garante isso.",
+   "feedbackErro": "Chamar a si mesmo de 'financeira' engana pelo nome. Mas sem registro, não é um agente regulado — é agiotagem."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "credito-pra-que-serve",
+   "instrucao": "Esse crédito veio de um agente regulado?",
+   "ancora": "Regulação, não aparência, decide quem é agente financeiro de verdade.",
+   "feedbackErro": "O nome ou a tecnologia usada não define nada — o que conta é o registro e a autorização pra operar.",
+   "caixas": [
+    {
+     "id": "sim",
+     "rotulo": "Regulado"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não regulado"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Fintech de empréstimo pessoal com registro no Banco Central",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "'Financeira' sem registro que cobra juros abusivos",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Cooperativa de crédito autorizada",
+     "caixaCorreta": "sim"
+    },
+    {
+     "texto": "Grupo de WhatsApp que empresta dinheiro entre desconhecidos",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "credito-pra-que-serve",
+   "criterio": "Juro baixo garante boa escolha?",
+   "enunciado": "Pegar um crédito com juro baixo pra algo que não é necessário",
+   "resposta": false,
+   "ancora": "Juro baixo reduz custo, mas não cria necessidade real pra pegar.",
+   "feedbackErro": "Juro baixo parece justificar qualquer compra, e é aí que mora o erro. Crédito, mesmo barato, ainda é dívida."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "credito-pra-que-serve",
+   "dificuldade": 3,
+   "pergunta": "Manuela tem duas propostas: consignado a 1,8% a.m. e empréstimo do bairro a 20% a.m. O que decide, além da taxa?",
+   "ancora": "Regulação e taxa juntas decidem o crédito mais seguro.",
+   "alternativas": [
+    {
+     "texto": "Se quem empresta é regulado, com contrato e sem abuso",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Qual dos dois empresta mais rápido",
+     "correta": false,
+     "feedbackErro": "Rapidez não protege ninguém — o que protege é lidar com um agente regulado, com regras claras."
+    },
+    {
+     "texto": "Qual dos dois é mais conhecido no bairro",
+     "correta": false,
+     "feedbackErro": "Ser conhecido não é o mesmo que ser regulado — muita cobrança abusiva acontece entre conhecidos."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "credito-pra-que-serve",
+   "criterio": "Isso resolve o problema de fundo?",
+   "enunciado": "Trocar de crédito caro pra barato sem mudar o motivo de ter pego o crédito",
+   "resposta": false,
+   "ancora": "Trocar de crédito alivia o custo, mas não resolve a causa da dívida.",
+   "feedbackErro": "O custo cai, e isso já ajuda — por isso parece resolver tudo. Mas se a causa da dívida continua, o alívio é temporário."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "credito-pra-que-serve",
+   "criterio": "Isso é verdade sobre o crédito?",
+   "enunciado": "Às vezes, mesmo com necessidade real, esperar e juntar o dinheiro é melhor que pegar crédito",
+   "resposta": true,
+   "ancora": "Quando dá pra esperar sem custo, crédito é só a opção mais rápida.",
+   "feedbackErro": "Crédito parece sempre a solução quando a necessidade é real, e é aí que a pegadinha mora. Se dá pra esperar sem prejuízo, o custo pode não valer a pressa."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "credito-pra-que-serve",
+   "pergunta": "Depois dos três encontros, o que resume melhor pra que serve o crédito?",
+   "alternativas": [
+    {
+     "texto": "Cobrir necessidades reais com agentes regulados, sabendo esperar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Serve pra qualquer compra, desde que os juros sejam baixos",
+     "correta": false,
+     "feedbackErro": "Juro baixo não cria necessidade — crédito, mesmo barato, ainda é dívida a ser paga."
+    },
+    {
+     "texto": "Só bancos tradicionais podem emprestar de forma segura",
+     "correta": false,
+     "feedbackErro": "Fintechs e cooperativas reguladas também são seguras — o que importa é o registro."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "credito-pra-que-serve",
+   "instrucao": "Essa é uma boa razão pra usar crédito?",
+   "ancora": "A pergunta certa é 'por que preciso do crédito agora'.",
+   "feedbackErro": "Boas razões cobrem imprevistos ou investimentos planejados; más razões são impulso ou buraco recorrente no orçamento.",
+   "caixas": [
+    {
+     "id": "boa",
+     "rotulo": "Boa razão"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não é boa razão"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Cobrir uma emergência médica",
+     "caixaCorreta": "boa"
+    },
+    {
+     "texto": "Comprar por impulso algo que não precisa",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Financiar equipamento pra um negócio com plano de pagamento",
+     "caixaCorreta": "boa"
+    },
+    {
+     "texto": "Cobrir gasto do mês que já sabia que ia faltar, todo mês",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "credito-pra-que-serve",
+   "instrucao": "Ordene do crédito mais seguro pro mais arriscado.",
+   "ancora": "Segurança cai conforme a regulação desaparece.",
+   "feedbackErro": "Não é sobre familiaridade ou proximidade — é sobre estar dentro ou fora da regulação do Banco Central.",
+   "itens": [
+    {
+     "texto": "Banco tradicional regulado",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Fintech registrada no Banco Central",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "'Financeira' sem registro",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Agiota do bairro",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "credito-pra-que-serve",
+   "dificuldade": 3,
+   "pergunta": "Um negócio pequeno fatura pouco e ainda assim pega crédito caro pra crescer rápido. Qual é o maior risco?",
+   "ancora": "O risco real é o descompasso entre parcela e caixa do negócio.",
+   "alternativas": [
+    {
+     "texto": "A parcela pode superar o caixa que o negócio gera",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O negócio vai automaticamente falir",
+     "correta": false,
+     "feedbackErro": "Não é automático — depende de quanto a parcela pesa no caixa."
+    },
+    {
+     "texto": "Crescer rápido é sempre ruim pro negócio",
+     "correta": false,
+     "feedbackErro": "Crescer rápido não é o problema — é financiar esse crescimento com parcela maior do que o caixa aguenta."
+    }
+   ]
+  }
+ ]
+}

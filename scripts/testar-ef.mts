@@ -18,6 +18,9 @@ import { MODULOS_EF } from "../prisma/modulos-ef.js"
 import { avaliarFaixa } from "../lib/resultado.js"
 import type { Derivados } from "../lib/resultado.js"
 
+// `any` de propósito: este script varre a fonte BRUTA campo a campo, e tipar
+// o bruto esconderia exatamente os buracos que ele existe para acusar.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Bruto = Record<string, any>
 
 let falhas = 0
@@ -41,7 +44,7 @@ for (const m of MODULOS_EF as unknown as Bruto[]) {
   if (!m.publico?.startsWith("ef")) acusar(m.slug, `público "${m.publico}" não é do Fundamental`)
 
   /** Os valores que a pergunta deste módulo consegue produzir. */
-  let candidatos: number[] = []
+  const candidatos: number[] = []
 
   for (const t of m.telas as Bruto[]) {
     const c = t.conteudo ?? {}

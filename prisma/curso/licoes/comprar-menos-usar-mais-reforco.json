@@ -1,0 +1,250 @@
+{
+ "slug": "comprar-menos-usar-mais-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "comprar-menos-usar-mais",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "consumo-e-lixo",
+   "criterio": "Reduz o que vira lixo?",
+   "enunciado": "Levar marmita de casa em vez de comprar embalagem descartável",
+   "resposta": true,
+   "ancora": "Marmita reutilizável evita gerar lixo de embalagem toda vez.",
+   "feedbackErro": "Parece só um jeito de economizar tempo. Mas levar marmita evita o lixo de uma embalagem nova a cada refeição."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "consumo-e-lixo",
+   "criterio": "Reduz o que vira lixo?",
+   "enunciado": "Trocar de tênis a cada dois meses, mesmo sem gastar",
+   "resposta": false,
+   "ancora": "Trocar sem necessidade descarta um item que ainda servia.",
+   "feedbackErro": "Parece só cuidar da aparência. Mas trocar um tênis que ainda serve gera lixo que dava pra evitar."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "consumo-consciente",
+   "criterio": "É consumismo?",
+   "enunciado": "Comprar um segundo fone de ouvido só porque é de outra cor",
+   "resposta": true,
+   "ancora": "Comprar igual, só por cor, é desejo — não necessidade.",
+   "feedbackErro": "Parece só gosto pessoal. Mas comprar outro fone igual, só por causa da cor, é consumismo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "consumo-e-lixo",
+   "dificuldade": 2,
+   "pergunta": "Camila tinha um caderno com metade das folhas em branco e comprou outro igual. O que teria evitado o gasto?",
+   "ancora": "Terminar as folhas que já tinha evitava comprar outro cedo demais.",
+   "alternativas": [
+    {
+     "texto": "Terminar de usar o caderno antigo primeiro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Comprar um caderno maior da próxima vez",
+     "correta": false,
+     "feedbackErro": "Um caderno maior não resolve: o problema foi comprar antes de terminar o que já tinha, não o tamanho."
+    },
+    {
+     "texto": "Doar o caderno antigo pra alguém",
+     "correta": false,
+     "feedbackErro": "Doar ajuda outra pessoa, mas não evita o gasto dela: as folhas em branco ainda serviam pra ela mesma usar."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "economizar-no-dia-a-dia",
+   "dificuldade": 2,
+   "pergunta": "Um pacote com 6 sabonetes custa R$ 18. Cada sabonete avulso custa R$ 3,50. O que economiza mais?",
+   "ancora": "6 avulsos custariam R$ 21 — o pacote de R$ 18 sai mais barato.",
+   "verificacao": { "expressao": "6*3.5", "esperado": 21 },
+   "alternativas": [
+    {
+     "texto": "O pacote, porque 6 avulsos custariam R$ 21",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Os avulsos, porque são mais baratos por unidade",
+     "correta": false,
+     "feedbackErro": "Cada avulso custa R$ 3,50; seis deles somam R$ 21, mais caro que os R$ 18 do pacote."
+    },
+    {
+     "texto": "Tanto faz, os dois custam o mesmo",
+     "correta": false,
+     "feedbackErro": "Não custam o mesmo: 6 avulsos somam R$ 21, e o pacote custa R$ 18 — uma diferença de R$ 3."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "consumo-consciente",
+   "criterio": "É consumo consciente?",
+   "enunciado": "Pesquisar se realmente precisa antes de colocar no carrinho",
+   "resposta": true,
+   "ancora": "Parar pra pensar antes de comprar é o que define consumo consciente.",
+   "feedbackErro": "Parece um passo que atrasa a compra. Mas parar pra pensar antes é justamente o que caracteriza consumo consciente."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "consumo-e-lixo",
+   "instrucao": "Isso reduz ou aumenta o lixo? Arraste.",
+   "ancora": "Reaproveitar e consertar reduzem; trocar sem motivo aumenta.",
+   "feedbackErro": "É fácil achar que qualquer troca é normal. Reaproveitar e consertar reduzem o lixo; trocar sem motivo aumenta.",
+   "caixas": [
+    { "id": "reduz", "rotulo": "Reduz o lixo" },
+    { "id": "aumenta", "rotulo": "Aumenta o lixo" }
+   ],
+   "itens": [
+    { "texto": "Comprar refil em vez de embalagem nova", "caixaCorreta": "reduz" },
+    { "texto": "Jogar comida fora por comprar demais", "caixaCorreta": "aumenta" },
+    { "texto": "Consertar o zíper da mochila", "caixaCorreta": "reduz" },
+    { "texto": "Trocar de celular a cada lançamento", "caixaCorreta": "aumenta" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "economizar-no-dia-a-dia",
+   "criterio": "Ajuda a economizar?",
+   "enunciado": "Comparar o preço por quilo, não só o preço da embalagem",
+   "resposta": true,
+   "ancora": "O preço por quilo mostra o custo real, mesmo em embalagens diferentes.",
+   "feedbackErro": "Parece um detalhe técnico demais. Mas comparar por quilo revela qual embalagem custa menos de verdade."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "consumo-consciente",
+   "dificuldade": 2,
+   "pergunta": "Otávio queria um videogame novo só porque os amigos têm, mesmo o dele funcionando bem. Isso é o quê?",
+   "ancora": "Comprar por pressão dos outros, sem necessidade, é consumismo.",
+   "alternativas": [
+    {
+     "texto": "Consumismo, decidido pela pressão dos outros",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Necessidade real de trocar de videogame",
+     "correta": false,
+     "feedbackErro": "O videogame dele funciona bem — não falta nada de verdade. O motivo é a pressão dos amigos, não necessidade."
+    },
+    {
+     "texto": "Economia, porque comprar já resolve",
+     "correta": false,
+     "feedbackErro": "Comprar um videogame novo sem precisar gasta dinheiro à toa — não é economia nenhuma."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "consumo-e-lixo",
+   "criterio": "Reduz o que vira lixo?",
+   "enunciado": "Doar roupas que ainda servem, em vez de jogar fora",
+   "resposta": true,
+   "ancora": "Doar mantém a roupa em uso e evita que vire lixo cedo demais.",
+   "feedbackErro": "Parece só um gesto de generosidade. Mas doar mantém a roupa útil em uso, em vez de virar lixo antes da hora."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "economizar-no-dia-a-dia",
+   "criterio": "Ajuda a economizar?",
+   "enunciado": "Comprar por impulso ao ver uma vitrine chamativa",
+   "resposta": false,
+   "ancora": "Compra por impulso costuma ser gasto que não estava planejado.",
+   "feedbackErro": "Parece uma oportunidade boa demais pra perder. Mas comprar por impulso, sem planejar, costuma gastar mais do que devia."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "economizar-no-dia-a-dia",
+   "pergunta": "Qual ideia fecha este encontro?",
+   "alternativas": [
+    {
+     "texto": "Comparar preço, evitar impulso e reaproveitar economizam de verdade",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Pacote maior é sempre mais barato por unidade",
+     "correta": false,
+     "feedbackErro": "Nem sempre: é preciso comparar o preço por unidade em cada caso, não assumir que o pacote maior vence."
+    },
+    {
+     "texto": "Só importa o preço da embalagem, não o preço por quilo",
+     "correta": false,
+     "feedbackErro": "O preço por quilo é o que mostra o custo real — olhar só a embalagem pode enganar."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "economizar-no-dia-a-dia",
+   "dificuldade": 3,
+   "pergunta": "Um suco de 1L custa R$ 8. O mesmo suco em garrafa de 2L custa R$ 14. Qual rende mais economia por litro?",
+   "ancora": "A garrafa de 2L custa R$ 7 o litro, contra R$ 8 da de 1L.",
+   "verificacao": { "expressao": "14/2", "esperado": 7 },
+   "alternativas": [
+    {
+     "texto": "A de 2L, porque custa R$ 7 o litro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A de 1L, porque parece mais barata",
+     "correta": false,
+     "feedbackErro": "O preço total é menor, mas o litro sai a R$ 8 — mais caro que os R$ 7 da garrafa de 2L."
+    },
+    {
+     "texto": "As duas custam o mesmo por litro",
+     "correta": false,
+     "feedbackErro": "Não custam o mesmo: a de 1L sai a R$ 8 o litro, e a de 2L sai a R$ 7 o litro."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "consumo-e-lixo",
+   "criterio": "Reduz o que vira lixo?",
+   "enunciado": "Comprar produtos com refil quando existe essa opção",
+   "resposta": true,
+   "ancora": "O refil reaproveita a embalagem original, gerando menos lixo.",
+   "feedbackErro": "Parece uma opção só um pouco mais barata. Mas o refil reaproveita a embalagem que você já tem, e isso reduz o lixo."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "consumo-consciente",
+   "instrucao": "É atitude de consumo consciente ou de consumismo? Arraste.",
+   "ancora": "Pesquisar e planejar são conscientes; comprar por status ou impulso é consumismo.",
+   "feedbackErro": "É fácil confundir hábito comum com bom hábito. Pesquisar e planejar são conscientes; comprar por status é consumismo.",
+   "caixas": [
+    { "id": "consciente", "rotulo": "Consumo consciente" },
+    { "id": "consumismo", "rotulo": "Consumismo" }
+   ],
+   "itens": [
+    { "texto": "Pesquisar preço em duas lojas", "caixaCorreta": "consciente" },
+    { "texto": "Comprar por status, não por uso", "caixaCorreta": "consumismo" },
+    { "texto": "Levar lista pronta ao mercado", "caixaCorreta": "consciente" },
+    { "texto": "Comprar por impulso na fila do caixa", "caixaCorreta": "consumismo" }
+   ]
+  }
+ ]
+}

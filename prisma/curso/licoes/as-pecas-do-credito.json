@@ -1,0 +1,247 @@
+{
+ "slug": "as-pecas-do-credito",
+ "segmento": "ef67",
+ "conceitoPrincipal": "as-pecas-do-credito",
+ "fraseConceito": "Todo crédito tem juros, taxa e prazo — juntos, eles definem quanto você realmente paga.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "elementos-do-credito",
+   "criterio": "É elemento do crédito?",
+   "enunciado": "A taxa de juros cobrada por mês",
+   "resposta": true,
+   "ancora": "Taxa de juros é o preço de usar o crédito — elemento central.",
+   "feedbackErro": "Parece só um número técnico. Mas a taxa de juros é o que define quanto o crédito vai custar."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "elementos-do-credito",
+   "criterio": "É elemento do crédito?",
+   "enunciado": "A cor do cartão do banco",
+   "resposta": false,
+   "ancora": "Cor é estética; não muda taxa, prazo nem custo do crédito.",
+   "feedbackErro": "Parece um detalhe qualquer do cartão, e é exatamente isso: não afeta juros, taxas nem prazo do crédito."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-credito",
+   "criterio": "É crédito de curto prazo?",
+   "enunciado": "Cheque especial usado por poucos dias",
+   "resposta": true,
+   "ancora": "Poucos dias de uso é característica de crédito de curto prazo.",
+   "feedbackErro": "Parece só um jeito de usar o limite. Mas usar por poucos dias é justamente o perfil do crédito de curto prazo."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "elementos-do-credito",
+   "dificuldade": 1,
+   "pergunta": "Qual desses NÃO é um elemento do crédito?",
+   "ancora": "Cor não muda o custo; taxa e prazo definem o crédito.",
+   "alternativas": [
+    {
+     "texto": "A cor do cartão",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A taxa de juros",
+     "correta": false,
+     "feedbackErro": "A taxa de juros é elemento central: ela define quanto o crédito custa por mês."
+    },
+    {
+     "texto": "O prazo de pagamento",
+     "correta": false,
+     "feedbackErro": "O prazo é elemento central: ele define por quanto tempo o juro vai correr."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "prazo-do-credito",
+   "dificuldade": 1,
+   "pergunta": "Qual desses é crédito de longo prazo?",
+   "ancora": "30 anos é prazo típico de financiamento de imóvel.",
+   "alternativas": [
+    {
+     "texto": "Financiamento de um imóvel, pago em 30 anos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cheque especial usado por uma semana",
+     "correta": false,
+     "feedbackErro": "Uma semana é prazo curtíssimo — perfil de crédito de curto prazo, não longo."
+    },
+    {
+     "texto": "Rotativo do cartão de um mês",
+     "correta": false,
+     "feedbackErro": "Um mês ainda é prazo curto. Longo prazo se conta em anos, como um financiamento."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "elementos-do-credito",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Todo crédito tem uma taxa de juros, mesmo que baixa",
+   "resposta": true,
+   "ancora": "Sempre existe algum custo, mesmo pequeno, no crédito.",
+   "feedbackErro": "Parece que crédito barato às vezes não tem juro nenhum. Mas mesmo taxas baixas, como no consignado, cobram algum juro."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "prazo-do-credito",
+   "instrucao": "É crédito de curto ou longo prazo? Arraste.",
+   "ancora": "Curto se mede em dias ou meses; longo, em anos.",
+   "feedbackErro": "É fácil confundir pelo nome. O que define é o tempo: dias e meses são curto prazo; anos são longo prazo.",
+   "caixas": [
+    { "id": "curto", "rotulo": "Curto prazo" },
+    { "id": "longo", "rotulo": "Longo prazo" }
+   ],
+   "itens": [
+    { "texto": "Cheque especial", "caixaCorreta": "curto" },
+    { "texto": "Financiamento de casa (30 anos)", "caixaCorreta": "longo" },
+    { "texto": "Rotativo do cartão", "caixaCorreta": "curto" },
+    { "texto": "Financiamento de carro (5 anos)", "caixaCorreta": "longo" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "elementos-do-credito",
+   "criterio": "Isso é um elemento do crédito?",
+   "enunciado": "O valor da parcela mensal",
+   "resposta": true,
+   "ancora": "Parcela é elemento do crédito: mostra quanto pagar por mês.",
+   "feedbackErro": "Parece só um número de cobrança. Mas a parcela é elemento central: mostra quanto sai do bolso a cada mês."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "elementos-do-credito",
+   "dificuldade": 2,
+   "pergunta": "Empréstimo de R$ 1.000 a 1,8% ao mês (consignado). Juro do 1º mês?",
+   "ancora": "1,8% de 1.000: divida por 100 e multiplique por 1,8 — dá 18.",
+   "verificacao": { "expressao": "1000*0.018", "esperado": 18 },
+   "alternativas": [
+    {
+     "texto": "R$ 18",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 1,80",
+     "correta": false,
+     "feedbackErro": "Você tratou 1,8% como R$ 1,80 fixos. É percentual sobre 1.000: o resultado é 18."
+    },
+    {
+     "texto": "R$ 180",
+     "correta": false,
+     "feedbackErro": "R$ 180 seria 18%. O símbolo % engana: 1,8% de 1.000 são 18, não 180."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-credito",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Crédito de curto prazo serve pra emergências rápidas",
+   "resposta": true,
+   "ancora": "Prazo curto resolve rápido, mas costuma custar mais caro.",
+   "feedbackErro": "Parece só uma opção qualquer entre outras. Mas o curto prazo existe justamente pra resolver aperto rápido, mesmo custando mais."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "elementos-do-credito",
+   "criterio": "Ajuda a entender o crédito?",
+   "enunciado": "Olhar só a parcela, sem olhar a taxa de juros",
+   "resposta": false,
+   "ancora": "Parcela pequena pode esconder taxa alta e prazo longo.",
+   "feedbackErro": "A parcela parece o dado mais prático. Mas sem a taxa, uma parcela pequena pode esconder um crédito bem mais caro."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "prazo-do-credito",
+   "pergunta": "Qual frase resume a lição?",
+   "alternativas": [
+    {
+     "texto": "Todo crédito tem juros, taxas e prazo — os três juntos definem o custo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Crédito de longo prazo é sempre mais barato",
+     "correta": false,
+     "feedbackErro": "Prazo longo pode significar mais meses de juro somado — nem sempre sai mais barato no total."
+    },
+    {
+     "texto": "Só a taxa de juros importa pra entender um crédito",
+     "correta": false,
+     "feedbackErro": "A taxa sozinha não conta a história toda: prazo e parcela também mudam o custo final."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "elementos-do-credito",
+   "dificuldade": 2,
+   "pergunta": "Empréstimo de R$ 1.000 no cheque especial a 8% ao mês. Juro do 1º mês?",
+   "ancora": "8% de 1.000: divida por 100 e multiplique por 8 — dá 80.",
+   "verificacao": { "expressao": "1000*0.08", "esperado": 80 },
+   "alternativas": [
+    {
+     "texto": "R$ 80",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 8",
+     "correta": false,
+     "feedbackErro": "Você tratou 8% como R$ 8 fixos. É percentual sobre 1.000: o resultado é 80."
+    },
+    {
+     "texto": "R$ 800",
+     "correta": false,
+     "feedbackErro": "R$ 800 seria 80%. O símbolo % engana: 8% de 1.000 são 80, não 800."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-credito",
+   "criterio": "É verdade?",
+   "enunciado": "Prazo é quanto tempo você tem pra devolver o crédito",
+   "resposta": true,
+   "ancora": "É exatamente essa a definição de prazo no crédito.",
+   "feedbackErro": "Parece uma definição óbvia demais. E é isso mesmo: prazo é o tempo combinado pra devolver o valor emprestado."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "prazo-do-credito",
+   "instrucao": "Toque na ordem, do prazo mais curto pro mais longo.",
+   "ancora": "Dias, um mês, alguns anos, décadas — essa é a ordem.",
+   "feedbackErro": "É fácil confundir prazo com tamanho da dívida. A ordem certa segue o tempo combinado: de dias até décadas.",
+   "itens": [
+    { "texto": "Cheque especial — alguns dias", "posicaoCorreta": 1 },
+    { "texto": "Rotativo do cartão — um mês", "posicaoCorreta": 2 },
+    { "texto": "Empréstimo pessoal — 2 anos", "posicaoCorreta": 3 },
+    { "texto": "Financiamento de imóvel — 30 anos", "posicaoCorreta": 4 }
+   ]
+  }
+ ]
+}

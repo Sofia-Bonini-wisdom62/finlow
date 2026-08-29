@@ -1,0 +1,331 @@
+{
+ "slug": "atitude-empreendedora-reforco",
+ "segmento": "ef89",
+ "conceitoPrincipal": "atitude-empreendedora",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "atitude-empreendedora",
+   "criterio": "Mostra iniciativa?",
+   "enunciado": "Perceber um erro repetido no time e propor um jeito de evitá-lo",
+   "resposta": true,
+   "ancora": "Notar padrão e agir sobre ele é iniciativa, não é 'só reclamar'.",
+   "feedbackErro": "Apontar erro pode parecer só crítica. Mas propor uma correção para um padrão que se repete é agir — é isso que separa iniciativa de reclamação."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "mei-formalizacao",
+   "criterio": "É um direito garantido ao MEI?",
+   "enunciado": "Abrir conta bancária de pessoa jurídica em nome do negócio",
+   "resposta": true,
+   "ancora": "CNPJ do MEI dá acesso a conta PJ, crédito e serviços empresariais.",
+   "feedbackErro": "Parece burocracia bancária, sem relação com 'direito'. Mas ter CNPJ formalizado é o que abre a porta para conta PJ e outros serviços do sistema financeiro."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "atitude-empreendedora",
+   "criterio": "Mostra iniciativa?",
+   "enunciado": "Fazer exatamente o combinado, sem propor nada além disso",
+   "resposta": false,
+   "ancora": "Cumprir o combinado é necessário, mas não é iniciativa por si só.",
+   "feedbackErro": "Cumprir bem a tarefa é importante, e não é errado. Mas isso é a base esperada — iniciativa é o que vem além do combinado."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "mei-formalizacao",
+   "dificuldade": 2,
+   "pergunta": "Camila formalizou o MEI e passou a contribuir com o INSS. Depois de alguns anos, isso garante a ela...",
+   "ancora": "Contribuição de MEI conta tempo para aposentadoria pelo INSS.",
+   "alternativas": [
+    {
+     "texto": "Tempo de contribuição válido para aposentadoria",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Isenção total de impostos pelo resto da vida",
+     "correta": false,
+     "feedbackErro": "MEI paga uma taxa mensal fixa; formalizar não vira isenção total. O que se ganha é o acesso aos direitos do INSS."
+    },
+    {
+     "texto": "Um salário mínimo garantido todo mês pelo governo",
+     "correta": false,
+     "feedbackErro": "O governo não garante renda de MEI nenhum. O que a contribuição garante é o direito a benefícios do INSS, como aposentadoria."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "atitude-empreendedora",
+   "dificuldade": 2,
+   "pergunta": "Dois vendedores têm a mesma meta: um espera o cliente; outro liga pra clientes antigos. Qual é empreendedora?",
+   "ancora": "Buscar o cliente é agir; esperar é reagir ao que aparecer.",
+   "alternativas": [
+    {
+     "texto": "A de quem liga para clientes antigos, por iniciativa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A de quem espera o cliente chegar, com calma",
+     "correta": false,
+     "feedbackErro": "Esperar não é errado por natureza, mas é passivo — reage ao que aparece. Atitude empreendedora é buscar a oportunidade antes dela chegar."
+    },
+    {
+     "texto": "As duas são igualmente empreendedoras",
+     "correta": false,
+     "feedbackErro": "Não são iguais: uma pessoa age por conta própria, buscando resultado; a outra só reage ao que surge. A iniciativa marca a diferença."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "mei-formalizacao",
+   "criterio": "É verdade sobre o MEI?",
+   "enunciado": "Formalizar como MEI cria um histórico que facilita pedir crédito no banco",
+   "resposta": true,
+   "ancora": "CNPJ e notas fiscais criam histórico — o banco enxerga o negócio.",
+   "feedbackErro": "Parece que só o dinheiro em conta importa para o banco. Mas ter CNPJ, faturamento declarado e notas fiscais cria um histórico que facilita conseguir crédito."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "atitude-empreendedora",
+   "instrucao": "Iniciativa ou espera passiva? Arraste cada comportamento.",
+   "ancora": "Iniciativa antecipa; espera passiva só reage quando é cobrada.",
+   "feedbackErro": "Sugerir, buscar e resolver antes de pedirem são iniciativa. Adiar até ser cobrado e só copiar sem pensar são espera passiva.",
+   "caixas": [
+    {
+     "id": "iniciativa",
+     "rotulo": "Iniciativa"
+    },
+    {
+     "id": "passiva",
+     "rotulo": "Espera passiva"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Buscar solução antes de ser cobrado",
+     "caixaCorreta": "iniciativa"
+    },
+    {
+     "texto": "Adiar a tarefa até alguém cobrar",
+     "caixaCorreta": "passiva"
+    },
+    {
+     "texto": "Sugerir uma ideia sem ser convidado a opinar",
+     "caixaCorreta": "iniciativa"
+    },
+    {
+     "texto": "Copiar o que os outros fazem sem pensar",
+     "caixaCorreta": "passiva"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "mei-formalizacao",
+   "criterio": "É verdade?",
+   "enunciado": "MEI que ultrapassa o teto anual pode continuar exatamente como MEI, sem nenhuma mudança",
+   "resposta": false,
+   "ancora": "Ultrapassar o teto muda a categoria — pode virar ME e outras regras.",
+   "feedbackErro": "Parece que o teto é só um número simbólico. Mas ultrapassá-lo muda a situação legal do negócio, com outras obrigações — não é 'seguir igual'."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "atitude-empreendedora",
+   "criterio": "Mostra iniciativa?",
+   "enunciado": "Guardar uma ideia boa só para não incomodar ninguém no time",
+   "resposta": false,
+   "ancora": "Guardar a ideia sem propor é deixar de agir sobre um problema.",
+   "feedbackErro": "Parece educado não incomodar. Mas atitude empreendedora é justamente colocar a ideia em prática — guardar por educação ainda é não agir."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "mei-formalizacao",
+   "pergunta": "MEI paga uma taxa mensal fixa (DAS) de cerca de R$ 76. Em 12 meses, quanto isso soma no ano?",
+   "campo": "moeda",
+   "min": 500,
+   "max": 1500,
+   "gabarito": 912,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: taxa mensal fixa vezes 12 meses",
+   "feedbackPerto": "Perto: R$ 912 no ano. É o custo fixo de manter o MEI regularizado.",
+   "feedbackLonge": "Dá R$ 912. Multiplique a taxa mensal pelos 12 meses do ano: 76 × 12 — esse é o custo anual de manter o CNPJ em dia.",
+   "verificacao": {
+    "expressao": "76*12",
+    "esperado": 912
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "atitude-empreendedora",
+   "dificuldade": 2,
+   "pergunta": "Um estagiário nota que o time perde tempo repetindo uma planilha manual e cria um modelo automático. Isso é...",
+   "ancora": "Ele resolveu um problema real, sem esperar pedirem — é iniciativa.",
+   "alternativas": [
+    {
+     "texto": "Atitude empreendedora: identificou e resolveu um problema",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só um trabalho extra que não competia a ele",
+     "correta": false,
+     "feedbackErro": "Ir além da tarefa combinada é justamente o que caracteriza a iniciativa — não é 'trabalho de mais', é atitude empreendedora em ação."
+    },
+    {
+     "texto": "Algo sem valor, porque não foi pedido pelo chefe",
+     "correta": false,
+     "feedbackErro": "Não precisar de pedido é o ponto central: agir antes de ser mandado, resolvendo um problema real, é exatamente atitude empreendedora."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "mei-formalizacao",
+   "dificuldade": 2,
+   "pergunta": "Um MEI quer contratar um funcionário. O que a lei permite hoje para essa categoria?",
+   "ancora": "MEI pode ter até 1 funcionário registrado, com direitos garantidos.",
+   "alternativas": [
+    {
+     "texto": "Contratar até 1 funcionário com carteira assinada",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Contratar quantos funcionários quiser, sem limite",
+     "correta": false,
+     "feedbackErro": "Sem limite seria uma empresa maior. O MEI tem um teto: até 1 funcionário registrado com carteira, por lei."
+    },
+    {
+     "texto": "Não pode contratar ninguém em nenhuma hipótese",
+     "correta": false,
+     "feedbackErro": "O MEI pode sim contratar — dentro de um limite. A lei permite até 1 funcionário formal para essa categoria."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "atitude-empreendedora",
+   "criterio": "Verdadeiro?",
+   "enunciado": "Buscar o cliente é mais empreendedor do que só esperar ele aparecer",
+   "resposta": true,
+   "ancora": "Buscar é agir; esperar é reagir ao que surgir por conta própria.",
+   "feedbackErro": "Os dois podem até vender, e por isso parecem equivalentes. Mas buscar ativamente mostra iniciativa; esperar depende só do que aparece sozinho."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "mei-formalizacao",
+   "criterio": "Verdadeiro?",
+   "enunciado": "Ultrapassar o teto anual do MEI muda a categoria do negócio perante a lei",
+   "resposta": true,
+   "ancora": "Passar do teto tira o negócio da faixa MEI, com novas obrigações.",
+   "feedbackErro": "Parece só um número a mais no extrato. Mas passar do teto muda a categoria legal do negócio, trazendo novas obrigações que o MEI não tinha."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "atitude-empreendedora",
+   "pergunta": "Qual ideia fecha este encontro?",
+   "alternativas": [
+    {
+     "texto": "Iniciativa é agir antes de ser cobrado — isso vale em qualquer papel.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "MEI dá isenção total de obrigações para sempre.",
+     "correta": false,
+     "feedbackErro": "MEI tem obrigações, como a taxa mensal e o limite de faturamento — não é isenção total."
+    },
+    {
+     "texto": "Esperar o cliente chegar é tão eficaz quanto buscá-lo.",
+     "correta": false,
+     "feedbackErro": "Buscar ativamente mostra iniciativa; esperar depende só do que aparecer sozinho."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "atitude-empreendedora",
+   "instrucao": "Ordene da atitude mais passiva à mais empreendedora.",
+   "ancora": "Vai de copiar sem pensar até criar algo novo por conta própria.",
+   "feedbackErro": "A ordem segue o nível de iniciativa: copiar é o mais passivo; criar algo novo por conta própria é o mais empreendedor dos quatro.",
+   "itens": [
+    {
+     "texto": "Copiar o que os outros fazem, sem pensar",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Fazer bem a tarefa combinada",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Sugerir uma melhoria ao time",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Criar uma solução nova por conta própria",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "mei-formalizacao",
+   "dificuldade": 2,
+   "pergunta": "Um MEI fatura R$ 7.000 em um mês forte. A média mensal do teto é R$ 6.750. O que isso indica?",
+   "ancora": "Um mês acima da média não estoura o teto anual.",
+   "alternativas": [
+    {
+     "texto": "Ainda pode estar dentro do teto, se outros meses compensarem",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Já estourou o teto e precisa mudar de categoria agora",
+     "correta": false,
+     "feedbackErro": "O teto é anual, não mensal. Um mês acima da média de R$ 6.750 não decide nada sozinho — depende da soma dos 12 meses."
+    },
+    {
+     "texto": "Não pode faturar mais que a média em nenhum mês",
+     "correta": false,
+     "feedbackErro": "A média mensal é só uma referência. A regra que vale é o total do ano — meses variam, desde que a soma não passe R$ 81.000."
+    }
+   ],
+   "verificacao": {
+    "expressao": "81000/12",
+    "esperado": 6750
+   }
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "atitude-empreendedora",
+   "criterio": "É verdade?",
+   "enunciado": "Ter uma ideia boa já basta para caracterizar atitude empreendedora",
+   "resposta": false,
+   "ancora": "A ideia é o começo; empreender exige colocar em prática.",
+   "feedbackErro": "Ter a ideia é o primeiro passo, e é importante. Mas atitude empreendedora se define pela ação: colocar a ideia em prática, não só tê-la."
+  }
+ ]
+}

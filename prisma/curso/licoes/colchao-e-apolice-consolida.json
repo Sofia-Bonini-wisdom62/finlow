@@ -1,0 +1,302 @@
+{
+ "slug": "colchao-e-apolice-consolida",
+ "segmento": "em2",
+ "conceitoPrincipal": "colchao-e-apolice",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "custo-da-protecao",
+   "criterio": "Vale pagar esse seguro?",
+   "enunciado": "Fone de R$ 150 segurado por R$ 12 ao mês",
+   "resposta": false,
+   "ancora": "R$ 144 por ano para proteger R$ 150: o prêmio come o bem.",
+   "verificacao": { "expressao": "12*12", "esperado": 144 },
+   "feedbackErro": "A parcela pequena disfarça: R$ 12 parecem nada. Mas em um ano o prêmio quase iguala o fone — prejuízo que a reserva repõe sem sentir não se transfere."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "seguro-transfere-risco",
+   "criterio": "Vale pagar esse seguro?",
+   "enunciado": "Seguro de vida para quem sustenta a casa sozinho",
+   "resposta": true,
+   "ancora": "Se a renda da casa depende de uma pessoa, esse risco se transfere.",
+   "feedbackErro": "Pensar 'sou jovem, não precisa' olha para a chance, não para o tamanho. O critério é o estrago: sem essa renda, a família não se recompõe sozinha."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "seguro-transfere-risco",
+   "criterio": "Vale pagar esse seguro?",
+   "enunciado": "Carro de R$ 45 mil, mesmo com reserva de R$ 12 mil",
+   "resposta": true,
+   "ancora": "Perda total passa por cima da reserva: acima dela, é caso de apólice.",
+   "feedbackErro": "Ter reserva não encerra o assunto — ela cobre até onde alcança. Uma perda de R$ 45 mil engole os R$ 12 mil e ainda deixa buraco: o excedente se transfere."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "seguro-transfere-risco",
+   "dificuldade": 3,
+   "pergunta": "Caetano entrega de moto: ela é 100% da renda. A reserva dele é pequena. O que a moto exige?",
+   "ancora": "O que sustenta a renda quebra você duas vezes: o bem e o salário.",
+   "alternativas": [
+    {
+     "texto": "Seguro: sem ela, param o bem E a renda",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada: moto barata não justifica prêmio",
+     "correta": false,
+     "feedbackErro": "O valor da moto até é modesto, e é isso que engana. O prejuízo real é composto: repor o bem E os meses sem renda. O tamanho do estrago decide, não a etiqueta."
+    },
+    {
+     "texto": "Só reserva: seguro é para quem tem sobra",
+     "correta": false,
+     "feedbackErro": "Reserva ajuda e deve existir. Mas uma reserva pequena não repõe a moto — e enquanto não repõe, a renda fica parada. O risco que quebra vai para a apólice."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "direitos-e-deveres",
+   "dificuldade": 3,
+   "pergunta": "No aviso do sinistro, omitir que quem dirigia não era o segurado 'simplifica'. Qual é o risco?",
+   "ancora": "Informação omitida de má-fé no sinistro pode custar a indenização.",
+   "alternativas": [
+    {
+     "texto": "Perder tudo: omissão de má-fé anula a cobertura",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nenhum: pagou o prêmio, recebe de todo jeito",
+     "correta": false,
+     "feedbackErro": "O prêmio mantém o contrato vivo, mas o contrato tem dois lados. Informar a verdade é dever do segurado — descumprido com má-fé, a seguradora pode negar."
+    },
+    {
+     "texto": "Só um aviso e uma taxa extra na apólice",
+     "correta": false,
+     "feedbackErro": "Não há multa simbólica para má-fé: a lei permite negar a indenização inteira. A omissão que 'simplificava' vira o motivo exato da recusa."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "direitos-e-deveres",
+   "criterio": "Pode anular a indenização?",
+   "enunciado": "Mentir o perfil de risco para baratear o prêmio",
+   "resposta": true,
+   "ancora": "Prêmio se calcula pelo risco declarado: mentira quebra o contrato.",
+   "feedbackErro": "Dizer que o carro dorme na garagem quando dorme na rua baixa o prêmio hoje — e dá à seguradora base legal para negar o sinistro amanhã. Sai caro na pior hora."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "colchao-e-apolice",
+   "instrucao": "Quem cuida de cada prejuízo desta família?",
+   "ancora": "A régua segue: o que a reserva repõe sem quebrar fica com ela.",
+   "feedbackErro": "Volte ao tamanho do estrago: óculos e um mês apertado a reserva paga e recompõe. Dano a terceiros e hospital longo não têm teto — risco assim se transfere.",
+   "caixas": [
+    { "id": "reserva", "rotulo": "Reserva" },
+    { "id": "seguro", "rotulo": "Seguro" }
+   ],
+   "itens": [
+    { "texto": "Óculos quebrados, R$ 420", "caixaCorreta": "reserva" },
+    { "texto": "Batida que destruiu o carro de terceiro", "caixaCorreta": "seguro" },
+    { "texto": "Um mês de contas após atraso do salário", "caixaCorreta": "reserva" },
+    { "texto": "Internação longa fora do SUS", "caixaCorreta": "seguro" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "direitos-e-deveres",
+   "criterio": "A seguradora paga nesse caso?",
+   "enunciado": "Prêmio atrasado há 3 meses no dia do acidente",
+   "resposta": false,
+   "ancora": "Prêmio em dia é o dever que mantém a cobertura de pé.",
+   "feedbackErro": "Anos pagando criam a sensação de crédito acumulado — mas seguro não é poupança. A cobertura vale enquanto o prêmio corre; suspensa por atraso, o dano é seu."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "termos-do-seguro",
+   "criterio": "A seguradora paga nesse caso?",
+   "enunciado": "Dano coberto de R$ 3.000 com franquia de R$ 1.200",
+   "resposta": true,
+   "ancora": "Acima da franquia e dentro da cobertura: R$ 1.800 são dela.",
+   "verificacao": { "expressao": "3000-1200", "esperado": 1800 },
+   "feedbackErro": "A franquia não zera o direito — só marca sua parte. Você banca os R$ 1.200 do piso; os R$ 1.800 acima dele, dentro da cobertura, são obrigação da seguradora."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "custo-da-protecao",
+   "pergunta": "Seguro de R$ 2.400 ao ano para um carro de R$ 60 mil: quantos % do valor do carro?",
+   "campo": "percentual",
+   "min": 1,
+   "max": 20,
+   "gabarito": 4,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 2.400 ÷ 60.000",
+   "verificacao": { "expressao": "2400/60000*100", "esperado": 4 },
+   "feedbackPerto": "4% ao ano. É a régua madura do seguro: comparar o prêmio com o valor protegido, não com o orçamento do mês.",
+   "feedbackLonge": "4%: prêmio ÷ valor do bem. O viés é julgar o prêmio pela parcela mensal — 'só R$ 200' — sem referência ao tamanho do que ele protege."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "reserva-de-emergencia",
+   "dificuldade": 3,
+   "pergunta": "Reserva pronta e uma viagem marcada para julho. Pagar a viagem com a reserva e repor depois?",
+   "ancora": "Reserva é do imprevisto; gasto planejado tem poupança própria.",
+   "alternativas": [
+    {
+     "texto": "Não: viagem é planejada — cabe em outra poupança",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim: o dinheiro está parado mesmo",
+     "correta": false,
+     "feedbackErro": "Parado é aparência; de plantão é a função. Se o imprevisto vier durante a reposição — e ele não marca data —, volta o rotativo que ela existia para evitar."
+    },
+    {
+     "texto": "Sim, se repor em até 12 vezes",
+     "correta": false,
+     "feedbackErro": "O plano de repor parece resolver, mas inverte a lógica: por 12 meses você fica 'protegido' por uma reserva que não existe. O planejado se poupa antes."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "custo-da-protecao",
+   "dificuldade": 3,
+   "pergunta": "Quando faz sentido NÃO segurar um bem?",
+   "ancora": "Autosseguro: o pequeno a reserva absorve; só o grande se transfere.",
+   "alternativas": [
+    {
+     "texto": "Quando a reserva repõe o bem sem aperto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Quando o prêmio cabe fácil no orçamento",
+     "correta": false,
+     "feedbackErro": "Caber no bolso diz que você PODE pagar, não que DEVE. A pergunta certa: o prejuízo quebraria você? Se a reserva repõe sem dor, o prêmio não tem função."
+    },
+    {
+     "texto": "Quando o bem nunca deu problema",
+     "correta": false,
+     "feedbackErro": "Histórico limpo não é imunidade: o risco raro é raro até o dia em que vem. O que dispensa o seguro é a capacidade de absorver a perda, nunca a sorte passada."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "custo-da-protecao",
+   "criterio": "Decisão madura de proteção?",
+   "enunciado": "Subir a franquia porque a reserva cobre esse valor",
+   "resposta": true,
+   "ancora": "Colchão forte barateia a apólice: os dois se desenham juntos.",
+   "feedbackErro": "Franquia maior parece proteção pior — mas quem tem reserva já cobre o pequeno sozinho. Pagar prêmio alto para proteger o que você absorve é dinheiro parado."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "reserva-de-emergencia",
+   "criterio": "Decisão madura de proteção?",
+   "enunciado": "Usar a reserva de emergência de entrada do carro",
+   "resposta": false,
+   "ancora": "Carro é meta, não emergência: a reserva não muda de função.",
+   "feedbackErro": "A entrada parece um 'bom uso' para um dinheiro grande e à mão. Mas no dia seguinte você tem carro, parcela nova — e zero colchão. Meta se poupa em separado."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "colchao-e-apolice",
+   "dificuldade": 3,
+   "pergunta": "Quando o seguro NÃO é a resposta?",
+   "alternativas": [
+    {
+     "texto": "Quando a reserva repõe a perda sem aperto: o pequeno se absorve.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nunca: proteção completa é segurar tudo o que se tem.",
+     "correta": false,
+     "feedbackErro": "Segurar tudo multiplica prêmios para riscos que o colchão já cobre. Proteção completa é a dupla: reserva para o pequeno, apólice para o que quebra."
+    },
+    {
+     "texto": "Quando faz anos que nenhum sinistro acontece.",
+     "correta": false,
+     "feedbackErro": "Tempo sem sinistro não reduz o risco de amanhã — o raro é assim mesmo. O que dispensa seguro é conseguir absorver a perda, não a estatística pessoal."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "colchao-e-apolice",
+   "instrucao": "Ordene do prejuízo mais absorvível ao menos.",
+   "ancora": "Quanto maior o estrago frente à reserva, mais perto da apólice.",
+   "feedbackErro": "A escada é o tamanho do buraco: pneu sai do troco; celular dói na reserva; perda total do carro a atravessa; a casa passa por cima de anos de poupança.",
+   "itens": [
+    { "texto": "Pneu furado", "posicaoCorreta": 1 },
+    { "texto": "Celular roubado", "posicaoCorreta": 2 },
+    { "texto": "Carro com perda total", "posicaoCorreta": 3 },
+    { "texto": "Casa destruída por incêndio", "posicaoCorreta": 4 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "termos-do-seguro",
+   "pergunta": "Conserto coberto de R$ 4.200, franquia de R$ 1.900. Quanto sai do seu bolso?",
+   "campo": "moeda",
+   "min": 100,
+   "max": 4200,
+   "gabarito": 1900,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: a franquia é a parte do segurado",
+   "verificacao": { "expressao": "4200-2300", "esperado": 1900 },
+   "feedbackPerto": "R$ 1.900 — o valor da franquia, nem um real além dela. Os R$ 2.300 restantes são da seguradora.",
+   "feedbackLonge": "R$ 1.900: até a franquia, o custo é seu. O viés é achar que 'coberto' significa de graça — cobertura divide a conta, não a elimina."
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "custo-da-protecao",
+   "dificuldade": 3,
+   "pergunta": "Seu cartão já traz seguro de viagem. Contratar outro igual muda o quê?",
+   "ancora": "Indenização repõe o prejuízo — duplicar apólice não paga em dobro.",
+   "alternativas": [
+    {
+     "texto": "Quase nada: cobertura duplicada não paga em dobro",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Dobra a indenização se algo acontecer",
+     "correta": false,
+     "feedbackErro": "Seguro repõe prejuízo, não gera lucro: indenizar duas vezes o mesmo dano é vedado. Duas apólices iguais = dois prêmios para uma cobertura."
+    },
+    {
+     "texto": "Garante que pelo menos um vai pagar",
+     "correta": false,
+     "feedbackErro": "A garantia não vem da quantidade, e sim da apólice certa: cobertura adequada e deveres em dia. Duplicar contrato duplica custo, não certeza."
+    }
+   ]
+  }
+ ]
+}

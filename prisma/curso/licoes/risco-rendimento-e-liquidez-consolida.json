@@ -1,0 +1,331 @@
+{
+ "slug": "risco-rendimento-e-liquidez-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "risco-rendimento-e-liquidez",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-retorno-liquidez",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Poupança é sempre a opção de menor risco, mesmo em banco pequeno sem FGC",
+   "resposta": false,
+   "ancora": "Sem cobertura do FGC, poupança em banco pequeno vira arriscada.",
+   "feedbackErro": "A poupança tem fama de sempre segura, e geralmente é — mas essa segurança vem da garantia do FGC. Sem essa cobertura, o risco muda completamente."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-retorno-liquidez",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Alta liquidez sempre significa baixo risco",
+   "resposta": false,
+   "ancora": "Ação é super líquida na bolsa e ainda assim arriscada.",
+   "feedbackErro": "É tentador achar que 'fácil de vender' é o mesmo que 'seguro'. Ação é líquida na bolsa e ainda pode perder valor rápido — liquidez e risco são diferentes."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-investimento",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Retorno alto sempre é golpe",
+   "resposta": false,
+   "ancora": "Ação de empresa sólida em ciclo bom também rende alto, sem ser golpe.",
+   "feedbackErro": "Desconfiar é saudável, mas retorno alto legítimo existe — empresa sólida em bom ciclo, por exemplo. O que denuncia golpe é a garantia sem risco."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-retorno-liquidez",
+   "dificuldade": 3,
+   "pergunta": "Um fundo perde 10% em um mês e depois sobe 12% no mês seguinte. O investidor lucrou?",
+   "ancora": "100×0,9×1,12 = 100,8 — quase empatou, não lucrou os 2% da soma.",
+   "alternativas": [
+    {
+     "texto": "Quase nada: os movimentos quase se cancelam",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, 2% de lucro, pois 12% menos 10% dá 2%",
+     "correta": false,
+     "feedbackErro": "Subtrair as porcentagens parece certo, mas perda e ganho incidem sobre valores diferentes: -10% sobre 100 e depois +12% sobre 90, não sobre 100."
+    },
+    {
+     "texto": "Não, ele perdeu, porque a perda veio primeiro",
+     "correta": false,
+     "feedbackErro": "A ordem dos dois movimentos não muda o resultado final aqui — o problema é somar as porcentagens direto em vez de aplicar uma sobre a outra."
+    }
+   ],
+   "verificacao": {
+    "expressao": "100*0.9*1.12",
+    "esperado": 100.8
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "confiabilidade-investimento",
+   "dificuldade": 3,
+   "pergunta": "Uma corretora da CVM oferece produto de terceiro, não fiscalizado, com retorno fixo de 15% ao mês. A CVM garante isso?",
+   "ancora": "Registro da corretora não estende garantia a produto revendido.",
+   "alternativas": [
+    {
+     "texto": "Não — o registro da corretora não garante o produto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim — se a corretora é confiável, o produto também é",
+     "correta": false,
+     "feedbackErro": "A confiança na corretora não se transfere automaticamente. Cada produto precisa da própria checagem, especialmente se o retorno foge do padrão de mercado."
+    },
+    {
+     "texto": "Sim — a CVM aprova cada produto antes da venda",
+     "correta": false,
+     "feedbackErro": "A CVM regula e fiscaliza, mas não aprova cada produto individualmente antes da venda. Retorno fixo de 15% ao mês já é, por si só, sinal de alerta."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "risco-retorno-liquidez",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Diversificar sempre elimina o risco de perder dinheiro",
+   "resposta": false,
+   "ancora": "Diversificação reduz risco específico, não risco de mercado geral.",
+   "feedbackErro": "Diversificar é regra de ouro, e por isso parece infalível. Mas numa crise que derruba o mercado inteiro, mesmo uma carteira diversificada pode perder valor."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "risco-retorno-liquidez",
+   "instrucao": "Situação composta: ordene por liquidez, do mais rápido ao mais lento.",
+   "ancora": "Liquidez cai conforme cresce o tempo até virar dinheiro.",
+   "feedbackErro": "O fundo com resgate em D+1 parece 'quase igual' à conta corrente, mas o resgate leva 1 dia útil a mais — pequena diferença que ainda conta na ordem.",
+   "itens": [
+    {
+     "texto": "Conta corrente",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Fundo com resgate em D+1",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "CDB com carência de 6 meses",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Terreno rural",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "risco-retorno-liquidez",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Tesouro Selic nunca perde valor, mesmo vendido em dia de forte alta de juros",
+   "resposta": false,
+   "ancora": "Marcação a mercado pode gerar perda pontual mesmo no Tesouro Selic.",
+   "feedbackErro": "O Tesouro Selic é o mais estável do grupo, e isso vira regra geral. Mas ele sofre marcação a mercado — vender no momento errado pode gerar perda pequena."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-investimento",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "CNPJ ativo garante, sozinho, que o investimento não é golpe",
+   "resposta": false,
+   "ancora": "CNPJ ativo é necessário, mas golpes também abrem empresa formal.",
+   "feedbackErro": "Ter CNPJ é o primeiro filtro, e por isso parece suficiente. Mas esquemas fraudulentos também registram empresa — CNPJ reduz risco, não elimina."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "risco-retorno-liquidez",
+   "pergunta": "R$ 3.000 numa ação caem 20% e depois sobem 20%. Quanto sobra, em reais?",
+   "campo": "moeda",
+   "min": 2400,
+   "max": 3000,
+   "gabarito": 2880,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: -20% seguido de +20% sobre o novo valor",
+   "feedbackPerto": "Perto: R$ 2.880 — a queda e a alta não se cancelam porque incidem sobre valores diferentes.",
+   "feedbackLonge": "Dá R$ 2.880, não R$ 3.000. Os -20% tiram sobre 3.000; os +20% somam sobre os 2.400 que sobraram — a base mudou.",
+   "verificacao": {
+    "expressao": "3000*0.8*1.2",
+    "esperado": 2880
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "confiabilidade-investimento",
+   "dificuldade": 3,
+   "pergunta": "Uma plataforma registrada vende cotas de um fundo que faz operações não informadas no prospecto. Quem erra aqui?",
+   "ancora": "O erro está no fundo, que descumpriu o que prometeu informar.",
+   "alternativas": [
+    {
+     "texto": "O fundo, que não seguiu o que prometeu no prospecto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Você, por confiar numa plataforma registrada",
+     "correta": false,
+     "feedbackErro": "Confiar numa plataforma registrada é o comportamento certo, não o erro. A falha está no fundo, que operou fora do combinado no prospecto."
+    },
+    {
+     "texto": "Ninguém: operar fora do prospecto é permitido",
+     "correta": false,
+     "feedbackErro": "Não é permitido: o prospecto é o contrato de regras do fundo. Fugir dele é falha do gestor, fiscalizável pelo órgão regulador."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "risco-retorno-liquidez",
+   "dificuldade": 3,
+   "pergunta": "Camila precisa do dinheiro em 3 anos e tolera alguma oscilação no caminho. O que combina melhor com esse prazo?",
+   "ancora": "Prazo médio com tolerância a oscilar abre espaço para mais risco.",
+   "alternativas": [
+    {
+     "texto": "Um mix com parte em renda fixa e parte em ações",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Tudo em conta corrente, para ter sempre à mão",
+     "correta": false,
+     "feedbackErro": "Deixar tudo parado protege do susto, mas rende zero — 3 anos de tolerância a oscilar permitem buscar mais retorno que isso."
+    },
+    {
+     "texto": "Tudo em uma única ação, para maximizar o ganho",
+     "correta": false,
+     "feedbackErro": "Concentrar tudo numa única ação maximiza o risco, não só o ganho possível — um mix equilibra retorno com o risco que ela tolera."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "risco-retorno-liquidez",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Renda fixa nunca perde dinheiro, mesmo vendida antes do vencimento",
+   "resposta": false,
+   "ancora": "Título pode ser vendido abaixo do preço pago, antes do prazo.",
+   "feedbackErro": "'Renda fixa' sugere previsibilidade total, e no vencimento ela cumpre. Mas vendida antes, ao preço de mercado, pode sair por menos do que custou."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-investimento",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Um golpe nunca tem contrato assinado nem nota fiscal",
+   "resposta": false,
+   "ancora": "Golpes sofisticados forjam contrato e nota para parecer legítimos.",
+   "feedbackErro": "Contrato e nota passam sensação de segurança, e por isso enganam. Esquemas mais elaborados forjam esses documentos — eles não são prova definitiva sozinhos."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "risco-retorno-liquidez",
+   "pergunta": "Qual frase fecha os três encontros sobre risco, rendimento e liquidez?",
+   "alternativas": [
+    {
+     "texto": "Risco, retorno e liquidez andam juntos; documento não garante segurança total",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Documento formal sempre garante que o investimento é seguro",
+     "correta": false,
+     "feedbackErro": "Documentos ajudam a checar, mas golpes sofisticados também os forjam — nenhum sozinho garante segurança total."
+    },
+    {
+     "texto": "Diversificar a carteira elimina qualquer chance de perda",
+     "correta": false,
+     "feedbackErro": "Diversificar reduz risco específico, mas não protege de quedas que afetam o mercado inteiro."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "confiabilidade-investimento",
+   "instrucao": "Reduz risco de fato ou não garante segurança sozinho?",
+   "ancora": "Diversificação e garantia pública reduzem risco de fato.",
+   "feedbackErro": "CNPJ e contrato são o mínimo esperado, até em golpes elaborados. O que reduz risco de verdade é diversificação e garantia de instituição pública.",
+   "caixas": [
+    {
+     "id": "reduz",
+     "rotulo": "Reduz risco de fato"
+    },
+    {
+     "id": "naoGarante",
+     "rotulo": "Não garante sozinho"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Diversificar entre vários setores",
+     "caixaCorreta": "reduz"
+    },
+    {
+     "texto": "Ter CNPJ ativo",
+     "caixaCorreta": "naoGarante"
+    },
+    {
+     "texto": "Título com garantia do Tesouro Nacional",
+     "caixaCorreta": "reduz"
+    },
+    {
+     "texto": "Mostrar contrato assinado",
+     "caixaCorreta": "naoGarante"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "risco-retorno-liquidez",
+   "dificuldade": 3,
+   "pergunta": "Dois fundos têm o mesmo retorno médio histórico, mas um oscila muito mais que o outro mês a mês. Qual tem mais risco?",
+   "ancora": "Mesmo retorno médio, mais oscilação é mais risco.",
+   "alternativas": [
+    {
+     "texto": "O que oscila mais, mesmo com retorno médio igual",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nenhum: retorno médio igual é risco igual",
+     "correta": false,
+     "feedbackErro": "O retorno médio pode empatar e ainda assim os caminhos até lá serem bem diferentes. Quem oscila mais tem mais chance de perda no meio do caminho."
+    },
+    {
+     "texto": "O que oscila menos, porque é mais imprevisível",
+     "correta": false,
+     "feedbackErro": "Oscilar menos é sinal de mais previsibilidade, não menos. Risco maior está em quem varia mais, não em quem varia menos."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "confiabilidade-investimento",
+   "criterio": "Isso ainda vale, mesmo no caso-limite?",
+   "enunciado": "Um investimento registrado na CVM nunca pode dar prejuízo",
+   "resposta": false,
+   "ancora": "Registro regula a oferta, não garante o resultado do investimento.",
+   "feedbackErro": "Registro na CVM garante que a oferta segue regras de transparência, mas não elimina o risco do próprio investimento — perder dinheiro continua possível."
+  }
+ ]
+}

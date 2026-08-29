@@ -1,0 +1,328 @@
+{
+ "slug": "quem-move-a-economia",
+ "segmento": "em3",
+ "conceitoPrincipal": "agentes-economicos",
+ "fraseConceito": "Famílias, empresas e governo movem a economia trocando trabalho, produtos e impostos — e a renda da maioria dá o ritmo do giro.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "agentes-economicos",
+   "criterio": "Move a economia?",
+   "enunciado": "A família comprando pão na padaria",
+   "resposta": true,
+   "ancora": "Toda compra é renda de alguém: consumo é motor, não plateia.",
+   "feedbackErro": "Compra pequena parece irrelevante. Mas o pão da família vira receita da padaria, salário do padeiro e pedido ao fornecedor — o giro começa aí."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "agentes-economicos",
+   "criterio": "Move a economia?",
+   "enunciado": "O governo pagando professores com o dinheiro dos impostos",
+   "resposta": true,
+   "ancora": "Governo arrecada e gasta: dos maiores compradores do país.",
+   "feedbackErro": "Imposto parece dinheiro que sai da economia. Ele volta: vira salário de professor, merenda, obra — renda que essas pessoas gastam no comércio."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "circulacao-da-renda",
+   "criterio": "Move a economia?",
+   "enunciado": "Dinheiro guardado embaixo do colchão",
+   "resposta": false,
+   "ancora": "Dinheiro só move a economia circulando — no colchão, ele dorme.",
+   "feedbackErro": "Guardar parece prudência, e pode ser. Mas no colchão o dinheiro não vira compra nem empréstimo; no banco, até a poupança financia alguém."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "circulacao-da-renda",
+   "dificuldade": 1,
+   "pergunta": "A padaria paga o salário de Cauã, e Cauã compra pão na padaria. O que esse círculo mostra?",
+   "ancora": "A renda de um é o gasto do outro — é isso que gira a economia.",
+   "alternativas": [
+    {
+     "texto": "A renda de um vira o gasto do outro, girando tudo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que Cauã devolve o salário e fica no zero a zero",
+     "correta": false,
+     "feedbackErro": "Ele não devolve: leva pão. A padaria leva o trabalho dele. Cada volta do círculo produz algo novo — não é dinheiro trocando de mão à toa."
+    },
+    {
+     "texto": "Que a padaria perde dinheiro pagando salário",
+     "correta": false,
+     "feedbackErro": "O salário é custo que gera a receita: é o trabalho de Cauã que produz o pão vendido. Sem ele, não há produto — nem faturamento."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "agentes-economicos",
+   "dificuldade": 1,
+   "pergunta": "Nesse jogo de compradores, vendedores e produtores, qual é o papel do governo?",
+   "ancora": "Governo cobra imposto, devolve serviço e escreve as regras do jogo.",
+   "alternativas": [
+    {
+     "texto": "Cobra impostos e devolve em serviços e regras",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só atrapalha: não produz nem consome nada",
+     "correta": false,
+     "feedbackErro": "O governo compra merenda, constrói estrada, paga milhões de salários — é dos maiores compradores do país. Dá para criticar o como, não o se."
+    },
+    {
+     "texto": "Decide o preço de tudo o que se vende",
+     "correta": false,
+     "feedbackErro": "A maioria dos preços nasce de oferta e procura. O governo regula alguns setores e tributa — tabelar tudo, só em economias bem diferentes da nossa."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "agentes-economicos",
+   "criterio": "Faz papel de produtor?",
+   "enunciado": "A costureira que faz e vende as próprias peças",
+   "resposta": true,
+   "ancora": "A mesma pessoa é produtora, vendedora e consumidora: são papéis.",
+   "feedbackErro": "Parece que produtor é só fábrica grande. Produzir é transformar trabalho em produto — a costureira produz, vende e, no mercado, vira consumidora."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "agentes-economicos",
+   "instrucao": "Em cada cena, qual papel aparece?",
+   "ancora": "Quem oferta é produtor/vendedor; quem gasta para levar é comprador.",
+   "feedbackErro": "O critério é o lado do balcão naquela cena: quem entrega produto ou serviço está ofertando; quem paga para levar — inclusive escola e governo — está comprando.",
+   "caixas": [
+    {
+     "id": "oferta",
+     "rotulo": "Produtor/vendedor"
+    },
+    {
+     "id": "compra",
+     "rotulo": "Comprador"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Sitiante entregando alface na feira",
+     "caixaCorreta": "oferta"
+    },
+    {
+     "texto": "Escola comprando carteiras novas",
+     "caixaCorreta": "compra"
+    },
+    {
+     "texto": "Loja anunciando tênis na vitrine",
+     "caixaCorreta": "oferta"
+    },
+    {
+     "texto": "Prefeitura contratando obra de esgoto",
+     "caixaCorreta": "compra"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "distribuicao-de-renda",
+   "criterio": "Efeito da renda concentrada?",
+   "enunciado": "Menos gente conseguindo consumir o básico",
+   "resposta": true,
+   "ancora": "Renda concentrada encolhe o número de consumidores — o comércio sente.",
+   "feedbackErro": "Se a renda total é a mesma, parece que o consumo se mantém. Mas quem concentra não multiplica compras de comida e roupa — e a maioria fica sem poder comprar."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "distribuicao-de-renda",
+   "criterio": "Efeito da renda concentrada?",
+   "enunciado": "Consumo igual, já que a renda total do país não mudou",
+   "resposta": false,
+   "ancora": "Quem ganha pouco gasta quase tudo; quem concentra, não. O giro cai.",
+   "feedbackErro": "A soma é a mesma, o giro não: mil famílias gastam quase toda a renda no comércio; uma fortuna única consome uma fração e o resto sai do circuito local."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "distribuicao-de-renda",
+   "pergunta": "Numa rua, 10 pessoas: 1 ganha R$ 55 mil e 9 ganham R$ 5 mil. Qual é a renda média?",
+   "campo": "moeda",
+   "min": 3000,
+   "max": 30000,
+   "gabarito": 10000,
+   "toleranciaPct": 20,
+   "fonte": "derivado da própria conta: soma das dez rendas dividida por 10",
+   "verificacao": {
+    "expressao": "(55000 + 9*5000)/10",
+    "esperado": 10000
+   },
+   "feedbackPerto": "R$ 10 mil — o dobro do que 9 das 10 pessoas ganham. É assim que a média esconde a concentração.",
+   "feedbackLonge": "R$ 10 mil: (55.000 + 45.000) ÷ 10. O viés é ancorar no valor mais comum (R$ 5 mil) — um único valor gigante puxa a média para longe da vida real da rua."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "circulacao-da-renda",
+   "dificuldade": 2,
+   "pergunta": "A prefeitura dobra as compras da merenda com produtores locais. Efeito provável na zona rural?",
+   "ancora": "Compra pública vira renda local — e renda local vira mais compra.",
+   "alternativas": [
+    {
+     "texto": "Mais renda girando: produtor vende, gasta e emprega perto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nenhum: dinheiro público não vira renda de família",
+     "correta": false,
+     "feedbackErro": "Vira direto: o pagamento da merenda entra na conta do sitiante, que paga ajudante e gasta no comércio — dinheiro público circula como qualquer renda."
+    },
+    {
+     "texto": "O preço dos alimentos dobra na hora para todos",
+     "correta": false,
+     "feedbackErro": "Demanda maior pode pressionar preços, mas 'dobrar na hora' pula etapas: produtores respondem plantando mais, e o contrato público costuma ter preço combinado."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "distribuicao-de-renda",
+   "dificuldade": 2,
+   "pergunta": "Cidade onde muitos ganham pouco: por que o comércio de bairro definha mesmo com um shopping de luxo cheio?",
+   "ancora": "Comércio de massa vive do gasto repetido de muitos, não do luxo.",
+   "alternativas": [
+    {
+     "texto": "Consumo em massa depende da renda da maioria",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Falta vontade de comprar, não dinheiro",
+     "correta": false,
+     "feedbackErro": "A vontade existe — o que falta é renda que a transforme em compra. Bem-estar de consumo segue a distribuição da renda, não o desejo das pessoas."
+    },
+    {
+     "texto": "O luxo compensa: o total gasto é o que importa",
+     "correta": false,
+     "feedbackErro": "O gasto de poucos se concentra em poucos lugares e produtos. A padaria, a farmácia e a lojinha vivem do gasto repetido de milhares — é outro circuito."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "circulacao-da-renda",
+   "criterio": "A economia gira aqui?",
+   "enunciado": "Seu troco da cantina virando estoque novo do vendedor",
+   "resposta": true,
+   "ancora": "Cada real gasto vira pedido, produção e renda de alguém adiante.",
+   "feedbackErro": "Parece só uma comprinha. Mas o dinheiro da cantina paga o fornecedor, que paga o entregador — seu troco está em três bolsos antes do fim da semana."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "circulacao-da-renda",
+   "criterio": "A economia gira aqui?",
+   "enunciado": "Produto encalhado no estoque, sem comprador com renda",
+   "resposta": false,
+   "ancora": "Sem renda do outro lado, a produção para: oferta precisa de demanda.",
+   "feedbackErro": "Produzir parece bastar para a economia andar. Mas produto sem comprador é dinheiro parado na prateleira — sem renda na mão de quem quer comprar, o giro trava."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "agentes-economicos",
+   "pergunta": "Qual frase resume quem move a economia?",
+   "alternativas": [
+    {
+     "texto": "Famílias, empresas e governo giram a renda; a renda da maioria dá o ritmo.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Só quem produz move a economia; consumir é papel passivo.",
+     "correta": false,
+     "feedbackErro": "Sem comprador com renda, a produção encalha. Consumo é a metade do giro."
+    },
+    {
+     "texto": "A economia vai bem sempre que a renda total cresce.",
+     "correta": false,
+     "feedbackErro": "Se o crescimento se concentra, a maioria consome igual ou menos — a média de R$ 10 mil escondia isso."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "circulacao-da-renda",
+   "instrucao": "Ordene o caminho do dinheiro do seu lanche.",
+   "ancora": "O mesmo real vira receita, pedido, salário e consumo — em sequência.",
+   "feedbackErro": "Siga o dinheiro, não as pessoas: você paga, a cantina compra do fornecedor, o fornecedor paga o padeiro, o padeiro consome — e o giro recomeça.",
+   "itens": [
+    {
+     "texto": "Você paga o lanche na cantina",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "A cantina compra pão do fornecedor",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "O fornecedor paga o salário do padeiro",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "O padeiro gasta no comércio do bairro",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "distribuicao-de-renda",
+   "dificuldade": 2,
+   "pergunta": "Metade dos moradores de um bairro perde a renda. O que acontece primeiro?",
+   "ancora": "O choque de renda vira choque de venda na esquina seguinte.",
+   "alternativas": [
+    {
+     "texto": "O comércio local vende menos e segura contratações",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada muda: a outra metade compensa comprando em dobro",
+     "correta": false,
+     "feedbackErro": "Quem já comprava o que precisava não dobra o consumo porque o vizinho empobreceu. Demanda perdida da maioria não se repõe automaticamente."
+    },
+    {
+     "texto": "Os preços do bairro sobem para cobrir a perda",
+     "correta": false,
+     "feedbackErro": "Subir preço com cliente sem renda afasta os que restaram. Com demanda em queda, a pressão típica é de promoção e liquidação — não de aumento."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "distribuicao-de-renda",
+   "criterio": "É concentração de renda?",
+   "enunciado": "Poucas famílias donas da maior parte da renda da cidade",
+   "resposta": true,
+   "ancora": "Concentração é a fatia grande na mão de poucos — não a renda alta em si.",
+   "feedbackErro": "Renda alta de alguém, sozinha, não é concentração. O conceito é a proporção: quando a maior parte do bolo fica com pouca gente, o consumo da maioria míngua."
+  }
+ ]
+}

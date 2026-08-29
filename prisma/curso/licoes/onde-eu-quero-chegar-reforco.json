@@ -1,0 +1,249 @@
+{
+ "slug": "onde-eu-quero-chegar-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "onde-eu-quero-chegar",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-objetivo",
+   "criterio": "É curto prazo?",
+   "enunciado": "Juntar dinheiro por duas semanas pra um passeio no parque",
+   "resposta": true,
+   "ancora": "Semanas contam como curto prazo.",
+   "feedbackErro": "Parece tempo demais pra ser curto. Mas duas semanas ainda está dentro do curto prazo — dias ou poucas semanas."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-objetivo",
+   "criterio": "É médio prazo?",
+   "enunciado": "Juntar dinheiro por 8 meses pra um patinete",
+   "resposta": true,
+   "ancora": "Vários meses, sem chegar a anos, é médio prazo.",
+   "feedbackErro": "Parece longo, porque leva quase um ano. Mas sem completar um ano inteiro de espera contínua, ainda conta como médio prazo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "É uma necessidade?",
+   "enunciado": "Trocar o tênis furado que já não protege o pé",
+   "resposta": true,
+   "ancora": "Quando o item quebrou e ainda é preciso usá-lo, é necessidade.",
+   "feedbackErro": "Parece desejo, porque envolve comprar algo novo. Mas como o tênis furado não protege mais, trocá-lo é necessidade."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "prazo-do-objetivo",
+   "dificuldade": 2,
+   "pergunta": "Nina quer um valor alto: uma bicicleta de R$ 300. Ela vai juntar em 2 semanas. Isso muda o prazo pra longo?",
+   "ancora": "O tempo pra alcançar decide o prazo, não o valor do objetivo.",
+   "alternativas": [
+    {
+     "texto": "Não — é o tempo que decide, não o valor",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque o valor é alto",
+     "correta": false,
+     "feedbackErro": "O valor alto pode ser difícil de juntar rápido, mas não muda a categoria do prazo. O que define é o tempo, e 2 semanas é curto."
+    },
+    {
+     "texto": "Sim, porque bicicleta não é um objetivo pequeno",
+     "correta": false,
+     "feedbackErro": "O tipo do item não define o prazo. O que conta é quanto tempo até alcançar — e 2 semanas ainda é curto prazo."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "desejo-e-necessidade",
+   "dificuldade": 2,
+   "pergunta": "Caio diz que 'precisa' de um videogame novo pra se distrair. Isso é necessidade de verdade?",
+   "ancora": "Necessidade é sobre o essencial, não sobre comparação ou lazer.",
+   "alternativas": [
+    {
+     "texto": "Não, é desejo — distração não é algo essencial pra viver",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, porque ele usa bastante o tempo livre",
+     "correta": false,
+     "feedbackErro": "Usar bastante não torna algo essencial. Distração é importante, mas não é necessidade no sentido financeiro."
+    },
+    {
+     "texto": "Sim, porque todo mundo da idade dele tem um",
+     "correta": false,
+     "feedbackErro": "O que os outros têm não define sua necessidade. O critério é se falta algo essencial pra você, não uma comparação."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-objetivo",
+   "criterio": "É longo prazo?",
+   "enunciado": "Juntar dinheiro por 5 meses pra um tênis de marca",
+   "resposta": false,
+   "ancora": "Cinco meses ainda é médio prazo, não chega a longo.",
+   "feedbackErro": "Parece bastante tempo pra esperar. Mas sem chegar perto de um ano, cinco meses ainda se encaixa em médio prazo, não longo."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "prazo-do-objetivo",
+   "instrucao": "É curto ou médio prazo? Arraste.",
+   "ancora": "Dias e poucas semanas são curto; vários meses são médio.",
+   "feedbackErro": "É fácil confundir quando o valor do objetivo é parecido. O que separa curto de médio é o tempo até alcançar, não o preço.",
+   "caixas": [
+    { "id": "curto", "rotulo": "Curto prazo" },
+    { "id": "medio", "rotulo": "Médio prazo" }
+   ],
+   "itens": [
+    { "texto": "Juntar pra um lanche especial em 10 dias", "caixaCorreta": "curto" },
+    { "texto": "Juntar pra um fone de ouvido em 5 meses", "caixaCorreta": "medio" },
+    { "texto": "Juntar pra um ingresso de cinema em 1 semana", "caixaCorreta": "curto" },
+    { "texto": "Juntar pra uma bicicleta em 7 meses", "caixaCorreta": "medio" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "É uma necessidade?",
+   "enunciado": "Comprar um lanche especial só porque teve um dia difícil",
+   "resposta": false,
+   "ancora": "Consolo por um dia ruim é desejo, não necessidade básica.",
+   "feedbackErro": "Parece justificado pela emoção do momento. Mas o que resolve um dia difícil é sentimento, não uma necessidade financeira essencial."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "prazo-do-objetivo",
+   "dificuldade": 2,
+   "pergunta": "Lara quer R$ 32 e junta R$ 4 por semana. Em quantas semanas ela alcança o objetivo?",
+   "ancora": "32 dividido por 4 é 8 — as semanas até completar o valor.",
+   "verificacao": { "expressao": "32/4", "esperado": 8 },
+   "alternativas": [
+    {
+     "texto": "8 semanas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "4 semanas",
+     "correta": false,
+     "feedbackErro": "Você trocou o valor semanal pela resposta. O certo é dividir: 32 dividido por 4 é 8 semanas."
+    },
+    {
+     "texto": "32 semanas",
+     "correta": false,
+     "feedbackErro": "Esse número ignora que ela junta R$ 4 de cada vez, não R$ 1. Dividindo 32 por 4, chega em 8."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "É um desejo?",
+   "enunciado": "Querer trocar de mochila mesmo com a atual em bom estado",
+   "resposta": true,
+   "ancora": "Se a atual ainda serve bem, trocar é desejo, não necessidade.",
+   "feedbackErro": "Parece necessidade, porque mochila é um item útil. Mas se a atual ainda funciona bem, trocar por outra é desejo, não necessidade."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "prazo-do-objetivo",
+   "criterio": "Ajuda a organizar prazos diferentes?",
+   "enunciado": "Separar quanto guardar pra cada objetivo, conforme o prazo dele",
+   "resposta": true,
+   "ancora": "Separar por prazo evita misturar metas de tempos diferentes.",
+   "feedbackErro": "Parece complicado dividir tanto. Mas separar por prazo é o que evita misturar uma meta rápida com outra que ainda vai levar meses."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "prazo-do-objetivo",
+   "pergunta": "Qual ideia fecha este encontro?",
+   "alternativas": [
+    {
+     "texto": "É o tempo que define o prazo, não o valor do objetivo",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Qualquer coisa que você queira muito já é uma necessidade",
+     "correta": false,
+     "feedbackErro": "Querer muito não torna algo essencial. Necessidade é sobre o que falta pra viver bem, não sobre intensidade do desejo."
+    },
+    {
+     "texto": "Objetivos caros são sempre de longo prazo",
+     "correta": false,
+     "feedbackErro": "O valor não decide o prazo — o tempo até alcançar decide. Um objetivo caro pode ser alcançado rápido, se juntar bastante por vez."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "prazo-do-objetivo",
+   "dificuldade": 3,
+   "pergunta": "Duas metas custam o mesmo valor, mas uma leva 2 semanas e outra 6 meses. O que diferencia elas?",
+   "ancora": "Mesmo valor, prazos diferentes — o tempo é o que muda.",
+   "alternativas": [
+    {
+     "texto": "O prazo, porque o tempo pra alcançar é diferente",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada, porque o valor é igual nas duas",
+     "correta": false,
+     "feedbackErro": "O valor igual não apaga a diferença de tempo. Duas semanas e seis meses são prazos bem diferentes."
+    },
+    {
+     "texto": "O quanto cada uma é desejada",
+     "correta": false,
+     "feedbackErro": "O quanto se deseja não define o prazo. O que diferencia é só o tempo até alcançar cada meta."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "desejo-e-necessidade",
+   "criterio": "É uma necessidade?",
+   "enunciado": "Comprar óculos novos quando os antigos quebraram e você precisa enxergar",
+   "resposta": true,
+   "ancora": "Sem enxergar direito, óculos novos são necessidade.",
+   "feedbackErro": "Parece desejo, por envolver um item que também pode ser estiloso. Mas sem ele pra enxergar bem, é necessidade, não desejo."
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "desejo-e-necessidade",
+   "instrucao": "É desejo ou necessidade? Arraste.",
+   "ancora": "Necessidade resolve uma falta real; desejo é sobre ter mais.",
+   "feedbackErro": "Ter mais de algo que já funciona parece útil, mas é desejo. Necessidade é quando falta algo essencial pro dia a dia.",
+   "caixas": [
+    { "id": "desejo", "rotulo": "Desejo" },
+    { "id": "necessidade", "rotulo": "Necessidade" }
+   ],
+   "itens": [
+    { "texto": "Um segundo brinquedo igual ao que já tem", "caixaCorreta": "desejo" },
+    { "texto": "Um agasalho pro frio forte", "caixaCorreta": "necessidade" },
+    { "texto": "A versão mais nova de um jogo que já possui", "caixaCorreta": "desejo" },
+    { "texto": "Um caderno pra substituir o que acabou", "caixaCorreta": "necessidade" }
+   ]
+  }
+ ]
+}

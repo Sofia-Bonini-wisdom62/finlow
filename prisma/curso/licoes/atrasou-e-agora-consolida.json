@@ -1,0 +1,342 @@
+{
+ "slug": "atrasou-e-agora-consolida",
+ "segmento": "ef89",
+ "conceitoPrincipal": "atrasou-e-agora",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "estrategias-de-saida",
+   "criterio": "Essa estratégia ainda funciona aqui?",
+   "enunciado": "Quitar primeiro a dívida de menor taxa, ignorando o tamanho das outras",
+   "resposta": false,
+   "ancora": "Menor taxa não é sempre o critério certo — taxa maior cresce mais.",
+   "feedbackErro": "A regra 'menor primeiro' parece segura por hábito. Mas o critério que evita mais crescimento da dívida total é a taxa, não qual é a menor taxa da lista."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "consequencias-do-atraso",
+   "criterio": "É consequência do atraso?",
+   "enunciado": "Ficar de fora de um cadastro negativo por já ter pago tudo em dia",
+   "resposta": false,
+   "ancora": "Isso é ausência de consequência, não uma consequência em si.",
+   "feedbackErro": "Parece uma pegadinha de leitura, mas é importante: não entrar no cadastro é o resultado de pagar em dia, não uma consequência do atraso — é o oposto disso."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "endividamento-vira-problema",
+   "criterio": "Isso ainda é sinal de alerta?",
+   "enunciado": "Usar o cartão de crédito para uma compra planejada, dentro do limite do orçamento",
+   "resposta": false,
+   "ancora": "Uso planejado e dentro do orçamento não é sinal de problema.",
+   "feedbackErro": "Qualquer uso de cartão pode soar arriscado à primeira vista. Mas uma compra planejada, dentro do que cabe no orçamento, é uso normal — não é sinal de alerta."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "consequencias-do-atraso",
+   "dificuldade": 3,
+   "pergunta": "Uma dívida de R$ 2.000 fica 5 meses sem pagamento, com mora composta de 2% ao mês, sem multa nesse contrato. Total?",
+   "ancora": "2.000×1,02^5 ≈ 2.208. Juro composto sobre o saldo crescente.",
+   "alternativas": [
+    {
+     "texto": "Cerca de R$ 2.208",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 2.200",
+     "correta": false,
+     "feedbackErro": "R$ 2.200 soma 2% cinco vezes de forma simples (10%). Juro composto incide sobre o saldo já maior a cada mês, chegando a cerca de R$ 2.208."
+    },
+    {
+     "texto": "R$ 2.000, porque não há multa nesse contrato",
+     "correta": false,
+     "feedbackErro": "A ausência de multa não impede o juro de mora de correr. Mesmo sem multa, os 2% ao mês compostos seguem aumentando o saldo devido."
+    }
+   ],
+   "verificacao": {
+    "expressao": "2000*1.02^5",
+    "esperado": 2208.16,
+    "tolerancia": 1
+   }
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "endividamento-vira-problema",
+   "dificuldade": 3,
+   "pergunta": "Renda estável, dívida que cabe no orçamento, mas ela evita checar o extrato há meses por medo. Sinal de quê?",
+   "ancora": "Evitar checar as contas por medo já é sinal de alerta.",
+   "alternativas": [
+    {
+     "texto": "Alerta emocional, mesmo com a dívida cabendo no orçamento",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nenhum problema, já que a dívida cabe na renda",
+     "correta": false,
+     "feedbackErro": "A dívida caber é um bom sinal financeiro, mas evitar checar por medo é outro tipo de sinal — mostra que a relação com a dívida já pesa."
+    },
+    {
+     "texto": "Prova de que ela está no controle da situação",
+     "correta": false,
+     "feedbackErro": "Estar no controle envolve acompanhar os números, não evitá-los. Fugir do extrato por medo é o oposto de estar no controle."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "estrategias-de-saida",
+   "criterio": "É verdade sobre a estratégia?",
+   "enunciado": "Antecipar dívida com desconto pode valer menos que investir o dinheiro numa aplicação de retorno maior",
+   "resposta": true,
+   "ancora": "Se a aplicação rende mais que o desconto, investir compensa.",
+   "feedbackErro": "Parece sempre melhor quitar a dívida logo. Mas se uma aplicação segura rende mais do que o desconto de antecipar, guardar pode valer mais a pena."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "consequencias-do-atraso",
+   "instrucao": "Ordene do menor para o maior efeito de uma dívida em atraso.",
+   "ancora": "Vai do custo pequeno ao efeito que trava outras áreas da vida.",
+   "feedbackErro": "A ordem cresce em gravidade: primeiro juro pequeno, depois cadastro negativo, depois crédito negado em geral, e por fim impacto em emprego que exige nome limpo.",
+   "itens": [
+    {
+     "texto": "Multa e juro de mora sobre o valor",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Nome em cadastro de inadimplentes",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Crédito negado em outras compras",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Perda de vaga que exige nome limpo",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "estrategias-de-saida",
+   "criterio": "A conclusão está certa?",
+   "enunciado": "Quem tem várias dívidas pequenas deve sempre ignorá-las e focar só a maior",
+   "resposta": false,
+   "ancora": "Depende da taxa: dívida pequena com taxa alta também prioriza.",
+   "feedbackErro": "Focar só a maior ignora a taxa de cada dívida. Uma pequena com taxa alta pode crescer mais rápido que a grande — o critério certo combina taxa e tamanho."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "endividamento-vira-problema",
+   "criterio": "A conclusão está certa?",
+   "enunciado": "Uma pessoa endividada que ainda consegue guardar uma pequena reserva não tem problema nenhum",
+   "resposta": false,
+   "ancora": "Guardar reserva é bom sinal, mas não anula outros sinais de alerta.",
+   "feedbackErro": "Guardar reserva enquanto paga dívida é sinal positivo. Mas não anula outros sinais — o quadro completo olha todos os indícios juntos, não um isolado."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "consequencias-do-atraso",
+   "pergunta": "Dívida de R$ 1.500 no rotativo, 5 meses sem pagamento, a 14% ao mês. Quanto ela vira?",
+   "campo": "moeda",
+   "min": 1500,
+   "max": 4000,
+   "gabarito": 2888,
+   "toleranciaPct": 20,
+   "fonte": "taxa média do rotativo, ~14% ao mês (Banco Central)",
+   "feedbackPerto": "Perto: R$ 2.888. Quase dobrou em 5 meses, sem nenhuma compra nova.",
+   "feedbackLonge": "Dá R$ 2.888. Juro composto sobre 14% ao mês multiplica o saldo, não soma 70% simples ao longo dos 5 meses.",
+   "verificacao": {
+    "expressao": "1500*1.14^5",
+    "esperado": 2888.1,
+    "tolerancia": 1
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "estrategias-de-saida",
+   "dificuldade": 3,
+   "pergunta": "R$ 4.000 em dívidas a 3% ao mês; proposta de quitar com 25% de desconto à vista. Vale a pena?",
+   "ancora": "4.000×0,75 = 3.000. Compare ao custo de deixar a dívida rodar.",
+   "alternativas": [
+    {
+     "texto": "Depende de comparar o desconto ao custo de manter a dívida",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, sempre — desconto à vista é sempre a melhor opção",
+     "correta": false,
+     "feedbackErro": "Nem sempre: se o dinheiro para pagar à vista tem outro uso melhor (como quitar dívida mais cara), o desconto pode não ser a prioridade."
+    },
+    {
+     "texto": "Não, porque 3% ao mês é uma taxa baixa e não preocupa",
+     "correta": false,
+     "feedbackErro": "A taxa ser baixa não decide sozinho. É preciso comparar: economizar 25% à vista contra manter rodando a 3% ao mês por quanto tempo."
+    }
+   ],
+   "verificacao": {
+    "expressao": "4000*0.75",
+    "esperado": 3000
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "endividamento-vira-problema",
+   "dificuldade": 3,
+   "pergunta": "Família reduz gastos, negocia dívidas e volta a guardar reserva depois de meses apertados. O que isso mostra?",
+   "ancora": "Sinais de melhora real: reserva voltando e dívidas sendo negociadas.",
+   "alternativas": [
+    {
+     "texto": "Que a situação está melhorando, mesmo sem estar resolvida",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Que não havia problema nenhum antes disso acontecer",
+     "correta": false,
+     "feedbackErro": "O fato de terem passado meses apertados mostra que o problema existiu. O que mudou agora são os sinais de melhora, não a ausência do problema no passado."
+    },
+    {
+     "texto": "Que já está tudo resolvido e não precisa mais de atenção",
+     "correta": false,
+     "feedbackErro": "Voltar a guardar reserva é sinal positivo, mas não significa que está tudo resolvido — a atenção ao orçamento continua sendo necessária."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "estrategias-de-saida",
+   "criterio": "Verdadeiro?",
+   "enunciado": "A melhor estratégia de saída combina taxa de juro, tamanho da dívida e fôlego emocional",
+   "resposta": true,
+   "ancora": "Nenhum critério sozinho decide — os três juntos formam a estratégia.",
+   "feedbackErro": "Escolher só um critério parece mais simples, e por isso é tentador. Mas a estratégia mais eficiente combina taxa, tamanho e o que sustenta o compromisso."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "endividamento-vira-problema",
+   "criterio": "Verdadeiro?",
+   "enunciado": "Uma dívida só é problema quando o valor total é alto",
+   "resposta": false,
+   "ancora": "Impacto na vida, no sono e nas escolhas conta tanto quanto o valor.",
+   "feedbackErro": "O valor alto chama atenção primeiro. Mas dívida pequena que sacrifica o essencial também é sinal de problema — não só o valor total."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "endividamento-vira-problema",
+   "pergunta": "Qual frase resume os três encontros sobre atraso e dívida?",
+   "alternativas": [
+    {
+     "texto": "O problema não é só o valor: taxa, impacto na vida e prazo definem a gravidade.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Toda dívida deve ser quitada pela menor taxa primeiro.",
+     "correta": false,
+     "feedbackErro": "A menor taxa nem sempre é a prioridade certa; a taxa maior costuma crescer mais rápido."
+    },
+    {
+     "texto": "Só dívidas de valor alto merecem atenção.",
+     "correta": false,
+     "feedbackErro": "Dívida pequena que sacrifica o essencial também é sinal de alerta, além do valor."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "endividamento-vira-problema",
+   "instrucao": "É sinal de alerta ou uso normal do crédito? Arraste.",
+   "ancora": "Alerta é quando o crédito sacrifica o básico ou foge do controle.",
+   "feedbackErro": "Comprar planejado e dentro do orçamento é uso normal. Sacrificar o básico ou evitar checar o extrato por medo são sinais de alerta.",
+   "caixas": [
+    {
+     "id": "alerta",
+     "rotulo": "Sinal de alerta"
+    },
+    {
+     "id": "normal",
+     "rotulo": "Uso normal"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Compra planejada, dentro do limite do orçamento",
+     "caixaCorreta": "normal"
+    },
+    {
+     "texto": "Deixar de comprar remédio para pagar fatura",
+     "caixaCorreta": "alerta"
+    },
+    {
+     "texto": "Parcelar uma compra prevista no orçamento do mês",
+     "caixaCorreta": "normal"
+    },
+    {
+     "texto": "Evitar olhar o extrato por medo do valor",
+     "caixaCorreta": "alerta"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "consequencias-do-atraso",
+   "dificuldade": 3,
+   "pergunta": "Dívida de R$ 1.200, mora composta de 1,5% ao mês, sem multa, 4 meses em aberto. Total aproximado?",
+   "ancora": "1.200×1,015^4 ≈ 1.274. Composto sobre o saldo, não soma simples.",
+   "alternativas": [
+    {
+     "texto": "Cerca de R$ 1.274",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 1.272",
+     "correta": false,
+     "feedbackErro": "Esse valor soma 1,5% quatro vezes de forma simples (6%). O juro composto incide sobre o saldo crescente, chegando a cerca de R$ 1.274."
+    },
+    {
+     "texto": "R$ 1.200, porque não há multa no contrato",
+     "correta": false,
+     "feedbackErro": "A ausência de multa não impede a mora de correr. Mesmo sem multa, 1,5% ao mês compostos seguem aumentando o valor devido."
+    }
+   ],
+   "verificacao": {
+    "expressao": "1200*1.015^4",
+    "esperado": 1273.5,
+    "tolerancia": 1
+   }
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "estrategias-de-saida",
+   "criterio": "É verdade?",
+   "enunciado": "Negociar um prazo maior de pagamento sempre reduz o valor total pago",
+   "resposta": false,
+   "ancora": "Prazo maior soma juro e pode subir o total, mesmo com parcela menor.",
+   "feedbackErro": "Parcela menor parece sempre alívio. Mas alongar o prazo soma mais meses de juro rodando — o total pago pode crescer, não diminuir."
+  }
+ ]
+}

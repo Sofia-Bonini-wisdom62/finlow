@@ -1,0 +1,271 @@
+{
+ "slug": "o-que-e-risco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "o-que-e-risco",
+ "fraseConceito": "Risco é a chance de um resultado ruim acontecer — nem sempre acontece, mas pode custar caro.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-cotidiano",
+   "criterio": "Isso é um risco?",
+   "enunciado": "Atravessar a rua sem olhar pros dois lados",
+   "resposta": true,
+   "ancora": "Risco é a chance de dar errado — aqui, seria se machucar.",
+   "feedbackErro": "Pode dar certo na maioria das vezes, e é isso que engana. Risco não é o que sempre acontece, é a chance de acontecer algo ruim."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-cotidiano",
+   "criterio": "Isso é um risco?",
+   "enunciado": "Usar cinto de segurança dentro do carro",
+   "resposta": false,
+   "ancora": "Usar proteção reduz o risco; não é o risco em si.",
+   "feedbackErro": "O cinto está ligado a um risco (o acidente), mas ele existe pra diminuir esse risco, não pra criá-lo."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "risco-de-prejuizo",
+   "criterio": "Pode gerar prejuízo financeiro?",
+   "enunciado": "Emprestar dinheiro a um amigo sem anotar nada",
+   "resposta": true,
+   "ancora": "Sem registro, fica difícil cobrar de volta se ele esquecer.",
+   "feedbackErro": "Parece só um favor entre amigos. Mas sem anotar valor e data, você perde a forma mais simples de provar que emprestou."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-cotidiano",
+   "dificuldade": 1,
+   "pergunta": "O que melhor explica o que é risco?",
+   "ancora": "Risco é a chance de um resultado ruim, não a certeza dele.",
+   "alternativas": [
+    {
+     "texto": "A certeza de que algo vai dar errado",
+     "correta": false,
+     "feedbackErro": "Se fosse certeza, não seria risco, seria fato consumado. Risco é sobre chance, não sobre garantia de que vai dar errado."
+    },
+    {
+     "texto": "A chance de um resultado ruim acontecer",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Um problema que já aconteceu no passado",
+     "correta": false,
+     "feedbackErro": "Isso já é consequência, não risco. Risco é sobre o que ainda pode acontecer, antes de o resultado ser conhecido."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "risco-de-prejuizo",
+   "dificuldade": 1,
+   "pergunta": "Larissa guarda toda a economia em dinheiro vivo, em casa. Qual é o risco disso?",
+   "ancora": "Dinheiro em casa pode ser roubado, perdido ou destruído.",
+   "alternativas": [
+    {
+     "texto": "Perder tudo em um roubo ou em um incêndio",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O dinheiro perder a cor com o tempo",
+     "correta": false,
+     "feedbackErro": "A cor da nota não afeta o valor dela. O problema real é a chance de perder o dinheiro por roubo, incêndio ou extravio."
+    },
+    {
+     "texto": "O banco cobrar uma taxa por ele não estar lá",
+     "correta": false,
+     "feedbackErro": "Banco não cobra por dinheiro que não está com ele. O risco de guardar em casa é perder o dinheiro, não pagar taxa."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "risco-cotidiano",
+   "criterio": "Isso é um risco?",
+   "enunciado": "Guardar a senha do cartão anotada junto com o cartão",
+   "resposta": true,
+   "ancora": "Se o cartão for perdido, a senha vai junto — fica fácil de usar.",
+   "feedbackErro": "Parece só uma forma de não esquecer. Mas junto do cartão, a senha perde a função de proteger: quem achar o cartão, acha a senha."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "risco-de-prejuizo",
+   "instrucao": "É risco financeiro, ou não é?",
+   "ancora": "Risco financeiro é o que pode fazer você perder dinheiro.",
+   "feedbackErro": "Nem toda situação com dinheiro é um risco. Só conta o que tem chance real de causar perda ou prejuízo.",
+   "caixas": [
+    {
+     "id": "risco",
+     "rotulo": "É risco financeiro"
+    },
+    {
+     "id": "naorisco",
+     "rotulo": "Não é risco financeiro"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Investir toda a economia em uma única empresa",
+     "caixaCorreta": "risco"
+    },
+    {
+     "texto": "Guardar parte do dinheiro na poupança",
+     "caixaCorreta": "naorisco"
+    },
+    {
+     "texto": "Comprar um bilhete de rifa sem garantia de prêmio",
+     "caixaCorreta": "risco"
+    },
+    {
+     "texto": "Anotar os gastos do mês em um caderno",
+     "caixaCorreta": "naorisco"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "risco-cotidiano",
+   "criterio": "Isso é um risco?",
+   "enunciado": "Deixar o celular sem senha de tela",
+   "resposta": true,
+   "ancora": "Sem senha, qualquer pessoa que pegar o celular acessa tudo.",
+   "feedbackErro": "Não é o celular em si que é o risco, é ficar sem trava: qualquer um que pegar o aparelho entra direto nos seus aplicativos."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "risco-de-prejuizo",
+   "dificuldade": 1,
+   "pergunta": "Qual atitude ajuda a reduzir o risco financeiro de um imprevisto?",
+   "ancora": "Uma reserva cobre o imprevisto sem precisar de dívida cara.",
+   "alternativas": [
+    {
+     "texto": "Gastar todo o dinheiro assim que ele chega",
+     "correta": false,
+     "feedbackErro": "Sem sobra nenhuma, qualquer imprevisto já é um problema no mesmo instante. Isso aumenta o risco, não reduz."
+    },
+    {
+     "texto": "Manter uma reserva guardada para imprevistos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Emprestar de vários lugares ao mesmo tempo",
+     "correta": false,
+     "feedbackErro": "Isso multiplica compromissos e juros, não reduz risco. Uma reserva evita precisar pedir emprestado quando algo dá errado."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "risco-cotidiano",
+   "criterio": "Isso é um risco?",
+   "enunciado": "Compartilhar a senha do banco com um desconhecido",
+   "resposta": true,
+   "ancora": "A senha do banco é a chave da sua conta — só você deve tê-la.",
+   "feedbackErro": "Pode parecer um pedido inocente de alguém. Mas quem tem sua senha pode mexer na sua conta como se fosse você."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "risco-de-prejuizo",
+   "criterio": "Pode gerar prejuízo financeiro?",
+   "enunciado": "Comprar um produto sem nota fiscal nem garantia",
+   "resposta": true,
+   "ancora": "Sem nota nem garantia, não há como trocar ou reclamar depois.",
+   "feedbackErro": "O produto pode até funcionar direitinho. O risco é se ele quebrar: sem nota nem garantia, você não tem como cobrar conserto ou troca."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-que-e-risco",
+   "pergunta": "Qual frase resume o que você viu sobre risco?",
+   "alternativas": [
+    {
+     "texto": "Risco só existe quando o problema já aconteceu",
+     "correta": false,
+     "feedbackErro": "O que já aconteceu é consequência. Risco é a chance de algo ruim acontecer, antes de você saber o resultado."
+    },
+    {
+     "texto": "Risco é a chance de um resultado ruim, e dá pra reduzir",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Todo risco pode ser eliminado por completo",
+     "correta": false,
+     "feedbackErro": "Dá pra reduzir risco, mas eliminar por completo é raro. O cinto de segurança reduz o risco do acidente, não o apaga."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "risco-de-prejuizo",
+   "instrucao": "Ordene da situação de MAIOR risco financeiro para a de menor.",
+   "ancora": "Quanto menos controle e registro, maior o risco de perda.",
+   "feedbackErro": "O que mais aumenta o risco é a falta de registro e controle, não o valor em si.",
+   "itens": [
+    {
+     "texto": "Emprestar todas as economias sem anotar nada",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Guardar parte do dinheiro em casa, sem trancar",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Guardar o dinheiro em uma conta no banco",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "risco-cotidiano",
+   "dificuldade": 2,
+   "pergunta": "Por que usar capacete de bicicleta NÃO é, em si, um risco?",
+   "ancora": "Capacete protege contra um risco; ele não cria um risco novo.",
+   "alternativas": [
+    {
+     "texto": "Porque ele reduz a chance de se machucar, não aumenta",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Porque andar de bicicleta nunca tem perigo",
+     "correta": false,
+     "feedbackErro": "Andar de bicicleta tem, sim, algum risco de queda. O capacete não apaga esse risco, ele reduz a chance de machucado grave."
+    },
+    {
+     "texto": "Porque capacete é obrigatório por lei em todo lugar",
+     "correta": false,
+     "feedbackErro": "Ser obrigatório não é o motivo de reduzir risco. O que reduz risco é a proteção física que ele oferece na queda."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "risco-de-prejuizo",
+   "criterio": "Pode gerar prejuízo financeiro?",
+   "enunciado": "Clicar em um link de prêmio recebido por mensagem desconhecida",
+   "resposta": true,
+   "ancora": "Links assim costumam ser golpes que roubam dados ou dinheiro.",
+   "feedbackErro": "A promessa de prêmio distrai do risco real. Esses links costumam levar a páginas falsas feitas para roubar dados ou dinheiro."
+  }
+ ]
+}

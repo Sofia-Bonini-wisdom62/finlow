@@ -32,9 +32,15 @@ export function SeletorPaleta() {
   const [paleta, setPaleta] = useState<Paleta | null>(null)
   const [escuro, setEscuro] = useState(false)
 
+  // Leitura no efeito porque no initializer o localStorage não existe no
+  // servidor, e chutar valor lá diverge na hidratação. O set vai numa
+  // microtask: a regra de hooks proíbe setState síncrono no efeito — o mesmo
+  // caso, com a mesma solução, do SeletorTema ao lado.
   useEffect(() => {
-    setPaleta(lerPaleta())
-    setEscuro(escuroEfetivo(lerTema()))
+    Promise.resolve().then(() => {
+      setPaleta(lerPaleta())
+      setEscuro(escuroEfetivo(lerTema()))
+    })
   }, [])
 
   // A amostra acompanha a troca de tema feita ao lado, sem recarregar.

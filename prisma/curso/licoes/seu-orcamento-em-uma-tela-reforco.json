@@ -1,0 +1,328 @@
+{
+ "slug": "seu-orcamento-em-uma-tela-reforco",
+ "segmento": "em1",
+ "conceitoPrincipal": "seu-orcamento-em-uma-tela",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "fixo-ou-variavel",
+   "criterio": "O valor é igual todo mês?",
+   "enunciado": "Conta de luz da sua casa",
+   "resposta": false,
+   "ancora": "Recorrente, sim; igual, não: a luz dança conforme o uso.",
+   "feedbackErro": "Qual era o critério? Fixo tem valor conhecido. A luz chega todo mês, mas o valor varia com o uso — trate como recorrente de valor estimado, com folga."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "imprevistos",
+   "criterio": "É imprevisto de verdade?",
+   "enunciado": "IPVA e material escolar chegando em janeiro",
+   "resposta": false,
+   "ancora": "Chega todo ano na mesma época: é previsto — só não é mensal.",
+   "feedbackErro": "Susto de janeiro não é surpresa: tem data marcada há doze meses. Gasto anual se dilui — um doze avos guardado por mês desarma a bomba."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "imprevistos",
+   "criterio": "É imprevisto de verdade?",
+   "enunciado": "Notebook queimado na semana do trabalho final",
+   "resposta": true,
+   "ancora": "Sem data e sem aviso: é para isso que a reserva existe.",
+   "feedbackErro": "Esse não tinha como estar no mapa — e é o teste do imprevisto real: sem data possível. A resposta não é prever, é ter reserva de prontidão."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "mapa-do-mes",
+   "dificuldade": 2,
+   "pergunta": "Renda de R$ 520: fixos R$ 260, variáveis R$ 190 e R$ 40 para guardar. O plano fecha?",
+   "ancora": "260 + 190 + 40 = 490: fecha com R$ 30 de folga.",
+   "verificacao": {
+    "expressao": "520-260-190-40",
+    "esperado": 30
+   },
+   "alternativas": [
+    {
+     "texto": "Fecha, com R$ 30 de folga — e folga também se planeja",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não fecha: faltam R$ 30",
+     "correta": false,
+     "feedbackErro": "Refaça: 260 + 190 + 40 = 490, e entram 520. Sobram R$ 30. Errar o sinal da sobra muda a decisão inteira — a conta merece calma."
+    },
+    {
+     "texto": "Só fecha zerando o variável",
+     "correta": false,
+     "feedbackErro": "O plano já fecha como está. Zerar o variável é rigor desnecessário — e planos duros demais são justamente os que quebram primeiro."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "imprevistos",
+   "dificuldade": 2,
+   "pergunta": "O curso cobra R$ 360 de material uma vez por ano. Como isso entra no orçamento mensal?",
+   "ancora": "360 ÷ 12 = 30: o anual vira mensal antes de chegar.",
+   "verificacao": {
+    "expressao": "360/12",
+    "esperado": 30
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 30 guardados por mês, antes de a cobrança chegar",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Não entra: só aparece no mês da cobrança",
+     "correta": false,
+     "feedbackErro": "Aí a cobrança chega inteira num mês que não a comporta. Diluir por doze é o que transforma um tranco anual em parcela invisível."
+    },
+    {
+     "texto": "Entra como imprevisto, quando vier",
+     "correta": false,
+     "feedbackErro": "Tem data e valor conhecidos: é o oposto de imprevisto. Chamar de imprevisto o que se sabia é como a reserva de emergência se esvazia à toa."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "mapa-do-mes",
+   "criterio": "Entra no mapa deste mês?",
+   "enunciado": "A fatura do cartão com compras que você já fez",
+   "resposta": true,
+   "ancora": "Compra passada é conta presente: a fatura é compromisso.",
+   "feedbackErro": "O gasto aconteceu antes, mas o dinheiro sai agora — e o mapa segue o dinheiro. Fatura entra como compromisso, junto dos fixos."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "mapa-do-mes",
+   "instrucao": "Montando o mapa do mês: toque na ordem.",
+   "ancora": "Entra → fixos → variáveis → sobra com destino.",
+   "feedbackErro": "A ordem vai do certo ao flexível: primeiro o que entra, depois os compromissos com data, depois a estimativa livre — e a sobra se separa antes de gastar.",
+   "itens": [
+    {
+     "texto": "Anotar tudo o que entra no mês",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Listar os fixos com data e valor",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Estimar os variáveis por categoria",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Separar a sobra antes de gastar",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "mapa-do-mes",
+   "criterio": "Isso otimiza o orçamento?",
+   "enunciado": "Trocar o plano de celular por um mais barato que atende",
+   "resposta": true,
+   "ancora": "Fixo renegociado é economia que se repete sozinha todo mês.",
+   "feedbackErro": "É o ajuste mais eficiente que existe: uma única decisão, e a economia volta todo mês sem esforço novo. Fixos se atacam por renegociação."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "mapa-do-mes",
+   "criterio": "Isso otimiza o orçamento?",
+   "enunciado": "Cortar o transporte para a escola",
+   "resposta": false,
+   "ancora": "Otimizar corta desperdício — não o essencial que te faz andar.",
+   "feedbackErro": "Corte que compromete estudo ou trabalho destrói renda futura para salvar o mês presente. Otimização começa no supérfluo, nunca no estrutural."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "mapa-do-mes",
+   "pergunta": "4 pedidos de delivery de R$ 32 no mês, com renda de R$ 640. Quantos % da renda é isso?",
+   "campo": "percentual",
+   "min": 0,
+   "max": 100,
+   "gabarito": 20,
+   "toleranciaPct": 20,
+   "fonte": "conta do próprio enunciado (4 × 32 ÷ 640)",
+   "verificacao": {
+    "expressao": "4*32/640*100",
+    "esperado": 20
+   },
+   "feedbackPerto": "20% — um quinto da renda em quatro decisões de dez segundos. É o tipo de número que só o mapa mostra.",
+   "feedbackLonge": "4 × 32 = R$ 128, e 128 ÷ 640 = 20%. O viés é subestimar gasto picado: cada pedido parece pequeno, o conjunto é um quinto do mês."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "mapa-do-mes",
+   "dificuldade": 2,
+   "pergunta": "Helena estourou o variável 3 meses seguidos, sempre em transporte por app. Qual é o ajuste?",
+   "ancora": "Estouro repetido no mesmo lugar é estimativa irreal, não azar.",
+   "alternativas": [
+    {
+     "texto": "Rever a estimativa: o número do plano estava irreal",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Prometer mais força de vontade no mês 4",
+     "correta": false,
+     "feedbackErro": "Três meses iguais não são fraqueza, são dado. Plano que exige heroísmo mensal está errado no papel — ajusta-se o número, não a pessoa."
+    },
+    {
+     "texto": "Tirar o transporte do mapa para parar de ver",
+     "correta": false,
+     "feedbackErro": "O gasto continua existindo fora do mapa — só que sem vigilância. Esconder a categoria é furar o próprio radar."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "mapa-do-mes",
+   "dificuldade": 2,
+   "pergunta": "Sobraram R$ 45 no fim do mês. O que fazer com a sobra?",
+   "ancora": "Sobra sem destino evapora na primeira semana do mês seguinte.",
+   "alternativas": [
+    {
+     "texto": "Dar destino já: reserva ou objetivo, antes que evapore",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Gastar sem pensar: sobra é prêmio",
+     "correta": false,
+     "feedbackErro": "Gastar parte pode ser plano legítimo — 'sem pensar' é que desfaz o mês bom. A diferença entre prêmio e vazamento é a decisão consciente."
+    },
+    {
+     "texto": "Deixar misturada na conta, junto do resto",
+     "correta": false,
+     "feedbackErro": "Misturada, ela é gasta sem ninguém decidir. Dinheiro sem nome é o primeiro a sumir — separe nem que seja num envelope."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "fixo-ou-variavel",
+   "criterio": "O valor é igual todo mês?",
+   "enunciado": "Parcela do celular em 12 vezes fixas",
+   "resposta": true,
+   "ancora": "Parcela combinada é fixo com prazo para acabar — anote os dois.",
+   "feedbackErro": "Valor travado, data certa: fixo — com uma vantagem rara: data de término. Anotar quando acaba evita que outro gasto ocupe o lugar sem decisão."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "mapa-do-mes",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Se o mês fechou no zero, o orçamento funcionou",
+   "resposta": false,
+   "ancora": "Zerar sem reserva é corda bamba: um susto leva o mês seguinte.",
+   "feedbackErro": "Fechar no zero significa que qualquer imprevisto entra no vermelho. Orçamento que funciona fecha com sobra — pequena que seja — virando reserva."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "mapa-do-mes",
+   "pergunta": "Qual frase resume o reforço?",
+   "alternativas": [
+    {
+     "texto": "Plano realista, gasto anual diluído e sobra com destino certo.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Orçamento bom é o que zera a conta no dia 30.",
+     "correta": false,
+     "feedbackErro": "Zerar é andar sem margem. O susto seguinte não pede licença — a sobra é o amortecedor."
+    },
+    {
+     "texto": "Imprevisto não se planeja, se sofre.",
+     "correta": false,
+     "feedbackErro": "O 'quê' é surpresa; o 'que algo virá' não é. A reserva planeja exatamente o inesperado."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "imprevistos",
+   "instrucao": "Todo mês, ou anual para diluir?",
+   "ancora": "O que chega uma vez ao ano se guarda em doze pedaços.",
+   "feedbackErro": "Mensal entra direto no mapa; anual se divide por doze e vira poupança marcada. Assim dezembro e janeiro param de derrubar o ano.",
+   "caixas": [
+    {
+     "id": "mensal",
+     "rotulo": "Todo mês"
+    },
+    {
+     "id": "anual",
+     "rotulo": "Anual: dilua"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Internet da casa",
+     "caixaCorreta": "mensal"
+    },
+    {
+     "texto": "Material escolar do início do ano",
+     "caixaCorreta": "anual"
+    },
+    {
+     "texto": "Presentes de dezembro",
+     "caixaCorreta": "anual"
+    },
+    {
+     "texto": "Marmita dos dias de trabalho",
+     "caixaCorreta": "mensal"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "estimativa",
+   "conceitoId": "imprevistos",
+   "pergunta": "Guardando R$ 25 por mês para emergências, quanto junta em um ano?",
+   "campo": "moeda",
+   "min": 100,
+   "max": 600,
+   "gabarito": 300,
+   "toleranciaPct": 20,
+   "fonte": "conta do próprio enunciado (25 × 12)",
+   "verificacao": {
+    "expressao": "25*12",
+    "esperado": 300
+   },
+   "feedbackPerto": "R$ 300 — o suficiente para um conserto ou um óculos sem tocar no mês. Reserva se constrói pequena.",
+   "feedbackLonge": "25 × 12 = R$ 300. O viés é achar que valor pequeno 'não vale a pena': constância vira montante, e R$ 300 desarmam muito susto."
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "imprevistos",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Gasto anual vira mensal quando você divide por doze",
+   "resposta": true,
+   "ancora": "Diluir é a técnica: um doze avos por mês e o ano fica plano.",
+   "feedbackErro": "É exatamente a técnica da diluição: R$ 360 no ano são R$ 30 por mês. O gasto não muda — o impacto dele, sim."
+  }
+ ]
+}

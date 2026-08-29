@@ -1,0 +1,275 @@
+{
+ "slug": "planejada-ou-por-impulso",
+ "segmento": "ef35",
+ "conceitoPrincipal": "planejada-ou-por-impulso",
+ "fraseConceito": "Compra planejada nasce de pensar antes; compra por impulso nasce de decidir na hora, sem pensar.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "planejada-x-impulso",
+   "criterio": "É compra planejada?",
+   "enunciado": "Anotar numa lista o que precisa comprar antes de ir à loja",
+   "resposta": true,
+   "ancora": "Planejada é a compra pensada antes, com lista.",
+   "feedbackErro": "Fazer lista parece só organização, sem ligação com o tipo de compra. Mas pensar antes e anotar é o que define compra planejada."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "planejada-x-impulso",
+   "criterio": "É compra por impulso?",
+   "enunciado": "Comprar um brinquedo assim que você vê na prateleira, sem pensar",
+   "resposta": true,
+   "ancora": "Impulso é decidir na hora, sem pensar antes.",
+   "feedbackErro": "Parece só empolgação normal, sem nome especial. Mas decidir na hora, sem pensar antes, é a definição de compra por impulso."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "recusar-oferta",
+   "criterio": "Vale recusar essa oferta?",
+   "enunciado": "Um vendedor oferecendo um brinquedo que não estava nos seus planos",
+   "resposta": true,
+   "ancora": "Recusar o que está fora do planejado protege seu dinheiro.",
+   "feedbackErro": "Recusar parece falta de educação. Mas dizer não a algo fora do planejado é decisão, não grosseria."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "planejada-x-impulso",
+   "dificuldade": 1,
+   "pergunta": "Qual das duas é uma compra planejada?",
+   "ancora": "Pensar antes é o que separa planejada de impulso.",
+   "alternativas": [
+    {
+     "texto": "Fazer a lista de material escolar antes de ir à papelaria",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Comprar um chaveiro só porque estava na fila do caixa",
+     "correta": false,
+     "feedbackErro": "A fila do caixa é feita pra chamar atenção na hora. Decidir ali, sem ter planejado antes, é compra por impulso."
+    },
+    {
+     "texto": "Levar um doce porque a embalagem chamou atenção",
+     "correta": false,
+     "feedbackErro": "A embalagem chamativa é isca pra decisão rápida. Sem ter pensado antes, essa é uma compra por impulso, não planejada."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "recusar-oferta",
+   "dificuldade": 1,
+   "pergunta": "Larissa foi comprar só um caderno, mas o vendedor ofereceu uma caneta enfeitada. O que ela deveria fazer?",
+   "ancora": "Fora do plano é motivo suficiente pra recusar.",
+   "alternativas": [
+    {
+     "texto": "Recusar, porque a caneta não estava no plano dela",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Comprar, porque o vendedor insistiu bastante",
+     "correta": false,
+     "feedbackErro": "O vendedor insistir é parte do trabalho dele. Isso não muda o plano dela: se não estava previsto, dá pra recusar."
+    },
+    {
+     "texto": "Comprar, porque a caneta era bonita",
+     "correta": false,
+     "feedbackErro": "Ser bonita desperta vontade na hora, mas não estava no plano dela. Isso é o momento certo pra dizer não."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "planejada-x-impulso",
+   "criterio": "Isso ajuda a planejar a compra?",
+   "enunciado": "Pensar no que precisa antes de sair de casa",
+   "resposta": true,
+   "ancora": "Pensar antes é o primeiro passo da compra planejada.",
+   "feedbackErro": "Parece só um hábito qualquer, sem grande efeito. Mas pensar antes de sair de casa separa a compra planejada da compra por impulso."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "planejada-x-impulso",
+   "instrucao": "É planejada ou por impulso? Arraste.",
+   "ancora": "Planejada vem de pensar antes; impulso vem da hora.",
+   "feedbackErro": "É fácil confundir quando a compra é pequena. O que decide é se você pensou antes ou decidiu na hora.",
+   "caixas": [
+    {
+     "id": "planejada",
+     "rotulo": "Planejada"
+    },
+    {
+     "id": "impulso",
+     "rotulo": "Por impulso"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Comprar o lanche que estava escrito na lista",
+     "caixaCorreta": "planejada"
+    },
+    {
+     "texto": "Pegar um doce na fila do caixa, sem pensar",
+     "caixaCorreta": "impulso"
+    },
+    {
+     "texto": "Comprar o material que os pais pediram, anotado",
+     "caixaCorreta": "planejada"
+    },
+    {
+     "texto": "Comprar um brinquedo assim que ele chamou atenção",
+     "caixaCorreta": "impulso"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "recusar-oferta",
+   "criterio": "É um bom motivo pra recusar?",
+   "enunciado": "O produto não estava nos seus planos de compra",
+   "resposta": true,
+   "ancora": "Estar fora do plano já é motivo suficiente pra recusar.",
+   "feedbackErro": "Parece pouco motivo pra dizer não. Mas estar fora do que você planejou comprar já é razão suficiente pra recusar."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "planejada-x-impulso",
+   "dificuldade": 1,
+   "pergunta": "Você foi à loja comprar uma borracha de R$ 2. Na saída, viu um brinquedo de R$ 15 que não estava no plano. O que fazer?",
+   "ancora": "15 dividido por 2 é 7,5 vezes o valor planejado.",
+   "alternativas": [
+    {
+     "texto": "Não comprar, porque não estava planejado",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Comprar, porque R$ 15 é um valor pequeno",
+     "correta": false,
+     "feedbackErro": "R$ 15 pode parecer pouco perto de outros gastos, mas é mais de 7 vezes o valor que você foi gastar. Fora do plano continua fora do plano."
+    },
+    {
+     "texto": "Comprar, porque já estava dentro da loja mesmo",
+     "correta": false,
+     "feedbackErro": "Estar dentro da loja não muda o plano que você tinha. O critério é o que você decidiu antes de entrar, não onde você está."
+    }
+   ],
+   "verificacao": {
+    "expressao": "15/2",
+    "esperado": 7.5
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "recusar-oferta",
+   "criterio": "Isso é uma boa resposta pra recusar?",
+   "enunciado": "Dizer 'não, obrigado, não estava nos meus planos'",
+   "resposta": true,
+   "ancora": "Explicar o motivo com educação já resolve a recusa.",
+   "feedbackErro": "Recusar parece precisar de desculpa complicada. Mas uma frase simples e educada já é suficiente pra dizer não."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "planejada-x-impulso",
+   "criterio": "Isso é sinal de compra por impulso?",
+   "enunciado": "Decidir comprar algo em poucos segundos, sem ter pensado antes",
+   "resposta": true,
+   "ancora": "Decisão rápida, sem plano anterior, é o sinal do impulso.",
+   "feedbackErro": "Parece só rapidez de decisão, sem problema nenhum. Mas decidir em segundos, sem ter pensado antes, é o sinal da compra por impulso."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "planejada-x-impulso",
+   "pergunta": "Qual frase resume o que você viu hoje?",
+   "alternativas": [
+    {
+     "texto": "Compra planejada nasce antes; por impulso nasce na hora",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Toda compra rápida é uma compra planejada",
+     "correta": false,
+     "feedbackErro": "Rapidez não é o critério. Planejada é a que foi pensada antes, mesmo que a compra em si seja rápida."
+    },
+    {
+     "texto": "Recusar uma oferta é sempre falta de educação",
+     "correta": false,
+     "feedbackErro": "Recusar com educação é só dizer não a algo fora do plano — isso não é falta de respeito."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "recusar-oferta",
+   "dificuldade": 1,
+   "pergunta": "Um vendedor oferece um chaveiro 'de brinde' se você comprar mais um produto. O que fazer?",
+   "ancora": "O critério é se o produto extra estava no seu plano.",
+   "alternativas": [
+    {
+     "texto": "Pensar se esse produto extra estava no seu plano",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Aceitar sempre, porque o chaveiro é de graça",
+     "correta": false,
+     "feedbackErro": "O chaveiro parece de graça, mas o produto que vem junto custa dinheiro de verdade. O critério é se ele estava no seu plano."
+    },
+    {
+     "texto": "Aceitar, porque o vendedor pode ficar chateado",
+     "correta": false,
+     "feedbackErro": "O sentimento do vendedor não deveria decidir seu gasto. O que importa é se o produto estava no seu plano."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "planejada-x-impulso",
+   "criterio": "Isso é planejar a compra?",
+   "enunciado": "Separar o dinheiro certo antes de ir à loja",
+   "resposta": true,
+   "ancora": "Separar o valor certo é parte de planejar a compra.",
+   "feedbackErro": "Parece só um detalhe prático. Mas separar o dinheiro certo antes é parte de ter um plano de compra."
+  },
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "planejada-x-impulso",
+   "instrucao": "Ordene os passos de uma compra planejada.",
+   "ancora": "Pensar, depois listar, depois comprar — nessa ordem.",
+   "feedbackErro": "Comprar antes de pensar ou listar é o que gera compra por impulso. A ordem certa começa no pensar.",
+   "itens": [
+    {
+     "texto": "Pensar no que realmente precisa",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Fazer uma lista do que vai comprar",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Comprar só o que está na lista",
+     "posicaoCorreta": 3
+    }
+   ]
+  }
+ ]
+}

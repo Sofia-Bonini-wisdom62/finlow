@@ -1,0 +1,290 @@
+{
+ "slug": "o-mesmo-produto-preco-diferente-reforco",
+ "segmento": "ef67",
+ "conceitoPrincipal": "o-mesmo-produto-preco-diferente",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "por-que-o-preco-muda",
+   "criterio": "Isso explica o preço ser diferente?",
+   "enunciado": "Pagar numa loja de bairro em vez de um atacadista",
+   "resposta": true,
+   "ancora": "Atacadista vende maior volume com margem menor por item.",
+   "feedbackErro": "Parece só o nome da loja mudando. Mas atacadista trabalha com margem menor por item, vendendo mais — isso explica o preço diferente."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "por-que-o-preco-muda",
+   "criterio": "Isso explica o preço ser diferente?",
+   "enunciado": "A embalagem ter um desenho bonito estampado",
+   "resposta": false,
+   "ancora": "Desenho na embalagem não muda o custo real do produto.",
+   "feedbackErro": "Pode parecer que embalagem chamativa justifica preço maior. Mas o desenho em si não muda nenhum custo de produzir ou vender."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "por-que-o-preco-muda",
+   "criterio": "Isso explica o preço ser diferente?",
+   "enunciado": "Comprar uma unidade avulsa em vez de uma caixa fechada",
+   "resposta": true,
+   "ancora": "Unidade avulsa costuma sair mais cara por item que a caixa.",
+   "feedbackErro": "Parece só uma escolha de quantidade sem efeito no preço unitário. Mas comprar avulso costuma custar mais por item que levar a caixa fechada."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "por-que-o-preco-muda",
+   "dificuldade": 2,
+   "pergunta": "Uma caixa de 24 barras de cereal custa R$ 60. Avulsa, cada barra sai R$ 3,50. Na caixa fechada, quanto sai cada barra?",
+   "ancora": "R$ 60 ÷ 24 barras = R$ 2,50 cada, contra R$ 3,50 avulsa.",
+   "verificacao": {
+    "expressao": "60/24",
+    "esperado": 2.5
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 5,00, mais caro que avulsa",
+     "correta": false,
+     "feedbackErro": "Isso daria se fossem só 12 barras na caixa. Com 24 barras, R$ 60 dividido dá R$ 2,50 — mais barato, não mais caro."
+    },
+    {
+     "texto": "R$ 2,50, mais barato que avulsa",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 3,50, igual ao preço avulso",
+     "correta": false,
+     "feedbackErro": "Esse é o preço de comprar uma por vez. Dividindo o preço da caixa fechada pelas 24 unidades, dá R$ 2,50 — menor."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "lucro-e-prejuizo",
+   "dificuldade": 2,
+   "pergunta": "Uma lanchonete compra 10 sanduíches por R$ 4 cada e vende todos por R$ 7 cada. Qual foi o lucro total?",
+   "ancora": "Vendeu R$ 70 no total, gastou R$ 40 — sobram R$ 30.",
+   "verificacao": {
+    "expressao": "10*7-10*4",
+    "esperado": 30
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 30",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 70",
+     "correta": false,
+     "feedbackErro": "R$ 70 é só o total vendido, sem descontar o custo. Lucro é receita menos custo: R$ 70 menos R$ 40."
+    },
+    {
+     "texto": "R$ 3",
+     "correta": false,
+     "feedbackErro": "R$ 3 é o lucro de UM sanduíche. Multiplicando pelos 10 vendidos, o lucro total é R$ 30."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "por-que-o-preco-muda",
+   "criterio": "Explica o preço mudar?",
+   "enunciado": "O produto ter sido fabricado num país diferente",
+   "resposta": true,
+   "ancora": "Importação soma frete e impostos — muda o preço final.",
+   "feedbackErro": "Parece só origem do produto, sem efeito no preço. Mas frete e impostos de importação entram na conta e mudam o preço final."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "lucro-e-prejuizo",
+   "instrucao": "É lucro ou é prejuízo?",
+   "ancora": "Vender acima do custo é lucro; abaixo, ou perder o produto, prejuízo.",
+   "feedbackErro": "O caso do produto estragado engana porque não teve venda. Mas perder o valor investido sem receber nada de volta também é prejuízo.",
+   "caixas": [
+    {
+     "id": "lucro",
+     "rotulo": "Lucro"
+    },
+    {
+     "id": "prejuizo",
+     "rotulo": "Prejuízo"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Comprar por R$ 20 e vender por R$ 33",
+     "caixaCorreta": "lucro"
+    },
+    {
+     "texto": "Comprar por R$ 50 e vender por R$ 45",
+     "caixaCorreta": "prejuizo"
+    },
+    {
+     "texto": "Produto estragar no estoque antes de vender",
+     "caixaCorreta": "prejuizo"
+    },
+    {
+     "texto": "Vender um lote com margem de 20% sobre o custo",
+     "caixaCorreta": "lucro"
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "por-que-o-preco-muda",
+   "criterio": "Explica o preço mudar?",
+   "enunciado": "A validade do produto estar mais próxima do vencimento",
+   "resposta": true,
+   "ancora": "Produto perto do vencimento costuma ter desconto real.",
+   "feedbackErro": "Pode parecer só sorte de achar barato. Mas a proximidade do vencimento é motivo real: a loja baixa o preço pra vender antes de perder o produto."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "lucro-e-prejuizo",
+   "dificuldade": 2,
+   "pergunta": "Uma banca comprou 50 revistas por R$ 6 cada. Vendeu 40 a R$ 9 e as outras 10 venceram sem vender. Qual foi o resultado?",
+   "ancora": "Vendeu R$ 360 e gastou R$ 300 no total — sobrou R$ 60.",
+   "verificacao": {
+    "expressao": "40*9-50*6",
+    "esperado": 60
+   },
+   "alternativas": [
+    {
+     "texto": "Prejuízo, porque 10 revistas venceram sem vender",
+     "correta": false,
+     "feedbackErro": "As 10 que venceram pesam no resultado, mas não sozinhas: o total vendido (R$ 360) ainda superou o total gasto (R$ 300)."
+    },
+    {
+     "texto": "Lucro de R$ 60, mesmo com as revistas vencidas",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nem lucro nem prejuízo, por ter perdido parte do estoque",
+     "correta": false,
+     "feedbackErro": "Perder parte do estoque pesa no cálculo, mas o resultado não é zero — as vendidas cobriram o custo total e ainda sobrou R$ 60."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "por-que-o-preco-muda",
+   "criterio": "Explica o preço mudar?",
+   "enunciado": "Comprar numa promoção de aniversário da loja",
+   "resposta": true,
+   "ancora": "Promoção é motivo comercial real — explica o preço menor.",
+   "feedbackErro": "Parece só coincidência de data. Mas a loja reduz margem de propósito nessas datas — é um motivo real pro preço cair."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "lucro-e-prejuizo",
+   "criterio": "Deu prejuízo?",
+   "enunciado": "Vender por R$ 42 algo que custou R$ 42 somando compra e transporte",
+   "resposta": false,
+   "verificacao": {
+    "expressao": "42-42",
+    "esperado": 0
+   },
+   "ancora": "Vendeu pelo custo total, incluindo transporte — resultado zero.",
+   "feedbackErro": "É fácil esquecer o transporte e achar que sobrou algo. Somando compra e transporte, o custo bateu exatamente o preço de venda — zero."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "o-mesmo-produto-preco-diferente",
+   "pergunta": "Qual frase resume melhor o que você viu?",
+   "alternativas": [
+    {
+     "texto": "Preço avulso é sempre mais barato que o da caixa fechada",
+     "correta": false,
+     "feedbackErro": "É o contrário na maioria dos casos: caixa fechada costuma sair mais barata por unidade."
+    },
+    {
+     "texto": "Quantidade, origem e validade mudam preço; lucro é receita menos todos os custos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Lucro só existe se não sobrar nenhum produto no estoque",
+     "correta": false,
+     "feedbackErro": "Sobrar estoque pode reduzir o lucro, mas não anula ele automaticamente — depende do total vendido menos o total gasto."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "por-que-o-preco-muda",
+   "instrucao": "Ordene do que mais costuma baratear ao que menos baixa o preço.",
+   "ancora": "Sem intermediário baixa mais; avulso sem promoção não baixa nada.",
+   "feedbackErro": "Sem intermediário elimina uma margem inteira; perto do vencimento é desconto pontual; avulso sem promoção não tem desconto algum.",
+   "itens": [
+    {
+     "texto": "Comprar direto do produtor, sem intermediário",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Comprar perto da validade vencer",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Comprar um item avulso, fora de promoção",
+     "posicaoCorreta": 3
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "lucro-e-prejuizo",
+   "dificuldade": 3,
+   "pergunta": "Uma loja vende um casaco por R$ 150. Ele custou R$ 100 de compra e R$ 30 de frete. Qual o lucro real?",
+   "ancora": "R$ 150 menos R$ 100 de compra menos R$ 30 de frete = R$ 20.",
+   "verificacao": {
+    "expressao": "150-100-30",
+    "esperado": 20
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 50",
+     "correta": false,
+     "feedbackErro": "R$ 50 é venda menos compra, sem contar o frete. Somando o frete ao custo, o lucro real cai pra R$ 20."
+    },
+    {
+     "texto": "R$ 20",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 80",
+     "correta": false,
+     "feedbackErro": "R$ 80 soma frete e compra sem descontar da venda. O lucro é o que sobra depois de tirar todos os custos do valor vendido."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "por-que-o-preco-muda",
+   "criterio": "Explica o preço mudar?",
+   "enunciado": "O peso da embalagem vazia, sem contar o produto",
+   "resposta": false,
+   "ancora": "Peso da embalagem vazia não é custo relevante pro preço.",
+   "feedbackErro": "Pode parecer um detalhe técnico que pesa no preço. Mas o peso da embalagem sozinha, sem o produto, não muda o custo real."
+  }
+ ]
+}

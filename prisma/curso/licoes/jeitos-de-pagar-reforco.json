@@ -1,0 +1,238 @@
+{
+ "slug": "jeitos-de-pagar-reforco",
+ "segmento": "ef35",
+ "conceitoPrincipal": "jeitos-de-pagar",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "meios-de-pagamento",
+   "criterio": "É um meio de pagamento?",
+   "enunciado": "Passar o cartão de crédito na maquininha da feira",
+   "resposta": true,
+   "ancora": "Cartão de crédito, mesmo na feira, ainda é meio de pagamento.",
+   "feedbackErro": "Parece incomum ver isso na feira, mas o cartão continua sendo meio de pagamento em qualquer lugar que aceite."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "meios-de-pagamento",
+   "criterio": "É um meio de pagamento?",
+   "enunciado": "Mostrar o boleto sem pagar nada ainda",
+   "resposta": false,
+   "ancora": "Boleto é só o documento; o pagamento acontece quando ele é quitado.",
+   "feedbackErro": "O boleto parece o pagamento em si, mas ele é só o papel — o pagamento só existe quando o valor é quitado."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "vista-ou-prazo",
+   "criterio": "É pagar à vista?",
+   "enunciado": "Fazer um pix agora pro valor total da compra",
+   "resposta": true,
+   "ancora": "Pix imediato, do valor cheio, ainda conta como à vista.",
+   "feedbackErro": "Pix parece 'moderno demais' pra ser à vista, mas pagar o valor total na hora é exatamente isso."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "vista-ou-prazo",
+   "dificuldade": 2,
+   "pergunta": "Um celular custa R$ 840. Pagando em 7 vezes iguais, qual o valor de cada parcela?",
+   "ancora": "840 dividido por 7 parcelas iguais dá 120 cada.",
+   "verificacao": { "expressao": "840/7", "esperado": 120 },
+   "alternativas": [
+    {
+     "texto": "R$ 120",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 84",
+     "correta": false,
+     "feedbackErro": "84 usaria só os números da frente, sem dividir de verdade. 840 dividido por 7 dá 120."
+    },
+    {
+     "texto": "R$ 140",
+     "correta": false,
+     "feedbackErro": "140 seria dividir por 6 parcelas, não por 7. A conta certa é 840 dividido por 7, que dá 120."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "meios-de-pagamento",
+   "dificuldade": 2,
+   "pergunta": "Bianca esqueceu a carteira, mas tem o celular com o app do banco. Qual jeito de pagar resolve na hora?",
+   "ancora": "Com o celular na mão, pix é o único que dispensa carteira e talão.",
+   "alternativas": [
+    {
+     "texto": "Pix pelo celular",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Cheque, porque não depende do celular",
+     "correta": false,
+     "feedbackErro": "Sem a carteira, ela também não tem o talão de cheque em mãos — não resolve o problema."
+    },
+    {
+     "texto": "Esperar chegar em casa pra pegar dinheiro",
+     "correta": false,
+     "feedbackErro": "Isso resolveria depois, mas não 'na hora' — o pix pelo celular resolve imediatamente."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "vantagens-e-desvantagens",
+   "criterio": "É uma vantagem?",
+   "enunciado": "O carnê permite negociar o valor de cada parcela direto com a loja",
+   "resposta": true,
+   "ancora": "Negociar direto com a loja é uma vantagem real do carnê.",
+   "feedbackErro": "Parece só burocracia de loja pequena, mas poder negociar as condições é uma vantagem do carnê."
+  },
+  {
+   "papel": "pratica",
+   "formato": "classificar",
+   "conceitoId": "vista-ou-prazo",
+   "instrucao": "É pagamento à vista? Arraste.",
+   "ancora": "À vista é pagar o valor cheio, na hora — sem parcelas nem espera.",
+   "feedbackErro": "O que define à vista não é o meio usado, é pagar tudo de uma vez, sem deixar nada pra depois.",
+   "caixas": [
+    { "id": "sim", "rotulo": "É à vista" },
+    { "id": "nao", "rotulo": "Não é" }
+   ],
+   "itens": [
+    { "texto": "Pagar o lanche na hora, em dinheiro", "caixaCorreta": "sim" },
+    { "texto": "Comprar um tênis em 4 parcelas no cartão", "caixaCorreta": "nao" },
+    { "texto": "Fazer um pix do valor total, na hora da compra", "caixaCorreta": "sim" },
+    { "texto": "Deixar pra pagar o carnê no fim do mês", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "meios-de-pagamento",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Moedas digitais também podem ser usadas para pagar algumas compras",
+   "resposta": true,
+   "ancora": "Moedas digitais são outro meio de pagamento, cada vez mais aceito.",
+   "feedbackErro": "Parece coisa distante do dia a dia, mas moedas digitais já são aceitas em algumas lojas como forma de pagar."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "vista-ou-prazo",
+   "dificuldade": 2,
+   "pergunta": "Um jogo custa R$ 175, pagando em 5 vezes, com R$ 15 de juro somados ao total. Qual o valor de cada parcela?",
+   "ancora": "175 + 15 de juro dá 190; dividido por 5 parcelas dá 38 cada.",
+   "verificacao": { "expressao": "(175+15)/5", "esperado": 38 },
+   "alternativas": [
+    {
+     "texto": "R$ 38",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 35",
+     "correta": false,
+     "feedbackErro": "35 esqueceria os R$ 15 de juro. Somando 175 mais 15 e dividindo por 5, dá 38."
+    },
+    {
+     "texto": "R$ 190",
+     "correta": false,
+     "feedbackErro": "190 é o total com juro, mas ainda precisa dividir pelas 5 parcelas — cada uma fica em 38."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "binaria",
+   "conceitoId": "meios-de-pagamento",
+   "criterio": "Isso é verdade?",
+   "enunciado": "Todo pagamento por cartão de crédito é sempre à vista",
+   "resposta": false,
+   "ancora": "Cartão de crédito pode ser parcelado — nem sempre é à vista.",
+   "feedbackErro": "É fácil achar que 'passar o cartão' já é à vista, mas o crédito pode ser dividido em várias parcelas."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "vantagens-e-desvantagens",
+   "criterio": "Ajuda a escolher melhor?",
+   "enunciado": "Comparar o total pago à vista com o total pago parcelado, antes de decidir",
+   "resposta": true,
+   "ancora": "Comparar os dois totais mostra qual opção realmente compensa.",
+   "feedbackErro": "Parece trabalho extra, mas comparar os totais é o que mostra se vale a pena parcelar ou não."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "vista-ou-prazo",
+   "pergunta": "Depois deste encontro, qual frase resume melhor os jeitos de pagar?",
+   "alternativas": [
+    {
+     "texto": "Cartão de crédito é sempre pagamento à vista",
+     "correta": false,
+     "feedbackErro": "Crédito pode ser parcelado — só é à vista quando pago o valor total de uma vez."
+    },
+    {
+     "texto": "Cada meio de pagamento tem prazo e condições próprias, vale comparar antes",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "O jeito de pagar não muda nada no valor final",
+     "correta": false,
+     "feedbackErro": "Muda sim: parcelar pode incluir juros, mudando o total pago no fim."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "ordenar",
+   "conceitoId": "meios-de-pagamento",
+   "instrucao": "Toque na ordem, de quem depende de menos coisas pra funcionar.",
+   "ancora": "Dinheiro não depende de nada; pix depende de celular, internet e conta.",
+   "feedbackErro": "Quanto mais aparelhos e conexão o meio de pagamento exige, mais coisas precisam funcionar juntas pra ele dar certo.",
+   "itens": [
+    { "texto": "Dinheiro em espécie", "posicaoCorreta": 1 },
+    { "texto": "Cartão de débito", "posicaoCorreta": 2 },
+    { "texto": "Pix pelo celular", "posicaoCorreta": 3 }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "vantagens-e-desvantagens",
+   "instrucao": "É uma vantagem do pix? Arraste.",
+   "ancora": "Vantagem é o que facilita; dependência de internet e erro são desvantagens.",
+   "feedbackErro": "Rapidez e horário livre são pontos fortes do pix; depender de internet e o risco de errar a chave são os riscos dele.",
+   "caixas": [
+    { "id": "sim", "rotulo": "É vantagem" },
+    { "id": "nao", "rotulo": "É desvantagem" }
+   ],
+   "itens": [
+    { "texto": "Cai na conta na hora, sem esperar dias", "caixaCorreta": "sim" },
+    { "texto": "Precisa de internet pra funcionar", "caixaCorreta": "nao" },
+    { "texto": "Funciona a qualquer hora, mesmo à noite", "caixaCorreta": "sim" },
+    { "texto": "Se errar a chave, o dinheiro pode ir pro lugar errado", "caixaCorreta": "nao" }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "vista-ou-prazo",
+   "criterio": "É pagar a prazo?",
+   "enunciado": "Assinar o carnê pra pagar em 6 parcelas mensais",
+   "resposta": true,
+   "ancora": "Parcelas em datas futuras é a definição de pagamento a prazo.",
+   "feedbackErro": "Parece só um jeito de comprar, mas dividir em datas futuras é exatamente pagamento a prazo."
+  }
+ ]
+}

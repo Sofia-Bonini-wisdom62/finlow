@@ -1,0 +1,350 @@
+{
+ "slug": "quando-a-divida-vira-problema",
+ "segmento": "em3",
+ "conceitoPrincipal": "divida-que-cresce-sozinha",
+ "fraseConceito": "A dívida cresce sozinha pelos juros. Ataque a de maior taxa, não a maior.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "criterio": "Faz a dívida crescer sozinha?",
+   "enunciado": "Pagar só o mínimo da fatura",
+   "resposta": true,
+   "ancora": "O resto vira rotativo — a linha de crédito mais cara do país.",
+   "feedbackErro": "Pagar o mínimo evita o atraso, e é isso que confunde. Mas o valor que ficou entra no rotativo e rende juros contra você no mês seguinte."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "criterio": "Faz a dívida crescer sozinha?",
+   "enunciado": "Pagar a fatura inteira no vencimento",
+   "resposta": false,
+   "ancora": "Fatura paga inteira não cobra juros. É o uso barato do cartão.",
+   "feedbackErro": "O cartão só é caro quando sobra saldo. Pago inteiro no vencimento, ele é crédito de graça por até 40 dias."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "criterio": "Faz a dívida crescer sozinha?",
+   "enunciado": "Parcelar a fatura em 12x a 3% ao mês",
+   "resposta": true,
+   "ancora": "Cresce — mas 3% a.m. é bem menos que os ~14% do rotativo.",
+   "feedbackErro": "Cresce sim: 3% ao mês é juros. A diferença é que cresce menos que o rotativo, e por isso essa troca costuma valer a pena."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "dificuldade": 1,
+   "pergunta": "Marlene pagou só o mínimo da fatura por 4 meses. A dívida quase dobrou. O que mais pesou?",
+   "ancora": "A 14% ao mês, R$ 2.400 viram R$ 4.053 em 4 meses. Sem comprar nada.",
+   "verificacao": {
+    "expressao": "2400*1.14*1.14*1.14*1.14",
+    "esperado": 4053.5,
+    "tolerancia": 1
+   },
+   "alternativas": [
+    {
+     "texto": "As compras novas que ela fez no período",
+     "correta": false,
+     "feedbackErro": "Compras novas somam. Mas Marlene não comprou nada nesses 4 meses — e a dívida cresceu do mesmo jeito. O que cresceu foi o que já estava lá."
+    },
+    {
+     "texto": "Os juros do mês incidindo sobre os juros anteriores",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A multa por atraso cobrada todo mês",
+     "correta": false,
+     "feedbackErro": "Marlene não atrasou: pagou o mínimo em dia, então não houve multa. O crescimento veio dos juros, não da punição."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "dificuldade": 2,
+   "pergunta": "Uma conta de R$ 800 venceu há 3 meses. Multa de 2% e mora de 1% ao mês. Quanto ela virou?",
+   "ancora": "R$ 16 de multa (uma vez) + R$ 24 de mora (R$ 8 × 3) = R$ 840.",
+   "verificacao": {
+    "expressao": "800*1.02 + 800*0.01*3",
+    "esperado": 840
+   },
+   "alternativas": [
+    {
+     "texto": "R$ 824",
+     "correta": false,
+     "feedbackErro": "Você somou os 3% de mora e esqueceu a multa. A multa de 2% (R$ 16) entra uma vez, no primeiro dia de atraso."
+    },
+    {
+     "texto": "R$ 840",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "R$ 864",
+     "correta": false,
+     "feedbackErro": "Você cobrou a multa de 2% todos os meses. Multa é uma vez só; o que se repete a cada mês é a mora de 1%."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "criterio": "Isso se repete todo mês?",
+   "enunciado": "A multa de 2% por atraso",
+   "resposta": false,
+   "ancora": "Multa é uma vez. Mora e juros do rotativo correm todo mês.",
+   "feedbackErro": "É fácil confundir, porque as duas aparecem juntas na mesma linha do boleto. Mas a multa pune o atraso uma vez; a mora cobra pelo tempo que ele durar."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "prioridade-por-taxa",
+   "instrucao": "Sobrou R$ 500. Toque na ordem de quem recebe primeiro.",
+   "ancora": "A ordem é a da taxa, de cima para baixo. Sempre.",
+   "feedbackErro": "Ordenar por valor é o instinto: a maior assusta mais. Mas quem decide o quanto você perde é a taxa. R$ 500 no rotativo poupam R$ 70/mês; no financiamento, R$ 6.",
+   "itens": [
+    {
+     "texto": "Rotativo do cartão — 14% ao mês",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Cheque especial — 8% ao mês",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Empréstimo pessoal — 4% ao mês",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Financiamento do carro — 1,2% ao mês",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "prioridade-por-taxa",
+   "criterio": "Deve ser paga primeiro?",
+   "enunciado": "A maior dívida, sem olhar a taxa",
+   "resposta": false,
+   "ancora": "Tamanho não define urgência. Taxa define.",
+   "verificacao": {
+    "expressao": "10000*0.01 - 1000*0.14",
+    "esperado": -40
+   },
+   "feedbackErro": "A dívida grande pesa mais na cabeça, e isso é real. Mas R$ 10.000 a 1% ao mês crescem R$ 100; R$ 1.000 a 14% crescem R$ 140. A pequena é mais urgente."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "prioridade-por-taxa",
+   "criterio": "Deve ser paga primeiro?",
+   "enunciado": "O que você pegou emprestado do cunhado, sem juros",
+   "resposta": false,
+   "ancora": "Sem juros, ela não cresce — mas combine uma data, por escrito.",
+   "feedbackErro": "Pela conta, dívida sem juros é a última da fila: não aumenta enquanto espera. O que ela cobra não é dinheiro, é a relação — por isso a data combinada importa."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "pergunta": "R$ 1.000 esquecidos no rotativo. Sem pagar nada, quanto viram em 12 meses?",
+   "campo": "moeda",
+   "min": 1000,
+   "max": 6000,
+   "gabarito": 4818,
+   "toleranciaPct": 20,
+   "fonte": "taxa média do rotativo, ~14% ao mês (Banco Central)",
+   "verificacao": {
+    "expressao": "1000*1.14^12",
+    "esperado": 4818,
+    "tolerancia": 2
+   },
+   "feedbackPerto": "Isso mesmo — quase 5 vezes. O rotativo é a linha de crédito mais cara do sistema brasileiro.",
+   "feedbackLonge": "Quase R$ 4.818. Juros compostos não somam, multiplicam: 14% ao mês viram 382% ao ano, não 168%."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "renegociacao",
+   "dificuldade": 2,
+   "pergunta": "Quitar hoje com 40% de desconto ou parcelar o valor cheio em 24x. O que checar antes?",
+   "ancora": "R$ 4.800 com 40% off = R$ 2.880. Em 24x de R$ 300 = R$ 7.200.",
+   "verificacao": {
+    "expressao": "4800*0.6",
+    "esperado": 2880
+   },
+   "alternativas": [
+    {
+     "texto": "Qual das duas parcelas cabe no orçamento do mês",
+     "correta": false,
+     "feedbackErro": "Caber é necessário, mas não basta — a parcela que cabe pode custar o dobro no total. Cabe é o segundo filtro, não o primeiro."
+    },
+    {
+     "texto": "O custo total das 24x comparado ao valor com desconto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se o nome sai do cadastro no mesmo dia",
+     "correta": false,
+     "feedbackErro": "Sai nos dois casos, assim que o acordo é firmado. Isso não separa as opções — o custo total separa."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "renegociacao",
+   "dificuldade": 3,
+   "pergunta": "Você não tem o valor à vista. Qual pedido tem mais chance na renegociação?",
+   "ancora": "Credor aceita proposta concreta: valor, data e prova de que dá.",
+   "alternativas": [
+    {
+     "texto": "Pedir para limpar o nome primeiro e negociar depois",
+     "correta": false,
+     "feedbackErro": "Faz sentido: o nome sujo é o que dói agora. Mas é a única coisa que o credor tem para negociar — entregue antes, ele perde o motivo de ceder."
+    },
+    {
+     "texto": "Oferecer um valor que cabe, com data e prova de renda",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Esperar cinco anos até a dívida caducar",
+     "correta": false,
+     "feedbackErro": "O que caduca em cinco anos é a inscrição no cadastro, não a dívida. Ela continua, o credor continua podendo cobrar, e cinco anos sem crédito custam caro."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "criterio": "Ajuda a sair da dívida?",
+   "enunciado": "Pagar o mínimo todo mês para nunca atrasar",
+   "resposta": false,
+   "ancora": "Não atrasar ≠ sair da dívida. O mínimo mantém você dentro dela.",
+   "feedbackErro": "Você fica em dia, e isso protege seu nome. Mas o saldo segue no rotativo a 14% ao mês: o mínimo é o preço de ficar parado."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "prioridade-por-taxa",
+   "criterio": "Ajuda a sair da dívida?",
+   "enunciado": "Trocar o rotativo por um empréstimo de taxa menor",
+   "resposta": true,
+   "ancora": "Trocar dívida cara por barata é o movimento mais rápido.",
+   "feedbackErro": "A dívida continua existindo, e é por isso que parece não ajudar. Mas 14% ao mês virando 3% corta o crescimento em quase 80%."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "pergunta": "Qual destas frases resume o que você acabou de ver?",
+   "alternativas": [
+    {
+     "texto": "A dívida cresce porque a gente continua comprando.",
+     "correta": false,
+     "feedbackErro": "Compras novas pioram. Mas a dívida de Marlene cresceu sem nenhuma compra."
+    },
+    {
+     "texto": "A dívida cresce sozinha pelos juros. Ataque a de maior taxa, não a maior.",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "A dívida mais urgente é sempre a maior.",
+     "correta": false,
+     "feedbackErro": "R$ 1.000 a 14% cresce mais que R$ 10.000 a 1%."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "divida-que-cresce-sozinha",
+   "instrucao": "Cresce todo mês?",
+   "ancora": "Só cresce o que tem juros correndo.",
+   "feedbackErro": "Multa já cobrada é valor parado. O que corre todo mês é juro: rotativo e mora.",
+   "caixas": [
+    {
+     "id": "cresce",
+     "rotulo": "Cresce"
+    },
+    {
+     "id": "nao",
+     "rotulo": "Não cresce"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Saldo no rotativo",
+     "caixaCorreta": "cresce"
+    },
+    {
+     "texto": "Multa de 2% já cobrada",
+     "caixaCorreta": "nao"
+    },
+    {
+     "texto": "Juros de mora de 1% ao mês",
+     "caixaCorreta": "cresce"
+    },
+    {
+     "texto": "Empréstimo do cunhado, sem juros",
+     "caixaCorreta": "nao"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "prioridade-por-taxa",
+   "dificuldade": 3,
+   "pergunta": "R$ 6.000 a 2% ao mês e R$ 900 a 12% ao mês. Sobrou R$ 900. Onde vai?",
+   "ancora": "R$ 900 a 12% custam R$ 108/mês; R$ 6.000 a 2% custam R$ 120 — mas só a pequena sai inteira.",
+   "verificacao": {
+    "expressao": "900*0.12",
+    "esperado": 108
+   },
+   "alternativas": [
+    {
+     "texto": "Na de R$ 900, que sai inteira da sua vida",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Na de R$ 6.000, porque é a maior",
+     "correta": false,
+     "feedbackErro": "R$ 900 abatem 15% dela e não eliminam nada. Na dívida pequena, os mesmos R$ 900 encerram uma cobrança inteira."
+    },
+    {
+     "texto": "Metade em cada, para diminuir as duas",
+     "correta": false,
+     "feedbackErro": "Dividir parece justo e não é eficiente: você fica com duas dívidas menores em vez de uma a menos."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "renegociacao",
+   "criterio": "Isso é verdade?",
+   "enunciado": "A dívida some depois de 5 anos",
+   "resposta": false,
+   "ancora": "Caduca a inscrição no cadastro, não a dívida.",
+   "feedbackErro": "O que prescreve em cinco anos é a cobrança judicial e a inscrição no cadastro. A dívida continua existindo, e o credor continua podendo cobrar por fora."
+  }
+ ]
+}

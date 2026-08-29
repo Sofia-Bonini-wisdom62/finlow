@@ -1,0 +1,328 @@
+{
+ "slug": "seu-dinheiro-sua-responsabilidade",
+ "segmento": "ef89",
+ "conceitoPrincipal": "seu-dinheiro-sua-responsabilidade",
+ "fraseConceito": "Assumir seu dinheiro é decidir com um plano, não com o impulso do momento — isso muda o que sobra e o que falta no fim do mês.",
+ "telas": [
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "planejar-e-decidir",
+   "criterio": "Isso é sinal de planejamento?",
+   "enunciado": "Anotar quanto entra e quanto sai todo mês",
+   "resposta": true,
+   "ancora": "Registrar é a base de qualquer plano financeiro.",
+   "feedbackErro": "Parece trabalho chato sem necessidade, mas sem anotar entradas e saídas não dá para saber quanto sobra — é o primeiro passo do planejamento."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "planejar-e-decidir",
+   "criterio": "Isso é sinal de planejamento?",
+   "enunciado": "Gastar o dinheiro assim que ele cai na conta",
+   "resposta": false,
+   "ancora": "Gastar sem pausa é o oposto de planejar.",
+   "feedbackErro": "Pode parecer só 'aproveitar o dinheiro', mas gastar assim que cai, sem checar prioridades, é decidir no impulso — o contrário do planejamento."
+  },
+  {
+   "papel": "sonda",
+   "formato": "binaria",
+   "conceitoId": "planejar-e-decidir",
+   "criterio": "Isso é sinal de planejamento?",
+   "enunciado": "Separar uma parte do salário antes de gastar o resto",
+   "resposta": true,
+   "ancora": "Guardar primeiro é o método mais simples de poupar.",
+   "feedbackErro": "Separar parece reduzir o que dá para gastar, e reduz mesmo — só que é isso que garante que sobre algo no fim do mês, em vez de decidir depois se sobrou."
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "planejar-e-decidir",
+   "dificuldade": 1,
+   "pergunta": "Duas pessoas ganham o mesmo salário. Uma planeja os gastos, a outra não. Qual efeito é mais provável em 6 meses?",
+   "ancora": "Planejamento não muda a renda, muda o controle sobre ela.",
+   "alternativas": [
+    {
+     "texto": "Quem planeja tem mais controle sobre sobras e imprevistos",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "As duas terão a mesma situação, pois ganham igual",
+     "correta": false,
+     "feedbackErro": "Ganhar igual não garante resultado igual. Quem planeja sabe onde o dinheiro vai; quem não planeja só descobre no fim, quando já gastou."
+    },
+    {
+     "texto": "Quem não planeja sempre ganha mais, por gastar livre",
+     "correta": false,
+     "feedbackErro": "Gastar sem plano não aumenta a renda de ninguém — só torna mais provável que o dinheiro acabe antes do mês."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "escolha3",
+   "conceitoId": "aceitar-ou-recusar",
+   "dificuldade": 1,
+   "pergunta": "Uma loja oferece um cartão com limite alto e primeira fatura só daqui a 40 dias. Isso é sempre bom negócio?",
+   "ancora": "Prazo maior só ajuda se cabe no planejamento, não sozinho.",
+   "alternativas": [
+    {
+     "texto": "Não necessariamente — depende se cabe no plano do mês",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim, quanto mais tempo para pagar, sempre melhor",
+     "correta": false,
+     "feedbackErro": "Mais tempo parece só vantagem, mas a fatura chega do mesmo jeito — se não couber no orçamento de daqui a 40 dias, o problema só foi adiado."
+    },
+    {
+     "texto": "Sim, limite alto significa mais dinheiro disponível",
+     "correta": false,
+     "feedbackErro": "Limite alto não é dinheiro seu — é dívida disponível. Aceitar sem plano pode significar gastar mais do que dá para pagar depois."
+    }
+   ]
+  },
+  {
+   "papel": "construcao",
+   "formato": "binaria",
+   "conceitoId": "aceitar-ou-recusar",
+   "criterio": "Isso protege o planejamento?",
+   "enunciado": "Dizer não a uma parcela que não cabe no orçamento do mês",
+   "resposta": true,
+   "ancora": "Recusar o que não cabe protege o que já está planejado.",
+   "feedbackErro": "Recusar pode parecer perder uma oportunidade, mas aceitar uma parcela fora do orçamento quebra o que já estava planejado para os outros gastos."
+  },
+  {
+   "papel": "pratica",
+   "formato": "ordenar",
+   "conceitoId": "planejar-e-decidir",
+   "instrucao": "Toque na ordem de montar um plano financeiro simples.",
+   "ancora": "O plano começa em saber, depois separa, guarda e revisa.",
+   "feedbackErro": "É tentador começar guardando dinheiro direto, mas sem saber quanto entra e sai, não dá para definir quanto separar sem chutar — por isso anotar vem primeiro.",
+   "itens": [
+    {
+     "texto": "Anotar tudo que entra e sai no mês",
+     "posicaoCorreta": 1
+    },
+    {
+     "texto": "Separar o essencial do que não é essencial",
+     "posicaoCorreta": 2
+    },
+    {
+     "texto": "Definir quanto guardar antes de gastar o resto",
+     "posicaoCorreta": 3
+    },
+    {
+     "texto": "Revisar o plano no mês seguinte",
+     "posicaoCorreta": 4
+    }
+   ]
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "aceitar-ou-recusar",
+   "criterio": "Isso protege o planejamento?",
+   "enunciado": "Recusar um upgrade de plano de celular mais caro, mesmo gostando",
+   "resposta": true,
+   "ancora": "Recusar o que não cabe no plano é decisão, não sacrifício ruim.",
+   "feedbackErro": "Gostar do upgrade é normal, e recusar parece perda. Mas se ele estoura o orçamento planejado, recusar é o que mantém o resto do plano de pé."
+  },
+  {
+   "papel": "pratica",
+   "formato": "binaria",
+   "conceitoId": "planejar-e-decidir",
+   "criterio": "Isso é sinal de planejamento?",
+   "enunciado": "Comprar algo parcelado sem checar se cabe nos próximos meses",
+   "resposta": false,
+   "ancora": "Parcelar sem checar o futuro é decidir sem plano.",
+   "feedbackErro": "Parcelar parece resolver o problema de agora, mas sem checar os meses seguintes, você não sabe se vai sobrar para pagar — isso é decidir sem plano."
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "estimativa",
+   "conceitoId": "planejar-e-decidir",
+   "pergunta": "Quem separa 10% do salário de R$ 2.000 todo mês, sem mexer, guarda quanto em 1 ano?",
+   "campo": "moeda",
+   "min": 1800,
+   "max": 2800,
+   "gabarito": 2400,
+   "toleranciaPct": 20,
+   "fonte": "cálculo direto: 10% de R$ 2.000 por 12 meses",
+   "feedbackPerto": "Boa estimativa: R$ 2.400 guardados ao longo do ano, sem contar rendimento.",
+   "feedbackLonge": "São R$ 2.400: 10% de 2.000 é 200 por mês, vezes 12 meses.",
+   "verificacao": {
+    "expressao": "2000*0.10*12",
+    "esperado": 2400
+   }
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "aceitar-ou-recusar",
+   "dificuldade": 1,
+   "pergunta": "Você recebeu uma oferta de streaming 'grátis por 30 dias, depois R$ 40/mês'. O que checar antes de aceitar?",
+   "ancora": "O que interessa é se os R$ 40 cabem no plano depois do teste.",
+   "alternativas": [
+    {
+     "texto": "Se R$ 40 por mês cabem no orçamento depois do teste",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Se o período grátis é longo o suficiente para valer",
+     "correta": false,
+     "feedbackErro": "O período grátis não custa nada mesmo, então não é o que decide. O que importa é se a cobrança de R$ 40 mensais cabe no plano depois."
+    },
+    {
+     "texto": "Se os amigos também assinaram o mesmo serviço",
+     "correta": false,
+     "feedbackErro": "O que os amigos assinam não muda o seu orçamento. O critério que decide é se a mensalidade cabe no seu planejamento."
+    }
+   ]
+  },
+  {
+   "papel": "aplicacao",
+   "formato": "escolha3",
+   "conceitoId": "planejar-e-decidir",
+   "dificuldade": 1,
+   "pergunta": "Larissa passou a anotar gastos e viu que gastava R$ 150/mês só com lanches fora. O que esse dado permite fazer?",
+   "ancora": "Só dá para ajustar o que primeiro foi medido.",
+   "alternativas": [
+    {
+     "texto": "Decidir, com números, se vale reduzir esse gasto",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Nada, porque lanche é gasto pequeno e não importa",
+     "correta": false,
+     "feedbackErro": "R$ 150 por mês parece pequeno isolado, mas em um ano são R$ 1.800 — o dado mostra que vale a pena olhar, mesmo sendo um gasto do dia a dia."
+    },
+    {
+     "texto": "Proibir todo gasto com lanche a partir de agora",
+     "correta": false,
+     "feedbackErro": "O dado mostra o tamanho do gasto, não manda proibir. Planejamento é decidir com informação, não cortar tudo de uma vez."
+    }
+   ]
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "planejar-e-decidir",
+   "criterio": "Isso é sinal de planejamento?",
+   "enunciado": "Ter uma reserva para imprevistos, mesmo pequena",
+   "resposta": true,
+   "ancora": "Reserva é planejamento em ação: prevê o que ainda não aconteceu.",
+   "feedbackErro": "Reserva pequena parece pouco relevante, mas o que importa é o hábito de prever o imprevisto antes que ele aconteça — isso é planejamento."
+  },
+  {
+   "papel": "fluencia",
+   "formato": "binaria",
+   "conceitoId": "aceitar-ou-recusar",
+   "criterio": "Isso protege o planejamento?",
+   "enunciado": "Recusar um empréstimo fácil para cobrir gasto não essencial",
+   "resposta": true,
+   "ancora": "Recusar dívida por gasto não essencial protege o plano.",
+   "feedbackErro": "Empréstimo fácil resolve na hora, e é isso que atrai. Mas usá-lo para algo não essencial troca um problema pequeno por uma dívida — recusar protege o plano."
+  },
+  {
+   "papel": "fecho",
+   "formato": "fecho",
+   "conceitoId": "planejar-e-decidir",
+   "pergunta": "Qual frase resume a lição?",
+   "alternativas": [
+    {
+     "texto": "Assumir seu dinheiro é planejar antes de gastar e recusar o que não cabe",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Planejar significa nunca gastar com nada além do essencial",
+     "correta": false,
+     "feedbackErro": "Planejar não é cortar tudo — é decidir com informação o que cabe, incluindo alguns gastos não essenciais."
+    },
+    {
+     "texto": "Limite alto de crédito é sempre uma boa notícia",
+     "correta": false,
+     "feedbackErro": "Limite alto é dívida disponível, não dinheiro seu — só ajuda se couber no que já está planejado."
+    }
+   ]
+  }
+ ],
+ "reserva": [
+  {
+   "papel": "reserva",
+   "formato": "classificar",
+   "conceitoId": "planejar-e-decidir",
+   "instrucao": "Sinal de planejamento ou de decisão por impulso?",
+   "ancora": "Planejamento olha o plano; impulso olha só o momento.",
+   "feedbackErro": "Vitrine e caixa exploram a decisão rápida, sem checar o plano. Comparar preço e guardar antes de gastar são hábitos que olham o mês inteiro.",
+   "caixas": [
+    {
+     "id": "planejamento",
+     "rotulo": "Planejamento"
+    },
+    {
+     "id": "impulso",
+     "rotulo": "Impulso"
+    }
+   ],
+   "itens": [
+    {
+     "texto": "Comparar preços antes de comprar",
+     "caixaCorreta": "planejamento"
+    },
+    {
+     "texto": "Comprar porque estava na vitrine",
+     "caixaCorreta": "impulso"
+    },
+    {
+     "texto": "Guardar parte do dinheiro antes de gastar o resto",
+     "caixaCorreta": "planejamento"
+    },
+    {
+     "texto": "Aceitar qualquer parcelamento oferecido no caixa",
+     "caixaCorreta": "impulso"
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "escolha3",
+   "conceitoId": "aceitar-ou-recusar",
+   "dificuldade": 2,
+   "pergunta": "Um serviço oferece cancelamento 'a qualquer momento, sem multa'. Isso já garante que cabe no seu planejamento?",
+   "ancora": "Facilidade de cancelar não substitui checar se cabe agora.",
+   "alternativas": [
+    {
+     "texto": "Não — caber no plano é outra pergunta, à parte",
+     "correta": true,
+     "feedbackErro": null
+    },
+    {
+     "texto": "Sim — se dá para cancelar fácil, não há risco algum",
+     "correta": false,
+     "feedbackErro": "Cancelar fácil reduz um tipo de risco, mas enquanto a assinatura estiver ativa, ela cobra todo mês — o risco de não caber no orçamento continua existindo."
+    },
+    {
+     "texto": "Sim — ofertas sem multa são sempre pensadas pro cliente",
+     "correta": false,
+     "feedbackErro": "'Sem multa' é uma condição comercial, não uma garantia de que o gasto cabe no seu orçamento. Essa checagem é sempre sua."
+    }
+   ]
+  },
+  {
+   "papel": "reserva",
+   "formato": "binaria",
+   "conceitoId": "planejar-e-decidir",
+   "criterio": "Isso é sinal de planejamento?",
+   "enunciado": "Comprar o mesmo produto sempre por hábito, sem comparar preço",
+   "resposta": false,
+   "ancora": "Comprar por hábito, sem comparar, é piloto automático, não plano.",
+   "feedbackErro": "O hábito dá praticidade, e é por isso que parece planejamento. Mas sem comparar preços de tempos em tempos, você pode estar pagando mais do que precisa."
+  }
+ ]
+}
