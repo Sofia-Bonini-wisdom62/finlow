@@ -5,6 +5,7 @@ import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { BottomNav } from "@/components/bottom-nav"
 import { brl } from "@/lib/formato"
+import { lerValor } from "@/lib/objetivo"
 import { POSE } from "@/lib/fin"
 
 interface Objetivo {
@@ -24,8 +25,17 @@ const CORES = [
   "var(--fin-combo, #F5772E)",
 ]
 
-/** O passo fixo do desenho. Guardar é gesto repetido, não formulário. */
-const PASSO = 50
+/**
+ * Atalhos de valor — SUGESTÃO, não passo.
+ *
+ * O desenho v2 tinha um passo fixo de R$ 50 e o comentário daqui dizia
+ * "guardar é gesto repetido, não formulário". Virava aritmética: guardar R$ 30
+ * era impossível e R$ 400 eram oito toques. A fundadora pediu campo livre em
+ * 28/08/2026, e é o campo que manda agora. Estes três continuam existindo
+ * porque a rajada de toques É o caso comum de quem guarda sempre o mesmo
+ * valor — eles PREENCHEM o campo, não gravam sozinhos.
+ */
+const SUGESTOES = [50, 100, 200]
 
 export default function ObjetivosPage() {
   const [objetivos, setObjetivos] = useState<Objetivo[]>([])
@@ -36,6 +46,10 @@ export default function ObjetivosPage() {
   const [salvando, setSalvando] = useState(false)
   const [erro, setErro] = useState<string | null>(null)
   const [precisaPainel, setPrecisaPainel] = useState(false)
+  /** Qual card está com o campo aberto, e o que está escrito nele. */
+  const [guardandoEm, setGuardandoEm] = useState<string | null>(null)
+  const [valor, setValor] = useState("")
+  const [guardando, setGuardando] = useState(false)
 
   useEffect(() => {
     fetch("/api/objetivos")
@@ -59,10 +73,13 @@ export default function ObjetivosPage() {
     setSalvando(true)
     setErro(null)
     try {
+      // Mesma leitura da rota: "1.000,00" é mil reais, não `NaN`.
+      const lida = lerValor(meta)
+      if (!lida.ok) { setErro(lida.motivo); return }
       const res = await fetch("/api/objetivos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, meta: Number(meta.replace(",", ".")) }),
+        body: JSON.stringify({ nome, meta: lida.valor }),
       })
       const d = await res.json().catch(() => ({}))
       if (!res.ok) { tratarBloqueio(res, d); return }
@@ -77,19 +94,37 @@ export default function ObjetivosPage() {
     }
   }
 
-  async function guardar(id: string) {
+  function abrirGuardar(id: string) {
     setErro(null)
+    setValor("")
+    setGuardandoEm(id)
+  }
+
+  async function guardar(e: React.FormEvent, id: string) {
+    e.preventDefault()
+    setErro(null)
+
+    // Recusa ANTES de mandar, com a mesma função que o servidor usa — a
+    // pessoa lê o motivo dela em vez de um 400 genérico.
+    const lida = lerValor(valor)
+    if (!lida.ok) { setErro(lida.motivo); return }
+
+    setGuardando(true)
     try {
       const res = await fetch("/api/objetivos", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id, guardar: PASSO }),
+        body: JSON.stringify({ id, guardar: lida.valor }),
       })
       const d = await res.json().catch(() => ({}))
       if (!res.ok) { tratarBloqueio(res, d); return }
       setObjetivos((os) => os.map((o) => (o.id === id ? d.objetivo : o)))
+      setValor("")
+      setGuardandoEm(null)
     } catch {
       setErro("Sem conexão. Tenta de novo?")
+    } finally {
+      setGuardando(false)
     }
   }
 
@@ -169,15 +204,61 @@ export default function ObjetivosPage() {
                       style={{ width: `${fracao * 100}%`, background: cor }}
                     />
                   </div>
-                  {!alcancado && (
+                  {!alcancado && (guardandoEm === o.id ? (
+                    <form onSubmit={(e) => guardar(e, o.id)} className="mt-2.5 flex flex-col gap-2">
+                      <div className="flex items-center gap-2">
+                        <div className="flex flex-1 items-center rounded-xl border-[1.5px] bg-fl-page px-3" style={{ borderColor: cor }}>
+                          <span className="text-[12.5px] font-black text-fl-ink-2">R$</span>
+                          <input
+                            autoFocus
+                            value={valor}
+                            onChange={(e) => setValor(e.target.value.replace(/[^\d.,]/g, ""))}
+                            inputMode="decimal"
+                            // Quanto falta, como sugestão de leitura — não é
+                            // limite: guardar mais do que a meta é escolha dela.
+                            placeholder={`quanto? (faltam ${brl(Math.max(0, o.meta - o.guardado))})`}
+                            aria-label={`Quanto guardar em ${o.nome}`}
+                            className="w-full bg-transparent py-2.5 pl-1.5 text-[12.5px] font-black text-fl-ink placeholder-fl-ink-3 outline-none"
+                          />
+                        </div>
+                        <button
+                          type="submit"
+                          disabled={guardando}
+                          className="fin-btn-3d rounded-xl px-4 py-2.5 text-[12.5px] font-black text-primary-foreground disabled:opacity-60"
+                          style={{ background: cor }}
+                        >
+                          {guardando ? "…" : "Guardar"}
+                        </button>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        {SUGESTOES.map((s) => (
+                          <button
+                            key={s}
+                            type="button"
+                            onClick={() => setValor(String(s))}
+                            className="rounded-lg bg-fl-divider px-2.5 py-1 text-[11px] font-bold text-fl-ink-2 transition-colors hover:text-fl-ink"
+                          >
+                            {brl(s)}
+                          </button>
+                        ))}
+                        <button
+                          type="button"
+                          onClick={() => { setGuardandoEm(null); setErro(null) }}
+                          className="ml-auto px-2 py-1 text-[11px] font-bold text-fl-ink-3 hover:text-fl-ink-2"
+                        >
+                          Cancelar
+                        </button>
+                      </div>
+                    </form>
+                  ) : (
                     <button
-                      onClick={() => guardar(o.id)}
+                      onClick={() => abrirGuardar(o.id)}
                       className="mt-2.5 w-full rounded-xl border-[1.5px] bg-fl-page py-2.5 text-[12.5px] font-black transition-opacity active:opacity-70"
                       style={{ borderColor: cor, color: cor }}
                     >
-                      + Guardar {brl(PASSO)}
+                      + Guardar
                     </button>
-                  )}
+                  ))}
                 </div>
               )
             })}

@@ -1,5 +1,8 @@
 import { listarTransacoes, listarContasFixas } from "@/lib/financeiro-repo"
-import { indicadores, gastosPorCategoria, metricasPerfil, historicoDetalhado } from "@/lib/financas"
+import {
+  indicadores, gastosPorCategoria, metricasPerfil, historicoDetalhado, mesDeReferencia,
+} from "@/lib/financas"
+import { noMes } from "@/lib/dia"
 import { listarOrcamentos, cruzarComGasto } from "@/lib/orcamento-repo"
 import type { ContextoFinanceiro } from "@/lib/ia"
 
@@ -81,9 +84,7 @@ export async function montarContexto(
       calc
         .filter(
           (t) =>
-            t.tipo === "despesa" &&
-            new Date(t.data).getUTCMonth() + 1 === mes &&
-            new Date(t.data).getUTCFullYear() === ano
+            t.tipo === "despesa" && noMes(t.data, mes, ano)
         )
         .map((t) => ({ nomeCategoria: t.categoria?.nome ?? null, valor: t.valor }))
     ).map((o) => ({ nome: o.nome, limite: o.limite, gasto: o.gasto, restante: o.restante, pct: o.pct })),
@@ -91,22 +92,24 @@ export async function montarContexto(
 }
 
 /**
- * O último mês em que entrou ou saiu dinheiro.
+ * O último mês em que entrou ou saiu dinheiro — o mesmo que as TELAS usam.
  *
- * TEM UMA IRMÃ: `mesDeReferencia` em `lib/financas.ts` responde a mesma
- * pergunta para as TELAS. Esta vai ao banco e lê a data em UTC, como o resto
- * deste arquivo; a de lá é pura, sobre a lista já carregada, e lê em hora local
- * como o resto de `financas.ts`. Hoje as duas concordam porque o servidor roda
- * em UTC — juntá-las é o projeto de uniformizar o fuso da biblioteca inteira,
- * registrado como pendência no backlog. Até lá, use esta no caminho da IA e a
- * de lá no caminho das telas.
+ * O QUE ELA FAZ A MAIS É IR AO BANCO, e agora só isso. Havia uma segunda conta
+ * aqui dentro, lendo a data em UTC contra a hora local de `mesDeReferencia`, e
+ * o comentário deste bloco dizia que juntá-las dependia do projeto de
+ * uniformizar o fuso da biblioteca. O projeto aconteceu (28/08/2026), então a
+ * conta ficou uma só e esta função virou a busca. Duas respostas para "de que
+ * mês estamos falando" é como o app diria "julho" para a IA e "agosto" na tela
+ * da mesma pessoa.
  *
  * Existe por causa do dia 1º. O contexto lê o mês corrente, e no primeiro dia
  * do mês ele é vazio por definição: as leituras do Perfil saíam todas sobre
  * zero para quem tem meses de histórico, o que parece defeito e não é.
  *
  * Devolve `undefined` quando não há movimento nenhum — aí o mês corrente
- * mesmo, porque não há nada melhor a apontar.
+ * mesmo, porque não há nada melhor a apontar. Por isso o fallback de
+ * `mesDeReferencia` (o relógio) não é usado aqui: quem chama precisa saber que
+ * não havia nada, para não afirmar um mês que ninguém viveu.
  */
 export async function ultimoMesComMovimento(
   userId: string
@@ -115,6 +118,5 @@ export async function ultimoMesComMovimento(
   // cifrados, então a decifragem acontece de qualquer jeito para achar a data.
   const todas = await listarTransacoes(userId, { ordem: "desc", comCategoria: false })
   if (todas.length === 0) return undefined
-  const d = new Date(todas[0].data)
-  return { mes: d.getUTCMonth() + 1, ano: d.getUTCFullYear() }
+  return mesDeReferencia(todas)
 }

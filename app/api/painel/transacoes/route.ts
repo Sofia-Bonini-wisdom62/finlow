@@ -4,6 +4,7 @@ import { getUserIdOr401, checarConsentimento } from "@/lib/painel"
 import { listarTransacoes, criarTransacao, atualizarTransacao } from "@/lib/financeiro-repo"
 import { creditar } from "@/lib/pontos"
 import { contemConteudoProibido } from "@/lib/conteudo-proibido"
+import { ancorarDia, hojeNoCalendario } from "@/lib/dia"
 
 export const dynamic = "force-dynamic"
 
@@ -50,7 +51,12 @@ export async function POST(req: NextRequest) {
       valor: valorNum,
       tipo,
       categoriaId: categoriaId || null,
-      data: data ? new Date(data) : new Date(),
+      // Âncora de meio-dia UTC, como os caminhos do chat e do extrato. Era
+      // `new Date(data)`: com "2026-08-21" isso é MEIA-NOITE UTC, o instante
+      // que o comentário do extrato descreve como o que faz o dia 21 virar 20
+      // em fuso negativo. Sem data, o dia é o do servidor — o cliente manda o
+      // dele quando tem, e é o dele que vale.
+      data: ancorarDia(data || hojeNoCalendario()),
       // qualquer outra coisa cai no padrão "pessoal" do banco
       ...(escopo === "trabalho" ? { escopo: "trabalho" } : {}),
     })
@@ -90,7 +96,7 @@ export async function PATCH(req: NextRequest) {
       ...(valor !== undefined ? { valor: Number(valor) } : {}),
       ...(tipo !== undefined ? { tipo } : {}),
       ...(categoriaId !== undefined ? { categoriaId: categoriaId || null } : {}),
-      ...(data !== undefined ? { data: new Date(data) } : {}),
+      ...(data !== undefined ? { data: ancorarDia(data) } : {}),
       ...(escopo === "pessoal" || escopo === "trabalho" ? { escopo } : {}),
     })
     if (count === 0) return NextResponse.json({ error: "Não encontrada" }, { status: 404 })

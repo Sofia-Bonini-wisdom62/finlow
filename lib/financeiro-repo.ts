@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto"
 import { db } from "@/lib/db"
 import { cifrar, cifrarNumero, decifrar, decifrarNumero } from "@/lib/cripto"
+import { inicioDoMes } from "@/lib/dia"
 
 /**
  * Ponto único de entrada/saída dos dados financeiros cifrados.
@@ -100,9 +101,15 @@ export async function listarTransacoes(
 
   // O filtro por data continua no BANCO porque `data` fica em claro — de outra
   // forma toda tela teria de puxar o histórico inteiro para filtrar em memória.
+  //
+  // As bordas do mês vêm de `lib/dia.ts`, em UTC, porque é em UTC que o mês é
+  // lido depois (`financas.ts`). Com borda local, um servidor a oeste puxava do
+  // banco um mês deslocado em algumas horas e depois somava outro: a lista da
+  // tela e o total do topo discordariam sem que nenhum dos dois estivesse errado
+  // sozinho.
   const filtroData =
     mes && ano && mes >= 1 && mes <= 12 && ano > 2000
-      ? { data: { gte: new Date(ano, mes - 1, 1), lt: new Date(ano, mes, 1) } }
+      ? { data: { gte: inicioDoMes(mes, ano), lt: inicioDoMes(mes + 1, ano) } }
       : de || ate
         ? { data: { ...(de ? { gte: de } : {}), ...(ate ? { lte: ate } : {}) } }
         : {}

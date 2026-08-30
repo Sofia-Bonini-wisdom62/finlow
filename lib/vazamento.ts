@@ -14,6 +14,8 @@
  * e um número que não fecha é pior que número nenhum.
  */
 
+import { chaveDia, chaveMes } from "@/lib/dia"
+
 export interface LancamentoDiagnostico {
   id: string
   descricao: string
@@ -49,7 +51,8 @@ const TETO_ASSINATURA = 400
 /** Excesso de categoria menor que isso não vale um achado. */
 const PISO_EXCESSO = 50
 
-const chaveMes = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`
+// Mês e dia saem de `lib/dia.ts`: a janela do diagnóstico tem de ser o mesmo
+// mês que as Análises somam, senão "seu vazamento em julho" é sobre outro julho.
 
 /** "NETFLIX.COM  01/12" e "Netflix com" precisam cair na mesma chave. */
 function normalizar(descricao: string): string {
@@ -121,7 +124,7 @@ export function diagnosticar(lancamentos: LancamentoDiagnostico[], agora: Date =
   // dia), por isso o detalhe nomeia o exemplo — a pessoa é quem sabe.
   const porDia = new Map<string, LancamentoDiagnostico[]>()
   for (const l of pool) {
-    const chave = `${normalizar(l.descricao)}|${l.valor.toFixed(2)}|${l.data.toISOString().slice(0, 10)}`
+    const chave = `${normalizar(l.descricao)}|${l.valor.toFixed(2)}|${chaveDia(l.data)}`
     porDia.set(chave, [...(porDia.get(chave) ?? []), l])
   }
   const extras: LancamentoDiagnostico[] = []

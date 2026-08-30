@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Check, Plus, Minus, ArrowRight, Briefcase } from "lucide-react"
 import type { LancamentoProposto } from "@/lib/ia"
+import { hojeNoCalendario } from "@/lib/dia"
 
 /**
  * O passo entre "a IA entendeu" e "está no seu Painel".
@@ -24,7 +25,10 @@ const NOME_CATEGORIA: Record<string, string> = {
 const brl = (n: number) => n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })
 
 function dataCurta(iso: string): string {
-  const hoje = new Date().toISOString().slice(0, 10)
+  // "hoje" é o dia do calendário de quem lê, não o dia UTC: às 22h de 30 de
+  // setembro em São Paulo o UTC já virou, e a proposta de hoje aparecia
+  // datada de ontem no chip.
+  const hoje = hojeNoCalendario()
   if (iso === hoje) return "hoje"
   const d = new Date(`${iso}T12:00:00`)
   return d.toLocaleDateString("pt-BR", { day: "2-digit", month: "short" })

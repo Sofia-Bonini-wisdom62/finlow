@@ -40,6 +40,8 @@
  * duplicata do mesmo lançamento — e perderia um gasto verdadeiro.
  */
 
+import { chaveDia } from "@/lib/dia"
+
 export interface LancamentoComparavel {
   /** Instante gravado. Só o DIA (em UTC) é comparado. */
   data: Date
@@ -73,12 +75,6 @@ export function normalizarDescricao(s: string): string {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, " ")
     .trim()
-}
-
-/** Dia em UTC. O extrato grava tudo às 12:00Z justamente para o dia não
- *  escorregar em fuso negativo — comparar em UTC preserva essa escolha. */
-function chaveDia(d: Date): string {
-  return d.toISOString().slice(0, 10)
 }
 
 /** Centavos inteiros. Comparar float por igualdade erraria em 0.1 + 0.2. */
