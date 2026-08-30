@@ -8,8 +8,8 @@ datasource db {
 }
 
 model User {
-  id                    String                @id @default(cuid())
-  email                 String                @unique
+  id                    String                 @id @default(cuid())
+  email                 String                 @unique
   nome                  String?
   /// Celular com DDD, só dígitos (protótipo v2, 14/08/2026 — decisão da
   /// fundadora). Opcional e informativo, como dataNascimento: cadastro nunca
@@ -19,18 +19,18 @@ model User {
   senha                 String? // hash bcrypt — null para contas OAuth
   consentimentoLGPD     DateTime? // reservado de antes do pivô (era consentimento de responsável); público hoje é adulto — manter até a política de privacidade (R1) definir o destino
   consentimentoPainelEm DateTime? // opt-in específico do Painel (R8) — sem ele, nenhum write de Painel
-  memoriaAtiva          Boolean               @default(false) // opt-in da memória do assistente — desligada até a pessoa ligar
-  personalidadeIA       String                @default("equilibrado") // tom escolhido em /personalidade — ids em lib/personalidade.ts; valor desconhecido cai no padrão em vez de quebrar
+  memoriaAtiva          Boolean                @default(false) // opt-in da memória do assistente — desligada até a pessoa ligar
+  personalidadeIA       String                 @default("equilibrado") // tom escolhido em /personalidade — ids em lib/personalidade.ts; valor desconhecido cai no padrão em vez de quebrar
   personalidadeDetalhe  String? // CIFRADO — texto livre sobre como quer ser atendida. Cifrado pelo mesmo motivo da memória: é a pessoa falando de si, não configuração
   onboardingEm          DateTime? // quando terminou a primeira conversa; null = ainda não fez
   // --- SPEC v3 §3 ---
-  nivel                 String                @default("iniciante") // inferido no processamento; depois só por sinal duro
+  nivel                 String                 @default("iniciante") // inferido no processamento; depois só por sinal duro
   tendencia             String? // legado; a IA pode revisar observando o dash
-  pontos                Int                   @default(0)
-  apelido               String?               @unique // nome exibido no ranking
-  rankingOptIn          Boolean               @default(false) // ranking é opt-in explícito
-  codigoIndicacao       String?               @unique // 8 chars base36 do link /r/{codigo} — gerado sob demanda, nunca no cadastro
-  moduloAvancado        Boolean               @default(false) // Módulo Avançado (persona C) — liga aqui ou via AVANCADO_BETA_EMAILS (lib/plano.ts)
+  pontos                Int                    @default(0)
+  apelido               String?                @unique // nome exibido no ranking
+  rankingOptIn          Boolean                @default(false) // ranking é opt-in explícito
+  codigoIndicacao       String?                @unique // 8 chars base36 do link /r/{codigo} — gerado sob demanda, nunca no cadastro
+  moduloAvancado        Boolean                @default(false) // Módulo Avançado (persona C) — liga aqui ou via AVANCADO_BETA_EMAILS (lib/plano.ts)
   /// Para qual público é A TRILHA desta pessoa (lib/publico.ts, PUBLICOS).
   /// "adulto" para todo mundo; aluno de escola recebe o segmento da turma no
   /// resgate do convite (Finlow para Escolas). O default reproduz o
@@ -38,32 +38,32 @@ model User {
   /// não muda de trilha. NUNCA leia isto direto numa rota: use
   /// publicoDoUsuario(), que valida o valor e cai em "adulto" quando não
   /// reconhece.
-  publico               String                @default("adulto") // "adulto"|"ef12"|"ef35"|"ef67"|"ef89"|"em"
+  publico               String                 @default("adulto") // "adulto"|"ef12"|"ef35"|"ef67"|"ef89"|"em"
   // --- Redesign Fin (13/08/2026): a camada de jogo ---
   /// CACHE do saldo de Finlo Coins — a verdade é EventoCoins, mesma relação
   /// de User.pontos com EventoPontuacao. Nunca escreva fora de lib/coins.ts.
-  coins                 Int                   @default(0)
+  coins                 Int                    @default(0)
   /// Energia atual de quem passa pelo gate (grátis sem escola). Máx 24;
   /// lição custa 4; +1/hora. Quem interpreta é SÓ lib/energia.ts — premium e
   /// vínculo escolar nem leem estas colunas.
-  energia               Int                   @default(24)
+  energia               Int                    @default(24)
   /// Âncora da regeneração: avança apenas em horas CHEIAS consumidas, para o
   /// resto de hora não se perder entre leituras.
-  energiaEm             DateTime              @default(now())
+  energiaEm             DateTime               @default(now())
   /// Poção ×2 comprada e ainda não consumida. Consome na próxima lição que
   /// creditar pontos (lib/loja.ts + POST /api/progresso).
-  pocaoAtiva            Boolean               @default(false)
+  pocaoAtiva            Boolean                @default(false)
   /// Cosmético equipado como avatar do jogador (itemId do catálogo de
   /// lib/loja.ts). Posse é conferida no ledger EventoCoins, não aqui.
   avatarFin             String?
   /// Sequência corrente de acertos em quiz — ATRAVESSA lições de propósito:
   /// as lições reais têm 0–2 quizzes, e um combo interno à lição nunca
   /// acenderia. Recalculada no servidor a cada conclusão (lib/combo.ts).
-  comboAtual            Int                   @default(0)
-  comboRecorde          Int                   @default(0)
+  comboAtual            Int                    @default(0)
+  comboRecorde          Int                    @default(0)
   emailVerified         DateTime?
   image                 String?
-  criadoEm              DateTime              @default(now())
+  criadoEm              DateTime               @default(now())
   perfil                Perfil?
   progresso             ProgressoModulo[]
   progressoLicoes       ProgressoLicao[]
@@ -78,8 +78,8 @@ model User {
   insights              Insight[]
   recomendacoes         RecomendacaoTrilha[]
   conversas             Conversa[]
-  indicacoesFeitas      Indicacao[]           @relation("indicador")
-  indicacaoRecebida     Indicacao?            @relation("indicado")
+  indicacoesFeitas      Indicacao[]            @relation("indicador")
+  indicacaoRecebida     Indicacao?             @relation("indicado")
   diagnosticoVazamento  DiagnosticoVazamento?
   investimentos         Investimento[]
   objetivos             Objetivo[]
@@ -666,8 +666,8 @@ model Modulo {
   /// O vocabulário é todo de déficit (dívida, sem reserva, renda que varia), e
   /// as aulas de quem JÁ guarda bem não casam com nenhum deles — se situação
   /// fosse o único eixo, elas ficariam inalcançáveis.
-  nivel           String               @default("iniciante") // iniciante|intermediario|avancado
-  situacoes       String[]
+  nivel       String   @default("iniciante") // iniciante|intermediario|avancado
+  situacoes   String[]
   /// Para QUEM esta aula é. Separa a trilha adulta (o produto no ar) da trilha
   /// de Ensino Médio, que cobre a matriz do Banco Central e fala com 15–17 anos.
   ///
@@ -679,7 +679,7 @@ model Modulo {
   /// (lib/publico.ts). Um findMany sem o filtro devolve as duas trilhas
   /// misturadas, e o sintoma é a IA recomendando "Estudar sem se afundar" para
   /// alguém de 38 anos. `scripts/testar-publico.mts` quebra quando isso escapa.
-  publico         String               @default("adulto") // lib/publico.ts PUBLICOS: "adulto"|"ef12"|"ef35"|"ef67"|"ef89"|"em"
+  publico     String   @default("adulto") // lib/publico.ts PUBLICOS: "adulto"|"ef12"|"ef35"|"ef67"|"ef89"|"em"
   /// Códigos da matriz BCB que este módulo cobre (ex.: "EF35LF01").
   ///
   /// A fonte (prisma/modulos-ef.ts, prisma/modulos-em.ts) sempre declarou; o
@@ -687,8 +687,28 @@ model Modulo {
   /// código no Finlow para Escolas — hoje a competência do professor é por
   /// SEGMENTO (CompetenciaProfessor), e este campo é a ponte para o depois.
   /// Trilha adulta fica com o default vazio: a matriz é currículo escolar.
-  habilidades     String[]             @default([])
+  habilidades String[] @default([])
+
+  /// "classico" (as 5 tipos de Tela) | "item" (a base nova de 20/08/2026,
+  /// 6 formatos por item — ver ItemLicao). Decide qual player e qual rota da
+  /// API o módulo usa. Alargar por campo em vez de ramificar em 9 lugares:
+  /// mesmo raciocínio do comentário de `publico`, duas linhas acima.
+  formato    String  @default("classico")
+  /// Slug do conceito-pai, só nos módulos `formato: "item"` (107 conceitos,
+  /// 3 módulos cada — um por encontro). Mesmo padrão de `blocoId`: campo de
+  /// agrupamento, sem tabela `Conceito` própria — ela só teria slug/nome/
+  /// segmento, e obrigaria um join em toda leitura da trilha por isso.
+  conceitoId String?
+  /// 1|2|3 = apresentação|reforço|consolidação, só nos módulos `formato:
+  /// "item"`. Rótulo de header ("encontro 2 de 3") — o corredor trata cada
+  /// linha como um módulo igual a qualquer outro, sem saber que existe.
+  encontro   Int?
+  /// "1ª série" etc., quando a fonte trouxer. Informativo: não filtra nada,
+  /// `filtroDeModulo()` nunca lê este campo.
+  serie      String?
+
   telas           Tela[]
+  itens           ItemLicao[]
   progresso       ProgressoModulo[]
   progressoLicoes ProgressoLicao[]
   recomendacoes   RecomendacaoTrilha[]
@@ -733,6 +753,42 @@ model Tela {
   @@unique([moduloId, ordem])
 }
 
+/// Um item de exercício da base nova (20/08/2026), para módulos com
+/// `Modulo.formato == "item"`. Substitui `Tela` para esse conteúdo — não a
+/// estende, porque o contrato de resposta por formato (booleano, índice de
+/// alternativa, ordem, mapa item→caixa, número com tolerância) não tem nada
+/// em comum com o `telaId→letra` que o quiz antigo usa, e forçar os dois num
+/// só modelo obrigaria `conteudo` a carregar campos que só fazem sentido pra
+/// metade das linhas.
+///
+/// `conteudo` guarda o Item inteiro (contrato em `lib/licao/validar.ts` e em
+/// `prisma/seeds/AGENTE.md`) sem re-achatar campo por coluna — mesmo
+/// princípio de `Tela.conteudo`: o contrato vive no código/validador, e Json
+/// solto aceita os 6 formatos sem 6 tabelas.
+///
+/// SEM progresso próprio: módulos `formato: "item"` usam `ProgressoModulo` e
+/// `ProgressoLicao` (travado em `licao: 1`, porque cada Modulo novo já É um
+/// encontro inteiro, sem sublição) exatamente como os módulos clássicos —
+/// ver o comentário de `licao` em `ProgressoLicao`.
+model ItemLicao {
+  id       String @id @default(cuid())
+  moduloId String
+  modulo   Modulo @relation(fields: [moduloId], references: [id], onDelete: Cascade)
+  ordem    Int
+  /// sonda|construcao|pratica|aplicacao|fluencia|fecho|reserva. "reserva" é
+  /// gravado mas SEM consumidor no player ainda — ver docs/backlog-produto.md,
+  /// seção "Nova base de lições". Todo GET que serve o player filtra
+  /// `papel: { not: "reserva" }`.
+  papel    String
+  /// binaria|escolha3|classificar|ordenar|estimativa|fecho. `caca_erro`
+  /// existe no vocabulário de origem mas nenhum item o usa (sem peças
+  /// gráficas ainda) — não precisa de renderer.
+  formato  String
+  conteudo Json
+
+  @@unique([moduloId, ordem])
+}
+
 /// O módulo como um todo. Com o corredor (05/08/2026) ele passou a ser o
 /// AGREGADO das lições: `concluido` vira true quando todas as lições do módulo
 /// fecham, e é ele que o corredor consulta para liberar o módulo seguinte.
@@ -766,17 +822,22 @@ model ProgressoModulo {
 /// fim mostra "4 de 5" e o XP creditado foi proporcional a ISSO. Guardar o
 /// resultado é o que permite reabrir a tela de fim sem recreditar nada.
 model ProgressoLicao {
-  id          String    @id @default(cuid())
-  userId      String
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  moduloId    String
-  modulo      Modulo    @relation(fields: [moduloId], references: [id], onDelete: Cascade)
-  /// 1..4 — ver TIPOS_LICAO em lib/licoes.ts
-  licao       Int
-  concluido   Boolean   @default(false)
-  telaAtual   Int       @default(0)
-  acertos     Int       @default(0)
-  totalQuiz   Int       @default(0)
+  id               String    @id @default(cuid())
+  userId           String
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  moduloId         String
+  modulo           Modulo    @relation(fields: [moduloId], references: [id], onDelete: Cascade)
+  /// 1..4 — ver TIPOS_LICAO em lib/licoes.ts. Módulos `formato: "item"`
+  /// (base nova, 20/08/2026) SEMPRE gravam `licao: 1` aqui: cada Modulo já é
+  /// um encontro inteiro, sem sublição — a granularidade de 1 é a certa, e
+  /// reaproveitar esta tabela em vez de criar uma nova mantém de graça a
+  /// cobrança de energia, o congelamento de acertos/totalQuiz na 1ª passada
+  /// e "acertosRevisao/totalQuizRevisao" para quem refaz.
+  licao            Int
+  concluido        Boolean   @default(false)
+  telaAtual        Int       @default(0)
+  acertos          Int       @default(0)
+  totalQuiz        Int       @default(0)
   /// A dupla acima é a 1ª PASSADA e vira pedra depois que a lição conclui:
   /// foi a nota que valeu XP. Refazer grava NESTAS duas — "1ª passada × após
   /// correção" (protótipo v2, 14/08/2026): a 2ª rodada não vale XP nem infla
@@ -785,9 +846,9 @@ model ProgressoLicao {
   acertosRevisao   Int?
   totalQuizRevisao Int?
   /// Segundos gastos na lição, somados entre as visitas. Alimenta a tela de fim.
-  segundos    Int       @default(0)
-  concluidoEm DateTime?
-  criadoEm    DateTime  @default(now())
+  segundos         Int       @default(0)
+  concluidoEm      DateTime?
+  criadoEm         DateTime  @default(now())
 
   @@unique([userId, moduloId, licao])
   @@index([userId, moduloId])
@@ -864,13 +925,13 @@ model Indicador {
 /// (decidirAcessoEscolar): membro de escola ativa conta como premium, e
 /// duplicar essa leitura teria o mesmo custo de duplicar decidirAcesso.
 model Escola {
-  id           String    @id @default(cuid())
+  id           String                 @id @default(cuid())
   nome         String
-  status       String    @default("ativa") // "ativa" | "suspensa" — vocabulário em lib/escola.ts
+  status       String                 @default("ativa") // "ativa" | "suspensa" — vocabulário em lib/escola.ts
   /// Fim da vigência do contrato. null = piloto sem prazo definido.
   ativaAte     DateTime?
-  criadoEm     DateTime  @default(now())
-  atualizadoEm DateTime  @updatedAt
+  criadoEm     DateTime               @default(now())
+  atualizadoEm DateTime               @updatedAt
   membros      MembroEscola[]
   turmas       Turma[]
   convites     ConviteEscola[]
@@ -901,9 +962,9 @@ model MembroEscola {
 /// não opt-in individual como o ranking global; a pendência LGPD disso está
 /// registrada em docs/backlog-produto.md).
 model Turma {
-  id          String   @id @default(cuid())
+  id          String              @id @default(cuid())
   escolaId    String
-  escola      Escola   @relation(fields: [escolaId], references: [id], onDelete: Cascade)
+  escola      Escola              @relation(fields: [escolaId], references: [id], onDelete: Cascade)
   nome        String // "5º ano A"
   /// Segmento escolar (lib/publico.ts, SEGMENTOS_ESCOLARES): define a trilha
   /// dos alunos — quem resgata convite desta turma ganha User.publico daqui.
@@ -915,10 +976,10 @@ model Turma {
   /// SetNull: professor que apaga a conta não leva a turma junto — os alunos
   /// continuam nela e o adm designa outro professor.
   professorId String?
-  professor   User?    @relation("professorDaTurma", fields: [professorId], references: [id], onDelete: SetNull)
-  rankAtivo   Boolean  @default(false)
-  rankEscopo  String   @default("sala") // "sala" | "ano" | "escola"
-  criadoEm    DateTime @default(now())
+  professor   User?               @relation("professorDaTurma", fields: [professorId], references: [id], onDelete: SetNull)
+  rankAtivo   Boolean             @default(false)
+  rankEscopo  String              @default("sala") // "sala" | "ano" | "escola"
+  criadoEm    DateTime            @default(now())
   membros     MembroTurma[]
   convites    ConviteEscola[]
   acessos     AcessoTrilhaTurma[]

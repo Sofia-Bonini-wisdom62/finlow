@@ -146,6 +146,30 @@ Nenhum código lê os campos novos ainda — os defaults (`publico: "adulto"`,
 > Finlow passa a guardar nome de criança e a escola passa a conhecer a senha
 > inicial de cada aluno. Validar com advogado antes de escola real.
 
+## Nova base de lições (20/08/2026 conteúdo, 30/08/2026 código)
+
+Material novo para os 7 segmentos escolares (`ef12` a `em3`): 107 conceitos,
+321 lições (3 encontros cada), 5.268 itens em 6 formatos (`binaria`,
+`escolha3`, `fecho`, `ordenar`, `classificar`, `estimativa`). Por decisão da
+fundadora, **substitui** a trilha escolar atual (24 módulos de EM + 83 de EF).
+Detalhe completo, decisões e o que ficou de fora em
+[`backlog-produto.md`](backlog-produto.md), seção "Nova base de lições,
+integrar de vez".
+
+| Peça | Status | Onde |
+|---|---|---|
+| Schema (`Modulo.formato/conceitoId/encontro/serie` + modelo `ItemLicao`) | ✅ | `prisma/schema.prisma` |
+| 6 telas + fluxo (`ItemFlow`, irmão de `CardFlow`) | ✅ | `components/trilha-item/` |
+| API (corredor, GET/POST servindo `formato: "item"`) | ✅ | `lib/corredor.ts`, `app/api/{trilha/[moduloId],progresso}` |
+| Transformação + seed | ✅ (não rodado em prod) | `scripts/{portar,semear}-licoes.mts`, `scripts/testar-licoes.mts` |
+| `pnpm db:push` + seed em produção | ❌ **nunca rodou** | ordem: coluna → deploy → `scripts/semear-licoes.mts --aplicar` |
+
+**Decisão de escopo (a rever):** `em1`/`em2`/`em3` caem no mesmo `publico:
+"em"` que já existia, não viraram públicos próprios — abrir a granularidade
+fina tocaria `CompetenciaProfessor`/`app/escola`, fora do raio desta troca.
+Os 963 itens de `reserva` são gravados sem consumidor (o que os usa não
+está documentado na fonte recebida).
+
 ## Redesign Fin (13/08/2026, em construção)
 
 Protótipo da fundadora: o miolo gamificado (trilha, player, resultado, liga,

@@ -10,6 +10,97 @@ import { cobrarLicao, isentoDeEnergia, ENERGIA_MAX } from "@/lib/energia"
 export const dynamic = "force-dynamic"
 
 /**
+ * GET de um módulo `formato: "item"` (base nova de lições, 20/08/2026) —
+ * servida à parte de propósito, não emendada no fluxo de baixo.
+ *
+ * Por que não reaproveitar o resto da função: o conteúdo clássico tem
+ * sublição (`montarLicoes`) e interpolação de indicador macro no `conteudo`
+ * (`{{rotativo_medio}}`). Nada disso existe na base nova — cada `Modulo` já É
+ * um encontro inteiro (sem sublição) e o gabarito já vem pronto no JSON, sem
+ * macro para trocar. Ramificar cedo evita que os dois formatos disputem as
+ * mesmas variáveis no meio de uma função grande, e é o único lugar do
+ * arquivo que precisa saber que "item" existe.
+ *
+ * A trava de corredor e o gate de energia são os MESMOS do conteúdo
+ * clássico, chamados com `licao: 1` fixo — ver o comentário de
+ * `ProgressoLicao.licao` no schema.
+ */
+async function servirModuloItem(moduloId: string, userId: string | null) {
+  const [moduloCompleto, itens] = await Promise.all([
+    // `findFirst` (não `findUnique`) só para caber o `...filtroExploravel()`
+    // — o chamador já validou o id com esse mesmo filtro, mas explícito é
+    // a regra da casa (scripts/testar-publico.mts exige o filtro em TODA
+    // leitura de Modulo, sem exceção por "já validei antes").
+    db.modulo.findFirst({ where: { id: moduloId, ...filtroExploravel() } }),
+    db.itemLicao.findMany({
+      where: { moduloId, papel: { not: "reserva" } },
+      orderBy: { ordem: "asc" },
+    }),
+  ])
+  if (!moduloCompleto) return NextResponse.json({ error: "Módulo não encontrado" }, { status: 404 })
+
+  // Sem sessão: mesma régua do conteúdo clássico — conteúdo sim, corredor e
+  // progresso não, porque os dois são DA PESSOA.
+  if (!userId) {
+    return NextResponse.json({
+      modulo: { ...moduloCompleto, itens },
+      energia: null,
+      comboAtual: 0,
+      telaInicial: 0,
+    })
+  }
+
+  const corredor = await montarCorredor(userId)
+  const noCorredor = corredor.modulos.get(moduloId)
+
+  if (noCorredor?.estado === "trancado") {
+    return NextResponse.json(
+      { error: "trancado", motivo: noCorredor.bloqueio ?? "Este módulo ainda não abriu." },
+      { status: 403 }
+    )
+  }
+
+  // Não existe "adiantar" aqui: cada Modulo novo é uma lição só (licao: 1).
+  const estadoLicao = noCorredor?.licoes.find((x) => x.licao === 1)
+  if (estadoLicao && !estadoLicao.liberada) {
+    return NextResponse.json(
+      { error: "trancado", motivo: "Conclua o módulo anterior para abrir este." },
+      { status: 403 }
+    )
+  }
+
+  const isento = await isentoDeEnergia(userId)
+  let energia: { atual: number; max: number } | null = null
+  if (!isento) {
+    const cobranca = await cobrarLicao(userId, moduloId, 1)
+    if (!cobranca.ok) {
+      return NextResponse.json(
+        { error: "energia", energia: cobranca.energia, max: ENERGIA_MAX, minutos: cobranca.minutos },
+        { status: 403 }
+      )
+    }
+    energia = { atual: cobranca.energia ?? 0, max: ENERGIA_MAX }
+  }
+
+  const [comboAtual, prog] = await Promise.all([
+    db.user
+      .findUnique({ where: { id: userId }, select: { comboAtual: true } })
+      .then((u) => u?.comboAtual ?? 0),
+    db.progressoLicao.findUnique({
+      where: { userId_moduloId_licao: { userId, moduloId, licao: 1 } },
+      select: { telaAtual: true, concluido: true },
+    }),
+  ])
+
+  return NextResponse.json({
+    modulo: { ...moduloCompleto, itens },
+    energia,
+    comboAtual,
+    telaInicial: prog && !prog.concluido ? Math.min(prog.telaAtual, itens.length - 1) : 0,
+  })
+}
+
+/**
  * GET /api/trilha/[moduloId]?licao=N
  *
  * Serve as telas de UMA lição, não do módulo inteiro. Sem `licao`, devolve a
@@ -40,6 +131,8 @@ export async function GET(
     })
 
     if (!modulo) return NextResponse.json({ error: "Módulo não encontrado" }, { status: 404 })
+
+    if (modulo.formato === "item") return servirModuloItem(modulo.id, userId)
 
     /**
      * O dado macro entra AQUI, não no conteúdo gravado.

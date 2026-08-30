@@ -112,6 +112,7 @@ export async function montarCorredor(userId: string): Promise<Corredor> {
         slug: true,
         titulo: true,
         ordem: true,
+        formato: true,
         telas: { select: { tipo: true, ordem: true } },
       },
       orderBy: { ordem: "asc" },
@@ -159,6 +160,18 @@ export async function montarCorredor(userId: string): Promise<Corredor> {
   const porId = new Map(modulos.map((m) => [m.id, m]))
   const saida = new Map<string, ModuloNoCorredor>()
 
+  /**
+   * Quais lições este módulo tem — 1 e só 1 para `formato: "item"` (base
+   * nova, 20/08/2026): cada Modulo já é um encontro inteiro, sem sublição, e
+   * `licoesExistentes` não serve aqui porque ela lê `Tela`, que estes
+   * módulos não têm nenhuma (devolveria `[]` e travaria o módulo pra
+   * sempre). Fora isso, o corredor trata a linha como um módulo igual a
+   * qualquer outro — nada além desta contagem precisa saber que ela existe.
+   */
+  function numerosDeLicao(m: { formato: string; telas: { tipo: string; ordem: number }[] }): NumeroLicao[] {
+    return m.formato === "item" ? [1] : licoesExistentes(m.telas)
+  }
+
   /** Estado das lições de um módulo, sem decidir ainda se o módulo abriu. */
   function estadoDasLicoes(moduloId: string, existentes: NumeroLicao[]) {
     const jaEra = concluidoAntigo.has(moduloId)
@@ -188,7 +201,7 @@ export async function montarCorredor(userId: string): Promise<Corredor> {
     const m = porId.get(moduloId)
     if (!m) return // módulo de outro público, ou apagado
 
-    const existentes = licoesExistentes(m.telas)
+    const existentes = numerosDeLicao(m)
     const { licoes, concluidas } = estadoDasLicoes(moduloId, existentes)
     const fechado = existentes.length > 0 && concluidas === existentes.length
 
@@ -216,7 +229,7 @@ export async function montarCorredor(userId: string): Promise<Corredor> {
   // ------ 2. o que ainda não entrou em leva nenhuma ------
   for (const m of modulos) {
     if (saida.has(m.id)) continue
-    const existentes = licoesExistentes(m.telas)
+    const existentes = numerosDeLicao(m)
     const { licoes, concluidas } = estadoDasLicoes(m.id, existentes)
     const fechado = existentes.length > 0 && concluidas === existentes.length
 

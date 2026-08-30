@@ -109,6 +109,12 @@ export interface ModuloData {
   ordem: number
   xp: number
   telas: TelaData[]
+  /** Sempre "classico" aqui — LITERAL, não `string`, de propósito: é o que
+   *  permite `dados.modulo.formato === "item"` (app/trilha/[moduloId]/
+   *  page.tsx) estreitar a união de verdade em vez de continuar achando que
+   *  pode ser as duas coisas. Ver `ModuloItemData.formato` (types/licao-
+   *  item.ts) para o irmão que carrega "item". */
+  formato?: "classico"
 }
 
 export type SessaoFluxo = Record<string, string>

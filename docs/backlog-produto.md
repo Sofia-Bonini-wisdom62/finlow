@@ -405,48 +405,80 @@ venda):**
 - **`preRequisitoSlug` segue inerte** — o corredor escolar usa a ordem
   linear dos blocos, que na prática cobre o grafo de pré-requisitos; ligar o
   grafo de verdade é projeto próprio.
-- **Nova base de lições (20/08/2026), ainda não integrada.** Conteúdo chegou
-  e está guardado e validado; a integração é tarefa própria, ver
-  "Nova base de lições, integrar de vez" logo abaixo.
+- ~~**Nova base de lições (20/08/2026), ainda não integrada.**~~ ✅ código
+  pronto em 30/08/2026, ver "Nova base de lições, integrar de vez" logo
+  abaixo — falta só `pnpm db:push` + seed em produção.
 
 ---
 
-## Nova base de lições, integrar de vez (20/08/2026)
+## ~~Nova base de lições, integrar de vez~~ ✅ código pronto, 30/08/2026
 
 Chegou o material completo dos 7 segmentos (`ef12` a `em3`): 107 conceitos,
-321 lições (3 encontros cada), ~5.268 itens, cobrindo a matriz de
-competências do Banco Central inteira. Por decisão da fundadora, **esse
-material substitui a trilha escolar atual** (os 24 módulos de EM e o pacote
-de EF já seedados, no formato `conceito/cenario/quiz/input/resultado`).
+321 lições (3 encontros cada), 5.268 itens (4.305 em `telas` + 963 em
+`reserva`, sem consumidor ainda), cobrindo a matriz de competências do Banco
+Central inteira. Por decisão da fundadora, **esse material substitui a
+trilha escolar atual** (os 24 módulos de EM e o pacote de EF já seedados, no
+formato `conceito/cenario/quiz/input/resultado`).
 
-O conteúdo em si já está pronto: `prisma/seeds/licoes/` (321 arquivos) +
-`prisma/seeds/dados/` (`modulos.json`, `conceitos.json`, metadados) +
-`lib/licao/` (validador) + `scripts/validar-tudo.ts`, que roda limpo (321
-válidas, 0 problema, não toca banco). **O que falta é código de produto**,
-em três frentes que se encadeiam:
+As três frentes que o backlog via encadeadas estão feitas:
 
-1. **Reestruturar as telas.** O formato novo é por item —
-   `binaria`, `escolha3`, `fecho`, `ordenar`, `classificar`, `estimativa` —
-   e nenhum deles existe hoje no player, que só sabe renderizar os cinco
-   tipos antigos (`conceito`, `cenario`, `quiz`, `input`, `resultado`).
-   Precisa desenhar e construir os componentes de tela dos 6 formatos novos
-   (card binário, escolha de 3, ordenar, classificar em 2 caixas, estimativa
-   com tolerância) mais o motor que calcula `verificacao.expressao` no
-   cliente.
-2. **Montar tudo junto.** Ligar `prisma/seeds/dados/` (conceito → módulo →
-   3 lições → telas na composição do lote) ao schema real: decidir se
-   `Modulo`/`Tela` absorve o formato novo (campo `formato` em `Tela`,
-   `conteudo` guardando o item) ou se nasce um modelo próprio para os itens
-   de exercício, e escrever a transformação de `prisma/seeds/licoes/*.json`
-   para linhas do banco.
-3. **Plantar o seed.** Com a transformação pronta, rodar o seed em produção
-   trocando os 24 módulos de EM e o pacote de EF pelo material novo —
-   inclui decidir o que acontece com `ProgressoModulo`/`ProgressoLicao` de
-   quem já está em andamento na trilha antiga, e seguir a ordem de migração
-   do `CLAUDE.md` (código primeiro, banco depois; coluna nova é exceção).
+1. **Telas** — `components/trilha-item/{ItemBinaria,ItemEscolha,ItemOrdenar,
+   ItemClassificar,ItemEstimativa,ItemRenderer,ItemFlow}.tsx`. `ItemFlow` é
+   IRMÃO de `CardFlow`, não extensão dele: o formato de resposta por item
+   (booleano/índice/ordem/mapa/número) não tem nada em comum com o
+   `telaId→letra` do quiz antigo. `fecho` reaproveita `ItemEscolha` (mesmo
+   contrato de `escolha3`). `estimativa` mostra a conta de
+   `verificacao.expressao` no feedback (`lib/licao/validar.ts::avaliar`,
+   só para EXPLICAR — a correção real é sempre `gabarito` ±
+   `toleranciaPct`, nunca a expressão).
+2. **Schema** — decisão da fundadora: modelo PRÓPRIO, `ItemLicao`, não
+   `Tela` estendida. `Modulo` ganhou 4 campos (`formato`, `conceitoId`,
+   `encontro`, `serie`), todos com default seguro. SEM colunas novas de
+   progresso: módulos `formato: "item"` reaproveitam `ProgressoModulo` e
+   `ProgressoLicao` travado em `licao: 1` (cada Modulo novo já é o
+   encontro inteiro, sem sublição) — de graça, energia, XP e "1ª passada ×
+   após correção" continuam funcionando sem tocar em `lib/pontos.ts`.
+   `lib/corredor.ts` e `app/api/{trilha/[moduloId],progresso}` ganharam um
+   branch por `modulo.formato`, cada um servido por uma função própria — a
+   lógica clássica não foi tocada além disso.
+3. **Transformação + seed** — `scripts/portar-licoes.mts` (fonte →
+   `prisma/modulos-licoes.ts`, gerado, valida contra `lib/licao/validar.ts`
+   antes de escrever) e `scripts/semear-licoes.mts` (`--aplicar`, no molde
+   de `scripts/semear-em.mts`). `scripts/testar-licoes.mts` confere as
+   contagens (5.268/963) e que os 3 encontros de um conceito ficam em
+   ordem no corredor.
 
-Nenhuma das três frentes foi começada. É trabalho de arquitetura de
-produto, não upload de arquivo.
+**Decisão de escopo (minha, registrada para revisão):** `em1`/`em2`/`em3`
+caem no MESMO bucket `publico: "em"` que já existia — não viraram públicos
+próprios. A fonte trata os 3 anos como segmentos de primeira classe, e
+`lib/publico.ts` foi desenhado para "alargar" sem custo (é o que a EM
+original já fez uma vez); mas abrir a granularidade fina tocaria
+`CompetenciaProfessor`, `app/escola/*`, `scripts/criar-escola.mts` e as
+telas de turma — superfície viva do Finlow para Escolas, fora do raio desta
+troca de conteúdo. `scripts/portar-licoes.mts` compensa a perda de
+ordenação com um offset (`OFFSET_ORDEM`) para os 3 anos não se misturarem
+dentro do bucket único. Se a fundadora quiser a granularidade fina, é
+pedido à parte — nada aqui a impede depois.
+
+**O que ficou de fora, de propósito:**
+- Os 963 itens de `reserva` são gravados (papel `"reserva"` em
+  `ItemLicao`) mas **sem nenhum consumidor** — o player filtra
+  `papel: { not: "reserva" }` em todo GET. O que eles alimentam (repetição
+  espaçada? outra coisa?) não está documentado em lugar nenhum do material
+  recebido; decidir isso é conteúdo/produto, não código.
+- `fraseConceito` (a definição do conceito em ≤140 caracteres, só no
+  encontro 1) não é persistida — a tela de fim de módulo não mostra "o que
+  ficou" para os módulos novos (`FimDaLicao.conceito` fica vazio). Pendura
+  aqui como retoque pequeno, não bloqueio.
+- `preRequisitos` (array vazio em todos os 107 conceitos da fonte) não foi
+  ligado — mesmo status de `preRequisitoSlug`, inerte de propósito.
+
+**O que falta para ir ao ar, e é o de sempre:** `pnpm db:push` em produção
+(coluna `Modulo.formato`/`ItemLicao` novos) → confirmar o deploy do código
+no ar → só então `node --import tsx scripts/semear-licoes.mts --aplicar`,
+que imprime quantas linhas de `ProgressoModulo` vai apagar em cascata ANTES
+de apagar (o XP em `User.pontos` e o ledger `EventoPontuacao` não são
+tocados — "mantém XP, reseta módulo", decisão confirmada nesta integração).
 
 ---
 

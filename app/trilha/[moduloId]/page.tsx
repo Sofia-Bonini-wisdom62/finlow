@@ -5,9 +5,11 @@ import { useParams, useRouter, useSearchParams } from "next/navigation"
 import Link from "next/link"
 import { Lock } from "lucide-react"
 import { CardFlow } from "@/components/trilha/CardFlow"
+import { ItemFlow } from "@/components/trilha-item/ItemFlow"
 import { FimDaLicao, type ResultadoLicao } from "@/components/trilha/FimDaLicao"
 import { POSE } from "@/lib/fin"
 import type { ModuloData } from "@/types/trilha"
+import type { ModuloItemData, RespostaItem } from "@/types/licao-item"
 
 /**
  * Player do módulo, em SEQUÊNCIA ÚNICA (pedido da fundadora, 16/08/2026).
@@ -128,15 +130,19 @@ interface LicaoDoModulo {
 }
 
 interface Resposta {
-  modulo: ModuloData
-  licao: { numero: number; nome: string; resumo: string; total: number }
-  indice: number
+  /** `formato: "item"` (base nova, 20/08/2026) é servido por um contrato
+   *  mais raso — sem `licao`/`licoesDoModulo`/`indicadores`, porque cada
+   *  Modulo novo já É a lição inteira. A união estreita pelo campo `formato`
+   *  literal — ver o comentário dele em cada um dos dois tipos. */
+  modulo: ModuloData | ModuloItemData
+  licao?: { numero: number; nome: string; resumo: string; total: number }
+  indice?: number
   licoesDoModulo?: LicaoDoModulo[]
-  indicadores: Record<string, number>
+  indicadores?: Record<string, number>
   telaInicial: number
   /** null = isento (premium ou escola); a UI não mostra custo nenhum. */
   energia?: { atual: number; max: number } | null
-  /** O combo herdado das lições anteriores — semente do chip do CardFlow. */
+  /** O combo herdado das lições anteriores — semente do chip do CardFlow/ItemFlow. */
   comboAtual?: number
 }
 
@@ -296,9 +302,12 @@ export default function ModuloPage() {
 
   // ---------- fim da lição ----------
   if (resultado) {
-    // A próxima é a primeira ainda não concluída depois desta.
+    // A próxima é a primeira ainda não concluída depois desta. Módulo
+    // `formato: "item"` nunca tem `licao`/`licoesDoModulo` — o `?? 0` e o
+    // `?? []` abaixo fazem `proxima` ficar sempre undefined pra ele, que é
+    // o comportamento certo (cada Modulo novo já é a lição inteira).
     const proxima = (dados.licoesDoModulo ?? []).find(
-      (l) => l.numero > dados.licao.numero && !l.concluida
+      (l) => l.numero > (dados.licao?.numero ?? 0) && !l.concluida
     )
     return (
       <FimDaLicao
@@ -311,7 +320,66 @@ export default function ModuloPage() {
     )
   }
 
-  const { modulo, licao, indice } = dados
+  // ---------- base nova de lições (20/08/2026): sem sublição, sem indicador
+  // macro, sem "lições emendam" — concluir SEMPRE fecha o módulo. ItemFlow
+  // é o irmão de CardFlow, não uma extensão: ver o comentário no topo dele.
+  if (dados.modulo.formato === "item") {
+    const moduloItem = dados.modulo
+    return (
+      <ItemFlow
+        modulo={moduloItem}
+        telaInicial={dados.telaInicial}
+        comboInicial={dados.comboAtual ?? 0}
+        onAvancarTela={(tela) => {
+          fetch("/api/progresso", {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ moduloId: moduloItem.id, licao: 1, telaAtual: tela }),
+          }).catch(() => {})
+        }}
+        onConcluir={(respostas: Record<string, RespostaItem>, segundos: number) => {
+          fetch("/api/progresso", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ moduloId: moduloItem.id, respostas, segundos }),
+          })
+            .then((r) => r.json())
+            .then((d) => {
+              setResultado({
+                nome: d.nome ?? moduloItem.titulo,
+                acertos: d.acertos ?? 0,
+                quizzes: d.quizzes ?? 0,
+                segundos: d.segundos ?? segundos,
+                pontos: d.pontos ?? null,
+                moduloConcluido: !!d.moduloConcluido,
+                pontosModulo: d.pontosModulo ?? null,
+                licoesConcluidas: d.licoesConcluidas ?? 1,
+                licoesTotal: d.licoesTotal ?? 1,
+                comboMax: d.comboMax ?? 0,
+                comboBonus: d.comboBonus ?? 0,
+                coins: d.coins ?? null,
+                energiaDevolvida: d.energiaDevolvida ?? null,
+                pocaoAplicada: !!d.pocaoAplicada,
+                precisao: d.precisao ?? null,
+                sequencia: d.sequencia ?? 0,
+                bauDisponivel: d.bauDisponivel ?? null,
+              })
+            })
+            .catch(() => {
+              // Sem resposta do servidor não dá para mostrar nota nenhuma —
+              // inventar "+5 XP" aqui seria mentir sobre o que foi creditado.
+              router.push("/trilha")
+            })
+        }}
+      />
+    )
+  }
+
+  const { modulo, licao, indice } = dados as Resposta & {
+    modulo: ModuloData
+    licao: NonNullable<Resposta["licao"]>
+    indice: number
+  }
   // Prefixo `ind_` para não colidir com id de campo de formulário.
   const sessaoInicial = Object.fromEntries(
     Object.entries(dados.indicadores ?? {}).map(([k, v]) => [`ind_${k}`, String(v)])

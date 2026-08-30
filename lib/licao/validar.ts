@@ -83,7 +83,7 @@ export function validarLicao(l: Licao): string[] {
       }
       case "estimativa":
         if (typeof t.gabarito !== "number") push(`${n}: sem gabarito`);
-        if (!t.fonte) push(`${n}: estimativa sem campo 'fonte' — rejeitada`);
+        if (!t.fonte) push(`${n}: estimativa sem campo 'fonte', rejeitada`);
         if (!t.feedbackPerto || !t.feedbackLonge) push(`${n}: faltam os dois feedbacks`);
         respostas += 1; break;
       case "caca_erro":
@@ -95,7 +95,7 @@ export function validarLicao(l: Licao): string[] {
         const v = avaliar(t.verificacao.expressao);
         const tol = t.verificacao.tolerancia ?? 0.01;
         if (Math.abs(v - t.verificacao.esperado) > tol)
-          push(`${n}: CONTA ERRADA — ${t.verificacao.expressao} = ${v}, item diz ${t.verificacao.esperado}`);
+          push(`${n}: CONTA ERRADA, ${t.verificacao.expressao} = ${v}, item diz ${t.verificacao.esperado}`);
       } catch (err) {
         push(`${n}: expressão inválida (${(err as Error).message})`);
       }
