@@ -589,6 +589,70 @@ reais, consegue colocar input livre?"*
 > **O que segue pendente é o de sempre:** remover e editar objetivo continuam
 > sem desenho, e a rota segue sem DELETE de propósito.
 
+## Recuperação de senha (30/08/2026)
+
+Criar um método de recuperação de senha, para quem esquece a senha conseguir
+voltar para a conta.
+
+> **Hoje não existe nada, e a consequência é perder a conta inteira.** Não há
+> "esqueci minha senha" em `/login`, nem rota, nem tela, nem caminho de suporte
+> dentro do produto — a varredura não achou uma única ocorrência em `app/` ou
+> `components/`. Quem esquece a senha perde junto o histórico financeiro
+> cifrado, os objetivos, a trilha e as conversas com o assistente. E perde de
+> um jeito que o Finlow não consegue desfazer nem manualmente: os campos são
+> cifrados com chave derivada por usuário, então não há "a gente recupera para
+> você" possível sem a pessoa entrar.
+>
+> 🔴 **O que trava, e é decisão sua, não de código:** não existe envio de
+> e-mail neste repositório. Nenhuma dependência de envio no `package.json`, e
+> nunca houve — é a mesma lacuna que faz o "alertas calmos, que avisam antes"
+> da landing seguir sem existir (divergência 2 de
+> [`resumo-de-funcao.md`](resumo-de-funcao.md)). Recuperação por e-mail exige
+> escolher um provedor (Resend, Amazon SES, Postmark ou equivalente), o que
+> traz domínio verificado, SPF/DKIM, custo por mensagem e credencial de
+> produção. Nenhuma dessas coisas se decide dentro do repositório, e é o mesmo
+> formato de bloqueio do *Conector Open Finance* acima.
+>
+> 🟢 **O que já existe e serve de base:** `VerificationToken` está no
+> `schema.prisma` desde sempre (veio com o adapter do NextAuth) — se ela vai
+> guardar o token de reset ou se nasce tabela própria é decisão a registrar, não
+> detalhe de implementação, porque a tabela do adapter tem dono. E
+> `lib/limite-taxa.ts` já existe, hoje guardando só a rota de lead B2B.
+>
+> **Cinco decisões que este item carrega, e é melhor que estejam à mesa antes
+> de começar do que descobertas no meio:**
+>
+> 1. **Conta do Google não tem senha.** `User.senha` é opcional e nasce `null`
+>    para quem entrou pelo Google. Pedir reset numa dessas não pode responder
+>    "enviamos o link" (mentira) nem "essa conta não existe" (também mentira, e
+>    pior). O caminho honesto é a mensagem dizer que aquela conta entra pelo
+>    Google — o que já vaza uma informação, e por isso é escolha, não detalhe.
+> 2. **A resposta não pode revelar quem tem conta.** E-mail cadastrado e não
+>    cadastrado precisam receber a MESMA resposta na tela, senão o formulário
+>    vira uma consulta pública de "fulano usa o Finlow?". Num app de dinheiro
+>    isso é dado sensível sozinho, antes de qualquer número.
+> 3. **A sessão é JWT** (`lib/auth.ts`, obrigatório com provider de
+>    credenciais). Trocar a senha **não derruba** as sessões já abertas: quem
+>    entrou com a senha antiga continua dentro até o token vencer. Se o reset
+>    tem de expulsar as outras sessões — que é o motivo pelo qual muita gente
+>    troca a senha —, isso é trabalho próprio e não sai de graça com o resto.
+> 4. **Aluno de escola criado em lote não recebe e-mail nenhum.** O login dele
+>    vive num domínio `.invalid`, reservado pela RFC 2606 justamente para nunca
+>    resolver (`lib/ops-escola.ts`, decisão de 18/08). Para esses, quem repõe a
+>    senha é a escola, e isso é uma segunda porta — no `/ops` ou na
+>    administração —, não a mesma tela. Recuperação por e-mail que ignore isso
+>    nasce sem cobrir o público que mais esquece senha.
+> 5. **A rota de reset é alvo clássico de abuso**, e o teto de requisições hoje
+>    cobre só a rota de lead B2B (divergência 9 de `resumo-de-funcao.md`). Sem
+>    limite, o formulário vira torneira de e-mail cobrada de você.
+>
+> **A saída que não depende do provedor de e-mail, se você quiser uma rede de
+> segurança antes:** reposição de senha pela operação (`/ops`), que já é o
+> caminho previsto para a escola. Não é o recurso — não atende quem esqueceu a
+> senha às 23h —, mas tira o "perdeu a conta para sempre" da mesa enquanto a
+> decisão do provedor não vem. É escolha sua se vale entrar antes ou se o item
+> espera inteiro.
+
 ## ~~A data de um lançamento, lida do mesmo jeito em toda parte~~ ✅ 28/08/2026
 
 Não é pedido novo: é a pendência que a *Tela de perfil* registrou em 24/08 e

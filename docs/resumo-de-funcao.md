@@ -48,6 +48,12 @@ Avançado, atrás de flag).
 - Data de nascimento é informativa — **não há validação de idade**. O porquê
   fica na tela, embaixo do campo ("adequar o conteúdo à sua idade, e garantir
   que menores nunca vejam anúncio").
+- **Não há recuperação de senha** (registrado no backlog em 30/08/2026). Não
+  existe "esqueci minha senha" em `/login`, nem rota, nem caminho de suporte no
+  produto — quem esquece a senha perde a conta, e como os campos financeiros
+  são cifrados com chave por usuário, não há reposição manual possível. O
+  bloqueio é não haver envio de e-mail no repositório (nenhuma dependência de
+  envio no `package.json`), o mesmo que segura os "alertas que avisam antes".
 - Ajustes concentra: dados da conta, cor de destaque (Dourado padrão,
   Terracota, Lilás, Verde-água — só o acento muda dentro do navy; o seletor
   claro/escuro saiu em 14/08/2026, o tema Fin tem uma cara só), convite de
