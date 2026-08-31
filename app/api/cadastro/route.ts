@@ -4,10 +4,33 @@ import { db } from "@/lib/db"
 import { COOKIE_INDICACAO, vincularIndicacao } from "@/lib/indicacao"
 import { COOKIE_CONVITE, resgatarConvite } from "@/lib/convite-escola"
 import { apelidoValido } from "@/lib/pontos"
+import { permitido } from "@/lib/limite-taxa"
+import { CADASTRO_POR_IP, chaveCadastroIp, ipDaRequisicao } from "@/lib/portas-de-conta"
 
 export const dynamic = "force-dynamic"
 
+/**
+ * O teto por IP aqui não é anti-spam de conta, é anti-CONSULTA.
+ *
+ * Esta rota responde 409 "esse email já tem conta" — e tem de responder, senão
+ * quem já é cliente fica preso num formulário que falha sem dizer por quê. O
+ * efeito colateral é que ela responde a pergunta "fulano usa o Finlow?" a quem
+ * perguntar, e num app de dinheiro isso é dado sensível sozinho, antes de
+ * qualquer número (decisão 2 de *Recuperação de senha*, no backlog). Sem teto,
+ * a pergunta pode ser feita para uma lista inteira de e-mails por minuto.
+ *
+ * O teto não fecha esse oráculo: encarece. Fechar seria parar de dizer que a
+ * conta existe, e aí quem já é cliente não descobre por que o cadastro falha.
+ */
 export async function POST(req: NextRequest) {
+  const ip = ipDaRequisicao(req.headers)
+  if (ip && !permitido(chaveCadastroIp(ip), CADASTRO_POR_IP.max, CADASTRO_POR_IP.janelaMs)) {
+    return NextResponse.json(
+      { error: "Muitas tentativas seguidas. Espera alguns minutos e tenta de novo." },
+      { status: 429 }
+    )
+  }
+
   try {
     const { nome, email, senha, dataNascimento, apelido, celular } = await req.json()
 

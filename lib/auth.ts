@@ -6,6 +6,14 @@ import bcrypt from "bcryptjs"
 import { db } from "@/lib/db"
 import { COOKIE_INDICACAO, vincularIndicacao } from "@/lib/indicacao"
 import { COOKIE_CONVITE, resgatarConvite } from "@/lib/convite-escola"
+import { excedeu, limpar, registrar } from "@/lib/limite-taxa"
+import {
+  LOGIN_POR_EMAIL,
+  LOGIN_POR_IP,
+  chaveLoginEmail,
+  chaveLoginIp,
+  ipDaRequisicao,
+} from "@/lib/portas-de-conta"
 
 // Google só entra quando as credenciais existirem no .env.local
 // (criar em console.cloud.google.com → APIs & Services → Credentials)
@@ -18,17 +26,52 @@ providers.push(
       email: { label: "Email", type: "email" },
       senha: { label: "Senha", type: "password" },
     },
-    async authorize(credentials) {
+    /**
+     * O teto de tentativas mora AQUI, e não numa camada acima, porque só aqui
+     * se sabe se a senha estava certa — e é a FALHA que conta (ver
+     * `lib/portas-de-conta.ts`). Uma senha certa perdoa as erradas de antes.
+     *
+     * Barrado devolve `null`, o mesmo que senha errada, e isso é escolha
+     * dupla: a tela não tem como distinguir os dois no fluxo de credenciais do
+     * NextAuth, e dizer "você está barrado" entregaria ao atacante o relógio
+     * do teto de graça. Quem sente é a pessoa que errou muitas vezes seguidas,
+     * e por isso `/login` diz, ao lado do erro, que a entrada esfria sozinha.
+     */
+    async authorize(credentials, request) {
       const email = credentials?.email as string | undefined
       const senha = credentials?.senha as string | undefined
       if (!email || !senha) return null
 
-      const user = await db.user.findUnique({ where: { email: email.toLowerCase() } })
-      if (!user?.senha) return null
+      const emailNorm = email.toLowerCase().trim()
+      const chaveEmail = chaveLoginEmail(emailNorm)
+      if (excedeu(chaveEmail, LOGIN_POR_EMAIL.max, LOGIN_POR_EMAIL.janelaMs)) return null
+
+      // IP desconhecido PULA a regra por IP em vez de jogar todo mundo numa
+      // chave comum — balde compartilhado numa porta de login não é atrito,
+      // é queda geral no primeiro proxy que esconder o cabeçalho.
+      const ip = ipDaRequisicao((request as Request | undefined)?.headers)
+      const chaveIp = ip ? chaveLoginIp(ip) : null
+      if (chaveIp && excedeu(chaveIp, LOGIN_POR_IP.max, LOGIN_POR_IP.janelaMs)) return null
+
+      const contarFalha = () => {
+        registrar(chaveEmail, LOGIN_POR_EMAIL.janelaMs)
+        if (chaveIp) registrar(chaveIp, LOGIN_POR_IP.janelaMs)
+      }
+
+      const user = await db.user.findUnique({ where: { email: emailNorm } })
+      if (!user?.senha) {
+        contarFalha()
+        return null
+      }
 
       const ok = await bcrypt.compare(senha, user.senha)
-      if (!ok) return null
+      if (!ok) {
+        contarFalha()
+        return null
+      }
 
+      limpar(chaveEmail)
+      if (chaveIp) limpar(chaveIp)
       return { id: user.id, email: user.email, name: user.nome }
     },
   })

@@ -50,10 +50,24 @@ Avançado, atrás de flag).
   que menores nunca vejam anúncio").
 - **Não há recuperação de senha** (registrado no backlog em 30/08/2026). Não
   existe "esqueci minha senha" em `/login`, nem rota, nem caminho de suporte no
-  produto — quem esquece a senha perde a conta, e como os campos financeiros
-  são cifrados com chave por usuário, não há reposição manual possível. O
-  bloqueio é não haver envio de e-mail no repositório (nenhuma dependência de
-  envio no `package.json`), o mesmo que segura os "alertas que avisam antes".
+  produto — quem esquece a senha perde o acesso à conta. O bloqueio é não haver
+  envio de e-mail no repositório (nenhuma dependência de envio no
+  `package.json`), o mesmo que segura os "alertas que avisam antes".
+  ~~E como os campos financeiros são cifrados com chave por usuário, não há
+  reposição manual possível.~~ **Errado, corrigido em 31/08/2026:** a cifra usa
+  uma `ENCRYPTION_KEY` de ambiente e o usuário entra só como AAD
+  (`lib/cripto.ts`, que registra a escolha e o porquê) — trocar a senha devolve
+  a conta inteira, dados financeiros inclusive. A reposição manual não só é
+  possível como **já roda** para membro de escola desde 18/08 (`redefinirSenha`,
+  `POST /api/ops/escolas/{id}/membros/{userId}/senha`); ela não alcança a conta
+  B2C porque exige vínculo em `MembroEscola`, e estendê-la é decisão de produto
+  em aberto, não limitação técnica.
+- **As duas portas públicas da conta têm teto de tentativa** (31/08/2026,
+  primeira metade de *Recuperação de senha*): 10 falhas por conta e 30 por IP
+  em 15 min no login, 10 cadastros por IP por hora. Só a FALHA conta e o acerto
+  zera — daí o par `excedeu`/`registrar` + `limpar` em `lib/limite-taxa.ts`, ao
+  lado do `permitido` que o lead B2B usa. Os números moram em
+  `lib/portas-de-conta.ts`; guardado por `scripts/testar-portas.mts`.
 - Ajustes concentra: dados da conta, cor de destaque (Dourado padrão,
   Terracota, Lilás, Verde-água — só o acento muda dentro do navy; o seletor
   claro/escuro saiu em 14/08/2026, o tema Fin tem uma cara só), convite de
@@ -511,7 +525,7 @@ dos dois guards.
 | ~~6~~ | ~~"Baixa **TODOS** os dados do usuário" (portabilidade LGPD)~~ | ~~`/api/exportar`, regra 3 do README~~ | ✅ **Fechada em 24/08/2026.** Entraram as memórias, as conversas inteiras (sem o teto de 40/200 que serve à tela), os orçamentos, o onboarding, os eventos de pontuação, os insights, o progresso das lições, os dias da ofensiva, o perfil da trilha, as recomendações da IA e as importações de extrato. Quem decide o que sai virou dado em `lib/dados-exportacao.ts`, com a razão escrita de cada item que fica de fora (a sessão, que é credencial, e as três tabelas da escola, que são da instituição). A regra de posse é a RELAÇÃO com `User`, não a coluna `userId`: a coluna deixava passar `Indicacao`, `Turma`, `ConviteEscola` e `AcessoTrilhaTurma`. A lista de espera também sai, porque o delete de conta já a apaga pelo e-mail. Guardado por `scripts/testar-exportacao.mts`, que roda sem banco: tabela do usuário sem classificação derruba o teste, e seção classificada que não aparece no arquivo também. |
 | 7 | Política escrita de retenção e privacidade (R1) | `docs/estado-do-produto.md` | Engenharia pronta (consentimento separado, cifra, RLS, exclusão, exportação). **Falta o texto jurídico**: base legal, finalidade, prazo de retenção. |
 | 8 | Revisão jurídica CVM/LGPD do conteúdo | `docs/estado-do-produto.md` | Pendente nos módulos que tocam investimento (M09, M10, M22–M25) e no M07 (bets). |
-| 9 | Proteção de custo por abuso | — | Rate limit existe **só** na rota de lead B2B. **Chat e extrato — as chamadas que custam dinheiro — não têm limite.** |
+| 9 | Proteção de custo por abuso | — | ~~Rate limit existe **só** na rota de lead B2B.~~ Em 31/08/2026 passou a cobrir também as portas de conta (`/login` e `/api/cadastro`) — que não era custo de Vertex, era adivinhação de senha sem teto e consulta pública de quem tem conta. **A divergência de CUSTO segue aberta: chat e extrato — as chamadas que gastam dinheiro — continuam sem limite de taxa.** O teto de tokens de 10/08 limita o VOLUME do mês, não o ritmo. |
 | 10 | "Condições especiais para quem entrar cedo" / planos | FAQ da landing | Parcialmente fechada. O paywall existe desde 10/08/2026 (`lib/pagamento/`, `/premium`), então a resposta do FAQ deixou de dizer que planos "serão definidos" e passou a descrever o que há: uso grátis com limite mensal de IA e um premium opcional. A `/premium` mostra o valor para quem ainda não assina desde 14/08/2026 (item 3 da avaliação UX): `lib/pagamento/preco.ts` lê o preço do mesmo `STRIPE_PRICE_ID` que o checkout cobra, e `/api/pagamento/assinatura` devolve o `plano` cozido para a tela. **Segue não fechada:** a cobrança está em `sk_test` e nunca cobrou ninguém. "Condições especiais" continua sendo promessa comercial, sem nada no código que a sustente. |
 | 11 | "userId sempre da sessão — nunca do client" | `lib/painel.ts`, regra de segurança do Painel | Verdade em todas as rotas de dinheiro, e era **mentira em três da trilha** até 07/08/2026: `/api/progresso` aceitava o header `x-user-id` (e criava a conta correspondente), `/api/trilha` e `/api/trilha/[moduloId]` aceitavam `?userId=`. Fechado — ver *Limpeza* em `estado-do-produto.md`. |
 | ~~12~~ | ~~Rota de operação só para quem opera~~ | — | ✅ **Fechada em 17/08/2026.** O guard de 31/07 não guardava: só armava se `OPS_METRICS_TOKEN` existisse, e sem ela a rota respondia a qualquer um. Agora falha fechada (503 sem a variável), lê o segredo do cabeçalho `x-ops-token` em vez da query (token em URL vira linha de log) e compara em tempo constante. Custo da mudança: a rota fica 503 até a variável ser definida na Vercel, e quem a chama passa a mandar o cabeçalho. |

@@ -93,16 +93,29 @@ export default function LoginPage() {
           />
 
           {erro && (
-            <p
-              className="rounded-xl border px-4 py-3 text-sm"
-              style={{
-                borderColor: "color-mix(in srgb, var(--fin-erro) 40%, transparent)",
-                background: "color-mix(in srgb, var(--fin-erro) 10%, transparent)",
-                color: "var(--fin-erro)",
-              }}
-            >
-              {erro}
-            </p>
+            <>
+              <p
+                className="rounded-xl border px-4 py-3 text-sm"
+                style={{
+                  borderColor: "color-mix(in srgb, var(--fin-erro) 40%, transparent)",
+                  background: "color-mix(in srgb, var(--fin-erro) 10%, transparent)",
+                  color: "var(--fin-erro)",
+                }}
+              >
+                {erro}
+              </p>
+              {/*
+                A tela não consegue distinguir "senha errada" de "tentativas
+                demais": o fluxo de credenciais do NextAuth devolve a mesma
+                coisa nos dois casos, e dizer qual é entregaria o relógio do
+                teto a quem está adivinhando (lib/auth.ts). O que dá para dizer
+                sem escolher entre os dois é a regra, que vale nos dois.
+              */}
+              <p className="px-1 text-xs" style={{ color: "var(--fin-muted)" }}>
+                Se você errou várias vezes seguidas, a entrada esfria por alguns
+                minutos e volta sozinha.
+              </p>
+            </>
           )}
 
           <button

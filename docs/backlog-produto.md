@@ -598,10 +598,27 @@ voltar para a conta.
 > "esqueci minha senha" em `/login`, nem rota, nem tela, nem caminho de suporte
 > dentro do produto — a varredura não achou uma única ocorrência em `app/` ou
 > `components/`. Quem esquece a senha perde junto o histórico financeiro
-> cifrado, os objetivos, a trilha e as conversas com o assistente. E perde de
+> cifrado, os objetivos, a trilha e as conversas com o assistente. ~~E perde de
 > um jeito que o Finlow não consegue desfazer nem manualmente: os campos são
 > cifrados com chave derivada por usuário, então não há "a gente recupera para
-> você" possível sem a pessoa entrar.
+> você" possível sem a pessoa entrar.~~
+>
+> ⛔ **Essa última frase estava errada, e a correção muda o tamanho do
+> problema** (31/08/2026). Não existe chave derivada por usuário neste
+> repositório: [`lib/cripto.ts`](../lib/cripto.ts) usa **uma** `ENCRYPTION_KEY`,
+> lida da variável de ambiente, e o usuário entra só como AAD (`userId:campo`),
+> que amarra a cifra ao dono mas não deriva chave nenhuma. O próprio arquivo
+> registra a escolha e o motivo: ponta a ponta "quebraria dois requisitos do
+> produto — a IA não poderia ler os números no servidor, e esquecer a senha
+> significaria perder os dados". A prova de que a reposição funciona já está
+> rodando: `redefinirSenha` (`lib/ops-escola.ts`) troca a senha de membro de
+> escola desde 18/08, e os dados financeiros dessas contas continuam sendo
+> lidos normalmente depois.
+>
+> **O que isso muda:** trocar a senha devolve a conta INTEIRA, dados
+> financeiros inclusive. O item deixa de ser "dado perdido para sempre" e passa
+> a ser "acesso perdido para sempre", que continua grave — mas é problema de
+> porta, não de cofre, e portanto tem conserto.
 >
 > 🔴 **O que trava, e é decisão sua, não de código:** não existe envio de
 > e-mail neste repositório. Nenhuma dependência de envio no `package.json`, e
@@ -617,7 +634,14 @@ voltar para a conta.
 > `schema.prisma` desde sempre (veio com o adapter do NextAuth) — se ela vai
 > guardar o token de reset ou se nasce tabela própria é decisão a registrar, não
 > detalhe de implementação, porque a tabela do adapter tem dono. E
-> `lib/limite-taxa.ts` já existe, hoje guardando só a rota de lead B2B.
+> `lib/limite-taxa.ts` já existe, ~~hoje guardando só a rota de lead B2B~~ —
+> desde 31/08 guardando também as duas portas de conta (ver abaixo).
+>
+> 🟢 **A metade que não depende do provedor, e que já entrou** (31/08/2026,
+> ver *As portas de conta ganham teto de tentativa*, no fim deste arquivo): o
+> teto de tentativa das portas públicas. É o mesmo formato da *Conferência de
+> duplicata* no Open Finance — a parte que serve a qualquer escolha que venha
+> depois, e que já era defeito antes de o item existir.
 >
 > **Cinco decisões que este item carrega, e é melhor que estejam à mesa antes
 > de começar do que descobertas no meio:**
@@ -644,7 +668,10 @@ voltar para a conta.
 >    nasce sem cobrir o público que mais esquece senha.
 > 5. **A rota de reset é alvo clássico de abuso**, e o teto de requisições hoje
 >    cobre só a rota de lead B2B (divergência 9 de `resumo-de-funcao.md`). Sem
->    limite, o formulário vira torneira de e-mail cobrada de você.
+>    limite, o formulário vira torneira de e-mail cobrada de você. ✅ **A parte
+>    que já dava para resolver foi resolvida em 31/08** — as duas portas que já
+>    existiam ganharam teto, e o reset entra nessa mesma casa quando nascer, em
+>    vez de inventar a terceira contagem.
 >
 > **A saída que não depende do provedor de e-mail, se você quiser uma rede de
 > segurança antes:** reposição de senha pela operação (`/ops`), que já é o
@@ -652,6 +679,22 @@ voltar para a conta.
 > senha às 23h —, mas tira o "perdeu a conta para sempre" da mesa enquanto a
 > decisão do provedor não vem. É escolha sua se vale entrar antes ou se o item
 > espera inteiro.
+>
+> 📋 **Nota de inventário (31/08/2026): essa saída está meio construída, e o
+> pedaço que falta é pequeno.** A porta de `/ops` já existe — `POST
+> /api/ops/escolas/{id}/membros/{userId}/senha`, chamando `redefinirSenha` — mas
+> ela só alcança **membro de escola**: a função começa procurando o vínculo em
+> `MembroEscola` e recusa quem não está em nenhuma. Ou seja, a rede de segurança
+> vale hoje para o aluno do lote (que é justamente quem não tem e-mail) e não
+> vale para o cliente B2C adulto, que é quem o item de 30/08 descreve.
+>
+> **Estender a `/ops` para a conta comum não foi feito de propósito**, e é o
+> mesmo motivo pelo qual você escreveu "é escolha sua": é decisão de produto,
+> não de código. O que ela custa, para estar à mesa: a operação passa a poder
+> trocar a senha de qualquer cliente, e a conta que só entrava pelo Google ganha
+> senha própria no gesto (efeito já registrado no comentário de
+> `redefinirSenha`). O que ela resolve: tira o "perdeu a conta para sempre" da
+> mesa hoje, sem esperar provedor nenhum. **Uma palavra sua e entra.**
 
 ## ~~A data de um lançamento, lida do mesmo jeito em toda parte~~ ✅ 28/08/2026
 
@@ -715,6 +758,77 @@ achar o mês anterior com dados, UTC para cruzar os tetos de orçamento.
 > `financas.ts` derruba quatro casos em **America/Sao_Paulo**, tirar o `Z` da
 > âncora derruba sete em Kiritimati, e voltar o `toISOString()` do "hoje"
 > derruba dois nos fusos a oeste.
+
+## ~~As portas de conta ganham teto de tentativa~~ ✅ 31/08/2026
+
+Primeira metade de *Recuperação de senha* (acima), e independente de qual
+provedor de e-mail for escolhido: entrar e criar conta passam a ter teto de
+tentativa, como o reset vai precisar ter.
+
+> **Era defeito de hoje, não só preparo para amanhã, e essa é a razão de ter
+> vindo antes do resto.** A decisão 5 do item diz que a rota de reset é alvo
+> clássico de abuso. Ao conferir o terreno, a lacuna era mais velha que o item:
+> **`/login` aceitava senha errada sem conta nenhuma** — nada no caminho do
+> provider de credenciais olhava quantas vezes aquele e-mail já tinha errado —,
+> e `/api/cadastro` respondia 409 "esse email já tem conta" a quem perguntasse,
+> quantas vezes quisesse. Num app de dinheiro, adivinhar senha à vontade é o
+> defeito; o reset que ainda não existe é o preparo.
+>
+> **O segundo é mais sutil que o primeiro, e é a decisão 2 do item aparecendo
+> onde ninguém tinha olhado.** O item pede que a resposta do reset não revele
+> quem tem conta, "senão o formulário vira uma consulta pública de 'fulano usa
+> o Finlow?'". O formulário de CADASTRO já era essa consulta. E ele não pode
+> simplesmente parar de responder: sem o 409, quem já é cliente fica preso num
+> formulário que falha sem dizer por quê. O teto não fecha o oráculo —
+> **encarece**, que é o que dá para fazer sem trocar um defeito por outro. Está
+> escrito na rota para ninguém "consertar" isso escondendo a mensagem.
+>
+> **A regra dos tetos mora em [`lib/portas-de-conta.ts`](../lib/portas-de-conta.ts)**,
+> folha e sem framework, pelo mesmo motivo de `lib/ops-lista.ts`: quem importa é
+> `lib/auth.ts`, e o next-auth arrasta React cliente atrás de si — a regra mais
+> importante da porta ficaria sem teste possível. São três: 10 falhas por conta
+> e 30 por IP em 15 minutos no login, 10 cadastros por IP por hora.
+>
+> **Só a FALHA conta, e isso obrigou uma segunda forma de contar.** `permitido`
+> pergunta e registra no mesmo gesto, que é o certo para formulário público
+> (cada envio custa, dando certo ou não) e o errado para senha: o veredito só
+> existe depois do bcrypt, e contar o acerto junto trancaria quem entra e sai
+> várias vezes no mesmo dia. `lib/limite-taxa.ts` ganhou o par `excedeu`
+> (pergunta, não registra) + `registrar`, com `limpar` no acerto. **Sem o
+> `limpar`, dez erros de digitação seguidos de um acerto deixariam a pessoa
+> trancada DEPOIS de já ter provado quem é** — e o conserto óbvio de quem
+> esbarrasse nisso seria desligar o teto.
+>
+> **IP desconhecido DESLIGA a regra por IP em vez de virar uma chave "anon".**
+> Num formulário de lead o balde compartilhado é inofensivo; numa porta de login
+> é queda geral no primeiro proxy que esconder o cabeçalho, e o sintoma
+> ("ninguém consegue entrar") não aponta para cá. A regra por conta não depende
+> de cabeçalho nenhum e continua de pé nesse caso.
+>
+> **Barrado devolve o mesmo que senha errada**, porque o fluxo de credenciais do
+> NextAuth não tem canal para distinguir os dois na tela, e porque dizer "você
+> está barrado" entregaria o relógio do teto a quem está adivinhando. Quem paga
+> por isso é a pessoa que errou muitas vezes seguidas, e por isso `/login` passou
+> a dizer, ao lado do erro, que a entrada esfria sozinha em alguns minutos — a
+> regra dita sem escolher entre os dois casos.
+>
+> **O que este item NÃO fez, e é escolha registrada:** o teto por conta é uma
+> faca de dois gumes conhecida — quem souber o e-mail de alguém pode manter a
+> conta esfriando de propósito. Por isso os números são folgados (dez falhas, e
+> só falhas) e a janela é curta: quinze minutos, não bloqueio. Fechar isso de
+> verdade pede segundo fator ou desafio, que é frente própria.
+>
+> **Guardado por `scripts/testar-portas.mts`** (sem banco, sem build): a
+> aritmética das duas formas de contar com relógio congelado, a leitura do IP, e
+> seis conferências que olham o CÓDIGO das duas portas — que o teto seja
+> perguntado **antes** do bcrypt (perguntar depois não nega ao atacante o custo
+> que se quer negar), que o login use `excedeu`/`limpar` e **não** `permitido`,
+> que nenhuma das duas invente IP quando não sabe, que o cadastro recuse com 429,
+> e que a frase honesta da tela continue lá **enquanto** o teto existir — no dia
+> em que ele sair, a exigência afrouxa sozinha em vez de virar teste mentiroso.
+> Nada disso quebra build, typecheck ou lint: uma porta de senha sem limite
+> compila perfeitamente e responde igual. Conferido contra o código mutilado:
+> nove mutações, nove pegas.
 
 ---
 
