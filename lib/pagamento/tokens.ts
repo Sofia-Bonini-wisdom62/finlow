@@ -44,6 +44,20 @@ export const TETO_GRATIS_TOKENS = 120_000
  */
 export const TETO_ESCOLA_TOKENS = 300_000
 
+/**
+ * 360 mil tokens por mês para quem é premium POR ASSINATURA PRÓPRIA. 3×
+ * o grátis (decisão da fundadora, 20/08/2026: teto, não Infinity) porque
+ * conta sem teto nenhum é conta de Vertex sem parede, e uma única conta
+ * abusiva vira o custo de centenas de assinantes normais. 3× dá folga real
+ * para quem usa o Fin todo dia, sem ser um cheque em branco.
+ *
+ * Maior que TETO_ESCOLA_TOKENS de propósito, mas por pouco: quem paga do
+ * próprio bolso tem mais folga que quem entra pela escola.
+ *
+ * O número é afinável como TETO_ESCOLA_TOKENS: muda aqui e muda em todo lugar.
+ */
+export const TETO_PREMIUM_TOKENS = TETO_GRATIS_TOKENS * 3
+
 /** As origens de IA que consomem a cota. */
 export type OrigemIA = "chat" | "onboarding" | "recomendacao" | "insights" | "extrato"
 
@@ -86,10 +100,10 @@ export async function tokensDoMes(userId: string, agora = new Date()): Promise<n
 /**
  * A cota da pessoa: usada pelo guard E pela tela.
  *
- * Assinante não tem teto — `restam` vem como `Infinity` para que nenhuma tela
- * mostre "restam 120000" a quem paga. Premium PELA ESCOLA tem teto próprio
- * (TETO_ESCOLA_TOKENS): maior que o grátis, mas finito — ver o comentário da
- * constante.
+ * Todo mundo tem teto, inclusive quem assina — só o tamanho muda:
+ * TETO_PREMIUM_TOKENS (assinatura própria) > TETO_ESCOLA_TOKENS (pela escola)
+ * > TETO_GRATIS_TOKENS. Antes de 20/08/2026 o assinante era `Infinity`; virou
+ * teto finito porque conta sem parede é custo de Vertex sem dono.
  */
 export async function cotaDoMes(userId: string, agora = new Date()): Promise<Cota> {
   const [acesso, usados] = await Promise.all([
@@ -97,10 +111,12 @@ export async function cotaDoMes(userId: string, agora = new Date()): Promise<Cot
     tokensDoMes(userId, agora),
   ])
 
-  if (acesso.origem === "assinatura") {
-    return { premium: true, origem: "assinatura", usados, teto: Infinity, restam: Infinity, podeUsar: true }
-  }
-  const teto = acesso.origem === "escola" ? TETO_ESCOLA_TOKENS : TETO_GRATIS_TOKENS
+  const teto =
+    acesso.origem === "assinatura"
+      ? TETO_PREMIUM_TOKENS
+      : acesso.origem === "escola"
+        ? TETO_ESCOLA_TOKENS
+        : TETO_GRATIS_TOKENS
   return {
     premium: acesso.premium,
     origem: acesso.origem,

@@ -44,11 +44,13 @@ interface Estado {
   } | null
 }
 
-// A lista do protótipo v2 — "energia infinita" entrou quando virou verdade
+// A lista do protótipo v2. "energia infinita" entrou quando virou verdade
 // (isentoDeEnergia em lib/energia.ts): vender o que não existe seria pior
-// que não vender.
+// que não vender. Mesma razão pela qual "conversa sem limite" saiu em
+// 20/08/2026 quando o assinante ganhou teto próprio (TETO_PREMIUM_TOKENS,
+// lib/pagamento/tokens.ts): 3x o grátis é folga real, mas não é "sem limite".
 const VANTAGENS = [
-  "Conversa sem limite com o Fin",
+  "3x mais conversa com o Fin",
   "Energia infinita na trilha",
   "Extrato do banco lido quantas vezes precisar",
   "Diagnóstico de vazamentos sempre atualizado",
@@ -108,6 +110,8 @@ function UsoDoMes({ cota, premium }: { cota: Estado["cota"]; premium: boolean })
                 Restam <strong className="tabular-nums">{milhar(cota.restam ?? 0)}</strong> até o
                 dia 1º, quando a cota renova.
               </>
+            ) : premium ? (
+              <>Sua cota deste mês acabou. Ela renova no dia 1º.</>
             ) : (
               <>Sua cota gratuita deste mês acabou. Ela renova no dia 1º.</>
             )}
@@ -119,7 +123,7 @@ function UsoDoMes({ cota, premium }: { cota: Estado["cota"]; premium: boolean })
       <p className="mt-3 text-xs text-fl-ink/50">
         A conta é em <em>tokens</em>, pedaços de palavra que o assistente lê e escreve. Uma
         conversa curta gasta pouco; mandar um extrato inteiro gasta bem mais.
-        {premium && " Cobramos por assinatura, não por uso."}
+        {premium && " A assinatura tem um teto bem mais alto que o grátis, não cobrança por uso."}
       </p>
     </div>
   )

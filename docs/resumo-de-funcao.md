@@ -256,9 +256,13 @@ mesmo arquivo — "ativa" sem vigência é piloto e libera; "suspensa" nega mesm
 com data futura). `acessoPremium` devolve o veredito com a `origem`
 ("assinatura" | "escola"), a assinatura vence quando as duas valem, e a tela
 `/premium` usa isso para não oferecer checkout nem botão de cancelar a quem
-tem acesso pela escola. A cota também distingue: assinante segue sem teto;
-premium pela escola tem `TETO_ESCOLA_TOKENS` (300 mil/mês) — uma escola de
-500 alunos com chat sem teto seria custo sem contrato que o cubra.
+tem acesso pela escola. A cota também distingue, e desde 20/08/2026 os três
+níveis são finitos: grátis `TETO_GRATIS_TOKENS` (120 mil/mês) < escola
+`TETO_ESCOLA_TOKENS` (300 mil/mês) < assinatura própria `TETO_PREMIUM_TOKENS`
+(360 mil/mês, 3× o grátis). Antes disso o assinante era `Infinity` — virou
+teto porque conta sem parede nenhuma é custo de Vertex sem dono; uma escola
+de 500 alunos com chat sem teto seria custo sem contrato que o cubra, e um
+assinante individual sem teto é o mesmo risco em miniatura.
 
 Duas leituras que não são óbvias:
 

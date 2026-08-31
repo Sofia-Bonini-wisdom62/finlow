@@ -62,22 +62,27 @@ export async function POST(req: NextRequest) {
     })
 
     /**
-     * Limite grátis, em TOKENS. ANTES da chamada ao Vertex.
+     * Limite mensal, em TOKENS. ANTES da chamada ao Vertex.
      *
      * Depois não serviria para nada: o token já teria sido gasto, e a gente
      * pagaria a resposta de quem não paga a gente para então esconder ela.
      *
      * 402 e não 403: "precisa pagar" é diferente de "não pode". A tela usa esse
      * código para abrir o paywall em vez de mostrar erro.
+     *
+     * A mensagem se separa em duas desde que o assinante ganhou teto próprio
+     * (TETO_PREMIUM_TOKENS, 20/08/2026): quem já paga e mesmo assim estourou
+     * não pode ouvir "assine para continuar", porque já assina.
      */
     const cota = await cotaDoMes(userId)
     if (!cota.podeUsar) {
       return NextResponse.json(
         {
           error: "cota_esgotada",
-          mensagem:
-            "Suas conversas gratuitas deste mês acabaram. Assine para continuar, " +
-            "ou volte no dia 1º, que a cota renova.",
+          mensagem: cota.premium
+            ? "Você atingiu o limite mensal de uso da IA da sua assinatura. Ele renova no dia 1º."
+            : "Suas conversas gratuitas deste mês acabaram. Assine para continuar, " +
+              "ou volte no dia 1º, que a cota renova.",
           cota: { usados: cota.usados, teto: cota.teto },
         },
         { status: 402 }

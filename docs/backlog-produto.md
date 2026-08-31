@@ -397,8 +397,10 @@ venda):**
   mensagem, e a tela avisa o risco antes de abrir o formulário. **Continua
   valendo: validar com advogado antes de escola real com menores.**
 - **Cota de IA por aluno** — premium por escola ganha teto próprio
-  (`TETO_ESCOLA_TOKENS`) em vez do Infinity do assinante; o número é
-  afinável e a fundadora pode derrubar o teto quando quiser.
+  (`TETO_ESCOLA_TOKENS`), menor que o do assinante por conta própria
+  (`TETO_PREMIUM_TOKENS`, 3× o grátis desde 20/08/2026; era `Infinity` antes
+  disso). Os dois números são afináveis e a fundadora pode mexer neles quando
+  quiser.
 - **Rank por eventos escolares** — a primeira versão do rank da sala usa
   `User.pontos` total (pontos de uso pessoal contam); recortar por eventos
   dos módulos do segmento fica para uma segunda rodada.
