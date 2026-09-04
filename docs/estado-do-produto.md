@@ -215,8 +215,8 @@ EF/EM atual; a fila entre "existe" e "substituiu" está em
 |---|---|---|
 | Conteúdo íntegro no repo + validador + carregador + seed (simulado) | ✅ 24/08 | `prisma/curso/`, `lib/licao/`, `scripts/{validar-licoes,semear-curso}.mts` |
 | Player v2: 6 formatos, fluxo, página e rota (Tarefa B) | ✅ 30/08 | `components/curso/`, `app/curso/[licaoSlug]`, `app/api/curso/[licaoSlug]`, `lib/curso/corrigir.ts`, `scripts/testar-curso-player.mts` |
-| `pnpm db:push` + `semear-curso.mts --aplicar` em produção | ❌ **nunca rodou** | item 0 do backlog; o seed não toca `Modulo`/`Tela` |
-| Caixas de Leitner, revisão diária, fusão com a trilha, instrumentação | 📋 | itens 2 a 8 do backlog |
+| `pnpm db:push` + `semear-curso.mts --aplicar` em produção | ✅ 30/08 | 107 conceitos · 321 lições · 5.268 itens no banco; RLS fechado (43 tabelas); a trilha antiga (150 módulos · 801 telas) intocada. `/curso/<slug>` responde em produção; a piloto rodou ponta a ponta a 360px |
+| Caixas de Leitner, revisão diária, fusão com a trilha, instrumentação | 📋 | itens 2 a 8 do backlog. **Até a fusão (item 4), a Trilha continua mostrando os 107 módulos escolares antigos** e o curso v2 só é alcançável pela URL `/curso/<slug>` |
 
 > ⚠️ **Uma integração paralela foi construída e abandonada em 30/08/2026.**
 > A branch `feat/base-licoes-escolares` (guardada no GitHub como referência)
@@ -224,9 +224,10 @@ EF/EM atual; a fila entre "existe" e "substituiu" está em
 > sem saber que o curso v2 já estava na `main` desde 24/08 — a exploração
 > partiu de uma branch 23 commits atrás. O `pnpm db:push` dela chegou a
 > rodar contra produção (coluna `Modulo.formato`/`conceitoId`/`encontro`/
-> `serie` e tabela `ItemLicao`, todas vazias); o `db:push` da `main` desfaz
-> isso ao criar as tabelas certas. Registro em `backlog-produto.md`,
-> "Branches paralelas conferidas".
+> `serie` e tabela `ItemLicao`, todas vazias); o `db:push` da `main` desfez
+> isso em 30/08 ao criar as tabelas certas (precisou de `--accept-data-loss`
+> por causa do default `"classico"` nas 150 linhas, ver `backlog-curso-v2.md`,
+> item 0). Registro em `backlog-produto.md`, "Branches paralelas conferidas".
 
 ## Redesign Fin (13/08/2026, em construção)
 

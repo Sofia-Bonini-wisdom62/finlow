@@ -39,8 +39,25 @@ isto foi construído: o seed foi exercitado só em simulação. O primeiro
 
 ## P0 — bloqueiam tudo
 
-### 0. Rodar o seed contra o banco real
+### ~~0. Rodar o seed contra o banco real~~ ✅ 30/08/2026
 `pnpm db:push && node --import tsx scripts/semear-curso.mts --aplicar`
+
+> **Rodou em 30/08/2026, com autorização explícita da fundadora.** O `db push`
+> precisou de `--accept-data-loss`: não por dado de verdade, mas porque a
+> integração paralela abandonada (`feat/base-licoes-escolares`, ver
+> `estado-do-produto.md`) tinha deixado em produção uma coluna
+> `Modulo.formato` cheia do próprio default `"classico"` nas 150 linhas, e o
+> Prisma não distingue default de dado. Resultado: `Conceito` 107 ·
+> `LicaoCurso` 321 · `ItemAvaliativo` 5.268 (963 de reserva);
+> `aplicar-rls.mjs`: as 3 tabelas nasceram abertas e fecharam no mesmo passo,
+> 43 tabelas com RLS, nenhuma legível por `anon`. Trilha antiga intocada: 150
+> módulos · 801 telas. Em seguida, a lição-piloto (`/curso/quando-a-divida-
+> vira-problema`) rodou ponta a ponta **em produção** a 360px: 15 telas, sem
+> overflow horizontal, slider da estimativa a 44px, erro bloqueando com o
+> foco no "Entendi", acerto avançando sozinho com a âncora na tela seguinte,
+> `ordenar` por toque com "Desfazer", "voltar" e "Continuar" ao rever, tela
+> final com 93% · 14/15 · "O que ficou". É a prova do "pronto quando" do
+> item 1.
 
 O `db:push` é obrigatório antes, e não só pelas tabelas: ele reaplica o RLS, e
 **tabela nova nasce legível pela API pública do Supabase** até isso rodar (o
