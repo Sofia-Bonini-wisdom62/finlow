@@ -203,6 +203,31 @@ Nenhum código lê os campos novos ainda — os defaults (`publico: "adulto"`,
 > Finlow passa a guardar nome de criança e a escola passa a conhecer a senha
 > inicial de cada aluno. Validar com advogado antes de escola real.
 
+## Curso escolar v2 (conteúdo 24/08/2026, player 30/08/2026)
+
+O card flow v2 (`docs/arquitetura-pedagogica.md`): 321 lições, 107 conceitos,
+5.268 itens em 6 formatos, zero telas de leitura, em tabelas próprias
+(`Conceito`/`LicaoCurso`/`ItemAvaliativo`). **Substitui** a trilha escolar
+EF/EM atual; a fila entre "existe" e "substituiu" está em
+[`backlog-curso-v2.md`](backlog-curso-v2.md).
+
+| Peça | Status | Onde |
+|---|---|---|
+| Conteúdo íntegro no repo + validador + carregador + seed (simulado) | ✅ 24/08 | `prisma/curso/`, `lib/licao/`, `scripts/{validar-licoes,semear-curso}.mts` |
+| Player v2: 6 formatos, fluxo, página e rota (Tarefa B) | ✅ 30/08 | `components/curso/`, `app/curso/[licaoSlug]`, `app/api/curso/[licaoSlug]`, `lib/curso/corrigir.ts`, `scripts/testar-curso-player.mts` |
+| `pnpm db:push` + `semear-curso.mts --aplicar` em produção | ❌ **nunca rodou** | item 0 do backlog; o seed não toca `Modulo`/`Tela` |
+| Caixas de Leitner, revisão diária, fusão com a trilha, instrumentação | 📋 | itens 2 a 8 do backlog |
+
+> ⚠️ **Uma integração paralela foi construída e abandonada em 30/08/2026.**
+> A branch `feat/base-licoes-escolares` (guardada no GitHub como referência)
+> resolveu o mesmo problema com outro schema (`Modulo.formato` + `ItemLicao`),
+> sem saber que o curso v2 já estava na `main` desde 24/08 — a exploração
+> partiu de uma branch 23 commits atrás. O `pnpm db:push` dela chegou a
+> rodar contra produção (coluna `Modulo.formato`/`conceitoId`/`encontro`/
+> `serie` e tabela `ItemLicao`, todas vazias); o `db:push` da `main` desfaz
+> isso ao criar as tabelas certas. Registro em `backlog-produto.md`,
+> "Branches paralelas conferidas".
+
 ## Redesign Fin (13/08/2026, em construção)
 
 Protótipo da fundadora: o miolo gamificado (trilha, player, resultado, liga,

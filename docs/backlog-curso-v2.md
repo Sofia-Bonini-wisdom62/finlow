@@ -28,6 +28,13 @@ são a origem de quase tudo aqui); como o conteúdo é escrito está em
 isto foi construído: o seed foi exercitado só em simulação. O primeiro
 `--aplicar` continua sendo um passo por fazer — é o item 0 abaixo.
 
+| Entrega (30/08/2026) | Onde |
+|---|---|
+| Player v2: os 6 formatos, o fluxo e a página (Tarefa B, item 1 abaixo) | `components/curso/`, `app/curso/[licaoSlug]/page.tsx` |
+| Rota que serve a fila de uma lição (reserva e item inativo nunca saem) | `app/api/curso/[licaoSlug]/route.ts` |
+| Corretor puro por formato, o mesmo para tela e servidor | `lib/curso/corrigir.ts`, `types/curso.ts` |
+| Bateria sem banco: os 5.268 itens corrigidos contra o próprio conteúdo | `scripts/testar-curso-player.mts` |
+
 ---
 
 ## P0 — bloqueiam tudo
@@ -44,21 +51,44 @@ saber se o RLS foi aplicado.
 **Pronto quando:** `Conceito` 107, `LicaoCurso` 321, `ItemAvaliativo` 5.268
 (963 com `reserva: true`), e `aplicar-rls.mjs` reportando nenhuma tabela aberta.
 
-### 1. Player v2 — os seis componentes (Tarefa B)
+### ~~1. Player v2 — os seis componentes (Tarefa B)~~ ✅ 30/08/2026
 `binaria`, `escolha3`, `classificar`, `ordenar`, `estimativa`, `fecho`. Um
 componente por formato, dirigido pelo JSON de `ItemAvaliativo.conteudo`.
 
-É **o** bloqueio: sem ele o conteúdo é inalcançável e nenhuma substituição pode
-acontecer. `caca_erro` não entra — nenhuma das 321 lições usa (não há peças
-gráficas), e construir componente sem conteúdo é dívida.
+Era **o** bloqueio: sem ele o conteúdo era inalcançável e nenhuma substituição
+podia acontecer. `caca_erro` não entrou — nenhuma das 321 lições usa (não há
+peças gráficas), e construir componente sem conteúdo é dívida.
 
-Restrições que não são negociáveis (§4 e §11 da arquitetura): atribuição **por
-toque**, nunca só arrastar — arrastar quebra em leitor de tela e em mão trêmula;
-alvo de 44×44px; feedback de erro bloqueia, acerto avança em ~400ms com a
-âncora aparecendo por ~2s; respeitar `prefers-reduced-motion`.
-
-**Pronto quando:** os 6 renderizam de fixture, sem overflow em 360px,
-navegáveis por teclado, e uma lição de 15 telas roda ponta a ponta.
+> **Entregue em `components/curso/`** (`ItemBinaria`, `ItemEscolha` — que
+> também é o `fecho` —, `ItemOrdenar`, `ItemClassificar`, `ItemEstimativa`,
+> `ItemRenderer`, `LicaoFlow`), com `app/curso/[licaoSlug]/page.tsx` por
+> cima e `app/api/curso/[licaoSlug]` servindo a fila. As restrições viraram
+> código, não intenção: `ordenar` e `classificar` são **por toque** (com
+> "Desfazer"); todo alvo tem `min-h-11` (44px); o erro **bloqueia** e só sai
+> pelo "Entendi" (que recebe o foco, para o teclado não parar); o acerto
+> avança sozinho em 400ms e a âncora segue visível 2s na tela seguinte, sem
+> bloquear; `card-enter` entrou no bloco de `prefers-reduced-motion` do
+> `globals.css`, que já cortava as animações `fin-*`. `estimativa` é
+> **slider** (`<input type="range">`, acessível por teclado de nascença) e
+> revela gabarito, distância em %, fonte e a conta de `verificacao`, só
+> para explicar.
+>
+> **O que ficou de fora de propósito, e é decisão da arquitetura, não
+> esquecimento:** nenhum item pontua (§8/§11); a lição não credita XP, não
+> grava progresso e não entra no corredor — isso é a fusão com a trilha
+> (item 4) e as caixas (item 2), fila própria. Não há "segunda chance" nem
+> combo: o erro já é a aula, e refazer na hora mediria memória da resposta.
+>
+> **Corretor único**: `lib/curso/corrigir.ts` é puro e serve à tela (o
+> feedback) e, quando `TentativaItem` existir (item 6), ao servidor — as duas
+> pontas nunca vão discordar do gabarito. `scripts/testar-curso-player.mts`
+> monta a resposta certa e uma errada de cada um dos 5.268 itens a partir do
+> próprio conteúdo e cobra as duas; roda sem banco em ~2s.
+>
+> **Pronto quando, conferido:** os 6 renderizam, sem overflow em 360px,
+> navegáveis por teclado; a lição de 15 telas roda ponta a ponta contra o
+> banco assim que o item 0 (seed) fechar — a página lê `LicaoCurso`, não
+> fixture, para que "roda" signifique roda em produção.
 
 ### 2. Motor de fixação — caixas de Leitner (Tarefa C)
 `lib/fixacao/caixas.ts`: tabela da §6.2, `registrarTentativa()`,

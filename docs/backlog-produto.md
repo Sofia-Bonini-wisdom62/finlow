@@ -1050,6 +1050,20 @@ exportação seria pior ainda. O que foi feito com cada uma:
 | `claude/dazzling-galileo-7hwagc` | Cadastro sem jargão | **Já estava na main** (entrou em 18/08 por outra branch, com a mesma copy palavra por palavra) |
 | `claude/zealous-turing-fav2pl` | Objetivos | **Não mesclada, de propósito.** É uma versão anterior ao Redesign Fin v2: renomearia `meta`/`guardado` no schema e trocaria a tela entregue. Fica como fonte para a pendência de remover/editar objetivo |
 
+**Segunda passada, 30/08/2026.** Eram 24 branches; sobraram 3 no GitHub além
+da `main`. Apagadas as 10 já mescladas e as 9 redundantes (quatro tentativas
+paralelas do conserto de fuso horário — `z48alt`, `48ydu0`, `f8y75t`,
+`w8jjlt` — superadas pela versão que entrou como `d9bb688`; e
+`affectionate-kepler-68e473`, duplicata da `fix/biblioteca-conta-aula-de-fora`).
+O único conteúdo novo entre as apagadas, o item *Recuperação de senha* da
+`9dyn1l`, veio para este arquivo por cherry-pick. O que ficou:
+
+| Branch | Item | Destino |
+|---|---|---|
+| `claude/zealous-turing-fav2pl` | Objetivos | Continua guardada como fonte (acima) |
+| `feat/premium-teto-tokens` | Teto de tokens do assinante (3× o grátis) | Commitada e no GitHub em 30/08; estava solta, sem commit, há dias numa branch já mesclada. Pendente de merge |
+| `feat/base-licoes-escolares` | Curso escolar v2 | **Superada, guardada como referência.** Integrou as 321 lições por outro schema (`Modulo.formato` + `ItemLicao`) sem saber que o curso v2 já estava na `main` desde 24/08 (a exploração partiu de uma branch 23 commits atrás). O player dela serviu de base ao de `components/curso/`; o `db:push` dela rodou contra produção e é desfeito pelo da `main`. Ver `estado-do-produto.md`, "Curso escolar v2" |
+
 **A convergência foi quase total, e as diferenças é que valeram a leitura.** As
 quatro branches de exportação chegaram sozinhas à mesma forma (lista em arquivo,
 teste contra o `schema.prisma`, conversa sem teto), e as três do Perfil à mesma

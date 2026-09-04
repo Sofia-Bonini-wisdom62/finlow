@@ -418,9 +418,12 @@
 .finlow-no-scrollbar { scrollbar-width: none; }
 .finlow-no-scrollbar::-webkit-scrollbar { display: none; }
 
-/* Quem prefere menos movimento não deve levar pulso nem esqueleto piscando. */
+/* Quem prefere menos movimento não deve levar pulso nem esqueleto piscando,
+   nem a entrada deslizante de cada card (o player do curso v2 troca de tela
+   a cada resposta certa; 15 deslizes por lição é justamente o que a pessoa
+   pediu para não ver). */
 @media (prefers-reduced-motion: reduce) {
-  .finlow-pulse, .finlow-skeleton { animation: none; }
+  .finlow-pulse, .finlow-skeleton, .card-enter { animation: none; }
 }
 
 /* ---------------------------------------------------------------------------
