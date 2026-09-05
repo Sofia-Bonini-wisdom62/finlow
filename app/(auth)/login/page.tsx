@@ -115,6 +115,18 @@ export default function LoginPage() {
           </button>
         </form>
 
+        {/*
+          A porta que faltava. Sem ela, quem esquecia a senha ficava olhando o
+          formulário sem saber que existia saída — e a saída existe, mesmo sem
+          link automático por e-mail. O destino explica o que dá para fazer
+          hoje em vez de prometer uma mensagem que não sai.
+        */}
+        <p className="mt-3 text-center text-sm">
+          <Link href="/esqueci-senha" className="font-bold" style={{ color: "var(--fin-muted)" }}>
+            Esqueci minha senha
+          </Link>
+        </p>
+
         <BotaoGoogle />
 
         <p className="mt-6 text-center text-sm" style={{ color: "var(--fin-muted)" }}>

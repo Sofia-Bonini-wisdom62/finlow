@@ -1,9 +1,18 @@
-import { randomBytes, randomInt } from "node:crypto"
 import bcrypt from "bcryptjs"
 import { Prisma } from "@prisma/client"
 import { db } from "@/lib/db"
 import { ehPublico, PUBLICO_ATUAL } from "@/lib/publico"
 import { ehPapel } from "@/lib/escola-papeis"
+import { senhaDeAluno, senhaDeAdulto } from "@/lib/senha"
+import { redefinirSenhaDaConta, type ResultadoSenha } from "@/lib/ops-usuario"
+
+/**
+ * O sorteio de senha mudou de casa em 05/09/2026: mora em lib/senha.ts, junto
+ * com a régua do que é uma senha aceitável, porque a reposição pela operação
+ * deixou de ser assunto só de escola. Reexportado aqui para não quebrar quem
+ * já importava deste arquivo.
+ */
+export { senhaDeAluno }
 
 /**
  * As operações que a fundadora faz sobre escolas (superfície /ops).
@@ -82,7 +91,7 @@ export async function criarEscolaComAdm(opts: {
     }
   }
 
-  const senhaTemporaria = existente ? null : randomBytes(9).toString("base64url")
+  const senhaTemporaria = existente ? null : senhaDeAdulto()
 
   const criado = await db.$transaction(async (tx) => {
     const escola = await tx.escola.create({
@@ -349,15 +358,6 @@ export async function revogarConvite(conviteId: string): Promise<ResultadoSimple
  */
 const ACENTOS = new RegExp("[\\u0300-\\u036f]", "g")
 
-/** Alfabeto sem caractere ambíguo: quem digita a senha tem 7 anos. */
-const ALFABETO_SENHA = "abcdefghjkmnpqrstuvwxyz23456789"
-
-export function senhaDeAluno(tamanho = 6): string {
-  let s = ""
-  for (let i = 0; i < tamanho; i++) s += ALFABETO_SENHA[randomInt(ALFABETO_SENHA.length)]
-  return s
-}
-
 /** "José da Silva Júnior" vira "jose.silva". Puro, e por isso testável. */
 export function apelidoDeLogin(nome: string): string {
   const limpo = nome
@@ -547,11 +547,6 @@ async function gravarAluno(opts: {
   })
 }
 
-/** Senha temporária de adulto: 12 caracteres, a mesma do adm da escola. */
-function senhaTemporariaDeAdulto(): string {
-  return randomBytes(9).toString("base64url")
-}
-
 /**
  * O nome, limpo e conferido. Pura, e por isso testável.
  *
@@ -638,7 +633,7 @@ export async function adicionarPessoa(opts: {
   }
 
   if (opts.papel === "professor") {
-    const senha = senhaTemporariaDeAdulto()
+    const senha = senhaDeAdulto()
     const hash = await bcrypt.hash(senha, 10)
     await db.$transaction(async (tx) => {
       const u = await tx.user.create({
@@ -794,23 +789,23 @@ export async function editarMembro(opts: {
   return { ok: true }
 }
 
-export type ResultadoSenha = { ok: true; senha: string } | { ok: false; detalhe: string }
+export type { ResultadoSenha }
 
 /**
- * Sorteia uma senha nova e devolve UMA vez.
+ * Sorteia uma senha nova para quem está NESTA escola, e devolve UMA vez.
  *
  * Existe porque o "esqueci a senha" não alcança quem entrou pelo lote: o
  * endereço `.invalid` não recebe mensagem nenhuma, de propósito. Sem esta
  * função, uma criança de 8 anos que esquece a senha perde a conta e o
  * progresso junto, e a operadora não teria o que fazer além de criar outra.
  *
- * O tamanho muda com o papel: seis caracteres legíveis para o aluno, que
- * digita de um papel impresso, e doze para adulto, que tem gerenciador ou pelo
- * menos teclado.
- *
- * ⚠️ Conta que só entrava pelo Google ganha senha própria aqui, e passa a
- * poder entrar pelos dois caminhos. É efeito colateral aceito: sem ele, a
- * operadora clicaria num botão que não faz nada visível.
+ * O que esta função decide é só uma coisa: se a pessoa PODE ser mexida a
+ * partir da tela desta escola, e se a senha sai curta (aluno, que digita de um
+ * papel impresso) ou longa. A escrita em si mora em lib/ops-usuario.ts desde
+ * 05/09/2026, quando a reposição passou a existir também fora de escola —
+ * duas cópias de "sorteia, faz o hash e grava" divergiriam no primeiro ajuste
+ * de custo do bcrypt, e a que ficasse para trás seria descoberta por alguém
+ * que não consegue entrar.
  */
 export async function redefinirSenha(escolaId: string, userId: string): Promise<ResultadoSenha> {
   const membro = await db.membroEscola.findFirst({
@@ -819,7 +814,5 @@ export async function redefinirSenha(escolaId: string, userId: string): Promise<
   })
   if (!membro) return { ok: false, detalhe: "Essa pessoa não está nesta escola." }
 
-  const senha = membro.papel === "aluno" ? senhaDeAluno() : senhaTemporariaDeAdulto()
-  await db.user.update({ where: { id: userId }, data: { senha: await bcrypt.hash(senha, 10) } })
-  return { ok: true, senha }
+  return redefinirSenhaDaConta(userId, { curta: membro.papel === "aluno" })
 }

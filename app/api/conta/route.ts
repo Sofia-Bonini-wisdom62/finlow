@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs"
 import { db } from "@/lib/db"
 import { getUserIdOr401 } from "@/lib/painel"
 import { acessoPremium } from "@/lib/pagamento/acesso"
+import { lerSenha } from "@/lib/senha"
 
 export const dynamic = "force-dynamic"
 
@@ -51,9 +52,11 @@ export async function PATCH(req: NextRequest) {
     }
 
     if (senhaNova !== undefined) {
-      if (typeof senhaNova !== "string" || senhaNova.length < 6) {
-        return NextResponse.json({ error: "A senha nova precisa de pelo menos 6 caracteres" }, { status: 400 })
-      }
+      // A régua é a de lib/senha.ts, a mesma do cadastro. Enquanto era escrita
+      // à mão aqui e lá, nada impedia o cadastro aceitar uma senha que a troca
+      // recusaria — e a pessoa descobriria isso no dia em que fosse trocar.
+      const v = lerSenha(senhaNova)
+      if (!v.ok) return NextResponse.json({ error: v.motivo }, { status: 400 })
       const user = await db.user.findUnique({ where: { id: userId }, select: { senha: true } })
       // quem tem senha precisa confirmar a atual (contas OAuth não têm)
       if (user?.senha) {
@@ -61,7 +64,7 @@ export async function PATCH(req: NextRequest) {
           return NextResponse.json({ error: "Senha atual incorreta" }, { status: 403 })
         }
       }
-      dados.senha = await bcrypt.hash(senhaNova, 10)
+      dados.senha = await bcrypt.hash(v.senha, 10)
     }
 
     if (Object.keys(dados).length === 0) {

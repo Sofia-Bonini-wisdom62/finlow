@@ -48,12 +48,29 @@ Avançado, atrás de flag).
 - Data de nascimento é informativa — **não há validação de idade**. O porquê
   fica na tela, embaixo do campo ("adequar o conteúdo à sua idade, e garantir
   que menores nunca vejam anúncio").
-- **Não há recuperação de senha** (registrado no backlog em 30/08/2026). Não
-  existe "esqueci minha senha" em `/login`, nem rota, nem caminho de suporte no
-  produto — quem esquece a senha perde a conta, e como os campos financeiros
-  são cifrados com chave por usuário, não há reposição manual possível. O
-  bloqueio é não haver envio de e-mail no repositório (nenhuma dependência de
-  envio no `package.json`), o mesmo que segura os "alertas que avisam antes".
+- **Recuperação de senha: existe caminho, e ele passa por gente** (05/09/2026).
+  `/login` leva a **`/esqueci-senha`**, que não tem formulário e não promete
+  link nenhum: explica os três casos (conta com senha → escreve para o
+  suporte; conta do Google → não há senha a redefinir, entra pelo botão; login
+  `.invalid` → quem repõe é a escola) e diz, com todas as letras, por que
+  ainda não é automático. Do outro lado, **`/ops/contas`** acha a conta pelo
+  e-mail, nome ou id e sorteia senha nova
+  (`lib/ops-usuario.ts`, `lib/senha.ts`), com o efeito registrado no log.
+  Guardado por `scripts/testar-senha.mts`.
+  - ⚠️ **O autoatendimento continua não existindo**, e o bloqueio é o mesmo de
+    sempre: não há envio de e-mail no repositório (nenhuma dependência de envio
+    no `package.json`), o mesmo que segura os "alertas que avisam antes".
+    Enquanto isso, "esqueci minha senha" às 23h de um domingo espera alguém ler
+    o e-mail do suporte.
+  - **Correção de fato, registrada porque ela decidia o que dava para fazer:**
+    este parágrafo dizia que os campos financeiros são "cifrados com chave por
+    usuário" e que por isso não haveria reposição manual possível. Não é o
+    caso. `lib/cripto.ts` usa **uma chave de servidor** (`ENCRYPTION_KEY`), com
+    `userId:campo` como dado autenticado (AAD) — o próprio arquivo diz que
+    chave derivada da senha fecharia essa porta e foi recusada de propósito,
+    porque a IA precisa ler os números no servidor. Trocar a senha de alguém
+    **não perde dado nenhum**, e era essa frase errada que fazia a reposição
+    parecer impossível.
 - Ajustes concentra: dados da conta, cor de destaque (Dourado padrão,
   Terracota, Lilás, Verde-água — só o acento muda dentro do navy; o seletor
   claro/escuro saiu em 14/08/2026, o tema Fin tem uma cara só), convite de
@@ -463,6 +480,25 @@ quem opera o Finlow.
   criança que esquece a senha perde a conta e o progresso junto. Seis
   caracteres legíveis para aluno, doze para adulto. Conta que só entrava pelo
   Google ganha senha própria e passa a ter os dois caminhos.
+- **Contas** (`/ops/contas`, 05/09/2026): a mesma reposição, agora para
+  **qualquer conta do Finlow**, dentro ou fora de escola — era o buraco que
+  deixava a criança de 8 anos com saída e a assinante adulta sem nenhuma.
+  Busca por e-mail, nome ou id (mínimo de 3 letras nas duas pontas, senão
+  `q=a` viraria despejo da base); a lista diz por onde cada conta volta
+  (senha / Google / login de escola) antes de qualquer toque. A escrita mora
+  em `redefinirSenhaDaConta` (`lib/ops-usuario.ts`) e a reposição da escola
+  passou a delegar a ela — o hash **nunca é selecionado**, nem para virar um
+  booleano: quem responde "esta conta tem senha?" é o banco, com
+  `senha: { not: null }`.
+  - **O custo, dito em voz alta**: quem opera passa a poder definir a senha de
+    qualquer pessoa e, com ela, entrar e ler o dinheiro dela. Não é capacidade
+    nova (`lib/cripto.ts` já diz que quem executa código no servidor lê tudo),
+    mas passa a caber num toque — por isso toda reposição vai para o log com o
+    e-mail de quem operou, e a senha sorteada aparece uma vez e não é gravada
+    em claro em lugar nenhum.
+  - **A sessão é JWT e não cai com a troca**: quem já estava logado em outro
+    aparelho continua logado até o token vencer. A tela avisa isso a quem
+    opera, em vez de deixar supor o contrário.
 - **Revogar convite**: `ConviteEscola.revogadoEm` era lido em quatro lugares
   e nunca escrito; um código vazado só morria por expirar ou esgotar os usos.
 - ⚠️ **Contas de aluno em lote**: cola a lista de nomes, sai login e senha

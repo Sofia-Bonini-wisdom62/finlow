@@ -653,6 +653,96 @@ voltar para a conta.
 > decisão do provedor não vem. É escolha sua se vale entrar antes ou se o item
 > espera inteiro.
 
+### ~~A rede de segurança, construída~~ ✅ 05/09/2026
+
+Essa saída entrou. **O item continua aberto**: o autoatendimento — a pessoa
+sozinha, às 23h, sem falar com ninguém — segue travado na sua decisão sobre o
+provedor de e-mail, e é ele o pedido. O que caiu foi o "perdeu a conta para
+sempre", que é outra coisa e era o que doía.
+
+> **A metade que não depende da decisão é maior do que parecia**, e é o mesmo
+> desenho do *Conector Open Finance* acima: construir agora o que vale igual
+> com Resend, com SES ou sem provedor nenhum. Aqui isso é a régua da senha, a
+> classificação de por onde cada conta volta, e a reposição pela operação.
+>
+> **A frase que travava metade do item estava errada, e ela caiu junto.** Este
+> arquivo e o `resumo-de-funcao.md` diziam que os campos são "cifrados com
+> chave derivada por usuário" e que por isso não existiria "a gente recupera
+> para você". Não existe essa derivação: `lib/cripto.ts` usa **uma chave de
+> servidor** (`ENCRYPTION_KEY`), com `userId:campo` só como dado autenticado, e
+> o próprio arquivo explica que chave derivada da senha foi RECUSADA de
+> propósito — ela impediria a IA de ler os números no servidor e faria esquecer
+> a senha significar perder os dados. Ou seja: repor senha **não perde dado
+> nenhum**, e a rede de segurança sempre foi possível.
+>
+> **O que a pessoa vê:** `/login` ganhou "Esqueci minha senha", que leva a
+> `/esqueci-senha`. A tela **não tem formulário**, e as duas razões são as
+> decisões 1 e 2 do item. Um campo de e-mail com "enviamos um link" seria a
+> falha do passo 1 da landing outra vez, agora pior — a pessoa esperaria na
+> caixa de entrada em vez de escrever para alguém. E um formulário que
+> respondesse diferente para e-mail cadastrado e não cadastrado viraria consulta
+> pública de "fulano usa o Finlow?". Uma página que descreve os três caminhos
+> não confirma nada sobre ninguém: quem chega se reconhece sozinha, e sai
+> sabendo o que fazer.
+>
+> **Os três caminhos são os do item:** conta com senha escreve para o suporte;
+> conta do Google não tem senha a redefinir e entra pelo botão (decisão 1);
+> login `.invalid` é conta que a escola criou, e quem repõe é a escola
+> (decisão 4). A tela diz também **por que** não é automático — sumir com o
+> assunto deixaria quem veio pelo recurso sem resposta.
+>
+> **O que a operação vê:** `/ops/contas` acha a conta por e-mail, nome ou id e
+> sorteia senha nova. Isso já existia desde 18/08 e **só para escola**: a
+> criança de 8 anos tinha saída e a assinante adulta não tinha nenhuma, que é
+> justo o público do pedido. Agora é uma escrita só
+> (`redefinirSenhaDaConta`, em [`lib/ops-usuario.ts`](../lib/ops-usuario.ts)),
+> e a da escola delega a ela.
+>
+> **O custo está dito em voz alta, na tela e no código**: quem opera passa a
+> poder definir a senha de qualquer pessoa e, com ela, entrar e ler o dinheiro
+> dela. Não é capacidade nova — `lib/cripto.ts` já diz que quem executa código
+> no servidor lê tudo —, mas passa a caber num toque, e toque não deixa rastro
+> sozinho. Por isso toda reposição vai para o log com o e-mail de quem operou,
+> a senha aparece uma vez e não é gravada em claro, e o hash **nunca é
+> selecionado**, nem para virar um booleano: quem responde "esta conta tem
+> senha?" é o banco.
+>
+> **A decisão 3 continua valendo e agora está à vista.** A sessão é JWT: trocar
+> a senha NÃO derruba quem já estava logado em outro aparelho. A tela da
+> operação avisa isso antes, em vez de deixar supor o contrário — expulsar as
+> outras sessões é trabalho próprio e não sai de graça com o resto.
+>
+> **Um defeito antigo caiu junto, e é da mesma família dos outros deste
+> arquivo.** A régua da senha estava escrita à mão em dois lugares
+> (`/api/cadastro` e a troca em `/api/conta`), e nenhum deles conhecia o teto do
+> **bcrypt: 72 BYTES, e o resto é ignorado em silêncio**. Duas senhas que só
+> diferem depois do byte 72 são a MESMA senha para o `compare` — quem escreve
+> uma frase longa acha que tem uma senha enorme e tem 72 bytes. Bytes e não
+> caracteres: "á" ocupa 2 e um emoji ocupa 4, então 40 acentos (80 bytes)
+> passariam por um teto em caracteres e voltariam a truncar. A régua virou uma
+> só, em [`lib/senha.ts`](../lib/senha.ts), e recusa com o motivo escrito.
+>
+> **Guardado por `scripts/testar-senha.mts`** (sem banco, sem build): 68
+> conferências — a aritmética de bytes com acento e emoji, a recusa com motivo
+> legível, o `endsWith` que não confunde "nota.invalid@gmail.com" com login de
+> escola, e metade olhando o CÓDIGO das duas pontas. A trava principal é a de
+> honestidade, e é **amarrada ao código, não à data**: enquanto não houver quem
+> mande e-mail (dependência no `package.json` ou `lib/email`), a tela não pode
+> dizer "enviamos um link" nem ter campo de e-mail — e no dia em que o provedor
+> entrar, ela **afrouxa sozinha** em vez de virar teste mentiroso pedindo para
+> ser apagado. Conferido contra o código mutilado: contar caracteres em vez de
+> bytes, trocar `endsWith` por `includes`, tirar o link do login, devolver a
+> promessa de e-mail à tela, reescrever a régua à mão no cadastro, selecionar o
+> hash na busca e ressuscitar a segunda cópia da escrita — as sete são pegas.
+>
+> **O que segue pendente, e é o item de verdade:** o autoatendimento por
+> e-mail, travado na decisão do provedor (as cinco decisões acima continuam de
+> pé para quando ele vier). E, dentro do que entrou: a identidade de quem
+> escreve para o suporte é conferida **por gente**, não por código — a tela de
+> `/ops/contas` lista o que dá para conferir, mas nada ali prova que quem
+> mandou o e-mail é a dona da conta. Um segundo fator, ou uma pergunta de
+> verificação guardada, é decisão sua e não entrou aqui.
+
 ## ~~A data de um lançamento, lida do mesmo jeito em toda parte~~ ✅ 28/08/2026
 
 Não é pedido novo: é a pendência que a *Tela de perfil* registrou em 24/08 e

@@ -4,6 +4,7 @@ import { db } from "@/lib/db"
 import { COOKIE_INDICACAO, vincularIndicacao } from "@/lib/indicacao"
 import { COOKIE_CONVITE, resgatarConvite } from "@/lib/convite-escola"
 import { apelidoValido } from "@/lib/pontos"
+import { lerSenha } from "@/lib/senha"
 
 export const dynamic = "force-dynamic"
 
@@ -17,8 +18,13 @@ export async function POST(req: NextRequest) {
     if (!email || typeof email !== "string" || !/^\S+@\S+\.\S+$/.test(email)) {
       return NextResponse.json({ error: "Email inválido" }, { status: 400 })
     }
-    if (!senha || typeof senha !== "string" || senha.length < 6) {
-      return NextResponse.json({ error: "Senha precisa de pelo menos 6 caracteres" }, { status: 400 })
+    // A régua da senha mora em lib/senha.ts, e é a MESMA da troca de senha em
+    // /api/conta. Escrita à mão nos dois lugares, ela divergiria — e a
+    // divergência de senha aparece do pior jeito: a pessoa cadastra o que a
+    // tela aceitou e não consegue mais entrar.
+    const senhaLida = lerSenha(senha)
+    if (!senhaLida.ok) {
+      return NextResponse.json({ error: senhaLida.motivo }, { status: 400 })
     }
 
     // Celular é opcional e informativo, como a data de nascimento (protótipo
@@ -49,7 +55,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Esse email já tem conta. Tenta entrar!" }, { status: 409 })
     }
 
-    const hash = await bcrypt.hash(senha, 10)
+    const hash = await bcrypt.hash(senhaLida.senha, 10)
 
     /**
      * A conta nasce SEM perfil, e isso é a correção de um vazamento entre
