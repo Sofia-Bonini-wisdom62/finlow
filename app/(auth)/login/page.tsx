@@ -115,6 +115,22 @@ export default function LoginPage() {
           </button>
         </form>
 
+        {/*
+          A saída de quem esqueceu a senha fica ANTES do botão do Google, e não
+          no rodapé: quem chegou aqui travado precisa vê-la sem rolar, e o
+          primeiro dos três caminhos que a página explica é justamente "sua
+          conta entra pelo Google" — que resolve sozinho, logo abaixo.
+        */}
+        <p className="mt-3 text-center text-sm">
+          <Link
+            href="/recuperar-senha"
+            className="font-bold"
+            style={{ color: "var(--fin-muted)" }}
+          >
+            Esqueci minha senha
+          </Link>
+        </p>
+
         <BotaoGoogle />
 
         <p className="mt-6 text-center text-sm" style={{ color: "var(--fin-muted)" }}>

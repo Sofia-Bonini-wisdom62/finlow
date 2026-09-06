@@ -48,12 +48,23 @@ Avançado, atrás de flag).
 - Data de nascimento é informativa — **não há validação de idade**. O porquê
   fica na tela, embaixo do campo ("adequar o conteúdo à sua idade, e garantir
   que menores nunca vejam anúncio").
-- **Não há recuperação de senha** (registrado no backlog em 30/08/2026). Não
-  existe "esqueci minha senha" em `/login`, nem rota, nem caminho de suporte no
-  produto — quem esquece a senha perde a conta, e como os campos financeiros
-  são cifrados com chave por usuário, não há reposição manual possível. O
-  bloqueio é não haver envio de e-mail no repositório (nenhuma dependência de
-  envio no `package.json`), o mesmo que segura os "alertas que avisam antes".
+- **Recuperação de senha não é automática, mas existe caminho** (06/09/2026).
+  `/login` tem "Esqueci minha senha", que leva a `/recuperar-senha`: uma tela
+  SEM formulário, explicando os três caminhos — quem entrou pelo Google usa o
+  botão do Google (nunca teve senha), quem entrou por e-mail e senha escreve
+  para o suporte do próprio e-mail, e aluno de escola fala com a escola. A
+  senha nova sai da operação, em `/ops/contas`. **O recurso de verdade
+  continua na fila** (backlog, 30/08/2026): o "esqueci minha senha" com link
+  no e-mail depende de escolher provedor de envio — não há nenhuma dependência
+  de envio no `package.json`, o mesmo bloqueio dos "alertas que avisam antes".
+  A tela pública não tem campo justamente por isso: sem envio, "enviamos o
+  link" seria mentira e "não achei essa conta" seria consulta pública de quem
+  usa o Finlow.
+- ⚠️ **Trocar a senha não derruba sessão aberta.** A sessão é JWT (obrigatório
+  com provider de credenciais), então quem entrou com a senha antiga segue
+  dentro até o token vencer. Reposição devolve o acesso de quem perdeu; ela
+  não expulsa ninguém. Expulsar é trabalho próprio, e está registrado como
+  decisão 3 do item do backlog.
 - Ajustes concentra: dados da conta, cor de destaque (Dourado padrão,
   Terracota, Lilás, Verde-água — só o acento muda dentro do navy; o seletor
   claro/escuro saiu em 14/08/2026, o tema Fin tem uma cara só), convite de
@@ -463,6 +474,19 @@ quem opera o Finlow.
   criança que esquece a senha perde a conta e o progresso junto. Seis
   caracteres legíveis para aluno, doze para adulto. Conta que só entrava pelo
   Google ganha senha própria e passa a ter os dois caminhos.
+- **Contas** (`/ops/contas`, 06/09/2026): a mesma reposição para conta SEM
+  escola por trás, que é a maior parte da base. Procura pelo login, mostra
+  quem é (nome, se tem senha, se tem Google, se é de escola) e só então repõe
+  — reposição sem confirmar quem é põe um clique de distância entre "a Ana
+  esqueceu a senha" e trocar a senha da Ana errada. Regra em `lib/ops-conta.ts`,
+  folha como `ops-escola.ts` para o teste conseguir carregá-la. **Conta que só
+  entra pelo Google é RECUSADA por padrão**, com a resposta certa na tela
+  ("usa Entrar com Google"), e um segundo clique para quem também perdeu a
+  conta do Google; a tela da escola decide o contrário de propósito, porque lá
+  o vínculo já é a autorização. **Membro de escola delega para
+  `redefinirSenha`**, para a régua do tamanho da senha não passar a depender de
+  qual tela a operadora abriu. A senha nunca entra no log, nas duas rotas, e
+  `scripts/testar-ops.mts` confere isso lendo o valor interpolado.
 - **Revogar convite**: `ConviteEscola.revogadoEm` era lido em quatro lugares
   e nunca escrito; um código vazado só morria por expirar ou esgotar os usos.
 - ⚠️ **Contas de aluno em lote**: cola a lista de nomes, sai login e senha

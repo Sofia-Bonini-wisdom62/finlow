@@ -171,6 +171,201 @@ conferir("sem arroba não passa", FORMATO_EMAIL.test("ana.colegio.com"), false)
 conferir("sem ponto no domínio não passa", FORMATO_EMAIL.test("ana@colegio"), false)
 conferir("com espaço não passa", FORMATO_EMAIL.test("ana souza@colegio.com"), false)
 
+// -------------------------------------------- reposição de senha de conta ---
+// A metade do item *Recuperação de senha* que não depende de escolher
+// provedor de e-mail: a operação repõe a senha de quem escreveu para o
+// suporte. A decisão é pura de propósito — ela é a diferença entre devolver
+// uma conta e criar uma credencial que ninguém pediu.
+const { decidirReposicao, avisoDeReposicao } = await import("../lib/ops-conta.js")
+
+console.log("\ndecidirReposicao — o que a operação pode fazer com uma conta")
+
+conferir(
+  "conta que não existe não vira reposição",
+  decidirReposicao({ existe: false, temSenha: false, temGoogle: false }).acao,
+  "nao_existe"
+)
+conferir(
+  "conta com senha própria repõe",
+  decidirReposicao({ existe: true, temSenha: true, temGoogle: false }).acao,
+  "repor"
+)
+conferir(
+  "conta com senha E Google repõe (ela tem o que esquecer)",
+  decidirReposicao({ existe: true, temSenha: true, temGoogle: true }).acao,
+  "repor"
+)
+// O caso que a tela da escola resolve ao contrário, e de propósito: aqui a
+// operadora responde a um pedido de FORA, e a pessoa que entra pelo Google
+// não esqueceu senha nenhuma — nunca teve uma. Sortear uma poria credencial
+// nova numa conta protegida pelo login do Google.
+conferir(
+  "conta só do Google é recusada por padrão",
+  decidirReposicao({ existe: true, temSenha: false, temGoogle: true }).acao,
+  "so_google"
+)
+conferir(
+  "a recusa do Google manda a pessoa para o caminho que funciona",
+  /Entrar com Google/.test(decidirReposicao({ existe: true, temSenha: false, temGoogle: true }).motivo),
+  true
+)
+conferir(
+  "com o segundo clique, a conta do Google ganha senha",
+  decidirReposicao({ existe: true, temSenha: false, temGoogle: true, assumirContaGoogle: true }).acao,
+  "repor"
+)
+// Sem senha e sem Google é conta órfã: recusar aqui trancaria a pessoa para
+// sempre, que é exatamente o defeito que este item existe para tirar da mesa.
+conferir(
+  "conta sem senha e sem Google repõe sem confirmação extra",
+  decidirReposicao({ existe: true, temSenha: false, temGoogle: false }).acao,
+  "repor"
+)
+conferir(
+  "toda decisão vem com motivo escrito",
+  [
+    decidirReposicao({ existe: false, temSenha: false, temGoogle: false }),
+    decidirReposicao({ existe: true, temSenha: true, temGoogle: false }),
+    decidirReposicao({ existe: true, temSenha: false, temGoogle: true }),
+  ].every((d) => d.motivo.length > 0),
+  true
+)
+
+console.log("\navisoDeReposicao — o que a operadora repete para quem pediu")
+
+conferir(
+  "conta comum não ganha aviso inventado",
+  avisoDeReposicao({ temGoogle: false, escola: null }, false),
+  null
+)
+conferir(
+  "quem também tem Google ouve que o Google continua valendo",
+  /Google/.test(avisoDeReposicao({ temGoogle: true, escola: null }, false) ?? ""),
+  true
+)
+conferir(
+  "assumir a conta do Google avisa que agora entra pelos dois caminhos",
+  /dois caminhos/.test(avisoDeReposicao({ temGoogle: true, escola: null }, true) ?? ""),
+  true
+)
+conferir(
+  "membro de escola ouve que a escola também repõe",
+  /escola/i.test(avisoDeReposicao({ temGoogle: false, escola: { nome: "Colégio X", papel: "aluno" } }, false) ?? ""),
+  true
+)
+
+// ----------------------------------- a porta pública e a porta da operação ---
+// As duas metades se obrigam: a reposição em /ops sem o aviso em /login é uma
+// saída que ninguém sabe pedir, e o aviso sem a reposição manda a pessoa
+// escrever para um e-mail que não tem o que responder. Nada disto quebra
+// build, typecheck ou lint — some sem avisar.
+console.log("\nrecuperação de senha — as duas metades continuam de pé")
+
+/**
+ * O comentário do arquivo NÃO é a tela. Este corte existe porque a primeira
+ * versão do guard acusou a própria tela de prometer e-mail: o comentário do
+ * topo dela CITA a promessa proibida para explicar por que ela não está lá.
+ * Guard que acusa código correto ensina a próxima pessoa a desligá-lo.
+ */
+function semComentarios(fonte: string): string {
+  return fonte
+    .replace(/\{\s*\/\*[\s\S]*?\*\/\s*\}/g, " ") // {/* comentário de JSX */}
+    .replace(/\/\*[\s\S]*?\*\//g, " ") // /* bloco */ e /** doc */
+    .replace(/^\s*\/\/.*$/gm, " ") // // linha inteira
+}
+
+const login = readFileSync(join("app", "(auth)", "login", "page.tsx"), "utf8")
+const recuperar = semComentarios(
+  readFileSync(join("app", "(auth)", "recuperar-senha", "page.tsx"), "utf8")
+)
+const opsContas = readFileSync(join("app", "ops", "contas", "page.tsx"), "utf8")
+const opsLayout = readFileSync(join("app", "ops", "layout.tsx"), "utf8")
+
+conferir("o login oferece a saída de quem esqueceu", login.includes("/recuperar-senha"), true)
+conferir("a tela pública existe e volta para o login", recuperar.includes("/login"), true)
+conferir("a tela pública dá o e-mail do suporte", recuperar.includes("EMAIL_CONTATO"), true)
+// Os três caminhos são três pessoas diferentes, e a que entrou pelo Google
+// resolve sem suporte nenhum. Tirar esse bloco manda para o e-mail quem podia
+// voltar sozinha em um toque.
+conferir("a tela pública explica o caminho do Google", /Google/.test(recuperar), true)
+conferir("a tela pública explica o caminho da escola", /escola/i.test(recuperar), true)
+conferir("a porta da operação existe", opsContas.includes("ReporSenhaDeConta"), true)
+// Tela que a navegação não alcança é tela que ninguém acha na hora em que o
+// pedido de suporte chega, que é a única hora em que ela importa.
+conferir("a navegação de /ops leva até ela", opsLayout.includes("/ops/contas"), true)
+
+/**
+ * A honestidade da tela pública é amarrada ao CÓDIGO, não à data: ela só é
+ * exigida sem formulário enquanto não houver envio de e-mail no repositório.
+ * No dia em que o provedor entrar, esta checagem afrouxa sozinha, em vez de
+ * virar teste mentiroso pedindo para ser apagado.
+ */
+const pacote = readFileSync("package.json", "utf8")
+const ENVIO_DE_EMAIL = /"(resend|nodemailer|postmark|@sendgrid\/mail|mailgun\.js|@aws-sdk\/client-ses)"/
+const temEnvio = ENVIO_DE_EMAIL.test(pacote)
+
+total++
+if (temEnvio) {
+  console.log("  ✓ há envio de e-mail no package.json — o formulário de reset está liberado")
+} else {
+  // Sem envio, as duas respostas possíveis de um formulário são ruins:
+  // "enviamos o link" é mentira, e "não achei essa conta" transforma a tela
+  // numa consulta pública de quem usa o Finlow.
+  const temCampo = /<input\b|<form\b|fetch\(/.test(recuperar)
+  if (temCampo) {
+    falhas++
+    console.log("  ✗ a tela pública ganhou formulário sem existir envio de e-mail")
+  } else {
+    console.log("  ✓ sem envio de e-mail, a tela pública não tem formulário nem consulta")
+  }
+
+  total++
+  const PROMESSA = /enviamos|enviaremos|te mandamos|link no seu e-?mail|verifique seu e-?mail/i
+  if (PROMESSA.test(recuperar)) {
+    falhas++
+    console.log("  ✗ a tela pública promete e-mail que o repositório não sabe mandar")
+  } else {
+    console.log("  ✓ a tela pública não promete e-mail nenhum")
+  }
+}
+
+// A senha existe UMA vez, na resposta. Um console.log com ela dentro a
+// transforma em linha permanente no log da Vercel, lida por quem tem acesso
+// ao projeto — que é o oposto do que "some depois" quer dizer.
+console.log("\nsenha reposta não vai parar no log")
+
+/**
+ * O que é registrado é o VALOR interpolado, não a palavra. As duas rotas
+ * escrevem "repôs a senha de {login}" na mensagem, e um guard que lesse a
+ * linha inteira acusaria as duas por causa da frase em português — enquanto
+ * um `${r.senha}` de verdade passaria despercebido no meio do mesmo texto.
+ */
+function valoresRegistrados(fonte: string): string[] {
+  const chamadas = [...fonte.matchAll(/console\.\w+\(([\s\S]*?)\)\s*$/gm)].map((m) => m[1])
+  return chamadas.flatMap((c) => [...c.matchAll(/\$\{([^}]*)\}/g)].map((m) => m[1].trim()))
+}
+
+for (const rota of [
+  join("app", "api", "ops", "contas", "senha", "route.ts"),
+  join("app", "api", "ops", "escolas", "[escolaId]", "membros", "[userId]", "senha", "route.ts"),
+]) {
+  const valores = valoresRegistrados(readFileSync(rota, "utf8"))
+  conferir(
+    `${rota.split(/[\\/]/).slice(-3).join("/")} não registra a senha`,
+    valores.some((v) => /senha/i.test(v)),
+    false
+  )
+}
+
+// E o guard precisa acusar quando a senha ENTRA no log, senão ele é decoração.
+conferir(
+  "o guard pega um log que registra a senha",
+  valoresRegistrados("console.log(`[ops] repôs para ${r.login}: ${r.senha}`)").some((v) =>
+    /senha/i.test(v)
+  ),
+  true
+)
+
 // --------------------------------------------- rotas sem guard escolhido ---
 console.log("\nrotas de /api/ops — toda rota escolheu um guard?")
 

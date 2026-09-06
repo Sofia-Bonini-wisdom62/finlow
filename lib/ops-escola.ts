@@ -547,8 +547,14 @@ async function gravarAluno(opts: {
   })
 }
 
-/** Senha temporária de adulto: 12 caracteres, a mesma do adm da escola. */
-function senhaTemporariaDeAdulto(): string {
+/**
+ * Senha temporária de adulto: 12 caracteres, a mesma do adm da escola.
+ *
+ * Exportada para lib/ops-conta.ts, que repõe a senha de conta SEM escola: dois
+ * geradores de senha temporária no repositório seria a régua mudando por qual
+ * tela a operadora abriu.
+ */
+export function senhaTemporariaDeAdulto(): string {
   return randomBytes(9).toString("base64url")
 }
 

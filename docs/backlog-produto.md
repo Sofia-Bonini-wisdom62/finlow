@@ -653,6 +653,73 @@ voltar para a conta.
 > decisão do provedor não vem. É escolha sua se vale entrar antes ou se o item
 > espera inteiro.
 
+### ~~A rede de segurança: reposição pela operação~~ ✅ 06/09/2026
+
+A metade que não dependia de você escolher provedor de e-mail. **O recurso
+continua na fila** — o "esqueci minha senha" com link no e-mail segue parado
+nas cinco decisões acima —, mas o "perdeu a conta para sempre" saiu da mesa:
+quem esquece a senha hoje escreve para o suporte e volta a entrar no mesmo dia.
+
+> **Já existia metade da metade, e era a menor.** `redefinirSenha` repõe a
+> senha de MEMBRO DE ESCOLA desde 18/08, com a tela em `/ops/escolas/[id]` —
+> ela nasceu para a criança do lote, cujo login `.invalid` não recebe mensagem
+> nenhuma. Faltava exatamente o resto do mundo: o adulto que se cadastrou com
+> e-mail e senha e não tem escola por trás, que é a maior parte da base. Agora
+> a operação repõe a senha de qualquer conta, em `/ops/contas`.
+>
+> **As duas metades entraram juntas porque uma sem a outra não serve.** Porta
+> em `/ops` sem aviso no `/login` é uma saída que ninguém sabe pedir; aviso no
+> `/login` sem a porta é mandar a pessoa escrever para um e-mail que não teria
+> o que responder. É a mesma forma do item 1 da avaliação de UX. `/login` ganhou
+> "Esqueci minha senha", e a tela `/recuperar-senha` explica os três caminhos.
+>
+> **A tela pública NÃO tem formulário, e essa é a decisão principal.** Um campo
+> de e-mail teria de responder alguma coisa, e as duas respostas possíveis são
+> ruins enquanto não há envio: "enviamos o link" é mentira, e "não achei essa
+> conta" transforma a tela na consulta pública de "fulano usa o Finlow?" que a
+> decisão 2 acima recusa. Sem campo, não há nada a vazar nem a prometer. Quando
+> o provedor for escolhido, é esta tela que ganha o formulário.
+>
+> **A decisão 1 (conta do Google) foi resolvida pelo lado honesto.** Conta com
+> `senha` nula não esqueceu senha nenhuma: nunca teve uma. A reposição RECUSA
+> por padrão e manda usar "Entrar com Google", que devolve o acesso na hora e
+> sem a operação ver segredo nenhum — sortear uma senha ali poria credencial
+> nova numa conta protegida pelo login do Google, verificação em duas etapas
+> inclusive. A recusa tem um segundo clique para o caso legítimo do outro lado
+> (quem perdeu o acesso à própria conta do Google), com a consequência escrita
+> na tela. **A tela da escola decide o contrário de propósito**, e a assimetria
+> é a razão de as duas regras não terem virado uma: lá a operadora está na
+> lista de membros de UMA escola, o vínculo já é a autorização, e um botão que
+> "não faz nada visível" seria pior.
+>
+> **A decisão 4 (aluno de escola) está na tela, nos dois lados.** A tela
+> pública manda o aluno falar com a escola, e a de `/ops` avisa que a escola
+> também repõe. Membro de escola não ganhou segunda escrita: `reporSenhaDeConta`
+> delega para `redefinirSenha`, senão a régua do tamanho da senha (seis
+> caracteres legíveis para quem tem sete anos, doze para adulto) passaria a
+> depender de qual tela a operadora abriu.
+>
+> 🔴 **A decisão 3 continua aberta, e agora com consequência escrita:** a sessão
+> é JWT, então trocar a senha **não derruba** quem já está logado com a antiga.
+> Reposição devolve o acesso de quem perdeu; ela não expulsa ninguém. Está dito
+> na tela de `/ops` porque muda o que a operação pode prometer ao responder um
+> pedido de suporte que seja, na verdade, uma conta invadida.
+>
+> **Guardado por `scripts/testar-ops.mts`** (roda sem banco, sem build), que vai
+> a 74 conferências. Metade olha a decisão pura (`decidirReposicao`,
+> `avisoDeReposicao`); a outra metade olha o CÓDIGO: que o `/login` continue
+> oferecendo a saída, que a tela de `/ops` continue alcançável pela navegação,
+> que a senha nunca entre no `console.log` das DUAS rotas de reposição, e que a
+> tela pública siga sem formulário e sem promessa de e-mail — esta última
+> **amarrada ao código, não à data**: ela só é exigida enquanto não houver
+> dependência de envio no `package.json`, e afrouxa sozinha no dia em que o
+> provedor entrar, em vez de virar teste mentiroso pedindo para ser apagado.
+> Conferido contra o código mutilado, quatro mutações, quatro pegas — e o guard
+> do log é o exemplo de por que isso importa: a primeira versão dele lia a linha
+> inteira e acusava as duas rotas por causa da frase em português ("repôs a
+> senha de"), enquanto um `${r.senha}` de verdade passaria despercebido no meio
+> do mesmo texto. Hoje ele lê o VALOR interpolado.
+
 ## ~~A data de um lançamento, lida do mesmo jeito em toda parte~~ ✅ 28/08/2026
 
 Não é pedido novo: é a pendência que a *Tela de perfil* registrou em 24/08 e

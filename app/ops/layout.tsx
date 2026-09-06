@@ -57,6 +57,9 @@ export default async function OpsLayout({ children }: { children: React.ReactNod
             <Link href="/ops/escolas" className="font-extrabold text-fl-ink-2 hover:text-fl-ink">
               Escolas
             </Link>
+            <Link href="/ops/contas" className="font-extrabold text-fl-ink-2 hover:text-fl-ink">
+              Contas
+            </Link>
             <Link href="/chat" className="ml-auto font-bold text-fl-ink-3 hover:text-fl-ink-2">
               Ir para o app
             </Link>
